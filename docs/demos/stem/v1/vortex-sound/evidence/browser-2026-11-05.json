@@ -1,0 +1,80 @@
+{
+  "schema": "vortex-sound.browser/1",
+  "date": "2026-11-05",
+  "browser": "Playwright MCP headless Chromium",
+  "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3, Unspecified Version)",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "page_sources": {
+    "index.html": "b9228323c7db29b1e2f7509c0b1033f830b3a574150703c02c06e93b5ced7805",
+    "src/app.js": "ca7b8d6adb1e0b8692430ca766e0d49e8e9a7b5b8b90b4d093fb876ea6dc8699",
+    "src/nets.js": "1ada80503f551ac38ca53ef1bbdb5cb61b9dc61609e820785d67156ebcfe4383",
+    "src/app.css": "1b8ed41276e27ae339fd693d086115f156409bb21d4715410b6a4289c62ea768",
+    "scenes/vortex.x3d": "14c20b0a4796aa96b6ce2c960cad4e25768bdb02d500b84212fb4c64461d982c"
+  },
+  "case_manifests": {
+    "ring": "2c0580d12ffd457d6dd5ef5344cc739fc6d4e2f73f07774b963b27a767fca9b2",
+    "reconnection": "aa227e98f19655280dd731217e065a7678feb21ceb9a24b66eaeeeaab2ea392b"
+  },
+  "cross_check": {
+    "what": "the page meshes the vortex cores of every verified frame itself; vertex and triangle counts must equal the builder's and the enclosed volume agree to 1e-6",
+    "cases": {
+      "ring": {
+        "status": "pass",
+        "match": 48,
+        "total": 48,
+        "worst": 4.440892098500626e-15
+      },
+      "reconnection": {
+        "status": "pass",
+        "match": 48,
+        "total": 48,
+        "worst": 8.104628079763643e-15
+      }
+    },
+    "pass": true
+  },
+  "playback": {
+    "what": "Play the reconnection; sample the page's frame and the Switch's whichChoice every 0.3 s; pause and check it holds",
+    "samples_frame_whichChoice": [
+      [
+        6,
+        6
+      ],
+      [
+        9,
+        9
+      ],
+      [
+        11,
+        11
+      ],
+      [
+        14,
+        14
+      ],
+      [
+        18,
+        18
+      ]
+    ],
+    "paused_then": [
+      20,
+      20
+    ],
+    "pass": true
+  },
+  "console_errors": [],
+  "scope": "One browser on one machine. Counts, mesh and playback order, not pixels; no frame rate is claimed.",
+  "callback_resilience": {
+    "thrown": 1,
+    "calls": 9,
+    "whichChoice": [
+      28,
+      33
+    ],
+    "advanced_after": true,
+    "uncaught": [],
+    "pass": true
+  },
+  "pass": true
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vortex Reconnection &amp; Sound · x3d.STEM</title>
+<link rel="stylesheet" href="vendor/x_ite/x_ite.css">
+<link rel="stylesheet" href="src/app.css">
+<script src="vendor/x_ite/x_ite.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="mark">∞</span><div><b>x3d.STEM</b><small>Vortex Reconnection &amp; Sound · a quantum fluid</small></div></div>
+  <nav id="cases" aria-label="Computed cases"></nav>
+  <a class="ledger-link" href="#ledger">Evidence ledger ↓</a>
+</header>
+<main>
+  <section id="stage">
+    <x3d-canvas id="canvas" contentScale="auto" splashScreen="false" contextMenu="false" notifications="false" toneMapping="KHR_PBR_NEUTRAL" antialiased="true" maximumFrameRate="60"></x3d-canvas>
+    <div id="banner" hidden></div>
+    <div id="caption"><h1 id="title">Loading…</h1><p id="subtitle"></p></div>
+    <div id="clock"><b id="tval"></b><span id="fval"></span></div>
+    <div id="readout">Drag · scroll · slice: orange denser, blue thinner</div>
+    <div id="loading">Verifying computed states…</div>
+  </section>
+  <aside id="panel">
+    <h2>Motion</h2>
+    <div class="row"><button id="play" class="primary">▶ Play</button><input type="range" id="frame" min="0" max="47" step="1" value="0" aria-label="Frame"></div>
+    <p class="hint">48 computed states; playback never blends two. Tubes are the vortex cores, where the fluid's density falls to a quarter.</p>
+    <h2>View</h2>
+    <div class="row seg" id="views"><button data-v="Oblique" class="on">Oblique</button><button data-v="Top">From above</button></div>
+    <h2>Lens</h2>
+    <div class="row seg" id="lenses"><button data-l="explorer" class="on">Explorer</button><button data-l="lab">Lab</button></div>
+    <div id="lensText" class="hint"></div>
+    <h2 id="ledger">Evidence ledger</h2>
+    <p class="hint">Every number below was measured on this case by a named tool; the last rows are measured here, in your browser. Red rows stay red.</p>
+    <table id="witnesses"><thead><tr><th></th><th>Check</th><th>Observed</th><th>Limit</th></tr></thead><tbody></tbody></table>
+    <p class="hint" id="limits"></p>
+    <p class="hint small" id="provenance"></p>
+  </aside>
+</main>
+<script src="src/nets.js"></script>
+<script src="src/app.js"></script>
+</body>
+</html>
