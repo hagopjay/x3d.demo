@@ -1,0 +1,137 @@
+{
+  "schema": "electron-cloud.browser/1",
+  "date": "2026-11-04",
+  "browser": "Playwright MCP headless Chromium",
+  "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3, Unspecified Version)",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "page_sources": {
+    "index.html": "3f153bf17f203a2b2a5c1ecca4f3b7804d5a9923c07080075dd9243b6e322fc0",
+    "src/app.js": "3846a18861eb9267c62343de8e712b1601d879c92df6796a57937c434de652d1",
+    "src/nets.js": "1ada80503f551ac38ca53ef1bbdb5cb61b9dc61609e820785d67156ebcfe4383",
+    "src/app.css": "72c6c0b583f7a62166b53f8871599b62344463a87353221494e41a8312f70fc8",
+    "scenes/cloud.x3d": "d2892785a229afc2c9c073409d2fcb7be74b554f8eb6ccc32b441e60e8255a52"
+  },
+  "case_manifests": {
+    "lyman": "6d11051295c4183263f5e3d24e5524c508c4bfcf51c64f41360d1fa9e176351d",
+    "1s": "e5df1d6bf54aca090ad721b85d7556a6ecf978d569021a98ad7dba485ee212e9",
+    "2s": "597e2302acf6ef95e81e62a766cb5a7dca5f3fda2b54bf17c66c6d55795e54c0",
+    "2pz": "ea76d8cc76733b66858f8eae989e173d339c31b6c87563137e5add3717a97d6d",
+    "3s": "74c8695a4a6b8fc989dcff551a6ef5bd3766edb045570aa2d5dfeab2041543b2",
+    "3dz2": "fb625e10d6d5ff46a01715868ee82d5f1502f1a3b304a628e65d9d72f191971d",
+    "3dxy": "a430a220a0e3c4bb37d8fc7c4fe1c1d16f62c5ca575c662465449e8b32cab1d4",
+    "4fz3": "bebeb46aeb8efd7ad7f5cae8845a0dea6db0ba19986cc86796822b5d2f9e332d",
+    "4fxyz": "62c83ad96e65d6c18bdd2915b8dbb21f6e2431dc59b0a8e26e5b2466ddc05b88",
+    "4fy3x2": "a95bdceda1d6e919da2eb8874da8df01c17432387f0c54c951884813bf5452e8",
+    "5gz4": "6b411ef9f5910a6e6ca6a665faa322d751a57c7f851b82ecb25befeeea602847"
+  },
+  "mesh_cross_check": {
+    "what": "the page rebuilds every frame's mesh from the verified field (src/nets.js) and compares vertex and triangle counts (exact) and enclosed volume (relative, at most 1e-6) with the builder's reference at level 0.2",
+    "cases": {
+      "lyman": {
+        "status": "pass",
+        "match": 24,
+        "total": 24,
+        "worst": 3.9968028886505635e-15
+      },
+      "1s": {
+        "status": "pass",
+        "match": 1,
+        "total": 1,
+        "worst": 2.4424906541753444e-15
+      },
+      "2s": {
+        "status": "pass",
+        "match": 1,
+        "total": 1,
+        "worst": 6.661338147750939e-15
+      },
+      "2pz": {
+        "status": "pass",
+        "match": 1,
+        "total": 1,
+        "worst": 2.1094237467877974e-15
+      },
+      "3s": {
+        "status": "pass",
+        "match": 1,
+        "total": 1,
+        "worst": 5.10702591327572e-15
+      },
+      "3dz2": {
+        "status": "pass",
+        "match": 1,
+        "total": 1,
+        "worst": 3.552713678800501e-15
+      },
+      "3dxy": {
+        "status": "pass",
+        "match": 1,
+        "total": 1,
+        "worst": 1.3322676295501878e-15
+      },
+      "4fz3": {
+        "status": "pass",
+        "match": 1,
+        "total": 1,
+        "worst": 3.9968028886505635e-15
+      },
+      "4fxyz": {
+        "status": "pass",
+        "match": 1,
+        "total": 1,
+        "worst": 1.3322676295501878e-15
+      },
+      "4fy3x2": {
+        "status": "pass",
+        "match": 1,
+        "total": 1,
+        "worst": 7.327471962526033e-15
+      },
+      "5gz4": {
+        "status": "pass",
+        "match": 1,
+        "total": 1,
+        "worst": 4.773959005888173e-15
+      }
+    },
+    "pass": true
+  },
+  "playback": {
+    "what": "Play from frame 0; sample the page's frame and the Switch whichChoice and the charge bead every 0.6 s; pause and check it holds",
+    "samples_frame_whichChoice": [
+      [
+        4,
+        4,
+        41.338
+      ],
+      [
+        7,
+        7,
+        40.0662
+      ],
+      [
+        10,
+        10,
+        39.0486
+      ],
+      [
+        13,
+        13,
+        38.8811
+      ],
+      [
+        16,
+        16,
+        39.662
+      ]
+    ],
+    "paused_then": [
+      16,
+      16
+    ],
+    "pass": true
+  },
+  "console_errors": [],
+  "scope": "One browser on one machine. Counts and volumes, not pixels: no frame is compared with an offline render, and no frame rate is claimed.",
+  "pass": true
+}

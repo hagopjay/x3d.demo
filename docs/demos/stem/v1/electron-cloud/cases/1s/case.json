@@ -1,0 +1,213 @@
+{
+  "schema": "loom.scientific-case/1",
+  "id": "orbital/1s",
+  "kind": "orbital",
+  "name": "1s",
+  "title": "1s orbital",
+  "line": "The ground state: a fuzzy ball, densest at the nucleus.",
+  "equation": "-1/2 laplacian(psi) - psi / r = E psi; psi_nlm = u_nl(r) / r * Y_lm",
+  "domain": {
+    "shape": [
+      80,
+      80,
+      80
+    ],
+    "units": "bohr (atomic units); energies in hartree",
+    "boundary": "u(0) = u(200 bohr) = 0; display box holds all but 1e-4 of the probability"
+  },
+  "parameters": {
+    "n": 1,
+    "l": 0,
+    "m": 0,
+    "label": "1s",
+    "box_half_width_bohr": 6.96,
+    "cell_bohr": 0.174,
+    "level_share": 0.9,
+    "level": 0.03967983726146442,
+    "E_hartree": -0.4999999974999931,
+    "E_eV": -13.605693054965345,
+    "radial_h": 0.01
+  },
+  "method": "Radial equation by three-point finite differences on a uniform 0.01-bohr grid to 200 bohr, lowest eigenpairs of the tridiagonal matrix (LAPACK), Richardson with h = 0.02; 3D field = u(r)/r times a real spherical harmonic, linear interpolation in r, cell-centred 80^3 grid; surfaces by surface nets with three Newton projections.",
+  "limits": [
+    "Non-relativistic hydrogen with an infinitely heavy nucleus: no fine structure, spin, Lamb shift or reduced-mass correction (the real Lyman-alpha line is at 121.567 nm, not 121.502 nm).",
+    "The surface is where |psi| (or the square root of the density) crosses a level enclosing 90 % of the probability on the grid; the cloud has no edge.",
+    "Each case has its own box size, so orbitals are not drawn to a common scale; the page states the box width in bohr."
+  ],
+  "dependencies": {
+    "tools/radial.py": "8ef724738b3a7e36aaff0bbaca2c5edc4997fc4b7f845ad7c14c8552b14b238a"
+  },
+  "external_dependencies": {
+    "lib/stemkit/core.py": "b799990d80948989d6525fdd0c8f16c4eec884e659105fd6bd5750d4cf977600",
+    "lib/stemkit/mesh.py": "fe4ebf154d7f8d7eed0c26ca13c3143678d60c8dbe74de4e7230e78fa1a6e326"
+  },
+  "frames": [
+    {
+      "file": "cases/1s/psi.bin",
+      "sha256": "4d9e4e19c15bcac2ebce471bb322131f45058ffdb265402e9187757e43a29ffb",
+      "bytes": 177379,
+      "decoded_sha256": "3d16d8ae8d7fce1011dcf9bf982353458e06ec284396a03ee81a11304221ec25",
+      "decoded_bytes": 1024000,
+      "time": 0.0,
+      "clipped_values": 0,
+      "quantization_max": 1.5259254737998596e-05,
+      "encoding": "int16le psi / max|psi|, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": true,
+      "scale": 0.48523837598379704,
+      "mesh": {
+        "iso": 0.03967983726146442,
+        "vertices": 4394,
+        "triangles": 8784,
+        "volume": 14852.946681666843
+      }
+    }
+  ],
+  "metrics": [
+    {
+      "id": "radial",
+      "E": -0.4999875006243337,
+      "E_richardson": -0.4999999974999931,
+      "observed_order": 1.9997835680984335,
+      "mean_r": 1.50002500062457,
+      "potential": -0.9999500037498774
+    },
+    {
+      "id": "display grid",
+      "normalization": 0.9999283799046889,
+      "cells": 80
+    },
+    {
+      "id": "final mesh",
+      "vertices": 4394,
+      "triangles": 8784,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "area": 2922.807931737625,
+      "volume": 14852.946681666843,
+      "mc_volume": 14832.518310000001,
+      "mc_volume_se": 87.53630540391927,
+      "volume_rel_diff": 0.001377269270119073,
+      "iso_distance_p95": 3.188688026983052e-15,
+      "iso_distance_max": 6.176729652863087e-15
+    },
+    {
+      "id": "timing",
+      "seconds": 1.2
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "energy E(1) vs -1/(2n\u00b2), relative error (h = 0.01)",
+      "pass": true,
+      "observed": 2.499875133255003e-05,
+      "limit": 5e-05,
+      "rule": "at most"
+    },
+    {
+      "id": "observed order of the energy in h: |p - 2|",
+      "pass": true,
+      "observed": 0.00021643190156650505,
+      "limit": 0.05,
+      "rule": "at most",
+      "note": "observed 1.9998"
+    },
+    {
+      "id": "Richardson-extrapolated energy vs -1/(2n\u00b2), relative error",
+      "pass": true,
+      "observed": 5.000013847400453e-09,
+      "limit": 1e-08,
+      "rule": "at most"
+    },
+    {
+      "id": "l-degeneracy: spread of E(1, l) over l = 0..0, relative",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 1e-08,
+      "rule": "at most"
+    },
+    {
+      "id": "radial function vs the Laguerre form, max error / max",
+      "pass": true,
+      "observed": 1.3738508032759856e-05,
+      "limit": 5e-05,
+      "rule": "at most"
+    },
+    {
+      "id": "<r> vs (3n\u00b2 - l(l+1))/2, relative error",
+      "pass": true,
+      "observed": 1.6667083046595366e-05,
+      "limit": 5e-05,
+      "rule": "at most"
+    },
+    {
+      "id": "virial theorem <V> = 2E, relative error",
+      "pass": true,
+      "observed": 4.9996250122585906e-05,
+      "limit": 0.0001,
+      "rule": "at most"
+    },
+    {
+      "id": "radial nodes: |counted - (n - l - 1)|",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "3D normalization on a 160\u00b3 check grid: |sum psi\u00b2 dV - 1|",
+      "pass": true,
+      "observed": 4.0798707973910275e-05,
+      "limit": 0.0005,
+      "rule": "at most"
+    },
+    {
+      "id": "closed meshes: boundary edges over the frame",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "mesh volume vs Monte Carlo on the field, relative difference (gross-error check)",
+      "pass": true,
+      "observed": 0.001377269270119073,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "display quantization (16-bit): isosurface shift p99, worst frame (cells)",
+      "pass": true,
+      "observed": 0.0010070757216678384,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "mesh vertices on the displayed surface: distance p99, worst frame (cells)",
+      "pass": true,
+      "observed": 4.763774086632677e-15,
+      "limit": 0.01,
+      "rule": "at most"
+    },
+    {
+      "id": "clipping: values outside the 16-bit range",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "90 % surface radius vs analytic 2.6612 bohr, relative error",
+      "pass": true,
+      "observed": 0.0024504358370627255,
+      "limit": 0.01,
+      "rule": "at most"
+    }
+  ],
+  "builder_sha256": "b67ba99d32e035018b4086208301c3011e70b17c534caa25d8d36dedd4b74d0c",
+  "runtime": {
+    "python": "3.13.18",
+    "numpy": "2.5.3"
+  }
+}

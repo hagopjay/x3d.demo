@@ -1,0 +1,722 @@
+{
+  "schema": "loom.scientific-case/1",
+  "id": "superposition/lyman",
+  "kind": "superposition",
+  "name": "lyman",
+  "title": "Lyman-alpha: an atom that rings",
+  "line": "Half in 1s, half in 2p: the charge sloshes up and down 2.5 million billion times a second, the motion that radiates ultraviolet light at 121.5 nm.",
+  "equation": "psi(t) = (psi_1s e^(-i E1 t) + psi_2pz e^(-i E2 t)) / sqrt(2);  rho = (psi_1s\u00b2 + psi_2pz\u00b2 + 2 psi_1s psi_2pz cos((E2 - E1) t)) / 2",
+  "domain": {
+    "shape": [
+      80,
+      80,
+      80
+    ],
+    "units": "bohr (atomic units); energies in hartree",
+    "boundary": "u(0) = u(200 bohr) = 0; display box holds all but 1e-4 of the probability"
+  },
+  "parameters": {
+    "states": [
+      "1s",
+      "2p_z"
+    ],
+    "weights": [
+      0.5,
+      0.5
+    ],
+    "box_half_width_bohr": 17.78,
+    "cell_bohr": 0.4445,
+    "level": 0.010952795274020504,
+    "omega_hartree": 0.3749999975160961,
+    "period_au": 16.755160930127456,
+    "period_fs": 0.40528796163306385,
+    "frequency_hz": 2467381453844838.0,
+    "wavelength_nm": 121.50227421594843,
+    "dipole_exact": 0.7449355390278032,
+    "dipole_numerical": 0.7449608176807122,
+    "frames_per_period": 24
+  },
+  "method": "Radial equation by three-point finite differences on a uniform 0.01-bohr grid to 200 bohr, lowest eigenpairs of the tridiagonal matrix (LAPACK), Richardson with h = 0.02; 3D field = u(r)/r times a real spherical harmonic, linear interpolation in r, cell-centred 80^3 grid; surfaces by surface nets with three Newton projections.",
+  "limits": [
+    "Non-relativistic hydrogen with an infinitely heavy nucleus: no fine structure, spin, Lamb shift or reduced-mass correction (the real Lyman-alpha line is at 121.567 nm, not 121.502 nm).",
+    "The surface is where |psi| (or the square root of the density) crosses a level enclosing 90 % of the probability on the grid; the cloud has no edge.",
+    "Each case has its own box size, so orbitals are not drawn to a common scale; the page states the box width in bohr."
+  ],
+  "dependencies": {
+    "tools/radial.py": "8ef724738b3a7e36aaff0bbaca2c5edc4997fc4b7f845ad7c14c8552b14b238a"
+  },
+  "external_dependencies": {
+    "lib/stemkit/core.py": "b799990d80948989d6525fdd0c8f16c4eec884e659105fd6bd5750d4cf977600",
+    "lib/stemkit/mesh.py": "fe4ebf154d7f8d7eed0c26ca13c3143678d60c8dbe74de4e7230e78fa1a6e326"
+  },
+  "frames": [
+    {
+      "file": "cases/lyman/a000.bin",
+      "sha256": "ebf2a67b83ee6aa05bf0e9c99b2690f2317e4d179d866c5eeb5f69f7db417f57",
+      "bytes": 160604,
+      "decoded_sha256": "23749e137b6c82de6471e082d5d37cdc7d9cde1699a84e9ed3a499b0f9d4b5ae",
+      "decoded_bytes": 1024000,
+      "time": 0.0,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 0.7449663198099407,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4308,
+        "triangles": 8608,
+        "volume": 9860.562726193668
+      }
+    },
+    {
+      "file": "cases/lyman/a001.bin",
+      "sha256": "e331c0bd2138f0830d12e9510983e4b427c5aeba4ee345465f07fa28ded1b3a9",
+      "bytes": 160685,
+      "decoded_sha256": "47d666b1cc250ed48f899f35ca9e544c07e2a0c96cfcb1906986fd0532b849b3",
+      "decoded_bytes": 1024000,
+      "time": 0.6981317054219773,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 0.7195822080199432,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4170,
+        "triangles": 8336,
+        "volume": 9993.099628944241
+      }
+    },
+    {
+      "file": "cases/lyman/a002.bin",
+      "sha256": "9872293f871cb98e4babba96e237c2643f1417aa69555eaf91f29fd9de4c65ec",
+      "bytes": 160769,
+      "decoded_sha256": "d5b34ac2ca0739f1e95eda0ff91173bfae863e214aa329544ac406810ba3894c",
+      "decoded_bytes": 1024000,
+      "time": 1.3962634108439547,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 0.6451597579192112,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4090,
+        "triangles": 8176,
+        "volume": 10175.886177865317
+      }
+    },
+    {
+      "file": "cases/lyman/a003.bin",
+      "sha256": "10ec18da0238b585614a8bab4eed354162ef2cf9a506a13bcb0fe1cc10e8f54e",
+      "bytes": 160478,
+      "decoded_sha256": "ca7695a6ff9188288681dc66adf1b9819ab26c9ceaf69aa29de2b8b0a7e6e828",
+      "decoded_bytes": 1024000,
+      "time": 2.094395116265932,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 0.5267707364931952,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4002,
+        "triangles": 8000,
+        "volume": 10327.467659164702
+      }
+    },
+    {
+      "file": "cases/lyman/a004.bin",
+      "sha256": "95da800d879377c096726ac9c92fef2323fa30d444a64c4d81cf22e4d200a283",
+      "bytes": 160258,
+      "decoded_sha256": "f8b3a9f599900ef6d0691978db77e4774e214c69353f9fd53d425cc263c2b9f6",
+      "decoded_bytes": 1024000,
+      "time": 2.7925268216879093,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 0.3724831599049704,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 3962,
+        "triangles": 7920,
+        "volume": 10434.829195086068
+      }
+    },
+    {
+      "file": "cases/lyman/a005.bin",
+      "sha256": "5a12299bd9e2ca62f690a0e23f88cd15eb0063296e610e5f267105d43747bfd3",
+      "bytes": 159706,
+      "decoded_sha256": "044ede482503f299a410dfbb7c4815c9326efc74b3ca528022a0a9e679e53571",
+      "decoded_bytes": 1024000,
+      "time": 3.4906585271098867,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 0.19281147152674796,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 3922,
+        "triangles": 7840,
+        "volume": 10501.06565875395
+      }
+    },
+    {
+      "file": "cases/lyman/a006.bin",
+      "sha256": "bb057bb48ff0f6fd1a9fca07c127280734942af0d7670c795ea8053c5b903516",
+      "bytes": 157395,
+      "decoded_sha256": "a5a2d35d42ed7093913ff9e8ca74341c959cbef211e501dee6d1ece5b8f3de47",
+      "decoded_bytes": 1024000,
+      "time": 4.188790232531864,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 8.682139972740032e-17,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 3986,
+        "triangles": 7968,
+        "volume": 10522.943336446662
+      }
+    },
+    {
+      "file": "cases/lyman/a007.bin",
+      "sha256": "f64f40c9421a16113c7e015edb872cf6cb6d93cd3e4829b8a4f55a8fb8eaa359",
+      "bytes": 159595,
+      "decoded_sha256": "2163452d0237614b2fefa4a632d4101de0c42c6326bc4305eacfd416c45fe6ea",
+      "decoded_bytes": 1024000,
+      "time": 4.886921937953841,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -0.19281147152674757,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 3922,
+        "triangles": 7840,
+        "volume": 10501.065658754016
+      }
+    },
+    {
+      "file": "cases/lyman/a008.bin",
+      "sha256": "9a4981179295a3239f3e9241d42a663b3891a8b7f29f98fb3abd7c637529ccf6",
+      "bytes": 160192,
+      "decoded_sha256": "b16682e4ff0ecb36a41673a7058fd81071181aea7b13f8fb4dd8e54333551793",
+      "decoded_bytes": 1024000,
+      "time": 5.585053643375819,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -0.3724831599049701,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 3962,
+        "triangles": 7920,
+        "volume": 10434.829195086286
+      }
+    },
+    {
+      "file": "cases/lyman/a009.bin",
+      "sha256": "ffe2702c4527074bfadab5c3b35e34b82417ebbe1b92a2841d8c28357492823d",
+      "bytes": 160460,
+      "decoded_sha256": "9066d7a6128d0c4f3d419536e6e5862f4bbe12d296bc7025505896caae791e1d",
+      "decoded_bytes": 1024000,
+      "time": 6.283185348797796,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -0.5267707364931951,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4002,
+        "triangles": 8000,
+        "volume": 10327.467659164975
+      }
+    },
+    {
+      "file": "cases/lyman/a010.bin",
+      "sha256": "72f466d0b47c2cedeff68ba1ad7791c9a47e53d6d1ac1457665a108f65e09707",
+      "bytes": 160610,
+      "decoded_sha256": "630d2bca47a3e67c505b0740045b7612a1402dbcd858ede53f11f47a098b1fad",
+      "decoded_bytes": 1024000,
+      "time": 6.981317054219773,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -0.645159757919211,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4090,
+        "triangles": 8176,
+        "volume": 10175.886177865128
+      }
+    },
+    {
+      "file": "cases/lyman/a011.bin",
+      "sha256": "237420a4a87b8397b2cc604332ae11d1966785ac25111d624c5d56fa99386a5f",
+      "bytes": 160567,
+      "decoded_sha256": "db326aebf439ee11762afea49035b9a88eb25f546a111c89c66afc28c3f40376",
+      "decoded_bytes": 1024000,
+      "time": 7.679448759641751,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -0.719582208019943,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4170,
+        "triangles": 8336,
+        "volume": 9993.09962894421
+      }
+    },
+    {
+      "file": "cases/lyman/a012.bin",
+      "sha256": "303c20f992bb5ec59d34725ab0f77cf8b276e9dbee43bf6e0c5466d5e59c2ef0",
+      "bytes": 160574,
+      "decoded_sha256": "322a09811ae7de2ca3525e21bdd5799093298a7ed8eaca521d4cdda216d1752f",
+      "decoded_bytes": 1024000,
+      "time": 8.377580465063728,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -0.7449663198099404,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4308,
+        "triangles": 8608,
+        "volume": 9860.562726193437
+      }
+    },
+    {
+      "file": "cases/lyman/a013.bin",
+      "sha256": "237420a4a87b8397b2cc604332ae11d1966785ac25111d624c5d56fa99386a5f",
+      "bytes": 160567,
+      "decoded_sha256": "db326aebf439ee11762afea49035b9a88eb25f546a111c89c66afc28c3f40376",
+      "decoded_bytes": 1024000,
+      "time": 9.075712170485705,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -0.719582208019943,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4170,
+        "triangles": 8336,
+        "volume": 9993.09962894421
+      }
+    },
+    {
+      "file": "cases/lyman/a014.bin",
+      "sha256": "72f466d0b47c2cedeff68ba1ad7791c9a47e53d6d1ac1457665a108f65e09707",
+      "bytes": 160610,
+      "decoded_sha256": "630d2bca47a3e67c505b0740045b7612a1402dbcd858ede53f11f47a098b1fad",
+      "decoded_bytes": 1024000,
+      "time": 9.773843875907682,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -0.6451597579192112,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4090,
+        "triangles": 8176,
+        "volume": 10175.886177865128
+      }
+    },
+    {
+      "file": "cases/lyman/a015.bin",
+      "sha256": "ffe2702c4527074bfadab5c3b35e34b82417ebbe1b92a2841d8c28357492823d",
+      "bytes": 160460,
+      "decoded_sha256": "9066d7a6128d0c4f3d419536e6e5862f4bbe12d296bc7025505896caae791e1d",
+      "decoded_bytes": 1024000,
+      "time": 10.47197558132966,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -0.5267707364931953,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4002,
+        "triangles": 8000,
+        "volume": 10327.467659164975
+      }
+    },
+    {
+      "file": "cases/lyman/a016.bin",
+      "sha256": "9a4981179295a3239f3e9241d42a663b3891a8b7f29f98fb3abd7c637529ccf6",
+      "bytes": 160192,
+      "decoded_sha256": "b16682e4ff0ecb36a41673a7058fd81071181aea7b13f8fb4dd8e54333551793",
+      "decoded_bytes": 1024000,
+      "time": 11.170107286751637,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -0.37248315990497055,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 3962,
+        "triangles": 7920,
+        "volume": 10434.829195086286
+      }
+    },
+    {
+      "file": "cases/lyman/a017.bin",
+      "sha256": "f64f40c9421a16113c7e015edb872cf6cb6d93cd3e4829b8a4f55a8fb8eaa359",
+      "bytes": 159595,
+      "decoded_sha256": "2163452d0237614b2fefa4a632d4101de0c42c6326bc4305eacfd416c45fe6ea",
+      "decoded_bytes": 1024000,
+      "time": 11.868238992173614,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -0.19281147152674843,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 3922,
+        "triangles": 7840,
+        "volume": 10501.065658754016
+      }
+    },
+    {
+      "file": "cases/lyman/a018.bin",
+      "sha256": "bb057bb48ff0f6fd1a9fca07c127280734942af0d7670c795ea8053c5b903516",
+      "bytes": 157395,
+      "decoded_sha256": "a5a2d35d42ed7093913ff9e8ca74341c959cbef211e501dee6d1ece5b8f3de47",
+      "decoded_bytes": 1024000,
+      "time": 12.566370697595593,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": -3.654965239532119e-17,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 3986,
+        "triangles": 7968,
+        "volume": 10522.943336446662
+      }
+    },
+    {
+      "file": "cases/lyman/a019.bin",
+      "sha256": "5a12299bd9e2ca62f690a0e23f88cd15eb0063296e610e5f267105d43747bfd3",
+      "bytes": 159706,
+      "decoded_sha256": "044ede482503f299a410dfbb7c4815c9326efc74b3ca528022a0a9e679e53571",
+      "decoded_bytes": 1024000,
+      "time": 13.264502403017568,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 0.19281147152674766,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 3922,
+        "triangles": 7840,
+        "volume": 10501.06565875395
+      }
+    },
+    {
+      "file": "cases/lyman/a020.bin",
+      "sha256": "95da800d879377c096726ac9c92fef2323fa30d444a64c4d81cf22e4d200a283",
+      "bytes": 160258,
+      "decoded_sha256": "f8b3a9f599900ef6d0691978db77e4774e214c69353f9fd53d425cc263c2b9f6",
+      "decoded_bytes": 1024000,
+      "time": 13.962634108439547,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 0.3724831599049704,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 3962,
+        "triangles": 7920,
+        "volume": 10434.829195086068
+      }
+    },
+    {
+      "file": "cases/lyman/a021.bin",
+      "sha256": "10ec18da0238b585614a8bab4eed354162ef2cf9a506a13bcb0fe1cc10e8f54e",
+      "bytes": 160478,
+      "decoded_sha256": "ca7695a6ff9188288681dc66adf1b9819ab26c9ceaf69aa29de2b8b0a7e6e828",
+      "decoded_bytes": 1024000,
+      "time": 14.660765813861524,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 0.5267707364931951,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4002,
+        "triangles": 8000,
+        "volume": 10327.467659164702
+      }
+    },
+    {
+      "file": "cases/lyman/a022.bin",
+      "sha256": "9872293f871cb98e4babba96e237c2643f1417aa69555eaf91f29fd9de4c65ec",
+      "bytes": 160769,
+      "decoded_sha256": "d5b34ac2ca0739f1e95eda0ff91173bfae863e214aa329544ac406810ba3894c",
+      "decoded_bytes": 1024000,
+      "time": 15.358897519283502,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 0.6451597579192113,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4090,
+        "triangles": 8176,
+        "volume": 10175.886177865317
+      }
+    },
+    {
+      "file": "cases/lyman/a023.bin",
+      "sha256": "e331c0bd2138f0830d12e9510983e4b427c5aeba4ee345465f07fa28ded1b3a9",
+      "bytes": 160685,
+      "decoded_sha256": "47d666b1cc250ed48f899f35ca9e544c07e2a0c96cfcb1906986fd0532b849b3",
+      "decoded_bytes": 1024000,
+      "time": 16.057029224705477,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le sqrt(rho) / max, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": false,
+      "scale": 0.28438657185755123,
+      "charge_centre_z_bohr": 0.719582208019943,
+      "mesh": {
+        "iso": 0.010952795274020504,
+        "vertices": 4170,
+        "triangles": 8336,
+        "volume": 9993.099628944241
+      }
+    }
+  ],
+  "metrics": [
+    {
+      "id": "charge centre",
+      "z_bohr": [
+        0.7449663198099407,
+        0.7195822080199432,
+        0.6451597579192112,
+        0.5267707364931952,
+        0.3724831599049704,
+        0.19281147152674796,
+        8.682139972740032e-17,
+        -0.19281147152674757,
+        -0.3724831599049701,
+        -0.5267707364931951,
+        -0.645159757919211,
+        -0.719582208019943,
+        -0.7449663198099404,
+        -0.719582208019943,
+        -0.6451597579192112,
+        -0.5267707364931953,
+        -0.37248315990497055,
+        -0.19281147152674843,
+        -3.654965239532119e-17,
+        0.19281147152674766,
+        0.3724831599049704,
+        0.5267707364931951,
+        0.6451597579192113,
+        0.719582208019943
+      ],
+      "fitted_swing": 0.7449663198099405
+    },
+    {
+      "id": "final mesh",
+      "vertices": 4170,
+      "triangles": 8336,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "area": 2786.611142515605,
+      "volume": 9993.099628944241,
+      "mc_volume": 9979.399098,
+      "mc_volume_se": 72.13787791225256,
+      "volume_rel_diff": 0.0013728813538469338,
+      "iso_distance_p95": 4.1937645293280646e-15,
+      "iso_distance_max": 9.238976732078299e-10
+    },
+    {
+      "id": "timing",
+      "seconds": 5.6
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "1s: energy E(1) vs -1/(2n\u00b2), relative error (h = 0.01)",
+      "pass": true,
+      "observed": 2.499875133255003e-05,
+      "limit": 5e-05,
+      "rule": "at most"
+    },
+    {
+      "id": "1s: observed order of the energy in h: |p - 2|",
+      "pass": true,
+      "observed": 0.00021643190156650505,
+      "limit": 0.05,
+      "rule": "at most",
+      "note": "observed 1.9998"
+    },
+    {
+      "id": "1s: Richardson-extrapolated energy vs -1/(2n\u00b2), relative error",
+      "pass": true,
+      "observed": 5.000013847400453e-09,
+      "limit": 1e-08,
+      "rule": "at most"
+    },
+    {
+      "id": "2p: energy E(2) vs -1/(2n\u00b2), relative error (h = 0.01)",
+      "pass": true,
+      "observed": 2.0833634462036343e-06,
+      "limit": 5e-05,
+      "rule": "at most"
+    },
+    {
+      "id": "2p: Richardson-extrapolated energy vs -1/(2n\u00b2), relative error",
+      "pass": true,
+      "observed": 1.288239515062628e-10,
+      "limit": 1e-08,
+      "rule": "at most"
+    },
+    {
+      "id": "transition energy E(2) - E(1) vs 3/8 hartree, relative error",
+      "pass": true,
+      "observed": 6.623743775691082e-09,
+      "limit": 1e-08,
+      "rule": "at most"
+    },
+    {
+      "id": "dipole <1s|z|2p_z> vs 128 sqrt(2) / 243, relative error",
+      "pass": true,
+      "observed": 3.393401386375672e-05,
+      "limit": 0.0001,
+      "rule": "at most"
+    },
+    {
+      "id": "Lyman-alpha wavelength vs 4 / (3 R_inf) = 121.5023 nm, relative error",
+      "pass": true,
+      "observed": 6.625089810086138e-09,
+      "limit": 1e-07,
+      "rule": "at most"
+    },
+    {
+      "id": "charge-centre swing on the 3D frames vs the exact dipole, relative error",
+      "pass": true,
+      "observed": 4.132006130030952e-05,
+      "limit": 0.005,
+      "rule": "at most"
+    },
+    {
+      "id": "3D normalization, worst frame: |sum rho dV - 1|",
+      "pass": false,
+      "observed": 0.0007566716131782725,
+      "limit": 0.0005,
+      "rule": "at most"
+    },
+    {
+      "id": "closed meshes: boundary edges over all 24 frames",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "mesh volume vs Monte Carlo on the field, relative difference (gross-error check)",
+      "pass": true,
+      "observed": 0.0013728813538469338,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "display quantization (16-bit): isosurface shift p99, worst frame (cells)",
+      "pass": true,
+      "observed": 0.0009629011078702238,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "mesh vertices on the displayed surface: distance p99, worst frame (cells)",
+      "pass": true,
+      "observed": 2.794467622594675e-11,
+      "limit": 0.01,
+      "rule": "at most"
+    },
+    {
+      "id": "clipping: values outside the 16-bit range",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    }
+  ],
+  "builder_sha256": "ad63b641c3a8e51f575ac5a3abda3323ac10f0d14a5cfa1e41cf6d3108598efd",
+  "runtime": {
+    "python": "3.13.2",
+    "numpy": "2.4.2"
+  }
+}
