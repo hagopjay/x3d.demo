@@ -33,6 +33,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .facts{font-size:.88rem;color:var(--mute)}
 .soon{opacity:.8}
 .soon .ph{display:grid;place-items:center;aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;color:var(--mute);font-family:var(--mono);font-size:.8rem}
+.memes{margin:8px 0 0;padding-top:20px;border-top:1px solid var(--line)}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px;margin-top:12px}
+.wall figure{margin:0}.wall img{width:100%;height:auto;aspect-ratio:16/9;border-radius:6px;display:block;background:#05070a}
 footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:.92rem;color:var(--mute)}
 code{font-family:var(--mono);font-size:.88em}
 @media (max-width:640px){.demo{grid-template-columns:minmax(0,1fr)}}
@@ -93,8 +96,23 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
+<section class="memes" aria-label="Meme wall">
+  <h2>The meme wall</h2>
+  <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
+  <div class="wall">
+    <figure><img src="assets/memes/one-more-demo.jpg" alt="Collider event with the caption: Me, one quick demo. Also me, 4 AM, adding bloom." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="assets/memes/validator.jpg" alt="Two muon tracks with the caption: the validator says line 4,821, ROUTE before DEF. Me: it was vibes." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="assets/memes/tomb.jpg" alt="Synthetic sandstone facade with the caption: AI says it scanned a real tomb. It is 140,000 synthetic splats." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="assets/memes/to-vibes.jpg" alt="Collider detector with the caption: not to scale. It is to vibes." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="assets/memes/valid-visible.jpg" alt="Collider event with the caption: valid is not the same as visible." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="assets/memes/html-universe.jpg" alt="Collider event with the caption: X3D is like HTML but for the universe." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="assets/memes/unsafe-flag.jpg" alt="Collider event with the caption: Chrome says WebGPU is blocklisted. Me: enable-unsafe-webgpu." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="assets/memes/laptop-fan.jpg" alt="Synthetic facade with the caption: my laptop fan sorting 140,000 splats." width="960" height="540" loading="lazy"></figure>
+  </div>
+</section>
+
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>
