@@ -53,7 +53,7 @@ code{font-family:var(--mono);font-size:.88em}
 <body>
 <main>
 <h1>x3d.demo</h1>
-<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. Demos 1 to 3 run on WebGPU, and where a WebGPU demo has a twin that does not need it, the twin is linked beside it. Demos 4 and 5 are drawn by X_ITE (WebGL) and open in any current browser.</p>
+<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. Demos 1 to 3 and 6 run on WebGPU, and where a WebGPU demo has a twin that does not need it, the twin is linked beside it. Demos 4 and 5 are drawn by X_ITE (WebGL) and open in any current browser. Demo 6 is the Babylon flagship.</p>
 
 <section class="about" aria-label="About the curator">
 <h2>HagopJay</h2>
@@ -143,6 +143,21 @@ code{font-family:var(--mono);font-size:.88em}
   <p class="facts"><b>How these got here.</b> The repository does not commit the studies’ data files, so I rebuilt them with each study’s own builder on 2026-11-07 (every witness green on every case) and bundled them with the pages. The pages then verified against the repository’s recorded hashes in a headless browser. Kerr 2 is left out because its data is about 330 MB of images. Flagship pass 1; nothing here has been measured on a real GPU, and the study pages show their own live frame rate, which is yours, not ours.</p>
 </section>
 
+<section class="demo">
+  <img src="assets/kansei.jpg" alt="A white drift car with a red stripe and a rear wing on a mountain road at sunset, a frame of KANSEI" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 6 &middot; THE BABYLON FLAGSHIP</div>
+    <h2>KANSEI: drift in X3D</h2>
+    <p>A night-drift racing game with four original cars and five circuits. Every world in it is an X3D file, and the physics is a separate deterministic 120 Hz simulation, so a recorded lap replays identically in any renderer. This page runs it in <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode, through our own X3D reader. Gamepad and touch work too.</p>
+    <div class="chips">
+      <a href="https://hagopjay.github.io/platformer/kansei/v1/">Play KANSEI</a>
+      <a href="https://hagopjay.github.io/platformer/">Its landing page</a>
+      <a href="https://github.com/hagopjay/x3d.loom/blob/main/runs/webgpu-drift-20261107/RECEIPT.md">Receipt</a>
+    </div>
+    <p class="facts">Hosted on its own site (the platformer repository), so these links leave this page. Keys: W gas, S brake, A and D steer, Space handbrake, Shift boost, C camera, M sound. Needs WebGPU; if the page says no adapter answered, see the flag tip at the top. Checked on a software GPU against the same game on X_ITE 16.5.1: the simulation matched on 6 of 6 recorded views and the pictures agreed to 24.4 to 32.8 dB PSNR (correctness only; the receipt has the per-view table and the known differences). It has an opt-in Timing button, off until pressed, that uploads nothing. No timing from a real GPU is published here. The sound is the game&rsquo;s own synthesiser and nobody has listened to it in this port.</p>
+  </div>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -159,7 +174,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>

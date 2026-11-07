@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>x3d.demo</title>
+<style>
+/* Layout: one column of demo entries in the order they were asked for, a GPU check on top, the doc's own version list at the bottom. */
+:root{--bg:#f4f5f7;--fg:#14171c;--mute:#566070;--line:#d4d9e1;--card:#ffffff;--accent:#0b6bcb;--ok:#1a7f45;--bad:#b3261e;--chip:#e6ebf2;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0f14;--fg:#e8ecf2;--mute:#9aa5b5;--line:#252c38;--card:#141922;--accent:#5eb0ff;--ok:#5fd18a;--bad:#ff8a80;--chip:#1c2330;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c0f14;--fg:#e8ecf2;--mute:#9aa5b5;--line:#252c38;--card:#141922;--accent:#5eb0ff;--ok:#5fd18a;--bad:#ff8a80;--chip:#1c2330;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--sans);padding-block:32px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:960px;margin:0 auto}
+h1{font-size:2rem;line-height:1.15;margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance}
+h2{font-size:1.15rem;margin:0 0 4px;text-wrap:balance}
+p{margin:0 0 10px;max-width:68ch}
+.lede{color:var(--mute);font-size:1.05rem}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.about{margin:20px 0 0;padding:16px 18px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;background:var(--card)}
+.about h2{margin:0}.about .tag{font-family:var(--mono);font-size:.82rem;letter-spacing:.05em;color:var(--mute);margin:0 0 10px}.about p:last-child{margin-bottom:0}
+.check{margin:18px 0 30px;padding:14px 16px;border:1px solid var(--line);border-radius:8px;background:var(--card);font-size:.95rem}
+.check b{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);display:block;margin-bottom:4px}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+.demo{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.demo img{width:100%;height:auto;aspect-ratio:16/9;border-radius:6px;background:#05070a;display:block}
+.no{font-family:var(--mono);font-size:.8rem;color:var(--mute);letter-spacing:.06em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chips a,.chips span{font-size:.88rem;padding:4px 10px;border-radius:999px;background:var(--chip);color:var(--fg);text-decoration:none;border:1px solid var(--line)}
+.chips a{color:var(--accent)}
+.facts{font-size:.88rem;color:var(--mute)}
+.soon{opacity:.8}
+.soon .ph{display:grid;place-items:center;aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;color:var(--mute);font-family:var(--mono);font-size:.8rem}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:14px;margin:12px 0 10px}
+.sgrid article{border:1px solid var(--line);border-radius:8px;background:var(--card);overflow:hidden;display:flex;flex-direction:column}
+.sgrid img{width:100%;height:auto;aspect-ratio:16/9;display:block;background:#05070a;border-radius:0}
+.sgrid .b{padding:10px 14px 12px;font-size:.92rem}.sgrid h3{font-size:1rem;margin:0 0 2px}.sgrid p{margin:0 0 6px;color:var(--mute);max-width:none}
+.sgrid .chips{margin:6px 0 0}
+.stem{margin:0;padding:20px 0;border-top:1px solid var(--line)}
+.studies{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:12px;margin:12px 0 10px;padding:0;list-style:none}
+.studies li{padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);font-size:.92rem}
+.studies li b{display:block;margin-bottom:2px}.studies li span{display:block;color:var(--mute);margin-bottom:6px}
+.memes{margin:8px 0 0;padding-top:20px;border-top:1px solid var(--line)}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px;margin-top:12px}
+.wall figure{margin:0}.wall img{width:100%;height:auto;aspect-ratio:16/9;border-radius:6px;display:block;background:#05070a}
+footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:.92rem;color:var(--mute)}
+code{font-family:var(--mono);font-size:.88em}
+@media (max-width:640px){.demo{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<main>
+<h1>x3d.demo</h1>
+<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. Demos 1 to 3 and 6 run on WebGPU, and where a WebGPU demo has a twin that does not need it, the twin is linked beside it. Demos 4 and 5 are drawn by X_ITE (WebGL) and open in any current browser. Demo 6 is the Babylon flagship.</p>
+
+<section class="about" aria-label="About the curator">
+<h2>HagopJay</h2>
+<p class="tag">3D conqueror by night.</p>
+<p>Somewhere around the late '90s I met X3D and never got over it. Now I make AI models write 3D worlds and then hand them to a validator that tells them, exactly and without mercy, what they got wrong. I call it <em>the tether</em>, because X3D is the 3D format an AI can be held accountable to. My colleagues call it “why is that laptop fan screaming again.”</p>
+<p>Things I have, technically, built: a particle collider, a drift racing game, a glass brain, a turkey made of ontologies with a sun for a heart, and a space elevator nobody asked for. Things I have, technically, not done: sleep.</p>
+<p>Motto: <em>valid is not the same as visible.</em> Second motto: <em>one more demo.</em></p>
+</section>
+
+<div class="check" id="gpu"><b>WebGPU on this browser</b><span id="gpu-out">Checking.</span></div>
+
+<section class="demo">
+  <img src="../../assets/dijet.jpg" alt="A generated particle collision at the centre of a glass detector, coloured tracks curling out" width="640" height="360">
+  <div>
+    <div class="no">DEMO 1</div>
+    <h2>Collider events</h2>
+    <p>Five generated collision events written as X3D 4.0. The page parses the scene, runs its ROUTEs and draws it with WebGPU, with five GLSL shaders ported to WGSL.</p>
+    <div class="chips">
+      <a href="../../demos/collider-events/v2/dijet.html">Dijet</a>
+      <a href="../../demos/collider-events/v2/qcd.html">QCD event</a>
+      <a href="../../demos/collider-events/v2/z-to-muons.html">Z to muons</a>
+      <a href="../../demos/collider-events/v2/qcd-in-flight.html">QCD in flight</a>
+      <a href="../../demos/collider-events/v2/exact-z.html">Exact Z</a>
+    </div>
+    <div class="chips"><a href="https://hagopjay.github.io/dirac/docs/">No WebGPU? The same collider on X_ITE</a></div>
+    <p class="facts">Version 2 (<a href="../../demos/collider-events/v1/dijet.html">v1 kept</a>). The X_ITE twin lives on its own site (the dirac repository) and has its own tour, optics and 4K still. Drag to orbit, scroll to zoom, keys 1 2 3 for viewpoints, T tour, L look. Events are generated for display, not measured. Each event grows over time, so a page can open on the vertex flash.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/facade.jpg" alt="A synthetic sandstone facade with four columns, drawn as Gaussian splats" width="640" height="360">
+  <div>
+    <div class="no">DEMO 2</div>
+    <h2>Heritage facade splats</h2>
+    <p>A synthetic rock-cut facade of 140,000 Gaussian splats, written as X3D 4.1. It is generated (CC0) and is not a scan of any real monument. Splats are sorted on the GPU every time the view changes.</p>
+    <div class="chips">
+      <a href="../../demos/heritage-facade/v2/facade.html">Open the facade</a>
+      <a href="../../demos/heritage-facade/v2/facade.x3d">Scene (.x3d)</a>
+    </div>
+    <p class="facts">Version 2 (<a href="../../demos/heritage-facade/v1/facade.html">v1 kept</a>). 12 MB page; it takes a moment to load. Compared with X_ITE 16.4.3 on one view: 41.9 dB PSNR (software GL, correctness only).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/brain.jpg" alt="A glass human brain with glowing deep structures on a dark stage, the Neural Canvas page" width="640" height="360">
+  <div>
+    <div class="no">DEMO 3</div>
+    <h2>Neural Canvas: brain and torso CT</h2>
+    <p>An interactive brain with glass cortex, deep structures, MRI slices and synthetic tracts, plus a CT torso tab. An X3D reader of our own parses the scene and runs its ROUTEs; <a href="https://www.babylonjs.com">Babylon.js</a> draws it with WebGPU. Click a region, take the tour, switch looks, try the Inside view.</p>
+    <div class="chips">
+      <a href="../../demos/brain-torso/v1/index.html">Open Neural Canvas</a>
+      <a href="../../demos/brain-torso/v1/NOTICE.md">Sources and licences</a>
+    </div>
+    <div class="chips"><a href="../../demos/brain-torso-xite/v1/index.html">No WebGPU? Neural Canvas on X_ITE</a></div>
+    <p class="facts">Version 1. Needs WebGPU and loads Babylon from a CDN. The X_ITE twin (X_ITE 16.6.0, bundled) is the page this one was ported from and needs only WebGL; it carries the same notices. <b>Not a medical device.</b> The brain is a template average, the tracts are synthetic and the activation is illustrative. Cortex shapes: TemplateFlow fsaverage (FreeSurfer lineage), shown for educational use; its licence is not confirmed and the rights holder may ask for removal. Deep structures and slices: MNI152NLin2009cAsym (Fonov et al.). Torso: TotalSegmentator example subject (Wasserthal et al., 2023).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/manifold.jpg" alt="A glowing curved surface with four deep wells ringed by light, a violet and jade field on a dark stage, the Manifold page" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 4</div>
+    <h2>Manifold of emotion</h2>
+    <p>An emotional field drawn as a Riemannian surface: the metric g = &lambda;&sup2;(dx&sup2; + dz&sup2;), the surface coloured by its Gaussian curvature K = &minus;&Delta; ln &lambda; / &lambda;&sup2;, and the luminous paths are its geodesics. One X3D 4.0 scene, drawn by X_ITE 16.5.1. Four moods, labels in English and Chinese, click to perturb the field.</p>
+    <div class="chips">
+      <a href="../../demos/manifold/v1/index.html">Open the manifold</a>
+      <a href="../../demos/manifold/v1/scenes/manifold.x3d">Scene (.x3d)</a>
+      <a href="../../demos/manifold/v1/docs/DEBRIEF.md">Debrief</a>
+      <a href="https://hagsmac.github.io/x3d.STEM/">Original site</a>
+    </div>
+    <p class="facts">Not WebGPU. This is a copy of the x3d.STEM repository’s manifold study (files identical to the original site’s, checked by hash); the original site is linked too. Drag to orbit, scroll to zoom, click to perturb, H hides the controls. The scene was rebuilt from an existing WebGL page; its debrief records the checks (curvature and geodesics against exact references, and a picture comparison against the original on four moods, SSIM 0.91 to 0.96). The drawn landscape is a picture of the metric, not an isometric embedding, and the mood labels are illustrative. Preview frame drawn on a software GPU. The comparison frames from the debrief are left out of this copy.</p>
+  </div>
+</section>
+
+<section class="stem" aria-label="STEM studies">
+  <div class="no">DEMO 5</div>
+  <h2>STEM studies from x3d.STEM</h2>
+  <p>Science and maths as X3D worlds that carry their own evidence. Each study is an X_ITE page built from computed data and checked against an exact or published result. These are the repository versions, not WebGPU ports. Every page re-checks each data file against the hash recorded in the repository before it draws anything.</p>
+  <div class="sgrid">
+    <article><img src="../../assets/stem/chirp.jpg" alt="Chirp, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Chirp</h3><p>Two black holes spiral together and you hear them. The orbit is integrated with radiation reaction and held to Peters’ laws; the strain plays at its real pitch or three octaves up, picture locked to the sound. Use headphones.</p><div class="chips"><a href="../../demos/stem/v1/chirp/index.html#equal">Open</a><a href="../../demos/stem/v1/chirp/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/chirp">Source</a></div></div></article>
+    <article><img src="../../assets/stem/electron-cloud.jpg" alt="Electron Cloud Observatory, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Electron Cloud Observatory</h3><p>Hydrogen solved numerically and held to the exact answers: ten orbitals from 1s to 5g, coloured by the sign of the wave, and Lyman-α, whose charge swings through the nucleus at the frequency of hydrogen’s 121.5 nm line.</p><div class="chips"><a href="../../demos/stem/v1/electron-cloud/index.html#4fxyz">Open</a><a href="../../demos/stem/v1/electron-cloud/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/electron-cloud">Source</a></div></div></article>
+    <article><img src="../../assets/stem/turing-garden.jpg" alt="Turing Garden, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Turing Garden</h3><p>Five 3D reaction–diffusion gardens (spots, Swiss cheese, coral, sheets, chaos) grown from three seeds. Your browser meshes each verified field and plays the growth through X3D’s own TimeSensor.</p><div class="chips"><a href="../../demos/stem/v1/turing-garden/index.html#coral">Open</a><a href="../../demos/stem/v1/turing-garden/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/turing-garden">Source</a></div></div></article>
+    <article><img src="../../assets/stem/living-heart.jpg" alt="Living Heart, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Living Heart</h3><p>Electrical waves in heart muscle: paced tissue, a spiral wave and a scroll wave in a ventricle wall, held to the exact Nagumo front speed.</p><div class="chips"><a href="../../demos/stem/v1/living-heart/index.html#heart">Open</a><a href="../../demos/stem/v1/living-heart/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/living-heart">Source</a></div></div></article>
+    <article><img src="../../assets/stem/vortex-sound.jpg" alt="Vortex Reconnection and Sound, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Vortex Reconnection &amp; Sound</h3><p>Quantized whirlpools in a superfluid: a vortex ring, and two rings that collide, reconnect and send sound through the fluid. Called a reconnection only because two grids agree.</p><div class="chips"><a href="../../demos/stem/v1/vortex-sound/index.html#reconnection">Open</a><a href="../../demos/stem/v1/vortex-sound/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/vortex-sound">Source</a></div></div></article>
+  </div>
+  <div class="chips"><a href="https://github.com/hagopjay/x3d.STEM">The x3d.STEM repository</a><a href="https://hagopjay.github.io/x3d.STEM/">Its front page</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/kerr2">Kerr 2 &middot; The Photon Ring (source only)</a></div>
+  <p class="facts"><b>How these got here.</b> The repository does not commit the studies’ data files, so I rebuilt them with each study’s own builder on 2026-11-07 (every witness green on every case) and bundled them with the pages. The pages then verified against the repository’s recorded hashes in a headless browser. Kerr 2 is left out because its data is about 330 MB of images. Flagship pass 1; nothing here has been measured on a real GPU, and the study pages show their own live frame rate, which is yours, not ours.</p>
+</section>
+
+<section class="demo">
+  <img src="../../assets/kansei.jpg" alt="A white drift car with a red stripe and a rear wing on a mountain road at sunset, a frame of KANSEI" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 6 &middot; THE BABYLON FLAGSHIP</div>
+    <h2>KANSEI: drift in X3D</h2>
+    <p>A night-drift racing game with four original cars and five circuits. Every world in it is an X3D file, and the physics is a separate deterministic 120 Hz simulation, so a recorded lap replays identically in any renderer. This page runs it in <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode, through our own X3D reader. Gamepad and touch work too.</p>
+    <div class="chips">
+      <a href="https://hagopjay.github.io/platformer/kansei/v1/">Play KANSEI</a>
+      <a href="https://hagopjay.github.io/platformer/">Its landing page</a>
+      <a href="https://github.com/hagopjay/x3d.loom/blob/main/runs/webgpu-drift-20261107/RECEIPT.md">Receipt</a>
+    </div>
+    <p class="facts">Hosted on its own site (the platformer repository), so these links leave this page. Keys: W gas, S brake, A and D steer, Space handbrake, Shift boost, C camera, M sound. Needs WebGPU; if the page says no adapter answered, see the flag tip at the top. Checked on a software GPU against the same game on X_ITE 16.5.1: the simulation matched on 6 of 6 recorded views and the pictures agreed to 24.4 to 32.8 dB PSNR (correctness only; the receipt has the per-view table and the known differences). It has an opt-in Timing button, off until pressed, that uploads nothing. No timing from a real GPU is published here. The sound is the game&rsquo;s own synthesiser and nobody has listened to it in this port.</p>
+  </div>
+</section>
+
+<section class="memes" aria-label="Meme wall">
+  <h2>The meme wall</h2>
+  <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
+  <div class="wall">
+    <figure><img src="../../assets/memes/one-more-demo.jpg" alt="Collider event with the caption: Me, one quick demo. Also me, 4 AM, adding bloom." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/validator.jpg" alt="Two muon tracks with the caption: the validator says line 4,821, ROUTE before DEF. Me: it was vibes." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/tomb.jpg" alt="Synthetic sandstone facade with the caption: AI says it scanned a real tomb. It is 140,000 synthetic splats." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/to-vibes.jpg" alt="Collider detector with the caption: not to scale. It is to vibes." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/valid-visible.jpg" alt="Collider event with the caption: valid is not the same as visible." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/html-universe.jpg" alt="Collider event with the caption: X3D is like HTML but for the universe." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/unsafe-flag.jpg" alt="Collider event with the caption: Chrome says WebGPU is blocklisted. Me: enable-unsafe-webgpu." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/laptop-fan.jpg" alt="Synthetic facade with the caption: my laptop fan sorting 140,000 splats." width="960" height="540" loading="lazy"></figure>
+  </div>
+</section>
+
+<footer>
+  <p><b>Versions of this page.</b> <a href="../v1/index.html">v1</a>, <a href="../v2/index.html">v2</a>, <a href="../v3/index.html">v3</a>, <a href="../v4/index.html">v4</a>, <a href="../v5/index.html">v5</a>, <a href="../v6/index.html">v6</a>, <a href="../v7/index.html">v7</a>, <a href="index.html">v8</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
+</footer>
+</main>
+<script>
+(async function(){
+  var out=document.getElementById('gpu-out');
+  function esc(t){return String(t).replace(/</g,'&lt;');}
+  try{
+    if(!('gpu' in navigator)){out.innerHTML='<span class="bad">Not available.</span> This browser has no WebGPU. Try a current Chrome or Edge, and open this page in its own tab, not an embedded preview.';return;}
+    var tries=[['plain request',undefined],['high-performance hint',{powerPreference:'high-performance'}]],rows=[],first=null;
+    for(var k=0;k<tries.length;k++){
+      var a=null;try{a=await navigator.gpu.requestAdapter(tries[k][1]);}catch(e){}
+      var i=a&&a.info||{};
+      var d=[i.vendor,i.architecture,i.description].filter(Boolean).join(' · ');
+      rows.push(tries[k][0]+': '+(a?'<span class="ok">adapter</span>'+(d?' ('+esc(d)+')':''):'<span class="bad">none</span>'));
+      if(a&&!first)first=a;
+    }
+    var help='';
+    if(!first){
+      help='<br><small><b>What to try.</b> On Windows with an older Intel GPU, recent Chrome can list the adapter in <code>chrome://gpu</code> under Dawn Info as blocklisted (for example "D3D11 backend not fully implemented") and then hand pages no adapter at all. Open <code>chrome://flags/#enable-unsafe-webgpu</code>, set it to Enabled, relaunch Chrome, and reload this page. It switches off Chrome\u2019s safety check for WebGPU on that GPU, so use it for these demos only. Other options: Microsoft Edge, or a Mac (Chrome or Safari 26).</small>';
+    }
+    out.innerHTML=(first?'<span class="ok">Available.</span>':'<span class="bad">No adapter.</span> This browser is not offering WebGPU on this machine.')+'<br><small>'+rows.join('<br>')+'</small>'+help;
+  }catch(e){out.innerHTML='<span class="bad">Check failed.</span> '+esc(e&&e.message||e);}
+})();
+</script>
+</body>
+</html>

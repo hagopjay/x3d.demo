@@ -2,6 +2,10 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v8 (2026-11-07)
+- Demo 6: KANSEI, the Babylon flagship (a night-drift game, Babylon.js 9.32.0 on WebGPU through our own X3D reader). It is hosted in its own repository, hagopjay/platformer, at https://hagopjay.github.io/platformer/kansei/v1/ (answered 200 when linked), so this page links to it and copies nothing. Preview image is the Babylon half of a recorded comparison sheet (software GPU, correctness only) from x3d.loom `runs/webgpu-drift-20261107/`. Source: x3d.loom PR #17.
+- Demos 1 to 5 unchanged.
+
 ## v7 (2026-11-07)
 - Demo 5, STEM studies, now run live: Chirp, Electron Cloud Observatory, Turing Garden, Living Heart, Vortex Reconnection & Sound (`docs/demos/stem/v1/<study>/`). The x3d.STEM repository does not commit the studies' data files, so each study's own builder was run (`python3 -E -s tools/<builder>.py`, numba and numpy, CPU) and its output bundled. Every case: all witnesses green (Vortex 10 and 11, Living Heart 8, 7 and 10, Turing Garden 14, 14, 14, 14 and 12, Chirp and Electron Cloud green). Each page then verified its data against the repository's recorded hashes, and its in-browser meshes against the builder's (41 of 41, 36 of 36, 48 of 48 frames), in a headless browser on a software GPU. Kerr 2 is not hosted (about 330 MB of images); it stays a source link.
 - Demo 4, the manifold, is now hosted too (`docs/demos/manifold/v1/`, from the repository's `studies/manifold`; five key files identical by hash to the original site). The debrief's comparison frames and the builders are left out of this copy.
