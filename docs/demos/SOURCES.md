@@ -6,10 +6,16 @@ First built with PR #12:
 - Collider events: `python3 -I x3d.webgpu/demo/src/build-events.py OUTDIR` (scenes regenerated from `kit/examples/hep/fixtures`, look v3).
 - Heritage facade: `x3d.webgpu/demo/src/build-v3.py` on `facade.x3d` (synthetic, generated, CC0; three Viewpoints added).
 
+Neural Canvas: `python3 -I x3d.webgpu/demo/src/build-brain.py --page x3d.brain/page --out OUT.html --single` (x3d.loom PR #13; Babylon.js 9.32.0 from a CDN with a subresource-integrity hash).
+
 Checked headless on a software GPU for correctness only; no timings.
 
 | file | sha256 | bytes |
 |---|---|---|
+| brain-torso/v1/NOTICE-BRAIN-DATA.md | 4eef34cfeee7aec9fe64b47e27a3632a815011c3d5a5b0c4359cfdefd23d766f | 3364 |
+| brain-torso/v1/NOTICE-TORSO.md | bb4ecbf6df180df527a31742d5cffe45abcff34a47b4793414c5ba8c6b3f9aac | 2091 |
+| brain-torso/v1/NOTICE.md | 2d0c18d6ba9262e51b8f728bc3a71eeaf95cc37cf3307e5868999357f995f052 | 17596 |
+| brain-torso/v1/index.html | dc5bdba7e1c793bf510679ee99620089e3f18fc1df34e410c9e5190b267caa25 | 2957361 |
 | collider-events/v1/dijet.html | aceb1cf3858f22aad22b0e128731c7664790bfece4d846c88a79c5b72ad33378 | 2373128 |
 | collider-events/v1/exact-z.html | 55a8145d697020825f8f0448be0f212a0125a8fa5c95d7d4e77bd5f7cce76645 | 752968 |
 | collider-events/v1/qcd-in-flight.html | b7212c0a11794b4e349d177aa3cf8f96b85360b0b66ce26c6da0a8122e4a7fcb | 2560264 |
