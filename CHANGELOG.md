@@ -2,6 +2,10 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v12 (2026-11-07)
+- New Demos 10 and 11: Chirp and Electron Cloud Observatory on Babylon.js 9.32.0 WebGPU (`docs/demos/chirp-webgpu/v1/index.html`, `docs/demos/electron-cloud-webgpu/v1/index.html`). Each is one offline file built from x3d.loom PR #21 (commit d323213, still open when built) with `build-chirp.py --kind chirp|cloud --study docs/demos/stem/v1/<study> --single`; the X_ITE study pages (`demos/stem/v1`) are untouched and each Demo 5 card links to its WebGPU version. Cards state the logged parity gaps and what was not checked (audio on Chirp, other browsers, real GPUs); no Timing button yet.
+- Both pages ran in a headless browser on a software WebGPU: each study's own browser witness passed, no console errors.
+
 ## v11 (2026-11-07)
 - New Demo 9: the Manifold of emotion on Babylon.js 9.32.0 WebGPU (`docs/demos/manifold-webgpu/v1/`, built by the x3d.loom PR #19 manifold thread with `build-manifold.py --site`; the shipped site tar had sha256 ef55572ad4d950a24b672570e47cdc42ecc8d43073d1204b615ad215ea52abb5 and was copied unchanged). The X_ITE manifold (Demo 4, `demos/manifold/v1`) is untouched and linked as its non-WebGPU twin, and Demo 4 now links here. Opt-in Timing button on the page; no timing exists yet. Card text carries the 49.3 and 48.5 dB software-GPU comparisons and says what was not run.
 - Demo 3 gains a link to Neural Canvas v2 (`demos/brain-torso/v2/`, added by PR #11: same pixels, adapter retry, Windows flag note, opt-in Timing button); v1 stays.

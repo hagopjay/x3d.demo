@@ -59,3 +59,8 @@ The six STEM-shelf studies are linked to hagopjay/x3d.STEM `studies/<name>/`; th
 
 - Manifold on WebGPU (`manifold-webgpu/v1`): x3d.loom PR #19 (at bb24bdc), `python3 -I x3d.webgpu/demo/src/build-manifold.py --site <manifold Pages folder> --out <folder>`; the 12 files were copied unchanged from `manifold-webgpu-site.tar` (sha256 ef55572ad4d950a24b672570e47cdc42ecc8d43073d1204b615ad215ea52abb5). Babylon.js 9.32.0 comes from the jsDelivr CDN with SRI sha384-1XDybi1454WehNQaPHwhcTlpJ6oDdq/L4KKyDu7JiWPOBUzoBC0yEcuKDzHpdXyo (re-verified against the npm package). `assets/manifold-webgpu.jpg` is the four-mood sheet from the same thread (software renderer).
 - Neural Canvas v2 (`brain-torso/v2`): added by x3d.demo PR #11 (b7da62b); provenance in its own PROVENANCE.md.
+
+## Doc v12 additions
+
+- Chirp on WebGPU (`chirp-webgpu/v1/index.html`, 6,198,838 bytes, sha256 d6019f1817dcd3936f51561773c6d91003428f13ee95af00bd2a36d2ae03d670) and Electron Cloud on WebGPU (`electron-cloud-webgpu/v1/index.html`, 9,490,619 bytes, sha256 a100eb3285663e084d78ae08e058e0df59afce14927a36b1ed76a393f1ed162e): `python3 -I x3d.webgpu/demo/src/build-chirp.py --kind chirp|cloud --study <docs/demos/stem/v1/chirp|electron-cloud> --out OUT --single` at x3d.loom commit d323213 (PR #21); the study folders are the Doc v7 copies listed above. The only external address in either file is the pinned Babylon.js 9.32.0 script on the jsDelivr CDN with SRI sha384-1XDybi1454WehNQaPHwhcTlpJ6oDdq/L4KKyDu7JiWPOBUzoBC0yEcuKDzHpdXyo.
+- `assets/chirp-webgpu.jpg` and `assets/electron-cloud-webgpu.jpg` are crops of the Babylon cinematic row of each run's `compare-sheet.jpg` (software renderer), re-encoded.
