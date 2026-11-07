@@ -38,6 +38,11 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .sgrid img{width:100%;height:auto;aspect-ratio:16/9;display:block;background:#05070a;border-radius:0}
 .sgrid .b{padding:10px 14px 12px;font-size:.92rem}.sgrid h3{font-size:1rem;margin:0 0 2px}.sgrid p{margin:0 0 6px;color:var(--mute);max-width:none}
 .sgrid .chips{margin:6px 0 0}
+.tile{display:grid;place-items:center;aspect-ratio:16/9;border-radius:6px;background:linear-gradient(135deg,#1b2233,#2a1f33);color:#e8ecf2;font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;text-align:center;padding:10px}
+.gh{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:12px;margin:10px 0}
+.gh article{padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);font-size:.92rem}
+.gh h3{font-size:1rem;margin:0 0 2px}.gh p{margin:0 0 6px;color:var(--mute);max-width:none}.gh .chips{margin:6px 0 0}
+.shelf{margin:0;padding:20px 0;border-top:1px solid var(--line)}
 .stem{margin:0;padding:20px 0;border-top:1px solid var(--line)}
 .studies{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:12px;margin:12px 0 10px;padding:0;list-style:none}
 .studies li{padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);font-size:.92rem}
@@ -53,7 +58,7 @@ code{font-family:var(--mono);font-size:.88em}
 <body>
 <main>
 <h1>x3d.demo</h1>
-<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. Demos 1 to 3 and 6 run on WebGPU, and where a WebGPU demo has a twin that does not need it, the twin is linked beside it. Demos 4 and 5 are drawn by X_ITE (WebGL) and open in any current browser. Demo 6 is the Babylon flagship.</p>
+<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. Demos 1 to 3 and 6 run on WebGPU, and where a WebGPU demo has a twin that does not need it, the twin is linked beside it. Demos 4 and 5 are drawn by X_ITE (WebGL) and open in any current browser. Demo 6 is the Babylon flagship. Demo 7 is Loomsong, now playable; Demo 8 is the traceability page; the shelf below them points at what else has been committed to GitHub since 7 October.</p>
 
 <section class="about" aria-label="About the curator">
 <h2>HagopJay</h2>
@@ -139,7 +144,7 @@ code{font-family:var(--mono);font-size:.88em}
     <article><img src="assets/stem/living-heart.jpg" alt="Living Heart, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Living Heart</h3><p>Electrical waves in heart muscle: paced tissue, a spiral wave and a scroll wave in a ventricle wall, held to the exact Nagumo front speed.</p><div class="chips"><a href="demos/stem/v1/living-heart/index.html#heart">Open</a><a href="demos/stem/v1/living-heart/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/living-heart">Source</a></div></div></article>
     <article><img src="assets/stem/vortex-sound.jpg" alt="Vortex Reconnection and Sound, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Vortex Reconnection &amp; Sound</h3><p>Quantized whirlpools in a superfluid: a vortex ring, and two rings that collide, reconnect and send sound through the fluid. Called a reconnection only because two grids agree.</p><div class="chips"><a href="demos/stem/v1/vortex-sound/index.html#reconnection">Open</a><a href="demos/stem/v1/vortex-sound/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/vortex-sound">Source</a></div></div></article>
   </div>
-  <div class="chips"><a href="https://github.com/hagopjay/x3d.STEM">The x3d.STEM repository</a><a href="https://hagopjay.github.io/x3d.STEM/">Its front page</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/kerr2">Kerr 2 &middot; The Photon Ring (source only)</a></div>
+  <div class="chips"><a href="https://github.com/hagopjay/x3d.STEM">The x3d.STEM repository</a><a href="https://hagsmac.github.io/x3d.STEM/">The manifold&rsquo;s original site</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/kerr2">Kerr 2 &middot; The Photon Ring (source only)</a></div>
   <p class="facts"><b>How these got here.</b> The repository does not commit the studies’ data files, so I rebuilt them with each study’s own builder on 2026-11-07 (every witness green on every case) and bundled them with the pages. The pages then verified against the repository’s recorded hashes in a headless browser. Kerr 2 is left out because its data is about 330 MB of images. Flagship pass 1; nothing here has been measured on a real GPU, and the study pages show their own live frame rate, which is yours, not ours.</p>
 </section>
 
@@ -158,6 +163,62 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
+<section class="demo">
+  <img src="assets/loomsong.jpg" alt="The Ode to Joy world: a Jacquard loom in a cathedral of light, with the player card in the corner" width="640" height="360">
+  <div>
+    <div class="no">DEMO 7</div>
+    <h2>Loomsong: Beethoven and Mozart as machines</h2>
+    <p>Two programmable machines play two pieces of music. <b>World 1, <em>Ode to Joy</em></b> (Beethoven, 1824): a Jacquard loom in a cathedral of light weaves a tapestry, and each statement of the theme lays down one colour layer. <b>World 2, <em>Rondo alla Turca</em></b> (Mozart, 1783): a pinned brass barrel carries every written note as a pin, a steel comb plucks them and a clockwork band strikes on the beat. Every thread, pin, tile and light is a real note from the score. Press Play; sound starts only then.</p>
+    <div class="chips">
+      <a href="demos/loomsong/v1/index.html">Play Loomsong</a>
+      <a href="https://github.com/hagopjay/x3d.music">Source: x3d.music</a>
+      <a href="https://github.com/hagopjay/x3d.music/blob/main/NOTICE.md">Licences</a>
+    </div>
+    <p class="facts">Keys: 1 and 2 switch piece, U cycles the interface (none, minimal, Learn: names the note under the pointer), Space plays and pauses, Left and Right step bars, C frees the camera, K calms it. It runs in X_ITE 16.5.1 (WebGL), no flag needed. The sound is synthesised in code except the <em>Alla Turca</em> piano, which uses the Salamander Grand Piano (CC BY 3.0); it is not a recording of anyone playing. The audio meters read &minus;14.00 LUFS on both pieces, but <b>no human has reported listening to the masters yet</b>, so the ear is the open check. On a software renderer it ran at the machine&rsquo;s own pace; about 60 fps was seen once on an integrated GPU (3 November). The tapestry picture, the dome motifs and the moving pictures behind the title and end cards are AI-made and labelled on the page. <b>Licence:</b> everything derived from the <em>Alla Turca</em> score is CC BY-NC-SA 4.0 (non-commercial, share-alike); the rest is MIT, and NOTICE.md travels with the page.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/tether-firehose.jpg" alt="Tether Firehose 4: the stage with a showpiece castle, the thesis in three numbers and the repair loop" width="640" height="360">
+  <div>
+    <div class="no">DEMO 8</div>
+    <h2>Tether Firehose 4: X3D you can hold an AI to</h2>
+    <p>A model writes an X3D scene; an exact validator says what is wrong; the model repairs it with the report; the browser shows whether it draws; a hash-chained record in the file&rsquo;s own head ties every step together. This page replays a recorded run of 358 real model calls on 17 October 2026 (50 prompts, five model lanes, names withheld in this build) next to the 11 October replay and the 24 October bench, with a repair morph, a tamper arena and a Blender export suite. Its thesis is on the stage: <em>valid is not the same as visible</em>.</p>
+    <div class="chips">
+      <a href="demos/tether-firehose/v4/index.html">Open Tether Firehose 4</a>
+      <a href="https://github.com/hagopjay/x3d.ML/tree/main/demo">Source: x3d.ML</a>
+    </div>
+    <p class="facts">The page&rsquo;s own headline: valid scenes rose from 20 to 98, 57 to 100 and 77 to 100 percent on the three paid lanes after repair, and 7 of the 178 scenes valid at the end still draw nothing in X_ITE. Validator: the x3d_mcp fork at eb4b4b4; renderer X_ITE 16.5.0 and 16.5.1; grade C for this sample only (one run per prompt), so read the rates as examples, not as a ranking. This is the share build: lane names, hardware and run costs are removed (the spend column reads zero by design) and a leak sweep must pass for it to build. Open it on a laptop; the stage renders live and a software GPU is slow.</p>
+  </div>
+</section>
+
+<section class="shelf" aria-label="More from GitHub">
+  <div class="no">SINCE 7 OCTOBER</div>
+  <h2>More from GitHub</h2>
+  <p>Repositories on the two accounts that were pushed to since 7 October 2026 and are the work itself, not forks of other people&rsquo;s projects. Live sites first, then source-only repositories. Links only; nothing is copied here.</p>
+  <h3>Live sites</h3>
+  <div class="gh">
+    <article><h3>PolyXandria demos</h3><p>Eleven demos in plain X3D you can open and check: splats, terrain, stars, the Shroud of Turin, and Blender and the browser rendering the same file.</p><div class="chips"><a href="https://hagopjay.github.io/x3d.poc/">Open</a><a href="https://github.com/hagopjay/x3d.poc">Source: x3d.poc</a></div></article>
+    <article><h3>x3dom.fun</h3><p>Small scripts-free X3D 4.0 toys. Each one runs in X_ITE and in X3DOM: a flywheel, a spiral galaxy and more.</p><div class="chips"><a href="https://hagsmac.github.io/x3dom.fun/">Open</a></div></article>
+    <article><h3>Mashtots System 2</h3><p>An X3D piece with a Listen button, a full-score view, sections and four cameras. It carries a credited mural photograph from Wikimedia Commons.</p><div class="chips"><a href="https://hagsmac.github.io/x3d.Mashtots/">Open</a></div></article>
+    <article><h3>KeGG, KnowlEdge Graph Grokker</h3><p>Seventeen masterclass guides on graph analytics, data engineering and knowledge systems, plus graph-visualisation pages.</p><div class="chips"><a href="https://hagopjay.github.io/KeGG-KnowlEdgeGraphGrokker/">Open</a><a href="https://github.com/hagopjay/KeGG-KnowlEdgeGraphGrokker">Source</a></div></article>
+    <article><h3>Dirac, the Loom Collider</h3><p>The collider on X_ITE, with its own tour and optics. Also linked from Demo 1.</p><div class="chips"><a href="https://hagopjay.github.io/dirac/docs/">Open</a><a href="https://github.com/hagopjay/dirac">Source</a></div></article>
+    <article><h3>KANSEI</h3><p>The drift game on Babylon WebGPU. Also Demo 6.</p><div class="chips"><a href="https://hagopjay.github.io/platformer/kansei/v1/">Play</a><a href="https://github.com/hagopjay/platformer">Source</a></div></article>
+  </div>
+  <h3>Source only</h3>
+  <div class="gh">
+    <article><h3>x3d.music</h3><p>Loomsong: Beethoven&rsquo;s <em>Ode to Joy</em> and Mozart&rsquo;s <em>Rondo alla Turca</em> as machines. Playable as Demo 7.</p><div class="chips"><a href="demos/loomsong/v1/index.html">Play</a><a href="https://github.com/hagopjay/x3d.music">Source</a></div></article>
+    <article><h3>x3d.ML</h3><p>X3D traceability and observability for ML pipelines: a hash-chained provenance record that rides in the scene itself. Demo 8 is its page.</p><div class="chips"><a href="demos/tether-firehose/v4/index.html">Open</a><a href="https://github.com/hagopjay/x3d.ML">Source</a></div></article>
+    <article><h3>x3d.loom</h3><p>The X3D Loom: a method for building X3D worlds that carry their own evidence, with the checking kit. It also holds the WebGPU ports behind Demos 1 to 6.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.loom">Source</a></div></article>
+    <article><h3>x3d-blender-io</h3><p>A working fork of Blender&rsquo;s X3D add-on, bringing the exporter and importer up to X3D 4.0 and 4.1.</p><div class="chips"><a href="https://github.com/hagopjay/x3d-blender-io">Source</a></div></article>
+    <article><h3>x3d_mcp</h3><p>An MCP server for generating, validating and converting X3D content (a fork).</p><div class="chips"><a href="https://github.com/hagopjay/x3d_mcp">Source</a></div></article>
+    <article><h3>x3d.xray</h3><p>Exploratory analysis of a family of repositories&rsquo; git history, with the output as an X3D world you fly through: a time helix, a tie constellation, a code city.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.xray">Source</a></div></article>
+    <article><h3>x3d.onto</h3><p>The ontology and Gobbler work.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.onto">Source</a></div></article>
+    <article><h3>x3d.STEM</h3><p>The six STEM studies behind Demo 5, plus the manifold study.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.STEM">Source</a></div></article>
+  </div>
+  <p class="facts">Left out on purpose: forks of other people&rsquo;s projects (game engines, CAD tools, agent frameworks) and private repositories.</p>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -174,7 +235,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>
