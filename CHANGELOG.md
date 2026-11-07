@@ -2,6 +2,12 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v9 (2026-11-07)
+- Demo 7: Loomsong (Beethoven's Ode to Joy and Mozart's Rondo alla Turca as machines), source only: hagopjay/x3d.music has no Pages site, its README says publishing has not started, and the audio masters are not committed. The card says so, repeats the repository's "no human has listened yet", and carries the non-commercial licence that the Alla Turca score imposes.
+- New shelf "More from GitHub, since 7 October": live sites (PolyXandria demos on x3d.poc, x3dom.fun, Mashtots System 2, KeGG, Dirac, KANSEI) and source-only repositories (x3d.music, x3d.loom, x3d-blender-io, x3d_mcp, x3d.xray, x3d.onto, x3d.STEM). Every live link answered 200 when linked. Forks of other people's projects and private repositories are left out. x3d.ML is not linked until its owner decides about a data file it serves.
+- The x3d.STEM front page link on the hagopjay Pages domain was replaced by the manifold's original site: that front page answered 404 when v9 was built (it answered 200 earlier on 7 November). Nothing hosted here depended on it.
+- Demos 1 to 6 unchanged.
+
 ## v8 (2026-11-07)
 - Demo 6: KANSEI, the Babylon flagship (a night-drift game, Babylon.js 9.32.0 on WebGPU through our own X3D reader). It is hosted in its own repository, hagopjay/platformer, at https://hagopjay.github.io/platformer/kansei/v1/ (answered 200 when linked), so this page links to it and copies nothing. Preview image is the Babylon half of a recorded comparison sheet (software GPU, correctness only) from x3d.loom `runs/webgpu-drift-20261107/`. Source: x3d.loom PR #17.
 - Demos 1 to 5 unchanged.
