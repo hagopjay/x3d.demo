@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v5 (2026-11-07)
+- Demo 3 is now Neural Canvas, the brain and torso CT drawn with Babylon.js on WebGPU through our own X3D reader (built from x3d.loom PR #13 with `build-brain.py --single`). It replaces the placeholder. Sources and licence grades are in `docs/demos/brain-torso/v1/NOTICE*.md`. The cortex shapes come from TemplateFlow fsaverage, whose licence is graded Suspected (no licence file found); it is shown for educational use at the owner's direction and may be removed if the rights holder asks.
+
 ## v4 (2026-11-07)
 - Added the meme wall: eight captioned frames of the demos (`docs/assets/memes/`). Demos unchanged.
 

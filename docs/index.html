@@ -44,7 +44,7 @@ code{font-family:var(--mono);font-size:.88em}
 <body>
 <main>
 <h1>x3d.demo</h1>
-<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. These first three run on WebGPU.</p>
+<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. These three run on WebGPU.</p>
 
 <section class="about" aria-label="About the curator">
 <h2>HagopJay</h2>
@@ -87,12 +87,17 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
-<section class="demo soon">
-  <div class="ph">DEMO 3 · not yet placed</div>
+<section class="demo">
+  <img src="assets/brain.jpg" alt="A glass human brain with glowing deep structures on a dark stage, the Neural Canvas page" width="640" height="360">
   <div>
     <div class="no">DEMO 3</div>
-    <h2>Torso CT</h2>
-    <p>Planned for this slot. It arrives with the brain WebGPU port; this entry will link to it in the next version of this page.</p>
+    <h2>Neural Canvas: brain and torso CT</h2>
+    <p>An interactive brain with glass cortex, deep structures, MRI slices and synthetic tracts, plus a CT torso tab. An X3D reader of our own parses the scene and runs its ROUTEs; <a href="https://www.babylonjs.com">Babylon.js</a> draws it with WebGPU. Click a region, take the tour, switch looks, try the Inside view.</p>
+    <div class="chips">
+      <a href="demos/brain-torso/v1/index.html">Open Neural Canvas</a>
+      <a href="demos/brain-torso/v1/NOTICE.md">Sources and licences</a>
+    </div>
+    <p class="facts">Version 1. Needs WebGPU and loads Babylon from a CDN. <b>Not a medical device.</b> The brain is a template average, the tracts are synthetic and the activation is illustrative. Cortex shapes: TemplateFlow fsaverage (FreeSurfer lineage), shown for educational use; its licence is not confirmed and the rights holder may ask for removal. Deep structures and slices: MNI152NLin2009cAsym (Fonov et al.). Torso: TotalSegmentator example subject (Wasserthal et al., 2023).</p>
   </div>
 </section>
 
@@ -112,7 +117,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>
