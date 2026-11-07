@@ -60,13 +60,13 @@ code{font-family:var(--mono);font-size:.88em}
     <h2>Collider events</h2>
     <p>Five generated collision events written as X3D 4.0. The page parses the scene, runs its ROUTEs and draws it with WebGPU, with five GLSL shaders ported to WGSL.</p>
     <div class="chips">
-      <a href="demos/collider-events/v1/dijet.html">Dijet</a>
-      <a href="demos/collider-events/v1/qcd.html">QCD event</a>
-      <a href="demos/collider-events/v1/z-to-muons.html">Z to muons</a>
-      <a href="demos/collider-events/v1/qcd-in-flight.html">QCD in flight</a>
-      <a href="demos/collider-events/v1/exact-z.html">Exact Z</a>
+      <a href="demos/collider-events/v2/dijet.html">Dijet</a>
+      <a href="demos/collider-events/v2/qcd.html">QCD event</a>
+      <a href="demos/collider-events/v2/z-to-muons.html">Z to muons</a>
+      <a href="demos/collider-events/v2/qcd-in-flight.html">QCD in flight</a>
+      <a href="demos/collider-events/v2/exact-z.html">Exact Z</a>
     </div>
-    <p class="facts">Version 1. Drag to orbit, scroll to zoom, keys 1 2 3 for viewpoints, T tour, L look. Events are generated for display, not measured. Each event grows over time, so a page can open on the vertex flash.</p>
+    <p class="facts">Version 2 (<a href="demos/collider-events/v1/dijet.html">v1 kept</a>). Drag to orbit, scroll to zoom, keys 1 2 3 for viewpoints, T tour, L look. Events are generated for display, not measured. Each event grows over time, so a page can open on the vertex flash.</p>
   </div>
 </section>
 
@@ -77,10 +77,10 @@ code{font-family:var(--mono);font-size:.88em}
     <h2>Heritage facade splats</h2>
     <p>A synthetic rock-cut facade of 140,000 Gaussian splats, written as X3D 4.1. It is generated (CC0) and is not a scan of any real monument. Splats are sorted on the GPU every time the view changes.</p>
     <div class="chips">
-      <a href="demos/heritage-facade/v1/facade.html">Open the facade</a>
-      <a href="demos/heritage-facade/v1/facade.x3d">Scene (.x3d)</a>
+      <a href="demos/heritage-facade/v2/facade.html">Open the facade</a>
+      <a href="demos/heritage-facade/v2/facade.x3d">Scene (.x3d)</a>
     </div>
-    <p class="facts">Version 1. 12 MB page; it takes a moment to load. Compared with X_ITE 16.4.3 on one view: 41.9 dB PSNR (software GL, correctness only).</p>
+    <p class="facts">Version 2 (<a href="demos/heritage-facade/v1/facade.html">v1 kept</a>). 12 MB page; it takes a moment to load. Compared with X_ITE 16.4.3 on one view: 41.9 dB PSNR (software GL, correctness only).</p>
   </div>
 </section>
 
@@ -94,21 +94,26 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>
 <script>
 (async function(){
   var out=document.getElementById('gpu-out');
+  function esc(t){return String(t).replace(/</g,'&lt;');}
   try{
-    if(!('gpu' in navigator)){out.innerHTML='<span class="bad">Not available.</span> This browser has no WebGPU. Try a current Chrome or Edge, and open this page from the web address, not from an embedded preview.';return;}
-    var a=await navigator.gpu.requestAdapter();
-    if(!a){out.innerHTML='<span class="bad">No adapter.</span> The browser has WebGPU but found no usable graphics adapter. Check chrome://gpu and that hardware acceleration is on.';return;}
-    var i=a.info||{};
-    var bits=[i.vendor,i.architecture,i.description].filter(Boolean).join(' · ');
-    out.innerHTML='<span class="ok">Available.</span> '+(bits||'Adapter found.')+(a.features&&a.features.has('shader-f16')?' · shader-f16 on':'');
-  }catch(e){out.innerHTML='<span class="bad">Check failed.</span> '+String(e&&e.message||e).replace(/</g,'&lt;');}
+    if(!('gpu' in navigator)){out.innerHTML='<span class="bad">Not available.</span> This browser has no WebGPU. Try a current Chrome or Edge, and open this page in its own tab, not an embedded preview.';return;}
+    var tries=[['plain request',undefined],['high-performance hint',{powerPreference:'high-performance'}]],rows=[],first=null;
+    for(var k=0;k<tries.length;k++){
+      var a=null;try{a=await navigator.gpu.requestAdapter(tries[k][1]);}catch(e){}
+      var i=a&&a.info||{};
+      var d=[i.vendor,i.architecture,i.description].filter(Boolean).join(' · ');
+      rows.push(tries[k][0]+': '+(a?'<span class="ok">adapter</span>'+(d?' ('+esc(d)+')':''):'<span class="bad">none</span>'));
+      if(a&&!first)first=a;
+    }
+    out.innerHTML=(first?'<span class="ok">Available.</span>':'<span class="bad">No adapter.</span> Check chrome://gpu, and that hardware acceleration is on in the browser settings.')+'<br><small>'+rows.join('<br>')+'</small>';
+  }catch(e){out.innerHTML='<span class="bad">Check failed.</span> '+esc(e&&e.message||e);}
 })();
 </script>
 </body>
