@@ -58,7 +58,7 @@ code{font-family:var(--mono);font-size:.88em}
 <body>
 <main>
 <h1>x3d.demo</h1>
-<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. Demos 1 to 3 and 6 run on WebGPU, and where a WebGPU demo has a twin that does not need it, the twin is linked beside it. Demos 4 and 5 are drawn by X_ITE (WebGL) and open in any current browser. Demo 6 is the Babylon flagship. Demo 7 is Loomsong, now playable; Demo 8 is the traceability page; the shelf below them points at what else has been committed to GitHub since 7 October.</p>
+<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. Demos 1 to 3 and 6 run on WebGPU, and where a WebGPU demo has a twin that does not need it, the twin is linked beside it. Demos 4 and 5 are drawn by X_ITE (WebGL) and open in any current browser. Demo 6 is the Babylon flagship. Demo 7 is Loomsong, now playable; Demo 8 is the traceability page; Demo 9 is the manifold again, on Babylon WebGPU; the shelf below them points at what else has been committed to GitHub since 7 October.</p>
 
 <section class="about" aria-label="About the curator">
 <h2>HagopJay</h2>
@@ -112,8 +112,9 @@ code{font-family:var(--mono);font-size:.88em}
       <a href="demos/brain-torso/v1/index.html">Open Neural Canvas</a>
       <a href="demos/brain-torso/v1/NOTICE.md">Sources and licences</a>
     </div>
+    <div class="chips"><a href="demos/brain-torso/v2/index.html">Version 2: adapter retry, flag note, Timing button</a></div>
     <div class="chips"><a href="demos/brain-torso-xite/v1/index.html">No WebGPU? Neural Canvas on X_ITE</a></div>
-    <p class="facts">Version 1. Needs WebGPU and loads Babylon from a CDN. The X_ITE twin (X_ITE 16.6.0, bundled) is the page this one was ported from and needs only WebGL; it carries the same notices. <b>Not a medical device.</b> The brain is a template average, the tracts are synthetic and the activation is illustrative. Cortex shapes: TemplateFlow fsaverage (FreeSurfer lineage), shown for educational use; its licence is not confirmed and the rights holder may ask for removal. Deep structures and slices: MNI152NLin2009cAsym (Fonov et al.). Torso: TotalSegmentator example subject (Wasserthal et al., 2023).</p>
+    <p class="facts">Version 1 is untouched; version 2 draws the same pixels and adds a shared adapter retry, the Windows flag note and an opt-in Timing button that prints numbers for you to copy (no timing from a real GPU has been published yet). Needs WebGPU and loads Babylon from a CDN. The X_ITE twin (X_ITE 16.6.0, bundled) is the page this one was ported from and needs only WebGL; it carries the same notices. <b>Not a medical device.</b> The brain is a template average, the tracts are synthetic and the activation is illustrative. Cortex shapes: TemplateFlow fsaverage (FreeSurfer lineage), shown for educational use; its licence is not confirmed and the rights holder may ask for removal. Deep structures and slices: MNI152NLin2009cAsym (Fonov et al.). Torso: TotalSegmentator example subject (Wasserthal et al., 2023).</p>
   </div>
 </section>
 
@@ -128,6 +129,7 @@ code{font-family:var(--mono);font-size:.88em}
       <a href="demos/manifold/v1/scenes/manifold.x3d">Scene (.x3d)</a>
       <a href="demos/manifold/v1/docs/DEBRIEF.md">Debrief</a>
       <a href="https://hagsmac.github.io/x3d.STEM/">Original site</a>
+      <a href="demos/manifold-webgpu/v1/index.html">The WebGPU version (Demo 9)</a>
     </div>
     <p class="facts">Not WebGPU. This is a copy of the x3d.STEM repository’s manifold study (files identical to the original site’s, checked by hash); the original site is linked too. Drag to orbit, scroll to zoom, click to perturb, H hides the controls. The scene was rebuilt from an existing WebGL page; its debrief records the checks (curvature and geodesics against exact references, and a picture comparison against the original on four moods, SSIM 0.91 to 0.96). The drawn landscape is a picture of the metric, not an isometric embedding, and the mood labels are illustrative. Preview frame drawn on a software GPU. The comparison frames from the debrief are left out of this copy.</p>
   </div>
@@ -219,6 +221,21 @@ code{font-family:var(--mono);font-size:.88em}
   <p class="facts">Left out on purpose: forks of other people&rsquo;s projects (game engines, CAD tools, agent frameworks) and private repositories.</p>
 </section>
 
+<section class="demo">
+  <img src="assets/manifold-webgpu.jpg" alt="The four moods of the manifold drawn on Babylon WebGPU: a glowing surface with luminous geodesics and bloom" width="640" height="360">
+  <div>
+    <div class="no">DEMO 9</div>
+    <h2>Manifold of emotion on WebGPU</h2>
+    <p>The same X3D scene as Demo 4, drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader, with all seven shaders ported to WGSL by hand. Bloom, vignette, film grain and a touch of chromatic aberration are on by default; the <b>lens</b> switch turns them off, and &ldquo;lens off&rdquo; is the frame as authored. It looks richer than the X_ITE page on purpose, but it does not change the data: the geometry, the field and the geodesics are the same.</p>
+    <div class="chips">
+      <a href="demos/manifold-webgpu/v1/index.html">Open the WebGPU manifold</a>
+      <a href="demos/manifold-webgpu/v1/scenes/manifold.x3d">Scene (.x3d)</a>
+      <a href="demos/manifold/v1/index.html">No WebGPU? The X_ITE version (Demo 4)</a>
+    </div>
+    <p class="facts">Needs Chrome or Edge 113 or later with WebGPU; on Windows Chrome it may need <code>chrome://flags/#enable-unsafe-webgpu</code> (the page says so too). It loads Babylon from a CDN with an integrity hash. Checked on a software GPU at 640 &times; 360 with the lens off, against X_ITE 16.5.1 on the same scene and camera: Reverie 49.3 dB, Euphoria 48.5 dB (Catharsis and Stillness not compared yet). That is correctness only; <b>no timings exist</b>. The page has an opt-in Timing button that prints a copy-paste block; real-machine numbers are expected from a Windows laptop and a Mac, and none are published yet. Screenshots above are from the software renderer. Source: x3d.loom, PR 19 (<code>x3d.webgpu/demo/src/build-manifold.py</code>), receipt <code>runs/webgpu-manifold-20261107/RECEIPT.md</code>.</p>
+  </div>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -235,7 +252,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>

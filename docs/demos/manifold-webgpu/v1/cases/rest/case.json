@@ -1,0 +1,187 @@
+{
+  "schema": "loom.scientific-case/1",
+  "id": "manifold/rest",
+  "kind": "manifold",
+  "name": "rest",
+  "title": "Manifold of Emotion: the field, its curvature and its geodesics",
+  "equation": "g = lambda^2 (dx^2 + dz^2), lambda = 1 + sum_i a_i exp(-1/2 d^T A_i d); K = -Laplacian(ln lambda)/lambda^2; geodesics dT/ds = grad ln lambda - (grad ln lambda . T) T",
+  "domain": {
+    "shape": [
+      513,
+      513
+    ],
+    "units": "the original page's scene units; the drawn square is [-11.2, 11.2]^2",
+    "extent": 11.2
+  },
+  "parameters": {
+    "moods": [
+      "Reverie",
+      "Euphoria",
+      "Catharsis",
+      "Stillness"
+    ],
+    "times": [
+      3.7,
+      41.3,
+      177.9
+    ],
+    "page_step": 0.065,
+    "page_count": 400,
+    "traces": 30,
+    "rest": {
+      "time": 3.7,
+      "mood": 0,
+      "grid": 513
+    }
+  },
+  "limits": [
+    "An artistic model: the sources, their breathing and the four moods are authored (label Authored), not measurements of anyone's emotions.",
+    "Geodesics are traced in snapshots of a metric that changes with time (a frozen field), not as spacetime geodesics.",
+    "The drawn height -1.72 ln(lambda) + fold + ripples is a picture of the metric, not an isometric embedding: its own geodesics stray up to the reported separation from those of g.",
+    "Curvature, Gauss-Bonnet and geodesics are checked on the drawn square only, at three times in four settled moods.",
+    "Limits were declared in tools/manifold.py's docstring before the first build."
+  ],
+  "rest": {
+    "time": 3.7,
+    "mood": 0,
+    "grid": 513
+  },
+  "dependencies": {
+    "tools/geometry.py": "1abdef7417247ed05b8e38889312bed2f36a98d1b5c22aa74eba9270f073697c",
+    "tools/parity.mjs": "3327de099fa090f36e9679e47776723d0db80654f4c68d7bf50ea9e799c540cf",
+    "src/math-core.js": "57bd6f06b5dac369fea01754a0ff4947331c80f40028391c57bac5d5f991872f",
+    "src/field.js": "76901732da67122d2ef1acc53fbda5bf9a7567ca442c4e7ef2294d9b6a4f4428"
+  },
+  "particles_sha256": "a83d994a8e85b7d56e0379e0f9efb54967c3461c5a43651cd83d69b25b15d350",
+  "frames": [
+    {
+      "file": "cases/rest/heights.f32",
+      "sha256": "cb100101115abe46827cc96124b5ef80801c53fc7205230f1d54384203d1cec9",
+      "bytes": 967847,
+      "decoded_sha256": "429011fe9978b969839cd095d28dcefba96e8a996bce940e44fb76233460ca53",
+      "decoded_bytes": 1052676,
+      "shape": [
+        513,
+        513
+      ],
+      "dtype": "<f4",
+      "time": 3.7,
+      "quantization_max": 5e-05,
+      "note": "rest heights, Reverie at t = 3.7, x then z, row j = z index; the scene writes them to 4 decimals (5e-5)"
+    }
+  ],
+  "metrics": [
+    {
+      "id": "integral_K_dA_drawn_square",
+      "value": [
+        0.593303,
+        1.718238,
+        1.937112,
+        0.243787,
+        0.024045,
+        0.095141,
+        0.163371,
+        0.018042,
+        0.842132,
+        1.13578,
+        0.383305,
+        0.290798
+      ],
+      "note": "total curvature of the drawn square; not zero because the field does not vanish at its edge"
+    },
+    {
+      "id": "geodesic_error_original_step",
+      "value": 0.0021529447096651274
+    },
+    {
+      "id": "drawn_surface_geodesic_separation",
+      "value": 4.744,
+      "note": "the paths are geodesics of g; the drawn surface's own geodesics from the same starts stray this far within 20 units"
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "sources_match_page_js",
+      "pass": true,
+      "observed": 8.881784197001252e-16,
+      "limit": 1e-12,
+      "rule": "at most",
+      "note": "the seven sources, Python against the page's JS under Node, 3 times x 4 moods"
+    },
+    {
+      "id": "heights_match_page_js",
+      "pass": true,
+      "observed": 1.7763568394002505e-15,
+      "limit": 1e-12,
+      "rule": "at most",
+      "note": "-1.72 ln(lambda) + fold on a 161^2 grid"
+    },
+    {
+      "id": "curvature_matches_page_js",
+      "pass": true,
+      "observed": 1.1102230246251565e-16,
+      "limit": 1e-12,
+      "rule": "at most"
+    },
+    {
+      "id": "curvature_general_metric",
+      "pass": true,
+      "observed": 5.117288602367106e-15,
+      "limit": 1e-12,
+      "rule": "at most",
+      "note": "page's conformal K against Brioschi's general formula (sympy), relative to max |K|"
+    },
+    {
+      "id": "gauss_bonnet_flux_identity",
+      "pass": true,
+      "observed": 4.529709940470639e-14,
+      "limit": 1e-10,
+      "rule": "at most",
+      "note": "integral of K dA_g plus the boundary flux of ln(lambda) on the drawn square"
+    },
+    {
+      "id": "geodesic_formulation",
+      "pass": true,
+      "observed": 9.5530481295135e-09,
+      "limit": 1e-07,
+      "rule": "at most",
+      "note": "page's unit-tangent ODE against the affine geodesic equation with general Christoffel symbols, as curves"
+    },
+    {
+      "id": "geodesic_rk4_error_page_step",
+      "pass": true,
+      "observed": 0.00013688517262054115,
+      "limit": 0.0002,
+      "rule": "at most",
+      "note": "page step 0.065; the original's step 0.13 gives 2.15e-03"
+    },
+    {
+      "id": "geodesic_rk4_order",
+      "pass": true,
+      "observed": 0.09328780073705101,
+      "limit": 0.1,
+      "rule": "at most",
+      "note": "observed orders 3.934 to 4.093 over 56 trace pairs"
+    },
+    {
+      "id": "clairaut_reference",
+      "pass": true,
+      "observed": 1.7899903781426474e-11,
+      "limit": 1e-09,
+      "rule": "at most",
+      "note": "lambda r sin(psi) along the reference for one round source"
+    },
+    {
+      "id": "particle_seeds_match_page_js",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    }
+  ],
+  "builder_sha256": "f085661d56005eb59085337086fda15e76d1ecac85453fc288a6044cf9d34a36",
+  "runtime": {
+    "python": "3.13.2",
+    "numpy": "2.4.2"
+  }
+}
