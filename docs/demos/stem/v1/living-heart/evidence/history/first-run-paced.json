@@ -1,0 +1,694 @@
+{
+  "schema": "loom.scientific-case/1",
+  "id": "tissue/paced",
+  "kind": "tissue",
+  "name": "paced",
+  "title": "Paced tissue",
+  "line": "A strip of heart muscle paced from the left edge: each beat a wave of voltage that sweeps across and recovers behind.",
+  "equation": "u_t = D lap(u) - k u (u - a)(u - 1) - u v;  v_t = (eps0 + mu1 v / (u + mu2)) (-v - k u (u - a - 1))",
+  "domain": {
+    "shape": [
+      100,
+      60
+    ],
+    "units": "dimensionless (about 1 mm and 12.9 ms per unit)",
+    "boundary": "no flux"
+  },
+  "parameters": {
+    "k": 8.0,
+    "a": 0.15,
+    "eps0": 0.002,
+    "mu1": 0.2,
+    "mu2": 0.3,
+    "D": 1.0,
+    "h": 0.5,
+    "dt": 0.01,
+    "display_h": 1.0,
+    "frames": 36,
+    "ms_per_unit": 12.9,
+    "conduction_speed": 1.3091754224929166,
+    "cable_speed": 1.3650601423158781,
+    "pacing_period": 60.0,
+    "beats": 10,
+    "domain_units": [
+      100,
+      60
+    ]
+  },
+  "method": "Aliev-Panfilov, forward Euler, 5-point (2D) or masked 7-point (3D) Laplacian with no-flux walls; states published every 1/36 of a period on every other cell.",
+  "limits": [
+    "A two-variable phenomenological model: no ion channels, calcium or drugs; times and lengths in physical units are nominal (12.9 ms and about 1 mm per unit).",
+    "Isotropic, homogeneous tissue: real ventricles have rotating fibre directions, which make conduction anisotropic and shape scroll waves.",
+    "The ventricle is two truncated ellipsoids, not an anatomical heart; it is not coupled to mechanics or blood flow.",
+    "Frames are shown on every other cell (1 unit) of the computed grid (0.5 units)."
+  ],
+  "dependencies": {
+    "tools/ap.py": "ec7dc0cdd671ebc64eca2567f4421e677715524f3a7490e8d206615c0c0cd428"
+  },
+  "external_dependencies": {
+    "lib/stemkit/core.py": "b799990d80948989d6525fdd0c8f16c4eec884e659105fd6bd5750d4cf977600",
+    "lib/stemkit/mesh.py": "fe4ebf154d7f8d7eed0c26ca13c3143678d60c8dbe74de4e7230e78fa1a6e326"
+  },
+  "frames": [
+    {
+      "file": "cases/paced/u000.bin",
+      "sha256": "12ca44241cfb59a08006d088a569b02d2216bc7a4cb62b7a996ccd801e89d0e2",
+      "bytes": 108,
+      "decoded_sha256": "3c272051bef1354f8e9aba4a63676051e7dae015ff0a9f2338fee6b5d01ee6c1",
+      "decoded_bytes": 6000,
+      "time": 540.01,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1260
+    },
+    {
+      "file": "cases/paced/u001.bin",
+      "sha256": "5fbffd6cd339e39cd7ea96355abf6a762a209361928cf2306fc0a5dc8fd12499",
+      "bytes": 115,
+      "decoded_sha256": "2868c86dfccb65aa1d1f4184ab4d2d9840b5da01dbab07bb421521ce66044dc1",
+      "decoded_bytes": 6000,
+      "time": 541.68,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1320
+    },
+    {
+      "file": "cases/paced/u002.bin",
+      "sha256": "1f4f31ec7531a3dba73db5fe0279ab18f6a6861e98fd48e0704948b2a2120c81",
+      "bytes": 125,
+      "decoded_sha256": "f08de212ca8bc6dc98425b5464e68ec5f9df95291e73a5a6b0b4af31c1c6b80d",
+      "decoded_bytes": 6000,
+      "time": 543.35,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1440
+    },
+    {
+      "file": "cases/paced/u003.bin",
+      "sha256": "577510b87ccebb97e111da13c2398cfa27085fd3a4e1b802ac2d1a4b3a0a05f9",
+      "bytes": 127,
+      "decoded_sha256": "bd901d1551114f6e9652e12b582dc0c50932b0895329a0ab67a375193e047bb0",
+      "decoded_bytes": 6000,
+      "time": 545.02,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1620
+    },
+    {
+      "file": "cases/paced/u004.bin",
+      "sha256": "5b1ecd4d19432a5b15aa4b7d95d53edf6f5a95bda3a603a9c658e2ceaff92b76",
+      "bytes": 121,
+      "decoded_sha256": "9a3f4e434f0adaad0b636ad0efd038b072da647d01ee5dc2f5e331749a5905a5",
+      "decoded_bytes": 6000,
+      "time": 546.69,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1740
+    },
+    {
+      "file": "cases/paced/u005.bin",
+      "sha256": "3dc23567b368777bef0ff18fcc2c03c16f9928ec39bd9796d18e7abf100f5f15",
+      "bytes": 132,
+      "decoded_sha256": "dfda6eb778b5a7b67ee2048bdc34daa200f703679fe79fe8de0618cced3bfc3a",
+      "decoded_bytes": 6000,
+      "time": 548.36,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1860
+    },
+    {
+      "file": "cases/paced/u006.bin",
+      "sha256": "360eb06b53745f74168c41f62ed9455c39a0ab3f6c49766a4112592a0b36457d",
+      "bytes": 136,
+      "decoded_sha256": "1017743b1f263f03b819c25df9b2083170c470d36c1c98ab6d022382101e0c33",
+      "decoded_bytes": 6000,
+      "time": 550.03,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1980
+    },
+    {
+      "file": "cases/paced/u007.bin",
+      "sha256": "cb89e806d8c6a6b1eb7662b3382af86aea18b05c7a787f2e72d04abb554b9fa6",
+      "bytes": 136,
+      "decoded_sha256": "8dccc38740f53aa2430804f3330604570bbb92cd1b78054288ecea9f97b7e935",
+      "decoded_bytes": 6000,
+      "time": 551.7,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 2100
+    },
+    {
+      "file": "cases/paced/u008.bin",
+      "sha256": "dc48222127036d8ce34801f77b8755beecccf88a72deffb29894b247be304dc5",
+      "bytes": 133,
+      "decoded_sha256": "72c8dfeae57a4929f744180fb3a5a3d14f9cb7cdd4fd3546ddfb36864aaba4bc",
+      "decoded_bytes": 6000,
+      "time": 553.37,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 2220
+    },
+    {
+      "file": "cases/paced/u009.bin",
+      "sha256": "efd9fdd8db4d7fa3cdbbd9f0cd43805d7e5161ee663978f078a6433f99f5b99b",
+      "bytes": 137,
+      "decoded_sha256": "38b3c82e61249adf3da9c9c9584b0865c53ba70b8f64c9ab9424b52dd2a20697",
+      "decoded_bytes": 6000,
+      "time": 555.04,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 2400
+    },
+    {
+      "file": "cases/paced/u010.bin",
+      "sha256": "aacb35b4e48abc3f43fdd635956b4bb46f0dbb8d790930b0fd2b771c82876a1c",
+      "bytes": 142,
+      "decoded_sha256": "062d12a5d4195fd1cd85e2bc81886d9499e39cef225bccff1b559887f550aa8b",
+      "decoded_bytes": 6000,
+      "time": 556.71,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 2400
+    },
+    {
+      "file": "cases/paced/u011.bin",
+      "sha256": "697f69f6ce0e776bfb4c678fcacc5001187436729c66cc49aba98539c62c4414",
+      "bytes": 146,
+      "decoded_sha256": "c926a73c8e7983c8db11ff36aa522da91ef06b535707440eda255c7d5d39f258",
+      "decoded_bytes": 6000,
+      "time": 558.38,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1980
+    },
+    {
+      "file": "cases/paced/u012.bin",
+      "sha256": "807684060599c327f05fd1231eca00ee645dc7cc8a2da13f454c02a545277c9c",
+      "bytes": 136,
+      "decoded_sha256": "131bdf29eb47268840ee3ce458138e0802fddafd6c1e9249c6ab244769cca3a4",
+      "decoded_bytes": 6000,
+      "time": 560.05,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1860
+    },
+    {
+      "file": "cases/paced/u013.bin",
+      "sha256": "53851aa7faf903f5fec5ea5f2b4be7af18266f43d1eee784c7f8fa9755932593",
+      "bytes": 136,
+      "decoded_sha256": "acd2ea7609a71a2db382dfe92b5df8b3b15a76b0e3b952943d3dd201bf1e22c3",
+      "decoded_bytes": 6000,
+      "time": 561.72,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1740
+    },
+    {
+      "file": "cases/paced/u014.bin",
+      "sha256": "138409e8d2c397c01f2b211987bf349d4d53dd7fb4d4faa1474821eb4c14f43e",
+      "bytes": 132,
+      "decoded_sha256": "7056de11a9ffcc8ad368925318a5cfe42be20a7c326cc746addddac10cf4cacc",
+      "decoded_bytes": 6000,
+      "time": 563.39,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1620
+    },
+    {
+      "file": "cases/paced/u015.bin",
+      "sha256": "a5839c4775ef64519c4f2a12bcd52124b5197346a5eb831aded7bc65d09eb090",
+      "bytes": 131,
+      "decoded_sha256": "ee9d938e877f478e9695e8df9fa532f8154356fedd73da8124ac3487752254b7",
+      "decoded_bytes": 6000,
+      "time": 565.0600000000001,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1440
+    },
+    {
+      "file": "cases/paced/u016.bin",
+      "sha256": "b49d770845ab5bd3c4f6362852d14db6a216057394186726210d68bf10e89cc7",
+      "bytes": 125,
+      "decoded_sha256": "b22fc3b44ab1a7eec3176bb456f67f8abf46f5d7ed2e94828b92385164632efc",
+      "decoded_bytes": 6000,
+      "time": 566.73,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1320
+    },
+    {
+      "file": "cases/paced/u017.bin",
+      "sha256": "824e7887d842a3ef75c59021b11367950e96eccea688190835b470fe9abb8c8d",
+      "bytes": 120,
+      "decoded_sha256": "3ef94faf1c1057ed2a665bce1e5a7af61f1a514f448659c552850cd6e4766715",
+      "decoded_bytes": 6000,
+      "time": 568.4,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1260
+    },
+    {
+      "file": "cases/paced/u018.bin",
+      "sha256": "e5597ab0043e9448b0620558c1bf97a0a415523779764b2ef50d7391062af3c0",
+      "bytes": 114,
+      "decoded_sha256": "4de3937add2e06d82c48acf3b78dc7d70609cb3d5f6c9b1d075c8af6a69a8687",
+      "decoded_bytes": 6000,
+      "time": 570.07,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    },
+    {
+      "file": "cases/paced/u019.bin",
+      "sha256": "8cd3cf96d697aa769caf1b57555b6c8cfb55e66087cd17f32af4ccec08f172b7",
+      "bytes": 104,
+      "decoded_sha256": "356c2d3f296e02a7021262685bef698947263ae43ca1122263120db7a175b2b8",
+      "decoded_bytes": 6000,
+      "time": 571.74,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    },
+    {
+      "file": "cases/paced/u020.bin",
+      "sha256": "1ae193fda21702ba380cda6ed7790edb018b4ebe3f9f5a393f0a5ae3703bd5dc",
+      "bytes": 97,
+      "decoded_sha256": "f5957607259198497ccd6efa452dbd1c29c09f6ba8b00b4e2b5c2c490baa44fb",
+      "decoded_bytes": 6000,
+      "time": 573.41,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1080
+    },
+    {
+      "file": "cases/paced/u021.bin",
+      "sha256": "d9d9306b36fc6769427671e131f0d4fee0299459250bfdf7822797fbd0e014ff",
+      "bytes": 103,
+      "decoded_sha256": "3edc6dc51380000b9426a1b2365dcc3cd8b704a3b293807f19a3df17f37a269f",
+      "decoded_bytes": 6000,
+      "time": 575.08,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1080
+    },
+    {
+      "file": "cases/paced/u022.bin",
+      "sha256": "64fc4c6cbc2fd58350dc85bc537850c5c530b6f2f0723b4c9e189dc005a4c399",
+      "bytes": 99,
+      "decoded_sha256": "01d66c408a24466ed1559c01a2d5cfc75060fd6a027b943832db5351e5cee63b",
+      "decoded_bytes": 6000,
+      "time": 576.75,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    },
+    {
+      "file": "cases/paced/u023.bin",
+      "sha256": "df8cb2c80a1496bbd7e24a07414a1fa0da50601cbb071cc277efd473834576ef",
+      "bytes": 99,
+      "decoded_sha256": "a8eb058641fad28d4a480436ad1eae71ed6a84c15a45f8e890d2d7a8a5de0044",
+      "decoded_bytes": 6000,
+      "time": 578.42,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    },
+    {
+      "file": "cases/paced/u024.bin",
+      "sha256": "fc5aecac63c205dc59baba902771bab7ef79e333b33cc6a0a177c062ea92bdb5",
+      "bytes": 95,
+      "decoded_sha256": "c436d383c14544e12fd8267e04b443737a12906a954c92d48e435107b75ffc0a",
+      "decoded_bytes": 6000,
+      "time": 580.09,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    },
+    {
+      "file": "cases/paced/u025.bin",
+      "sha256": "7e868e5fd80efc6c52b55776a3a96dbc463208f67b0e20bc395701e3f65510da",
+      "bytes": 98,
+      "decoded_sha256": "6b531364000ce05c2815f140b8397fe696c94c844a4234c7a7ba780e2d551bce",
+      "decoded_bytes": 6000,
+      "time": 581.76,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    },
+    {
+      "file": "cases/paced/u026.bin",
+      "sha256": "278c70ee1b1949c345650706d8a7ae4cbec83bb4f8606abc364865dcf03902d8",
+      "bytes": 98,
+      "decoded_sha256": "a18062e0ea7a1587c5551a54d5ee4207b9dd5c91c047fd189afdb0fce0d57f33",
+      "decoded_bytes": 6000,
+      "time": 583.43,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1080
+    },
+    {
+      "file": "cases/paced/u027.bin",
+      "sha256": "098141014a6a5dfeb02eafc775165af6ed9fb948d44982e8241c7d620143a6f6",
+      "bytes": 99,
+      "decoded_sha256": "cee5abad15458c4967318109ae38ce90863392f8d2539e321e393884d4461876",
+      "decoded_bytes": 6000,
+      "time": 585.1,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1080
+    },
+    {
+      "file": "cases/paced/u028.bin",
+      "sha256": "42144ffd1db1efbb8e47ad6162c9f4bf287f4e7bbe386b41173a1449e75af8cd",
+      "bytes": 98,
+      "decoded_sha256": "e33b64ff44d85ef8f377939072959894946367b67e336306fefc9cc428c5a6f1",
+      "decoded_bytes": 6000,
+      "time": 586.77,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    },
+    {
+      "file": "cases/paced/u029.bin",
+      "sha256": "5fd5f07410be026b8b6b3d8b5358429a7e028ad96ddcceb99ad87406f63c2e8d",
+      "bytes": 98,
+      "decoded_sha256": "658132bf24afa02c40f1e53b160c937c932a4445ad255a34787c90d041a0a3ab",
+      "decoded_bytes": 6000,
+      "time": 588.44,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    },
+    {
+      "file": "cases/paced/u030.bin",
+      "sha256": "a38817d4f8f83da344107e5b854b1c7e9e6972df2f39c7551396c620313666c8",
+      "bytes": 99,
+      "decoded_sha256": "ac55cb056557fe7ce2c92d6cc10129d658cd56b3e9eeb637f1bf05666af2e096",
+      "decoded_bytes": 6000,
+      "time": 590.11,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    },
+    {
+      "file": "cases/paced/u031.bin",
+      "sha256": "9d07ca3aeac058e3272608cb10ff0f7f899c481f1c670de274c1f1fde413fd36",
+      "bytes": 98,
+      "decoded_sha256": "3d1c441d4eac5b8b4a99700c6af0de91a3dbae8ca92049cfb4a0864f9d454eee",
+      "decoded_bytes": 6000,
+      "time": 591.78,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1080
+    },
+    {
+      "file": "cases/paced/u032.bin",
+      "sha256": "a645d1f39f70c116e710a1cefd9bede1a55659b3477e6b29a33cb716dd209cd8",
+      "bytes": 100,
+      "decoded_sha256": "f32f86e680afd0aca2e3db2487bc4481ba47df29a2342211961f6df38ba018b7",
+      "decoded_bytes": 6000,
+      "time": 593.45,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1080
+    },
+    {
+      "file": "cases/paced/u033.bin",
+      "sha256": "c45f854b172f4bf68ee26e00d3d8d8c0434ac38cf919803f49e366b2f918555c",
+      "bytes": 100,
+      "decoded_sha256": "42219cc47a590f1bd4809b92c49e3dc572b1b0beb14bcbf153e04eb5079bd965",
+      "decoded_bytes": 6000,
+      "time": 595.12,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    },
+    {
+      "file": "cases/paced/u034.bin",
+      "sha256": "861c52c145f3b9233e6052ba496edd096f0ae34f9a91b4e90b16a22cf4ba8a17",
+      "bytes": 103,
+      "decoded_sha256": "03963d5508ce87921a6296aca9057985b752f6c9704c41a74e39c934d1ebd187",
+      "decoded_bytes": 6000,
+      "time": 596.79,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    },
+    {
+      "file": "cases/paced/u035.bin",
+      "sha256": "b6613cb02a6178d173bb0dbb12680026ccc8ee606a47f93621e83ef6977bb3f7",
+      "bytes": 98,
+      "decoded_sha256": "c3971c66cd26536d6ad733381d597d5d418fa538a56f4532eafbe88f67e99a0d",
+      "decoded_bytes": 6000,
+      "time": 598.46,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        100,
+        60
+      ],
+      "active_cells": 1140
+    }
+  ],
+  "metrics": [
+    {
+      "id": "timing",
+      "seconds": 4.9
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "Nagumo front (recovery off) vs exact sqrt(kD/2)(1-2a) = 1.4: observed order in h, |p - 2|",
+      "pass": true,
+      "observed": 0.04895312344826408,
+      "limit": 0.1,
+      "rule": "at most",
+      "note": "observed 2.0490"
+    },
+    {
+      "id": "Nagumo front speed, Richardson over h = 0.5 and 0.25, relative error",
+      "pass": true,
+      "observed": 0.00014022705137328728,
+      "limit": 0.001,
+      "rule": "at most"
+    },
+    {
+      "id": "resting state: a small Neumann mode decays at the exact discrete rate, relative error",
+      "pass": true,
+      "observed": 1.7763568394002505e-15,
+      "limit": 1e-06,
+      "rule": "at most"
+    },
+    {
+      "id": "paced sheet: conduction speed vs a 1D cable with the same numerics, relative difference",
+      "pass": false,
+      "observed": 0.04093938288180543,
+      "limit": 0.02,
+      "rule": "at most",
+      "note": "sheet 1.3092, cable 1.3651"
+    },
+    {
+      "id": "paced sheet: every beat conducts (activations at the far probe = beats)",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "bounded voltage: values outside [0, 1] in the published frames",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "clipping: published values outside the 8-bit range",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    }
+  ],
+  "builder_sha256": "6f31b7bb3f287ea8f08eb6c07ca88a5ec2cddab837eda195ad6023240123e193",
+  "runtime": {
+    "python": "3.13.2",
+    "numpy": "2.4.2"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "schema": "living-heart.browser/1",
+  "date": "2026-11-04",
+  "browser": "Playwright MCP headless Chromium",
+  "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3, Unspecified Version)",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "page_sources": {
+    "index.html": "65be29c5e17b900ec5d9cb16000af084f0b3f05b5cdf263b081a830edead6df9",
+    "src/app.js": "78b75412193a1974aab8ccc93957cbeeb174f93e25da248d5211b7b7d4847a09",
+    "src/nets.js": "1ada80503f551ac38ca53ef1bbdb5cb61b9dc61609e820785d67156ebcfe4383",
+    "src/app.css": "8b5ba6144c8beb10da03d460175962fdf2d855a1bc56d32cf45ab7d9c41fe0f8",
+    "scenes/heart.x3d": "38623cff17187a49f9549be95ad35709c7446aec542a4295ee8c3030cabadbc9"
+  },
+  "case_manifests": {
+    "paced": "558fae57e8c93f9fc0a3804d2d8db2f9ce9ec967352131c53d738cc371184deb",
+    "spiral": "5423b0e4c01f3a532312047a1e375e0ed74e48e2c76ef2983886d86e6726bf93",
+    "heart": "93342fba8299681218df71df8f789233468b22e2553ca7fbb1f8443ae59c2ca0"
+  },
+  "cross_check": {
+    "what": "the page counts the excited cells (u > 0.5) of every verified frame and, for the ventricle, meshes the wall itself; counts must equal the builder's and the wall's volume agree to 1e-6",
+    "cases": {
+      "paced": {
+        "frames": 36,
+        "total": 36,
+        "status": "pass"
+      },
+      "spiral": {
+        "frames": 36,
+        "total": 36,
+        "status": "pass"
+      },
+      "heart": {
+        "frames": 36,
+        "total": 36,
+        "mesh": true,
+        "volume": 3.9745984281580604e-14,
+        "status": "pass"
+      }
+    },
+    "pass": true
+  },
+  "playback": {
+    "what": "Play the ventricle's period; sample the page's frame and the Switch's whichChoice every 0.3 s; pause and check it holds",
+    "samples_frame_whichChoice": [
+      [
+        10,
+        10
+      ],
+      [
+        14,
+        14
+      ],
+      [
+        18,
+        18
+      ],
+      [
+        22,
+        22
+      ],
+      [
+        25,
+        25
+      ]
+    ],
+    "paused_then": [
+      25,
+      25
+    ],
+    "pass": true
+  },
+  "console_errors": [],
+  "scope": "One browser on one machine. Counts, mesh and playback order, not pixels; no frame rate is claimed.",
+  "pass": true
+}
