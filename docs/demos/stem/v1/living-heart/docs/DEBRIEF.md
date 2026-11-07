@@ -1,0 +1,42 @@
+# Living Heart: debrief, pass 1 (4 Nov 2026)
+
+The fifth x3d.STEM flagship, built with the X3D Loom. Grades: **C** = a named tool ran and showed it; **L** = read or reasoned; **S** = suspected or a visual judgement. Every witness number is in [NUMBERS](NUMBERS.html), generated from the case manifests.
+
+## 1. What it is
+
+Electrical waves in heart muscle, from one heartbeat to the spiral waves behind dangerous arrhythmias. The Aliev–Panfilov model (voltage and recovery) is solved with explicit finite differences at h = 0.5 and no-flux walls. Each case publishes one period of computed states (36 frames) on every other cell, coloured from resting navy to excited gold, and plays them through X3D's own `TimeSensor → IntegerSequencer → Switch` route.
+
+- **Paced tissue**: a strip paced from its left edge every 60 units (774 ms). Each beat is a wave that sweeps across and recovers behind.
+- **Spiral wave**: a broken wave curls into a spiral that drives the tissue by itself every 433 ms, about 139 beats a minute: the shape of re-entrant tachycardia.
+- **Scroll wave in a ventricle**: the same spiral on a ventricle-shaped wall (two truncated ellipsoids, 8 units thick, 522,680 tissue cells). Its centre becomes a line through the wall, and the wave sweeps round the heart every 431 ms. The page meshes the wall from its published geometry, colours it every frame, and cuts it open.
+
+## 2. Witnesses (C)
+
+25 in all, every one green on the final build. Limits were declared in `tools/heart.py` before the first build.
+
+- **Exact references.** With recovery switched off, the upstroke front is the Nagumo equation, whose exact speed is √(kD/2)(1 − 2a) = 1.4. The solver converges to it at observed order 2.05, and Richardson extrapolation over h = 0.5 and 0.25 lands within 1.4 × 10⁻⁴. A small Neumann cosine mode about rest decays at the exact discrete rate.
+- **Consistency.** The paced sheet's first beat conducts at the 1D cable's speed to 1.7 × 10⁻⁵. Steady paced beats are 4.1 % slower: conduction-velocity restitution, measured as its own claim. The spiral's period changes 0.93 % between h = 0.5 and 0.25, and its last six periods agree within 2 %.
+- **The ventricle.** The no-flux walls conserve exactly (the masked Laplacian sums to 7 × 10⁻¹⁹ of the voltage). The scroll wave's period is within 0.46 % of the flat spiral's, four probes round the heart agree within 1.2 %, a 2,000-step rerun is bit for bit, and the wall mesh is closed.
+- **In the browser (Chromium, Apple M3).** The page counted the excited cells of all 108 frames and matched the builder on every one. It meshed the ventricle wall itself and matched the builder's counts exactly, with the volume to 4 × 10⁻¹⁴. Playback followed the X3D route and held on pause.
+
+## 3. What failed, and what it taught
+
+1. **The 2D way to start a spiral killed the 3D one (C).** A broken wave in the lower half of the wall fired every probe once, and then the whole ventricle went quiet. Near the apex the excited band shrinks to nothing, so the wave escaped both ways round and annihilated itself. The ventricle is now seeded with the computed 2D spiral (both fields), mapped onto the wall by arc length round the axis and height, with its core at mid-wall. The 3D physics then sustains it, and the run says so in every manifest.
+2. **Unlike things compared, again (C).** The first paced-speed witness compared steady paced beats with a single wave into rested tissue: 4.1 % apart. Paced tissue has not fully recovered, so it conducts slower. The fair check is the first beat against the cable (1.7 × 10⁻⁵), and the slowdown became a measured claim. This is Loom failure mode 79 in another field.
+3. **Frames recorded from the past (C).** The spiral's frame times began at the last activation before the recording run started, so 7 of 36 were already gone. The builder refused to publish (FRAME_COUNT: 29). Frames are now taken by exact step number, starting one period later.
+4. **A shared helper assumed a cube (L, then C).** The mesher's `displayField` pads an n³ grid, and the ventricle grid is 58 × 58 × 67. The page pads the wall itself with the builder's exact formula.
+5. **A camera caught mid-flight (C).** Screenshots taken 0.9 s after switching cases showed X_ITE's default one-second glide between viewpoints. Viewpoint changes are now instant (TELEPORT).
+
+## 4. Limits (also in every case manifest)
+
+- **The model:** two variables; no ion channels, calcium or drugs. Physical times and lengths are nominal (12.9 ms and about 1 mm per unit).
+- **The tissue:** isotropic and homogeneous, with no rotating fibres. The ventricle is two ellipsoids, not an anatomical heart, and it has no mechanics or blood flow.
+- **Display:** frames are shown on every other cell of the computed grid.
+- **The 3D start:** the scroll wave was seeded from a computed 2D spiral, not grown from a stimulus protocol.
+
+## 5. Next pass
+
+- Fibre rotation through the wall (anisotropic conduction), where scroll waves twist.
+- Defibrillation: a shock that resets the tissue, and the critical-mass question of when it fails.
+- An anatomical ventricle mesh from an open dataset (licence permitting), linking to the anatomy work.
+- An ECG computed from the same simulation: the trace a cardiologist would see beside the wave.

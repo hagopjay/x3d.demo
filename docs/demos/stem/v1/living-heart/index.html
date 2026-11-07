@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Living Heart · x3d.STEM</title>
+<link rel="stylesheet" href="vendor/x_ite/x_ite.css">
+<link rel="stylesheet" href="src/app.css">
+<script src="vendor/x_ite/x_ite.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="mark">♥</span><div><b>x3d.STEM</b><small>Living Heart · electrical waves in heart muscle</small></div></div>
+  <nav id="cases" aria-label="Computed cases"></nav>
+  <a class="ledger-link" href="#ledger">Evidence ledger ↓</a>
+</header>
+<main>
+  <section id="stage">
+    <x3d-canvas id="canvas" contentScale="auto" splashScreen="false" contextMenu="false" notifications="false" toneMapping="KHR_PBR_NEUTRAL" antialiased="true" maximumFrameRate="60"></x3d-canvas>
+    <div id="banner" hidden></div>
+    <div id="caption"><h1 id="title">Loading…</h1><p id="subtitle"></p></div>
+    <div id="clock"><b id="tval"></b><span id="fval"></span></div>
+    <div id="readout">Drag to turn · scroll to zoom</div>
+    <div id="loading">Verifying computed states…</div>
+  </section>
+  <aside id="panel">
+    <h2>One cycle</h2>
+    <div class="row"><button id="play" class="primary">▶ Play</button><input type="range" id="frame" min="0" max="35" step="1" value="0" aria-label="Frame"></div>
+    <p class="hint">36 computed states across one period; playback never blends two.</p>
+    <div id="legend"><i></i><span>resting</span><span>excited</span></div>
+    <div id="cutBox">
+      <h2>Cut</h2>
+      <div class="row"><input type="range" id="cut" min="0" max="1" step="0.005" value="1" aria-label="Cut position"></div>
+      <p class="hint">Open the wall to see the wave run through its thickness.</p>
+    </div>
+    <h2>Lens</h2>
+    <div class="row seg" id="lenses"><button data-l="explorer" class="on">Explorer</button><button data-l="lab">Lab</button></div>
+    <div id="lensText" class="hint"></div>
+    <h2 id="ledger">Evidence ledger</h2>
+    <p class="hint">Every number below was measured on this case by a named tool; the last rows are measured here, in your browser. Red rows stay red.</p>
+    <table id="witnesses"><thead><tr><th></th><th>Check</th><th>Observed</th><th>Limit</th></tr></thead><tbody></tbody></table>
+    <p class="hint" id="limits"></p>
+    <p class="hint small" id="provenance"></p>
+  </aside>
+</main>
+<script src="src/nets.js"></script>
+<script src="src/app.js"></script>
+</body>
+</html>

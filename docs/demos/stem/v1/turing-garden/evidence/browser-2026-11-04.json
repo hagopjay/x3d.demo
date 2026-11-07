@@ -1,0 +1,90 @@
+{
+  "schema": "turing-garden.browser/1",
+  "date": "2026-11-04",
+  "browser": "Playwright MCP headless Chromium",
+  "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3, Unspecified Version)",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "page_sources": {
+    "index.html": "63b0e8861a2e205600a8b08d9c9b561b921a6b4bb2de945f4f216161e369e83c",
+    "src/app.js": "1b55157bd33f97ebdf2c043de37c69248c47acde70f18ada60da2e44539b7782",
+    "src/nets.js": "82c7e7bd1c39f7b57dd75ef26f4dd98db36617a514acf8b3f43115938b697808",
+    "src/app.css": "d92b4e00ba9c16abc6a9517feaba1679bdf338de87dc4c75d7badc7fd968286f",
+    "scenes/garden.x3d": "8cc6bd9e3a54787d48fda9aac3213e50fdbe4a8dc309befa26807d4eb52e9a5c"
+  },
+  "case_manifests": {
+    "spots": "cf38e3cde2ce5417dc2836e2fb172d8c3e6b0705375b2a21626d2c1fed78e7cc",
+    "holes": "8cd06b7d5285c87f3093d4a9495dd3184cf043cdc853606bcbf79ab76c378f87",
+    "coral": "66a9e48782ee31f2b0a75aa48af45d2c13461773679df26c681ccd303e842982",
+    "sheets": "dec441486b89f9db2da469e80f43b886f3ada887610ab4f984155e21bacc6749",
+    "chaos": "44d251d7cb59c3112db81e2fee221769a756d24ec890c5d261f87d086218a09f"
+  },
+  "mesh_cross_check": {
+    "what": "the page rebuilds every frame's mesh from the verified field (src/nets.js) and compares vertex and triangle counts (exact) and enclosed volume (relative, at most 1e-6) with the builder's reference at level 0.2",
+    "cases": {
+      "spots": {
+        "status": "pass",
+        "match": 41,
+        "total": 41,
+        "worst": 1.8540724511240114e-14
+      },
+      "holes": {
+        "status": "pass",
+        "match": 41,
+        "total": 41,
+        "worst": 2.1316282072803006e-14
+      },
+      "coral": {
+        "status": "pass",
+        "match": 41,
+        "total": 41,
+        "worst": 3.175237850427948e-14
+      },
+      "sheets": {
+        "status": "pass",
+        "match": 41,
+        "total": 41,
+        "worst": 2.6978419498391304e-14
+      },
+      "chaos": {
+        "status": "pass",
+        "match": 41,
+        "total": 41,
+        "worst": 2.1316282072803006e-14
+      }
+    },
+    "pass": true
+  },
+  "playback": {
+    "what": "Play from frame 0; sample the page's frame and the Switch's whichChoice every 0.6 s; pause and check it holds",
+    "samples_frame_whichChoice": [
+      [
+        5,
+        5
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        11,
+        11
+      ],
+      [
+        14,
+        14
+      ],
+      [
+        17,
+        17
+      ]
+    ],
+    "paused_then": [
+      17,
+      17
+    ],
+    "pass": true
+  },
+  "console_errors": [],
+  "scope": "One browser on one machine. Counts and volumes, not pixels: no frame is compared with an offline render, and no frame rate is claimed.",
+  "pass": true
+}

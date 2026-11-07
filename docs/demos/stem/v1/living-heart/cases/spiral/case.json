@@ -1,0 +1,694 @@
+{
+  "schema": "loom.scientific-case/1",
+  "id": "tissue/spiral",
+  "kind": "tissue",
+  "name": "spiral",
+  "title": "Spiral wave",
+  "line": "A broken wave curls into a spiral that drives the tissue by itself, faster than any heartbeat: the shape of re-entrant tachycardia.",
+  "equation": "u_t = D lap(u) - k u (u - a)(u - 1) - u v;  v_t = (eps0 + mu1 v / (u + mu2)) (-v - k u (u - a - 1))",
+  "domain": {
+    "shape": [
+      120,
+      120
+    ],
+    "units": "dimensionless (about 1 mm and 12.9 ms per unit)",
+    "boundary": "no flux"
+  },
+  "parameters": {
+    "k": 8.0,
+    "a": 0.15,
+    "eps0": 0.002,
+    "mu1": 0.2,
+    "mu2": 0.3,
+    "D": 1.0,
+    "h": 0.5,
+    "dt": 0.01,
+    "display_h": 1.0,
+    "frames": 36,
+    "ms_per_unit": 12.9,
+    "period": 33.542534671670985,
+    "period_h2": 33.233248140293064,
+    "period_ms": 432.69869726455573,
+    "rate_bpm": 138.66461900465458,
+    "domain_units": [
+      120,
+      120
+    ]
+  },
+  "method": "Aliev-Panfilov, forward Euler, 5-point (2D) or masked 7-point (3D) Laplacian with no-flux walls; states published every 1/36 of a period on every other cell.",
+  "limits": [
+    "A two-variable phenomenological model: no ion channels, calcium or drugs; times and lengths in physical units are nominal (12.9 ms and about 1 mm per unit).",
+    "Isotropic, homogeneous tissue: real ventricles have rotating fibre directions, which make conduction anisotropic and shape scroll waves.",
+    "The ventricle is two truncated ellipsoids, not an anatomical heart; it is not coupled to mechanics or blood flow.",
+    "Frames are shown on every other cell (1 unit) of the computed grid (0.5 units)."
+  ],
+  "dependencies": {
+    "tools/ap.py": "ec7dc0cdd671ebc64eca2567f4421e677715524f3a7490e8d206615c0c0cd428"
+  },
+  "external_dependencies": {
+    "lib/stemkit/core.py": "b799990d80948989d6525fdd0c8f16c4eec884e659105fd6bd5750d4cf977600",
+    "lib/stemkit/mesh.py": "fe4ebf154d7f8d7eed0c26ca13c3143678d60c8dbe74de4e7230e78fa1a6e326"
+  },
+  "frames": [
+    {
+      "file": "cases/spiral/u000.bin",
+      "sha256": "78ddb3c20f330de98736873e0b728c0d6fd042d5fe8bb78c9eed5ff6178c96d1",
+      "bytes": 6506,
+      "decoded_sha256": "15783cda23bac9a7f31b4008d93b0e37a41cb784f182d6f0396724f5233d2ce4",
+      "decoded_bytes": 14400,
+      "time": 427.23,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4741
+    },
+    {
+      "file": "cases/spiral/u001.bin",
+      "sha256": "bd3d39aa66d29c5b46634ece3fde834e146730e3d02941424abfbfc6c0a84091",
+      "bytes": 6484,
+      "decoded_sha256": "a30bba2bcee092e901cd5baa16b41ed21df81c628ba8896506bd4869fb61c519",
+      "decoded_bytes": 14400,
+      "time": 428.17,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4640
+    },
+    {
+      "file": "cases/spiral/u002.bin",
+      "sha256": "a4463ec3a6237844ff610a83c2053dee308d96599bb848f222e71a685baa63ed",
+      "bytes": 6443,
+      "decoded_sha256": "de88113293fe0ff6a715a71a365b80c7c39d1ef427efd41c32e50f3da61dcd20",
+      "decoded_bytes": 14400,
+      "time": 429.1,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4576
+    },
+    {
+      "file": "cases/spiral/u003.bin",
+      "sha256": "8586e7b233aa9abab5c937ca5eca97489af335a053a20ad736f86a21f5c35230",
+      "bytes": 6406,
+      "decoded_sha256": "5bd0f02fb2de949952547f6e4c60fd4d68030ad19ecaa324eef43a43fbc966cc",
+      "decoded_bytes": 14400,
+      "time": 430.03,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4478
+    },
+    {
+      "file": "cases/spiral/u004.bin",
+      "sha256": "bafea786cb10d3d4edcf814d43b739f6df2c17c89d760a9ebc74f603a06bac9a",
+      "bytes": 6422,
+      "decoded_sha256": "5ce73db78863fb2520cfb94a47bf3b69488c9436aa49999595ed0d5a68a72348",
+      "decoded_bytes": 14400,
+      "time": 430.96,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4392
+    },
+    {
+      "file": "cases/spiral/u005.bin",
+      "sha256": "df0636125ac1d424e84492def9a5372ac3734aabfa7dff333ba638681ed44616",
+      "bytes": 6329,
+      "decoded_sha256": "e442d9df7d9b7efb316225f3b92eb7cb3276bed1a64d812be3f401a3bfeb88ee",
+      "decoded_bytes": 14400,
+      "time": 431.89,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4296
+    },
+    {
+      "file": "cases/spiral/u006.bin",
+      "sha256": "d1d3e27ec9850ba946b5effb644c987ffaa6f199236734bcef14049b65270857",
+      "bytes": 6313,
+      "decoded_sha256": "1d72c7ca38fef41d8469d21b4b75bfe40a87e90328136355321c145d27465a67",
+      "decoded_bytes": 14400,
+      "time": 432.82,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4208
+    },
+    {
+      "file": "cases/spiral/u007.bin",
+      "sha256": "bda9807e7a890c9a390a27c88e4cf35b1721d87cac93f9d69e807d019bb53a7b",
+      "bytes": 6182,
+      "decoded_sha256": "e3d66bcdadc8c6a2e65fae39763ff6de6cb8875f3a90eea8bc61f13434a21a2a",
+      "decoded_bytes": 14400,
+      "time": 433.76,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4148
+    },
+    {
+      "file": "cases/spiral/u008.bin",
+      "sha256": "f239afdbc6027ce5294d37d20c135ac0dc675337f541df296e384635340fd817",
+      "bytes": 6114,
+      "decoded_sha256": "523cca02bd340b2593757b4138272a60f03fd8912394aaa4f92b6f16356714ce",
+      "decoded_bytes": 14400,
+      "time": 434.69,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4108
+    },
+    {
+      "file": "cases/spiral/u009.bin",
+      "sha256": "7d879752ad6f58c8fa156fcabdc5bca5ba202ad874e0543f26f05cf3842b5a58",
+      "bytes": 6043,
+      "decoded_sha256": "23babfc30dec5c17e79c8b4da7b10cb0fb716a65727fa796c74641c9842fe892",
+      "decoded_bytes": 14400,
+      "time": 435.62,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4084
+    },
+    {
+      "file": "cases/spiral/u010.bin",
+      "sha256": "c835fabf0e41f055c0ca5dc0f3e18434bb359322752efcb55508c32fde697776",
+      "bytes": 5932,
+      "decoded_sha256": "1488d0c42ce66d8ce2dbecdb81d5fbbd088a533bf80930feade7099907d59d93",
+      "decoded_bytes": 14400,
+      "time": 436.55,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4061
+    },
+    {
+      "file": "cases/spiral/u011.bin",
+      "sha256": "06af51913d8d21383b44e46fe6e57590a97ffa8b2c8ffe8f158e6065dbe33946",
+      "bytes": 5895,
+      "decoded_sha256": "95274a65e0cb151a8101cea1ee280e297c9e1900f35f47853276cf1429953dd8",
+      "decoded_bytes": 14400,
+      "time": 437.48,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4051
+    },
+    {
+      "file": "cases/spiral/u012.bin",
+      "sha256": "4f2698945c500783a56c77df20ce09c930a8555544c4e600b0da481c14c8c88d",
+      "bytes": 5843,
+      "decoded_sha256": "310976414cbada0023ad320001fa2c880f82071c5e1777d343884c360596df61",
+      "decoded_bytes": 14400,
+      "time": 438.41,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4050
+    },
+    {
+      "file": "cases/spiral/u013.bin",
+      "sha256": "36cb835fc704daa55056f94fb51d17c0d156ff686a0159864478816d74da4320",
+      "bytes": 5822,
+      "decoded_sha256": "96d94011a1740c771a16e41df195a03dadb1285ac17037e9ea3f35b1f51cabce",
+      "decoded_bytes": 14400,
+      "time": 439.35,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4059
+    },
+    {
+      "file": "cases/spiral/u014.bin",
+      "sha256": "4782230ee0cd6561d3a84510614aab9e4843de268807a39d8abd91e8b655fca4",
+      "bytes": 5854,
+      "decoded_sha256": "43608a080675d535505c727ad975c73a591b6d7b688bf6aa3d7e40106dab971a",
+      "decoded_bytes": 14400,
+      "time": 440.28,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4077
+    },
+    {
+      "file": "cases/spiral/u015.bin",
+      "sha256": "a6180885b69f9dad19500afdb18dcb4ae6f2f4becee048f76ce2484a20c68f10",
+      "bytes": 5848,
+      "decoded_sha256": "16035639cec177c8d474b30091097a719c6a8920f9085a24594886f5fd3fac37",
+      "decoded_bytes": 14400,
+      "time": 441.21,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4109
+    },
+    {
+      "file": "cases/spiral/u016.bin",
+      "sha256": "c0f393f929677f78b11aa8feacdfacef6b5be6a9bc6c5da4e18dd52da6848355",
+      "bytes": 5866,
+      "decoded_sha256": "d263d288806b527e94e29c9cd10410417f77363784c36e0d4c448f2e49045737",
+      "decoded_bytes": 14400,
+      "time": 442.14,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4120
+    },
+    {
+      "file": "cases/spiral/u017.bin",
+      "sha256": "bf9762dc526f23ac98563411abc7e1f5663e3c78f0f6f01d6bcb58b64df7384d",
+      "bytes": 5879,
+      "decoded_sha256": "a4bf8b5ddd66f1220eb64210a47b65207bbfe1b58a050053b289d52d6d4dfc97",
+      "decoded_bytes": 14400,
+      "time": 443.07,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4166
+    },
+    {
+      "file": "cases/spiral/u018.bin",
+      "sha256": "4b97c99c01b4a94b83c300279dc0d0527be16adbe862b2d5c68801c25b3832fc",
+      "bytes": 5963,
+      "decoded_sha256": "44444cec4941873778dffc2591a3680d0dffa426581af3b8ea3e14514a7f1ebb",
+      "decoded_bytes": 14400,
+      "time": 444.01,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4181
+    },
+    {
+      "file": "cases/spiral/u019.bin",
+      "sha256": "d6a17d3a6e29f9d9e6c39c0c0cde6447245544ad16486e8461612e30dd28ed36",
+      "bytes": 6069,
+      "decoded_sha256": "d23d243422298b12c877cd08df89849f92ef91776e5d55587a9ec726592778f3",
+      "decoded_bytes": 14400,
+      "time": 444.94,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4202
+    },
+    {
+      "file": "cases/spiral/u020.bin",
+      "sha256": "882be94bb6878af3af53e03e90a62388f8d2c867fa9239caa286ef79d571e015",
+      "bytes": 6019,
+      "decoded_sha256": "b5a51c6079145132c448c042f7ac1507e62c8da9c3a2924456309d4e58853220",
+      "decoded_bytes": 14400,
+      "time": 445.87,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4225
+    },
+    {
+      "file": "cases/spiral/u021.bin",
+      "sha256": "fd4310755854c58301ed3c01afdab61d68170d2c236c0c3da2999a363afb122e",
+      "bytes": 6126,
+      "decoded_sha256": "08fe30da3052f12519e3e643dac0dfee5e338581960ec32cee154a04528a4ad7",
+      "decoded_bytes": 14400,
+      "time": 446.8,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4266
+    },
+    {
+      "file": "cases/spiral/u022.bin",
+      "sha256": "4cd191a950ef32e35bada0d4979cce40fa980934d70935b5c1e7707d7f204a93",
+      "bytes": 6123,
+      "decoded_sha256": "5d3a2334405b966caa3356f61b30cc70e82360ade3ded059364650552a716be8",
+      "decoded_bytes": 14400,
+      "time": 447.73,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4352
+    },
+    {
+      "file": "cases/spiral/u023.bin",
+      "sha256": "6748b35ec191614d6f8a14b74cac9e595e6202b081b28e537cfbc1e99521cda8",
+      "bytes": 6139,
+      "decoded_sha256": "67cf87cf4df068f255124e5b7a0af428744c1f7f7792fc75adbbaa3c0cf8b880",
+      "decoded_bytes": 14400,
+      "time": 448.66,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4406
+    },
+    {
+      "file": "cases/spiral/u024.bin",
+      "sha256": "b045db80069d3fb99150f7c6f37e1d7bd88ae51302fde77437684b516124b1de",
+      "bytes": 6180,
+      "decoded_sha256": "231b921d4fe68d27e00391cf77d41545e36a1ca427145a709a309dd298eb30f9",
+      "decoded_bytes": 14400,
+      "time": 449.6,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4497
+    },
+    {
+      "file": "cases/spiral/u025.bin",
+      "sha256": "b5c2adfc6e38f57db23e71671de980409a7731182cc5990c5849e3984292573a",
+      "bytes": 6193,
+      "decoded_sha256": "5c884d70c9c0d93028a167f45e108c980aae297db21664beff00b8f3f3cdd2a0",
+      "decoded_bytes": 14400,
+      "time": 450.53,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4574
+    },
+    {
+      "file": "cases/spiral/u026.bin",
+      "sha256": "e29ee9493ed955e4a754350b1c3323e3d03a486eaa9a6fb6fd0b0d555c8b028b",
+      "bytes": 6271,
+      "decoded_sha256": "9336b2dc9d3b14c97aa9cc9d03c562ceb427eb1beab5c0fdea8834d763340240",
+      "decoded_bytes": 14400,
+      "time": 451.46,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4620
+    },
+    {
+      "file": "cases/spiral/u027.bin",
+      "sha256": "0fd6ef404e52144acc56533400b371942b178e1dd7673c40d3965fa210471778",
+      "bytes": 6320,
+      "decoded_sha256": "6e65141b2a1aa50050a9f60217845e1c5296c07462309004225d94a2cccc61de",
+      "decoded_bytes": 14400,
+      "time": 452.39,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4681
+    },
+    {
+      "file": "cases/spiral/u028.bin",
+      "sha256": "119c6af16d53fa8075d9112d830f3d72997b22357f5d465d425e107f2f7db729",
+      "bytes": 6405,
+      "decoded_sha256": "67a9b522c686030ea2eb331c014a95bea85ccb650b3fc7432c83660ef0d54deb",
+      "decoded_bytes": 14400,
+      "time": 453.32,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4723
+    },
+    {
+      "file": "cases/spiral/u029.bin",
+      "sha256": "6854f2b8a7db8f1f60f36ade51b22623618f87407969cff9a67b232acceef1a3",
+      "bytes": 6445,
+      "decoded_sha256": "edf360beed4ad9aed8a82f75228628c943fd3a1b1d85f3aec60a8e917077bb78",
+      "decoded_bytes": 14400,
+      "time": 454.25,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4802
+    },
+    {
+      "file": "cases/spiral/u030.bin",
+      "sha256": "8730b98ca5c5f4e0eeb16757c68f57e4519ba4b80f7b628af7fc9ff65d63a62e",
+      "bytes": 6496,
+      "decoded_sha256": "34b0eb5eb0a314eeb3881e0196b06592d60b75e54c60d07345e4df9bfd29c9dd",
+      "decoded_bytes": 14400,
+      "time": 455.19,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4846
+    },
+    {
+      "file": "cases/spiral/u031.bin",
+      "sha256": "dd2bed81d593617b571482bfba0b0da93562e9d5857617eaf22932503efddb00",
+      "bytes": 6503,
+      "decoded_sha256": "7c182125e50957c18fa4cbec6c53b67896dbe2078398511d3fdd602d3524492a",
+      "decoded_bytes": 14400,
+      "time": 456.12,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4903
+    },
+    {
+      "file": "cases/spiral/u032.bin",
+      "sha256": "218fe71fd809bc2f230cb3770e3876eecc0ae5d230e2fc2f4db757aead7373b5",
+      "bytes": 6473,
+      "decoded_sha256": "2f581b713bad67b2d375c6e2c908abc0d611ade0debcc5181566577f1329f9e2",
+      "decoded_bytes": 14400,
+      "time": 457.05,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4924
+    },
+    {
+      "file": "cases/spiral/u033.bin",
+      "sha256": "551c8e852e7d756a78cfc3de3103311f4ce60dbc56567e0b5d13dddeec560bbe",
+      "bytes": 6503,
+      "decoded_sha256": "47cc36d45fd1b70bee3902427cf200947420cb0ee9537b2c686709ec3c108fea",
+      "decoded_bytes": 14400,
+      "time": 457.98,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4917
+    },
+    {
+      "file": "cases/spiral/u034.bin",
+      "sha256": "8da54954885700e075b84f5ab7f37a4a99e21dd5431709b5ce0d00f1d657fc66",
+      "bytes": 6476,
+      "decoded_sha256": "cfdbe3373c4091d92fe83c27dad4965353f4c77cad0d7072042df44b204ac45c",
+      "decoded_bytes": 14400,
+      "time": 458.91,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4882
+    },
+    {
+      "file": "cases/spiral/u035.bin",
+      "sha256": "05adca96058dd9c04bc04c8878839cee1517ebda994fd9b0d3665747b33983ac",
+      "bytes": 6477,
+      "decoded_sha256": "6b76bbeb09b6ae61e1343a644adf914ad29b587e9efb7874f77d16a1cb5416a6",
+      "decoded_bytes": 14400,
+      "time": 459.84000000000003,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        120,
+        120
+      ],
+      "active_cells": 4820
+    }
+  ],
+  "metrics": [
+    {
+      "id": "timing",
+      "seconds": 189.3
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "Nagumo front (recovery off) vs exact sqrt(kD/2)(1-2a) = 1.4: observed order in h, |p - 2|",
+      "pass": true,
+      "observed": 0.04895312344826408,
+      "limit": 0.1,
+      "rule": "at most",
+      "note": "observed 2.0490"
+    },
+    {
+      "id": "Nagumo front speed, Richardson over h = 0.5 and 0.25, relative error",
+      "pass": true,
+      "observed": 0.00014022705137328728,
+      "limit": 0.001,
+      "rule": "at most"
+    },
+    {
+      "id": "resting state: a small Neumann mode decays at the exact discrete rate, relative error",
+      "pass": true,
+      "observed": 1.7763568394002505e-15,
+      "limit": 1e-06,
+      "rule": "at most"
+    },
+    {
+      "id": "spiral period under refinement: |T(h = 0.5) / T(h = 0.25) - 1|",
+      "pass": true,
+      "observed": 0.009306539344943854,
+      "limit": 0.02,
+      "rule": "at most",
+      "note": "33.543 vs 33.233"
+    },
+    {
+      "id": "spiral is steady: spread of the last six periods / mean",
+      "pass": true,
+      "observed": 6.66569565147027e-05,
+      "limit": 0.02,
+      "rule": "at most"
+    },
+    {
+      "id": "bounded voltage: values outside [0, 1] in the published frames",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "clipping: published values outside the 8-bit range",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    }
+  ],
+  "builder_sha256": "7995f8b3c1ee1e78ddf0e4fe4fc72fc81350f1b5151f7c8c3856e65bbd389a71",
+  "runtime": {
+    "python": "3.13.18",
+    "numpy": "2.5.3"
+  }
+}

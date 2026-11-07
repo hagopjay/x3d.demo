@@ -1,0 +1,201 @@
+{
+  "schema": "loom.scientific-case/1",
+  "id": "orbital/3s",
+  "kind": "orbital",
+  "name": "3s",
+  "title": "3s orbital",
+  "line": "Three nested shells separated by two nodal spheres; only a cut shows the inner ones.",
+  "equation": "-1/2 laplacian(psi) - psi / r = E psi; psi_nlm = u_nl(r) / r * Y_lm",
+  "domain": {
+    "shape": [
+      80,
+      80,
+      80
+    ],
+    "units": "bohr (atomic units); energies in hartree",
+    "boundary": "u(0) = u(200 bohr) = 0; display box holds all but 1e-4 of the probability"
+  },
+  "parameters": {
+    "n": 3,
+    "l": 0,
+    "m": 0,
+    "label": "3s",
+    "box_half_width_bohr": 35.5,
+    "cell_bohr": 0.8875,
+    "level_share": 0.9,
+    "level": 0.0026391952931656,
+    "E_hartree": -0.055555555552380814,
+    "E_eV": -1.5117436802462776,
+    "radial_h": 0.01
+  },
+  "method": "Radial equation by three-point finite differences on a uniform 0.01-bohr grid to 200 bohr, lowest eigenpairs of the tridiagonal matrix (LAPACK), Richardson with h = 0.02; 3D field = u(r)/r times a real spherical harmonic, linear interpolation in r, cell-centred 80^3 grid; surfaces by surface nets with three Newton projections.",
+  "limits": [
+    "Non-relativistic hydrogen with an infinitely heavy nucleus: no fine structure, spin, Lamb shift or reduced-mass correction (the real Lyman-alpha line is at 121.567 nm, not 121.502 nm).",
+    "The surface is where |psi| (or the square root of the density) crosses a level enclosing 90 % of the probability on the grid; the cloud has no edge.",
+    "Each case has its own box size, so orbitals are not drawn to a common scale; the page states the box width in bohr."
+  ],
+  "dependencies": {
+    "tools/radial.py": "8ef724738b3a7e36aaff0bbaca2c5edc4997fc4b7f845ad7c14c8552b14b238a"
+  },
+  "external_dependencies": {
+    "lib/stemkit/core.py": "b799990d80948989d6525fdd0c8f16c4eec884e659105fd6bd5750d4cf977600",
+    "lib/stemkit/mesh.py": "fe4ebf154d7f8d7eed0c26ca13c3143678d60c8dbe74de4e7230e78fa1a6e326"
+  },
+  "frames": [
+    {
+      "file": "cases/3s/psi.bin",
+      "sha256": "7cf6cdc172f79a01062f5fbfe664c107f5780cad97d7b3c8f5c10a85575f78bb",
+      "bytes": 197245,
+      "decoded_sha256": "f8f91fa4a0c515af71691ca80514d6d89d745e8105a9086d1ad784a019dc8a0d",
+      "decoded_bytes": 1024000,
+      "time": 0.0,
+      "clipped_values": 0,
+      "quantization_max": 1.5259254737998596e-05,
+      "encoding": "int16le psi / max|psi|, C order [x][y][z], 80^3, deflate",
+      "bits": 16,
+      "signed": true,
+      "scale": 0.0446548509847999,
+      "mesh": {
+        "iso": 0.0026391952931656,
+        "vertices": 11678,
+        "triangles": 23520,
+        "volume": 43154.33747856787
+      }
+    }
+  ],
+  "metrics": [
+    {
+      "id": "radial",
+      "E": -0.05555540123564179,
+      "E_richardson": -0.055555555552380814,
+      "observed_order": 1.9999777400027998,
+      "mean_r": 13.500025000060102,
+      "potential": -0.11111049383242566
+    },
+    {
+      "id": "final mesh",
+      "vertices": 11678,
+      "triangles": 23520,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 24,
+      "degenerate_triangles": 0,
+      "area": 7908.30788402808,
+      "volume": 43154.33747856787,
+      "mc_volume": 43145.037585,
+      "mc_volume_se": 145.14664188674473,
+      "volume_rel_diff": 0.0002155495530522605,
+      "iso_distance_p95": 3.9056074132132755e-15,
+      "iso_distance_max": 3.658013802173426
+    },
+    {
+      "id": "timing",
+      "seconds": 0.5
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "energy E(3) vs -1/(2n\u00b2), relative error (h = 0.01)",
+      "pass": true,
+      "observed": 2.777758447813916e-06,
+      "limit": 5e-05,
+      "rule": "at most"
+    },
+    {
+      "id": "observed order of the energy in h: |p - 2|",
+      "pass": true,
+      "observed": 2.2259997200180237e-05,
+      "limit": 0.05,
+      "rule": "at most",
+      "note": "observed 2.0000"
+    },
+    {
+      "id": "Richardson-extrapolated energy vs -1/(2n\u00b2), relative error",
+      "pass": true,
+      "observed": 5.7145288501203595e-11,
+      "limit": 1e-08,
+      "rule": "at most"
+    },
+    {
+      "id": "l-degeneracy: spread of E(3, l) over l = 0..2, relative",
+      "pass": true,
+      "observed": 1.1348746942196897e-10,
+      "limit": 1e-08,
+      "rule": "at most"
+    },
+    {
+      "id": "radial function vs the Laguerre form, max error / max",
+      "pass": true,
+      "observed": 9.84057762614473e-06,
+      "limit": 5e-05,
+      "rule": "at most"
+    },
+    {
+      "id": "<r> vs (3n\u00b2 - l(l+1))/2, relative error",
+      "pass": true,
+      "observed": 1.8518563038583125e-06,
+      "limit": 5e-05,
+      "rule": "at most"
+    },
+    {
+      "id": "virial theorem <V> = 2E, relative error",
+      "pass": true,
+      "observed": 5.555508169052814e-06,
+      "limit": 0.0001,
+      "rule": "at most"
+    },
+    {
+      "id": "radial nodes: |counted - (n - l - 1)|",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "3D normalization: |sum psi\u00b2 dV - 1|",
+      "pass": false,
+      "observed": 0.0008202605032706645,
+      "limit": 0.0005,
+      "rule": "at most"
+    },
+    {
+      "id": "closed meshes: boundary edges over the frame",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "mesh volume vs Monte Carlo on the field, relative difference (gross-error check)",
+      "pass": true,
+      "observed": 0.0002155495530522605,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "display quantization (16-bit): isosurface shift p99, worst frame (cells)",
+      "pass": true,
+      "observed": 0.0012405716319225165,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "mesh vertices on the displayed surface: distance p99, worst frame (cells)",
+      "pass": true,
+      "observed": 3.849896351043473e-13,
+      "limit": 0.01,
+      "rule": "at most"
+    },
+    {
+      "id": "clipping: values outside the 16-bit range",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    }
+  ],
+  "builder_sha256": "ad63b641c3a8e51f575ac5a3abda3323ac10f0d14a5cfa1e41cf6d3108598efd",
+  "runtime": {
+    "python": "3.13.2",
+    "numpy": "2.4.2"
+  }
+}

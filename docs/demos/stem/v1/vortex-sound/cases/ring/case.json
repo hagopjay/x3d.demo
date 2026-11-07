@@ -1,0 +1,2146 @@
+{
+  "schema": "loom.scientific-case/1",
+  "id": "superfluid/ring",
+  "kind": "superfluid",
+  "name": "ring",
+  "title": "A vortex ring",
+  "line": "A smoke ring in a superfluid: a loop of whirling quantum fluid that carries itself forward.",
+  "equation": "i psi_t = -1/2 lap(psi) + (|psi|^2 - 1) psi",
+  "domain": {
+    "shape": [
+      128,
+      128,
+      128
+    ],
+    "units": "healing-length units: sound speed 1, healing length 1/sqrt(2), circulation 2 pi",
+    "boundary": "periodic, L = 64"
+  },
+  "parameters": {
+    "L": 64.0,
+    "dt": 0.05,
+    "grids": [
+      96,
+      128
+    ],
+    "frames": 48,
+    "core_density": 0.25,
+    "radius": 7.555952151411216,
+    "speed": 0.2660497091485986,
+    "speed_coarse": 0.2670621326037138,
+    "roberts_grant": 0.25366430810007945,
+    "reference": 0.2579633157429698,
+    "explorer": [
+      "The fluid flows through the ring and around its rim; the ring is carried along by its own flow, slower the bigger it is.",
+      "Each whirl is quantized: the fluid can only circulate by one fixed amount, so the dark core is a hole where the fluid's wave vanishes."
+    ],
+    "lab": [
+      "Radius 7.56, speed 0.2660 (h = 0.5) and 0.2671 (h = 0.667); Roberts-Grant 0.2537, plus box term 0.2580."
+    ]
+  },
+  "method": "Strang split-step Fourier (exactly unitary sub-steps); rings from vortex/antivortex pairs in meridional planes, made periodic by a phase ramp and relaxed briefly in imaginary time; vortex lines from the phase winding through grid faces; loops are connected components of the pierced cells.",
+  "limits": [
+    "A zero-temperature, weakly interacting superfluid (Gross-Pitaevskii): no thermal cloud, no dissipation, no normal fluid; real superfluid helium has a core about one angstrom across and is strongly interacting.",
+    "A periodic box: rings feel their images (a measured speed-up of about 2 pi^2 R^2 / L^3), and emitted sound wraps round instead of leaving.",
+    "The rings start from an approximate profile, relaxed briefly in imaginary time; the first few time units carry a small transient.",
+    "Vortex positions come from a grid with spacing 0.5 (0.71 healing lengths): separations below about one cell are not resolved."
+  ],
+  "dependencies": {
+    "tools/gp.py": "a3bbad1a44e7261f29ead37d735f75d7494b12a1b0223a3d6dff3475b6fba1ec"
+  },
+  "external_dependencies": {
+    "lib/stemkit/core.py": "b799990d80948989d6525fdd0c8f16c4eec884e659105fd6bd5750d4cf977600",
+    "lib/stemkit/mesh.py": "fe4ebf154d7f8d7eed0c26ca13c3143678d60c8dbe74de4e7230e78fa1a6e326"
+  },
+  "frames": [
+    {
+      "file": "cases/ring/rho000.bin",
+      "sha256": "f6da46d8c1256198e99300658a973bbce24c34a9550f53f9ac9aaf50d5f61413",
+      "bytes": 11196,
+      "decoded_sha256": "9380aac7fc24e841bcd0d0e39db4e15df2534d61efcaf65bbd293e729b0aed7f",
+      "decoded_bytes": 221184,
+      "time": 0.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 410.3729611461219
+      }
+    },
+    {
+      "file": "cases/ring/rho001.bin",
+      "sha256": "9d3847cc4f2a07ac1e3c5f6f9d196b0662fa02067e6f3cab2b7e3cbff5a3e8fd",
+      "bytes": 12349,
+      "decoded_sha256": "45312598a1dacba5cfb1a4814566eb129293e3cc3c936a36a8dd3cc22dbad7e8",
+      "decoded_bytes": 221184,
+      "time": 0.65,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 960,
+        "triangles": 1920,
+        "volume": 411.26979336701584
+      }
+    },
+    {
+      "file": "cases/ring/rho002.bin",
+      "sha256": "ae250b3e28970d0ba5578c8af1be6ded42702513a1b92025c76a1bac6fffb855",
+      "bytes": 14578,
+      "decoded_sha256": "a8fe89e9264c206ec2b6c082aa38e53505b529523f324f27316e71bd23f4c021",
+      "decoded_bytes": 221184,
+      "time": 1.3,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1248,
+        "triangles": 2496,
+        "volume": 438.3441805244454
+      }
+    },
+    {
+      "file": "cases/ring/rho003.bin",
+      "sha256": "aa28736a550ef50eb5fca81ec29b215f07b93379c749c4c7586fcf64e3e95ed8",
+      "bytes": 16856,
+      "decoded_sha256": "6d1333f2ae31644155fe1c531f93d8541be6241fc0fb9e1eff9988ac834933db",
+      "decoded_bytes": 221184,
+      "time": 1.9000000000000001,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1240,
+        "triangles": 2480,
+        "volume": 440.8474833663682
+      }
+    },
+    {
+      "file": "cases/ring/rho004.bin",
+      "sha256": "add9d8e8ccd712d6071263994734d21c147bbc2eba6d325841841f7e9c62dadc",
+      "bytes": 18727,
+      "decoded_sha256": "d8319e916c24982e03d24c928fc8ea5bbe0283396f78f1fb90c94a695f57a19d",
+      "decoded_bytes": 221184,
+      "time": 2.5500000000000003,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1118,
+        "triangles": 2256,
+        "volume": 421.96878209584185
+      }
+    },
+    {
+      "file": "cases/ring/rho005.bin",
+      "sha256": "6ad4b890cf22c01b35df797775cb19998f92d4c6e32947960d493b4904afe81c",
+      "bytes": 19972,
+      "decoded_sha256": "b8554266b3efc2bffa4e3a51c87ab016c1ddb1be30ad01c560e9b2796feaef3b",
+      "decoded_bytes": 221184,
+      "time": 3.2,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 411.4763131405361
+      }
+    },
+    {
+      "file": "cases/ring/rho006.bin",
+      "sha256": "97006df07384f094affb00ed0d6089fa8abce628c75ab8bc1f1be870922c3457",
+      "bytes": 21019,
+      "decoded_sha256": "4ee6d7eb42d48581019c1d45c2837a204270211505e4dd474b0899306154d69f",
+      "decoded_bytes": 221184,
+      "time": 3.85,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1224,
+        "triangles": 2448,
+        "volume": 431.83448033956626
+      }
+    },
+    {
+      "file": "cases/ring/rho007.bin",
+      "sha256": "d441cfd0fb9e9f85b26cfd0177360384559ad68cfb17a64951230961bf8fb4c7",
+      "bytes": 21695,
+      "decoded_sha256": "41d1aa54bbd56dca74b4e14a8e1e8812bae3106ec11777ecb0f848af8b77133a",
+      "decoded_bytes": 221184,
+      "time": 4.45,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1240,
+        "triangles": 2480,
+        "volume": 431.309292200941
+      }
+    },
+    {
+      "file": "cases/ring/rho008.bin",
+      "sha256": "3eb9a33a498ff9357a540018b88aa8b0d61523d3fb35f51befccf0bc7230f976",
+      "bytes": 22171,
+      "decoded_sha256": "92233c05b21d96d4b5fc68e4216fd9e7198dc7ea45a26cf0ea3d07c1c3069134",
+      "decoded_bytes": 221184,
+      "time": 5.1000000000000005,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 403.144354559375
+      }
+    },
+    {
+      "file": "cases/ring/rho009.bin",
+      "sha256": "318bbda55e2c11dd63291edc7c8ebf0d7a078f237f2307d7775f58c97afe2bcd",
+      "bytes": 23322,
+      "decoded_sha256": "fbaf22e37cd553e8fc4bd35b4438217ac123e5c6d58a31b8c8829bd53a15759a",
+      "decoded_bytes": 221184,
+      "time": 5.75,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 960,
+        "triangles": 1920,
+        "volume": 403.7680028256036
+      }
+    },
+    {
+      "file": "cases/ring/rho010.bin",
+      "sha256": "34f64b249e014f95f0aefd6aae27c26a7665f952fe8ef2b856c35fc64197760a",
+      "bytes": 23864,
+      "decoded_sha256": "2de0c16f6fd0043f27e4d35846a878c554bd17b2cc042e3505caea9e62ef1de1",
+      "decoded_bytes": 221184,
+      "time": 6.4,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1200,
+        "triangles": 2400,
+        "volume": 420.97745592418323
+      }
+    },
+    {
+      "file": "cases/ring/rho011.bin",
+      "sha256": "15f9171fc2f203b43eb5e5f8f1298969ac3560d633fd700162d417a3ad7814cb",
+      "bytes": 24177,
+      "decoded_sha256": "2689e7017e75eca8433546b318448101606980009b492045bc729e65cea53128",
+      "decoded_bytes": 221184,
+      "time": 7.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 395.34220166013756
+      }
+    },
+    {
+      "file": "cases/ring/rho012.bin",
+      "sha256": "cb89d8d14a41844aa8531aba80f01a1e2ef7d54ea71878e416c70669cffb9763",
+      "bytes": 24636,
+      "decoded_sha256": "780c5bbc4ae3f59fb21d2839f3872410fffde380c5a0696e66dc9419bd4d85d1",
+      "decoded_bytes": 221184,
+      "time": 7.65,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 390.6535125892051
+      }
+    },
+    {
+      "file": "cases/ring/rho013.bin",
+      "sha256": "b6a0826d427d203b0beaf846eccd6f8c49fa8f7c64cff3f156dfc79212effd56",
+      "bytes": 25019,
+      "decoded_sha256": "18dcbe0a5db63582fc9e4bf8b86aeb9313096c97c4afabdd20dd6e0d1551a92e",
+      "decoded_bytes": 221184,
+      "time": 8.3,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1184,
+        "triangles": 2368,
+        "volume": 411.21789848386067
+      }
+    },
+    {
+      "file": "cases/ring/rho014.bin",
+      "sha256": "bc68d351bcff66aa18e4396f102b7d17937ff40250d93e7b615367ea14672da8",
+      "bytes": 24971,
+      "decoded_sha256": "453ffd22100725b239f9896193347e47622a197f4b8caf249f354d43321f5161",
+      "decoded_bytes": 221184,
+      "time": 8.950000000000001,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 387.4262824284696
+      }
+    },
+    {
+      "file": "cases/ring/rho015.bin",
+      "sha256": "3624322b2d40ac9046d183c932cc31b59dcd566283d91e9056dcda4cde311c04",
+      "bytes": 25094,
+      "decoded_sha256": "526c20dbb489110a945e4d7754c65f3492758cfbbbf4dcfea6ea755ee08bf20e",
+      "decoded_bytes": 221184,
+      "time": 9.55,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 383.76204915505036
+      }
+    },
+    {
+      "file": "cases/ring/rho016.bin",
+      "sha256": "36aca6cab5fde4de12a0675057b13f96796311ca41ecb838c497155a669d7c30",
+      "bytes": 25074,
+      "decoded_sha256": "d968f28ab593d32360e6f61393ae50a9978c765df2b259adb1792b3b263022cf",
+      "decoded_bytes": 221184,
+      "time": 10.200000000000001,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1184,
+        "triangles": 2368,
+        "volume": 396.35749518241386
+      }
+    },
+    {
+      "file": "cases/ring/rho017.bin",
+      "sha256": "8b237465929926298eb0f40472dcbd2acceea97ab1260786d91070628a570e2b",
+      "bytes": 25041,
+      "decoded_sha256": "bf295839fa6eb5c7f98477fd7296f868a3ceca93c465b5c15003be4e9ebd5fa0",
+      "decoded_bytes": 221184,
+      "time": 10.850000000000001,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 912,
+        "triangles": 1824,
+        "volume": 365.46771674026826
+      }
+    },
+    {
+      "file": "cases/ring/rho018.bin",
+      "sha256": "46899b4aa1b2fe28b1b37b3a98a786e12ad111613b53e64a5f9284bb6ea3576b",
+      "bytes": 24607,
+      "decoded_sha256": "643f4a674d16758e000a39032d9f181d6d5eb2c1693b4e752ab55737609ef6fe",
+      "decoded_bytes": 221184,
+      "time": 11.5,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 362.9879723339372
+      }
+    },
+    {
+      "file": "cases/ring/rho019.bin",
+      "sha256": "bab69f9c263d83f6c8693d5883a8924348e8e802e15a81ac02cf744c83792e06",
+      "bytes": 24400,
+      "decoded_sha256": "6de8bb3701a8ddbfa241845b782c852b31c733ba464cfd74c99e7b11f3a20451",
+      "decoded_bytes": 221184,
+      "time": 12.15,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1184,
+        "triangles": 2384,
+        "volume": 380.41196567086837
+      }
+    },
+    {
+      "file": "cases/ring/rho020.bin",
+      "sha256": "e48a161a6f1c31e6780faaa044cc1e1fba9ebb17a3b2aa160638dd800e5d38f6",
+      "bytes": 23748,
+      "decoded_sha256": "cab9d822202d28b7c336aa03dc55895ff8528e4b68b05748ffeda7a2526bff70",
+      "decoded_bytes": 221184,
+      "time": 12.75,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 912,
+        "triangles": 1824,
+        "volume": 360.5249136017362
+      }
+    },
+    {
+      "file": "cases/ring/rho021.bin",
+      "sha256": "7011358772bba90042aa869ec1cba139dd98907c55e728685d398efece1e055c",
+      "bytes": 23326,
+      "decoded_sha256": "04795586223da14386e319c35b12ec32d567f87aa5c26c805e1f1c37c797e0c6",
+      "decoded_bytes": 221184,
+      "time": 13.4,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1096,
+        "triangles": 2240,
+        "volume": 369.4952621788754
+      }
+    },
+    {
+      "file": "cases/ring/rho022.bin",
+      "sha256": "bc8f70745ee4c6db55b994f906163aa73450860695c9ed7ebc86d99793946b90",
+      "bytes": 23472,
+      "decoded_sha256": "adcacdbb435bae2b9d1f621672d60498170ca5c0548e0553230fe8253be87ca0",
+      "decoded_bytes": 221184,
+      "time": 14.05,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1088,
+        "triangles": 2208,
+        "volume": 368.2303548268585
+      }
+    },
+    {
+      "file": "cases/ring/rho023.bin",
+      "sha256": "2c6331d34baef9a977e90568ae31e73bb8351be665e3bd0b11047868b3631e51",
+      "bytes": 24086,
+      "decoded_sha256": "4695235d5b57f0bd0665ad76143aee7e55a395f9ccae24fcb9a1f6b026748f88",
+      "decoded_bytes": 221184,
+      "time": 14.700000000000001,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 366.09854915794637
+      }
+    },
+    {
+      "file": "cases/ring/rho024.bin",
+      "sha256": "3cdc38900fcdeb216fb2c12c84911249bcf4c7033b3f96264323a89fedc1eea3",
+      "bytes": 23834,
+      "decoded_sha256": "97bf69b9571ed7fe75fd07c9901297c55dc0398ff70ebefac3f7053f71dd35c0",
+      "decoded_bytes": 221184,
+      "time": 15.3,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1192,
+        "triangles": 2384,
+        "volume": 387.83984848054916
+      }
+    },
+    {
+      "file": "cases/ring/rho025.bin",
+      "sha256": "f1020ac16f13983f6e30507387fe51949988257697b65a82f070a2f38aeb5c29",
+      "bytes": 24201,
+      "decoded_sha256": "0d90537dfbba1d94545e80cf20ddf1b978b62484d54a9e28546f0cc97f1c795d",
+      "decoded_bytes": 221184,
+      "time": 15.950000000000001,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 368.8066560611963
+      }
+    },
+    {
+      "file": "cases/ring/rho026.bin",
+      "sha256": "cf63454771c3416eea9cf79bc719ea0395767acc6a63ca671e9c4cd5bac1291b",
+      "bytes": 24834,
+      "decoded_sha256": "3467f0fe8c72203396391baff933ffbbe050aeb5ab9eefb97e99ad265c44a1e9",
+      "decoded_bytes": 221184,
+      "time": 16.6,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 366.5847675652112
+      }
+    },
+    {
+      "file": "cases/ring/rho027.bin",
+      "sha256": "4a167e32d364e93dbc579d7bd0f0d71194bbcec7676cd413666574325b6a45bc",
+      "bytes": 24980,
+      "decoded_sha256": "023f926e3a211c544210b7784818e61e669a277df0c712cd36c51e8491c9caf2",
+      "decoded_bytes": 221184,
+      "time": 17.25,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1184,
+        "triangles": 2368,
+        "volume": 388.2579287476392
+      }
+    },
+    {
+      "file": "cases/ring/rho028.bin",
+      "sha256": "c93bd49e422734a2c6da26dc4c05fe992418ce868a58736167e443cd1fa3311b",
+      "bytes": 24994,
+      "decoded_sha256": "aa40cb03748971314b92a0f3b45029152cce489913545db13b806e5a1d6cf6f3",
+      "decoded_bytes": 221184,
+      "time": 17.85,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 366.504883773202
+      }
+    },
+    {
+      "file": "cases/ring/rho029.bin",
+      "sha256": "34617ff36b6c66cda568e04d4c83869acedb7370a9bda3c2e1bd1fbc319b0bb1",
+      "bytes": 25608,
+      "decoded_sha256": "c3dae8a001be4e8ad8648bd18748ef61bec016a7d18a31e679e89a04d977f86b",
+      "decoded_bytes": 221184,
+      "time": 18.5,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 365.4466271841308
+      }
+    },
+    {
+      "file": "cases/ring/rho030.bin",
+      "sha256": "395f922142f39e0ff679cab416fb8173c61efd0c590d79bc047f222b566fab79",
+      "bytes": 25686,
+      "decoded_sha256": "ec6b52d751b0b2455da1018f03fae91211e865a90e8154ea14321fb2a833e9c0",
+      "decoded_bytes": 221184,
+      "time": 19.150000000000002,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1184,
+        "triangles": 2368,
+        "volume": 385.70381941187526
+      }
+    },
+    {
+      "file": "cases/ring/rho031.bin",
+      "sha256": "c306a1fe6d99e2187f349fd976cb409e3c17122171fff3884d0a2796db0bb44e",
+      "bytes": 25122,
+      "decoded_sha256": "3c14a8d7b1749b2574b17bf2696937cdbfbcd3f696f3c57e46a5ec6233172f60",
+      "decoded_bytes": 221184,
+      "time": 19.8,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 912,
+        "triangles": 1824,
+        "volume": 360.5180208508428
+      }
+    },
+    {
+      "file": "cases/ring/rho032.bin",
+      "sha256": "fd5d272154b54c7a8b54796994fd6321dac8a74a7a5bc5567967bb7e00d0c8e3",
+      "bytes": 25236,
+      "decoded_sha256": "17016e34196473448219696ed5cde13b4a0cdc7375c0ab9670c9db1c19dab9b3",
+      "decoded_bytes": 221184,
+      "time": 20.450000000000003,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 362.93904873965556
+      }
+    },
+    {
+      "file": "cases/ring/rho033.bin",
+      "sha256": "d60ca9da515fd22cf31ddc7b46e999b2b911b8222d6a3ffa3b7911f6e3ea22f5",
+      "bytes": 24819,
+      "decoded_sha256": "32c9e3eb9788fece1aa99b8d0edf06af63902a0c31c519e3ede2cedbff53aa24",
+      "decoded_bytes": 221184,
+      "time": 21.05,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1184,
+        "triangles": 2368,
+        "volume": 384.46225728340886
+      }
+    },
+    {
+      "file": "cases/ring/rho034.bin",
+      "sha256": "5c20190a5ad671a6dc0457f95d15b90c1620f152a99d378ae0637a3b04c591ac",
+      "bytes": 24278,
+      "decoded_sha256": "4de626e286b197f5992b07dadb1cfc861500cea5126aac25f1a34d1ff713ce5c",
+      "decoded_bytes": 221184,
+      "time": 21.700000000000003,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 912,
+        "triangles": 1824,
+        "volume": 361.001626980789
+      }
+    },
+    {
+      "file": "cases/ring/rho035.bin",
+      "sha256": "cdc24e4f531b7cc084e51ce5546a30d6a8544282dab415aaad9b46ad6132f392",
+      "bytes": 25527,
+      "decoded_sha256": "74b33a64345640bd42254c670f3561fe8c812cd55573d6f31e2296e9d65813a7",
+      "decoded_bytes": 221184,
+      "time": 22.35,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1086,
+        "triangles": 2200,
+        "volume": 367.0065417398244
+      }
+    },
+    {
+      "file": "cases/ring/rho036.bin",
+      "sha256": "59705093a9489f7b190f891a5454c2ac1bf4457b1b2e7e66fbe9a67f32658eab",
+      "bytes": 25670,
+      "decoded_sha256": "7e027d005feeb5cf612f2a1f658ba268e68c365ab8aa103c281bd97897f04201",
+      "decoded_bytes": 221184,
+      "time": 23.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1184,
+        "triangles": 2384,
+        "volume": 384.6273705425784
+      }
+    },
+    {
+      "file": "cases/ring/rho037.bin",
+      "sha256": "a4599d92adb7989baa04ed949ec4e77d6725be9be325acb75a93a1e22c1a6f5e",
+      "bytes": 25156,
+      "decoded_sha256": "d63b39abe673624567c7356fb6fe318b4c54758d43cd3a139655cbc29d7b37e9",
+      "decoded_bytes": 221184,
+      "time": 23.6,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 912,
+        "triangles": 1824,
+        "volume": 364.36819214717485
+      }
+    },
+    {
+      "file": "cases/ring/rho038.bin",
+      "sha256": "40fd1cea547dd0cf4fa22901372911d4d6487f08ce6dda815e445633a617bf69",
+      "bytes": 25558,
+      "decoded_sha256": "05e4e10092e9898a4093188493bf730a76f1f353138326dcaaaafd913c4fb48b",
+      "decoded_bytes": 221184,
+      "time": 24.25,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1088,
+        "triangles": 2208,
+        "volume": 371.32655921315444
+      }
+    },
+    {
+      "file": "cases/ring/rho039.bin",
+      "sha256": "fa64d4c02ff4c29b271c7e30d30c2445a951940aaf5a091508014ee0eb686742",
+      "bytes": 26520,
+      "decoded_sha256": "4e6ab55919b2e51e55759be76e2c786e493d66de6f698b93e7b1cd06b7ebd59f",
+      "decoded_bytes": 221184,
+      "time": 24.900000000000002,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1160,
+        "triangles": 2384,
+        "volume": 383.68007171705045
+      }
+    },
+    {
+      "file": "cases/ring/rho040.bin",
+      "sha256": "84f9664beee40a2ac6a63ca26f7e528f746f5518d1db90db856529e039217359",
+      "bytes": 26629,
+      "decoded_sha256": "288fa743896ed2c850f8c3dcf31221515fa1047b823acf84fb791e3d98eff5ff",
+      "decoded_bytes": 221184,
+      "time": 25.55,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 912,
+        "triangles": 1824,
+        "volume": 367.01936515071543
+      }
+    },
+    {
+      "file": "cases/ring/rho041.bin",
+      "sha256": "8805559a65fa401473f45923480dfbbbc6871b4e4707e9d1852948a04bb0fe71",
+      "bytes": 27504,
+      "decoded_sha256": "ed2666330f9d101d93ae351d49c9b09e8e63658c264b4a2b12134732f850175d",
+      "decoded_bytes": 221184,
+      "time": 26.150000000000002,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1096,
+        "triangles": 2240,
+        "volume": 376.1939836504818
+      }
+    },
+    {
+      "file": "cases/ring/rho042.bin",
+      "sha256": "5d2ba895200ee05acd765ba68ef2d66a2966e0d32f271d51cb58f9ad09dc3208",
+      "bytes": 26978,
+      "decoded_sha256": "5f9cb57dae4cb8b2e8e6270d06275df7cc4e629683c3a1a800a4713680e57d36",
+      "decoded_bytes": 221184,
+      "time": 26.8,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1160,
+        "triangles": 2384,
+        "volume": 386.37133464341673
+      }
+    },
+    {
+      "file": "cases/ring/rho043.bin",
+      "sha256": "02198493b6fcaf33cfe720b943df2af4479c8aba8ba757a462802cc1fd150fc9",
+      "bytes": 26395,
+      "decoded_sha256": "41e152b83b1fb72cef88203a450e93e18e91d8340506b8df1eae86aecc51dcae",
+      "decoded_bytes": 221184,
+      "time": 27.450000000000003,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 912,
+        "triangles": 1824,
+        "volume": 369.6036019678298
+      }
+    },
+    {
+      "file": "cases/ring/rho044.bin",
+      "sha256": "629b3e3a415daa0a62af56fce3aec9d45fc8c6b9dadd8a5580c04e895bd2ccbc",
+      "bytes": 26417,
+      "decoded_sha256": "d9628ca7c6640866cc2ef70d6eeef92a9d90732ae947f29de7c88409649aeb3f",
+      "decoded_bytes": 221184,
+      "time": 28.1,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1160,
+        "triangles": 2384,
+        "volume": 387.3284364099188
+      }
+    },
+    {
+      "file": "cases/ring/rho045.bin",
+      "sha256": "3b16fbce4c2d8a689507852587e4b92068c6e739f2b860e1e18c435a96c15ca5",
+      "bytes": 26492,
+      "decoded_sha256": "cfdf1f975e6fc576957c321614e753a8b9f2ba318f648351bdee82e98122c214",
+      "decoded_bytes": 221184,
+      "time": 28.700000000000003,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1160,
+        "triangles": 2384,
+        "volume": 388.39593896479846
+      }
+    },
+    {
+      "file": "cases/ring/rho046.bin",
+      "sha256": "2960756b833c0ec3a066dbfbbb9301e53c45042389c89e43ae356088d8da598c",
+      "bytes": 25002,
+      "decoded_sha256": "c37b23860cf1b586e961662910d59c044f7e57687f39e7117d7cdc2ca4dad09e",
+      "decoded_bytes": 221184,
+      "time": 29.35,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 944,
+        "triangles": 1888,
+        "volume": 374.4963056018467
+      }
+    },
+    {
+      "file": "cases/ring/rho047.bin",
+      "sha256": "728cc194058ffab7fce2e2d1bc8853ccf33fa4b04687c88e7e7b6b40e969c7a0",
+      "bytes": 24088,
+      "decoded_sha256": "9417ff55b7075f8ca3a174d1c1c573277891ff5f5c75856fe017df1c87c5c082",
+      "decoded_bytes": 221184,
+      "time": 30.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        48,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -11.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 1170,
+        "triangles": 2408,
+        "volume": 390.85772198660624
+      }
+    }
+  ],
+  "metrics": [
+    {
+      "id": "loops n=96",
+      "samples": [
+        [
+          0.0,
+          1
+        ],
+        [
+          0.5,
+          1
+        ],
+        [
+          1.0,
+          1
+        ],
+        [
+          1.5,
+          1
+        ],
+        [
+          2.0,
+          1
+        ],
+        [
+          2.5,
+          1
+        ],
+        [
+          3.0,
+          1
+        ],
+        [
+          3.5,
+          1
+        ],
+        [
+          4.0,
+          1
+        ],
+        [
+          4.5,
+          1
+        ],
+        [
+          5.0,
+          1
+        ],
+        [
+          5.5,
+          1
+        ],
+        [
+          6.0,
+          1
+        ],
+        [
+          6.5,
+          1
+        ],
+        [
+          7.0,
+          1
+        ],
+        [
+          7.5,
+          1
+        ],
+        [
+          8.0,
+          1
+        ],
+        [
+          8.5,
+          1
+        ],
+        [
+          9.0,
+          1
+        ],
+        [
+          9.5,
+          1
+        ],
+        [
+          10.0,
+          1
+        ],
+        [
+          10.5,
+          1
+        ],
+        [
+          11.0,
+          1
+        ],
+        [
+          11.5,
+          1
+        ],
+        [
+          12.0,
+          1
+        ],
+        [
+          12.5,
+          1
+        ],
+        [
+          13.0,
+          1
+        ],
+        [
+          13.5,
+          1
+        ],
+        [
+          14.0,
+          1
+        ],
+        [
+          14.5,
+          1
+        ],
+        [
+          15.0,
+          1
+        ],
+        [
+          15.5,
+          1
+        ],
+        [
+          16.0,
+          1
+        ],
+        [
+          16.5,
+          1
+        ],
+        [
+          17.0,
+          1
+        ],
+        [
+          17.5,
+          1
+        ],
+        [
+          18.0,
+          1
+        ],
+        [
+          18.5,
+          1
+        ],
+        [
+          19.0,
+          1
+        ],
+        [
+          19.5,
+          1
+        ],
+        [
+          20.0,
+          1
+        ],
+        [
+          20.5,
+          1
+        ],
+        [
+          21.0,
+          1
+        ],
+        [
+          21.5,
+          1
+        ],
+        [
+          22.0,
+          1
+        ],
+        [
+          22.5,
+          1
+        ],
+        [
+          23.0,
+          1
+        ],
+        [
+          23.5,
+          1
+        ],
+        [
+          24.0,
+          1
+        ],
+        [
+          24.5,
+          1
+        ],
+        [
+          25.0,
+          1
+        ],
+        [
+          25.5,
+          1
+        ],
+        [
+          26.0,
+          1
+        ],
+        [
+          26.5,
+          1
+        ],
+        [
+          27.0,
+          1
+        ],
+        [
+          27.5,
+          1
+        ],
+        [
+          28.0,
+          1
+        ],
+        [
+          28.5,
+          1
+        ],
+        [
+          29.0,
+          1
+        ],
+        [
+          29.5,
+          1
+        ],
+        [
+          30.0,
+          1
+        ]
+      ]
+    },
+    {
+      "id": "loops n=128",
+      "samples": [
+        [
+          0.0,
+          1
+        ],
+        [
+          0.5,
+          1
+        ],
+        [
+          1.0,
+          1
+        ],
+        [
+          1.5,
+          1
+        ],
+        [
+          2.0,
+          1
+        ],
+        [
+          2.5,
+          1
+        ],
+        [
+          3.0,
+          1
+        ],
+        [
+          3.5,
+          1
+        ],
+        [
+          4.0,
+          1
+        ],
+        [
+          4.5,
+          1
+        ],
+        [
+          5.0,
+          1
+        ],
+        [
+          5.5,
+          1
+        ],
+        [
+          6.0,
+          1
+        ],
+        [
+          6.5,
+          1
+        ],
+        [
+          7.0,
+          1
+        ],
+        [
+          7.5,
+          1
+        ],
+        [
+          8.0,
+          1
+        ],
+        [
+          8.5,
+          1
+        ],
+        [
+          9.0,
+          1
+        ],
+        [
+          9.5,
+          1
+        ],
+        [
+          10.0,
+          1
+        ],
+        [
+          10.5,
+          1
+        ],
+        [
+          11.0,
+          1
+        ],
+        [
+          11.5,
+          1
+        ],
+        [
+          12.0,
+          1
+        ],
+        [
+          12.5,
+          1
+        ],
+        [
+          13.0,
+          1
+        ],
+        [
+          13.5,
+          1
+        ],
+        [
+          14.0,
+          1
+        ],
+        [
+          14.5,
+          1
+        ],
+        [
+          15.0,
+          1
+        ],
+        [
+          15.5,
+          1
+        ],
+        [
+          16.0,
+          1
+        ],
+        [
+          16.5,
+          1
+        ],
+        [
+          17.0,
+          1
+        ],
+        [
+          17.5,
+          1
+        ],
+        [
+          18.0,
+          1
+        ],
+        [
+          18.5,
+          1
+        ],
+        [
+          19.0,
+          1
+        ],
+        [
+          19.5,
+          1
+        ],
+        [
+          20.0,
+          1
+        ],
+        [
+          20.5,
+          1
+        ],
+        [
+          21.0,
+          1
+        ],
+        [
+          21.5,
+          1
+        ],
+        [
+          22.0,
+          1
+        ],
+        [
+          22.5,
+          1
+        ],
+        [
+          23.0,
+          1
+        ],
+        [
+          23.5,
+          1
+        ],
+        [
+          24.0,
+          1
+        ],
+        [
+          24.5,
+          1
+        ],
+        [
+          25.0,
+          1
+        ],
+        [
+          25.5,
+          1
+        ],
+        [
+          26.0,
+          1
+        ],
+        [
+          26.5,
+          1
+        ],
+        [
+          27.0,
+          1
+        ],
+        [
+          27.5,
+          1
+        ],
+        [
+          28.0,
+          1
+        ],
+        [
+          28.5,
+          1
+        ],
+        [
+          29.0,
+          1
+        ],
+        [
+          29.5,
+          1
+        ],
+        [
+          30.0,
+          1
+        ]
+      ]
+    },
+    {
+      "id": "compressible energy n=96",
+      "samples": [
+        [
+          0.0,
+          57.57062615982592
+        ],
+        [
+          5.0,
+          32.73370220818595
+        ],
+        [
+          10.0,
+          20.945478996166354
+        ],
+        [
+          15.0,
+          21.798486581610316
+        ],
+        [
+          20.0,
+          25.466328341824944
+        ],
+        [
+          25.0,
+          32.33140492663112
+        ],
+        [
+          30.0,
+          34.834641527008934
+        ]
+      ]
+    },
+    {
+      "id": "compressible energy n=128",
+      "samples": [
+        [
+          0.0,
+          57.57493840978961
+        ],
+        [
+          5.0,
+          31.644403460936932
+        ],
+        [
+          10.0,
+          20.414846432923998
+        ],
+        [
+          15.0,
+          20.18276287979944
+        ],
+        [
+          20.0,
+          23.54688085082311
+        ],
+        [
+          25.0,
+          30.786698852270074
+        ],
+        [
+          30.0,
+          33.446396225645955
+        ]
+      ]
+    },
+    {
+      "id": "timing",
+      "seconds": 407.0
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "sound: small waves vs the Bogoliubov dispersion omega = k sqrt(1 + k^2/4), worst relative error (3 wavenumbers)",
+      "pass": true,
+      "observed": 0.000107384933797805,
+      "limit": 0.001,
+      "rule": "at most"
+    },
+    {
+      "id": "sound: observed order in dt of that error (largest k), |p - 2|",
+      "pass": true,
+      "observed": 0.00046585018178957327,
+      "limit": 0.2,
+      "rule": "at most",
+      "note": "observed 2.000"
+    },
+    {
+      "id": "ring speed vs Roberts-Grant plus the periodic-box speed-up 2 pi^2 R^2 / L^3, relative difference",
+      "pass": true,
+      "observed": 0.031347067246127125,
+      "limit": 0.05,
+      "rule": "at most",
+      "note": "Grade L: a large-ring asymptote (R/xi ~ 11 here) plus a box term whose sign and size were measured in exploration (two box sizes)",
+      "grade": "L"
+    },
+    {
+      "id": "ring speed between grids (h = 0.667 vs 0.5), relative change",
+      "pass": true,
+      "observed": 0.003805392076372316,
+      "limit": 0.02,
+      "rule": "at most"
+    },
+    {
+      "id": "one loop throughout, both grids: samples with any other count",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "norm conserved (exactly unitary steps), worst grid, relative",
+      "pass": true,
+      "observed": 1.3788969965844444e-13,
+      "limit": 1e-12,
+      "rule": "at most"
+    },
+    {
+      "id": "energy drift, worst grid, relative",
+      "pass": true,
+      "observed": 3.3373219063825843e-06,
+      "limit": 0.0001,
+      "rule": "at most"
+    },
+    {
+      "id": "closed core meshes: boundary edges over all frames",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "display quantization (8-bit): core-surface shift p99, worst frame (cells)",
+      "pass": true,
+      "observed": 0.010187958678703592,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "clipping: density above the 8-bit range",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    }
+  ],
+  "builder_sha256": "ee9225ed8aa639b0054d5013576d4f4eac0c809025470525cb8cdad271dbe410",
+  "runtime": {
+    "python": "3.13.18",
+    "numpy": "2.5.3"
+  }
+}

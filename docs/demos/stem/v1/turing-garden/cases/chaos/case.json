@@ -1,0 +1,1177 @@
+{
+  "schema": "loom.scientific-case/1",
+  "id": "turing-garden/chaos",
+  "kind": "turing-garden",
+  "name": "chaos",
+  "title": "Restless garden",
+  "line": "Spatiotemporal chaos: patches grow, split and vanish, and never settle.",
+  "equation": "u_t = Du lap(u) - u v^2 + F (1 - u);  v_t = Dv lap(v) + u v^2 - (F + k) v",
+  "domain": {
+    "shape": [
+      64,
+      64,
+      64
+    ],
+    "units": "grid cells (dx = 1) and model time units",
+    "boundary": "periodic"
+  },
+  "parameters": {
+    "display_bits": 16,
+    "F": 0.018,
+    "k": 0.051,
+    "Du": 0.2,
+    "Dv": 0.1,
+    "dt": 0.5,
+    "steps": 16000,
+    "frame_every_steps": 400,
+    "seed": 7,
+    "seeds": 3,
+    "seed_centres": [
+      [
+        60,
+        40,
+        43
+      ],
+      [
+        57,
+        37,
+        49
+      ],
+      [
+        53,
+        14,
+        3
+      ]
+    ],
+    "iso": 0.2,
+    "display_vmax": 0.6
+  },
+  "method": "7-point Laplacian, forward Euler, float64; three cubic seeds (u 0.5, v 0.25, 12 cells) at random positions plus domain-wide noise; isosurfaces by surface nets with two Newton projections.",
+  "limits": [
+    "A nondimensional model on a 64-cell periodic box: no units of real chemistry, and patterns are a few wavelengths across.",
+    "Forward Euler is first order in time; fine structure of the chaotic case depends on dt and on rounding (only its statistics are claims).",
+    "The displayed surface is the iso level v = 0.2 of an 8-bit copy of the field; the walls of the box are cut faces, not physics.",
+    "Morphology names are measured claims about these runs, not a classification of the parameter plane."
+  ],
+  "dependencies": {
+    "tools/gs.py": "c4a2a6cbca63b956b41507eb93abe21ffa14c95212524a82a8d9deea87270bf0"
+  },
+  "external_dependencies": {
+    "lib/stemkit/core.py": "b799990d80948989d6525fdd0c8f16c4eec884e659105fd6bd5750d4cf977600",
+    "lib/stemkit/mesh.py": "fe4ebf154d7f8d7eed0c26ca13c3143678d60c8dbe74de4e7230e78fa1a6e326"
+  },
+  "frames": [
+    {
+      "file": "cases/chaos/v000.bin",
+      "sha256": "e5f297e8e6e01d9cb2a16695d56436c3bee68db5ab824eae078f1f1c297ccabb",
+      "bytes": 406382,
+      "decoded_sha256": "bb39cc8c3f41d32995df5f1f04127d047fcc77b580c88d0e56bcd4610664bbd0",
+      "decoded_bytes": 524288,
+      "time": 0.0,
+      "step": 0,
+      "clipped_values": 0,
+      "quantization_max": 7.629485774288082e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 2798,
+        "triangles": 5580,
+        "volume": 3929.2969675817185
+      }
+    },
+    {
+      "file": "cases/chaos/v001.bin",
+      "sha256": "0562a6c0f64da5e6ab36dd96463f0586b5819b66eaf1c650c5d0dc53e4e8bcb1",
+      "bytes": 310687,
+      "decoded_sha256": "05d79bab6d1b4eaf17158a6149986d951550dc59bcb9aaa1a764233aa0b2e241",
+      "decoded_bytes": 524288,
+      "time": 200.0,
+      "step": 400,
+      "clipped_values": 0,
+      "quantization_max": 7.629457772312343e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 27614,
+        "triangles": 55208,
+        "volume": 48161.327511019386
+      }
+    },
+    {
+      "file": "cases/chaos/v002.bin",
+      "sha256": "96fbfcaef93b886457c700685c8ef4bb7a51823ef314625b66421936ff6d43c6",
+      "bytes": 481120,
+      "decoded_sha256": "99c877d00534e96ba74c46c456f8c0c7089dcae2e96aac09ef2ae7fc75bc84d3",
+      "decoded_bytes": 524288,
+      "time": 400.0,
+      "step": 800,
+      "clipped_values": 0,
+      "quantization_max": 7.629437398480419e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 36731,
+        "triangles": 73484,
+        "volume": 59454.041391913874
+      }
+    },
+    {
+      "file": "cases/chaos/v003.bin",
+      "sha256": "541718ca78543f3f3dc18a5e79b9e1f1c62b1de72f2ec257dc2679241a36dfbd",
+      "bytes": 405113,
+      "decoded_sha256": "5835ae702700cbd5bad2f8997becaeeb052338b883ab71aa85912c59b33ae899",
+      "decoded_bytes": 524288,
+      "time": 600.0,
+      "step": 1200,
+      "clipped_values": 0,
+      "quantization_max": 7.629431394186315e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 17149,
+        "triangles": 34224,
+        "volume": 23023.20036884047
+      }
+    },
+    {
+      "file": "cases/chaos/v004.bin",
+      "sha256": "d7e5dd4059b1dd4aca6d7f2a5df9531c73ca1ca094eeb65fbced3850a3a15477",
+      "bytes": 508081,
+      "decoded_sha256": "9f65428cba82598c94b8c49c7b6582d293ecc1fa00f4baf7b15202586bf561a9",
+      "decoded_bytes": 524288,
+      "time": 800.0,
+      "step": 1600,
+      "clipped_values": 0,
+      "quantization_max": 7.629295815589354e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 54616,
+        "triangles": 109340,
+        "volume": 81028.11453077407
+      }
+    },
+    {
+      "file": "cases/chaos/v005.bin",
+      "sha256": "85c89b0536883da56158b4e418d806504f7af18b6a0fb4eb90f15c45995a0dd3",
+      "bytes": 344737,
+      "decoded_sha256": "c553b600c976bafab53aa7dd92088f209e5a3f5001cf9513e4dab0f91fd9fdf6",
+      "decoded_bytes": 524288,
+      "time": 1000.0,
+      "step": 2000,
+      "clipped_values": 0,
+      "quantization_max": 7.629477009967613e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 6764,
+        "triangles": 13500,
+        "volume": 6353.039209525373
+      }
+    },
+    {
+      "file": "cases/chaos/v006.bin",
+      "sha256": "4ec3e88c0e3bf9f02006adeaa85f708203547222715e425ec641ba194e253d0f",
+      "bytes": 404880,
+      "decoded_sha256": "680789b6872e0040f3383c66d20e6cff0e3b721e912b98392de1e2e7823922d6",
+      "decoded_bytes": 524288,
+      "time": 1200.0,
+      "step": 2400,
+      "clipped_values": 0,
+      "quantization_max": 7.629430750129748e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 39549,
+        "triangles": 79152,
+        "volume": 68127.96779016835
+      }
+    },
+    {
+      "file": "cases/chaos/v007.bin",
+      "sha256": "09bb8a9e276ba7519a6c4f554e78ceedc250e9ad213b96bd8842ce0dbd4093ca",
+      "bytes": 471737,
+      "decoded_sha256": "498d94793d421d59b381ef5cf71f00de67dcde565e3038c90094eea9bfd4989c",
+      "decoded_bytes": 524288,
+      "time": 1400.0,
+      "step": 2800,
+      "clipped_values": 0,
+      "quantization_max": 7.629359661022924e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 31456,
+        "triangles": 62960,
+        "volume": 36199.16122456654
+      }
+    },
+    {
+      "file": "cases/chaos/v008.bin",
+      "sha256": "eda124047104bcc7dbdde2f88e2b536711a41fde87407234416b87b9ffb43a8d",
+      "bytes": 302118,
+      "decoded_sha256": "1863ddacc9ca9f8720128c4c8c8f87cc568921b21a71f70a969ad45d33c9a9e6",
+      "decoded_bytes": 524288,
+      "time": 1600.0,
+      "step": 3200,
+      "clipped_values": 0,
+      "quantization_max": 7.629501821311096e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 18736,
+        "triangles": 37420,
+        "volume": 31714.169081514632
+      }
+    },
+    {
+      "file": "cases/chaos/v009.bin",
+      "sha256": "ef3aee4a4052359f88e345923934c88678a950acbce18ea575d78db1ac4dae9c",
+      "bytes": 509524,
+      "decoded_sha256": "188dd3cafbfdadcc287278ac0feaabd51593889d3184f7ad6fd0a21c60d38c4a",
+      "decoded_bytes": 524288,
+      "time": 1800.0,
+      "step": 3600,
+      "clipped_values": 0,
+      "quantization_max": 7.629508256279394e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 48501,
+        "triangles": 97084,
+        "volume": 60597.90153353781
+      }
+    },
+    {
+      "file": "cases/chaos/v010.bin",
+      "sha256": "a0be2fc8d39a9e5becc22605fea0488ec7911efa9ef9c0fd56e839fa8aa8ea83",
+      "bytes": 314145,
+      "decoded_sha256": "723a9619cecb6b5395eb294e3801380aacf96c0deaf5380ff803e4c9e5c11586",
+      "decoded_bytes": 524288,
+      "time": 2000.0,
+      "step": 4000,
+      "clipped_values": 0,
+      "quantization_max": 7.629459093795002e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 14500,
+        "triangles": 28948,
+        "volume": 15470.244463007357
+      }
+    },
+    {
+      "file": "cases/chaos/v011.bin",
+      "sha256": "7c905b962e6425c83603c73c21f429fd59c605775d77114056e433a82b120d52",
+      "bytes": 494019,
+      "decoded_sha256": "c9f1f7c07cf88f9cdf62abca7cd37da8f9ac982b2e2cbd831fe1e09a71a72e65",
+      "decoded_bytes": 524288,
+      "time": 2200.0,
+      "step": 4400,
+      "clipped_values": 0,
+      "quantization_max": 7.629495547614256e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 50532,
+        "triangles": 101160,
+        "volume": 77279.86586222895
+      }
+    },
+    {
+      "file": "cases/chaos/v012.bin",
+      "sha256": "33407b805091eb340591bb819310fd97668b84c600092fb52ad985c6df07c98d",
+      "bytes": 388040,
+      "decoded_sha256": "d2aa365e1956758ea90500fb102fc364ff93cb9f52d3d41dd767ffdac676f823",
+      "decoded_bytes": 524288,
+      "time": 2400.0,
+      "step": 4800,
+      "clipped_values": 0,
+      "quantization_max": 7.629434061832512e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 12196,
+        "triangles": 24396,
+        "volume": 12331.575201705977
+      }
+    },
+    {
+      "file": "cases/chaos/v013.bin",
+      "sha256": "0908abef2db2a44b0bbdd52e56e9582131f570393b1738ea4adf3031a80a1e54",
+      "bytes": 486414,
+      "decoded_sha256": "2004d5cfd134231b00330985f9c4e300223f22f9d9e0f2257eb465a7af0e533e",
+      "decoded_bytes": 524288,
+      "time": 2600.0,
+      "step": 5200,
+      "clipped_values": 0,
+      "quantization_max": 7.629487810270865e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 51848,
+        "triangles": 103764,
+        "volume": 91709.0685216658
+      }
+    },
+    {
+      "file": "cases/chaos/v014.bin",
+      "sha256": "3fd3989b19453ebd85a1e8cb030e79e3c9ef3a65c75e1e034644c13cf8ca1a13",
+      "bytes": 446184,
+      "decoded_sha256": "46585fe636b678c269ceb73a18212271f4c4bf2f15281fa58c5cd4cce8341536",
+      "decoded_bytes": 524288,
+      "time": 2800.0,
+      "step": 5600,
+      "clipped_values": 0,
+      "quantization_max": 7.629432729180352e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 7198,
+        "triangles": 14324,
+        "volume": 5962.717557725351
+      }
+    },
+    {
+      "file": "cases/chaos/v015.bin",
+      "sha256": "03f58aa7eecd8d37169bb25194ffe2e41a7f941ed789a43d17264dc2f6885bd6",
+      "bytes": 416522,
+      "decoded_sha256": "0e11decc7386890b7649af2178f4ed8ab4ed5b8b68c93e6ad465bdb375a02885",
+      "decoded_bytes": 524288,
+      "time": 3000.0,
+      "step": 6000,
+      "clipped_values": 0,
+      "quantization_max": 7.629468222331015e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 40251,
+        "triangles": 80500,
+        "volume": 72130.4386782577
+      }
+    },
+    {
+      "file": "cases/chaos/v016.bin",
+      "sha256": "43346348d5ecf76fbdc6914bfcadb17ed149834cb80178fa0db6f806f7a7a7e0",
+      "bytes": 483438,
+      "decoded_sha256": "b971921dd0d790b555aec15eb53376a9b213087837202e2986c761c2c8edcfe8",
+      "decoded_bytes": 524288,
+      "time": 3200.0,
+      "step": 6400,
+      "clipped_values": 0,
+      "quantization_max": 7.629427519635173e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 22814,
+        "triangles": 45600,
+        "volume": 23190.10995789691
+      }
+    },
+    {
+      "file": "cases/chaos/v017.bin",
+      "sha256": "dde4659f2a5c985bb78629874aa73951dde5f68b80e26453f041a8bf40cd9e60",
+      "bytes": 394771,
+      "decoded_sha256": "bf5bbed04bf4f5067f9a2fc9f8c0bd8d34f781d467f00bfdf9bf3ed6bdd4388d",
+      "decoded_bytes": 524288,
+      "time": 3400.0,
+      "step": 6800,
+      "clipped_values": 0,
+      "quantization_max": 7.629488923133199e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 31596,
+        "triangles": 63136,
+        "volume": 53590.22855997831
+      }
+    },
+    {
+      "file": "cases/chaos/v018.bin",
+      "sha256": "d40d5b2fc2192e14e4f4242941648d6f95f7f8366ca395cfe9b1366667cf6db2",
+      "bytes": 505368,
+      "decoded_sha256": "d198ea5c9ac754a6d2f64b85fd8b51e56f946955b7f8306ee0764d048ed6835d",
+      "decoded_bytes": 524288,
+      "time": 3600.0,
+      "step": 7200,
+      "clipped_values": 0,
+      "quantization_max": 7.629499563331412e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 27249,
+        "triangles": 54528,
+        "volume": 26643.65150981887
+      }
+    },
+    {
+      "file": "cases/chaos/v019.bin",
+      "sha256": "7049cc61c75c1b5d78401dd54f41bdf5ecb9d5ca1f3ca2d31b2cfec7cc6f1f11",
+      "bytes": 299490,
+      "decoded_sha256": "df6fb0caf02840f22a2d78cf12c4283449e3e90b14bb0a8832557c924b8e9e2d",
+      "decoded_bytes": 524288,
+      "time": 3800.0,
+      "step": 7600,
+      "clipped_values": 0,
+      "quantization_max": 7.629437999413537e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 21103,
+        "triangles": 42168,
+        "volume": 36293.86149424157
+      }
+    },
+    {
+      "file": "cases/chaos/v020.bin",
+      "sha256": "e0635c99cad13f9a95289de413c0fea016dc0dff9022f0ccba201103897da4b2",
+      "bytes": 502612,
+      "decoded_sha256": "0eb46c25bffad5f9cddf8c0423fb76778f29ccf2653889e6a076701aa58206e3",
+      "decoded_bytes": 524288,
+      "time": 4000.0,
+      "step": 8000,
+      "clipped_values": 0,
+      "quantization_max": 7.62948495380833e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 37428,
+        "triangles": 74896,
+        "volume": 51426.399353519024
+      }
+    },
+    {
+      "file": "cases/chaos/v021.bin",
+      "sha256": "3eb7a09000973becf1328b2f4973bdcb7a4d0c8ba1f854bf93f01bdd67329e2f",
+      "bytes": 319033,
+      "decoded_sha256": "5083ca148813789fe046558bc2fbe8bb2af03ebb4b7156f3edae4fe92e4a63f6",
+      "decoded_bytes": 524288,
+      "time": 4200.0,
+      "step": 8400,
+      "clipped_values": 0,
+      "quantization_max": 7.629502829416731e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 17027,
+        "triangles": 34024,
+        "volume": 17119.175797033018
+      }
+    },
+    {
+      "file": "cases/chaos/v022.bin",
+      "sha256": "0499cef2a3352ccc5b715b726924438b94da5f9c3d4f594dc9b29c8ff58f0f8f",
+      "bytes": 493759,
+      "decoded_sha256": "4887720acced19d4378c8c2071834e555371fce4771664a51af1e9dcf4be754e",
+      "decoded_bytes": 524288,
+      "time": 4400.0,
+      "step": 8800,
+      "clipped_values": 0,
+      "quantization_max": 7.629450690200472e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 48314,
+        "triangles": 96680,
+        "volume": 76771.30074910783
+      }
+    },
+    {
+      "file": "cases/chaos/v023.bin",
+      "sha256": "67d6be8f80630f67a8a11ece4681e041b8524ed02ca1c8c53dfd801e5262f48f",
+      "bytes": 405593,
+      "decoded_sha256": "4ecff34f4ee33a3f33f66963201318cbc46c3ef86570af0315c50d84f8a8a44e",
+      "decoded_bytes": 524288,
+      "time": 4600.0,
+      "step": 9200,
+      "clipped_values": 0,
+      "quantization_max": 7.629488368033252e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 11236,
+        "triangles": 22368,
+        "volume": 10906.598874990299
+      }
+    },
+    {
+      "file": "cases/chaos/v024.bin",
+      "sha256": "6d1ad515950ff7ce45e952d1626488145d439c8835f1e576e0d551e33c5392a3",
+      "bytes": 475938,
+      "decoded_sha256": "cea24aa1bf9c43a72cbe5cbbc3d9e3def84be0a9639f8eaac03d98ffe3fbf6c0",
+      "decoded_bytes": 524288,
+      "time": 4800.0,
+      "step": 9600,
+      "clipped_values": 0,
+      "quantization_max": 7.629508554420536e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 50076,
+        "triangles": 100248,
+        "volume": 82332.47380508449
+      }
+    },
+    {
+      "file": "cases/chaos/v025.bin",
+      "sha256": "b9c07a298abbfbdffdf6008bcae1d7a396b0f897a5f20b9a58a0277368273cf1",
+      "bytes": 457018,
+      "decoded_sha256": "28b507b058e3cd20f20c72551018637eff7e2066c6a584f5d3e1ad4d9123749f",
+      "decoded_bytes": 524288,
+      "time": 5000.0,
+      "step": 10000,
+      "clipped_values": 0,
+      "quantization_max": 7.629506961186888e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 15971,
+        "triangles": 31900,
+        "volume": 14376.682682773207
+      }
+    },
+    {
+      "file": "cases/chaos/v026.bin",
+      "sha256": "87dbfd2a3aca92c31745bc6b4b69765375f3adc3205cbf84f6337d16e78ad2d7",
+      "bytes": 473594,
+      "decoded_sha256": "30dbd18b27331da89d7a56730226591b5f3bc967263f273d80feeef7daf648df",
+      "decoded_bytes": 524288,
+      "time": 5200.0,
+      "step": 10400,
+      "clipped_values": 0,
+      "quantization_max": 7.629484903940813e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 50752,
+        "triangles": 101520,
+        "volume": 84977.12558857862
+      }
+    },
+    {
+      "file": "cases/chaos/v027.bin",
+      "sha256": "4c82efe60ff65f6b10aba4fb55a2e75bed7c1205520eaa8902076975d1409c36",
+      "bytes": 462950,
+      "decoded_sha256": "661933b8a0862e922d479af1fa57154027c6ea029a789ae2fbc2893e870f93e4",
+      "decoded_bytes": 524288,
+      "time": 5400.0,
+      "step": 10800,
+      "clipped_values": 0,
+      "quantization_max": 7.62946713999638e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 8527,
+        "triangles": 17000,
+        "volume": 7012.640332278562
+      }
+    },
+    {
+      "file": "cases/chaos/v028.bin",
+      "sha256": "b4c92f2f8f1bb85dd4b6d15050142b8bc07b2e23246995a67f5e275c7a9136ee",
+      "bytes": 356608,
+      "decoded_sha256": "cb3e7e5f6eb5aa65e7fc0020d51af6381d91532a3211af5ebb7d1e2b3e3487e2",
+      "decoded_bytes": 524288,
+      "time": 5600.0,
+      "step": 11200,
+      "clipped_values": 0,
+      "quantization_max": 7.629500466075727e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 33346,
+        "triangles": 66680,
+        "volume": 57821.93842435412
+      }
+    },
+    {
+      "file": "cases/chaos/v029.bin",
+      "sha256": "9976b3db569af05680452781c9ee6d2eef9f111a39a82453608ae8a169e8b221",
+      "bytes": 494780,
+      "decoded_sha256": "b3ca6f6dbfe0ade00aa31518e80f6388d8585a7a9424cbc19b708d2ca737c1ae",
+      "decoded_bytes": 524288,
+      "time": 5800.0,
+      "step": 11600,
+      "clipped_values": 0,
+      "quantization_max": 7.629497694588983e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 33724,
+        "triangles": 67536,
+        "volume": 46546.364499273506
+      }
+    },
+    {
+      "file": "cases/chaos/v030.bin",
+      "sha256": "ba8260be6c18bda60106383c10aed284da9f9964570634f3875856c58c79fca5",
+      "bytes": 374567,
+      "decoded_sha256": "517424a2c6ee8e1495e6ac50656bbfa50ef236d99e6bdb2823f8f3a350393a83",
+      "decoded_bytes": 524288,
+      "time": 6000.0,
+      "step": 12000,
+      "clipped_values": 0,
+      "quantization_max": 7.62950080239397e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 21236,
+        "triangles": 42440,
+        "volume": 31202.676281700737
+      }
+    },
+    {
+      "file": "cases/chaos/v031.bin",
+      "sha256": "99c4d34161f4d0b1a633e6b093967e55ffe8224dd735f015d6581c9ac5e6ef75",
+      "bytes": 513907,
+      "decoded_sha256": "701af86e193182eae3307c8ea8aa8c46f1dc8f729072a1dc7441c17ae6a52c07",
+      "decoded_bytes": 524288,
+      "time": 6200.0,
+      "step": 12400,
+      "clipped_values": 0,
+      "quantization_max": 7.629483292001065e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 49177,
+        "triangles": 98456,
+        "volume": 67211.31829014917
+      }
+    },
+    {
+      "file": "cases/chaos/v032.bin",
+      "sha256": "121472946bf0f0e950f5c6f645e8d9b4fb4acf8060dc6832cfb5216fe3dbfb0f",
+      "bytes": 328411,
+      "decoded_sha256": "27467eef7b782d91b936866c1707828c55fa2313f4d6e808eec623a3de8e53e7",
+      "decoded_bytes": 524288,
+      "time": 6400.0,
+      "step": 12800,
+      "clipped_values": 0,
+      "quantization_max": 7.629414537091891e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 13452,
+        "triangles": 26852,
+        "volume": 18264.10213636996
+      }
+    },
+    {
+      "file": "cases/chaos/v033.bin",
+      "sha256": "f87280fd07c94e6cddca40454237ab876c32981048990e55c873bfecbc94f8c4",
+      "bytes": 511489,
+      "decoded_sha256": "ab81c5aa5a95e2becc5fc076d7c2c544b5e9a69c32636a95b7b5ec106a92edc9",
+      "decoded_bytes": 524288,
+      "time": 6600.0,
+      "step": 13200,
+      "clipped_values": 0,
+      "quantization_max": 7.629492095936654e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 53212,
+        "triangles": 106560,
+        "volume": 79411.32988210912
+      }
+    },
+    {
+      "file": "cases/chaos/v034.bin",
+      "sha256": "c6f7b2bcb5f4db5b1b3a566dd7c84e7d5c651243c4d3c060fd7a15b1f3b730d7",
+      "bytes": 399671,
+      "decoded_sha256": "ff62333a3683324dc374d515366b2edeee85d467bbdf9118bc567dde67c504b3",
+      "decoded_bytes": 524288,
+      "time": 6800.0,
+      "step": 13600,
+      "clipped_values": 0,
+      "quantization_max": 7.629480516527348e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 20258,
+        "triangles": 40488,
+        "volume": 23464.349026979296
+      }
+    },
+    {
+      "file": "cases/chaos/v035.bin",
+      "sha256": "3c8bb0cbde72b15dcf7dfd9117a7de708d356284002273363b7050d3555d79e1",
+      "bytes": 508590,
+      "decoded_sha256": "70eae3a6836fe73fa53d60d46cbd6cf3bda4d791dffe600e9104f168622f491e",
+      "decoded_bytes": 524288,
+      "time": 7000.0,
+      "step": 14000,
+      "clipped_values": 0,
+      "quantization_max": 7.62948825993685e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 54887,
+        "triangles": 109932,
+        "volume": 74879.42801723455
+      }
+    },
+    {
+      "file": "cases/chaos/v036.bin",
+      "sha256": "9ad2f79782bfe694ecb8548c69bddb8c8af415daf5d4f3ae9b6c0a8714636ca2",
+      "bytes": 340459,
+      "decoded_sha256": "c27ce2a17915b12a5156cc2f57e90d7c0b31584c2d9ff159ce1afbeec8c2a67a",
+      "decoded_bytes": 524288,
+      "time": 7200.0,
+      "step": 14400,
+      "clipped_values": 0,
+      "quantization_max": 7.629510036809192e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 12968,
+        "triangles": 25884,
+        "volume": 14931.796148918853
+      }
+    },
+    {
+      "file": "cases/chaos/v037.bin",
+      "sha256": "5568baf36f113d7d14e5b946354ce8f132728943fef9ba74e23e93378c413331",
+      "bytes": 479140,
+      "decoded_sha256": "ad70073326c5e4b47d39e9e2c2e8a11f16f65d956efba36fcd7f3dabb2a83ac5",
+      "decoded_bytes": 524288,
+      "time": 7400.0,
+      "step": 14800,
+      "clipped_values": 0,
+      "quantization_max": 7.629454449806228e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 51295,
+        "triangles": 102708,
+        "volume": 76032.62228566328
+      }
+    },
+    {
+      "file": "cases/chaos/v038.bin",
+      "sha256": "b7e35bde25bf5cf310d855ccf9ba3fcf5c4dda5f9d8f7f756bc60b682b180c0f",
+      "bytes": 415590,
+      "decoded_sha256": "0b73767f2a0ffe09c54fa9fe11b5746b09f61165d43904120b7cec8b66594e7f",
+      "decoded_bytes": 524288,
+      "time": 7600.0,
+      "step": 15200,
+      "clipped_values": 0,
+      "quantization_max": 7.629483785371238e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 17591,
+        "triangles": 35172,
+        "volume": 19388.165553335635
+      }
+    },
+    {
+      "file": "cases/chaos/v039.bin",
+      "sha256": "0e3ef958b2cf04b0de1e0c9ec52f633e2d04ecb1792b602cc1c42c20789255dd",
+      "bytes": 481694,
+      "decoded_sha256": "c3f2c19571d183b8d3352ae8e5ebfb6db600b56f68257bb41025127d557959d2",
+      "decoded_bytes": 524288,
+      "time": 7800.0,
+      "step": 15600,
+      "clipped_values": 0,
+      "quantization_max": 7.629509572957643e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 49549,
+        "triangles": 99128,
+        "volume": 84958.99655555152
+      }
+    },
+    {
+      "file": "cases/chaos/v040.bin",
+      "sha256": "d6147a4ab54df9fa48e5272b3134f40856cdfa07e6dbcc51a6ee9c9da6186dbc",
+      "bytes": 459059,
+      "decoded_sha256": "9fa5d2902af9c2e93041854d30e3e4be7a70fea4c009ca040b7620600403aed2",
+      "decoded_bytes": 524288,
+      "time": 8000.0,
+      "step": 16000,
+      "clipped_values": 0,
+      "quantization_max": 7.629501084958565e-06,
+      "encoding": "uint16le v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 16,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 10012,
+        "triangles": 19932,
+        "volume": 7024.651156144816
+      }
+    }
+  ],
+  "metrics": [
+    {
+      "id": "morphology",
+      "components of v > iso": 27,
+      "largest component share": 0.13092409653620107,
+      "holes (components of v < iso)": 1,
+      "Euler characteristic": 52,
+      "|median mean curvature|": 0.26080937741558036,
+      "late activity": 0.15123170829647448,
+      "fraction above iso": 0.030506134033203125
+    },
+    {
+      "id": "final mesh",
+      "vertices": 10012,
+      "triangles": 19932,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 6,
+      "degenerate_triangles": 0,
+      "area": 6434.35700771247,
+      "volume": 7024.651156144816,
+      "mc_volume": 7267.676,
+      "mc_volume_se": 44.0802269397405,
+      "volume_rel_diff": 0.033439141185598306,
+      "iso_distance_p95": 4.708897480551514e-15,
+      "iso_distance_max": 0.013634526550094282
+    },
+    {
+      "id": "mesh sizes",
+      "frames": [
+        {
+          "step": 0,
+          "vertices": 2798,
+          "triangles": 5580
+        },
+        {
+          "step": 400,
+          "vertices": 27614,
+          "triangles": 55208
+        },
+        {
+          "step": 800,
+          "vertices": 36731,
+          "triangles": 73484
+        },
+        {
+          "step": 1200,
+          "vertices": 17149,
+          "triangles": 34224
+        },
+        {
+          "step": 1600,
+          "vertices": 54616,
+          "triangles": 109340
+        },
+        {
+          "step": 2000,
+          "vertices": 6764,
+          "triangles": 13500
+        },
+        {
+          "step": 2400,
+          "vertices": 39549,
+          "triangles": 79152
+        },
+        {
+          "step": 2800,
+          "vertices": 31456,
+          "triangles": 62960
+        },
+        {
+          "step": 3200,
+          "vertices": 18736,
+          "triangles": 37420
+        },
+        {
+          "step": 3600,
+          "vertices": 48501,
+          "triangles": 97084
+        },
+        {
+          "step": 4000,
+          "vertices": 14500,
+          "triangles": 28948
+        },
+        {
+          "step": 4400,
+          "vertices": 50532,
+          "triangles": 101160
+        },
+        {
+          "step": 4800,
+          "vertices": 12196,
+          "triangles": 24396
+        },
+        {
+          "step": 5200,
+          "vertices": 51848,
+          "triangles": 103764
+        },
+        {
+          "step": 5600,
+          "vertices": 7198,
+          "triangles": 14324
+        },
+        {
+          "step": 6000,
+          "vertices": 40251,
+          "triangles": 80500
+        },
+        {
+          "step": 6400,
+          "vertices": 22814,
+          "triangles": 45600
+        },
+        {
+          "step": 6800,
+          "vertices": 31596,
+          "triangles": 63136
+        },
+        {
+          "step": 7200,
+          "vertices": 27249,
+          "triangles": 54528
+        },
+        {
+          "step": 7600,
+          "vertices": 21103,
+          "triangles": 42168
+        },
+        {
+          "step": 8000,
+          "vertices": 37428,
+          "triangles": 74896
+        },
+        {
+          "step": 8400,
+          "vertices": 17027,
+          "triangles": 34024
+        },
+        {
+          "step": 8800,
+          "vertices": 48314,
+          "triangles": 96680
+        },
+        {
+          "step": 9200,
+          "vertices": 11236,
+          "triangles": 22368
+        },
+        {
+          "step": 9600,
+          "vertices": 50076,
+          "triangles": 100248
+        },
+        {
+          "step": 10000,
+          "vertices": 15971,
+          "triangles": 31900
+        },
+        {
+          "step": 10400,
+          "vertices": 50752,
+          "triangles": 101520
+        },
+        {
+          "step": 10800,
+          "vertices": 8527,
+          "triangles": 17000
+        },
+        {
+          "step": 11200,
+          "vertices": 33346,
+          "triangles": 66680
+        },
+        {
+          "step": 11600,
+          "vertices": 33724,
+          "triangles": 67536
+        },
+        {
+          "step": 12000,
+          "vertices": 21236,
+          "triangles": 42440
+        },
+        {
+          "step": 12400,
+          "vertices": 49177,
+          "triangles": 98456
+        },
+        {
+          "step": 12800,
+          "vertices": 13452,
+          "triangles": 26852
+        },
+        {
+          "step": 13200,
+          "vertices": 53212,
+          "triangles": 106560
+        },
+        {
+          "step": 13600,
+          "vertices": 20258,
+          "triangles": 40488
+        },
+        {
+          "step": 14000,
+          "vertices": 54887,
+          "triangles": 109932
+        },
+        {
+          "step": 14400,
+          "vertices": 12968,
+          "triangles": 25884
+        },
+        {
+          "step": 14800,
+          "vertices": 51295,
+          "triangles": 102708
+        },
+        {
+          "step": 15200,
+          "vertices": 17591,
+          "triangles": 35172
+        },
+        {
+          "step": 15600,
+          "vertices": 49549,
+          "triangles": 99128
+        },
+        {
+          "step": 16000,
+          "vertices": 10012,
+          "triangles": 19932
+        }
+      ]
+    },
+    {
+      "id": "timing",
+      "seconds": 47.9
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "linear mode decay, u (exact discrete), relative error",
+      "pass": true,
+      "observed": 5.820566251202308e-11,
+      "limit": 1e-08,
+      "rule": "at most"
+    },
+    {
+      "id": "linear mode decay, v (exact discrete), relative error",
+      "pass": true,
+      "observed": 3.7130298835563735e-11,
+      "limit": 1e-08,
+      "rule": "at most"
+    },
+    {
+      "id": "budget identity: sum(u + v) per step, worst relative residual",
+      "pass": true,
+      "observed": 1.8604401155637164e-14,
+      "limit": 1e-11,
+      "rule": "at most"
+    },
+    {
+      "id": "convergence order in dt: |observed - 1|",
+      "pass": true,
+      "observed": 0.01661548017624037,
+      "limit": 0.05,
+      "rule": "at most",
+      "note": "observed order 0.9834"
+    },
+    {
+      "id": "reproducibility: cells differing on a 2,000-step rerun",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "bounded fields: worst excursion below 0 or above 1",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "closed meshes: boundary edges over all frames",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "mesh volume vs Monte Carlo on the field, relative difference (gross-error check)",
+      "pass": true,
+      "observed": 0.033439141185598306,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "display quantization (16-bit): isosurface shift p99, worst frame (cells)",
+      "pass": true,
+      "observed": 0.00023062011102446505,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "mesh vertices on the displayed surface: distance p99, worst frame (cells)",
+      "pass": true,
+      "observed": 9.962167758311998e-08,
+      "limit": 0.01,
+      "rule": "at most"
+    },
+    {
+      "id": "clipping: values above the 8-bit range",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "morphology 'chaos': late activity",
+      "pass": true,
+      "observed": 0.15123170829647448,
+      "limit": 0.05,
+      "rule": "at least"
+    }
+  ],
+  "builder_sha256": "5ac5480f8a929ecc7e95d8a46043f294d34b1221bb5a04b325e2738d413d5adf",
+  "runtime": {
+    "python": "3.13.18",
+    "numpy": "2.5.3"
+  }
+}

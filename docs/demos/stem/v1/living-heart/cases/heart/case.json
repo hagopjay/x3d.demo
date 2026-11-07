@@ -1,0 +1,792 @@
+{
+  "schema": "loom.scientific-case/1",
+  "id": "tissue/heart",
+  "kind": "tissue",
+  "name": "heart",
+  "title": "Scroll wave in a ventricle",
+  "line": "The same spiral wrapped onto a ventricle's wall, where it becomes a scroll wave: the electrical engine of ventricular tachycardia.",
+  "equation": "u_t = D lap(u) - k u (u - a)(u - 1) - u v;  v_t = (eps0 + mu1 v / (u + mu2)) (-v - k u (u - a - 1))",
+  "domain": {
+    "shape": [
+      58,
+      58,
+      67
+    ],
+    "units": "dimensionless (about 1 mm and 12.9 ms per unit)",
+    "boundary": "no flux"
+  },
+  "parameters": {
+    "k": 8.0,
+    "a": 0.15,
+    "eps0": 0.002,
+    "mu1": 0.2,
+    "mu2": 0.3,
+    "D": 1.0,
+    "h": 0.5,
+    "dt": 0.01,
+    "display_h": 1.0,
+    "frames": 36,
+    "ms_per_unit": 12.9,
+    "period": 33.38920699053511,
+    "probe_periods": [
+      33.338044185058585,
+      33.61862816297948,
+      33.22896294228693,
+      33.371192671815436
+    ],
+    "period_ms": 430.7207701779029,
+    "rate_bpm": 139.30138538528772,
+    "wall": {
+      "outer": [
+        28.0,
+        28.0,
+        48.0
+      ],
+      "inner": [
+        20.0,
+        20.0,
+        40.0
+      ],
+      "base_cut": 17.0
+    },
+    "tissue_cells": 522680,
+    "seed": "a developed 2D spiral (u and v) mapped onto the wall by arc length around the axis and height, core at mid-wall",
+    "display_tissue_cells": 65051
+  },
+  "method": "Aliev-Panfilov, forward Euler, 5-point (2D) or masked 7-point (3D) Laplacian with no-flux walls; states published every 1/36 of a period on every other cell.",
+  "limits": [
+    "A two-variable phenomenological model: no ion channels, calcium or drugs; times and lengths in physical units are nominal (12.9 ms and about 1 mm per unit).",
+    "Isotropic, homogeneous tissue: real ventricles have rotating fibre directions, which make conduction anisotropic and shape scroll waves.",
+    "The ventricle is two truncated ellipsoids, not an anatomical heart; it is not coupled to mechanics or blood flow.",
+    "Frames are shown on every other cell (1 unit) of the computed grid (0.5 units)."
+  ],
+  "dependencies": {
+    "tools/ap.py": "ec7dc0cdd671ebc64eca2567f4421e677715524f3a7490e8d206615c0c0cd428"
+  },
+  "external_dependencies": {
+    "lib/stemkit/core.py": "b799990d80948989d6525fdd0c8f16c4eec884e659105fd6bd5750d4cf977600",
+    "lib/stemkit/mesh.py": "fe4ebf154d7f8d7eed0c26ca13c3143678d60c8dbe74de4e7230e78fa1a6e326"
+  },
+  "frames": [
+    {
+      "file": "cases/heart/wall.bin",
+      "sha256": "b39627c4c901afa064c09d2a4cbc116a656f91e52c8be7033f91462cea679674",
+      "bytes": 350821,
+      "decoded_sha256": "70d33a5aa20157f5b1bd5713f753782b8d0ea21f2dfa7b03d319beef70e34684",
+      "decoded_bytes": 450776,
+      "time": 0.0,
+      "clipped_values": 0,
+      "quantization_max": 7.629510948348211e-06,
+      "encoding": "uint16le wall field g / max|g| mapped to 0..65535 (0.5 = the wall surface), C order, display grid",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "scale": 2.140071946747449,
+      "mesh": {
+        "iso": 0.0,
+        "vertices": 25106,
+        "triangles": 50208,
+        "volume": 65192.57115027482
+      }
+    },
+    {
+      "file": "cases/heart/u000.bin",
+      "sha256": "131f2b86a65d4477510ed0a68a05516f1a72fc0ee0c76163158f960bae6422b3",
+      "bytes": 30756,
+      "decoded_sha256": "f820a42b8e6b39141f882cf0051975ec215906d2473eb9c985b296b1941473ce",
+      "decoded_bytes": 225388,
+      "time": 433.39,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 21773
+    },
+    {
+      "file": "cases/heart/u001.bin",
+      "sha256": "c814104e036074de068f0dbea432c60a7c5a9c395ba4146a5db751e0a916b2c2",
+      "bytes": 31032,
+      "decoded_sha256": "ad57a60397a96fe1a62bad164bd0b7d0f1061af6cce5a246d705ceb4bb0a2bf7",
+      "decoded_bytes": 225388,
+      "time": 434.32,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 21974
+    },
+    {
+      "file": "cases/heart/u002.bin",
+      "sha256": "01b79ec33625c8a2fbe4ffb572d57ab6b965d136cdef2d53339b504b4379a726",
+      "bytes": 30953,
+      "decoded_sha256": "2367395c524d788a0a706884b3a6fa214c57484ad6f0324f1229ff1755c15306",
+      "decoded_bytes": 225388,
+      "time": 435.24,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 22131
+    },
+    {
+      "file": "cases/heart/u003.bin",
+      "sha256": "caa7eaac4fe05edc31c7451fe044ee6607ecfc71a37e131ca2ff1d448313ea4d",
+      "bytes": 30668,
+      "decoded_sha256": "4b8424e32284292b573fa3c5743e288beee249ece7cd2e9c975ca1225fb075bf",
+      "decoded_bytes": 225388,
+      "time": 436.17,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 22147
+    },
+    {
+      "file": "cases/heart/u004.bin",
+      "sha256": "7ec93b50633ba209f5299f0f59f2b011ad9f3f7edd44da56743c7d93d8d97b98",
+      "bytes": 30421,
+      "decoded_sha256": "fa17717ef383d5830b3c1f34d1d11bcfad5013f507be1545485f8580a1ab2fa1",
+      "decoded_bytes": 225388,
+      "time": 437.1,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 22007
+    },
+    {
+      "file": "cases/heart/u005.bin",
+      "sha256": "9a0eb0edf49d8a3c3901d23005a088d36a27a2e484a7e22f210c5eb41714a61d",
+      "bytes": 30388,
+      "decoded_sha256": "9fc5bcfda727c8cb5b19d441bb6d53070257cab73bda53352868fa9c2bcced97",
+      "decoded_bytes": 225388,
+      "time": 438.03,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 21762
+    },
+    {
+      "file": "cases/heart/u006.bin",
+      "sha256": "ee7226c2bac5f7f76d56eff1b802460396d47b615718e8c8c20298b20f7cda1a",
+      "bytes": 30231,
+      "decoded_sha256": "632ab56ca2ab60d1c8697b1142d8465276889839d49f0c89ad879a8217cacc14",
+      "decoded_bytes": 225388,
+      "time": 438.95,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 21463
+    },
+    {
+      "file": "cases/heart/u007.bin",
+      "sha256": "0a2ea4d1358ed3607e9cad881c78ffc6df557cac5267baea212cb798b35d8934",
+      "bytes": 29965,
+      "decoded_sha256": "6303fb224a01e03ae4edfd1cff32020f1bf3e1cb814c5d4212d396256245e83d",
+      "decoded_bytes": 225388,
+      "time": 439.88,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 21071
+    },
+    {
+      "file": "cases/heart/u008.bin",
+      "sha256": "87ed5fb3ca1f1f270777e86965febe4edcd7eab4eb9aaa5e1fa9e5b9867ea679",
+      "bytes": 29875,
+      "decoded_sha256": "162f88c902135d5615a414576a2535d8af6a7b73997235597fafda569aa3161a",
+      "decoded_bytes": 225388,
+      "time": 440.81,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 20600
+    },
+    {
+      "file": "cases/heart/u009.bin",
+      "sha256": "25e93191a57f306b3283977190c3a163462fd3c41916d019ce77651e4573dc66",
+      "bytes": 29871,
+      "decoded_sha256": "62cbd54a94022c8f1dac4c499b8d2b72c9cc83ca862ad03bda3449780500288c",
+      "decoded_bytes": 225388,
+      "time": 441.74,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 20126
+    },
+    {
+      "file": "cases/heart/u010.bin",
+      "sha256": "1277f381783bafc4701952264e8413d9c752e1bd596bf6f34000f55ef4c50a5b",
+      "bytes": 29960,
+      "decoded_sha256": "276e3747a7063af50956aa9b5009a46dd414e181cb588393e9738cf470613431",
+      "decoded_bytes": 225388,
+      "time": 442.66,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 19653
+    },
+    {
+      "file": "cases/heart/u011.bin",
+      "sha256": "38ee82a58d7997b889de608594a6a6c929d7217e539e9b239f964773baf9ebe5",
+      "bytes": 29877,
+      "decoded_sha256": "1bad825a875f78c56bc1feced022e7d168a7d6810a09ac5051e000f28dab134f",
+      "decoded_bytes": 225388,
+      "time": 443.59000000000003,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 19169
+    },
+    {
+      "file": "cases/heart/u012.bin",
+      "sha256": "c29cf6c3b280b2f369f15d3a92b066686a4c15b88a66908f916ac37c3d9aaa16",
+      "bytes": 29797,
+      "decoded_sha256": "9ec40290a1bc941e6c408cd6de4ad678c016e42edf4559eb7e79c397432385e0",
+      "decoded_bytes": 225388,
+      "time": 444.52,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 18683
+    },
+    {
+      "file": "cases/heart/u013.bin",
+      "sha256": "11c875ac88768a86c3ac8ed7c3644d3e841bdf17177a5fe19bb3721d9c542f23",
+      "bytes": 29587,
+      "decoded_sha256": "c761c8a729f19d82580e6eee6965b100d6f1ec0c37ea5c14a3231032149bf97c",
+      "decoded_bytes": 225388,
+      "time": 445.45,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 18235
+    },
+    {
+      "file": "cases/heart/u014.bin",
+      "sha256": "2009f8a71be441add066d377fc8741b5475c0a5d666c9a599486282117fd2409",
+      "bytes": 29323,
+      "decoded_sha256": "7510829da40c8b4d28dae72355d7cd9e47b39595767a7f7abef26053e2cc5071",
+      "decoded_bytes": 225388,
+      "time": 446.37,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 17837
+    },
+    {
+      "file": "cases/heart/u015.bin",
+      "sha256": "7fb835e272a856f06c4100d9aca7ddcd9d085e837c2e8a8c434d63c319f1ebe7",
+      "bytes": 29150,
+      "decoded_sha256": "6fa017546d9e562498c985b9000119156e7db981fdd10156176c50f306ff084d",
+      "decoded_bytes": 225388,
+      "time": 447.3,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 17637
+    },
+    {
+      "file": "cases/heart/u016.bin",
+      "sha256": "e25e25c1541fac4fffb27ce97fd18f6e26d3f6e5b7d4ec23e838bdf24d40306b",
+      "bytes": 28548,
+      "decoded_sha256": "707231e462e47104d49cbeeedfa274fee8e7f7064968ba786ea3a6c3c9f9707e",
+      "decoded_bytes": 225388,
+      "time": 448.23,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 17576
+    },
+    {
+      "file": "cases/heart/u017.bin",
+      "sha256": "8a98976b080e35a36bb7040ff501b9eebe98ca2068b514127ecfdcdc3b33ab5f",
+      "bytes": 28194,
+      "decoded_sha256": "83dc6fe47521b8eda445f5f13661d47352ed42703d3fc329ac837eade6935f75",
+      "decoded_bytes": 225388,
+      "time": 449.16,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 17595
+    },
+    {
+      "file": "cases/heart/u018.bin",
+      "sha256": "cd5fea917a11a9eca411941c6f0c4c26e08556a34e805506c47de02847725958",
+      "bytes": 27872,
+      "decoded_sha256": "c8fcbdf892672f574951322d0acd426741eb07c757b2d8abe154e71d2f3156f6",
+      "decoded_bytes": 225388,
+      "time": 450.08,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 17633
+    },
+    {
+      "file": "cases/heart/u019.bin",
+      "sha256": "d7bff106c9b5a00a054d9ba946505c0410ae79928827146a2fad4fc657a1718c",
+      "bytes": 27624,
+      "decoded_sha256": "8b8f64b026e0e4d52472112bb639b1510c5e2c88e3287c5cd71a9b556fa842a0",
+      "decoded_bytes": 225388,
+      "time": 451.01,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 17779
+    },
+    {
+      "file": "cases/heart/u020.bin",
+      "sha256": "317c975e52a0337e243a4f0a39fc61d4bb8942a89a6a81ccd38d529d65cd1595",
+      "bytes": 27479,
+      "decoded_sha256": "4b01c4a87303b3451bd3384c0da2f727fcbcee0844a009d5841077c81b7db133",
+      "decoded_bytes": 225388,
+      "time": 451.94,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 18027
+    },
+    {
+      "file": "cases/heart/u021.bin",
+      "sha256": "d2318383f3e7d481a8bcd5589cde15e92c6cb5e115adf6a848751849673bbd7d",
+      "bytes": 27249,
+      "decoded_sha256": "55ea1273d9eea306da437b68de35be55b9a26d2ac8aa1062302a808d39dce5df",
+      "decoded_bytes": 225388,
+      "time": 452.87,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 18278
+    },
+    {
+      "file": "cases/heart/u022.bin",
+      "sha256": "4eed2d1d36d700cce7cc41648d2149898e4dbdc0992a640bb68a2acbb82f4e91",
+      "bytes": 27373,
+      "decoded_sha256": "98f04b9ba196d41bc78127add8070e3325769df84f42befe6b92213762e85301",
+      "decoded_bytes": 225388,
+      "time": 453.79,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 18565
+    },
+    {
+      "file": "cases/heart/u023.bin",
+      "sha256": "eb4719d1128e60c063962a995e3e78135c6f8f3c5ab7ac47295f687a507fc621",
+      "bytes": 27400,
+      "decoded_sha256": "7c931684a7810e3a94764f855dd263c19dcc49b86a4fa0fbaf6f7f6ff5070f9e",
+      "decoded_bytes": 225388,
+      "time": 454.72,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 18857
+    },
+    {
+      "file": "cases/heart/u024.bin",
+      "sha256": "4994bd09f726e206d9a171e39af6bb489ae24f93df68710c07af00aebcca7057",
+      "bytes": 27621,
+      "decoded_sha256": "e9ba81af0bfbc64b1adaa54300eb2f37cf0bf44c56c632b89ed84b1c22c7afcb",
+      "decoded_bytes": 225388,
+      "time": 455.65,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 19076
+    },
+    {
+      "file": "cases/heart/u025.bin",
+      "sha256": "9770a8b0e67c8d4d5c062aa59bf47ac7d092ae9dcdcb26080dbd4063cede9666",
+      "bytes": 28000,
+      "decoded_sha256": "c6bc63c64c6224f35cdee02493e32d26c07ee25e18aeeb0c7a51ae50504b8c23",
+      "decoded_bytes": 225388,
+      "time": 456.58,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 19366
+    },
+    {
+      "file": "cases/heart/u026.bin",
+      "sha256": "fe1846b133884f66c4199eafdc305da49782fe83d2ad24531cfd602df5be5d20",
+      "bytes": 28383,
+      "decoded_sha256": "3019246b4a3433404fa461203c271c8537f9ad5add17087ea3c9b5af707feb78",
+      "decoded_bytes": 225388,
+      "time": 457.5,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 19609
+    },
+    {
+      "file": "cases/heart/u027.bin",
+      "sha256": "5eceb3dedef3b7b86f0bf7622963cb496307535e3cf1bbea7574d3c08575f815",
+      "bytes": 28533,
+      "decoded_sha256": "4f090f70ff4a51a9237e4ebe0826b60cc7369958804a118fcae8ae7d47ef1416",
+      "decoded_bytes": 225388,
+      "time": 458.43,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 19895
+    },
+    {
+      "file": "cases/heart/u028.bin",
+      "sha256": "fbabcbc5427dd6afbb8e820d72740d0619fa3660f6c4b6b5a3905ca2b26862db",
+      "bytes": 28956,
+      "decoded_sha256": "8573f0a30e887c8ab12b49c63202435a7415766e6e0af4a1a5d0528453cec67b",
+      "decoded_bytes": 225388,
+      "time": 459.36,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 20166
+    },
+    {
+      "file": "cases/heart/u029.bin",
+      "sha256": "e6c2be065cae78b631b719f96eb14aaa1148298543e7f8000eadf6468d1c7e3f",
+      "bytes": 29202,
+      "decoded_sha256": "a89d3da949b5f1faf7d469d93ca73bc034e3768d7c4752cdc77769d9bc585b45",
+      "decoded_bytes": 225388,
+      "time": 460.29,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 20414
+    },
+    {
+      "file": "cases/heart/u030.bin",
+      "sha256": "170ab2c6d16bf608891450c2b99b9ef3ad0aa76b586f4e58b3ce19cfbe6aeb49",
+      "bytes": 29405,
+      "decoded_sha256": "472b290510c071e22e5d5aaadb79d30d0cffba23804311955b085a7045626f4c",
+      "decoded_bytes": 225388,
+      "time": 461.21,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 20629
+    },
+    {
+      "file": "cases/heart/u031.bin",
+      "sha256": "cf0eba97bfb633c3823ebcad8f1f04acdd009a1d82dbe13d1ba19bab6a8f045c",
+      "bytes": 29632,
+      "decoded_sha256": "37d9d7f380da3a73ccbbb7253cc6a24a3be3acac285ad0f47eb93c6b0b874789",
+      "decoded_bytes": 225388,
+      "time": 462.14,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 20850
+    },
+    {
+      "file": "cases/heart/u032.bin",
+      "sha256": "61eb5a7c049e676a876d2fff056103f92cc4c0155bb96affcab4907a9080cc69",
+      "bytes": 29849,
+      "decoded_sha256": "37ae1ca74a05f0812acfa8806b9dab983c7accd14368c4466604d1188e4a22f7",
+      "decoded_bytes": 225388,
+      "time": 463.07,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 21023
+    },
+    {
+      "file": "cases/heart/u033.bin",
+      "sha256": "6ad7a61df7841f0f2b24c8f711644928dc5b529d58364c4b9cc3b651b4b14c04",
+      "bytes": 30117,
+      "decoded_sha256": "3da21b175672495ebeaa67d870f22a2b10f2ae1461c8cc088c61a30ad62bac22",
+      "decoded_bytes": 225388,
+      "time": 464.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 21226
+    },
+    {
+      "file": "cases/heart/u034.bin",
+      "sha256": "1d47f8e931fee06864cadc130b8ed985b14d2d2b9fea784e6d2389fafe4f5051",
+      "bytes": 30315,
+      "decoded_sha256": "12afd968ce814b5ac87ed0005701f108680211a2430073bec592d140794e0a5f",
+      "decoded_bytes": 225388,
+      "time": 464.92,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 21410
+    },
+    {
+      "file": "cases/heart/u035.bin",
+      "sha256": "2fc226dcaa0a7a2eaecf97b64759d0a69020e29f39eb8fdea1986bafbfac6991",
+      "bytes": 30543,
+      "decoded_sha256": "f311c464acdd8afd36953241be419bcce1887204412034191de746a73445c197",
+      "decoded_bytes": 225388,
+      "time": 465.85,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 voltage u (0..1), C order, x-major display grid, h = 1, deflate",
+      "shape": [
+        58,
+        58,
+        67
+      ],
+      "active_cells": 21602
+    }
+  ],
+  "metrics": [
+    {
+      "id": "timing",
+      "seconds": 206.5
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "Nagumo front (recovery off) vs exact sqrt(kD/2)(1-2a) = 1.4: observed order in h, |p - 2|",
+      "pass": true,
+      "observed": 0.04895312344826408,
+      "limit": 0.1,
+      "rule": "at most",
+      "note": "observed 2.0490"
+    },
+    {
+      "id": "Nagumo front speed, Richardson over h = 0.5 and 0.25, relative error",
+      "pass": true,
+      "observed": 0.00014022705137328728,
+      "limit": 0.001,
+      "rule": "at most"
+    },
+    {
+      "id": "resting state: a small Neumann mode decays at the exact discrete rate, relative error",
+      "pass": true,
+      "observed": 1.7763568394002505e-15,
+      "limit": 1e-06,
+      "rule": "at most"
+    },
+    {
+      "id": "no-flux walls: |sum of the masked Laplacian over the tissue| / sum |u|",
+      "pass": true,
+      "observed": 6.767931118423068e-19,
+      "limit": 1e-12,
+      "rule": "at most"
+    },
+    {
+      "id": "scroll period vs the flat spiral's, relative difference",
+      "pass": true,
+      "observed": 0.004571141764828313,
+      "limit": 0.03,
+      "rule": "at most",
+      "note": "33.389 vs 33.543"
+    },
+    {
+      "id": "every probe beats at the same period: spread / mean",
+      "pass": true,
+      "observed": 0.01167039459197146,
+      "limit": 0.02,
+      "rule": "at most"
+    },
+    {
+      "id": "reproducibility: cells differing on a 2,000-step rerun",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "bounded voltage: tissue values outside [-0.05, 1.05] at the end",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "wall mesh is closed: boundary edges",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "clipping: published values outside the 8-bit range",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    }
+  ],
+  "builder_sha256": "7995f8b3c1ee1e78ddf0e4fe4fc72fc81350f1b5151f7c8c3856e65bbd389a71",
+  "runtime": {
+    "python": "3.13.18",
+    "numpy": "2.5.3"
+  }
+}

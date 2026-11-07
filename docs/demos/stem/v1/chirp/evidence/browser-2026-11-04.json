@@ -1,0 +1,111 @@
+{
+  "schema": "chirp.browser/1",
+  "date": "2026-11-04",
+  "browser": "Playwright MCP headless Chromium",
+  "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3, Unspecified Version)",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "page_sources": {
+    "index.html": "490b4647f4ce375b6f69e74817389a411ed00d23714db36a0fc97ad88e5b6235",
+    "src/app.js": "ad1beb18a23214759e68915d0af4f8379dba3cc6b9299f7b1002569e8b98ca43",
+    "src/app.css": "b11cb0a5c55f1d80f145c487d32f7f956afc00007dd0ab7a6520351d43edb8b0",
+    "scenes/chirp.x3d": "9c922d5138b3e687ed66b1600a06f845511396aea27878d38d23d9ab4958f1c4"
+  },
+  "case_manifests": {
+    "equal": "169266325f7c9b60c10bb7a8cd59a0619a0851fa991818898b3bd70b88eb61ca",
+    "q4": "370c9bf7cb43c915f6923875b9285443fa5bf1b81927f2df9de9a723beaf9813",
+    "eccentric": "65b32ba65fc87e172afd89d3ff73d34ea8d178d78f7b21b2efdc4b7cd2104440"
+  },
+  "wave_cross_check": {
+    "what": "the page computes the wave height at the builder's reference points (three times, twelve points each) from the verified samples; worst relative difference at most 1e-6",
+    "cases": {
+      "equal": {
+        "status": "pass",
+        "worst": 1.9002278948443787e-15,
+        "points": 36
+      },
+      "q4": {
+        "status": "pass",
+        "worst": 7.930839985869012e-16,
+        "points": 36
+      },
+      "eccentric": {
+        "status": "pass",
+        "worst": 5.558999932880275e-16,
+        "points": 36
+      }
+    },
+    "pass": true
+  },
+  "watch": {
+    "what": "slow-motion playback through the scene's TimeSensor: the drawn time advances",
+    "fractions": [
+      0.01802,
+      0.03331,
+      0.04858,
+      0.06347
+    ],
+    "pass": true
+  },
+  "hear": {
+    "what": "both verified audio tracks play; the picture is drawn at the audio's own time (at most 0.05 s apart) and stops when the sound ends",
+    "samples": [
+      {
+        "track": "real",
+        "mode": "hear",
+        "picture_s": 0.9208089999999999,
+        "audio_s": 0.922198,
+        "paused": false
+      },
+      {
+        "track": "real",
+        "mode": "hear",
+        "picture_s": 1.885163,
+        "audio_s": 1.886117,
+        "paused": false
+      },
+      {
+        "track": "real",
+        "mode": "hear",
+        "picture_s": 2.843568,
+        "audio_s": 2.844819,
+        "paused": false
+      },
+      {
+        "track": "up",
+        "mode": "hear",
+        "picture_s": 0.932213,
+        "audio_s": 0.933246,
+        "paused": false
+      },
+      {
+        "track": "up",
+        "mode": "hear",
+        "picture_s": 1.897316,
+        "audio_s": 1.898177,
+        "paused": false
+      },
+      {
+        "track": "up",
+        "mode": "hear",
+        "picture_s": 2.85891,
+        "audio_s": 2.86036,
+        "paused": false
+      }
+    ],
+    "ended": [
+      {
+        "track": "real",
+        "ended_mode": null
+      },
+      {
+        "track": "up",
+        "ended_mode": null
+      }
+    ],
+    "worst_picture_audio_gap_s": 0.0014500000000001734,
+    "pass": true
+  },
+  "console_errors": [],
+  "scope": "One browser on one machine, muted (headless): playback state and clocks, not loudness or what a listener hears; no frame rate is claimed.",
+  "pass": true
+}

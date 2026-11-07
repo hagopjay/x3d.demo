@@ -1,0 +1,3227 @@
+{
+  "schema": "loom.scientific-case/1",
+  "id": "superfluid/reconnection",
+  "kind": "superfluid",
+  "name": "reconnection",
+  "title": "Two rings collide",
+  "line": "Two vortex rings meet off-centre, cut and rejoin into new rings that fly apart, and the snap sends sound through the fluid.",
+  "equation": "i psi_t = -1/2 lap(psi) + (|psi|^2 - 1) psi",
+  "domain": {
+    "shape": [
+      128,
+      128,
+      128
+    ],
+    "units": "healing-length units: sound speed 1, healing length 1/sqrt(2), circulation 2 pi",
+    "boundary": "periodic, L = 64"
+  },
+  "parameters": {
+    "L": 64.0,
+    "dt": 0.05,
+    "grids": [
+      96,
+      128
+    ],
+    "frames": 48,
+    "core_density": 0.25,
+    "events_fine": [
+      [
+        48.5,
+        1
+      ],
+      [
+        49.5,
+        2
+      ]
+    ],
+    "events_coarse": [
+      [
+        47.5,
+        1
+      ],
+      [
+        49.5,
+        2
+      ]
+    ],
+    "reconnection_time": 48.5,
+    "compressible_before": 62.57221999204799,
+    "compressible_after": 97.9508110833517,
+    "explorer": [
+      "Two quantum whirlpools cannot pass through each other. Where they touch, the lines cut and swap partners: one loop for a moment, then two new rings flying off.",
+      "The cut is sudden, and the fluid rings with it: watch the ripples spread across the slice. In superfluid helium, reconnections like this are how turbulence turns into sound."
+    ],
+    "lab": [
+      "Loop count [1, 2] at t = 48.5, 49.5 (128^3) and 47.5, 49.5 (96^3).",
+      "Compressible kinetic energy 62.6 before and 98.0 after (5 to 15 time units either side)."
+    ]
+  },
+  "method": "Strang split-step Fourier (exactly unitary sub-steps); rings from vortex/antivortex pairs in meridional planes, made periodic by a phase ramp and relaxed briefly in imaginary time; vortex lines from the phase winding through grid faces; loops are connected components of the pierced cells.",
+  "limits": [
+    "A zero-temperature, weakly interacting superfluid (Gross-Pitaevskii): no thermal cloud, no dissipation, no normal fluid; real superfluid helium has a core about one angstrom across and is strongly interacting.",
+    "A periodic box: rings feel their images (a measured speed-up of about 2 pi^2 R^2 / L^3), and emitted sound wraps round instead of leaving.",
+    "The rings start from an approximate profile, relaxed briefly in imaginary time; the first few time units carry a small transient.",
+    "Vortex positions come from a grid with spacing 0.5 (0.71 healing lengths): separations below about one cell are not resolved."
+  ],
+  "dependencies": {
+    "tools/gp.py": "a3bbad1a44e7261f29ead37d735f75d7494b12a1b0223a3d6dff3475b6fba1ec"
+  },
+  "external_dependencies": {
+    "lib/stemkit/core.py": "b799990d80948989d6525fdd0c8f16c4eec884e659105fd6bd5750d4cf977600",
+    "lib/stemkit/mesh.py": "fe4ebf154d7f8d7eed0c26ca13c3143678d60c8dbe74de4e7230e78fa1a6e326"
+  },
+  "frames": [
+    {
+      "file": "cases/reconnection/rho000.bin",
+      "sha256": "f9b1fe77b84bc3e1b8fd6e7e3c14b3cda542d666510fa9803b9c52e3f47da4fe",
+      "bytes": 72846,
+      "decoded_sha256": "a2ed18a2f990ef76bb2781478a8955c371ec71a3cdd25995a40a7c032caf1b00",
+      "decoded_bytes": 442368,
+      "time": 30.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2276,
+        "triangles": 4572,
+        "volume": 765.9270773542524
+      }
+    },
+    {
+      "file": "cases/reconnection/rho001.bin",
+      "sha256": "7b11902da1519c2ebe24ffc658613cb3ca4cf87e7b68a60dfd5c94673da5ac3c",
+      "bytes": 73134,
+      "decoded_sha256": "5a9bbe13b8ce7400dca15c5d4c2eba8dc40c12bb48d110ad33106d8b7e9f724f",
+      "decoded_bytes": 442368,
+      "time": 31.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2141,
+        "triangles": 4288,
+        "volume": 754.0739544832768
+      }
+    },
+    {
+      "file": "cases/reconnection/rho002.bin",
+      "sha256": "1743a5afb3e91a85f9559d8305c695438c02db72e15f1e052ed2cb2fcfe8ed48",
+      "bytes": 74335,
+      "decoded_sha256": "90cb961ec74613d4ea97389e835cc52af2fc6d6918e6548dfe5b10ef1bbead91",
+      "decoded_bytes": 442368,
+      "time": 32.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2364,
+        "triangles": 4736,
+        "volume": 777.3520842753696
+      }
+    },
+    {
+      "file": "cases/reconnection/rho003.bin",
+      "sha256": "079dfdfc57e8a80910d7d5a5eb0ebf4578d4a14beca205b346882f3963b8927c",
+      "bytes": 75127,
+      "decoded_sha256": "197a38ac7a846d2d63127e1b51a0e5231a19792ee9127d478379c2c3253a67c9",
+      "decoded_bytes": 442368,
+      "time": 33.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2288,
+        "triangles": 4580,
+        "volume": 785.1023178734428
+      }
+    },
+    {
+      "file": "cases/reconnection/rho004.bin",
+      "sha256": "6114d3438838c85a39985f3768c84137fefdff9662f3b076096de8fdc0f5f0ec",
+      "bytes": 75493,
+      "decoded_sha256": "0dc364b3f3d3d179204238a9865a17ef7e2a47dc85c665ef59d276423252532a",
+      "decoded_bytes": 442368,
+      "time": 34.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2466,
+        "triangles": 4936,
+        "volume": 808.3752985441544
+      }
+    },
+    {
+      "file": "cases/reconnection/rho005.bin",
+      "sha256": "85d071bfc6e33c77ae5907e222916667e2cd1a43d9a8427d7ea6266832e57800",
+      "bytes": 74309,
+      "decoded_sha256": "0c246a960536eb71c602b6ce29961f08551ccc044b6df79ce61fe26cc512d932",
+      "decoded_bytes": 442368,
+      "time": 35.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2326,
+        "triangles": 4660,
+        "volume": 802.6892032071281
+      }
+    },
+    {
+      "file": "cases/reconnection/rho006.bin",
+      "sha256": "79c5620814a62f79667f534860fc436e2e8e82001da423030f3352f3a7916b19",
+      "bytes": 72144,
+      "decoded_sha256": "de1960f598c51fa6ac00b9fcfdfd67e2fb2a0a621e1e2b4c9d94e9111855eea5",
+      "decoded_bytes": 442368,
+      "time": 36.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2438,
+        "triangles": 4880,
+        "volume": 813.2644031415174
+      }
+    },
+    {
+      "file": "cases/reconnection/rho007.bin",
+      "sha256": "848682f5aef79b8bd7a9af496a2bcc8fb4a01a891d707bd406071280cf7e4305",
+      "bytes": 71434,
+      "decoded_sha256": "375d09c184da9d27d1a6a36b69ee90f5e3b17bd827446739d4d7e7143d56d14a",
+      "decoded_bytes": 442368,
+      "time": 37.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2288,
+        "triangles": 4576,
+        "volume": 801.4571683812031
+      }
+    },
+    {
+      "file": "cases/reconnection/rho008.bin",
+      "sha256": "efe88be4253724257a70efe735037ecd5eac8f6335ca989907ec44c3fb24e926",
+      "bytes": 70491,
+      "decoded_sha256": "2d84933570f836814fa297edbc56773a4030458303c233e2ed04a9fe208b2633",
+      "decoded_bytes": 442368,
+      "time": 38.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2436,
+        "triangles": 4888,
+        "volume": 823.0348370702808
+      }
+    },
+    {
+      "file": "cases/reconnection/rho009.bin",
+      "sha256": "9b58ff12fda5e81075cc37329bcbabe9bbcfec03bac72f895bcf890eaa3917c0",
+      "bytes": 70165,
+      "decoded_sha256": "a223179f3117e0caaee61eba53533939569364a26af054090d6bab155644b271",
+      "decoded_bytes": 442368,
+      "time": 39.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2322,
+        "triangles": 4648,
+        "volume": 823.545143649545
+      }
+    },
+    {
+      "file": "cases/reconnection/rho010.bin",
+      "sha256": "f1cf755d74eeb4bbb9ad8700f7411aa215948f1839b594d2d4e3334c71645dc0",
+      "bytes": 69408,
+      "decoded_sha256": "54c0c5e7615310c600cd1f164cf5150286a39ff31c051faf926a92cf0faebc89",
+      "decoded_bytes": 442368,
+      "time": 40.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2501,
+        "triangles": 5024,
+        "volume": 834.1743213622044
+      }
+    },
+    {
+      "file": "cases/reconnection/rho011.bin",
+      "sha256": "c6496b540642e94123c2613636de13666dd2d6eff9e606b05e2e4be80045dd7a",
+      "bytes": 68664,
+      "decoded_sha256": "5da7eb278e9c024e8e38c961bde03e84aafd2bc7ad1006083559235c4f503a46",
+      "decoded_bytes": 442368,
+      "time": 41.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2433,
+        "triangles": 4880,
+        "volume": 828.4787677830824
+      }
+    },
+    {
+      "file": "cases/reconnection/rho012.bin",
+      "sha256": "af86c054ebd9ee07fbd11cf74a9132f1beda0650cabe5a80155ca248fd44346a",
+      "bytes": 66815,
+      "decoded_sha256": "201e7cc53ac63b76d649b424842f8e2876daef9c69d76b6177bbbf9540a26a5f",
+      "decoded_bytes": 442368,
+      "time": 42.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2582,
+        "triangles": 5176,
+        "volume": 853.5491200285338
+      }
+    },
+    {
+      "file": "cases/reconnection/rho013.bin",
+      "sha256": "2232e1109005d4eef7a0c127d76f0da5902f13dce0db896bd774bffbf2663ddc",
+      "bytes": 66315,
+      "decoded_sha256": "8f5a3794a418d17440efa38e806057051bcc02cba7c10a4ab1536d5c3cc14d40",
+      "decoded_bytes": 442368,
+      "time": 43.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2478,
+        "triangles": 4960,
+        "volume": 861.3670970792704
+      }
+    },
+    {
+      "file": "cases/reconnection/rho014.bin",
+      "sha256": "31fc124de7c86e69abb6ab13e3abef6c2a2cc5cf1eb27959e7245a4930572806",
+      "bytes": 66773,
+      "decoded_sha256": "2def23119d8412e06a7748d2ad6aa260314ef3ce7b1d63b14afea80c1ad19cff",
+      "decoded_bytes": 442368,
+      "time": 44.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2740,
+        "triangles": 5484,
+        "volume": 890.6242611461415
+      }
+    },
+    {
+      "file": "cases/reconnection/rho015.bin",
+      "sha256": "3cc4d1c94eaadb65f17c194b5306b6607eabcada9a41233ad4f47601741698b3",
+      "bytes": 67607,
+      "decoded_sha256": "f97ae18dc9ba3976277be71406b6f4e991eb7afd65012cfcd0da5240a396c4fe",
+      "decoded_bytes": 442368,
+      "time": 45.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2630,
+        "triangles": 5268,
+        "volume": 893.6387529209236
+      }
+    },
+    {
+      "file": "cases/reconnection/rho016.bin",
+      "sha256": "14e506bb182e4a891d693d2af0bad8c5a6bd660dbad329aab4589fe72ae7ea0f",
+      "bytes": 67731,
+      "decoded_sha256": "072f2ebd6a4b0d3a311ae849f8d9ced7fed399ef0c34872024f926325815c6ee",
+      "decoded_bytes": 442368,
+      "time": 46.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2860,
+        "triangles": 5756,
+        "volume": 940.4135573688368
+      }
+    },
+    {
+      "file": "cases/reconnection/rho017.bin",
+      "sha256": "5c5eb95dc988e141c3f3e9c8897c19ced07f5a62fca86d84e8ebb5fc874404b9",
+      "bytes": 68678,
+      "decoded_sha256": "6df7c54d21a60d5a1c901bf5ec061c22e9bc1d6eedc9922bb44e77b0bbdb7649",
+      "decoded_bytes": 442368,
+      "time": 47.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2802,
+        "triangles": 5644,
+        "volume": 990.3077305487668
+      }
+    },
+    {
+      "file": "cases/reconnection/rho018.bin",
+      "sha256": "aad0b24bf17dd607c2f69e4bd8a857626182695c25c9b4ab1780c4e49dac5c79",
+      "bytes": 70447,
+      "decoded_sha256": "fa7e570b7a931f7ec57a3ea62010c206acdf822683b66fd5abdc9811d3d7a506",
+      "decoded_bytes": 442368,
+      "time": 48.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2946,
+        "triangles": 5928,
+        "volume": 1049.860374632142
+      }
+    },
+    {
+      "file": "cases/reconnection/rho019.bin",
+      "sha256": "70982705e9687fc64c72ae79db6d4c2fde38f77db481884e46f7163c0e771e21",
+      "bytes": 71777,
+      "decoded_sha256": "038eb43049c23e32012687041e5be138165053794317532a0bb4c7a36328aeb1",
+      "decoded_bytes": 442368,
+      "time": 49.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 1,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2885,
+        "triangles": 5804,
+        "volume": 1081.1119317301002
+      }
+    },
+    {
+      "file": "cases/reconnection/rho020.bin",
+      "sha256": "4a2c20c0847116967e3cebe606be7fce32ef0da7a70f4f3259c541c8a2ed1f3e",
+      "bytes": 73405,
+      "decoded_sha256": "ed14adcd46f82e844b30d3b084df8e6fda5e879988ad38198b3f2a72728fb4a8",
+      "decoded_bytes": 442368,
+      "time": 50.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 3070,
+        "triangles": 6172,
+        "volume": 1084.489938002839
+      }
+    },
+    {
+      "file": "cases/reconnection/rho021.bin",
+      "sha256": "74631a31a67df1991d3ebf3b2d510661691830d655a1e31c0056fe43529dd965",
+      "bytes": 74498,
+      "decoded_sha256": "bb33822450f904a774a94a33cadc5b1750467ca5df7e407bac40945eaa3670fd",
+      "decoded_bytes": 442368,
+      "time": 51.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2872,
+        "triangles": 5748,
+        "volume": 1008.4301701931863
+      }
+    },
+    {
+      "file": "cases/reconnection/rho022.bin",
+      "sha256": "ee4407f7d5037e3c41724bd6a3d7c11e88dc86058adfbcaa9a187f8136b57794",
+      "bytes": 74955,
+      "decoded_sha256": "ace99157a3d4d2fddc437b4b094f58d8e736f9d3908f481acdf4cd98cbd7c525",
+      "decoded_bytes": 442368,
+      "time": 52.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2813,
+        "triangles": 5640,
+        "volume": 981.0101451217755
+      }
+    },
+    {
+      "file": "cases/reconnection/rho023.bin",
+      "sha256": "489b23592d0255485b75489c8c6d3a401c56b49d4a6e342413b5ccafd9e1d82d",
+      "bytes": 75773,
+      "decoded_sha256": "8023ada7132002ef3d4c778cbaef55a6f1ec0a7cb0d3a12f6d0482dfd1d9ad5d",
+      "decoded_bytes": 442368,
+      "time": 53.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2625,
+        "triangles": 5276,
+        "volume": 953.2904365163791
+      }
+    },
+    {
+      "file": "cases/reconnection/rho024.bin",
+      "sha256": "c442bb35951488d2750e3eb12eaaefd09066c718074a066ccd1382052d1e6932",
+      "bytes": 76827,
+      "decoded_sha256": "6b69e6f28778d9849ac56effbb3693bfc88d8b03c668bb1afacdfb97a361194c",
+      "decoded_bytes": 442368,
+      "time": 54.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2703,
+        "triangles": 5436,
+        "volume": 949.6067652551022
+      }
+    },
+    {
+      "file": "cases/reconnection/rho025.bin",
+      "sha256": "f265d72069604f42d6f9273474aa7202a7ca817bcb7d6485b61a4d5465cfd1a6",
+      "bytes": 76164,
+      "decoded_sha256": "1926068e34b67607e83f8575f62848faa0db2d6e879cf0d2279f01620c734d76",
+      "decoded_bytes": 442368,
+      "time": 55.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2712,
+        "triangles": 5436,
+        "volume": 948.6008680042504
+      }
+    },
+    {
+      "file": "cases/reconnection/rho026.bin",
+      "sha256": "5609c5a8bd9340b654764c330008ddcd40cacafc440349ef40b49fa27030ed87",
+      "bytes": 76147,
+      "decoded_sha256": "ea3090a0b360d542d64de07c4a4dcfa0a4847ede869878e7e3932cdb23cb399f",
+      "decoded_bytes": 442368,
+      "time": 56.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2418,
+        "triangles": 4860,
+        "volume": 913.8243455892571
+      }
+    },
+    {
+      "file": "cases/reconnection/rho027.bin",
+      "sha256": "2613e9900b343bfce0c8d27a0a582a5aef33ffce7c9a8145785f85d66a055c91",
+      "bytes": 75979,
+      "decoded_sha256": "5084fc46c1814cdbebbddcb3bd8809a0de15361b0283bf116f26a9eb79deb9f3",
+      "decoded_bytes": 442368,
+      "time": 57.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2596,
+        "triangles": 5196,
+        "volume": 917.7315023440915
+      }
+    },
+    {
+      "file": "cases/reconnection/rho028.bin",
+      "sha256": "7ea38e1fd5d6c9003365a9a2f933375d9668b48c59747576f49212c22fc2f9ca",
+      "bytes": 75979,
+      "decoded_sha256": "e86ac196b14d780d566cc733d165c41035757cbad77cfaf8ac98a27ab8df3ded",
+      "decoded_bytes": 442368,
+      "time": 58.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2428,
+        "triangles": 4864,
+        "volume": 889.3438163901728
+      }
+    },
+    {
+      "file": "cases/reconnection/rho029.bin",
+      "sha256": "db3e944d40860ac9366fca7deed072b789fa5f1bd321a23bdaec34437ef0b202",
+      "bytes": 75893,
+      "decoded_sha256": "d787d128b057cb9e5cdd71f950745bc65f2357efee07b88f1378bcf22888476d",
+      "decoded_bytes": 442368,
+      "time": 59.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2426,
+        "triangles": 4860,
+        "volume": 873.0969307359455
+      }
+    },
+    {
+      "file": "cases/reconnection/rho030.bin",
+      "sha256": "efe795d3603c2a9bb6547ddffaa2a1c52df2311bc6a22e9da3238e57357b38eb",
+      "bytes": 76386,
+      "decoded_sha256": "1fe975b15ad940dca61dd7024268c2d78b166aee33c36b7dcd1892d36f6d54fc",
+      "decoded_bytes": 442368,
+      "time": 60.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2335,
+        "triangles": 4676,
+        "volume": 850.4452856506417
+      }
+    },
+    {
+      "file": "cases/reconnection/rho031.bin",
+      "sha256": "ff65cc5f23948148194f9b008283550464f3553e5c8ffb3070d0d501876445de",
+      "bytes": 76742,
+      "decoded_sha256": "32af8194623fe9da205a44d53416099f0064cc6aff3ebde474544b84c2f13124",
+      "decoded_bytes": 442368,
+      "time": 61.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2452,
+        "triangles": 4924,
+        "volume": 852.7882581012077
+      }
+    },
+    {
+      "file": "cases/reconnection/rho032.bin",
+      "sha256": "d17a296dba5e0835a87d168eb6bac99075658b93e6a8307941be2fb5229114e3",
+      "bytes": 76972,
+      "decoded_sha256": "396b2ee3d4f64d30c9b591f0f542f0907c9ef7ac8d441282655dd7f262de3920",
+      "decoded_bytes": 442368,
+      "time": 62.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2378,
+        "triangles": 4760,
+        "volume": 845.4979906225586
+      }
+    },
+    {
+      "file": "cases/reconnection/rho033.bin",
+      "sha256": "0cb3183e809c4427fd44dcb69b3832d91548ff997d7f62c0f182cd8c61ed64d2",
+      "bytes": 76845,
+      "decoded_sha256": "9cf4cb44c19644496a0d6250f92a39977cf58d2c3b4af4e97164295ed4343e6c",
+      "decoded_bytes": 442368,
+      "time": 63.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2476,
+        "triangles": 4968,
+        "volume": 861.6805159679219
+      }
+    },
+    {
+      "file": "cases/reconnection/rho034.bin",
+      "sha256": "bf8a16edc2e5e8c8df9099968b28e1305c3a608c22d912c46ed296af7ec654a8",
+      "bytes": 76343,
+      "decoded_sha256": "0719a323a55bb657e1f51462b7d00b94700352cddb27612351e08154e2fc77c2",
+      "decoded_bytes": 442368,
+      "time": 64.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2535,
+        "triangles": 5076,
+        "volume": 882.6041816698868
+      }
+    },
+    {
+      "file": "cases/reconnection/rho035.bin",
+      "sha256": "cdba5206f12b4c4dc9a77b1afc9a1e87724f779c48e1361c6118037aaef0f121",
+      "bytes": 78289,
+      "decoded_sha256": "cca794475ec83ef22fb683053630e3c9fa36c9afe54c874d66265760d7ae001b",
+      "decoded_bytes": 442368,
+      "time": 65.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2390,
+        "triangles": 4784,
+        "volume": 883.9861260364991
+      }
+    },
+    {
+      "file": "cases/reconnection/rho036.bin",
+      "sha256": "9a5ea2db8c6bf0698e1b8fdb12206ab73eb3a3b25e32c17db6abe6200ae9f38a",
+      "bytes": 79009,
+      "decoded_sha256": "7e8274f3936e4c4f1e92d9584822954977e336e428ab1811ebe860ad6d6ffcb6",
+      "decoded_bytes": 442368,
+      "time": 66.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2606,
+        "triangles": 5216,
+        "volume": 905.9427911416313
+      }
+    },
+    {
+      "file": "cases/reconnection/rho037.bin",
+      "sha256": "d36f8b5c37e9cbc22d1dac07f9ea95ff09016ca4f80af2ab2d0ecbbc0a10760e",
+      "bytes": 79195,
+      "decoded_sha256": "c54cb9dc736a141b512fd98ca4857f6c2ad03b9b14664065d1bd04e142c0c270",
+      "decoded_bytes": 442368,
+      "time": 67.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2430,
+        "triangles": 4868,
+        "volume": 874.5043729884595
+      }
+    },
+    {
+      "file": "cases/reconnection/rho038.bin",
+      "sha256": "ef9fd9ff303b08a78ab437fe28c1eeb1cceb6308338974a2d5f70fbb9b6f6039",
+      "bytes": 80940,
+      "decoded_sha256": "550bd877d63aa88ca4135ca58bce4b6d31d43b0224bcc262f05ac2c85bb070ac",
+      "decoded_bytes": 442368,
+      "time": 68.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2432,
+        "triangles": 4872,
+        "volume": 848.161216434787
+      }
+    },
+    {
+      "file": "cases/reconnection/rho039.bin",
+      "sha256": "024b16244657c80eeabeae522c673ca3f8f5364d543f4a6aa672a074f734705b",
+      "bytes": 82258,
+      "decoded_sha256": "dd7bf5e2f9fcd83b860e3b13db338bfc33ac696ed79606346ea94dca4944ae06",
+      "decoded_bytes": 442368,
+      "time": 69.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2526,
+        "triangles": 5068,
+        "volume": 832.6930845075482
+      }
+    },
+    {
+      "file": "cases/reconnection/rho040.bin",
+      "sha256": "5e04fee1d25060b4696215ebd424b05df7baf0e79b9a684a78207da5c1293bf3",
+      "bytes": 84950,
+      "decoded_sha256": "a9067db6f8f7f8127af91601b070dc58c8b51603e27c18149edb4c4b1439bde9",
+      "decoded_bytes": 442368,
+      "time": 70.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2360,
+        "triangles": 4720,
+        "volume": 801.2432800353764
+      }
+    },
+    {
+      "file": "cases/reconnection/rho041.bin",
+      "sha256": "1a10c5186517017bf314428dfd6c5dc8cd11024a91f61d67e8b9d83dd0d1105b",
+      "bytes": 86454,
+      "decoded_sha256": "9ea7cf93037dd933339f62b954e07c324b3edccde13eb11b33a227fe90e97280",
+      "decoded_bytes": 442368,
+      "time": 71.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2430,
+        "triangles": 4872,
+        "volume": 798.9748320706298
+      }
+    },
+    {
+      "file": "cases/reconnection/rho042.bin",
+      "sha256": "1e8fa1f4f5dfa42eaa724cf6eb3c29902411d0cc4a8c65f3601266767b0bc140",
+      "bytes": 87855,
+      "decoded_sha256": "fb6b7e7b4642ab9ec3ad08caa13da27060598a88f3ce40b3b5db0ef72cd73b23",
+      "decoded_bytes": 442368,
+      "time": 72.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2494,
+        "triangles": 4996,
+        "volume": 805.1557535748346
+      }
+    },
+    {
+      "file": "cases/reconnection/rho043.bin",
+      "sha256": "cad23dab8656fd2dae1a8529d8794f683e020426970a80b5d04a0f071487b7e4",
+      "bytes": 88863,
+      "decoded_sha256": "10e535dc1e04a09b5a07fe7da61406c8786799bd551a0873abf180d23636b6cf",
+      "decoded_bytes": 442368,
+      "time": 73.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2421,
+        "triangles": 4860,
+        "volume": 798.5884963564562
+      }
+    },
+    {
+      "file": "cases/reconnection/rho044.bin",
+      "sha256": "94781795b82cd0866b391fa1ad6bd4e4acd239ba523dbe59ec2e3842afd8c5f6",
+      "bytes": 89534,
+      "decoded_sha256": "d66f3932bf034537d939ca7b8b9ee78645d98a4ae9faf780fbed20a4b0c35ba7",
+      "decoded_bytes": 442368,
+      "time": 74.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2398,
+        "triangles": 4816,
+        "volume": 803.7334071374559
+      }
+    },
+    {
+      "file": "cases/reconnection/rho045.bin",
+      "sha256": "21cb57b4163b963153e5645fef3733291fc9faa315ac40429ba16cd617fd1628",
+      "bytes": 90842,
+      "decoded_sha256": "a368f2d3003a498cf878be506edc4347029f79ac39c5b10d7078539663e72c7e",
+      "decoded_bytes": 442368,
+      "time": 75.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2432,
+        "triangles": 4876,
+        "volume": 814.8273764899614
+      }
+    },
+    {
+      "file": "cases/reconnection/rho046.bin",
+      "sha256": "ea3495790e02b14b894a0bc48954c6e81db204b99ae3195c1a1d2692867f39df",
+      "bytes": 91849,
+      "decoded_sha256": "acf3bc38130e1829f3c644df43cd0bb05af27a88503268adb83459c32b2dced0",
+      "decoded_bytes": 442368,
+      "time": 76.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2436,
+        "triangles": 4880,
+        "volume": 828.1482037785366
+      }
+    },
+    {
+      "file": "cases/reconnection/rho047.bin",
+      "sha256": "128e0f20700ac48a3c61b618c2d6b49b8f951494452ce339e8fdcd591e7c1615",
+      "bytes": 91619,
+      "decoded_sha256": "8cd4332b4feae3bdabe0ad1658c072eecc406c1e223c32ee4b1c1e18b7ba5c2c",
+      "decoded_bytes": 442368,
+      "time": 77.0,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078431372549,
+      "encoding": "uint8 density / 1.25, C order, cropped grid, deflate",
+      "shape": [
+        96,
+        96,
+        48
+      ],
+      "origin": [
+        -23.75,
+        -23.75,
+        -11.75
+      ],
+      "h": 0.5,
+      "slice_k": 24,
+      "loops": 2,
+      "mesh": {
+        "iso": 0.75,
+        "vertices": 2440,
+        "triangles": 4884,
+        "volume": 837.0901300791135
+      }
+    }
+  ],
+  "metrics": [
+    {
+      "id": "loops n=96",
+      "samples": [
+        [
+          0.0,
+          2
+        ],
+        [
+          0.5,
+          2
+        ],
+        [
+          1.0,
+          2
+        ],
+        [
+          1.5,
+          2
+        ],
+        [
+          2.0,
+          2
+        ],
+        [
+          2.5,
+          2
+        ],
+        [
+          3.0,
+          2
+        ],
+        [
+          3.5,
+          2
+        ],
+        [
+          4.0,
+          2
+        ],
+        [
+          4.5,
+          2
+        ],
+        [
+          5.0,
+          2
+        ],
+        [
+          5.5,
+          2
+        ],
+        [
+          6.0,
+          2
+        ],
+        [
+          6.5,
+          2
+        ],
+        [
+          7.0,
+          2
+        ],
+        [
+          7.5,
+          2
+        ],
+        [
+          8.0,
+          2
+        ],
+        [
+          8.5,
+          2
+        ],
+        [
+          9.0,
+          2
+        ],
+        [
+          9.5,
+          2
+        ],
+        [
+          10.0,
+          2
+        ],
+        [
+          10.5,
+          2
+        ],
+        [
+          11.0,
+          2
+        ],
+        [
+          11.5,
+          2
+        ],
+        [
+          12.0,
+          2
+        ],
+        [
+          12.5,
+          2
+        ],
+        [
+          13.0,
+          2
+        ],
+        [
+          13.5,
+          2
+        ],
+        [
+          14.0,
+          2
+        ],
+        [
+          14.5,
+          2
+        ],
+        [
+          15.0,
+          2
+        ],
+        [
+          15.5,
+          2
+        ],
+        [
+          16.0,
+          2
+        ],
+        [
+          16.5,
+          2
+        ],
+        [
+          17.0,
+          2
+        ],
+        [
+          17.5,
+          2
+        ],
+        [
+          18.0,
+          2
+        ],
+        [
+          18.5,
+          2
+        ],
+        [
+          19.0,
+          2
+        ],
+        [
+          19.5,
+          2
+        ],
+        [
+          20.0,
+          2
+        ],
+        [
+          20.5,
+          2
+        ],
+        [
+          21.0,
+          2
+        ],
+        [
+          21.5,
+          2
+        ],
+        [
+          22.0,
+          2
+        ],
+        [
+          22.5,
+          2
+        ],
+        [
+          23.0,
+          2
+        ],
+        [
+          23.5,
+          2
+        ],
+        [
+          24.0,
+          2
+        ],
+        [
+          24.5,
+          2
+        ],
+        [
+          25.0,
+          2
+        ],
+        [
+          25.5,
+          2
+        ],
+        [
+          26.0,
+          2
+        ],
+        [
+          26.5,
+          2
+        ],
+        [
+          27.0,
+          2
+        ],
+        [
+          27.5,
+          2
+        ],
+        [
+          28.0,
+          2
+        ],
+        [
+          28.5,
+          2
+        ],
+        [
+          29.0,
+          2
+        ],
+        [
+          29.5,
+          2
+        ],
+        [
+          30.0,
+          2
+        ],
+        [
+          30.5,
+          2
+        ],
+        [
+          31.0,
+          2
+        ],
+        [
+          31.5,
+          2
+        ],
+        [
+          32.0,
+          2
+        ],
+        [
+          32.5,
+          2
+        ],
+        [
+          33.0,
+          2
+        ],
+        [
+          33.5,
+          2
+        ],
+        [
+          34.0,
+          2
+        ],
+        [
+          34.5,
+          2
+        ],
+        [
+          35.0,
+          2
+        ],
+        [
+          35.5,
+          2
+        ],
+        [
+          36.0,
+          2
+        ],
+        [
+          36.5,
+          2
+        ],
+        [
+          37.0,
+          2
+        ],
+        [
+          37.5,
+          2
+        ],
+        [
+          38.0,
+          2
+        ],
+        [
+          38.5,
+          2
+        ],
+        [
+          39.0,
+          2
+        ],
+        [
+          39.5,
+          2
+        ],
+        [
+          40.0,
+          2
+        ],
+        [
+          40.5,
+          2
+        ],
+        [
+          41.0,
+          2
+        ],
+        [
+          41.5,
+          2
+        ],
+        [
+          42.0,
+          2
+        ],
+        [
+          42.5,
+          2
+        ],
+        [
+          43.0,
+          2
+        ],
+        [
+          43.5,
+          2
+        ],
+        [
+          44.0,
+          2
+        ],
+        [
+          44.5,
+          2
+        ],
+        [
+          45.0,
+          2
+        ],
+        [
+          45.5,
+          2
+        ],
+        [
+          46.0,
+          2
+        ],
+        [
+          46.5,
+          2
+        ],
+        [
+          47.0,
+          2
+        ],
+        [
+          47.5,
+          1
+        ],
+        [
+          48.0,
+          1
+        ],
+        [
+          48.5,
+          1
+        ],
+        [
+          49.0,
+          1
+        ],
+        [
+          49.5,
+          2
+        ],
+        [
+          50.0,
+          2
+        ],
+        [
+          50.5,
+          2
+        ],
+        [
+          51.0,
+          2
+        ],
+        [
+          51.5,
+          2
+        ],
+        [
+          52.0,
+          2
+        ],
+        [
+          52.5,
+          2
+        ],
+        [
+          53.0,
+          2
+        ],
+        [
+          53.5,
+          2
+        ],
+        [
+          54.0,
+          2
+        ],
+        [
+          54.5,
+          2
+        ],
+        [
+          55.0,
+          2
+        ],
+        [
+          55.5,
+          2
+        ],
+        [
+          56.0,
+          2
+        ],
+        [
+          56.5,
+          2
+        ],
+        [
+          57.0,
+          2
+        ],
+        [
+          57.5,
+          2
+        ],
+        [
+          58.0,
+          2
+        ],
+        [
+          58.5,
+          2
+        ],
+        [
+          59.0,
+          2
+        ],
+        [
+          59.5,
+          2
+        ],
+        [
+          60.0,
+          2
+        ],
+        [
+          60.5,
+          2
+        ],
+        [
+          61.0,
+          2
+        ],
+        [
+          61.5,
+          2
+        ],
+        [
+          62.0,
+          2
+        ],
+        [
+          62.5,
+          2
+        ],
+        [
+          63.0,
+          2
+        ],
+        [
+          63.5,
+          2
+        ],
+        [
+          64.0,
+          2
+        ],
+        [
+          64.5,
+          2
+        ],
+        [
+          65.0,
+          2
+        ],
+        [
+          65.5,
+          2
+        ],
+        [
+          66.0,
+          2
+        ],
+        [
+          66.5,
+          2
+        ],
+        [
+          67.0,
+          2
+        ],
+        [
+          67.5,
+          2
+        ],
+        [
+          68.0,
+          2
+        ],
+        [
+          68.5,
+          2
+        ],
+        [
+          69.0,
+          2
+        ],
+        [
+          69.5,
+          2
+        ],
+        [
+          70.0,
+          2
+        ],
+        [
+          70.5,
+          2
+        ],
+        [
+          71.0,
+          2
+        ],
+        [
+          71.5,
+          2
+        ],
+        [
+          72.0,
+          2
+        ],
+        [
+          72.5,
+          2
+        ],
+        [
+          73.0,
+          2
+        ],
+        [
+          73.5,
+          2
+        ],
+        [
+          74.0,
+          2
+        ],
+        [
+          74.5,
+          2
+        ],
+        [
+          75.0,
+          2
+        ],
+        [
+          75.5,
+          2
+        ],
+        [
+          76.0,
+          2
+        ],
+        [
+          76.5,
+          2
+        ],
+        [
+          77.0,
+          2
+        ],
+        [
+          77.5,
+          2
+        ],
+        [
+          78.0,
+          2
+        ],
+        [
+          78.5,
+          2
+        ],
+        [
+          79.0,
+          2
+        ],
+        [
+          79.5,
+          2
+        ],
+        [
+          80.0,
+          2
+        ],
+        [
+          80.5,
+          2
+        ],
+        [
+          81.0,
+          2
+        ],
+        [
+          81.5,
+          2
+        ],
+        [
+          82.0,
+          2
+        ],
+        [
+          82.5,
+          2
+        ],
+        [
+          83.0,
+          2
+        ],
+        [
+          83.5,
+          2
+        ],
+        [
+          84.0,
+          2
+        ],
+        [
+          84.5,
+          2
+        ],
+        [
+          85.0,
+          2
+        ],
+        [
+          85.5,
+          2
+        ],
+        [
+          86.0,
+          2
+        ],
+        [
+          86.5,
+          2
+        ],
+        [
+          87.0,
+          2
+        ],
+        [
+          87.5,
+          2
+        ],
+        [
+          88.0,
+          2
+        ],
+        [
+          88.5,
+          2
+        ],
+        [
+          89.0,
+          2
+        ],
+        [
+          89.5,
+          2
+        ],
+        [
+          90.0,
+          2
+        ]
+      ]
+    },
+    {
+      "id": "loops n=128",
+      "samples": [
+        [
+          0.0,
+          2
+        ],
+        [
+          0.5,
+          2
+        ],
+        [
+          1.0,
+          2
+        ],
+        [
+          1.5,
+          2
+        ],
+        [
+          2.0,
+          2
+        ],
+        [
+          2.5,
+          2
+        ],
+        [
+          3.0,
+          2
+        ],
+        [
+          3.5,
+          2
+        ],
+        [
+          4.0,
+          2
+        ],
+        [
+          4.5,
+          2
+        ],
+        [
+          5.0,
+          2
+        ],
+        [
+          5.5,
+          2
+        ],
+        [
+          6.0,
+          2
+        ],
+        [
+          6.5,
+          2
+        ],
+        [
+          7.0,
+          2
+        ],
+        [
+          7.5,
+          2
+        ],
+        [
+          8.0,
+          2
+        ],
+        [
+          8.5,
+          2
+        ],
+        [
+          9.0,
+          2
+        ],
+        [
+          9.5,
+          2
+        ],
+        [
+          10.0,
+          2
+        ],
+        [
+          10.5,
+          2
+        ],
+        [
+          11.0,
+          2
+        ],
+        [
+          11.5,
+          2
+        ],
+        [
+          12.0,
+          2
+        ],
+        [
+          12.5,
+          2
+        ],
+        [
+          13.0,
+          2
+        ],
+        [
+          13.5,
+          2
+        ],
+        [
+          14.0,
+          2
+        ],
+        [
+          14.5,
+          2
+        ],
+        [
+          15.0,
+          2
+        ],
+        [
+          15.5,
+          2
+        ],
+        [
+          16.0,
+          2
+        ],
+        [
+          16.5,
+          2
+        ],
+        [
+          17.0,
+          2
+        ],
+        [
+          17.5,
+          2
+        ],
+        [
+          18.0,
+          2
+        ],
+        [
+          18.5,
+          2
+        ],
+        [
+          19.0,
+          2
+        ],
+        [
+          19.5,
+          2
+        ],
+        [
+          20.0,
+          2
+        ],
+        [
+          20.5,
+          2
+        ],
+        [
+          21.0,
+          2
+        ],
+        [
+          21.5,
+          2
+        ],
+        [
+          22.0,
+          2
+        ],
+        [
+          22.5,
+          2
+        ],
+        [
+          23.0,
+          2
+        ],
+        [
+          23.5,
+          2
+        ],
+        [
+          24.0,
+          2
+        ],
+        [
+          24.5,
+          2
+        ],
+        [
+          25.0,
+          2
+        ],
+        [
+          25.5,
+          2
+        ],
+        [
+          26.0,
+          2
+        ],
+        [
+          26.5,
+          2
+        ],
+        [
+          27.0,
+          2
+        ],
+        [
+          27.5,
+          2
+        ],
+        [
+          28.0,
+          2
+        ],
+        [
+          28.5,
+          2
+        ],
+        [
+          29.0,
+          2
+        ],
+        [
+          29.5,
+          2
+        ],
+        [
+          30.0,
+          2
+        ],
+        [
+          30.5,
+          2
+        ],
+        [
+          31.0,
+          2
+        ],
+        [
+          31.5,
+          2
+        ],
+        [
+          32.0,
+          2
+        ],
+        [
+          32.5,
+          2
+        ],
+        [
+          33.0,
+          2
+        ],
+        [
+          33.5,
+          2
+        ],
+        [
+          34.0,
+          2
+        ],
+        [
+          34.5,
+          2
+        ],
+        [
+          35.0,
+          2
+        ],
+        [
+          35.5,
+          2
+        ],
+        [
+          36.0,
+          2
+        ],
+        [
+          36.5,
+          2
+        ],
+        [
+          37.0,
+          2
+        ],
+        [
+          37.5,
+          2
+        ],
+        [
+          38.0,
+          2
+        ],
+        [
+          38.5,
+          2
+        ],
+        [
+          39.0,
+          2
+        ],
+        [
+          39.5,
+          2
+        ],
+        [
+          40.0,
+          2
+        ],
+        [
+          40.5,
+          2
+        ],
+        [
+          41.0,
+          2
+        ],
+        [
+          41.5,
+          2
+        ],
+        [
+          42.0,
+          2
+        ],
+        [
+          42.5,
+          2
+        ],
+        [
+          43.0,
+          2
+        ],
+        [
+          43.5,
+          2
+        ],
+        [
+          44.0,
+          2
+        ],
+        [
+          44.5,
+          2
+        ],
+        [
+          45.0,
+          2
+        ],
+        [
+          45.5,
+          2
+        ],
+        [
+          46.0,
+          2
+        ],
+        [
+          46.5,
+          2
+        ],
+        [
+          47.0,
+          2
+        ],
+        [
+          47.5,
+          2
+        ],
+        [
+          48.0,
+          2
+        ],
+        [
+          48.5,
+          1
+        ],
+        [
+          49.0,
+          1
+        ],
+        [
+          49.5,
+          2
+        ],
+        [
+          50.0,
+          2
+        ],
+        [
+          50.5,
+          2
+        ],
+        [
+          51.0,
+          2
+        ],
+        [
+          51.5,
+          2
+        ],
+        [
+          52.0,
+          2
+        ],
+        [
+          52.5,
+          2
+        ],
+        [
+          53.0,
+          2
+        ],
+        [
+          53.5,
+          2
+        ],
+        [
+          54.0,
+          2
+        ],
+        [
+          54.5,
+          2
+        ],
+        [
+          55.0,
+          2
+        ],
+        [
+          55.5,
+          2
+        ],
+        [
+          56.0,
+          2
+        ],
+        [
+          56.5,
+          2
+        ],
+        [
+          57.0,
+          2
+        ],
+        [
+          57.5,
+          2
+        ],
+        [
+          58.0,
+          2
+        ],
+        [
+          58.5,
+          2
+        ],
+        [
+          59.0,
+          2
+        ],
+        [
+          59.5,
+          2
+        ],
+        [
+          60.0,
+          2
+        ],
+        [
+          60.5,
+          2
+        ],
+        [
+          61.0,
+          2
+        ],
+        [
+          61.5,
+          2
+        ],
+        [
+          62.0,
+          2
+        ],
+        [
+          62.5,
+          2
+        ],
+        [
+          63.0,
+          2
+        ],
+        [
+          63.5,
+          2
+        ],
+        [
+          64.0,
+          2
+        ],
+        [
+          64.5,
+          2
+        ],
+        [
+          65.0,
+          2
+        ],
+        [
+          65.5,
+          2
+        ],
+        [
+          66.0,
+          2
+        ],
+        [
+          66.5,
+          2
+        ],
+        [
+          67.0,
+          2
+        ],
+        [
+          67.5,
+          2
+        ],
+        [
+          68.0,
+          2
+        ],
+        [
+          68.5,
+          2
+        ],
+        [
+          69.0,
+          2
+        ],
+        [
+          69.5,
+          2
+        ],
+        [
+          70.0,
+          2
+        ],
+        [
+          70.5,
+          2
+        ],
+        [
+          71.0,
+          2
+        ],
+        [
+          71.5,
+          2
+        ],
+        [
+          72.0,
+          2
+        ],
+        [
+          72.5,
+          2
+        ],
+        [
+          73.0,
+          2
+        ],
+        [
+          73.5,
+          2
+        ],
+        [
+          74.0,
+          2
+        ],
+        [
+          74.5,
+          2
+        ],
+        [
+          75.0,
+          2
+        ],
+        [
+          75.5,
+          2
+        ],
+        [
+          76.0,
+          2
+        ],
+        [
+          76.5,
+          2
+        ],
+        [
+          77.0,
+          2
+        ],
+        [
+          77.5,
+          2
+        ],
+        [
+          78.0,
+          2
+        ],
+        [
+          78.5,
+          2
+        ],
+        [
+          79.0,
+          2
+        ],
+        [
+          79.5,
+          2
+        ],
+        [
+          80.0,
+          2
+        ],
+        [
+          80.5,
+          2
+        ],
+        [
+          81.0,
+          2
+        ],
+        [
+          81.5,
+          2
+        ],
+        [
+          82.0,
+          2
+        ],
+        [
+          82.5,
+          2
+        ],
+        [
+          83.0,
+          2
+        ],
+        [
+          83.5,
+          2
+        ],
+        [
+          84.0,
+          2
+        ],
+        [
+          84.5,
+          2
+        ],
+        [
+          85.0,
+          2
+        ],
+        [
+          85.5,
+          2
+        ],
+        [
+          86.0,
+          2
+        ],
+        [
+          86.5,
+          2
+        ],
+        [
+          87.0,
+          2
+        ],
+        [
+          87.5,
+          2
+        ],
+        [
+          88.0,
+          2
+        ],
+        [
+          88.5,
+          2
+        ],
+        [
+          89.0,
+          2
+        ],
+        [
+          89.5,
+          2
+        ],
+        [
+          90.0,
+          2
+        ]
+      ]
+    },
+    {
+      "id": "compressible energy n=96",
+      "samples": [
+        [
+          0.0,
+          127.55763237068291
+        ],
+        [
+          5.0,
+          60.16638454492944
+        ],
+        [
+          10.0,
+          32.88732176344075
+        ],
+        [
+          15.0,
+          46.78006721093043
+        ],
+        [
+          20.0,
+          57.81349949794297
+        ],
+        [
+          25.0,
+          74.74236530773112
+        ],
+        [
+          30.0,
+          73.81797275805874
+        ],
+        [
+          35.0,
+          59.655318556855065
+        ],
+        [
+          40.0,
+          66.48471521882963
+        ],
+        [
+          45.0,
+          64.26315984536454
+        ],
+        [
+          50.0,
+          63.16892229941385
+        ],
+        [
+          55.0,
+          89.29699702842395
+        ],
+        [
+          60.0,
+          107.26480249767633
+        ],
+        [
+          65.0,
+          119.92593314651462
+        ],
+        [
+          70.0,
+          119.36055810279828
+        ],
+        [
+          75.0,
+          82.57332019504386
+        ],
+        [
+          80.0,
+          65.86301453482379
+        ],
+        [
+          85.0,
+          95.27114579289939
+        ],
+        [
+          90.0,
+          128.6913310229964
+        ]
+      ]
+    },
+    {
+      "id": "compressible energy n=128",
+      "samples": [
+        [
+          0.0,
+          127.73594193388723
+        ],
+        [
+          5.0,
+          60.721630659268115
+        ],
+        [
+          10.0,
+          32.83716049438969
+        ],
+        [
+          15.0,
+          46.78772539080727
+        ],
+        [
+          20.0,
+          57.48583681936417
+        ],
+        [
+          25.0,
+          74.35971854933847
+        ],
+        [
+          30.0,
+          73.80714013550224
+        ],
+        [
+          35.0,
+          58.66110566259394
+        ],
+        [
+          40.0,
+          66.48333432150204
+        ],
+        [
+          45.0,
+          63.06542207717318
+        ],
+        [
+          50.0,
+          62.03767078481454
+        ],
+        [
+          55.0,
+          89.90462058574667
+        ],
+        [
+          60.0,
+          105.99700158095672
+        ],
+        [
+          65.0,
+          120.16491022657542
+        ],
+        [
+          70.0,
+          119.33533779122493
+        ],
+        [
+          75.0,
+          81.12669279663547
+        ],
+        [
+          80.0,
+          65.14859214732796
+        ],
+        [
+          85.0,
+          94.91227120101229
+        ],
+        [
+          90.0,
+          128.8180717829223
+        ]
+      ]
+    },
+    {
+      "id": "timing",
+      "seconds": 694.4
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "sound: small waves vs the Bogoliubov dispersion omega = k sqrt(1 + k^2/4), worst relative error (3 wavenumbers)",
+      "pass": true,
+      "observed": 0.000107384933797805,
+      "limit": 0.001,
+      "rule": "at most"
+    },
+    {
+      "id": "sound: observed order in dt of that error (largest k), |p - 2|",
+      "pass": true,
+      "observed": 0.00046585018178957327,
+      "limit": 0.2,
+      "rule": "at most",
+      "note": "observed 2.000"
+    },
+    {
+      "id": "topology agrees between grids: loop-count sequences differ (0 = same)",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most",
+      "note": "96^3 [1, 2], 128^3 [1, 2]"
+    },
+    {
+      "id": "topology agrees between grids: worst event-time difference (time units)",
+      "pass": true,
+      "observed": 1.0,
+      "limit": 1.5,
+      "rule": "at most"
+    },
+    {
+      "id": "a reconnection happened: loop-count changes on the fine grid",
+      "pass": true,
+      "observed": 2.0,
+      "limit": 1.0,
+      "rule": "at least"
+    },
+    {
+      "id": "sound: compressible kinetic energy after / before the reconnection (5 to 15 time units either side)",
+      "pass": true,
+      "observed": 1.5654041217620185,
+      "limit": 1.2,
+      "rule": "at least"
+    },
+    {
+      "id": "norm conserved (exactly unitary steps), worst grid, relative",
+      "pass": true,
+      "observed": 4.584110868677271e-13,
+      "limit": 1e-12,
+      "rule": "at most"
+    },
+    {
+      "id": "energy drift, worst grid, relative",
+      "pass": true,
+      "observed": 6.9923751703226955e-06,
+      "limit": 0.0001,
+      "rule": "at most"
+    },
+    {
+      "id": "closed core meshes: boundary edges over all frames",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "display quantization (8-bit): core-surface shift p99, worst frame (cells)",
+      "pass": true,
+      "observed": 0.008977709519553697,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "clipping: density above the 8-bit range",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    }
+  ],
+  "builder_sha256": "ee9225ed8aa639b0054d5013576d4f4eac0c809025470525cb8cdad271dbe410",
+  "runtime": {
+    "python": "3.13.18",
+    "numpy": "2.5.3"
+  }
+}
