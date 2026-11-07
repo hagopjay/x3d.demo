@@ -7,6 +7,7 @@ The demo doc is the page served at the site root. Every version is kept: `docs/v
 - Demo 4, the manifold, is now hosted too (`docs/demos/manifold/v1/`, from the repository's `studies/manifold`; five key files identical by hash to the original site). The debrief's comparison frames and the builders are left out of this copy.
 - X_ITE twin of Neural Canvas (`docs/demos/brain-torso-xite/v1/`): the page the WebGPU version was ported from, X_ITE 16.6.0 bundled, same notices. Demo 1 links the collider's X_ITE twin on the dirac Pages site.
 - Demos 1 to 3 (WebGPU) unchanged.
+- Fix after merge: the X_ITE twin's bundled X_ITE files were left out of the first push by the page's own `.gitignore` (the page worked through its CDN fallback). They are now in `docs/demos/brain-torso-xite/v1/vendor/` and the ignore file is removed from the hosted copy. No page file changed.
 
 ## v6 (2026-11-07)
 - Demo 4: Manifold of emotion (X3D 4.0, drawn by X_ITE 16.5.1, not WebGPU). It lives on a sibling repository, x3d.STEM, so the doc links out to it and shows a screenshot (`docs/assets/manifold.jpg`, drawn on a software GPU, status strip cropped out). Nothing from it is copied into this repository.
