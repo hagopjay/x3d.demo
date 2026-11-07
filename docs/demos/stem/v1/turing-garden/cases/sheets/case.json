@@ -1,0 +1,1191 @@
+{
+  "schema": "loom.scientific-case/1",
+  "id": "turing-garden/sheets",
+  "kind": "turing-garden",
+  "name": "sheets",
+  "title": "Perforated sheets",
+  "line": "What draws a maze in 2D stacks into layers in 3D, pierced by holes.",
+  "equation": "u_t = Du lap(u) - u v^2 + F (1 - u);  v_t = Dv lap(v) + u v^2 - (F + k) v",
+  "domain": {
+    "shape": [
+      64,
+      64,
+      64
+    ],
+    "units": "grid cells (dx = 1) and model time units",
+    "boundary": "periodic"
+  },
+  "parameters": {
+    "display_bits": 8,
+    "F": 0.029,
+    "k": 0.057,
+    "Du": 0.2,
+    "Dv": 0.1,
+    "dt": 0.5,
+    "steps": 16000,
+    "frame_every_steps": 400,
+    "seed": 7,
+    "seeds": 3,
+    "seed_centres": [
+      [
+        60,
+        40,
+        43
+      ],
+      [
+        57,
+        37,
+        49
+      ],
+      [
+        53,
+        14,
+        3
+      ]
+    ],
+    "iso": 0.2,
+    "display_vmax": 0.6
+  },
+  "method": "7-point Laplacian, forward Euler, float64; three cubic seeds (u 0.5, v 0.25, 12 cells) at random positions plus domain-wide noise; isosurfaces by surface nets with two Newton projections.",
+  "limits": [
+    "A nondimensional model on a 64-cell periodic box: no units of real chemistry, and patterns are a few wavelengths across.",
+    "Forward Euler is first order in time; fine structure of the chaotic case depends on dt and on rounding (only its statistics are claims).",
+    "The displayed surface is the iso level v = 0.2 of an 8-bit copy of the field; the walls of the box are cut faces, not physics.",
+    "Morphology names are measured claims about these runs, not a classification of the parameter plane."
+  ],
+  "dependencies": {
+    "tools/gs.py": "c4a2a6cbca63b956b41507eb93abe21ffa14c95212524a82a8d9deea87270bf0"
+  },
+  "external_dependencies": {
+    "lib/stemkit/core.py": "b799990d80948989d6525fdd0c8f16c4eec884e659105fd6bd5750d4cf977600",
+    "lib/stemkit/mesh.py": "fe4ebf154d7f8d7eed0c26ca13c3143678d60c8dbe74de4e7230e78fa1a6e326"
+  },
+  "frames": [
+    {
+      "file": "cases/sheets/v000.bin",
+      "sha256": "12ed68145edbc902cec2ef78bc8cb9efc46cddd9e61f162cde5cfdbbd1689b71",
+      "bytes": 88619,
+      "decoded_sha256": "20edae6ec5c10d496461ff43d735d23aff8a9efc5acb7b0475490250065ada65",
+      "decoded_bytes": 262144,
+      "time": 0.0,
+      "step": 0,
+      "clipped_values": 0,
+      "quantization_max": 0.001960778187543759,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 2798,
+        "triangles": 5580,
+        "volume": 3928.8323157677974
+      }
+    },
+    {
+      "file": "cases/sheets/v001.bin",
+      "sha256": "916f3861891c148f7f8abde18bef034eee7a19e285b131e6e2d393247b19da65",
+      "bytes": 52331,
+      "decoded_sha256": "e0b46902e232370f73abf8b3109af5d3d302d04e673fd9a4487b6d87fa07f703",
+      "decoded_bytes": 262144,
+      "time": 200.0,
+      "step": 400,
+      "clipped_values": 0,
+      "quantization_max": 0.001960749357858745,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 16250,
+        "triangles": 32488,
+        "volume": 31426.84421573552
+      }
+    },
+    {
+      "file": "cases/sheets/v002.bin",
+      "sha256": "1d4b82db029c1134774f7415ddc2dd872246f98dd6d353f2aabc2bcd78b9d9f6",
+      "bytes": 113028,
+      "decoded_sha256": "70b4d4ca8a578fcc85fdea78f5d30adb24b54398529f4685c43c71132d3f9563",
+      "decoded_bytes": 262144,
+      "time": 400.0,
+      "step": 800,
+      "clipped_values": 0,
+      "quantization_max": 0.001960766608140596,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 35560,
+        "triangles": 71084,
+        "volume": 65430.756419143196
+      }
+    },
+    {
+      "file": "cases/sheets/v003.bin",
+      "sha256": "7716785adac0bb186227508b2697f31fbb22dad2438a5dc7bc4d93ed6d037194",
+      "bytes": 171736,
+      "decoded_sha256": "237fd970e7376ee6f4a0ca4b9ac40e5610d249f0a65b5a6b00f02c7fc04aa056",
+      "decoded_bytes": 262144,
+      "time": 600.0,
+      "step": 1200,
+      "clipped_values": 0,
+      "quantization_max": 0.00196077514108926,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 52251,
+        "triangles": 104532,
+        "volume": 90151.98232307746
+      }
+    },
+    {
+      "file": "cases/sheets/v004.bin",
+      "sha256": "44f2db0a5452b674032ae48c2aad0789ce7b644a0dfe284599b531a5423505d6",
+      "bytes": 196146,
+      "decoded_sha256": "2a01c76c6eadebda5c2272d5a995ba17dab7a222f6ff5e71cbeba43c7a6bb043",
+      "decoded_bytes": 262144,
+      "time": 800.0,
+      "step": 1600,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607772788408917,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 68484,
+        "triangles": 137116,
+        "volume": 104098.43025513964
+      }
+    },
+    {
+      "file": "cases/sheets/v005.bin",
+      "sha256": "822752599b7dfbde6ce6885f4fe2fbf3f601ce7388aa9e6bd936fbd37676eab5",
+      "bytes": 192806,
+      "decoded_sha256": "13b05fec0b830aa254a1000e7daa70904495edb96271aa735311245922f204b1",
+      "decoded_bytes": 262144,
+      "time": 1000.0,
+      "step": 2000,
+      "clipped_values": 0,
+      "quantization_max": 0.001960776692667606,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 68163,
+        "triangles": 136496,
+        "volume": 103346.8433470492
+      }
+    },
+    {
+      "file": "cases/sheets/v006.bin",
+      "sha256": "98a2d960e97d19577bdbb216c3b1be37309c5b937917636f9122d87902e75975",
+      "bytes": 190316,
+      "decoded_sha256": "e2fb8b4d9d61c9975e2a5089a95f3d77309bad846c053f31e2be647bf368415e",
+      "decoded_bytes": 262144,
+      "time": 1200.0,
+      "step": 2400,
+      "clipped_values": 0,
+      "quantization_max": 0.001960783001565177,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 68340,
+        "triangles": 136868,
+        "volume": 105459.5703484
+      }
+    },
+    {
+      "file": "cases/sheets/v007.bin",
+      "sha256": "f59cb0057f7ee0220daa27825582f23d1bc99df90c6f1cd846bead9310ede582",
+      "bytes": 189722,
+      "decoded_sha256": "7e925b2ba6953608c6fff0f1de9204f4478aeaaf5c00455fb25026cb3a92477f",
+      "decoded_bytes": 262144,
+      "time": 1400.0,
+      "step": 2800,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607806706270956,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 68742,
+        "triangles": 137680,
+        "volume": 107078.73071212748
+      }
+    },
+    {
+      "file": "cases/sheets/v008.bin",
+      "sha256": "334afec42d18df4da3967c644517626d703069724d95a0a4574d5dfb951e33f6",
+      "bytes": 188999,
+      "decoded_sha256": "8247cde6f1608d388a48556651bccad63fdd6a4d65ee1ecd81e2bdc1549f2613",
+      "decoded_bytes": 262144,
+      "time": 1600.0,
+      "step": 3200,
+      "clipped_values": 0,
+      "quantization_max": 0.001960784252679297,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69102,
+        "triangles": 138396,
+        "volume": 107698.49945112334
+      }
+    },
+    {
+      "file": "cases/sheets/v009.bin",
+      "sha256": "3de169f276cbc92ebfc8e4aaf25b26e09f6688af3e28bc508fb0f384d58d8a80",
+      "bytes": 188326,
+      "decoded_sha256": "bf4f92b95bc0608186b8ea4c3c6a0333df7df3fdde23ceb903a7a0af52b094f7",
+      "decoded_bytes": 262144,
+      "time": 1800.0,
+      "step": 3600,
+      "clipped_values": 0,
+      "quantization_max": 0.001960774616077132,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69415,
+        "triangles": 139024,
+        "volume": 108088.05131806502
+      }
+    },
+    {
+      "file": "cases/sheets/v010.bin",
+      "sha256": "6a33d9f094ab3eaaff0aa5c67603adba945c146f6e39383ef993b0a625823fae",
+      "bytes": 187387,
+      "decoded_sha256": "fed9f00b758379ded75b6752a9d7f76c9fd02071c88b2833095e95d9f421dd67",
+      "decoded_bytes": 262144,
+      "time": 2000.0,
+      "step": 4000,
+      "clipped_values": 0,
+      "quantization_max": 0.001960781821870918,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69551,
+        "triangles": 139284,
+        "volume": 108269.42344212254
+      }
+    },
+    {
+      "file": "cases/sheets/v011.bin",
+      "sha256": "bc7054f308c39674d7584ba47bfbb69c3e052d5eeda290fa04333d3903271e61",
+      "bytes": 186862,
+      "decoded_sha256": "0ecd884f28b409a9bedcb08129afc8b8de8b187558aa27a8169c37c0b2a8af22",
+      "decoded_bytes": 262144,
+      "time": 2200.0,
+      "step": 4400,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607774881601667,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69733,
+        "triangles": 139644,
+        "volume": 108200.9824260781
+      }
+    },
+    {
+      "file": "cases/sheets/v012.bin",
+      "sha256": "b3172a404b3dda48cdcb0111c200c8062d454786ccee8235d8d17a2cdff9a64b",
+      "bytes": 186219,
+      "decoded_sha256": "456c6449ef865c7091d36b46e166b1a262e9234d5a01587196805fea2d2be1d7",
+      "decoded_bytes": 262144,
+      "time": 2400.0,
+      "step": 4800,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607720058799813,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69723,
+        "triangles": 139632,
+        "volume": 108216.47620015201
+      }
+    },
+    {
+      "file": "cases/sheets/v013.bin",
+      "sha256": "b3b320da9c1ddb72f665d94c71ff65a636f61f6461e703446d3e7e8a4cf48f10",
+      "bytes": 185804,
+      "decoded_sha256": "e3640a447b0f282b86173bd1aafa79fc516b7c7d2290e97ab4d5379c67ee0dbc",
+      "decoded_bytes": 262144,
+      "time": 2600.0,
+      "step": 5200,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607834194379503,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69770,
+        "triangles": 139736,
+        "volume": 108361.96022284986
+      }
+    },
+    {
+      "file": "cases/sheets/v014.bin",
+      "sha256": "caa7cdb54cf39df2e446a95dca585d2f14fe6adc2203d2f5312e2a02c0d4a2e9",
+      "bytes": 185196,
+      "decoded_sha256": "99964798afce4bad3d02d8c5d752fd04721dbf6f0331c3bc967683ba6d707207",
+      "decoded_bytes": 262144,
+      "time": 2800.0,
+      "step": 5600,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607481319100506,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69901,
+        "triangles": 139988,
+        "volume": 108657.98724869941
+      }
+    },
+    {
+      "file": "cases/sheets/v015.bin",
+      "sha256": "24abadb988badd54849f7553a3f899793cc8a52236847690d5cdbf91e63d1a57",
+      "bytes": 184473,
+      "decoded_sha256": "9e209508372956011199a2b332801fc154001b0e260fa1aa960e591daf2fcba5",
+      "decoded_bytes": 262144,
+      "time": 3000.0,
+      "step": 6000,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607519033468246,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69766,
+        "triangles": 139708,
+        "volume": 108844.50991302337
+      }
+    },
+    {
+      "file": "cases/sheets/v016.bin",
+      "sha256": "b2d8ae2e46cbf57245ba92f145378e75f4157053388b58e3b3e27176722581fe",
+      "bytes": 184300,
+      "decoded_sha256": "b3a7d40f89c393bf439e0a0c9244441a8f9d04f3b6228e038daede215db4f657",
+      "decoded_bytes": 262144,
+      "time": 3200.0,
+      "step": 6400,
+      "clipped_values": 0,
+      "quantization_max": 0.001960776668217673,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69833,
+        "triangles": 139832,
+        "volume": 108897.3643636973
+      }
+    },
+    {
+      "file": "cases/sheets/v017.bin",
+      "sha256": "4d82cc6be811cd49b5bf45126bef099a9e9e73dac3d961802d14b01e4edd61e3",
+      "bytes": 184003,
+      "decoded_sha256": "ff0fb10fd0ee2cf1f0e296a4437158e37bd1a6d2f5948ce5c294deb83ea236dd",
+      "decoded_bytes": 262144,
+      "time": 3400.0,
+      "step": 6800,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607787979112243,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69804,
+        "triangles": 139772,
+        "volume": 108875.53525953084
+      }
+    },
+    {
+      "file": "cases/sheets/v018.bin",
+      "sha256": "8140385fc110ef2a43bd08ff14c359f0fcff60daa72a146ee210053cb4dbbe8b",
+      "bytes": 183937,
+      "decoded_sha256": "6ce1f9526a0c130efc6d438431042f1fa16b39149b65fe23ecad43a741881be8",
+      "decoded_bytes": 262144,
+      "time": 3600.0,
+      "step": 7200,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607842239971474,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69829,
+        "triangles": 139816,
+        "volume": 108810.08928785124
+      }
+    },
+    {
+      "file": "cases/sheets/v019.bin",
+      "sha256": "fbf5a6b1c09624391e0887e3a0e97339296e103bc8f8faf3ec41b1156249ea33",
+      "bytes": 183400,
+      "decoded_sha256": "739d9e87d4b60b1c8240088a65bac7992b232b4ccbee62b3cb9d3c47a7442124",
+      "decoded_bytes": 262144,
+      "time": 3800.0,
+      "step": 7600,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607772023746512,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69811,
+        "triangles": 139780,
+        "volume": 108685.84960532299
+      }
+    },
+    {
+      "file": "cases/sheets/v020.bin",
+      "sha256": "feeba68745456efed7589e5c419e96e54762a1ee683a14d86ef5b961673c14d1",
+      "bytes": 183305,
+      "decoded_sha256": "e7d28ea4a4d8b2044bb45eabf7614d21e411243dbdfcb5a2e9790cdb8c37b3c4",
+      "decoded_bytes": 262144,
+      "time": 4000.0,
+      "step": 8000,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607675396317303,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69903,
+        "triangles": 139960,
+        "volume": 108632.19676484379
+      }
+    },
+    {
+      "file": "cases/sheets/v021.bin",
+      "sha256": "a6fec6ecbdd9ecacff77638f39e2a2686c659e9269de3d86a9c3c4b764ec0870",
+      "bytes": 183226,
+      "decoded_sha256": "e9ecc9a066cdfe6c367d4b53b13236511f970471ce04a957143e15c32b72ff18",
+      "decoded_bytes": 262144,
+      "time": 4200.0,
+      "step": 8400,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607713895003487,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69973,
+        "triangles": 140100,
+        "volume": 108616.70681694431
+      }
+    },
+    {
+      "file": "cases/sheets/v022.bin",
+      "sha256": "43b48c6c73e8c7706589f99a9c324f5d1eb0742d7a27c2dc14de941c8720b571",
+      "bytes": 183031,
+      "decoded_sha256": "4c4d252cdbaa0a4883cff5c93981f9ced0cc35c83d542215ab8de4844c28f124",
+      "decoded_bytes": 262144,
+      "time": 4400.0,
+      "step": 8800,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607781210369732,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 70000,
+        "triangles": 140172,
+        "volume": 108633.65123089896
+      }
+    },
+    {
+      "file": "cases/sheets/v023.bin",
+      "sha256": "c89b5b00cacf247f5176133b36721d2ced4a603824297a18c69eed5fa3fe9599",
+      "bytes": 182485,
+      "decoded_sha256": "a8a09abc1e05d5a651957fa55dd18da95f28f3116df9dcac679e2209d926553c",
+      "decoded_bytes": 262144,
+      "time": 4600.0,
+      "step": 9200,
+      "clipped_values": 0,
+      "quantization_max": 0.00196076872763513,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69907,
+        "triangles": 139964,
+        "volume": 108680.40986744879
+      }
+    },
+    {
+      "file": "cases/sheets/v024.bin",
+      "sha256": "40fbefdb6ce0c0e2800fadecda60004fef541b8cd3e684edd98cd8ad40526ec7",
+      "bytes": 182643,
+      "decoded_sha256": "2ddc1dac435162cc5d1783632dcf3fff2f04d48388f6690f0c54d82d58a7fa14",
+      "decoded_bytes": 262144,
+      "time": 4800.0,
+      "step": 9600,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607800960005917,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69873,
+        "triangles": 139904,
+        "volume": 108636.23604015488
+      }
+    },
+    {
+      "file": "cases/sheets/v025.bin",
+      "sha256": "01cb10caf31100c833bc286a041afecb19bb7691b2e05e7567c2a838f826b96c",
+      "bytes": 182564,
+      "decoded_sha256": "d58c907e074a0c0dcc77bdc3f45a5a2e9923bc43b6460c1236d5166fd722ce4f",
+      "decoded_bytes": 262144,
+      "time": 5000.0,
+      "step": 10000,
+      "clipped_values": 0,
+      "quantization_max": 0.00196078387287658,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69780,
+        "triangles": 139716,
+        "volume": 108580.758609724
+      }
+    },
+    {
+      "file": "cases/sheets/v026.bin",
+      "sha256": "23f0ec213f8d3855d14fa3e4583798ff85222ad27c285ed06341eabab1811cac",
+      "bytes": 182052,
+      "decoded_sha256": "6272319b2815de83a2de350af8121ffda0af40b989e65efbd8d255f7230bba16",
+      "decoded_bytes": 262144,
+      "time": 5200.0,
+      "step": 10400,
+      "clipped_values": 0,
+      "quantization_max": 0.001960782805980934,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69767,
+        "triangles": 139692,
+        "volume": 108533.90159257811
+      }
+    },
+    {
+      "file": "cases/sheets/v027.bin",
+      "sha256": "f467f36181177c0c7137389052efcaf4a857784dc167b7fbed180d076a6850e5",
+      "bytes": 182155,
+      "decoded_sha256": "99aa6b2e5f88e07f28bbb098b6458688543c1d09e8d445f5973c2b1941f4f10e",
+      "decoded_bytes": 262144,
+      "time": 5400.0,
+      "step": 10800,
+      "clipped_values": 0,
+      "quantization_max": 0.00196077686026581,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69696,
+        "triangles": 139544,
+        "volume": 108450.16380939516
+      }
+    },
+    {
+      "file": "cases/sheets/v028.bin",
+      "sha256": "a323ac007b71ce7a681582a7aca8f7be705ae860fe07b62c735ceb8df74f59c9",
+      "bytes": 181666,
+      "decoded_sha256": "2df2410ee6c87918555ea3d030126800fa69d66b75b1b43b5f4f9685fe704b45",
+      "decoded_bytes": 262144,
+      "time": 5600.0,
+      "step": 11200,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607840308206543,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69705,
+        "triangles": 139572,
+        "volume": 108393.37998192187
+      }
+    },
+    {
+      "file": "cases/sheets/v029.bin",
+      "sha256": "0c1187ca97bbb26c49b24a06f0354417942024171bff4a46a04d8d47a8b79ef4",
+      "bytes": 181806,
+      "decoded_sha256": "36ab8f2e40ae2bdba4277624195c3a84cd6215b5be4bed364ccbb18de8634347",
+      "decoded_bytes": 262144,
+      "time": 5800.0,
+      "step": 11600,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607628367232974,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69749,
+        "triangles": 139664,
+        "volume": 108366.87931196108
+      }
+    },
+    {
+      "file": "cases/sheets/v030.bin",
+      "sha256": "aada4a46098ebe1afb7cc3ef904838ebffb9d9d22aa3e428fd0135442e5f1439",
+      "bytes": 181526,
+      "decoded_sha256": "b01a38c11ad672c0d50352e832c59dd8a1c33a2d39bcfc04eec13a9e11373ff1",
+      "decoded_bytes": 262144,
+      "time": 6000.0,
+      "step": 12000,
+      "clipped_values": 0,
+      "quantization_max": 0.001960783339541803,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69776,
+        "triangles": 139712,
+        "volume": 108342.88271128685
+      }
+    },
+    {
+      "file": "cases/sheets/v031.bin",
+      "sha256": "d2bb2c0082d8a8dcafad1e3ad3e07b6a7d36cc122e2a85c2dec5ee17f455e1ea",
+      "bytes": 181419,
+      "decoded_sha256": "ea74d41dabcd437ac93efe6611383a557ea67e24298a92cc661b332db934f8e6",
+      "decoded_bytes": 262144,
+      "time": 6200.0,
+      "step": 12400,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607706419688216,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69673,
+        "triangles": 139508,
+        "volume": 108302.9307795571
+      }
+    },
+    {
+      "file": "cases/sheets/v032.bin",
+      "sha256": "e936771768a53c4452e84ed4bd5a569ef35a81fcef829a748a91a9d69e9e6d92",
+      "bytes": 181635,
+      "decoded_sha256": "5c0c7c606dec3aec4c3fda307415a5a19f53298e8e83f82e8c0cbdad4c4930f0",
+      "decoded_bytes": 262144,
+      "time": 6400.0,
+      "step": 12800,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607812764696475,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69702,
+        "triangles": 139576,
+        "volume": 108258.25849565396
+      }
+    },
+    {
+      "file": "cases/sheets/v033.bin",
+      "sha256": "13aa9950d28344121d204a6c81299fa060a24b6740d8011838a4d80753dbd1ff",
+      "bytes": 181212,
+      "decoded_sha256": "58726216ba23851896766e9f50b90a11fc139607d0bfe7f63d9293ec4048e898",
+      "decoded_bytes": 262144,
+      "time": 6600.0,
+      "step": 13200,
+      "clipped_values": 0,
+      "quantization_max": 0.001960782020724895,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69705,
+        "triangles": 139568,
+        "volume": 108277.27471235798
+      }
+    },
+    {
+      "file": "cases/sheets/v034.bin",
+      "sha256": "09031e541634ea16ae70bd4e99d187be0e7136da1f849fd05f1c7d528cc8a640",
+      "bytes": 180939,
+      "decoded_sha256": "b0bad3e531e9eaebaf23e428c2f28fd902a6ce0c1ff5215ea4110ff000efb89d",
+      "decoded_bytes": 262144,
+      "time": 6800.0,
+      "step": 13600,
+      "clipped_values": 0,
+      "quantization_max": 0.001960768414964708,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69682,
+        "triangles": 139528,
+        "volume": 108271.34152149997
+      }
+    },
+    {
+      "file": "cases/sheets/v035.bin",
+      "sha256": "1202eb7c3f7d21c0a3688ba3ed042c2f1c87d489bf728f616f25f4feea4d72e3",
+      "bytes": 180649,
+      "decoded_sha256": "14008a6dd1149b7a47eba94da7b3ebde3cadcca7cdeda741a05e7c78033526be",
+      "decoded_bytes": 262144,
+      "time": 7000.0,
+      "step": 14000,
+      "clipped_values": 0,
+      "quantization_max": 0.001960755346225862,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69688,
+        "triangles": 139532,
+        "volume": 108263.12673344387
+      }
+    },
+    {
+      "file": "cases/sheets/v036.bin",
+      "sha256": "32c1abaa8805f3a2156bd693def45b124624b6b5597b410bcb7a030b6816904f",
+      "bytes": 180408,
+      "decoded_sha256": "a3d58709c0bc025df03075776a3a303598baf9b320bac8f24d72894efe5cdf02",
+      "decoded_bytes": 262144,
+      "time": 7200.0,
+      "step": 14400,
+      "clipped_values": 0,
+      "quantization_max": 0.001960778998169784,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69642,
+        "triangles": 139440,
+        "volume": 108281.30189602247
+      }
+    },
+    {
+      "file": "cases/sheets/v037.bin",
+      "sha256": "ca40cf75d06a5be52632539a98b3d0348246f349bba7e2812efc4c45edbe9766",
+      "bytes": 179910,
+      "decoded_sha256": "7377787f42ea5d9338ee0d283937eba04e63c15f3cc0f97c5e9caf917529776b",
+      "decoded_bytes": 262144,
+      "time": 7400.0,
+      "step": 14800,
+      "clipped_values": 0,
+      "quantization_max": 0.00196077560908074,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69522,
+        "triangles": 139192,
+        "volume": 108214.06807270409
+      }
+    },
+    {
+      "file": "cases/sheets/v038.bin",
+      "sha256": "06036fcc22160d87b7e17a5bd89aa18d5b93fe481b06adbd0d612a7acc5f45e2",
+      "bytes": 179395,
+      "decoded_sha256": "7b996e385562138a271a54ccd97e4494caa20698cdce3646b9852305ed0f84b5",
+      "decoded_bytes": 262144,
+      "time": 7600.0,
+      "step": 15200,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607715362544393,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69466,
+        "triangles": 139092,
+        "volume": 108218.75993452541
+      }
+    },
+    {
+      "file": "cases/sheets/v039.bin",
+      "sha256": "204aa69d9543e3d38407034ce7d242f8c753d6381802f6c8dc3f03500ad46ce2",
+      "bytes": 179503,
+      "decoded_sha256": "6b6078fd545bb8bfb66b9b38b3e30f1ca5328042869fa1f007c99c5dcfd3c3a3",
+      "decoded_bytes": 262144,
+      "time": 7800.0,
+      "step": 15600,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607770191122182,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69459,
+        "triangles": 139076,
+        "volume": 108253.06280795632
+      }
+    },
+    {
+      "file": "cases/sheets/v040.bin",
+      "sha256": "010eda7b8bf336f5b6c67ee11eabdba8300146aef2cbf6321cb72f03e38e52d6",
+      "bytes": 179298,
+      "decoded_sha256": "f8dd79d595fa03567f5466302f634c292c1e3f64d9680250bd8a188670b0c79e",
+      "decoded_bytes": 262144,
+      "time": 8000.0,
+      "step": 16000,
+      "clipped_values": 0,
+      "quantization_max": 0.0019607823189113824,
+      "encoding": "uint8 v / 0.6, C order [x][y][z], 64^3, deflate",
+      "bits": 8,
+      "mesh": {
+        "iso": 0.2,
+        "vertices": 69494,
+        "triangles": 139156,
+        "volume": 108293.85115448356
+      }
+    }
+  ],
+  "metrics": [
+    {
+      "id": "morphology",
+      "components of v > iso": 2,
+      "largest component share": 0.9837517539704529,
+      "holes (components of v < iso)": 3,
+      "Euler characteristic": -74,
+      "|median mean curvature|": 0.020070958110153442,
+      "late activity": 0.001704940084284416,
+      "fraction above iso": 0.4268226623535156
+    },
+    {
+      "id": "final mesh",
+      "vertices": 69494,
+      "triangles": 139156,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 10,
+      "degenerate_triangles": 144,
+      "area": 49158.678761556526,
+      "volume": 108293.85115448356,
+      "mc_volume": 108326.92975000001,
+      "mc_volume_se": 134.21832726394825,
+      "volume_rel_diff": 0.0003053589314567139,
+      "iso_distance_p95": 3.822298347467962e-15,
+      "iso_distance_max": 0.05435018638012274
+    },
+    {
+      "id": "mesh sizes",
+      "frames": [
+        {
+          "step": 0,
+          "vertices": 2798,
+          "triangles": 5580
+        },
+        {
+          "step": 400,
+          "vertices": 16250,
+          "triangles": 32488
+        },
+        {
+          "step": 800,
+          "vertices": 35560,
+          "triangles": 71084
+        },
+        {
+          "step": 1200,
+          "vertices": 52251,
+          "triangles": 104532
+        },
+        {
+          "step": 1600,
+          "vertices": 68484,
+          "triangles": 137116
+        },
+        {
+          "step": 2000,
+          "vertices": 68163,
+          "triangles": 136496
+        },
+        {
+          "step": 2400,
+          "vertices": 68340,
+          "triangles": 136868
+        },
+        {
+          "step": 2800,
+          "vertices": 68742,
+          "triangles": 137680
+        },
+        {
+          "step": 3200,
+          "vertices": 69102,
+          "triangles": 138396
+        },
+        {
+          "step": 3600,
+          "vertices": 69415,
+          "triangles": 139024
+        },
+        {
+          "step": 4000,
+          "vertices": 69551,
+          "triangles": 139284
+        },
+        {
+          "step": 4400,
+          "vertices": 69733,
+          "triangles": 139644
+        },
+        {
+          "step": 4800,
+          "vertices": 69723,
+          "triangles": 139632
+        },
+        {
+          "step": 5200,
+          "vertices": 69770,
+          "triangles": 139736
+        },
+        {
+          "step": 5600,
+          "vertices": 69901,
+          "triangles": 139988
+        },
+        {
+          "step": 6000,
+          "vertices": 69766,
+          "triangles": 139708
+        },
+        {
+          "step": 6400,
+          "vertices": 69833,
+          "triangles": 139832
+        },
+        {
+          "step": 6800,
+          "vertices": 69804,
+          "triangles": 139772
+        },
+        {
+          "step": 7200,
+          "vertices": 69829,
+          "triangles": 139816
+        },
+        {
+          "step": 7600,
+          "vertices": 69811,
+          "triangles": 139780
+        },
+        {
+          "step": 8000,
+          "vertices": 69903,
+          "triangles": 139960
+        },
+        {
+          "step": 8400,
+          "vertices": 69973,
+          "triangles": 140100
+        },
+        {
+          "step": 8800,
+          "vertices": 70000,
+          "triangles": 140172
+        },
+        {
+          "step": 9200,
+          "vertices": 69907,
+          "triangles": 139964
+        },
+        {
+          "step": 9600,
+          "vertices": 69873,
+          "triangles": 139904
+        },
+        {
+          "step": 10000,
+          "vertices": 69780,
+          "triangles": 139716
+        },
+        {
+          "step": 10400,
+          "vertices": 69767,
+          "triangles": 139692
+        },
+        {
+          "step": 10800,
+          "vertices": 69696,
+          "triangles": 139544
+        },
+        {
+          "step": 11200,
+          "vertices": 69705,
+          "triangles": 139572
+        },
+        {
+          "step": 11600,
+          "vertices": 69749,
+          "triangles": 139664
+        },
+        {
+          "step": 12000,
+          "vertices": 69776,
+          "triangles": 139712
+        },
+        {
+          "step": 12400,
+          "vertices": 69673,
+          "triangles": 139508
+        },
+        {
+          "step": 12800,
+          "vertices": 69702,
+          "triangles": 139576
+        },
+        {
+          "step": 13200,
+          "vertices": 69705,
+          "triangles": 139568
+        },
+        {
+          "step": 13600,
+          "vertices": 69682,
+          "triangles": 139528
+        },
+        {
+          "step": 14000,
+          "vertices": 69688,
+          "triangles": 139532
+        },
+        {
+          "step": 14400,
+          "vertices": 69642,
+          "triangles": 139440
+        },
+        {
+          "step": 14800,
+          "vertices": 69522,
+          "triangles": 139192
+        },
+        {
+          "step": 15200,
+          "vertices": 69466,
+          "triangles": 139092
+        },
+        {
+          "step": 15600,
+          "vertices": 69459,
+          "triangles": 139076
+        },
+        {
+          "step": 16000,
+          "vertices": 69494,
+          "triangles": 139156
+        }
+      ]
+    },
+    {
+      "id": "timing",
+      "seconds": 49.8
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "linear mode decay, u (exact discrete), relative error",
+      "pass": true,
+      "observed": 1.0716050269365951e-10,
+      "limit": 1e-08,
+      "rule": "at most"
+    },
+    {
+      "id": "linear mode decay, v (exact discrete), relative error",
+      "pass": true,
+      "observed": 3.107847312833201e-11,
+      "limit": 1e-08,
+      "rule": "at most"
+    },
+    {
+      "id": "budget identity: sum(u + v) per step, worst relative residual",
+      "pass": true,
+      "observed": 1.0946584674654322e-14,
+      "limit": 1e-11,
+      "rule": "at most"
+    },
+    {
+      "id": "convergence order in dt: |observed - 1|",
+      "pass": true,
+      "observed": 0.011260693436495828,
+      "limit": 0.05,
+      "rule": "at most",
+      "note": "observed order 0.9887"
+    },
+    {
+      "id": "reproducibility: cells differing on a 2,000-step rerun",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "bounded fields: worst excursion below 0 or above 1",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "closed meshes: boundary edges over all frames",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "mesh volume vs Monte Carlo on the field, relative difference (gross-error check)",
+      "pass": true,
+      "observed": 0.0003053589314567139,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "display quantization (8-bit): isosurface shift p99, worst frame (cells)",
+      "pass": true,
+      "observed": 0.02852092706069204,
+      "limit": 0.05,
+      "rule": "at most"
+    },
+    {
+      "id": "mesh vertices on the displayed surface: distance p99, worst frame (cells)",
+      "pass": true,
+      "observed": 1.0284637437227089e-07,
+      "limit": 0.01,
+      "rule": "at most"
+    },
+    {
+      "id": "clipping: values above the 8-bit range",
+      "pass": true,
+      "observed": 0.0,
+      "limit": 0.0,
+      "rule": "at most"
+    },
+    {
+      "id": "morphology 'sheets': largest component share",
+      "pass": true,
+      "observed": 0.9837517539704529,
+      "limit": 0.9,
+      "rule": "at least"
+    },
+    {
+      "id": "morphology 'sheets': |median mean curvature|",
+      "pass": true,
+      "observed": 0.020070958110153442,
+      "limit": 0.03,
+      "rule": "at most"
+    },
+    {
+      "id": "morphology 'sheets': late activity",
+      "pass": true,
+      "observed": 0.001704940084284416,
+      "limit": 0.01,
+      "rule": "at most"
+    }
+  ],
+  "builder_sha256": "5ac5480f8a929ecc7e95d8a46043f294d34b1221bb5a04b325e2738d413d5adf",
+  "runtime": {
+    "python": "3.13.18",
+    "numpy": "2.5.3"
+  }
+}
