@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chirp · x3d.STEM</title>
+<link rel="stylesheet" href="vendor/x_ite/x_ite.css">
+<link rel="stylesheet" href="src/app.css">
+<script src="vendor/x_ite/x_ite.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="mark">◎</span><div><b>x3d.STEM</b><small>Chirp · two black holes, heard</small></div></div>
+  <nav id="cases" aria-label="Computed inspirals"></nav>
+  <a class="ledger-link" href="#ledger">Evidence ledger ↓</a>
+</header>
+<main>
+  <section id="stage">
+    <x3d-canvas id="canvas" contentScale="auto" splashScreen="false" contextMenu="false" notifications="false" toneMapping="KHR_PBR_NEUTRAL" antialiased="true" maximumFrameRate="60"></x3d-canvas>
+    <div id="banner" hidden></div>
+    <div id="caption"><h1 id="title">Loading…</h1><p id="subtitle"></p></div>
+    <canvas id="wave" width="900" height="110" aria-label="Gravitational-wave strain"></canvas>
+    <div id="clock"><b id="tval"></b><span id="fval"></span></div>
+    <div id="loading">Verifying the computed orbit and audio…</div>
+  </section>
+  <aside id="panel">
+    <h2>Watch</h2>
+    <div class="row"><button id="watch" class="primary">▶ Watch (slow motion)</button><button id="reset">Restart</button></div>
+    <p class="hint" id="slowHint"></p>
+    <h2>Hear</h2>
+    <div class="row seg" id="tracks"><button data-t="real" class="on">Real pitch</button><button data-t="up">3 octaves up</button></div>
+    <div class="row"><button id="hear" class="primary">♪ Hear it, in real time</button></div>
+    <p class="hint">Real pitch is the strain itself, 12 Hz rising to 73 Hz: use headphones or a subwoofer. "3 octaves up" multiplies the wave's phase by 8 and keeps its timing, so the chirp is easy to hear on any speaker. The picture runs at real time with the sound.</p>
+    <h2>View</h2>
+    <div class="row seg" id="views"><button data-v="Close" class="on">Close</button><button data-v="Wide">Wide</button></div>
+    <h2>Lens</h2>
+    <div class="row seg" id="lenses"><button data-l="explorer" class="on">Explorer</button><button data-l="lab">Lab</button></div>
+    <div id="lensText" class="hint"></div>
+    <h2 id="ledger">Evidence ledger</h2>
+    <p class="hint">Every number below was measured on this inspiral by a named tool; the last rows are measured here, in your browser. Red rows stay red.</p>
+    <table id="witnesses"><thead><tr><th></th><th>Check</th><th>Observed</th><th>Limit</th></tr></thead><tbody></tbody></table>
+    <p class="hint" id="limits"></p>
+    <p class="hint small" id="provenance"></p>
+  </aside>
+</main>
+<script src="src/app.js"></script>
+</body>
+</html>
