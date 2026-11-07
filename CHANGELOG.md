@@ -2,6 +2,12 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v10 (2026-11-07)
+- Demo 7 Loomsong is now playable at `docs/demos/loomsong/v1/` (x3d.music at 4a7bdbd: worlds and page rebuilt with `gen/world_ode.py`, `gen/world_turca.py` and `page/build_page.py --no-audio`; the worlds came out byte-identical in size to the preview's; page wrapped in a full HTML document, the host report switched off; audio masters and the four animated cards are the preview version 2 files, sha256 in SOURCES.md). NOTICE.md and LICENSE travel with it; CC BY-NC-SA 4.0 for everything derived from the Alla Turca score.
+- New Demo 8 Tether Firehose 4 (x3d.ML demo/v4 at a2bddac, built with `build_v4.py --share`, X_ITE 16.5.1 added as its own files). The share build's SAFE map removes lane names, hardware and run costs; its sweep said clean, and the served text was checked again by hand.
+- The shelf adds x3d.ML and a Play link for x3d.music.
+- Verified in a headless browser (software GPU, no timings): both pages load with no console errors and no failed requests; Loomsong plays with sound start on a click.
+
 ## v9 (2026-11-07)
 - Demo 7: Loomsong (Beethoven's Ode to Joy and Mozart's Rondo alla Turca as machines), source only: hagopjay/x3d.music has no Pages site, its README says publishing has not started, and the audio masters are not committed. The card says so, repeats the repository's "no human has listened yet", and carries the non-commercial licence that the Alla Turca score imposes.
 - New shelf "More from GitHub, since 7 October": live sites (PolyXandria demos on x3d.poc, x3dom.fun, Mashtots System 2, KeGG, Dirac, KANSEI) and source-only repositories (x3d.music, x3d.loom, x3d-blender-io, x3d_mcp, x3d.xray, x3d.onto, x3d.STEM). Every live link answered 200 when linked. Forks of other people's projects and private repositories are left out. x3d.ML is not linked until its owner decides about a data file it serves.

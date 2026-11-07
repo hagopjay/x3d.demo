@@ -49,3 +49,8 @@ The six STEM-shelf studies are linked to hagopjay/x3d.STEM `studies/<name>/`; th
 - Manifold (`manifold/v1`): hagopjay/x3d.STEM `studies/manifold` at ad58aa9, without `docs/frames` and `tools`.
 - Neural Canvas on X_ITE (`brain-torso-xite/v1`): x3d.loom `x3d.brain/page` (as at PR #14 merge) plus X_ITE 16.6.0 fetched with `x3d.brain/tools/fetch_xite.sh` (min.js sha256 cc0cdd67678cc579c1b6a272d902dbe0188df78fa9c5d1214cc320d56f47ac9b).
 
+
+## Doc v10 additions
+
+- Loomsong (`loomsong/v1`): hagopjay/x3d.music at 4a7bdbd. `worlds/ode.x3d` 3,103,914 bytes and `worlds/turca.x3d` 3,671,053 bytes are rebuilt by the repository's generators (same sizes as the preview). `audio/ode.mp4` sha256 e680db5829b41da9d18cf9fe39ab3d7b61d90fe90a4c1deb917152c4af6fb6ab, `audio/turca.mp4` sha256 a60ba7949a12d70e5601cebf58486f2dfb1eaee3a1d4ae24c42a65529e7f6f45 (AAC encoded from the P2 masters, preview version 2). Cards: title.mp4 d188fa31ac7c3eddf5c247271ba16ac86bea13d4f510d6942d592d0ed997e601, between.mp4 e0f8fd35c8df903f5c6afef7067ee5cb70ed98940f5ccb3d686ca42268f867f2, ode.mp4 0a6812620690d95d5e2faf16f631b2d98e3d0925622b681974ef9cafcccd7d42, turca.mp4 05a78055feaf4f0b9b431c106845e830971f86fc8303e5cdb195148037c916a6. X_ITE 16.5.1 fetched by `tools/fetch_xite.py` (sha512 pinned in the repository). Licence: NOTICE.md and LICENSE copied in; Turca-derived material CC BY-NC-SA 4.0; the piano CC BY 3.0 credit is in the page.
+- Tether Firehose 4 (`tether-firehose/v4`): hagopjay/x3d.ML `demo/v4` at a2bddac, `python3 demo/v4/build_v4.py <out> --share`, plus X_ITE 16.5.1 (x_ite npm package, `demo/mkxite.py` subset, 105 files). The page code mentions a viewer-runtime object by name in comments and a guarded feature test; it is inert here.
