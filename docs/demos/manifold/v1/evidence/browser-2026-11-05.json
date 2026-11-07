@@ -1,0 +1,232 @@
+{
+  "schema": "manifold.browser/1",
+  "date": "2026-11-05",
+  "browser": "Playwright MCP headless Chromium",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "page_sources": {
+    "index.html": "420bd91237c1c71961dd89bbb31afa3c39ff11199ada43d7e52493450d49f6a9",
+    "src/app.js": "e86093f8104ffd5670d315e7b155142edc5a39757e4a97f338129942d11dc6d4",
+    "src/app.css": "269f5cdb390df356c2b5ef59430e0291b6a18be296c2924d9678aa49f713a2f4",
+    "src/original.css": "4da658c13c7d7dadb8f3306d29e7c9b4dc51704311aa96d5428745c3e328e03b",
+    "src/field.js": "76901732da67122d2ef1acc53fbda5bf9a7567ca442c4e7ef2294d9b6a4f4428",
+    "src/math-core.js": "57bd6f06b5dac369fea01754a0ff4947331c80f40028391c57bac5d5f991872f",
+    "src/labels.js": "a81dd8a630fbce7376ee97d4ceb3b890d1343a284ca40b4652453417987ab4ef",
+    "src/lens.js": "3474ee88c79bf7e0f4f7cd42cd0825ac526d4f9a93915720a3bc66097e11f2b2",
+    "scenes/manifold.x3d": "813c89bacb88e81b28952c87d6b92cab350382072a915be7768428ba22c15b13",
+    "reference/Manifold-of-Emotion.html": "c088f86d4b5252037b6fb0eb9f6fb90f30f7d57597f8f03d6422434cdf304102"
+  },
+  "case_manifests": {
+    "rest": "3a43a8d46cd96bd41ab1705dabb807c5d0eba8344f00bd4cbeb81cf4aa417f61"
+  },
+  "x3d": {
+    "shaders_valid": true,
+    "blend": "standard alpha (lightOut)",
+    "multisampling": 4,
+    "lens_hdr": true,
+    "flows": {
+      "traces": 30,
+      "vertices": 22972,
+      "indices": 68736,
+      "lastFlowTime": 3.7,
+      "step": 0.065,
+      "count": 400
+    },
+    "pass": true
+  },
+  "field_parity": {
+    "what": "the page's heightAt at the rest moment against the builder's verified payload, every 16th grid point",
+    "points": 1089,
+    "max_abs": 1.1861178261796113e-07,
+    "limit": 1e-06,
+    "pass": true
+  },
+  "playback": {
+    "running": [
+      5.782968333085377,
+      6.714158333333332
+    ],
+    "paused": [
+      6.714158333333332,
+      6.714158333333332
+    ],
+    "frames": [
+      49,
+      93
+    ],
+    "state": false,
+    "pass": true
+  },
+  "callback_resilience": {
+    "thrown": 1,
+    "uncaught": 0,
+    "frames_after": 21,
+    "time_after": 1.0260249999999989,
+    "clock_after": 1.5779998302459717,
+    "what": "the label layer, inside the frame callback's own path, throws once; frames, the field's time and the X3D clock must go on",
+    "pass": true
+  },
+  "ripple": {
+    "impulses": 1,
+    "pass": true
+  },
+  "fidelity": {
+    "what": "the original page and this one at the same moment, camera and mood, film grain off, 1280 x 800, interface masked",
+    "moods": [
+      {
+        "mood": "Reverie.",
+        "time": 11.867748333333392,
+        "ssim": 0.9055,
+        "corr": 0.9637,
+        "mad8": 3.84,
+        "deltaE_mean": 2.17,
+        "deltaE_p95": 10.48,
+        "mean_luma": [
+          0.324,
+          0.3221
+        ],
+        "luma_rel": 0.0059,
+        "pass": true,
+        "png_sha256": {
+          "original": "3ac3bab06c4fcffb137eb9bfaf6bc08d7adbf3a1a2ca4547f739e7522a3bd961",
+          "x3d": "9787f4e5ddfe23853135bd15019526e6dbf9427e37051ec45280b97d8fa92fe8"
+        }
+      },
+      {
+        "mood": "Euphoria.",
+        "time": 24.04275893340153,
+        "ssim": 0.9529,
+        "corr": 0.9888,
+        "mad8": 3.49,
+        "deltaE_mean": 2.15,
+        "deltaE_p95": 9.81,
+        "mean_luma": [
+          0.3546,
+          0.3526
+        ],
+        "luma_rel": 0.0056,
+        "pass": true,
+        "png_sha256": {
+          "original": "76db8d02d087ad238d5b62ca9c9c20c0d37364a47bc0d7be5da233b9f15f26b8",
+          "x3d": "060188796601f0b11a55077a83167a98ab1df424e29dca40d944268ad0ed3165"
+        }
+      },
+      {
+        "mood": "Catharsis.",
+        "time": 32.99479361613788,
+        "ssim": 0.9518,
+        "corr": 0.9848,
+        "mad8": 3.65,
+        "deltaE_mean": 2.21,
+        "deltaE_p95": 9.76,
+        "mean_luma": [
+          0.288,
+          0.2838
+        ],
+        "luma_rel": 0.0146,
+        "pass": true,
+        "png_sha256": {
+          "original": "017bcd0645b717a91c52736ebe0347481a2f01bad6cf819ca4249a8bc343a9ab",
+          "x3d": "b2de3ddb25b41beeecb34b69d9973f4917b1b7d399596d8b56430575575c3d67"
+        }
+      },
+      {
+        "mood": "Stillness.",
+        "time": 36.93825335048341,
+        "ssim": 0.9598,
+        "corr": 0.9905,
+        "mad8": 2.64,
+        "deltaE_mean": 1.47,
+        "deltaE_p95": 6.74,
+        "mean_luma": [
+          0.3331,
+          0.3323
+        ],
+        "luma_rel": 0.0024,
+        "pass": true,
+        "png_sha256": {
+          "original": "d7a5d4b522c16b131295dcaccb90371478a31e779979fdc616cefe1dfd7cd0cb",
+          "x3d": "41c323e29021eb4a314c9daf3854c281386a65bfa3f16fe2329e1aa6707a9b43"
+        }
+      }
+    ],
+    "controls_that_must_fail": {
+      "mirror": {
+        "ssim": 0.5129,
+        "corr": 0.5278,
+        "mad8": 29.87,
+        "deltaE_mean": 18.2,
+        "deltaE_p95": 44.58,
+        "mean_luma": [
+          0.324,
+          0.3321
+        ],
+        "pass": true
+      },
+      "later_moment": {
+        "ssim": 0.5541,
+        "corr": 0.6975,
+        "mad8": 20.89,
+        "deltaE_mean": 11.41,
+        "deltaE_p95": 38.28,
+        "mean_luma": [
+          0.3274,
+          0.3221
+        ],
+        "original_time": 14.879458333333421,
+        "pass": true
+      }
+    },
+    "pass": true
+  },
+  "saved_moment": {
+    "what": "Save X3D's text, loaded alone into X_ITE (createX3DFromString, replaceWorld): no page logic, no lens",
+    "bytes": 4061604,
+    "sha256": "6c5725f9a9c26d2b47e6f25e3fa2ecbad04e45100b32f5ce8824d76ac63ac877",
+    "shaders": [
+      [
+        "SkyShader",
+        true
+      ],
+      [
+        "SurfaceShader",
+        true
+      ],
+      [
+        "VeilShader",
+        true
+      ],
+      [
+        "FlowShader",
+        true
+      ],
+      [
+        "FiberShader",
+        true
+      ],
+      [
+        "NodeShader",
+        true
+      ],
+      [
+        "MoteShader",
+        true
+      ]
+    ],
+    "against_live_frame": {
+      "ssim": 0.9987,
+      "corr": 0.9999,
+      "mad8": 0.06,
+      "deltaE_mean": 0.05,
+      "deltaE_p95": 0.38,
+      "mean_luma": [
+        0.3297,
+        0.3297
+      ]
+    },
+    "pass": true
+  },
+  "console_errors": [],
+  "failed_requests": [],
+  "scope": "One headless Chromium (software GL) on one machine: correctness, fidelity to the original and portability, not frame rate. Fidelity is measured against the original running in the same browser; the X3D frame's own improvements (multisampled edges, the denser mesh, analytic occlusion) count against it here.",
+  "pass": true
+}
