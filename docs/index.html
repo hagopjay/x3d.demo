@@ -94,7 +94,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>
@@ -112,7 +112,11 @@ code{font-family:var(--mono);font-size:.88em}
       rows.push(tries[k][0]+': '+(a?'<span class="ok">adapter</span>'+(d?' ('+esc(d)+')':''):'<span class="bad">none</span>'));
       if(a&&!first)first=a;
     }
-    out.innerHTML=(first?'<span class="ok">Available.</span>':'<span class="bad">No adapter.</span> Check chrome://gpu, and that hardware acceleration is on in the browser settings.')+'<br><small>'+rows.join('<br>')+'</small>';
+    var help='';
+    if(!first){
+      help='<br><small><b>What to try.</b> On Windows with an older Intel GPU, recent Chrome can list the adapter in <code>chrome://gpu</code> under Dawn Info as blocklisted (for example "D3D11 backend not fully implemented") and then hand pages no adapter at all. Open <code>chrome://flags/#enable-unsafe-webgpu</code>, set it to Enabled, relaunch Chrome, and reload this page. It switches off Chrome\u2019s safety check for WebGPU on that GPU, so use it for these demos only. Other options: Microsoft Edge, or a Mac (Chrome or Safari 26).</small>';
+    }
+    out.innerHTML=(first?'<span class="ok">Available.</span>':'<span class="bad">No adapter.</span> This browser is not offering WebGPU on this machine.')+'<br><small>'+rows.join('<br>')+'</small>'+help;
   }catch(e){out.innerHTML='<span class="bad">Check failed.</span> '+esc(e&&e.message||e);}
 })();
 </script>
