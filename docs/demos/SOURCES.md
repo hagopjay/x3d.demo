@@ -30,3 +30,15 @@ Checked headless on a software GPU for correctness only; no timings.
 | heritage-facade/v1/facade.x3d | 9d7cac704d9575bb21676ab9f52d19ab1e70d0cc665b09de5bd4d63bddbfea2f | 12257463 |
 | heritage-facade/v2/facade.html | 8c9476c94a98fa1052e4858a60d27fccbae82db9959725e768b07ad8ca9c8439 | 12448179 |
 | heritage-facade/v2/facade.x3d | 9d7cac704d9575bb21676ab9f52d19ab1e70d0cc665b09de5bd4d63bddbfea2f | 12257463 |
+
+## Linked, not hosted here (doc v6)
+
+Demo 4 (Manifold of emotion) lives at https://hagsmac.github.io/x3d.STEM/ (repository x3d.STEM, X_ITE 16.5.1). Its files as fetched 2026-11-07, for the record:
+
+| file | sha256 | bytes |
+|---|---|---|
+| index.html (page) | 420bd91237c1c71961dd89bbb31afa3c39ff11199ada43d7e52493450d49f6a9 | 10248 |
+| scenes/manifold.x3d | 813c89bacb88e81b28952c87d6b92cab350382072a915be7768428ba22c15b13 | 2190327 |
+| docs/DEBRIEF.md | ea02722bd1c463787c1078f0ff78cd450e5c37a332f35dfb8d129d94c896a5c1 | 6293 |
+
+The six STEM-shelf studies are linked to hagopjay/x3d.STEM `studies/<name>/`; their data files are not in that repository.

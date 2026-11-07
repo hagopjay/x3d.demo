@@ -33,6 +33,10 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .facts{font-size:.88rem;color:var(--mute)}
 .soon{opacity:.8}
 .soon .ph{display:grid;place-items:center;aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;color:var(--mute);font-family:var(--mono);font-size:.8rem}
+.stem{margin:0;padding:20px 0;border-top:1px solid var(--line)}
+.studies{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:12px;margin:12px 0 10px;padding:0;list-style:none}
+.studies li{padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);font-size:.92rem}
+.studies li b{display:block;margin-bottom:2px}.studies li span{display:block;color:var(--mute);margin-bottom:6px}
 .memes{margin:8px 0 0;padding-top:20px;border-top:1px solid var(--line)}
 .wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px;margin-top:12px}
 .wall figure{margin:0}.wall img{width:100%;height:auto;aspect-ratio:16/9;border-radius:6px;display:block;background:#05070a}
@@ -44,7 +48,7 @@ code{font-family:var(--mono);font-size:.88em}
 <body>
 <main>
 <h1>x3d.demo</h1>
-<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. These three run on WebGPU.</p>
+<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. Demos 1 to 3 run on WebGPU. Demo 4 and the STEM shelf are drawn by X_ITE (WebGL) and open in any current browser.</p>
 
 <section class="about" aria-label="About the curator">
 <h2>HagopJay</h2>
@@ -101,6 +105,37 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
+<section class="demo">
+  <img src="assets/manifold.jpg" alt="A glowing curved surface with four deep wells ringed by light, a violet and jade field on a dark stage, the Manifold page" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 4</div>
+    <h2>Manifold of emotion</h2>
+    <p>An emotional field drawn as a Riemannian surface: the metric g = &lambda;&sup2;(dx&sup2; + dz&sup2;), the surface coloured by its Gaussian curvature K = &minus;&Delta; ln &lambda; / &lambda;&sup2;, and the luminous paths are its geodesics. One X3D 4.0 scene, drawn by X_ITE 16.5.1. Four moods, labels in English and Chinese, click to perturb the field.</p>
+    <div class="chips">
+      <a href="https://hagsmac.github.io/x3d.STEM/">Open the manifold</a>
+      <a href="https://hagsmac.github.io/x3d.STEM/scenes/manifold.x3d">Scene (.x3d)</a>
+      <a href="https://hagsmac.github.io/x3d.STEM/docs/DEBRIEF.md">Debrief</a>
+    </div>
+    <p class="facts">Not WebGPU, and not hosted in this repository: it lives on a sibling repository, x3d.STEM, so the link leaves this site. Drag to orbit, scroll to zoom, click to perturb, H hides the controls. The scene was rebuilt from an existing WebGL page; its debrief records the checks (curvature and geodesics against exact references, and a picture comparison against the original on four moods, SSIM 0.91 to 0.96). The drawn landscape is a picture of the metric, not an isometric embedding, and the mood labels are illustrative. Preview frame drawn on a software GPU.</p>
+  </div>
+</section>
+
+<section class="stem" aria-label="STEM shelf">
+  <div class="no">STEM SHELF</div>
+  <h2>Six studies from x3d.STEM</h2>
+  <p>Science and maths as X3D worlds that carry their own evidence. Each study is an X_ITE page built from computed data and checked against an exact or published result. These are the repository versions, not WebGPU ports. Each link opens the study's source and evidence on GitHub.</p>
+  <ul class="studies">
+    <li><b><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/kerr2">Kerr 2 &middot; The Photon Ring</a></b><span>A black hole&rsquo;s photon ring, every pass of light its own layer, zoomable 20,000&times; into the sub-rings; checked against Bardeen&rsquo;s analytic critical curve.</span></li>
+    <li><b><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/turing-garden">Turing Garden</a></b><span>Five 3D reaction&ndash;diffusion gardens grown from three seeds, played back through X3D&rsquo;s own TimeSensor.</span></li>
+    <li><b><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/electron-cloud">Electron Cloud Observatory</a></b><span>Hydrogen solved numerically and held to the exact answers: ten orbitals from 1s to 5g, and Lyman-&alpha;.</span></li>
+    <li><b><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/chirp">Chirp</a></b><span>Two black holes spiral together and you hear them; the orbit is held to Peters&rsquo; laws and the strain plays at its real pitch.</span></li>
+    <li><b><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/living-heart">Living Heart</a></b><span>Electrical waves in heart muscle: paced tissue, a spiral wave and a scroll wave, held to the exact Nagumo front speed.</span></li>
+    <li><b><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/vortex-sound">Vortex Reconnection &amp; Sound</a></b><span>Quantized whirlpools in a superfluid: a ring, and two rings that collide, reconnect and send sound through the fluid.</span></li>
+  </ul>
+  <div class="chips"><a href="https://github.com/hagopjay/x3d.STEM">The x3d.STEM repository</a><a href="https://hagopjay.github.io/x3d.STEM/">Its front page</a></div>
+  <p class="facts"><b>Why these are source links, not live pages.</b> The studies&rsquo; data files (about 330 MB for the largest) are not committed to the repository, so on the published pages each study stops at &ldquo;could not be shown&rdquo; until its builder regenerates them. Once the data is published, each name above can point at its live page. Flagship pass 1; nothing here has been measured on a real GPU.</p>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -117,7 +152,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>
