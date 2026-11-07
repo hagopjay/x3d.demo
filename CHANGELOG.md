@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v4 (2026-11-07)
+- Added the meme wall: eight captioned frames of the demos (`docs/assets/memes/`). Demos unchanged.
+
 ## v3 (2026-11-07)
 - The v2 adapter fallback did not help on the reporting machine: its `chrome://gpu` (Chrome 156, Intel UHD 620, Windows) lists the Intel adapter under Dawn Info as "Blocklisted - D3D11 backend not fully implemented" and the only other adapters as a blocklisted CPU renderer, so every `requestAdapter()` returns null. The v1/v2 demo pages are unchanged; they cannot run there until Chrome offers an adapter.
 - Doc page: when there is no adapter it now explains the blocklist and the one thing to try (`chrome://flags/#enable-unsafe-webgpu`, then relaunch), plus Edge or a Mac. Untested on that machine.
