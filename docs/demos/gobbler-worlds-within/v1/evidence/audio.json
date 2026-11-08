@@ -1,0 +1,41 @@
+{
+  "schema": "gobbler.audio-analysis/1",
+  "method": "ffmpeg loudnorm measurement; supplied compressed audio decoded by ffmpeg; no human listening claim",
+  "files": [
+    {
+      "file": "village.mp4",
+      "sha256": "8555165a11ceba4d2b6da211137519dc96849fdcbf0a51a936a51c2bd4ab850e",
+      "measurement": {
+        "input_i": "-26.20",
+        "input_tp": "-14.25",
+        "input_lra": "3.60",
+        "input_thresh": "-36.20",
+        "output_i": "-26.30",
+        "output_tp": "-14.26",
+        "output_lra": "3.30",
+        "output_thresh": "-36.30",
+        "normalization_type": "dynamic",
+        "target_offset": "0.30"
+      },
+      "exit": 0
+    },
+    {
+      "file": "cosmos.mp4",
+      "sha256": "55d09b735072e29830498d5ebf13bab85f7ce1df764eb63025260af4c11e4f92",
+      "measurement": {
+        "input_i": "-26.10",
+        "input_tp": "-15.79",
+        "input_lra": "1.20",
+        "input_thresh": "-36.10",
+        "output_i": "-25.98",
+        "output_tp": "-15.68",
+        "output_lra": "1.20",
+        "output_thresh": "-35.98",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.02"
+      },
+      "exit": 0
+    }
+  ],
+  "new_music": "Procedural three-note arrival motifs, sine oscillators with bounded voices and 2.55 s envelopes; no generated recording added."
+}

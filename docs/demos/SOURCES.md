@@ -64,3 +64,34 @@ The six STEM-shelf studies are linked to hagopjay/x3d.STEM `studies/<name>/`; th
 
 - Chirp on WebGPU (`chirp-webgpu/v1/index.html`, 6,198,838 bytes, sha256 d6019f1817dcd3936f51561773c6d91003428f13ee95af00bd2a36d2ae03d670) and Electron Cloud on WebGPU (`electron-cloud-webgpu/v1/index.html`, 9,490,619 bytes, sha256 a100eb3285663e084d78ae08e058e0df59afce14927a36b1ed76a393f1ed162e): `python3 -I x3d.webgpu/demo/src/build-chirp.py --kind chirp|cloud --study <docs/demos/stem/v1/chirp|electron-cloud> --out OUT --single` at x3d.loom commit d323213 (PR #21); the study folders are the Doc v7 copies listed above. The only external address in either file is the pinned Babylon.js 9.32.0 script on the jsDelivr CDN with SRI sha384-1XDybi1454WehNQaPHwhcTlpJ6oDdq/L4KKyDu7JiWPOBUzoBC0yEcuKDzHpdXyo.
 - `assets/chirp-webgpu.jpg` and `assets/electron-cloud-webgpu.jpg` are crops of the Babylon cinematic row of each run's `compare-sheet.jpg` (software renderer), re-encoded.
+
+## Doc v13 additions
+
+- Blender X3D I/O showcase (`blender-x3d-io/v1`): hagopjay/x3d-blender-io `docs/showcase` (local checkout at 78212bc), all 24 scenes, posters and verdicts; X_ITE 16.6.0 copied from `brain-torso-xite/v1/vendor` and the jsDelivr 16.4.3 fallback removed; `index.html` gains an `INCLUDED` list (all twelve) and one sentence naming the bundled version.
+- X3D ↔ MuJoCo bridge (`x3d-mujoco-bridge/v1`): the prebuilt `dist/` of the x3d-mujoco-proto-bridge project (loom4 delivery, 5 Nov), copied unchanged, plus its `THIRD_PARTY_NOTICES.txt` and a README.
+- Ontology constellation (`ontology-constellation/v1`): hagsmac/x3d.onto `scenes/ontology-constellation.x3d` (local checkout at 21f5792), unchanged; a new viewer page; X_ITE 16.6.0 as above.
+- Dynasty Loom (`dynasty-loom/v1`): the Dynasty Loom site from the Loom projects folder, copied unchanged.
+- Confluence (`confluence-ifc/v1`): the studio's `app/`, `assets/` and `vendor/` from the ifc-x3d-studio delivery, plus revision 0 recorded from its running server on 8 Nov (`snapshot/`); `app/main.js` and `app/style.css` patched for a static, read-only copy (listed in its README.md). The scene and `model.ifc` hashes match the snapshot's receipt.
+- Gobbler, Cabinet of Worlds (`gobbler-worlds-within/v1`): the Gobbler Worlds Within delivery, copied unchanged. Drillfield data are attributed to Google (Google Solar API); the Pantheon splats' source is not stated.
+- Claude artifact (shelf): a link to https://claude.ai/artifact/85mYcKtoZByivWQV2uXKvq, which asked for a sign-in when this was built; the owner will make it public.
+- Card pictures `assets/blender-x3d-io.jpg`, `x3d-mujoco-bridge.jpg`, `ontology-constellation.jpg`, `dynasty-loom.jpg`, `confluence-ifc.jpg`, `gobbler.jpg`: crops of headless captures (software renderer; the showcase's from its own poster).
+
+| file | sha256 | bytes |
+|---|---|---|
+| blender-x3d-io/v1/index.html | ee027c7474ff7c174cc53072a09464316b5256670c0049c48ee6cbc8775a0766 | 60743 |
+| blender-x3d-io/v1/scenes/stilllife-stage.x3d | 858415160ce9bcd3654df9843bc4fa7f80bb1f5d76a05259a04f9fa0d0a0f82b | 1223 |
+| blender-x3d-io/v1/scenes/stilllife-splats-24k.x3d | f64ab37f4ab7c92abedc7d682309ef6f74f90b0d301740c4c47222a1b4ee7301 | 3159852 |
+| blender-x3d-io/v1/vendor/x_ite/x_ite.min.js | cc0cdd67678cc579c1b6a272d902dbe0188df78fa9c5d1214cc320d56f47ac9b | 1306147 |
+| x3d-mujoco-bridge/v1/index.html | bc05036310c63bdb2188f2696b5339298df0ad7f5db2560c062e7ae2a43999f8 | 30371032 |
+| x3d-mujoco-bridge/v1/vendor/x_ite/x_ite.min.js | b7df063e8cb14919887563506f6c5f386b3066b65768de1856320a54ec68725f | 1306961 |
+| ontology-constellation/v1/ontology-constellation.x3d | 708ee7f4fde0dc75e64d4d7f435473368f15ef8e260a816d497f67a7851e67d8 | 165953 |
+| ontology-constellation/v1/index.html | e6c1accdde3451410e896c1b0f2635c502681fb3b92434df593c640462994477 | 2114 |
+| dynasty-loom/v1/index.html | a72357949fe065fdedb153506401055318e20f5cb4f97971f6197e6a8228cf5c | 178346 |
+| dynasty-loom/v1/darwin_wedgwood.x3d | fdb195f616fc457911f78765f2b416d1c356c6e2feeb681db6c827ee872f0d68 | 161449 |
+| confluence-ifc/v1/snapshot/snapshot.json | 61b042e41ece363bbc1ed62f6a13490222d27ab34f6a7f074bbec8102986a5e3 | 170243 |
+| confluence-ifc/v1/snapshot/scene-0.x3d | 59b11f25afb18d7021b14346a242bac5718c0e76f96d077de3ddb324e211b2be | 291325 |
+| confluence-ifc/v1/snapshot/model.ifc | 32dc72111d14d91964ba523f8f04ef65e0b6909fd161d5e068ab0cfb5ceef0fb | 500619 |
+| confluence-ifc/v1/app/main.js | 1076c567529a552817138d28873319583e496d0ff599f07eaae6057e132ab42e | 19948 |
+| gobbler-worlds-within/v1/index.html | 8b583a55e3459d4eb5027f13bf44599876f58f6055b3a2e8166d591c2c026024 | 5913 |
+| gobbler-worlds-within/v1/data/worlds/pantheon/pantheon.x3d | f85bccbaee0d98870bfffba1d5dbaf9c4287a667ab93a4174bbcd0a07e629c45 | 6542952 |
+| gobbler-worlds-within/v1/data/worlds/drillfield/drillfield.x3d | 19ccc474ad549496fce868d44de50575d60b4001ad2e81b24c79511f9b1d27de | 549839 |

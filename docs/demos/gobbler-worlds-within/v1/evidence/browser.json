@@ -1,0 +1,935 @@
+{
+  "schema": "gobbler.browser-witness/1",
+  "errors": [],
+  "console": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x15440069e200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x15440069e200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x15440069e200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x15440069e200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Inline: Couldn't load URL 'http://127.0.0.1:8780/data/worlds/materials/materials.x3d'. TypeError: Failed to fetch\n    at Xd.loadDocumentAsync (http://127.0.0.1:8780/vendor/x_ite/x_ite.min.js:2:605867)\n    at Xd.loadDocument (http://127.0.0.1:8780/vendor/x_ite/x_ite.min.js:2:604180)\n    at Xd.createX3DFromURL (http://127.0.0.1:8780/vendor/x_ite/x_ite.min.js:2:603866)\n    at FN.loadData (http://127.0.0.1:8780/vendor/x_ite/x_ite.min.js:2:1142398)\n    at Object.assign.processInterests (http://127.0.0.1:8780/vendor/x_ite/x_ite.min.js:2:70993)\n    at Ue.isDefaultValue.processEvent (http://127.0.0.1:8780/vendor/x_ite/x_ite.min.js:2:83089)\n    at [X_ITE.X3DRoutingContext.processEvents] (http://127.0.0.1:8780/vendor/x_ite/x_ite.min.js:2:994127)\n    at [X_ITE.X3DBrowserContext.traverse] (http://127."
+    }
+  ],
+  "external_requests": [],
+  "failed_requests": [
+    "http://127.0.0.1:8780/data/worlds/materials/materials.x3d"
+  ],
+  "checks": [
+    "runtime and scene identity bound",
+    "reduced camera motion respected; audio silent before gesture",
+    "materials: ready, camera finite, correct active world, budget respected",
+    "giza: ready, camera finite, correct active world, budget respected",
+    "pantheon: ready, camera finite, correct active world, budget respected",
+    "drillfield: ready, camera finite, correct active world, budget respected",
+    "profile rejects changed conditions",
+    "manual camera offsets cleared before directed return",
+    "departure unloads worlds after grace",
+    "failed world becomes retryable without moving camera",
+    "world retry succeeds after network recovery",
+    "gesture audio decode and exact arrival-motif cleanup",
+    "mobile no horizontal overflow; studio opens and Escape closes"
+  ],
+  "views": {
+    "keeper": {
+      "stream": {
+        "budget": 2,
+        "active": null,
+        "intent": null,
+        "resident_groups": 0,
+        "residents": [],
+        "events": []
+      },
+      "pose": [
+        7.6,
+        0,
+        31
+      ],
+      "observedWorld": null,
+      "arrival": {
+        "stop": "establishing",
+        "expected": [
+          7.6,
+          0,
+          31
+        ],
+        "observed": [
+          7.6,
+          0,
+          31
+        ],
+        "error": 0,
+        "tolerance": 0.01,
+        "wait_ms": 587.7999999970198
+      },
+      "caption": "The keeper",
+      "isolation": false
+    },
+    "materials": {
+      "stream": {
+        "budget": 2,
+        "active": "materials",
+        "intent": null,
+        "resident_groups": 1,
+        "residents": [
+          {
+            "id": "materials",
+            "state": "ready",
+            "epoch": 1,
+            "error": null
+          }
+        ],
+        "events": [
+          {
+            "t": 8693.60000000149,
+            "type": "load",
+            "id": "materials"
+          },
+          {
+            "t": 13136.89999999851,
+            "type": "ready",
+            "id": "materials"
+          },
+          {
+            "t": 14341.39999999851,
+            "type": "commit",
+            "id": "materials"
+          }
+        ]
+      },
+      "pose": [
+        4.712761283096395,
+        -3.7111848385844053,
+        2.7963390427400476
+      ],
+      "observedWorld": "materials",
+      "arrival": {
+        "stop": "materials",
+        "expected": [
+          4.712761283096395,
+          -3.7111848385844053,
+          2.796339042740047
+        ],
+        "observed": [
+          4.712761283096395,
+          -3.7111848385844053,
+          2.7963390427400476
+        ],
+        "error": 4.440892098500626e-16,
+        "tolerance": 0.00001,
+        "wait_ms": 562.8000000007451
+      },
+      "caption": "The alchemist’s shelf",
+      "isolation": true
+    },
+    "giza": {
+      "stream": {
+        "budget": 2,
+        "active": "giza",
+        "intent": null,
+        "resident_groups": 2,
+        "residents": [
+          {
+            "id": "materials",
+            "state": "ready",
+            "epoch": 1,
+            "error": null
+          },
+          {
+            "id": "giza",
+            "state": "ready",
+            "epoch": 1,
+            "error": null
+          }
+        ],
+        "events": [
+          {
+            "t": 8693.60000000149,
+            "type": "load",
+            "id": "materials"
+          },
+          {
+            "t": 13136.89999999851,
+            "type": "ready",
+            "id": "materials"
+          },
+          {
+            "t": 14341.39999999851,
+            "type": "commit",
+            "id": "materials"
+          },
+          {
+            "t": 21038.800000000745,
+            "type": "load",
+            "id": "giza"
+          },
+          {
+            "t": 50789.89999999851,
+            "type": "ready",
+            "id": "giza"
+          },
+          {
+            "t": 51746.39999999851,
+            "type": "commit",
+            "id": "giza"
+          }
+        ]
+      },
+      "pose": [
+        4.707921228151262,
+        -1.4652143168878289,
+        2.0683371119874843
+      ],
+      "observedWorld": "giza",
+      "arrival": {
+        "stop": "giza",
+        "expected": [
+          4.707921228151262,
+          -1.465214316887829,
+          2.0683371119874843
+        ],
+        "observed": [
+          4.707921228151262,
+          -1.4652143168878289,
+          2.0683371119874843
+        ],
+        "error": 2.220446049250313e-16,
+        "tolerance": 0.00001,
+        "wait_ms": 953.6000000014901
+      },
+      "caption": "Stone remembers",
+      "isolation": true
+    },
+    "pantheon": {
+      "stream": {
+        "budget": 2,
+        "active": "pantheon",
+        "intent": null,
+        "resident_groups": 2,
+        "residents": [
+          {
+            "id": "materials",
+            "state": "unloaded",
+            "epoch": 2,
+            "error": null
+          },
+          {
+            "id": "giza",
+            "state": "ready",
+            "epoch": 1,
+            "error": null
+          },
+          {
+            "id": "pantheon",
+            "state": "ready",
+            "epoch": 1,
+            "error": null
+          }
+        ],
+        "events": [
+          {
+            "t": 8693.60000000149,
+            "type": "load",
+            "id": "materials"
+          },
+          {
+            "t": 13136.89999999851,
+            "type": "ready",
+            "id": "materials"
+          },
+          {
+            "t": 14341.39999999851,
+            "type": "commit",
+            "id": "materials"
+          },
+          {
+            "t": 21038.800000000745,
+            "type": "load",
+            "id": "giza"
+          },
+          {
+            "t": 50789.89999999851,
+            "type": "ready",
+            "id": "giza"
+          },
+          {
+            "t": 51746.39999999851,
+            "type": "commit",
+            "id": "giza"
+          },
+          {
+            "t": 61338.800000000745,
+            "type": "unload",
+            "id": "materials",
+            "detail": "budget"
+          },
+          {
+            "t": 61338.800000000745,
+            "type": "load",
+            "id": "pantheon"
+          },
+          {
+            "t": 63906.300000000745,
+            "type": "ready",
+            "id": "pantheon"
+          },
+          {
+            "t": 65619.80000000075,
+            "type": "commit",
+            "id": "pantheon"
+          }
+        ]
+      },
+      "pose": [
+        7.9145695377695695,
+        -1.5987664966630064,
+        2.496031630655396
+      ],
+      "observedWorld": "pantheon",
+      "arrival": {
+        "stop": "pantheon",
+        "expected": [
+          7.9145695377695695,
+          -1.5987664966630064,
+          2.496031630655396
+        ],
+        "observed": [
+          7.9145695377695695,
+          -1.5987664966630064,
+          2.496031630655396
+        ],
+        "error": 0,
+        "tolerance": 0.00001,
+        "wait_ms": 1711
+      },
+      "caption": "A room made of light",
+      "isolation": true
+    },
+    "drillfield": {
+      "stream": {
+        "budget": 2,
+        "active": "drillfield",
+        "intent": null,
+        "resident_groups": 2,
+        "residents": [
+          {
+            "id": "materials",
+            "state": "unloaded",
+            "epoch": 2,
+            "error": null
+          },
+          {
+            "id": "giza",
+            "state": "unloaded",
+            "epoch": 2,
+            "error": null
+          },
+          {
+            "id": "pantheon",
+            "state": "ready",
+            "epoch": 1,
+            "error": null
+          },
+          {
+            "id": "drillfield",
+            "state": "ready",
+            "epoch": 1,
+            "error": null
+          }
+        ],
+        "events": [
+          {
+            "t": 8693.60000000149,
+            "type": "load",
+            "id": "materials"
+          },
+          {
+            "t": 13136.89999999851,
+            "type": "ready",
+            "id": "materials"
+          },
+          {
+            "t": 14341.39999999851,
+            "type": "commit",
+            "id": "materials"
+          },
+          {
+            "t": 21038.800000000745,
+            "type": "load",
+            "id": "giza"
+          },
+          {
+            "t": 50789.89999999851,
+            "type": "ready",
+            "id": "giza"
+          },
+          {
+            "t": 51746.39999999851,
+            "type": "commit",
+            "id": "giza"
+          },
+          {
+            "t": 61338.800000000745,
+            "type": "unload",
+            "id": "materials",
+            "detail": "budget"
+          },
+          {
+            "t": 61338.800000000745,
+            "type": "load",
+            "id": "pantheon"
+          },
+          {
+            "t": 63906.300000000745,
+            "type": "ready",
+            "id": "pantheon"
+          },
+          {
+            "t": 65619.80000000075,
+            "type": "commit",
+            "id": "pantheon"
+          },
+          {
+            "t": 70879.39999999851,
+            "type": "unload",
+            "id": "giza",
+            "detail": "budget"
+          },
+          {
+            "t": 70879.39999999851,
+            "type": "load",
+            "id": "drillfield"
+          },
+          {
+            "t": 74542,
+            "type": "ready",
+            "id": "drillfield"
+          },
+          {
+            "t": 74837.19999999925,
+            "type": "commit",
+            "id": "drillfield"
+          }
+        ]
+      },
+      "pose": [
+        7.87639529126129,
+        -3.801987519076418,
+        2.7971971012174652
+      ],
+      "observedWorld": "drillfield",
+      "arrival": {
+        "stop": "drillfield",
+        "expected": [
+          7.87639529126129,
+          -3.8019875190764183,
+          2.7971971012174652
+        ],
+        "observed": [
+          7.87639529126129,
+          -3.801987519076418,
+          2.7971971012174652
+        ],
+        "error": 4.440892098500626e-16,
+        "tolerance": 0.00001,
+        "wait_ms": 293.19999999925494
+      },
+      "caption": "A place in the world",
+      "isolation": true
+    }
+  },
+  "candidate": "6aa8f239690f1d638dad0572ef06bfe6ff2edb0058d6ce685205d3a1fcd9b422",
+  "chromium": "131.0.6778.204",
+  "runtime": {
+    "schema": "gobbler.runtime/1",
+    "created": "2026-11-03T21:53:24.977Z",
+    "scene_sha256": "fb7cfaea174758e5eb3257d37b7557a14c7121d8c5d17a3c4f2283de2296ff36",
+    "identity_verified": true,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "runtime": "16.5.1",
+    "viewport": [
+      1100,
+      760
+    ],
+    "drawing_buffer": [
+      1100,
+      760
+    ],
+    "settings": {
+      "quality": "balanced",
+      "frame_ceiling": 60,
+      "exposure": 1,
+      "roughness": 0.32,
+      "studio_mix": 0.72
+    },
+    "view": "establishing",
+    "pose": null,
+    "stream": {
+      "budget": 2,
+      "active": null,
+      "intent": null,
+      "resident_groups": 0,
+      "residents": [],
+      "events": []
+    },
+    "exterior_isolation": false,
+    "profile": null,
+    "audio": {
+      "volume": 0.65,
+      "active_synth_voices": 0,
+      "motif_voices": 0,
+      "on": false,
+      "ctx": "none",
+      "busy": false,
+      "error": "",
+      "beds": 0,
+      "thumps": 0,
+      "beats": 0,
+      "v": 0,
+      "dV": 99,
+      "heart": 0,
+      "gain": null
+    },
+    "camera_arrivals": [],
+    "boot": {
+      "ms": {
+        "starting X_ITE": 262,
+        "fetching the bird": 606,
+        "parsing the scene": 4094,
+        "drawing the first frame": 1271
+      },
+      "bytes": {
+        "bird": 358555,
+        "birdRaw": 1715189,
+        "graph": 265588
+      }
+    },
+    "limits": [
+      "No discrete-GPU benchmark on this device unless renderer identifies one.",
+      "Draw callbacks are not physical display latency.",
+      "Residency bounds Inline groups; GPU memory reclamation is not measured."
+    ]
+  },
+  "profile": {
+    "schema": "gobbler.profile/1",
+    "draw_intervals": {
+      "samples": 9,
+      "median_ms": 852.9000000022352,
+      "p95_ms": 1764.300000000745,
+      "p99_ms": 1764.300000000745
+    },
+    "cpu_display_submission": {
+      "samples": 10,
+      "median_ms": 1.800000000745058,
+      "p95_ms": 3.399999998509884,
+      "p99_ms": 3.399999998509884
+    },
+    "cpu_scene_update": {
+      "samples": 0,
+      "median_ms": null,
+      "p95_ms": null,
+      "p99_ms": null
+    },
+    "gpu": {
+      "available": true,
+      "samples": 7,
+      "median_ms": 845.290702,
+      "p95_ms": 956.443841,
+      "p99_ms": 956.443841,
+      "disjoint_events": 0,
+      "pending_queries": 3
+    },
+    "scope": "CPU display callback span excludes final blit; GPU query brackets X_ITE display traversal, not compositor or physical latency. Missing GPU measurements remain null.",
+    "elapsed_ms": 8000.699999999255,
+    "valid": false,
+    "sampling_note": "Too few completed frames for a performance comparison.",
+    "invalidated_by": [],
+    "conditions": {
+      "schema": "gobbler.runtime/1",
+      "created": "2026-11-03T21:54:41.320Z",
+      "scene_sha256": "fb7cfaea174758e5eb3257d37b7557a14c7121d8c5d17a3c4f2283de2296ff36",
+      "identity_verified": true,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "runtime": "16.5.1",
+      "viewport": [
+        1100,
+        760
+      ],
+      "drawing_buffer": [
+        1100,
+        760
+      ],
+      "settings": {
+        "quality": "balanced",
+        "frame_ceiling": 60,
+        "exposure": 1,
+        "roughness": 0.32,
+        "studio_mix": 0.72
+      },
+      "view": "drillfield",
+      "pose": [
+        7.87639529126129,
+        -3.801987519076418,
+        2.7971971012174652
+      ],
+      "exterior_isolation": true,
+      "audio": {
+        "volume": 0.65,
+        "active_synth_voices": 0,
+        "motif_voices": 0,
+        "on": false,
+        "ctx": "none",
+        "busy": false,
+        "error": "",
+        "beds": 0,
+        "thumps": 0,
+        "beats": 0,
+        "v": 0,
+        "dV": 99,
+        "heart": 0,
+        "gain": null
+      },
+      "camera_arrivals": [
+        {
+          "stop": "establishing",
+          "expected": [
+            7.6,
+            0,
+            31
+          ],
+          "observed": [
+            7.6,
+            0,
+            31
+          ],
+          "error": 0,
+          "tolerance": 0.01,
+          "wait_ms": 587.7999999970198
+        },
+        {
+          "stop": "materials",
+          "expected": [
+            4.712761283096395,
+            -3.7111848385844053,
+            2.796339042740047
+          ],
+          "observed": [
+            4.712761283096395,
+            -3.7111848385844053,
+            2.7963390427400476
+          ],
+          "error": 4.440892098500626e-16,
+          "tolerance": 0.00001,
+          "wait_ms": 562.8000000007451
+        },
+        {
+          "stop": "giza",
+          "expected": [
+            4.707921228151262,
+            -1.465214316887829,
+            2.0683371119874843
+          ],
+          "observed": [
+            4.707921228151262,
+            -1.4652143168878289,
+            2.0683371119874843
+          ],
+          "error": 2.220446049250313e-16,
+          "tolerance": 0.00001,
+          "wait_ms": 953.6000000014901
+        },
+        {
+          "stop": "pantheon",
+          "expected": [
+            7.9145695377695695,
+            -1.5987664966630064,
+            2.496031630655396
+          ],
+          "observed": [
+            7.9145695377695695,
+            -1.5987664966630064,
+            2.496031630655396
+          ],
+          "error": 0,
+          "tolerance": 0.00001,
+          "wait_ms": 1711
+        },
+        {
+          "stop": "drillfield",
+          "expected": [
+            7.87639529126129,
+            -3.8019875190764183,
+            2.7971971012174652
+          ],
+          "observed": [
+            7.87639529126129,
+            -3.801987519076418,
+            2.7971971012174652
+          ],
+          "error": 4.440892098500626e-16,
+          "tolerance": 0.00001,
+          "wait_ms": 293.19999999925494
+        }
+      ],
+      "boot": {
+        "ms": {
+          "starting X_ITE": 262,
+          "fetching the bird": 606,
+          "parsing the scene": 4094,
+          "drawing the first frame": 1271
+        },
+        "bytes": {
+          "bird": 358555,
+          "birdRaw": 1715189,
+          "graph": 265588
+        }
+      },
+      "limits": [
+        "No discrete-GPU benchmark on this device unless renderer identifies one.",
+        "Draw callbacks are not physical display latency.",
+        "Residency bounds Inline groups; GPU memory reclamation is not measured."
+      ]
+    }
+  },
+  "invalidated_profile": {
+    "schema": "gobbler.profile/1",
+    "draw_intervals": {
+      "samples": 9,
+      "median_ms": 32.19999999925494,
+      "p95_ms": 3835.599999997765,
+      "p99_ms": 3835.599999997765
+    },
+    "cpu_display_submission": {
+      "samples": 10,
+      "median_ms": 1.5,
+      "p95_ms": 4.800000000745058,
+      "p99_ms": 4.800000000745058
+    },
+    "cpu_scene_update": {
+      "samples": 0,
+      "median_ms": null,
+      "p95_ms": null,
+      "p99_ms": null
+    },
+    "gpu": {
+      "available": true,
+      "samples": 5,
+      "median_ms": 710.030805,
+      "p95_ms": 859.45692,
+      "p99_ms": 859.45692,
+      "disjoint_events": 0,
+      "pending_queries": 2
+    },
+    "scope": "CPU display callback span excludes final blit; GPU query brackets X_ITE display traversal, not compositor or physical latency. Missing GPU measurements remain null.",
+    "elapsed_ms": 8000.29999999702,
+    "valid": false,
+    "sampling_note": "Too few completed frames for a performance comparison.",
+    "invalidated_by": [
+      "render settings changed"
+    ],
+    "conditions": {
+      "schema": "gobbler.runtime/1",
+      "created": "2026-11-03T21:54:50.248Z",
+      "scene_sha256": "fb7cfaea174758e5eb3257d37b7557a14c7121d8c5d17a3c4f2283de2296ff36",
+      "identity_verified": true,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "runtime": "16.5.1",
+      "viewport": [
+        1100,
+        760
+      ],
+      "drawing_buffer": [
+        1100,
+        760
+      ],
+      "settings": {
+        "quality": "balanced",
+        "frame_ceiling": 60,
+        "exposure": 1,
+        "roughness": 0.32,
+        "studio_mix": 0.72
+      },
+      "view": "drillfield",
+      "pose": [
+        7.87639529126129,
+        -3.801987519076418,
+        2.7971971012174652
+      ],
+      "exterior_isolation": true,
+      "audio": {
+        "volume": 0.65,
+        "active_synth_voices": 0,
+        "motif_voices": 0,
+        "on": false,
+        "ctx": "none",
+        "busy": false,
+        "error": "",
+        "beds": 0,
+        "thumps": 0,
+        "beats": 0,
+        "v": 0,
+        "dV": 99,
+        "heart": 0,
+        "gain": null
+      },
+      "camera_arrivals": [
+        {
+          "stop": "establishing",
+          "expected": [
+            7.6,
+            0,
+            31
+          ],
+          "observed": [
+            7.6,
+            0,
+            31
+          ],
+          "error": 0,
+          "tolerance": 0.01,
+          "wait_ms": 587.7999999970198
+        },
+        {
+          "stop": "materials",
+          "expected": [
+            4.712761283096395,
+            -3.7111848385844053,
+            2.796339042740047
+          ],
+          "observed": [
+            4.712761283096395,
+            -3.7111848385844053,
+            2.7963390427400476
+          ],
+          "error": 4.440892098500626e-16,
+          "tolerance": 0.00001,
+          "wait_ms": 562.8000000007451
+        },
+        {
+          "stop": "giza",
+          "expected": [
+            4.707921228151262,
+            -1.465214316887829,
+            2.0683371119874843
+          ],
+          "observed": [
+            4.707921228151262,
+            -1.4652143168878289,
+            2.0683371119874843
+          ],
+          "error": 2.220446049250313e-16,
+          "tolerance": 0.00001,
+          "wait_ms": 953.6000000014901
+        },
+        {
+          "stop": "pantheon",
+          "expected": [
+            7.9145695377695695,
+            -1.5987664966630064,
+            2.496031630655396
+          ],
+          "observed": [
+            7.9145695377695695,
+            -1.5987664966630064,
+            2.496031630655396
+          ],
+          "error": 0,
+          "tolerance": 0.00001,
+          "wait_ms": 1711
+        },
+        {
+          "stop": "drillfield",
+          "expected": [
+            7.87639529126129,
+            -3.8019875190764183,
+            2.7971971012174652
+          ],
+          "observed": [
+            7.87639529126129,
+            -3.801987519076418,
+            2.7971971012174652
+          ],
+          "error": 4.440892098500626e-16,
+          "tolerance": 0.00001,
+          "wait_ms": 293.19999999925494
+        }
+      ],
+      "boot": {
+        "ms": {
+          "starting X_ITE": 262,
+          "fetching the bird": 606,
+          "parsing the scene": 4094,
+          "drawing the first frame": 1271
+        },
+        "bytes": {
+          "bird": 358555,
+          "birdRaw": 1715189,
+          "graph": 265588
+        }
+      },
+      "limits": [
+        "No discrete-GPU benchmark on this device unless renderer identifies one.",
+        "Draw callbacks are not physical display latency.",
+        "Residency bounds Inline groups; GPU memory reclamation is not measured."
+      ]
+    }
+  },
+  "expected_fault_errors": [],
+  "audio": {
+    "volume": 0.65,
+    "active_synth_voices": 5,
+    "motif_voices": 0,
+    "on": true,
+    "ctx": "running",
+    "busy": false,
+    "error": "",
+    "beds": 2,
+    "thumps": 2,
+    "beats": 38,
+    "v": 0,
+    "dV": 28.543134939656593,
+    "heart": 0.10175039538744922,
+    "gain": {
+      "cosmos": 0.2940722107887268,
+      "village": 0,
+      "heart": 0.005984395742416382
+    }
+  },
+  "audio_after_motif": {
+    "volume": 0.65,
+    "active_synth_voices": 0,
+    "motif_voices": 0,
+    "on": true,
+    "ctx": "running",
+    "busy": false,
+    "error": "",
+    "beds": 2,
+    "thumps": 8,
+    "beats": 38,
+    "v": 0,
+    "dV": 28.543134939656593,
+    "heart": 0.10175039538744922,
+    "gain": {
+      "cosmos": 0.9997929930686951,
+      "village": 0,
+      "heart": 0.02034004218876362
+    }
+  },
+  "passed": true
+}

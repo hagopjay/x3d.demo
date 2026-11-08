@@ -1,0 +1,62 @@
+{
+  "schema": "gobbler.diagnosis/1",
+  "source_sha256": "904ce6a3541cd3720cb6a3aa2374388ffe614464594585ff8df0b91da1ae49e3",
+  "rig": "Chromium headless / X_ITE 16.5.1 / ANGLE SwiftShader",
+  "trials": [
+    {
+      "variant": "Complete source; MSAA disabled, 960x640",
+      "log": "log STAGE starting X_ITE undefined\nlog STAGE fetching the bird bird.b64.txt\nlog STAGE parsing the scene 1.71 MB of X3D\n{\"errors\":[],\"error\":\"page.waitForFunction: Target crashed \\n    at /workspace/scratch/3f2bb4da37c3/gobbler-diagnostic.cjs:2:1320\"}\n",
+      "log_sha256": "be72e04a8ddd088f804251da15837f4943d684479486f89a6aff2a66df0a492d",
+      "observed_crash": true,
+      "observed_frame": false
+    },
+    {
+      "variant": "Diagnostic: Text removed",
+      "log": "log STAGE starting X_ITE undefined\nlog STAGE fetching the bird bird.b64.txt\nlog STAGE parsing the scene 1.71 MB of X3D\n{\"errors\":[],\"error\":\"page.waitForFunction: Target crashed \\n    at /workspace/scratch/3f2bb4da37c3/gobbler-bisect.cjs:2:1443\"}\n",
+      "log_sha256": "21990d31343d6147208de12ffdb5f2eae5652c73042a8999dcc6a98f0ad4cc14",
+      "observed_crash": true,
+      "observed_frame": false
+    },
+    {
+      "variant": "Diagnostic: ROUTEs removed",
+      "log": "log STAGE starting X_ITE undefined\nlog STAGE fetching the bird bird.b64.txt\nlog STAGE parsing the scene 1.67 MB of X3D\n{\"errors\":[],\"error\":\"page.waitForFunction: Target crashed \\n    at /workspace/scratch/3f2bb4da37c3/gobbler-bisect.cjs:2:1443\"}\n",
+      "log_sha256": "deacbd6c4950dc559d5bbde307b518bcdc83484fdb8def8aaeb625a1cfc9e672",
+      "observed_crash": true,
+      "observed_frame": false
+    },
+    {
+      "variant": "Diagnostic: box replacing geometry",
+      "log": "log STAGE starting X_ITE undefined\nlog STAGE fetching the bird bird.b64.txt\nlog STAGE parsing the scene 4 KB of X3D\nlog STAGE drawing the first frame undefined\nwarning gv4: no Intro timer Error: Named node 'Intro' not found.\n    at np.getNamedNode (http://127.0.0.1:8776/vendor/x_ite/x_ite.min.js:2:623532)\n    at http://127.0.0.1:8776/src/hover.js:69:22\n    at Array.forEach (<anonymous>)\n    at watchGates (http://127.0.0.1:8776/src/hover.js:67:29)\n    at Object.start (http://127.0.0.1:8776/src/hover.js:360:5)\n    at http://127.0.0.1:8776/src/boot.js:409:34\nwarning gv4: no Dissolve timer Error: Named node 'Dissolve' not found.\n    at np.getNamedNode (http://127.0.0.1:8776/vendor/x_ite/x_ite.min.js:2:623532)\n    at http://127.0.0.1:8776/src/hover.js:69:22\n    at Array.forEach (<anonymous>)\n    at watchGates (http://127.0.0.1:8776/src/hover.js:67:29)\n    at Object.start (http://127.0.0.1:8776/src/hover.js:360:5)\n    at http://127.0.0.1:8776/src/boot.js:409:34\nbaseline establishing\n{\"errors\":[],\"boot\":908,\"renderer\":{\"version\":\"16.5.1\",\"renderer\":\"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)\"}}\n",
+      "log_sha256": "3676b891921342a6bb9d351c858fac7acf97150edf7c14f9f241f096843024b2",
+      "observed_crash": false,
+      "observed_frame": true
+    },
+    {
+      "variant": "Diagnostic: first head facet shape, shaders removed",
+      "log": "log STAGE starting X_ITE undefined\nlog STAGE fetching the bird bird.b64.txt\nlog STAGE parsing the scene 34 KB of X3D\nlog STAGE drawing the first frame undefined\nwarning gv4: no Intro timer Error: Named node 'Intro' not found.\n    at np.getNamedNode (http://127.0.0.1:8776/vendor/x_ite/x_ite.min.js:2:623532)\n    at http://127.0.0.1:8776/src/hover.js:69:22\n    at Array.forEach (<anonymous>)\n    at watchGates (http://127.0.0.1:8776/src/hover.js:67:29)\n    at Object.start (http://127.0.0.1:8776/src/hover.js:360:5)\n    at http://127.0.0.1:8776/src/boot.js:409:34\nwarning gv4: no Dissolve timer Error: Named node 'Dissolve' not found.\n    at np.getNamedNode (http://127.0.0.1:8776/vendor/x_ite/x_ite.min.js:2:623532)\n    at http://127.0.0.1:8776/src/hover.js:69:22\n    at Array.forEach (<anonymous>)\n    at watchGates (http://127.0.0.1:8776/src/hover.js:67:29)\n    at Object.start (http://127.0.0.1:8776/src/hover.js:360:5)\n    at http://127.0.0.1:8776/src/boot.js:409:34\nbaseline establishing\n{\"errors\":[],\"boot\":819,\"renderer\":{\"version\":\"16.5.1\",\"renderer\":\"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)\"}}\n",
+      "log_sha256": "e20892524a1375b84d170f97c7bf35d11eae7aa87335f3ef59c327f1810dda0d",
+      "observed_crash": false,
+      "observed_frame": true
+    },
+    {
+      "variant": "Diagnostic: first three head shapes, shaders removed",
+      "log": "log STAGE starting X_ITE undefined\nlog STAGE fetching the bird bird.b64.txt\nlog STAGE parsing the scene 102 KB of X3D\nlog STAGE drawing the first frame undefined\n{\"errors\":[],\"error\":\"page.waitForFunction: Target crashed \\n    at /workspace/scratch/3f2bb4da37c3/gobbler-bisect.cjs:2:1443\"}\n",
+      "log_sha256": "657ac42bb2a079bd6960c7daffa1a53f293eee9afffc6c27d54df7fa5a58a8d3",
+      "observed_crash": true,
+      "observed_frame": false
+    },
+    {
+      "variant": "Complete source; MikkTSpace request deliberately blocked",
+      "log": "log STAGE starting X_ITE undefined\nlog STAGE fetching the bird bird.b64.txt\nlog STAGE parsing the scene 1.71 MB of X3D\nerror Failed to load resource: net::ERR_FAILED\nwarning [.WebGL-0x2a6c02d8d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels\nwarning [.WebGL-0x2a6c02d8d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels\nlog STAGE drawing the first frame undefined\nwarning [.WebGL-0x2a6c02d8d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels\nwarning [.WebGL-0x2a6c02d8d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)\nbaseline establishing\n{\"errors\":[\"Failed to fetch\"],\"boot\":5439,\"renderer\":{\"version\":\"16.5.1\",\"renderer\":\"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)\"}}\n",
+      "log_sha256": "1d3da2f0394ce8ffbc2aa427b30638b480eeed2b0de3d878d97fda5d7aea36d6",
+      "observed_crash": false,
+      "observed_frame": true
+    }
+  ],
+  "limits": [
+    "Logs are retained observations, not performance comparisons.",
+    "The complete baseline uses the recorded source hash; temporary reduced fixtures were not individually content-hashed before overwrite.",
+    "Blocking MikkTSpace was diagnostic only and is not in the delivered implementation.",
+    "The production explicit-basis fix is witnessed by the separately bound current browser run."
+  ]
+}

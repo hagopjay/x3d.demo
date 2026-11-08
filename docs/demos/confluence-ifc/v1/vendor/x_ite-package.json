@@ -1,0 +1,185 @@
+{
+  "bugs": {
+    "url": "https://github.com/create3000/x_ite/issues"
+  },
+  "dist": {
+    "shasum": "0f483000e22cc8846909224187c6933e6bffa3ae",
+    "tarball": "https://registry.npmjs.org/x_ite/-/x_ite-16.5.1.tgz",
+    "fileCount": 144,
+    "integrity": "sha512-+j5dir4o8obQfKjiQdHIIQJ99gT2t5SSdSIi1SRtHFuPo4wXp9HIu5zjDE/7yxpmlv5W5oNgqJekXujHMJ012Q==",
+    "signatures": [
+      {
+        "sig": "MEUCIQDO0w06mUhedCKQ4EbTPFo4WGg70S603Mlm9OLrmPU/LgIgUedrlmz8P/II2YJj583P93a07HFU+uMOMqGJkkpihUo=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "sig": "MEYCIQC7hQzYdWMJZJdnJj6HcqlnP2AQdRt6w5suZYGPPhIGHQIhAIZjghGWvzz3KT5RAXi2xgbwE3RsETAGUKuoX+b4DhjT",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "unpackedSize": 32116029
+  },
+  "main": "dist/x_ite.js",
+  "name": "x_ite",
+  "types": "./dist/x_ite.d.ts",
+  "author": {
+    "name": "Holger Seelig",
+    "email": "holger.seelig@gmail.com"
+  },
+  "module": "dist/x_ite.mjs",
+  "exports": {
+    ".": {
+      "types": "./dist/x_ite.d.ts",
+      "import": "./dist/x_ite.mjs",
+      "require": "./dist/x_ite.js"
+    },
+    "./x_ite.js": "./dist/x_ite.js",
+    "./x_ite.mjs": "./dist/x_ite.mjs",
+    "./X3DUOM.xml": "./dist/X3DUOM.xml",
+    "./x_ite.d.ts": "./dist/x_ite.d.ts",
+    "./x_ite.min.js": "./dist/x_ite.min.js",
+    "./x_ite.min.mjs": "./dist/x_ite.min.mjs"
+  },
+  "funding": {
+    "url": "https://patreon.com/X_ITE",
+    "type": "patreon"
+  },
+  "gitHead": "c38f310fe2d4d43819898652f73fbfbf1f41915d",
+  "license": "MIT",
+  "scripts": {
+    "ts": "node build/bin/ts.js",
+    "dist": "node build/bin/dist.js",
+    "lint": "eslint src",
+    "test": "cd ../x_ite-tests && npm test",
+    "release": "node build/bin/release.js",
+    "docs:nodes": "perl build/docs/nodes.pl",
+    "docs:table": "node build/docs/table.js",
+    "make:tests": "perl build/bin/tests.pl",
+    "docs:server": "cd docs && bundle exec jekyll serve --ssl-key ssl/server.key --ssl-cert ssl/server.crt --incremental --host=`ipconfig getifaddr en0`",
+    "docs:update": "cd docs && bundle update --all",
+    "glTF:teaser": "node build/docs/glTF-teaser.js",
+    "docs:install": "cd docs && gem install bundler && bundle install",
+    "glTF:samples": "perl build/docs/glTF-samples.pl",
+    "test:release": "cd ../x_ite-tests && npm run test:release",
+    "docs:reference": "node build/docs/reference.js",
+    "predocs:server": "rm -f -r docs/_site/",
+    "docs:components": "node build/docs/components.js",
+    "predocs:install": "cd docs && ln -s -f ../../ssl ./",
+    "merge:development": "sh build/bin/merge-development.sh",
+    "docs:compatibility": "node build/docs/compatibility.js"
+  },
+  "_npmUser": {
+    "name": "create3000",
+    "email": "holger.seelig@yahoo.de"
+  },
+  "homepage": "https://create3000.github.io/x_ite/",
+  "keywords": [
+    "3D",
+    "3DGS",
+    "Browser",
+    "Electron",
+    "Framework",
+    "Gaussian-Splatting",
+    "GLB",
+    "glTF2",
+    "JavaScript",
+    "JSON",
+    "Model",
+    "Node",
+    "Parser",
+    "PLY",
+    "SOG",
+    "SPZ",
+    "STL",
+    "SVG",
+    "Viewer",
+    "VRM",
+    "VRML",
+    "Wavefront-OBJ",
+    "WebGL",
+    "wrl",
+    "x_ite",
+    "X3D",
+    "XML"
+  ],
+  "repository": {
+    "url": "git+https://github.com/create3000/x_ite.git",
+    "type": "git"
+  },
+  "_npmVersion": "11.20.0",
+  "description": "X_ITE X3D Browser and VRML Viewer \u2014 View and Manipulate X3D, VRML, glTF and Other 3D Sources in HTML",
+  "directories": {},
+  "maintainers": [
+    {
+      "name": "create3000",
+      "email": "holger.seelig@yahoo.de"
+    }
+  ],
+  "_nodeVersion": "26.11.1",
+  "contributors": [
+    {
+      "url": "https://github.com/create3000",
+      "name": "Holger Seelig",
+      "email": "holger.seelig@gmail.com"
+    },
+    {
+      "url": "https://github.com/andreasplesch",
+      "name": "Andreas Plesch",
+      "email": "andreasplesch@gmail.com"
+    },
+    {
+      "url": "https://github.com/coderextreme",
+      "name": "John Carlson",
+      "email": "yottzumm@gmail.com"
+    },
+    {
+      "url": "https://github.com/splace",
+      "name": "Simon Place"
+    },
+    {
+      "url": "https://github.com/gwhitney",
+      "name": "Glen Whitney"
+    },
+    {
+      "url": "https://github.com/krisutofu",
+      "name": "Elmar"
+    }
+  ],
+  "_hasShrinkwrap": false,
+  "devDependencies": {
+    "madge": "^8.0.0",
+    "nurbs": "^1.1.1",
+    "yargs": "^18.2.0",
+    "ammojs": "^0.0.2",
+    "eslint": "^10.12.0",
+    "terser": "5.51.2",
+    "apng-js": "^1.1.5",
+    "globals": "^17.13.0",
+    "jpeg-js": "^0.4.4",
+    "libtess": "^1.2.2",
+    "webpack": "^5.111.1",
+    "CharLS.js": "^2.0.1",
+    "@eslint/js": "^10.0.1",
+    "mikktspace": "^1.1.1",
+    "OpenJPEG.js": "^0.10.2",
+    "opentype.js": "^2.0.0",
+    "shell-tools": "^1.1.9",
+    "webpack-cli": "^7.2.3",
+    "dicom-parser": "^1.8.21",
+    "meshoptimizer": "^1.3.0",
+    "woff2-encoder": "^2.0.0",
+    "fast-xml-parser": "^5.11.2",
+    "@create3000/libgif": "^0.0.5",
+    "terser-webpack-plugin": "^5.6.1",
+    "wrapper-webpack-plugin": "^2.2.2",
+    "jpeg-lossless-decoder-js": "2.1.2",
+    "webpack-shell-plugin-next": "^2.3.3",
+    "string-replace-webpack-plugin": "^0.1.3"
+  },
+  "_npmOperationalInternal": {
+    "tmp": "tmp/x_ite_16.5.1_1791922783458_0.8592193770963812",
+    "host": "s3://npm-registry-packages-npm-production"
+  },
+  "_id": "x_ite@16.5.1",
+  "version": "16.5.1"
+}

@@ -1,0 +1,21 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"urn:x3d-mujoco:experimental:command:0.1",
+ "title":"Experimental X3D–MuJoCo bridge command envelope",
+ "type":"object",
+ "required":["protocol","id","source","expectedModelRevision","type","payload"],
+ "properties":{
+  "protocol":{"const":"x3d-mujoco/0.1"},
+  "id":{"type":"string","minLength":1,"maxLength":100},
+  "source":{"enum":["ui","x3d","file","test"]},
+  "expectedModelRevision":{"type":"integer","minimum":1},
+  "type":{"enum":["target.set","model.replace","transport.set","reset","step"]},
+  "payload":{}
+ },
+ "allOf":[
+  {"if":{"properties":{"type":{"const":"target.set"}}},"then":{"properties":{"payload":{"type":"array","minItems":2,"maxItems":2,"items":{"type":"number","minimum":-1.8,"maximum":1.8}}}}},
+  {"if":{"properties":{"type":{"const":"model.replace"}}},"then":{"properties":{"payload":{"$ref":"urn:x3d-mujoco:experimental:recipe:0.1"}}}},
+  {"if":{"properties":{"type":{"const":"transport.set"}}},"then":{"properties":{"payload":{"type":"boolean"}}}},
+  {"if":{"properties":{"type":{"enum":["reset","step"]}}},"then":{"properties":{"payload":{"type":"null"}}}}
+ ]
+}

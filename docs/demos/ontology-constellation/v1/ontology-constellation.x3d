@@ -1,0 +1,3282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.1//EN" "https://www.web3d.org/specifications/x3d-4.1.dtd">
+<X3D profile='Immersive' version='4.1' xmlns:xsd='https://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.1.xsd'>
+  <head>
+    <meta name='title' content='X3D Ontology constellation (Dyson-style shell)'/>
+    <meta name='description' content='364 classes of X3D Ontology 4.1 (Web3D draft dated 29 September 2026) on a shell: longitude = layout angle, latitude = class depth. Layout is a display choice, not an ontology fact. Square boxes are abstract types, spheres concrete nodes. Core star is a layout anchor. Green = new in 4.1. Edges from Shape: green = XSD accepts that parent, red = rejects, amber = inconclusive, blue = abstract parent (untested).'/>
+    <meta name='source-ontology-sha256' content='8307e9045104cc58c469edd4fecb1b075b894417610b36a55b2e9bf6bc23e19a'/>
+    <meta name='source-model-sha256' content='7255c4e459e54ee245146be4c8f17e5eefd35c411b36f665895b934eff91f51f'/>
+    <meta name='created' content='2026-10-21T04:27:41Z'/>
+    <meta name='generator' content='x3d_mcp granular tools (fa0b389) driven by harness/make_constellation.py; head and profile patched in by the script because no tool sets them'/>
+  </head>
+  <Scene>
+    <NavigationInfo speed='4'/>
+    <Background skyColor='0.03 0.04 0.07'/>
+    <Viewpoint DEF='Overview' description='Shell overview' fieldOfView='0.8' orientation='1 0 0 -0.1' position='0 3 26'/>
+    <Viewpoint DEF='Inside' description='Inside the shell' fieldOfView='1.2' orientation='0 1 0 0' position='0 0 0.5'/>
+    <Viewpoint DEF='Top' description='Top' fieldOfView='0.8' orientation='1 0 0 -1.5708' position='0 24 0.1'/>
+    <Group DEF='FamilyMaterials'>
+      <Shape>
+        <Appearance DEF='New41'>
+          <Material diffuseColor='0.2 1 0.5' emissiveColor='0.2 0.9 0.45'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DBoundedObject'>
+          <Material diffuseColor='0.886 0.354 0.354' emissiveColor='0.3101 0.12389999999999998 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DSensorNode'>
+          <Material diffuseColor='0.354 0.886 0.509' emissiveColor='0.12389999999999998 0.3101 0.17815' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DSoundNode'>
+          <Material diffuseColor='0.664 0.354 0.886' emissiveColor='0.2324 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DStatement'>
+          <Material diffuseColor='0.886 0.819 0.354' emissiveColor='0.3101 0.28664999999999996 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DFollowerNode'>
+          <Material diffuseColor='0.354 0.797 0.886' emissiveColor='0.12389999999999998 0.27895 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DInterpolatorNode'>
+          <Material diffuseColor='0.886 0.354 0.642' emissiveColor='0.3101 0.12389999999999998 0.22469999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DUrlObject'>
+          <Material diffuseColor='0.487 0.886 0.354' emissiveColor='0.17045 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DTextureNode'>
+          <Material diffuseColor='0.376 0.354 0.886' emissiveColor='0.1316 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DComposableVolumeRenderStyleNode'>
+          <Material diffuseColor='0.886 0.531 0.354' emissiveColor='0.3101 0.18585 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DComposedGeometryNode'>
+          <Material diffuseColor='0.354 0.886 0.686' emissiveColor='0.12389999999999998 0.3101 0.2401' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DBindableNode'>
+          <Material diffuseColor='0.842 0.354 0.886' emissiveColor='0.29469999999999996 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DLightNode'>
+          <Material diffuseColor='0.775 0.886 0.354' emissiveColor='0.27125 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DMetadataObject'>
+          <Material diffuseColor='0.354 0.62 0.886' emissiveColor='0.12389999999999998 0.217 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DParametricGeometryNode'>
+          <Material diffuseColor='0.886 0.354 0.465' emissiveColor='0.3101 0.12389999999999998 0.16275' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DTextureCoordinateNode'>
+          <Material diffuseColor='0.354 0.886 0.398' emissiveColor='0.12389999999999998 0.3101 0.1393' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DMaterialNode'>
+          <Material diffuseColor='0.553 0.354 0.886' emissiveColor='0.19355 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DTextureTransformNode'>
+          <Material diffuseColor='0.886 0.709 0.354' emissiveColor='0.3101 0.24814999999999998 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DCoordinateNode'>
+          <Material diffuseColor='0.354 0.886 0.864' emissiveColor='0.12389999999999998 0.3101 0.3024' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DTriggerNode'>
+          <Material diffuseColor='0.886 0.354 0.753' emissiveColor='0.3101 0.12389999999999998 0.26355' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DVertexAttributeNode'>
+          <Material diffuseColor='0.598 0.886 0.354' emissiveColor='0.20929999999999999 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DColorNode'>
+          <Material diffuseColor='0.354 0.443 0.886' emissiveColor='0.12389999999999998 0.15505 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DFogObject'>
+          <Material diffuseColor='0.886 0.421 0.354' emissiveColor='0.3101 0.14734999999999998 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DProgrammableShaderObject'>
+          <Material diffuseColor='0.354 0.886 0.576' emissiveColor='0.12389999999999998 0.3101 0.20159999999999997' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DSequencerNode'>
+          <Material diffuseColor='0.731 0.354 0.886' emissiveColor='0.25584999999999997 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DInfoNode'>
+          <Material diffuseColor='0.886 0.886 0.354' emissiveColor='0.3101 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DLayoutNode'>
+          <Material diffuseColor='0.354 0.731 0.886' emissiveColor='0.12389999999999998 0.25584999999999997 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DNormalNode'>
+          <Material diffuseColor='0.886 0.354 0.576' emissiveColor='0.3101 0.12389999999999998 0.20159999999999997' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DPickableObject'>
+          <Material diffuseColor='0.421 0.886 0.354' emissiveColor='0.14734999999999998 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DShaderNode'>
+          <Material diffuseColor='0.443 0.354 0.886' emissiveColor='0.15505 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DTangentNode'>
+          <Material diffuseColor='0.886 0.598 0.354' emissiveColor='0.3101 0.20929999999999999 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DUrlOutputObject'>
+          <Material diffuseColor='0.354 0.886 0.753' emissiveColor='0.12389999999999998 0.3101 0.26355' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_AcousticProperties'>
+          <Material diffuseColor='0.886 0.354 0.864' emissiveColor='0.3101 0.12389999999999998 0.3024' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Appearance'>
+          <Material diffuseColor='0.709 0.886 0.354' emissiveColor='0.24814999999999998 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Arc2D'>
+          <Material diffuseColor='0.354 0.553 0.886' emissiveColor='0.12389999999999998 0.19355 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ArcClose2D'>
+          <Material diffuseColor='0.886 0.354 0.398' emissiveColor='0.3101 0.12389999999999998 0.1393' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_BallJoint'>
+          <Material diffuseColor='0.354 0.886 0.465' emissiveColor='0.12389999999999998 0.3101 0.16275' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_BooleanFilter'>
+          <Material diffuseColor='0.62 0.354 0.886' emissiveColor='0.217 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_BooleanToggle'>
+          <Material diffuseColor='0.886 0.775 0.354' emissiveColor='0.3101 0.27125 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_BoundedPhysicsModel'>
+          <Material diffuseColor='0.354 0.842 0.886' emissiveColor='0.12389999999999998 0.29469999999999996 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Box'>
+          <Material diffuseColor='0.886 0.354 0.686' emissiveColor='0.3101 0.12389999999999998 0.2401' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Circle2D'>
+          <Material diffuseColor='0.531 0.886 0.354' emissiveColor='0.18585 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ClipPlane'>
+          <Material diffuseColor='0.354 0.376 0.886' emissiveColor='0.12389999999999998 0.1316 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Cone'>
+          <Material diffuseColor='0.886 0.487 0.354' emissiveColor='0.3101 0.17045 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ConeEmitter'>
+          <Material diffuseColor='0.354 0.886 0.642' emissiveColor='0.12389999999999998 0.3101 0.22469999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Contact'>
+          <Material diffuseColor='0.797 0.354 0.886' emissiveColor='0.27895 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Contour2D'>
+          <Material diffuseColor='0.82 0.886 0.354' emissiveColor='0.287 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ContourPolyline2D'>
+          <Material diffuseColor='0.354 0.664 0.886' emissiveColor='0.12389999999999998 0.2324 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Cylinder'>
+          <Material diffuseColor='0.886 0.354 0.509' emissiveColor='0.3101 0.12389999999999998 0.17815' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_DISEntityManager'>
+          <Material diffuseColor='0.354 0.886 0.354' emissiveColor='0.12389999999999998 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Disk2D'>
+          <Material diffuseColor='0.509 0.354 0.886' emissiveColor='0.17815 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_DoubleAxisHingeJoint'>
+          <Material diffuseColor='0.886 0.664 0.354' emissiveColor='0.3101 0.2324 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_EaseInEaseOut'>
+          <Material diffuseColor='0.354 0.886 0.82' emissiveColor='0.12389999999999998 0.3101 0.287' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ElevationGrid'>
+          <Material diffuseColor='0.886 0.354 0.797' emissiveColor='0.3101 0.12389999999999998 0.27895' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ExplosionEmitter'>
+          <Material diffuseColor='0.642 0.886 0.354' emissiveColor='0.22469999999999998 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Extrusion'>
+          <Material diffuseColor='0.354 0.487 0.886' emissiveColor='0.12389999999999998 0.17045 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_FillProperties'>
+          <Material diffuseColor='0.886 0.376 0.354' emissiveColor='0.3101 0.1316 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_FogCoordinate'>
+          <Material diffuseColor='0.354 0.886 0.531' emissiveColor='0.12389999999999998 0.3101 0.18585' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_FontStyle'>
+          <Material diffuseColor='0.687 0.354 0.886' emissiveColor='0.24045 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ForcePhysicsModel'>
+          <Material diffuseColor='0.886 0.842 0.354' emissiveColor='0.3101 0.29469999999999996 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_GeoElevationGrid'>
+          <Material diffuseColor='0.354 0.775 0.886' emissiveColor='0.12389999999999998 0.27125 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_GeoOrigin'>
+          <Material diffuseColor='0.886 0.354 0.62' emissiveColor='0.3101 0.12389999999999998 0.217' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_HAnimDisplacer'>
+          <Material diffuseColor='0.465 0.886 0.354' emissiveColor='0.16275 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_HAnimMotion'>
+          <Material diffuseColor='0.398 0.354 0.886' emissiveColor='0.1393 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_HAnimPose'>
+          <Material diffuseColor='0.886 0.553 0.354' emissiveColor='0.3101 0.19355 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_IndexedLineSet'>
+          <Material diffuseColor='0.354 0.886 0.709' emissiveColor='0.12389999999999998 0.3101 0.24814999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Layer'>
+          <Material diffuseColor='0.864 0.354 0.886' emissiveColor='0.3024 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_LayerSet'>
+          <Material diffuseColor='0.753 0.886 0.354' emissiveColor='0.26355 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_LayoutGroup'>
+          <Material diffuseColor='0.354 0.598 0.886' emissiveColor='0.12389999999999998 0.20929999999999999 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_LayoutLayer'>
+          <Material diffuseColor='0.886 0.354 0.443' emissiveColor='0.3101 0.12389999999999998 0.15505' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_LineProperties'>
+          <Material diffuseColor='0.354 0.886 0.421' emissiveColor='0.12389999999999998 0.3101 0.14734999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_LineSet'>
+          <Material diffuseColor='0.576 0.354 0.886' emissiveColor='0.20159999999999997 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_MotorJoint'>
+          <Material diffuseColor='0.886 0.731 0.354' emissiveColor='0.3101 0.25584999999999997 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_NurbsCurve2D'>
+          <Material diffuseColor='0.354 0.886 0.886' emissiveColor='0.12389999999999998 0.3101 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_NurbsOrientationInterpolator'>
+          <Material diffuseColor='0.886 0.354 0.731' emissiveColor='0.3101 0.12389999999999998 0.25584999999999997' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_NurbsPositionInterpolator'>
+          <Material diffuseColor='0.576 0.886 0.354' emissiveColor='0.20159999999999997 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_NurbsSurfaceInterpolator'>
+          <Material diffuseColor='0.354 0.42 0.886' emissiveColor='0.12389999999999998 0.147 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_NurbsTextureCoordinate'>
+          <Material diffuseColor='0.886 0.443 0.354' emissiveColor='0.3101 0.15505 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_PointEmitter'>
+          <Material diffuseColor='0.354 0.886 0.598' emissiveColor='0.12389999999999998 0.3101 0.20929999999999999' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_PointProperties'>
+          <Material diffuseColor='0.753 0.354 0.886' emissiveColor='0.26355 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_PointSet'>
+          <Material diffuseColor='0.864 0.886 0.354' emissiveColor='0.3024 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Polyline2D'>
+          <Material diffuseColor='0.354 0.709 0.886' emissiveColor='0.12389999999999998 0.24814999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_PolylineEmitter'>
+          <Material diffuseColor='0.886 0.354 0.553' emissiveColor='0.3101 0.12389999999999998 0.19355' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Polypoint2D'>
+          <Material diffuseColor='0.398 0.886 0.354' emissiveColor='0.1393 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ProjectionVolumeStyle'>
+          <Material diffuseColor='0.465 0.354 0.886' emissiveColor='0.16275 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ProtoInstance'>
+          <Material diffuseColor='0.886 0.62 0.354' emissiveColor='0.3101 0.217 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Rectangle2D'>
+          <Material diffuseColor='0.354 0.886 0.775' emissiveColor='0.12389999999999998 0.3101 0.27125' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ScreenFontStyle'>
+          <Material diffuseColor='0.886 0.354 0.842' emissiveColor='0.3101 0.12389999999999998 0.29469999999999996' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ShaderPart'>
+          <Material diffuseColor='0.686 0.886 0.354' emissiveColor='0.2401 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ShaderProgram'>
+          <Material diffuseColor='0.354 0.531 0.886' emissiveColor='0.12389999999999998 0.18585 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_SingleAxisHingeJoint'>
+          <Material diffuseColor='0.886 0.354 0.376' emissiveColor='0.3101 0.12389999999999998 0.1316' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_SliderJoint'>
+          <Material diffuseColor='0.354 0.886 0.487' emissiveColor='0.12389999999999998 0.3101 0.17045' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Sphere'>
+          <Material diffuseColor='0.642 0.354 0.886' emissiveColor='0.22469999999999998 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_SurfaceEmitter'>
+          <Material diffuseColor='0.886 0.797 0.354' emissiveColor='0.3101 0.27895 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_Text'>
+          <Material diffuseColor='0.354 0.819 0.886' emissiveColor='0.12389999999999998 0.28664999999999996 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_TextureProperties'>
+          <Material diffuseColor='0.886 0.354 0.664' emissiveColor='0.3101 0.12389999999999998 0.2324' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_TriangleSet2D'>
+          <Material diffuseColor='0.509 0.886 0.354' emissiveColor='0.17815 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_UniversalJoint'>
+          <Material diffuseColor='0.354 0.354 0.886' emissiveColor='0.12389999999999998 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_ViewpointGroup'>
+          <Material diffuseColor='0.886 0.509 0.354' emissiveColor='0.3101 0.17815 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_VolumeEmitter'>
+          <Material diffuseColor='0.354 0.886 0.664' emissiveColor='0.12389999999999998 0.3101 0.2324' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_WindPhysicsModel'>
+          <Material diffuseColor='0.819 0.354 0.886' emissiveColor='0.28664999999999996 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DAppearanceChildNode'>
+          <Material diffuseColor='0.797 0.886 0.354' emissiveColor='0.27895 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DAppearanceNode'>
+          <Material diffuseColor='0.354 0.642 0.886' emissiveColor='0.12389999999999998 0.22469999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DArrayField'>
+          <Material diffuseColor='0.886 0.354 0.487' emissiveColor='0.3101 0.12389999999999998 0.17045' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DChildNode'>
+          <Material diffuseColor='0.354 0.886 0.376' emissiveColor='0.12389999999999998 0.3101 0.1316' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DField'>
+          <Material diffuseColor='0.531 0.354 0.886' emissiveColor='0.18585 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DFontStyleNode'>
+          <Material diffuseColor='0.886 0.686 0.354' emissiveColor='0.3101 0.2401 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DGeometricPropertyNode'>
+          <Material diffuseColor='0.354 0.886 0.842' emissiveColor='0.12389999999999998 0.3101 0.29469999999999996' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DGeometryNode'>
+          <Material diffuseColor='0.886 0.354 0.775' emissiveColor='0.3101 0.12389999999999998 0.27125' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DLayerNode'>
+          <Material diffuseColor='0.62 0.886 0.354' emissiveColor='0.217 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DNode'>
+          <Material diffuseColor='0.354 0.465 0.886' emissiveColor='0.12389999999999998 0.16275 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DNurbsControlCurveNode'>
+          <Material diffuseColor='0.886 0.398 0.354' emissiveColor='0.3101 0.1393 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DParticleEmitterNode'>
+          <Material diffuseColor='0.354 0.886 0.553' emissiveColor='0.12389999999999998 0.3101 0.19355' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DParticlePhysicsModelNode'>
+          <Material diffuseColor='0.709 0.354 0.886' emissiveColor='0.24814999999999998 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DProductStructureChildNode'>
+          <Material diffuseColor='0.886 0.864 0.354' emissiveColor='0.3101 0.3024 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DPrototypeInstance'>
+          <Material diffuseColor='0.354 0.753 0.886' emissiveColor='0.12389999999999998 0.26355 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DRigidJointNode'>
+          <Material diffuseColor='0.886 0.354 0.598' emissiveColor='0.3101 0.12389999999999998 0.20929999999999999' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DTimeDependentNode'>
+          <Material diffuseColor='0.443 0.886 0.354' emissiveColor='0.15505 0.3101 0.12389999999999998' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+      <Shape>
+        <Appearance DEF='Fam_X3DVolumeRenderStyleNode'>
+          <Material diffuseColor='0.42 0.354 0.886' emissiveColor='0.147 0.12389999999999998 0.3101' specularColor='0.3 0.3 0.3'/>
+        </Appearance>
+        <Sphere radius='0.001'/>
+      </Shape>
+    </Group>
+    <Shape>
+      <Appearance>
+        <Material diffuseColor='1 0.8 0.3' emissiveColor='1 0.75 0.25'/>
+      </Appearance>
+      <Sphere radius='0.5'/>
+    </Shape>
+    <PointLight color='1 0.9 0.7' intensity='1.2' location='0 0 0' radius='40'/>
+    <Group DEF='Classes'>
+      <Transform DEF='C_AcousticProperties' translation='-7.449 1.935 2.184'>
+        <Shape>
+          <Appearance USE='Fam_AcousticProperties'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Analyser' translation='5.944 -5.353 0.118'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Anchor' translation='3.437 5.353 -4.851'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Appearance' translation='-4.603 1.935 -6.251'>
+        <Shape>
+          <Appearance USE='Fam_Appearance'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Arc2D' translation='-4.608 1.935 6.246'>
+        <Shape>
+          <Appearance USE='Fam_Arc2D'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ArcClose2D' translation='-4.73 1.935 6.154'>
+        <Shape>
+          <Appearance USE='Fam_ArcClose2D'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_AudioClip' translation='3.547 5.353 -4.771'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_AudioDestination' translation='5.687 -5.353 1.732'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Background' translation='1.362 -5.353 5.787'>
+        <Shape>
+          <Appearance USE='Fam_X3DBindableNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_BallJoint' translation='-6.944 1.935 -3.469'>
+        <Shape>
+          <Appearance USE='Fam_BallJoint'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Billboard' translation='-4.221 1.935 -6.515'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_BiquadFilter' translation='5.941 -5.353 0.235'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_BlendedVolumeStyle' translation='-7.677 -1.935 -1.146'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposableVolumeRenderStyleNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_BooleanFilter' translation='-0.346 1.935 7.755'>
+        <Shape>
+          <Appearance USE='Fam_BooleanFilter'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_BooleanSequencer' translation='-0.04 -1.935 7.762'>
+        <Shape>
+          <Appearance USE='Fam_X3DSequencerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_BooleanToggle' translation='-0.499 1.935 7.746'>
+        <Shape>
+          <Appearance USE='Fam_BooleanToggle'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_BooleanTrigger' translation='0.418 -1.935 7.751'>
+        <Shape>
+          <Appearance USE='Fam_X3DTriggerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_BoundaryEnhancementVolumeStyle' translation='-7.653 -1.935 -1.297'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposableVolumeRenderStyleNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_BoundedPhysicsModel' translation='-6.487 1.935 -4.264'>
+        <Shape>
+          <Appearance USE='Fam_BoundedPhysicsModel'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Box' translation='-4.851 1.935 6.06'>
+        <Shape>
+          <Appearance USE='Fam_Box'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_BufferAudioSource' translation='3.654 5.353 -4.69'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CADAssembly' translation='-4.086 1.935 -6.6'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CADFace' translation='-0.61 5.353 -5.914'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CADLayer' translation='-3.949 1.935 -6.683'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CADPart' translation='-3.812 1.935 -6.762'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CartoonVolumeStyle' translation='-7.626 -1.935 -1.448'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposableVolumeRenderStyleNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ChannelMerger' translation='5.78 -5.353 1.393'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ChannelSelector' translation='5.751 -5.353 1.507'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ChannelSplitter' translation='5.72 -5.353 1.62'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Circle2D' translation='-4.969 1.935 5.963'>
+        <Shape>
+          <Appearance USE='Fam_Circle2D'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ClipPlane' translation='-0.651 1.935 7.735'>
+        <Shape>
+          <Appearance USE='Fam_ClipPlane'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CollidableOffset' translation='-1.427 1.935 -7.63'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CollidableShape' translation='-1.27 1.935 -7.658'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Collision' translation='-3.672 1.935 -6.839'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CollisionCollection' translation='-0.488 5.353 -5.925'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CollisionSensor' translation='5.989 -1.935 4.939'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CollisionSpace' translation='1.425 1.935 -7.63'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Color' translation='-7.759 -1.935 -0.233'>
+        <Shape>
+          <Appearance USE='Fam_X3DColorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ColorChaser' translation='4.355 -5.353 4.047'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ColorDamper' translation='3.758 -5.353 4.607'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ColorInterpolator' translation='4.033 -1.935 6.633'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ColorRGBA' translation='-7.753 -1.935 -0.386'>
+        <Shape>
+          <Appearance USE='Fam_X3DColorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ComposedCubeMapTexture' translation='-5.034 -5.353 3.163'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ComposedShader' translation='5.52 5.353 -2.207'>
+        <Shape>
+          <Appearance USE='Fam_X3DProgrammableShaderObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ComposedTexture3D' translation='-5.155 -5.353 2.962'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ComposedVolumeStyle' translation='-7.596 -1.935 -1.598'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposableVolumeRenderStyleNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Cone' translation='-5.086 1.935 5.864'>
+        <Shape>
+          <Appearance USE='Fam_Cone'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ConeEmitter' translation='-7.305 1.935 -2.626'>
+        <Shape>
+          <Appearance USE='Fam_ConeEmitter'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Contact' translation='-4.314 5.353 -4.091'>
+        <Shape>
+          <Appearance USE='Fam_Contact'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Contour2D' translation='-4.233 5.353 -4.175'>
+        <Shape>
+          <Appearance USE='Fam_Contour2D'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ContourPolyline2D' translation='-5.839 1.935 -5.115'>
+        <Shape>
+          <Appearance USE='Fam_ContourPolyline2D'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Convolver' translation='5.935 -5.353 0.352'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Coordinate' translation='-7.732 -1.935 0.684'>
+        <Shape>
+          <Appearance USE='Fam_X3DCoordinateNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CoordinateChaser' translation='4.275 -5.353 4.132'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CoordinateDamper' translation='3.666 -5.353 4.68'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CoordinateDouble' translation='-7.744 -1.935 0.531'>
+        <Shape>
+          <Appearance USE='Fam_X3DCoordinateNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CoordinateInterpolator' translation='3.901 -1.935 6.711'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CoordinateInterpolator2D' translation='3.768 -1.935 6.786'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Cylinder' translation='-5.2 1.935 5.764'>
+        <Shape>
+          <Appearance USE='Fam_Cylinder'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_CylinderSensor' translation='2.526 -7.518 1.051'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_DISEntityManager' translation='-0.804 1.935 7.721'>
+        <Shape>
+          <Appearance USE='Fam_DISEntityManager'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_DISEntityTypeMapping' translation='3.76 5.353 -4.605'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Delay' translation='5.927 -5.353 0.469'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_DirectionalLight' translation='1.027 -1.935 7.694'>
+        <Shape>
+          <Appearance USE='Fam_X3DLightNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Disk2D' translation='-5.312 1.935 5.66'>
+        <Shape>
+          <Appearance USE='Fam_Disk2D'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_DoubleAxisHingeJoint' translation='-6.874 1.935 -3.605'>
+        <Shape>
+          <Appearance USE='Fam_DoubleAxisHingeJoint'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_DynamicsCompressor' translation='5.916 -5.353 0.585'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_EXPORT' translation='1.331 5.353 -5.794'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_EaseInEaseOut' translation='-0.955 1.935 7.703'>
+        <Shape>
+          <Appearance USE='Fam_EaseInEaseOut'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_EdgeEnhancementVolumeStyle' translation='-7.563 -1.935 -1.747'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposableVolumeRenderStyleNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ElevationGrid' translation='-5.423 1.935 5.554'>
+        <Shape>
+          <Appearance USE='Fam_ElevationGrid'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_EnvironmentLight' translation='0.875 -1.935 7.713'>
+        <Shape>
+          <Appearance USE='New41'/>
+          <Sphere radius='0.158'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_EspduTransform' translation='-3.531 1.935 -6.913'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ExplosionEmitter' translation='-7.252 1.935 -2.769'>
+        <Shape>
+          <Appearance USE='Fam_ExplosionEmitter'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ExternProtoDeclare' translation='1.457 5.353 -5.764'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Extrusion' translation='-5.531 1.935 5.446'>
+        <Shape>
+          <Appearance USE='Fam_Extrusion'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_FillProperties' translation='-7.49 1.935 2.037'>
+        <Shape>
+          <Appearance USE='Fam_FillProperties'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_FloatVertexAttribute' translation='-7.759 -1.935 0.226'>
+        <Shape>
+          <Appearance USE='Fam_X3DVertexAttributeNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Fog' translation='5.279 5.353 -2.735'>
+        <Shape>
+          <Appearance USE='Fam_X3DFogObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_FogCoordinate' translation='-7.744 1.935 -0.538'>
+        <Shape>
+          <Appearance USE='Fam_FogCoordinate'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_FontLibrary' translation='3.864 5.353 -4.519'>
+        <Shape>
+          <Appearance USE='New41'/>
+          <Sphere radius='0.158'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_FontStyle' translation='-6.223 1.935 -4.639'>
+        <Shape>
+          <Appearance USE='Fam_FontStyle'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ForcePhysicsModel' translation='-6.401 1.935 -4.391'>
+        <Shape>
+          <Appearance USE='Fam_ForcePhysicsModel'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Gain' translation='5.904 -5.353 0.702'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GaussianSplats' translation='-0.367 5.353 -5.934'>
+        <Shape>
+          <Appearance USE='New41'/>
+          <Sphere radius='0.158'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeneratedCubeMapTexture' translation='-5.095 -5.353 3.063'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeoCoordinate' translation='-7.753 -1.935 0.379'>
+        <Shape>
+          <Appearance USE='Fam_X3DCoordinateNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeoElevationGrid' translation='-5.637 1.935 5.336'>
+        <Shape>
+          <Appearance USE='Fam_GeoElevationGrid'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeoLOD' translation='-0.245 5.353 -5.94'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeoLocation' translation='-3.388 1.935 -6.984'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeoMetadata' translation='3.965 5.353 -4.43'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeoOrigin' translation='-4.15 5.353 -4.257'>
+        <Shape>
+          <Appearance USE='Fam_GeoOrigin'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeoPositionInterpolator' translation='3.634 -1.935 6.859'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeoProximitySensor' translation='5.238 -5.353 2.812'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeoTouchSensor' translation='2.46 -7.518 1.198'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeoTransform' translation='-3.244 1.935 -7.052'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_GeoViewpoint' translation='1.702 -5.353 5.696'>
+        <Shape>
+          <Appearance USE='Fam_X3DBindableNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Group' translation='-3.099 1.935 -7.117'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_HAnimDisplacer' translation='-7.732 1.935 -0.691'>
+        <Shape>
+          <Appearance USE='Fam_HAnimDisplacer'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_HAnimHumanoid' translation='-0.123 5.353 -5.944'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_HAnimJoint' translation='-0.001 5.353 -5.945'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_HAnimMotion' translation='-1.107 1.935 7.683'>
+        <Shape>
+          <Appearance USE='Fam_HAnimMotion'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_HAnimPose' translation='-1.258 1.935 7.66'>
+        <Shape>
+          <Appearance USE='New41'/>
+          <Sphere radius='0.158'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_HAnimSegment' translation='-2.952 1.935 -7.179'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_HAnimSite' translation='-2.804 1.935 -7.238'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_IMPORT' translation='1.582 5.353 -5.731'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_IS' translation='1.706 5.353 -5.695'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ImageCubeMapTexture' translation='4.065 5.353 -4.339'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ImageTexture' translation='4.163 5.353 -4.245'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ImageTexture3D' translation='4.258 5.353 -4.149'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_IndexedFaceSet' translation='-2.733 -1.935 7.265'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposedGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_IndexedLineSet' translation='-5.741 1.935 5.224'>
+        <Shape>
+          <Appearance USE='Fam_IndexedLineSet'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_IndexedQuadSet' translation='-2.876 -1.935 7.21'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposedGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_IndexedTriangleFanSet' translation='-3.017 -1.935 7.152'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposedGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_IndexedTriangleSet' translation='-3.157 -1.935 7.091'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposedGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_IndexedTriangleStripSet' translation='-3.296 -1.935 7.028'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposedGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Inline' translation='0.121 5.353 -5.944'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_InlineGeometry' translation='4.351 5.353 -4.052'>
+        <Shape>
+          <Appearance USE='New41'/>
+          <Sphere radius='0.158'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_IntegerSequencer' translation='-0.193 -1.935 7.76'>
+        <Shape>
+          <Appearance USE='Fam_X3DSequencerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_IntegerTrigger' translation='0.265 -1.935 7.758'>
+        <Shape>
+          <Appearance USE='Fam_X3DTriggerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_IsoSurfaceVolumeData' translation='-1.894 1.935 -7.528'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_KeySensor' translation='4.732 -5.353 3.599'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_LOD' translation='-2.655 1.935 -7.294'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Layer' translation='-6.036 1.935 -4.881'>
+        <Shape>
+          <Appearance USE='Fam_Layer'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_LayerSet' translation='-4.065 5.353 -4.338'>
+        <Shape>
+          <Appearance USE='Fam_LayerSet'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Layout' translation='-2.299 -1.935 7.414'>
+        <Shape>
+          <Appearance USE='Fam_X3DLayoutNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_LayoutGroup' translation='-3.979 5.353 -4.418'>
+        <Shape>
+          <Appearance USE='Fam_LayoutGroup'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_LayoutLayer' translation='-5.938 1.935 -4.999'>
+        <Shape>
+          <Appearance USE='Fam_LayoutLayer'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_LinePickSensor' translation='5.001 -5.353 3.215'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_LineProperties' translation='-7.529 1.935 1.889'>
+        <Shape>
+          <Appearance USE='Fam_LineProperties'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_LineSet' translation='-5.843 1.935 5.11'>
+        <Shape>
+          <Appearance USE='Fam_LineSet'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ListenerPointSource' translation='5.871 -5.353 0.934'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_LoadSensor' translation='4.434 -5.353 3.96'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_LocalFog' translation='5.381 5.353 -2.528'>
+        <Shape>
+          <Appearance USE='Fam_X3DFogObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Material' translation='-5.372 -5.353 2.547'>
+        <Shape>
+          <Appearance USE='Fam_X3DMaterialNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Matrix3VertexAttribute' translation='-7.762 -1.935 0.073'>
+        <Shape>
+          <Appearance USE='Fam_X3DVertexAttributeNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Matrix4VertexAttribute' translation='-7.762 -1.935 -0.08'>
+        <Shape>
+          <Appearance USE='Fam_X3DVertexAttributeNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MetadataBoolean' translation='4.697 5.353 -3.645'>
+        <Shape>
+          <Appearance USE='Fam_X3DMetadataObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MetadataDouble' translation='4.79 5.353 -3.522'>
+        <Shape>
+          <Appearance USE='Fam_X3DMetadataObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MetadataFloat' translation='4.879 5.353 -3.396'>
+        <Shape>
+          <Appearance USE='Fam_X3DMetadataObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MetadataInteger' translation='4.966 5.353 -3.269'>
+        <Shape>
+          <Appearance USE='Fam_X3DMetadataObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MetadataSet' translation='5.049 5.353 -3.139'>
+        <Shape>
+          <Appearance USE='Fam_X3DMetadataObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MetadataString' translation='5.129 5.353 -3.007'>
+        <Shape>
+          <Appearance USE='Fam_X3DMetadataObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MicrophoneSource' translation='5.852 -5.353 1.049'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MotorJoint' translation='-6.802 1.935 -3.74'>
+        <Shape>
+          <Appearance USE='Fam_MotorJoint'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MovieTexture' translation='4.442 5.353 -3.952'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MultiTexture' translation='-6.877 -1.935 3.6'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MultiTextureCoordinate' translation='-7.717 -1.935 0.836'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureCoordinateNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_MultiTextureTransform' translation='-7.404 -1.935 2.33'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureTransformNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NavigationInfo' translation='1.48 -1.935 7.62'>
+        <Shape>
+          <Appearance USE='Fam_X3DBindableNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Normal' translation='-7.716 -1.935 -0.843'>
+        <Shape>
+          <Appearance USE='Fam_X3DNormalNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NormalInterpolator' translation='3.498 -1.935 6.929'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NurbsCurve' translation='-4.231 -1.935 6.508'>
+        <Shape>
+          <Appearance USE='Fam_X3DParametricGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NurbsCurve2D' translation='-5.737 1.935 -5.229'>
+        <Shape>
+          <Appearance USE='Fam_NurbsCurve2D'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NurbsOrientationInterpolator' translation='-1.409 1.935 7.633'>
+        <Shape>
+          <Appearance USE='Fam_NurbsOrientationInterpolator'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NurbsPatchSurface' translation='-3.042 -5.353 5.108'>
+        <Shape>
+          <Appearance USE='Fam_X3DParametricGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NurbsPositionInterpolator' translation='-1.559 1.935 7.604'>
+        <Shape>
+          <Appearance USE='Fam_NurbsPositionInterpolator'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NurbsSet' translation='0.243 5.353 -5.94'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NurbsSurfaceInterpolator' translation='-1.708 1.935 7.572'>
+        <Shape>
+          <Appearance USE='Fam_NurbsSurfaceInterpolator'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NurbsSweptSurface' translation='-4.359 -1.935 6.423'>
+        <Shape>
+          <Appearance USE='Fam_X3DParametricGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NurbsSwungSurface' translation='-4.484 -1.935 6.336'>
+        <Shape>
+          <Appearance USE='Fam_X3DParametricGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NurbsTextureCoordinate' translation='-3.891 5.353 -4.495'>
+        <Shape>
+          <Appearance USE='Fam_NurbsTextureCoordinate'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_NurbsTrimmedSurface' translation='-3.142 -5.353 5.047'>
+        <Shape>
+          <Appearance USE='Fam_X3DParametricGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_OpacityMapVolumeStyle' translation='-7.527 -1.935 -1.896'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposableVolumeRenderStyleNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_OrientationChaser' translation='4.192 -5.353 4.215'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_OrientationDamper' translation='3.573 -5.353 4.752'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_OrientationInterpolator' translation='3.361 -1.935 6.997'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_OrthoViewpoint' translation='1.589 -5.353 5.729'>
+        <Shape>
+          <Appearance USE='Fam_X3DBindableNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_OscillatorSource' translation='5.83 -5.353 1.164'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PackagedShader' translation='5.602 5.353 -1.992'>
+        <Shape>
+          <Appearance USE='Fam_X3DProgrammableShaderObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ParticleSystem' translation='-1.112 1.935 -7.682'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PeriodicWave' translation='7.331 -1.935 2.552'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PhysicalMaterial' translation='-5.421 -5.353 2.441'>
+        <Shape>
+          <Appearance USE='Fam_X3DMaterialNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PickableGroup' translation='5.904 5.353 -0.695'>
+        <Shape>
+          <Appearance USE='Fam_X3DPickableObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PixelTexture' translation='-2.449 -7.518 1.221'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PixelTexture3D' translation='-5.212 -5.353 2.86'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PlaneSensor' translation='2.505 -7.518 1.1'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PointEmitter' translation='-7.196 1.935 -2.912'>
+        <Shape>
+          <Appearance USE='Fam_PointEmitter'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PointLight' translation='0.723 -1.935 7.729'>
+        <Shape>
+          <Appearance USE='Fam_X3DLightNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PointPickSensor' translation='4.936 -5.353 3.313'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PointProperties' translation='-7.565 1.935 1.74'>
+        <Shape>
+          <Appearance USE='Fam_PointProperties'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PointSet' translation='-5.943 1.935 4.994'>
+        <Shape>
+          <Appearance USE='Fam_PointSet'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Polyline2D' translation='-6.04 1.935 4.876'>
+        <Shape>
+          <Appearance USE='Fam_Polyline2D'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PolylineEmitter' translation='-7.137 1.935 -3.053'>
+        <Shape>
+          <Appearance USE='Fam_PolylineEmitter'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Polypoint2D' translation='-6.135 1.935 4.756'>
+        <Shape>
+          <Appearance USE='Fam_Polypoint2D'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PositionChaser' translation='4.109 -5.353 4.297'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PositionChaser2D' translation='4.023 -5.353 4.377'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PositionDamper' translation='3.479 -5.353 4.821'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PositionDamper2D' translation='3.383 -5.353 4.889'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PositionInterpolator' translation='3.222 -1.935 7.062'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PositionInterpolator2D' translation='3.083 -1.935 7.124'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_PrimitivePickSensor' translation='4.87 -5.353 3.41'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ProgramShader' translation='-7.598 -1.935 1.591'>
+        <Shape>
+          <Appearance USE='Fam_X3DShaderNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ProjectionVolumeStyle' translation='-7.355 1.935 -2.482'>
+        <Shape>
+          <Appearance USE='Fam_ProjectionVolumeStyle'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ProtoBody' translation='1.83 5.353 -5.656'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ProtoDeclare' translation='1.953 5.353 -5.615'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ProtoInstance' translation='-1.857 1.935 7.537'>
+        <Shape>
+          <Appearance USE='Fam_ProtoInstance'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ProtoInterface' translation='2.074 5.353 -5.572'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ProximitySensor' translation='5.182 -5.353 2.914'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_QuadSet' translation='-3.434 -1.935 6.961'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposedGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ROUTE' translation='2.195 5.353 -5.525'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ReceiverPdu' translation='0.365 5.353 -5.934'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Rectangle2D' translation='-6.227 1.935 4.634'>
+        <Shape>
+          <Appearance USE='Fam_Rectangle2D'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_RenderedTexture' translation='5.941 5.353 -0.232'>
+        <Shape>
+          <Appearance USE='New41'/>
+          <Sphere radius='0.158'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_RigidBody' translation='0.487 5.353 -5.925'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_RigidBodyCollection' translation='0.608 5.353 -5.914'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ScalarChaser' translation='3.936 -5.353 4.455'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ScalarDamper' translation='3.286 -5.353 4.954'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ScalarInterpolator' translation='2.943 -1.935 7.183'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Scene' translation='2.315 5.353 -5.476'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ScreenFontStyle' translation='-6.131 1.935 -4.761'>
+        <Shape>
+          <Appearance USE='Fam_ScreenFontStyle'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ScreenGroup' translation='-2.505 1.935 -7.347'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Script' translation='5.916 1.935 -5.026'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SegmentedVolumeData' translation='-1.739 1.935 -7.565'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ShadedVolumeStyle' translation='-7.489 -1.935 -2.044'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposableVolumeRenderStyleNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ShaderPart' translation='-3.802 5.353 -4.571'>
+        <Shape>
+          <Appearance USE='Fam_ShaderPart'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ShaderProgram' translation='-3.711 5.353 -4.645'>
+        <Shape>
+          <Appearance USE='Fam_ShaderProgram'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Shape' translation='-0.955 1.935 -7.703'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SignalPdu' translation='0.729 5.353 -5.9'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SilhouetteEnhancementVolumeStyle' translation='-7.447 -1.935 -2.191'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposableVolumeRenderStyleNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SingleAxisHingeJoint' translation='-6.727 1.935 -3.873'>
+        <Shape>
+          <Appearance USE='Fam_SingleAxisHingeJoint'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SliderJoint' translation='-6.649 1.935 -4.005'>
+        <Shape>
+          <Appearance USE='Fam_SliderJoint'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Sound' translation='7.279 -1.935 2.696'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SpatialSound' translation='7.225 -1.935 2.839'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Sphere' translation='-6.317 1.935 4.511'>
+        <Shape>
+          <Appearance USE='Fam_Sphere'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SphereSensor' translation='2.483 -7.518 1.149'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SplinePositionInterpolator' translation='2.8 -1.935 7.24'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SplinePositionInterpolator2D' translation='2.657 -1.935 7.293'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SplineScalarInterpolator' translation='2.513 -1.935 7.344'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SpotLight' translation='0.571 -1.935 7.741'>
+        <Shape>
+          <Appearance USE='Fam_X3DLightNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SquadOrientationInterpolator' translation='2.368 -1.935 7.392'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_StaticGroup' translation='0.851 5.353 -5.884'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_StreamAudioDestination' translation='5.652 -5.353 1.844'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_StreamAudioSource' translation='5.806 -5.353 1.279'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_StringSensor' translation='4.66 -5.353 3.691'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_SurfaceEmitter' translation='-7.075 1.935 -3.193'>
+        <Shape>
+          <Appearance USE='Fam_SurfaceEmitter'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Switch' translation='-2.353 1.935 -7.397'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Tangent' translation='-7.698 -1.935 -0.995'>
+        <Shape>
+          <Appearance USE='New41'/>
+          <Sphere radius='0.158'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TexCoordChaser2D' translation='3.848 -5.353 4.532'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TexCoordDamper2D' translation='3.188 -5.353 5.018'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Text' translation='-6.405 1.935 4.385'>
+        <Shape>
+          <Appearance USE='Fam_Text'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TextureBackground' translation='1.248 -5.353 5.813'>
+        <Shape>
+          <Appearance USE='Fam_X3DBindableNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TextureCoordinate' translation='-5.842 -5.353 1.103'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureCoordinateNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TextureCoordinate3D' translation='-5.862 -5.353 0.988'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureCoordinateNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TextureCoordinate4D' translation='-5.881 -5.353 0.873'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureCoordinateNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TextureCoordinateGenerator' translation='-5.897 -5.353 0.757'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureCoordinateNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TextureProjector' translation='1.018 -5.353 5.857'>
+        <Shape>
+          <Appearance USE='Fam_X3DLightNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TextureProjectorParallel' translation='0.903 -5.353 5.876'>
+        <Shape>
+          <Appearance USE='Fam_X3DLightNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TextureProperties' translation='-3.619 5.353 -4.717'>
+        <Shape>
+          <Appearance USE='Fam_TextureProperties'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TextureTransform' translation='-5.556 -5.353 2.117'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureTransformNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TextureTransform3D' translation='-5.596 -5.353 2.007'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureTransformNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TextureTransformMatrix3D' translation='-5.635 -5.353 1.896'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureTransformNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TimeSensor' translation='5.89 -1.935 5.056'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TimeTrigger' translation='0.113 -1.935 7.762'>
+        <Shape>
+          <Appearance USE='Fam_X3DTriggerNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ToneMappedVolumeStyle' translation='-7.402 -1.935 -2.337'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposableVolumeRenderStyleNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TouchSensor' translation='2.436 -7.518 1.246'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Transform' translation='-2.201 1.935 -7.444'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TransformSensor' translation='5.124 -5.353 3.016'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TransmitterPdu' translation='0.971 5.353 -5.865'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TriangleFanSet' translation='-3.571 -1.935 6.892'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposedGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TriangleSet' translation='-3.706 -1.935 6.821'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposedGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TriangleSet2D' translation='-6.49 1.935 4.258'>
+        <Shape>
+          <Appearance USE='Fam_TriangleSet2D'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TriangleStripSet' translation='-3.839 -1.935 6.746'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposedGeometryNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_TwoSidedMaterial' translation='-7.198 -1.935 2.906'>
+        <Shape>
+          <Appearance USE='Fam_X3DMaterialNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_UniversalJoint' translation='-6.569 1.935 -4.135'>
+        <Shape>
+          <Appearance USE='Fam_UniversalJoint'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_UnlitMaterial' translation='-5.468 -5.353 2.334'>
+        <Shape>
+          <Appearance USE='Fam_X3DMaterialNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Viewpoint' translation='1.476 -5.353 5.759'>
+        <Shape>
+          <Appearance USE='Fam_X3DBindableNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_ViewpointGroup' translation='-2.005 1.935 7.499'>
+        <Shape>
+          <Appearance USE='Fam_ViewpointGroup'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_Viewport' translation='-2.048 -1.935 -7.487'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_VisibilitySensor' translation='5.063 -5.353 3.116'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_VolumeData' translation='-1.583 1.935 -7.599'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_VolumeEmitter' translation='-7.011 1.935 -3.332'>
+        <Shape>
+          <Appearance USE='Fam_VolumeEmitter'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_VolumePickSensor' translation='4.802 -5.353 3.505'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_WaveShaper' translation='5.889 -5.353 0.818'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_WindPhysicsModel' translation='-6.314 1.935 -4.516'>
+        <Shape>
+          <Appearance USE='Fam_WindPhysicsModel'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_WorldInfo' translation='-2.153 -1.935 7.458'>
+        <Shape>
+          <Appearance USE='Fam_X3DInfoNode'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3D' translation='2.434 5.353 -5.424'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Box size='0.168 0.168 0.168'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DAppearanceChildNode' translation='-5.513 5.353 2.226'>
+        <Shape>
+          <Appearance USE='Fam_X3DAppearanceChildNode'/>
+          <Box size='0.4528 0.4528 0.4528'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DAppearanceNode' translation='-3.525 5.353 -4.787'>
+        <Shape>
+          <Appearance USE='Fam_X3DAppearanceNode'/>
+          <Box size='0.1904 0.1904 0.1904'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DArrayField' translation='2.635 7.518 -0.738'>
+        <Shape>
+          <Appearance USE='Fam_X3DArrayField'/>
+          <Box size='0.168 0.168 0.168'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DBackgroundNode' translation='1.704 -1.935 7.573'>
+        <Shape>
+          <Appearance USE='Fam_X3DBindableNode'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DBindableNode' translation='1.853 1.935 7.538'>
+        <Shape>
+          <Appearance USE='Fam_X3DBindableNode'/>
+          <Box size='0.2896 0.2896 0.2896'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DBoundedObject' translation='-0.53 7.518 -2.684'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Box size='0.49920000000000003 0.49920000000000003 0.49920000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DChaserNode' translation='5.364 -1.935 5.61'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Box size='0.27040000000000003 0.27040000000000003 0.27040000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DChildNode' translation='3.383 5.353 4.889'>
+        <Shape>
+          <Appearance USE='Fam_X3DChildNode'/>
+          <Box size='0.6080000000000001 0.6080000000000001 0.6080000000000001'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DColorNode' translation='-7.756 1.935 -0.309'>
+        <Shape>
+          <Appearance USE='Fam_X3DColorNode'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DComposableVolumeRenderStyleNode' translation='-7.563 1.935 -1.747'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposableVolumeRenderStyleNode'/>
+          <Box size='0.2896 0.2896 0.2896'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DComposedGeometryNode' translation='-3.296 1.935 7.028'>
+        <Shape>
+          <Appearance USE='Fam_X3DComposedGeometryNode'/>
+          <Box size='0.2896 0.2896 0.2896'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DCoordinateNode' translation='-7.744 1.935 0.531'>
+        <Shape>
+          <Appearance USE='Fam_X3DCoordinateNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DDamperNode' translation='4.542 -1.935 6.295'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Box size='0.27040000000000003 0.27040000000000003 0.27040000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DDragSensorNode' translation='5.443 -5.353 2.39'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DEnvironmentTextureNode' translation='-6.613 -1.935 4.065'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DEnvironmentalSensorNode' translation='6.728 -1.935 3.872'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Box size='0.2368 0.2368 0.2368'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DField' translation='2.684 7.518 -0.53'>
+        <Shape>
+          <Appearance USE='Fam_X3DField'/>
+          <Box size='0.168 0.168 0.168'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DFogObject' translation='2.453 7.518 -1.211'>
+        <Shape>
+          <Appearance USE='Fam_X3DFogObject'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DFollowerNode' translation='4.966 1.935 5.966'>
+        <Shape>
+          <Appearance USE='Fam_X3DFollowerNode'/>
+          <Box size='0.34240000000000004 0.34240000000000004 0.34240000000000004'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DFontStyleNode' translation='-4.731 5.353 -3.6'>
+        <Shape>
+          <Appearance USE='Fam_X3DFontStyleNode'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DGeometricPropertyNode' translation='-5.943 5.353 0.173'>
+        <Shape>
+          <Appearance USE='Fam_X3DGeometricPropertyNode'/>
+          <Box size='0.392 0.392 0.392'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DGeometryNode' translation='-3.715 5.353 4.641'>
+        <Shape>
+          <Appearance USE='Fam_X3DGeometryNode'/>
+          <Box size='0.4576 0.4576 0.4576'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DGroupingNode' translation='-2.429 5.353 -5.426'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Box size='0.36800000000000005 0.36800000000000005 0.36800000000000005'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DInfoNode' translation='-2.153 1.935 7.458'>
+        <Shape>
+          <Appearance USE='Fam_X3DInfoNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DInterpolatorNode' translation='3.222 1.935 7.062'>
+        <Shape>
+          <Appearance USE='Fam_X3DInterpolatorNode'/>
+          <Box size='0.32160000000000005 0.32160000000000005 0.32160000000000005'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DKeyDeviceSensorNode' translation='6.132 -1.935 4.759'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DLayerNode' translation='-4.586 5.353 -3.784'>
+        <Shape>
+          <Appearance USE='Fam_X3DLayerNode'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DLayoutNode' translation='-2.299 1.935 7.414'>
+        <Shape>
+          <Appearance USE='Fam_X3DLayoutNode'/>
+          <Box size='0.1904 0.1904 0.1904'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DLightNode' translation='0.951 1.935 7.704'>
+        <Shape>
+          <Appearance USE='Fam_X3DLightNode'/>
+          <Box size='0.27040000000000003 0.27040000000000003 0.27040000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DMaterialNode' translation='-7.109 1.935 3.117'>
+        <Shape>
+          <Appearance USE='Fam_X3DMaterialNode'/>
+          <Box size='0.24960000000000002 0.24960000000000002 0.24960000000000002'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DMetadataObject' translation='2.266 7.518 -1.534'>
+        <Shape>
+          <Appearance USE='Fam_X3DMetadataObject'/>
+          <Box size='0.26080000000000003 0.26080000000000003 0.26080000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DNBodyCollidableNode' translation='-1.033 5.353 -5.855'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DNBodyCollisionSpaceNode' translation='1.091 5.353 -5.844'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Box size='0.1904 0.1904 0.1904'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DNetworkSensorNode' translation='5.789 -1.935 5.171'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Box size='0.24960000000000002 0.24960000000000002 0.24960000000000002'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DNode' translation='-1.282 7.518 2.417'>
+        <Shape>
+          <Appearance USE='Fam_X3DNode'/>
+          <Box size='0.6080000000000001 0.6080000000000001 0.6080000000000001'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DNormalNode' translation='-7.716 1.935 -0.843'>
+        <Shape>
+          <Appearance USE='Fam_X3DNormalNode'/>
+          <Box size='0.1904 0.1904 0.1904'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DNurbsControlCurveNode' translation='-4.433 5.353 -3.962'>
+        <Shape>
+          <Appearance USE='Fam_X3DNurbsControlCurveNode'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DNurbsSurfaceGeometryNode' translation='-4.037 -1.935 6.63'>
+        <Shape>
+          <Appearance USE='Fam_X3DParametricGeometryNode'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DOneSidedMaterialNode' translation='-7.078 -1.935 3.187'>
+        <Shape>
+          <Appearance USE='Fam_X3DMaterialNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DParametricGeometryNode' translation='-4.231 1.935 6.508'>
+        <Shape>
+          <Appearance USE='Fam_X3DParametricGeometryNode'/>
+          <Box size='0.26080000000000003 0.26080000000000003 0.26080000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DParticleEmitterNode' translation='-5.489 5.353 -2.284'>
+        <Shape>
+          <Appearance USE='Fam_X3DParticleEmitterNode'/>
+          <Box size='0.26080000000000003 0.26080000000000003 0.26080000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DParticlePhysicsModelNode' translation='-4.903 5.353 -3.363'>
+        <Shape>
+          <Appearance USE='Fam_X3DParticlePhysicsModelNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DPickSensorNode' translation='6.403 -1.935 4.389'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Box size='0.2368 0.2368 0.2368'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DPickableObject' translation='2.717 7.518 -0.32'>
+        <Shape>
+          <Appearance USE='Fam_X3DPickableObject'/>
+          <Box size='0.2368 0.2368 0.2368'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DPointingDeviceSensorNode' translation='7.044 -1.935 3.261'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Box size='0.27040000000000003 0.27040000000000003 0.27040000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DProductStructureChildNode' translation='-2.445 1.935 7.367'>
+        <Shape>
+          <Appearance USE='Fam_X3DProductStructureChildNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DProgrammableShaderObject' translation='2.56 7.518 -0.966'>
+        <Shape>
+          <Appearance USE='Fam_X3DProgrammableShaderObject'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DPrototypeInstance' translation='-3.43 5.353 -4.856'>
+        <Shape>
+          <Appearance USE='Fam_X3DPrototypeInstance'/>
+          <Box size='0.1904 0.1904 0.1904'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DRigidJointNode' translation='-5.181 5.353 -2.916'>
+        <Shape>
+          <Appearance USE='Fam_X3DRigidJointNode'/>
+          <Box size='0.26080000000000003 0.26080000000000003 0.26080000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DScriptNode' translation='4.531 5.353 -3.849'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Box size='0.1904 0.1904 0.1904'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DSensorNode' translation='6.57 1.935 4.134'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Box size='0.42400000000000004 0.42400000000000004 0.42400000000000004'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DSequencerNode' translation='-0.117 1.935 7.761'>
+        <Shape>
+          <Appearance USE='Fam_X3DSequencerNode'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DShaderNode' translation='-7.598 1.935 1.591'>
+        <Shape>
+          <Appearance USE='Fam_X3DShaderNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DShapeNode' translation='-0.792 5.353 -5.892'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DSingleTextureCoordinateNode' translation='-7.667 -1.935 1.215'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureCoordinateNode'/>
+          <Box size='0.2368 0.2368 0.2368'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DSingleTextureNode' translation='-6.947 -1.935 3.463'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureNode'/>
+          <Box size='0.24960000000000002 0.24960000000000002 0.24960000000000002'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DSingleTextureTransformNode' translation='-7.307 -1.935 2.62'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureTransformNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DSoundChannelNode' translation='7.509 -1.935 1.967'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DSoundDestinationNode' translation='7.403 -1.935 2.335'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DSoundNode' translation='7.612 1.935 1.52'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Box size='0.4032 0.4032 0.4032'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DSoundProcessingNode' translation='7.738 -1.935 0.612'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Box size='0.27040000000000003 0.27040000000000003 0.27040000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DSoundSourceNode' translation='7.627 -1.935 1.445'>
+        <Shape>
+          <Appearance USE='Fam_X3DSoundNode'/>
+          <Box size='0.27040000000000003 0.27040000000000003 0.27040000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DStatement' translation='1.066 7.518 -2.52'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Box size='0.3488 0.3488 0.3488'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DTangentNode' translation='-7.698 1.935 -0.995'>
+        <Shape>
+          <Appearance USE='New41'/>
+          <Box size='0.2864 0.2864 0.2864'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DTexture2DNode' translation='-5.321 -5.353 2.653'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureNode'/>
+          <Box size='0.2368 0.2368 0.2368'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DTexture3DNode' translation='-6.768 -1.935 3.801'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DTextureCoordinateNode' translation='-7.678 1.935 1.139'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureCoordinateNode'/>
+          <Box size='0.26080000000000003 0.26080000000000003 0.26080000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DTextureNode' translation='-6.768 1.935 3.801'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureNode'/>
+          <Box size='0.336 0.336 0.336'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DTextureProjectorNode' translation='1.254 -1.935 7.66'>
+        <Shape>
+          <Appearance USE='Fam_X3DLightNode'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DTextureTransformNode' translation='-7.332 1.935 2.548'>
+        <Shape>
+          <Appearance USE='Fam_X3DTextureTransformNode'/>
+          <Box size='0.24960000000000002 0.24960000000000002 0.24960000000000002'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DTimeDependentNode' translation='-2.589 1.935 7.318'>
+        <Shape>
+          <Appearance USE='Fam_X3DTimeDependentNode'/>
+          <Box size='0.3488 0.3488 0.3488'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DTouchSensorNode' translation='5.319 -5.353 2.656'>
+        <Shape>
+          <Appearance USE='Fam_X3DSensorNode'/>
+          <Box size='0.2096 0.2096 0.2096'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DTriggerNode' translation='0.265 1.935 7.758'>
+        <Shape>
+          <Appearance USE='Fam_X3DTriggerNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DUrlObject' translation='1.848 7.518 -2.018'>
+        <Shape>
+          <Appearance USE='Fam_X3DUrlObject'/>
+          <Box size='0.3488 0.3488 0.3488'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DUrlOutputObject' translation='2.734 7.518 -0.107'>
+        <Shape>
+          <Appearance USE='New41'/>
+          <Box size='0.2864 0.2864 0.2864'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DVertexAttributeNode' translation='-7.762 1.935 0.073'>
+        <Shape>
+          <Appearance USE='Fam_X3DVertexAttributeNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DViewpointNode' translation='2.075 -1.935 7.48'>
+        <Shape>
+          <Appearance USE='Fam_X3DBindableNode'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DViewportNode' translation='-2.048 1.935 -7.487'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Box size='0.1904 0.1904 0.1904'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DVolumeDataNode' translation='-1.332 5.353 -5.794'>
+        <Shape>
+          <Appearance USE='Fam_X3DBoundedObject'/>
+          <Box size='0.22400000000000003 0.22400000000000003 0.22400000000000003'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_X3DVolumeRenderStyleNode' translation='-5.779 5.353 -1.395'>
+        <Shape>
+          <Appearance USE='Fam_X3DVolumeRenderStyleNode'/>
+          <Box size='0.30560000000000004 0.30560000000000004 0.30560000000000004'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_component' translation='2.552 5.353 -5.37'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_connect' translation='2.668 5.353 -5.313'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_field' translation='2.783 5.353 -5.254'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_fieldValue' translation='2.897 5.353 -5.192'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_head' translation='3.009 5.353 -5.127'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_meta' translation='3.12 5.353 -5.061'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+      <Transform DEF='C_unit' translation='3.229 5.353 -4.992'>
+        <Shape>
+          <Appearance USE='Fam_X3DStatement'/>
+          <Sphere radius='0.105'/>
+        </Shape>
+      </Transform>
+    </Group>
+    <Group DEF='Labels'>
+      <Transform translation='-4.87918 2.3011000000000004 -6.626060000000001'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.4 1 0.6'/>
+            </Appearance>
+            <Text string='"Appearance"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-5.14206 2.3011000000000004 6.4235999999999995'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.4 1 0.6'/>
+            </Appearance>
+            <Text string='"Box"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-8.195920000000001 -1.8011000000000004 0.7250400000000001'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.4 1 0.6'/>
+            </Appearance>
+            <Text string='"Coordinate"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='0.9275 -1.8011000000000004 8.175780000000001'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.3 1 0.5'/>
+            </Appearance>
+            <Text string='"EnvironmentLight"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='4.09584 5.92418 -4.79014'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.3 1 0.5'/>
+            </Appearance>
+            <Text string='"FontLibrary"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-0.38902000000000003 5.92418 -6.29004'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.3 1 0.5'/>
+            </Appearance>
+            <Text string='"GaussianSplats"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-1.33348 2.3011000000000004 8.1196'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.3 1 0.5'/>
+            </Appearance>
+            <Text string='"HAnimPose"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='4.412780000000001 5.92418 -4.499700000000001'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.4 1 0.6'/>
+            </Appearance>
+            <Text string='"ImageTexture"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='4.6120600000000005 5.92418 -4.29512'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.3 1 0.5'/>
+            </Appearance>
+            <Text string='"InlineGeometry"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-5.69432 -5.42418 2.6998200000000003'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.4 1 0.6'/>
+            </Appearance>
+            <Text string='"Material"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='0.7663800000000001 -1.8011000000000004 8.19274'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.4 1 0.6'/>
+            </Appearance>
+            <Text string='"PointLight"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='6.29746 5.92418 -0.24592000000000003'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.3 1 0.5'/>
+            </Appearance>
+            <Text string='"RenderedTexture"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-1.0123 2.3011000000000004 -8.165180000000001'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.4 1 0.6'/>
+            </Appearance>
+            <Text string='"Shape"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-6.696020000000001 2.3011000000000004 4.7816600000000005'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.4 1 0.6'/>
+            </Appearance>
+            <Text string='"Sphere"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-8.159880000000001 -1.8011000000000004 -1.0547'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.3 1 0.5'/>
+            </Appearance>
+            <Text string='"Tangent"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='6.2434 -1.8011000000000004 5.359360000000001'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.4 1 0.6'/>
+            </Appearance>
+            <Text string='"TimeSensor"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-2.33306 2.3011000000000004 -7.89064'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.4 1 0.6'/>
+            </Appearance>
+            <Text string='"Transform"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-0.5618000000000001 8.21908 -2.8450400000000005'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='1 1 1'/>
+            </Appearance>
+            <Text string='"X3DBoundedObject"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='2.4019600000000003 8.21908 -1.6260400000000002'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='1 1 1'/>
+            </Appearance>
+            <Text string='"X3DMetadataObject"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-1.3589200000000001 8.21908 2.56202'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='1 1 1'/>
+            </Appearance>
+            <Text string='"X3DNode"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='2.88002 8.21908 -0.3392'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='1 1 1'/>
+            </Appearance>
+            <Text string='"X3DPickableObject"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='2.7136 8.21908 -1.02396'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='1 1 1'/>
+            </Appearance>
+            <Text string='"X3DProgrammableShaderObject"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='1.12996 8.21908 -2.6712000000000002'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='1 1 1'/>
+            </Appearance>
+            <Text string='"X3DStatement"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='-8.159880000000001 2.3011000000000004 -1.0547'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.3 1 0.5'/>
+            </Appearance>
+            <Text string='"X3DTangentNode"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='1.9588800000000002 8.21908 -2.13908'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='1 1 1'/>
+            </Appearance>
+            <Text string='"X3DUrlObject"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+      <Transform translation='2.89804 8.21908 -0.11342'>
+        <Billboard axisOfRotation='0 0 0'>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='0 0 0' emissiveColor='0.3 1 0.5'/>
+            </Appearance>
+            <Text string='"X3DUrlOutputObject"'>
+              <FontStyle family='"SANS"' justify='"MIDDLE"' size='0.34'/>
+            </Text>
+          </Shape>
+        </Billboard>
+      </Transform>
+    </Group>
+    <Shape DEF='Hierarchy'>
+      <Appearance>
+        <Material diffuseColor='0 0 0' emissiveColor='0.25 0.32 0.5'/>
+      </Appearance>
+      <IndexedLineSet coordIndex='0 277 -1 1 337 -1 2 350 -1 3 278 -1 4 298 -1 5 298 -1 6 350 -1 7 335 -1 8 280 -1 9 325 -1 10 299 -1 11 337 -1 12 286 -1 13 284 -1 14 328 -1 15 284 -1 16 349 -1 17 286 -1 18 318 -1 19 298 -1 20 350 -1 21 299 -1 22 282 -1 23 299 -1 24 299 -1 25 286 -1 26 334 -1 27 334 -1 28 334 -1 29 298 -1 30 284 -1 31 308 -1 32 308 -1 33 299 -1 34 282 -1 35 327 -1 36 309 -1 37 285 -1 38 283 -1 39 289 -1 40 301 -1 41 285 -1 42 291 -1 43 323 -1 44 342 -1 45 286 -1 46 298 -1 47 317 -1 48 311 -1 49 311 -1 50 313 -1 51 337 -1 52 288 -1 53 283 -1 54 289 -1 55 288 -1 56 301 -1 57 301 -1 58 298 -1 59 290 -1 60 284 -1 61 350 -1 62 337 -1 63 305 -1 64 298 -1 65 325 -1 66 337 -1 67 339 -1 68 284 -1 69 286 -1 70 298 -1 71 305 -1 72 299 -1 73 317 -1 74 339 -1 75 298 -1 76 277 -1 77 352 -1 78 294 -1 79 297 -1 80 350 -1 81 296 -1 82 318 -1 83 337 -1 84 282 -1 85 291 -1 86 288 -1 87 298 -1 88 282 -1 89 299 -1 90 350 -1 91 311 -1 92 301 -1 93 292 -1 94 348 -1 95 299 -1 96 353 -1 97 299 -1 98 297 -1 99 282 -1 100 282 -1 101 284 -1 102 284 -1 103 299 -1 104 299 -1 105 339 -1 106 339 -1 107 350 -1 108 350 -1 109 350 -1 110 287 -1 111 298 -1 112 287 -1 113 287 -1 114 287 -1 115 287 -1 116 282 -1 117 350 -1 118 328 -1 119 349 -1 120 355 -1 121 302 -1 122 299 -1 123 303 -1 124 311 -1 125 304 -1 126 311 -1 127 303 -1 128 319 -1 129 277 -1 130 298 -1 131 338 -1 132 310 -1 133 294 -1 134 315 -1 135 352 -1 136 352 -1 137 307 -1 138 307 -1 139 307 -1 140 307 -1 141 307 -1 142 307 -1 143 338 -1 144 325 -1 145 350 -1 146 344 -1 147 343 -1 148 346 -1 149 281 -1 150 312 -1 151 301 -1 152 316 -1 153 313 -1 154 284 -1 155 314 -1 156 284 -1 157 282 -1 158 284 -1 159 316 -1 160 316 -1 161 311 -1 162 314 -1 163 286 -1 164 283 -1 165 289 -1 166 301 -1 167 353 -1 168 338 -1 169 323 -1 170 330 -1 171 336 -1 172 315 -1 173 320 -1 174 341 -1 175 342 -1 176 290 -1 177 317 -1 178 305 -1 179 319 -1 180 277 -1 181 298 -1 182 298 -1 183 317 -1 184 298 -1 185 283 -1 186 283 -1 187 289 -1 188 289 -1 189 301 -1 190 301 -1 191 319 -1 192 329 -1 193 356 -1 194 339 -1 195 339 -1 196 284 -1 197 339 -1 198 292 -1 199 287 -1 200 339 -1 201 282 -1 202 298 -1 203 351 -1 204 282 -1 205 282 -1 206 283 -1 207 289 -1 208 301 -1 209 339 -1 210 296 -1 211 299 -1 212 326 -1 213 355 -1 214 286 -1 215 311 -1 216 311 -1 217 330 -1 218 282 -1 219 286 -1 220 325 -1 221 325 -1 222 336 -1 223 336 -1 224 298 -1 225 290 -1 226 301 -1 227 301 -1 228 301 -1 229 305 -1 230 301 -1 231 282 -1 232 335 -1 233 338 -1 234 302 -1 235 317 -1 236 299 -1 237 340 -1 238 283 -1 239 289 -1 240 298 -1 241 280 -1 242 331 -1 243 331 -1 244 331 -1 245 331 -1 246 345 -1 247 345 -1 248 311 -1 249 333 -1 250 333 -1 251 333 -1 252 327 -1 253 349 -1 254 286 -1 255 348 -1 256 299 -1 257 292 -1 258 282 -1 259 287 -1 260 287 -1 261 298 -1 262 287 -1 263 306 -1 264 325 -1 265 315 -1 266 353 -1 267 284 -1 268 354 -1 269 292 -1 270 355 -1 271 317 -1 272 319 -1 273 337 -1 274 318 -1 275 300 -1 276 339 -1 277 311 -1 278 311 -1 280 281 -1 281 284 -1 283 295 -1 284 311 -1 285 297 -1 286 356 -1 287 298 -1 288 297 -1 289 295 -1 290 321 -1 291 344 -1 292 327 -1 295 284 -1 296 311 -1 297 311 -1 298 311 -1 299 282 -1 300 284 -1 301 284 -1 302 327 -1 303 311 -1 304 284 -1 305 284 -1 306 277 -1 308 282 -1 309 282 -1 310 327 -1 312 297 -1 313 311 -1 314 316 -1 315 306 -1 316 298 -1 317 311 -1 318 311 -1 319 327 -1 321 327 -1 322 284 -1 324 311 -1 325 311 -1 326 350 -1 327 284 -1 328 284 -1 329 277 -1 330 282 -1 331 343 -1 332 344 -1 333 346 -1 334 336 -1 335 336 -1 336 284 -1 337 336 -1 338 336 -1 340 297 -1 341 332 -1 342 344 -1 343 297 -1 344 277 -1 345 305 -1 346 277 -1 347 284 -1 348 321 -1 349 284 -1 352 297 -1 353 281 -1 354 299 -1 355 282 -1 356 311 -1 357 339 -1 358 339 -1 359 339 -1 360 339 -1 361 339 -1 362 339 -1 363 339 -1'>
+        <Coordinate point='-7.449 1.935 2.184 5.944 -5.353 0.118 3.437 5.353 -4.851 -4.603 1.935 -6.251 -4.608 1.935 6.246 -4.73 1.935 6.154 3.547 5.353 -4.771 5.687 -5.353 1.732 1.362 -5.353 5.787 -6.944 1.935 -3.469 -4.221 1.935 -6.515 5.941 -5.353 0.235 -7.677 -1.935 -1.146 -0.346 1.935 7.755 -0.04 -1.935 7.762 -0.499 1.935 7.746 0.418 -1.935 7.751 -7.653 -1.935 -1.297 -6.487 1.935 -4.264 -4.851 1.935 6.06 3.654 5.353 -4.69 -4.086 1.935 -6.6 -0.61 5.353 -5.914 -3.949 1.935 -6.683 -3.812 1.935 -6.762 -7.626 -1.935 -1.448 5.78 -5.353 1.393 5.751 -5.353 1.507 5.72 -5.353 1.62 -4.969 1.935 5.963 -0.651 1.935 7.735 -1.427 1.935 -7.63 -1.27 1.935 -7.658 -3.672 1.935 -6.839 -0.488 5.353 -5.925 5.989 -1.935 4.939 1.425 1.935 -7.63 -7.759 -1.935 -0.233 4.355 -5.353 4.047 3.758 -5.353 4.607 4.033 -1.935 6.633 -7.753 -1.935 -0.386 -5.034 -5.353 3.163 5.52 5.353 -2.207 -5.155 -5.353 2.962 -7.596 -1.935 -1.598 -5.086 1.935 5.864 -7.305 1.935 -2.626 -4.314 5.353 -4.091 -4.233 5.353 -4.175 -5.839 1.935 -5.115 5.935 -5.353 0.352 -7.732 -1.935 0.684 4.275 -5.353 4.132 3.666 -5.353 4.68 -7.744 -1.935 0.531 3.901 -1.935 6.711 3.768 -1.935 6.786 -5.2 1.935 5.764 2.526 -7.518 1.051 -0.804 1.935 7.721 3.76 5.353 -4.605 5.927 -5.353 0.469 1.027 -1.935 7.694 -5.312 1.935 5.66 -6.874 1.935 -3.605 5.916 -5.353 0.585 1.331 5.353 -5.794 -0.955 1.935 7.703 -7.563 -1.935 -1.747 -5.423 1.935 5.554 0.875 -1.935 7.713 -3.531 1.935 -6.913 -7.252 1.935 -2.769 1.457 5.353 -5.764 -5.531 1.935 5.446 -7.49 1.935 2.037 -7.759 -1.935 0.226 5.279 5.353 -2.735 -7.744 1.935 -0.538 3.864 5.353 -4.519 -6.223 1.935 -4.639 -6.401 1.935 -4.391 5.904 -5.353 0.702 -0.367 5.353 -5.934 -5.095 -5.353 3.063 -7.753 -1.935 0.379 -5.637 1.935 5.336 -0.245 5.353 -5.94 -3.388 1.935 -6.984 3.965 5.353 -4.43 -4.15 5.353 -4.257 3.634 -1.935 6.859 5.238 -5.353 2.812 2.46 -7.518 1.198 -3.244 1.935 -7.052 1.702 -5.353 5.696 -3.099 1.935 -7.117 -7.732 1.935 -0.691 -0.123 5.353 -5.944 -0.001 5.353 -5.945 -1.107 1.935 7.683 -1.258 1.935 7.66 -2.952 1.935 -7.179 -2.804 1.935 -7.238 1.582 5.353 -5.731 1.706 5.353 -5.695 4.065 5.353 -4.339 4.163 5.353 -4.245 4.258 5.353 -4.149 -2.733 -1.935 7.265 -5.741 1.935 5.224 -2.876 -1.935 7.21 -3.017 -1.935 7.152 -3.157 -1.935 7.091 -3.296 -1.935 7.028 0.121 5.353 -5.944 4.351 5.353 -4.052 -0.193 -1.935 7.76 0.265 -1.935 7.758 -1.894 1.935 -7.528 4.732 -5.353 3.599 -2.655 1.935 -7.294 -6.036 1.935 -4.881 -4.065 5.353 -4.338 -2.299 -1.935 7.414 -3.979 5.353 -4.418 -5.938 1.935 -4.999 5.001 -5.353 3.215 -7.529 1.935 1.889 -5.843 1.935 5.11 5.871 -5.353 0.934 4.434 -5.353 3.96 5.381 5.353 -2.528 -5.372 -5.353 2.547 -7.762 -1.935 0.073 -7.762 -1.935 -0.08 4.697 5.353 -3.645 4.79 5.353 -3.522 4.879 5.353 -3.396 4.966 5.353 -3.269 5.049 5.353 -3.139 5.129 5.353 -3.007 5.852 -5.353 1.049 -6.802 1.935 -3.74 4.442 5.353 -3.952 -6.877 -1.935 3.6 -7.717 -1.935 0.836 -7.404 -1.935 2.33 1.48 -1.935 7.62 -7.716 -1.935 -0.843 3.498 -1.935 6.929 -4.231 -1.935 6.508 -5.737 1.935 -5.229 -1.409 1.935 7.633 -3.042 -5.353 5.108 -1.559 1.935 7.604 0.243 5.353 -5.94 -1.708 1.935 7.572 -4.359 -1.935 6.423 -4.484 -1.935 6.336 -3.891 5.353 -4.495 -3.142 -5.353 5.047 -7.527 -1.935 -1.896 4.192 -5.353 4.215 3.573 -5.353 4.752 3.361 -1.935 6.997 1.589 -5.353 5.729 5.83 -5.353 1.164 5.602 5.353 -1.992 -1.112 1.935 -7.682 7.331 -1.935 2.552 -5.421 -5.353 2.441 5.904 5.353 -0.695 -2.449 -7.518 1.221 -5.212 -5.353 2.86 2.505 -7.518 1.1 -7.196 1.935 -2.912 0.723 -1.935 7.729 4.936 -5.353 3.313 -7.565 1.935 1.74 -5.943 1.935 4.994 -6.04 1.935 4.876 -7.137 1.935 -3.053 -6.135 1.935 4.756 4.109 -5.353 4.297 4.023 -5.353 4.377 3.479 -5.353 4.821 3.383 -5.353 4.889 3.222 -1.935 7.062 3.083 -1.935 7.124 4.87 -5.353 3.41 -7.598 -1.935 1.591 -7.355 1.935 -2.482 1.83 5.353 -5.656 1.953 5.353 -5.615 -1.857 1.935 7.537 2.074 5.353 -5.572 5.182 -5.353 2.914 -3.434 -1.935 6.961 2.195 5.353 -5.525 0.365 5.353 -5.934 -6.227 1.935 4.634 5.941 5.353 -0.232 0.487 5.353 -5.925 0.608 5.353 -5.914 3.936 -5.353 4.455 3.286 -5.353 4.954 2.943 -1.935 7.183 2.315 5.353 -5.476 -6.131 1.935 -4.761 -2.505 1.935 -7.347 5.916 1.935 -5.026 -1.739 1.935 -7.565 -7.489 -1.935 -2.044 -3.802 5.353 -4.571 -3.711 5.353 -4.645 -0.955 1.935 -7.703 0.729 5.353 -5.9 -7.447 -1.935 -2.191 -6.727 1.935 -3.873 -6.649 1.935 -4.005 7.279 -1.935 2.696 7.225 -1.935 2.839 -6.317 1.935 4.511 2.483 -7.518 1.149 2.8 -1.935 7.24 2.657 -1.935 7.293 2.513 -1.935 7.344 0.571 -1.935 7.741 2.368 -1.935 7.392 0.851 5.353 -5.884 5.652 -5.353 1.844 5.806 -5.353 1.279 4.66 -5.353 3.691 -7.075 1.935 -3.193 -2.353 1.935 -7.397 -7.698 -1.935 -0.995 3.848 -5.353 4.532 3.188 -5.353 5.018 -6.405 1.935 4.385 1.248 -5.353 5.813 -5.842 -5.353 1.103 -5.862 -5.353 0.988 -5.881 -5.353 0.873 -5.897 -5.353 0.757 1.018 -5.353 5.857 0.903 -5.353 5.876 -3.619 5.353 -4.717 -5.556 -5.353 2.117 -5.596 -5.353 2.007 -5.635 -5.353 1.896 5.89 -1.935 5.056 0.113 -1.935 7.762 -7.402 -1.935 -2.337 2.436 -7.518 1.246 -2.201 1.935 -7.444 5.124 -5.353 3.016 0.971 5.353 -5.865 -3.571 -1.935 6.892 -3.706 -1.935 6.821 -6.49 1.935 4.258 -3.839 -1.935 6.746 -7.198 -1.935 2.906 -6.569 1.935 -4.135 -5.468 -5.353 2.334 1.476 -5.353 5.759 -2.005 1.935 7.499 -2.048 -1.935 -7.487 5.063 -5.353 3.116 -1.583 1.935 -7.599 -7.011 1.935 -3.332 4.802 -5.353 3.505 5.889 -5.353 0.818 -6.314 1.935 -4.516 -2.153 -1.935 7.458 2.434 5.353 -5.424 -5.513 5.353 2.226 -3.525 5.353 -4.787 2.635 7.518 -0.738 1.704 -1.935 7.573 1.853 1.935 7.538 -0.53 7.518 -2.684 5.364 -1.935 5.61 3.383 5.353 4.889 -7.756 1.935 -0.309 -7.563 1.935 -1.747 -3.296 1.935 7.028 -7.744 1.935 0.531 4.542 -1.935 6.295 5.443 -5.353 2.39 -6.613 -1.935 4.065 6.728 -1.935 3.872 2.684 7.518 -0.53 2.453 7.518 -1.211 4.966 1.935 5.966 -4.731 5.353 -3.6 -5.943 5.353 0.173 -3.715 5.353 4.641 -2.429 5.353 -5.426 -2.153 1.935 7.458 3.222 1.935 7.062 6.132 -1.935 4.759 -4.586 5.353 -3.784 -2.299 1.935 7.414 0.951 1.935 7.704 -7.109 1.935 3.117 2.266 7.518 -1.534 -1.033 5.353 -5.855 1.091 5.353 -5.844 5.789 -1.935 5.171 -1.282 7.518 2.417 -7.716 1.935 -0.843 -4.433 5.353 -3.962 -4.037 -1.935 6.63 -7.078 -1.935 3.187 -4.231 1.935 6.508 -5.489 5.353 -2.284 -4.903 5.353 -3.363 6.403 -1.935 4.389 2.717 7.518 -0.32 7.044 -1.935 3.261 -2.445 1.935 7.367 2.56 7.518 -0.966 -3.43 5.353 -4.856 -5.181 5.353 -2.916 4.531 5.353 -3.849 6.57 1.935 4.134 -0.117 1.935 7.761 -7.598 1.935 1.591 -0.792 5.353 -5.892 -7.667 -1.935 1.215 -6.947 -1.935 3.463 -7.307 -1.935 2.62 7.509 -1.935 1.967 7.403 -1.935 2.335 7.612 1.935 1.52 7.738 -1.935 0.612 7.627 -1.935 1.445 1.066 7.518 -2.52 -7.698 1.935 -0.995 -5.321 -5.353 2.653 -6.768 -1.935 3.801 -7.678 1.935 1.139 -6.768 1.935 3.801 1.254 -1.935 7.66 -7.332 1.935 2.548 -2.589 1.935 7.318 5.319 -5.353 2.656 0.265 1.935 7.758 1.848 7.518 -2.018 2.734 7.518 -0.107 -7.762 1.935 0.073 2.075 -1.935 7.48 -2.048 1.935 -7.487 -1.332 5.353 -5.794 -5.779 5.353 -1.395 2.552 5.353 -5.37 2.668 5.353 -5.313 2.783 5.353 -5.254 2.897 5.353 -5.192 3.009 5.353 -5.127 3.12 5.353 -5.061 3.229 5.353 -4.992'/>
+      </IndexedLineSet>
+    </Shape>
+    <Shape DEF='ShapeXsdAccepts'>
+      <Appearance>
+        <Material diffuseColor='0 0 0' emissiveColor='0.3 1 0.55'/>
+      </Appearance>
+      <IndexedLineSet coordIndex='217 2 -1 217 10 -1 217 21 -1 217 23 -1 217 32 -1 217 33 -1 217 33 -1 217 72 -1 217 89 -1 217 95 -1 217 97 -1 217 99 -1 217 103 -1 217 104 -1 217 122 -1 217 123 -1 217 127 -1 217 173 -1 217 211 -1 217 231 -1 217 236 -1 217 256 -1'>
+        <Coordinate point='-7.449 1.935 2.184 5.944 -5.353 0.118 3.437 5.353 -4.851 -4.603 1.935 -6.251 -4.608 1.935 6.246 -4.73 1.935 6.154 3.547 5.353 -4.771 5.687 -5.353 1.732 1.362 -5.353 5.787 -6.944 1.935 -3.469 -4.221 1.935 -6.515 5.941 -5.353 0.235 -7.677 -1.935 -1.146 -0.346 1.935 7.755 -0.04 -1.935 7.762 -0.499 1.935 7.746 0.418 -1.935 7.751 -7.653 -1.935 -1.297 -6.487 1.935 -4.264 -4.851 1.935 6.06 3.654 5.353 -4.69 -4.086 1.935 -6.6 -0.61 5.353 -5.914 -3.949 1.935 -6.683 -3.812 1.935 -6.762 -7.626 -1.935 -1.448 5.78 -5.353 1.393 5.751 -5.353 1.507 5.72 -5.353 1.62 -4.969 1.935 5.963 -0.651 1.935 7.735 -1.427 1.935 -7.63 -1.27 1.935 -7.658 -3.672 1.935 -6.839 -0.488 5.353 -5.925 5.989 -1.935 4.939 1.425 1.935 -7.63 -7.759 -1.935 -0.233 4.355 -5.353 4.047 3.758 -5.353 4.607 4.033 -1.935 6.633 -7.753 -1.935 -0.386 -5.034 -5.353 3.163 5.52 5.353 -2.207 -5.155 -5.353 2.962 -7.596 -1.935 -1.598 -5.086 1.935 5.864 -7.305 1.935 -2.626 -4.314 5.353 -4.091 -4.233 5.353 -4.175 -5.839 1.935 -5.115 5.935 -5.353 0.352 -7.732 -1.935 0.684 4.275 -5.353 4.132 3.666 -5.353 4.68 -7.744 -1.935 0.531 3.901 -1.935 6.711 3.768 -1.935 6.786 -5.2 1.935 5.764 2.526 -7.518 1.051 -0.804 1.935 7.721 3.76 5.353 -4.605 5.927 -5.353 0.469 1.027 -1.935 7.694 -5.312 1.935 5.66 -6.874 1.935 -3.605 5.916 -5.353 0.585 1.331 5.353 -5.794 -0.955 1.935 7.703 -7.563 -1.935 -1.747 -5.423 1.935 5.554 0.875 -1.935 7.713 -3.531 1.935 -6.913 -7.252 1.935 -2.769 1.457 5.353 -5.764 -5.531 1.935 5.446 -7.49 1.935 2.037 -7.759 -1.935 0.226 5.279 5.353 -2.735 -7.744 1.935 -0.538 3.864 5.353 -4.519 -6.223 1.935 -4.639 -6.401 1.935 -4.391 5.904 -5.353 0.702 -0.367 5.353 -5.934 -5.095 -5.353 3.063 -7.753 -1.935 0.379 -5.637 1.935 5.336 -0.245 5.353 -5.94 -3.388 1.935 -6.984 3.965 5.353 -4.43 -4.15 5.353 -4.257 3.634 -1.935 6.859 5.238 -5.353 2.812 2.46 -7.518 1.198 -3.244 1.935 -7.052 1.702 -5.353 5.696 -3.099 1.935 -7.117 -7.732 1.935 -0.691 -0.123 5.353 -5.944 -0.001 5.353 -5.945 -1.107 1.935 7.683 -1.258 1.935 7.66 -2.952 1.935 -7.179 -2.804 1.935 -7.238 1.582 5.353 -5.731 1.706 5.353 -5.695 4.065 5.353 -4.339 4.163 5.353 -4.245 4.258 5.353 -4.149 -2.733 -1.935 7.265 -5.741 1.935 5.224 -2.876 -1.935 7.21 -3.017 -1.935 7.152 -3.157 -1.935 7.091 -3.296 -1.935 7.028 0.121 5.353 -5.944 4.351 5.353 -4.052 -0.193 -1.935 7.76 0.265 -1.935 7.758 -1.894 1.935 -7.528 4.732 -5.353 3.599 -2.655 1.935 -7.294 -6.036 1.935 -4.881 -4.065 5.353 -4.338 -2.299 -1.935 7.414 -3.979 5.353 -4.418 -5.938 1.935 -4.999 5.001 -5.353 3.215 -7.529 1.935 1.889 -5.843 1.935 5.11 5.871 -5.353 0.934 4.434 -5.353 3.96 5.381 5.353 -2.528 -5.372 -5.353 2.547 -7.762 -1.935 0.073 -7.762 -1.935 -0.08 4.697 5.353 -3.645 4.79 5.353 -3.522 4.879 5.353 -3.396 4.966 5.353 -3.269 5.049 5.353 -3.139 5.129 5.353 -3.007 5.852 -5.353 1.049 -6.802 1.935 -3.74 4.442 5.353 -3.952 -6.877 -1.935 3.6 -7.717 -1.935 0.836 -7.404 -1.935 2.33 1.48 -1.935 7.62 -7.716 -1.935 -0.843 3.498 -1.935 6.929 -4.231 -1.935 6.508 -5.737 1.935 -5.229 -1.409 1.935 7.633 -3.042 -5.353 5.108 -1.559 1.935 7.604 0.243 5.353 -5.94 -1.708 1.935 7.572 -4.359 -1.935 6.423 -4.484 -1.935 6.336 -3.891 5.353 -4.495 -3.142 -5.353 5.047 -7.527 -1.935 -1.896 4.192 -5.353 4.215 3.573 -5.353 4.752 3.361 -1.935 6.997 1.589 -5.353 5.729 5.83 -5.353 1.164 5.602 5.353 -1.992 -1.112 1.935 -7.682 7.331 -1.935 2.552 -5.421 -5.353 2.441 5.904 5.353 -0.695 -2.449 -7.518 1.221 -5.212 -5.353 2.86 2.505 -7.518 1.1 -7.196 1.935 -2.912 0.723 -1.935 7.729 4.936 -5.353 3.313 -7.565 1.935 1.74 -5.943 1.935 4.994 -6.04 1.935 4.876 -7.137 1.935 -3.053 -6.135 1.935 4.756 4.109 -5.353 4.297 4.023 -5.353 4.377 3.479 -5.353 4.821 3.383 -5.353 4.889 3.222 -1.935 7.062 3.083 -1.935 7.124 4.87 -5.353 3.41 -7.598 -1.935 1.591 -7.355 1.935 -2.482 1.83 5.353 -5.656 1.953 5.353 -5.615 -1.857 1.935 7.537 2.074 5.353 -5.572 5.182 -5.353 2.914 -3.434 -1.935 6.961 2.195 5.353 -5.525 0.365 5.353 -5.934 -6.227 1.935 4.634 5.941 5.353 -0.232 0.487 5.353 -5.925 0.608 5.353 -5.914 3.936 -5.353 4.455 3.286 -5.353 4.954 2.943 -1.935 7.183 2.315 5.353 -5.476 -6.131 1.935 -4.761 -2.505 1.935 -7.347 5.916 1.935 -5.026 -1.739 1.935 -7.565 -7.489 -1.935 -2.044 -3.802 5.353 -4.571 -3.711 5.353 -4.645 -0.955 1.935 -7.703 0.729 5.353 -5.9 -7.447 -1.935 -2.191 -6.727 1.935 -3.873 -6.649 1.935 -4.005 7.279 -1.935 2.696 7.225 -1.935 2.839 -6.317 1.935 4.511 2.483 -7.518 1.149 2.8 -1.935 7.24 2.657 -1.935 7.293 2.513 -1.935 7.344 0.571 -1.935 7.741 2.368 -1.935 7.392 0.851 5.353 -5.884 5.652 -5.353 1.844 5.806 -5.353 1.279 4.66 -5.353 3.691 -7.075 1.935 -3.193 -2.353 1.935 -7.397 -7.698 -1.935 -0.995 3.848 -5.353 4.532 3.188 -5.353 5.018 -6.405 1.935 4.385 1.248 -5.353 5.813 -5.842 -5.353 1.103 -5.862 -5.353 0.988 -5.881 -5.353 0.873 -5.897 -5.353 0.757 1.018 -5.353 5.857 0.903 -5.353 5.876 -3.619 5.353 -4.717 -5.556 -5.353 2.117 -5.596 -5.353 2.007 -5.635 -5.353 1.896 5.89 -1.935 5.056 0.113 -1.935 7.762 -7.402 -1.935 -2.337 2.436 -7.518 1.246 -2.201 1.935 -7.444 5.124 -5.353 3.016 0.971 5.353 -5.865 -3.571 -1.935 6.892 -3.706 -1.935 6.821 -6.49 1.935 4.258 -3.839 -1.935 6.746 -7.198 -1.935 2.906 -6.569 1.935 -4.135 -5.468 -5.353 2.334 1.476 -5.353 5.759 -2.005 1.935 7.499 -2.048 -1.935 -7.487 5.063 -5.353 3.116 -1.583 1.935 -7.599 -7.011 1.935 -3.332 4.802 -5.353 3.505 5.889 -5.353 0.818 -6.314 1.935 -4.516 -2.153 -1.935 7.458 2.434 5.353 -5.424 -5.513 5.353 2.226 -3.525 5.353 -4.787 2.635 7.518 -0.738 1.704 -1.935 7.573 1.853 1.935 7.538 -0.53 7.518 -2.684 5.364 -1.935 5.61 3.383 5.353 4.889 -7.756 1.935 -0.309 -7.563 1.935 -1.747 -3.296 1.935 7.028 -7.744 1.935 0.531 4.542 -1.935 6.295 5.443 -5.353 2.39 -6.613 -1.935 4.065 6.728 -1.935 3.872 2.684 7.518 -0.53 2.453 7.518 -1.211 4.966 1.935 5.966 -4.731 5.353 -3.6 -5.943 5.353 0.173 -3.715 5.353 4.641 -2.429 5.353 -5.426 -2.153 1.935 7.458 3.222 1.935 7.062 6.132 -1.935 4.759 -4.586 5.353 -3.784 -2.299 1.935 7.414 0.951 1.935 7.704 -7.109 1.935 3.117 2.266 7.518 -1.534 -1.033 5.353 -5.855 1.091 5.353 -5.844 5.789 -1.935 5.171 -1.282 7.518 2.417 -7.716 1.935 -0.843 -4.433 5.353 -3.962 -4.037 -1.935 6.63 -7.078 -1.935 3.187 -4.231 1.935 6.508 -5.489 5.353 -2.284 -4.903 5.353 -3.363 6.403 -1.935 4.389 2.717 7.518 -0.32 7.044 -1.935 3.261 -2.445 1.935 7.367 2.56 7.518 -0.966 -3.43 5.353 -4.856 -5.181 5.353 -2.916 4.531 5.353 -3.849 6.57 1.935 4.134 -0.117 1.935 7.761 -7.598 1.935 1.591 -0.792 5.353 -5.892 -7.667 -1.935 1.215 -6.947 -1.935 3.463 -7.307 -1.935 2.62 7.509 -1.935 1.967 7.403 -1.935 2.335 7.612 1.935 1.52 7.738 -1.935 0.612 7.627 -1.935 1.445 1.066 7.518 -2.52 -7.698 1.935 -0.995 -5.321 -5.353 2.653 -6.768 -1.935 3.801 -7.678 1.935 1.139 -6.768 1.935 3.801 1.254 -1.935 7.66 -7.332 1.935 2.548 -2.589 1.935 7.318 5.319 -5.353 2.656 0.265 1.935 7.758 1.848 7.518 -2.018 2.734 7.518 -0.107 -7.762 1.935 0.073 2.075 -1.935 7.48 -2.048 1.935 -7.487 -1.332 5.353 -5.794 -5.779 5.353 -1.395 2.552 5.353 -5.37 2.668 5.353 -5.313 2.783 5.353 -5.254 2.897 5.353 -5.192 3.009 5.353 -5.127 3.12 5.353 -5.061 3.229 5.353 -4.992'/>
+      </IndexedLineSet>
+    </Shape>
+    <Shape DEF='ShapeXsdRejects'>
+      <Appearance>
+        <Material diffuseColor='0 0 0' emissiveColor='1 0.35 0.35'/>
+      </Appearance>
+      <IndexedLineSet coordIndex='217 1 -1 217 7 -1 217 11 -1 217 24 -1 217 24 -1 217 24 -1 217 26 -1 217 27 -1 217 28 -1 217 49 -1 217 49 -1 217 49 -1 217 51 -1 217 60 -1 217 62 -1 217 66 -1 217 83 -1 217 100 -1 217 100 -1 217 100 -1 217 102 -1 217 123 -1 217 123 -1 217 127 -1 217 127 -1 217 132 -1 217 223 -1 217 232 -1 217 267 -1 217 273 -1'>
+        <Coordinate point='-7.449 1.935 2.184 5.944 -5.353 0.118 3.437 5.353 -4.851 -4.603 1.935 -6.251 -4.608 1.935 6.246 -4.73 1.935 6.154 3.547 5.353 -4.771 5.687 -5.353 1.732 1.362 -5.353 5.787 -6.944 1.935 -3.469 -4.221 1.935 -6.515 5.941 -5.353 0.235 -7.677 -1.935 -1.146 -0.346 1.935 7.755 -0.04 -1.935 7.762 -0.499 1.935 7.746 0.418 -1.935 7.751 -7.653 -1.935 -1.297 -6.487 1.935 -4.264 -4.851 1.935 6.06 3.654 5.353 -4.69 -4.086 1.935 -6.6 -0.61 5.353 -5.914 -3.949 1.935 -6.683 -3.812 1.935 -6.762 -7.626 -1.935 -1.448 5.78 -5.353 1.393 5.751 -5.353 1.507 5.72 -5.353 1.62 -4.969 1.935 5.963 -0.651 1.935 7.735 -1.427 1.935 -7.63 -1.27 1.935 -7.658 -3.672 1.935 -6.839 -0.488 5.353 -5.925 5.989 -1.935 4.939 1.425 1.935 -7.63 -7.759 -1.935 -0.233 4.355 -5.353 4.047 3.758 -5.353 4.607 4.033 -1.935 6.633 -7.753 -1.935 -0.386 -5.034 -5.353 3.163 5.52 5.353 -2.207 -5.155 -5.353 2.962 -7.596 -1.935 -1.598 -5.086 1.935 5.864 -7.305 1.935 -2.626 -4.314 5.353 -4.091 -4.233 5.353 -4.175 -5.839 1.935 -5.115 5.935 -5.353 0.352 -7.732 -1.935 0.684 4.275 -5.353 4.132 3.666 -5.353 4.68 -7.744 -1.935 0.531 3.901 -1.935 6.711 3.768 -1.935 6.786 -5.2 1.935 5.764 2.526 -7.518 1.051 -0.804 1.935 7.721 3.76 5.353 -4.605 5.927 -5.353 0.469 1.027 -1.935 7.694 -5.312 1.935 5.66 -6.874 1.935 -3.605 5.916 -5.353 0.585 1.331 5.353 -5.794 -0.955 1.935 7.703 -7.563 -1.935 -1.747 -5.423 1.935 5.554 0.875 -1.935 7.713 -3.531 1.935 -6.913 -7.252 1.935 -2.769 1.457 5.353 -5.764 -5.531 1.935 5.446 -7.49 1.935 2.037 -7.759 -1.935 0.226 5.279 5.353 -2.735 -7.744 1.935 -0.538 3.864 5.353 -4.519 -6.223 1.935 -4.639 -6.401 1.935 -4.391 5.904 -5.353 0.702 -0.367 5.353 -5.934 -5.095 -5.353 3.063 -7.753 -1.935 0.379 -5.637 1.935 5.336 -0.245 5.353 -5.94 -3.388 1.935 -6.984 3.965 5.353 -4.43 -4.15 5.353 -4.257 3.634 -1.935 6.859 5.238 -5.353 2.812 2.46 -7.518 1.198 -3.244 1.935 -7.052 1.702 -5.353 5.696 -3.099 1.935 -7.117 -7.732 1.935 -0.691 -0.123 5.353 -5.944 -0.001 5.353 -5.945 -1.107 1.935 7.683 -1.258 1.935 7.66 -2.952 1.935 -7.179 -2.804 1.935 -7.238 1.582 5.353 -5.731 1.706 5.353 -5.695 4.065 5.353 -4.339 4.163 5.353 -4.245 4.258 5.353 -4.149 -2.733 -1.935 7.265 -5.741 1.935 5.224 -2.876 -1.935 7.21 -3.017 -1.935 7.152 -3.157 -1.935 7.091 -3.296 -1.935 7.028 0.121 5.353 -5.944 4.351 5.353 -4.052 -0.193 -1.935 7.76 0.265 -1.935 7.758 -1.894 1.935 -7.528 4.732 -5.353 3.599 -2.655 1.935 -7.294 -6.036 1.935 -4.881 -4.065 5.353 -4.338 -2.299 -1.935 7.414 -3.979 5.353 -4.418 -5.938 1.935 -4.999 5.001 -5.353 3.215 -7.529 1.935 1.889 -5.843 1.935 5.11 5.871 -5.353 0.934 4.434 -5.353 3.96 5.381 5.353 -2.528 -5.372 -5.353 2.547 -7.762 -1.935 0.073 -7.762 -1.935 -0.08 4.697 5.353 -3.645 4.79 5.353 -3.522 4.879 5.353 -3.396 4.966 5.353 -3.269 5.049 5.353 -3.139 5.129 5.353 -3.007 5.852 -5.353 1.049 -6.802 1.935 -3.74 4.442 5.353 -3.952 -6.877 -1.935 3.6 -7.717 -1.935 0.836 -7.404 -1.935 2.33 1.48 -1.935 7.62 -7.716 -1.935 -0.843 3.498 -1.935 6.929 -4.231 -1.935 6.508 -5.737 1.935 -5.229 -1.409 1.935 7.633 -3.042 -5.353 5.108 -1.559 1.935 7.604 0.243 5.353 -5.94 -1.708 1.935 7.572 -4.359 -1.935 6.423 -4.484 -1.935 6.336 -3.891 5.353 -4.495 -3.142 -5.353 5.047 -7.527 -1.935 -1.896 4.192 -5.353 4.215 3.573 -5.353 4.752 3.361 -1.935 6.997 1.589 -5.353 5.729 5.83 -5.353 1.164 5.602 5.353 -1.992 -1.112 1.935 -7.682 7.331 -1.935 2.552 -5.421 -5.353 2.441 5.904 5.353 -0.695 -2.449 -7.518 1.221 -5.212 -5.353 2.86 2.505 -7.518 1.1 -7.196 1.935 -2.912 0.723 -1.935 7.729 4.936 -5.353 3.313 -7.565 1.935 1.74 -5.943 1.935 4.994 -6.04 1.935 4.876 -7.137 1.935 -3.053 -6.135 1.935 4.756 4.109 -5.353 4.297 4.023 -5.353 4.377 3.479 -5.353 4.821 3.383 -5.353 4.889 3.222 -1.935 7.062 3.083 -1.935 7.124 4.87 -5.353 3.41 -7.598 -1.935 1.591 -7.355 1.935 -2.482 1.83 5.353 -5.656 1.953 5.353 -5.615 -1.857 1.935 7.537 2.074 5.353 -5.572 5.182 -5.353 2.914 -3.434 -1.935 6.961 2.195 5.353 -5.525 0.365 5.353 -5.934 -6.227 1.935 4.634 5.941 5.353 -0.232 0.487 5.353 -5.925 0.608 5.353 -5.914 3.936 -5.353 4.455 3.286 -5.353 4.954 2.943 -1.935 7.183 2.315 5.353 -5.476 -6.131 1.935 -4.761 -2.505 1.935 -7.347 5.916 1.935 -5.026 -1.739 1.935 -7.565 -7.489 -1.935 -2.044 -3.802 5.353 -4.571 -3.711 5.353 -4.645 -0.955 1.935 -7.703 0.729 5.353 -5.9 -7.447 -1.935 -2.191 -6.727 1.935 -3.873 -6.649 1.935 -4.005 7.279 -1.935 2.696 7.225 -1.935 2.839 -6.317 1.935 4.511 2.483 -7.518 1.149 2.8 -1.935 7.24 2.657 -1.935 7.293 2.513 -1.935 7.344 0.571 -1.935 7.741 2.368 -1.935 7.392 0.851 5.353 -5.884 5.652 -5.353 1.844 5.806 -5.353 1.279 4.66 -5.353 3.691 -7.075 1.935 -3.193 -2.353 1.935 -7.397 -7.698 -1.935 -0.995 3.848 -5.353 4.532 3.188 -5.353 5.018 -6.405 1.935 4.385 1.248 -5.353 5.813 -5.842 -5.353 1.103 -5.862 -5.353 0.988 -5.881 -5.353 0.873 -5.897 -5.353 0.757 1.018 -5.353 5.857 0.903 -5.353 5.876 -3.619 5.353 -4.717 -5.556 -5.353 2.117 -5.596 -5.353 2.007 -5.635 -5.353 1.896 5.89 -1.935 5.056 0.113 -1.935 7.762 -7.402 -1.935 -2.337 2.436 -7.518 1.246 -2.201 1.935 -7.444 5.124 -5.353 3.016 0.971 5.353 -5.865 -3.571 -1.935 6.892 -3.706 -1.935 6.821 -6.49 1.935 4.258 -3.839 -1.935 6.746 -7.198 -1.935 2.906 -6.569 1.935 -4.135 -5.468 -5.353 2.334 1.476 -5.353 5.759 -2.005 1.935 7.499 -2.048 -1.935 -7.487 5.063 -5.353 3.116 -1.583 1.935 -7.599 -7.011 1.935 -3.332 4.802 -5.353 3.505 5.889 -5.353 0.818 -6.314 1.935 -4.516 -2.153 -1.935 7.458 2.434 5.353 -5.424 -5.513 5.353 2.226 -3.525 5.353 -4.787 2.635 7.518 -0.738 1.704 -1.935 7.573 1.853 1.935 7.538 -0.53 7.518 -2.684 5.364 -1.935 5.61 3.383 5.353 4.889 -7.756 1.935 -0.309 -7.563 1.935 -1.747 -3.296 1.935 7.028 -7.744 1.935 0.531 4.542 -1.935 6.295 5.443 -5.353 2.39 -6.613 -1.935 4.065 6.728 -1.935 3.872 2.684 7.518 -0.53 2.453 7.518 -1.211 4.966 1.935 5.966 -4.731 5.353 -3.6 -5.943 5.353 0.173 -3.715 5.353 4.641 -2.429 5.353 -5.426 -2.153 1.935 7.458 3.222 1.935 7.062 6.132 -1.935 4.759 -4.586 5.353 -3.784 -2.299 1.935 7.414 0.951 1.935 7.704 -7.109 1.935 3.117 2.266 7.518 -1.534 -1.033 5.353 -5.855 1.091 5.353 -5.844 5.789 -1.935 5.171 -1.282 7.518 2.417 -7.716 1.935 -0.843 -4.433 5.353 -3.962 -4.037 -1.935 6.63 -7.078 -1.935 3.187 -4.231 1.935 6.508 -5.489 5.353 -2.284 -4.903 5.353 -3.363 6.403 -1.935 4.389 2.717 7.518 -0.32 7.044 -1.935 3.261 -2.445 1.935 7.367 2.56 7.518 -0.966 -3.43 5.353 -4.856 -5.181 5.353 -2.916 4.531 5.353 -3.849 6.57 1.935 4.134 -0.117 1.935 7.761 -7.598 1.935 1.591 -0.792 5.353 -5.892 -7.667 -1.935 1.215 -6.947 -1.935 3.463 -7.307 -1.935 2.62 7.509 -1.935 1.967 7.403 -1.935 2.335 7.612 1.935 1.52 7.738 -1.935 0.612 7.627 -1.935 1.445 1.066 7.518 -2.52 -7.698 1.935 -0.995 -5.321 -5.353 2.653 -6.768 -1.935 3.801 -7.678 1.935 1.139 -6.768 1.935 3.801 1.254 -1.935 7.66 -7.332 1.935 2.548 -2.589 1.935 7.318 5.319 -5.353 2.656 0.265 1.935 7.758 1.848 7.518 -2.018 2.734 7.518 -0.107 -7.762 1.935 0.073 2.075 -1.935 7.48 -2.048 1.935 -7.487 -1.332 5.353 -5.794 -5.779 5.353 -1.395 2.552 5.353 -5.37 2.668 5.353 -5.313 2.783 5.353 -5.254 2.897 5.353 -5.192 3.009 5.353 -5.127 3.12 5.353 -5.061 3.229 5.353 -4.992'/>
+      </IndexedLineSet>
+    </Shape>
+    <Shape DEF='ShapeXsdInconclusive'>
+      <Appearance>
+        <Material diffuseColor='0 0 0' emissiveColor='1 0.78 0.3'/>
+      </Appearance>
+      <IndexedLineSet coordIndex='217 22 -1 217 88 -1 217 88 -1 217 126 -1 217 126 -1 217 126 -1 217 268 -1'>
+        <Coordinate point='-7.449 1.935 2.184 5.944 -5.353 0.118 3.437 5.353 -4.851 -4.603 1.935 -6.251 -4.608 1.935 6.246 -4.73 1.935 6.154 3.547 5.353 -4.771 5.687 -5.353 1.732 1.362 -5.353 5.787 -6.944 1.935 -3.469 -4.221 1.935 -6.515 5.941 -5.353 0.235 -7.677 -1.935 -1.146 -0.346 1.935 7.755 -0.04 -1.935 7.762 -0.499 1.935 7.746 0.418 -1.935 7.751 -7.653 -1.935 -1.297 -6.487 1.935 -4.264 -4.851 1.935 6.06 3.654 5.353 -4.69 -4.086 1.935 -6.6 -0.61 5.353 -5.914 -3.949 1.935 -6.683 -3.812 1.935 -6.762 -7.626 -1.935 -1.448 5.78 -5.353 1.393 5.751 -5.353 1.507 5.72 -5.353 1.62 -4.969 1.935 5.963 -0.651 1.935 7.735 -1.427 1.935 -7.63 -1.27 1.935 -7.658 -3.672 1.935 -6.839 -0.488 5.353 -5.925 5.989 -1.935 4.939 1.425 1.935 -7.63 -7.759 -1.935 -0.233 4.355 -5.353 4.047 3.758 -5.353 4.607 4.033 -1.935 6.633 -7.753 -1.935 -0.386 -5.034 -5.353 3.163 5.52 5.353 -2.207 -5.155 -5.353 2.962 -7.596 -1.935 -1.598 -5.086 1.935 5.864 -7.305 1.935 -2.626 -4.314 5.353 -4.091 -4.233 5.353 -4.175 -5.839 1.935 -5.115 5.935 -5.353 0.352 -7.732 -1.935 0.684 4.275 -5.353 4.132 3.666 -5.353 4.68 -7.744 -1.935 0.531 3.901 -1.935 6.711 3.768 -1.935 6.786 -5.2 1.935 5.764 2.526 -7.518 1.051 -0.804 1.935 7.721 3.76 5.353 -4.605 5.927 -5.353 0.469 1.027 -1.935 7.694 -5.312 1.935 5.66 -6.874 1.935 -3.605 5.916 -5.353 0.585 1.331 5.353 -5.794 -0.955 1.935 7.703 -7.563 -1.935 -1.747 -5.423 1.935 5.554 0.875 -1.935 7.713 -3.531 1.935 -6.913 -7.252 1.935 -2.769 1.457 5.353 -5.764 -5.531 1.935 5.446 -7.49 1.935 2.037 -7.759 -1.935 0.226 5.279 5.353 -2.735 -7.744 1.935 -0.538 3.864 5.353 -4.519 -6.223 1.935 -4.639 -6.401 1.935 -4.391 5.904 -5.353 0.702 -0.367 5.353 -5.934 -5.095 -5.353 3.063 -7.753 -1.935 0.379 -5.637 1.935 5.336 -0.245 5.353 -5.94 -3.388 1.935 -6.984 3.965 5.353 -4.43 -4.15 5.353 -4.257 3.634 -1.935 6.859 5.238 -5.353 2.812 2.46 -7.518 1.198 -3.244 1.935 -7.052 1.702 -5.353 5.696 -3.099 1.935 -7.117 -7.732 1.935 -0.691 -0.123 5.353 -5.944 -0.001 5.353 -5.945 -1.107 1.935 7.683 -1.258 1.935 7.66 -2.952 1.935 -7.179 -2.804 1.935 -7.238 1.582 5.353 -5.731 1.706 5.353 -5.695 4.065 5.353 -4.339 4.163 5.353 -4.245 4.258 5.353 -4.149 -2.733 -1.935 7.265 -5.741 1.935 5.224 -2.876 -1.935 7.21 -3.017 -1.935 7.152 -3.157 -1.935 7.091 -3.296 -1.935 7.028 0.121 5.353 -5.944 4.351 5.353 -4.052 -0.193 -1.935 7.76 0.265 -1.935 7.758 -1.894 1.935 -7.528 4.732 -5.353 3.599 -2.655 1.935 -7.294 -6.036 1.935 -4.881 -4.065 5.353 -4.338 -2.299 -1.935 7.414 -3.979 5.353 -4.418 -5.938 1.935 -4.999 5.001 -5.353 3.215 -7.529 1.935 1.889 -5.843 1.935 5.11 5.871 -5.353 0.934 4.434 -5.353 3.96 5.381 5.353 -2.528 -5.372 -5.353 2.547 -7.762 -1.935 0.073 -7.762 -1.935 -0.08 4.697 5.353 -3.645 4.79 5.353 -3.522 4.879 5.353 -3.396 4.966 5.353 -3.269 5.049 5.353 -3.139 5.129 5.353 -3.007 5.852 -5.353 1.049 -6.802 1.935 -3.74 4.442 5.353 -3.952 -6.877 -1.935 3.6 -7.717 -1.935 0.836 -7.404 -1.935 2.33 1.48 -1.935 7.62 -7.716 -1.935 -0.843 3.498 -1.935 6.929 -4.231 -1.935 6.508 -5.737 1.935 -5.229 -1.409 1.935 7.633 -3.042 -5.353 5.108 -1.559 1.935 7.604 0.243 5.353 -5.94 -1.708 1.935 7.572 -4.359 -1.935 6.423 -4.484 -1.935 6.336 -3.891 5.353 -4.495 -3.142 -5.353 5.047 -7.527 -1.935 -1.896 4.192 -5.353 4.215 3.573 -5.353 4.752 3.361 -1.935 6.997 1.589 -5.353 5.729 5.83 -5.353 1.164 5.602 5.353 -1.992 -1.112 1.935 -7.682 7.331 -1.935 2.552 -5.421 -5.353 2.441 5.904 5.353 -0.695 -2.449 -7.518 1.221 -5.212 -5.353 2.86 2.505 -7.518 1.1 -7.196 1.935 -2.912 0.723 -1.935 7.729 4.936 -5.353 3.313 -7.565 1.935 1.74 -5.943 1.935 4.994 -6.04 1.935 4.876 -7.137 1.935 -3.053 -6.135 1.935 4.756 4.109 -5.353 4.297 4.023 -5.353 4.377 3.479 -5.353 4.821 3.383 -5.353 4.889 3.222 -1.935 7.062 3.083 -1.935 7.124 4.87 -5.353 3.41 -7.598 -1.935 1.591 -7.355 1.935 -2.482 1.83 5.353 -5.656 1.953 5.353 -5.615 -1.857 1.935 7.537 2.074 5.353 -5.572 5.182 -5.353 2.914 -3.434 -1.935 6.961 2.195 5.353 -5.525 0.365 5.353 -5.934 -6.227 1.935 4.634 5.941 5.353 -0.232 0.487 5.353 -5.925 0.608 5.353 -5.914 3.936 -5.353 4.455 3.286 -5.353 4.954 2.943 -1.935 7.183 2.315 5.353 -5.476 -6.131 1.935 -4.761 -2.505 1.935 -7.347 5.916 1.935 -5.026 -1.739 1.935 -7.565 -7.489 -1.935 -2.044 -3.802 5.353 -4.571 -3.711 5.353 -4.645 -0.955 1.935 -7.703 0.729 5.353 -5.9 -7.447 -1.935 -2.191 -6.727 1.935 -3.873 -6.649 1.935 -4.005 7.279 -1.935 2.696 7.225 -1.935 2.839 -6.317 1.935 4.511 2.483 -7.518 1.149 2.8 -1.935 7.24 2.657 -1.935 7.293 2.513 -1.935 7.344 0.571 -1.935 7.741 2.368 -1.935 7.392 0.851 5.353 -5.884 5.652 -5.353 1.844 5.806 -5.353 1.279 4.66 -5.353 3.691 -7.075 1.935 -3.193 -2.353 1.935 -7.397 -7.698 -1.935 -0.995 3.848 -5.353 4.532 3.188 -5.353 5.018 -6.405 1.935 4.385 1.248 -5.353 5.813 -5.842 -5.353 1.103 -5.862 -5.353 0.988 -5.881 -5.353 0.873 -5.897 -5.353 0.757 1.018 -5.353 5.857 0.903 -5.353 5.876 -3.619 5.353 -4.717 -5.556 -5.353 2.117 -5.596 -5.353 2.007 -5.635 -5.353 1.896 5.89 -1.935 5.056 0.113 -1.935 7.762 -7.402 -1.935 -2.337 2.436 -7.518 1.246 -2.201 1.935 -7.444 5.124 -5.353 3.016 0.971 5.353 -5.865 -3.571 -1.935 6.892 -3.706 -1.935 6.821 -6.49 1.935 4.258 -3.839 -1.935 6.746 -7.198 -1.935 2.906 -6.569 1.935 -4.135 -5.468 -5.353 2.334 1.476 -5.353 5.759 -2.005 1.935 7.499 -2.048 -1.935 -7.487 5.063 -5.353 3.116 -1.583 1.935 -7.599 -7.011 1.935 -3.332 4.802 -5.353 3.505 5.889 -5.353 0.818 -6.314 1.935 -4.516 -2.153 -1.935 7.458 2.434 5.353 -5.424 -5.513 5.353 2.226 -3.525 5.353 -4.787 2.635 7.518 -0.738 1.704 -1.935 7.573 1.853 1.935 7.538 -0.53 7.518 -2.684 5.364 -1.935 5.61 3.383 5.353 4.889 -7.756 1.935 -0.309 -7.563 1.935 -1.747 -3.296 1.935 7.028 -7.744 1.935 0.531 4.542 -1.935 6.295 5.443 -5.353 2.39 -6.613 -1.935 4.065 6.728 -1.935 3.872 2.684 7.518 -0.53 2.453 7.518 -1.211 4.966 1.935 5.966 -4.731 5.353 -3.6 -5.943 5.353 0.173 -3.715 5.353 4.641 -2.429 5.353 -5.426 -2.153 1.935 7.458 3.222 1.935 7.062 6.132 -1.935 4.759 -4.586 5.353 -3.784 -2.299 1.935 7.414 0.951 1.935 7.704 -7.109 1.935 3.117 2.266 7.518 -1.534 -1.033 5.353 -5.855 1.091 5.353 -5.844 5.789 -1.935 5.171 -1.282 7.518 2.417 -7.716 1.935 -0.843 -4.433 5.353 -3.962 -4.037 -1.935 6.63 -7.078 -1.935 3.187 -4.231 1.935 6.508 -5.489 5.353 -2.284 -4.903 5.353 -3.363 6.403 -1.935 4.389 2.717 7.518 -0.32 7.044 -1.935 3.261 -2.445 1.935 7.367 2.56 7.518 -0.966 -3.43 5.353 -4.856 -5.181 5.353 -2.916 4.531 5.353 -3.849 6.57 1.935 4.134 -0.117 1.935 7.761 -7.598 1.935 1.591 -0.792 5.353 -5.892 -7.667 -1.935 1.215 -6.947 -1.935 3.463 -7.307 -1.935 2.62 7.509 -1.935 1.967 7.403 -1.935 2.335 7.612 1.935 1.52 7.738 -1.935 0.612 7.627 -1.935 1.445 1.066 7.518 -2.52 -7.698 1.935 -0.995 -5.321 -5.353 2.653 -6.768 -1.935 3.801 -7.678 1.935 1.139 -6.768 1.935 3.801 1.254 -1.935 7.66 -7.332 1.935 2.548 -2.589 1.935 7.318 5.319 -5.353 2.656 0.265 1.935 7.758 1.848 7.518 -2.018 2.734 7.518 -0.107 -7.762 1.935 0.073 2.075 -1.935 7.48 -2.048 1.935 -7.487 -1.332 5.353 -5.794 -5.779 5.353 -1.395 2.552 5.353 -5.37 2.668 5.353 -5.313 2.783 5.353 -5.254 2.897 5.353 -5.192 3.009 5.353 -5.127 3.12 5.353 -5.061 3.229 5.353 -4.992'/>
+      </IndexedLineSet>
+    </Shape>
+    <Shape DEF='ShapeAbstractParents'>
+      <Appearance>
+        <Material diffuseColor='0 0 0' emissiveColor='0.35 0.8 1.0'/>
+      </Appearance>
+      <IndexedLineSet coordIndex='217 194 -1 217 209 -1 217 299 -1 217 299 -1 217 299 -1 217 319 -1 217 354 -1 217 359 -1 217 360 -1'>
+        <Coordinate point='-7.449 1.935 2.184 5.944 -5.353 0.118 3.437 5.353 -4.851 -4.603 1.935 -6.251 -4.608 1.935 6.246 -4.73 1.935 6.154 3.547 5.353 -4.771 5.687 -5.353 1.732 1.362 -5.353 5.787 -6.944 1.935 -3.469 -4.221 1.935 -6.515 5.941 -5.353 0.235 -7.677 -1.935 -1.146 -0.346 1.935 7.755 -0.04 -1.935 7.762 -0.499 1.935 7.746 0.418 -1.935 7.751 -7.653 -1.935 -1.297 -6.487 1.935 -4.264 -4.851 1.935 6.06 3.654 5.353 -4.69 -4.086 1.935 -6.6 -0.61 5.353 -5.914 -3.949 1.935 -6.683 -3.812 1.935 -6.762 -7.626 -1.935 -1.448 5.78 -5.353 1.393 5.751 -5.353 1.507 5.72 -5.353 1.62 -4.969 1.935 5.963 -0.651 1.935 7.735 -1.427 1.935 -7.63 -1.27 1.935 -7.658 -3.672 1.935 -6.839 -0.488 5.353 -5.925 5.989 -1.935 4.939 1.425 1.935 -7.63 -7.759 -1.935 -0.233 4.355 -5.353 4.047 3.758 -5.353 4.607 4.033 -1.935 6.633 -7.753 -1.935 -0.386 -5.034 -5.353 3.163 5.52 5.353 -2.207 -5.155 -5.353 2.962 -7.596 -1.935 -1.598 -5.086 1.935 5.864 -7.305 1.935 -2.626 -4.314 5.353 -4.091 -4.233 5.353 -4.175 -5.839 1.935 -5.115 5.935 -5.353 0.352 -7.732 -1.935 0.684 4.275 -5.353 4.132 3.666 -5.353 4.68 -7.744 -1.935 0.531 3.901 -1.935 6.711 3.768 -1.935 6.786 -5.2 1.935 5.764 2.526 -7.518 1.051 -0.804 1.935 7.721 3.76 5.353 -4.605 5.927 -5.353 0.469 1.027 -1.935 7.694 -5.312 1.935 5.66 -6.874 1.935 -3.605 5.916 -5.353 0.585 1.331 5.353 -5.794 -0.955 1.935 7.703 -7.563 -1.935 -1.747 -5.423 1.935 5.554 0.875 -1.935 7.713 -3.531 1.935 -6.913 -7.252 1.935 -2.769 1.457 5.353 -5.764 -5.531 1.935 5.446 -7.49 1.935 2.037 -7.759 -1.935 0.226 5.279 5.353 -2.735 -7.744 1.935 -0.538 3.864 5.353 -4.519 -6.223 1.935 -4.639 -6.401 1.935 -4.391 5.904 -5.353 0.702 -0.367 5.353 -5.934 -5.095 -5.353 3.063 -7.753 -1.935 0.379 -5.637 1.935 5.336 -0.245 5.353 -5.94 -3.388 1.935 -6.984 3.965 5.353 -4.43 -4.15 5.353 -4.257 3.634 -1.935 6.859 5.238 -5.353 2.812 2.46 -7.518 1.198 -3.244 1.935 -7.052 1.702 -5.353 5.696 -3.099 1.935 -7.117 -7.732 1.935 -0.691 -0.123 5.353 -5.944 -0.001 5.353 -5.945 -1.107 1.935 7.683 -1.258 1.935 7.66 -2.952 1.935 -7.179 -2.804 1.935 -7.238 1.582 5.353 -5.731 1.706 5.353 -5.695 4.065 5.353 -4.339 4.163 5.353 -4.245 4.258 5.353 -4.149 -2.733 -1.935 7.265 -5.741 1.935 5.224 -2.876 -1.935 7.21 -3.017 -1.935 7.152 -3.157 -1.935 7.091 -3.296 -1.935 7.028 0.121 5.353 -5.944 4.351 5.353 -4.052 -0.193 -1.935 7.76 0.265 -1.935 7.758 -1.894 1.935 -7.528 4.732 -5.353 3.599 -2.655 1.935 -7.294 -6.036 1.935 -4.881 -4.065 5.353 -4.338 -2.299 -1.935 7.414 -3.979 5.353 -4.418 -5.938 1.935 -4.999 5.001 -5.353 3.215 -7.529 1.935 1.889 -5.843 1.935 5.11 5.871 -5.353 0.934 4.434 -5.353 3.96 5.381 5.353 -2.528 -5.372 -5.353 2.547 -7.762 -1.935 0.073 -7.762 -1.935 -0.08 4.697 5.353 -3.645 4.79 5.353 -3.522 4.879 5.353 -3.396 4.966 5.353 -3.269 5.049 5.353 -3.139 5.129 5.353 -3.007 5.852 -5.353 1.049 -6.802 1.935 -3.74 4.442 5.353 -3.952 -6.877 -1.935 3.6 -7.717 -1.935 0.836 -7.404 -1.935 2.33 1.48 -1.935 7.62 -7.716 -1.935 -0.843 3.498 -1.935 6.929 -4.231 -1.935 6.508 -5.737 1.935 -5.229 -1.409 1.935 7.633 -3.042 -5.353 5.108 -1.559 1.935 7.604 0.243 5.353 -5.94 -1.708 1.935 7.572 -4.359 -1.935 6.423 -4.484 -1.935 6.336 -3.891 5.353 -4.495 -3.142 -5.353 5.047 -7.527 -1.935 -1.896 4.192 -5.353 4.215 3.573 -5.353 4.752 3.361 -1.935 6.997 1.589 -5.353 5.729 5.83 -5.353 1.164 5.602 5.353 -1.992 -1.112 1.935 -7.682 7.331 -1.935 2.552 -5.421 -5.353 2.441 5.904 5.353 -0.695 -2.449 -7.518 1.221 -5.212 -5.353 2.86 2.505 -7.518 1.1 -7.196 1.935 -2.912 0.723 -1.935 7.729 4.936 -5.353 3.313 -7.565 1.935 1.74 -5.943 1.935 4.994 -6.04 1.935 4.876 -7.137 1.935 -3.053 -6.135 1.935 4.756 4.109 -5.353 4.297 4.023 -5.353 4.377 3.479 -5.353 4.821 3.383 -5.353 4.889 3.222 -1.935 7.062 3.083 -1.935 7.124 4.87 -5.353 3.41 -7.598 -1.935 1.591 -7.355 1.935 -2.482 1.83 5.353 -5.656 1.953 5.353 -5.615 -1.857 1.935 7.537 2.074 5.353 -5.572 5.182 -5.353 2.914 -3.434 -1.935 6.961 2.195 5.353 -5.525 0.365 5.353 -5.934 -6.227 1.935 4.634 5.941 5.353 -0.232 0.487 5.353 -5.925 0.608 5.353 -5.914 3.936 -5.353 4.455 3.286 -5.353 4.954 2.943 -1.935 7.183 2.315 5.353 -5.476 -6.131 1.935 -4.761 -2.505 1.935 -7.347 5.916 1.935 -5.026 -1.739 1.935 -7.565 -7.489 -1.935 -2.044 -3.802 5.353 -4.571 -3.711 5.353 -4.645 -0.955 1.935 -7.703 0.729 5.353 -5.9 -7.447 -1.935 -2.191 -6.727 1.935 -3.873 -6.649 1.935 -4.005 7.279 -1.935 2.696 7.225 -1.935 2.839 -6.317 1.935 4.511 2.483 -7.518 1.149 2.8 -1.935 7.24 2.657 -1.935 7.293 2.513 -1.935 7.344 0.571 -1.935 7.741 2.368 -1.935 7.392 0.851 5.353 -5.884 5.652 -5.353 1.844 5.806 -5.353 1.279 4.66 -5.353 3.691 -7.075 1.935 -3.193 -2.353 1.935 -7.397 -7.698 -1.935 -0.995 3.848 -5.353 4.532 3.188 -5.353 5.018 -6.405 1.935 4.385 1.248 -5.353 5.813 -5.842 -5.353 1.103 -5.862 -5.353 0.988 -5.881 -5.353 0.873 -5.897 -5.353 0.757 1.018 -5.353 5.857 0.903 -5.353 5.876 -3.619 5.353 -4.717 -5.556 -5.353 2.117 -5.596 -5.353 2.007 -5.635 -5.353 1.896 5.89 -1.935 5.056 0.113 -1.935 7.762 -7.402 -1.935 -2.337 2.436 -7.518 1.246 -2.201 1.935 -7.444 5.124 -5.353 3.016 0.971 5.353 -5.865 -3.571 -1.935 6.892 -3.706 -1.935 6.821 -6.49 1.935 4.258 -3.839 -1.935 6.746 -7.198 -1.935 2.906 -6.569 1.935 -4.135 -5.468 -5.353 2.334 1.476 -5.353 5.759 -2.005 1.935 7.499 -2.048 -1.935 -7.487 5.063 -5.353 3.116 -1.583 1.935 -7.599 -7.011 1.935 -3.332 4.802 -5.353 3.505 5.889 -5.353 0.818 -6.314 1.935 -4.516 -2.153 -1.935 7.458 2.434 5.353 -5.424 -5.513 5.353 2.226 -3.525 5.353 -4.787 2.635 7.518 -0.738 1.704 -1.935 7.573 1.853 1.935 7.538 -0.53 7.518 -2.684 5.364 -1.935 5.61 3.383 5.353 4.889 -7.756 1.935 -0.309 -7.563 1.935 -1.747 -3.296 1.935 7.028 -7.744 1.935 0.531 4.542 -1.935 6.295 5.443 -5.353 2.39 -6.613 -1.935 4.065 6.728 -1.935 3.872 2.684 7.518 -0.53 2.453 7.518 -1.211 4.966 1.935 5.966 -4.731 5.353 -3.6 -5.943 5.353 0.173 -3.715 5.353 4.641 -2.429 5.353 -5.426 -2.153 1.935 7.458 3.222 1.935 7.062 6.132 -1.935 4.759 -4.586 5.353 -3.784 -2.299 1.935 7.414 0.951 1.935 7.704 -7.109 1.935 3.117 2.266 7.518 -1.534 -1.033 5.353 -5.855 1.091 5.353 -5.844 5.789 -1.935 5.171 -1.282 7.518 2.417 -7.716 1.935 -0.843 -4.433 5.353 -3.962 -4.037 -1.935 6.63 -7.078 -1.935 3.187 -4.231 1.935 6.508 -5.489 5.353 -2.284 -4.903 5.353 -3.363 6.403 -1.935 4.389 2.717 7.518 -0.32 7.044 -1.935 3.261 -2.445 1.935 7.367 2.56 7.518 -0.966 -3.43 5.353 -4.856 -5.181 5.353 -2.916 4.531 5.353 -3.849 6.57 1.935 4.134 -0.117 1.935 7.761 -7.598 1.935 1.591 -0.792 5.353 -5.892 -7.667 -1.935 1.215 -6.947 -1.935 3.463 -7.307 -1.935 2.62 7.509 -1.935 1.967 7.403 -1.935 2.335 7.612 1.935 1.52 7.738 -1.935 0.612 7.627 -1.935 1.445 1.066 7.518 -2.52 -7.698 1.935 -0.995 -5.321 -5.353 2.653 -6.768 -1.935 3.801 -7.678 1.935 1.139 -6.768 1.935 3.801 1.254 -1.935 7.66 -7.332 1.935 2.548 -2.589 1.935 7.318 5.319 -5.353 2.656 0.265 1.935 7.758 1.848 7.518 -2.018 2.734 7.518 -0.107 -7.762 1.935 0.073 2.075 -1.935 7.48 -2.048 1.935 -7.487 -1.332 5.353 -5.794 -5.779 5.353 -1.395 2.552 5.353 -5.37 2.668 5.353 -5.313 2.783 5.353 -5.254 2.897 5.353 -5.192 3.009 5.353 -5.127 3.12 5.353 -5.061 3.229 5.353 -4.992'/>
+      </IndexedLineSet>
+    </Shape>
+  </Scene>
+</X3D>

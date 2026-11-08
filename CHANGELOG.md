@@ -2,6 +2,23 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v13 (2026-11-08)
+- New Demos 12 to 17, all X3D drawn by X_ITE (WebGL), each self-contained with its X_ITE bundled:
+  - 12, Checkable 3D: the Blender X3D I/O showcase, twelve live scenes (`demos/blender-x3d-io/v1/`).
+  - 13, X3D ↔ MuJoCo authoring bridge, with real MuJoCo 3.17.0 in WebAssembly (`demos/x3d-mujoco-bridge/v1/`).
+  - 14, the X3D Ontology as a constellation (`demos/ontology-constellation/v1/`).
+  - 15, Dynasty Loom, an atlas of three families (`demos/dynasty-loom/v1/`).
+  - 16, Confluence, IFC ↔ X3D, as a read-only copy that replays one recorded revision of the live studio (`demos/confluence-ifc/v1/`).
+  - 17, Gobbler, a cabinet of worlds (`demos/gobbler-worlds-within/v1/`).
+- Shelf: a link to a Claude artifact. It needed a sign-in when added; the owner will make it public.
+- Checked in a headless browser on a software GPU, correctness only:
+  - every page loads with no failed requests;
+  - all 24 showcase scenes load (`annotation.x3d`'s unknown node is that demo's subject);
+  - the bridge's physics runs;
+  - the IFC copy loads from a subpath with no server;
+  - Gobbler's Pantheon loads.
+- Not checked: listening, real GPUs, other browsers, timings. Provenance and hashes are in `docs/demos/SOURCES.md`.
+
 ## v12 (2026-11-07)
 - New Demos 10 and 11: Chirp and Electron Cloud Observatory on Babylon.js 9.32.0 WebGPU (`docs/demos/chirp-webgpu/v1/index.html`, `docs/demos/electron-cloud-webgpu/v1/index.html`). Each is one offline file built from x3d.loom PR #21 (commit d323213, still open when built) with `build-chirp.py --kind chirp|cloud --study docs/demos/stem/v1/<study> --single`; the X_ITE study pages (`demos/stem/v1`) are untouched and each Demo 5 card links to its WebGPU version. Cards state the logged parity gaps and what was not checked (audio on Chirp, other browsers, real GPUs); no Timing button yet.
 - Both pages ran in a headless browser on a software WebGPU: each study's own browser witness passed, no console errors.

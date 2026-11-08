@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>X3D Ontology constellation</title>
+<script src="vendor/x_ite/x_ite.min.js"></script>
+<style>
+html,body{margin:0;height:100%;background:#05070d;color:#dfe6ef;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+x3d-canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
+.panel{position:fixed;left:20px;top:18px;max-width:440px;background:rgba(6,10,18,.72);border:1px solid rgba(160,190,220,.18);border-radius:8px;padding:14px 16px;backdrop-filter:blur(6px)}
+h1{font-size:17px;margin:0 0 6px;font-weight:600}
+p{margin:0 0 10px;color:#a9b8c9;font-size:13px}
+button{background:#0e1726;color:#dfe6ef;border:1px solid rgba(160,190,220,.3);border-radius:6px;padding:5px 10px;margin-right:6px;cursor:pointer}
+button:hover{border-color:#8fd3d0}
+.foot{font-size:11px;color:#7f8ea1;margin-top:8px}
+</style></head>
+<body>
+<x3d-canvas splashScreen="false" contextMenu="true" notifications="false" src="ontology-constellation.x3d"></x3d-canvas>
+<div class="panel">
+ <h1>X3D Ontology constellation</h1>
+ <p>364 classes of the X3D Ontology 4.1 (Web3D draft, 29 September 2026) on a Dyson-style shell: longitude is a layout angle, latitude is class depth. Boxes are abstract types, spheres concrete nodes; green is new in 4.1. The layout is a display choice, not an ontology fact.</p>
+ <button data-vp="Overview">Overview</button><button data-vp="Inside">Inside the shell</button><button data-vp="Top">Top</button>
+ <div class="foot">Drag to orbit, scroll to zoom. One X3D 4.1 file (<a href="ontology-constellation.x3d" style="color:#8fd3d0">source</a>), drawn by X_ITE 16.6.0 bundled with this page. From hagsmac/x3d.onto, scenes/ontology-constellation.x3d.</div>
+</div>
+<script>
+document.querySelectorAll('button[data-vp]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    try { var vp = X3D.getBrowser('x3d-canvas').currentScene.getNamedNode(b.dataset.vp); vp.set_bind = true; }
+    catch (e) { console.error(e); }
+  });
+});
+</script>
+</body></html>
