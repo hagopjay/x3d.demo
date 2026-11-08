@@ -216,8 +216,8 @@ code{font-family:var(--mono);font-size:.88em}
     <article><h3>x3d_mcp</h3><p>An MCP server for generating, validating and converting X3D content (a fork).</p><div class="chips"><a href="https://github.com/hagopjay/x3d_mcp">Source</a></div></article>
     <article><h3>x3d.xray</h3><p>Exploratory analysis of a family of repositories&rsquo; git history, with the output as an X3D world you fly through: a time helix, a tie constellation, a code city.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.xray">Source</a></div></article>
     <article><h3>x3d.onto</h3><p>The ontology and Gobbler work.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.onto">Source</a></div></article>
-    <article><h3>A Claude artifact</h3><p>An interactive piece published as a Claude artifact. The link opens once it is made public.</p><div class="chips"><a href="https://claude.ai/artifact/85mYcKtoZByivWQV2uXKvq">Open the artifact</a></div></article>
-    <article><h3>x3d.STEM</h3><p>The six STEM studies behind Demo 5, plus the manifold study.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.STEM">Source</a></div></article>
+    <article><h3>A Claude artifact</h3><p>An interactive piece published as a Claude artifact, open to anyone with the link.</p><div class="chips"><a href="https://claude.ai/artifact/85mYcKtoZByivWQV2uXKvq">Open the artifact</a></div></article>
+    <article><h3>x3d.STEM</h3><p>The six STEM studies behind Demo 5, plus the manifold study.</p><div class="chips"><a href="https://hagopjay.github.io/x3d.STEM/">Its own Pages site</a><a href="https://github.com/hagopjay/x3d.STEM">Source</a></div></article>
   </div>
   <p class="facts">Left out on purpose: forks of other people&rsquo;s projects (game engines, CAD tools, agent frameworks) and private repositories.</p>
 </section>
@@ -347,6 +347,21 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
+<section class="demo">
+  <img src="assets/gobbler3-webgpu.jpg" alt="Gobbler 3 on WebGPU: a turkey head drawn as a glowing triangulated wire mesh beside a constellation of linked rings and stars" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 18</div>
+    <h2>Gobbler 3 on WebGPU</h2>
+    <p>The Gobbler as a knowledge graph drawn as a creature: one scriptless X3D 4.0 scene (121 entities in 10 loops), drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader. The page&rsquo;s own explorer and tour run unchanged; touch the head and it dissolves into embers.</p>
+    <div class="chips">
+      <a href="demos/gobbler3-webgpu/v1/index.html">Open Gobbler 3 on WebGPU</a>
+      <a href="demos/gobbler-worlds-within/v1/index.html">The other Gobbler: a cabinet of worlds (Demo 17)</a>
+      <a href="demos/gobbler3-webgpu/v1/gobbler3.x3d">Scene (.x3d)</a>
+    </div>
+    <p class="facts">Needs a WebGPU browser: Chrome or Edge 113 or later, Safari 26, Firefox 141; on Windows with an Intel UHD 620 Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code> (the page says so itself). It loads Babylon from a CDN with an integrity hash. Checked against X_ITE 16.5.1 on a software adapter, correctness only: six views score 14.6 to 19.7 dB, low because the scene&rsquo;s animation phases differ between captures, so this is not a pixel-parity claim. Known gaps: stars are camera-facing quads rather than point sprites, embers are approximated, picking covers the head&rsquo;s facets only, the 2,476-star deep build was not run, <b>nothing is timed on a real GPU</b>, the page has not been seen on screen on a real GPU yet, without WebGPU it shows a full-screen message with no close button, and Safari and Firefox are unchecked. The page has an opt-in Timing button; ignore its live &ldquo;fps&rdquo; readout, which counts display callbacks, not scene time. The graph&rsquo;s individual outside contributors are shown as &ldquo;Open-source maintainer&rdquo;. Source: x3d.loom, PR 22 (<code>x3d.webgpu/demo/src/build-gobbler.py</code>).</p>
+  </div>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -363,7 +378,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>
