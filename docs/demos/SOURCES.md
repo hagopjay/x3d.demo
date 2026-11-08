@@ -73,7 +73,7 @@ The six STEM-shelf studies are linked to hagopjay/x3d.STEM `studies/<name>/`; th
 - Dynasty Loom (`dynasty-loom/v1`): the Dynasty Loom site from the Loom projects folder, copied unchanged.
 - Confluence (`confluence-ifc/v1`): the studio's `app/`, `assets/` and `vendor/` from the ifc-x3d-studio delivery, plus revision 0 recorded from its running server on 8 Nov (`snapshot/`); `app/main.js` and `app/style.css` patched for a static, read-only copy (listed in its README.md). The scene and `model.ifc` hashes match the snapshot's receipt.
 - Gobbler, Cabinet of Worlds (`gobbler-worlds-within/v1`): the Gobbler Worlds Within delivery, copied unchanged. Drillfield data are attributed to Google (Google Solar API); the Pantheon splats' source is not stated.
-- Claude artifact (shelf): a link to https://claude.ai/artifact/85mYcKtoZByivWQV2uXKvq, which asked for a sign-in when this was built; the owner will make it public.
+- Claude artifact (shelf): a link to a private artifact page (removed in v14), which asked for a sign-in when this was built; the owner will make it public.
 - Card pictures `assets/blender-x3d-io.jpg`, `x3d-mujoco-bridge.jpg`, `ontology-constellation.jpg`, `dynasty-loom.jpg`, `confluence-ifc.jpg`, `gobbler.jpg`: crops of headless captures (software renderer; the showcase's from its own poster).
 
 | file | sha256 | bytes |
