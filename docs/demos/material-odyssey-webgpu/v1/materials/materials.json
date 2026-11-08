@@ -1,0 +1,1364 @@
+[
+ {
+  "name": "gold_leaf",
+  "files": {
+   "base": "gold_leaf.jpg",
+   "height": "gold_leaf_height.jpg",
+   "normal": "gold_leaf_normal.png",
+   "metallicRoughness": "gold_leaf_mr.jpg"
+  },
+  "metallic": 0.65,
+  "roughness_range": [
+   0.15,
+   0.55
+  ],
+  "tile_m": 0.5,
+  "generated": false,
+  "source": "copied from landing-v2/gifts/materials (gift 5, Materials from nothing)",
+  "bytes": 1587355,
+  "x3d": {
+   "metallic": 0.65,
+   "roughness": 1,
+   "normalScale": 0.8,
+   "baseColor": "1 0.9 0.7"
+  },
+  "normal_from": "generated height map (image model, edit of albedo) -> numpy Sobel (wrap), strength 3.0",
+  "mr_from": "generated roughness map (image model, edit of albedo) -> roughness remapped to 0.15..0.55 in G, metallic 1.0 in B (glTF/X3D convention)",
+  "normal_note": "copied byte-identical from the gift; its process.py wrote (+dh/dx, -dh/drow) so relief renders inverted (raised reads recessed; measured corr(G,+dh/drow) = -0.73..-0.93 on the 4 sets with height maps). A corrected copy (R and G inverted = OpenGL-correct) is staged at scratchpad/odyssey-textures/gift_normals_fixed/ and is NOT published here; the 24 new sets use the corrected sign (corr +0.67..+0.89)."
+ },
+ {
+  "name": "hokie_stone",
+  "files": {
+   "base": "hokie_stone.jpg",
+   "height": "hokie_stone_height.jpg",
+   "normal": "hokie_stone_normal.png",
+   "metallicRoughness": "hokie_stone_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.7,
+   0.95
+  ],
+  "tile_m": 2.0,
+  "generated": false,
+  "source": "copied from landing-v2/gifts/materials (gift 5, Materials from nothing)",
+  "bytes": 1516707,
+  "x3d": {
+   "metallic": 0,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "normal_from": "generated height map (image model, edit of albedo) -> numpy Sobel (wrap), strength 4.0",
+  "mr_from": "generated roughness map (image model, edit of albedo) -> roughness remapped to 0.7..0.95 in G, metallic 0.0 in B (glTF/X3D convention)",
+  "normal_note": "copied byte-identical from the gift; its process.py wrote (+dh/dx, -dh/drow) so relief renders inverted (raised reads recessed; measured corr(G,+dh/drow) = -0.73..-0.93 on the 4 sets with height maps). A corrected copy (R and G inverted = OpenGL-correct) is staged at scratchpad/odyssey-textures/gift_normals_fixed/ and is NOT published here; the 24 new sets use the corrected sign (corr +0.67..+0.89)."
+ },
+ {
+  "name": "walnut_floor",
+  "files": {
+   "base": "walnut_floor.jpg",
+   "height": "walnut_floor_height.jpg",
+   "normal": "walnut_floor_normal.png",
+   "metallicRoughness": "walnut_floor_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.3,
+   0.7
+  ],
+  "tile_m": 2.0,
+  "generated": false,
+  "source": "copied from landing-v2/gifts/materials (gift 5, Materials from nothing)",
+  "bytes": 914097,
+  "x3d": {
+   "metallic": 0,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "normal_from": "generated height map (image model, edit of albedo) -> numpy Sobel (wrap), strength 3.0",
+  "mr_from": "generated roughness map (image model, edit of albedo) -> roughness remapped to 0.3..0.7 in G, metallic 0.0 in B (glTF/X3D convention)",
+  "normal_note": "copied byte-identical from the gift; its process.py wrote (+dh/dx, -dh/drow) so relief renders inverted (raised reads recessed; measured corr(G,+dh/drow) = -0.73..-0.93 on the 4 sets with height maps). A corrected copy (R and G inverted = OpenGL-correct) is staged at scratchpad/odyssey-textures/gift_normals_fixed/ and is NOT published here; the 24 new sets use the corrected sign (corr +0.67..+0.89)."
+ },
+ {
+  "name": "orange_velvet",
+  "files": {
+   "base": "orange_velvet.jpg",
+   "height": "orange_velvet_height.jpg",
+   "normal": "orange_velvet_normal.png",
+   "metallicRoughness": "orange_velvet_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.7,
+   1.0
+  ],
+  "tile_m": 0.5,
+  "generated": false,
+  "source": "copied from landing-v2/gifts/materials (gift 5, Materials from nothing)",
+  "bytes": 1358129,
+  "x3d": {
+   "metallic": 0,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "normal_from": "generated height map (image model, edit of albedo) -> numpy Sobel (wrap), strength 2.5",
+  "mr_from": "albedo luminance -> roughness remapped to 0.7..1.0 in G, metallic 0.0 in B (glTF/X3D convention)",
+  "normal_note": "copied byte-identical from the gift; its process.py wrote (+dh/dx, -dh/drow) so relief renders inverted (raised reads recessed; measured corr(G,+dh/drow) = -0.73..-0.93 on the 4 sets with height maps). A corrected copy (R and G inverted = OpenGL-correct) is staged at scratchpad/odyssey-textures/gift_normals_fixed/ and is NOT published here; the 24 new sets use the corrected sign (corr +0.67..+0.89)."
+ },
+ {
+  "name": "carrara_marble",
+  "files": {
+   "base": "carrara_marble.jpg",
+   "normal": "carrara_marble_normal.png",
+   "metallicRoughness": "carrara_marble_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.05,
+   0.3
+  ],
+  "tile_m": 1.5,
+  "generated": false,
+  "source": "copied from landing-v2/gifts/materials (gift 5, Materials from nothing)",
+  "bytes": 308813,
+  "x3d": {
+   "metallic": 0,
+   "roughness": 1,
+   "normalScale": 0.5
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 0.6",
+  "mr_from": "albedo luminance -> roughness remapped to 0.05..0.3 in G, metallic 0.0 in B (glTF/X3D convention)",
+  "normal_note": "copied byte-identical from the gift; its process.py wrote (+dh/dx, -dh/drow) so relief renders inverted (raised reads recessed; measured corr(G,+dh/drow) = -0.73..-0.93 on the 4 sets with height maps). A corrected copy (R and G inverted = OpenGL-correct) is staged at scratchpad/odyssey-textures/gift_normals_fixed/ and is NOT published here; the 24 new sets use the corrected sign (corr +0.67..+0.89)."
+ },
+ {
+  "name": "brushed_brass",
+  "files": {
+   "base": "brushed_brass.jpg",
+   "normal": "brushed_brass_normal.png",
+   "metallicRoughness": "brushed_brass_mr.jpg"
+  },
+  "metallic": 0.6,
+  "roughness_range": [
+   0.25,
+   0.45
+  ],
+  "tile_m": 0.5,
+  "generated": false,
+  "source": "copied from landing-v2/gifts/materials (gift 5, Materials from nothing)",
+  "bytes": 516874,
+  "x3d": {
+   "metallic": 0.6,
+   "roughness": 1,
+   "normalScale": 0.6,
+   "baseColor": "1 0.95 0.85"
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 1.2",
+  "mr_from": "albedo luminance -> roughness remapped to 0.25..0.45 in G, metallic 1.0 in B (glTF/X3D convention)",
+  "normal_note": "copied byte-identical from the gift; its process.py wrote (+dh/dx, -dh/drow) so relief renders inverted (raised reads recessed; measured corr(G,+dh/drow) = -0.73..-0.93 on the 4 sets with height maps). A corrected copy (R and G inverted = OpenGL-correct) is staged at scratchpad/odyssey-textures/gift_normals_fixed/ and is NOT published here; the 24 new sets use the corrected sign (corr +0.67..+0.89)."
+ },
+ {
+  "name": "giftwrap_cream",
+  "files": {
+   "base": "giftwrap_cream.jpg",
+   "normal": "giftwrap_cream_normal.png"
+  },
+  "metallic": 0.1,
+  "roughness_range": [
+   0.5,
+   0.5
+  ],
+  "tile_m": 0.5,
+  "generated": false,
+  "source": "copied from landing-v2/gifts/materials (gift 5, Materials from nothing)",
+  "bytes": 524093,
+  "x3d": {
+   "metallic": 0.1,
+   "roughness": 0.5,
+   "normalScale": 0.6
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 1.0",
+  "normal_note": "copied byte-identical from the gift; its process.py wrote (+dh/dx, -dh/drow) so relief renders inverted (raised reads recessed; measured corr(G,+dh/drow) = -0.73..-0.93 on the 4 sets with height maps). A corrected copy (R and G inverted = OpenGL-correct) is staged at scratchpad/odyssey-textures/gift_normals_fixed/ and is NOT published here; the 24 new sets use the corrected sign (corr +0.67..+0.89)."
+ },
+ {
+  "name": "giftwrap_maroon",
+  "files": {
+   "base": "giftwrap_maroon.jpg",
+   "normal": "giftwrap_maroon_normal.png",
+   "metallicRoughness": "giftwrap_maroon_mr.jpg"
+  },
+  "metallic": 1.0,
+  "roughness_range": [
+   0.25,
+   0.75
+  ],
+  "tile_m": 0.5,
+  "generated": false,
+  "source": "copied from landing-v2/gifts/materials (gift 5, Materials from nothing)",
+  "bytes": 718395,
+  "x3d": {
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 0.8
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 1.2",
+  "mr_from": "albedo luminance -> roughness remapped to 0.25..0.75 in G, metallic from albedo luminance [0.35, 0.55] in B (glTF/X3D convention)",
+  "normal_note": "copied byte-identical from the gift; its process.py wrote (+dh/dx, -dh/drow) so relief renders inverted (raised reads recessed; measured corr(G,+dh/drow) = -0.73..-0.93 on the 4 sets with height maps). A corrected copy (R and G inverted = OpenGL-correct) is staged at scratchpad/odyssey-textures/gift_normals_fixed/ and is NOT published here; the 24 new sets use the corrected sign (corr +0.67..+0.89)."
+ },
+ {
+  "name": "maroon_silk",
+  "files": {
+   "base": "maroon_silk.jpg",
+   "normal": "maroon_silk_normal.png"
+  },
+  "metallic": 0.05,
+  "roughness_range": [
+   0.28,
+   0.28
+  ],
+  "tile_m": 0.5,
+  "generated": false,
+  "source": "copied from landing-v2/gifts/materials (gift 5, Materials from nothing)",
+  "bytes": 393059,
+  "x3d": {
+   "metallic": 0.05,
+   "roughness": 0.28,
+   "normalScale": 1
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 1.5",
+  "normal_note": "copied byte-identical from the gift; its process.py wrote (+dh/dx, -dh/drow) so relief renders inverted (raised reads recessed; measured corr(G,+dh/drow) = -0.73..-0.93 on the 4 sets with height maps). A corrected copy (R and G inverted = OpenGL-correct) is staged at scratchpad/odyssey-textures/gift_normals_fixed/ and is NOT published here; the 24 new sets use the corrected sign (corr +0.67..+0.89)."
+ },
+ {
+  "name": "gold_satin",
+  "files": {
+   "base": "gold_satin.jpg",
+   "normal": "gold_satin_normal.png",
+   "metallicRoughness": "gold_satin_mr.jpg"
+  },
+  "metallic": 1.0,
+  "roughness_range": [
+   0.3,
+   0.5
+  ],
+  "tile_m": 0.3,
+  "generated": false,
+  "source": "copied from landing-v2/gifts/materials (gift 5, Materials from nothing)",
+  "bytes": 1286798,
+  "x3d": {
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 0.6,
+   "baseColor": "1 0.9 0.7"
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 1.5",
+  "mr_from": "albedo luminance -> roughness remapped to 0.3..0.5 in G, metallic 1.0 in B (glTF/X3D convention)",
+  "normal_note": "copied byte-identical from the gift; its process.py wrote (+dh/dx, -dh/drow) so relief renders inverted (raised reads recessed; measured corr(G,+dh/drow) = -0.73..-0.93 on the 4 sets with height maps). A corrected copy (R and G inverted = OpenGL-correct) is staged at scratchpad/odyssey-textures/gift_normals_fixed/ and is NOT published here; the 24 new sets use the corrected sign (corr +0.67..+0.89)."
+ },
+ {
+  "name": "black_granite",
+  "files": {
+   "base": "black_granite.jpg",
+   "normal": "black_granite_normal.png"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.15,
+   0.15
+  ],
+  "tile_m": 1.0,
+  "generated": false,
+  "source": "copied from landing-v2/gifts/materials (gift 5, Materials from nothing)",
+  "bytes": 651449,
+  "x3d": {
+   "metallic": 0,
+   "roughness": 0.15,
+   "normalScale": 0.6
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 0.6",
+  "normal_note": "copied byte-identical from the gift; its process.py wrote (+dh/dx, -dh/drow) so relief renders inverted (raised reads recessed; measured corr(G,+dh/drow) = -0.73..-0.93 on the 4 sets with height maps). A corrected copy (R and G inverted = OpenGL-correct) is staged at scratchpad/odyssey-textures/gift_normals_fixed/ and is NOT published here; the 24 new sets use the corrected sign (corr +0.67..+0.89)."
+ },
+ {
+  "name": "obsidian_monolith",
+  "files": {
+   "base": "obsidian_monolith.jpg",
+   "normal": "obsidian_monolith_normal.png",
+   "metallicRoughness": "obsidian_monolith_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.02,
+   0.1
+  ],
+  "tile_m": 1.0,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: polished black volcanic obsidian, near-black #0b0a0a glass with faint smoky-grey conchoidal flow banding, a very subtle deep bronze sheen inside the bands and rare microscopic silver glints, mirror-smooth, uniform tone across the whole tile.",
+  "edit_prompts": [
+   {
+    "map": "rough",
+    "prompt": "Convert this exact texture into its matching grayscale roughness map for PBR use, pixel-aligned with the input: almost entirely very dark grey, near black (mirror-polished volcanic glass), the smoky flow bands only a touch lighter grey, rare tiny specks slightly lighter. Keep identical layout, no color, no lighting."
+   }
+  ],
+  "use": "the monolith (chamber, and the white-room USE): near-mirror, in WebGPU it reflects the gold causeway and the octagon; in X3D it reads as glossy black",
+  "bytes": 264045,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 3.72,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.03
+  },
+  "edge_r": {
+   "rough": 0.824
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 0.2, OpenGL (green up), 512 px",
+  "mr_from": "generated roughness map (image-model edit of the albedo) -> roughness 0.02..0.1 in G; metal in B: 0.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.061,
+   "rough_p5_p95": [
+    0.039,
+    0.083
+   ],
+   "metal_mean": 0.0
+  }
+ },
+ {
+  "name": "nero_marquina",
+  "files": {
+   "base": "nero_marquina.jpg",
+   "normal": "nero_marquina_normal.png",
+   "metallicRoughness": "nero_marquina_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.05,
+   0.18
+  ],
+  "tile_m": 2.0,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: polished Nero Marquina marble, deep black stone with crisp thin white calcite veins branching diagonally and a few hairline fractures, no tiles, no grout.",
+  "use": "monolith chamber floor 48 x 48 m (repeat 2 m), polished so it mirrors the slab; hall pair k2 (spheres)",
+  "bytes": 503811,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 1.53,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.16
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 0.4, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance -> roughness 0.05..0.18 in G; metal in B: 0.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.063,
+   "rough_p5_p95": [
+    0.053,
+    0.083
+   ],
+   "metal_mean": 0.0
+  }
+ },
+ {
+  "name": "nero_portoro",
+  "files": {
+   "base": "nero_portoro.jpg",
+   "normal": "nero_portoro_normal.png",
+   "metallicRoughness": "nero_portoro_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.08,
+   0.25
+  ],
+  "tile_m": 2.0,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: polished Nero Portoro marble, black stone with flowing golden-yellow and cream veins in broad diagonal drifts, warm gold #d4b06a tones in the veins, no tiles, no grout.",
+  "use": "monolith chamber walls; gate posts",
+  "bytes": 692780,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 2.47,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.02
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 0.5, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance -> roughness 0.08..0.25 in G; metal in B: 0.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.098,
+   "rough_p5_p95": [
+    0.083,
+    0.169
+   ],
+   "metal_mean": 0.0
+  }
+ },
+ {
+  "name": "engraved_brass_guilloche",
+  "files": {
+   "base": "engraved_brass_guilloche.jpg",
+   "height": "engraved_brass_guilloche_height.jpg",
+   "normal": "engraved_brass_guilloche_normal.png",
+   "metallicRoughness": "engraved_brass_guilloche_mr.jpg"
+  },
+  "metallic": 1.0,
+  "roughness_range": [
+   0.18,
+   0.45
+  ],
+  "tile_m": 0.3,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: engraved brass plate covered edge to edge with a fine continuous guilloche pattern of interlaced wavy lines, warm yellow brass, satin finish, crisp shallow engraving.",
+  "edit_prompts": [
+   {
+    "map": "height",
+    "prompt": "Convert this exact texture into its matching grayscale height (displacement) map for PBR use, pixel-aligned with the input: the flat polished brass surface light grey, every engraved guilloche groove dark (cut into the metal), crisp thin lines exactly following the engraving. Keep identical layout and framing, no color, no lighting, no shadows."
+   },
+   {
+    "map": "rough",
+    "prompt": "Convert this exact texture into its matching grayscale roughness map for PBR use, pixel-aligned with the input: polished brass between the grooves dark grey, the engraved grooves lighter grey (matte inside the cuts). Keep identical layout, no color, no lighting."
+   }
+  ],
+  "post_notes": [
+   "low-frequency lighting drift removed (luminance / Gaussian blur sigma 128 px, strength 1.0)"
+  ],
+  "use": "the five orbit-ring inlays in the chamber floor; gate lintel soffit; hall pair k8 (spheres)",
+  "bytes": 1313405,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 1.46,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 0.72
+  },
+  "edge_r": {
+   "height": 0.933,
+   "rough": 0.883
+  },
+  "normal_from": "generated height map (image-model edit of the albedo) -> numpy Sobel (wrap), strength 2.0, OpenGL (green up), 512 px",
+  "mr_from": "generated roughness map (image-model edit of the albedo) -> roughness 0.18..0.45 in G; metal in B: 1.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.364,
+   "rough_p5_p95": [
+    0.226,
+    0.417
+   ],
+   "metal_mean": 1.0
+  }
+ },
+ {
+  "name": "maroon_lacquer",
+  "files": {
+   "base": "maroon_lacquer.jpg",
+   "normal": "maroon_lacquer_normal.png",
+   "metallicRoughness": "maroon_lacquer_mr.jpg"
+  },
+  "metallic": 0.05,
+  "roughness_range": [
+   0.06,
+   0.18
+  ],
+  "tile_m": 0.5,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: a flat panel of deep Hokie maroon #861F41 urushi lacquer, one uniform rich wine-red colour with constant brightness across the entire tile, high gloss, sparse fine gold-flake maki-e dust evenly scattered everywhere under a glassy clear coat, a very faint fine craquelure, no stains, no blotches, no dark patches, no gradient, no vignette, no wood grain.",
+  "prompt_plan": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: deep Hokie maroon #861F41 urushi lacquer, high gloss, sparse fine gold-flake maki-e dust suspended under a glassy clear coat, a very faint craquelure, slow subtle swirls, no wood grain.",
+  "regenerated": "text-to-image (regen: v1 had a dark blob mid-tile and a dark top band)",
+  "post_notes": [
+   "colour graded: mean sRGB (69, 20, 26) -> (104, 25, 47) (per-channel gain (1.5, 1.27, 1.81))"
+  ],
+  "use": "hall ceiling coffer frames; octagon plinth caps; hall pair k4 (spheres)",
+  "bytes": 534881,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 6.42,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.04
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 0.6, blur 1.0, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance -> roughness 0.06..0.18 in G; metal in B: gold mask (hue 25-60 deg, sat>0.25, value>0.38): 0.05 -> 0.8; coverage 0.0% (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.093,
+   "rough_p5_p95": [
+    0.068,
+    0.12
+   ],
+   "metal_mean": 0.05
+  }
+ },
+ {
+  "name": "burl_walnut_veneer",
+  "files": {
+   "base": "burl_walnut_veneer.jpg",
+   "height": "burl_walnut_veneer_height.jpg",
+   "normal": "burl_walnut_veneer_normal.png",
+   "metallicRoughness": "burl_walnut_veneer_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.3,
+   0.55
+  ],
+  "tile_m": 0.6,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: figured burl walnut veneer, dense swirling figure with small dark eyes and golden-brown flame, satin oil finish, random burl with no bookmatching.",
+  "edit_prompts": [
+   {
+    "map": "height",
+    "prompt": "Convert this exact texture into its matching grayscale height (displacement) map for PBR use, pixel-aligned with the input: a nearly flat satin veneer: mostly mid grey with very faint relief following the burl figure, open pores and the small dark eyes slightly darker (recessed). Keep identical layout and framing, no color, no lighting, no shadows."
+   }
+  ],
+  "use": "the 26 hall plinth shafts (one DEF Appearance); hall pair k3 (rounded boxes)",
+  "bytes": 934837,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 1.99,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.05
+  },
+  "edge_r": {
+   "height": 0.832
+  },
+  "normal_from": "generated height map (image-model edit of the albedo) -> numpy Sobel (wrap), strength 1.5, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance (inverted) -> roughness 0.3..0.55 in G; metal in B: 0.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.402,
+   "rough_p5_p95": [
+    0.328,
+    0.482
+   ],
+   "metal_mean": 0.0
+  }
+ },
+ {
+  "name": "gold_mosaic_tesserae",
+  "files": {
+   "base": "gold_mosaic_tesserae.jpg",
+   "height": "gold_mosaic_tesserae_height.jpg",
+   "normal": "gold_mosaic_tesserae_normal.png",
+   "metallicRoughness": "gold_mosaic_tesserae_mr.jpg"
+  },
+  "metallic": 0.9,
+  "roughness_range": [
+   0.12,
+   0.4
+  ],
+  "tile_m": 0.3,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: Byzantine gold smalti mosaic, small irregular square glass tesserae about 1 cm, each gold leaf under glass, tiles slightly tilted so tones vary from pale champagne to deep amber gold, thin dark grout lines, about twenty-four by twenty-four tiles, a uniform field with no figure.",
+  "edit_prompts": [
+   {
+    "map": "height",
+    "prompt": "Convert this exact texture into its matching grayscale height (displacement) map for PBR use, pixel-aligned with the input: each glass tessera a raised light-grey to white square with slight variation from its tilt, the grout lines between tiles black and recessed. Keep identical layout and framing, no color, no lighting, no shadows."
+   }
+  ],
+  "use": "hall ceiling coffer recesses; hall pair k5 (rounded boxes)",
+  "bytes": 1364398,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 1.62,
+   "after_period_crop": 0.62,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 4% edge band after period-crop",
+   "albedo_edge_ratio_after": 0.98
+  },
+  "edge_r": {
+   "height": 0.95
+  },
+  "period_crop": {
+   "crop_xywh": [
+    78,
+    81,
+    865,
+    862
+   ],
+   "periods": [
+    10,
+    10
+   ],
+   "period_px": [
+    86.5,
+    86.2
+   ],
+   "autocorr_first_peak": [
+    0.588,
+    0.563
+   ]
+  },
+  "normal_from": "generated height map (image-model edit of the albedo) -> numpy Sobel (wrap), strength 3.0, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance (inverted) -> roughness 0.12..0.4 in G; metal in B: tile mask from generated height (grout = lowest ~12%): grout metal 0 rough 0.4, tiles metal 1; tile coverage 87.9% (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.215,
+   "rough_p5_p95": [
+    0.133,
+    0.4
+   ],
+   "metal_mean": 0.879
+  }
+ },
+ {
+  "name": "travertine_cream",
+  "files": {
+   "base": "travertine_cream.jpg",
+   "height": "travertine_cream_height.jpg",
+   "normal": "travertine_cream_normal.png",
+   "metallicRoughness": "travertine_cream_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.5,
+   0.8
+  ],
+  "tile_m": 1.0,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: honed Roman travertine, warm cream ivory with horizontal honey-coloured bands, small natural pores and filled voids.",
+  "edit_prompts": [
+   {
+    "map": "height",
+    "prompt": "Convert this exact texture into its matching grayscale height (displacement) map for PBR use, pixel-aligned with the input: the honed stone face light grey, the natural pores and filled voids dark (recessed), the horizontal bands only faintly varying in tone. Keep identical layout and framing, no color, no lighting, no shadows."
+   }
+  ],
+  "use": "white-room pilasters (20); hall pair k7 (rounded boxes)",
+  "bytes": 966748,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 1.59,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.21
+  },
+  "edge_r": {
+   "height": 0.693
+  },
+  "normal_from": "generated height map (image-model edit of the albedo) -> numpy Sobel (wrap), strength 2.0, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance (inverted) -> roughness 0.5..0.8 in G; metal in B: 0.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.591,
+   "rough_p5_p95": [
+    0.519,
+    0.717
+   ],
+   "metal_mean": 0.0
+  }
+ },
+ {
+  "name": "venetian_plaster_white",
+  "files": {
+   "base": "venetian_plaster_white.jpg",
+   "normal": "venetian_plaster_white_normal.png",
+   "metallicRoughness": "venetian_plaster_white_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.25,
+   0.5
+  ],
+  "tile_m": 2.0,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: polished Venetian stucco lustro in warm white #f4efe6, soft cloudy trowel strokes, faint sheen variation, very low contrast.",
+  "use": "white-room walls and ceiling coffers",
+  "bytes": 387874,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 3.66,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.07
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 0.3, blur 1.0, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance (inverted) -> roughness 0.25..0.5 in G; metal in B: 0.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.38,
+   "rough_p5_p95": [
+    0.279,
+    0.473
+   ],
+   "metal_mean": 0.0
+  }
+ },
+ {
+  "name": "cream_gold_damask",
+  "files": {
+   "base": "cream_gold_damask.jpg",
+   "normal": "cream_gold_damask_normal.png",
+   "metallicRoughness": "cream_gold_damask_mr.jpg"
+  },
+  "metallic": 0.2,
+  "roughness_range": [
+   0.35,
+   0.6
+  ],
+  "tile_m": 0.6,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: cream silk damask with a repeating classical symmetrical medallion and palmette motif woven in pale gold thread on a fine satin ground, soft sheen, exactly one motif repeat across the tile.",
+  "use": "white-room wall panels (16) in gold_leaf frames",
+  "bytes": 636642,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 1.93,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.63
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 1.0, blur 1.0, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance -> roughness 0.35..0.6 in G; metal in B: gold-thread mask (saturation 0.14-0.24, hue 25-65): metal 0 -> 0.6, thread roughness 0.35; coverage 17.1% (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.537,
+   "rough_p5_p95": [
+    0.35,
+    0.593
+   ],
+   "metal_mean": 0.102
+  }
+ },
+ {
+  "name": "maroon_damask",
+  "files": {
+   "base": "maroon_damask.jpg",
+   "normal": "maroon_damask_normal.png",
+   "metallicRoughness": "maroon_damask_mr.jpg"
+  },
+  "metallic": 0.15,
+  "roughness_range": [
+   0.4,
+   0.6
+  ],
+  "tile_m": 0.8,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: Hokie maroon #861F41 silk damask wall covering, a large symmetrical baroque medallion and palmette pattern woven tone-on-tone with an antique gold sheen thread on a fine satin weave ground, exactly one motif repeat across the tile.",
+  "use": "hall wall panels between the gold pilasters (y 1.0-6.0 m, 28 panels)",
+  "bytes": 1056671,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 1.11,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 3% edge band",
+   "albedo_edge_ratio_after": 0.79
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 1.0, blur 1.0, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance (inverted) -> roughness 0.4..0.6 in G; metal in B: thread mask (HSV value 0.42-0.55): metal 0 -> 0.3, thread roughness 0.4; coverage 23.2% (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.534,
+   "rough_p5_p95": [
+    0.4,
+    0.592
+   ],
+   "metal_mean": 0.07
+  }
+ },
+ {
+  "name": "hex_carpet",
+  "files": {
+   "base": "hex_carpet.jpg",
+   "height": "hex_carpet_height.jpg",
+   "normal": "hex_carpet_normal.png",
+   "metallicRoughness": "hex_carpet_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.85,
+   1.0
+  ],
+  "tile_m": 0.8,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: woven wool corridor carpet with a bold interlocking hexagon geometric pattern, burnt orange #E5751F hexagons nested inside deep maroon #861F41 hexagon outlines with thin cream and dark brown key lines, tight loop pile with fine fibre texture, exactly four by four motif repeats.",
+  "edit_prompts": [
+   {
+    "map": "height",
+    "prompt": "Convert this exact texture into its matching grayscale height (displacement) map for PBR use, pixel-aligned with the input: the wool loop pile raised light grey with fine fibre texture, the thin key lines between the hexagons recessed dark. Keep identical layout and framing, no color, no lighting, no shadows."
+   }
+  ],
+  "use": "the hall runner x +-1.6 m, 90.5 m long (repeat 0.8 m) under the tricycle-height glide",
+  "bytes": 1421236,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 1.1,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 3% edge band",
+   "albedo_edge_ratio_after": 0.94
+  },
+  "edge_r": {
+   "height": 0.798
+  },
+  "normal_from": "generated height map (image-model edit of the albedo) -> numpy Sobel (wrap), strength 1.5, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance (inverted) -> roughness 0.85..1.0 in G; metal in B: 0.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.94,
+   "rough_p5_p95": [
+    0.868,
+    0.992
+   ],
+   "metal_mean": 0.0
+  }
+ },
+ {
+  "name": "terrazzo_ember",
+  "files": {
+   "base": "terrazzo_ember.jpg",
+   "normal": "terrazzo_ember_normal.png",
+   "metallicRoughness": "terrazzo_ember_mr.jpg"
+  },
+  "metallic": 0.05,
+  "roughness_range": [
+   0.15,
+   0.35
+  ],
+  "tile_m": 0.6,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: polished cream terrazzo with scattered angular chips of burnt orange #E5751F, Hokie maroon #861F41, gold and black stone, chips 3 to 15 mm, a few thin brass divider fragments, even distribution.",
+  "use": "white-room perimeter floor band 0.6 m",
+  "bytes": 650082,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 4.28,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.18
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 0.4, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance (inverted) -> roughness 0.15..0.35 in G; metal in B: brass-chip mask (hue 35-58, sat>0.3, value>0.45): 0 -> 1; coverage 0.4% (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.172,
+   "rough_p5_p95": [
+    0.152,
+    0.273
+   ],
+   "metal_mean": 0.004
+  }
+ },
+ {
+  "name": "lightpanel_onyx",
+  "files": {
+   "base": "lightpanel_onyx.jpg",
+   "emissive": "lightpanel_onyx.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.1,
+   0.2
+  ],
+  "tile_m": 2.0,
+  "generated": true,
+  "prompt": "Seamless tileable emissive texture, flat front view, perfectly even, no text, no logos, no border, square 1:1: backlit milky white onyx light panel glowing evenly from within, warm white, very faint soft honey-gold veils and cloudy diffusion, nearly uniform brightness, no frame, no grid lines.",
+  "use": "white-room glowing floor, 160 panels of 2 m in one IndexedFaceSet (UnlitMaterial emissiveTexture)",
+  "bytes": 45623,
+  "emissive_only": true,
+  "x3d": {
+   "node": "UnlitMaterial",
+   "emissiveColor": "1 1 1",
+   "emissiveTexture": "lightpanel_onyx.jpg"
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 15.98,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.13
+  }
+ },
+ {
+  "name": "slitscan_streaks_ember",
+  "files": {
+   "base": "slitscan_streaks_ember.jpg",
+   "emissive": "slitscan_streaks_ember.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   1.0,
+   1.0
+  ],
+  "tile_m": 6.0,
+  "generated": true,
+  "prompt": "Seamless tileable emissive texture, flat front view, pure black background, perfectly even, no text, no logos, no border, square 1:1: long thin perfectly horizontal streaks of glowing light like long-exposure light trails, burnt orange #E5751F, gold #D4B06A, Hokie maroon #861F41 and a few cream-white highlights, streaks of varied length and thickness, soft glow edges, high contrast.",
+  "use": "corridor side walls, 20 quads of 46.35 x 6 m (UnlitMaterial emissiveTexture, TextureTransform scale 7.7 1)",
+  "bytes": 97689,
+  "emissive_only": true,
+  "x3d": {
+   "node": "UnlitMaterial",
+   "emissiveColor": "1 1 1",
+   "emissiveTexture": "slitscan_streaks_ember.jpg"
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 3.41,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.26
+  }
+ },
+ {
+  "name": "slitscan_interference_gold",
+  "files": {
+   "base": "slitscan_interference_gold.jpg",
+   "emissive": "slitscan_interference_gold.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   1.0,
+   1.0
+  ],
+  "tile_m": 6.0,
+  "generated": true,
+  "prompt": "Seamless tileable emissive texture, flat front view, pure black background, perfectly even, no text, no logos, no border, square 1:1: glowing interference fringes filling the entire frame from the top edge to the bottom edge, dozens of fine evenly spaced gently undulating parallel lines of gold #D4B06A and cream light running horizontally left to right across the whole image, like a diffraction moire, uniform density everywhere, no empty areas, high contrast.",
+  "prompt_plan": "Seamless tileable emissive texture, flat front view, pure black background, perfectly even, no text, no logos, no border, square 1:1: glowing interference fringes, fine gently undulating parallel lines of gold and cream light running left to right, like a diffraction moire, high contrast.",
+  "regenerated": "text-to-image (regen: v1 filled only the middle third, black above and below)",
+  "use": "corridor floor and ceiling, 20 quads (UnlitMaterial emissiveTexture)",
+  "bytes": 299444,
+  "emissive_only": true,
+  "x3d": {
+   "node": "UnlitMaterial",
+   "emissiveColor": "1 1 1",
+   "emissiveTexture": "slitscan_interference_gold.jpg"
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 0.28,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 0.27
+  }
+ },
+ {
+  "name": "solar_granulation",
+  "files": {
+   "base": "solar_granulation.jpg",
+   "emissive": "solar_granulation.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.4,
+   0.6
+  ],
+  "tile_m": 4.0,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even brightness, no text, no logos, no border, square 1:1: the photosphere of a star seen close up, a dense uniform carpet of several hundred rounded polygonal convection granules of glowing molten gold and amber, each granule bright in its centre, separated by thin darker burnt-orange intergranular lanes, a few small brighter faculae, the same scale and brightness everywhere, no limb, no horizon, no swirl, no darkening at the edges.",
+  "prompt_plan": "Seamless tileable texture, top-down orthographic view, perfectly even brightness, no text, no logos, no border, square 1:1: the surface of a star seen close up, dense granulation cells of molten gold and amber separated by darker orange lanes, a few brighter faculae, no limb, no horizon, no darkening at the edges.",
+  "regenerated": "text-to-image (regen: v1 read as crushed amber glitter with a central swirl, not granulation cells)",
+  "use": "the sun's emissiveTexture over a gold_leaf base (r 12 m); hall pair k12 (glowing spheres, the last pair before the gate)",
+  "bytes": 313862,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 0.0,
+   "roughness": 0.5,
+   "normalScale": 1,
+   "emissiveColor": "1.0 1.0 1.0",
+   "emissiveTexture": "solar_granulation.jpg"
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 3.16,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.1
+  }
+ },
+ {
+  "name": "hammered_copper",
+  "files": {
+   "base": "hammered_copper.jpg",
+   "height": "hammered_copper_height.jpg",
+   "normal": "hammered_copper_normal.png",
+   "metallicRoughness": "hammered_copper_mr.jpg"
+  },
+  "metallic": 1.0,
+  "roughness_range": [
+   0.18,
+   0.45
+  ],
+  "tile_m": 0.4,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: hand-hammered copper sheet covered with irregular overlapping round peen dimples of varied sizes placed at random like hand work, no grid, no rows, warm polished rose-copper with burnt-orange #E5751F tones, slightly darker annealing oxidation inside some dimples, uniform tone across the whole tile.",
+  "prompt_plan": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: hand-hammered copper sheet with dense overlapping round peen dimples, warm rose-copper with burnt-orange #E5751F tones, darker annealing oxidation inside the dimples.",
+  "regenerated": "text-to-image (regen: v1 was a perfectly regular grid of identical cups, not hand-hammered)",
+  "edit_prompts": [
+   {
+    "map": "height",
+    "prompt": "Convert this exact texture into its matching grayscale height (displacement) map for PBR use, pixel-aligned with the input: each hammer peen dimple a round depression shading darker toward its centre, the ridges between dimples white. Keep identical layout and framing, no color, no lighting, no shadows."
+   },
+   {
+    "map": "rough",
+    "prompt": "Convert this exact texture into its matching grayscale roughness map for PBR use, pixel-aligned with the input: the polished ridges between dimples dark grey (shiny), the oxidised dimple interiors lighter grey (matte). Keep identical layout, no color, no lighting."
+   }
+  ],
+  "use": "hall pair k1 (rounded boxes); the chamber's corridor door frame",
+  "bytes": 1321778,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 4.08,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.11
+  },
+  "edge_r": {
+   "height": 0.554,
+   "rough": 0.413
+  },
+  "normal_from": "generated height map (image-model edit of the albedo) -> numpy Sobel (wrap), strength 3.0, OpenGL (green up), 512 px",
+  "mr_from": "generated roughness map (image-model edit of the albedo) -> roughness 0.18..0.45 in G; metal in B: 1.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.318,
+   "rough_p5_p95": [
+    0.2,
+    0.415
+   ],
+   "metal_mean": 1.0
+  }
+ },
+ {
+  "name": "bronze_patina",
+  "files": {
+   "base": "bronze_patina.jpg",
+   "height": "bronze_patina_height.jpg",
+   "normal": "bronze_patina_normal.png",
+   "metallicRoughness": "bronze_patina_mr.jpg"
+  },
+  "metallic": 0.85,
+  "roughness_range": [
+   0.35,
+   0.7
+  ],
+  "tile_m": 0.6,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: cast bronze with an aged warm brown patina, mottled dark umber with faint muted green in the recesses, worn brighter golden bronze on the high points, fine casting porosity.",
+  "edit_prompts": [
+   {
+    "map": "height",
+    "prompt": "Convert this exact texture into its matching grayscale height (displacement) map for PBR use, pixel-aligned with the input: worn high points light grey, the patinated recesses darker, the fine casting pores small dark dots. Keep identical layout and framing, no color, no lighting, no shadows."
+   }
+  ],
+  "use": "octagon plinth bases; hall pair k6 (spheres)",
+  "bytes": 1049191,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 5.98,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.29
+  },
+  "edge_r": {
+   "height": 0.902
+  },
+  "normal_from": "generated height map (image-model edit of the albedo) -> numpy Sobel (wrap), strength 2.0, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance (inverted) -> roughness 0.35..0.7 in G; metal in B: albedo luminance -> metal 0.5..1.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.579,
+   "rough_p5_p95": [
+    0.45,
+    0.674
+   ],
+   "metal_mean": 0.687
+  }
+ },
+ {
+  "name": "mother_of_pearl",
+  "files": {
+   "base": "mother_of_pearl.jpg",
+   "normal": "mother_of_pearl_normal.png",
+   "metallicRoughness": "mother_of_pearl_mr.jpg"
+  },
+  "metallic": 0.1,
+  "roughness_range": [
+   0.08,
+   0.25
+  ],
+  "tile_m": 0.3,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: mother-of-pearl nacre inlay of small irregular overlapping shell platelets with fine seams, iridescent cream with soft pink, gold and pale violet sheen, polished.",
+  "post_notes": [
+   "low-frequency lighting drift removed (luminance / Gaussian blur sigma 96 px, strength 1.0)"
+  ],
+  "use": "hall pair k0 (spheres): the iridescent welcome",
+  "bytes": 655730,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 4.74,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 10% edge band",
+   "albedo_edge_ratio_after": 6.65
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 0.8, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance (inverted) -> roughness 0.08..0.25 in G; metal in B: 0.1 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.151,
+   "rough_p5_p95": [
+    0.108,
+    0.189
+   ],
+   "metal_mean": 0.1
+  }
+ },
+ {
+  "name": "oxblood_leather",
+  "files": {
+   "base": "oxblood_leather.jpg",
+   "height": "oxblood_leather_height.jpg",
+   "normal": "oxblood_leather_normal.png",
+   "metallicRoughness": "oxblood_leather_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.35,
+   0.6
+  ],
+  "tile_m": 0.4,
+  "generated": true,
+  "prompt": "Edit this exact leather texture: remove the large diagonal crease and every bright wrinkle or scratch line, so the whole tile becomes one uniform polished leather surface with the same deep red-brown oxblood colour and the same fine natural pebble grain evenly everywhere. Keep the identical framing, top-down, flat even lighting, seamless, square, no text, no border.",
+  "prompt_plan": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: polished oxblood leather, deep red-brown close to Hokie maroon, fine natural pebble grain and faint creases, no stitching, no markings.",
+  "regenerated": "image-edit of v1 (regen: v1 had a large white diagonal crease; three text-to-image rewrites returned IMAGE_RECITATION)",
+  "edit_prompts": [
+   {
+    "map": "height",
+    "prompt": "Convert this exact texture into its matching grayscale height (displacement) map for PBR use, pixel-aligned with the input: each pebble grain bump light grey, the valleys and faint creases between the grains dark. Keep identical layout and framing, no color, no lighting, no shadows."
+   }
+  ],
+  "use": "hall pair k9 (rounded boxes)",
+  "bytes": 1161314,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 1.18,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 1.1
+  },
+  "edge_r": {
+   "height": 0.69
+  },
+  "normal_from": "generated height map (image-model edit of the albedo) -> numpy Sobel (wrap), strength 2.0, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance -> roughness 0.35..0.6 in G; metal in B: 0.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.454,
+   "rough_p5_p95": [
+    0.378,
+    0.546
+   ],
+   "metal_mean": 0.0
+  }
+ },
+ {
+  "name": "honey_onyx",
+  "files": {
+   "base": "honey_onyx.jpg",
+   "emissive": "honey_onyx.jpg",
+   "normal": "honey_onyx_normal.png",
+   "metallicRoughness": "honey_onyx_mr.jpg"
+  },
+  "metallic": 0.0,
+  "roughness_range": [
+   0.05,
+   0.15
+  ],
+  "tile_m": 2.0,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: backlit honey onyx slab, translucent amber, honey and burnt-orange banded stone with cream and rust layered veins, glowing warmly from within.",
+  "use": "hall pair k10 (spheres): backlit, the glow before the solar pair",
+  "bytes": 662031,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1,
+   "emissiveColor": "0.35 0.35 0.35",
+   "emissiveTexture": "honey_onyx.jpg"
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 12.13,
+   "method": "quad bookmatch (2x2 mirror of the generated slab, resampled to 1024): seamless by construction, bilateral symmetry",
+   "albedo_edge_ratio_after": 0.0
+  },
+  "normal_from": "albedo luminance -> numpy Sobel (wrap), strength 0.3, blur 1.0, OpenGL (green up), 512 px",
+  "mr_from": "albedo luminance (inverted) -> roughness 0.05..0.15 in G; metal in B: 0.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.111,
+   "rough_p5_p95": [
+    0.06,
+    0.146
+   ],
+   "metal_mean": 0.0
+  },
+  "emissive_scale": 0.35
+ },
+ {
+  "name": "crackle_gilt",
+  "files": {
+   "base": "crackle_gilt.jpg",
+   "height": "crackle_gilt_height.jpg",
+   "normal": "crackle_gilt_normal.png",
+   "metallicRoughness": "crackle_gilt_mr.jpg"
+  },
+  "metallic": 0.8,
+  "roughness_range": [
+   0.2,
+   0.7
+  ],
+  "tile_m": 0.4,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: antique water-gilded gold leaf over red bole gesso with a fine irregular craquelure network, deep red-brown bole #5a1e14 showing in the cracks and at small worn spots, burnished square leaf sheets with slightly overlapping edges.",
+  "edit_prompts": [
+   {
+    "map": "height",
+    "prompt": "Convert this exact texture into its matching grayscale height (displacement) map for PBR use, pixel-aligned with the input: the gilded leaf surface light grey, every crackle line and worn bole spot dark (recessed), the overlapping edges of the leaf sheets slightly brighter. Keep identical layout and framing, no color, no lighting, no shadows."
+   },
+   {
+    "map": "rough",
+    "prompt": "Convert this exact texture into its matching grayscale roughness map for PBR use, pixel-aligned with the input: burnished gold leaf dark grey (shiny), the red bole showing in the cracks and worn spots near white (matte). Keep identical layout, no color, no lighting."
+   }
+  ],
+  "post_notes": [
+   "low-frequency lighting drift removed (luminance / Gaussian blur sigma 96 px, strength 1.0)"
+  ],
+  "use": "hall pair k11 (rounded boxes)",
+  "bytes": 1344605,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 2.33,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 2.36
+  },
+  "edge_r": {
+   "height": 0.68,
+   "rough": 0.841
+  },
+  "normal_from": "generated height map (image-model edit of the albedo) -> numpy Sobel (wrap), strength 2.0, OpenGL (green up), 512 px",
+  "mr_from": "generated roughness map (image-model edit of the albedo) -> roughness 0.2..0.7 in G; metal in B: bole mask (hue <25 or >340 deg, sat>0.35, value<0.55): gold metal 1 rough 0.2-0.35 (roughness edit), bole metal 0 rough 0.7; bole coverage 2.9% (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.25,
+   "rough_p5_p95": [
+    0.207,
+    0.375
+   ],
+   "metal_mean": 0.971
+  }
+ },
+ {
+  "name": "antique_mirror_bronze",
+  "files": {
+   "base": "antique_mirror_bronze.jpg",
+   "metallicRoughness": "antique_mirror_bronze_mr.jpg"
+  },
+  "metallic": 1.0,
+  "roughness_range": [
+   0.03,
+   0.2
+  ],
+  "tile_m": 1.0,
+  "generated": true,
+  "prompt": "Seamless tileable texture, top-down orthographic view, perfectly even flat lighting, no shadows, no reflections, no text, no logos, no border, square 1:1: antique bronze-tinted mirror glass with soft foxing, cloudy dark spots and patches of silvering loss scattered at random, mostly smooth and reflective.",
+  "edit_prompts": [
+   {
+    "map": "rough",
+    "prompt": "Convert this exact texture into its matching grayscale roughness map for PBR use, pixel-aligned with the input: the clean mirror areas near black (perfectly smooth), the foxing spots, cloudy patches and silvering loss light grey to white. Keep identical layout, no color, no lighting."
+   }
+  ],
+  "post_notes": [
+   "colour graded: mean sRGB (134, 96, 83) -> (160, 128, 92) (per-channel gain (1.2, 1.33, 1.11))"
+  ],
+  "use": "octagon plinth cladding around the monolith (reflects the slab and the gift's materials)",
+  "bytes": 153922,
+  "emissive_only": false,
+  "x3d": {
+   "node": "PhysicalMaterial",
+   "metallic": 1,
+   "roughness": 1,
+   "normalScale": 1
+  },
+  "seam": {
+   "albedo_edge_ratio_before": 2.22,
+   "method": "separable offset-blend (x then y): crossfade with the half-period roll over a 15% edge band",
+   "albedo_edge_ratio_after": 0.96
+  },
+  "edge_r": {
+   "rough": 0.913
+  },
+  "mr_from": "generated roughness map (image-model edit of the albedo) -> roughness 0.03..0.2 in G; metal in B: 1.0 (glTF/X3D convention, R unused = 1)",
+  "mr_stats": {
+   "rough_mean": 0.113,
+   "rough_p5_p95": [
+    0.057,
+    0.165
+   ],
+   "metal_mean": 1.0
+  }
+ }
+]
