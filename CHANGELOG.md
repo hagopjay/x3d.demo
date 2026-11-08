@@ -2,6 +2,11 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v14 (2026-11-08)
+- Removed the "A Claude artifact" card from the shelf: its link was a private artifact page, which should not be on a public page. The v13 snapshot is frozen and still carries it (see the note to the owner); this version and the live page do not.
+- The x3d.STEM shelf card links to the repository's own Pages site (https://hagopjay.github.io/x3d.STEM/, live since 7 November).
+- No demo changed.
+
 ## v13 (2026-11-08)
 - New Demos 12 to 17, all X3D drawn by X_ITE (WebGL), each self-contained with its X_ITE bundled:
   - 12, Checkable 3D: the Blender X3D I/O showcase, twelve live scenes (`demos/blender-x3d-io/v1/`).
