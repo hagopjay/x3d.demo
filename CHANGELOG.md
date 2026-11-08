@@ -2,6 +2,15 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v12 (2026-11-07)
+- New Demos 10 and 11: Chirp and Electron Cloud Observatory on Babylon.js 9.32.0 WebGPU (`docs/demos/chirp-webgpu/v1/index.html`, `docs/demos/electron-cloud-webgpu/v1/index.html`). Each is one offline file built from x3d.loom PR #21 (commit d323213, still open when built) with `build-chirp.py --kind chirp|cloud --study docs/demos/stem/v1/<study> --single`; the X_ITE study pages (`demos/stem/v1`) are untouched and each Demo 5 card links to its WebGPU version. Cards state the logged parity gaps and what was not checked (audio on Chirp, other browsers, real GPUs); no Timing button yet.
+- Both pages ran in a headless browser on a software WebGPU: each study's own browser witness passed, no console errors.
+
+## v11 (2026-11-07)
+- New Demo 9: the Manifold of emotion on Babylon.js 9.32.0 WebGPU (`docs/demos/manifold-webgpu/v1/`, built by the x3d.loom PR #19 manifold thread with `build-manifold.py --site`; the shipped site tar had sha256 ef55572ad4d950a24b672570e47cdc42ecc8d43073d1204b615ad215ea52abb5 and was copied unchanged). The X_ITE manifold (Demo 4, `demos/manifold/v1`) is untouched and linked as its non-WebGPU twin, and Demo 4 now links here. Opt-in Timing button on the page; no timing exists yet. Card text carries the 49.3 and 48.5 dB software-GPU comparisons and says what was not run.
+- Demo 3 gains a link to Neural Canvas v2 (`demos/brain-torso/v2/`, added by PR #11: same pixels, adapter retry, Windows flag note, opt-in Timing button); v1 stays.
+- Not yet: KANSEI v1.1 (texture-request fix on the platformer site) answered 404 when this was built, so Demo 6 still points at v1.
+
 ## v10 (2026-11-07)
 - Demo 7 Loomsong is now playable at `docs/demos/loomsong/v1/` (x3d.music at 4a7bdbd: worlds and page rebuilt with `gen/world_ode.py`, `gen/world_turca.py` and `page/build_page.py --no-audio`; the worlds came out byte-identical in size to the preview's; page wrapped in a full HTML document, the host report switched off; audio masters and the four animated cards are the preview version 2 files, sha256 in SOURCES.md). NOTICE.md and LICENSE travel with it; CC BY-NC-SA 4.0 for everything derived from the Alla Turca score.
 - New Demo 8 Tether Firehose 4 (x3d.ML demo/v4 at a2bddac, built with `build_v4.py --share`, X_ITE 16.5.1 added as its own files). The share build's SAFE map removes lane names, hardware and run costs; its sweep said clean, and the served text was checked again by hand.
