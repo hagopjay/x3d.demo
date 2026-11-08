@@ -1,0 +1,17 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"urn:x3d-mujoco:experimental:recipe:0.1",
+ "title":"contact-arm/1 physical authoring recipe (application profile)",
+ "type":"object","required":["profile","upperLength","lowerLength","upperMass","lowerMass","obstacle"],
+ "properties":{
+  "profile":{"const":"contact-arm/1"},
+  "upperLength":{"type":"number","minimum":0.25,"maximum":0.85},
+  "lowerLength":{"type":"number","minimum":0.2,"maximum":0.75},
+  "upperMass":{"type":"number","minimum":0.1,"maximum":2},
+  "lowerMass":{"type":"number","minimum":0.1,"maximum":2},
+  "obstacle":{"type":"object","required":["position","radius"],"properties":{
+   "position":{"type":"array","minItems":3,"maxItems":3,"prefixItems":[{"type":"number","minimum":0.2,"maximum":1.1},{"type":"number","minimum":0.15,"maximum":0.95},{"const":0.34}],"items":false},
+   "radius":{"type":"number","minimum":0.04,"maximum":0.18}
+  }}
+ }
+}

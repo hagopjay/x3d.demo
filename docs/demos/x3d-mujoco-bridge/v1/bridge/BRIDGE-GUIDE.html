@@ -1,0 +1,92 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>X3D ↔ MuJoCo · Integration Guide</title><style>*{box-sizing:border-box}body{margin:0;background:#08121c;color:#ccdce6;font:15px/1.75 system-ui}main{max-width:1000px;margin:auto;padding:50px 26px}h1{font-size:clamp(34px,6vw,58px);line-height:1.1;letter-spacing:-.04em;color:white}h1 span{color:#8ae4ed}h2{margin-top:38px;color:#e9f5fa;font-size:24px}.kicker{font:11px monospace;letter-spacing:.2em;color:#8ae4ed}.lead{max-width:780px;color:#96adbc;font-size:19px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}.card{border:1px solid #263e4c;border-radius:13px;padding:20px;background:#101f2b}.card b{color:#cbedaa}.muted{color:#8ba2b0}code{background:#19313c;padding:2px 5px;border-radius:4px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.8 ui-monospace,monospace;color:#b6cbd7;background:#0d1c27;padding:22px;border-radius:12px}a{color:#8ae4ed}.notice{border-left:3px solid #efba7c;background:#241f1a;padding:18px 22px}table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-bottom:1px solid #263e4c;text-align:left;padding:12px;vertical-align:top}th{color:#8ae4ed}@media(max-width:650px){.grid{grid-template-columns:1fr}}</style><main><p class="kicker">PROTOTYPE 0.1 / X3D AUTHORING FIRST</p><h1>Give a scene physical meaning.<br><span>Bring the evidence back.</span></h1><p class="lead">This scaffold demonstrates how standard X3D assets can carry authoring intent, command a real simulation, and receive inspectable measurements.</p><div class="grid"><div class="card"><b>Author</b><p>Change physical annotations in ordinary X3D metadata. Use a standard PlaneSensor to stage an obstacle edit.</p></div><div class="card"><b>Simulate</b><p>Validate a recipe, compile MJCF, then let MuJoCo own the physical state.</p></div><div class="card"><b>Observe & publish</b><p>Return named transforms, touch readings and a portable package with declared assumptions.</p></div></div><h2>A complete first experiment</h2><ol><li>Run the arm and move a cyan goal. Its motion comes from the controller and MuJoCo.</li><li>Drag the orange obstacle. Releasing commits a physical edit and resets the model.</li><li>Measure five seconds, pin the result, change one parameter and measure again.</li><li>Export the standard X3D scene or the experiment package.</li></ol><h2>What remains useful outside this app?</h2><table><tr><th>Artifact</th><th>X3D ecosystem value</th></tr><tr><td>Standard .x3d scene</td><td>Visual snapshot, viewpoints, stable object names and declarative drag interactions.</td></tr><tr><td>Physical metadata</td><td>Lengths, link masses, targets and explicit authoring semantics editable in standard tools.</td></tr><tr><td>Bridge manifest</td><td>Ownership, units, coordinate basis, mapping and conversion-loss contract.</td></tr><tr><td>Native source and records</td><td>Inspect the MuJoCo model and measured results behind the visual presentation.</td></tr></table><h2>Know the boundary</h2><div class="notice">This is the curated contact-arm/1 application profile. Arbitrary X3D scenes, native RigidBodyPhysics semantics and HAnim conversion are not implemented. Imported presentation is normalized and reported. The external-browser interface has been tested through a substitute port; full WebGL/browser rendering remains unverified.</div><h2>Full technical contract</h2><pre># X3D–MuJoCo experimental bridge contract 0.1
+
+This is an **application contract**, not an ISO X3D profile or an official MuJoCo interchange standard. The X3D document declares standard `Interactive`, version 4.0. The physical authoring subset is named `contact-arm/1`.
+
+## Ownership
+
+MuJoCo owns evolving body poses, velocities, actuator response and physical observations. X3D owns presentation, selection, drag input and explicit authoring intent. The adapter never copies a dragged body transform into the physics state. It turns the cyan handle into a controller goal and the orange handle into a validated static-obstacle recipe edit. A structural edit recompiles and resets to home, paused; a target update retains physical state.
+
+A core recipe contains upper/lower lengths and link-geometry masses, plus obstacle position/radius. The lower body also contains a fixed 0.07 kg tip. Decorative joint cylinders have zero mass in the bridge profile. Inertia is inferred by the MuJoCo compiler from the specified physical geometry. The arm&#x27;s two joint axes are +Z in MuJoCo, becoming +Y in X3D. Link collision is disabled; the spherical tip collides with the fixed obstacle. This simplification is intentional and declared in the manifest.
+
+## Portable X3D content
+
+- Standard geometry, appearances, viewpoints, `Transform`, `MetadataSet`, `MetadataDouble`, `MetadataString`, `TouchSensor`, `PlaneSensor`, `Switch` and `ROUTE` nodes.
+- `WorldInfo.metadata` carries a `BridgeContract` MetadataSet. Child nodes explicitly use `containerField=&quot;value&quot;`.
+- `BridgeManifest` is a single MFString value containing JSON. It identifies the application profile, bindings, units, conventions and losses.
+- `UpperLength`, `LowerLength`, `UpperMass`, `LowerMass` and `JointTargets` are editable MetadataDouble nodes. A standard X3D tool can edit them without a custom node implementation.
+- `ObstacleHandle.translation` is in the authoring plane&#x27;s local xy coordinates, matching MuJoCo x/y. The parent Transform supplies the fixed height and basis rotation. `ObstacleGeometry.radius` is the physical radius.
+- `BodyUpper` and `BodyLower` receive authoritative world poses. They are independent root-level transforms, so the adapter does not accidentally apply parent transforms twice.
+- `ContactForce` and `SimTime` are **MuJoCo observation metadata**, not X3D native physics sensor nodes. `TouchSensor` here means pointer picking.
+- Standard ROUTEs move the target and obstacle handles in a standalone X3D browser. Without a bridge host they are interactive visual handles in a saved scene, not a running dynamics engine.
+
+## Coordinate convention
+
+The bridge uses metres, kilograms, seconds and radians. MuJoCo uses this model&#x27;s +Z-up convention; the exported scene uses +Y-up.
+
+`p_X = (x_M, z_M, -y_M)` is a proper basis rotation C with inverse `p_M = (x_X, -z_X, y_X)`.
+
+World orientation uses `R_X = C R_M C^-1`, not a component-wise Euler conversion. MuJoCo wxyz quaternions are normalized and converted to X3D axis-angle. Geometry&#x27;s local coordinates are authored in the same converted basis. The adapter tests the quaternion conversion against Three.js quaternion composition.
+
+## Stable identities
+
+| Logical ID | X3D DEF | MuJoCo object | Owner |
+| --- | --- | --- | --- |
+| `arm.upper` | BodyUpper | body upper | MuJoCo |
+| `arm.lower` | BodyLower | body lower | MuJoCo |
+| `world.obstacle` | ObstacleHandle | geom obstacle | X3D edit, then compile |
+| `arm.goal` | TargetHandle | named joint controller targets | X3D command |
+| `sensor.tip_touch` | ContactForce | sensor tip_touch | MuJoCo |
+
+`DEF` names are scoped to this single scene. For multi-Inline/PROTO scenes, extend identity with a scene URI and instance path. Compiled MuJoCo numeric IDs are resolved by name after recompilation and are never treated as persistent asset IDs.
+
+## Commands and acknowledgements
+
+All public dispatch passes through `BridgeSession.dispatch`. The local in-process transport uses the same JSON-compatible envelope a future remote transport can carry:
+
+```json
+{
+  &quot;protocol&quot;:&quot;x3d-mujoco/0.1&quot;,
+  &quot;id&quot;:&quot;editor-command-0001&quot;,
+  &quot;source&quot;:&quot;x3d&quot;,
+  &quot;expectedModelRevision&quot;:1,
+  &quot;type&quot;:&quot;target.set&quot;,
+  &quot;payload&quot;:[0.35,0.6]
+}
+```
+
+Supported types: `target.set`, `model.replace`, `transport.set`, `reset`, `step`. Recipes and target ranges are validated before mutation. An acknowledgement includes command ID, accepted/rejected status, model revision, sequence and explanation. A stale model revision is rejected. A duplicate ID with identical envelope returns the cached acknowledgement without applying a second action; the same ID with changed content is rejected. The deduplication cache is bounded to the most recent 128 accepted commands; it is not durable across reloads.
+
+The current dispatcher is synchronous and local. WebSocket, process and worker transports are **not implemented**. An asynchronous transport should preserve ordered acknowledgements, expected revisions, error details and authoritative timestamps. Do not assume an unordered fire-and-forget network channel can replace the local function call unchanged.
+
+## Returned observations
+
+A frame carries protocol, model revision, observation sequence, simulation time, running state, unit declarations, named world body poses, joint state, controller input, physical touch force, contact count, a named tip–obstacle contact point, target and obstacle description. Frame sequence counts observations, not physics steps. Display sampling can repeat simulation timestamps while paused. Physics uses the workbench fixed-step accumulator; the renderer consumes current poses without stepping the engine.
+
+## Import and export
+
+`createScene` writes a canonical standard X3D snapshot. `readScene` reads **only the declared authoring subset**. It accepts a bounded, script-free set of standard nodes, requires the embedded contract, checks IDs and parameter ranges, and rejects DTD/entity declarations and executable/external-resource attributes. This is a curated content reader, not a general-purpose X3D sanitizer or validator.
+
+Imports extract physical metadata, joint targets and obstacle fields, regenerate the canonical scene/model, and reset physics to home. Imported body poses and sensor values are observations, not initial-state commands. Other presentation edits—including arbitrary materials, extra geometry, ROUTEs and viewpoint changes—are outside this import contract and a warning reports normalization. The adapter does not claim arbitrary lossless X3D round-tripping.
+
+An experiment ZIP contains:
+
+- `manifest.json`
+- `x3d/scene.x3d`
+- `mjcf/model.xml`
+- `records/observation.json`
+- `records/commands.json`
+- optional `records/trial.json`
+- `README.txt`
+
+Import compares manifest, scene annotations and generated MJCF for consistency. It reads ZIP members in memory and does not extract paths onto disk. Compressed input is limited to 2 MB; declared member and aggregate sizes are bounded before decompression. Measured trial records are analysis data, not full simulation-state checkpoints, and the saved most-recent trial can describe an earlier model revision—inspect its own XML and metadata.
+
+## Extension seams
+
+1. Add another physical authoring profile with its own explicit parameters and loss report.
+2. Add geometry/collision proxies with physical parameter editors; preserve arbitrary presentation subtrees through a separate, tested preservation path.
+3. Implement multi-scene scoped IDs and PROTO-aware bindings.
+4. Add an asynchronous transport/worker and ordered command queue.
+5. Map a tested subset of native RigidBodyPhysics semantics as a separate compatibility project. Similar field names do not imply equivalent contact models.
+6. Add HAnim joint/frame/inertia mapping and retargeting as another separately validated profile.
+7. Implement complete checkpoint and event replay only after choosing and testing the required MuJoCo integration-state fields.
+</pre><p><a href="../index.html">Return to the prototype →</a></p></main></html>
