@@ -1,0 +1,1297 @@
+<title>A Material Odyssey</title>
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0a0806; --bg2:#110d0a; --bg3:#1a140f; --panel:#0e0b08;
+  --ink:#f3ede2; --ink2:#c2b6a2; --ink3:#8a7e6c; --ink4:#5d5447;
+  --gold:#d4b06a; --gold2:#a8864a; --gold-dim:rgba(212,176,106,.34); --gold-faint:rgba(212,176,106,.16);
+  --maroon:#861f41; --orange:#e5751f;
+  --px:0px; --py:0px; --pw:100vw; --ph:42vw; --barB:0px;
+  --jost:'Jost','Futura','Century Gothic',system-ui,sans-serif;
+  --serif:'Cormorant Garamond','Cormorant','Garamond','Times New Roman',serif;
+  --mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);overflow:hidden;overscroll-behavior:none}
+body{font-family:var(--jost);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button,select{font:inherit;color:inherit}
+a{color:var(--gold)}
+#app{position:fixed;inset:0;background:var(--bg);overflow:hidden;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+#app.nocursor{cursor:none}
+
+/* the stage: engine canvases (the WebGPU engine letterboxes its own canvas to 2.39:1 inside it) */
+#stage{position:absolute;inset:0;background:var(--bg)}
+#stage canvas{outline:none}
+#stage canvas.bjs{position:absolute;left:var(--px);top:var(--py);width:var(--pw);height:var(--ph);display:block;background:#000}
+#stage x3d-canvas{position:absolute;left:var(--px);top:var(--py);width:var(--pw);height:var(--ph);display:block;background:#000;outline:none}
+
+/* the picture rectangle (2.39:1) and everything that rides on it */
+.pic{position:absolute;left:var(--px);top:var(--py);width:var(--pw);height:var(--ph);pointer-events:none}
+#poster{position:absolute;left:var(--px);top:var(--py);width:var(--pw);height:var(--ph);object-fit:cover;display:block;background:#000;transition:opacity 1.2s ease;z-index:1}
+#poster.gone{opacity:0}
+#shade{background:#000;opacity:0;z-index:2}
+#hair{z-index:4}
+#hair::before,#hair::after{content:"";position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim) 12%,var(--gold-dim) 88%,transparent)}
+#hair::before{top:-1px}#hair::after{bottom:-1px}
+#card{z-index:5;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;opacity:0}
+#card.on{opacity:1}
+#card .l1{font-family:var(--jost);font-weight:800;text-transform:uppercase;letter-spacing:.42em;margin-right:-.42em;color:var(--ink);font-size:calc(var(--pw) * .034);line-height:1.15;padding:0 4%}
+#card.gold .l1{color:var(--gold)}
+#card.main .l1{font-size:calc(var(--pw) * .043)}
+#card.long .l1{font-size:calc(var(--pw) * .025)}
+#card.xlong .l1{font-size:max(13px, calc(var(--pw) * .021));letter-spacing:.28em;margin-right:-.28em;text-wrap:balance}
+#card .l2{font-family:var(--jost);font-weight:400;letter-spacing:.2em;margin-right:-.2em;color:var(--gold);font-size:calc(var(--pw) * .034 * .45);margin-top:1.1em;text-transform:uppercase}
+
+/* letterbox chrome */
+.chrome{position:absolute;z-index:6;pointer-events:none;transition:opacity .5s ease}
+#topline{left:max(16px, calc(var(--px) + 20px));right:max(16px, calc(100vw - var(--px) - var(--pw) + 20px));top:max(10px, calc(var(--py) / 2 - 12px));display:flex;justify-content:space-between;align-items:center;gap:16px;opacity:0}
+#topline.on{opacity:1}
+#chap{font-family:var(--jost);font-weight:500;letter-spacing:.32em;text-transform:uppercase;font-size:11px;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#engBadge{font-family:var(--mono);font-size:10.5px;color:var(--ink3);letter-spacing:.04em;white-space:nowrap}
+#caption{left:var(--px);width:var(--pw);top:calc(var(--py) + var(--ph) + 10px);text-align:center;opacity:0;padding:0 16px}
+#caption.on{opacity:1}
+#caption .shot{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--ink2);letter-spacing:.01em}
+#caption .shot b{font-family:var(--mono);font-style:normal;font-weight:400;font-size:10.5px;color:var(--gold);letter-spacing:.08em;margin-right:.7em;vertical-align:1px}
+#caption .lens{font-family:var(--mono);font-size:10.5px;color:var(--ink4);margin-top:3px;letter-spacing:.04em}
+#caption .kind{display:inline-block;margin-left:.6em;font-family:var(--jost);font-style:normal;font-size:9.5px;letter-spacing:.24em;color:var(--ink3);border:1px solid var(--gold-faint);padding:1px 6px 1px 7px;vertical-align:2px}
+#caption .kind.fpv{color:var(--orange);border-color:rgba(229,117,31,.35)}
+.tight #caption{top:auto;bottom:calc(100vh - var(--py) - var(--ph) + 8px);text-shadow:0 1px 8px #000}
+
+/* HUD (profiler) */
+#hud{position:absolute;z-index:7;left:calc(var(--px) + 12px);top:calc(var(--py) + 12px);margin:0;padding:9px 11px;font-family:var(--mono);font-size:11px;line-height:1.5;color:#e9dfcd;background:rgba(6,5,4,.72);border:1px solid var(--gold-faint);white-space:pre;display:none;pointer-events:none;max-width:calc(var(--pw) - 24px);overflow:hidden}
+#hud.on{display:block}
+#hud .k{color:var(--gold)}
+
+/* status line (loading, switching) */
+#status{position:absolute;z-index:8;left:var(--px);width:var(--pw);top:calc(var(--py) + var(--ph) - 46px);text-align:center;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--ink2);opacity:0;transition:opacity .4s;pointer-events:none;text-shadow:0 1px 10px #000}
+#status.on{opacity:1}
+#progress{position:absolute;z-index:8;left:var(--px);top:calc(var(--py) + var(--ph) - 2px);height:2px;width:0;background:var(--gold);transition:width .25s ease,opacity .6s;opacity:0}
+#progress.on{opacity:1}
+#toast{position:absolute;z-index:30;left:50%;top:18px;transform:translateX(-50%);padding:9px 16px;background:var(--panel);border:1px solid var(--gold-dim);color:var(--ink);font-size:13px;letter-spacing:.02em;opacity:0;transition:opacity .3s;pointer-events:none;max-width:calc(100vw - 32px);text-align:center}
+#toast.on{opacity:1}
+
+/* opening state */
+#open{position:absolute;inset:0;z-index:20;transition:opacity .8s ease}
+#open.gone{opacity:0;pointer-events:none}
+#open .scrim{position:absolute;left:var(--px);top:var(--py);width:var(--pw);height:var(--ph);background:radial-gradient(ellipse 60% 58% at 50% 54%,rgba(4,3,2,.62),rgba(4,3,2,0) 72%),linear-gradient(180deg,rgba(4,3,2,.35),rgba(4,3,2,0) 30%,rgba(4,3,2,0) 70%,rgba(4,3,2,.55));pointer-events:none}
+#open .titleblock{position:absolute;left:var(--px);width:var(--pw);top:var(--py);height:var(--ph);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 16px;pointer-events:none}
+#open h1{margin:0;font-family:var(--jost);font-weight:800;text-transform:uppercase;letter-spacing:.42em;margin-right:-.42em;font-size:clamp(22px, calc(var(--pw) * .046), 64px);line-height:1.1;color:var(--ink);text-shadow:0 2px 30px rgba(0,0,0,.8)}
+#open .sub{margin-top:.9em;font-family:var(--serif);font-style:italic;font-size:clamp(15px, calc(var(--pw) * .017), 23px);color:var(--ink2);text-shadow:0 1px 14px #000;max-width:40em}
+#open .meta{position:absolute;left:max(16px, calc(var(--px) + 20px));right:max(16px, calc(100vw - var(--px) - var(--pw) + 20px));top:max(12px, calc(var(--py) / 2 - 10px));display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink3)}
+#open .meta span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.linkbtn{pointer-events:auto;background:none;border:0;padding:6px 0;color:var(--gold);font-family:var(--jost);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.linkbtn:hover{color:var(--ink)}
+#open .act{position:absolute;left:0;right:0;top:calc(var(--py) + var(--ph));bottom:0;display:flex;align-items:center;justify-content:center;gap:22px;padding:10px 16px;flex-wrap:wrap}
+.engpick{display:flex;border:1px solid var(--gold-dim);background:rgba(10,8,6,.6)}
+.engpick button{background:none;border:0;padding:9px 14px 8px;cursor:pointer;color:var(--ink3);font-size:11px;letter-spacing:.2em;text-transform:uppercase;line-height:1.25;text-align:left}
+.engpick button small{display:block;font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:.01em;font-size:13px;color:var(--ink4)}
+.engpick button[aria-pressed="true"]{color:var(--bg);background:var(--gold)}
+.engpick button[aria-pressed="true"] small{color:#3b2c14}
+.engpick button+button{border-left:1px solid var(--gold-dim)}
+#begin{pointer-events:auto;cursor:pointer;background:var(--gold);color:#1a1209;border:0;padding:13px 40px 12px 44px;font-family:var(--jost);font-weight:500;font-size:14px;letter-spacing:.42em;text-transform:uppercase;box-shadow:0 0 0 1px rgba(212,176,106,.4),0 0 40px rgba(212,176,106,.18);transition:background .2s,box-shadow .2s}
+#begin:hover,#begin:focus-visible{background:#e2c27f;box-shadow:0 0 0 1px rgba(212,176,106,.6),0 0 60px rgba(212,176,106,.32);outline:none}
+#rmnote{flex-basis:100%;text-align:center;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink3);display:none}
+#rmnote label{cursor:pointer;color:var(--ink2)}
+#rmnote input{accent-color:var(--gold);vertical-align:-2px}
+.reduced #rmnote{display:block}
+/* wide: the note sits on the picture's lower edge so the bar below keeps one row */
+.reduced:not(.narrow) #rmnote{position:absolute;left:0;right:0;top:-46px;text-shadow:0 1px 10px #000,0 0 2px #000;color:var(--ink2)}
+#open .facts{display:none;flex-basis:100%;text-align:center;font-family:var(--mono);font-size:10.5px;line-height:1.7;color:var(--ink4);max-width:340px}
+.narrow .wide-only{display:none}
+.narrow #open .facts{display:block;margin-top:8px}
+/* narrow (phone portrait): title above the picture, actions below it */
+.narrow #open .titleblock{top:0;height:var(--py);justify-content:flex-end;padding-bottom:22px}
+.narrow #open .meta{top:14px}
+.narrow #open .act{flex-direction:column;flex-wrap:nowrap;gap:14px;justify-content:flex-start;padding-top:22px}
+.narrow #open .facts,.narrow #rmnote{flex-basis:auto}
+.narrow .engpick{width:100%;max-width:380px}
+.narrow .engpick button{flex:1}
+.narrow #begin{width:100%;max-width:380px}
+
+/* controls */
+#ctl{position:absolute;z-index:12;left:0;right:0;bottom:0;padding:0 max(16px, calc(var(--px) + 16px)) max(10px, env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(10,8,6,0),rgba(10,8,6,.86) 38%);transition:opacity .45s ease,transform .45s ease;opacity:0;pointer-events:none}
+#ctl.on{opacity:1;pointer-events:auto}
+#ctl.hide{opacity:0;transform:translateY(8px);pointer-events:none}
+#tl{position:relative;height:34px;cursor:pointer;touch-action:none;margin:0 2px}
+#tl .track{position:absolute;left:0;right:0;top:20px;height:2px;background:rgba(212,176,106,.2)}
+#tl .fill{position:absolute;left:0;top:20px;height:2px;background:var(--gold);width:0}
+#tl .tick{position:absolute;top:18px;width:1px;height:6px;background:rgba(212,176,106,.35)}
+#tl .tick.fpv{background:rgba(229,117,31,.55)}
+#tl .ch{position:absolute;top:10px;width:1px;height:16px;background:var(--gold)}
+#tl .ch span{position:absolute;bottom:13px;left:4px;font-size:9px;letter-spacing:.2em;color:var(--ink3);white-space:nowrap}
+#tl .knob{position:absolute;top:15px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px rgba(212,176,106,.35);transition:transform .15s}
+#tl:hover .knob,#tl.drag .knob{transform:scale(1.25)}
+#tip{position:absolute;bottom:34px;transform:translateX(-50%);padding:6px 10px;background:var(--panel);border:1px solid var(--gold-dim);white-space:nowrap;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink);display:none;pointer-events:none}
+#tip b{font-family:var(--mono);font-style:normal;font-weight:400;font-size:10.5px;color:var(--gold);margin-right:7px}
+#tip i{font-family:var(--mono);font-style:normal;font-size:10.5px;color:var(--ink3);margin-left:8px}
+#tl.show-tip #tip{display:block}
+.row{display:flex;align-items:center;gap:6px;min-height:44px}
+.row .sp{flex:1}
+.ib{background:none;border:0;cursor:pointer;color:var(--ink2);width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:2px;padding:0;flex:none}
+.ib:hover,.ib:focus-visible{color:var(--gold);background:rgba(212,176,106,.08);outline:none}
+.ib svg{width:20px;height:20px;fill:currentColor}
+.ib.big svg{width:26px;height:26px}
+.ib[aria-pressed="true"]{color:var(--gold)}
+#time{font-family:var(--mono);font-size:12px;color:var(--ink2);margin:0 8px;white-space:nowrap}
+#time span{color:var(--ink4)}
+.tb{background:none;border:1px solid transparent;cursor:pointer;color:var(--ink2);height:32px;padding:0 10px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;flex:none}
+.tb:hover,.tb:focus-visible{color:var(--gold);border-color:var(--gold-faint);outline:none}
+.tb[aria-pressed="true"]{color:var(--gold);border-color:var(--gold-dim)}
+.seg{display:inline-flex;border:1px solid var(--gold-dim);flex:none}
+.seg button{background:none;border:0;cursor:pointer;color:var(--ink3);height:30px;padding:0 10px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+.seg button+button{border-left:1px solid var(--gold-dim)}
+.seg button[aria-pressed="true"]{background:var(--gold);color:#1a1209}
+.seg button:focus-visible{outline:1px solid var(--ink);outline-offset:-3px}
+#quality{background:var(--bg);border:1px solid var(--gold-dim);height:32px;padding:0 6px;color:var(--ink2);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;flex:none}
+#quality:focus-visible{outline:1px solid var(--gold)}
+.sep{width:1px;height:20px;background:var(--gold-faint);margin:0 6px;flex:none}
+@media (max-width:760px){
+  #ctl .row{flex-wrap:wrap;gap:2px 4px;justify-content:center}
+  #ctl .row .sp{flex-basis:100%;height:0}
+  .sep{display:none}
+  .tb{padding:0 8px;letter-spacing:.14em}
+  #time{margin:0 4px}
+  #tl .ch span{display:none}
+  #engBadge{display:none}
+}
+
+/* panels (About, Bench) */
+.panel{position:absolute;z-index:25;top:0;right:0;bottom:0;width:min(560px,100vw);background:var(--panel);border-left:1px solid var(--gold-dim);transform:translateX(102%);transition:transform .45s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;user-select:text;-webkit-user-select:text}
+.panel.on{transform:none}
+.panel header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 14px 24px;border-bottom:1px solid var(--gold-faint)}
+.panel header h2{margin:0;font-weight:500;font-size:12px;letter-spacing:.38em;text-transform:uppercase;color:var(--gold)}
+.panel .body{overflow-y:auto;overflow-x:hidden;padding:6px 24px 40px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.panel h3{font-weight:500;font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin:28px 0 10px}
+.panel p{font-family:var(--serif);font-size:18px;line-height:1.45;color:var(--ink2);margin:8px 0}
+.panel p.say{font-style:italic;font-size:25px;line-height:1.3;color:var(--ink);margin:22px 0 6px}
+.panel .src{font-family:var(--mono);font-size:10.5px;line-height:1.55;color:var(--ink4);margin:6px 0 0}
+.panel table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11.5px;color:var(--ink2)}
+.panel th{font-family:var(--jost);font-weight:500;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);text-align:right;padding:6px 6px;border-bottom:1px solid var(--gold-faint)}
+.panel td{text-align:right;padding:5px 6px;border-bottom:1px solid rgba(212,176,106,.07);white-space:nowrap}
+.panel th:first-child,.panel td:first-child{text-align:left;padding-left:0}
+.panel td.x{color:var(--gold)}
+.panel td.name{white-space:normal;font-family:var(--serif);font-size:14.5px;color:var(--ink2)}
+.panel td.fpv{color:var(--orange)}
+.panel tr.tot td{color:var(--ink);border-top:1px solid var(--gold-dim)}
+.panel dl{display:grid;grid-template-columns:auto 1fr;gap:5px 16px;margin:8px 0;font-family:var(--mono);font-size:11.5px}
+.panel dt{color:var(--ink3)}.panel dd{margin:0;color:var(--ink)}
+.panel kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--gold-dim);padding:1px 5px;color:var(--ink);margin-right:3px}
+.panel .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.panel .land{display:inline-block;margin-top:14px;padding:10px 18px;border:1px solid var(--gold-dim);color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:.3em;text-transform:uppercase}
+.panel .land:hover{background:rgba(212,176,106,.1)}
+#benchRun{background:var(--gold);color:#1a1209;border:0;padding:10px 22px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;margin:16px 0 4px}
+#benchRun[disabled]{opacity:.5;cursor:default}
+#benchBar{height:2px;background:rgba(212,176,106,.15);margin:10px 0}
+#benchBar i{display:block;height:2px;width:0;background:var(--gold)}
+#benchOut .tablewrap{margin-top:12px}
+
+/* take the sticks */
+#fly{position:absolute;z-index:9;inset:0;display:none;pointer-events:none}
+#fly.on{display:block}
+#fly .ret{position:absolute;left:calc(var(--px) + var(--pw) / 2);top:calc(var(--py) + var(--ph) / 2);width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid rgba(243,237,226,.45);border-radius:50%}
+#fly .ret::after{content:"";position:absolute;left:50%;top:50%;width:3px;height:3px;margin:-1.5px;border-radius:50%;background:var(--gold)}
+#fly .help{position:absolute;left:var(--px);width:var(--pw);top:calc(var(--py) + 12px);text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink2);text-shadow:0 1px 6px #000;padding:0 12px}
+#fly .help b{color:var(--gold);font-weight:500}
+#fly .stick{position:absolute;bottom:calc(100vh - var(--py) - var(--ph) + 16px);width:104px;height:104px;border:1px solid rgba(212,176,106,.35);border-radius:50%;display:none;pointer-events:auto;touch-action:none}
+#fly .stick i{position:absolute;left:50%;top:50%;width:40px;height:40px;margin:-20px;border-radius:50%;background:rgba(212,176,106,.35)}
+#fly .stick.l{left:calc(var(--px) + 16px)}#fly .stick.r{right:calc(100vw - var(--px) - var(--pw) + 16px)}
+.touch #fly .stick{display:block}
+.narrow #fly .stick{bottom:auto;top:calc(var(--py) + var(--ph) + 70px)}
+#flyBack{position:absolute;left:50%;transform:translateX(-50%);top:calc(var(--py) + var(--ph) - 52px);pointer-events:auto;background:var(--panel);border:1px solid var(--gold-dim);color:var(--gold);padding:8px 16px;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;cursor:pointer}
+
+@media (prefers-reduced-motion:reduce){
+  #poster,#open,.panel,#ctl,.chrome{transition:none}
+}
+@media (max-width:760px){
+  .panel table{font-size:10.5px}
+  .panel th,.panel td{padding:5px 3px}
+  .panel td:first-child{white-space:normal}
+  .panel .body{padding:6px 16px 40px}
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A 138-second film carried by one X3D 4.0 file: the set, 35 materials, 60 lights and the director's camera. Three engines perform it: X_ITE natively, a three.js WebGPU cinema engine, and Babylon.js on WebGPU through our own X3D reader.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Jost:wght@300;400;500;800&display=swap">
+<script type="importmap">{"imports":{"three":"./vendor/three-0.186.1/build/three.webgpu.js","three/webgpu":"./vendor/three-0.186.1/build/three.webgpu.js","three/tsl":"./vendor/three-0.186.1/build/three.tsl.js","three/addons/":"./vendor/three-0.186.1/jsm/"}}</script>
+
+<div id="app">
+  <div id="stage" aria-label="Film stage"></div>
+  <img id="poster" src="poster.jpg" alt="The monolith chamber: a black slab at the end of a gold path, spheres of gold, marble and maroon on plinths either side, dust lit like stars" width="1920" height="803" fetchpriority="high" decoding="async">
+  <div id="shade" class="pic"></div>
+  <div id="card" class="pic" aria-live="polite"><div class="l1"></div><div class="l2"></div></div>
+  <div id="hair" class="pic"></div>
+  <div id="topline" class="chrome"><div id="chap"></div><div id="engBadge"></div></div>
+  <div id="caption" class="chrome"><div class="shot"></div><div class="lens"></div></div>
+  <pre id="hud" aria-hidden="true"></pre>
+  <div id="status" role="status"></div>
+  <div id="progress"></div>
+
+  <div id="fly" aria-hidden="true">
+    <div class="ret"></div>
+    <div class="help"></div>
+    <div class="stick l"><i></i></div><div class="stick r"><i></i></div>
+    <button id="flyBack" type="button">Return to the director (R)</button>
+  </div>
+
+  <div id="ctl" role="region" aria-label="Film controls">
+    <div id="tl" role="slider" aria-label="Film time" aria-valuemin="0" aria-valuemax="138" aria-valuenow="0" tabindex="0">
+      <div class="track"></div><div class="fill"></div><div class="knob"></div><div id="tip"></div>
+    </div>
+    <div class="row">
+      <button class="ib" id="bPrev" type="button" title="Previous chapter (PageUp)" aria-label="Previous chapter"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+      <button class="ib big" id="bPlay" type="button" title="Play / pause (Space)" aria-label="Play"><svg viewBox="0 0 24 24"><path id="playPath" d="M7 4.5v15L19.5 12z"/></svg></button>
+      <button class="ib" id="bNext" type="button" title="Next chapter (PageDown)" aria-label="Next chapter"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+      <div id="time">0:00.0 <span>/ 2:18</span></div>
+      <div class="sp"></div>
+      <div class="seg" id="engSeg" role="group" aria-label="Engine">
+        <button type="button" data-eng="webgpu" aria-pressed="false" title="three.js WebGPU cinema engine">WebGPU</button>
+        <button type="button" data-eng="x3d" aria-pressed="false" title="X_ITE plays the X3D file natively">X3D</button>
+        <button type="button" data-eng="babylon" aria-pressed="false" title="Babylon.js on WebGPU, through our own X3D reader">Babylon</button>
+      </div>
+      <select id="quality" aria-label="Quality" title="Quality">
+        <option value="auto">Auto</option><option value="low">Low</option><option value="high">High</option><option value="ultra">Ultra</option>
+      </select>
+      <div class="sep"></div>
+      <button class="tb" id="bLook" type="button" aria-pressed="true" hidden title="Look (L): reflections, bloom, grain, vignette, dust and key-light shadows that the file does not carry. Off draws the file as authored.">Look</button>
+      <button class="tb" id="bFly" type="button" aria-pressed="false" title="Free-fly FPV (T): WASD / arrows, mouse look, Q/E roll, Shift boost, R returns">Take the sticks</button>
+      <button class="tb" id="bHud" type="button" aria-pressed="false" title="Profiler HUD (H)">HUD</button>
+      <button class="tb" id="bBench" type="button" aria-pressed="false" title="Bench the whole film (B)">Bench</button>
+      <button class="tb" id="bAbout" type="button" aria-pressed="false" title="About this film (I)">About</button>
+      <button class="ib" id="bFull" type="button" title="Fullscreen (F)" aria-label="Fullscreen"><svg viewBox="0 0 24 24"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg></button>
+    </div>
+  </div>
+
+  <div id="open">
+    <div class="scrim"></div>
+    <div class="meta"><span><span class="wide-only">One X3D file · three engines · </span>2 min 18 s</span><button class="linkbtn" id="oAbout" type="button">About this film</button></div>
+    <div class="titleblock">
+      <h1>A Material Odyssey</h1>
+      <div class="sub">Thirty-five materials, sixty lights and the director's camera, all in one X3D&nbsp;file.</div>
+    </div>
+    <div class="act">
+      <div class="engpick" role="group" aria-label="Choose the engine">
+        <button type="button" data-eng="webgpu" aria-pressed="true">WebGPU<small id="gpuNote">the cinema engine</small></button>
+        <button type="button" data-eng="x3d" aria-pressed="false">X3D in X_ITE<small>the file, played natively</small></button>
+        <button type="button" data-eng="babylon" aria-pressed="true">Babylon.js<small>WebGPU, through our reader</small></button>
+      </div>
+      <button id="begin" type="button">Begin</button>
+      <div class="facts">273 shapes · 35 materials · 60 lights · 124 interpolators · 289 ROUTEs · 1 TimeSensor · 0 Script, counted in odyssey.x3d</div>
+      <div id="rmnote">Reduced motion is on: the film opens paused and plays only its composed holds. <label><input type="checkbox" id="rmFpv"> include the FPV flights</label></div>
+    </div>
+  </div>
+
+  <aside class="panel" id="pAbout" aria-label="About this film" aria-hidden="true">
+    <header><h2>About this film</h2><button class="ib" type="button" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4L12 13.4 6.4 19 5 17.6 10.6 12 5 6.4z"/></svg></button></header>
+    <div class="body">
+      <p class="say">The director's camera lives in the standard. Any engine can perform the film.</p>
+      <p>One X3D 4.0 file, <b>odyssey.x3d</b>, carries the whole film: the set, 35 PBR materials, 60 lights and the camera. The camera is a Viewpoint driven by three interpolators (position, orientation, field of view) at 30 keys per second, and every animated thing is clocked by one TimeSensor named Film through ROUTEs. There is no Script node. X_ITE plays the file natively; the WebGPU engine reads the same file with its own X3D loader and adds what X3D 4.0 cannot say: reflections, bloom, depth of field, volumetric light, film grain and dust.</p>
+
+      <h3>The Babylon engine</h3>
+      <p>The third engine reads the same <b>odyssey.x3d</b> with our own X3D reader and draws it with Babylon.js 9.32.0 on WebGPU. It is not a copy of the other two: it keeps the file's rules and lets Babylon do the rest.</p>
+      <dl>
+        <dt>Light scope</dt><dd>59 of the 60 lights are <b>global="false"</b>, so each lights only the group it sits in (X3D 4.0, 17.2.1). Each is given the meshes under its parent (<b>includedOnlyMeshes</b>): a shape answers to the 3 to 5 lights of its own set instead of all 60, and the material light cap is never reached.</dd>
+        <dt>Light units</dt><dd>intensity in candela, radius as a hard range, the glTF punctual-light falloff, spot cone from cutOffAngle and beamWidth.</dd>
+        <dt>Materials</dt><dd>35 PBR materials with base colour, metallic-roughness (glTF packing) and normal maps; data maps are read as linear.</dd>
+        <dt>Look</dt><dd>The <b>Look</b> switch adds what the file does not say: reflections from a generated gold hall, bloom, grain, vignette, dust, and shadows from three key lights. Off, it draws the file as authored.</dd>
+        <dt>Not exact</dt><dd>Matching X_ITE pixel for pixel was not the aim; the gaps are listed in the run's GAPS.md.</dd>
+      </dl>
+
+      <h3>Intensity against the source gift</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Measure</th><th>Gift</th><th>Film</th><th>×</th><th>Target</th></tr></thead>
+        <tbody>
+          <tr><td>Shapes</td><td>13</td><td>273</td><td class="x">21.0</td><td>≥ 5</td></tr>
+          <tr><td>Shapes drawn (USE)</td><td>13</td><td>285</td><td class="x">21.9</td><td></td></tr>
+          <tr><td>Materials</td><td>11</td><td>35</td><td class="x">3.18</td><td>≥ 3</td></tr>
+          <tr><td>Lights</td><td>4</td><td>60</td><td class="x">15.0</td><td>≥ 3</td></tr>
+          <tr><td>Interpolators</td><td>1</td><td>124</td><td class="x">124</td><td>≥ 30</td></tr>
+          <tr><td>ROUTEs</td><td>9</td><td>289</td><td class="x">32.1</td><td></td></tr>
+          <tr><td>Camera</td><td>static</td><td>4,141 keys</td><td class="x">138 s</td><td>film</td></tr>
+          <tr><td>Render</td><td>960×600</td><td>device res.</td><td class="x">full</td><td>full</td></tr>
+        </tbody>
+      </table></div>
+      <div class="src">Gift: landing-v2/gifts/materials/materials.x3d (receipt.json). Film: odyssey.x3d node census by scene/build_scene.py, film.json stats.</div>
+
+      <h3>Validator verdict</h3>
+      <dl>
+        <dt>XSD (X3D 4.0)</dt><dd>valid, 0 errors</dd>
+        <dt>Semantic</dt><dd>0 errors · 0 warnings · 12 infos (unused DEF names on set-piece Groups)</dd>
+        <dt>Profile</dt><dd>profile_ok true · Immersive + Shape 2, Lighting 3</dd>
+        <dt>Script nodes</dt><dd>0</dd>
+      </dl>
+      <div class="src">Validator: fork hagopjay/x3d_mcp, branch integration/validator-fixes @ c9c9788 (X3D 4.0 XSD + semantic + X3DUOM profile), via landing-v2/tools/validate.py, 12 Oct 2026.</div>
+
+      <h3>What is in the file</h3>
+      <dl>
+        <dt>Bytes</dt><dd>876,155 (odyssey.x3d)</dd>
+        <dt>Shapes</dt><dd>273 (285 drawn) · 5,936 IndexedFaceSet polygons · 428 USE</dd>
+        <dt>Materials</dt><dd>35: 55 PhysicalMaterial + 45 UnlitMaterial nodes · 94 ImageTextures</dd>
+        <dt>Lights</dt><dd>60: 56 SpotLight · 1 PointLight · 3 DirectionalLight</dd>
+        <dt>Interpolators</dt><dd>124: 3 Position · 31 Orientation · 39 Scalar · 51 Color</dd>
+        <dt>ROUTEs · keys</dt><dd>289 · 14,052 keys (camera 4,141 × 3)</dd>
+        <dt>Clock</dt><dd>1 TimeSensor (Film, 138 s, loop)</dd>
+        <dt>Camera</dt><dd>linear keys within 5.7 mm and 0.126° of the designed spline; largest key step 6.26°; peak 46.1 m/s; lens 24.5°–80°</dd>
+        <dt>WebGPU loader</dt><dd>every element parsed · 289 of 289 ROUTEs resolved · 0 unsupported</dd>
+      </dl>
+      <div class="src">Sources: film.json stats and camera checks (scene/build_scene.py, Python 3.13 + numpy); loader census from engine/x3d-loader.js (log/engine.md).</div>
+
+      <h3>Materials from nothing</h3>
+      <p>Eleven materials come from the source gift; twenty-four new ones were generated by an image model (43 images, about $1.68), then made tileable with derived normal and metal/roughness maps. Every prompt is in <b>materials/materials.json</b>.</p>
+
+      <h3>Files on this page</h3>
+      <dl id="aboutFiles">
+        <dt>odyssey.x3d</dt><dd>876,155 B</dd>
+        <dt>film.json</dt><dd>54 KB sidecar: chapters, shots, cards</dd>
+        <dt>materials/</dt><dd>94 maps · 25.97 MB</dd>
+        <dt>engine/</dt><dd>3 modules</dd>
+        <dt>three.js 0.186.1</dt><dd>9 modules, only those imported</dd>
+        <dt>X_ITE 16.4.3</dt><dd>loaded only for the X3D engine</dd>
+        <dt>Babylon.js 9.32.0</dt><dd>loaded only for the Babylon engine, with babylon/bundle.js (our reader, body and look)</dd>
+      </dl>
+
+      <h3>Measured</h3>
+      <div id="aboutMeasured"><!--MEASURED--><p>Measured on this page in headless Chromium 141 with the SwiftShader software rasteriser on 4 vCPU (Intel Xeon 2.10 GHz), no GPU. These are CPU-rasterised numbers; a real GPU is far faster, and the 60 fps target could not be verified here.</p>
+<div class="tablewrap"><table><thead><tr><th>Engine</th><th>Load</th><th>I</th><th>II</th><th>III</th><th>IV</th><th>V</th><th>VI</th></tr></thead><tbody>
+<tr><td>WebGPU low</td><td>3.9 s</td><td>0.69</td><td>0.81</td><td>0.69</td><td>0.69</td><td>0.90</td><td>0.65</td></tr>
+<tr><td>X3D · X_ITE</td><td>8.7 s</td><td>4.33</td><td>0.92</td><td>0.81</td><td>0.75</td><td>2.52</td><td>1.04</td></tr>
+</tbody></table></div>
+<div class="src">Load = Begin click to the first rendered frame. Columns = frames per second of real playback per chapter (10 s windows). fps on a software rasteriser. The WebGPU engine advances the film at most 0.1 s per frame, so below 10 fps it plays slower instead of skipping; X_ITE's TimeSensor follows the clock and skips frames instead.</div>
+<div class="tablewrap" style="margin-top:12px"><table><thead><tr><th>Bench (whole film)</th><th>frames</th><th>p50 ms</th><th>p95 ms</th><th>GPU p50</th></tr></thead><tbody>
+<tr><td>WebGPU low, dt 2 s</td><td>69</td><td>1529.5</td><td>2262.4</td><td>1506.71</td></tr>
+<tr><td>X3D · X_ITE, dt 1 s</td><td>138</td><td>1071.7</td><td>2076.6</td><td>–</td></tr>
+</tbody></table></div><div class="src">Bench steps the film at a fixed timestep and waits for the GPU each frame (WebGPU: profiler.bench with timestamp queries; X3D: scrub, the next X_ITE frame, then a pixel read). The full per-shot tables are in receipts/RECEIPT.md.</div>
+<p>Parity between the engines (same file, same frame, post effects off): SSIM mean 0.9006, range 0.8037–0.9932 over 12 film times; the gap is texture minification, where X_ITE aliases on this rasteriser.</p><!--/MEASURED--></div>
+
+      <h3>This browser, now</h3>
+      <dl id="aboutLive"><dt>Engine</dt><dd>not started</dd></dl>
+
+      <h3>Controls</h3>
+      <dl>
+        <dt><kbd>Space</kbd></dt><dd>play / pause</dd>
+        <dt><kbd>←</kbd><kbd>→</kbd></dt><dd>back / forward 5 s</dd>
+        <dt><kbd>PgUp</kbd><kbd>PgDn</kbd></dt><dd>previous / next chapter</dd>
+        <dt><kbd>F</kbd></dt><dd>fullscreen</dd>
+        <dt><kbd>H</kbd></dt><dd>profiler HUD</dd>
+        <dt><kbd>T</kbd></dt><dd>take the sticks: <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrows, mouse look, <kbd>Q</kbd><kbd>E</kbd> roll, <kbd>Shift</kbd> boost, gamepad; <kbd>R</kbd> returns to the director</dd>
+        <dt><kbd>B</kbd> <kbd>I</kbd></dt><dd>bench · about</dd>
+      </dl>
+      <a class="land" href="../../../index.html">Back to the demo page</a>
+      <div class="src" style="margin-top:22px">Typefaces: Jost, Cormorant Garamond, JetBrains Mono (Google Fonts). Engines: X_ITE 16.4.3 (GPL-3.0, vendor/x_ite/LICENSE.txt); three.js 0.186.1 (MIT, vendor/three-0.186.1/LICENSE.txt); Babylon.js 9.32.0 (Apache-2.0), loaded from a pinned, integrity-checked copy only when the Babylon engine starts.</div>
+    </div>
+  </aside>
+
+  <aside class="panel" id="pBench" aria-label="Bench" aria-hidden="true">
+    <header><h2>Bench</h2><button class="ib" type="button" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4L12 13.4 6.4 19 5 17.6 10.6 12 5 6.4z"/></svg></button></header>
+    <div class="body">
+      <p>Steps the whole film at a fixed timestep with the current engine and quality, waits for the GPU on every frame, and reports each shot.</p>
+      <div id="benchWhat" class="src"></div>
+      <button id="benchRun" type="button">Run the bench</button>
+      <div id="benchBar"><i></i></div>
+      <div id="benchMsg" class="src"></div>
+      <div id="benchOut"></div>
+    </div>
+  </aside>
+
+  <div id="toast" role="status"></div>
+</div>
+
+<script type="module">
+// ------------------------------------------------------------------------------------------------
+// A Material Odyssey: the cinema page. Two engines perform the same odyssey.x3d:
+//   'webgpu' = engine/engine-webgpu.js (three.js 0.186.1 WebGPURenderer, WebGL2 fallback)
+//   'x3d'    = X_ITE 16.4.3 playing the file natively (Film TimeSensor + ROUTEs, no Script)
+// Title cards, captions, chapter ticks and fades come from film.json.
+// ------------------------------------------------------------------------------------------------
+const $ = (s) => document.querySelector(s);
+const app = $('#app'), stage = $('#stage');
+const LS = { get(k, d) { try { const v = localStorage.getItem('odyssey.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+             set(k, v) { try { localStorage.setItem('odyssey.' + k, JSON.stringify(v)); } catch (e) {} } };
+const Q = (() => { try { return new URLSearchParams(location.search); } catch (e) { return new URLSearchParams(); } })();
+const reduced = (() => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } })();
+const coarse = (() => { try { return matchMedia('(pointer: coarse)').matches; } catch (e) { return false; } })();
+if (reduced) app.classList.add('reduced');
+if (coarse) app.classList.add('touch');
+
+const S = {
+  film: null, L: 138, kind: navigator.gpu ? 'babylon' : 'x3d', adapter: null, started: false, busy: false,
+  playing: false, t: 0, quality: Q.get('quality') || LS.get('quality', 'auto'), hud: false, panel: null,
+  includeFpv: !reduced || LS.get('fpv', false), lastMove: 0, dragging: false, test: false,
+};
+if (Q.get('engine') === 'x3d' || Q.get('engine') === 'webgpu' || Q.get('engine') === 'babylon') S.kind = Q.get('engine');
+$('#quality').value = S.quality;
+if (!navigator.gpu) $('#gpuNote').textContent = 'WebGL2 fallback here';
+
+// ---------- picture rectangle (2.39:1, centred; same rounding as the engine's own letterbox) ----------
+const A = 2.39;
+let R = { x: 0, y: 0, w: 0, h: 0 };
+function layout() {
+  const W = app.clientWidth, H = app.clientHeight;
+  let w = W, h = H;
+  if (W / H < A) h = Math.round(W / A); else w = Math.round(H * A);
+  R = { x: (W - w) / 2, y: (H - h) / 2, w, h };
+  const st = app.style;
+  st.setProperty('--px', R.x + 'px'); st.setProperty('--py', R.y + 'px'); st.setProperty('--pw', w + 'px'); st.setProperty('--ph', h + 'px');
+  app.classList.toggle('narrow', h < 300 && R.y > 150);
+  app.classList.toggle('tight', R.y < 64);
+  if (S.adapter && S.adapter.resize) S.adapter.resize();
+  renderTicks();
+}
+addEventListener('resize', layout);
+layout();
+
+// ---------- film.json queries (identical logic to the engine's own) ----------
+let CARDS = [], SHOTS = [], CHAPS = [];
+function prepFilm(f) {
+  S.film = f; S.L = f.length_s || 138;
+  SHOTS = f.shots || []; CHAPS = f.chapters || [];
+  CARDS = (f.title_cards || []).map((c) => ({ ...c, fade: /fades to black/.test(c.style || '') ? 0.4 : 0 }));
+  $('#tl').setAttribute('aria-valuemax', String(S.L));
+  renderTicks();
+}
+const shotIndexAt = (t) => { for (let i = 0; i < SHOTS.length; i++) if (t >= SHOTS[i].t0 && t < SHOTS[i].t1) return i; return SHOTS.length - 1; };
+const chapIndexAt = (t) => { for (let i = 0; i < CHAPS.length; i++) if (t >= CHAPS[i].t0 && t < CHAPS[i].t1) return i; return CHAPS.length - 1; };
+const cardAt = (t) => { for (const c of CARDS) if (t >= c.t0 && t < c.t1) return c; return null; };
+function fadeAt(t) {
+  for (const k of CARDS) {
+    if (t < k.t0 || t >= k.t1) continue;
+    if (k.fade <= 0) return 0;
+    if (t < k.t0 + k.fade) return 1 - (t - k.t0) / k.fade;
+    if (t > k.t1 - k.fade) return (t - (k.t1 - k.fade)) / k.fade;
+    return 0;
+  }
+  return 1;
+}
+const fmt = (t, tenth = true) => { t = Math.max(0, t); const m = Math.floor(t / 60), s = t - m * 60; return m + ':' + (tenth ? s.toFixed(1).padStart(4, '0') : String(Math.floor(s)).padStart(2, '0')); };
+
+// ---------- overlays: cards, captions, chapter line, fade (X3D engine), timeline ----------
+let lastCard = undefined, lastShot = -2, lastChap = -2;
+function overlay(t, force) {
+  const card = S.fly && S.fly.active ? null : cardAt(t);
+  if (card !== lastCard || force) {
+    lastCard = card;
+    const el = $('#card');
+    if (card) {
+      const [a, b] = String(card.text).split('\n');
+      el.querySelector('.l1').textContent = a; el.querySelector('.l2').textContent = b || '';
+      el.querySelector('.l2').style.display = b ? '' : 'none';
+      el.classList.toggle('gold', /gold #D4B06A on pure black, centred; cuts/.test(card.style || ''));
+      el.classList.toggle('main', /main title/.test(card.style || ''));
+      el.classList.toggle('long', a.length > 22 && a.length <= 34); el.classList.toggle('xlong', a.length > 34);
+      el.classList.add('on');
+    } else el.classList.remove('on');
+  }
+  const si = shotIndexAt(t);
+  if (si !== lastShot || force) {
+    lastShot = si; const s = SHOTS[si];
+    if (s) {
+      const m = /^(S\d+)\s+(.*)$/.exec(s.name) || [0, '', s.name];
+      const kind = s.kind === 'fpv' ? '<span class="kind fpv">FPV</span>' : s.kind === 'hold' ? '<span class="kind">HOLD</span>' : s.kind ? '<span class="kind">' + s.kind.toUpperCase() + '</span>' : '';
+      $('#caption .shot').innerHTML = '<b>' + m[1] + '</b>' + esc(m[2]) + kind;
+      $('#caption .lens').textContent = `${Math.round(s.lens_mm)} mm · f/${s.aperture} · focus ${s.focus_m} m · ${fmt(s.t0, false)}–${fmt(s.t1, false)}`;
+    }
+  }
+  const ci = chapIndexAt(t);
+  if (ci !== lastChap || force) { lastChap = ci; $('#chap').textContent = CHAPS[ci] ? CHAPS[ci].title : ''; }
+  // the WebGPU engine fades in post; for X_ITE the page lays black over the picture
+  const shade = (S.kind === 'x3d' || S.kind === 'babylon') && S.started && !(S.fly && S.fly.active) ? 1 - fadeAt(t) : 0;
+  $('#shade').style.opacity = shade.toFixed(3);
+  // timeline
+  const f = Math.min(1, Math.max(0, t / S.L));
+  $('#tl .fill').style.width = (f * 100) + '%';
+  $('#tl .knob').style.left = (f * 100) + '%';
+  $('#time').innerHTML = fmt(t) + ' <span>/ ' + fmt(S.L, false) + '</span>';
+  $('#tl').setAttribute('aria-valuenow', t.toFixed(1));
+}
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function renderTicks() {
+  const tl = $('#tl'); if (!tl || !S.film) return;
+  tl.querySelectorAll('.tick,.ch').forEach((n) => n.remove());
+  const frag = document.createDocumentFragment();
+  for (const s of SHOTS) { const d = document.createElement('div'); d.className = 'tick' + (s.kind === 'fpv' ? ' fpv' : ''); d.style.left = (s.t0 / S.L * 100) + '%'; frag.appendChild(d); }
+  CHAPS.forEach((c, i) => { const d = document.createElement('div'); d.className = 'ch'; d.style.left = (c.t0 / S.L * 100) + '%'; const sp = document.createElement('span'); sp.textContent = String(c.title).split('·')[0].trim(); d.appendChild(sp); frag.appendChild(d); });
+  tl.insertBefore(frag, tl.querySelector('.knob'));
+}
+function setStatus(msg, prog) {
+  $('#status').textContent = msg || ''; $('#status').classList.toggle('on', !!msg);
+  const p = $('#progress');
+  if (prog == null) p.classList.remove('on'); else { p.classList.add('on'); p.style.width = (Math.max(0, Math.min(1, prog)) * R.w) + 'px'; }
+}
+let toastT = 0;
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 3200); }
+
+// ---------- free-fly ("take the sticks"), engine-agnostic pose: pos[3], yaw, pitch, roll, fov ----------
+const fly = S.fly = {
+  active: false, pos: [0, 0, 0], yaw: 0, pitch: 0, roll: 0, fov: 1, fov0: 1, vel: [0, 0, 0], q: [0, 0, 0, 1], speed: 0,
+  keys: new Set(), mdx: 0, mdy: 0, stickL: [0, 0], stickR: [0, 0], last: 0, t0: 0, locked: false, yawRate: 0,
+};
+function quatFromYPR(y, p, r, out) {
+  const cy = Math.cos(y / 2), sy = Math.sin(y / 2), cp = Math.cos(p / 2), sp = Math.sin(p / 2), cr = Math.cos(r / 2), sr = Math.sin(r / 2);
+  // q = qy * qx * qz  (yaw about world Y, pitch about local X, roll about local Z)
+  const x1 = cy * sp, y1 = sy * cp, z1 = -sy * sp, w1 = cy * cp; // qy*qx
+  out[0] = x1 * cr + y1 * sr; out[1] = y1 * cr - x1 * sr; out[2] = w1 * sr + z1 * cr; out[3] = w1 * cr - z1 * sr;
+  return out;
+}
+function rot(q, v) { // rotate vector v by quaternion q
+  const [x, y, z, w] = q, [vx, vy, vz] = v;
+  const ix = w * vx + y * vz - z * vy, iy = w * vy + z * vx - x * vz, iz = w * vz + x * vy - y * vx, iw = -x * vx - y * vy - z * vz;
+  return [ix * w + iw * -x + iy * -z - iz * -y, iy * w + iw * -y + iz * -x - ix * -z, iz * w + iw * -z + ix * -y - iy * -x];
+}
+function poseFromQuat(q) {
+  const f = rot(q, [0, 0, -1]), u = rot(q, [0, 1, 0]);
+  const pitch = Math.asin(Math.max(-1, Math.min(1, f[1])));
+  let yaw;
+  if (Math.abs(f[1]) < 0.985) yaw = Math.atan2(-f[0], -f[2]);
+  else yaw = f[1] < 0 ? Math.atan2(-u[0], -u[2]) : Math.atan2(u[0], u[2]);
+  const r0 = [Math.cos(yaw), 0, -Math.sin(yaw)];
+  const u0 = rot(quatFromYPR(yaw, pitch, 0, [0, 0, 0, 1]), [0, 1, 0]);
+  const roll = Math.atan2(-(u[0] * r0[0] + u[1] * r0[1] + u[2] * r0[2]), u[0] * u0[0] + u[1] * u0[1] + u[2] * u0[2]);
+  return { yaw, pitch: Math.max(-1.53, Math.min(1.53, pitch)), roll };
+}
+function flyStart() {
+  if (!S.adapter || fly.active) return;
+  const p = S.adapter.cameraPose(); if (!p) return;
+  const e = poseFromQuat(p.q);
+  Object.assign(fly, { active: true, pos: p.pos.slice(), yaw: e.yaw, pitch: e.pitch, roll: e.roll, fov0: p.fov, fov: p.fov, vel: [0, 0, 0], last: performance.now(), t0: performance.now(), mdx: 0, mdy: 0 });
+  quatFromYPR(fly.yaw, fly.pitch, fly.roll, fly.q);
+  S.adapter.flyBegin();
+  $('#fly').classList.add('on'); $('#bFly').setAttribute('aria-pressed', 'true');
+  $('#fly .help').innerHTML = coarse ? '<b>left stick</b> fly · <b>right stick</b> look' : '<b>WASD</b> / arrows fly · <b>mouse</b> look · <b>Q E</b> roll · <b>Shift</b> boost · <b>R</b> returns to the director';
+  requestLock();
+  overlay(S.t, true);
+  kick();
+}
+function flyEnd() {
+  if (!fly.active) return;
+  fly.active = false; fly.keys.clear();
+  if (document.pointerLockElement) try { document.exitPointerLock(); } catch (e) {}
+  if (S.adapter) S.adapter.flyEnd();
+  $('#fly').classList.remove('on'); $('#bFly').setAttribute('aria-pressed', 'false');
+  overlay(S.t, true); kick();
+}
+function requestLock() {
+  if (coarse) return;
+  try {
+    const r = stage.requestPointerLock && stage.requestPointerLock();
+    if (r && r.catch) r.catch(() => { fly.locked = false; });
+  } catch (e) { fly.locked = false; }
+}
+document.addEventListener('pointerlockchange', () => { fly.locked = document.pointerLockElement === stage; });
+document.addEventListener('pointerlockerror', () => { fly.locked = false; });
+function flyUpdate(now) {
+  let dt = (now - fly.last) / 1000; fly.last = now;
+  if (!(dt > 0)) return; if (dt > 0.25) dt = 0.25;
+  const k = fly.keys, has = (c) => k.has(c);
+  let fwd = (has('KeyW') || has('ArrowUp') ? 1 : 0) - (has('KeyS') || has('ArrowDown') ? 1 : 0);
+  let str = (has('KeyD') || has('ArrowRight') ? 1 : 0) - (has('KeyA') || has('ArrowLeft') ? 1 : 0);
+  let up = 0, rollIn = (has('KeyQ') ? 1 : 0) - (has('KeyE') ? 1 : 0), boost = has('ShiftLeft') || has('ShiftRight') ? 1 : 0;
+  let lookX = 0, lookY = 0;
+  // gamepad (standard mapping): left stick fly, right stick look, LB/RB roll, LT/RT down/up, A boost, B returns
+  try {
+    for (const g of (navigator.getGamepads ? navigator.getGamepads() : [])) {
+      if (!g || !g.axes || g.axes.length < 4) continue;
+      const dz = (v) => Math.abs(v) < 0.12 ? 0 : v;
+      str += dz(g.axes[0]); fwd -= dz(g.axes[1]); lookX += dz(g.axes[2]); lookY += dz(g.axes[3]);
+      const b = (i) => g.buttons[i] && (g.buttons[i].pressed || g.buttons[i].value > 0.5);
+      if (b(4)) rollIn += 1; if (b(5)) rollIn -= 1;
+      up += (g.buttons[7] ? g.buttons[7].value : 0) - (g.buttons[6] ? g.buttons[6].value : 0);
+      if (b(0)) boost = 1;
+      if (b(1)) { flyEnd(); return; }
+      break;
+    }
+  } catch (e) {}
+  // touch sticks
+  str += fly.stickL[0]; fwd -= fly.stickL[1]; lookX += fly.stickR[0] * 1.2; lookY += fly.stickR[1] * 1.2;
+  const yaw0 = fly.yaw;
+  fly.yaw -= fly.mdx * 0.0022 + lookX * 2.2 * dt; fly.pitch -= fly.mdy * 0.0022 + lookY * 1.8 * dt; fly.mdx = fly.mdy = 0;
+  fly.pitch = Math.max(-1.53, Math.min(1.53, fly.pitch));
+  const yr = (fly.yaw - yaw0) / dt; fly.yawRate += (yr - fly.yawRate) * Math.min(1, dt * 6);
+  if (rollIn) fly.roll += rollIn * 1.7 * dt;
+  else { const bank = Math.max(-0.45, Math.min(0.45, fly.yawRate * 0.12)); fly.roll += (bank - fly.roll) * Math.min(1, dt * 2.5); }
+  fly.roll = Math.atan2(Math.sin(fly.roll), Math.cos(fly.roll));
+  quatFromYPR(fly.yaw, fly.pitch, fly.roll, fly.q);
+  // move in the yaw/pitch frame (a rolled camera still flies straight)
+  const qm = quatFromYPR(fly.yaw, fly.pitch, 0, [0, 0, 0, 1]);
+  const f = rot(qm, [0, 0, -1]), r = [Math.cos(fly.yaw), 0, -Math.sin(fly.yaw)];
+  const sp = 5 * (boost ? 5 : 1);
+  const n = Math.hypot(fwd, str) > 1 ? Math.hypot(fwd, str) : 1;
+  const tv = [ (f[0] * fwd + r[0] * str) / n * sp, (f[1] * fwd + r[1] * str) / n * sp + up * sp * 0.6, (f[2] * fwd + r[2] * str) / n * sp ];
+  const a = Math.min(1, dt * 3.5);
+  for (let i = 0; i < 3; i++) { fly.vel[i] += (tv[i] - fly.vel[i]) * a; fly.pos[i] += fly.vel[i] * dt; }
+  fly.speed = Math.hypot(fly.vel[0], fly.vel[1], fly.vel[2]);
+  // ease the lens out to a wide FPV field of view
+  const e = Math.min(1, (now - fly.t0) / 700); fly.fov = fly.fov0 + (Math.max(fly.fov0, 1.0) - fly.fov0) * (e * e * (3 - 2 * e));
+}
+// pointer: mouse look (pointer lock or drag), touch sticks
+let dragLook = null;
+stage.addEventListener('pointerdown', (e) => {
+  if (!fly.active || coarse) return;
+  if (!fly.locked) { requestLock(); dragLook = { x: e.clientX, y: e.clientY }; }
+});
+addEventListener('pointermove', (e) => {
+  if (!fly.active) return;
+  if (fly.locked) { fly.mdx += e.movementX || 0; fly.mdy += e.movementY || 0; }
+  else if (dragLook) { fly.mdx += e.clientX - dragLook.x; fly.mdy += e.clientY - dragLook.y; dragLook = { x: e.clientX, y: e.clientY }; }
+});
+addEventListener('pointerup', () => { dragLook = null; });
+function bindStick(el, out) {
+  let id = null, cx = 0, cy = 0; const knob = el.querySelector('i');
+  el.addEventListener('pointerdown', (e) => { id = e.pointerId; el.setPointerCapture(id); const b = el.getBoundingClientRect(); cx = b.left + b.width / 2; cy = b.top + b.height / 2; move(e); e.preventDefault(); });
+  const move = (e) => { if (e.pointerId !== id) return; let dx = (e.clientX - cx) / 46, dy = (e.clientY - cy) / 46; const m = Math.hypot(dx, dy); if (m > 1) { dx /= m; dy /= m; } out[0] = dx; out[1] = dy; knob.style.transform = `translate(${dx * 32}px,${dy * 32}px)`; };
+  const end = (e) => { if (e.pointerId !== id) return; id = null; out[0] = out[1] = 0; knob.style.transform = ''; };
+  el.addEventListener('pointermove', move); el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
+}
+bindStick($('#fly .stick.l'), fly.stickL); bindStick($('#fly .stick.r'), fly.stickR);
+$('#flyBack').addEventListener('click', flyEnd);
+
+// ---------- engine adapters ----------
+const FILMS = { x3d: 'odyssey.x3d', film: 'film.json' };
+async function detectSoftware() {
+  try { if (!navigator.gpu) return null; const a = await navigator.gpu.requestAdapter(); if (!a) return null; const i = a.info || {}; const s = ((i.vendor || '') + ' ' + (i.architecture || '') + ' ' + (i.description || '')).toLowerCase(); return !!(i.isFallbackAdapter || a.isFallbackAdapter || /swiftshader|llvmpipe|software|warp/.test(s)); } catch (e) { return null; }
+}
+function presetFor(q, software) { return q === 'auto' ? (software ? 'low' : 'high') : q; }
+
+function WebGPUAdapter() {
+  let eng = null, need = 0, hold = false, software = null, preset = 'high';
+  const ad = {
+    kind: 'webgpu', label: 'WebGPU',
+    async init(t, playing, onProgress) {
+      software = await detectSoftware();
+      preset = presetFor(S.quality, software);
+      const { createEngine } = await import('./engine/engine-webgpu.js');
+      stage.style.background = '#0a0806'; // the engine paints the container black unless it already has a background
+      onProgress && onProgress(0.15, 'Compiling the cinema engine');
+      eng = await createEngine({ container: stage, x3d: FILMS.x3d, film: S.film, preset, startTime: t, forceWebGL: !navigator.gpu,
+        onProgress: (loaded, total) => { if (onProgress && total) onProgress(0.15 + 0.75 * (loaded / total), `Loading the film · texture ${loaded} of ${total}`); } });
+      ad.eng = eng;
+      eng.cameraHook = (cam, tt, dt) => {
+        if (!fly.active) return false;
+        cam.position.set(fly.pos[0], fly.pos[1], fly.pos[2]);
+        cam.quaternion.set(fly.q[0], fly.q[1], fly.q[2], fly.q[3]);
+        const a = cam.aspect || 2.39, vf = a >= 1 ? fly.fov : 2 * Math.atan(Math.tan(fly.fov / 2) / a);
+        cam.fov = vf * 180 / Math.PI; cam.updateProjectionMatrix(); cam.updateMatrixWorld(true);
+        eng.freeSpeed = fly.speed; eng.freeVel = eng.freeVel || { x: 0, y: 0, z: 0 };
+        eng.freeVel.x = fly.vel[0]; eng.freeVel.y = fly.vel[1]; eng.freeVel.z = fly.vel[2];
+        return true;
+      };
+      eng.renderer.setAnimationLoop((now) => {
+        if (hold) return;
+        if (eng.playing || fly.active || need > 0) {
+          eng.P.fades = !fly.active && eng.presetName !== 'parity';
+          eng.frame(now); if (!eng.playing && !fly.active) need--;
+          if (ad.onFirstFrame) { const f = ad.onFirstFrame; ad.onFirstFrame = null; f(); }
+        } else eng._lastNow = now;
+      });
+      need = 20;
+      if (playing) eng.play();
+      return ad;
+    },
+    time() { return eng ? eng.time : 0; },
+    play() { eng.play(); },
+    pause() { eng.pause(); need = 20; },
+    seek(t) { eng.seek(t); need = 20; },
+    playing() { return eng && eng.playing; },
+    resize() { if (eng) { eng.resize(); need = Math.max(need, 6); } },
+    kick() { need = Math.max(need, 20); },
+    async setQuality(q) { const p = presetFor(q, software); if (p === eng.presetName) return; hold = true; try { await eng.setPreset(p); preset = p; } finally { hold = false; need = 20; } },
+    cameraPose() { const c = eng.camera; return { pos: [c.position.x, c.position.y, c.position.z], q: [c.quaternion.x, c.quaternion.y, c.quaternion.z, c.quaternion.w], fov: currentFov() }; },
+    flyBegin() {}, flyEnd() { if (eng.world) eng.world._fovDirty = true; need = 20; },
+    badge() { const b = eng.backend || {}; return `${b.backend || 'WebGPU'} · three.js r${eng.describe().three} · ${eng.presetName}`; },
+    hud() {
+      const b = eng.backend || {};
+      const size = eng.renderer.domElement ? `${eng.renderer.domElement.width}×${eng.renderer.domElement.height}` : '';
+      const s = SHOTS[shotIndexAt(eng.time)];
+      return eng.profiler.hudText(`preset ${eng.presetName} · ${size} px · dust ${eng.dustCount.toLocaleString()} · t ${eng.time.toFixed(2)} s · ${s ? s.name.split(' ')[0] : ''}`);
+    },
+    perf() { const s = eng.profiler.stats(); return { fps: s.fps, p50: s.interval.p50, p95: s.interval.p95, p99: s.interval.p99, cpu50: s.cpu.p50, gpu50: s.gpu.p50, n: s.interval.n, draws: s.drawCalls, tris: s.triangles }; },
+    perfReset() { eng.profiler.reset(); },
+    describe() { const d = eng.describe(); return { engine: 'WebGPU', backend: d.backend, preset: d.preset, three: d.three, timings_ms: d.timings_ms, dust: d.dust, shadowLights: d.shadowLights, software, size: [eng.renderer.domElement.width, eng.renderer.domElement.height], x3d: d.x3d, parse: { unsupported: d.parse.unsupported, routes: d.parse.routes } }; },
+    benchInfo() { const b = eng.backend || {}; return `${b.backend} · ${[b.vendor, b.architecture, b.description].filter(Boolean).join(' / ') || 'adapter n/a'}${b.software ? ' (software)' : ''} · preset ${eng.presetName} · ${eng.renderer.domElement.width}×${eng.renderer.domElement.height} px`; },
+    async bench(dt, onFrame) {
+      hold = true; const tBack = ad.time();
+      try { const r = await eng.bench({ dt, warmup: 2, onFrame }); r.engine = 'WebGPU'; return r; }
+      finally { hold = false; ad.seek(tBack); }
+    },
+    renderAt(t, n) { hold = true; for (let i = 0; i < n; i++) eng.renderAt(t, 1 / 30); return { draws: eng.renderer.info.render.drawCalls }; },
+    release() { hold = false; need = 20; },
+    dispose() { try { eng.renderer.setAnimationLoop(null); eng.dispose(); } catch (e) {} try { eng.renderer.domElement.remove(); } catch (e) {} eng = null; },
+  };
+  function currentFov() { const c = eng.camera; const vf = c.fov * Math.PI / 180; return c.aspect >= 1 ? vf : 2 * Math.atan(Math.tan(vf / 2) * c.aspect); }
+  return ad;
+}
+
+let xiteLoading = null;
+function loadXITE() {
+  if (window.X3D) return Promise.resolve();
+  return xiteLoading || (xiteLoading = new Promise((res, rej) => {
+    const s = document.createElement('script'); s.src = 'vendor/x_ite/x_ite.min.js'; s.async = true;
+    s.onload = () => res(); s.onerror = () => rej(new Error('X_ITE failed to load')); document.head.appendChild(s);
+  }));
+}
+function X3DAdapter() {
+  let el = null, br = null, scene = null, Film = null, targets = [], cam = null, free = null, nav = null;
+  let tHeld = 0, playing = false, startT = 0, pend = 0;
+  const ring = new Float64Array(240); let ri = 0, rc = 0, lastRaf = 0, rafOn = true, info = {};
+  // X_ITE's clock (seconds, the one TimeSensor reads); the SAI object has no currentTime property
+  const now = () => (br && br.getCurrentTime ? br.getCurrentTime() : Date.now() / 1000);
+  const ad = {
+    kind: 'x3d', label: 'X3D',
+    async init(t, play, onProgress) {
+      onProgress && onProgress(0.1, 'Loading X_ITE 16.4.3');
+      await loadXITE();
+      el = document.createElement('x3d-canvas');
+      for (const [k, v] of Object.entries({ splashScreen: 'false', notifications: 'false', contextMenu: 'false', timings: 'false', toneMapping: 'KHR_PBR_NEUTRAL',
+        antialiased: 'true', logarithmicDepthBuffer: 'true', contentScale: String(xScale(S.quality)), cache: 'true', debug: 'false' })) el.setAttribute(k, v);
+      el.setAttribute('aria-label', 'X3D film, played by X_ITE');
+      stage.appendChild(el);
+      br = el.browser;
+      onProgress && onProgress(0.35, 'X_ITE is reading odyssey.x3d');
+      const t0 = performance.now();
+      await br.loadURL(new X3D.MFString(FILMS.x3d));
+      info.load_ms = performance.now() - t0;
+      scene = br.currentScene;
+      Film = scene.getNamedNode('Film');
+      Film.enabled = false;
+      targets = (S.film.x3d && S.film.x3d.film_interpolators || []).map((n) => scene.getNamedNode(n));
+      cam = scene.getNamedNode('DroneCam');
+      for (const n of scene.rootNodes) if (n && n.getNodeTypeName && n.getNodeTypeName() === 'NavigationInfo') nav = n;
+      if (nav) try { nav.transitionType = new X3D.MFString('TELEPORT'); } catch (e) {}
+      try { info.version = br.version; } catch (e) {}
+      try { const g = br.getContext && br.getContext(); const d = g && g.getExtension('WEBGL_debug_renderer_info'); info.gl = g ? (d ? g.getParameter(d.UNMASKED_RENDERER_WEBGL) : g.getParameter(g.RENDERER)) : ''; } catch (e) {}
+      ad.seek(t);
+      if (play) ad.play();
+      const loop = (now) => { if (!rafOn) return; if (lastRaf) { ring[ri] = now - lastRaf; ri = (ri + 1) % ring.length; if (rc < ring.length) rc++; } lastRaf = now; requestAnimationFrame(loop); };
+      requestAnimationFrame(loop);
+      requestAnimationFrame(() => requestAnimationFrame(() => { if (ad.onFirstFrame) { const f = ad.onFirstFrame; ad.onFirstFrame = null; f(); } }));
+      return ad;
+    },
+    time() {
+      if (!playing || pend) return tHeld;
+      let t = now() - startT; t = ((t % S.L) + S.L) % S.L; return t;
+    },
+    play() {
+      if (playing) return;
+      playing = true; ad.restart();
+    },
+    pause() { if (!playing) return; const t = ad.time(); playing = false; pend = 0; Film.enabled = false; ad.seek(t); },
+    // X_ITE applies SAI field writes at its next event cascade, and a TimeSensor ignores set_startTime while it is
+    // active, so the film clock is stopped first and restarted (at the held time) two frames later
+    restart() {
+      Film.enabled = false; const g = ++pend;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (g !== pend || !playing) return;
+        const n0 = now(); Film.startTime = n0 - tHeld; Film.stopTime = 0; Film.enabled = true; startT = n0 - tHeld; pend = 0;
+      }));
+    },
+    seek(t) {
+      t = Math.max(0, Math.min(S.L - 1e-3, t)); tHeld = t;
+      if (playing) Film.enabled = false;
+      const f = t / S.L;
+      for (const n of targets) if (n) n.set_fraction = f;
+      if (playing) ad.restart();
+    },
+    playing() { return playing; },
+    resize() {},
+    kick() {},
+    async setQuality(q) { el.setAttribute('contentScale', String(xScale(q))); },
+    cameraPose() {
+      const p = cam.position, o = cam.orientation, s = Math.sin(o.angle / 2), n = Math.hypot(o.x, o.y, o.z) || 1;
+      return { pos: [p.x, p.y, p.z], q: [o.x / n * s, o.y / n * s, o.z / n * s, Math.cos(o.angle / 2)], fov: cam.fieldOfView };
+    },
+    flyBegin() {
+      if (!free) {
+        free = scene.createNode('Viewpoint'); free.description = 'Viewer at the sticks';
+        scene.rootNodes.push(free);
+      }
+      ad.flyApply(); free.set_bind = true;
+    },
+    flyApply() {
+      if (!free) return;
+      const q = fly.q, w = Math.max(-1, Math.min(1, q[3])), a = 2 * Math.acos(w), s = Math.sqrt(1 - w * w) || 1;
+      free.position = new X3D.SFVec3f(fly.pos[0], fly.pos[1], fly.pos[2]);
+      free.orientation = s < 1e-6 ? new X3D.SFRotation(0, 0, 1, 0) : new X3D.SFRotation(q[0] / s, q[1] / s, q[2] / s, a);
+      free.fieldOfView = fly.fov;
+    },
+    flyEnd() { cam.set_bind = true; },
+    badge() { return `X3D · X_ITE ${info.version || '16.4.3'} · native TimeSensor`; },
+    hud() {
+      const s = ad.perf(), sh = SHOTS[shotIndexAt(ad.time())];
+      return [`X3D · X_ITE ${info.version || ''}  ${info.gl || ''}`,
+        `fps ${s.fps.toFixed(1)}  frame p50 ${s.p50.toFixed(2)}  p95 ${s.p95.toFixed(2)}  p99 ${s.p99.toFixed(2)} ms`,
+        `film driven by TimeSensor Film (${playing ? 'running' : 'held'}), 124 interpolators, 289 ROUTEs, 0 Script`,
+        `contentScale ${el.getAttribute('contentScale')} · ${el.clientWidth}×${el.clientHeight} css px · tone map KHR_PBR_NEUTRAL`,
+        `t ${ad.time().toFixed(2)} s · ${sh ? sh.name.split(' ')[0] : ''}`].join('\n');
+    },
+    perf() {
+      const c = rc, a = Array.from(ring.subarray(0, c)).sort((x, y) => x - y), q = (p) => c ? a[Math.min(c - 1, Math.max(0, Math.ceil(p * c) - 1))] : 0;
+      const mean = c ? a.reduce((x, y) => x + y, 0) / c : 0;
+      return { fps: mean ? 1000 / mean : 0, p50: q(0.5), p95: q(0.95), p99: q(0.99), n: c };
+    },
+    perfReset() { rc = 0; ri = 0; lastRaf = 0; },
+    describe() { return { engine: 'X3D', x_ite: info.version, gl: info.gl, load_ms: Math.round(info.load_ms || 0), contentScale: el.getAttribute('contentScale'), size: [el.clientWidth, el.clientHeight] }; },
+    benchInfo() { return `X3D · X_ITE ${info.version || ''} · ${info.gl || 'WebGL2'} · contentScale ${el.getAttribute('contentScale')} · ${el.clientWidth}×${el.clientHeight} css px`; },
+    async bench(dt, onFrame) {
+      const was = playing; ad.pause(); const tBack = tHeld;
+      const raf = () => new Promise((r) => requestAnimationFrame(r));
+      const rows = SHOTS.map((s) => ({ shot: s.name, t0: s.t0, t1: s.t1, kind: s.kind, ms: [] }));
+      const times = []; for (let t = 0; t < S.L - 1e-9; t += dt) times.push(t);
+      const w0 = performance.now();
+      // one frame = scrub, X_ITE's next frame (events, then draw), then a 1-pixel readPixels so the GPU work is finished
+      const g = br.getContext && br.getContext(), px = new Uint8Array(4);
+      const drawn = async () => { if (br.nextFrame) await br.nextFrame(); else await raf(); try { g && g.readPixels(0, 0, 1, 1, g.RGBA, g.UNSIGNED_BYTE, px); } catch (e) {} };
+      ad.seek(0); await drawn(); await drawn();
+      for (let i = 0; i < times.length; i++) {
+        const a = performance.now(); ad.seek(times[i]); await drawn(); const b = performance.now();
+        rows[shotIndexAt(times[i])].ms.push(b - a); onFrame && onFrame(i + 1, times.length, times[i]);
+      }
+      const pct = (s, p) => s.length ? s[Math.min(s.length - 1, Math.max(0, Math.ceil(p * s.length) - 1))] : 0;
+      const all = [];
+      const out = rows.filter((r) => r.ms.length).map((r) => { const s = r.ms.slice().sort((x, y) => x - y); all.push(...s); const mean = s.reduce((x, y) => x + y, 0) / s.length;
+        return { shot: r.shot, kind: r.kind, frames: s.length, wall_ms_p50: +pct(s, 0.5).toFixed(2), wall_ms_p95: +pct(s, 0.95).toFixed(2), fps_equiv: +(1000 / mean).toFixed(2), gpu_ms_p50: null, draw_calls: null, triangles: null }; });
+      all.sort((x, y) => x - y); const mean = all.reduce((x, y) => x + y, 0) / all.length;
+      ad.seek(tBack); if (was) ad.play();
+      return { engine: 'X3D', dt, frames: all.length, wall_s: +((performance.now() - w0) / 1000).toFixed(2), rows: out,
+        total: { wall_ms_p50: +pct(all, 0.5).toFixed(2), wall_ms_p95: +pct(all, 0.95).toFixed(2), fps_equiv: +(1000 / mean).toFixed(2), gpu_ms_p50: null },
+        method: 'scrub (set_fraction to all 124 Film targets), then X_ITE browser.nextFrame() and a 1-pixel readPixels, timed wall to wall' };
+    },
+    async renderAt(t, n) { ad.pause(); ad.seek(t); for (let i = 0; i < Math.max(2, n); i++) await new Promise((r) => requestAnimationFrame(r)); return {}; },
+    release() {},
+    dispose() { rafOn = false; try { Film.enabled = false; } catch (e) {} try { br.replaceWorld(null); } catch (e) {} try { el.remove(); } catch (e) {} el = null; },
+  };
+  return ad;
+}
+// ---------- the Babylon engine: the same odyssey.x3d, drawn by Babylon.js 9 on WebGPU through our own X3D reader ----------
+// The reader (x3d.webgpu/demo/src/brain/reader.js) parses the file, runs the TimeSensor and the ROUTEs and keeps the field values; the body (body.js, drift-ext.js, odyssey-ext.js)
+// turns them into Babylon meshes, PBR materials and lights; sai.js answers the page with the subset of the scene access interface this adapter uses. The adapter is the X_ITE adapter's
+// twin on purpose: both play the file by writing to the same nodes (Film, the 124 interpolators, DroneCam), so the two engines run the same film by the same means.
+const BJS = { url: 'https://cdn.jsdelivr.net/npm/babylonjs@9.32.0/babylon.js', sri: 'sha384-1XDybi1454WehNQaPHwhcTlpJ6oDdq/L4KKyDu7JiWPOBUzoBC0yEcuKDzHpdXyo', version: '9.32.0', bundle: 'babylon/bundle.js' };
+let bjsLoading = null;
+function loadScript(src, attrs) {
+  return new Promise((res, rej) => {
+    const s = document.createElement('script'); s.src = src; s.async = false;
+    if (attrs) for (const [k, v] of Object.entries(attrs)) if (v) s.setAttribute(k, v);
+    s.onload = () => res(); s.onerror = () => rej(new Error(src.split('/').pop() + ' failed to load')); document.head.appendChild(s);
+  });
+}
+function loadBabylon() {
+  if (window.OdysseyBabylon) return Promise.resolve(window.OdysseyBabylon);
+  return bjsLoading || (bjsLoading = (async () => {
+    const prev = window.X3D;                                   // the bundle's scene-access types are also called X3D; X_ITE keeps its own
+    try {
+      await loadScript(BJS.url, { integrity: BJS.sri, crossorigin: 'anonymous' });
+      await loadScript(BJS.bundle);
+    } finally { if (prev) window.X3D = prev; else delete window.X3D; }
+    return window.OdysseyBabylon;
+  })().catch((e) => { bjsLoading = null; throw e; }));
+}
+function BabylonAdapter() {
+  let api = null, inst = null, br = null, XNS = null, scene = null, Film = null, targets = [], cam = null, free = null;
+  let tHeld = 0, playing = false, startT = 0, pend = 0, need = 0, hold = false;
+  const ring = new Float64Array(240); let ri = 0, rc = 0, lastF = 0, info = {};
+  const now = () => br.getCurrentTime();
+  const ad = {
+    kind: 'babylon', label: 'Babylon',
+    async init(t, play, onProgress) {
+      onProgress && onProgress(0.06, 'Loading Babylon.js ' + BJS.version);
+      api = await loadBabylon(); XNS = api.ns;
+      onProgress && onProgress(0.2, 'Starting the Babylon WebGPU body');
+      stage.style.background = '#0a0806';
+      inst = await api.create(stage, {}); br = inst.B;
+      br.setBrowserOption('ContentScale', xScale(S.quality));
+      if (window.__odysseyLook && !Q.has('look')) window.__odysseyLook.on = !!LS.get('look', true);   // the visitor's last choice, unless the address says otherwise
+      onProgress && onProgress(0.3, 'Babylon is reading odyssey.x3d');
+      const t0 = performance.now();
+      await br.loadURL(new XNS.MFString(FILMS.x3d));
+      info.load_ms = performance.now() - t0;
+      scene = br.currentScene;
+      Film = scene.getNamedNode('Film'); Film.enabled = false;
+      targets = (S.film.x3d && S.film.x3d.film_interpolators || []).map((n) => scene.getNamedNode(n));
+      cam = scene.getNamedNode('DroneCam');
+      for (const n of scene.rootNodes) if (n && n.getNodeTypeName && n.getNodeTypeName() === 'NavigationInfo') { try { n.transitionType = new XNS.MFString('TELEPORT'); } catch (e) {} }
+      info.version = inst.info.babylon; info.adapter = inst.info.adapter || {};
+      // the render loop is ours: the body draws while the film plays, while the visitor flies, and for a few frames after anything changes
+      inst.body.engine.stopRenderLoop();
+      inst.body.opts.onFrame = () => {
+        const n = performance.now(); if (lastF) { ring[ri] = n - lastF; ri = (ri + 1) % ring.length; if (rc < ring.length) rc++; } lastF = n;
+        if (ad.onFirstFrame && inst.body.stats.frames > 2) { const f = ad.onFirstFrame; ad.onFirstFrame = null; f(); }
+      };
+      inst.body.engine.runRenderLoop(() => {
+        if (hold || !inst) return;
+        if (playing || fly.active || need > 0) { inst.body.frame(); if (!playing && !fly.active) need--; }
+      });
+      ad.seek(t);
+      need = 12;
+      // every pipeline is compiled before the first frame: the film should not stutter on a material the camera meets for the first time
+      onProgress && onProgress(0.5, 'Compiling the materials and lights');
+      const c0 = performance.now();
+      await Promise.race([inst.ready(), new Promise((r) => setTimeout(r, 120000))]);
+      info.ready_ms = performance.now() - c0;
+      if (play) ad.play();
+      return ad;
+    },
+    time() {
+      if (!playing || pend) return tHeld;
+      let t = now() - startT; t = ((t % S.L) + S.L) % S.L; return t;
+    },
+    play() { if (playing) return; playing = true; ad.restart(); },
+    pause() { if (!playing) return; const t = ad.time(); playing = false; pend = 0; Film.enabled = false; ad.seek(t); },
+    // a TimeSensor ignores set_startTime while it is active, so the film clock is stopped first and restarted (at the held time) two frames later: the same dance as the X_ITE adapter
+    restart() {
+      Film.enabled = false; const g = ++pend;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (g !== pend || !playing) return;
+        const n0 = now(); Film.startTime = n0 - tHeld; Film.stopTime = 0; Film.enabled = true; startT = n0 - tHeld; pend = 0;
+      }));
+    },
+    seek(t) {
+      t = Math.max(0, Math.min(S.L - 1e-3, t)); tHeld = t;
+      if (playing) Film.enabled = false;
+      inst.newTimestamp();                                       // the reader lets an output fire once per timestamp; a scrub writes the same outputs again
+      const f = t / S.L;
+      for (const n of targets) if (n) n.set_fraction = f;
+      need = Math.max(need, 4);
+      if (playing) ad.restart();
+    },
+    playing() { return playing; },
+    resize() { need = Math.max(need, 3); },
+    kick() { need = Math.max(need, 6); },
+    async setQuality(q) { br.setBrowserOption('ContentScale', xScale(q)); need = Math.max(need, 6); },
+    setLook(on) { if (window.__odysseyLook && window.__odysseyLook.apply) { window.__odysseyLook.apply(!!on); LS.set('look', !!on); need = Math.max(need, 6); } },
+    look() { return !!(window.__odysseyLook && window.__odysseyLook.on); },
+    cameraPose() {
+      const p = cam.position, o = cam.orientation, s = Math.sin(o.angle / 2), n = Math.hypot(o.x, o.y, o.z) || 1;
+      return { pos: [p.x, p.y, p.z], q: [o.x / n * s, o.y / n * s, o.z / n * s, Math.cos(o.angle / 2)], fov: cam.fieldOfView };
+    },
+    flyBegin() {
+      if (!free) { free = scene.createNode('Viewpoint'); free.description = 'Viewer at the sticks'; scene.rootNodes.push(free); }
+      ad.flyApply(); free.set_bind = true;
+    },
+    flyApply() {
+      if (!free) return;
+      const q = fly.q, w = Math.max(-1, Math.min(1, q[3])), a = 2 * Math.acos(w), s = Math.sqrt(1 - w * w) || 1;
+      free.position = new XNS.SFVec3f(fly.pos[0], fly.pos[1], fly.pos[2]);
+      free.orientation = s < 1e-6 ? new XNS.SFRotation(0, 0, 1, 0) : new XNS.SFRotation(q[0] / s, q[1] / s, q[2] / s, a);
+      free.fieldOfView = fly.fov;
+    },
+    flyEnd() { cam.set_bind = true; need = Math.max(need, 6); },
+    badge() { return `Babylon.js ${info.version || ''} · WebGPU · ${ad.look() ? 'look on' : 'as authored'}`; },
+    hud() {
+      const s = ad.perf(), sh = SHOTS[shotIndexAt(ad.time())], o = inst.body.odysseyInfo(), a = info.adapter || {};
+      return [`Babylon.js ${info.version || ''} · WebGPU · ${[a.vendor, a.architecture, a.description].filter(Boolean).join(' / ') || 'adapter n/a'}`,
+        `fps ${s.fps.toFixed(1)}  frame p50 ${s.p50.toFixed(2)}  p95 ${s.p95.toFixed(2)}  p99 ${s.p99.toFixed(2)} ms`,
+        `film driven by TimeSensor Film (${playing ? 'running' : 'held'}), 124 interpolators, 289 ROUTEs, 0 Script`,
+        `${o.active} of ${o.meshes} meshes drawn · ${o.lights} lights, at most ${o.scope ? o.scope.perMeshMax : '?'} on any one shape · look ${o.look ? 'on' : 'off'}`,
+        `${inst.canvas.width}×${inst.canvas.height} px · t ${ad.time().toFixed(2)} s · ${sh ? sh.name.split(' ')[0] : ''}`].join('\n');
+    },
+    perf() {
+      const c = rc, a = Array.from(ring.subarray(0, c)).sort((x, y) => x - y), q = (p) => c ? a[Math.min(c - 1, Math.max(0, Math.ceil(p * c) - 1))] : 0;
+      const mean = c ? a.reduce((x, y) => x + y, 0) / c : 0;
+      return { fps: mean ? 1000 / mean : 0, p50: q(0.5), p95: q(0.95), p99: q(0.99), n: c };
+    },
+    perfReset() { rc = 0; ri = 0; lastF = 0; },
+    describe() { return Object.assign({ engine: 'Babylon', babylon: info.version, adapter: info.adapter, load_ms: Math.round(info.load_ms || 0), ready_ms: Math.round(info.ready_ms || 0), size: [inst.canvas.width, inst.canvas.height] }, inst.body.odysseyInfo()); },
+    benchInfo() { const a = info.adapter || {}; return `Babylon.js ${info.version} · WebGPU · ${[a.vendor, a.architecture, a.description].filter(Boolean).join(' / ') || 'adapter n/a'} · ${inst.canvas.width}×${inst.canvas.height} px · look ${ad.look() ? 'on' : 'off'}`; },
+    async bench(dt, onFrame) {
+      const was = playing; ad.pause(); const tBack = tHeld; hold = false;
+      const rows = SHOTS.map((s) => ({ shot: s.name, t0: s.t0, t1: s.t1, kind: s.kind, ms: [] }));
+      const times = []; for (let t = 0; t < S.L - 1e-9; t += dt) times.push(t);
+      const w0 = performance.now(), q = inst.queue();
+      // one frame = scrub, the body's next frame (events, then draw), then the GPU queue drained
+      const drawn = async () => { await br.nextFrame(); if (q && q.onSubmittedWorkDone) await q.onSubmittedWorkDone(); };
+      ad.seek(0); await drawn(); await drawn();
+      for (let i = 0; i < times.length; i++) {
+        const a = performance.now(); ad.seek(times[i]); await drawn(); const b = performance.now();
+        rows[shotIndexAt(times[i])].ms.push(b - a); onFrame && onFrame(i + 1, times.length, times[i]);
+      }
+      const pct = (s, p) => s.length ? s[Math.min(s.length - 1, Math.max(0, Math.ceil(p * s.length) - 1))] : 0;
+      const all = [];
+      const out = rows.filter((r) => r.ms.length).map((r) => { const s = r.ms.slice().sort((x, y) => x - y); all.push(...s); const mean = s.reduce((x, y) => x + y, 0) / s.length;
+        return { shot: r.shot, kind: r.kind, frames: s.length, wall_ms_p50: +pct(s, 0.5).toFixed(2), wall_ms_p95: +pct(s, 0.95).toFixed(2), fps_equiv: +(1000 / mean).toFixed(2), gpu_ms_p50: null, draw_calls: null, triangles: null }; });
+      all.sort((x, y) => x - y); const mean = all.reduce((x, y) => x + y, 0) / all.length;
+      ad.seek(tBack); if (was) ad.play();
+      return { engine: 'Babylon', dt, frames: all.length, wall_s: +((performance.now() - w0) / 1000).toFixed(2), rows: out,
+        total: { wall_ms_p50: +pct(all, 0.5).toFixed(2), wall_ms_p95: +pct(all, 0.95).toFixed(2), fps_equiv: +(1000 / mean).toFixed(2), gpu_ms_p50: null },
+        method: 'scrub (set_fraction to all 124 Film targets), then the body\'s next frame and the WebGPU queue drained (onSubmittedWorkDone), timed wall to wall; no GPU timestamp queries' };
+    },
+    async renderAt(t, n) { ad.pause(); ad.seek(t); need = Math.max(need, n); for (let i = 0; i < Math.max(2, n); i++) await br.nextFrame(); return {}; },
+    release() {},
+    dispose() { try { Film.enabled = false; } catch (e) {} try { inst.dispose(); } catch (e) {} inst = null; br = null; },
+  };
+  return ad;
+}
+function syncLookButton() { const b = $('#bLook'); if (!b) return; const on = !!(S.adapter && S.adapter.kind === 'babylon'); b.hidden = !on; if (on) b.setAttribute('aria-pressed', String(S.adapter.look())); }
+$('#bLook').addEventListener('click', () => { if (!S.adapter || S.adapter.kind !== 'babylon') return; S.adapter.setLook(!S.adapter.look()); syncLookButton(); $('#engBadge').textContent = S.adapter.badge(); updateLive(); poke(); });
+addEventListener('keydown', (e) => { if ((e.key === 'l' || e.key === 'L') && !e.ctrlKey && !e.metaKey && !e.altKey && S.adapter && S.adapter.kind === 'babylon' && !/INPUT|SELECT|TEXTAREA/.test((e.target && e.target.tagName) || '')) $('#bLook').click(); });
+function xScale(q) { const d = Math.min(window.devicePixelRatio || 1, 2); return q === 'low' ? 0.6 : q === 'ultra' ? d : 1; }
+
+// ---------- engine lifecycle ----------
+async function startEngine(kind, t, playing, first) {
+  S.busy = true;
+  const label = kind === 'x3d' ? 'X3D in X_ITE' : kind === 'babylon' ? 'Babylon.js on WebGPU' : (navigator.gpu ? 'WebGPU' : 'the WebGL2 fallback');
+  setStatus(first ? `Loading the film · ${label}` : `Switching to ${label} · holding ${fmt(t)}`, 0.04);
+  const ad = kind === 'x3d' ? X3DAdapter() : kind === 'babylon' ? BabylonAdapter() : WebGPUAdapter();
+  const t0 = performance.now();
+  try {
+    await ad.init(t, false, (p, msg) => setStatus(msg || 'Loading', p));
+  } catch (e) {
+    console.warn('engine init failed', e);
+    try { ad.dispose(); } catch (e2) {}
+    S.busy = false;
+    const other = kind === 'x3d' || kind === 'babylon' ? 'webgpu' : 'x3d';
+    setStatus(`${label} could not start here (${String(e && e.message || e).slice(0, 90)}). Trying the other engine.`, null);
+    if (!first || S.triedOther) { setStatus(`${label} could not start here.`, null); return false; }
+    S.triedOther = true;
+    return startEngine(other, t, playing, first);
+  }
+  S.adapter = ad; S.kind = kind;
+  S.loadMs = Math.round(performance.now() - t0);
+  S.loadTimes = S.loadTimes || {}; S.loadTimes[kind] = S.loadMs;
+  syncEngineButtons(); syncLookButton();
+  $('#engBadge').textContent = ad.badge();
+  setStatus('', null);
+  await new Promise((r) => { ad.onFirstFrame = r; if (ad.kick) ad.kick(); setTimeout(r, 15000); });
+  $('#poster').classList.add('gone');
+  S.busy = false;
+  if (playing) doPlay(); else { S.playing = false; syncPlay(); }
+  updateLive();
+  return true;
+}
+async function switchEngine(kind) {
+  if (S.busy || !S.started || kind === S.kind) return;
+  const t = S.adapter ? S.adapter.time() : S.t, playing = S.playing;
+  if (fly.active) flyEnd();
+  if (S.adapter) { S.adapter.dispose(); S.adapter = null; }
+  await startEngine(kind, t, playing, false);
+}
+function syncEngineButtons() {
+  document.querySelectorAll('[data-eng]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.eng === S.kind)));
+}
+
+// ---------- transport ----------
+function doPlay() {
+  if (!S.adapter || S.busy) return;
+  if (!S.includeFpv) { const s = SHOTS[shotIndexAt(S.adapter.time())]; if (s && s.kind === 'fpv') S.adapter.seek(nextHold(S.adapter.time())); }
+  S.adapter.play(); S.playing = true; syncPlay(); poke();
+}
+function doPause() { if (!S.adapter) return; S.adapter.pause(); S.playing = false; syncPlay(); poke(); }
+function toggle() { S.playing ? doPause() : doPlay(); }
+function syncPlay() {
+  $('#playPath').setAttribute('d', S.playing ? 'M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z' : 'M7 4.5v15L19.5 12z');
+  $('#bPlay').setAttribute('aria-label', S.playing ? 'Pause' : 'Play');
+}
+function nextHold(t) { let i = shotIndexAt(t); while (SHOTS[i] && SHOTS[i].kind === 'fpv') i++; return SHOTS[i] ? SHOTS[i].t0 + 0.05 : 0; }
+function seek(t) { if (!S.adapter) return; t = Math.max(0, Math.min(S.L - 0.05, t)); S.adapter.seek(t); S.t = t; overlay(t); poke(); }
+function chapter(d) {
+  if (!S.adapter) return; const t = S.adapter.time(); let i = chapIndexAt(t);
+  if (d < 0) { if (t - CHAPS[i].t0 < 2.5 && i > 0) i--; }
+  else { if (i >= CHAPS.length - 1) { toast('This is the last chapter.'); return; } i++; }
+  seek(CHAPS[i].t0 + 0.01);
+}
+
+// ---------- the page loop: time, overlays, fly, HUD, reduced-motion skipping ----------
+let hudT = 0;
+function tick(now) {
+  requestAnimationFrame(tick);
+  const ad = S.adapter; if (!ad || S.busy) return;
+  if (fly.active) { flyUpdate(now); if (ad.kind === 'x3d' || ad.kind === 'babylon') ad.flyApply(); }
+  const t = ad.time(); S.t = t;
+  rmSkip();
+  if (!S.dragging) overlay(t);
+  if (S.hud && now - hudT > 250) { hudT = now; $('#hud').textContent = ad.hud(); }
+  if (S.playing && !S.dragging && !S.panel && now - S.lastMove > 2600 && !ctlHover) hideCtl();
+}
+requestAnimationFrame(tick);
+// reduced motion: cut from hold to hold over the FPV flights. Checked on a 40 ms timer as well as per frame, with
+// 0.15 s of lookahead, so even a 1 fps software-rendered engine never draws a frame of flight
+function rmSkip() {
+  const ad = S.adapter; if (!ad || S.busy || !S.playing || S.includeFpv || fly.active) return;
+  const t = ad.time(), s = SHOTS[shotIndexAt(t)], n = SHOTS[shotIndexAt(Math.min(S.L - 0.01, t + 0.15))];
+  if (s && s.kind === 'fpv') ad.seek(nextHold(t)); else if (n && n.kind === 'fpv' && n !== s) ad.seek(nextHold(n.t0));
+}
+setInterval(rmSkip, 40);
+function kick() { if (S.adapter && S.adapter.kick) S.adapter.kick(); }
+
+// ---------- controls: auto-hide, timeline scrub, buttons, keyboard ----------
+let ctlHover = false;
+const ctl = $('#ctl');
+ctl.addEventListener('pointerenter', () => { ctlHover = true; }); ctl.addEventListener('pointerleave', () => { ctlHover = false; });
+// the caption lives in the bottom letterbox bar; where the bar is too short to hold both, it gives way to the controls
+const roomy = () => R.y >= 150;
+function showCtl() { if (!S.started) return; ctl.classList.add('on'); ctl.classList.remove('hide'); $('#topline').classList.add('on'); $('#caption').classList.toggle('on', roomy()); app.classList.remove('nocursor'); }
+function hideCtl() { if (S.test === 'show') return; ctl.classList.add('hide'); $('#caption').classList.add('on'); if (!fly.active) app.classList.add('nocursor'); }
+function poke() { S.lastMove = performance.now(); showCtl(); }
+addEventListener('pointermove', (e) => { if (e.pointerType === 'mouse' && !fly.locked) poke(); });
+addEventListener('pointerdown', () => poke());
+const tl = $('#tl'), tip = $('#tip');
+function tlTime(e) { const b = tl.getBoundingClientRect(); return Math.max(0, Math.min(1, (e.clientX - b.left) / b.width)) * S.L; }
+function showTip(t, x) {
+  const s = SHOTS[shotIndexAt(t)], c = CHAPS[chapIndexAt(t)];
+  tip.innerHTML = (s ? '<b>' + esc(s.name.split(' ')[0]) + '</b>' + esc(s.name.replace(/^S\d+\s+/, '')) : '') + '<i>' + fmt(t) + (c ? ' · ' + esc(c.title.split('·')[0].trim()) : '') + '</i>';
+  const b = tl.getBoundingClientRect(), w = tip.offsetWidth || 200;
+  tip.style.left = Math.max(w / 2 - 2, Math.min(b.width - w / 2 + 2, x - b.left)) + 'px';
+}
+let wasPlaying = false, scrubRaf = 0, scrubT = 0;
+tl.addEventListener('pointerdown', (e) => {
+  if (!S.adapter || S.busy) return;
+  tl.setPointerCapture(e.pointerId); S.dragging = true; tl.classList.add('drag', 'show-tip');
+  wasPlaying = S.playing; if (S.playing) { S.adapter.pause(); S.playing = false; }
+  scrubTo(e); e.preventDefault();
+});
+tl.addEventListener('pointermove', (e) => {
+  const t = tlTime(e);
+  if (S.dragging) scrubTo(e); else if (e.pointerType === 'mouse') { tl.classList.add('show-tip'); showTip(t, e.clientX); }
+});
+tl.addEventListener('pointerleave', () => { if (!S.dragging) tl.classList.remove('show-tip'); });
+const endScrub = (e) => {
+  if (!S.dragging) return; S.dragging = false; tl.classList.remove('drag', 'show-tip');
+  if (scrubRaf) { cancelAnimationFrame(scrubRaf); scrubRaf = 0; seek(scrubT); }
+  if (wasPlaying) doPlay(); else syncPlay();
+};
+tl.addEventListener('pointerup', endScrub); tl.addEventListener('pointercancel', endScrub);
+function scrubTo(e) {
+  scrubT = tlTime(e); showTip(scrubT, e.clientX); overlay(scrubT);
+  if (!scrubRaf) scrubRaf = requestAnimationFrame(() => { scrubRaf = 0; seek(scrubT); });
+}
+tl.addEventListener('keydown', (e) => { if (e.key === 'Home') { seek(0); e.preventDefault(); } else if (e.key === 'End') { seek(S.L - 0.1); e.preventDefault(); } });
+
+$('#bPlay').addEventListener('click', toggle);
+$('#bPrev').addEventListener('click', () => chapter(-1));
+$('#bNext').addEventListener('click', () => chapter(1));
+$('#bFull').addEventListener('click', fullscreen);
+$('#bHud').addEventListener('click', toggleHud);
+$('#bFly').addEventListener('click', () => (fly.active ? flyEnd() : flyStart()));
+$('#bAbout').addEventListener('click', () => togglePanel('About'));
+$('#bBench').addEventListener('click', () => togglePanel('Bench'));
+$('#oAbout').addEventListener('click', () => togglePanel('About'));
+document.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', () => togglePanel(null)));
+$('#quality').addEventListener('change', async (e) => {
+  S.quality = e.target.value; LS.set('quality', S.quality);
+  if (!S.adapter) return;
+  setStatus('Rebuilding the pipeline · ' + S.quality, null);
+  try { await S.adapter.setQuality(S.quality); } catch (err) { toast('Quality change failed: ' + String(err).slice(0, 80)); }
+  setStatus('', null); $('#engBadge').textContent = S.adapter.badge(); updateLive();
+  e.target.blur();
+});
+document.querySelectorAll('#engSeg [data-eng]').forEach((b) => b.addEventListener('click', () => { switchEngine(b.dataset.eng); b.blur(); }));
+document.querySelectorAll('#open [data-eng]').forEach((b) => b.addEventListener('click', () => { S.kind = b.dataset.eng; syncEngineButtons(); }));
+syncEngineButtons();
+$('#rmFpv').checked = !!(reduced && S.includeFpv);
+$('#rmFpv').addEventListener('change', (e) => { S.includeFpv = e.target.checked; LS.set('fpv', S.includeFpv); });
+
+async function fullscreen() {
+  try {
+    if (document.fullscreenElement || document.webkitFullscreenElement) { await (document.exitFullscreen ? document.exitFullscreen() : document.webkitExitFullscreen()); return; }
+    const el = document.documentElement, fn = el.requestFullscreen || el.webkitRequestFullscreen;
+    if (!fn) throw new Error('not supported');
+    await fn.call(el, { navigationUI: 'hide' });
+  } catch (e) { toast('Fullscreen is not available in this frame. Try the browser’s own full-screen view.'); }
+}
+function toggleHud() { S.hud = !S.hud; $('#hud').classList.toggle('on', S.hud); $('#bHud').setAttribute('aria-pressed', String(S.hud)); if (S.hud && S.adapter) $('#hud').textContent = S.adapter.hud(); }
+function togglePanel(name) {
+  if (S.panel === name) name = null;
+  S.panel = name;
+  for (const n of ['About', 'Bench']) { const p = $('#p' + n), on = n === name; p.classList.toggle('on', on); p.setAttribute('aria-hidden', String(!on)); const b = $('#b' + n); if (b) b.setAttribute('aria-pressed', String(on)); }
+  if (name === 'About') updateLive();
+  if (name === 'Bench') $('#benchWhat').textContent = S.adapter ? S.adapter.benchInfo() : 'Begin the film first; the bench runs on the engine that is playing.';
+  if (name && fly.active) flyEnd();
+}
+
+addEventListener('keydown', (e) => {
+  if (e.target && (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT')) return;
+  if (e.target && e.target.tagName === 'BUTTON' && (e.code === 'Space' || e.code === 'Enter')) return; // the focused button acts
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const c = e.code;
+  if (fly.active && /^(Key[WASDQE]|Arrow(Up|Down|Left|Right)|Shift(Left|Right))$/.test(c)) { fly.keys.add(c); e.preventDefault(); return; }
+  if (!S.started) { if (c === 'Enter' && document.activeElement === document.body) begin(); return; }
+  poke();
+  switch (c) {
+    case 'Space': e.preventDefault(); toggle(); break;
+    case 'ArrowLeft': e.preventDefault(); seek(S.t - 5); break;
+    case 'ArrowRight': e.preventDefault(); seek(S.t + 5); break;
+    case 'PageUp': e.preventDefault(); chapter(-1); break;
+    case 'PageDown': e.preventDefault(); chapter(1); break;
+    case 'KeyF': fullscreen(); break;
+    case 'KeyH': toggleHud(); break;
+    case 'KeyT': fly.active ? flyEnd() : flyStart(); break;
+    case 'KeyR': if (fly.active) flyEnd(); break;
+    case 'KeyB': togglePanel('Bench'); break;
+    case 'KeyI': togglePanel('About'); break;
+    case 'Escape': if (S.panel) togglePanel(null); else if (fly.active && !fly.locked) flyEnd(); break;
+  }
+});
+addEventListener('keyup', (e) => { fly.keys.delete(e.code); });
+addEventListener('blur', () => fly.keys.clear());
+
+// ---------- bench panel ----------
+$('#benchRun').addEventListener('click', async () => {
+  if (!S.adapter || S.busy) { toast('Begin the film first.'); return; }
+  const btn = $('#benchRun'); btn.disabled = true; S.busy = true;
+  const dt = S.adapter.kind === 'webgpu' ? (S.adapter.eng.backend.software ? 2 : 0.5) : 1;
+  const bar = $('#benchBar i'); $('#benchMsg').textContent = `Stepping the film every ${dt} s…`; $('#benchOut').innerHTML = '';
+  const wasPlaying = S.playing; if (S.playing) doPause();
+  const t = S.adapter.time();
+  try {
+    const r = await S.adapter.bench(dt, (i, n, tt) => { bar.style.width = (i / n * 100) + '%'; $('#benchMsg').textContent = `frame ${i} of ${n} · film ${fmt(tt)}`; });
+    S.lastBench = r;
+    $('#benchMsg').textContent = `${r.frames} frames in ${r.wall_s} s · ${S.adapter.benchInfo()} · ${navigator.userAgent.match(/Chrom\w+\/[\d.]+|Firefox\/[\d.]+|Version\/[\d.]+ Safari/) || ''}`;
+    $('#benchOut').innerHTML = benchTable(r);
+  } catch (e) { $('#benchMsg').textContent = 'Bench failed: ' + String(e).slice(0, 160); }
+  S.busy = false; btn.disabled = false; S.adapter.seek(t); if (wasPlaying) doPlay();
+});
+function benchTable(r) {
+  const n = (v, d = 1) => v == null ? '–' : Number(v).toFixed(d);
+  let h = '<div class="tablewrap"><table><thead><tr><th>Shot</th><th>frames</th><th>p50 ms</th><th>p95 ms</th><th>fps</th><th>GPU p50</th><th>draws</th></tr></thead><tbody>';
+  for (const x of r.rows) h += `<tr><td class="name${x.kind === 'fpv' ? ' fpv' : ''}">${esc(x.shot)}</td><td>${x.frames}</td><td>${n(x.wall_ms_p50)}</td><td>${n(x.wall_ms_p95)}</td><td>${n(x.fps_equiv, 2)}</td><td>${n(x.gpu_ms_p50)}</td><td>${x.draw_calls == null ? '–' : x.draw_calls}</td></tr>`;
+  const T = r.total;
+  h += `<tr class="tot"><td>Whole film</td><td>${r.frames}</td><td>${n(T.wall_ms_p50)}</td><td>${n(T.wall_ms_p95)}</td><td>${n(T.fps_equiv, 2)}</td><td>${n(T.gpu_ms_p50)}</td><td></td></tr></tbody></table></div>`;
+  if (r.method) h += `<div class="src">Method: ${esc(r.method)}.</div>`;
+  else h += `<div class="src">Method: profiler.bench, fixed timestep ${r.dt} s, GPU idle awaited each frame; GPU ms from timestamp queries where the adapter has them.</div>`;
+  return h;
+}
+function updateLive() {
+  const el = $('#aboutLive'); if (!el) return;
+  if (!S.adapter) { el.innerHTML = '<dt>Engine</dt><dd>not started</dd>'; return; }
+  const d = S.adapter.describe(), rows = [];
+  if (d.engine === 'WebGPU') {
+    const b = d.backend || {};
+    rows.push(['Engine', `three.js r${d.three} · ${b.backend}${b.software ? ' (software adapter)' : ''}`], ['Adapter', [b.vendor, b.architecture, b.description].filter(Boolean).join(' / ') || 'not exposed'],
+      ['Preset', `${d.preset} · ${d.size[0]}×${d.size[1]} px · dust ${Number(d.dust).toLocaleString()}`], ['Load', `${(S.loadTimes.webgpu / 1000).toFixed(2)} s to first frame (loader ${Math.round(d.timings_ms.load || 0)} ms, compile ${Math.round(d.timings_ms.compile || 0)} ms)`],
+      ['Loader', `${d.parse.unsupported && d.parse.unsupported.length ? d.parse.unsupported.length + ' unsupported' : '0 unsupported nodes'} · ROUTEs ${(() => { const r = d.parse.routes; return r && typeof r === 'object' ? `${r.resolved} of ${r.total} resolved` + (r.failed && r.failed.length ? `, ${r.failed.length} failed` : '') : r; })()}`]);
+  } else if (d.engine === 'Babylon') {
+    const a = d.adapter || {}, sc = d.scope || {};
+    rows.push(['Engine', `Babylon.js ${d.babylon} · WebGPU`], ['Adapter', [a.vendor, a.architecture, a.description].filter(Boolean).join(' / ') || 'not exposed'],
+      ['Size', `${d.size[0]}×${d.size[1]} px · look ${d.look ? 'on' : 'off (as authored)'} · ${d.shadowLights} shadow lights`], ['Load', `${(S.loadTimes.babylon / 1000).toFixed(2)} s to first frame (loadURL ${d.load_ms} ms, compile ${d.ready_ms} ms)`],
+      ['Scene', `${d.meshes} meshes · ${d.materials} materials · ${d.textures} textures · ${d.lights} lights`], ['Light scope', `${sc.scoped} scoped · ${sc.global} global · ${sc.empty} empty · at most ${sc.perMeshMax} on any one shape`]);
+  } else {
+    rows.push(['Engine', `X_ITE ${d.x_ite || ''} (WebGL2)`], ['GL', d.gl || 'not exposed'], ['Load', `${(S.loadTimes.x3d / 1000).toFixed(2)} s to first frame (loadURL ${d.load_ms} ms)`], ['Scale', `contentScale ${d.contentScale} · ${d.size[0]}×${d.size[1]} css px`]);
+  }
+  rows.push(['Browser', (navigator.userAgent.match(/(HeadlessChrome|Chrome|Firefox|Edg)\/[\d.]+|Version\/[\d.]+ Safari/) || [''])[0]]);
+  el.innerHTML = rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
+}
+
+// ---------- begin ----------
+async function begin() {
+  if (S.started || S.busy) return;
+  S.started = true;
+  $('#open').classList.add('gone');
+  if (!S.film) { try { prepFilm(await (await fetch(FILMS.film)).json()); } catch (e) { setStatus('film.json could not be read.', null); S.started = false; $('#open').classList.remove('gone'); return; } }
+  // reduced motion: open paused on the first composed hold after the title (S01, the shelf lit)
+  const startT = reduced && !S.includeFpv ? 10.2 : 0;
+  const ok = await startEngine(S.kind, startT, !reduced, true);
+  if (!ok) { S.started = false; $('#open').classList.remove('gone'); return; }
+  showCtl(); poke(); overlay(S.adapter.time(), true);
+}
+$('#begin').addEventListener('click', begin);
+fetch(FILMS.film).then((r) => r.json()).then(prepFilm).catch(() => {});
+
+// ---------- test hooks (headless harness) ----------
+window.__odyssey = {
+  S, begin, seek, doPlay, doPause, switchEngine, togglePanel, toggleHud, flyStart, flyEnd, fly,
+  get adapter() { return S.adapter; },
+  async still(t, n = 6) { if (S.playing) doPause(); const r = await S.adapter.renderAt(t, n); S.t = t; overlay(t, true); return r; },
+  release() { S.adapter && S.adapter.release(); },
+  hideControls() { S.test = false; hideCtl(); },
+  showControls(v = true) { S.test = v ? 'show' : false; showCtl(); },
+};
+</script>

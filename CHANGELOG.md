@@ -2,6 +2,10 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v16 (2026-11-08)
+- New Demo 19: Material Odyssey on Babylon.js 9.32.0 WebGPU (`docs/demos/material-odyssey-webgpu/v1/`), built from x3d.loom PR #23 (main 60824ce, bundle id c047da7784b2). A copy of the Material Odyssey film page with a third engine added; the X_ITE and three.js engines and their vendor folders are byte for byte as they were. One edit on this site: the page's "Back to the landing page" link, which pointed at a private page, now reads "Back to the demo page" and goes to this site's front page (sha256 changed from the build's output, see SOURCES.md).
+- Checked on a software adapter only: loads with 286 meshes, 74 lights, no page errors apart from X_ITE's own missing line-type texture; nothing timed.
+
 ## v15 (2026-11-08)
 - New Demo 18: Gobbler 3 on Babylon.js 9.32.0 WebGPU (`docs/demos/gobbler3-webgpu/v1/`), built from x3d.loom PR #22 (build id e4a4f247bb47). One offline page plus the three data files its "Take it with you" line links to. Four in-page links were repointed to this site's folders (the page's sha256 changed from 54f2185c… to 69e89297…, see SOURCES.md). The three individual outside GitHub handles in the graph were replaced with "Open-source maintainer" before the build. The X_ITE "cabinet of worlds" Gobbler (Demo 17) is a different page and is untouched.
 - Checked on a software adapter only: loads with 121 entities and no page errors; six views 14.6 to 19.7 dB against X_ITE 16.5.1 (phase differences); nothing timed.
