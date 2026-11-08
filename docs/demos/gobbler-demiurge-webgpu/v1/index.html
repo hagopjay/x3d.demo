@@ -1,0 +1,36 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Gobbler Demiurge Babylon</title>
+<meta name="description" content="Gobbler demiurge, step 2: the bird alone (head, Sun in the chest, Dyson ribcage, plumage, Blender tail fan), booted from about 0.5 MB gzipped.">
+<!-- Gobbler demiurge, step 2: bird-first page, a new folder on top of gobbler-v4 (which stays as it is). Params: ui=none|min  view=face|ribcage|heart|feather|establishing  hover=<entity index>&tier=2|3 -->
+<link rel="icon" href="data:,"><link rel="stylesheet" href="data/deep/common.css"><link rel="stylesheet" href="src/ui.css"><link rel="stylesheet" href="src/demiurge.css">
+<script src="https://cdn.jsdelivr.net/npm/babylonjs@9.32.0/babylon.js" integrity="sha384-1XDybi1454WehNQaPHwhcTlpJ6oDdq/L4KKyDu7JiWPOBUzoBC0yEcuKDzHpdXyo" crossorigin="anonymous"></script><script src="babylon/bundle.js"></script><script src="engine/common.js"></script>
+<script src="src/placement.js"></script><script src="src/pick.js"></script><script src="src/density.js"></script><script src="src/cards.js"></script><script src="src/hover.js"></script>
+<script>window.GD_CFG={bird:'data/bird/bird.b64.txt',enc:'b64gz',graph:'data/bird/graph.b64.txt',graphEnc:'b64gz',onto:'data/onto-hover.json',audioExt:'mp4'};</script><script src="src/boot.js" defer></script><script src="src/sound.js" defer></script>
+<header class="stage" id="stage">
+  <div class="shade"></div><div class="fog"></div><div class="dark"></div><div class="grain"></div><div class="flash"></div><div class="vignette"></div>
+  <div class="gv4" id="gv4" data-ui="min">
+    <div class="gv4-dim"></div><svg class="gv4-svg" aria-hidden="true"></svg>
+    <div class="gd-tags" id="gd-tags" aria-hidden="true"></div>
+    <div class="gv4-tip gv4-glass" role="tooltip"></div><div class="gv4-card gv4-glass" aria-live="polite"></div>
+    <div class="gv4-corner gv4-tl" data-corner="TL"><div class="gv4-id">Gobbler<small id="gv4-counts">bird first · step 2</small></div></div>
+    <div class="gv4-corner gv4-tr" data-corner="TR"><div class="gv4-legend"><span class="ok" id="gv4-valid"></span></div></div>
+    <div class="gv4-corner gv4-bl" data-corner="BL"><div class="gv4-pills" id="vps"><button class="chip on" id="gv4-ui" title="U cycles none and minimal, H hides everything while held">&#9680; UI<span class="k">minimal</span></button><button class="chip" id="gd-face" title="Fly to the gobbler's profile (key 1)">Face</button><button class="chip" id="btn-tour">Tour</button></div></div>
+    <div class="gv4-corner gv4-br" data-corner="BR"><div class="gv4-hud"><div class="hud" id="hud" style="text-align:right">starting</div><div id="gv4-hint">hover a star &middot; keys 1 to 8 fly the ladder</div></div></div>
+    <nav class="gd-rail gv4-corner" id="gd-rail" aria-label="Zoom ladder"></nav>
+    <div class="gd-scale" id="gd-scale" hidden aria-hidden="true"><i></i><b></b></div>
+    <div class="gv4-peek" title="Show the UI (U)">&#9680;</div>
+  </div>
+  <div class="busy" id="busy">Starting the viewer</div>
+</header>
+<noscript>This page needs JavaScript: the scene is X3D drawn by X_ITE.</noscript>
+<main class="about"><h2>Gobbler, bird first</h2>
+<p>This page boots with the bird alone: the Gobbler 3 Deep head and knowledge graph, the Sun in its chest, the Dyson ribcage of 364 ontology classes, feathers modelled in Blender with golden-hour light baked in, and the tail fan. The Sun is the validator: it beats a replay of 30 real validator runs, a gold beat for a clean or repaired scene and a red one for every failing round. The tail fan's export paths are simulated for now and tagged so. The world loads only as you fly toward it: the Earth and the Moon sit inside the bird, and on the Earth stands a village (a plaza with a fountain and twelve villagers, modelled in Blender, exported to X3D, the light baked in). Open <code>?ui=none</code> for a clean frame, <code>?seed=N</code> repeats a take of the camera.</p>
+<p>This public copy is drawn by Babylon.js 9.32.0 in WebGPU mode through our own X3D reader. In its knowledge graph, entries that touched private notes, people, costs or accounts are shown as &ldquo;(redacted)&rdquo; or &ldquo;A person&rdquo; and carry no text; the structure, counts and positions are unchanged. <a href="../../../index.html">Back to the demo page</a>.</p>
+<table><tr><th>Do</th><th>Get</th></tr>
+<tr><td><kbd>1</kbd> to <kbd>8</kbd> &middot; the rail</td><td>fly the zoom ladder (1 Face, 2 ribcage, 3 heart, 4 Earth and Moon, 5 village from orbit, 6 plaza, 7 a villager, 8 a feather)</td></tr>
+<tr><td>Face &middot; Tour</td><td>home view &middot; the shot list on a smooth spline: establishing, face, ribcage orbit, underneath, tenders, heart, the fan unfurling, and back</td></tr>
+<tr><td>rest on a star</td><td>the v4 cards (name, evidence, relations, ontology)</td></tr>
+<tr><td><kbd>U</kbd> &middot; hold <kbd>H</kbd> &middot; <kbd>T</kbd> &middot; <kbd>Shift</kbd>+<kbd>T</kbd> &middot; <kbd>Shift</kbd>+<kbd>F</kbd></td><td>UI none and minimal &middot; hide while held &middot; tour on and off &middot; tuning panel &middot; full screen</td></tr>
+<tr><td><kbd>M</kbd></td><td>sound on and off (silent to begin with): one bed for the cosmos and one for the village, crossing as you fly down, and the Sun's heartbeat on the validator's own tape</td></tr></table></main>
+
+</body></html>

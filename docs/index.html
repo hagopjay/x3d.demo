@@ -376,6 +376,34 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
+<section class="demo">
+  <img src="assets/gobbler-demiurge-webgpu.jpg" alt="The Gobbler demiurge: a turkey head drawn as a glowing triangulated wire mesh, with a ring of Armenian letters and a dense constellation of linked stars beside it" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 20</div>
+    <h2>Gobbler Demiurge on WebGPU</h2>
+    <p>The bird first: the Gobbler head, the Sun in its chest that beats a replay of real validator runs, a Dyson ribcage of ontology classes, the ring of the 36 Armenian letters, and a tail fan. Fly the zoom ladder with keys 1 to 8, down through the Earth and Moon to a Blender-modelled village. It is one X3D scene drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader, with the page&rsquo;s own explorer, tour, hover cards and sound (key M) running unchanged.</p>
+    <div class="chips">
+      <a href="demos/gobbler-demiurge-webgpu/v1/index.html">Open Gobbler Demiurge</a>
+      <a href="demos/gobbler3-webgpu/v1/index.html">Gobbler 3 on WebGPU (Demo 18)</a>
+    </div>
+    <p class="facts">Needs a WebGPU browser: Chrome or Edge 113 or later, Safari 26, Firefox 141; on Windows with an Intel UHD 620 Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code>. Babylon loads from a CDN with an integrity hash. <b>The knowledge graph in this public copy is redacted:</b> entries that touched private notes, people, costs or accounts show as &ldquo;(redacted)&rdquo; or &ldquo;A person&rdquo; with no text, and no file names; counts and positions are unchanged, so some hover cards are empty on purpose. Checked against X_ITE 16.5.1 on a software adapter, correctness only: the eight ladder views all draw, and the picture scores 7 to 13 dB against X_ITE, which means little because animation phases differ and X_ITE&rsquo;s village frame is black on that rig. Known gaps: the humanoid figures are not skinned (they move as rigid parts), sound and click-to-pin were not exercised, the frame reads brighter than X_ITE&rsquo;s, <b>nothing is timed on a real GPU</b>, and Safari and Firefox are unchecked. Source: x3d.loom, PR 24 (<code>x3d.webgpu/demo/src/build-demiurge.py</code>).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/dynasty-loom-webgpu.jpg" alt="Dynasty Loom hypersphere: a tangle of red lines forming the Rothschild family as a sphere of time, on a cream museum ground" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 21</div>
+    <h2>Dynasty Loom on WebGPU</h2>
+    <p>An atlas of three families (Rothschild, Habsburg, Darwin&ndash;Wedgwood). Its hypersphere view is a sphere of time: the founders sit at the centre, the present is the glass, each life is a fibre running outward and each marriage an arc. Here that view is drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader; the page&rsquo;s own scripts, lens, tour and night look run unchanged. The tapestry view (Loom) stays on X_ITE, so the page is a hybrid, and without WebGPU both views use X_ITE.</p>
+    <div class="chips">
+      <a href="demos/dynasty-loom-webgpu/v1/index.html">Open Dynasty Loom</a>
+      <a href="demos/dynasty-loom/v1/index.html">The X_ITE atlas (Demo 15)</a>
+    </div>
+    <p class="facts">Needs a WebGPU browser for the hypersphere: Chrome or Edge 113 or later, Safari 26, Firefox 141; on Windows with an Intel UHD 620 Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code>. Babylon loads from a CDN with an integrity hash; typefaces come from Google Fonts. Checked against X_ITE 16.5.1 on a software adapter, correctness only: eight museum shots score 29.0 to 37.8 dB, the night look and the selection and lens shots 36.3 to 39.4 dB, and a visitor play test (flight, select, lens, tour, tiers, family, night look, tapestry round trip) ran with no page errors. The 26 portraits are AI-made after public-domain paintings or photographs, or imagined where no likeness survives, and each one says which. Known gaps: the tapestry is not ported, no logarithmic depth, taps and hover were driven through the page&rsquo;s own test surface, <b>nothing is timed on a real GPU</b>, and Safari and Firefox are unchecked. Source: x3d.loom, PR 25 (<code>x3d.webgpu/demo/src/build-dynasty.py</code>).</p>
+  </div>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -392,7 +420,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a>, <a href="versions/v17/index.html">v17</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>

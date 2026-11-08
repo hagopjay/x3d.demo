@@ -2,6 +2,11 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v17 (2026-11-08)
+- New Demo 20: Gobbler Demiurge on Babylon.js 9.32.0 WebGPU (`docs/demos/gobbler-demiurge-webgpu/v1/`), built from x3d.loom PR #24. **The knowledge graph is redacted in this public copy**: 488 of its 3,759 entries and 566 of its 2,412 relations that touched private notes, named people, costs, accounts, private files or links were blanked (label "(redacted ...)" or "A person", no text), every source file name was dropped from all entries, and the structure, counts and positions are unchanged. The scene, audio, village and code are as built. One sentence and a back link were added to the page's About text (hash change in SOURCES.md).
+- New Demo 21: Dynasty Loom on Babylon.js 9.32.0 WebGPU (`docs/demos/dynasty-loom-webgpu/v1/`), built from x3d.loom PR #25 (bundle id 1d8afc5d1e5c). A hybrid: the hypersphere view is on Babylon, the tapestry view on X_ITE 16.5.1. All files are as built; the 26 AI portraits carry their own labels.
+- Checked on a software adapter only: Demo 20 loads (2,476 stars, bird on screen, hover cards render, no page errors); Demo 21 loads (hypersphere ready, WebGPU, no page errors); nothing timed.
+
 ## v16 (2026-11-08)
 - New Demo 19: Material Odyssey on Babylon.js 9.32.0 WebGPU (`docs/demos/material-odyssey-webgpu/v1/`), built from x3d.loom PR #23 (main 60824ce, bundle id c047da7784b2). A copy of the Material Odyssey film page with a third engine added; the X_ITE and three.js engines and their vendor folders are byte for byte as they were. One edit on this site: the page's "Back to the landing page" link, which pointed at a private page, now reads "Back to the demo page" and goes to this site's front page (sha256 changed from the build's output, see SOURCES.md).
 - Checked on a software adapter only: loads with 286 meshes, 74 lights, no page errors apart from X_ITE's own missing line-type texture; nothing timed.
