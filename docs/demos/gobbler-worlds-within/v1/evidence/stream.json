@@ -1,0 +1,15 @@
+{
+  "schema": "gobbler.stream-witness/1",
+  "passed": 9,
+  "checks": [
+    "ready requires adapter completion",
+    "budget evicts LRU while protecting active world",
+    "hysteresis and departure release",
+    "stale completion cannot resurrect an unloaded world",
+    "failure releases resources and permits retry",
+    "coalesced duplicate intent",
+    "visible world remains pinned until arrival commit",
+    "delayed camera observations cannot reverse navigation intent",
+    "grace is for departed ready worlds, not a load timeout"
+  ]
+}

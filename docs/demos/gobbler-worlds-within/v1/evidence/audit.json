@@ -1,0 +1,110 @@
+{
+  "schema": "gobbler.audit/1",
+  "passed": true,
+  "checks": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tests/semantic.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.158s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tests/server.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "127.0.0.1 - - [03/Nov/2026 16:53:14] \"GET /data/bird/bird.x3d.gz HTTP/1.1\" 200 -\n.127.0.0.1 - - [03/Nov/2026 16:53:15] \"GET /data/worlds/pantheon/pantheon.x3d HTTP/1.1\" 200 -\n.127.0.0.1 - - [03/Nov/2026 16:53:15] \"GET /data/worlds/pantheon/pantheon.x3d HTTP/1.1\" 200 -\n.127.0.0.1 - - [03/Nov/2026 16:53:15] code 404, message File not found\n127.0.0.1 - - [03/Nov/2026 16:53:15] \"GET /missing-fixture.x3d HTTP/1.1\" 404 -\n.\n----------------------------------------------------------------------\nRan 4 tests in 1.049s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tests/radiance.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.033s\n\nOK\n"
+    },
+    {
+      "command": [
+        "node",
+        "tests/stream.cjs"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"schema\": \"gobbler.stream-witness/1\",\n  \"passed\": 9,\n  \"checks\": [\n    \"ready requires adapter completion\",\n    \"budget evicts LRU while protecting active world\",\n    \"hysteresis and departure release\",\n    \"stale completion cannot resurrect an unloaded world\",\n    \"failure releases resources and permits retry\",\n    \"coalesced duplicate intent\",\n    \"visible world remains pinned until arrival commit\",\n    \"delayed camera observations cannot reverse navigation intent\",\n    \"grace is for departed ready worlds, not a load timeout\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "tests/profiler.cjs"
+      ],
+      "exit": 0,
+      "stdout": "{\"status\":\"pass\",\"controls\":[\"unavailable stays null\",\"query budget four\",\"pending stays null\",\"nanoseconds converted once\",\"reset rejects old epoch\",\"disjoint discards results\",\"balanced begin/end\"],\"scope\":\"Deterministic instrument controls; fake GL is explicitly not a hardware measurement.\"}\n",
+      "stderr": ""
+    }
+  ],
+  "transport": [
+    {
+      "file": "data/bird/bird.b64.txt",
+      "source_bytes": 477420,
+      "server_transfer_bytes": 354022,
+      "sha256": "b9b3de3fbccde127f0ed2e68f6901579c0a0faba969fdfa76d5412cbd035b7aa",
+      "method": "HTTP Content-Encoding gzip level 6"
+    },
+    {
+      "file": "data/bird/bird.x3d.gz",
+      "source_bytes": 358555,
+      "server_transfer_bytes": 358555,
+      "sha256": "e8ea06b192540a25685ee043445127f11606e7c37eec9cb97d714265277492ad",
+      "method": "identity .gz"
+    },
+    {
+      "file": "data/bird/graph.b64.txt",
+      "source_bytes": 354120,
+      "server_transfer_bytes": 268183,
+      "sha256": "3fbc008c8966bac91af8f3052214ce8b92edbf3c507b94d3858fb7573aa63a8f",
+      "method": "HTTP Content-Encoding gzip level 6"
+    },
+    {
+      "file": "data/bird/graph.json.gz",
+      "source_bytes": 265588,
+      "server_transfer_bytes": 265588,
+      "sha256": "f976e429ff46d4c505816a3a5c60b1e6f98d30b3ec9544b5e1496fadace2b178",
+      "method": "identity .gz"
+    },
+    {
+      "file": "data/worlds/pantheon/pantheon.x3d",
+      "source_bytes": 6542952,
+      "server_transfer_bytes": 2408844,
+      "sha256": "f85bccbaee0d98870bfffba1d5dbaf9c4287a667ab93a4174bbcd0a07e629c45",
+      "method": "HTTP Content-Encoding gzip level 6"
+    },
+    {
+      "file": "data/worlds/giza/sphinx-today-mesh-v21.xml",
+      "source_bytes": 7311564,
+      "server_transfer_bytes": 2100285,
+      "sha256": "91ae7cf19b14232c7b21c8b90c65f217fda4fc871bcc1a5a212241fa17bc6e1e",
+      "method": "HTTP Content-Encoding gzip level 6"
+    },
+    {
+      "file": "vendor/x_ite/x_ite.min.js",
+      "source_bytes": 1306526,
+      "server_transfer_bytes": 282046,
+      "sha256": "66ce41650e084ac519f552b0129f625d3941c086ea8edf1623c7d68e365e08a3",
+      "method": "HTTP Content-Encoding gzip level 6"
+    }
+  ],
+  "legacy_receipt": {
+    "actual_source_sha256": "904ce6a3541cd3720cb6a3aa2374388ffe614464594585ff8df0b91da1ae49e3",
+    "actual_source_bytes": 1714665,
+    "historical_scene_sha256": "888a79344f0845417d31e0127d7d3b279d6be2f44fe6caa53727a2eb9fc68d1c",
+    "historical_scene_bytes": 1663991,
+    "binding_matches": false
+  },
+  "bound_scene": "fb7cfaea174758e5eb3257d37b7557a14c7121d8c5d17a3c4f2283de2296ff36"
+}
