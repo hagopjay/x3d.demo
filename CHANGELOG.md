@@ -2,6 +2,10 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v18 (2026-11-08)
+- New Demo 22: Library Hall on Babylon.js 9.32.0 WebGPU (`docs/demos/library-hall-webgpu/v1/`), the build of x3d.loom PR #27 (open when hosted), 87 files as built: the page, the 14 MB `hall.x3d`, textures and the bundled X_ITE 16.5.1 for the page's comparison button. Nothing changed.
+- Checked on a software adapter only: loads and draws two film views with no page errors beyond a missing favicon; Text nodes are not drawn; nothing timed.
+
 ## v17 (2026-11-08)
 - New Demo 20: Gobbler Demiurge on Babylon.js 9.32.0 WebGPU (`docs/demos/gobbler-demiurge-webgpu/v1/`), built from x3d.loom PR #24. **The knowledge graph is redacted in this public copy**: 488 of its 3,759 entries and 566 of its 2,412 relations that touched private notes, named people, costs, accounts, private files or links were blanked (label "(redacted ...)" or "A person", no text), every source file name was dropped from all entries, and the structure, counts and positions are unchanged. The scene, audio, village and code are as built. One sentence and a back link were added to the page's About text (hash change in SOURCES.md).
 - New Demo 21: Dynasty Loom on Babylon.js 9.32.0 WebGPU (`docs/demos/dynasty-loom-webgpu/v1/`), built from x3d.loom PR #25 (bundle id 1d8afc5d1e5c). A hybrid: the hypersphere view is on Babylon, the tapestry view on X_ITE 16.5.1. All files are as built; the 26 AI portraits carry their own labels.

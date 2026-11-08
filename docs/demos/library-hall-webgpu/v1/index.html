@@ -1,0 +1,187 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Hall on Babylon</title>
+<meta name="description" content="The Hall of the Library of PolyXandria, an X3D 4.0 scene with two real suns, drawn by Babylon.js on WebGPU through our own X3D reader, with X_ITE one click away.">
+<!-- The Hall (library_v1_8_extras.x3d, 14 MB, no shader in it) on Babylon.js 9.32.0 WebGPU.  Params: look=0 (as authored)  engine=xite  scale=0.5  shadows=0  rz=0  view=<Viewpoint DEF>  t=<seconds>  timing=0 -->
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;display=swap">
+<style>
+:root { --ink: #ece4d3; --ink2: #b9ae98; --mute: #7f776a; --bg: #07080c; --panel: rgba(12,13,18,.82); --line: rgba(236,228,211,.16); --gold: #e3b866; --blue: #8aa4d6; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; overflow: hidden; }
+#stage { position: fixed; inset: 0; background: #000; }
+#stage x3d-canvas { display: block; width: 100%; height: 100%; }
+#shade { position: fixed; inset: 0; pointer-events: none; background: linear-gradient(to bottom, rgba(0,0,0,.45), transparent 16%, transparent 78%, rgba(0,0,0,.6)); }
+header { position: fixed; left: max(16px, env(safe-area-inset-left)); top: max(12px, env(safe-area-inset-top)); right: max(16px, env(safe-area-inset-right)); display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; pointer-events: none; }
+h1 { margin: 0; font: 600 28px/1.1 "Cormorant Garamond", Georgia, serif; letter-spacing: .01em; }
+header small { color: var(--ink2); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+#vpname { color: var(--gold); font: italic 500 17px "Cormorant Garamond", Georgia, serif; margin-left: auto; text-align: right; }
+#bar { position: fixed; left: 0; right: 0; bottom: 0; padding: 10px max(16px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; background: var(--panel); backdrop-filter: blur(10px); border-top: 1px solid var(--line); }
+button, select { font: inherit; color: var(--ink); background: rgba(255,255,255,.06); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; min-height: 36px; cursor: pointer; }
+button:hover, select:hover { border-color: rgba(236,228,211,.4); }
+button[aria-pressed="true"] { background: rgba(227,184,102,.18); border-color: rgba(227,184,102,.6); color: #fff2d6; }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+#film { display: flex; align-items: center; gap: 10px; flex: 1 1 340px; min-width: 0; }
+#scrub { flex: 1; min-width: 80px; accent-color: var(--gold); }
+#clock { font: 12px ui-monospace, Menlo, Consolas, monospace; color: var(--ink2); min-width: 8.5em; text-align: right; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; border-radius: 0; background: transparent; }
+.seg button + button { border-left: 1px solid var(--line); }
+#veil { position: fixed; inset: 0; display: grid; place-items: center; background: #05060a; z-index: 5; text-align: center; padding: 24px; transition: opacity .5s; }
+#veil[hidden] { display: none; }
+#veil.fade { opacity: 0; pointer-events: none; }
+#veil b { display: block; font: 600 34px "Cormorant Garamond", Georgia, serif; margin-bottom: 6px; }
+#veil span { color: var(--ink2); }
+#chip { position: fixed; left: max(16px, env(safe-area-inset-left)); bottom: calc(var(--barh, 64px) + 10px); z-index: 4; max-width: min(40em, 90vw); font: 12px/1.45 ui-monospace, Menlo, Consolas, monospace; color: #f2dca8; background: rgba(8,6,10,.8); border: 1px solid rgba(250,204,115,.35); border-radius: 8px; padding: 6px 10px; cursor: pointer; white-space: pre-wrap; }
+#chip[hidden] { display: none; }
+#about { position: fixed; right: max(12px, env(safe-area-inset-right)); top: 56px; bottom: 70px; width: min(420px, calc(100vw - 32px)); overflow: auto; background: var(--panel); backdrop-filter: blur(12px); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; z-index: 6; }
+#about[hidden] { display: none; }
+#about h2 { margin: 0 0 4px; font: 600 24px "Cormorant Garamond", Georgia, serif; }
+#about h3 { margin: 16px 0 4px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+#about p, #about dd { color: var(--ink2); margin: 4px 0; }
+#about dt { color: var(--ink); font-weight: 600; margin-top: 8px; }
+#about dd { margin-left: 0; }
+#about kbd { font: 12px ui-monospace, monospace; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+@media (max-width: 560px) { h1 { font-size: 22px; } #vpname { display: none; } #clock { min-width: 0; } }
+</style>
+<div id="stage"></div><div id="shade"></div>
+<header><h1>The Hall</h1><small>Library of PolyXandria</small><div id="vpname" aria-live="polite"></div></header>
+<div id="veil"><div><b id="veilT">Opening the Hall</b><span id="veilS">starting the engine</span></div></div>
+<div id="chip" hidden></div>
+<aside id="about" hidden aria-label="About this page">
+  <h2>The Hall, on Babylon</h2>
+  <p>One X3D 4.0 file (14 MB, no shader in it): an octagonal hall with 88 PBR materials, 17 lights, and the real suns of two cities on 16 October 2026 crossing it on a 299.52 s clock. The file's 187 ROUTEs run the film; this page only starts, stops and seeks the clock and picks the viewpoint.</p>
+  <h3>The Babylon engine</h3>
+  <p>Our own X3D reader feeds Babylon.js 9.32.0 on WebGPU. It keeps the file's rules and lets Babylon do the rest.</p>
+  <dl>
+    <dt>Two suns, two cascaded shadow maps</dt><dd>Each DirectionalLight that asks for shadows gets a cascaded shadow generator (3 cascades, PCF), switched off while that sun is dark.</dd>
+    <dt>Light scope and units</dt><dd>13 of the 17 lights are <b>global="false"</b>: each lights only the group it sits in, which is also what keeps every material under Babylon's light cap. Intensities are candela / lux, falloff is the glTF punctual model.</dd>
+    <dt>Two texture channels</dt><dd>The lunette patches carry a MultiTextureCoordinate and name the channel each map reads (<b>baseTextureMapping</b>, <b>emissiveTextureMapping</b>): carried as Babylon's second UV set and a per-texture coordinatesIndex.</dd>
+    <dt>Points without point sizes</dt><dd>WebGPU has no point size. The galaxy and the dust are camera-facing quads sized by the node's own PointProperties attenuation.</dd>
+    <dt>Blend modes</dt><dd>BlendMode (SRC_ALPHA, ONE) becomes Babylon's additive mode on the sun patches and the glass.</dd>
+    <dt>Animated geometry</dt><dd>Coordinate and texture coordinates move under 27 interpolators; the vertex buffers are rewritten in place, no shape is rebuilt.</dd>
+    <dt>Look</dt><dd>The <b>Look</b> button adds bloom, a light vignette and grain, nothing else. Off, it draws the file as authored.</dd>
+  </dl>
+  <h3>Eight node types new in this port</h3>
+  <p>Collision, CoordinateInterpolator, CoordinateInterpolator2D, Disk2D, Extrusion, MultiTextureCoordinate, PointProperties, Rectangle2D.</p>
+  <h3>Use</h3>
+  <p>Drag to orbit, scroll to zoom, right-drag to pan. <kbd>Space</kbd> plays and pauses the film. The <b>X_ITE</b> button redraws the same file in X_ITE 16.5.1 for comparison. Not pixel for pixel: the gaps are listed in the run's GAPS.md.</p>
+  <p id="aboutRig"></p>
+</aside>
+<div id="bar">
+  <div id="film"><button id="play" aria-label="Pause the film" title="Space">&#10074;&#10074;</button><input id="scrub" type="range" min="0" max="299.52" step="0.01" value="0" aria-label="Film position in seconds"><span id="clock">0:00 / 4:59</span></div>
+  <label><span class="sr" style="position:absolute;left:-9999px">Viewpoint</span><select id="views" aria-label="Viewpoint"></select></label>
+  <button id="look" aria-pressed="true" title="Bloom, vignette and grain on top of the file">Look</button>
+  <span class="seg" role="group" aria-label="Engine"><button id="eng-b" aria-pressed="true">Babylon</button><button id="eng-x" aria-pressed="false">X_ITE</button></span>
+  <button id="aboutBtn" aria-expanded="false">About</button>
+</div>
+<script type="application/json" id="views-json">[{"def": "FilmCamera", "description": "Aria: the film's one take"}, {"def": "ViewThreshold", "description": "1. The cube at twilight, from the causeway"}, {"def": "ViewTriplet", "description": "2. The trip-let in its three lamps"}, {"def": "ViewCrypt", "description": "3. The crypt: lenses in the vault"}, {"def": "ViewRising", "description": "4. The rising, facing the dawn"}, {"def": "ViewDawnPort", "description": "5. The dawn port ignites"}, {"def": "ViewFirstLight", "description": "5. First light on the first pane"}, {"def": "ViewMeridian", "description": "6. Along the meridian, toward the sun disc"}, {"def": "ViewCrossing", "description": "7. Two suns meet in the pool"}, {"def": "ViewShadow", "description": "8. The shadow: a dark bay at eye level"}, {"def": "ViewLectern", "description": "9. The lectern: the report and the repair"}, {"def": "ViewValid", "description": "9. Valid: the sphere turns red, the glass anneals"}, {"def": "ViewAufhebung", "description": "10. Aufhebung: the pane rises to its niche"}, {"def": "ViewGallery", "description": "From gallery IV across the well"}, {"def": "ViewAscent", "description": "11. The ascent to the oculus"}, {"def": "ViewExterior", "description": "The Library between two suns"}, {"def": "ViewHeavenV", "description": "11. Heaven V: the panes drift above the oculus"}, {"def": "ViewHeavenVI", "description": "11. Heaven VI: the panes become glowing cards"}, {"def": "ViewGalaxyBelow", "description": "12. The galaxy from below"}, {"def": "ViewGalaxy", "description": "12. The galaxy (VIII): the whole map"}, {"def": "ViewCore", "description": "13. The core: the empty niche"}, {"def": "ViewDaCapo", "description": "13. Da capo: the niche holds the first frame"}, {"def": "ViewHeavensFromAfar", "description": "The four heavens over the Library"}]</script>
+<script src="https://cdn.jsdelivr.net/npm/babylonjs@9.32.0/babylon.js" integrity="sha384-1XDybi1454WehNQaPHwhcTlpJ6oDdq/L4KKyDu7JiWPOBUzoBC0yEcuKDzHpdXyo" crossorigin="anonymous"></script><script src="babylon/bundle.js"></script>
+<script>
+(() => {
+  'use strict';
+  try { new ResizeObserver(() => document.documentElement.style.setProperty('--barh', document.getElementById('bar').offsetHeight + 'px')).observe(document.getElementById('bar')); } catch (e) { /* the 64 px default stands */ }   // the bar wraps on a phone: keep the note chip above it
+  const FILM = 299.52, Q = new URLSearchParams(location.search), $ = (id) => document.getElementById(id);
+  const VIEWS = JSON.parse($('views-json').textContent);
+  const stage = $('stage'), veilT = $('veilT'), veilS = $('veilS');
+  let eng = null, B = null, scene = null, film = null, host = null, playing = true, want = Q.get('engine') === 'xite' ? 'xite' : 'babylon', epoch = 0;
+  const now = () => Date.now() / 1000, frames = (n) => new Promise((r) => { const f = (k) => (k <= 0 ? r() : requestAnimationFrame(() => f(k - 1))); f(n); });
+  const mmss = (s) => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  const say = (t, s) => { veilT.textContent = t; veilS.textContent = s || ''; $('veil').hidden = false; $('veil').classList.remove('fade'); };
+  const lift = () => { $('veil').classList.add('fade'); setTimeout(() => { $('veil').hidden = true; }, 600); };
+  for (const v of VIEWS) { const o = document.createElement('option'); o.value = v.def; o.textContent = v.description; $('views').appendChild(o); }
+
+  /* ---- the law-40 chip: every fallback the engine takes is listed on screen */
+  const notes = [];
+  const chip = () => { const c = $('chip'); c.hidden = !notes.length; const open = c.dataset.open === '1'; c.textContent = open ? 'Fallbacks (click to close):\n' + notes.map((n) => '· ' + n).join('\n') : notes.length + ' note' + (notes.length > 1 ? 's' : '') + ' in this drawing (click)'; };
+  $('chip').addEventListener('click', () => { $('chip').dataset.open = $('chip').dataset.open === '1' ? '0' : '1'; chip(); });
+  const onNote = (m) => { if (!notes.includes(m)) { notes.push(m); chip(); } };
+
+  /* ---- the film clock: the file's TimeSensor, driven the same way in both engines */
+  async function seek(t) {
+    if (!film) return;
+    const was = playing; t = Math.max(0, Math.min(FILM - 0.001, t));
+    film.enabled = false; await frames(2);
+    const n = now(); film.startTime = n - t; film.resumeTime = n; film.pauseTime = was ? n - 1 : n + 0.02; film.enabled = true;   // paused: the film shows the first frame at t and holds there
+  }
+  function pause() { if (!film || !playing) return; film.pauseTime = now(); playing = false; $('play').innerHTML = '&#9654;'; $('play').setAttribute('aria-label', 'Play the film'); }
+  function resume() { if (!film || playing) return; film.resumeTime = now(); playing = true; $('play').innerHTML = '&#10074;&#10074;'; $('play').setAttribute('aria-label', 'Pause the film'); }
+  $('play').addEventListener('click', () => (playing ? pause() : resume()));
+  addEventListener('keydown', (e) => { if (e.code === 'Space' && !/^(SELECT|INPUT|BUTTON)$/.test(document.activeElement && document.activeElement.tagName)) { e.preventDefault(); playing ? pause() : resume(); } });
+  let dragging = false;
+  $('scrub').addEventListener('input', () => { dragging = true; $('clock').textContent = mmss(+$('scrub').value) + ' / ' + mmss(FILM); });
+  $('scrub').addEventListener('change', async () => { await seek(+$('scrub').value); dragging = false; });
+  (function tick() {
+    if (film && !dragging) { try { const f = +film.fraction_changed; if (f >= 0) { $('scrub').value = (f * FILM).toFixed(2); $('clock').textContent = mmss(f * FILM) + ' / ' + mmss(FILM); } } catch (e) { /* not ready */ } }
+    setTimeout(tick, 120);
+  })();
+
+  /* ---- viewpoints */
+  function setView(def) {
+    if (!scene) return;
+    try { scene.getNamedNode(def).set_bind = true; } catch (e) { try { scene.getNamedNode(def).set_bind = true; } catch (e2) { onNote('viewpoint ' + def + ': ' + e2.message); } }
+    const v = VIEWS.find((x) => x.def === def); $('vpname').textContent = v ? v.description : ''; $('views').value = def;
+  }
+  $('views').addEventListener('change', () => setView($('views').value));
+
+  /* ---- engines */
+  async function loadXite() {
+    if (window.__xiteReady) return window.__xiteReady;
+    return (window.__xiteReady = new Promise((res, rej) => {
+      const keep = window.X3D;                               // the Babylon bundle's value types live in window.X3D; X_ITE takes the name while it runs
+      const s = document.createElement('script'); s.src = 'x_ite/x_ite.min.js';
+      s.onload = () => { window.__xiteX3D = window.X3D; res(window.__xiteX3D); }; s.onerror = () => rej(new Error('X_ITE did not load'));
+      document.head.appendChild(s);
+    }));
+  }
+  async function stop() {
+    epoch++; film = null; scene = null; B = null;
+    if (eng === 'babylon' && host && host.dispose) host.dispose();
+    if (eng === 'xite') stage.querySelectorAll('x3d-canvas').forEach((c) => c.remove());
+    host = null; eng = null;
+  }
+  async function start(which) {
+    const my = ++epoch;
+    say(which === 'babylon' ? 'Opening the Hall' : 'Opening the Hall in X_ITE', which === 'babylon' ? 'starting Babylon.js on WebGPU' : 'loading X_ITE');
+    $('eng-b').setAttribute('aria-pressed', String(which === 'babylon')); $('eng-x').setAttribute('aria-pressed', String(which === 'xite'));
+    $('look').hidden = which !== 'babylon';
+    try {
+      if (which === 'babylon') {
+        if (!navigator.gpu) throw new Error('WebGPU is not available in this browser.');
+        host = await HallBabylon.create(stage, { onNote }); eng = 'babylon'; B = host.B;
+        const a = host.info.adapter || {}; $('aboutRig').textContent = 'Drawn by Babylon.js ' + host.info.babylon + ' on WebGPU' + (a.vendor ? ' (' + [a.vendor, a.architecture].filter(Boolean).join(' ') + ')' : '') + '.';
+        if (window.__hallNotes) window.__hallNotes.forEach(onNote);
+        say('Opening the Hall', 'reading the scene (14 MB)');
+        scene = await B.loadURL([new URL('hall.x3d', location.href).href]);
+        say('Opening the Hall', 'building meshes, lights and shadows');
+        await host.ready(); await frames(3);
+        if (window.__hallLook && window.__hallLook.apply) { const on = Q.get('look') !== '0'; window.__hallLook.apply(on); $('look').setAttribute('aria-pressed', String(on)); }
+      } else {
+        const X = await loadXite();
+        const c = document.createElement('x3d-canvas'); c.setAttribute('contentScale', Q.get('scale') || 'auto'); stage.appendChild(c);
+        await customElements.whenDefined('x3d-canvas');
+        const br = X.getBrowser(c); eng = 'xite'; host = { xite: br };
+        await br.loadURL(new X.MFString(new URL('hall.x3d', location.href).href));
+        scene = br.currentScene; B = br;
+        $('aboutRig').textContent = 'Drawn by X_ITE ' + (X.X3DBrowser ? '' : '') + ' (the reference engine).';
+      }
+      if (my !== epoch) return;
+      film = scene.getNamedNode('Film');
+      await seek(Q.has('t') ? +Q.get('t') : 0); if (Q.get('paused') === '1') pause();
+      if (Q.get('view')) setView(Q.get('view')); else { $('views').value = 'FilmCamera'; $('vpname').textContent = 'Aria: the film\'s one take'; }
+      lift();
+      window.__hall = { ready: true, engine: eng, seek, pause, resume, setView, scene: () => scene, film: () => film, body: () => (host && host.body) || null, notes };
+    } catch (e) {
+      console.error(e); window.__hallError = String(e && e.message || e);
+      say(which === 'babylon' ? 'The Hall on WebGPU needs a WebGPU browser' : 'X_ITE could not open the Hall', String(e && e.message || e) + (which === 'babylon' ? ' Chrome or Edge 113 and later, Safari 26, and Firefox 141 and later on Windows run it. On Windows Chrome 156 a graphics card without a WebGPU backend can be unlocked at chrome://flags/#enable-unsafe-webgpu. The X_ITE button shows the same file without WebGPU.' : ''));
+      $('veil').insertAdjacentHTML('beforeend', ''); if (which === 'babylon') { const b = document.createElement('p'); b.innerHTML = '<button id="fallback">Open it in X_ITE instead</button>'; $('veil').firstElementChild.appendChild(b); $('fallback').onclick = () => switchTo('xite'); }
+    }
+  }
+  async function switchTo(w) { if (w === eng) return; await stop(); want = w; await start(w); }
+  $('eng-b').addEventListener('click', () => switchTo('babylon')); $('eng-x').addEventListener('click', () => switchTo('xite'));
+  $('look').addEventListener('click', () => { const on = $('look').getAttribute('aria-pressed') !== 'true'; $('look').setAttribute('aria-pressed', String(on)); if (window.__hallLook && window.__hallLook.apply) window.__hallLook.apply(on); });
+  $('aboutBtn').addEventListener('click', () => { const a = $('about'); a.hidden = !a.hidden; $('aboutBtn').setAttribute('aria-expanded', String(!a.hidden)); });
+  start(want);
+})();
+</script>
+
+</body></html>

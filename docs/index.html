@@ -404,6 +404,20 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
+<section class="demo">
+  <img src="assets/library-hall-webgpu.jpg" alt="A stone stairwell in the library hall seen from above, with a brass handrail, a dark blue wall and a landing below" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 22</div>
+    <h2>Library Hall on WebGPU</h2>
+    <p>A 299-second film through the hall of a library, carried by one 14 MB X3D file with 23 viewpoints and no custom shaders: stone, oak, bronze, lamps, a sky dome and a galaxy 2.4 km out. It is drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader, with an X_ITE button on the page to compare the same file.</p>
+    <div class="chips">
+      <a href="demos/library-hall-webgpu/v1/index.html">Open the Library Hall</a>
+      <a href="demos/library-hall-webgpu/v1/hall.x3d">Scene (.x3d)</a>
+    </div>
+    <p class="facts">Needs a WebGPU browser: Chrome or Edge 113 or later, Safari 26, Firefox 141; on Windows with an Intel UHD 620 Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code>. It is a large page, about 38 MB with textures and the X_ITE comparison engine. Babylon loads from a CDN with an integrity hash; typefaces come from Google Fonts. Checked against X_ITE 16.5.1 on a software adapter, correctness only: five matched shots score 17.5 to 25.3 dB, geometry and the film clock agree, and lamp-lit interiors read 1.2 to 1.4 times brighter than X_ITE&rsquo;s. Not tuned to those numbers. Known gaps: <b>Text nodes are not drawn</b> (the plaques and two fonts), one shadow map per shadow light, <b>nothing is timed on a real GPU</b>, only five of 23 viewpoints were compared, no audio was tried, and Safari and Firefox are unchecked. Source: x3d.loom, PR 27.</p>
+  </div>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -420,7 +434,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a>, <a href="versions/v17/index.html">v17</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a>, <a href="versions/v17/index.html">v17</a>, <a href="versions/v18/index.html">v18</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>
