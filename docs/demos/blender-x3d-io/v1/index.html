@@ -293,7 +293,7 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:4px}
  <div class="wrap">
   <div class="eyebrow">Live demos</div>
   <h2>The scenes themselves, running in your browser</h2>
-  <p class="sub">Each demo starts as a still taken by the same headless renderer. Press <b>Load live 3D</b> to fetch X_ITE 16.4.3 and the real X3D file; drag to orbit, scroll to zoom. Under every scene is the verdict of the validator fork on that exact file.</p>
+  <p class="sub">Each demo starts as a still taken by the same headless renderer. Press <b>Load live 3D</b> to load X_ITE 16.6.0 (bundled with this page) and the real X3D file; drag to orbit, scroll to zoom. Under every scene is the verdict of the validator fork on that exact file.</p>
   <div class="theatre">
    <div class="dlist" id="dlist" role="tablist" aria-label="Demos"></div>
    <div class="stagebox">
@@ -515,7 +515,7 @@ var DEMOS = [
   facts:[['Viewer distance','10 units','both scenes'],['Expected','far level','if range is in local coordinates']]}
 ];
 /* x3d.demo: the demos added so far (one at a time, each approved by the owner) */
-var INCLUDED = ['stilllife'];
+var INCLUDED = ['stilllife', 'splats'];
 DEMOS = DEMOS.filter(function(d){ return INCLUDED.indexOf(d.id) >= 0; });
 var VERDICTS = null;
 var list = document.getElementById('dlist'), vtabs = document.getElementById('vtabs');
