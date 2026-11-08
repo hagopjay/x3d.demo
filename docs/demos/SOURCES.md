@@ -95,3 +95,7 @@ The six STEM-shelf studies are linked to hagopjay/x3d.STEM `studies/<name>/`; th
 | gobbler-worlds-within/v1/index.html | 8b583a55e3459d4eb5027f13bf44599876f58f6055b3a2e8166d591c2c026024 | 5913 |
 | gobbler-worlds-within/v1/data/worlds/pantheon/pantheon.x3d | f85bccbaee0d98870bfffba1d5dbaf9c4287a667ab93a4174bbcd0a07e629c45 | 6542952 |
 | gobbler-worlds-within/v1/data/worlds/drillfield/drillfield.x3d | 19ccc474ad549496fce868d44de50575d60b4001ad2e81b24c79511f9b1d27de | 549839 |
+
+## Doc v15 additions
+
+- Gobbler 3 on WebGPU (`gobbler3-webgpu/v1`): handed over by the Gobbler port thread as `gobbler3-webgpu-v1.tar` (sha256 2c387c410bc639358de65ef1c62370bf58d2a22a4ab316305e7008a75d3dd0f4), built with `python3 -I x3d.webgpu/demo/src/build-gobbler.py --page source --out index.html --single` from x3d.loom main (PR #22). Delivered `index.html` sha256 54f2185cc6fd10e3ca7a2a07d40cd5ba4ac0d6d745ae4ad84f8e0ed12d9aa0c3; the hosted copy differs only by four repointed links, sha256 69e89297b5ab19b0c0002b75adee0999ca5334829bc5b4246cdb3e3c5bfe93cf. `gobbler3.x3d`, `graph-v3.json` and `graph-v3.jsonld` are byte-identical to the delivered files. The only external address in the page is the pinned Babylon.js 9.32.0 script on the jsDelivr CDN with SRI sha384-1XDybi1454WehNQaPHwhcTlpJ6oDdq/L4KKyDu7JiWPOBUzoBC0yEcuKDzHpdXyo. `assets/gobbler3-webgpu.jpg` is a frame from the software-adapter run, re-encoded.

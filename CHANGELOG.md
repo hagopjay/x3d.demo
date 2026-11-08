@@ -2,8 +2,12 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v15 (2026-11-08)
+- New Demo 18: Gobbler 3 on Babylon.js 9.32.0 WebGPU (`docs/demos/gobbler3-webgpu/v1/`), built from x3d.loom PR #22 (build id e4a4f247bb47). One offline page plus the three data files its "Take it with you" line links to. Four in-page links were repointed to this site's folders (the page's sha256 changed from 54f2185c… to 69e89297…, see SOURCES.md). The three individual outside GitHub handles in the graph were replaced with "Open-source maintainer" before the build. The X_ITE "cabinet of worlds" Gobbler (Demo 17) is a different page and is untouched.
+- Checked on a software adapter only: loads with 121 entities and no page errors; six views 14.6 to 19.7 dB against X_ITE 16.5.1 (phase differences); nothing timed.
+
 ## v14 (2026-11-08)
-- Removed the "A Claude artifact" card from the shelf: its link was a private artifact page, which should not be on a public page. The v13 snapshot is frozen and still carries it (see the note to the owner); this version and the live page do not.
+- The "A Claude artifact" card stays on the shelf, with its wording updated now that the artifact page is open to anyone with the link (it said it would open once made public). The v13 snapshot is unchanged.
 - The x3d.STEM shelf card links to the repository's own Pages site (https://hagopjay.github.io/x3d.STEM/, live since 7 November).
 - No demo changed.
 
