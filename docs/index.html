@@ -58,7 +58,7 @@ code{font-family:var(--mono);font-size:.88em}
 <body>
 <main>
 <h1>x3d.demo</h1>
-<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. Demos 1 to 3 and 6 run on WebGPU, and where a WebGPU demo has a twin that does not need it, the twin is linked beside it. Demos 4 and 5 are drawn by X_ITE (WebGL) and open in any current browser. Demo 6 is the Babylon flagship. Demo 7 is Loomsong, now playable; Demo 8 is the traceability page; Demo 9 is the manifold again, on Babylon WebGPU; Demos 10 and 11 are the Chirp and Electron Cloud studies on Babylon WebGPU; the shelf below them points at what else has been committed to GitHub since 7 October.</p>
+<p class="lede">X3D demos, in the order they were asked for. Each one is a single page you can open and drag around. Demos 1 to 3 and 6 run on WebGPU, and where a WebGPU demo has a twin that does not need it, the twin is linked beside it. Demos 4 and 5 are drawn by X_ITE (WebGL) and open in any current browser. Demo 6 is the Babylon flagship. Demo 7 is Loomsong, now playable; Demo 8 is the traceability page; Demo 9 is the manifold again, on Babylon WebGPU; Demos 10 and 11 are the Chirp and Electron Cloud studies on Babylon WebGPU; Demos 12 to 17 are X3D drawn by X_ITE: the Blender X3D I/O showcase, the MuJoCo bridge, the ontology constellation, the Dynasty Loom, Confluence (IFC) and Gobbler; the shelf below them points at what else has been committed to GitHub since 7 October.</p>
 
 <section class="about" aria-label="About the curator">
 <h2>HagopJay</h2>
@@ -216,6 +216,7 @@ code{font-family:var(--mono);font-size:.88em}
     <article><h3>x3d_mcp</h3><p>An MCP server for generating, validating and converting X3D content (a fork).</p><div class="chips"><a href="https://github.com/hagopjay/x3d_mcp">Source</a></div></article>
     <article><h3>x3d.xray</h3><p>Exploratory analysis of a family of repositories&rsquo; git history, with the output as an X3D world you fly through: a time helix, a tie constellation, a code city.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.xray">Source</a></div></article>
     <article><h3>x3d.onto</h3><p>The ontology and Gobbler work.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.onto">Source</a></div></article>
+    <article><h3>A Claude artifact</h3><p>An interactive piece published as a Claude artifact. The link opens once it is made public.</p><div class="chips"><a href="https://claude.ai/artifact/85mYcKtoZByivWQV2uXKvq">Open the artifact</a></div></article>
     <article><h3>x3d.STEM</h3><p>The six STEM studies behind Demo 5, plus the manifold study.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.STEM">Source</a></div></article>
   </div>
   <p class="facts">Left out on purpose: forks of other people&rsquo;s projects (game engines, CAD tools, agent frameworks) and private repositories.</p>
@@ -264,6 +265,88 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
+<section class="demo">
+  <img src="assets/blender-x3d-io.jpg" alt="A still life exported from Blender as X3D 4.0: a gold sphere, a marble cube, a glazed vase and a torus on a stone plinth" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 12</div>
+    <h2>Checkable 3D: Blender X3D I/O, twelve live scenes</h2>
+    <p>Twelve small X3D scenes from the work on Blender&rsquo;s X3D add-on, each with the validator&rsquo;s verdict on that exact file. A still life exported from Blender as X3D 4.0 and measured against Cycles; the same still life as 24,000 Gaussian splats; splat quaternion order; the 978 stars within 50 light-years; a repair loop; a lighting bug; NURBS weights; PhysicalMaterial and profiles; GeoLOD; an unregistered component; ellipsoids beyond Earth; LOD under a scale. Each starts as a still; press <b>Load live 3D</b>.</p>
+    <div class="chips">
+      <a href="demos/blender-x3d-io/v1/index.html">Open the showcase</a>
+      <a href="https://github.com/hagopjay/x3d-blender-io">Source: x3d-blender-io</a>
+    </div>
+    <p class="facts">X_ITE 16.6.0 is bundled with the page; it fetches nothing from a CDN. All 24 scenes load on it; <code>annotation.x3d</code> reports an unknown <code>AnnotationTarget</code> node, which is that demo&rsquo;s subject. The still life scores SSIM 0.905 against the Cycles path tracer (the page&rsquo;s own measurement, X_ITE 16.4.3). X_ITE 16.6.0 still reads splat orientations as x y z w. Stills and timings on the page were taken on 16.4.3.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/x3d-mujoco-bridge.jpg" alt="An articulated arm authored in X3D over a blue floor, with an orange obstacle sphere" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 13</div>
+    <h2>X3D &harr; MuJoCo: author a world, measure its behaviour</h2>
+    <p>Author an articulated arm in X3D, simulate it in MuJoCo, and bring poses, forces and experiment records back into the scene. Drag the cyan sphere to set a goal and the orange sphere to place an obstacle, then press <b>Run physics</b>; export the scene or an experiment package.</p>
+    <div class="chips">
+      <a href="demos/x3d-mujoco-bridge/v1/index.html">Open the bridge</a>
+      <a href="demos/x3d-mujoco-bridge/v1/THIRD_PARTY_NOTICES.txt">Licences</a>
+    </div>
+    <p class="facts">Real MuJoCo 3.17.0 compiled to WebAssembly (Apache-2.0) and X_ITE 16.7.0, both bundled; no network requests. The page is 29 MB. Experimental bridge 0.1 with a bounded <code>contact-arm/1</code> profile, not a general converter or native X3D physics. The console shows five X_ITE parser warnings from the app&rsquo;s generated metadata, as delivered.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/ontology-constellation.jpg" alt="Classes of the X3D Ontology as boxes and spheres on a shell, joined by coloured lines" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 14</div>
+    <h2>The X3D Ontology as a constellation</h2>
+    <p>364 classes of the X3D Ontology 4.1 (Web3D draft, 29 September 2026) on a Dyson-style shell: longitude is a layout angle, latitude is class depth. Boxes are abstract types, spheres concrete nodes; green is new in 4.1. The layout is a display choice, not an ontology fact.</p>
+    <div class="chips">
+      <a href="demos/ontology-constellation/v1/index.html">Open the constellation</a>
+      <a href="https://github.com/hagopjay/x3d.onto">Source: x3d.onto</a>
+    </div>
+    <p class="facts">One X3D 4.1 file, unchanged, with three viewpoints (Overview, Inside the shell, Top) and X_ITE 16.6.0 bundled.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/dynasty-loom.jpg" alt="The Darwin-Wedgwood family as a loom: lives as vertical threads, marriages as horizontal weft" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 15</div>
+    <h2>Dynasty Loom: an atlas of three families</h2>
+    <p>Three families woven as cloth: lives are the warp, marriages the weft. Darwin&ndash;Wedgwood, Habsburg and Rothschild, each also as a hypersphere and a pocket world in X3D, with a narrated tour and a year slider.</p>
+    <div class="chips">
+      <a href="demos/dynasty-loom/v1/index.html#loom/darwin-wedgwood">Open Darwin&ndash;Wedgwood</a>
+    </div>
+    <p class="facts">The 26 portraits are AI portraits after public-domain sources, each labelled on the page; anyone not approved shows a monogram, never a face. Fonts load from Google Fonts. X_ITE 16.5.1 bundled.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/confluence-ifc.jpg" alt="A gallery building of two glazed pavilions on a tiled terrace, drawn from an IFC model" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 16</div>
+    <h2>Confluence: IFC &harr; X3D, a read-only copy</h2>
+    <p>A gallery whose every building element keeps its IFC identity: 111 products, 23 shared meshes, baked light and its own shaders. Use the camera shots, the atmospheres (daylight, nocturne, study), the element search and the inspector.</p>
+    <div class="chips">
+      <a href="demos/confluence-ifc/v1/index.html">Open Confluence</a>
+      <a href="demos/confluence-ifc/v1/README.md">What this copy changes</a>
+    </div>
+    <p class="facts">The live studio is a transactional bridge: a Python server (IfcOpenShell) owns the IFC model and sends each revision over a WebSocket. A static site cannot run it, so this copy replays one recorded revision: the scene is byte-identical and its receipt hash is still checked, and the matching <code>model.ifc</code> can be downloaded. Editing, peer views and live commits need the server. X_ITE 16.5.1 bundled.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/gobbler.jpg" alt="The keeper: a turkey drawn as a glowing wire constellation, its tail fanned in gold" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 17</div>
+    <h2>Gobbler: a cabinet of worlds</h2>
+    <p>A constellation becomes a creature, and inside its heart four places wait: Giza, the Pantheon as 50,058 Gaussian splats, a cabinet of materials, and the Drillfield at Virginia Tech. Choose <b>Begin journey</b> or a world card; drag to orbit, scroll to travel.</p>
+    <div class="chips">
+      <a href="demos/gobbler-worlds-within/v1/index.html">Open Gobbler</a>
+    </div>
+    <p class="facts">Worlds load on demand and the page verifies each scene&rsquo;s hash. Giza&rsquo;s Hall of Records is fictional. The Pantheon is an appearance sample whose source and licence are not stated. The Drillfield&rsquo;s imagery and surface model come from the Google Solar API and are attributed to Google.</p>
+  </div>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -280,7 +363,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>
