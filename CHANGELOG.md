@@ -2,6 +2,11 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v19 (2026-11-09)
+- New Demo 23: Gobbler Gyroscope on Babylon.js 9.32.0 WebGPU (`docs/demos/gobbler-gyroscope-webgpu/v1/`): the Gyroscope 8K edition with the Meridian refinement and the GPU kinetics stage. Three files: the page, its scene and the graph it reads. Public-copy edits: the three outside GitHub handles became "Open-source maintainer" (as in Demo 18), and five in-page links were repointed to this site's folders (see SOURCES.md).
+- The front-page introduction edited on `main` (9db2b1d) is kept as it is.
+- Checked on a software adapter only: loads, the compute pass runs, the hoops move, no page errors; nothing timed.
+
 ## v18 (2026-11-08)
 - New Demo 22: Library Hall on Babylon.js 9.32.0 WebGPU (`docs/demos/library-hall-webgpu/v1/`), the build of x3d.loom PR #27 (open when hosted), 87 files as built: the page, the 14 MB `hall.x3d`, textures and the bundled X_ITE 16.5.1 for the page's comparison button. Nothing changed.
 - Checked on a software adapter only: loads and draws two film views with no page errors beyond a missing favicon; Text nodes are not drawn; nothing timed.

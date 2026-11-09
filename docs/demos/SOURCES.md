@@ -112,3 +112,13 @@ The six STEM-shelf studies are linked to hagopjay/x3d.STEM `studies/<name>/`; th
 ## Doc v18 additions
 
 - Library Hall on WebGPU (`library-hall-webgpu/v1`): the page built for x3d.loom PR #27 (still open when hosted; main did not yet contain it), 87 files, all as built and byte-identical to that build: `index.html` sha256 7f068ac200f1cce8f2ed513938c37885e12919ec50364fe28761b3fbf6611792, `hall.x3d` sha256 82ba4f79a31ff45933688a6bc21b6adbeb748ba2f9c280e1c8437e5bde60c914, `babylon/bundle.js` sha256 1ea3cf6262c241fe3b9c5feec622839a0ea80f8df3d9ead3b5de20ef79d3331b. External addresses: the pinned Babylon.js 9.32.0 script on the jsDelivr CDN with SRI, and Google Fonts. X_ITE 16.5.1 (MIT, licence file included) is bundled in `x_ite/` for the page's comparison button. `assets/library-hall-webgpu.jpg` is a frame from the software-adapter run (film time 40 s), re-encoded.
+
+## Doc v19 additions
+
+- Gobbler Gyroscope on WebGPU (`gobbler-gyroscope-webgpu/v1`): built from the Gobbler Gyroscope Meridian source with its kinetics stage (`python3 build.py`; the build is reproducible and checks itself, 47 tests). Built page sha256 510fec5f2f04f731d79840f4ab30c477f3b8fb90b73280dc26b3dc78d4106910. Edits for this site: (1) in the page's embedded graph and in `graph-v3.json`, the nodes `ahujasid`, `coderextreme` and `fishwowater` became `maintainer-1` to `maintainer-3`, labelled "Open-source maintainer", order and positions unchanged, as in Demo 18; (2) five links repointed: the brand and both "All demos" links to the site root, the "Gobbler" chip to Demo 17, the "Gobbler 3" chip to this page, and the JSON-LD link to Demo 18's redacted `graph-v3.jsonld` (the same statements, without this page's layout). `gobbler3.x3d` is the build's `Gyroscope-Meridian.x3d`, unchanged. External address: the pinned Babylon.js 9.32.0 script on the jsDelivr CDN with SRI sha384-1XDybi1454WehNQaPHwhcTlpJ6oDdq/L4KKyDu7JiWPOBUzoBC0yEcuKDzHpdXyo. `assets/gobbler-gyroscope-webgpu.jpg` is a frame from the software-adapter run, re-encoded.
+
+| file | sha256 | bytes |
+|---|---|---|
+| gobbler-gyroscope-webgpu/v1/index.html | 70588f1ca694552ada1a4f6663bd32d56d70adac61159a775adaf732e74eae9f | 4177242 |
+| gobbler-gyroscope-webgpu/v1/gobbler3.x3d | 0772caea04e80d03d43ce1543e86fee5854e13a6ad1d273dc65ea2e5aee47dc6 | 1985373 |
+| gobbler-gyroscope-webgpu/v1/graph-v3.json | fcbc4bc603632ba8479b96618c2591a9633cf4ea2751ccd84d8a628308800621 | 60630 |
