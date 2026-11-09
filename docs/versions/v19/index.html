@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>x3d.demo</title>
+<style>
+/* Layout: one column of demo entries in the order they were asked for, a GPU check on top, the doc's own version list at the bottom. */
+:root{--bg:#f4f5f7;--fg:#14171c;--mute:#566070;--line:#d4d9e1;--card:#ffffff;--accent:#0b6bcb;--ok:#1a7f45;--bad:#b3261e;--chip:#e6ebf2;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0f14;--fg:#e8ecf2;--mute:#9aa5b5;--line:#252c38;--card:#141922;--accent:#5eb0ff;--ok:#5fd18a;--bad:#ff8a80;--chip:#1c2330;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c0f14;--fg:#e8ecf2;--mute:#9aa5b5;--line:#252c38;--card:#141922;--accent:#5eb0ff;--ok:#5fd18a;--bad:#ff8a80;--chip:#1c2330;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--sans);padding-block:32px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:960px;margin:0 auto}
+h1{font-size:2rem;line-height:1.15;margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance}
+h2{font-size:1.15rem;margin:0 0 4px;text-wrap:balance}
+p{margin:0 0 10px;max-width:68ch}
+.lede{color:var(--mute);font-size:1.05rem}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.about{margin:20px 0 0;padding:16px 18px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;background:var(--card)}
+.about h2{margin:0}.about .tag{font-family:var(--mono);font-size:.82rem;letter-spacing:.05em;color:var(--mute);margin:0 0 10px}.about p:last-child{margin-bottom:0}
+.check{margin:18px 0 30px;padding:14px 16px;border:1px solid var(--line);border-radius:8px;background:var(--card);font-size:.95rem}
+.check b{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);display:block;margin-bottom:4px}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+.demo{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.demo img{width:100%;height:auto;aspect-ratio:16/9;border-radius:6px;background:#05070a;display:block}
+.no{font-family:var(--mono);font-size:.8rem;color:var(--mute);letter-spacing:.06em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chips a,.chips span{font-size:.88rem;padding:4px 10px;border-radius:999px;background:var(--chip);color:var(--fg);text-decoration:none;border:1px solid var(--line)}
+.chips a{color:var(--accent)}
+.facts{font-size:.88rem;color:var(--mute)}
+.soon{opacity:.8}
+.soon .ph{display:grid;place-items:center;aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;color:var(--mute);font-family:var(--mono);font-size:.8rem}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:14px;margin:12px 0 10px}
+.sgrid article{border:1px solid var(--line);border-radius:8px;background:var(--card);overflow:hidden;display:flex;flex-direction:column}
+.sgrid img{width:100%;height:auto;aspect-ratio:16/9;display:block;background:#05070a;border-radius:0}
+.sgrid .b{padding:10px 14px 12px;font-size:.92rem}.sgrid h3{font-size:1rem;margin:0 0 2px}.sgrid p{margin:0 0 6px;color:var(--mute);max-width:none}
+.sgrid .chips{margin:6px 0 0}
+.tile{display:grid;place-items:center;aspect-ratio:16/9;border-radius:6px;background:linear-gradient(135deg,#1b2233,#2a1f33);color:#e8ecf2;font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;text-align:center;padding:10px}
+.gh{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:12px;margin:10px 0}
+.gh article{padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);font-size:.92rem}
+.gh h3{font-size:1rem;margin:0 0 2px}.gh p{margin:0 0 6px;color:var(--mute);max-width:none}.gh .chips{margin:6px 0 0}
+.shelf{margin:0;padding:20px 0;border-top:1px solid var(--line)}
+.stem{margin:0;padding:20px 0;border-top:1px solid var(--line)}
+.studies{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:12px;margin:12px 0 10px;padding:0;list-style:none}
+.studies li{padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);font-size:.92rem}
+.studies li b{display:block;margin-bottom:2px}.studies li span{display:block;color:var(--mute);margin-bottom:6px}
+.memes{margin:8px 0 0;padding-top:20px;border-top:1px solid var(--line)}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px;margin-top:12px}
+.wall figure{margin:0}.wall img{width:100%;height:auto;aspect-ratio:16/9;border-radius:6px;display:block;background:#05070a}
+footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:.92rem;color:var(--mute)}
+code{font-family:var(--mono);font-size:.88em}
+@media (max-width:640px){.demo{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<main>
+<h1>x3d.demo</h1>
+<p class="lede">X3D demos, 7 October.</p>
+
+<section class="about" aria-label="About the curator">
+<h2>HagopJay</h2>
+<p class="tag">3D conqueror by night.</p>
+<p>Somewhere around the late '90s I met X3D and never got over it. Now I make AI models write 3D worlds and then hand them to a validator that tells them, exactly and without mercy, what they got wrong. I call it <em>the tether</em>, because X3D is the 3D format an AI can be held accountable to. My colleagues call it “why is that laptop fan screaming again.”</p>
+<p>Things I have, technically, built: a particle collider, a drift racing game, a glass brain, a turkey made of ontologies with a sun for a heart, and a space elevator nobody asked for. Things I have, technically, not done: sleep.</p>
+<p>Motto: <em>valid is not the same as visible.</em> Second motto: <em>one more demo.</em></p>
+</section>
+
+<div class="check" id="gpu"><b>WebGPU on this browser</b><span id="gpu-out">Checking.</span></div>
+
+<section class="demo">
+  <img src="../../assets/dijet.jpg" alt="A generated particle collision at the centre of a glass detector, coloured tracks curling out" width="640" height="360">
+  <div>
+    <div class="no">DEMO 1</div>
+    <h2>Collider events</h2>
+    <p>Five generated collision events written as X3D 4.0. The page parses the scene, runs its ROUTEs and draws it with WebGPU, with five GLSL shaders ported to WGSL.</p>
+    <div class="chips">
+      <a href="../../demos/collider-events/v2/dijet.html">Dijet</a>
+      <a href="../../demos/collider-events/v2/qcd.html">QCD event</a>
+      <a href="../../demos/collider-events/v2/z-to-muons.html">Z to muons</a>
+      <a href="../../demos/collider-events/v2/qcd-in-flight.html">QCD in flight</a>
+      <a href="../../demos/collider-events/v2/exact-z.html">Exact Z</a>
+    </div>
+    <div class="chips"><a href="https://hagopjay.github.io/dirac/docs/">No WebGPU? The same collider on X_ITE</a></div>
+    <p class="facts">Version 2 (<a href="../../demos/collider-events/v1/dijet.html">v1 kept</a>). The X_ITE twin lives on its own site (the dirac repository) and has its own tour, optics and 4K still. Drag to orbit, scroll to zoom, keys 1 2 3 for viewpoints, T tour, L look. Events are generated for display, not measured. Each event grows over time, so a page can open on the vertex flash.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/facade.jpg" alt="A synthetic sandstone facade with four columns, drawn as Gaussian splats" width="640" height="360">
+  <div>
+    <div class="no">DEMO 2</div>
+    <h2>Heritage facade splats</h2>
+    <p>A synthetic rock-cut facade of 140,000 Gaussian splats, written as X3D 4.1. It is generated (CC0) and is not a scan of any real monument. Splats are sorted on the GPU every time the view changes.</p>
+    <div class="chips">
+      <a href="../../demos/heritage-facade/v2/facade.html">Open the facade</a>
+      <a href="../../demos/heritage-facade/v2/facade.x3d">Scene (.x3d)</a>
+    </div>
+    <p class="facts">Version 2 (<a href="../../demos/heritage-facade/v1/facade.html">v1 kept</a>). 12 MB page; it takes a moment to load. Compared with X_ITE 16.4.3 on one view: 41.9 dB PSNR (software GL, correctness only).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/brain.jpg" alt="A glass human brain with glowing deep structures on a dark stage, the Neural Canvas page" width="640" height="360">
+  <div>
+    <div class="no">DEMO 3</div>
+    <h2>Neural Canvas: brain and torso CT</h2>
+    <p>An interactive brain with glass cortex, deep structures, MRI slices and synthetic tracts, plus a CT torso tab. An X3D reader of our own parses the scene and runs its ROUTEs; <a href="https://www.babylonjs.com">Babylon.js</a> draws it with WebGPU. Click a region, take the tour, switch looks, try the Inside view.</p>
+    <div class="chips">
+      <a href="../../demos/brain-torso/v1/index.html">Open Neural Canvas</a>
+      <a href="../../demos/brain-torso/v1/NOTICE.md">Sources and licences</a>
+    </div>
+    <div class="chips"><a href="../../demos/brain-torso/v2/index.html">Version 2: adapter retry, flag note, Timing button</a></div>
+    <div class="chips"><a href="../../demos/brain-torso-xite/v1/index.html">No WebGPU? Neural Canvas on X_ITE</a></div>
+    <p class="facts">Version 1 is untouched; version 2 draws the same pixels and adds a shared adapter retry, the Windows flag note and an opt-in Timing button that prints numbers for you to copy (no timing from a real GPU has been published yet). Needs WebGPU and loads Babylon from a CDN. The X_ITE twin (X_ITE 16.6.0, bundled) is the page this one was ported from and needs only WebGL; it carries the same notices. <b>Not a medical device.</b> The brain is a template average, the tracts are synthetic and the activation is illustrative. Cortex shapes: TemplateFlow fsaverage (FreeSurfer lineage), shown for educational use; its licence is not confirmed and the rights holder may ask for removal. Deep structures and slices: MNI152NLin2009cAsym (Fonov et al.). Torso: TotalSegmentator example subject (Wasserthal et al., 2023).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/manifold.jpg" alt="A glowing curved surface with four deep wells ringed by light, a violet and jade field on a dark stage, the Manifold page" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 4</div>
+    <h2>Manifold of emotion</h2>
+    <p>An emotional field drawn as a Riemannian surface: the metric g = &lambda;&sup2;(dx&sup2; + dz&sup2;), the surface coloured by its Gaussian curvature K = &minus;&Delta; ln &lambda; / &lambda;&sup2;, and the luminous paths are its geodesics. One X3D 4.0 scene, drawn by X_ITE 16.5.1. Four moods, labels in English and Chinese, click to perturb the field.</p>
+    <div class="chips">
+      <a href="../../demos/manifold/v1/index.html">Open the manifold</a>
+      <a href="../../demos/manifold/v1/scenes/manifold.x3d">Scene (.x3d)</a>
+      <a href="../../demos/manifold/v1/docs/DEBRIEF.md">Debrief</a>
+      <a href="https://hagsmac.github.io/x3d.STEM/">Original site</a>
+      <a href="../../demos/manifold-webgpu/v1/index.html">The WebGPU version (Demo 9)</a>
+    </div>
+    <p class="facts">Not WebGPU. This is a copy of the x3d.STEM repository’s manifold study (files identical to the original site’s, checked by hash); the original site is linked too. Drag to orbit, scroll to zoom, click to perturb, H hides the controls. The scene was rebuilt from an existing WebGL page; its debrief records the checks (curvature and geodesics against exact references, and a picture comparison against the original on four moods, SSIM 0.91 to 0.96). The drawn landscape is a picture of the metric, not an isometric embedding, and the mood labels are illustrative. Preview frame drawn on a software GPU. The comparison frames from the debrief are left out of this copy.</p>
+  </div>
+</section>
+
+<section class="stem" aria-label="STEM studies">
+  <div class="no">DEMO 5</div>
+  <h2>STEM studies from x3d.STEM</h2>
+  <p>Science and maths as X3D worlds that carry their own evidence. Each study is an X_ITE page built from computed data and checked against an exact or published result. These are the repository versions, not WebGPU ports. Every page re-checks each data file against the hash recorded in the repository before it draws anything.</p>
+  <div class="sgrid">
+    <article><img src="../../assets/stem/chirp.jpg" alt="Chirp, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Chirp</h3><p>Two black holes spiral together and you hear them. The orbit is integrated with radiation reaction and held to Peters’ laws; the strain plays at its real pitch or three octaves up, picture locked to the sound. Use headphones.</p><div class="chips"><a href="../../demos/stem/v1/chirp/index.html#equal">Open</a><a href="../../demos/chirp-webgpu/v1/index.html">WebGPU version (Demo 10)</a><a href="../../demos/stem/v1/chirp/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/chirp">Source</a></div></div></article>
+    <article><img src="../../assets/stem/electron-cloud.jpg" alt="Electron Cloud Observatory, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Electron Cloud Observatory</h3><p>Hydrogen solved numerically and held to the exact answers: ten orbitals from 1s to 5g, coloured by the sign of the wave, and Lyman-α, whose charge swings through the nucleus at the frequency of hydrogen’s 121.5 nm line.</p><div class="chips"><a href="../../demos/stem/v1/electron-cloud/index.html#4fxyz">Open</a><a href="../../demos/electron-cloud-webgpu/v1/index.html">WebGPU version (Demo 11)</a><a href="../../demos/stem/v1/electron-cloud/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/electron-cloud">Source</a></div></div></article>
+    <article><img src="../../assets/stem/turing-garden.jpg" alt="Turing Garden, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Turing Garden</h3><p>Five 3D reaction–diffusion gardens (spots, Swiss cheese, coral, sheets, chaos) grown from three seeds. Your browser meshes each verified field and plays the growth through X3D’s own TimeSensor.</p><div class="chips"><a href="../../demos/stem/v1/turing-garden/index.html#coral">Open</a><a href="../../demos/stem/v1/turing-garden/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/turing-garden">Source</a></div></div></article>
+    <article><img src="../../assets/stem/living-heart.jpg" alt="Living Heart, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Living Heart</h3><p>Electrical waves in heart muscle: paced tissue, a spiral wave and a scroll wave in a ventricle wall, held to the exact Nagumo front speed.</p><div class="chips"><a href="../../demos/stem/v1/living-heart/index.html#heart">Open</a><a href="../../demos/stem/v1/living-heart/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/living-heart">Source</a></div></div></article>
+    <article><img src="../../assets/stem/vortex-sound.jpg" alt="Vortex Reconnection and Sound, a frame of the study page" width="960" height="540" loading="lazy"><div class="b"><h3>Vortex Reconnection &amp; Sound</h3><p>Quantized whirlpools in a superfluid: a vortex ring, and two rings that collide, reconnect and send sound through the fluid. Called a reconnection only because two grids agree.</p><div class="chips"><a href="../../demos/stem/v1/vortex-sound/index.html#reconnection">Open</a><a href="../../demos/stem/v1/vortex-sound/docs/DEBRIEF.html">Debrief</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/vortex-sound">Source</a></div></div></article>
+  </div>
+  <div class="chips"><a href="https://github.com/hagopjay/x3d.STEM">The x3d.STEM repository</a><a href="https://hagsmac.github.io/x3d.STEM/">The manifold&rsquo;s original site</a><a href="https://github.com/hagopjay/x3d.STEM/tree/main/studies/kerr2">Kerr 2 &middot; The Photon Ring (source only)</a></div>
+  <p class="facts"><b>How these got here.</b> The repository does not commit the studies’ data files, so I rebuilt them with each study’s own builder on 2026-11-07 (every witness green on every case) and bundled them with the pages. The pages then verified against the repository’s recorded hashes in a headless browser. Kerr 2 is left out because its data is about 330 MB of images. Flagship pass 1; nothing here has been measured on a real GPU, and the study pages show their own live frame rate, which is yours, not ours.</p>
+</section>
+
+<section class="demo">
+  <img src="../../assets/kansei.jpg" alt="A white drift car with a red stripe and a rear wing on a mountain road at sunset, a frame of KANSEI" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 6 &middot; THE BABYLON FLAGSHIP</div>
+    <h2>KANSEI: drift in X3D</h2>
+    <p>A night-drift racing game with four original cars and five circuits. Every world in it is an X3D file, and the physics is a separate deterministic 120 Hz simulation, so a recorded lap replays identically in any renderer. This page runs it in <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode, through our own X3D reader. Gamepad and touch work too.</p>
+    <div class="chips">
+      <a href="https://hagopjay.github.io/platformer/kansei/v1/">Play KANSEI</a>
+      <a href="https://hagopjay.github.io/platformer/">Its landing page</a>
+      <a href="https://github.com/hagopjay/x3d.loom/blob/main/runs/webgpu-drift-20261107/RECEIPT.md">Receipt</a>
+    </div>
+    <p class="facts">Hosted on its own site (the platformer repository), so these links leave this page. Keys: W gas, S brake, A and D steer, Space handbrake, Shift boost, C camera, M sound. Needs WebGPU; if the page says no adapter answered, see the flag tip at the top. Checked on a software GPU against the same game on X_ITE 16.5.1: the simulation matched on 6 of 6 recorded views and the pictures agreed to 24.4 to 32.8 dB PSNR (correctness only; the receipt has the per-view table and the known differences). It has an opt-in Timing button, off until pressed, that uploads nothing. No timing from a real GPU is published here. The sound is the game&rsquo;s own synthesiser and nobody has listened to it in this port.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/loomsong.jpg" alt="The Ode to Joy world: a Jacquard loom in a cathedral of light, with the player card in the corner" width="640" height="360">
+  <div>
+    <div class="no">DEMO 7</div>
+    <h2>Loomsong: Beethoven and Mozart as machines</h2>
+    <p>Two programmable machines play two pieces of music. <b>World 1, <em>Ode to Joy</em></b> (Beethoven, 1824): a Jacquard loom in a cathedral of light weaves a tapestry, and each statement of the theme lays down one colour layer. <b>World 2, <em>Rondo alla Turca</em></b> (Mozart, 1783): a pinned brass barrel carries every written note as a pin, a steel comb plucks them and a clockwork band strikes on the beat. Every thread, pin, tile and light is a real note from the score. Press Play; sound starts only then.</p>
+    <div class="chips">
+      <a href="../../demos/loomsong/v1/index.html">Play Loomsong</a>
+      <a href="https://github.com/hagopjay/x3d.music">Source: x3d.music</a>
+      <a href="https://github.com/hagopjay/x3d.music/blob/main/NOTICE.md">Licences</a>
+    </div>
+    <p class="facts">Keys: 1 and 2 switch piece, U cycles the interface (none, minimal, Learn: names the note under the pointer), Space plays and pauses, Left and Right step bars, C frees the camera, K calms it. It runs in X_ITE 16.5.1 (WebGL), no flag needed. The sound is synthesised in code except the <em>Alla Turca</em> piano, which uses the Salamander Grand Piano (CC BY 3.0); it is not a recording of anyone playing. The audio meters read &minus;14.00 LUFS on both pieces, but <b>no human has reported listening to the masters yet</b>, so the ear is the open check. On a software renderer it ran at the machine&rsquo;s own pace; about 60 fps was seen once on an integrated GPU (3 November). The tapestry picture, the dome motifs and the moving pictures behind the title and end cards are AI-made and labelled on the page. <b>Licence:</b> everything derived from the <em>Alla Turca</em> score is CC BY-NC-SA 4.0 (non-commercial, share-alike); the rest is MIT, and NOTICE.md travels with the page.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/tether-firehose.jpg" alt="Tether Firehose 4: the stage with a showpiece castle, the thesis in three numbers and the repair loop" width="640" height="360">
+  <div>
+    <div class="no">DEMO 8</div>
+    <h2>Tether Firehose 4: X3D you can hold an AI to</h2>
+    <p>A model writes an X3D scene; an exact validator says what is wrong; the model repairs it with the report; the browser shows whether it draws; a hash-chained record in the file&rsquo;s own head ties every step together. This page replays a recorded run of 358 real model calls on 17 October 2026 (50 prompts, five model lanes, names withheld in this build) next to the 11 October replay and the 24 October bench, with a repair morph, a tamper arena and a Blender export suite. Its thesis is on the stage: <em>valid is not the same as visible</em>.</p>
+    <div class="chips">
+      <a href="../../demos/tether-firehose/v4/index.html">Open Tether Firehose 4</a>
+      <a href="https://github.com/hagopjay/x3d.ML/tree/main/demo">Source: x3d.ML</a>
+    </div>
+    <p class="facts">The page&rsquo;s own headline: valid scenes rose from 20 to 98, 57 to 100 and 77 to 100 percent on the three paid lanes after repair, and 7 of the 178 scenes valid at the end still draw nothing in X_ITE. Validator: the x3d_mcp fork at eb4b4b4; renderer X_ITE 16.5.0 and 16.5.1; grade C for this sample only (one run per prompt), so read the rates as examples, not as a ranking. This is the share build: lane names, hardware and run costs are removed (the spend column reads zero by design) and a leak sweep must pass for it to build. Open it on a laptop; the stage renders live and a software GPU is slow.</p>
+  </div>
+</section>
+
+<section class="shelf" aria-label="More from GitHub">
+  <div class="no">SINCE 7 OCTOBER</div>
+  <h2>More from GitHub</h2>
+  <p>Repositories on the two accounts that were pushed to since 7 October 2026 and are the work itself, not forks of other people&rsquo;s projects. Live sites first, then source-only repositories. Links only; nothing is copied here.</p>
+  <h3>Live sites</h3>
+  <div class="gh">
+    <article><h3>PolyXandria demos</h3><p>Eleven demos in plain X3D you can open and check: splats, terrain, stars, the Shroud of Turin, and Blender and the browser rendering the same file.</p><div class="chips"><a href="https://hagopjay.github.io/x3d.poc/">Open</a><a href="https://github.com/hagopjay/x3d.poc">Source: x3d.poc</a></div></article>
+    <article><h3>x3dom.fun</h3><p>Small scripts-free X3D 4.0 toys. Each one runs in X_ITE and in X3DOM: a flywheel, a spiral galaxy and more.</p><div class="chips"><a href="https://hagsmac.github.io/x3dom.fun/">Open</a></div></article>
+    <article><h3>Mashtots System 2</h3><p>An X3D piece with a Listen button, a full-score view, sections and four cameras. It carries a credited mural photograph from Wikimedia Commons.</p><div class="chips"><a href="https://hagsmac.github.io/x3d.Mashtots/">Open</a></div></article>
+    <article><h3>KeGG, KnowlEdge Graph Grokker</h3><p>Seventeen masterclass guides on graph analytics, data engineering and knowledge systems, plus graph-visualisation pages.</p><div class="chips"><a href="https://hagopjay.github.io/KeGG-KnowlEdgeGraphGrokker/">Open</a><a href="https://github.com/hagopjay/KeGG-KnowlEdgeGraphGrokker">Source</a></div></article>
+    <article><h3>Dirac, the Loom Collider</h3><p>The collider on X_ITE, with its own tour and optics. Also linked from Demo 1.</p><div class="chips"><a href="https://hagopjay.github.io/dirac/docs/">Open</a><a href="https://github.com/hagopjay/dirac">Source</a></div></article>
+    <article><h3>KANSEI</h3><p>The drift game on Babylon WebGPU. Also Demo 6.</p><div class="chips"><a href="https://hagopjay.github.io/platformer/kansei/v1/">Play</a><a href="https://github.com/hagopjay/platformer">Source</a></div></article>
+  </div>
+  <h3>Source only</h3>
+  <div class="gh">
+    <article><h3>x3d.music</h3><p>Loomsong: Beethoven&rsquo;s <em>Ode to Joy</em> and Mozart&rsquo;s <em>Rondo alla Turca</em> as machines. Playable as Demo 7.</p><div class="chips"><a href="../../demos/loomsong/v1/index.html">Play</a><a href="https://github.com/hagopjay/x3d.music">Source</a></div></article>
+    <article><h3>x3d.ML</h3><p>X3D traceability and observability for ML pipelines: a hash-chained provenance record that rides in the scene itself. Demo 8 is its page.</p><div class="chips"><a href="../../demos/tether-firehose/v4/index.html">Open</a><a href="https://github.com/hagopjay/x3d.ML">Source</a></div></article>
+    <article><h3>x3d.loom</h3><p>The X3D Loom: a method for building X3D worlds that carry their own evidence, with the checking kit. It also holds the WebGPU ports behind Demos 1 to 6.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.loom">Source</a></div></article>
+    <article><h3>x3d-blender-io</h3><p>A working fork of Blender&rsquo;s X3D add-on, bringing the exporter and importer up to X3D 4.0 and 4.1.</p><div class="chips"><a href="https://github.com/hagopjay/x3d-blender-io">Source</a></div></article>
+    <article><h3>x3d_mcp</h3><p>An MCP server for generating, validating and converting X3D content (a fork).</p><div class="chips"><a href="https://github.com/hagopjay/x3d_mcp">Source</a></div></article>
+    <article><h3>x3d.xray</h3><p>Exploratory analysis of a family of repositories&rsquo; git history, with the output as an X3D world you fly through: a time helix, a tie constellation, a code city.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.xray">Source</a></div></article>
+    <article><h3>x3d.onto</h3><p>The ontology and Gobbler work.</p><div class="chips"><a href="https://github.com/hagopjay/x3d.onto">Source</a></div></article>
+    <article><h3>A Claude artifact</h3><p>An interactive piece published as a Claude artifact, open to anyone with the link.</p><div class="chips"><a href="https://claude.ai/artifact/85mYcKtoZByivWQV2uXKvq">Open the artifact</a></div></article>
+    <article><h3>x3d.STEM</h3><p>The six STEM studies behind Demo 5, plus the manifold study.</p><div class="chips"><a href="https://hagopjay.github.io/x3d.STEM/">Its own Pages site</a><a href="https://github.com/hagopjay/x3d.STEM">Source</a></div></article>
+  </div>
+  <p class="facts">Left out on purpose: forks of other people&rsquo;s projects (game engines, CAD tools, agent frameworks) and private repositories.</p>
+</section>
+
+<section class="demo">
+  <img src="../../assets/manifold-webgpu.jpg" alt="The four moods of the manifold drawn on Babylon WebGPU: a glowing surface with luminous geodesics and bloom" width="640" height="360">
+  <div>
+    <div class="no">DEMO 9</div>
+    <h2>Manifold of emotion on WebGPU</h2>
+    <p>The same X3D scene as Demo 4, drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader, with all seven shaders ported to WGSL by hand. Bloom, vignette, film grain and a touch of chromatic aberration are on by default; the <b>lens</b> switch turns them off, and &ldquo;lens off&rdquo; is the frame as authored. It looks richer than the X_ITE page on purpose, but it does not change the data: the geometry, the field and the geodesics are the same.</p>
+    <div class="chips">
+      <a href="../../demos/manifold-webgpu/v1/index.html">Open the WebGPU manifold</a>
+      <a href="../../demos/manifold-webgpu/v1/scenes/manifold.x3d">Scene (.x3d)</a>
+      <a href="../../demos/manifold/v1/index.html">No WebGPU? The X_ITE version (Demo 4)</a>
+    </div>
+    <p class="facts">Needs Chrome or Edge 113 or later with WebGPU; on Windows Chrome it may need <code>chrome://flags/#enable-unsafe-webgpu</code> (the page says so too). It loads Babylon from a CDN with an integrity hash. Checked on a software GPU at 640 &times; 360 with the lens off, against X_ITE 16.5.1 on the same scene and camera: Reverie 49.3 dB, Euphoria 48.5 dB (Catharsis and Stillness not compared yet). That is correctness only; <b>no timings exist</b>. The page has an opt-in Timing button that prints a copy-paste block; real-machine numbers are expected from a Windows laptop and a Mac, and none are published yet. Screenshots above are from the software renderer. Source: x3d.loom, PR 19 (<code>x3d.webgpu/demo/src/build-manifold.py</code>), receipt <code>runs/webgpu-manifold-20261107/RECEIPT.md</code>.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/chirp-webgpu.jpg" alt="Chirp on WebGPU: two black holes inspiralling with a glowing ring and a lensed wave pattern behind them" width="640" height="360">
+  <div>
+    <div class="no">DEMO 10</div>
+    <h2>Chirp on WebGPU</h2>
+    <p>The Chirp study from Demo 5, drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader. The study&rsquo;s own script runs byte for byte unchanged; only the drawing is new: an HDR bloom, a hand-written WGSL post-process that bends the light around the two holes, an unlit glowing wave sheet and glowing trails. The look is optional and on by default; a pill on the page (or <code>?look=0</code>) switches to the frame as authored.</p>
+    <div class="chips">
+      <a href="../../demos/chirp-webgpu/v1/index.html">Open Chirp on WebGPU</a>
+      <a href="../../demos/stem/v1/chirp/index.html#equal">No WebGPU? The X_ITE page (Demo 5)</a>
+    </div>
+    <p class="facts">One offline file (about 6 MB) that loads Babylon from a CDN with an integrity hash. Needs Chrome or Edge 113 or later with WebGPU (Windows Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code>). The page runs the study&rsquo;s own browser witness: the wave heights agree with the builder to 2e-15 on all three inspirals. Compared with X_ITE 16.5.1 on a software GPU the plain look differs by 24.9 to 25.4 dB (the gaps are logged, not tuned away: this port chased intensity, not pixel perfection). <b>Not yet checked:</b> the Hear button (audio), Safari and Firefox; <b>no timings</b> and no real-GPU numbers; no Timing button yet. Source: x3d.loom, PR 21 (<code>x3d.webgpu/demo/src/build-chirp.py --kind chirp</code>).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/electron-cloud-webgpu.jpg" alt="Electron Cloud on WebGPU: glossy orange and blue hydrogen orbital lobes with a glowing rim inside a wireframe box" width="640" height="360">
+  <div>
+    <div class="no">DEMO 11</div>
+    <h2>Electron Cloud Observatory on WebGPU</h2>
+    <p>The Electron Cloud study from Demo 5 on Babylon WebGPU: hydrogen orbitals as glossy shells with a glowing rim, a soft fill light, bloom and vignette. The cut slider and the Lyman playback work, and the study&rsquo;s own script is unchanged. The look is optional and on by default; the pill (or <code>?look=0</code>) shows the frame as authored.</p>
+    <div class="chips">
+      <a href="../../demos/electron-cloud-webgpu/v1/index.html">Open Electron Cloud on WebGPU</a>
+      <a href="../../demos/stem/v1/electron-cloud/index.html">No WebGPU? The X_ITE page (Demo 5)</a>
+    </div>
+    <p class="facts">One offline file (about 9 MB), Babylon from a CDN with an integrity hash. Needs Chrome or Edge 113 or later with WebGPU. The page&rsquo;s browser witness passes (the 4fxyz orbital to 1e-15; 24 of 24 Lyman frames to 5e-15). Against X_ITE 16.5.1 on a software GPU the plain look is 19.2 to 19.4 dB over the whole frame and 21.0 to 25.0 dB on the object pixels (the X_ITE headless background draws black, which accounts for part of it); gaps are logged, not tuned away. <b>Not yet checked:</b> Safari and Firefox; <b>no timings</b> and no real-GPU numbers; no Timing button yet. Source: x3d.loom, PR 21 (<code>build-chirp.py --kind cloud</code>).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/blender-x3d-io.jpg" alt="A still life exported from Blender as X3D 4.0: a gold sphere, a marble cube, a glazed vase and a torus on a stone plinth" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 12</div>
+    <h2>Checkable 3D: Blender X3D I/O, twelve live scenes</h2>
+    <p>Twelve small X3D scenes from the work on Blender&rsquo;s X3D add-on, each with the validator&rsquo;s verdict on that exact file. A still life exported from Blender as X3D 4.0 and measured against Cycles; the same still life as 24,000 Gaussian splats; splat quaternion order; the 978 stars within 50 light-years; a repair loop; a lighting bug; NURBS weights; PhysicalMaterial and profiles; GeoLOD; an unregistered component; ellipsoids beyond Earth; LOD under a scale. Each starts as a still; press <b>Load live 3D</b>.</p>
+    <div class="chips">
+      <a href="../../demos/blender-x3d-io/v1/index.html">Open the showcase</a>
+      <a href="https://github.com/hagopjay/x3d-blender-io">Source: x3d-blender-io</a>
+    </div>
+    <p class="facts">X_ITE 16.6.0 is bundled with the page; it fetches nothing from a CDN. All 24 scenes load on it; <code>annotation.x3d</code> reports an unknown <code>AnnotationTarget</code> node, which is that demo&rsquo;s subject. The still life scores SSIM 0.905 against the Cycles path tracer (the page&rsquo;s own measurement, X_ITE 16.4.3). X_ITE 16.6.0 still reads splat orientations as x y z w. Stills and timings on the page were taken on 16.4.3.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/x3d-mujoco-bridge.jpg" alt="An articulated arm authored in X3D over a blue floor, with an orange obstacle sphere" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 13</div>
+    <h2>X3D &harr; MuJoCo: author a world, measure its behaviour</h2>
+    <p>Author an articulated arm in X3D, simulate it in MuJoCo, and bring poses, forces and experiment records back into the scene. Drag the cyan sphere to set a goal and the orange sphere to place an obstacle, then press <b>Run physics</b>; export the scene or an experiment package.</p>
+    <div class="chips">
+      <a href="../../demos/x3d-mujoco-bridge/v1/index.html">Open the bridge</a>
+      <a href="../../demos/x3d-mujoco-bridge/v1/THIRD_PARTY_NOTICES.txt">Licences</a>
+    </div>
+    <p class="facts">Real MuJoCo 3.17.0 compiled to WebAssembly (Apache-2.0) and X_ITE 16.7.0, both bundled; no network requests. The page is 29 MB. Experimental bridge 0.1 with a bounded <code>contact-arm/1</code> profile, not a general converter or native X3D physics. The console shows five X_ITE parser warnings from the app&rsquo;s generated metadata, as delivered.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/ontology-constellation.jpg" alt="Classes of the X3D Ontology as boxes and spheres on a shell, joined by coloured lines" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 14</div>
+    <h2>The X3D Ontology as a constellation</h2>
+    <p>364 classes of the X3D Ontology 4.1 (Web3D draft, 29 September 2026) on a Dyson-style shell: longitude is a layout angle, latitude is class depth. Boxes are abstract types, spheres concrete nodes; green is new in 4.1. The layout is a display choice, not an ontology fact.</p>
+    <div class="chips">
+      <a href="../../demos/ontology-constellation/v1/index.html">Open the constellation</a>
+      <a href="https://github.com/hagopjay/x3d.onto">Source: x3d.onto</a>
+    </div>
+    <p class="facts">One X3D 4.1 file, unchanged, with three viewpoints (Overview, Inside the shell, Top) and X_ITE 16.6.0 bundled.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/dynasty-loom.jpg" alt="The Darwin-Wedgwood family as a loom: lives as vertical threads, marriages as horizontal weft" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 15</div>
+    <h2>Dynasty Loom: an atlas of three families</h2>
+    <p>Three families woven as cloth: lives are the warp, marriages the weft. Darwin&ndash;Wedgwood, Habsburg and Rothschild, each also as a hypersphere and a pocket world in X3D, with a narrated tour and a year slider.</p>
+    <div class="chips">
+      <a href="../../demos/dynasty-loom/v1/index.html#loom/darwin-wedgwood">Open Darwin&ndash;Wedgwood</a>
+    </div>
+    <p class="facts">The 26 portraits are AI portraits after public-domain sources, each labelled on the page; anyone not approved shows a monogram, never a face. Fonts load from Google Fonts. X_ITE 16.5.1 bundled.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/confluence-ifc.jpg" alt="A gallery building of two glazed pavilions on a tiled terrace, drawn from an IFC model" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 16</div>
+    <h2>Confluence: IFC &harr; X3D, a read-only copy</h2>
+    <p>A gallery whose every building element keeps its IFC identity: 111 products, 23 shared meshes, baked light and its own shaders. Use the camera shots, the atmospheres (daylight, nocturne, study), the element search and the inspector.</p>
+    <div class="chips">
+      <a href="../../demos/confluence-ifc/v1/index.html">Open Confluence</a>
+      <a href="../../demos/confluence-ifc/v1/README.md">What this copy changes</a>
+    </div>
+    <p class="facts">The live studio is a transactional bridge: a Python server (IfcOpenShell) owns the IFC model and sends each revision over a WebSocket. A static site cannot run it, so this copy replays one recorded revision: the scene is byte-identical and its receipt hash is still checked, and the matching <code>model.ifc</code> can be downloaded. Editing, peer views and live commits need the server. X_ITE 16.5.1 bundled.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/gobbler.jpg" alt="The keeper: a turkey drawn as a glowing wire constellation, its tail fanned in gold" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 17</div>
+    <h2>Gobbler: a cabinet of worlds</h2>
+    <p>A constellation becomes a creature, and inside its heart four places wait: Giza, the Pantheon as 50,058 Gaussian splats, a cabinet of materials, and the Drillfield at Virginia Tech. Choose <b>Begin journey</b> or a world card; drag to orbit, scroll to travel.</p>
+    <div class="chips">
+      <a href="../../demos/gobbler-worlds-within/v1/index.html">Open Gobbler</a>
+    </div>
+    <p class="facts">Worlds load on demand and the page verifies each scene&rsquo;s hash. Giza&rsquo;s Hall of Records is fictional. The Pantheon is an appearance sample whose source and licence are not stated. The Drillfield&rsquo;s imagery and surface model come from the Google Solar API and are attributed to Google.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/gobbler3-webgpu.jpg" alt="Gobbler 3 on WebGPU: a turkey head drawn as a glowing triangulated wire mesh beside a constellation of linked rings and stars" width="640" height="360" loading="lazy">
+  <div>
+    <div class="no">DEMO 18</div>
+    <h2>Gobbler 3 on WebGPU</h2>
+    <p>The Gobbler as a knowledge graph drawn as a creature: one scriptless X3D 4.0 scene (121 entities in 10 loops), drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader. The page&rsquo;s own explorer and tour run unchanged; touch the head and it dissolves into embers.</p>
+    <div class="chips">
+      <a href="../../demos/gobbler3-webgpu/v1/index.html">Open Gobbler 3 on WebGPU</a>
+      <a href="../../demos/gobbler-worlds-within/v1/index.html">The other Gobbler: a cabinet of worlds (Demo 17)</a>
+      <a href="../../demos/gobbler3-webgpu/v1/gobbler3.x3d">Scene (.x3d)</a>
+    </div>
+    <p class="facts">Needs a WebGPU browser: Chrome or Edge 113 or later, Safari 26, Firefox 141; on Windows with an Intel UHD 620 Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code> (the page says so itself). It loads Babylon from a CDN with an integrity hash. Checked against X_ITE 16.5.1 on a software adapter, correctness only: six views score 14.6 to 19.7 dB, low because the scene&rsquo;s animation phases differ between captures, so this is not a pixel-parity claim. Known gaps: stars are camera-facing quads rather than point sprites, embers are approximated, picking covers the head&rsquo;s facets only, the 2,476-star deep build was not run, <b>nothing is timed on a real GPU</b>, the page has not been seen on screen on a real GPU yet, without WebGPU it shows a full-screen message with no close button, and Safari and Firefox are unchecked. The page has an opt-in Timing button; ignore its live &ldquo;fps&rdquo; readout, which counts display callbacks, not scene time. The graph&rsquo;s individual outside contributors are shown as &ldquo;Open-source maintainer&rdquo;. Source: x3d.loom, PR 22 (<code>x3d.webgpu/demo/src/build-gobbler.py</code>).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/material-odyssey-webgpu.jpg" alt="A long hall in a film still: crimson damask walls, gold columns, pedestals with dark spheres, a gold-lit ceiling and an orange geometric carpet running to a lit doorway" width="960" height="402" loading="lazy">
+  <div>
+    <div class="no">DEMO 19</div>
+    <h2>Material Odyssey on WebGPU</h2>
+    <p>A 138-second film carried by one X3D 4.0 file: the set, 35 materials, 60 lights and the director&rsquo;s camera. The page has three engines for the same file: X_ITE, a three.js WebGPU engine, and now <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader, which opens first. A Look switch adds reflections, bloom, grain, dust and three shadows on top of what the file says, and turns off for the file as authored.</p>
+    <div class="chips">
+      <a href="../../demos/material-odyssey-webgpu/v1/index.html">Open Material Odyssey</a>
+      <a href="../../demos/material-odyssey-webgpu/v1/odyssey.x3d">Scene (.x3d)</a>
+    </div>
+    <p class="facts">Needs a WebGPU browser: Chrome or Edge 113 or later, Safari 26, Firefox 141; on Windows with an Intel UHD 620 Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code>. Babylon loads from a CDN with an integrity hash and only when its engine starts; the page&rsquo;s typefaces come from Google Fonts. The page is about 32 MB because it carries all three engines. Checked against X_ITE 16.4.3 on a software adapter, correctness only: with Look off, six film times score 25.5 to 30.7 dB; with Look on, 18.4 to 28.2 dB, lower by design because it adds to the picture. Not tuned to those numbers and not pixel perfect. Known gaps: no depth of field, no light shafts, <b>nothing is timed on a real GPU</b> (the page&rsquo;s Bench measures on your own), Safari and Firefox are unchecked, the three.js engine could not be captured by the headless rig, and the X_ITE engine logs a missing line-type texture that the original page also lacks. The film has no sound. Source: x3d.loom, PR 23 (<code>x3d.webgpu/demo/src/build-odyssey.py</code>).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/gobbler-demiurge-webgpu.jpg" alt="The Gobbler demiurge: a turkey head drawn as a glowing triangulated wire mesh, with a ring of Armenian letters and a dense constellation of linked stars beside it" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 20</div>
+    <h2>Gobbler Demiurge on WebGPU</h2>
+    <p>The bird first: the Gobbler head, the Sun in its chest that beats a replay of real validator runs, a Dyson ribcage of ontology classes, the ring of the 36 Armenian letters, and a tail fan. Fly the zoom ladder with keys 1 to 8, down through the Earth and Moon to a Blender-modelled village. It is one X3D scene drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader, with the page&rsquo;s own explorer, tour, hover cards and sound (key M) running unchanged.</p>
+    <div class="chips">
+      <a href="../../demos/gobbler-demiurge-webgpu/v1/index.html">Open Gobbler Demiurge</a>
+      <a href="../../demos/gobbler3-webgpu/v1/index.html">Gobbler 3 on WebGPU (Demo 18)</a>
+    </div>
+    <p class="facts">Needs a WebGPU browser: Chrome or Edge 113 or later, Safari 26, Firefox 141; on Windows with an Intel UHD 620 Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code>. Babylon loads from a CDN with an integrity hash. <b>The knowledge graph in this public copy is redacted:</b> entries that touched private notes, people, costs or accounts show as &ldquo;(redacted)&rdquo; or &ldquo;A person&rdquo; with no text, and no file names; counts and positions are unchanged, so some hover cards are empty on purpose. Checked against X_ITE 16.5.1 on a software adapter, correctness only: the eight ladder views all draw, and the picture scores 7 to 13 dB against X_ITE, which means little because animation phases differ and X_ITE&rsquo;s village frame is black on that rig. Known gaps: the humanoid figures are not skinned (they move as rigid parts), sound and click-to-pin were not exercised, the frame reads brighter than X_ITE&rsquo;s, <b>nothing is timed on a real GPU</b>, and Safari and Firefox are unchecked. Source: x3d.loom, PR 24 (<code>x3d.webgpu/demo/src/build-demiurge.py</code>).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/dynasty-loom-webgpu.jpg" alt="Dynasty Loom hypersphere: a tangle of red lines forming the Rothschild family as a sphere of time, on a cream museum ground" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 21</div>
+    <h2>Dynasty Loom on WebGPU</h2>
+    <p>An atlas of three families (Rothschild, Habsburg, Darwin&ndash;Wedgwood). Its hypersphere view is a sphere of time: the founders sit at the centre, the present is the glass, each life is a fibre running outward and each marriage an arc. Here that view is drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader; the page&rsquo;s own scripts, lens, tour and night look run unchanged. The tapestry view (Loom) stays on X_ITE, so the page is a hybrid, and without WebGPU both views use X_ITE.</p>
+    <div class="chips">
+      <a href="../../demos/dynasty-loom-webgpu/v1/index.html">Open Dynasty Loom</a>
+      <a href="../../demos/dynasty-loom/v1/index.html">The X_ITE atlas (Demo 15)</a>
+    </div>
+    <p class="facts">Needs a WebGPU browser for the hypersphere: Chrome or Edge 113 or later, Safari 26, Firefox 141; on Windows with an Intel UHD 620 Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code>. Babylon loads from a CDN with an integrity hash; typefaces come from Google Fonts. Checked against X_ITE 16.5.1 on a software adapter, correctness only: eight museum shots score 29.0 to 37.8 dB, the night look and the selection and lens shots 36.3 to 39.4 dB, and a visitor play test (flight, select, lens, tour, tiers, family, night look, tapestry round trip) ran with no page errors. The 26 portraits are AI-made after public-domain paintings or photographs, or imagined where no likeness survives, and each one says which. Known gaps: the tapestry is not ported, no logarithmic depth, taps and hover were driven through the page&rsquo;s own test surface, <b>nothing is timed on a real GPU</b>, and Safari and Firefox are unchecked. Source: x3d.loom, PR 25 (<code>x3d.webgpu/demo/src/build-dynasty.py</code>).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/library-hall-webgpu.jpg" alt="A stone stairwell in the library hall seen from above, with a brass handrail, a dark blue wall and a landing below" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 22</div>
+    <h2>Library Hall on WebGPU</h2>
+    <p>A 299-second film through the hall of a library, carried by one 14 MB X3D file with 23 viewpoints and no custom shaders: stone, oak, bronze, lamps, a sky dome and a galaxy 2.4 km out. It is drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader, with an X_ITE button on the page to compare the same file.</p>
+    <div class="chips">
+      <a href="../../demos/library-hall-webgpu/v1/index.html">Open the Library Hall</a>
+      <a href="../../demos/library-hall-webgpu/v1/hall.x3d">Scene (.x3d)</a>
+    </div>
+    <p class="facts">Needs a WebGPU browser: Chrome or Edge 113 or later, Safari 26, Firefox 141; on Windows with an Intel UHD 620 Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code>. It is a large page, about 38 MB with textures and the X_ITE comparison engine. Babylon loads from a CDN with an integrity hash; typefaces come from Google Fonts. Checked against X_ITE 16.5.1 on a software adapter, correctness only: five matched shots score 17.5 to 25.3 dB, geometry and the film clock agree, and lamp-lit interiors read 1.2 to 1.4 times brighter than X_ITE&rsquo;s. Not tuned to those numbers. Known gaps: <b>Text nodes are not drawn</b> (the plaques and two fonts), one shadow map per shadow light, <b>nothing is timed on a real GPU</b>, only five of 23 viewpoints were compared, no audio was tried, and Safari and Firefox are unchecked. Source: x3d.loom, PR 27.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="../../assets/gobbler-gyroscope-webgpu.jpg" alt="The Gobbler bird drawn as a glowing triangulated mesh beside a gyroscope of ten coloured hoops on one centre, with a spiky star of lines at its core and small constellations drifting around it" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 23</div>
+    <h2>Gobbler Gyroscope on WebGPU</h2>
+    <p>The ten feedback loops of the Gobbler graph become ten hoops of a gyroscope on one centre, with the spiky atom at its core, five little force-directed graphs flinging their minor nodes into the dark, and the disco floor below. The hoops really move: a WebGPU compute pass integrates each one as a heavy spinning top every frame (precession, a little nutation, alternate spin senses), or turns them as a Keplerian orrery, or lets them breathe. The spokes draw in and out on four curves (spring, golden cascade, logarithmic spiral, sine). The Flywheel lab panel picks a loop, isolates it and shows its live angles. It is one X3D scene drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader.</p>
+    <div class="chips">
+      <a href="../../demos/gobbler-gyroscope-webgpu/v1/index.html">Open the Gobbler Gyroscope</a>
+      <a href="../../demos/gobbler-gyroscope-webgpu/v1/gobbler3.x3d">Scene (.x3d)</a>
+      <a href="../../demos/gobbler3-webgpu/v1/index.html">Gobbler 3 on WebGPU (Demo 18)</a>
+    </div>
+    <p class="facts">Needs a WebGPU browser with compute shaders: Chrome or Edge 113 or later, Safari 26, Firefox 141; on Windows with an Intel UHD 620 Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code>. Keys: <code>G</code> changes the motion, <code>S</code> animates the spokes; <code>?kin=still</code> in the address starts it still, as does a reduced-motion setting. Babylon loads from a CDN with an integrity hash. The motion is presentation only: the X3D coordinates never change, and the graph is the same 121 entities and 162 relations as Demo 18, with the same three maintainer handles replaced. Checked on a software adapter only, correctness only: the compute pass runs, the hoops, spokes and discs move, and there are no page errors. Known gaps: labels follow the hoops through a readback a frame or two late (seconds late on the software adapter), the selected-node flow overlay stays at the authored positions, the page&rsquo;s download buttons were not tried here, <b>nothing is timed on a real GPU</b>, and Safari and Firefox are unchecked. Built with a second model&rsquo;s Meridian refinement (smoother rings, the lab panel) folded in.</p>
+  </div>
+</section>
+
+<section class="memes" aria-label="Meme wall">
+  <h2>The meme wall</h2>
+  <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
+  <div class="wall">
+    <figure><img src="../../assets/memes/one-more-demo.jpg" alt="Collider event with the caption: Me, one quick demo. Also me, 4 AM, adding bloom." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/validator.jpg" alt="Two muon tracks with the caption: the validator says line 4,821, ROUTE before DEF. Me: it was vibes." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/tomb.jpg" alt="Synthetic sandstone facade with the caption: AI says it scanned a real tomb. It is 140,000 synthetic splats." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/to-vibes.jpg" alt="Collider detector with the caption: not to scale. It is to vibes." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/valid-visible.jpg" alt="Collider event with the caption: valid is not the same as visible." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/html-universe.jpg" alt="Collider event with the caption: X3D is like HTML but for the universe." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/unsafe-flag.jpg" alt="Collider event with the caption: Chrome says WebGPU is blocklisted. Me: enable-unsafe-webgpu." width="960" height="540" loading="lazy"></figure>
+    <figure><img src="../../assets/memes/laptop-fan.jpg" alt="Synthetic facade with the caption: my laptop fan sorting 140,000 splats." width="960" height="540" loading="lazy"></figure>
+  </div>
+</section>
+
+<footer>
+  <p><b>Versions of this page.</b> <a href="../v1/index.html">v1</a>, <a href="../v2/index.html">v2</a>, <a href="../v3/index.html">v3</a>, <a href="../v4/index.html">v4</a>, <a href="../v5/index.html">v5</a>, <a href="../v6/index.html">v6</a>, <a href="../v7/index.html">v7</a>, <a href="../v8/index.html">v8</a>, <a href="../v9/index.html">v9</a>, <a href="../v10/index.html">v10</a>, <a href="../v11/index.html">v11</a>, <a href="../v12/index.html">v12</a>, <a href="../v13/index.html">v13</a>, <a href="../v14/index.html">v14</a>, <a href="../v15/index.html">v15</a>, <a href="../v16/index.html">v16</a>, <a href="../v17/index.html">v17</a>, <a href="../v18/index.html">v18</a>, <a href="../v19/index.html">v19</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
+</footer>
+</main>
+<script>
+(async function(){
+  var out=document.getElementById('gpu-out');
+  function esc(t){return String(t).replace(/</g,'&lt;');}
+  try{
+    if(!('gpu' in navigator)){out.innerHTML='<span class="bad">Not available.</span> This browser has no WebGPU. Try a current Chrome or Edge, and open this page in its own tab, not an embedded preview.';return;}
+    var tries=[['plain request',undefined],['high-performance hint',{powerPreference:'high-performance'}]],rows=[],first=null;
+    for(var k=0;k<tries.length;k++){
+      var a=null;try{a=await navigator.gpu.requestAdapter(tries[k][1]);}catch(e){}
+      var i=a&&a.info||{};
+      var d=[i.vendor,i.architecture,i.description].filter(Boolean).join(' · ');
+      rows.push(tries[k][0]+': '+(a?'<span class="ok">adapter</span>'+(d?' ('+esc(d)+')':''):'<span class="bad">none</span>'));
+      if(a&&!first)first=a;
+    }
+    var help='';
+    if(!first){
+      help='<br><small><b>What to try.</b> On Windows with an older Intel GPU, recent Chrome can list the adapter in <code>chrome://gpu</code> under Dawn Info as blocklisted (for example "D3D11 backend not fully implemented") and then hand pages no adapter at all. Open <code>chrome://flags/#enable-unsafe-webgpu</code>, set it to Enabled, relaunch Chrome, and reload this page. It switches off Chrome\u2019s safety check for WebGPU on that GPU, so use it for these demos only. Other options: Microsoft Edge, or a Mac (Chrome or Safari 26).</small>';
+    }
+    out.innerHTML=(first?'<span class="ok">Available.</span>':'<span class="bad">No adapter.</span> This browser is not offering WebGPU on this machine.')+'<br><small>'+rows.join('<br>')+'</small>'+help;
+  }catch(e){out.innerHTML='<span class="bad">Check failed.</span> '+esc(e&&e.message||e);}
+})();
+</script>
+</body>
+</html>

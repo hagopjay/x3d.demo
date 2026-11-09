@@ -418,6 +418,21 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
+<section class="demo">
+  <img src="assets/gobbler-gyroscope-webgpu.jpg" alt="The Gobbler bird drawn as a glowing triangulated mesh beside a gyroscope of ten coloured hoops on one centre, with a spiky star of lines at its core and small constellations drifting around it" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 23</div>
+    <h2>Gobbler Gyroscope on WebGPU</h2>
+    <p>The ten feedback loops of the Gobbler graph become ten hoops of a gyroscope on one centre, with the spiky atom at its core, five little force-directed graphs flinging their minor nodes into the dark, and the disco floor below. The hoops really move: a WebGPU compute pass integrates each one as a heavy spinning top every frame (precession, a little nutation, alternate spin senses), or turns them as a Keplerian orrery, or lets them breathe. The spokes draw in and out on four curves (spring, golden cascade, logarithmic spiral, sine). The Flywheel lab panel picks a loop, isolates it and shows its live angles. It is one X3D scene drawn by <a href="https://www.babylonjs.com">Babylon.js</a> 9.32.0 in WebGPU mode through our own X3D reader.</p>
+    <div class="chips">
+      <a href="demos/gobbler-gyroscope-webgpu/v1/index.html">Open the Gobbler Gyroscope</a>
+      <a href="demos/gobbler-gyroscope-webgpu/v1/gobbler3.x3d">Scene (.x3d)</a>
+      <a href="demos/gobbler3-webgpu/v1/index.html">Gobbler 3 on WebGPU (Demo 18)</a>
+    </div>
+    <p class="facts">Needs a WebGPU browser with compute shaders: Chrome or Edge 113 or later, Safari 26, Firefox 141; on Windows with an Intel UHD 620 Chrome may need <code>chrome://flags/#enable-unsafe-webgpu</code>. Keys: <code>G</code> changes the motion, <code>S</code> animates the spokes; <code>?kin=still</code> in the address starts it still, as does a reduced-motion setting. Babylon loads from a CDN with an integrity hash. The motion is presentation only: the X3D coordinates never change, and the graph is the same 121 entities and 162 relations as Demo 18, with the same three maintainer handles replaced. Checked on a software adapter only, correctness only: the compute pass runs, the hoops, spokes and discs move, and there are no page errors. Known gaps: labels follow the hoops through a readback a frame or two late (seconds late on the software adapter), the selected-node flow overlay stays at the authored positions, the page&rsquo;s download buttons were not tried here, <b>nothing is timed on a real GPU</b>, and Safari and Firefox are unchecked. Built with a second model&rsquo;s Meridian refinement (smoother rings, the lab panel) folded in.</p>
+  </div>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -434,7 +449,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a>, <a href="versions/v17/index.html">v17</a>, <a href="versions/v18/index.html">v18</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a>, <a href="versions/v17/index.html">v17</a>, <a href="versions/v18/index.html">v18</a>, <a href="versions/v19/index.html">v19</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>
