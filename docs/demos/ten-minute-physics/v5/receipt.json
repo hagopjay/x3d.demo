@@ -1,0 +1,548 @@
+{
+ "schema": "loom-receipt-lite/1",
+ "batch": 5,
+ "validator": "hagopjay/x3d_mcp fork 13121b6, XSD 4.0 plus semantic check, 0 errors, 0 warnings on all three scenes",
+ "witness": "x3d.loom kit/loom physics (main e7e1fc3): 3 runs, --hosts numpy-fresh-process, max waivers 0: PASS",
+ "mutation_controls": "11 of 11 edits to my records refused with their intended code",
+ "engine_cross_check": "MuJoCo 4.0.1 RK4 (free rotation) and elliptic-cone contact (slope)",
+ "renderer": "X_ITE 16.7.1, headless Chromium, software GL, screenshots only",
+ "grade": "Confirmed for numbers (tmp5.py, numpy 2.5.3, one machine); Likely for visuals; Suspected for the explanation of the push-apart effect",
+ "numbers": {
+  "flip": {
+   "grid": "50x30",
+   "particles": 2560,
+   "h": 0.020833333333333332,
+   "flip_ratio": 0.9,
+   "comp_mps": 4.17,
+   "pressure_sweeps": 100,
+   "dt": 0.008333333333333333,
+   "tank_L": 1.0,
+   "depth": 0.4,
+   "tilt": 0.04,
+   "T_linear": 1.22751456183196,
+   "T_flip": 1.2289849011598213,
+   "err_flip": 0.0011978182366054746,
+   "sigma_flip": 0.42500000000000004,
+   "T_pic": 1.3028896437904793,
+   "err_pic": 0.06140463364119153,
+   "sigma_pic": 0.875,
+   "T_pushapart": 1.332594975011577,
+   "err_pushapart": 0.0856042090635516,
+   "late_flip": 0.39858234088822214,
+   "late_pic": 0.14260263715074487,
+   "late_ratio": 2.7950558899333804,
+   "level_drift_cells": 0.3282305914511694,
+   "ycm0": 0.22183513183825906,
+   "ycm_min": 0.2064514731900744,
+   "ycm_max": 0.23087726782785217,
+   "frames": 91
+  },
+  "rigid": {
+   "mujoco": "4.0.1",
+   "free_half": [
+    0.45,
+    0.12,
+    0.25
+   ],
+   "free_w0": [
+    0.3,
+    0.0,
+    4.0
+   ],
+   "xpbd_substeps": 20,
+   "fps": 60,
+   "xpbd_vs_euler_rad_4s": 0.04066860380440618,
+   "xpbd_vs_euler_rad_6s": 0.08965198005032027,
+   "xpbd_L_drift_max": 0.007224590375260184,
+   "gyro_off_vs_euler_rad_4s": 2.9963995025752928,
+   "gyro_off_L_drift_max": 0.09649222142325713,
+   "mujoco_vs_euler_rad_max": 9.424321830774485e-08,
+   "incline_deg": 30,
+   "a_exact_mu03": 2.3562872366623964,
+   "a_xpbd_mu03": 2.3590460995775904,
+   "a_rel_mu03": 0.0011708516993462759,
+   "a_mujoco_mu03": 2.3562533324775394,
+   "a_mujoco_rel_mu03": 1.4388816579447017e-05,
+   "stick_mu07_xpbd_m_2s": 0.0037819904826326585,
+   "stick_mu07_mujoco_m_2s": 0.0005835641127862805,
+   "a_frictionless_rel": 1.0825320757400059,
+   "drop_rest_lowest_vertex_m": -3.819892123113622e-06,
+   "drop_rest_centre_height_m": 0.1499992842295848,
+   "drop_face_height_err_m": 7.157704151883326e-07,
+   "drop_rest_speed": 0.00212656809465118,
+   "drop_rest_spin": 0.0016658528806057229
+  },
+  "cloth": {
+   "grid": "29x29",
+   "width": 1.9,
+   "spacing": 0.06785714285714285,
+   "thickness_ratio": 0.6,
+   "thickness": 0.04071428571428571,
+   "substeps": 20,
+   "fps": 60,
+   "min_gap_over_thickness": 0.9925850590078322,
+   "crossings_on": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "crossings_off": [
+    91,
+    46,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50
+   ],
+   "crossings_off_max": 91,
+   "stretch_on_max": 0.06830217367271896,
+   "stretch_off_max": 0.08262580413728049,
+   "vmax_main": 11.52951468313431,
+   "stretch_vs_substeps": {
+    "4": {
+     "peak": 0.5521030430377063,
+     "rest": 0.1836426338551984
+    },
+    "8": {
+     "peak": 0.23021214923437294,
+     "rest": 0.0867715668900586
+    },
+    "20": {
+     "peak": 0.06830217367271896,
+     "rest": 0.037551295596029544
+    }
+   },
+   "prediction1": {
+    "rule": "no crossing when vmax*h/t <= 0.9; some crossing when >= 2 (written before grid 1)",
+    "y0": 3.0,
+    "runs": [
+     {
+      "ratio": 0.1,
+      "nsub": 4,
+      "vmax": 7.188774993259397,
+      "vh_over_t": 4.414160083580332,
+      "crossings_max": 11,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       7,
+       9,
+       9,
+       11
+      ]
+     },
+     {
+      "ratio": 0.1,
+      "nsub": 8,
+      "vmax": 12.53535407408182,
+      "vh_over_t": 3.8485736192356463,
+      "crossings_max": 20,
+      "crossings": [
+       0,
+       0,
+       20,
+       10,
+       10,
+       10,
+       10,
+       10,
+       10,
+       10
+      ]
+     },
+     {
+      "ratio": 0.1,
+      "nsub": 16,
+      "vmax": 18.386133905028927,
+      "vh_over_t": 2.8224328362983004,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.2,
+      "nsub": 4,
+      "vmax": 7.188774993259397,
+      "vh_over_t": 2.207080041790166,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.2,
+      "nsub": 8,
+      "vmax": 12.53535407408182,
+      "vh_over_t": 1.9242868096178232,
+      "crossings_max": 22,
+      "crossings": [
+       0,
+       0,
+       20,
+       20,
+       22,
+       22,
+       22,
+       22,
+       20,
+       22
+      ]
+     },
+     {
+      "ratio": 0.2,
+      "nsub": 16,
+      "vmax": 18.386133905028927,
+      "vh_over_t": 1.4112164181491502,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.3,
+      "nsub": 4,
+      "vmax": 7.188774993259397,
+      "vh_over_t": 1.4713866945267773,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.3,
+      "nsub": 8,
+      "vmax": 12.53535407408182,
+      "vh_over_t": 1.282857873078549,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.3,
+      "nsub": 16,
+      "vmax": 18.386133905028927,
+      "vh_over_t": 0.9408109454327669,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.5,
+      "nsub": 4,
+      "vmax": 7.188774993259397,
+      "vh_over_t": 0.8828320167160664,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.5,
+      "nsub": 8,
+      "vmax": 12.53535407408182,
+      "vh_over_t": 0.7697147238471294,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.5,
+      "nsub": 16,
+      "vmax": 18.386133905028927,
+      "vh_over_t": 0.5644865672596602,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     }
+    ],
+    "safe_cases": 3,
+    "unsafe_cases": 4,
+    "violations": 2,
+    "verdict": "falsified"
+   },
+   "prediction2": {
+    "rule": "no crossing in any run with vmax*h/t <= 1.0; at least one crossing somewhere in the grid (written after grid 1, tested on fresh runs)",
+    "y0": 2.0,
+    "runs": [
+     {
+      "ratio": 0.15,
+      "nsub": 5,
+      "vmax": 6.632907572960219,
+      "vh_over_t": 2.172180257811534,
+      "crossings_max": 2,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.15,
+      "nsub": 10,
+      "vmax": 13.906889800393555,
+      "vh_over_t": 2.2771515462632723,
+      "crossings_max": 4,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       2,
+       2,
+       2,
+       2,
+       4,
+       2
+      ]
+     },
+     {
+      "ratio": 0.15,
+      "nsub": 20,
+      "vmax": 16.605990546020905,
+      "vh_over_t": 1.3595547815455713,
+      "crossings_max": 14,
+      "crossings": [
+       0,
+       14,
+       14,
+       14,
+       14,
+       14,
+       14,
+       14,
+       14,
+       14
+      ]
+     },
+     {
+      "ratio": 0.3,
+      "nsub": 5,
+      "vmax": 6.632907572960219,
+      "vh_over_t": 1.086090128905767,
+      "crossings_max": 2,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.3,
+      "nsub": 10,
+      "vmax": 13.906889800393555,
+      "vh_over_t": 1.1385757731316362,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.3,
+      "nsub": 20,
+      "vmax": 16.605990546020905,
+      "vh_over_t": 0.6797773907727857,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.45,
+      "nsub": 5,
+      "vmax": 6.632907572960219,
+      "vh_over_t": 0.724060085937178,
+      "crossings_max": 7,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       7
+      ]
+     },
+     {
+      "ratio": 0.45,
+      "nsub": 10,
+      "vmax": 13.906889800393555,
+      "vh_over_t": 0.7590505154210908,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "ratio": 0.45,
+      "nsub": 20,
+      "vmax": 16.605990546020905,
+      "vh_over_t": 0.4531849271818571,
+      "crossings_max": 0,
+      "crossings": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     }
+    ],
+    "violations": 1,
+    "runs_with_crossings": 5,
+    "verdict": "falsified"
+   },
+   "frames": 101
+  },
+  "seconds": 408.2
+ }
+}
