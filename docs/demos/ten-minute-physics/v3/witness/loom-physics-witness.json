@@ -1,0 +1,182 @@
+{
+  "coverage": {
+    "max_waivers": 0,
+    "require_takeover": false,
+    "runs": 4
+  },
+  "development": false,
+  "environment": {
+    "optimized": false,
+    "python": "3.13.18"
+  },
+  "evidence": [],
+  "finished_at": "2026-11-13T15:10:54+00:00",
+  "grade": "C",
+  "instrument": {
+    "hosts": [
+      "numpy-fresh-process"
+    ],
+    "max_waivers": 0,
+    "require_takeover": false,
+    "rules_sha256": "9c7b6cdd75d26b55f54b327d4834dd5f0d8233fc5410a8583522b50d240f79c6",
+    "tool": "loomkit.physics"
+  },
+  "limitations": [
+    "Determinism is shown on the hosts and the machine the record names; another machine or another engine build needs its own replay (law 42).",
+    "A passing record shows the run answers to its references and hashes; it does not show the engine's model is right where no exact reference exists.",
+    "The witness reads the record a project's own harness wrote; the harness is trusted to have replayed what it says (the project's browser evidence is the behaviour witness)."
+  ],
+  "measurements": {
+    "runs": {
+      "01-cannonball-symplectic.physics.json": {
+        "controls": 1,
+        "engine": "tmp-ports (numpy) numpy-2.5.3",
+        "id": "tmp-ports/01-cannonball-symplectic",
+        "leaks": 0,
+        "recorded_in": "cpython-3.13.18-numpy-2.5.3",
+        "references": [
+          {
+            "id": "free flight, symplectic Euler, 360 steps at 1/30 s: height against the discrete solution y0 + v0 n h - g h^2 n(n+1)/2 (m)",
+            "limit": 1e-09,
+            "observed": 1.0231815394945443e-12
+          },
+          {
+            "id": "free flight, symplectic Euler: shadow energy E - g h v / 2 is conserved (max drift / E0)",
+            "limit": 1e-09,
+            "observed": 9.381506057962954e-13
+          },
+          {
+            "id": "free flight, explicit Euler: shadow energy E + g h v / 2 is conserved (max drift / E0)",
+            "limit": 1e-09,
+            "observed": 9.221412097929457e-13
+          },
+          {
+            "id": "box with bounces, symplectic Euler: energy stays within 20% of E0 over 12 s (max |E/E0 - 1|)",
+            "limit": 0.2,
+            "observed": 0.16325235338250266
+          }
+        ],
+        "replayed_in": [
+          "cpython-pure-float",
+          "numpy-fresh-process"
+        ],
+        "required_hosts": [
+          "numpy-fresh-process"
+        ],
+        "steps": 360,
+        "takeover": false,
+        "tolerances": 0,
+        "trace_sha256": "6e63948e89e1d9c8332d82c84186ea9586330dca7a4b46098db74d64437518a2",
+        "waivers": []
+      },
+      "03-billiards-pair.physics.json": {
+        "controls": 1,
+        "engine": "tmp-ports (numpy) numpy-2.5.3",
+        "id": "tmp-ports/03-billiards-pair",
+        "leaks": 0,
+        "recorded_in": "cpython-3.13.18-numpy-2.5.3",
+        "references": [
+          {
+            "id": "head-on equal-mass elastic pair: total momentum change (kg m/s)",
+            "limit": 1e-12,
+            "observed": 0.0
+          },
+          {
+            "id": "head-on equal-mass elastic pair: kinetic energy change (relative)",
+            "limit": 1e-12,
+            "observed": 0.0
+          },
+          {
+            "id": "head-on equal-mass elastic pair: velocities exchanged (max difference, m/s)",
+            "limit": 1e-12,
+            "observed": 0.0
+          }
+        ],
+        "replayed_in": [
+          "cpython-pure-float",
+          "numpy-fresh-process"
+        ],
+        "required_hosts": [
+          "numpy-fresh-process"
+        ],
+        "steps": 240,
+        "takeover": false,
+        "tolerances": 0,
+        "trace_sha256": "823e4977ea6ea6c58bbc4a18c5257b62393045fd9cda20f51e1c3ee713fd9fa8",
+        "waivers": []
+      },
+      "05-bead-xpbd.physics.json": {
+        "controls": 1,
+        "engine": "tmp-ports (numpy) numpy-2.5.3",
+        "id": "tmp-ports/05-bead-xpbd",
+        "leaks": 0,
+        "recorded_in": "cpython-3.13.18-numpy-2.5.3",
+        "references": [
+          {
+            "id": "MuJoCo RK4 hinge pendulum against our RK4 on theta: max |theta| difference over 12 s (rad)",
+            "limit": 1e-06,
+            "observed": 2.412728420525534e-08
+          },
+          {
+            "id": "MuJoCo period against the exact elliptic period 2 pi/AGM(1,cos(th0/2)) sqrt(L/g), theta0 80 deg (relative)",
+            "limit": 0.0001,
+            "observed": 4.863878189098614e-10
+          },
+          {
+            "id": "XPBD bead, 100 substeps at 1/30 s: period against the exact elliptic period (relative)",
+            "limit": 0.02,
+            "observed": 0.005967517678012624
+          }
+        ],
+        "replayed_in": [
+          "cpython-pure-float",
+          "numpy-fresh-process"
+        ],
+        "required_hosts": [
+          "numpy-fresh-process"
+        ],
+        "steps": 360,
+        "takeover": false,
+        "tolerances": 0,
+        "trace_sha256": "ab522e0953bb780e1924ca2eb9688f65bbede9d3c5c7b25570a8982dac9b61d9",
+        "waivers": []
+      },
+      "20-water-cfl.physics.json": {
+        "controls": 1,
+        "engine": "tmp-ports (numpy) numpy-2.5.3",
+        "id": "tmp-ports/20-water-cfl",
+        "leaks": 0,
+        "recorded_in": "cpython-3.13.18-numpy-2.5.3",
+        "references": [
+          {
+            "id": "pure tank, c dt/dx 0.5, 10 s: total volume drift (m^3 per unit)",
+            "limit": 1e-10,
+            "observed": 1.124100812432971e-14
+          },
+          {
+            "id": "stability threshold of c dt/dx found by bisection against 1/sqrt(2) (absolute)",
+            "limit": 0.003,
+            "observed": 0.0012519834618900383
+          }
+        ],
+        "replayed_in": [
+          "numpy-fresh-process"
+        ],
+        "required_hosts": [
+          "numpy-fresh-process"
+        ],
+        "steps": 20,
+        "takeover": false,
+        "tolerances": 0,
+        "trace_sha256": "cbd7537cf859195eee358a6c43ad12b9a85db4d99eec36d9bc43780bcd6d5dd1",
+        "waivers": []
+      }
+    },
+    "waivers": 0
+  },
+  "reason": "",
+  "schema": "loom.witness/1",
+  "status": "pass",
+  "subject_sha256": "3dcc6032eae3e6ca77bfef4e0a81a09e581f92d9b2517cc652c6b831023ee80c",
+  "witness": "physics"
+}

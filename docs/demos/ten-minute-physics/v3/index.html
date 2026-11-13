@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ten Minute Physics in X3D, batch 3</title>
+<script src="https://cdn.jsdelivr.net/npm/x_ite@16.7.1/dist/x_ite.min.js"></script>
+<style>:root{--bg:#0b0e14;--fg:#dfe6f0;--mut:#8b97a8;--ac:#4cc9f0;--card:#141a24}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}
+main{max-width:1100px;margin:auto;padding:16px}h1{font-size:22px;margin:.2em 0}nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+button{background:var(--card);color:var(--fg);border:1px solid #2a3446;border-radius:8px;padding:8px 14px;cursor:pointer}button.on{border-color:var(--ac);color:var(--ac)}
+x3d-canvas{width:100%;height:56vh;min-height:320px;display:block;border-radius:10px;background:#000}.card{background:var(--card);border-radius:10px;padding:12px 16px;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid #263044;padding:4px 8px;text-align:left}small{color:var(--mut)}a{color:var(--ac)}</style></head><body><main>
+<h1>Ten Minute Physics in X3D · batch 3: the physics witness</h1>
+<small>Independent ports of ideas from Matthias Mueller's Ten Minute Physics; no code copied (NOTICE.md). <a href="ERRATA.md">Errata for v1</a> · <a href="../v1/index.html">v1</a> · <a href="../v2/index.html">v2</a></small>
+<nav id="tabs"></nav><x3d-canvas id="c"></x3d-canvas><div class="card" id="txt"></div>
+<div class="card"><b>Numbers</b> <small>(validator: x3d_mcp fork 13121b6; witness: Loom kit physics, PASS; X_ITE 16.7.1; numpy 2.5.3, MuJoCo 4.0.1; receipt.json has the rest)</small><table id="nums"></table></div>
+</main><script>
+const D=[
+{f:"06-pendulum-engines.x3d",t:"06 Four engines, one wire",x:"<b>Physics.</b> One bead released at 80 degrees on a ring. Gold: MuJoCo 4.0.1 (RK4). White: our RK4 on the angle. Blue: our XPBD with 100 substeps. Red: XPBD with 1 substep. <b>Insight.</b> A second engine is a model check, not a build check: MuJoCo and our RK4 agree to 2.4e-8 rad, and both match the exact elliptic period (2.28189 s) to 5e-10. XPBD with 100 substeps is 0.6% off in period; with 1 substep it is dead (1% energy left). Chart: log10 of the angle error against RK4 (gold, blue, red).",
+ n:[["MuJoCo vs our RK4, max angle difference 12 s","2.4e-08 rad (limit 1e-6)"],["period error, MuJoCo / XPBD 100","4.9e-10 / 0.0060"],["energy kept after 12 s, XPBD 1 / 100 substeps","0.011 / 0.930"],["exact period, elliptic","2.28189 s"]]},
+{f:"03-billiards-fixed.x3d",t:"03 Billiards (fixed)",x:"<b>What went wrong.</b> The batch 1 table never exchanged momentum: its collision rule fired only when balls were separating. The witness caught it with the simplest exact test there is, a head-on elastic pair that must swap velocities (error 4 m/s with the old rule, 0 with the fixed one). <b>Now</b> the rack breaks, and the chart is real: collisions conserve kinetic energy (2e-15 without friction), rolling friction removes it. See ERRATA.md.",
+ n:[["v1 rule, swap error","4.0 m/s"],["fixed rule, swap / momentum / energy error","0.0 / 0.0 / 0.0"],["16-ball frictionless KE drift, 15 s","2.0e-15"]]},
+{f:"",t:"Witness",x:"<b>Loom physics witness on these ports.</b> Four run records (bead, cannonball, billiards pair, water CFL), each with a per-step hash replayed in a fresh process (and, for three, a pure-float Python host), exact references with limits written before the run, and a control that must fail. Verdict: PASS, 0 waivers. 11 of 11 edits to the records (tampered hash, widened limit, dropped replay, a fail marked green...) are refused with their own codes. Not shown: another machine, cloth and jelly dynamics (no exact reference), a real GPU. Files are in witness/.",
+ n:[["runs / waivers","4 / 0"],["bead hash replays: fresh process / pure Python","0 / 0 mismatches over 360 steps"],["cannonball (both orders) replays","0 mismatches over 360 steps"],["water CFL threshold by bisection vs 1/sqrt(2)","0.7084 vs 0.7071"],["water volume drift, pure tank 10 s","1.1e-14"],["free-flight height vs the scheme's own solution","1.0e-12 m"]]}];
+const c=document.getElementById('c'),tabs=document.getElementById('tabs');
+function show(i){[...tabs.children].forEach((b,j)=>b.classList.toggle('on',i==j));if(D[i].f)c.setAttribute('src',D[i].f);c.style.display=D[i].f?'block':'none';
+ document.getElementById('txt').innerHTML=D[i].x;document.getElementById('nums').innerHTML=D[i].n.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}
+D.forEach((d,i)=>{const b=document.createElement('button');b.textContent=d.t;b.onclick=()=>show(i);tabs.appendChild(b)});show(0);
+</script></body></html>

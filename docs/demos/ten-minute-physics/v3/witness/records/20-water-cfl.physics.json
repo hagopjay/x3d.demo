@@ -1,0 +1,84 @@
+{
+ "schema": "loom.physics-run/1",
+ "id": "tmp-ports/20-water-cfl",
+ "engine": {
+  "name": "tmp-ports (numpy)",
+  "version": "numpy-2.5.3",
+  "build": "witness_tmp.py sha256 b31ceac397e8, python 3.13.18"
+ },
+ "model": {
+  "sha256": "533ed920e1d5f738025cdd3f4d4109138f89c59b8edec3a22746788e70527b67",
+  "path": "docs/demos/ten-minute-physics/v2/20-water.x3d",
+  "what": "the X3D scene the port produced; the sim parameters live in the generator scripts beside it"
+ },
+ "recorded": {
+  "host": "cpython-3.13.18-numpy-2.5.3",
+  "steps": 20,
+  "hashes": [
+   206710826,
+   4016669849,
+   3389889343,
+   503281893,
+   1684440148,
+   3340087980,
+   3269077902,
+   2415347508,
+   3675015750,
+   3780351975,
+   307233357,
+   3819795717,
+   3374085756,
+   1192018033,
+   3484892797,
+   2522649853,
+   2072911347,
+   1562511348,
+   3115280132,
+   3443990285
+  ],
+  "trace_sha256": "cbd7537cf859195eee358a6c43ad12b9a85db4d99eec36d9bc43780bcd6d5dd1"
+ },
+ "replays": [
+  {
+   "host": "numpy-fresh-process",
+   "steps": 20,
+   "mismatches": 0,
+   "first_mismatch": null,
+   "trace_sha256": "cbd7537cf859195eee358a6c43ad12b9a85db4d99eec36d9bc43780bcd6d5dd1"
+  }
+ ],
+ "references": [
+  {
+   "id": "pure tank, c dt/dx 0.5, 10 s: total volume drift (m^3 per unit)",
+   "observed": 1.124100812432971e-14,
+   "limit": 1e-10,
+   "declared_limit": 1e-10,
+   "rule": "at most",
+   "status": "pass",
+   "source": "Neumann wave equation conserves volume exactly"
+  },
+  {
+   "id": "stability threshold of c dt/dx found by bisection against 1/sqrt(2) (absolute)",
+   "observed": 0.0012519834618900383,
+   "limit": 0.003,
+   "declared_limit": 0.003,
+   "rule": "at most",
+   "status": "pass",
+   "source": "von Neumann analysis, symplectic Euler, 5-point Laplacian"
+  }
+ ],
+ "controls": [
+  {
+   "id": "stability test (max |h| < 1000 after 4 s) at c dt/dx = 0.72 must fail",
+   "expect": "fail",
+   "observed_failed": true,
+   "observed": 1157208.888124328
+  }
+ ],
+ "not_shown": [
+  "the floating ball (no exact reference)",
+  "cloth and jelly dynamics (self-consistency only: see v2 receipt)",
+  "another machine"
+ ],
+ "note": "hash is taken every 50 steps of the stable tank"
+}
