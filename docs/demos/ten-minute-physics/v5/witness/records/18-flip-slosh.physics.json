@@ -1,0 +1,106 @@
+{
+ "schema": "loom.physics-run/1",
+ "id": "tmp-ports/18-flip-slosh",
+ "engine": {
+  "name": "tmp-ports (numpy)",
+  "version": "numpy-2.5.3",
+  "build": "tmp5.py sha256 9962fd50f6b9, python 3.13.18"
+ },
+ "model": {
+  "sha256": "22dd1bac336275d1e8c52763d63f12ac2c9daa0fd8017f48f47828e237eb3505",
+  "path": "docs/demos/ten-minute-physics/v5/18-flip-slosh.x3d",
+  "what": "the X3D scene the port produced; parameters live in tmp5.py"
+ },
+ "recorded": {
+  "host": "cpython-3.13.18-numpy-2.5.3",
+  "steps": 31,
+  "hashes": [
+   3023590780,
+   3851060462,
+   705586036,
+   2721651105,
+   1917309168,
+   1891654357,
+   1173245107,
+   4124534134,
+   258923057,
+   962093670,
+   3711540119,
+   4068244477,
+   1714742057,
+   3880083589,
+   534838911,
+   20224912,
+   3273383399,
+   855459810,
+   297497098,
+   3536609046,
+   1081114248,
+   146977250,
+   2964889315,
+   1890900316,
+   882998446,
+   3469507370,
+   95277018,
+   3787435882,
+   946980306,
+   1197971531,
+   3676061410
+  ],
+  "trace_sha256": "43e695d20a5aeea1e3e8b870e1f1d3106e0d84e4350ea843919d66f6656dba05"
+ },
+ "replays": [
+  {
+   "host": "numpy-fresh-process",
+   "steps": 31,
+   "mismatches": 0,
+   "first_mismatch": null,
+   "trace_sha256": "43e695d20a5aeea1e3e8b870e1f1d3106e0d84e4350ea843919d66f6656dba05"
+  }
+ ],
+ "references": [
+  {
+   "id": "slosh period of the first mode (fit over 3 periods) against linear wave theory T = 2 pi / sqrt(g k tanh(k H)), relative error",
+   "observed": 0.0011978182366054746,
+   "limit": 0.03,
+   "declared_limit": 0.03,
+   "rule": "at most",
+   "status": "pass",
+   "source": "linear water-wave dispersion, k = pi/L, H = 0.4 m"
+  },
+  {
+   "id": "late-time wave amplitude, FLIP 0.9 over pure PIC (periods 2 to 4)",
+   "observed": 2.7950558899333804,
+   "limit": 2.0,
+   "declared_limit": 2.0,
+   "rule": "at least",
+   "status": "pass",
+   "source": "same scene, same grid, only the blend differs"
+  },
+  {
+   "id": "water level drift: mean height of the particles after 2 s against the start, in cells",
+   "observed": 0.3282305914511694,
+   "limit": 0.5,
+   "declared_limit": 0.5,
+   "rule": "at most",
+   "status": "pass",
+   "source": "particle count is conserved, so the level must be"
+  }
+ ],
+ "controls": [
+  {
+   "id": "the period test applied to the same sim with particle push-apart switched on must fail",
+   "expect": "fail",
+   "observed_failed": true,
+   "observed": 0.0856042090635516
+  }
+ ],
+ "not_shown": [
+  "a real GPU / timing",
+  "3D (the sim is 2D; the z spread in the scene is decoration)",
+  "breaking waves and splashes (no reference)",
+  "resolution convergence (one grid only)",
+  "another machine"
+ ],
+ "note": "hash replay covers the first 2 s"
+}
