@@ -1,0 +1,139 @@
+{
+  "coverage": {
+    "max_waivers": 0,
+    "require_takeover": false,
+    "runs": 3
+  },
+  "development": false,
+  "environment": {
+    "optimized": false,
+    "python": "3.13.18"
+  },
+  "evidence": [],
+  "finished_at": "2026-11-13T15:24:02+00:00",
+  "grade": "C",
+  "instrument": {
+    "hosts": [
+      "numpy-fresh-process"
+    ],
+    "max_waivers": 0,
+    "require_takeover": false,
+    "rules_sha256": "9c7b6cdd75d26b55f54b327d4834dd5f0d8233fc5410a8583522b50d240f79c6",
+    "tool": "loomkit.physics"
+  },
+  "limitations": [
+    "Determinism is shown on the hosts and the machine the record names; another machine or another engine build needs its own replay (law 42).",
+    "A passing record shows the run answers to its references and hashes; it does not show the engine's model is right where no exact reference exists.",
+    "The witness reads the record a project's own harness wrote; the harness is trusted to have replayed what it says (the project's browser evidence is the behaviour witness)."
+  ],
+  "measurements": {
+    "runs": {
+      "11-hashing.physics.json": {
+        "controls": 1,
+        "engine": "tmp-ports (numpy) numpy-2.5.3",
+        "id": "tmp-ports/11-hashing",
+        "leaks": 0,
+        "recorded_in": "cpython-3.13.18-numpy-2.5.3",
+        "references": [
+          {
+            "id": "hash pair set against the brute-force pair set: pairs missed, over 54 sampled substeps",
+            "limit": 0,
+            "observed": 0.0
+          },
+          {
+            "id": "hash pair set against the brute-force pair set: false pairs",
+            "limit": 0,
+            "observed": 0.0
+          },
+          {
+            "id": "candidate pairs tested per substep over all n(n-1)/2 pairs",
+            "limit": 0.1,
+            "observed": 0.028224628463402127
+          }
+        ],
+        "replayed_in": [
+          "numpy-fresh-process"
+        ],
+        "required_hosts": [
+          "numpy-fresh-process"
+        ],
+        "steps": 91,
+        "takeover": false,
+        "tolerances": 0,
+        "trace_sha256": "769f98bc42e05cc2160e71ffc6185eb1889873b5fea53f8a6398a52230c761b7",
+        "waivers": []
+      },
+      "17-smoke-tunnel.physics.json": {
+        "controls": 1,
+        "engine": "tmp-ports (numpy) numpy-2.5.3",
+        "id": "tmp-ports/17-smoke-tunnel",
+        "leaks": 0,
+        "recorded_in": "cpython-3.13.18-numpy-2.5.3",
+        "references": [
+          {
+            "id": "after the pressure solve: max |divergence| of any fluid cell over the inflow speed (100 sweeps, t > 1 s)",
+            "limit": 0.01,
+            "observed": 0.0035901355549886977
+          },
+          {
+            "id": "flux through every column against the inflow flux, worst relative deviation (t > 1 s)",
+            "limit": 0.02,
+            "observed": 0.006179702945261267
+          }
+        ],
+        "replayed_in": [
+          "numpy-fresh-process"
+        ],
+        "required_hosts": [
+          "numpy-fresh-process"
+        ],
+        "steps": 61,
+        "takeover": false,
+        "tolerances": 0,
+        "trace_sha256": "57b7aea32462cb2abb63a0b9a47005e581410dfa513fe7452d6075fe143801f2",
+        "waivers": []
+      },
+      "25-double-pendulum.physics.json": {
+        "controls": 1,
+        "engine": "tmp-ports (numpy) numpy-2.5.3",
+        "id": "tmp-ports/25-double-pendulum",
+        "leaks": 0,
+        "recorded_in": "cpython-3.13.18-numpy-2.5.3",
+        "references": [
+          {
+            "id": "MuJoCo 4.0.1 RK4 against the Lagrangian double pendulum (RK4 on the angles): worst bob position difference over the first 3 s (m)",
+            "limit": 0.0001,
+            "observed": 1.3317977282101268e-07
+          },
+          {
+            "id": "Lagrangian RK4 energy drift over 10 s (relative)",
+            "limit": 1e-08,
+            "observed": 8.860311079327236e-09
+          },
+          {
+            "id": "XPBD joints, 100 substeps at 1/30 s: outer bob position against the Lagrangian reference at t = 1 s (m)",
+            "limit": 0.02,
+            "observed": 0.015026881777111459
+          }
+        ],
+        "replayed_in": [
+          "numpy-fresh-process"
+        ],
+        "required_hosts": [
+          "numpy-fresh-process"
+        ],
+        "steps": 300,
+        "takeover": false,
+        "tolerances": 0,
+        "trace_sha256": "85f5076a7ac8c83d25ebffb4ad5d6dd10c209877ef3e81ca420e24620237a9e8",
+        "waivers": []
+      }
+    },
+    "waivers": 0
+  },
+  "reason": "",
+  "schema": "loom.witness/1",
+  "status": "pass",
+  "subject_sha256": "afb4b60d861d33b10db423331bfe020b63b8027c4eb17aa4fc51ab0b79268cbb",
+  "witness": "physics"
+}

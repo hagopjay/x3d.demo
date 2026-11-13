@@ -1,0 +1,124 @@
+{
+ "schema": "loom.physics-run/1",
+ "id": "tmp-ports/17-smoke-tunnel",
+ "engine": {
+  "name": "tmp-ports (numpy)",
+  "version": "numpy-2.5.3",
+  "build": "tmp4.py sha256 7e93a1157c5c, python 3.13.18"
+ },
+ "model": {
+  "sha256": "4dec9cec34560d0835a12f862a05b5eb3e17836af5dd9304861b7440db0f6f4d",
+  "path": "docs/demos/ten-minute-physics/v4/17-smoke-tunnel.x3d",
+  "what": "the X3D scene the port produced; parameters live in tmp4.py"
+ },
+ "recorded": {
+  "host": "cpython-3.13.18-numpy-2.5.3",
+  "steps": 61,
+  "hashes": [
+   1149482735,
+   714815884,
+   3622232227,
+   7317932,
+   163903091,
+   3703035742,
+   868632150,
+   2926140952,
+   2121798345,
+   265075066,
+   983882503,
+   3147853411,
+   249526745,
+   2929117127,
+   2576175657,
+   1205529925,
+   4183305125,
+   41843982,
+   2060332429,
+   3163296317,
+   3838641073,
+   1464555760,
+   4053163753,
+   2731150614,
+   3808934331,
+   1831143463,
+   4294030715,
+   3436538197,
+   2518495171,
+   1987187784,
+   4215756639,
+   1650482128,
+   2376367604,
+   3204825508,
+   2987686614,
+   3934784367,
+   4195518131,
+   3268525998,
+   4113946927,
+   2732838693,
+   229371299,
+   4190001952,
+   3420547094,
+   3105571472,
+   1804205518,
+   289920428,
+   51365270,
+   1699995538,
+   931878787,
+   2197918190,
+   1076976503,
+   1454893947,
+   1411959681,
+   2655265549,
+   2199444373,
+   787509075,
+   484048382,
+   3726881366,
+   1103381088,
+   4149991255,
+   1005001545
+  ],
+  "trace_sha256": "57b7aea32462cb2abb63a0b9a47005e581410dfa513fe7452d6075fe143801f2"
+ },
+ "replays": [
+  {
+   "host": "numpy-fresh-process",
+   "steps": 61,
+   "mismatches": 0,
+   "first_mismatch": null,
+   "trace_sha256": "57b7aea32462cb2abb63a0b9a47005e581410dfa513fe7452d6075fe143801f2"
+  }
+ ],
+ "references": [
+  {
+   "id": "after the pressure solve: max |divergence| of any fluid cell over the inflow speed (100 sweeps, t > 1 s)",
+   "observed": 0.0035901355549886977,
+   "limit": 0.01,
+   "declared_limit": 0.01,
+   "rule": "at most",
+   "status": "pass",
+   "source": "continuity, exact invariant"
+  },
+  {
+   "id": "flux through every column against the inflow flux, worst relative deviation (t > 1 s)",
+   "observed": 0.006179702945261267,
+   "limit": 0.02,
+   "declared_limit": 0.02,
+   "rule": "at most",
+   "status": "pass",
+   "source": "continuity (closed top and bottom)"
+  }
+ ],
+ "controls": [
+  {
+   "id": "the divergence test applied to a 3-sweep pressure solve must fail",
+   "expect": "fail",
+   "observed_failed": true,
+   "observed": 0.5096996505446906
+  }
+ ],
+ "not_shown": [
+  "vortex shedding frequency (no closed form at this resolution)",
+  "another machine"
+ ],
+ "note": "hash replay covers the first 2 s"
+}
