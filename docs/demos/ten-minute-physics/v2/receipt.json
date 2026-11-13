@@ -1,0 +1,107 @@
+{
+ "schema": "loom-receipt-lite/1",
+ "batch": 2,
+ "validator": "hagopjay/x3d_mcp fork @13121b6, validation.validate.validate_xml, X3D 4.0 XSD",
+ "results": {
+  "10-jelly.x3d": "valid",
+  "14-cloth.x3d": "valid",
+  "20-water.x3d": "valid"
+ },
+ "renderer": "X_ITE 16.7.1, headless Chromium (software GL, screenshots only, no frame rates quoted)",
+ "grade": "Confirmed for numbers (build_ports2.py, numpy 2.5.3); Likely for visuals (software GL only)",
+ "numbers": {
+  "10_jelly": {
+   "verts": 216,
+   "tets": 750,
+   "edges": 1115,
+   "edge_colour_groups": 14,
+   "vol_colour_groups": 30,
+   "substeps_per_key": 8,
+   "sim_hz": 240,
+   "key_hz": 30,
+   "T": 8.0,
+   "rest_volume": 1.0,
+   "runs": {
+    "edges only": {
+     "volume_ratio_min": 0.9239929078605631,
+     "volume_ratio_max": 1.0000000000000009,
+     "volume_ratio_final": 0.9558926952916915,
+     "inverted_tets_max": 14,
+     "inverted_tets_final": 13
+    },
+    "edges + volume, stiff": {
+     "volume_ratio_min": 0.9865668832003672,
+     "volume_ratio_max": 1.001230737662033,
+     "volume_ratio_final": 0.9987224543451391,
+     "inverted_tets_max": 0,
+     "inverted_tets_final": 0
+    },
+    "edges + volume, soft": {
+     "volume_ratio_min": 0.977851141025621,
+     "volume_ratio_max": 1.002312434505635,
+     "volume_ratio_final": 0.9985028161265355,
+     "inverted_tets_max": 0,
+     "inverted_tets_final": 0
+    }
+   }
+  },
+  "14_cloth": {
+   "grid": "21x21",
+   "verts": 441,
+   "constraints": 2438,
+   "colour_groups": 13,
+   "compliance_stretch_shear_bend": [
+    1e-08,
+    1e-08,
+    0.005
+   ],
+   "key_hz": 30,
+   "T": 9.0,
+   "runs": {
+    "2": {
+     "max_stretch_strain_peak": 1.2136733344774822,
+     "max_stretch_strain_final": 0.7274485281764407,
+     "mean_strain_over_time": 0.7204677180857015
+    },
+    "20": {
+     "max_stretch_strain_peak": 0.17307966014740273,
+     "max_stretch_strain_final": 0.06780202321436346,
+     "mean_strain_over_time": 0.06767833062094639
+    }
+   }
+  },
+  "20_water": {
+   "grid": "28x28",
+   "dx": 0.1,
+   "wave_speed": 5.0,
+   "key_hz": 30,
+   "T": 6.0,
+   "tank_A": {
+    "dt": "1/120",
+    "c_dt_over_dx": 0.41666666666666663,
+    "ball": "floating, density 0.45 of water",
+    "max_abs_h": 0.12374450738547392,
+    "ball_peak_y": 0.5,
+    "ball_min_y": -0.1593101571056562,
+    "ball_final_y": 0.018660224621577286
+   },
+   "tank_B": {
+    "dt": "1/60",
+    "c_dt_over_dx": 0.8333333333333333,
+    "max_abs_h_unclamped": 3.091801457288844e+163,
+    "first_frame_over_1m": 17
+   },
+   "stability_scan_final_max_h_after_3s": {
+    "0.5": 0.01034125335251846,
+    "0.65": 0.01338321485574344,
+    "0.7": 0.018091155259795128,
+    "0.72": 1157208.888124328,
+    "0.8": 1487276.0809178012,
+    "1.0": 1286889.0999999978
+   },
+   "predicted_limit": 0.7071067811865475,
+   "note": "B amplitude is soft-clamped (0.35*tanh(h/0.35)) m in the file for display; the true values blow up",
+   "volume_drift_pure_tank_10s": 2.2479240691097857e-13
+  }
+ }
+}
