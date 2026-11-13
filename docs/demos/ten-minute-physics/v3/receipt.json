@@ -1,0 +1,89 @@
+{
+ "schema": "loom-receipt-lite/1",
+ "batch": 3,
+ "validator": "hagopjay/x3d_mcp fork @13121b6 (X3D 4.0 XSD): 03-billiards-fixed.x3d valid, 06-pendulum-engines.x3d valid",
+ "witness": "x3d.loom kit/loom physics (main e7e1fc3, PR #38): 4 runs, --hosts numpy-fresh-process, max waivers 0: PASS",
+ "mutation_controls": "11 of 11 edits to my own records refused with their intended code",
+ "engine_cross_check": "MuJoCo 4.0.1, RK4, dt 1e-3, hinge pendulum",
+ "renderer": "X_ITE 16.7.1, headless Chromium, software GL, screenshots only",
+ "grade": "Confirmed for numbers (witness_tmp.py, numpy 2.5.3, one machine, one CPython); Likely for visuals",
+ "numbers": {
+  "bead": {
+   "mj_vs_rk4_max_rad": 2.412728420525534e-08,
+   "T_exact": 2.28188592401964,
+   "T_mujoco": 2.2818859251295214,
+   "T_xpbd100": 2.2682687294288444,
+   "xpbd100_period_err": 0.005967517678012624,
+   "mj_period_err": 4.863878189098614e-10,
+   "retained_E_1sub": 0.010547476846672899,
+   "retained_E_100sub": 0.9299444458469119,
+   "mujoco": "4.0.1",
+   "norm_ulp_probe": {
+    "substep": 86,
+    "d_numpy_minus_scalar": -2.220446049250313e-16
+   }
+  },
+  "bead_hash": {
+   "steps": 360,
+   "fresh_mismatch": 0,
+   "pure_python_mismatch": 0,
+   "pure_first_mismatch": null
+  },
+  "cannon": {
+   "sym_dev_max": 0.16325235338250266,
+   "exp_dev_max": 0.9858742409014325,
+   "exp_E_final": 1.9443529295188473,
+   "exp_E_min": 1.0015136531574256,
+   "free_flight_pos_err_sym": 1.0231815394945443e-12,
+   "shadow_energy_drift_sym": 9.381506057962954e-13,
+   "shadow_energy_drift_exp": 9.221412097929457e-13,
+   "bounce_jumps_sym": {
+    "n": 7,
+    "mean": 2.0121711428571283,
+    "sum": 14.085197999999899
+   },
+   "bounce_jumps_exp": {
+    "n": 21,
+    "mean": 0.671844857142854,
+    "sum": 14.108741999999936
+   }
+  },
+  "cannon_hash": {
+   "steps": 360,
+   "fresh_mismatch": 0,
+   "pure_mismatch": 0,
+   "pure_first": null,
+   "exp_fresh": 0,
+   "exp_pure": 0
+  },
+  "pair": {
+   "momentum_err": 0.0,
+   "energy_err": 0.0,
+   "swap_err": 0.0,
+   "v1_rule_swap_err": 4.0
+  },
+  "pair_hash": {
+   "steps": 240,
+   "fresh": 0,
+   "pure": 0,
+   "pure_first": null
+  },
+  "water": {
+   "volume_drift_10s": 1.124100812432971e-14,
+   "cfl_bisect": 0.7083587646484375,
+   "cfl_theory": 0.7071067811865475,
+   "cfl_err": 0.0012519834618900383,
+   "amp_at_0_72": 1157208.888124328,
+   "steps_to_blowup_0_72": 55
+  },
+  "water_hash": {
+   "steps": 20,
+   "fresh": 0
+  },
+  "seconds": 1.2,
+  "scene": {
+   "mj_vs_exact_rk4_max_rad": 2.412728420525534e-08,
+   "frames": 361
+  }
+ }
+}
