@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ten Minute Physics in X3D, batch 1</title>
+<script src="https://cdn.jsdelivr.net/npm/x_ite@16.7.1/dist/x_ite.min.js"></script>
+<style>:root{--bg:#0b0e14;--fg:#dfe6f0;--mut:#8b97a8;--ac:#4cc9f0;--card:#141a24}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}
+main{max-width:1100px;margin:auto;padding:16px}h1{font-size:22px;margin:.2em 0}nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+button{background:var(--card);color:var(--fg);border:1px solid #2a3446;border-radius:8px;padding:8px 14px;cursor:pointer}button.on{border-color:var(--ac);color:var(--ac)}
+x3d-canvas{width:100%;height:56vh;min-height:320px;display:block;border-radius:10px;background:#000}.card{background:var(--card);border-radius:10px;padding:12px 16px;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid #263044;padding:4px 8px;text-align:left}small{color:var(--mut)}code{color:var(--ac)}</style></head><body><main>
+<h1>Ten Minute Physics in X3D · batch 1</h1>
+<small>Independent ports of ideas from Matthias Mueller's Ten Minute Physics. No code copied; see NOTICE.md. Every frame is a keyframe in a validated X3D 4.0 file: no scripts.</small>
+<nav id="tabs"></nav><x3d-canvas id="c"></x3d-canvas><div class="card" id="txt"></div>
+<div class="card"><b>Numbers</b> <small>(validator: x3d_mcp fork 13121b6, XSD 4.0; renderer X_ITE 16.7.1; sim: numpy 2.5.3; receipt.json has the rest)</small><table id="nums"></table></div>
+</main><script>
+const D=[
+{f:"01-cannonball.x3d",t:"01 Cannonball",x:"<b>Physics.</b> Gravity is a constant force; the ball is a point with position and velocity. Cyan = symplectic Euler (update velocity first, then position with the new velocity); red = explicit Euler (position with the old velocity); white = same symplectic scheme at 200x smaller steps. Walls reflect position and velocity (elastic). <b>Insight.</b> The tiny ordering change decides whether energy is bounded or grows without limit: the red ball gains energy until it nearly doubles. This is why every demo that follows updates velocity first.",
+ n:[["energy/E0, symplectic, min..max","0.837 .. 1.022"],["energy/E0, explicit, final (max)","1.944 (1.986)"],["step","1/30 s, 12 s, box 6x4x3"],["reference","same scheme, dt/200 (not analytic)"]]},
+{f:"03-billiards.x3d",t:"03 Billiards",x:"<b>Physics.</b> Equal-mass elastic collision: swap the velocity components along the line between centres; tangential parts are untouched. Overlaps are pushed apart half and half. 240 Hz substeps, keys at 30 Hz. Rolling spin is computed as omega = up x v / r so the stripes turn like real balls. <b>Insight.</b> Collisions alone conserve energy to machine precision; the smooth yellow decay in the chart is rolling friction only.",
+ n:[["frictionless KE drift, max","1.3e-15 (relative, 15 s)"],["balls / frames","16 / 421 keys at 30 Hz"],["rolling decel","0.35 m/s^2"],["KE start","18.0 (arb. units)"]]},
+{f:"05-bead-xpbd.x3d",t:"05 Bead on a wire (XPBD)",x:"<b>Physics.</b> A bead must stay on a circle. Predict with gravity, then project the position back onto the wire, then recompute velocity from the position change (position-based dynamics, compliance 0). Four columns use the same big step 1/30 s with 1, 5, 20, 100 substeps. White dots = RK4 reference. <b>Insight.</b> With one substep the projection eats the energy (1% left after 12 s); more small steps beat more iterations, so 100 substeps keep 93%. The energy bars and chart show the loss directly.",
+ n:[["final E/E0, 1 substep","0.011"],["final E/E0, 5","0.306"],["final E/E0, 20","0.708"],["final E/E0, 100","0.930"],["constraint drift (all)","< 2e-16"],["reference","RK4 on angle, dt/50"]]}];
+const c=document.getElementById('c'),tabs=document.getElementById('tabs');
+function show(i){[...tabs.children].forEach((b,j)=>b.classList.toggle('on',i==j));c.setAttribute('src',D[i].f);
+ document.getElementById('txt').innerHTML=D[i].x;document.getElementById('nums').innerHTML=D[i].n.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}
+D.forEach((d,i)=>{const b=document.createElement('button');b.textContent=d.t;b.onclick=()=>show(i);tabs.appendChild(b)});show(0);
+</script></body></html>
