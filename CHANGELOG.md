@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v20 (2026-11-13)
+- New study, not yet on the front-page shelf: Giza, Osiris Shaft and Hall of Records (`docs/demos/giza-osiris-hall/v1/`): one X3D 4.0 scene with documented, theorized and speculative layers, a 13-row graded claim ledger, a guided descent and eight views. X_ITE 16.6.0 bundled; validator clean (0 errors). All underground positions are schematic. Checked on a software adapter only; nothing timed. The front page and earlier versions are untouched.
+
 ## v19 (2026-11-09)
 - New Demo 23: Gobbler Gyroscope on Babylon.js 9.32.0 WebGPU (`docs/demos/gobbler-gyroscope-webgpu/v1/`): the Gyroscope 8K edition with the Meridian refinement and the GPU kinetics stage. Three files: the page, its scene and the graph it reads. Public-copy edits: the three outside GitHub handles became "Open-source maintainer" (as in Demo 18), and five in-page links were repointed to this site's folders (see SOURCES.md).
 - The front-page introduction edited on `main` (9db2b1d) is kept as it is.
