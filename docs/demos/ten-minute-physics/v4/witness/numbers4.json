@@ -1,0 +1,46 @@
+{
+ "hashing": {
+  "balls": 400,
+  "steps": 1921,
+  "checks": 49,
+  "missed": 0,
+  "false": 0,
+  "candidates_per_step": 2252.32535137949,
+  "brute_pairs_per_step": 79800,
+  "candidate_ratio": 0.028224628463402127,
+  "overlapping_pairs_per_step": 389.7277459656429,
+  "control_cell_0_6_missed": 2997,
+  "control_checks": 25,
+  "frames": 241
+ },
+ "fluid": {
+  "grid": "60x30",
+  "iterations": 100,
+  "overrelax": 1.9,
+  "max_div_rel": 0.0035901355549886977,
+  "flux_dev": 0.006179702945261267,
+  "control_3iter_div": 0.5096996505446906,
+  "control_3iter_flux": 0.812572889413764,
+  "frames": 151,
+  "tracers": 2416
+ },
+ "joints": {
+  "mujoco": "4.0.1",
+  "mj_vs_rk4_max_m_3s": 1.3317977282101268e-07,
+  "mj_vs_rk4_max_m_10s": 0.15653322699131023,
+  "mj_diverges_past_5cm_at_s": 9.81,
+  "rk4_energy_drift": 8.860311079327236e-09,
+  "mujoco_energy_drift": 3.3784199550369274e-06,
+  "xpbd_pos_err_1s": {
+   "1": 0.8146981248997346,
+   "20": 0.07224072998581509,
+   "100": 0.015026881777111459
+  },
+  "xpbd_pos_err_3s": {
+   "1": 1.8939637868565635,
+   "20": 0.3410098580757771,
+   "100": 1.3709108078500525
+  }
+ },
+ "seconds": 32.9
+}
