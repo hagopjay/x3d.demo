@@ -1,0 +1,148 @@
+{
+ "schema": "loom.physics-run/1",
+ "id": "tmp-ports/23-sweep-and-prune",
+ "engine": {
+  "name": "tmp-ports (numpy)",
+  "version": "numpy-2.5.3",
+  "build": "tmp6.py sha256 2cf1093ac2a8, python 3.13.18"
+ },
+ "model": {
+  "sha256": "0e1cfaa6bcd01e29439ef661791896831224d295fd3b1df3595d3cad38ae2c51",
+  "path": "docs/demos/ten-minute-physics/v6/23-sweep-and-prune.x3d",
+  "what": "the X3D scene the port produced; parameters live in tmp6.py"
+ },
+ "recorded": {
+  "host": "cpython-3.13.18-numpy-2.5.3",
+  "steps": 60,
+  "hashes": [
+   3189475946,
+   2287416701,
+   479102468,
+   1350997313,
+   1906216533,
+   3594383460,
+   2589654347,
+   2427853883,
+   3562001768,
+   751427122,
+   3747188145,
+   331385827,
+   1547063498,
+   4227718926,
+   3166866031,
+   529444044,
+   2812219082,
+   906028572,
+   2504475073,
+   3705123087,
+   3054576552,
+   326513820,
+   1706625474,
+   1559185442,
+   1427117473,
+   692790713,
+   1204112328,
+   2760634035,
+   488745519,
+   4287106835,
+   718759393,
+   1708914710,
+   2841645814,
+   4134156118,
+   1026691460,
+   3269771165,
+   4072636608,
+   3301445074,
+   417080378,
+   3749039420,
+   2688955491,
+   3539246213,
+   2237082119,
+   3193791838,
+   2452358927,
+   512163446,
+   1946926651,
+   957228800,
+   1790504188,
+   4126141233,
+   1175201465,
+   3646901646,
+   653704259,
+   2555287199,
+   3298932511,
+   1000889541,
+   1195484949,
+   3704587495,
+   1914448176,
+   690433502
+  ],
+  "trace_sha256": "694a18b1fe2d77e5ccfc1257723c972437560102bd82efd3cc68357c75ea27ba"
+ },
+ "replays": [
+  {
+   "host": "numpy-fresh-process",
+   "steps": 60,
+   "mismatches": 0,
+   "first_mismatch": null,
+   "trace_sha256": "694a18b1fe2d77e5ccfc1257723c972437560102bd82efd3cc68357c75ea27ba"
+  }
+ ],
+ "references": [
+  {
+   "id": "sweep and prune (either axis) pair set against the brute-force pair set: pairs missed over 180 frames",
+   "observed": 0.0,
+   "limit": 0,
+   "declared_limit": 0,
+   "rule": "at most",
+   "status": "pass",
+   "source": "set equality with O(n^2) search"
+  },
+  {
+   "id": "sweep and prune pair set against the brute-force pair set: false pairs",
+   "observed": 0.0,
+   "limit": 0,
+   "declared_limit": 0,
+   "rule": "at most",
+   "status": "pass",
+   "source": "set equality with O(n^2) search"
+  },
+  {
+   "id": "tests along the short axis over tests along the long axis of the field (choose the longest axis)",
+   "observed": 4.123953655967625,
+   "limit": 2.0,
+   "declared_limit": 2.0,
+   "rule": "at least",
+   "status": "pass",
+   "source": "counted box tests, field 4 x 1"
+  },
+  {
+   "id": "box tests along the long axis over all n(n-1)/2 pairs",
+   "observed": 0.050360134003350085,
+   "limit": 0.1,
+   "declared_limit": 0.1,
+   "rule": "at most",
+   "status": "pass",
+   "source": "counted box tests"
+  }
+ ],
+ "controls": [
+  {
+   "id": "the same check with the list sorted by box centre instead of left edge must miss pairs",
+   "expect": "fail",
+   "observed_failed": true,
+   "observed": 905
+  }
+ ],
+ "not_shown": [
+  "a real broad phase with updating insertion sort",
+  "3D",
+  "timing (counts only, no clock)",
+  "another machine"
+ ],
+ "note": "hash replay covers the first 2 s",
+ "limits": {
+  "path": "docs/demos/ten-minute-physics/v6/witness/limits6.json",
+  "commit": "01bb9dda88744c7c4a620bb542d15fed65f02eb7",
+  "sha256": "02580da957113f7de7ac0cb1fb7f5992f1b7dfda2852b60b70987b5fe44b5ad1"
+ }
+}

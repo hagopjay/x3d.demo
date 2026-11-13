@@ -1,0 +1,234 @@
+{
+ "schema": "loom.physics-run/1",
+ "id": "tmp-ports/19-ode-integrators",
+ "engine": {
+  "name": "tmp-ports (numpy)",
+  "version": "numpy-2.5.3",
+  "build": "tmp6.py sha256 2cf1093ac2a8, python 3.13.18"
+ },
+ "model": {
+  "sha256": "cd19594034cc48e9c4fe3ea5e41b4521282f220ec8dca3d04f5e5d7c1c861268",
+  "path": "docs/demos/ten-minute-physics/v6/19-ode-integrators.x3d",
+  "what": "the X3D scene the port produced; parameters live in tmp6.py"
+ },
+ "recorded": {
+  "host": "cpython-3.13.18-numpy-2.5.3",
+  "steps": 50,
+  "hashes": [
+   3119130709,
+   628596080,
+   1595622774,
+   2353762046,
+   4197959611,
+   3943642080,
+   2258372819,
+   1017980999,
+   1544668206,
+   1454720190,
+   2187827643,
+   1250641128,
+   3835637831,
+   2011996023,
+   2980223875,
+   3696757058,
+   1012415760,
+   2375142270,
+   3443442986,
+   1912016707,
+   2359631345,
+   532790454,
+   2582871298,
+   2996893391,
+   3515783493,
+   1384807503,
+   1713982504,
+   3064340375,
+   1494603247,
+   2797619887,
+   2479666729,
+   538281945,
+   2623676295,
+   781162359,
+   3613330253,
+   2782790823,
+   2507450980,
+   2499481104,
+   503321907,
+   266376264,
+   1655002496,
+   1970768133,
+   2080297571,
+   3511063359,
+   2184110078,
+   3094270546,
+   2300081221,
+   2141334130,
+   874013310,
+   2923425724
+  ],
+  "trace_sha256": "0bd0a96b7755a9f2262f72de0d8f35f87e1ce200a9dfe984cba6506d9e5b5055"
+ },
+ "replays": [
+  {
+   "host": "numpy-fresh-process",
+   "steps": 50,
+   "mismatches": 0,
+   "first_mismatch": null,
+   "trace_sha256": "0bd0a96b7755a9f2262f72de0d8f35f87e1ce200a9dfe984cba6506d9e5b5055"
+  }
+ ],
+ "references": [
+  {
+   "id": "harmonic oscillator, euler: measured order of the end-point error (5 step sizes, T = 1) against 1, absolute difference",
+   "observed": 0.0024509779592167824,
+   "limit": 0.15,
+   "declared_limit": 0.15,
+   "rule": "at most",
+   "status": "pass",
+   "source": "x'' = -x, exact solution cos t"
+  },
+  {
+   "id": "harmonic oscillator, symplectic: measured order of the end-point error (5 step sizes, T = 1) against 1, absolute difference",
+   "observed": 0.000906208492631011,
+   "limit": 0.15,
+   "declared_limit": 0.15,
+   "rule": "at most",
+   "status": "pass",
+   "source": "x'' = -x, exact solution cos t"
+  },
+  {
+   "id": "harmonic oscillator, midpoint: measured order of the end-point error (5 step sizes, T = 1) against 2, absolute difference",
+   "observed": 5.316003470534625e-06,
+   "limit": 0.15,
+   "declared_limit": 0.15,
+   "rule": "at most",
+   "status": "pass",
+   "source": "x'' = -x, exact solution cos t"
+  },
+  {
+   "id": "harmonic oscillator, verlet: measured order of the end-point error (5 step sizes, T = 1) against 2, absolute difference",
+   "observed": 3.0419016995963943e-05,
+   "limit": 0.15,
+   "declared_limit": 0.15,
+   "rule": "at most",
+   "status": "pass",
+   "source": "x'' = -x, exact solution cos t"
+  },
+  {
+   "id": "harmonic oscillator, rk4: measured order of the end-point error (5 step sizes, T = 1) against 4, absolute difference",
+   "observed": 7.655147811647112e-06,
+   "limit": 0.15,
+   "declared_limit": 0.15,
+   "rule": "at most",
+   "status": "pass",
+   "source": "x'' = -x, exact solution cos t"
+  },
+  {
+   "id": "harmonic oscillator, euler: measured order of the end-point error (5 step sizes, T = 2 pi) against 1, absolute difference",
+   "observed": 0.099776447005824,
+   "limit": 0.15,
+   "declared_limit": 0.15,
+   "rule": "at most",
+   "status": "pass",
+   "source": "x'' = -x, exact solution cos t"
+  },
+  {
+   "id": "harmonic oscillator, symplectic: measured order of the end-point error (5 step sizes, T = 2 pi) against 2, absolute difference",
+   "observed": 0.004642843700965127,
+   "limit": 0.15,
+   "declared_limit": 0.15,
+   "rule": "at most",
+   "status": "pass",
+   "source": "x'' = -x, exact solution cos t"
+  },
+  {
+   "id": "harmonic oscillator, midpoint: measured order of the end-point error (5 step sizes, T = 2 pi) against 2, absolute difference",
+   "observed": 0.0006310040923747096,
+   "limit": 0.15,
+   "declared_limit": 0.15,
+   "rule": "at most",
+   "status": "pass",
+   "source": "x'' = -x, exact solution cos t"
+  },
+  {
+   "id": "harmonic oscillator, verlet: measured order of the end-point error (5 step sizes, T = 2 pi) against 2, absolute difference",
+   "observed": 0.00015836465596508198,
+   "limit": 0.15,
+   "declared_limit": 0.15,
+   "rule": "at most",
+   "status": "pass",
+   "source": "x'' = -x, exact solution cos t"
+  },
+  {
+   "id": "harmonic oscillator, rk4: measured order of the end-point error (5 step sizes, T = 2 pi) against 4, absolute difference",
+   "observed": 0.00012470377783024844,
+   "limit": 0.15,
+   "declared_limit": 0.15,
+   "rule": "at most",
+   "status": "pass",
+   "source": "x'' = -x, exact solution cos t"
+  },
+  {
+   "id": "Kepler e = 0.6, velocity Verlet, 200 steps per orbit, 50 orbits: worst relative energy error",
+   "observed": 0.00735199768250383,
+   "limit": 0.02,
+   "declared_limit": 0.02,
+   "rule": "at most",
+   "status": "pass",
+   "source": "energy is conserved exactly by the continuous system"
+  },
+  {
+   "id": "Kepler, velocity Verlet: worst energy error of the last 10 orbits over the first 10 (no secular growth)",
+   "observed": 1.0000001188475538,
+   "limit": 1.5,
+   "declared_limit": 1.5,
+   "rule": "at most",
+   "status": "pass",
+   "source": "bounded energy error of a symplectic method"
+  },
+  {
+   "id": "Kepler, RK4: position error after 5 orbits (m, a = 1)",
+   "observed": 0.002160767465753429,
+   "limit": 0.01,
+   "declared_limit": 0.01,
+   "rule": "at most",
+   "status": "pass",
+   "source": "Kepler's equation solved by Newton iteration, exact position"
+  },
+  {
+   "id": "Kepler: Verlet position error over RK4's after 5 orbits (bounded energy is not accuracy)",
+   "observed": 283.00525381833233,
+   "limit": 100,
+   "declared_limit": 100,
+   "rule": "at least",
+   "status": "pass",
+   "source": "same exact orbit"
+  }
+ ],
+ "controls": [
+  {
+   "id": "the Verlet energy test applied to explicit Euler must fail",
+   "expect": "fail",
+   "observed_failed": true,
+   "observed": 1.0996727415243015
+  },
+  {
+   "id": "the order test for a claimed order 2 applied to explicit Euler must fail",
+   "expect": "fail",
+   "observed_failed": true,
+   "observed": 0.9975490220407832
+  }
+ ],
+ "not_shown": [
+  "another machine",
+  "stiff systems",
+  "adaptive step sizes",
+  "other eccentricities or step sizes"
+ ],
+ "note": "exact references: the harmonic oscillator's closed form and Kepler's equation",
+ "limits": {
+  "path": "docs/demos/ten-minute-physics/v6/witness/limits6.json",
+  "commit": "01bb9dda88744c7c4a620bb542d15fed65f02eb7",
+  "sha256": "02580da957113f7de7ac0cb1fb7f5992f1b7dfda2852b60b70987b5fe44b5ad1"
+ }
+}

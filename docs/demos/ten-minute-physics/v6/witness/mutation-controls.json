@@ -1,0 +1,72 @@
+{
+ "controls": [
+  {
+   "control": "edited step hash",
+   "expected": "PHYS_TRACE_TAMPERED",
+   "got": "PHYS_TRACE_TAMPERED",
+   "ok": true
+  },
+  {
+   "control": "replay host removed",
+   "expected": "PHYS_REPLAY_MISSING",
+   "got": "PHYS_REPLAY_MISSING",
+   "ok": true
+  },
+  {
+   "control": "limit widened after the fact",
+   "expected": "PHYS_LIMIT_WIDENED",
+   "got": "PHYS_LIMIT_WIDENED",
+   "ok": true
+  },
+  {
+   "control": "fail marked pass",
+   "expected": "PHYS_FALSE_GREEN",
+   "got": "PHYS_FALSE_GREEN",
+   "ok": true
+  },
+  {
+   "control": "reference misses its limit",
+   "expected": "PHYS_REFERENCE_FAIL",
+   "got": "PHYS_REFERENCE_FAIL",
+   "ok": true
+  },
+  {
+   "control": "no reference",
+   "expected": "PHYS_NO_REFERENCE",
+   "got": "PHYS_NO_REFERENCE",
+   "ok": true
+  },
+  {
+   "control": "control that survives",
+   "expected": "PHYS_CONTROL_SURVIVED",
+   "got": "PHYS_CONTROL_SURVIVED",
+   "ok": true
+  },
+  {
+   "control": "replay hash drift",
+   "expected": "PHYS_HASH_DRIFT",
+   "got": "PHYS_HASH_DRIFT",
+   "ok": true
+  },
+  {
+   "control": "scene changed under the record",
+   "expected": "PHYS_MODEL_STALE",
+   "got": "PHYS_MODEL_STALE",
+   "ok": true
+  },
+  {
+   "control": "replay of the wrong length",
+   "expected": "PHYS_REPLAY_STEPS",
+   "got": "PHYS_REPLAY_STEPS",
+   "ok": true
+  },
+  {
+   "control": "engine version drift",
+   "expected": "PHYS_ENGINE_DRIFT",
+   "got": "PHYS_ENGINE_DRIFT",
+   "ok": true
+  }
+ ],
+ "caught": 11,
+ "total": 11
+}
