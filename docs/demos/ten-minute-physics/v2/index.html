@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ten Minute Physics in X3D, batch 2</title>
+<script src="https://cdn.jsdelivr.net/npm/x_ite@16.7.1/dist/x_ite.min.js"></script>
+<style>:root{--bg:#0b0e14;--fg:#dfe6f0;--mut:#8b97a8;--ac:#4cc9f0;--card:#141a24}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}
+main{max-width:1100px;margin:auto;padding:16px}h1{font-size:22px;margin:.2em 0}nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+button{background:var(--card);color:var(--fg);border:1px solid #2a3446;border-radius:8px;padding:8px 14px;cursor:pointer}button.on{border-color:var(--ac);color:var(--ac)}
+x3d-canvas{width:100%;height:56vh;min-height:320px;display:block;border-radius:10px;background:#000}.card{background:var(--card);border-radius:10px;padding:12px 16px;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid #263044;padding:4px 8px;text-align:left}small{color:var(--mut)}a{color:var(--ac)}</style></head><body><main>
+<h1>Ten Minute Physics in X3D · batch 2</h1>
+<small>Independent ports of ideas from Matthias Mueller's Ten Minute Physics; no code copied (NOTICE.md). Every frame is a keyframe in a validated X3D 4.0 file. Files are 3 to 5 MB each; give them a few seconds. <a href="../v1/index.html">Batch 1</a></small>
+<nav id="tabs"></nav><x3d-canvas id="c"></x3d-canvas><div class="card" id="txt"></div>
+<div class="card"><b>Numbers</b> <small>(validator: x3d_mcp fork 13121b6, XSD 4.0; renderer X_ITE 16.7.1; sim: numpy 2.5.3; receipt.json has the rest)</small><table id="nums"></table></div>
+</main><script>
+const D=[
+{f:"10-jelly.x3d",t:"10 Soft bodies",x:"<b>Physics.</b> A cube of 216 particles and 750 tetrahedra. Each edge wants its rest length; each tet wants its rest volume (XPBD, 240 Hz substeps). Dropped tilted onto a floor. Red = edges only, cyan = edges plus stiff volume, green = edges plus soft volume. <b>Insight.</b> Edge lengths alone cannot stop a tet from flipping inside out (a flat tet has all edges fine and zero volume). Adding the volume constraint fixes it; compliance is a dial from rubber (stiff) to jelly (soft) with no new code. Chart: total volume over rest volume.",
+ n:[["edges only: volume min / inverted tets (max)","0.924 / 14"],["edges + stiff volume","0.987 .. 1.001 / 0"],["edges + soft volume (alpha 3e-9)","0.978 .. 1.002 / 0"],["mesh","216 verts, 750 tets, 1115 edges, 14+30 colour groups"]]},
+{f:"14-cloth.x3d",t:"14 Cloth",x:"<b>Physics.</b> A 21x21 grid with stretch and shear distance constraints (stiff) and two-ring bending constraints (soft), draped on a sphere with friction. Same frame step 1/30 s: left 2 substeps, right 20. <b>Insight.</b> It is the same lesson as the bead: the left cloth stretches like rubber (worst edge 121% longer at impact) while 20 small steps keep the worst edge at 17%. Substeps buy stiffness cheaper than iterations. Chart: worst stretch strain (clipped at 60%).",
+ n:[["peak worst-edge strain, 2 substeps","1.214"],["peak worst-edge strain, 20 substeps","0.173"],["final worst-edge strain 2 / 20","0.727 / 0.068"],["constraints / colour groups","2438 / 13"]]},
+{f:"20-water.x3d",t:"20 Height-field water",x:"<b>Physics.</b> Water as a height h(x,z) and a vertical velocity: acceleration = c squared times the Laplacian of h. Blue: dt = 1/120 s, a ball floats (density 0.45) and rides the waves. Red: same water, dt = 1/60 s, so the wave outruns a grid cell per step. <b>Insight.</b> There is a speed limit: c dt / dx must stay under 1/sqrt(2) = 0.707 in 2D. We measured the line: 0.70 is calm, 0.72 explodes. The red tank shows the blow-up as a checkerboard (amplitude soft-clamped for display). Chart: log10 of max height, 1 mm to 1 km.",
+ n:[["c dt/dx, blue / red","0.417 / 0.833"],["scan: max h after 3 s at 0.70 / 0.72","0.018 / 1.2e6"],["pure tank volume drift, 10 s","2.2e-13"],["ball final height (float line theory ~0.03)","0.019"],["blue max |h|","0.124"]]}];
+const c=document.getElementById('c'),tabs=document.getElementById('tabs');
+function show(i){[...tabs.children].forEach((b,j)=>b.classList.toggle('on',i==j));c.setAttribute('src',D[i].f);
+ document.getElementById('txt').innerHTML=D[i].x;document.getElementById('nums').innerHTML=D[i].n.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}
+D.forEach((d,i)=>{const b=document.createElement('button');b.textContent=d.t;b.onclick=()=>show(i);tabs.appendChild(b)});show(0);
+</script></body></html>
