@@ -1,0 +1,140 @@
+{
+ "schema": "loom.physics-run/1",
+ "id": "tmp-ports/24-morton-bvh",
+ "engine": {
+  "name": "tmp-ports (numpy)",
+  "version": "numpy-2.5.3",
+  "build": "tmp6.py sha256 2cf1093ac2a8, python 3.13.18"
+ },
+ "model": {
+  "sha256": "f7e56dbe34197a10c917c533bcc2c24794991412095311edcac4c86685a2914e",
+  "path": "docs/demos/ten-minute-physics/v6/24-morton-bvh.x3d",
+  "what": "the X3D scene the port produced; parameters live in tmp6.py"
+ },
+ "recorded": {
+  "host": "cpython-3.13.18-numpy-2.5.3",
+  "steps": 61,
+  "hashes": [
+   2934164109,
+   1922526952,
+   2491765395,
+   2392575299,
+   3586921394,
+   422679687,
+   2695982861,
+   2348010859,
+   837948746,
+   1693784961,
+   826390909,
+   543027965,
+   3192229427,
+   30433673,
+   3535292141,
+   3899887704,
+   3089641080,
+   1547638383,
+   2230889169,
+   3736922655,
+   1454174198,
+   3757874715,
+   1293259027,
+   3655627577,
+   1446907605,
+   3821691905,
+   1089965482,
+   3965809414,
+   92494441,
+   3901029905,
+   151412421,
+   1372688304,
+   3586921394,
+   2535775394,
+   3098229047,
+   795965732,
+   108024271,
+   1131691884,
+   3586921394,
+   3397130600,
+   782003711,
+   629021639,
+   3500914431,
+   3527664917,
+   3459317695,
+   3861078052,
+   3732528342,
+   3332018519,
+   2348010859,
+   1575219085,
+   176659129,
+   293848754,
+   1547638383,
+   2708011014,
+   2392575299,
+   3214707838,
+   2348010859,
+   3945438224,
+   3381683203,
+   1922526952,
+   2530961689
+  ],
+  "trace_sha256": "083084a97d0ca16d5a8f3852b593fd90a8d035d3fa24ae3375b8ba340116c558"
+ },
+ "replays": [
+  {
+   "host": "numpy-fresh-process",
+   "steps": 61,
+   "mismatches": 0,
+   "first_mismatch": null,
+   "trace_sha256": "083084a97d0ca16d5a8f3852b593fd90a8d035d3fa24ae3375b8ba340116c558"
+  }
+ ],
+ "references": [
+  {
+   "id": "Morton code (bit trick) against the bit-by-bit loop over 100,008 inputs including the corners and the alternating patterns: mismatches",
+   "observed": 0.0,
+   "limit": 0,
+   "declared_limit": 0,
+   "rule": "at most",
+   "status": "pass",
+   "source": "naive interleave loop, 16 bits per axis"
+  },
+  {
+   "id": "BVH built with one sort of Morton codes: queries whose hit set differs from brute force, of 1000 random boxes over 4096 objects",
+   "observed": 0.0,
+   "limit": 0,
+   "declared_limit": 0,
+   "rule": "at most",
+   "status": "pass",
+   "source": "set equality with O(n) search"
+  },
+  {
+   "id": "BVH node and object tests per query over the brute-force test count",
+   "observed": 0.01918896484375,
+   "limit": 0.05,
+   "declared_limit": 0.05,
+   "rule": "at most",
+   "status": "pass",
+   "source": "counted tests"
+  }
+ ],
+ "controls": [
+  {
+   "id": "the query check with every node box shrunk by 0.02 must miss hits",
+   "expect": "fail",
+   "observed_failed": true,
+   "observed": 2466
+  }
+ ],
+ "not_shown": [
+  "moving objects (the tree is rebuilt, not refit)",
+  "construction speed (counts only, no clock)",
+  "3D (2D here)",
+  "another machine"
+ ],
+ "note": "hash replay covers the sort order and 60 queries",
+ "limits": {
+  "path": "docs/demos/ten-minute-physics/v6/witness/limits6.json",
+  "commit": "01bb9dda88744c7c4a620bb542d15fed65f02eb7",
+  "sha256": "02580da957113f7de7ac0cb1fb7f5992f1b7dfda2852b60b70987b5fe44b5ad1"
+ }
+}

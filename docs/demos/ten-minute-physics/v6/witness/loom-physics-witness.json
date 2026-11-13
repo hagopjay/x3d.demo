@@ -1,0 +1,204 @@
+{
+  "coverage": {
+    "max_waivers": 0,
+    "require_takeover": false,
+    "runs": 3
+  },
+  "development": false,
+  "environment": {
+    "optimized": false,
+    "python": "3.13.18"
+  },
+  "evidence": [],
+  "finished_at": "2026-11-13T21:17:12+00:00",
+  "grade": "C",
+  "instrument": {
+    "hosts": [
+      "numpy-fresh-process"
+    ],
+    "max_waivers": 0,
+    "require_takeover": false,
+    "rules_sha256": "9c7b6cdd75d26b55f54b327d4834dd5f0d8233fc5410a8583522b50d240f79c6",
+    "tool": "loomkit.physics"
+  },
+  "limitations": [
+    "Determinism is shown on the hosts and the machine the record names; another machine or another engine build needs its own replay (law 42).",
+    "A passing record shows the run answers to its references and hashes; it does not show the engine's model is right where no exact reference exists.",
+    "The witness reads the record a project's own harness wrote; the harness is trusted to have replayed what it says (the project's browser evidence is the behaviour witness)."
+  ],
+  "measurements": {
+    "runs": {
+      "19-ode-integrators.physics.json": {
+        "controls": 2,
+        "engine": "tmp-ports (numpy) numpy-2.5.3",
+        "id": "tmp-ports/19-ode-integrators",
+        "leaks": 0,
+        "recorded_in": "cpython-3.13.18-numpy-2.5.3",
+        "references": [
+          {
+            "id": "harmonic oscillator, euler: measured order of the end-point error (5 step sizes, T = 1) against 1, absolute difference",
+            "limit": 0.15,
+            "observed": 0.0024509779592167824
+          },
+          {
+            "id": "harmonic oscillator, symplectic: measured order of the end-point error (5 step sizes, T = 1) against 1, absolute difference",
+            "limit": 0.15,
+            "observed": 0.000906208492631011
+          },
+          {
+            "id": "harmonic oscillator, midpoint: measured order of the end-point error (5 step sizes, T = 1) against 2, absolute difference",
+            "limit": 0.15,
+            "observed": 5.316003470534625e-06
+          },
+          {
+            "id": "harmonic oscillator, verlet: measured order of the end-point error (5 step sizes, T = 1) against 2, absolute difference",
+            "limit": 0.15,
+            "observed": 3.0419016995963943e-05
+          },
+          {
+            "id": "harmonic oscillator, rk4: measured order of the end-point error (5 step sizes, T = 1) against 4, absolute difference",
+            "limit": 0.15,
+            "observed": 7.655147811647112e-06
+          },
+          {
+            "id": "harmonic oscillator, euler: measured order of the end-point error (5 step sizes, T = 2 pi) against 1, absolute difference",
+            "limit": 0.15,
+            "observed": 0.099776447005824
+          },
+          {
+            "id": "harmonic oscillator, symplectic: measured order of the end-point error (5 step sizes, T = 2 pi) against 2, absolute difference",
+            "limit": 0.15,
+            "observed": 0.004642843700965127
+          },
+          {
+            "id": "harmonic oscillator, midpoint: measured order of the end-point error (5 step sizes, T = 2 pi) against 2, absolute difference",
+            "limit": 0.15,
+            "observed": 0.0006310040923747096
+          },
+          {
+            "id": "harmonic oscillator, verlet: measured order of the end-point error (5 step sizes, T = 2 pi) against 2, absolute difference",
+            "limit": 0.15,
+            "observed": 0.00015836465596508198
+          },
+          {
+            "id": "harmonic oscillator, rk4: measured order of the end-point error (5 step sizes, T = 2 pi) against 4, absolute difference",
+            "limit": 0.15,
+            "observed": 0.00012470377783024844
+          },
+          {
+            "id": "Kepler e = 0.6, velocity Verlet, 200 steps per orbit, 50 orbits: worst relative energy error",
+            "limit": 0.02,
+            "observed": 0.00735199768250383
+          },
+          {
+            "id": "Kepler, velocity Verlet: worst energy error of the last 10 orbits over the first 10 (no secular growth)",
+            "limit": 1.5,
+            "observed": 1.0000001188475538
+          },
+          {
+            "id": "Kepler, RK4: position error after 5 orbits (m, a = 1)",
+            "limit": 0.01,
+            "observed": 0.002160767465753429
+          },
+          {
+            "id": "Kepler: Verlet position error over RK4's after 5 orbits (bounded energy is not accuracy)",
+            "limit": 100,
+            "observed": 283.00525381833233
+          }
+        ],
+        "replayed_in": [
+          "numpy-fresh-process"
+        ],
+        "required_hosts": [
+          "numpy-fresh-process"
+        ],
+        "steps": 50,
+        "takeover": false,
+        "tolerances": 0,
+        "trace_sha256": "0bd0a96b7755a9f2262f72de0d8f35f87e1ce200a9dfe984cba6506d9e5b5055",
+        "waivers": []
+      },
+      "23-sweep-and-prune.physics.json": {
+        "controls": 1,
+        "engine": "tmp-ports (numpy) numpy-2.5.3",
+        "id": "tmp-ports/23-sweep-and-prune",
+        "leaks": 0,
+        "recorded_in": "cpython-3.13.18-numpy-2.5.3",
+        "references": [
+          {
+            "id": "sweep and prune (either axis) pair set against the brute-force pair set: pairs missed over 180 frames",
+            "limit": 0,
+            "observed": 0.0
+          },
+          {
+            "id": "sweep and prune pair set against the brute-force pair set: false pairs",
+            "limit": 0,
+            "observed": 0.0
+          },
+          {
+            "id": "tests along the short axis over tests along the long axis of the field (choose the longest axis)",
+            "limit": 2.0,
+            "observed": 4.123953655967625
+          },
+          {
+            "id": "box tests along the long axis over all n(n-1)/2 pairs",
+            "limit": 0.1,
+            "observed": 0.050360134003350085
+          }
+        ],
+        "replayed_in": [
+          "numpy-fresh-process"
+        ],
+        "required_hosts": [
+          "numpy-fresh-process"
+        ],
+        "steps": 60,
+        "takeover": false,
+        "tolerances": 0,
+        "trace_sha256": "694a18b1fe2d77e5ccfc1257723c972437560102bd82efd3cc68357c75ea27ba",
+        "waivers": []
+      },
+      "24-morton-bvh.physics.json": {
+        "controls": 1,
+        "engine": "tmp-ports (numpy) numpy-2.5.3",
+        "id": "tmp-ports/24-morton-bvh",
+        "leaks": 0,
+        "recorded_in": "cpython-3.13.18-numpy-2.5.3",
+        "references": [
+          {
+            "id": "Morton code (bit trick) against the bit-by-bit loop over 100,008 inputs including the corners and the alternating patterns: mismatches",
+            "limit": 0,
+            "observed": 0.0
+          },
+          {
+            "id": "BVH built with one sort of Morton codes: queries whose hit set differs from brute force, of 1000 random boxes over 4096 objects",
+            "limit": 0,
+            "observed": 0.0
+          },
+          {
+            "id": "BVH node and object tests per query over the brute-force test count",
+            "limit": 0.05,
+            "observed": 0.01918896484375
+          }
+        ],
+        "replayed_in": [
+          "numpy-fresh-process"
+        ],
+        "required_hosts": [
+          "numpy-fresh-process"
+        ],
+        "steps": 61,
+        "takeover": false,
+        "tolerances": 0,
+        "trace_sha256": "083084a97d0ca16d5a8f3852b593fd90a8d035d3fa24ae3375b8ba340116c558",
+        "waivers": []
+      }
+    },
+    "waivers": 0
+  },
+  "reason": "",
+  "schema": "loom.witness/1",
+  "status": "pass",
+  "subject_sha256": "7ec086a666972816a5774705481f3d5c67581974ba9586c7a1e9307f276403d8",
+  "witness": "physics"
+}
