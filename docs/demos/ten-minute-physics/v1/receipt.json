@@ -1,0 +1,80 @@
+{
+ "schema": "loom-receipt-lite/1",
+ "batch": 1,
+ "validator": "hagopjay/x3d_mcp fork @13121b6, validation.validate.validate_xml, X3D 4.0 XSD",
+ "results": {
+  "01-cannonball.x3d": "valid",
+  "03-billiards.x3d": "valid",
+  "05-bead-xpbd.x3d": "valid"
+ },
+ "renderer": "X_ITE 16.7.1, headless Chromium (software GL, screenshots only, no frame rates quoted)",
+ "grade": "Confirmed for the numbers below (computed by build_ports.py, numpy 2.5.3); Likely for visual claims (software GL only, not seen on user GPU)",
+ "numbers": {
+  "01_cannonball": {
+   "dt": 0.03333333333333333,
+   "frames": 361,
+   "E0": 35.3215,
+   "symplectic_E_rel_min": 0.8367476466174973,
+   "symplectic_E_rel_max": 1.0220798946817082,
+   "explicit_E_rel_final": 1.9443529295188473,
+   "explicit_E_rel_max": 1.9858742409014325,
+   "symplectic_pos_err_vs_ref_final": 2.586561280005265,
+   "explicit_pos_err_vs_ref_final": 0.8751612800052588,
+   "ref_substeps": 200,
+   "note": "reference = same scheme at dt/200, not analytic; chaotic after many bounces so late position error is bounded by box size"
+  },
+  "03_billiards_frictionless_check": {
+   "KE_rel_drift_max": 1.3322676295501878e-15,
+   "mom_x_drift_note": "walls reflect momentum so only KE is conserved",
+   "KE0": 18.0072
+  },
+  "03_billiards": {
+   "balls": 16,
+   "sim_hz": 240,
+   "key_hz": 30,
+   "frames": 421,
+   "r": 0.0969,
+   "KE_start": 18.0072,
+   "KE_end": 3.6734196274683143e-40,
+   "rolling_decel": 0.35
+  },
+  "05_bead_xpbd": {
+   "dt": 0.03333333333333333,
+   "T": 12.0,
+   "wire_radius": 1.0,
+   "theta0_deg": 80,
+   "E0": 8.106511377087413,
+   "runs": {
+    "1": {
+     "E_rel_final": 0.010547476846672916,
+     "E_rel_min": 0.010547476846672916,
+     "E_rel_max": 1.0,
+     "constraint_drift_final": 0.0,
+     "phase_err_final": 0.14741909998588945
+    },
+    "5": {
+     "E_rel_final": 0.30646020446039995,
+     "E_rel_min": 0.30646020446039995,
+     "E_rel_max": 1.0,
+     "constraint_drift_final": 1.1102230246251565e-16,
+     "phase_err_final": 0.5127042211843224
+    },
+    "20": {
+     "E_rel_final": 0.7077383770254112,
+     "E_rel_min": 0.7077383770254112,
+     "E_rel_max": 1.0,
+     "constraint_drift_final": 1.1102230246251565e-16,
+     "phase_err_final": 0.7795623671966313
+    },
+    "100": {
+     "E_rel_final": 0.9299444458543132,
+     "E_rel_min": 0.9299444458543132,
+     "E_rel_max": 1.0,
+     "constraint_drift_final": 1.1102230246251565e-16,
+     "phase_err_final": 0.25516862605377505
+    }
+   },
+   "reference": "RK4 on theta, dt/50"
+  }
+ }
+}
