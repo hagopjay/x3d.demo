@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">
+  <head><component name="RigidBodyPhysics" level="2"/><meta name="title" content="physics demo scene for the Demo 24 page"/></head>
+  <Scene>
+    <Background skyColor="0.06 0.07 0.12"/>
+    <NavigationInfo type='"EXAMINE" "ANY"' transitionType='"TELEPORT"'/>
+    <Viewpoint position="0 4 9"/>
+    <Transform DEF="V_P" translation="2 5 0"><Shape><Appearance><Material diffuseColor="0.95 0.45 0.25"/></Appearance><Sphere radius="0.3"/></Shape></Transform>
+    <Transform DEF="V_A" translation="0 5 0"><Shape><Appearance><Material diffuseColor="0.8 0.8 0.85"/></Appearance><Sphere radius="0.1"/></Shape></Transform>
+    <Transform DEF="V_R"><Shape><Appearance><Material diffuseColor="0.6 0.6 0.7"/></Appearance><Box size="2 0.04 0.04"/></Shape></Transform>
+    <RigidBodyCollection DEF="W" gravity="0 -9.8 0">
+      <RigidBody DEF="A" position="0 5 0" mass="1" fixed="true"><CollidableShape containerField="geometry"><Shape containerField="shape"><Sphere radius="0.1"/></Shape></CollidableShape></RigidBody>
+      <RigidBody DEF="P" position="2 5 0" mass="1" linearVelocity="0 0 0"><CollidableShape containerField="geometry"><Shape containerField="shape"><Sphere radius="0.3"/></Shape></CollidableShape></RigidBody>
+      <CollisionCollection containerField="collider" bounce="0"/>
+      <SingleAxisHingeJoint containerField="joints" DEF="J" anchorPoint="0 5 0" axis="0 0 1" minAngle="-0.5" maxAngle="0.5"><RigidBody USE="A" containerField="body1"/><RigidBody USE="P" containerField="body2"/></SingleAxisHingeJoint>
+    </RigidBodyCollection>
+    <ROUTE fromNode="A" fromField="position" toNode="V_A" toField="set_translation"/><ROUTE fromNode="A" fromField="orientation" toNode="V_A" toField="set_rotation"/><ROUTE fromNode="P" fromField="position" toNode="V_P" toField="set_translation"/><ROUTE fromNode="P" fromField="orientation" toNode="V_P" toField="set_rotation"/>
+  </Scene>
+</X3D>
