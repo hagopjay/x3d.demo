@@ -122,3 +122,6 @@ The six STEM-shelf studies are linked to hagopjay/x3d.STEM `studies/<name>/`; th
 | gobbler-gyroscope-webgpu/v1/index.html | 70588f1ca694552ada1a4f6663bd32d56d70adac61159a775adaf732e74eae9f | 4177242 |
 | gobbler-gyroscope-webgpu/v1/gobbler3.x3d | 0772caea04e80d03d43ce1543e86fee5854e13a6ad1d273dc65ea2e5aee47dc6 | 1985373 |
 | gobbler-gyroscope-webgpu/v1/graph-v3.json | fcbc4bc603632ba8479b96618c2591a9633cf4ea2751ccd84d8a628308800621 | 60630 |
+
+## bridge-blenderizer v1 (Demo 24)
+Page written for this site. Data: x3d.loom x3d.webgpu/bridge NODES.json and receipts/shots at ed1bed8; x3d-blender-io at 54aba0c (gate_results.json, audit-defects-D1-D14.json, scorecard v3, 14 Nov 2026). Scenes: stilllife-addon.glb, prismatica-aurora-cathedral.{glb,x3d}, asterion.{glb,x3d}, asterion-cycles.webp and stilllife-cycles-reference.webp from x3d-blender-io docs/brag; stilllife-stage.x3d, stilllife-x3d40.x3d and marble.png from Demo 12.

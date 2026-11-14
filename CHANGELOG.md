@@ -2,6 +2,12 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v21 (2026-11-14)
+- New Demo 24: The bridge and the blenderizer (`docs/demos/bridge-blenderizer/v1/`), a rebuild of the add-on showcase around both translators. It sits beside Demo 12 (Checkable 3D, untouched) and the add-on's own page; nothing is overwritten. Contents: a live X_ITE 16.6.0 pane (X3D) beside a live Babylon.js 9.32.0 pane (glb written by the add-on) for three Blender scenes; the 260-node X3D 4.0 atlas from x3d.loom `bridge/NODES.json` at ed1bed8 (216 read, 95 bridged, 53 gaps, 35 todo, 8 claimed, 1 blocked); 53 receipt pictures (Babylon beside X_ITE) from `bridge/receipts/shots`; a table of cases where the bridge follows the standard and X_ITE does not (BATCH-44); the add-on's gate run (43 of 43, 42 PASS and 1 IMPROVED, Blender 5.3.0, Khronos validator 2.0.0-dev.3.10, 0 errors), the sRGB round-trip audit (3.2e-6) and scorecard v3 (15 scenes, FLIP vs Cycles; the Babylon-over-X_ITE margin is inside its confidence interval and the page says so).
+- Scene files copied: PRISMATICA, Asterion and Still life from x3d-blender-io `docs/brag`, Still life's stage from Demo 12. The page loads X_ITE from Demo 12's vendor folder. The live Babylon pane loads plain glb, not the bridge reader (the bridge needs WebGPU).
+- Front page gets the Demo 24 card; v20 (Giza) has no front-page snapshot. v1 to v19 unchanged.
+- Checked in headless Chromium on a software adapter: both live panes load for all three scenes, no page errors, no horizontal scroll at 390 px; nothing timed.
+
 ## v20 (2026-11-13)
 - New study, not yet on the front-page shelf: Giza, Osiris Shaft and Hall of Records (`docs/demos/giza-osiris-hall/v1/`): one X3D 4.0 scene with documented, theorized and speculative layers, a 13-row graded claim ledger, a guided descent and eight views. X_ITE 16.6.0 bundled; validator clean (0 errors). All underground positions are schematic. Checked on a software adapter only; nothing timed. The front page and earlier versions are untouched.
 
