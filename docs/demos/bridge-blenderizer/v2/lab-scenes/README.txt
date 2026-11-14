@@ -5,7 +5,7 @@ They are NOT in the x3d.loom bridge repository. They draw the pictures in the vo
   _demo-phys-*.x3d  a sphere and two boxes dropped on a fixed ground; a pendulum on a hinge with limits (-0.5 to 0.5 rad)
   *.test.json       the bridge's run-tests spec for each scene (steps and named shots)
 
-To rerun: copy the files into x3d.webgpu/bridge/fixtures/ of hagopjay/x3d.loom at commit 7bca6e3 (the head of open PR 63; batch 43 is not on main),
+To rerun: copy the files into x3d.webgpu/bridge/fixtures/ of hagopjay/x3d.loom at commit 7bca6e3 (the head of PR 63, which brought batch 43 into main on 14 Nov 2026),
 then from x3d.webgpu/bridge run
   XITE_DIR=<x_ite 16.6.0 dist> BABYLON_JS=<babylon 9.32.0 babylon.js> CHROMIUM_EXECUTABLE=<chromium> \
   node tools/run-tests.js --shots <out dir> _demo-vol-shaded
