@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Typed X3D: a scene a model can be held to</title>
+<meta name="description" content="Zod and the Web3D JSON Schema as a gate on LLM-written X3D: break a scene nine realistic ways, watch the gate name the exact path, repair it, and see the 261-node vocabulary shrink to a schema a model can be constrained by.">
+<style>
+:root{--bg:#070a12;--bg2:#0c111d;--panel:#101728;--panel2:#162038;--line:#232f4b;--line2:#2f3e63;--fg:#e9eefb;--mute:#97a3c0;--dim:#6b7694;
+--amber:#ffb454;--teal:#37d5c2;--violet:#9c8bff;--coral:#ff7a5c;--sky:#5db4ff;--sage:#7ddc6a;--red:#ff5d6c;--stage:#04060c;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 var(--sans);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(1100px 600px at 12% -10%,rgba(55,213,194,.14),transparent 60%),radial-gradient(900px 500px at 96% 0%,rgba(255,180,84,.12),transparent 60%)}
+main{max-width:1240px;margin:0 auto;padding:22px 0 70px}
+a{color:var(--sky)}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.02;margin:6px 0 10px;letter-spacing:-.025em;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(95deg,var(--teal),var(--amber) 55%,var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.45rem;margin:0 0 4px;letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:1.02rem;margin:0 0 4px}
+p{margin:0 0 10px;max-width:76ch}
+code,.mono{font-family:var(--mono);font-size:.9em}
+.nav{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font:12px var(--mono);color:var(--mute);letter-spacing:.04em;margin-bottom:10px}
+.nav a{color:var(--mute);text-decoration:none}.nav a:hover{color:var(--fg)}
+.kick{font:600 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.lede{font-size:1.12rem;color:var(--mute);max-width:80ch}
+section{margin-top:54px;scroll-margin-top:12px}
+.sec-h{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:16px}
+.sec-h p{margin:0;color:var(--mute);font-size:.95rem}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px;margin-top:18px}
+.tile{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:12px 14px 11px;position:relative;overflow:hidden}
+.tile:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c,var(--teal))}
+.tile b{display:block;font:700 2rem/1.05 var(--sans);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tile span{display:block;font-size:.86rem;margin-top:3px}
+.tile small{display:block;font:10.5px/1.35 var(--mono);color:var(--dim);margin-top:6px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-width:0}
+.btn,select{font:13px var(--sans);color:var(--fg);background:var(--panel2);border:1px solid var(--line2);border-radius:8px;padding:6px 12px;cursor:pointer}
+.btn:hover{border-color:var(--sky)}.btn[aria-pressed=true]{background:var(--sky);color:#04101e;border-color:var(--sky);font-weight:650}
+.btn.go{background:linear-gradient(95deg,var(--teal),#4fe3a8);color:#04120f;border-color:transparent;font-weight:650}
+.note{font:11.5px/1.45 var(--mono);color:var(--dim)}
+.chip{display:inline-block;font:11.5px var(--mono);padding:2px 9px;border-radius:99px;border:1px solid var(--line2);color:var(--mute);background:var(--panel);margin:0 4px 4px 0}
+.chip.ok{color:var(--sage);border-color:rgba(125,220,106,.4)}.chip.bad{color:var(--red);border-color:rgba(255,93,108,.45)}.chip.amb{color:var(--amber);border-color:rgba(255,180,84,.45)}
+/* court */
+.court{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px;align-items:start}
+@media(max-width:900px){.court{grid-template-columns:1fr}}
+.mist{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.mist .btn{font-size:12.5px;padding:5px 10px}
+.mist .btn small{font:10px var(--mono);color:var(--dim);margin-right:5px}
+.mist .btn[aria-pressed=true] small{color:#0a2340}
+textarea.ed{width:100%;height:340px;resize:vertical;background:#060913;color:#cfe0ff;border:1px solid var(--line2);border-radius:10px;padding:10px 12px;font:12px/1.5 var(--mono);tab-size:1;white-space:pre;overflow:auto}
+.verdict{display:flex;align-items:center;gap:10px;margin:10px 0 6px;font:600 13px var(--mono);letter-spacing:.04em}
+.verdict .lamp{width:12px;height:12px;border-radius:50%;background:var(--dim);box-shadow:0 0 0 3px rgba(255,255,255,.05)}
+.verdict.ok .lamp{background:var(--sage);box-shadow:0 0 14px var(--sage)}.verdict.bad .lamp{background:var(--red);box-shadow:0 0 14px var(--red)}
+.verdict .ms{margin-left:auto;color:var(--dim);font-weight:400}
+.issues{list-style:none;margin:0;padding:0;max-height:210px;overflow:auto}
+.issues li{border-left:3px solid var(--red);background:rgba(255,93,108,.07);margin:0 0 5px;padding:6px 9px;border-radius:0 8px 8px 0;cursor:pointer;font-size:13px}
+.issues li:hover{background:rgba(255,93,108,.14)}
+.issues li b{display:block;font:600 11.5px var(--mono);color:#ffb3bb;word-break:break-all}
+.why{font-size:13.5px;color:var(--mute);border-left:3px solid var(--amber);padding:2px 0 2px 10px;margin:8px 0}
+pre.rp{background:#060913;border:1px solid var(--line2);border-radius:10px;padding:10px 12px;font:12px/1.5 var(--mono);white-space:pre-wrap;color:#d9e6ff;margin:8px 0 0;max-height:220px;overflow:auto}
+.pane{background:var(--stage);border:1px solid var(--line);border-radius:12px;overflow:hidden;position:relative;aspect-ratio:4/3}
+.pane x3d-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;outline:none}
+.pane .tag{position:absolute;left:10px;top:9px;z-index:3;font:600 11px var(--mono);letter-spacing:.06em;padding:3px 9px;border-radius:99px;background:rgba(4,6,12,.72);border:1px solid var(--line2);color:var(--mute)}
+.gate{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:rgba(40,4,10,.72);backdrop-filter:grayscale(1) blur(2px);opacity:0;pointer-events:none;transition:opacity .25s}
+.gate.shut{opacity:1}
+.gate b{display:block;font:700 1.5rem var(--sans);color:#ffd7db;letter-spacing:-.01em}.gate span{font:12px var(--mono);color:#ff9aa4}
+.row2{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.toggle{font:12.5px var(--sans);color:var(--mute);display:flex;gap:6px;align-items:center;cursor:pointer}
+/* mask */
+.bars{display:grid;gap:8px;margin:12px 0}
+.bar{display:grid;grid-template-columns:150px 1fr 190px;gap:10px;align-items:center;font:12px var(--mono)}
+.bar .track{height:20px;background:#060913;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.bar .fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--sky));min-width:2px;transition:width .35s}
+.bar.full .fill{background:linear-gradient(90deg,#3a456a,#55638f)}
+.bar .v{color:var(--mute);text-align:right}
+@media(max-width:700px){.bar{grid-template-columns:1fr}.bar .v{text-align:left}}
+.keys{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0;max-height:190px;overflow:auto}
+.k{font:11.5px var(--mono);padding:2px 8px;border-radius:6px;border:1px solid var(--line2);background:#0a1020;color:var(--mute)}
+.k.node{color:var(--teal);border-color:rgba(55,213,194,.4)}.k.slot{color:var(--violet);border-color:rgba(156,139,255,.4)}.k.field{color:var(--amber);border-color:rgba(255,180,84,.35)}
+.k.off{color:var(--dim);text-decoration:line-through;opacity:.55}
+.mask-in{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mask-in input{font:13px var(--mono);background:#060913;color:var(--fg);border:1px solid var(--line2);border-radius:8px;padding:6px 10px;width:210px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{font:600 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mute);position:sticky;top:0;background:var(--panel)}
+td.y{color:var(--sage);font-weight:600}td.n{color:var(--red);font-weight:600}td.c{font:11.5px var(--mono);color:var(--mute)}
+.scroll{overflow-x:auto}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:14px}
+footer{margin-top:60px;border-top:1px solid var(--line);padding-top:16px;color:var(--dim);font:12px/1.6 var(--mono)}
+.sr{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<main>
+<nav class="nav"><a href="../../../index.html">x3d.demo</a><span>/</span><span>Typed X3D</span><span style="flex:1"></span><a href="#gate">the gate</a><a href="#mask">the mask</a><a href="#gates">three gates</a><a href="#corpus">1,533 scenes</a><a href="#limits">limits</a></nav>
+
+<div class="kick">Zod + JSON Schema · x3d.zod · X_ITE live</div>
+<h1>A scene a model <em>can be held to</em></h1>
+<p class="lede">Models write X3D confidently and wrongly. This page makes the wrongness checkable: the Web3D X3D 4.0 JSON Schema is compiled to Zod in your browser (364 definitions, 261 scene nodes), so every mistake below is caught with its exact path, the repair prompt writes itself, and the schema can be shrunk to the few nodes a model needs, small enough to constrain decoding. Edit the JSON yourself; the scene on the right only renders when the gate is open.</p>
+
+<div class="tiles" id="tiles">
+  <div class="tile" style="--c:var(--teal)"><b id="t-defs">364</b><span>definitions compiled to Zod + TS types</span><small>tools/gen.mjs on Web3D x3d-4.0-JSONSchema.json sha1 c6765a4; tsc 7.0.2 checks all of it</small></div>
+  <div class="tile" style="--c:var(--amber)"><b>1,428 / 1,428</b><span>repo scenes where Zod, ajv and jsonschema agree</span><small>1,533 .x3d files XML to JSON, 105 not convertible; Node 22.23.4, zod 4.6.7, ajv 8.20.0, jsonschema 4.26.0</small></div>
+  <div class="tile" style="--c:var(--sky)"><b>0 / 7,728</b><span>disagreements on fuzzed mutants of those scenes</span><small>tools/fuzz.mjs seed 1, 8 mutations kinds; Zod vs ajv</small></div>
+  <div class="tile" style="--c:var(--coral)"><b id="t-shrink">-</b><span id="t-shrink-l">schema size for a 19-node vocabulary</span><small>measured live in this page with restrictSchema on the same file</small></div>
+</div>
+
+<section id="gate">
+  <div class="sec-h"><div><h2>1. The gate</h2><p>Pick a realistic mistake, or type your own. The verdict is Zod running here, now.</p></div><div class="note" id="gate-note"></div></div>
+  <div class="court">
+    <div class="panel">
+      <div class="mist" id="mist" role="group" aria-label="Mistakes a model makes"></div>
+      <div class="why" id="why">The orrery is valid X3D JSON. Break it with a button above, or edit the text.</div>
+      <label class="sr" for="ed">X3D JSON</label>
+      <textarea id="ed" class="ed" spellcheck="false" autocomplete="off"></textarea>
+      <div class="verdict" id="verdict"><span class="lamp"></span><span id="vtext">loading the gate</span><span class="ms" id="vms"></span></div>
+      <ul class="issues" id="issues"></ul>
+      <div class="row2">
+        <button class="btn" id="b-prompt">Show the repair prompt</button>
+        <button class="btn go" id="b-fix">Replay the repair</button>
+        <button class="btn" id="b-reset">Reset to the clean scene</button>
+        <label class="toggle"><input type="checkbox" id="anyway"> render without the gate</label>
+      </div>
+      <pre class="rp" id="rp" hidden></pre>
+      <p class="note" style="margin-top:8px">The repair is a scripted replay: the clean scene stands in for what a model returns when it is given that prompt. No model is called anywhere on this page.</p>
+    </div>
+    <div>
+      <div class="pane"><span class="tag" id="pane-tag">X_ITE 16.6.0</span><x3d-canvas id="xc" aria-label="Rendered orrery"></x3d-canvas><div class="gate" id="gateov"><div><b>Gate closed</b><span id="gate-why"></span></div></div></div>
+      <p class="note" style="margin-top:8px" id="render-note">The scene renders in X_ITE only after Zod accepts it. With the box above ticked, X_ITE gets whatever is in the editor.</p>
+    </div>
+  </div>
+</section>
+
+<section id="mask">
+  <div class="sec-h"><div><h2>2. The mask</h2><p>Constrained decoding needs a schema that fits in a request and leaves only legal tokens. Choose a vocabulary; the same file shrinks, and the keys the model may write at each place shrink with it.</p></div></div>
+  <div class="panel">
+    <div class="mist" id="vocab" role="group" aria-label="Vocabulary"></div>
+    <div class="row2" style="margin:0 0 4px"><label class="toggle"><input type="checkbox" id="lean" checked> lean (drop class/id/style, IS, metadata, defaults, comments)</label><span class="note" id="vocab-note"></span></div>
+    <div class="bars" id="bars"></div>
+    <div class="two" style="margin-top:6px">
+      <div>
+        <h3>Where is the model about to write?</h3>
+        <select id="where" aria-label="Position in the scene"></select>
+        <div class="keys" id="keys" aria-live="polite"></div>
+        <div class="note" id="keys-note"></div>
+      </div>
+      <div>
+        <h3>Try to make it say something</h3>
+        <div class="mask-in"><input id="probe" value="Torus" aria-label="A key to try" spellcheck="false"><button class="btn" id="b-probe">Offer it</button></div>
+        <p class="why" id="probe-out" style="margin-top:10px">Type a node or field name. The mask answers whether the schema would ever let it through at the position on the left.</p>
+        <p class="note">In a constrained decoder this is a zero: the token is not sampled at all, instead of sampled and rejected.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gates">
+  <div class="sec-h"><div><h2>3. Three gates, nine mistakes</h2><p>Valid is not the same as right. The same nine damaged scenes through the JSON gate (live here), the XSD and the semantic checks (recorded).</p></div><div class="note">nine constructed documents, not a measured error rate</div></div>
+  <div class="panel scroll"><table id="matrix"><thead><tr><th>#</th><th>Mistake</th><th>JSON Schema + Zod (live)</th><th>XSD (recorded)</th><th>Semantic (recorded)</th><th>First caught by</th></tr></thead><tbody></tbody></table></div>
+  <p class="note" style="margin-top:8px" id="matrix-note"></p>
+</section>
+
+<section id="corpus">
+  <div class="sec-h"><div><h2>4. 1,533 scenes from this project's repositories</h2><p>Every <code>.x3d</code> in nine repositories, converted to JSON by the schema's own typing, then judged by four validators.</p></div><div class="note">Node 22.23.4 · zod 4.6.7 · ajv 8.20.0 · jsonschema 4.26.0 · Python 3.13 · 4 CPU cores, software only</div></div>
+  <div class="two">
+    <div class="panel scroll"><h3>XSD against JSON Schema, 1,428 checked scenes</h3>
+      <table><thead><tr><th></th><th>JSON Schema accepts</th><th>JSON Schema rejects</th></tr></thead><tbody>
+      <tr><th>XSD accepts</th><td class="y">894</td><td class="n">152</td></tr>
+      <tr><th>XSD rejects</th><td class="n">72</td><td class="y">310</td></tr></tbody></table>
+      <p class="note" style="margin-top:8px">Zod, ajv and jsonschema gave the same verdict on all 1,428. The off-diagonal 224 are about the standards, not about Zod: see the breakdown below.</p>
+      <h3 style="margin-top:12px">Speed per scene (this container)</h3>
+      <table><thead><tr><th></th><th>median</th><th>p95</th></tr></thead><tbody>
+      <tr><td>ajv (compiled)</td><td class="c">0.21 ms</td><td class="c">3.0 ms</td></tr>
+      <tr><td>Zod</td><td class="c">1.16 ms</td><td class="c">26 ms</td></tr>
+      <tr><td>jsonschema (Python)</td><td class="c">3.0 ms</td><td class="c">346 ms</td></tr></tbody></table>
+    </div>
+    <div class="panel scroll"><h3>What the corpus caught in our own generator</h3>
+      <p>The first run had one split: Zod rejected <code>TransmitterPdu.x3d</code>, the other three accepted it. <code>@geoSystem</code> is a JSON Schema tuple (<code>prefixItems</code> of 4, <code>minItems</code> 2), and Zod's tuple demands every position. The generator now marks positions at or past <code>minItems</code> optional and states the length bounds the tuple cannot. A regression test draws 400 random arrays against each of the 79 tuple-typed fields and compares Zod with ajv.</p>
+      <h3 style="margin-top:12px">Fuzz, seed 1: 7,728 mutants of 966 valid scenes</h3>
+      <p class="note" id="fuzz-line"></p>
+      <h3 style="margin-top:12px">One real limit</h3>
+      <p>Zod validates by recursive descent. At Node's default stack, a scene nested 240 Transforms deep (two adversarial fixtures) overflows it while ajv is fine. The library reports it as <em>not checked</em>, never as valid.</p>
+    </div>
+  </div>
+  <div class="panel scroll" style="margin-top:14px"><h3>Why the standards disagree on 224 scenes</h3><div id="why-table">Breakdown loading…</div></div>
+</section>
+
+<section id="limits">
+  <div class="sec-h"><div><h2>5. Honest limits</h2></div></div>
+  <div class="panel"><ul>
+    <li>The Web3D JSON Schema is marked experimental and stops at X3D 4.0. A model that writes 4.1 content (<code>GaussianSplats</code>, <code>PeriodicWave</code>) is told "no", correctly for the file as published and wrongly for the draft standard. The gate says which standard it vouches for.</li>
+    <li>It does not see ROUTE targets, DEF/USE order, profile and component declarations or what a scene looks like. Those need the semantic checks and a renderer; the table above shows each doing a job the others cannot.</li>
+    <li>The converter from XML to JSON is ours (schema-driven, 97 files could not be converted, 8 more contain NaN or Infinity and are not JSON). Counts in the corpus tiles are over the 1,428 it could convert, and 578 of those had at least one attribute or child it could not place, which the schema then judged as written.</li>
+    <li>Timings are one software-only container, not a benchmark rig.</li>
+  </ul></div>
+</section>
+
+<footer>
+  Built from <a href="https://github.com/hagopjay/x3d.loom">x3d.loom</a> <code>x3d.zod/</code> (generator, tests, receipts) and <a href="https://github.com/hagopjay/x3d_mcp">x3d_mcp</a> (<code>x3d_json_schema</code> tool, validators). Scene drawn by X_ITE 16.6.0 (bundled with Demo 12). The schema file is Web3D's, MIT-style terms of the Consortium; the Zod bundle is generated from it.
+  <div id="foot-ver"></div>
+</footer>
+</main>
+
+<script type="module">
+import { validateX3DJson, repairPrompt, restrictSchema, nodeDefNames } from './x3d-zod.bundle.js';
+import { baseDoc, MISTAKES, VOCAB } from './scene.js';
+
+const $ = (id) => document.getElementById(id);
+const FULL_BYTES = 502810;                                  // JSON.stringify of the fixed schema, measured with this same file
+const pretty = (d) => JSON.stringify(d, null, 1);
+const CLEAN = pretty(baseDoc());
+const ed = $('ed');
+let currentMistake = null, B = null, seq = 0, lastGood = true;
+
+/* ---------- X_ITE ---------- */
+const XS = '../../blender-x3d-io/v1/vendor/x_ite/x_ite.min.js';
+const load = (src) => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+const xiteReady = load(XS).then(() => {
+  const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = XS.replace('x_ite.min.js', 'x_ite.css'); document.head.appendChild(css);
+  B = X3D.getBrowser($('xc')); $('pane-tag').textContent = 'X_ITE ' + (X3D.version || B.version || '');
+}).catch(() => { $('render-note').textContent = 'X_ITE failed to load; the gate still works.'; });
+async function draw(text) {
+  await xiteReady; if (!B) return; const my = ++seq;
+  try { const sc = await B.createX3DFromString(text); if (my === seq) await B.replaceWorld(sc); }
+  catch (e) { if (my === seq) $('render-note').textContent = 'X_ITE could not load this: ' + String(e.message || e).slice(0, 140); }
+}
+
+/* ---------- path to offset, so an issue can select its own text ---------- */
+function locate(text) {
+  const map = new Map(); let i = 0;
+  const ws = () => { while (i < text.length && /\s/.test(text[i])) i++; };
+  const str = () => { const s = i; i++; while (i < text.length && text[i] !== '"') { if (text[i] === '\\') i++; i++; } i++; return JSON.parse(text.slice(s, i)); };
+  function val(path) {
+    ws(); const c = text[i];
+    if (c === '{') { i++; ws(); if (text[i] === '}') { i++; return; }
+      for (;;) { ws(); const ks = i; const key = str(); ws(); i++; const p = path.concat(key); map.set(p.join('/'), [ks, key.length + 2]); val(p); ws(); if (text[i] === ',') { i++; continue; } if (text[i] === '}') { i++; return; } throw 0; } }
+    else if (c === '[') { i++; ws(); if (text[i] === ']') { i++; return; } let n = 0;
+      for (;;) { ws(); const p = path.concat(String(n)); map.set(p.join('/'), [i, 1]); val(p); n++; ws(); if (text[i] === ',') { i++; continue; } if (text[i] === ']') { i++; return; } throw 0; } }
+    else if (c === '"') str(); else while (i < text.length && !/[,\]}\s]/.test(text[i])) i++;
+  }
+  try { val([]); } catch {}
+  return map;
+}
+function select(issue) {
+  const map = locate(ed.value); let p = issue.path; const m = /Unrecognized keys?: "([^"]+)"/.exec(issue.message);
+  let hit = (m && map.get(p + '/' + m[1])) || map.get(p);
+  while (!hit && p.includes('/')) { p = p.slice(0, p.lastIndexOf('/')); hit = map.get(p); }
+  if (!hit) return;
+  ed.focus(); ed.setSelectionRange(hit[0], hit[0] + hit[1]);
+  const line = ed.value.slice(0, hit[0]).split('\n').length - 1, lh = parseFloat(getComputedStyle(ed).lineHeight) || 18;
+  ed.scrollTop = Math.max(0, line * lh - ed.clientHeight / 2);
+}
+
+/* ---------- the gate ---------- */
+let timer = 0, lastIssues = [];
+function judge() {
+  const t0 = performance.now(); let res, parseErr = null, data;
+  try { data = JSON.parse(ed.value); } catch (e) { parseErr = String(e.message); }
+  if (parseErr) res = { ok: false, issues: [{ path: '(root)', code: 'json_parse', message: 'JSON parse error: ' + parseErr }] };
+  else res = validateX3DJson(data);
+  const ms = performance.now() - t0; lastIssues = res.ok ? [] : res.issues;
+  const v = $('verdict'); v.className = 'verdict ' + (res.ok ? 'ok' : 'bad');
+  $('vtext').textContent = res.ok ? 'GATE OPEN · valid X3D 4.0 JSON' : 'GATE CLOSED · ' + lastIssues.length + ' issue' + (lastIssues.length === 1 ? '' : 's');
+  $('vms').textContent = ms.toFixed(1) + ' ms · Zod 4.6.7';
+  const ul = $('issues'); ul.innerHTML = '';
+  for (const it of lastIssues.slice(0, 40)) { const li = document.createElement('li'); li.tabIndex = 0; const b = document.createElement('b'); b.textContent = it.path.length > 90 ? '…' + it.path.slice(-88) : it.path; li.append(b, document.createTextNode(it.message)); li.onclick = () => select(it); li.onkeydown = (e) => { if (e.key === 'Enter') select(it); }; ul.appendChild(li); }
+  if (lastIssues.length > 40) { const li = document.createElement('li'); li.textContent = '… and ' + (lastIssues.length - 40) + ' more'; li.style.cursor = 'default'; ul.appendChild(li); }
+  const anyway = $('anyway').checked;
+  $('gateov').classList.toggle('shut', !res.ok && !anyway);
+  $('gate-why').textContent = res.ok ? '' : lastIssues.length + ' issue' + (lastIssues.length === 1 ? '' : 's') + ' · nothing reaches the renderer';
+  $('rp').hidden = $('rp').hidden || res.ok; if (!$('rp').hidden) $('rp').textContent = res.ok ? '' : repairPrompt(lastIssues);
+  if (res.ok || anyway) draw(ed.value);
+  return res;
+}
+const schedule = () => { clearTimeout(timer); timer = setTimeout(judge, 220); };
+ed.addEventListener('input', () => { currentMistake = null; markActive(); $('why').textContent = 'You are editing by hand.'; schedule(); });
+
+function markActive() { for (const b of document.querySelectorAll('#mist .btn')) b.setAttribute('aria-pressed', String(b.dataset.id === (currentMistake ? currentMistake.id : 'clean'))); }
+function setMistake(m) {
+  currentMistake = m; ed.value = m ? pretty(m.damage(baseDoc())) : CLEAN;
+  $('why').textContent = m ? m.why : 'The orrery is valid X3D JSON. Break it with a button above, or edit the text.';
+  markActive(); $('rp').hidden = true; judge();
+  if (m) { const first = lastIssues[0]; if (first) setTimeout(() => select(first), 30); }
+}
+{
+  const host = $('mist');
+  const mk = (id, label, num, fn) => { const b = document.createElement('button'); b.className = 'btn'; b.dataset.id = id; b.type = 'button'; b.innerHTML = '<small></small><span></span>'; b.firstChild.textContent = num; b.lastChild.textContent = label; b.onclick = fn; host.appendChild(b); };
+  mk('clean', 'Clean scene', '0', () => setMistake(null));
+  MISTAKES.forEach((m, i) => mk(m.id, m.title.length > 38 ? m.title.slice(0, 36) + '…' : m.title, String(i + 1), () => setMistake(m)));
+}
+$('b-prompt').onclick = () => { const rp = $('rp'); rp.hidden = !rp.hidden; if (!rp.hidden) rp.textContent = lastIssues.length ? repairPrompt(lastIssues) : '(nothing to repair: the document is valid)'; };
+$('b-fix').onclick = () => { if (!lastIssues.length) return;
+  const count = (t) => { const m = new Map(); for (const l of t.split('\n')) m.set(l, (m.get(l) || 0) + 1); return m; };
+  const a = count(ed.value), b = count(CLEAN); let out = 0, inn = 0;
+  for (const [l, n] of a) out += Math.max(0, n - (b.get(l) || 0)); for (const [l, n] of b) inn += Math.max(0, n - (a.get(l) || 0));
+  ed.value = CLEAN; currentMistake = null; markActive();
+  $('why').textContent = 'Replayed repair: ' + out + ' line' + (out === 1 ? '' : 's') + ' out, ' + inn + ' in. The gate re-checked the text below.'; judge(); };
+$('b-reset').onclick = () => setMistake(null);
+$('anyway').onchange = () => { $('render-note').textContent = $('anyway').checked ? 'Gate bypassed: X_ITE is rendering the editor text as it stands.' : 'The scene renders in X_ITE only after Zod accepts it. With the box above ticked, X_ITE gets whatever is in the editor.'; judge(); };
+
+/* ---------- the mask ---------- */
+let SCHEMA = null, NODE_SET = null, vocabKey = 'animated';
+const VOCABS = [['primitives', 'Primitives'], ['starter', 'Starter'], ['animated', 'Animated'], ['all', 'All of X3D 4.0']];
+const bytes = (o) => new TextEncoder().encode(JSON.stringify(o)).length;
+const fmt = (n) => n.toLocaleString('en-US');
+let DEFS = null;                                             // the $defs of the schema being walked (full or restricted)
+const resolveRef = (s) => { while (s && s.$ref) s = DEFS[s.$ref.slice(8)]; return s; };
+const variants = (s) => { s = resolveRef(s); if (!s) return []; const arms = s.oneOf || s.anyOf; return arms ? arms.flatMap(variants) : [s]; };
+function descend(schemas, key) { const out = []; for (const s of schemas) for (const v of variants(s)) { if (key === '*') { if (v.items && typeof v.items === 'object') out.push(v.items); } else if (v.properties && v.properties[key]) out.push(v.properties[key]); } return out; }
+function legalAt(root, path) { DEFS = root.$defs; let cur = [root]; for (const k of path) cur = descend(cur, k); const keys = new Set(); for (const s of cur) for (const v of variants(s)) { if (v.properties && v.properties['@DEF'] === undefined && v.properties['@USE'] !== undefined) continue; for (const k of Object.keys(v.properties || {})) keys.add(k); } return [...keys]; }
+const PLACES = [
+  ['A child of the Scene', ['X3D', 'Scene', '-children', '*']],
+  ['Inside a Shape', ['X3D', 'Scene', '-children', '*', 'Shape']],
+  ['The geometry of a Shape', ['X3D', 'Scene', '-children', '*', 'Shape', '-geometry']],
+  ['The material of an Appearance', ['X3D', 'Scene', '-children', '*', 'Shape', '-appearance', 'Appearance', '-material']],
+  ['The fields of a Material', ['X3D', 'Scene', '-children', '*', 'Shape', '-appearance', 'Appearance', '-material', 'Material']],
+  ['A child of a Transform', ['X3D', 'Scene', '-children', '*', 'Transform', '-children', '*']],
+];
+function vocabNodes() { return vocabKey === 'all' ? nodeDefNames(SCHEMA) : VOCAB[vocabKey]; }
+function kindOf(k) { return k[0] === '@' ? 'field' : k[0] === '-' ? 'slot' : NODE_SET.has(k) ? 'node' : 'field'; }
+let lastRestricted = null;
+function renderMask() {
+  if (!SCHEMA) return;
+  const lean = $('lean').checked, nodes = vocabNodes();
+  const t0 = performance.now(); lastRestricted = restrictSchema(SCHEMA, { nodes, lean }); const ms = performance.now() - t0;
+  const rb = bytes(lastRestricted), rd = Object.keys(lastRestricted.$defs).length, fd = Object.keys(SCHEMA.$defs).length;
+  $('vocab-note').textContent = nodes.length + ' scene nodes · built in ' + ms.toFixed(0) + ' ms in this page';
+  const pct = (rb / FULL_BYTES) * 100;
+  $('bars').innerHTML = '';
+  const row = (cls, name, w, v) => { const d = document.createElement('div'); d.className = 'bar ' + cls; d.innerHTML = '<span></span><div class="track"><div class="fill"></div></div><span class="v"></span>'; d.firstChild.textContent = name; d.querySelector('.fill').style.width = Math.max(0.4, w) + '%'; d.querySelector('.v').textContent = v; $('bars').appendChild(d); };
+  row('full', 'full schema', 100, fmt(FULL_BYTES) + ' B · ' + fd + ' defs');
+  row('r', 'this vocabulary', pct, fmt(rb) + ' B · ' + rd + ' defs · ' + pct.toFixed(1) + '%');
+  $('t-shrink').textContent = (FULL_BYTES / rb).toFixed(1) + 'x'; $('t-shrink-l').textContent = 'smaller schema for the ' + nodes.length + '-node vocabulary' + (lean ? ' (lean)' : '');
+  renderKeys(); renderProbe();
+}
+function renderKeys() {
+  if (!SCHEMA) return; const [label, path] = PLACES[Number($('where').value)];
+  const full = legalAt(SCHEMA, path), res = legalAt(lastRestricted, path), keep = new Set(res);
+  const box = $('keys'); box.innerHTML = '';
+  const order = { node: 0, slot: 1, field: 2 };
+  full.sort((a, b) => order[kindOf(a)] - order[kindOf(b)] || a.localeCompare(b));
+  const nf = full.filter((k) => kindOf(k) === 'node').length, nr = res.filter((k) => kindOf(k) === 'node').length;
+  for (const k of full) { if (!keep.has(k) && full.length > 60 && kindOf(k) === 'node') continue; const s = document.createElement('span'); s.className = 'k ' + kindOf(k) + (keep.has(k) ? '' : ' off'); s.textContent = k; box.appendChild(s); }
+  $('keys-note').textContent = label + ': ' + res.length + ' of ' + full.length + ' keys allowed' + (nf ? ' (nodes ' + nr + ' of ' + nf + ')' : '') + (full.length > 60 ? '; masked node names are not drawn' : '; struck-through keys are masked') + '.';
+}
+function renderProbe() {
+  if (!SCHEMA) return; const key = $('probe').value.trim(); if (!key) return;
+  const [label, path] = PLACES[Number($('where').value)];
+  const full = legalAt(SCHEMA, path), res = new Set(legalAt(lastRestricted, path)), out = $('probe-out');
+  const ex = full.includes(key), al = res.has(key);
+  out.style.borderLeftColor = al ? 'var(--sage)' : 'var(--red)';
+  out.textContent = al ? '"' + key + '" is allowed here (' + label.toLowerCase() + ').' :
+    ex ? '"' + key + '" is real X3D, and legal here in the full schema, but outside this vocabulary: probability zero.' :
+    NODE_SET.has(key) ? '"' + key + '" is an X3D node, just not one that can appear at this position (' + label.toLowerCase() + ').' :
+    '"' + key + '" is not an X3D 4.0 name at all. A model that writes it is hallucinating, and a masked decoder cannot.';
+}
+{
+  const host = $('vocab');
+  for (const [k, label] of VOCABS) { const b = document.createElement('button'); b.className = 'btn'; b.type = 'button'; b.dataset.k = k; b.textContent = label + (k === 'all' ? '' : ' (' + VOCAB[k].length + ')'); b.setAttribute('aria-pressed', String(k === vocabKey)); b.onclick = () => { vocabKey = k; for (const x of host.children) x.setAttribute('aria-pressed', String(x.dataset.k === k)); renderMask(); }; host.appendChild(b); }
+  PLACES.forEach(([l], i) => { const o = document.createElement('option'); o.value = i; o.textContent = l; $('where').appendChild(o); });
+  $('where').onchange = () => { renderKeys(); renderProbe(); }; $('lean').onchange = renderMask; $('b-probe').onclick = renderProbe; $('probe').onkeydown = (e) => { if (e.key === 'Enter') renderProbe(); };
+}
+
+/* ---------- three gates ---------- */
+async function matrix() {
+  const rec = await (await fetch('./matrix.json')).json(), R = rec.results, tb = document.querySelector('#matrix tbody');
+  let jz = 0, xs = 0, sm = 0, any = 0;
+  MISTAKES.forEach((m, i) => {
+    const r = R['m' + (i + 1)], z = validateX3DJson(m.damage(baseDoc())), tr = document.createElement('tr');
+    const zok = z.ok, xok = r.xsd, sok = r.semantic_errors.length === 0;
+    if (!zok) jz++; if (!xok) xs++; if (!sok) sm++; if (!zok || !xok || !sok) any++;
+    const who = [!zok && 'JSON Schema', !xok && 'XSD', !sok && 'semantic'].filter(Boolean);
+    const cell = (ok, txt) => '<td class="' + (ok ? 'y' : 'n') + '">' + txt + '</td>';
+    tr.innerHTML = '<td class="c">' + (i + 1) + '</td><td><b></b></td>' + cell(zok, zok ? 'passes' : 'caught') + cell(xok, xok ? 'passes' : 'caught') + cell(sok, sok ? 'passes' : 'caught: ' + r.semantic_errors[0]) + '<td class="c">' + (who[0] || 'nothing') + '</td>';
+    tr.querySelector('b').textContent = m.title; tr.title = z.ok ? '' : z.issues[0].path + ': ' + z.issues[0].message; tb.appendChild(tr);
+  });
+  $('matrix-note').innerHTML = 'JSON Schema catches ' + jz + ' of 9, the XSD ' + xs + ', the semantic checks ' + sm + '; ' + any + ' of 9 are caught by at least one gate. Why the XSD misses 4, 6, 7 and 8: JSON typing (array vs string, slot vs key, number vs string, version) is erased when the document becomes XML attributes. The clean scene passes all three (' + (R.m0.json_schema && R.m0.xsd && R.m0.semantic_errors.length === 0 ? 'checked' : 'not clean') + '). Recorded with ' + rec.instruments.json_schema.split(',')[0] + '; XSD and semantic by the same fork after x3d_mcp <code>json_to_xml</code>.';
+}
+
+/* ---------- boot ---------- */
+ed.value = CLEAN; markActive();
+const sc = await fetch('./x3d-4.0-JSONSchema.json').then((r) => r.json());
+{ const n = sc.$defs.NavigationInfo; for (const v of n.oneOf) { const p = v.properties && v.properties['@type']; if (p && p.type === 'string') { p.type = 'array'; p.items = { type: 'string' }; } } }
+SCHEMA = sc; NODE_SET = new Set(nodeDefNames(SCHEMA)); $('t-defs').textContent = Object.keys(SCHEMA.$defs).length;
+$('foot-ver').textContent = 'Schema sha1 c6765a4 with the one in-memory fix (NavigationInfo.@type is an MFString the file types as a string). Validators: Zod 4.6.7 bundled, X_ITE 16.6.0.';
+$('where').value = '1'; renderMask(); judge(); matrix();
+fetch('./corpus.json').then((r) => r.json()).then((c) => {
+  $('fuzz-line').textContent = c.fuzz.mutants.toLocaleString('en-US') + ' mutants (delete, retype, rename, extend, truncate, enum swap, range, duplicate); ' + c.fuzz.zodValid.toLocaleString('en-US') + ' still valid, ' + (c.fuzz.mutants - c.fuzz.zodValid).toLocaleString('en-US') + ' rejected; Zod and ajv disagreed on ' + c.fuzz.disagree + '.';
+  const host = $('why-table'); host.innerHTML = '';
+  const t = document.createElement('table'); t.innerHTML = '<thead><tr><th>Direction</th><th>Scenes</th><th>Cause</th><th>Grade</th></tr></thead>'; const tb = document.createElement('tbody');
+  for (const r of c.why) { const tr = document.createElement('tr'); tr.innerHTML = '<td class="c"></td><td class="c"></td><td></td><td class="c"></td>'; tr.children[0].textContent = r.dir; tr.children[1].textContent = r.n; tr.children[2].textContent = r.cause; tr.children[3].textContent = r.grade; tb.appendChild(tr); }
+  t.appendChild(tb); host.appendChild(t);
+}).catch(() => { $('why-table').textContent = 'breakdown unavailable'; });
+</script>
+</body>
+</html>

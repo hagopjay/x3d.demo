@@ -1,0 +1,13 @@
+<!doctype html><meta charset=utf-8><link rel=stylesheet href=demos/blender-x3d-io/v1/vendor/x_ite/x_ite.css>
+<script src=demos/blender-x3d-io/v1/vendor/x_ite/x_ite.min.js></script>
+<x3d-canvas id=c style="width:400px;height:300px"></x3d-canvas>
+<script>
+window.res={};
+(async()=>{
+ const B=X3D.getBrowser(document.getElementById('c'));
+ window.res.ver=X3D.version||B.version;
+ const doc={X3D:{encoding:'UTF-8','@profile':'Full','@version':'4.0',Scene:{'-children':[{Shape:{'-appearance':{Appearance:{'-material':{Material:{'@diffuseColor':[1,.4,.1]}}}},'-geometry':{Box:{'@size':[1,2,3]}}}}]}}};
+ try{ const scene=await B.createX3DFromString(JSON.stringify(doc)); await B.replaceWorld(scene); window.res.ok=true; window.res.nodes=scene.rootNodes.length; }catch(e){window.res.err=String(e)}
+ window.done=true;
+})();
+</script>
