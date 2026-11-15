@@ -1,6 +1,8 @@
 // volume.wgsl: X3D VolumeData ray casting on the GPU, orthographic camera orbiting the unit cube (yaw only, so rays stay in an XZ plane). One thread = one pixel.
 // style 0 = OpacityMapVolumeStyle (front-to-back "over" compositing with a ramp transfer function), style 1 = ProjectionVolumeStyle MAX (MIP).
 // Sampling is nearest voxel (textureLoad), so the CPU reference reproduces it; trilinear is a one-line change (gap, logged).
+// Not X3D-complete (logged): the transfer function is a fixed ramp (not the OpacityMapVolumeStyle default and not read from the file), MAX returns alpha 1, the camera is orthographic and
+// yaw-only, and the screen basis is left-handed (the picture is a horizontal mirror of a right-handed X3D camera; kernel and CPU reference share this, so the gate cannot see it).
 struct Params { w: u32, h: u32, dim: u32, steps: u32, style: u32, _p0: u32, _p1: u32, _p2: u32, c: f32, s: f32, thr: f32, gain: f32, stepAlpha: f32, _q0: f32, _q1: f32, _q2: f32 };
 @group(0) @binding(0) var<uniform> P: Params;
 @group(0) @binding(1) var vol: texture_3d<f32>;
@@ -15,6 +17,15 @@ fn sampleV(p: vec3<f32>) -> f32 {
   let i = vec3<i32>(clamp(floor(p * d), vec3<f32>(0.0), vec3<f32>(d - 1.0)));
   return textureLoad(vol, i, 0).r;
 }
+// entry and exit parameters of the ray o + t d through the slab 0..1 on one axis
+fn slab(o: f32, d: f32) -> vec2<f32> {
+  if (abs(d) < 1e-6) {
+    if (o < 0.0 || o > 1.0) { return vec2<f32>(1e30, -1e30); }
+    return vec2<f32>(-1e30, 1e30);
+  }
+  let a = (0.0 - o) / d; let b = (1.0 - o) / d;
+  return vec2<f32>(min(a, b), max(a, b));
+}
 @compute @workgroup_size(8, 8)
 fn march(@builtin(global_invocation_id) gid: vec3<u32>) {
   if (gid.x >= P.w || gid.y >= P.h) { return; }
@@ -26,10 +37,9 @@ fn march(@builtin(global_invocation_id) gid: vec3<u32>) {
   let o = vec3<f32>(ox, oy, oz);
   let fwd = vec3<f32>(P.s, 0.0, P.c);
   // slab test: x and z by division (an axis with a zero component gives +-inf, which min/max absorb), y is constant along the ray
-  let inv = vec3<f32>(1.0 / fwd.x, 1.0, 1.0 / fwd.z);
-  let t0 = (vec3<f32>(0.0) - o) * inv; let t1 = (vec3<f32>(1.0) - o) * inv;
-  let tmin = max(min(t0.x, t1.x), min(t0.z, t1.z));
-  let tmax = min(max(t0.x, t1.x), max(t0.z, t1.z));
+  let sx = slab(o.x, fwd.x); let sz = slab(o.z, fwd.z);   // explicit zero-component branch: f32 division by zero is not relied on
+  let tmin = max(sx.x, sz.x);
+  let tmax = min(sx.y, sz.y);
   var out = vec4<f32>(0.0);
   if (oy >= 0.0 && oy <= 1.0 && tmax > max(tmin, 0.0)) {
     let dt = (tmax - tmin) / f32(P.steps);

@@ -1,7 +1,7 @@
 // nurbs.wgsl: NurbsPatchSurface tessellation on the GPU, rational tensor-product B-spline with analytic first derivatives
 // (Piegl & Tiller A2.1 span search, A2.2 basis functions, eq. 2.7 derivative from the degree p-1 basis, eq. 4.20 rational quotient rule).
-// One thread = one grid vertex. Order is limited to MAXO (6, degree 5); the CPU side checks that.
-const MAXO: u32 = 6u;
+// One thread = one grid vertex.
+// Order is limited to 6 (arrays of 6 below); fromX3D refuses more. outN.w = |Su x Sv| (the area element), so a wrong derivative scale is visible to the gate.
 struct Params { nu: u32, nv: u32, du: u32, dv: u32, pu: u32, pv: u32, ku: u32, kv: u32, uk0: u32, vk0: u32, _a: u32, _b: u32 };
 @group(0) @binding(0) var<uniform> P: Params;
 @group(0) @binding(1) var<storage, read> ctrl: array<vec4<f32>>;     // x y z w (w = weight), row-major: index = j * du + i
@@ -11,7 +11,11 @@ struct Params { nu: u32, nv: u32, du: u32, dv: u32, pu: u32, pv: u32, ku: u32, k
 
 fn span(dim: u32, p: u32, k0: u32, u: f32) -> u32 {
   // A2.1, binary search over the knot vector, clamped so u = last knot lands in the last non-empty span
-  if (u >= knots[k0 + dim]) { return dim - 1u; }
+  if (u >= knots[k0 + dim]) {
+    var s = dim - 1u;                                              // last non-empty span (an unclamped vector may repeat knots at the end)
+    while (s > p && knots[k0 + s] >= knots[k0 + s + 1u]) { s = s - 1u; }
+    return s;
+  }
   var lo = p; var hi = dim; var mid = (lo + hi) / 2u;
   while (u < knots[k0 + mid] || u >= knots[k0 + mid + 1u]) {
     if (u < knots[k0 + mid]) { hi = mid; } else { lo = mid; }
@@ -74,5 +78,5 @@ fn tess(@builtin(global_invocation_id) gid: vec3<u32>) {
   let n = cross(Su, Sv); let l = length(n);
   let o = gid.y * P.nu + gid.x;
   outP[o] = vec4<f32>(S, 1.0);
-  outN[o] = vec4<f32>(select(vec3<f32>(0.0), n / l, l > 1e-12), 0.0);
+  outN[o] = vec4<f32>(select(vec3<f32>(0.0), n / l, l > 1e-12), l);
 }

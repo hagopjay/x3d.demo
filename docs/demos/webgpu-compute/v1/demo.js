@@ -149,7 +149,7 @@ const particles = {
   },
   alloc(n) { this.S?.destroy(); this.n = n; this.S = dev.createBuffer({ size: n * 32, usage: U.STORAGE | U.COPY_SRC | U.COPY_DST }); this.reseed = true;
     this.bgS = null; },
-  params() { const v = this.vals, P = { ...this.P, n: this.n, cone: v.angle * Math.PI / 180, speed: v.speed, wx: this.P.wx * v.wind / 1.5, wy: 0, wz: this.P.wz * v.wind / 1.5, gy: v.grav, frame: this.frame }; return P; },
+  params() { const v = this.vals, P = { ...this.P, n: this.n, cosCone: Math.fround(Math.cos(v.angle * Math.PI / 180)), speed: v.speed, wx: this.P.wx * v.wind / 1.5, wy: 0, wz: this.P.wz * v.wind / 1.5, gy: v.grav, frame: this.frame }; return P; },
   onControl(k, v) { this.vals[k] = v; if (k === 'n' && 2 ** v !== this.n) this.alloc(2 ** v); this.xml(); },
   xml() { const v = this.vals, P = this.P; $('#src').textContent = `<ParticleSystem maxParticles="${this.n}" particleLifetime="${P.lifeMax}" geometryType="POINT">
   <ConeEmitter  position="0 0.2 0" direction="0 1 0" angle="${(v.angle * Math.PI / 180).toFixed(4)}" speed="${v.speed}" variation="0.25"/>
@@ -271,7 +271,7 @@ const skin = {
   },
   alloc(nv) { this.bufs?.forEach((b) => b.destroy()); const T = SK.tube(nv, 24), rings = T.nv / 16; this.T = T; this.nv = T.nv;
     for (let v = 0; v < T.nv; v++) { const y = T.rest[v * 4 + 1], u = y / 24, rad = 0.42 + 0.9 * Math.pow(Math.sin(Math.PI * Math.pow(u, 0.75)), 1.4) * (0.6 + 0.4 * Math.cos(u * 40)) + 0.05; T.rest[v * 4] *= rad / 0.4; T.rest[v * 4 + 2] *= rad / 0.4; }
-    this.b = { rest: G.buf(C, T.rest), nrm: G.buf(C, T.nrm), idx: G.buf(C, T.idx), w: G.buf(C, T.w), M: dev.createBuffer({ size: 24 * 64, usage: U.STORAGE | U.COPY_DST }), P: dev.createBuffer({ size: T.nv * 16, usage: U.STORAGE | U.VERTEX | U.COPY_SRC }), N: dev.createBuffer({ size: T.nv * 16, usage: U.STORAGE | U.VERTEX | U.COPY_SRC }), u: G.buf(C, new Uint32Array([T.nv, 0, 0, 0]), U.UNIFORM) };
+    this.b = { rest: G.buf(C, T.rest), nrm: G.buf(C, T.nrm), idx: G.buf(C, T.idx), w: G.buf(C, T.w), M: dev.createBuffer({ size: 25 * 64, usage: U.STORAGE | U.COPY_DST }), P: dev.createBuffer({ size: T.nv * 16, usage: U.STORAGE | U.VERTEX | U.COPY_SRC }), N: dev.createBuffer({ size: T.nv * 16, usage: U.STORAGE | U.VERTEX | U.COPY_SRC }), u: G.buf(C, new Uint32Array([T.nv, 0, 0, 0]), U.UNIFORM) };
     const ix = new Uint32Array((rings - 1) * 16 * 6); let k = 0; for (let r = 0; r < rings - 1; r++) for (let a = 0; a < 16; a++) { const v = r * 16 + a, w = r * 16 + (a + 1) % 16; ix.set([v, w, v + 16, w, w + 16, v + 16], k); k += 6; }
     this.I = G.buf(C, ix, U.INDEX); this.ic = ix.length; this.rings = rings; this.bufs = [...Object.values(this.b), this.I]; this.bg = G.group(C, this.pK, [this.b.u, this.b.rest, this.b.nrm, this.b.idx, this.b.w, this.b.M, this.b.P, this.b.N]); },
   onControl(k, v) { this.vals[k] = v; if (k === 'n' && 2 ** v !== this.nv) this.alloc(2 ** v); this.xml(); },
@@ -370,11 +370,11 @@ async function gate(quick) {
 }
 function summary(k, v) {
   const c = v.correctness;
-  if (k === 'particles') return `${si(c.particles)} particles x ${c.steps} steps, max abs diff ${c.max_abs}, ${c.particles_off_by_more_than_1e_2} particles off by more than 0.01`;
-  if (k === 'skinning') return `${c.vertices} verts: max ${c.fixture_pos.max_abs}; 65,536-vertex tube, 24 joints: max ${c.tube_65536_24_joints.pos.max_abs}`;
-  if (k === 'volume') return c.cases.map((x) => `${x.style} ${x.w}px: mean |d| ${x.mean_abs_diff_of_255}/255`).join('; ');
+  if (k === 'particles') return c.cases.map((x) => `${x.label}: ${si(x.particles)} particles x ${x.steps} steps, max abs diff ${x.max_abs}, ${x.particles_off_by_more_than_1e_2} off by more than 0.01`).join('; ');
+  if (k === 'skinning') return `hand-worked chain: max err ${c.hand_checked_chain.max_abs_err}; ${c.vertices} verts: max ${c.fixture_pos.max_abs}; 65,536-vertex tube, 24 joints: max ${c.tube_65536_24_joints.pos.max_abs}`;
+  if (k === 'volume') return `${c.cases.length} cases (fixtures, procedural, 4 yaws on a ramp), worst mean |d| ${Math.max(...c.cases.map((x) => x.mean_abs_diff_of_255))}/255`;
   if (k === 'nurbs') return `${c.cases.length} patches, worst position diff ${Math.max(...c.cases.map((x) => x.pos_max_abs))}, worst normal diff ${Math.max(...c.cases.map((x) => x.nrm_max_abs))}`;
-  if (k === 'splats') return `${c.splats} splats: projection max rel diff ${c.projection.max_rel}; sort exact (naive ${c.sort[0].positions_wrong_vs_cpu_sort_of_gpu_keys}, tiled ${c.sort[1].positions_wrong_vs_cpu_sort_of_gpu_keys} wrong positions)`;
+  if (k === 'splats') return `${c.splats} splats: projection max rel diff ${c.projection.max_rel}, edge-case cloud culls ${c.projection_edge_cases.culled_by_reason.behind_near_plane} behind / ${c.projection_edge_cases.culled_by_reason.off_screen} off screen; sort exact (naive ${c.sort[0].positions_wrong_vs_cpu_sort_of_gpu_keys}, tiled ${c.sort[1].positions_wrong_vs_cpu_sort_of_gpu_keys} wrong positions)`;
 }
 let REF = null;
 async function benchTable(res) {

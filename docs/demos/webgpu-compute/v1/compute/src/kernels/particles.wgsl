@@ -1,13 +1,15 @@
 // particles.wgsl: X3D ParticleSystem step on the GPU. One thread = one particle.
-// X3D mapping (ISO 19775-1 chapter 40 "Particle systems"): ConeEmitter -> respawn(), ForcePhysicsModel force -> g,
-// WindPhysicsModel speed*direction -> wind (+ drag pulls the velocity toward it), BoundedPhysicsModel box floor -> floorY.
+// X3D mapping (ISO 19775-1 chapter 40 "Particle systems"), and what is NOT mapped: ConeEmitter -> respawn() (speed, angle, variation as +-fraction of speed; position; axis +Y only),
+// ForcePhysicsModel force -> g used directly as an acceleration (emitter mass is IGNORED, i.e. mass = 1), WindPhysicsModel normalised direction * speed -> wind with a harness drag constant
+// of 0.5 1/s that pulls the velocity toward it (surfaceArea, gustiness, turbulence IGNORED), BoundedPhysicsModel Box -> a bouncing floor at -size.y/2 with a harness restitution of 0.5
+// (X3D has no restitution field), lifetimeVariation IGNORED (every particle lives exactly particleLifetime). The three.js bridge honours mass and lifetimeVariation; this kernel does not.
 // State is 8 f32 per particle: pos.xyz, life (unused slot, kept for 32-byte stride), vel.xyz, age.
 struct Params {
   n: u32, frame: u32, dt: f32, speed: f32,
   gx: f32, gy: f32, gz: f32, lifeMax: f32,
   wx: f32, wy: f32, wz: f32, drag: f32,
   ex: f32, ey: f32, ez: f32, floorY: f32,
-  cone: f32, restitution: f32, variation: f32, seed: u32,
+  cosCone: f32, restitution: f32, variation: f32, seed: u32,   // cosCone = cos(angle), computed on the CPU in f64 so kernel and reference share one z base
 };
 @group(0) @binding(0) var<uniform> P: Params;
 @group(0) @binding(1) var<storage, read_write> S: array<f32>;
@@ -23,10 +25,10 @@ fn rnd(i: u32, frame: u32, k: u32) -> f32 {
 
 fn respawn(i: u32, frame: u32) {
   let b = i * 8u;
-  let z = mix(cos(P.cone), 1.0, rnd(i, frame, 1u));
+  let z = mix(P.cosCone, 1.0, rnd(i, frame, 1u));
   let phi = 6.283185307179586 * rnd(i, frame, 2u);
   let s = sqrt(max(0.0, 1.0 - z * z));
-  let sp = P.speed * (1.0 - P.variation * rnd(i, frame, 3u));
+  let sp = P.speed * (1.0 + P.variation * (2.0 * rnd(i, frame, 3u) - 1.0));
   S[b + 0u] = P.ex; S[b + 1u] = P.ey; S[b + 2u] = P.ez;
   S[b + 3u] = 0.0;
   S[b + 4u] = s * cos(phi) * sp; S[b + 5u] = z * sp; S[b + 6u] = s * sin(phi) * sp;  // cone axis = +Y

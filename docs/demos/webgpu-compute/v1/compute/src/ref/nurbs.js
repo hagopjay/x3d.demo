@@ -2,8 +2,8 @@
    so a bug in the shader's A2.2 / derivative shortcut cannot also be in the check. Knot rule = the bridge's: a vector that is not dim+order long, or decreases, is replaced by the pinned uniform one. */
 export function knotsFor(dim, order, given) {
   const len = dim + order; let k = given && given.length === len ? given.slice() : null;
-  if (k) for (let i = 1; i < len; i++) if (k[i - 1] > k[i]) k = null;
-  if (k) { let same = 0; for (let i = 1; i < len; i++) { same = k[i] === k[i - 1] ? same + 1 : 0; if (same > order - 1) k = null; } }
+  for (let i = 1; k && i < len; i++) if (k[i - 1] > k[i]) k = null;
+  if (k) { let same = 0; for (let i = 1; k && i < len; i++) { same = k[i] === k[i - 1] ? same + 1 : 0; if (same > order - 1) k = null; } }
   if (!k) { k = []; let i = 0, v = 1; for (; i < order; i++) k[i] = 0; for (const l = len - order; i < l; i++, v++) k[i] = v; for (; i < len; i++) k[i] = v; const m = k[len - 1]; k = k.map((x) => x / m); }
   return k;
 }
@@ -24,7 +24,7 @@ export function tessellate(S) {
         W += w * nui * nvj; Wu += w * dui * nvj; Wv += w * nui * dvj; } }
     const Sx = A.map((x) => x / W), Su = Au.map((x, d) => (x - Sx[d] * Wu) / W), Sv = Av.map((x, d) => (x - Sx[d] * Wv) / W);
     const n = [Su[1] * Sv[2] - Su[2] * Sv[1], Su[2] * Sv[0] - Su[0] * Sv[2], Su[0] * Sv[1] - Su[1] * Sv[0]], l = Math.hypot(...n), o = (iv * nu + iu) * 4;
-    P.set([Sx[0], Sx[1], Sx[2], 1], o); Nn.set(l > 1e-12 ? [n[0] / l, n[1] / l, n[2] / l, 0] : [0, 0, 0, 0], o);
+    P.set([Sx[0], Sx[1], Sx[2], 1], o); Nn.set(l > 1e-12 ? [n[0] / l, n[1] / l, n[2] / l, l] : [0, 0, 0, l], o);
   }
   return { P, N: Nn };
 }

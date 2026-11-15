@@ -13,7 +13,7 @@ export async function init() {
   });
   device.addEventListener?.('uncapturederror', (e) => { console.error('WEBGPU ERROR', e.error.message); ctxErrors.push(e.error.message); });
   const info = adapter.info || {};
-  return { device, hasTS, errors: ctxErrors, info: { vendor: info.vendor, architecture: info.architecture, device: info.device, description: info.description }, limits: { maxWG: adapter.limits.maxComputeInvocationsPerWorkgroup, maxStorage: adapter.limits.maxStorageBufferBindingSize, maxBuf: adapter.limits.maxBufferSize } };
+  return { device, hasTS, errors: ctxErrors, deviceLimits: { maxStorageBufferBindingSize: device.limits.maxStorageBufferBindingSize, maxComputeWorkgroupsPerDimension: device.limits.maxComputeWorkgroupsPerDimension }, info: { vendor: info.vendor, architecture: info.architecture, device: info.device, description: info.description }, limits: { maxWG: adapter.limits.maxComputeInvocationsPerWorkgroup, maxStorage: adapter.limits.maxStorageBufferBindingSize, maxBuf: adapter.limits.maxBufferSize } };
 }
 const ctxErrors = [];
 
@@ -44,10 +44,11 @@ export function group(c, pipe, entries, idx = 0) {
 const median = (a) => { const s = [...a].sort((x, y) => x - y); return s[s.length >> 1]; };
 const pct = (a, p) => { const s = [...a].sort((x, y) => x - y); return s[Math.min(s.length - 1, Math.floor(p * s.length))]; };
 
-/* bench(c, encode, {iters, warm, passes, frames}):
+/* bench(c, encode, {iters, warm, frames, budgetMs}):
      encode(enc, ts) records one workload; `ts(i, n)` returns the timestampWrites descriptor for compute pass i of n (or undefined) so the
-     first pass writes the begin stamp and the last pass the end stamp.
-   returns {gpu_ms: {median,p95}|null, wall_ms: {median,p95}, raf: {fps, frame_ms_median, frame_ms_p95, frames, workload_ms_in_frame}} */
+     first pass writes the begin stamp and the last pass the end stamp. A cold probe run sizes the rest: between 3 and `iters` timed runs, fewer when one run is slow.
+   returns {samples, gpu_ms: {median, p95}|null, wall_ms: {median, p95}, raf: {frames, rAF_dt_ms_median, rAF_dt_ms_p95, fps_raf, sustained_ms_per_frame, fps_sustained, submit_to_done_ms_median}}.
+     `samples` is the number of timed runs; with fewer than 20 the p95 is the maximum. `sustained_ms_per_frame` = (last completion - first completion) / (frames - 1). */
 export async function bench(c, encode, { iters = 15, warm = 3, frames = 90, budgetMs = 3000 } = {}) {
   const d = c.device; let qs = null, resolve = null, rb = null;
   if (c.hasTS) {
@@ -69,28 +70,30 @@ export async function bench(c, encode, { iters = 15, warm = 3, frames = 90, budg
     }
   }
   /* real rAF: one workload per frame, frame-to-frame time from the rAF timestamps */
-  const dts = []; let last = 0, left = frames, inFrame = [], tStart = 0, tEnd = 0;
+  const dts = []; let last = 0, left = frames, inFrame = [], doneT = [];
   await new Promise((res) => {
     const tick = (ts) => {
-      if (last) dts.push(ts - last); else tStart = performance.now(); last = ts;
+      if (last) dts.push(ts - last); last = ts;
       const e = d.createCommandEncoder(); encode(e, () => undefined); const t0 = performance.now(); d.queue.submit([e.finish()]);
-      d.queue.onSubmittedWorkDone().then(() => inFrame.push(performance.now() - t0));
-      if (--left > 0) requestAnimationFrame(tick); else d.queue.onSubmittedWorkDone().then(() => { tEnd = performance.now(); res(); });
+      d.queue.onSubmittedWorkDone().then(() => { const t = performance.now(); inFrame.push(t - t0); doneT.push(t); });
+      if (--left > 0) requestAnimationFrame(tick); else d.queue.onSubmittedWorkDone().then(res);
     };
     requestAnimationFrame(tick);
   });
-  const body = dts.slice(2); const fm = median(body);
+  const body = dts.slice(2); const fm = median(body), sus = (doneT[doneT.length - 1] - doneT[0]) / Math.max(1, doneT.length - 1);
   qs?.destroy(); resolve?.destroy(); rb?.destroy();
   const r = (x) => +x.toFixed(4);
   return {
+    samples: wall.length,
     gpu_ms: gpu.length ? { median: r(median(gpu)), p95: r(pct(gpu, 0.95)) } : null,
     wall_ms: { median: r(median(wall)), p95: r(pct(wall, 0.95)) },
-    raf: { frames, rAF_dt_ms_median: r(fm), rAF_dt_ms_p95: r(pct(body, 0.95)), fps_raf: +(1000 / fm).toFixed(1), sustained_ms_per_frame: r((tEnd - tStart) / frames), fps_sustained: +(frames / ((tEnd - tStart) / 1000)).toFixed(1), submit_to_done_ms_median: r(median(inFrame)) },
+    raf: { frames, rAF_dt_ms_median: r(fm), rAF_dt_ms_p95: r(pct(body, 0.95)), fps_raf: +(1000 / fm).toFixed(1), sustained_ms_per_frame: r(sus), fps_sustained: +(1000 / sus).toFixed(1), submit_to_done_ms_median: r(median(inFrame)) },
   };
 }
 
 /* numeric comparison helper for the receipts */
 export function compare(a, b, tol) {
+  if (a.length !== b.length || a.length === 0) throw new Error(`compare: lengths ${a.length} and ${b.length} (empty or different inputs would pass vacuously)`);
   let max = 0, sum = 0, bad = 0, n = a.length;
   for (let i = 0; i < n; i++) { const d = Math.abs(a[i] - b[i]); if (d > max) max = d; sum += d; if (!(d <= tol * (1 + Math.abs(b[i])))) bad++; }
   return { n, max_abs: +max.toPrecision(4), mean_abs: +(sum / n).toPrecision(4), outside_tol: bad, tol };
@@ -98,6 +101,7 @@ export function compare(a, b, tol) {
 
 /* relative comparison with a magnitude floor, for quantities that are small by nature (a conic is ~1/sigma^2) */
 export function compareRel(a, b, rel, floor = 1e-3) {
+  if (a.length !== b.length || a.length === 0) throw new Error(`compareRel: lengths ${a.length} and ${b.length}`);
   let max = 0, bad = 0; const n = a.length;
   for (let i = 0; i < n; i++) { const e = Math.abs(a[i] - b[i]) / Math.max(Math.abs(b[i]), floor); if (e > max) max = e; if (!(e <= rel)) bad++; }
   return { n, max_rel: +max.toPrecision(4), outside_tol: bad, rel_tol: rel, floor };

@@ -15,6 +15,7 @@ export function fromX3D(doc) {
   const walk = (el, parent) => {
     for (const c of el.children) {
       if (c.tagName === 'HAnimJoint' && !c.hasAttribute('USE') && c.getAttribute('containerField') !== 'joints') {
+        for (const bad of ['scale', 'scaleOrientation', 'skinBindingMatrix']) if (c.hasAttribute(bad) && (bad !== 'scale' || c.getAttribute('scale').trim() !== '1 1 1')) throw new Error(`HAnimJoint ${bad} is not supported (gap)`);
         const j = { name: c.getAttribute('name'), DEF: c.getAttribute('DEF'), parent, translation: nums(c.getAttribute('translation') || '0 0 0'), center: nums(c.getAttribute('center') || '0 0 0'), rotation: nums(c.getAttribute('rotation') || '0 0 1 0'), index: nums(c.getAttribute('skinCoordIndex')), weight: nums(c.getAttribute('skinCoordWeight')) };
         if (j.index.length !== j.weight.length) throw new Error('skinCoordIndex/Weight length mismatch on ' + j.name);
         def[j.DEF] = joints.length; joints.push(j); walk(c, joints.length - 1);
@@ -31,7 +32,8 @@ export function influences(joints, nv) {
   const per = Array.from({ length: nv }, () => []);
   joints.forEach((j, ji) => j.index.forEach((v, k) => { if (j.weight[k] > 0) per[v].push([ji, j.weight[k]]); }));
   const idx = new Uint32Array(nv * 4), w = new Float32Array(nv * 4); let dropped = 0, unweighted = 0;
-  per.forEach((l, v) => { l.sort((a, b) => b[1] - a[1]); if (l.length > 4) dropped++; if (!l.length) { unweighted++; return; } const top = l.slice(0, 4), s = top.reduce((a, x) => a + x[1], 0); top.forEach(([ji, wt], k) => { idx[v * 4 + k] = ji; w[v * 4 + k] = wt / s; }); });
+  /* a vertex that no joint weights stays at its rest position: it points at the identity matrix that skinMatrices() appends after the last joint */
+  per.forEach((l, v) => { l.sort((a, b) => b[1] - a[1]); if (l.length > 4) dropped++; if (!l.length) { unweighted++; idx[v * 4] = joints.length; w[v * 4] = 1; return; } const top = l.slice(0, 4), s = top.reduce((a, x) => a + x[1], 0); top.forEach(([ji, wt], k) => { idx[v * 4 + k] = ji; w[v * 4 + k] = wt / s; }); });
   return { idx, w, dropped, unweighted };
 }
 /* skin matrices for a pose: M[j] = world(pose) * inverse(world(rest)); rest rotation must be identity so inverse(world(rest)) is a pure translation */
@@ -42,7 +44,7 @@ export function skinMatrices(joints, pose = {}) {
     const lp = local(j, pose[i]), lr = local(j);
     wp[i] = j.parent < 0 ? lp : mul(wp[j.parent], lp); wr[i] = j.parent < 0 ? lr : mul(wr[j.parent], lr);
   });
-  const out = new Float32Array(joints.length * 16);
+  const out = new Float32Array((joints.length + 1) * 16); out.set(ident(), joints.length * 16);   // last matrix = identity, used by unweighted vertices
   joints.forEach((j, i) => { const inv = trans(-wr[i][12], -wr[i][13], -wr[i][14]); out.set(mul(wp[i], inv), i * 16); });
   return out;
 }
@@ -56,6 +58,17 @@ export function skinCPU(rest, restN, idx, w, M, nv) {
     const l = Math.hypot(nx, ny, nz); P.set([px, py, pz, 1], v * 4); N.set(l > 1e-20 ? [nx / l, ny / l, nz / l, 0] : [0, 0, 0, 0], v * 4);
   }
   return { P, N };
+}
+/* a hand-checkable chain for the independent forward-kinematics test: root (no centre), child with translation (0,2,0) and centre (1,0,0), grandchild J2 (child of root, translation (0,-1,0)).
+   Pose: J0 and J1 rotate +90 degrees about z (J1 about its centre), J2 rotates 180 degrees. The expected positions below were worked out by hand (see x3d.docs chapter), not by this code. */
+export function handChain() {
+  const J = (name, parent, t, c, index, weight) => ({ name, parent, translation: t, center: c, rotation: [0, 0, 1, 0], index, weight });
+  const joints = [J('J0', -1, [0, 0, 0], [0, 0, 0], [0, 4], [1, 0.5]), J('J1', 0, [0, 2, 0], [1, 0, 0], [1, 2, 4], [1, 1, 1]), J('J2', 0, [0, -1, 0], [0, 0, 0], [4], [0.5])];
+  // vertices: 0 (1,0,0)->J0 | 1 (1,2,0)->J1 | 2 (3,2,0)->J1 | 3 (5,5,5) unweighted | 4 (1,2,0)->J0 .5, J1 1, J2 .5 (sum 2, renormalised to .25 .5 .25)
+  const rest = new Float32Array([1, 0, 0, 1, 1, 2, 0, 1, 3, 2, 0, 1, 5, 5, 5, 1, 1, 2, 0, 1]);
+  const pose = { 0: [0, 0, 1, Math.PI / 2], 1: [0, 0, 1, Math.PI / 2], 2: [0, 0, 1, Math.PI] };
+  const expect = [0, 1, 0, -2, 1, 0, -4, 1, 0, 5, 5, 5, -0.5, 0.5, 0];
+  return { joints, rest, nv: 5, pose, expect };
 }
 /* procedural bench mesh: a tube of `nv` vertices along +Y, `nj` joints in a chain, each vertex weighted between the two joints that straddle it */
 export function tube(nv, nj) {
