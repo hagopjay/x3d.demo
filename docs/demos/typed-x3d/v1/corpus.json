@@ -8,10 +8,70 @@
  },
  "why": [
   {
-   "dir": "XSD accepts, JSON Schema rejects",
-   "n": 152,
-   "cause": "pending root-cause",
-   "grade": "S"
+   "dir": "XSD accepts, JSON Schema rejects (128)",
+   "n": 60,
+   "cause": "X3D 4.1 content the 4.0 schema cannot hold: version \"4.1\" (30), GaussianSplats node (7) and component name (23)",
+   "grade": "C"
+  },
+  {
+   "dir": "XSD accepts, JSON Schema rejects (128)",
+   "n": 20,
+   "cause": "OscillatorSource has no slot for its PeriodicWave child: schema bug against the 4.0 XSD and X3DUOM",
+   "grade": "C"
+  },
+  {
+   "dir": "XSD accepts, JSON Schema rejects (128)",
+   "n": 9,
+   "cause": "ClipPlane @plane: all four components bounded to [-1,1], but the fourth is a distance",
+   "grade": "C"
+  },
+  {
+   "dir": "XSD accepts, JSON Schema rejects (128)",
+   "n": 8,
+   "cause": "geoSystem: order keywords (\"longitude_first\") and non-Earth ellipsoids have no arm",
+   "grade": "C"
+  },
+  {
+   "dir": "XSD accepts, JSON Schema rejects (128)",
+   "n": 6,
+   "cause": "CollisionSensor @description missing from the schema",
+   "grade": "C"
+  },
+  {
+   "dir": "XSD accepts, JSON Schema rejects (128)",
+   "n": 13,
+   "cause": "One-offs: component name \"TextureProjector\" vs XSD \"TextureProjection\" (4), HAnimMotion @name (2), TextureTransform slot in MultiTextureTransform (2), empty MF arrays (2), Layout enums (2), Background groundAngle with pi/2 written 1.571 (2) and one more",
+   "grade": "C"
+  },
+  {
+   "dir": "XSD accepts, JSON Schema rejects (128)",
+   "n": 12,
+   "cause": "Probes and fixtures that are invalid on purpose: DEF and USE on one node, negative sensor size, bare Scene root, wrong curve type; three Appearance cases are a guess from the fixture name",
+   "grade": "L"
+  },
+  {
+   "dir": "XSD rejects, JSON Schema accepts (72 in the first run, 62 now)",
+   "n": 26,
+   "cause": "The XSD is stricter than the X3DUOM (containerField=pickTarget, xs:sequence for a choice, missing Viewport/LayoutGroup/HAnimSegment content): JSON Schema is right",
+   "grade": "C"
+  },
+  {
+   "dir": "XSD rejects, JSON Schema accepts (72 in the first run, 62 now)",
+   "n": 16,
+   "cause": "JSON Schema too lenient: DEF/USE/ROUTE names are bare strings (11), MFVec3f length not a multiple of 3 (2), ProtoInstance without @name, HAnimSite under HAnimJoint, EnvironmentLight in a 4.0 schema",
+   "grade": "C"
+  },
+  {
+   "dir": "XSD rejects, JSON Schema accepts (72 in the first run, 62 now)",
+   "n": 5,
+   "cause": "Things JSON cannot say: XML sibling order (2), document-wide DEF uniqueness (3)",
+   "grade": "C"
+  },
+  {
+   "dir": "XSD rejects, JSON Schema accepts (72 in the first run, 62 now)",
+   "n": 25,
+   "cause": "Our converter hid the fault (case-folded booleans, '-08', injected version/profile, replaced containerField: 14 fixed in converter v2; dropped text and stripped namespaces: 11 still open)",
+   "grade": "C"
   }
  ]
 }
