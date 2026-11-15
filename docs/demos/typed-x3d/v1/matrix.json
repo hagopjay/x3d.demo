@@ -1,0 +1,83 @@
+{
+ "instruments": {
+  "json_schema": "x3d_mcp fork fbe165f validate_json, Web3D x3d-4.0-JSONSchema sha1 c6765a4 + NavigationInfo fix",
+  "xsd": "x3d_mcp fork fbe165f validate_xml (X3D XSD 4.0/4.1 by version) after x3d_mcp json_to_xml",
+  "semantic": "x3d_mcp fork fbe165f validate_semantic"
+ },
+ "results": {
+  "m0": {
+   "json_schema": true,
+   "xsd": true,
+   "xsd_first": "",
+   "semantic_errors": [],
+   "semantic_first": ""
+  },
+  "m1": {
+   "json_schema": false,
+   "xsd": false,
+   "xsd_first": "Line 27: Element 'Box', attribute 'size': [facet 'pattern'] The value '0.5 0.5' is not accepted by the pattern '\\s*(([+-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)(",
+   "semantic_errors": [],
+   "semantic_first": ""
+  },
+  "m2": {
+   "json_schema": false,
+   "xsd": false,
+   "xsd_first": "Line 49: Element 'Torus': This element is not expected. Expected is one of ( Box, Cone, Cylinder, IndexedFaceSet, IndexedLineSet, IndexedTriangleFanSet, Indexed",
+   "semantic_errors": [],
+   "semantic_first": ""
+  },
+  "m3": {
+   "json_schema": false,
+   "xsd": false,
+   "xsd_first": "Line 15: Element 'Material', attribute 'diffuseColour': The attribute 'diffuseColour' is not allowed.",
+   "semantic_errors": [],
+   "semantic_first": ""
+  },
+  "m4": {
+   "json_schema": false,
+   "xsd": true,
+   "xsd_first": "",
+   "semantic_errors": [],
+   "semantic_first": ""
+  },
+  "m5": {
+   "json_schema": false,
+   "xsd": false,
+   "xsd_first": "Line 15: Element 'Material', attribute 'emissiveColor': [facet 'pattern'] The value '255 153 30' is not accepted by the pattern '\\s*(([+]?((0(\\.[0-9]*)?|\\.[0-9]",
+   "semantic_errors": [
+    "colour-out-of-range"
+   ],
+   "semantic_first": "Material emissiveColor: the colour is '255 153 30', but each component must be between 0 and 1 (3 components out of range). Clamp to 0..1, or divide by 255 if the values were written as 0..255."
+  },
+  "m6": {
+   "json_schema": false,
+   "xsd": true,
+   "xsd_first": "",
+   "semantic_errors": [],
+   "semantic_first": ""
+  },
+  "m7": {
+   "json_schema": false,
+   "xsd": true,
+   "xsd_first": "",
+   "semantic_errors": [],
+   "semantic_first": ""
+  },
+  "m8": {
+   "json_schema": false,
+   "xsd": true,
+   "xsd_first": "",
+   "semantic_errors": [],
+   "semantic_first": ""
+  },
+  "m9": {
+   "json_schema": true,
+   "xsd": true,
+   "xsd_first": "",
+   "semantic_errors": [
+    "route-missing-to-node"
+   ],
+   "semantic_first": "ROUTE toNode='ASpinn' not found. Available DEFs: AClock, AOrbit, ASpin, BClock, BOrbit, BSpin, CClock, COrbit, CSpin."
+  }
+ }
+}

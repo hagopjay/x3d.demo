@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>glb Forge</title>
+<meta name="description" content="Run the x3d.gltf optimiser in your browser on four real scenes, compare original and forged side by side, and check with gates that the X3D names the Blender add-on wrote into the glb survived. Every number names its instrument.">
+<style>
+:root{--bg:#070a12;--bg2:#0c111d;--panel:#101728;--panel2:#162038;--line:#232f4b;--line2:#2f3e63;--fg:#e9eefb;--mute:#a3aecb;--dim:#8490ae;
+--amber:#ffb454;--teal:#37d5c2;--violet:#9c8bff;--coral:#ff7a5c;--sky:#5db4ff;--sage:#7ddc6a;--red:#ff5d6c;--stage:#04060c;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 var(--sans);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(1100px 600px at 15% -10%,rgba(156,139,255,.16),transparent 60%),radial-gradient(900px 500px at 95% 0%,rgba(55,213,194,.12),transparent 60%),radial-gradient(800px 600px at 50% 110%,rgba(255,180,84,.08),transparent 60%)}
+main{max-width:1240px;margin:0 auto;padding:22px 0 70px}
+a{color:var(--sky)}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.02;margin:6px 0 10px;letter-spacing:-.025em;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(95deg,var(--amber),var(--coral) 45%,var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.45rem;margin:0 0 4px;letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:1.02rem;margin:0 0 6px}
+p{margin:0 0 10px;max-width:78ch}
+code,.mono{font-family:var(--mono);font-size:.92em}
+.nav{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font:12px var(--mono);color:var(--mute);letter-spacing:.04em;margin-bottom:10px}
+.nav a{color:var(--mute);text-decoration:none}.nav a:hover{color:var(--fg)}
+.kick{font:600 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+.lede{font-size:1.1rem;color:var(--mute);max-width:80ch}
+.lede b{color:var(--fg);font-weight:600}
+.chip{display:inline-block;font:11.5px var(--mono);padding:2px 9px;border-radius:99px;border:1px solid var(--line2);color:var(--mute);background:var(--panel);margin:0 4px 4px 0;max-width:100%;overflow-wrap:anywhere}
+.chip.ok{color:var(--sage);border-color:rgba(125,220,106,.4)}.chip.bad{color:var(--red);border-color:rgba(255,93,108,.45)}.chip.warn{color:var(--amber);border-color:rgba(255,180,84,.45)}
+section{margin-top:54px;scroll-margin-top:12px}
+.sec-h{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:16px}
+.sec-h>div{min-width:0}
+.sec-h p{margin:0;color:var(--mute);font-size:.95rem;max-width:62ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:10px;margin-top:18px}
+.tile{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:12px 14px 11px;position:relative;overflow:hidden;min-width:0}
+.tile:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c,var(--amber))}
+.tile b{display:block;font:700 1.9rem/1.08 var(--sans);letter-spacing:-.02em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.tile b small{font-size:.95rem;color:var(--mute);font-weight:500;letter-spacing:0}
+.tile span{display:block;font-size:.88rem;margin-top:3px}
+.tile span.src,.kv span.src,.note span.src,.read span.src{display:inline-block;margin-top:0;font-size:9.5px}
+.tile small{display:block;font:11px/1.4 var(--mono);color:var(--dim);margin-top:6px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-width:0}
+.panel>h3{margin-bottom:8px}
+.row{display:grid;gap:14px}
+.two{grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr))}
+.note{font:11.5px/1.5 var(--mono);color:var(--dim)}
+.note b{color:var(--mute)}
+.read{font-size:.92rem;color:var(--mute);max-width:110ch;margin:10px 0 0}.read b{color:var(--fg)}
+.btn,select,input[type=search]{font:13px var(--sans);color:var(--fg);background:var(--panel2);border:1px solid var(--line2);border-radius:8px;padding:6px 12px;cursor:pointer;min-height:34px}
+input[type=search]{cursor:text;min-width:0;width:100%}
+.btn:hover:not(:disabled){border-color:var(--sky)}.btn[aria-pressed=true]{background:var(--sky);color:#04101e;border-color:var(--sky);font-weight:650}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center}
+.big{font:650 15px var(--sans);padding:11px 24px;border-radius:99px;border:0;cursor:pointer;color:#1a0d05;background:linear-gradient(95deg,var(--amber),var(--coral))}
+.big:disabled{opacity:.5;cursor:progress}
+.big:hover:not(:disabled){filter:brightness(1.08)}
+.big.stale{box-shadow:0 0 0 3px rgba(255,180,84,.35)}
+.src{display:inline-block;font:600 9.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:99px;border:1px solid;vertical-align:1px;margin-left:6px;white-space:nowrap}
+.src.live{color:var(--teal);border-color:rgba(55,213,194,.55)}.src.rcpt{color:var(--amber);border-color:rgba(255,180,84,.55)}.src.brw{color:var(--violet);border-color:rgba(156,139,255,.6)}
+.srckey{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:14px 0 0;font:11.5px var(--mono);color:var(--dim)}
+/* profile chips */
+.pchips{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:8px;margin-bottom:12px}
+.pchip{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;padding:8px 11px;border-radius:10px;border:1px solid var(--line2);background:var(--panel);color:var(--fg);font:13px var(--mono);cursor:pointer;min-width:0}
+.pchip:hover:not(:disabled){border-color:var(--sky)}
+.pchip[aria-pressed=true]{border-color:var(--sky);box-shadow:inset 0 0 0 1px var(--sky);background:#12203a}
+.pchip:disabled{opacity:.4;cursor:not-allowed}
+.pchip small{font:10.5px/1.3 var(--mono);color:var(--dim)}
+.pchip.pre{border-style:dashed}
+.trap{color:#1a0d05;background:var(--coral);font:700 10px var(--mono);padding:1px 7px;border-radius:99px;letter-spacing:.07em}
+.pgroup{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:2px 0 6px}
+.forgebar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:4px 0 16px}
+.forgebar .note{flex:1 1 260px;min-width:0}
+/* compare */
+.cmp{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:980px){.cmp{grid-template-columns:minmax(0,1fr)}}
+.pane{background:var(--stage);border:1px solid var(--line);border-radius:12px;overflow:hidden;position:relative;aspect-ratio:16/10;width:100%}
+.pane canvas{position:absolute;inset:0;width:100%;height:100%;display:block;outline-offset:-2px}
+.pane .tag{position:absolute;top:9px;z-index:3;font:600 11px var(--mono);letter-spacing:.06em;padding:3px 9px;border-radius:99px;background:rgba(4,6,12,.78);border:1px solid var(--line2);color:var(--fg);pointer-events:none;max-width:46%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pane .tag.l{left:10px}.pane .tag.r{right:10px}
+.pane .st{position:absolute;left:10px;bottom:8px;z-index:3;font:11px/1.3 var(--mono);color:#c3cce4;background:rgba(4,6,12,.74);padding:2px 8px;border-radius:6px;pointer-events:none;max-width:calc(100% - 20px)}
+.stagemsg{position:absolute;inset:0;z-index:4;display:none;place-items:center;text-align:center;padding:20px;background:rgba(4,6,12,.72);font:13px/1.5 var(--mono);color:var(--fg)}
+.stagemsg.on{display:grid}
+.stagemsg progress{width:min(280px,70vw);height:8px;accent-color:var(--amber);display:block;margin:10px auto 0}
+.stagemsg.err{color:#ffb4bb}
+.wipe{position:absolute;top:0;bottom:0;width:0;z-index:5;pointer-events:none}
+.wipe:before{content:"";position:absolute;top:0;bottom:0;left:-1px;width:2px;background:rgba(255,255,255,.85);box-shadow:0 0 0 1px rgba(4,6,12,.5)}
+.grip{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;border:2px solid #fff;background:rgba(4,6,12,.82);color:#fff;display:grid;place-items:center;cursor:ew-resize;pointer-events:auto;touch-action:none;padding:0}
+.vctl{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:10px 0 6px}
+.vctl label{font:12px var(--mono);color:var(--mute);display:inline-flex;gap:6px;align-items:center}
+.vctl .sp{flex:1}
+.scalebar{height:10px;border-radius:5px;background:linear-gradient(90deg,#05001f,#4d0d9e 25%,#db2e66 50%,#ffa91a 75%,#fff7cc);border:1px solid var(--line2);max-width:260px;display:none}
+.scalebar.on{display:block}
+.kv{display:grid;grid-template-columns:minmax(92px,.9fr) minmax(0,2.4fr);gap:2px 10px;padding:7px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.kv:last-child{border-bottom:0}
+.kv .k{font:12px var(--mono);color:var(--mute)}
+.kv .v{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.kv .v b{font-size:1.05rem}
+.kv .v i{font-style:normal;font:12px var(--mono);color:var(--dim)}
+.kv .v .good{color:var(--sage)}.kv .v .badc{color:var(--red)}
+.steps{display:grid;gap:3px;font:12px var(--mono)}
+.step{display:grid;grid-template-columns:92px minmax(0,1fr) auto;gap:2px 8px;align-items:center;padding:3px 0}
+.step .bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden}.step .bar i{display:block;height:100%;background:var(--teal);width:0}
+.step .cnt{color:var(--dim);font-size:11px;overflow-wrap:anywhere;grid-column:2/-1}
+.step .ms{color:var(--mute);font-size:11.5px;white-space:nowrap}
+.step.run .nm:after{content:" …";color:var(--amber)}
+.profcard dl{margin:0;display:grid;grid-template-columns:96px minmax(0,1fr);gap:3px 12px;font-size:.88rem}
+.profcard dt{font:11.5px var(--mono);color:var(--dim)}.profcard dd{margin:0;overflow-wrap:anywhere}
+/* bytes */
+.stack{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.sbar{display:flex;height:34px;border-radius:7px;overflow:hidden;background:var(--line);border:1px solid var(--line2)}
+.sbar button{border:0;padding:0;margin:0;height:100%;cursor:pointer;min-width:1px;border-right:1px solid rgba(4,6,12,.55);background:var(--cc)}
+.sbar button:hover,.sbar button:focus-visible{filter:brightness(1.25);outline:2px solid #fff;outline-offset:-2px}
+.sbar button.dim{opacity:.28}
+.slab{font:12px var(--mono);color:var(--mute);margin-bottom:4px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.slab b{color:var(--fg)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 8px;margin:12px 0 4px}
+.legend button{display:inline-flex;gap:7px;align-items:center;font:12px var(--mono);color:var(--fg);background:var(--panel);border:1px solid var(--line2);border-radius:99px;padding:3px 11px 3px 8px;cursor:pointer}
+.legend button i{width:11px;height:11px;border-radius:3px;background:var(--cc);display:inline-block}
+.legend button[aria-pressed=true]{border-color:var(--cc);box-shadow:0 0 0 1px var(--cc) inset}
+.cat-info{min-height:3.1em;font-size:.9rem;color:var(--mute);margin:6px 0 0}
+.cat-info b{color:var(--fg)}
+/* tables */
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:6px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 11px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--dim);background:var(--panel)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.scroll table{min-width:560px}
+#batchTable{min-width:0}#batchTable td,#batchTable th{padding:6px 5px;overflow-wrap:anywhere}
+.pass{color:var(--sage);font-weight:650}.fail{color:var(--red);font-weight:700}.na{color:var(--dim)}
+.badge{display:inline-block;font:700 10.5px var(--mono);letter-spacing:.06em;padding:2px 8px;border-radius:99px;border:1px solid}
+.badge.pass{border-color:rgba(125,220,106,.5);background:rgba(125,220,106,.08)}.badge.fail{border-color:rgba(255,93,108,.6);background:rgba(255,93,108,.12)}.badge.na{border-color:var(--line2)}.badge.warn{color:var(--amber);border-color:rgba(255,180,84,.5)}
+/* audit */
+.cnts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px;margin-bottom:12px}
+.cnt1{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;border-left:4px solid var(--c)}
+.cnt1 b{display:block;font:700 2.3rem/1.05 var(--sans);font-variant-numeric:tabular-nums;color:var(--c);letter-spacing:-.02em}
+.cnt1 span{display:block;font-size:.84rem;color:var(--mute)}
+.agree{overflow-x:auto;margin:0 0 12px;padding:9px 14px;border-radius:10px;border:1px solid var(--line2);background:var(--panel);font-size:.9rem}
+.agree.ok{border-color:rgba(125,220,106,.45)}
+.agree.dis{border-color:var(--red);background:rgba(255,93,108,.16);color:#ffd6da;font-weight:600}
+.agree table{margin-top:6px;font-size:.84rem}
+.trapbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:10px;margin-bottom:14px}
+.act{background:var(--panel);border:1px solid var(--line2);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.act .btn{font-weight:650;font-size:14px;padding:8px 16px}
+.act.t .btn{background:rgba(255,93,108,.15);border-color:var(--red)}.act.s .btn{background:rgba(125,220,106,.14);border-color:var(--sage)}.act.j .btn{background:rgba(255,180,84,.13);border-color:var(--amber)}
+.act .note{margin:0}
+.tmapwrap{background:var(--stage);border:1px solid var(--line);border-radius:12px;padding:8px;margin-bottom:12px;position:relative}
+#tmap{display:block;width:100%;cursor:pointer}
+.tmapkey{display:flex;flex-wrap:wrap;gap:6px 16px;font:11.5px var(--mono);color:var(--mute);margin-top:6px}
+.tmapkey i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.tip{position:absolute;z-index:6;pointer-events:none;font:11.5px var(--mono);background:rgba(4,6,12,.94);border:1px solid var(--line2);border-radius:6px;padding:3px 8px;white-space:nowrap;display:none;max-width:90%;overflow:hidden;text-overflow:ellipsis}
+.alist{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:900px){.alist{grid-template-columns:minmax(0,1fr)}}
+.lbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;align-items:center}
+.lbar .grow{flex:1 1 200px;min-width:0}
+.vl{height:420px;overflow:auto;border:1px solid var(--line);border-radius:10px;background:var(--bg2);position:relative;outline-offset:2px}
+.vl .sp{position:relative;width:100%}
+.vl .rw{position:absolute;left:0;right:0;height:30px;display:grid;grid-template-columns:34px minmax(0,1.5fr) minmax(0,1.1fr) minmax(0,1.3fr) 118px;gap:8px;align-items:center;padding:0 10px;border-bottom:1px solid rgba(35,47,75,.6);font:12px var(--mono);white-space:nowrap;cursor:pointer;border-left:3px solid transparent}
+.vl .rw span{overflow:hidden;text-overflow:ellipsis}
+.vl .rw.hd{position:sticky;top:0;z-index:2;background:var(--panel);color:var(--dim);font-weight:600;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;cursor:default;border-left-color:transparent}
+.vl .rw.kept{border-left-color:var(--sage)}.vl .rw.moved{border-left-color:var(--amber)}.vl .rw.lost{border-left-color:var(--red);background:rgba(255,93,108,.09)}
+.vl .rw[aria-selected=true]{background:rgba(93,180,255,.18);outline:1px solid var(--sky);outline-offset:-1px}
+.st-kept{color:var(--sage)}.st-moved{color:var(--amber)}.st-lost{color:var(--red);font-weight:700}
+@media (max-width:620px){.vl .rw{grid-template-columns:30px minmax(0,1fr) 96px}.vl .rw .c-def,.vl .rw .c-use{display:none}}
+.detail{font-size:.88rem;min-height:200px}
+.detail pre{margin:6px 0;padding:8px 10px;background:var(--bg2);border:1px solid var(--line);border-radius:8px;font:11.5px/1.45 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;max-height:200px;overflow:auto}
+.detail h4{margin:0 0 4px;font-size:1rem;overflow-wrap:anywhere}
+.detail .why{color:var(--mute)}
+/* parity */
+.pbanner{border-radius:12px;border:1px solid var(--line2);background:var(--panel);padding:14px 16px;font-size:1.02rem}
+.pbanner.ok{border-color:rgba(125,220,106,.55);background:rgba(125,220,106,.07)}
+.pbanner.bad{border-color:var(--red);background:rgba(255,93,108,.15)}
+.pbanner b{font-size:1.15rem}
+.hash{font:12px var(--mono);cursor:help;border-bottom:1px dotted var(--dim);overflow-wrap:anywhere}
+.mgrid{display:grid;grid-template-columns:minmax(80px,auto) repeat(8,minmax(0,1fr));gap:3px;font:11px var(--mono);margin-top:10px}
+.mgrid .h{color:var(--dim);font-size:10px;padding:2px 2px;text-align:center;overflow-wrap:anywhere}
+.mgrid .rl{color:var(--mute);padding:6px 4px 6px 0;align-self:center}
+.mgrid .c{border-radius:6px;padding:6px 2px;text-align:center;background:var(--panel2);border:1px solid var(--line);color:var(--dim)}
+.mgrid .c.ok{color:var(--sage);border-color:rgba(125,220,106,.5)}.mgrid .c.bad{color:var(--red);border-color:var(--red);background:rgba(255,93,108,.14)}.mgrid .c.run{color:var(--amber);border-color:var(--amber)}
+@media (max-width:620px){.mgrid{font-size:9.5px;gap:2px}.mgrid .c{padding:5px 0}}
+/* shootout */
+.shoot td.cell{min-width:104px}
+.shoot td.cell b{display:block;font:650 .95rem var(--mono)}
+.shoot td.cell small{display:block;font:10.5px/1.35 var(--mono);color:var(--mute)}
+.shoot td.cell .flag{color:#ffb4bb;font-weight:700}
+.shoot td.cell.hl{outline:2px solid #fff;outline-offset:-2px}
+.shoot th button{all:unset;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;display:inline-flex;gap:4px;align-items:center}
+.shoot th button:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.callouts{display:grid;gap:10px;margin-top:14px}
+.callout{border-left:3px solid var(--amber);background:var(--panel);border-radius:0 10px 10px 0;padding:9px 14px;font-size:.92rem}
+.callout .srcrow{display:block;font:11px/1.45 var(--mono);color:var(--dim);margin-top:4px}
+.callout .srcrow button{all:unset;cursor:pointer;color:var(--sky);text-decoration:underline}
+.callout .srcrow button:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.limits{border:1px dashed var(--line2);border-radius:14px;padding:14px 18px;background:rgba(16,23,40,.6)}
+.limits ul{margin:6px 0 0;padding-left:20px}.limits li{margin:5px 0;max-width:110ch}
+footer{margin-top:60px;border-top:1px solid var(--line);padding-top:16px;color:var(--mute);font-size:.88rem}
+footer p{max-width:120ch}
+.skip{position:absolute;left:-999px;top:0;background:var(--panel);padding:6px 10px;z-index:20}.skip:focus{left:10px;top:10px}
+.srf{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:620px){.pane{aspect-ratio:4/3}.tile b{font-size:1.55rem}.cnt1 b{font-size:1.9rem}body{font-size:14.5px}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"}}</script>
+</head>
+<body>
+<a class="skip" href="#compare">Skip to the compare</a>
+<main>
+<div class="nav"><b style="color:var(--fg)">x3d.demo · glb Forge · v1</b><a href="#compare">compare</a><a href="#bytes">bytes</a><a href="#audit">tether audit</a><a href="#gates">gates</a><a href="#parity">byte parity</a><a href="#shootout">shootout</a><a href="#limits">what this does not show</a><a href="../../../">demo shelf</a></div>
+
+<header>
+<div class="kick">X3D in the AI era · the glb tooling lane, checked</div>
+<h1>The optimiser that has to <em>keep the names</em></h1>
+<p class="lede">A glb optimiser can cut a file by a factor of ten and still be worthless to X3D: if it merges nodes, the DEF names that the Blender add-on wrote into the glb <code>extras</code> are gone, and nothing can say which node was which. <b>X3D is the 3D format an AI can be held accountable to</b> only while those names survive. This page runs the x3d.gltf lane's own optimiser and gates <b>in your browser</b> on four real scenes, then checks the output against the source with code that is not the lane's.</p>
+<div id="adapterChip" class="chip">checking this browser…</div><div id="toolsChip" class="chip">reading the receipts…</div>
+<div class="tiles" id="tiles" aria-live="polite"></div>
+<div class="srckey"><span>Every number carries its instrument:</span><span><span class="src live">live</span> computed in this page, now, in your browser</span><span><span class="src rcpt">receipt</span> made by the Node CLI, read from forge-receipts.json</span><span><span class="src brw">browser</span> measured by WebGL / three.js on this machine</span></div>
+</header>
+
+<section id="compare">
+<div class="sec-h"><div><div class="kick">1 · forge and compare</div><h2>Run a profile on the original bytes, then look</h2></div><p>The eight portable profiles run here, in a worker. Draco and KTX2 need Node-only encoders, so those two chips load files the CLI made earlier, with their receipts. Chips marked TRAP are included to show what they cost.</p></div>
+<div class="tabs" id="sceneTabs" role="group" aria-label="Scene"></div>
+<div class="pgroup">Portable profiles · run in this browser</div>
+<div class="pchips" id="profileChips" role="group" aria-label="Profile"></div>
+<div class="forgebar"><button class="big" id="forgeBtn" type="button" disabled>Forge</button><div class="note" id="forgeNote" aria-live="polite">Loading the optimiser…</div></div>
+
+<div class="cmp">
+ <div>
+  <div class="pane" id="stage">
+   <span class="tag l" id="tagL">original</span><span class="tag r" id="tagR">forged</span>
+   <span class="st" id="stageSt">starting…</span>
+   <div class="stagemsg on" id="stageMsg" role="status"><div>Loading three.js and the scene…<progress id="stageProg" max="100" value="0" aria-label="Loading progress"></progress></div></div>
+  </div>
+  <div class="vctl" role="group" aria-label="View controls">
+   <button class="btn" id="modeWipe" type="button" aria-pressed="true">Wipe</button>
+   <button class="btn" id="modeDiff" type="button" aria-pressed="false">Difference</button>
+   <label for="gainSel">gain <select id="gainSel"><option>1</option><option>2</option><option>4</option><option selected>8</option><option>16</option><option>32</option><option>64</option></select></label>
+   <label><input type="checkbox" id="fillChk" checked> room fill light</label>
+   <button class="btn" id="resetBtn" type="button">Reset view</button>
+   <button class="btn" id="touchBtn" type="button" aria-pressed="false" hidden>Touch orbit: off</button>
+  </div>
+  <div class="scalebar" id="scalebar" aria-hidden="true"></div>
+  <p class="note" id="diffOut" aria-live="polite">Wipe: drag the handle (or focus it and use the arrow keys); orbit with the mouse, scroll to zoom. Same camera on both sides.</p>
+  <p class="note" id="drawOut"></p>
+ </div>
+ <div style="display:grid;gap:14px;min-width:0">
+  <div class="panel"><h3>Result</h3><div id="resBody"><span class="note">Pick a scene and a profile.</span></div></div>
+  <div class="panel"><h3>Steps</h3><div class="steps" id="stepsBody"><span class="note">The step list streams here while a profile runs.</span></div></div>
+  <div class="panel profcard"><h3>Profile</h3><div id="profCard"><span class="note">…</span></div></div>
+ </div>
+</div>
+<p class="read" id="cmpRead"></p>
+</section>
+
+<section id="bytes">
+<div class="sec-h"><div><div class="kick">2 · where the bytes went</div><h2>Source against output, by category</h2></div><p>Bars share one scale. Values come from <code>inspectBytes().bytes.byCategory</code> in the lane's bundle (Draco files, which the browser bundle cannot decode, are counted by this page from the JSON chunk). Hover or focus a segment for what the category is.</p></div>
+<div class="panel">
+ <div class="stack" id="bytesBars"><span class="note">Waiting for a result.</span></div>
+ <div class="legend" id="bytesLegend" role="group" aria-label="Categories"></div>
+ <p class="cat-info" id="catInfo" aria-live="polite">Pick a segment or a category.</p>
+</div>
+<div class="scroll" style="margin-top:12px"><table id="xferTable"><thead><tr><th>Transfer size</th><th class="n">source</th><th class="n">output</th><th class="n">change</th><th>instrument</th></tr></thead><tbody></tbody></table></div>
+<p class="read">gzip here is the browser's <code>CompressionStream('gzip')</code> at its default level, run on the bytes in this page. The receipts' gzip is Node zlib at level 9 and brotli is Node zlib at quality 11; a browser cannot make brotli, so that row is the receipt's, and it applies to the output only while the byte-parity check below says the bytes are the same.</p>
+</section>
+
+<section id="audit">
+<div class="sec-h"><div><div class="kick">3 · the tether audit</div><h2>Which node was which: before and after</h2></div><p>This page parses the glb JSON itself (not the lane's identity code) and matches every identity in the source against the output file. <b>kept</b>: an output node has the same name and extras. <b>moved</b>: no node does, but a batch node's <code>extras.x3d_instances</code> record does. <b>lost</b>: neither.</p></div>
+<div class="trapbar">
+ <div class="act t"><button class="btn" id="trapBtn" type="button">Spring the trap</button><p class="note" id="trapNote">stock-instance: glTF-Transform's own instance() on the cathedral.</p></div>
+ <div class="act s"><button class="btn" id="safeBtn" type="button">Same win, nothing lost</button><p class="note" id="safeNote">instanced: the same batching, with each instance's identity written into the batch node.</p></div>
+ <div class="act j"><button class="btn" id="joinBtn" type="button">Crush it (static-joined)</button><p class="note" id="joinNote">static-joined: one mesh, no node, mesh or material identity.</p></div>
+</div>
+<div class="note" id="auditScope" style="margin:-4px 0 10px"></div>
+<div class="cnts" id="auditCounters"></div>
+<div class="agree" id="auditAgree">The audit runs once a result exists.</div>
+<div class="tmapwrap"><canvas id="tmap" height="120" role="img" aria-label="One square per source node, coloured kept, moved into an instance batch, or lost"></canvas><div class="tip" id="tmapTip"></div>
+<div class="tmapkey" id="tmapKey"><span><i style="background:var(--sage)"></i>kept</span><span><i style="background:var(--amber)"></i>moved into an instance batch</span><span><i style="background:var(--red)"></i>lost</span></div></div>
+<div class="alist">
+ <div>
+  <div class="lbar"><div class="grow"><label class="srf" for="auditSearch">Search the node list</label><input type="search" id="auditSearch" placeholder="Search name, DEF, path, USE…" autocomplete="off"></div>
+   <div class="tabs" id="auditFilter" role="group" aria-label="Filter by status" style="margin:0"></div></div>
+  <div class="vl" id="auditList" tabindex="0" role="listbox" aria-label="Source nodes and what happened to each"></div>
+  <p class="note" id="auditCount" aria-live="polite"></p>
+ </div>
+ <div class="panel detail" id="auditDetail"><span class="note">Click a square or a row.</span></div>
+</div>
+<div class="row two" style="margin-top:14px">
+ <div class="panel"><h3>Batch nodes in the output</h3><div class="scroll" style="border:0"><table id="batchTable"><thead><tr><th>node</th><th>mesh</th><th class="n">instances</th><th class="n">identity records</th></tr></thead><tbody></tbody></table></div><p class="note" id="batchNote"></p></div>
+ <div class="panel"><h3>How this was decided</h3><div id="auditHow" class="read" style="margin:0"></div></div>
+</div>
+</section>
+
+<section id="gates">
+<div class="sec-h"><div><div class="kick">4 · the gates</div><h2>Pass or fail, with the number and the bound</h2></div><p>For the result currently shown. The verdict of each gate is the lane's; the numbers and bounds are printed so you can check the verdict.</p></div>
+<div class="scroll"><table id="gatesTable"><thead><tr><th>Gate</th><th>Measured</th><th>Bound</th><th>Verdict</th></tr></thead><tbody></tbody></table></div>
+<p class="read" id="gatesRead"></p>
+</section>
+
+<section id="parity">
+<div class="sec-h"><div><div class="kick">5 · byte parity</div><h2>Did your browser make the same bytes the Node CLI made?</h2></div><p>The receipts hold the SHA-256 of every portable profile's output, made by the Node CLI. After each live forge this page hashes your browser's output and compares.</p></div>
+<div class="pbanner" id="parityBanner">No forge has run yet.</div>
+<div class="scroll" style="margin-top:12px"><table id="parityTable"><thead><tr><th>Scene · profile</th><th class="n">your browser</th><th class="n">Node CLI</th><th>SHA-256 (hover for the full hash)</th><th>same</th></tr></thead><tbody></tbody></table></div>
+<div class="forgebar" style="margin-top:14px"><button class="btn" id="matrixBtn" type="button">Run all 32 cells here</button><div class="note" id="matrixNote">Forges every scene with every portable profile in the worker, one after another, and hashes each output. Downloads the four originals (about 10 MB) and takes a while.</div></div>
+<div class="mgrid" id="matrixGrid" role="table" aria-label="Byte parity matrix"></div>
+</section>
+
+<section id="shootout">
+<div class="sec-h"><div><div class="kick">6 · the shootout</div><h2>Scenes against profiles, from the receipts</h2></div><p>Everything here is read from forge-receipts.json: one Node run per cell. Cells show the output as a percentage of the original in the chosen measure; click a column header to sort.</p></div>
+<div class="tabs" id="shootTabs" role="group" aria-label="Measure"></div>
+<div class="scroll"><table class="shoot" id="shootTable"></table></div>
+<div class="callouts" id="shootCallouts"></div>
+</section>
+
+<section id="limits">
+<div class="sec-h"><div><div class="kick">7 · what this page does not show</div><h2>Limits, stated</h2></div></div>
+<div class="limits"><ul id="limitList"></ul></div>
+</section>
+
+<footer>
+<p><b>Sources.</b> The optimiser and gates are the x3d.gltf lane of x3d.loom (glTF-Transform, meshoptimizer, Draco, KTX2, Khronos glTF-Validator), bundled for the browser as <code>forge.bundle.js</code> (409,854 bytes, SHA-256 <span id="bundleSha" class="hash">…</span>). Receipts: <a href="forge-receipts.json">forge-receipts.json</a>. Scene files: PRISMATICA Aurora Cathedral, Asterion and Still life are read from <a href="../../bridge-blenderizer/v1/scenes/asterion.glb">the bridge and blenderizer page's scenes folder</a> (SHA-256 checked against the receipts in section 5's table); LUMEN and the precomputed Draco and ETC1S files are in <a href="scenes/lumen.glb">this page's scenes folder</a>. three.js loads from jsDelivr at a pinned version.</p>
+<p><b>Versions kept.</b> This is glb Forge, version 1. Nothing earlier is overwritten. Independent work: not endorsed by the Khronos Group, the Web3D Consortium, or the maintainers of glTF-Transform, meshoptimizer, Draco or three.js.</p>
+</footer>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>
