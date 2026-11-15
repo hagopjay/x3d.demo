@@ -54,6 +54,7 @@ pre{background:#0d121b;border:1px solid var(--line);border-radius:10px;padding:1
 <div id="err"></div>
 
 <h2>What you are looking at</h2>
+<p class="mut" style="margin-top:-.2em">The readout <b>Σv²/2</b> on each pane is the sum of half the squared linear speeds of the moving bodies (unit mass, no rotation): a relative activity measure, not joules.</p>
 <div class="cards" id="insights"></div>
 
 <h2>Measured on this scene</h2>
@@ -62,7 +63,7 @@ pre{background:#0d121b;border:1px solid var(--line);border-radius:10px;padding:1
 
 <h2>Cost and determinism, from the analytic scenes</h2>
 <div class="cards">
- <div class="card"><h3>Wall ms per 1/240 s step, pile of N bodies</h3><div class="wrap"><table id="speedtbl"></table></div><p class="mut">Best of 3, 720 steps, half spheres half boxes dropped on a floor. Chromium 153.0.8010.12 (SwiftShader build) and Node v22.23.4; the bridge runs in a browser, so the Chromium column is the one to read (Node's V8 flatters the WASM engine and punishes the pure-JS ones). <code>results/speed.json</code>.</p></div>
+ <div class="card"><h3>Wall ms per 1/240 s step, pile of N bodies (Chromium 153)</h3><div class="wrap"><table id="speedtbl"></table></div><p class="mut">Best of 3, 720 steps, half spheres half boxes dropped on a floor. Measured in Chromium 153.0.8010.12 (SwiftShader build) and Node v22.23.4; the table shows the Chromium numbers, which are the ones to read because the bridge runs in a browser (Node's V8 inflates the pure-JS built-in engine, 4.0x at 250 bodies; cannon-es only 1.2x). <code>results/speed.json</code>.</p></div>
  <div class="card"><h3>Repeatable? Same on two hosts?</h3>
   <p><b class="best">21 of 21</b> runs repeat bit for bit in one process (7 analytic scenes x built-in, Rapier, cannon-es), and stay equal when the frames arrive late or uneven (40 ms / 8.3 ms ticks), because the bridge steps a fixed 1/240 s grid.</p>
   <p>Positions are <b class="best">bit-identical between Node 22 and Chromium 153</b> in 21 of 21 runs; orientation differs by at most 1.1e-16 (the two V8 builds round acos and atan2 differently).</p>
@@ -90,7 +91,7 @@ pre{background:#0d121b;border:1px solid var(--line);border-radius:10px;padding:1
 <tr><td>recordings</td><td>Node v22.23.4, the bridge reader plus <code>x3d.physics/rigid-engines</code> adapter; 60 Hz ticks over a fixed 1/240 s step, 30 Hz keyframes in the replays. The recordings of the three scenes were not replayed in a second host (that check covers the seven analytic scenes, above).</td></tr>
 <tr><td>live pane</td><td>X_ITE 16.6.0 with the RigidBodyPhysics component, your browser and your GPU; frame rate sets its step. Friction is written <code>FRICTION_COEFFICIENT-2</code> (the XSD spelling) in the files; the page rewrites it to X_ITE's <code>FRICTION_COEFFICIENT_2</code> before loading the live pane, or X_ITE would ignore it.</td></tr>
 <tr><td>numbers on this page</td><td>x3d.loom <code>x3d.physics/rigid-engines/results/*.json</code> and <code>data/stats.json</code>; docs chapter 16 (x3d.docs <code>docs/learn/16-physics-engines.md</code>) has the ledger, drills and honest limits</td></tr>
-<tr><td>known cannon-es defect, fixed in the adapter</td><td>its friction bound is in force units but its solver works in impulses and per contact point, so at 1/240 s every box sticks until 45 degrees whatever mu says (<code>cannon-raw</code>: 45 and 45 degrees where 11.3 and 26.6 are right; patched: 12 and 25)</td></tr>
+<tr><td>known cannon-es defect, fixed in the adapter</td><td>its friction bound is in force units but its solver works in impulses and per contact point, so at 1/240 s a box does not slip on a ramp at any angle up to its tipping angle, whatever mu says (<code>cannon-raw</code>: the unit-cube sweep reads 45 and 45 degrees, which is where the cube topples, where slip angles of 11.3 and 26.6 are right; patched: 12 and 25)</td></tr>
 <tr><td>known built-in defect, reported not edited</td><td>no collider for <code>Cone</code>: the shape finder reads <code>size</code> or <code>radius</code>, a Cone has <code>bottomRadius</code>; all 10 cones of the avalanche fall through the funnel</td></tr>
 </table></div>
 <p class="mut">Own code. Rapier is Apache-2.0 (Dimforge), cannon-es is MIT, X_ITE is MIT.</p>
@@ -105,7 +106,7 @@ const ENG = [
 const SCENES = {
   avalanche: { title: 'Avalanche', T: 5, hud: (P) => { let out = 0, top = -9; for (const id in P) { const p = P[id]; if (Math.abs(p[0]) > 4 || Math.abs(p[2]) > 4 || p[1] < -0.3) out++; else top = Math.max(top, p[1]); } return [[`out of the funnel ${out} of 40`, out > 0 ? 'bad' : 'ok'], [`highest body ${top.toFixed(2)} m`]]; } },
   cradle:    { title: "Newton's cradle", T: 8, hud: (P, st) => { const y = P.ball4 ? P.ball4[1] : 0; st.y0 = st.y0 ?? y; st.max = Math.max(st.max || 0, y - st.y0); return [[`last ball lift ${(y - st.y0).toFixed(2)} m`], [`best ${st.max.toFixed(2)} m of 0.71 m put in`, st.max > 0.85 ? 'bad' : null]]; } },
-  gate:      { title: 'Gate, cart and ball', T: 6, hud: (P, st) => { const d = P.door, a = d ? Math.atan2(-d[2], d[0] + 3.35) : 0, c = P.cart ? P.cart[0] - 0.5 : 0; st.amax = Math.max(st.amax || 0, Math.abs(a)); return [[`door ${a.toFixed(2)} rad (stop ±1.10)`, Math.abs(a) > 1.13 ? 'bad' : null], [`cart ${c.toFixed(2)} m (0.90–3.70)`, c < 0.86 || c > 3.74 ? 'bad' : null]]; } } };
+  gate:      { title: 'Gate, cart and ball', T: 6, hud: (P, st) => { const d = P.door, a = d ? Math.atan2(-d[2], d[0] + 3.35) : 0, c = P.cart ? P.cart[0] - 0.5 : 0; st.amax = Math.max(st.amax || 0, Math.abs(a)); return [[`door ${a.toFixed(2)} rad (stop ±1.10)`, Math.abs(a) > 1.13 ? 'bad' : null], [`cart ${c.toFixed(2)} m (limit 3.70)`, c > 3.76 ? 'bad' : null]]; } } };
 const state = { scene: 'avalanche', t: 0, play: true, speed: 1, stats: null, panes: {}, gen: 0, last: 0 };
 const $ = (s) => document.querySelector(s), fmt = (v, d = 2) => (v === undefined || v === null ? '–' : Number(v).toFixed(d));
 const err = (m) => { const e = $('#err'); e.style.display = 'block'; e.textContent = m; };
@@ -138,7 +139,7 @@ async function put(id, text, live) {
   const scn = await B.createX3DFromString(decorate(text, state.anchors)); await B.replaceWorld(scn); p.scn = scn; p.anchors = state.anchors; p.str = {}; for (const k in (state.anchors || {})) p.str[k] = scn.getNamedNode('S_' + k); return scn;
 }
 async function load(sceneId) {
-  const gen = ++state.gen; state.scene = sceneId; state.t = 0; state.last = performance.now(); document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('on', b.dataset.id === sceneId));
+  const gen = ++state.gen; state.loading = true; for (const e of ENG) { const q = state.panes[e.id]; q.scn = null; q.pi = null; q.oi = null; q.nodes = null; q.hudState = {}; } state.scene = sceneId; state.t = 0; state.last = performance.now(); document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('on', b.dataset.id === sceneId));
   const base = `data/${sceneId}/`;
   try {
     const texts = await Promise.all(ENG.map((e) => fetch(base + e.id + (e.live ? '.x3d' : '.x3d')).then((r) => { if (!r.ok) throw new Error(base + e.id + '.x3d: ' + r.status); return r.text(); })));
@@ -147,13 +148,13 @@ async function load(sceneId) {
       const e = ENG[i], p = state.panes[e.id], t = e.live ? texts[i].replace(/FRICTION_COEFFICIENT-2/g, 'FRICTION_COEFFICIENT_2') : texts[i]; p.hudState = {};
       if (!e.live) p.pos = parseReplay(texts[i]);
       const scn = await put(e.id, t, e.live); if (gen !== state.gen) return;
-      if (e.live) { p.names = Object.keys(parseReplay(texts[1])); p.t0 = performance.now(); p.nodes = {}; for (const n of p.names) { try { p.nodes[n] = scn.getNamedNode('B_' + n); } catch (x) {} } }
+      if (e.live) { p.names = Object.keys(parseReplay(texts[1])); p.tl = 0; p.nodes = {}; for (const n of p.names) { try { p.nodes[n] = scn.getNamedNode('B_' + n); } catch (x) {} } }
       else { try { scn.getNamedNode('CLK').enabled = false; } catch (x) {} p.pi = {}; p.oi = {}; for (const n of Object.keys(p.pos)) { p.pi[n] = scn.getNamedNode('PI_' + n); p.oi[n] = scn.getNamedNode('OI_' + n); } }
     }
-    fill(sceneId);
+    fill(sceneId); state.loading = false;
   } catch (x) { err('Could not load the scene: ' + x.message + '. The live pane needs X_ITE 16.6.0 from cdn.jsdelivr.net.'); console.error(x); }
 }
-function restartLive() { const gen = state.gen; fetch(`data/${state.scene}/live.x3d`).then((r) => r.text()).then((t) => put('live', t.replace(/FRICTION_COEFFICIENT-2/g, 'FRICTION_COEFFICIENT_2'), true)).then((scn) => { if (gen !== state.gen) return; const p = state.panes.live; p.t0 = performance.now(); p.hudState = {}; p.nodes = {}; for (const n of p.names) { try { p.nodes[n] = scn.getNamedNode('B_' + n); } catch (x) {} } }).catch(console.error); }
+function restartLive() { const gen = state.gen; state.panes.live.nodes = null; fetch(`data/${state.scene}/live.x3d`).then((r) => r.text()).then((t) => put('live', t.replace(/FRICTION_COEFFICIENT-2/g, 'FRICTION_COEFFICIENT_2'), true)).then((scn) => { if (gen !== state.gen) return; const p = state.panes.live; p.tl = 0; p.hudState = {}; p.nodes = {}; for (const n of p.names) { try { p.nodes[n] = scn.getNamedNode('B_' + n); } catch (x) {} } }).catch(console.error); }
 
 function frame(now) {
   requestAnimationFrame(frame);
@@ -164,12 +165,12 @@ function frame(now) {
   for (const e of ENG) {
     const p = state.panes[e.id], hud = $('#h_' + e.id); if (!p.scn) continue; let P = {}, ke = 0, tt = state.t;
     if (e.live) {
-      if (!p.nodes) continue; tt = (now - p.t0) / 1000; for (const n in p.nodes) { const nd = p.nodes[n]; if (!nd) continue; try { const v = nd.position; P[n] = [v.x, v.y, v.z]; const w = nd.linearVelocity; ke += 0.5 * (w.x * w.x + w.y * w.y + w.z * w.z); } catch (x) {} }
+      if (!p.nodes) continue; if (state.play) p.tl = (p.tl || 0) + dt; tt = p.tl || 0; for (const n in p.nodes) { const nd = p.nodes[n]; if (!nd) continue; try { const v = nd.position; P[n] = [v.x, v.y, v.z]; const w = nd.linearVelocity; ke += 0.5 * (w.x * w.x + w.y * w.y + w.z * w.z); } catch (x) {} }
     } else {
       if (!p.pi) continue; for (const n in p.pi) { p.pi[n].set_fraction = f; p.oi[n].set_fraction = f; P[n] = at(p.pos[n], f); }
       const k = stats && stats.engines[e.id] ? stats.engines[e.id].ke : null; if (k) ke = k[Math.max(0, Math.min(k.length - 1, Math.round((state.t * 60 - 1) / 6)))];
     }
-    pullStrings(p, P); const chips = S.hud(P, p.hudState).concat([[`KE ${ke.toFixed(1)} J`]]);
+    pullStrings(p, P); const chips = S.hud(P, p.hudState).concat([[`Σv²/2 ${ke.toFixed(1)}`]]);
     hud.innerHTML = chips.map(([t, c]) => `<span class="chip ${c || ''}">${t}</span>`).join(''); $('#k_' + e.id).textContent = (e.live ? 'LIVE  ' + (p.B && p.B.currentFrameRate ? p.B.currentFrameRate.toFixed(0) + ' fps  ' : '') : 'recording  ') + 't = ' + tt.toFixed(2) + ' s';
   }
   $('#clock').textContent = `t = ${state.t.toFixed(2)} / ${S.T} s`;
@@ -177,18 +178,18 @@ function frame(now) {
 
 function fill(id) {
   const st = state.stats[id], E = (e) => st.engines[e];
-  const cell = (v, best, worst, d = 2) => `<td class="num ${v === best ? 'best' : v === worst ? 'worst' : ''}">${fmt(v, d)}</td>`;
-  const rows = []; const row = (label, key, d = 2, low = true, unit = '') => { const v = ['builtin', 'rapier', 'cannon'].map((e) => E(e)[key]); if (v.some((x) => x === undefined)) return; const lo = Math.min(...v), hi = Math.max(...v); rows.push(`<tr><td>${label}</td>${v.map((x) => cell(x, low ? lo : hi, low ? hi : lo, d)).join('')}</tr>`); };
-  row('wall ms per 1/240 s step (Node v22.23.4)', 'wall_ms_per_step', 3);
+  const cell = (v, best, worst, d = 2, colour = false) => `<td class="num ${colour && v === best ? 'best' : ''}">${fmt(v, d)}</td>`;
+  const rows = []; const row = (label, key, d = 2, low = true, colour = false) => { const v = ['builtin', 'rapier', 'cannon'].map((e) => E(e)[key]); if (v.some((x) => x === undefined)) return; const lo = Math.min(...v), hi = Math.max(...v); rows.push(`<tr><td>${label}</td>${v.map((x) => cell(x, low ? lo : hi, low ? hi : lo, d, colour)).join('')}</tr>`); };
+  row('wall ms per 1/240 s step (Node v22.23.4, best of 2 recorder passes, includes logging; read as rough)', 'wall_ms_per_step', 2, true, true);
   if (id === 'avalanche') { row('bodies out of the funnel (of 40)', 'escaped', 0); row('highest body at the end (m)', 'final_top_y', 2); row('mean body height at the end (m)', 'mean_height', 2, false); }
   if (id === 'cradle') { row('last ball, peak rise (m); the first ball was lifted 0.71 m', 'last_ball_peak_rise_m', 2, false); row('first ball, range over the run (m)', 'first_ball_start_rise_m', 2, true); }
-  if (id === 'gate') { row('door, max angle (rad); the stop is at 1.10', 'door_max_angle_rad', 2, true); row('cart, max separation (m); the stop is at 3.70', 'cart_max_separation_m', 2, true); row('cart, min separation (m); the stop is at 0.90', 'cart_min_separation_m', 2, false); row('ball, peak in the last 40 % of the run (m)', 'ball_last_peak_m', 2, false); }
+  if (id === 'gate') { row('door, max angle (rad); the stop is at 1.10', 'door_max_angle_rad', 2, true); row('cart, max separation (m); the slider limit is 3.70', 'cart_max_separation_m', 2, true); row('ball, peak in the last 40 % of the run (m)', 'ball_last_peak_m', 2, false); }
   $('#metrics').innerHTML = '<tr><th>measure</th><th class="num">built-in</th><th class="num">Rapier</th><th class="num">cannon-es</th></tr>' + rows.join('');
-  $('#metricsNote').textContent = st.note + (id === 'cradle' ? '; the page draws the strings from the ball positions' : '') + '. The live pane is X_ITE\'s Bullet and is not in this table: it does not repeat run to run. Green is the best of the three on that row only where "best" is unambiguous; read the row label.';
+  $('#metricsNote').textContent = st.note + (id === 'cradle' ? '; the page draws the strings from the ball positions' : '') + '. The live pane is X_ITE\'s Bullet and is not in this table: it does not repeat run to run. Only the cost row is shaded (lowest wins).';
   const I = {
-    avalanche: [['The built-in engine loses every cone', `10 of 40 bodies leave the funnel on the built-in engine, and they are exactly the 10 cones: its shape finder reads <code>size</code> or <code>radius</code>, a Cone has <code>bottomRadius</code>, so the cone gets no collider. Rapier and cannon-es: ${E('rapier').escaped} and ${E('cannon').escaped}.`], ['Same cost question, two answers', `Per 1/240 s step in Node, 40 bodies: Rapier ${fmt(E('rapier').wall_ms_per_step, 3)} ms, built-in ${fmt(E('builtin').wall_ms_per_step, 3)} ms, cannon-es ${fmt(E('cannon').wall_ms_per_step, 3)} ms. Chromium numbers for 25, 100 and 250 bodies are in the table below.`], ['Chaos is fine, repeatability is not optional', 'Three different heaps is expected from three solvers. Each of them lands on the same heap every time it is run (bit-identical); X_ITE\'s Bullet, in the live pane, lands on a different one when you reload.']],
-    cradle: [['An impulse through a resting chain', `The first ball is lifted 0.71 m. A good cradle sends that energy through four touching balls and lifts the last one about as high. Built-in: ${fmt(E('builtin').last_ball_peak_rise_m)} m. Rapier: ${fmt(E('rapier').last_ball_peak_rise_m)} m, but only with ${E('rapier').rapier_sub_steps} sub-steps per step; with one it is 0.22 m.`], ['cannon-es adds energy', `With bounce 1 each of the four contacts adds a little: the first ball ends up swinging through ${fmt(E('cannon').first_ball_start_rise_m)} m (it was lifted 0.71 m) and the last ball rises ${fmt(E('cannon').last_ball_peak_rise_m)} m. An elastic head-on hit shows the same bias on its own: +14.0 % energy, where the built-in and Rapier are at 0.4 %.`], ['Why Rapier needs sub-steps here', 'Rapier\'s contact solver works from the speeds at the start of a step, so inside one step the impulse cannot hop from ball 1 to ball 2 to ball 3. Four sub-steps give it time to; solver iterations and <code>numInternalPgsIterations</code> (1 to 8) did not help.']],
-    gate: [['A hinge that stops where the file says', `The door is spun at 3.2 rad/s into a hinge limit of +-1.10 rad. Built-in ${fmt(E('builtin').door_max_angle_rad)}, Rapier ${fmt(E('rapier').door_max_angle_rad)}, cannon-es ${fmt(E('cannon').door_max_angle_rad)} rad. X_ITE 16.6.0 never applies hinge limits: watch its door swing through the stop.`], ['A slider that stops', `The cart is thrown into slider stops at 0.90 and 3.70 m: it reaches ${fmt(E('builtin').cart_max_separation_m)} / ${fmt(E('rapier').cart_max_separation_m)} / ${fmt(E('cannon').cart_max_separation_m)} m (built-in / Rapier / cannon-es) and sags ${fmt(E('builtin').cart_sag_m, 3)} m.`], ['A ball with bounce 0.8', `Same ball, same bounce setting, three restitution models: its peak in the last 40 % of the run is ${fmt(E('builtin').ball_last_peak_m)} (built-in), ${fmt(E('rapier').ball_last_peak_m)} (Rapier), ${fmt(E('cannon').ball_last_peak_m)} m (cannon-es).`]] };
+    avalanche: [['The built-in engine loses every cone', `10 of 40 bodies leave the funnel on the built-in engine, and they are exactly the 10 cones: its shape finder reads <code>size</code> or <code>radius</code>, a Cone has <code>bottomRadius</code>, so the cone gets no collider. Rapier and cannon-es: ${E('rapier').escaped} and ${E('cannon').escaped}.`], ['Same cost question, two answers', `Per 1/240 s step in Node, 40 bodies: Rapier ${fmt(E('rapier').wall_ms_per_step, 3)} ms, built-in ${fmt(E('builtin').wall_ms_per_step, 3)} ms, cannon-es ${fmt(E('cannon').wall_ms_per_step, 3)} ms. Chromium numbers for 25, 100 and 250 bodies are in the table below.`], ['Chaos is fine, repeatability is not optional', 'Three different heaps is expected from three solvers. Each engine was recorded twice in Node and the two runs were bit-identical (all nine recordings of this page; the seven analytic scenes also match between Node and Chromium). X_ITE\'s Bullet, in the live pane, steps by your frame time and lands on a different heap when you reload.']],
+    cradle: [['An impulse through a resting chain', `The first ball is lifted 0.71 m. A good cradle sends that energy through four touching balls and lifts the last one about as high. Built-in: ${fmt(E('builtin').last_ball_peak_rise_m)} m. Rapier: ${fmt(E('rapier').last_ball_peak_rise_m)} m, but only with ${E('rapier').rapier_sub_steps} sub-steps per step; with one it is ${fmt(E('rapier').last_ball_peak_rise_m_1_sub_step)} m.`], ['cannon-es adds energy', `With bounce 1 each of the four contacts adds a little: the first ball ends up swinging through ${fmt(E('cannon').first_ball_start_rise_m)} m (it was lifted 0.71 m) and the last ball rises ${fmt(E('cannon').last_ball_peak_rise_m)} m. An elastic head-on hit shows the same bias on its own: +14.0 % energy, where the built-in and Rapier are at 0.4 %.`], ['Why Rapier needs sub-steps here', 'Rapier\'s contact solver works from the speeds at the start of a step, so inside one step the impulse cannot hop from ball 1 to ball 2 to ball 3. Four sub-steps give it time to; solver iterations and <code>numInternalPgsIterations</code> (1 to 8) did not help.']],
+    gate: [['A hinge that stops where the file says', `The door is spun at 3.2 rad/s into a hinge limit of +-1.10 rad. Built-in ${fmt(E('builtin').door_max_angle_rad)}, Rapier ${fmt(E('rapier').door_max_angle_rad)}, cannon-es ${fmt(E('cannon').door_max_angle_rad)} rad. X_ITE 16.6.0 never applies hinge limits: watch its door swing through the stop.`], ['A slider that holds its limit', `The cart starts at a separation of 0.90 m and is thrown to the right into a slider limit of 3.70 m (the red block sits just beyond it, so the joint is what stops the cart): it reaches ${fmt(E('builtin').cart_max_separation_m)} / ${fmt(E('rapier').cart_max_separation_m)} / ${fmt(E('cannon').cart_max_separation_m)} m (built-in / Rapier / cannon-es).`], ['A ball with bounce 0.8', `Same ball, same bounce setting, three restitution models: its peak in the last 40 % of the run is ${fmt(E('builtin').ball_last_peak_m)} (built-in), ${fmt(E('rapier').ball_last_peak_m)} (Rapier), ${fmt(E('cannon').ball_last_peak_m)} m (cannon-es).`]] };
   $('#insights').innerHTML = I[id].map(([h, t]) => `<div class="card"><h3>${h}</h3><p>${t}</p></div>`).join('');
 }
 
