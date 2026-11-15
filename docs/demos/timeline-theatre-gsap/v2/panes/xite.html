@@ -1,0 +1,9 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../blender-x3d-io/v1/vendor/x_ite/x_ite.css"><style>html,body{margin:0;height:100%;background:#04060c;overflow:hidden}x3d-canvas{width:100%;height:100%;display:block}</style></head>
+<body><x3d-canvas id="c" splashScreen="false" contextMenu="false" notifications="false" timings="false"></x3d-canvas>
+<script src="../../../blender-x3d-io/v1/vendor/x_ite/x_ite.min.js"></script>
+<script>
+window.ENGINE = { name: 'xite', version: null, async load(xml) { const br = X3D.getBrowser('#c'); const sc = await br.createX3DFromString(xml); await br.replaceWorld(sc); await br.nextFrame(); return sc; } };
+try { const br = X3D.getBrowser('#c'); br.setBrowserOption('Notifications', false); br.setBrowserOption('Timings', false); } catch (e) {}
+</script><script src="pane.js"></script>
+<script>window.__panePost({ ready: true, version: X3D.getBrowser('#c').version, engine: 'X_ITE' });</script></body></html>

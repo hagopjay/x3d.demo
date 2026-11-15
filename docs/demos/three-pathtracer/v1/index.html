@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Path-traced X3D</title>
+<meta name="description" content="One X3D file drawn by X_ITE and by a GPU path tracer (three-gpu-pathtracer) in your browser, with a wipe, a bounce slider and measured FLIP scores against Cycles.">
+<style>
+:root{--bg:#070a12;--panel:#101728;--panel2:#162038;--line:#232f4b;--line2:#2f3e63;--fg:#e9eefb;--mute:#97a3c0;--dim:#6b7694;--amber:#ffb454;--teal:#37d5c2;--violet:#9c8bff;--coral:#ff7a5c;--sky:#5db4ff;--sage:#7ddc6a;--red:#ff5d6c;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 var(--sans);padding:0 max(16px,env(safe-area-inset-left,0px))}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(1000px 560px at 12% -10%,rgba(255,122,92,.16),transparent 60%),radial-gradient(900px 500px at 96% 0%,rgba(93,180,255,.12),transparent 60%)}
+main{max-width:1180px;margin:0 auto;padding:22px 0 70px}
+a{color:var(--sky)}a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.03;margin:6px 0 10px;letter-spacing:-.025em;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(95deg,var(--amber),var(--coral) 50%,var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.4rem;margin:0 0 4px;letter-spacing:-.01em}
+p{margin:0 0 10px;max-width:76ch}
+.nav{font:12px var(--mono);color:var(--mute);letter-spacing:.04em;margin-bottom:10px}.nav a{color:var(--mute);text-decoration:none;margin-right:16px}.nav a:hover{color:var(--fg)}
+.kick{font:600 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+.lede{font-size:1.1rem;color:var(--mute);max-width:80ch}
+section{margin-top:48px}
+.sec-h{border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:16px}.sec-h p{margin:0;color:var(--mute);font-size:.95rem}
+.panel{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px}
+.tabs button,.btn{font:600 13px var(--sans);color:var(--fg);background:var(--panel);border:1px solid var(--line2);border-radius:99px;padding:7px 14px;cursor:pointer}
+.tabs button[aria-pressed=true]{background:linear-gradient(95deg,rgba(255,180,84,.22),rgba(255,122,92,.22));border-color:var(--amber)}
+.stagewrap{position:relative;width:100%;max-width:960px;aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--line2);background:#000;touch-action:none;user-select:none;margin:0 auto}
+.inner{position:absolute;left:0;top:0;width:480px;height:360px;transform-origin:0 0}
+.inner x3d-canvas,.inner canvas{position:absolute;left:0;top:0;width:480px;height:360px;display:block;outline:none}
+#ptwrap{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}
+#wipe{position:absolute;top:0;bottom:0;left:50%;width:3px;margin-left:-1px;background:#fff;box-shadow:0 0 12px rgba(255,255,255,.7);cursor:ew-resize}
+#wipe:after{content:"\2194";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:#fff;color:#111;font:700 18px/34px var(--sans);text-align:center}
+.tag{position:absolute;top:10px;font:600 11px var(--mono);letter-spacing:.06em;padding:3px 9px;border-radius:99px;background:rgba(5,8,16,.72);border:1px solid var(--line2);pointer-events:none}
+#tagL{left:10px}#tagR{right:10px}
+.ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px 20px;max-width:960px;margin:14px auto 0}
+.ctl label{display:block;font:12px var(--mono);color:var(--mute)}.ctl input[type=range]{width:100%}
+.ctl .v{color:var(--fg);float:right}
+.live{display:flex;flex-wrap:wrap;gap:6px 22px;max-width:960px;margin:12px auto 0;font:12.5px var(--mono);color:var(--mute)}.live b{color:var(--fg);font-weight:600}
+.bar{height:6px;background:var(--panel2);border-radius:99px;overflow:hidden;max-width:960px;margin:8px auto 0}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--amber))}
+#msg{max-width:960px;margin:10px auto 0;color:var(--amber);font-size:.92rem}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 16px}.card b.big{display:block;font:700 1.9rem/1.1 var(--sans);letter-spacing:-.02em;font-variant-numeric:tabular-nums}.card small{display:block;font:11px/1.4 var(--mono);color:var(--dim);margin-top:6px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}th,td{padding:6px 10px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}th:first-child,td:first-child{text-align:left}th{font:600 11.5px var(--mono);color:var(--mute);letter-spacing:.04em}
+td.ok{color:var(--sage)}td.bad{color:var(--red)}
+.strip img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line2);image-rendering:auto}.strip figcaption{font:11.5px var(--mono);color:var(--mute);margin:6px 0 18px}
+pre{margin:0;overflow-x:auto;font:12px/1.5 var(--mono);color:#cfe0ff}
+details{max-width:960px;margin:14px auto 0}summary{cursor:pointer;color:var(--sky);font-size:.92rem}
+.note{font-size:.85rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<main>
+<div class="nav"><a href="../../../">x3d.demo</a><a href="#live">live</a><a href="#why">what it shows</a><a href="#numbers">numbers</a><a href="#limits">limits</a></div>
+<div class="kick">demo 25 &middot; three.js bridge &middot; three-gpu-pathtracer 0.0.28</div>
+<h1>The same X3D file, <em>drawn by light</em>.</h1>
+<p class="lede">Left of the white line, X_ITE 16.6.0 draws the file the way an X3D browser does: each light shades each surface on its own. Right of it, a path tracer in this page follows light bouncing between the surfaces. Drag the line, then raise the bounces and watch the red and green walls bleed onto the white boxes.</p>
+
+<section id="live">
+<div class="tabs" id="tabs" role="group" aria-label="Scene">
+<button data-s="e2-cornell-box" aria-pressed="true">Cornell box</button>
+<button data-s="e1-pbr-grid" aria-pressed="false">PBR grid</button>
+<button data-s="e3-light-ladder" aria-pressed="false">Light ladder</button>
+</div>
+<div class="stagewrap" id="stage">
+  <div class="inner" id="innerX"><x3d-canvas id="xc" splashScreen="false" notifications="false" contextMenu="false"></x3d-canvas></div>
+  <div id="ptwrap"><div class="inner" id="innerP"><canvas id="ptc" width="480" height="360"></canvas></div></div>
+  <div id="wipe" role="slider" aria-label="Wipe between X_ITE and the path tracer" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
+  <span class="tag" id="tagL">X_ITE 16.6.0</span><span class="tag" id="tagR">PATH TRACER</span>
+</div>
+<div class="bar"><i id="prog"></i></div>
+<div class="live"><span>samples <b id="sN">0</b> / <b id="sMax">256</b></span><span>speed <b id="sRate">-</b> samples/s</span><span>bounces <b id="sB">4</b></span><span id="gpu"></span></div>
+<div class="ctl">
+<label>Bounces <span class="v" id="vB">4</span><input id="bounces" type="range" min="1" max="8" value="4"></label>
+<label>Wipe <span class="v" id="vW">50%</span><input id="wipeR" type="range" min="0" max="100" value="50"></label>
+<label>Samples to stop at <span class="v" id="vS">256</span><input id="smax" type="range" min="32" max="1024" step="32" value="256"></label>
+<label>Picture size <span class="v" id="vR">480 x 360</span><input id="res" type="range" min="0" max="2" value="1"></label>
+<label><input type="checkbox" id="emis" checked> Emissive surfaces cast light <span class="v" id="vE">on</span></label>
+<label><button class="btn" id="pause">Pause</button></label>
+</div>
+<div id="msg" role="status"></div>
+<details><summary>The X3D source being drawn</summary><div class="panel"><pre id="src"></pre></div></details>
+</section>
+
+<section id="why">
+<div class="sec-h"><div class="kick">what to try</div><h2>Three things the wipe shows</h2></div>
+<div class="grid3">
+<div class="card"><b class="big">1 bounce</b>Set bounces to 1 on the Cornell box. The path tracer now lights each surface straight from the lamps, as X_ITE does, and the two halves agree to within <span id="f1x"></span> FLIP. Every bounce after the first is light X3D, as the standard defines lighting, does not carry.<small>object-pixel FLIP, 96 samples, rig in the table below</small></div>
+<div class="card"><b class="big">The lamp that is only paint</b>Untick "Emissive surfaces cast light". In X_ITE the glowing ceiling panel is a glowing box and nothing more. A path tracer treats any emissive surface as a light, so the room it fills goes dark when the panel stops counting.<small>PhysicalMaterial emissiveColor, 19775-1 4.0</small></div>
+<div class="card"><b class="big">The grid and the shadows</b>On the PBR grid the path tracer throws shadows the raster picture does not have, and the metallic column (right) picks up its surroundings. X_ITE draws metal against a fixed glow instead.<small>e1: X_ITE has no shadows here; the path tracer has no ambient term, so unlit corners go black</small></div>
+</div>
+</section>
+
+<section id="numbers">
+<div class="sec-h"><div class="kick">measured</div><h2>How far each picture is from the others</h2><p>Object-pixel FLIP (flip-evaluator 1.7, LDR), the metric the Unreal lane uses; lower is closer. The pixels counted are those where either picture differs from the scene's sky colour. 320 x 240, one camera, the same X3D files as the Unreal Leg E.</p></div>
+<div class="panel"><table id="tbl"></table></div>
+<p class="note" style="margin-top:10px" id="tnote"></p>
+<div id="strips"></div>
+</section>
+
+<section id="limits">
+<div class="sec-h"><div class="kick">honest limits</div><h2>What this does and does not claim</h2></div>
+<div class="panel"><ul style="margin:0;padding-left:1.2em" id="lim"></ul></div>
+<p class="note" style="margin-top:14px">Libraries: three r187, three-gpu-pathtracer 0.0.28 and three-mesh-bvh 0.9.18 (MIT, vendored), X_ITE 16.6.0 (from the LUMEN Interference demo's vendor folder). Reader and body: <a href="https://github.com/hagopjay/x3d.loom/tree/main/x3d.threejs/bridge">x3d.loom x3d.threejs/bridge</a>; adapter and runner: <a href="https://github.com/hagopjay/x3d.loom/tree/main/x3d.threejs/pathtracer">x3d.threejs/pathtracer</a>.</p>
+</section>
+</main>
+
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/examples/jsm/postprocessing/Pass.js":"./vendor/Pass.js","three-mesh-bvh":"./vendor/three-mesh-bvh.js","three-gpu-pathtracer":"./vendor/three-gpu-pathtracer.js"}}</script>
+<link rel="stylesheet" href="../../lumen-interference-xite/v1/vendor/x_ite/x_ite.css">
+<script src="../../lumen-interference-xite/v1/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const XITE=window.X3D;   /* the bridge's SAI shim overwrites window.X3D when its bundle loads: keep X_ITE's */
+const RES={"scenes": {"e1-pbr-grid": {"pt6_vs_xite": 0.641, "pt6_vs_cycles": 0.7431, "pt1_vs_xite": 0.6645, "pt1_vs_cycles": 0.7656, "raster_vs_xite": 0.4764, "raster_vs_cycles": 0.5015, "cycles_vs_xite": 0.2991, "object_share": 0.9, "bound": 0.3491, "within": false, "raster_within": false}, "e2-cornell-box": {"pt6_vs_xite": 0.2653, "pt6_vs_cycles": 0.3801, "pt1_vs_xite": 0.1416, "pt1_vs_cycles": 0.4937, "raster_vs_xite": 0.5949, "raster_vs_cycles": 0.5286, "cycles_vs_xite": 0.4675, "object_share": 0.805, "bound": 0.5175, "within": true, "raster_within": false}, "e3-light-ladder": {"pt6_vs_xite": 0.4905, "pt6_vs_cycles": 0.7505, "pt1_vs_xite": 0.4901, "pt1_vs_cycles": 0.7518, "raster_vs_xite": 0.6925, "raster_vs_cycles": 0.7888, "cycles_vs_xite": 0.7054, "object_share": 0.164, "bound": 0.7554, "within": true, "raster_within": false}}, "metric": "object-pixel FLIP (flip-evaluator 1.7, LDR), mean over pixels where X_ITE or the test picture differs from the sky colour; 320x240", "bound": "max(PT-X, PT-C) <= X-C + 0.05", "note": "Rig: Chromium 153.0.8010.12 on SwiftShader (software Vulkan, no real GPU), three r187, three-gpu-pathtracer 0.0.28, three-mesh-bvh 0.9.18, X_ITE 16.6.0; Cycles from bpy 5.3.0 on CPU through the x3d.lab Blender worker (256 spp, OpenImageDenoise, film transparent, composited on the sky colour). Path tracer 96 spp; two 96 spp runs of the Cornell box differ from each other by 0.055 (noise floor). Pass bound: max(PT-X, PT-C) <= X-C + 0.05, the Unreal lane's tier-1 bound. Cycles camera matched to X_ITE: sensor fit vertical, angle = the Viewpoint fieldOfView (cycles_job.py); before that patch Cycles drew a wider view and every Cycles number was inflated (e2 X-C 0.418 -> see table).", "limits": ["No real-GPU timing: every number here comes from software Vulkan (SwiftShader), about one sample per second at 320 x 240. The samples per second this page shows are your own device's.", "The path tracer is a reference for light transport, not for X3D semantics: it has no ambient term, ignores the X3D radius cut-off, and turns every emissive surface into a lamp. X_ITE does none of that, so the two are expected to disagree there.", "Classic Material (Phong) surfaces are converted to rough dielectrics with diffuse x pi so they land on rho x I under pbr lights; that is a fit, and the indirect light they return is exaggerated by the same factor.", "FLIP here is object-pixel LDR FLIP on 8-bit pictures with no tone mapping, the same recipe as the Unreal lane's cell 10c; it says how far two pictures are, not which is right.", "The Cycles camera is matched to X_ITE's vertical field of view (cycles_job.py patches one line of the Blender worker in memory); Cycles still goes through Blender's default view transform, which the X_ITE and path-traced pictures do not have, and that offset is not isolated.", "One camera per scene, one run per cell except the noise-floor pair; no confidence intervals."]};
+const $=id=>document.getElementById(id);
+/* ---- static sections from the measured results ---- */
+(function(){
+  const S=RES.scenes,order=['e2-cornell-box','e1-pbr-grid','e3-light-ladder'],names={'e2-cornell-box':'Cornell box (e2)','e1-pbr-grid':'PBR grid (e1)','e3-light-ladder':'Light ladder (e3)'};
+  const cols=[['pt6_vs_xite','path tracer vs X_ITE'],['pt6_vs_cycles','path tracer vs Cycles'],['pt1_vs_xite','1-bounce PT vs X_ITE'],['raster_vs_xite','bridge raster vs X_ITE'],['cycles_vs_xite','Cycles vs X_ITE (spread)'],['bound','pass bound']];
+  let h='<tr><th>scene</th>'+cols.map(c=>'<th>'+c[1]+'</th>').join('')+'<th>within spread?</th></tr>';
+  for(const n of order){const r=S[n];h+='<tr><td>'+names[n]+'</td>'+cols.map(c=>'<td>'+(r[c[0]]==null?'':r[c[0]].toFixed(3))+'</td>').join('')+'<td class="'+(r.within?'ok':'bad')+'">'+(r.within?'yes':'no')+'</td></tr>';}
+  $('tbl').innerHTML=h;
+  $('f1x').textContent=S['e2-cornell-box'].pt1_vs_xite.toFixed(2);
+  $('tnote').textContent=RES.note;
+  $('lim').innerHTML=RES.limits.map(t=>'<li>'+t+'</li>').join('');
+  $('strips').innerHTML=order.map(n=>'<figure class="strip"><img loading="lazy" src="img/'+n+'.webp" alt="'+names[n]+': X_ITE, Cycles, bridge raster, path tracer, left to right" width="1280" height="240"><figcaption>'+names[n]+' &middot; left to right: X_ITE 16.6.0 &middot; Cycles (Blender 5.3 bpy, 256 spp, OIDN) &middot; bridge raster (three r187) &middot; path tracer (96 spp, 6 bounces)</figcaption></figure>').join('');
+})();
+/* ---- live ---- */
+const stage=$('stage'),innerX=$('innerX'),innerP=$('innerP'),ptc=$('ptc'),sizes=[[320,240],[480,360],[640,480]];
+let W=480,H=360;
+function layout(){const s=stage.clientWidth/W;for(const el of [innerX,innerP]){el.style.width=W+'px';el.style.height=H+'px';el.style.transform='scale('+s+')';}
+  ptc.style.width=W+'px';ptc.style.height=H+'px';$('xc').style.width=W+'px';$('xc').style.height=H+'px';}
+let wipe=50;function setWipe(v){wipe=Math.max(0,Math.min(100,v));$('ptwrap').style.clipPath='inset(0 0 0 '+wipe+'%)';$('wipe').style.left=wipe+'%';$('wipe').setAttribute('aria-valuenow',Math.round(wipe));$('vW').textContent=Math.round(wipe)+'%';$('wipeR').value=wipe;}
+let drag=false;$('wipe').addEventListener('pointerdown',e=>{drag=true;$('wipe').setPointerCapture(e.pointerId)});$('wipe').addEventListener('pointerup',()=>drag=false);
+stage.addEventListener('pointermove',e=>{if(drag){const r=stage.getBoundingClientRect();setWipe((e.clientX-r.left)/r.width*100)}});
+$('wipe').addEventListener('keydown',e=>{if(e.key==='ArrowLeft')setWipe(wipe-3);if(e.key==='ArrowRight')setWipe(wipe+3)});
+$('wipeR').oninput=e=>setWipe(+e.target.value);
+let cur='e2-cornell-box',pt=null,body=null,A=null,THREE_=null,running=true,smax=256,bounces=4,emis=true,epoch=0,srcCache={};
+const msg=t=>$('msg').textContent=t||'';
+async function getSrc(n){return srcCache[n]||(srcCache[n]=await (await fetch('scenes/'+n+'.x3d')).text())}
+async function loadX(xml){let B=null;for(let i=0;i<100&&!(B=XITE.getBrowser('#xc'));i++)await new Promise(r=>setTimeout(r,100));if(!B)throw new Error('X_ITE did not start');await B.loadURL(new XITE.MFString('data:model/x3d+xml;charset=utf-8,'+encodeURIComponent(xml)))}
+async function loadP(xml){
+  const my=++epoch;A.freeze(body);await A.loadScene(body,xml);if(my!==epoch)return;
+  const prep=A.preparePT(THREE_,body,{lights:'pbr'});
+  if(!pt){pt=new PTmod.WebGLPathTracer(body.renderer);pt.tiles.set(2,2);pt.renderScale=1;pt.dynamicLowRes=false;pt.filterGlossyFactor=0.5;pt.minSamples=0;pt.renderDelay=0;pt.fadeDuration=0;pt.rasterizeScene=false;}
+  pt.bounces=bounces;pt.setScene(body.scene,body.cam);applyEmis();
+}
+function applyEmis(){if(!body)return;body.scene.traverse(o=>{if(o.isMesh&&o.material&&o.material.emissive&&(o.material.emissive.r+o.material.emissive.g+o.material.emissive.b)>0){if(o.material.userData.e0===undefined)o.material.userData.e0=o.material.emissiveIntensity;o.material.emissiveIntensity=emis?o.material.userData.e0:0}});if(pt)pt.updateMaterials()}
+async function selectScene(n){cur=n;document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.s===n));
+  const xml=await getSrc(n);$('src').textContent=xml.replace(/<\?xml[^>]*>\s*|<!DOCTYPE[^>]*>\s*/g,'').trim();
+  msg('Loading '+n+' ...');await Promise.all([loadX(xml),body?loadP(xml):Promise.resolve()]);msg('');}
+let lastT=0,cnt=0,rateT=performance.now(),rateN=0;
+function tick(){requestAnimationFrame(tick);if(!pt||!running)return;
+  if(pt.samples<smax){const t0=performance.now();do{pt.renderSample();}while(performance.now()-t0<14&&pt.samples<smax);
+    const now=performance.now();if(now-rateT>800){$('sRate').textContent=((pt.samples-rateN)/((now-rateT)/1000)).toFixed(pt.samples-rateN>20?0:1);rateT=now;rateN=pt.samples;}
+    $('sN').textContent=Math.floor(pt.samples);$('prog').style.width=Math.min(100,pt.samples/smax*100)+'%';}else{$('sRate').textContent='done';}}
+function resetPT(){if(pt){pt.reset&&pt.reset();rateT=performance.now();rateN=0}}
+async function boot(){
+  layout();addEventListener('resize',layout);setWipe(50);
+  try{
+    THREE_=await import('three');window.THREE=THREE_;PTmod=await import('three-gpu-pathtracer');A=await import('./src/pt-adapter.js');
+    await new Promise((ok,no)=>{const s=document.createElement('script');s.src='vendor/bundle-body.js';s.onload=ok;s.onerror=no;document.body.appendChild(s)});
+    body=new Body(ptc,{tone:'none',fontBase:'../../lumen-interference-xite/v1/vendor/x_ite/assets/fonts/'});await body.init();X3DSAI.setBody(body);
+    const gl=body.renderer.getContext();if(!(body.renderer.capabilities.isWebGL2&&gl.getExtension('EXT_color_buffer_float')))throw new Error('this browser has no WebGL2 float render targets, which the path tracer needs');
+    const e=gl.getExtension('WEBGL_debug_renderer_info');$('gpu').innerHTML='GPU <b>'+(e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):'hidden by the browser').slice(0,60)+'</b>';
+  }catch(err){msg('The live path tracer could not start here ('+err.message+'). The pictures and numbers below are measured and stay valid.');$('ptwrap').style.display='none';$('wipe').style.display='none';$('tagR').style.display='none';body=null;}
+  await selectScene(cur);tick();
+}
+var PTmod;
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>selectScene(b.dataset.s));
+$('bounces').oninput=e=>{bounces=+e.target.value;$('vB').textContent=bounces;$('sB').textContent=bounces;if(pt){pt.bounces=bounces;resetPT()}};
+$('smax').oninput=e=>{smax=+e.target.value;$('vS').textContent=smax;$('sMax').textContent=smax};
+$('emis').onchange=e=>{emis=e.target.checked;$('vE').textContent=emis?'on':'off';applyEmis();resetPT()};
+$('pause').onclick=()=>{running=!running;$('pause').textContent=running?'Pause':'Resume'};
+$('res').oninput=async e=>{[W,H]=sizes[+e.target.value];$('vR').textContent=W+' x '+H;ptc.width=W;ptc.height=H;layout();if(body){body.renderer.setSize(W,H,false)}await selectScene(cur)};
+$('sMax').textContent=smax;$('sB').textContent=bounces;
+boot();
+</script>
+</body>
+</html>
