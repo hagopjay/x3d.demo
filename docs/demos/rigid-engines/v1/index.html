@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Four physics engines, one X3D scene</title>
+<meta name="description" content="The same X3D RigidBodyPhysics scene stepped by X_ITE's Bullet, the bridge's built-in engine, Rapier (WASM) and cannon-es, side by side.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/x_ite@16.6.0/dist/x_ite.css">
+<script src="https://cdn.jsdelivr.net/npm/x_ite@16.6.0/dist/x_ite.min.js"></script>
+<style>
+:root{--bg:#0a0d13;--panel:#121823;--line:#232d3f;--fg:#e3e9f3;--mut:#8995a8;--xite:#ffb454;--builtin:#9aa7bd;--rapier:#5fd4a0;--cannon:#7aa7ff;--bad:#ff6b6b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1240px;margin:auto;padding:16px 16px 56px}
+h1{font-size:26px;line-height:1.2;margin:.1em 0 .2em;letter-spacing:-.01em}h2{font-size:17px;margin:1.6em 0 .5em}
+.lede{color:var(--mut);max-width:78ch;margin:.2em 0 1em}.lede b{color:var(--fg)}
+a{color:#7fc4ff}small,.mut{color:var(--mut)}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+button,select{background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer}
+button.on{border-color:#7fc4ff;color:#7fc4ff}button:hover{border-color:#41506a}
+input[type=range]{flex:1;min-width:160px;accent-color:#7fc4ff}
+#clock{font:13px ui-monospace,Menlo,Consolas,monospace;color:var(--mut);min-width:110px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.pane{position:relative;background:#000;border:1px solid var(--line);border-radius:12px;overflow:hidden;aspect-ratio:16/10}
+.pane x3d-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.tag{position:absolute;left:10px;top:8px;right:10px;display:flex;justify-content:space-between;gap:8px;pointer-events:none;font-size:12px}
+.tag .n{font-weight:650;font-size:13px;padding:2px 8px;border-radius:6px;background:rgba(10,13,19,.78);border-left:3px solid var(--c)}
+.tag .k{font:12px ui-monospace,Menlo,Consolas,monospace;padding:2px 8px;border-radius:6px;background:rgba(10,13,19,.78);color:var(--mut);white-space:nowrap}
+.hud{position:absolute;left:10px;bottom:8px;right:10px;display:flex;gap:6px;flex-wrap:wrap;pointer-events:none}
+.chip{font:12px ui-monospace,Menlo,Consolas,monospace;padding:2px 8px;border-radius:6px;background:rgba(10,13,19,.82);color:var(--fg)}
+.chip.bad{color:var(--bad);border:1px solid var(--bad)}.chip.ok{color:var(--rapier)}
+.how{font-size:12px;color:var(--mut);margin:4px 2px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.card h3{margin:0 0 .3em;font-size:14px}.card p{margin:.3em 0}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.wrap{overflow-x:auto}
+pre{background:#0d121b;border:1px solid var(--line);border-radius:10px;padding:12px 14px;overflow:auto;font:12.5px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:.5em 0}
+.best{color:var(--rapier);font-weight:600}.worst{color:var(--bad)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mut)}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+#err{display:none;background:#2a1517;border:1px solid #6b2a30;color:#ffb3b8;border-radius:10px;padding:10px 14px;margin:10px 0}
+</style></head>
+<body><main>
+<h1>Four physics engines, one X3D scene</h1>
+<p class="lede">The same <b>RigidBodyPhysics</b> file, stepped four ways. The first pane runs <b>X_ITE's own Bullet</b> live in your browser. The other three are <b>recordings</b> of the x3d.loom bridge's built-in engine, <b>Rapier 0.21.0</b> (WASM) and <b>cannon-es 0.20.0</b>, each a script-free X3D file you can open on its own. Same bodies, same gravity, same friction, same bounce. The shapes of the heaps are not the same.</p>
+
+<div class="bar" id="tabs"></div>
+<div class="grid" id="grid"></div>
+<div class="bar">
+  <button id="play" class="on">Pause</button><button id="restart">Restart</button>
+  <input id="scrub" type="range" min="0" max="1000" value="0" aria-label="scrub the three recorded runs"><span id="clock"></span>
+  <select id="speed" aria-label="speed of the recordings"><option value="0.25">0.25x</option><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option></select>
+</div>
+<div class="legend"><span><i style="background:var(--xite)"></i>live, X_ITE 16.6.0 (Bullet via Ammo)</span><span><i style="background:var(--builtin)"></i>recorded</span><span><i style="background:var(--rapier)"></i>recorded</span><span><i style="background:var(--cannon)"></i>recorded</span></div>
+<div class="how">Scrub moves the three recordings together. The live pane keeps its own clock and shows its frame rate: X_ITE steps Bullet by the measured frame time (1 / max(10, fps)), so a slow page gives it long steps and it does not repeat run to run. It restarts when the recordings loop. Drag any pane to orbit it.</div>
+<div id="err"></div>
+
+<h2>What you are looking at</h2>
+<div class="cards" id="insights"></div>
+
+<h2>Measured on this scene</h2>
+<div class="wrap"><table id="metrics"></table></div>
+<p class="mut" id="metricsNote"></p>
+
+<h2>Cost and determinism, from the analytic scenes</h2>
+<div class="cards">
+ <div class="card"><h3>Wall ms per 1/240 s step, pile of N bodies</h3><div class="wrap"><table id="speedtbl"></table></div><p class="mut">Best of 3, 720 steps, half spheres half boxes dropped on a floor. Chromium 153.0.8010.12 (SwiftShader build) and Node v22.23.4; the bridge runs in a browser, so the Chromium column is the one to read (Node's V8 flatters the WASM engine and punishes the pure-JS ones). <code>results/speed.json</code>.</p></div>
+ <div class="card"><h3>Repeatable? Same on two hosts?</h3>
+  <p><b class="best">21 of 21</b> runs repeat bit for bit in one process (7 analytic scenes x built-in, Rapier, cannon-es), and stay equal when the frames arrive late or uneven (40 ms / 8.3 ms ticks), because the bridge steps a fixed 1/240 s grid.</p>
+  <p>Positions are <b class="best">bit-identical between Node 22 and Chromium 153</b> in 21 of 21 runs; orientation differs by at most 1.1e-16 (the two V8 builds round acos and atan2 differently).</p>
+  <p><b class="worst">X_ITE 16.6.0 / Bullet:</b> the same drop gave a bounce apex of 0.784 m on the first load and 0.522 m on the second (Chromium 153, SwiftShader).</p></div>
+ <div class="card"><h3>Does a CollisionSensor see the hit?</h3>
+  <p>A bouncy ball dropped from 24 slightly different heights lands on a different 1/240 s sub-step each time. Sensor reports the first impact in:</p>
+  <div class="wrap"><table><tr><th>engine / contact mode</th><th class="num">of 24</th></tr><tr><td>X_ITE 16.6.0</td><td class="num">4</td></tr><tr><td>built-in, last sub-step</td><td class="num">6</td></tr><tr><td>cannon-es, last sub-step</td><td class="num">5</td></tr><tr><td>Rapier, last sub-step</td><td class="num">11</td></tr><tr><td><b>Rapier, whole tick</b></td><td class="num best">24</td></tr><tr><td><b>cannon-es, whole tick</b></td><td class="num best">24</td></tr></table></div>
+  <p class="mut">The adapter's <code>contactMode: 'frame'</code> merges the contacts of every sub-step of a tick. <code>results/sensor-impact.json</code>.</p></div>
+</div>
+
+<h2>Wire it in</h2>
+<p class="mut">No bridge file is edited. The adapter replaces one function, <code>BR.phys.tick</code>, from its own file, and switching back to <code>'builtin'</code> restores the original behaviour. Engines load only if their library is present.</p>
+<pre>&lt;script type="module"&gt;
+  import RAPIER from '@dimforge/rapier3d-compat'; import * as CANNON from 'cannon-es';
+  await RAPIER.init(); window.__physLibs = { RAPIER, CANNON };
+&lt;/script&gt;
+&lt;script src="bridge.bundle.js"&gt;&lt;/script&gt;                                         &lt;!-- the bridge as built today --&gt;
+&lt;script src="engines.js"&gt;&lt;/script&gt;&lt;script src="engine-rapier.js"&gt;&lt;/script&gt;&lt;script src="engine-cannon.js"&gt;&lt;/script&gt;
+&lt;script&gt;  __bridge.physEngines.use('rapier', { contactMode: 'frame' });  &lt;/script&gt;   // 'builtin' | 'rapier' | 'cannon'</pre>
+
+<h2>Receipts</h2>
+<div class="wrap"><table>
+<tr><th>what</th><th>value</th></tr>
+<tr><td>engines</td><td>Rapier 0.21.0 (<code>@dimforge/rapier3d-compat</code>, WASM), cannon-es 0.20.0 (friction patched, see below), the x3d.loom bridge's built-in solver, X_ITE 16.6.0 with its Bullet (Ammo)</td></tr>
+<tr><td>recordings</td><td>Node v22.23.4, the bridge reader plus <code>x3d.physics/rigid-engines</code> adapter; 60 Hz ticks over a fixed 1/240 s step, 30 Hz keyframes in the replays. The recordings of the three scenes were not replayed in a second host (that check covers the seven analytic scenes, above).</td></tr>
+<tr><td>live pane</td><td>X_ITE 16.6.0 with the RigidBodyPhysics component, your browser and your GPU; frame rate sets its step. Friction is written <code>FRICTION_COEFFICIENT-2</code> (the XSD spelling) in the files; the page rewrites it to X_ITE's <code>FRICTION_COEFFICIENT_2</code> before loading the live pane, or X_ITE would ignore it.</td></tr>
+<tr><td>numbers on this page</td><td>x3d.loom <code>x3d.physics/rigid-engines/results/*.json</code> and <code>data/stats.json</code>; docs chapter 15 (x3d.docs <code>docs/learn/15-physics-engines.md</code>) has the ledger, drills and honest limits</td></tr>
+<tr><td>known cannon-es defect, fixed in the adapter</td><td>its friction bound is in force units but its solver works in impulses and per contact point, so at 1/240 s every box sticks until 45 degrees whatever mu says (<code>cannon-raw</code>: 45 and 45 degrees where 11.3 and 26.6 are right; patched: 12 and 25)</td></tr>
+<tr><td>known built-in defect, reported not edited</td><td>no collider for <code>Cone</code>: the shape finder reads <code>size</code> or <code>radius</code>, a Cone has <code>bottomRadius</code>; all 10 cones of the avalanche fall through the funnel</td></tr>
+</table></div>
+<p class="mut">Own code. Rapier is Apache-2.0 (Dimforge), cannon-es is MIT, X_ITE is MIT.</p>
+</main>
+<script>
+const XITE = 'X_ITE 16.6.0';
+const ENG = [
+  { id: 'live',    name: 'X_ITE 16.6.0 · Bullet',  c: 'var(--xite)',    live: true },
+  { id: 'builtin', name: 'Bridge built-in',        c: 'var(--builtin)' },
+  { id: 'rapier',  name: 'Rapier 0.21.0 · WASM',   c: 'var(--rapier)' },
+  { id: 'cannon',  name: 'cannon-es 0.20.0',       c: 'var(--cannon)' }];
+const SCENES = {
+  avalanche: { title: 'Avalanche', T: 5, hud: (P) => { let out = 0, top = -9; for (const id in P) { const p = P[id]; if (Math.abs(p[0]) > 4 || Math.abs(p[2]) > 4 || p[1] < -0.3) out++; else top = Math.max(top, p[1]); } return [[`out of the funnel ${out} of 40`, out > 0 ? 'bad' : 'ok'], [`highest body ${top.toFixed(2)} m`]]; } },
+  cradle:    { title: "Newton's cradle", T: 8, hud: (P, st) => { const y = P.ball4 ? P.ball4[1] : 0; st.y0 = st.y0 ?? y; st.max = Math.max(st.max || 0, y - st.y0); return [[`last ball lift ${(y - st.y0).toFixed(2)} m`], [`best ${st.max.toFixed(2)} m of 0.71 m put in`, st.max > 0.85 ? 'bad' : null]]; } },
+  gate:      { title: 'Gate, cart and ball', T: 6, hud: (P, st) => { const d = P.door, a = d ? Math.atan2(-d[2], d[0] + 3.35) : 0, c = P.cart ? P.cart[0] - 0.5 : 0; st.amax = Math.max(st.amax || 0, Math.abs(a)); return [[`door ${a.toFixed(2)} rad (stop ±1.10)`, Math.abs(a) > 1.13 ? 'bad' : null], [`cart ${c.toFixed(2)} m (0.90–3.70)`, c < 0.86 || c > 3.74 ? 'bad' : null]]; } } };
+const state = { scene: 'avalanche', t: 0, play: true, speed: 1, stats: null, panes: {}, gen: 0, last: 0 };
+const $ = (s) => document.querySelector(s), fmt = (v, d = 2) => (v === undefined || v === null ? '–' : Number(v).toFixed(d));
+const err = (m) => { const e = $('#err'); e.style.display = 'block'; e.textContent = m; };
+
+// panes
+const grid = $('#grid');
+for (const e of ENG) {
+  const d = document.createElement('div'); d.innerHTML = `<div class="pane" style="--c:${e.c}"><x3d-canvas id="c_${e.id}" notifications="false" contextMenu="false" splashScreen="false" timings="false"></x3d-canvas><div class="tag"><span class="n">${e.name}</span><span class="k" id="k_${e.id}">${e.live ? 'LIVE' : 'recording'}</span></div><div class="hud" id="h_${e.id}"></div></div>`;
+  grid.appendChild(d.firstChild); state.panes[e.id] = { e, interp: null, pos: null, B: null, scn: null, hudState: {} };
+}
+const tabs = $('#tabs'); for (const id in SCENES) { const b = document.createElement('button'); b.textContent = SCENES[id].title; b.dataset.id = id; b.onclick = () => load(id); tabs.appendChild(b); }
+
+// the cradle's strings are BallJoints (no geometry); the page draws one thin cylinder per ball from the anchor to the ball every frame
+const anchorsOf = (text) => { const m = {}, rx = /<BallJoint[^>]*anchorPoint="([-\d.e]+) ([-\d.e]+) ([-\d.e]+)"[^>]*>\s*<RigidBody USE="B_beam"[^>]*\/>\s*<RigidBody USE="B_(ball\d)"/g; let k; while ((k = rx.exec(text))) m[k[4]] = [+k[1], +k[2], +k[3]]; return m; };
+const decorate = (text, anchors) => { const ids = Object.keys(anchors || {}); if (!ids.length) return text; return text.replace('</Scene>', ids.map((id) => `<Transform DEF="S_${id}"><Shape><Appearance><Material diffuseColor="0 0 0" emissiveColor="0.75 0.78 0.85"/></Appearance><Cylinder radius="0.012" height="1" top="false" bottom="false"/></Shape></Transform>`).join('\n') + '\n</Scene>'); };
+function pullStrings(p, P) { if (!p.anchors) return; for (const id in p.anchors) { const a = p.anchors[id], b = P[id], n = p.str && p.str[id]; if (!b || !n) continue; const d = [b[0] - a[0], b[1] - a[1], b[2] - a[2]], L = Math.hypot(...d) || 1e-6; let ax = [d[2], 0, -d[0]]; const al = Math.hypot(...ax); ax = al < 1e-9 ? [1, 0, 0] : ax.map((v) => v / al);
+  n.translation = new X3D.SFVec3f(a[0] + d[0] / 2, a[1] + d[1] / 2, a[2] + d[2] / 2); n.rotation = new X3D.SFRotation(ax[0], ax[1], ax[2], Math.acos(Math.max(-1, Math.min(1, d[1] / L)))); n.scale = new X3D.SFVec3f(1, L, 1); } }
+
+// scene text -> interpolators parsed for the HUD
+function parseReplay(text) {
+  const out = {}, rx = /<PositionInterpolator DEF="PI_(\w+)" key="([^"]*)" keyValue="([^"]*)"/g; let m;
+  while ((m = rx.exec(text))) { const k = m[2].trim().split(/\s+/).map(Number), v = m[3].trim().split(/\s+/).map(Number); out[m[1]] = { n: k.length, v }; }
+  return out;
+}
+const at = (pi, f) => { const x = Math.min(Math.max(f, 0), 1) * (pi.n - 1), i = Math.min(pi.n - 2, Math.floor(x)), u = x - i, a = pi.v, o = i * 3; return [0, 1, 2].map((c) => a[o + c] + u * (a[o + 3 + c] - a[o + c])); };
+
+async function ready(B, live) { if (live) await B.loadComponents(B.getProfile('Full'), B.getComponent('RigidBodyPhysics')); }
+async function put(id, text, live) {
+  const p = state.panes[id], c = $('#c_' + id), B = X3D.getBrowser(c); p.B = B; await ready(B, live); 
+  const scn = await B.createX3DFromString(decorate(text, state.anchors)); await B.replaceWorld(scn); p.scn = scn; p.anchors = state.anchors; p.str = {}; for (const k in (state.anchors || {})) p.str[k] = scn.getNamedNode('S_' + k); return scn;
+}
+async function load(sceneId) {
+  const gen = ++state.gen; state.scene = sceneId; state.t = 0; state.last = performance.now(); document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('on', b.dataset.id === sceneId));
+  const base = `data/${sceneId}/`;
+  try {
+    const texts = await Promise.all(ENG.map((e) => fetch(base + e.id + (e.live ? '.x3d' : '.x3d')).then((r) => { if (!r.ok) throw new Error(base + e.id + '.x3d: ' + r.status); return r.text(); })));
+    if (gen !== state.gen) return; state.anchors = anchorsOf(texts[0]);
+    for (let i = 0; i < ENG.length; i++) {
+      const e = ENG[i], p = state.panes[e.id], t = e.live ? texts[i].replace(/FRICTION_COEFFICIENT-2/g, 'FRICTION_COEFFICIENT_2') : texts[i]; p.hudState = {};
+      if (!e.live) p.pos = parseReplay(texts[i]);
+      const scn = await put(e.id, t, e.live); if (gen !== state.gen) return;
+      if (e.live) { p.names = Object.keys(parseReplay(texts[1])); p.t0 = performance.now(); p.nodes = {}; for (const n of p.names) { try { p.nodes[n] = scn.getNamedNode('B_' + n); } catch (x) {} } }
+      else { try { scn.getNamedNode('CLK').enabled = false; } catch (x) {} p.pi = {}; p.oi = {}; for (const n of Object.keys(p.pos)) { p.pi[n] = scn.getNamedNode('PI_' + n); p.oi[n] = scn.getNamedNode('OI_' + n); } }
+    }
+    fill(sceneId);
+  } catch (x) { err('Could not load the scene: ' + x.message + '. The live pane needs X_ITE 16.6.0 from cdn.jsdelivr.net.'); console.error(x); }
+}
+function restartLive() { const gen = state.gen; fetch(`data/${state.scene}/live.x3d`).then((r) => r.text()).then((t) => put('live', t.replace(/FRICTION_COEFFICIENT-2/g, 'FRICTION_COEFFICIENT_2'), true)).then((scn) => { if (gen !== state.gen) return; const p = state.panes.live; p.t0 = performance.now(); p.hudState = {}; p.nodes = {}; for (const n of p.names) { try { p.nodes[n] = scn.getNamedNode('B_' + n); } catch (x) {} } }).catch(console.error); }
+
+function frame(now) {
+  requestAnimationFrame(frame);
+  const S = SCENES[state.scene], dt = (now - state.last) / 1000; state.last = now;
+  if (state.play && state.panes.builtin.pi) { state.t += dt * state.speed; if (state.t >= S.T) { state.t -= S.T; for (const e of ENG) state.panes[e.id].hudState = {}; restartLive(); } }
+  const f = state.t / S.T; $('#scrub').value = Math.round(f * 1000);
+  const stats = state.stats && state.stats[state.scene];
+  for (const e of ENG) {
+    const p = state.panes[e.id], hud = $('#h_' + e.id); if (!p.scn) continue; let P = {}, ke = 0, tt = state.t;
+    if (e.live) {
+      if (!p.nodes) continue; tt = (now - p.t0) / 1000; for (const n in p.nodes) { const nd = p.nodes[n]; if (!nd) continue; try { const v = nd.position; P[n] = [v.x, v.y, v.z]; const w = nd.linearVelocity; ke += 0.5 * (w.x * w.x + w.y * w.y + w.z * w.z); } catch (x) {} }
+    } else {
+      if (!p.pi) continue; for (const n in p.pi) { p.pi[n].set_fraction = f; p.oi[n].set_fraction = f; P[n] = at(p.pos[n], f); }
+      const k = stats && stats.engines[e.id] ? stats.engines[e.id].ke : null; if (k) ke = k[Math.max(0, Math.min(k.length - 1, Math.round((state.t * 60 - 1) / 6)))];
+    }
+    pullStrings(p, P); const chips = S.hud(P, p.hudState).concat([[`KE ${ke.toFixed(1)} J`]]);
+    hud.innerHTML = chips.map(([t, c]) => `<span class="chip ${c || ''}">${t}</span>`).join(''); $('#k_' + e.id).textContent = (e.live ? 'LIVE  ' + (p.B && p.B.currentFrameRate ? p.B.currentFrameRate.toFixed(0) + ' fps  ' : '') : 'recording  ') + 't = ' + tt.toFixed(2) + ' s';
+  }
+  $('#clock').textContent = `t = ${state.t.toFixed(2)} / ${S.T} s`;
+}
+
+function fill(id) {
+  const st = state.stats[id], E = (e) => st.engines[e];
+  const cell = (v, best, worst, d = 2) => `<td class="num ${v === best ? 'best' : v === worst ? 'worst' : ''}">${fmt(v, d)}</td>`;
+  const rows = []; const row = (label, key, d = 2, low = true, unit = '') => { const v = ['builtin', 'rapier', 'cannon'].map((e) => E(e)[key]); if (v.some((x) => x === undefined)) return; const lo = Math.min(...v), hi = Math.max(...v); rows.push(`<tr><td>${label}</td>${v.map((x) => cell(x, low ? lo : hi, low ? hi : lo, d)).join('')}</tr>`); };
+  row('wall ms per 1/240 s step (Node v22.23.4)', 'wall_ms_per_step', 3);
+  if (id === 'avalanche') { row('bodies out of the funnel (of 40)', 'escaped', 0); row('highest body at the end (m)', 'final_top_y', 2); row('mean body height at the end (m)', 'mean_height', 2, false); }
+  if (id === 'cradle') { row('last ball, peak rise (m); the first ball was lifted 0.71 m', 'last_ball_peak_rise_m', 2, false); row('first ball, range over the run (m)', 'first_ball_start_rise_m', 2, true); }
+  if (id === 'gate') { row('door, max angle (rad); the stop is at 1.10', 'door_max_angle_rad', 2, true); row('cart, max separation (m); the stop is at 3.70', 'cart_max_separation_m', 2, true); row('cart, min separation (m); the stop is at 0.90', 'cart_min_separation_m', 2, false); row('ball, peak in the last 40 % of the run (m)', 'ball_last_peak_m', 2, false); }
+  $('#metrics').innerHTML = '<tr><th>measure</th><th class="num">built-in</th><th class="num">Rapier</th><th class="num">cannon-es</th></tr>' + rows.join('');
+  $('#metricsNote').textContent = st.note + (id === 'cradle' ? '; the page draws the strings from the ball positions' : '') + '. The live pane is X_ITE\'s Bullet and is not in this table: it does not repeat run to run. Green is the best of the three on that row only where "best" is unambiguous; read the row label.';
+  const I = {
+    avalanche: [['The built-in engine loses every cone', `10 of 40 bodies leave the funnel on the built-in engine, and they are exactly the 10 cones: its shape finder reads <code>size</code> or <code>radius</code>, a Cone has <code>bottomRadius</code>, so the cone gets no collider. Rapier and cannon-es: ${E('rapier').escaped} and ${E('cannon').escaped}.`], ['Same cost question, two answers', `Per 1/240 s step in Node, 40 bodies: Rapier ${fmt(E('rapier').wall_ms_per_step, 3)} ms, built-in ${fmt(E('builtin').wall_ms_per_step, 3)} ms, cannon-es ${fmt(E('cannon').wall_ms_per_step, 3)} ms. Chromium numbers for 25, 100 and 250 bodies are in the table below.`], ['Chaos is fine, repeatability is not optional', 'Three different heaps is expected from three solvers. Each of them lands on the same heap every time it is run (bit-identical); X_ITE\'s Bullet, in the live pane, lands on a different one when you reload.']],
+    cradle: [['An impulse through a resting chain', `The first ball is lifted 0.71 m. A good cradle sends that energy through four touching balls and lifts the last one about as high. Built-in: ${fmt(E('builtin').last_ball_peak_rise_m)} m. Rapier: ${fmt(E('rapier').last_ball_peak_rise_m)} m, but only with ${E('rapier').rapier_sub_steps} sub-steps per step; with one it is 0.22 m.`], ['cannon-es adds energy', `With bounce 1 each of the four contacts adds a little: the first ball ends up swinging through ${fmt(E('cannon').first_ball_start_rise_m)} m (it was lifted 0.71 m) and the last ball rises ${fmt(E('cannon').last_ball_peak_rise_m)} m. An elastic head-on hit shows the same bias on its own: +14.0 % energy, where the built-in and Rapier are at 0.4 %.`], ['Why Rapier needs sub-steps here', 'Rapier\'s contact solver works from the speeds at the start of a step, so inside one step the impulse cannot hop from ball 1 to ball 2 to ball 3. Four sub-steps give it time to; solver iterations and <code>numInternalPgsIterations</code> (1 to 8) did not help.']],
+    gate: [['A hinge that stops where the file says', `The door is spun at 3.2 rad/s into a hinge limit of +-1.10 rad. Built-in ${fmt(E('builtin').door_max_angle_rad)}, Rapier ${fmt(E('rapier').door_max_angle_rad)}, cannon-es ${fmt(E('cannon').door_max_angle_rad)} rad. X_ITE 16.6.0 never applies hinge limits: watch its door swing through the stop.`], ['A slider that stops', `The cart is thrown into slider stops at 0.90 and 3.70 m: it reaches ${fmt(E('builtin').cart_max_separation_m)} / ${fmt(E('rapier').cart_max_separation_m)} / ${fmt(E('cannon').cart_max_separation_m)} m (built-in / Rapier / cannon-es) and sags ${fmt(E('builtin').cart_sag_m, 3)} m.`], ['A ball with bounce 0.8', `Same ball, same bounce setting, three restitution models: its peak in the last 40 % of the run is ${fmt(E('builtin').ball_last_peak_m)} (built-in), ${fmt(E('rapier').ball_last_peak_m)} (Rapier), ${fmt(E('cannon').ball_last_peak_m)} m (cannon-es).`]] };
+  $('#insights').innerHTML = I[id].map(([h, t]) => `<div class="card"><h3>${h}</h3><p>${t}</p></div>`).join('');
+}
+
+$('#play').onclick = () => { state.play = !state.play; $('#play').textContent = state.play ? 'Pause' : 'Play'; $('#play').classList.toggle('on', state.play); for (const id of ['live']) { const B = state.panes[id].B; if (B) { try { state.play ? B.beginUpdate() : B.endUpdate(); } catch (x) {} } } };
+$('#restart').onclick = () => { state.t = 0; for (const e of ENG) state.panes[e.id].hudState = {}; restartLive(); };
+$('#scrub').oninput = (ev) => { state.t = ev.target.value / 1000 * SCENES[state.scene].T; };
+$('#speed').onchange = (ev) => { state.speed = Number(ev.target.value); };
+(async () => {
+  try { state.stats = await (await fetch('data/stats.json')).json(); } catch (x) { err('data/stats.json missing'); return; }
+  const pick = new URLSearchParams(location.search).get('scene'); await load(SCENES[pick] ? pick : 'avalanche'); requestAnimationFrame((t) => { state.last = t; frame(t); });
+  const rs = await fetch('data/speed.json').then((r) => r.json()).catch(() => null);
+  if (rs) { const E3 = ['builtin', 'rapier', 'cannon'], N = ['N25', 'N100', 'N250']; document.getElementById('speedtbl').innerHTML = '<tr><th>bodies</th><th class="num">built-in</th><th class="num">Rapier</th><th class="num">cannon-es</th></tr>' + N.map((n) => { const v = E3.map((e) => rs[n].chromium[e]), lo = Math.min(...v); return `<tr><td>${n.slice(1)}</td>${v.map((x) => `<td class="num ${x === lo ? 'best' : ''}">${x.toFixed(3)}</td>`).join('')}</tr>`; }).join(''); }
+})();
+</script></body></html>
