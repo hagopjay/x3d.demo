@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="4.0"><head><component name="RigidBodyPhysics" level="2"/><meta name="title" content="cradle live"/></head><Scene>
+<NavigationInfo type='"EXAMINE" "ANY"' headlight="false"/><Viewpoint description="cradle" position="0 2.6 11" orientation="1 0 0 -0.08" fieldOfView="0.7"/>
+<Background skyColor="0.02 0.03 0.07 0.06 0.08 0.16" skyAngle="1.5" groundColor="0.02 0.03 0.07" groundAngle="0"/>
+<DirectionalLight direction="-0.4 -1 -0.5" intensity="0.9" color="1 0.96 0.9"/><DirectionalLight direction="0.6 -0.3 0.7" intensity="0.35" color="0.6 0.75 1"/>
+<Transform DEF="T_beam" translation="0 4.1 0" ><Shape><Appearance><Material diffuseColor="0.2 0.25 0.4" specularColor="0.35 0.35 0.35" shininess="0.35"/></Appearance><Box size="7 0.2 0.3"/></Shape></Transform>
+<Transform DEF="T_ball0" translation="-3.9367 1.7055 0" ><Shape><Appearance><Material diffuseColor="0.95 0.55 0.25" specularColor="0.35 0.35 0.35" shininess="0.35"/></Appearance><Sphere radius="0.5"/></Shape></Transform>
+<Transform DEF="T_ball1" translation="-1.002 1 0" ><Shape><Appearance><Material diffuseColor="0.95 0.85 0.3" specularColor="0.35 0.35 0.35" shininess="0.35"/></Appearance><Sphere radius="0.5"/></Shape></Transform>
+<Transform DEF="T_ball2" translation="0 1 0" ><Shape><Appearance><Material diffuseColor="0.6 0.95 0.4" specularColor="0.35 0.35 0.35" shininess="0.35"/></Appearance><Sphere radius="0.5"/></Shape></Transform>
+<Transform DEF="T_ball3" translation="1.002 1 0" ><Shape><Appearance><Material diffuseColor="0.25 0.8 0.95" specularColor="0.35 0.35 0.35" shininess="0.35"/></Appearance><Sphere radius="0.5"/></Shape></Transform>
+<Transform DEF="T_ball4" translation="2.004 1 0" ><Shape><Appearance><Material diffuseColor="0.7 0.5 0.98" specularColor="0.35 0.35 0.35" shininess="0.35"/></Appearance><Sphere radius="0.5"/></Shape></Transform>
+<RigidBodyCollection DEF="W" gravity="0 -9.8 0" iterations="20"><CollisionCollection containerField="collider" bounce="1" minBounceSpeed="0" frictionCoefficients="0.1 0.1" appliedParameters='"BOUNCE" "FRICTION_COEFFICIENT-2"'/>
+<RigidBody DEF="B_beam" position="0 4.1 0"  mass="1" fixed="true"  ><CollidableShape containerField="geometry"><Shape containerField="shape"><Box size="7 0.2 0.3"/></Shape></CollidableShape></RigidBody>
+<RigidBody DEF="B_ball0" position="-3.9367 1.7055 0"  mass="1"   ><CollidableShape containerField="geometry"><Shape containerField="shape"><Sphere radius="0.5"/></Shape></CollidableShape></RigidBody>
+<RigidBody DEF="B_ball1" position="-1.002 1 0"  mass="1"   ><CollidableShape containerField="geometry"><Shape containerField="shape"><Sphere radius="0.5"/></Shape></CollidableShape></RigidBody>
+<RigidBody DEF="B_ball2" position="0 1 0"  mass="1"   ><CollidableShape containerField="geometry"><Shape containerField="shape"><Sphere radius="0.5"/></Shape></CollidableShape></RigidBody>
+<RigidBody DEF="B_ball3" position="1.002 1 0"  mass="1"   ><CollidableShape containerField="geometry"><Shape containerField="shape"><Sphere radius="0.5"/></Shape></CollidableShape></RigidBody>
+<RigidBody DEF="B_ball4" position="2.004 1 0"  mass="1"   ><CollidableShape containerField="geometry"><Shape containerField="shape"><Sphere radius="0.5"/></Shape></CollidableShape></RigidBody>
+<BallJoint containerField="joints" anchorPoint="-2.004 4 0"><RigidBody USE="B_beam" containerField="body1"/><RigidBody USE="B_ball0" containerField="body2"/></BallJoint>
+<BallJoint containerField="joints" anchorPoint="-1.002 4 0"><RigidBody USE="B_beam" containerField="body1"/><RigidBody USE="B_ball1" containerField="body2"/></BallJoint>
+<BallJoint containerField="joints" anchorPoint="0 4 0"><RigidBody USE="B_beam" containerField="body1"/><RigidBody USE="B_ball2" containerField="body2"/></BallJoint>
+<BallJoint containerField="joints" anchorPoint="1.002 4 0"><RigidBody USE="B_beam" containerField="body1"/><RigidBody USE="B_ball3" containerField="body2"/></BallJoint>
+<BallJoint containerField="joints" anchorPoint="2.004 4 0"><RigidBody USE="B_beam" containerField="body1"/><RigidBody USE="B_ball4" containerField="body2"/></BallJoint>
+</RigidBodyCollection>
+<ROUTE fromNode="B_beam" fromField="position" toNode="T_beam" toField="set_translation"/><ROUTE fromNode="B_beam" fromField="orientation" toNode="T_beam" toField="set_rotation"/>
+<ROUTE fromNode="B_ball0" fromField="position" toNode="T_ball0" toField="set_translation"/><ROUTE fromNode="B_ball0" fromField="orientation" toNode="T_ball0" toField="set_rotation"/>
+<ROUTE fromNode="B_ball1" fromField="position" toNode="T_ball1" toField="set_translation"/><ROUTE fromNode="B_ball1" fromField="orientation" toNode="T_ball1" toField="set_rotation"/>
+<ROUTE fromNode="B_ball2" fromField="position" toNode="T_ball2" toField="set_translation"/><ROUTE fromNode="B_ball2" fromField="orientation" toNode="T_ball2" toField="set_rotation"/>
+<ROUTE fromNode="B_ball3" fromField="position" toNode="T_ball3" toField="set_translation"/><ROUTE fromNode="B_ball3" fromField="orientation" toNode="T_ball3" toField="set_rotation"/>
+<ROUTE fromNode="B_ball4" fromField="position" toNode="T_ball4" toField="set_translation"/><ROUTE fromNode="B_ball4" fromField="orientation" toNode="T_ball4" toField="set_rotation"/>
+</Scene></X3D>
