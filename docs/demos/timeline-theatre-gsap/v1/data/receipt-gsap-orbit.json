@@ -1,0 +1,134 @@
+{
+ "env": {
+  "chromium": "153.0.8010.12",
+  "x_ite": "16.6.0",
+  "bridge": {
+   "chromium": "153.0.8010.12",
+   "three": "187",
+   "body": "x3d.threejs reader (shared with the Babylon bridge) + three.js body"
+  }
+ },
+ "tool": "GSAP",
+ "source": {
+  "tool": "GSAP",
+  "version": "3.15.1",
+  "tweens": 7
+ },
+ "duration": 3.4,
+ "channels": 6,
+ "keys": 231,
+ "samplesPerChannel": 205,
+ "checkPoints": 816,
+ "fractions": 41,
+ "per": [
+  {
+   "channel": "Box.translation",
+   "type": "SFVec3f",
+   "keys": 37,
+   "samples": 205,
+   "bakeErr": 0.00458,
+   "xiteVsOracle": 0.0041,
+   "xiteVsOurs": 1.15e-7,
+   "bridgeVsXite": 1.13e-7,
+   "unit": "value"
+  },
+  {
+   "channel": "Box.rotation",
+   "type": "SFRotation",
+   "keys": 61,
+   "samples": 205,
+   "bakeErr": 0.00221,
+   "xiteVsOracle": 0.00186,
+   "xiteVsOurs": 2.73e-7,
+   "bridgeVsXite": 4.28e-7,
+   "unit": "rad"
+  },
+  {
+   "channel": "BoxMat.diffuseColor",
+   "type": "SFColor",
+   "keys": 29,
+   "samples": 205,
+   "bakeErr": 0.0037,
+   "xiteVsOracle": 0.00189,
+   "xiteVsOurs": 4.66e-8,
+   "bridgeVsXite": 4.73e-8,
+   "unit": "value"
+  },
+  {
+   "channel": "BoxMat.transparency",
+   "type": "SFFloat",
+   "keys": 49,
+   "samples": 205,
+   "bakeErr": 0.00814,
+   "xiteVsOracle": 0.000875,
+   "xiteVsOurs": 7.72e-8,
+   "bridgeVsXite": 7.9e-8,
+   "unit": "value"
+  },
+  {
+   "channel": "Ball.translation",
+   "type": "SFVec3f",
+   "keys": 29,
+   "samples": 205,
+   "bakeErr": 0.0139,
+   "xiteVsOracle": 0.0137,
+   "xiteVsOurs": 1.33e-7,
+   "bridgeVsXite": 1.33e-7,
+   "unit": "value"
+  },
+  {
+   "channel": "Ball.scale",
+   "type": "SFVec3f",
+   "keys": 26,
+   "samples": 205,
+   "bakeErr": 0.0016,
+   "xiteVsOracle": 0.00127,
+   "xiteVsOurs": 2.44e-7,
+   "bridgeVsXite": 2.47e-7,
+   "unit": "value"
+  }
+ ],
+ "pictures": [
+  {
+   "fraction": 0.25,
+   "interp": {
+    "psnr": 52.36,
+    "iou": 0.9952
+   },
+   "live": {
+    "psnr": 53.02,
+    "iou": 0.9958
+   }
+  },
+  {
+   "fraction": 0.6,
+   "interp": {
+    "psnr": 51.26,
+    "iou": 0.9944
+   },
+   "live": {
+    "psnr": 50.35,
+    "iou": 0.9951
+   }
+  },
+  {
+   "fraction": 0.95,
+   "interp": {
+    "psnr": 46.95,
+    "iou": 0.993
+   },
+   "live": {
+    "psnr": 46.95,
+    "iou": 0.993
+   }
+  }
+ ],
+ "worstXiteVsOracle": 0.0137,
+ "worstXiteVsOurs": 2.73e-7,
+ "worstBridgeVsXite": 4.28e-7,
+ "liveReadbackErr": 2.78e-17,
+ "minPsnrInterp": 46.95,
+ "minPsnrLive": 46.95,
+ "minIou": 0.993,
+ "pageErrors": []
+}
