@@ -2,6 +2,13 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v25 (2026-11-15)
+- Front-page numbering for the day's demos, in one place. Already on the page: Demo 25 Three authors, one scene, Demo 26 Touch a million triangles, Demo 27 One scene, nine looks (v24). New cards in this version: Demo 28 Typed X3D (`typed-x3d/v1`, shown without a number since v23; its card moves to follow Demo 27), Demo 29 Path-traced X3D (`three-pathtracer/v1`), Demo 30 Timelines to X3D (`timeline-theatre-gsap/v2`, with v1 linked), Demo 31 Four physics engines, one X3D scene (`rigid-engines/v1`), Demo 32 Five X3D features computed on the GPU (`webgpu-compute/v1`), Demo 33 glb Forge (`glb-forge/v1`). New card pictures `docs/assets/{three-pathtracer,timeline-theatre-gsap,rigid-engines,webgpu-compute,glb-forge}.jpg`, the snapshot `docs/versions/v25/index.html`, and SOURCES lines for the pictures. No demo and no earlier version is touched; v1 to v24 unchanged.
+- Correction to the v23 entry (left as written): its line "New Demo 25: Path-traced X3D" is Demo 29, because Demo 25 is Three authors, one scene. The v23 and v24 front pages also had a missing `</div></section>` between the Typed X3D card and the Three authors card (the second sat inside the first); v25 closes and reopens them.
+- Correction to the v24 section below: the lines that follow its two bullets (glb Forge, WebGPU compute under an "Unnumbered" heading, a second "v24" heading for Four physics engines) came from PRs 33, 34 and 35 and are not part of this page version; they describe Demos 33, 32 and 31 and are now shelved by this version. Those words are left as written.
+- Timelines to X3D version 2 (PR 28) was merged marked work in progress, review pending; the card says so.
+- Checked in headless Chromium: the front page lays out at 1280 and 390 px with no horizontal scroll, all card pictures load and every card link points at a file that exists in the repository.
+
 ## v24 (2026-11-15)
 - New Demo 26: Touch a million triangles (`docs/demos/three-bvh/v1/`), an X3D ElevationGrid of 125,000 to 1,000,000 triangles under a TouchSensor, drawn by the three.js bridge with a three-mesh-bvh bounds tree behind the picker; tree on and off, a race against the plain raycast, a 24,000-ray scan. Card image `docs/assets/three-bvh.jpg`.
 - New Demo 27: One scene, nine looks (`docs/demos/three-style-board/v1/`), one X3D scene drawn nine ways with TSL node materials, three scenes, code on every tile. Card image `docs/assets/three-style-board.jpg`.
