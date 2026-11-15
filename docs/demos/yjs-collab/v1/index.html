@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Three authors, one scene (Yjs + X3D)</title>
+<style>
+:root{--bg:#0b0d12;--fg:#e8eaf0;--mut:#8c94a8;--card:#141821;--bd:#262c3a;--A:#6ab0ff;--B:#ffb454;--C:#5fd38d;--ok:#5fd38d;--bad:#ff6b6b;--warn:#ffd166}
+@media (prefers-color-scheme:light){:root:not([data-theme=dark]){--bg:#f3f5f9;--fg:#141824;--mut:#59627a;--card:#fff;--bd:#d6dbe6;--A:#1b6fd1;--B:#b86a00;--C:#12804a;--ok:#12804a;--bad:#c4382f;--warn:#9a6b00}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,sans-serif;padding:14px 16px 40px}
+h1{font-size:20px;margin:0}.sub{color:var(--mut);margin:2px 0 10px}
+#cap{position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--A);border-radius:8px;padding:10px 12px;margin-bottom:10px;min-height:64px}
+#cap .act{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}#cap .t{font-size:16px;font-weight:600}#cap .d{color:var(--mut)}
+.bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}
+button{background:var(--card);color:var(--fg);border:1px solid var(--bd);border-radius:6px;padding:5px 11px;cursor:pointer;font:inherit}button:hover:not(:disabled){border-color:var(--A)}button:disabled{opacity:.4;cursor:default}
+button.go{background:var(--A);color:#fff;border-color:var(--A);font-weight:600}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}@media(max-width:900px){.row{grid-template-columns:1fr}}
+.pane{position:relative;background:var(--card);border:1px solid var(--bd);border-radius:8px;overflow:hidden}
+.pane x3d-canvas{width:100%;height:230px;display:block}
+.tag{position:absolute;left:8px;top:8px;display:flex;gap:6px;align-items:center;font-size:12px;background:#000a;color:#fff;padding:3px 8px;border-radius:99px;backdrop-filter:blur(4px)}
+.dot{width:9px;height:9px;border-radius:50%}.chip{font:11px ui-monospace,monospace;padding:1px 6px;border-radius:4px;background:#fff2}
+.pane.diverged{border-color:var(--bad)}.pane.same{border-color:var(--ok)}
+.grid2{display:grid;grid-template-columns:1.2fr 1fr;gap:10px;margin-top:10px}@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:10px}.card h2{margin:0 0 6px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut)}
+#wire{width:100%;height:150px;display:block}
+#tick{height:150px;overflow:auto;font:12px ui-monospace,monospace}#tick div{padding:1px 0;border-bottom:1px solid var(--bd)}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}td,th{border-bottom:1px solid var(--bd);padding:3px 6px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:500}
+.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}code{font:12px ui-monospace,monospace;background:#8882;padding:0 4px;border-radius:3px}
+.why td:first-child{white-space:nowrap}.hist{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center}@media(max-width:900px){.hist{grid-template-columns:1fr}}
+.hist x3d-canvas{width:100%;height:200px;display:block;border:1px solid var(--bd);border-radius:6px}input[type=range]{width:100%}
+label{color:var(--mut)}
+</style></head><body>
+<h1>Three authors, one scene</h1>
+<p class="sub">Alice and Bob are two X_ITE browsers, the third is an agent. Each holds its own copy of one X3D scene as a Yjs document; the only thing that travels is small update messages. No server, no lock, no merge dialog. <b>Press play.</b></p>
+<div id="cap"><div class="act">ready</div><div class="t">The scene is an animated orrery: a spinning pivot, planets, a lamp, a red cube.</div><div class="d">The animation clock and its ROUTEs are part of the shared document, so even the speed of the planets is a collaborative edit.</div></div>
+<div class="bar"><button class="go" id="play">&#9654; play the story</button><button id="reset">reset</button>
+ <label>network delay <input id="lat" type="range" min="0" max="600" value="120" step="20" style="width:120px;vertical-align:middle"> <b id="latv">120</b> ms</label>
+ <span style="flex:1"></span>
+ <button data-m="A">Alice: drag cube</button><button data-m="B">Bob: recolour cube</button><button data-m="C">Agent: speed up</button></div>
+<div class="row">
+ <div class="pane" id="pa"><x3d-canvas id="ca" splashScreen="false" contextMenu="false" notifications="false" timings="false"></x3d-canvas><div class="tag"><span class="dot" style="background:var(--A)"></span>Alice <span class="chip" id="ha">-</span></div></div>
+ <div class="pane" id="pb"><x3d-canvas id="cb" splashScreen="false" contextMenu="false" notifications="false" timings="false"></x3d-canvas><div class="tag"><span class="dot" style="background:var(--B)"></span>Bob <span class="chip" id="hb">-</span></div></div>
+ <div class="pane" id="pc"><x3d-canvas id="cc" splashScreen="false" contextMenu="false" notifications="false" timings="false"></x3d-canvas><div class="tag"><span class="dot" style="background:var(--C)"></span>Agent <span class="chip" id="hc">-</span></div></div>
+</div>
+<div class="grid2">
+ <div class="card"><h2>The wire: every tick is one Yjs update (height = bytes)</h2><canvas id="wire" width="900" height="150"></canvas><div id="stats" style="color:var(--mut);font-size:12px"></div></div>
+ <div class="card"><h2>Who did what</h2><div id="tick"></div></div>
+</div>
+<div class="grid2">
+ <div class="card"><h2>Why it converged: the rule that decided each clash</h2><table class="why" id="why"><tr><td class="d" style="color:var(--mut)">Run the story to the split-brain act: this table fills with the rule that settled every conflict.</td></tr></table>
+  <div style="margin-top:6px"><button id="rescue" disabled>rescue the vanished groups</button></div></div>
+ <div class="card"><h2>History: scrub the scene through every edit</h2><div class="hist"><x3d-canvas id="ch" splashScreen="false" contextMenu="false" notifications="false" timings="false"></x3d-canvas><div><input id="sc" type="range" min="0" max="0" value="0"><div id="sct" style="color:var(--mut);font-size:12px">no edits yet</div><div style="color:var(--mut);font-size:12px;margin-top:6px">A fresh document rebuilt from the first N updates. Yjs updates are the history; nothing extra is stored.</div></div></div></div>
+</div>
+<p class="sub" style="margin-top:14px">Rig for the numbers on this page: your browser, in-page link with the delay above (no real network). Libraries bundled: Yjs 13.6.33 and lib0 (MIT, see NOTICE.md), X_ITE 16.6.0 (own LICENSE). No network requests. Measured benchmarks and limits: x3d.yjs README and x3d.docs chapter 15.</p>
+<script>
+const q=new URLSearchParams(location.search);
+document.write('<script src="'+(q.get('xite')||'vendor/x_ite/x_ite.min.js')+'"><\/script>');
+</script>
+<script type="module">
+import {X3DDoc,Y,Link,SaiAdapter,agentApply,ROOT} from './dist/yx3d.js'
+const $=id=>document.getElementById(id), sleep=ms=>new Promise(r=>setTimeout(r,ms))
+const SRC=`<?xml version="1.0" encoding="UTF-8"?><X3D profile="Interchange" version="4.0"><Scene>
+<NavigationInfo type='"NONE"' headlight="false"/><Viewpoint position="0 3 11" orientation="1 0 0 -0.22"/>
+<Background skyColor="0.01 0.02 0.06 0.1 0.16 0.32 0.35 0.3 0.4" skyAngle="0.9 1.57" groundColor="0.01 0.02 0.05 0.06 0.08 0.16" groundAngle="1.57"/>
+<DirectionalLight direction="-0.4 -1 -0.6" intensity="0.55"/>
+<Transform DEF="Lamp" translation="0 3 1"><PointLight color="1 0.95 0.8" intensity="1.1" radius="30"/><Shape><Appearance><Material emissiveColor="1 0.9 0.4" diffuseColor="0 0 0"/></Appearance><Sphere radius="0.18"/></Shape></Transform>
+<Transform DEF="Floor" translation="0 -1.3 0"><Shape><Appearance><Material diffuseColor="0.16 0.19 0.26"/></Appearance><Cylinder radius="6.4" height="0.2"/></Shape></Transform>
+<Transform DEF="Sun" translation="0 0.4 0"><Shape><Appearance><Material DEF="SunM" diffuseColor="1 0.7 0.2" emissiveColor="0.6 0.3 0"/></Appearance><Sphere radius="0.8"/></Shape></Transform>
+<Transform DEF="Pivot"><Transform DEF="P1" translation="2.4 0.4 0"><Shape><Appearance><Material diffuseColor="0.25 0.55 0.95"/></Appearance><Sphere radius="0.38"/></Shape></Transform>
+ <Transform DEF="P2" translation="-3.6 0.4 0"><Shape><Appearance><Material diffuseColor="0.55 0.9 0.5"/></Appearance><Sphere radius="0.55"/></Shape></Transform></Transform>
+<Transform DEF="BoxT" translation="-4 -0.7 2.4"><Shape><Appearance><Material DEF="BoxM" diffuseColor="0.95 0.25 0.2"/></Appearance><Box size="0.9 0.9 0.9"/></Shape></Transform>
+<Transform DEF="G1" translation="3.8 -0.6 2"><Shape><Appearance><Material diffuseColor="0.9 0.4 0.9"/></Appearance><Cone bottomRadius="0.45" height="1"/></Shape></Transform>
+<Transform DEF="G2" translation="4.8 -0.6 -1.5"><Shape><Appearance><Material diffuseColor="0.3 0.9 0.9"/></Appearance><Cylinder radius="0.35" height="1"/></Shape></Transform>
+<TimeSensor DEF="Clock" cycleInterval="14" loop="true"/>
+<OrientationInterpolator DEF="Spin" key="0 0.5 1" keyValue="0 1 0 0 0 1 0 3.14159 0 1 0 6.28318"/>
+<ROUTE fromNode="Clock" fromField="fraction_changed" toNode="Spin" toField="set_fraction"/><ROUTE fromNode="Spin" fromField="value_changed" toNode="Pivot" toField="set_rotation"/>
+</Scene></X3D>`
+const NAMES={A:'Alice',B:'Bob',C:'Agent'},COL={A:'#6ab0ff',B:'#ffb454',C:'#5fd38d'}
+let sends=[],A,B,C,links={},adapters={},log=[],hist=[],stats={upd:0,bytes:0},packets=[],epoch=0
+const doc=k=>({A,B,C})[k]
+const hs=x=>{let h=2166136261;const s=x.toXML();for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(16).padStart(8,'0').slice(0,6)}
+await new Promise(r=>{const t=setInterval(()=>{if(window.X3D){clearInterval(t);r()}},20)})
+const br={a:X3D.getBrowser('#ca'),b:X3D.getBrowser('#cb'),c:X3D.getBrowser('#cc'),h:X3D.getBrowser('#ch')}
+function say(act,t,d,col){$('cap').innerHTML=`<div class="act">${act}</div><div class="t">${t}</div><div class="d">${d||''}</div>`;$('cap').style.borderLeftColor=col||'var(--A)'}
+function tick(who,msg,cls){const d=document.createElement('div');d.innerHTML=`<span style="color:${COL[who]}">&#9679; ${NAMES[who]}</span> ${msg}`;if(cls)d.className=cls;$('tick').prepend(d)}
+function wire(){ // each local update fans out to the other two peers
+}
+async function build(){
+ epoch++; log=[];sends=[];hist=[];stats={upd:0,bytes:0};packets=[];$('tick').innerHTML='';$('sc').value=0;$('sc').max=0
+ for(const k in links) links[k].close()
+ A=new X3DDoc();B=new X3DDoc();C=new X3DDoc();A.loadXML(SRC)
+ const base=Y.encodeStateAsUpdate(A.doc);hist.push(base);Y.applyUpdate(B.doc,base);Y.applyUpdate(C.doc,base)
+ const lat=+$('lat').value
+ links={AB:new Link(A.doc,B.doc,{latency:lat}),AC:new Link(A.doc,C.doc,{latency:lat}),BC:new Link(B.doc,C.doc,{latency:lat})}
+ for(const k of ['A','B','C']) doc(k).doc.on('update',(u,origin)=>{ if(origin instanceof Link) return; hist.push(u);$('sc').max=hist.length-1;$('sc').value=hist.length-1;stats.upd++;stats.bytes+=u.length
+   sends.push({k,t:performance.now(),off:['A','B','C'].some(o=>o!==k&&!linkOnline(k,o)),sz:u.length})
+   for(const o of ['A','B','C']) if(o!==k){const on=linkOnline(k,o);packets.push({from:k,to:o,t0:performance.now(),dur:Math.max(+$('lat').value,350),on,sz:u.length})}
+   histShow() })
+ adapters.A=await new SaiAdapter(A,br.a).load();adapters.B=await new SaiAdapter(B,br.b).load();adapters.C=await new SaiAdapter(C,br.c).load()
+ await histShow()
+}
+const linkOf=(x,y)=>links[[x,y].sort().join('')]
+const linkOnline=(x,y)=>linkOf(x,y).online
+function setCut(x,on){for(const y of ['A','B','C']) if(y!==x) linkOf(x,y).setOnline(on)}
+// history scrubber: a fresh doc built from the first N updates
+let hbusy=false
+async function histShow(){ if(hbusy) return; hbusy=true; try{const n=+$('sc').value;const d=new X3DDoc();for(let i=0;i<=n&&i<hist.length;i++) Y.applyUpdate(d.doc,hist[i])
+ const sc=await br.h.createX3DFromString(d.toXML());await br.h.replaceWorld(sc);$('sct').textContent=`state after ${n} of ${hist.length-1} edits (${d.nodes.size} nodes)`}catch(e){}hbusy=false}
+$('sc').oninput=histShow
+$('lat').oninput=e=>{$('latv').textContent=e.target.value;for(const k in links) links[k].latency=+e.target.value}
+// ------------------------------------------------------------- live chips + wire canvas
+function refresh(){
+ const h={A:hs(A),B:hs(B),C:hs(C)};for(const k of 'ABC') $('h'+k.toLowerCase()).textContent=h[k]
+ const same=h.A===h.B&&h.B===h.C;for(const k of 'abc'){const p=$('p'+k);p.classList.toggle('same',same);p.classList.toggle('diverged',!same)}
+ $('stats').innerHTML=`${stats.upd} updates sent, ${stats.bytes} bytes total (${stats.upd?(stats.bytes/stats.upd).toFixed(0):0} B each) &middot; ${same?'<span class=ok>all three copies identical</span>':'<span class=bad>copies differ right now</span>'} &middot; nodes ${A.nodes.size}`
+ const c=$('wire'),x=c.getContext('2d'),W=c.width,Hh=c.height,lane={A:30,B:75,C:120};x.clearRect(0,0,W,Hh)
+ const css=getComputedStyle(document.body);x.font='12px system-ui';x.textBaseline='middle'
+ for(const k of 'ABC'){x.strokeStyle=css.getPropertyValue('--bd');x.beginPath();x.moveTo(90,lane[k]);x.lineTo(W-10,lane[k]);x.stroke();x.fillStyle=COL[k];x.fillText(NAMES[k],8,lane[k])}
+const now0=performance.now(),WIN=40000;sends=sends.filter(m=>now0-m.t<WIN)
+ for(const m of sends){const X=W-10-(now0-m.t)/WIN*(W-110);x.fillStyle=m.off?css.getPropertyValue('--bad').trim():COL[m.k];x.fillRect(X,lane[m.k]-6-Math.min(10,m.sz/25),2,12+Math.min(20,m.sz/12))}
+ x.fillStyle=css.getPropertyValue('--mut').trim();x.fillText('last 40 s (red = sent while a link was down)',W-250,Hh-6)
+ const now=performance.now();packets=packets.filter(p=>now-p.t0<p.dur+600)
+ for(const p of packets){const f=Math.min(1,(now-p.t0)/p.dur),X=90+(W-110)*f,Y1=lane[p.from]+(lane[p.to]-lane[p.from])*f
+  x.fillStyle=p.on?COL[p.from]:css.getPropertyValue('--bad').trim();x.globalAlpha=f>=1?Math.max(0,1-(now-p.t0-p.dur)/600):1
+  if(!p.on&&f>0.5){x.fillText('✕',X,Y1)}else{x.beginPath();x.arc(X,Y1,3+Math.min(4,p.sz/40),0,7);x.fill()};x.globalAlpha=1}
+ requestAnimationFrame(()=>{})
+}
+setInterval(refresh,60)
+// ------------------------------------------------------------- scripted edits
+const dragCube=async(who,to,steps=14)=>{const d=doc(who),u=d.findByDef('BoxT');if(!u)return;const [fx,fy,fz]=(d.getField(u,'translation')||'0 0 0').split(' ').map(Number)
+ for(let i=1;i<=steps;i++){const t=i/steps,e=t*t*(3-2*t);d.setField(u,'translation',`${(fx+(to[0]-fx)*e).toFixed(2)} ${(fy+(to[1]-fy)*e).toFixed(2)} ${(fz+(to[2]-fz)*e).toFixed(2)}`,'peer:'+who);await sleep(45)}}
+const colour=(who,c)=>{const d=doc(who);d.setField(d.findByDef('BoxM'),'diffuseColor',c,'peer:'+who)}
+let playing=false
+async function story(){
+ if(playing) return;playing=true;$('play').disabled=true;const my=epoch
+ say('act one','Alice drags the red cube across the floor','14 small field edits, each one a ~45-byte Yjs update. Watch the dots on the wire and the other two screens.',COL.A)
+ tick('A','dragging BoxT.translation');await dragCube('A',[-1.2,-0.7,2.4]);await sleep(900)
+ say('act one','Bob recolours it while she is still holding it','Different field, same node, same moment. Neither edit overwrites the other.',COL.B)
+ tick('A','dragging BoxT.translation (continues)');const drag=dragCube('A',[0.6,-0.7,2.6]);await sleep(200);colour('B','0.2 0.9 0.5');tick('B','BoxM.diffuseColor = 0.2 0.9 0.5');await drag;await sleep(900)
+ say('act one','Someone types: "make the planets orbit faster, and give Saturn rings"','The agent is a normal peer. It proposes JSON ops against DEF names; the applier checks every name. There is no Saturn.',COL.C)
+ await sleep(900)
+ const ops=[{op:'modify_node',def:'Clock',fields:{cycleInterval:'4'}},{op:'modify_node',def:'Saturn',fields:{radius:'2'}},{op:'add_node',parent:'#scene',xml:'<Transform DEF="Moon" translation="1.4 1.6 0.8"><Shape><Appearance><Material diffuseColor="0.85 0.85 0.9"/></Appearance><Sphere radius="0.22"/></Shape></Transform>'}]
+ const res=agentApply(C,ops,'copilot');ops.forEach((o,i)=>tick('C',`${o.op} ${o.def||o.xml.match(/DEF="(\w+)"/)[1]} &rarr; ${res[i].ok?'<span class=ok>applied</span>':'<span class=bad>refused: '+res[i].error+'</span>'}`))
+ await sleep(2200)
+ say('act two','The network between Alice and everyone else dies','Alice keeps editing offline. Bob and the agent keep talking. Both sides make conflicting changes.',COL.A)
+ setCut('A',false);tick('A','<span class=bad>went offline</span>');await sleep(900)
+ const cubeU=A.findByDef('BoxT'),lampU=A.findByDef('Lamp'),g1=A.findByDef('G1'),g2=A.findByDef('G2')
+ A.setField(cubeU,'translation','-3.5 -0.7 2.4','peer:A');tick('A','BoxT.translation = -3.5 -0.7 2.4 (offline)')
+ A.remove(lampU,'peer:A');tick('A','deleted the Lamp (offline)')
+ A.move(g1,g2,'children',undefined,'peer:A');tick('A','moved G1 into G2 (offline)')
+ await sleep(500)
+ B.setField(B.findByDef('BoxT'),'translation','3.5 -0.7 2.4','peer:B');tick('B','BoxT.translation = 3.5 -0.7 2.4')
+ B.setField(B.findByDef('Lamp'),'translation','0 1 3','peer:B');tick('B','moved the Lamp lower')
+ B.move(B.findByDef('G2'),B.findByDef('G1'),'children',undefined,'peer:B');tick('B','moved G2 into G1')
+ await sleep(1800)
+ const before={ta:A.getField(cubeU,'translation'),tb:B.getField(cubeU,'translation')}
+ say('act two','Two realities. Look at the three hashes and borders','Alice sees one scene, Bob and the agent see another. The cube, the lamp and two groups disagree.',COL.B)
+ await sleep(3200)
+ say('act two','The network heals','No merge dialog. Each side sends only what the other is missing.',COL.C)
+ setCut('A',true);tick('A','<span class=ok>back online</span>');await sleep(Math.max(1500,+$('lat').value*3+800))
+ const t=A.tree(),W=$('why'),win=A.getField(cubeU,'translation')
+ const orphans=t.orphans.map(u=>A.nodes.get(u).get('def')).filter(Boolean)
+ const lampGone=!A.findByDef('Lamp')
+ W.innerHTML=`<tr><th>clash</th><th>outcome on all three</th><th>rule</th></tr>
+ <tr><td>cube position: Alice <code>${before.ta}</code> vs Bob <code>${before.tb}</code></td><td><code>${win}</code> on every peer</td><td>last-writer-wins per field; every replica computes the same winner</td></tr>
+ <tr><td>Alice deleted the Lamp, Bob moved it</td><td>${lampGone?'<span class=bad>Lamp gone</span> (Bob\'s edit discarded)':'Lamp kept'}</td><td>delete beats concurrent edit</td></tr>
+ <tr><td>Alice: G1 into G2. Bob: G2 into G1</td><td><span class=warn>${orphans.join(', ')||'-'}</span> left the scene, nothing deleted</td><td>a cycle is unreachable from the root, so it is cut out and listed</td></tr>
+ <tr><td>all of the above</td><td>hashes ${hs(A)} = ${hs(B)} = ${hs(C)}</td><td>same updates, same state, any order</td></tr>`
+ $('rescue').disabled=!t.orphans.length
+ say('act three','Converged. Two groups vanished into a loop: nothing was lost, and one click gets them back','Open the history scrubber to replay every step, including the split.',COL.A)
+ tick('A','<span class=ok>copies identical again</span>')
+ playing=false;$('play').disabled=false;$('play').textContent='↺ play again (resets)'
+}
+$('rescue').onclick=()=>{const t=A.tree();const tops=t.orphans.filter(u=>{const at=A.nodes.get(u).get('at');return A.nodes.get(at.split('|')[0])});if(tops.length){A.move(tops[0],ROOT,'children',undefined,'peer:A');tick('A','rescued '+(A.nodes.get(tops[0]).get('def'))+' back to the scene');$('rescue').disabled=true}}
+$('play').onclick=async()=>{if($('play').textContent.includes('again')){await build();$('why').innerHTML='';$('rescue').disabled=true}story()}
+$('reset').onclick=async()=>{playing=false;$('play').disabled=false;$('play').textContent='▶ play the story';await build();say('ready','Reset','All three peers reloaded from one starting document.')}
+for(const b of document.querySelectorAll('button[data-m]')) b.onclick=()=>{const w=b.dataset.m;if(w==='A'){dragCube('A',[(Math.random()*6-3),-0.7,1.5+Math.random()*2]);tick('A','dragging cube')}else if(w==='B'){colour('B',[Math.random(),Math.random(),Math.random()].map(v=>v.toFixed(2)).join(' '));tick('B','recoloured cube')}else{const r=agentApply(C,[{op:'modify_node',def:'Clock',fields:{cycleInterval:String(3+Math.floor(Math.random()*12))}}],'manual');tick('C','Clock.cycleInterval changed '+(r[0].ok?'':'(refused)'))}}
+await build()
+window.showcase={get A(){return A},get B(){return B},get C(){return C},get links(){return links},adapters,hs,story,br,Y}
+window.showReady=true
+</script></body></html>

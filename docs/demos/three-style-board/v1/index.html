@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>One scene, nine looks</title>
+<meta name="description" content="One X3D scene, read once by the three.js bridge, drawn nine ways with three.js Shading Language (TSL) materials: toon, hologram, blueprint, halftone, thermal, normals, pearl, retro dither. The X3D never changes; the look is the renderer's.">
+<style>
+:root{--bg:#070a12;--bg2:#0c111d;--panel:#101728;--panel2:#162038;--line:#232f4b;--line2:#2f3e63;--fg:#e9eefb;--mute:#97a3c0;--dim:#6b7694;
+--amber:#ffb454;--teal:#37d5c2;--violet:#9c8bff;--coral:#ff7a5c;--sky:#5db4ff;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 var(--sans);padding:0 max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(1000px 520px at 88% -8%,rgba(156,139,255,.16),transparent 60%),radial-gradient(900px 480px at 4% 0%,rgba(255,122,92,.10),transparent 60%)}
+a{color:var(--sky)}
+header,main{max-width:1240px;margin:0 auto}
+header{padding:22px 0 10px}
+.kick{font:600 12px var(--mono);letter-spacing:.12em;color:var(--violet);text-transform:uppercase}
+h1{margin:4px 0 6px;font-size:clamp(26px,4.6vw,42px);line-height:1.08;letter-spacing:-.01em}
+.lede{max-width:80ch;color:var(--mute);margin:0}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0}
+button{font:600 13px var(--sans);background:var(--panel2);color:var(--fg);border:1px solid var(--line2);border-radius:9px;padding:8px 12px;cursor:pointer;min-height:40px}
+button:hover{border-color:var(--violet)}
+button.sel{background:#2a2250;border-color:var(--violet);color:#efeaff}
+.pill{background:var(--panel);border:1px solid var(--line2);border-radius:999px;padding:4px 11px;font:12px var(--mono);color:var(--mute)}
+.pill b{color:var(--amber);font-weight:600}
+.board{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#04060c}
+#tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line)}
+@media(max-width:900px){#tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+#tiles.one{grid-template-columns:minmax(0,1fr)}
+.tile{position:relative;aspect-ratio:16/10;overflow:hidden;background:#04060c}
+.tile canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+.tile .lab{pointer-events:none;position:absolute;left:8px;top:8px;max-width:calc(100% - 78px);background:rgba(7,10,18,.78);border:1px solid var(--line2);border-radius:9px;padding:4px 9px;font:12px/1.35 var(--mono);color:var(--fg);backdrop-filter:blur(4px)}
+.tile .lab b{color:var(--amber)}
+.tile .lab span{display:block;color:var(--mute);font-size:11px}
+.tile button{position:absolute;right:8px;top:8px;pointer-events:auto;min-height:30px;padding:3px 9px;font-size:12px}
+.busy{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(4,6,12,.74);font:14px var(--mono);color:var(--amber);text-align:center;padding:20px}
+.note{font-size:12.5px;color:var(--mute);margin:8px 0 0}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+@media(max-width:940px){.grid3{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.panel h2{margin:0 0 8px;font-size:15px}
+.panel p{margin:0 0 8px;color:var(--mute);font-size:14px}
+.panel p b{color:var(--fg)}
+pre{margin:8px 0 0;background:var(--bg2);border:1px solid var(--line);border-radius:9px;padding:10px;overflow:auto;font:12px/1.5 var(--mono);color:#cfe1ff;white-space:pre}
+#code{display:none;margin-top:14px}
+footer{margin-top:24px;color:var(--dim);font-size:12.5px}
+</style>
+</head>
+<body>
+<header>
+  <div class="kick">three.js bridge &middot; TSL</div>
+  <h1>One scene, nine looks</h1>
+  <p class="lede">The X3D file is read once. Then the same scene graph is drawn nine times a frame, each tile with a different <a href="https://threejs.org/docs/TSL.html">three.js Shading Language</a> material built from the X3D material's own colours. Nothing in the X3D changes; the look belongs to the renderer. Drag any tile to turn them all.</p>
+</header>
+<main>
+  <div class="bar" id="scenes">
+    <button data-f="stilllife-x3d40.x3d" data-b="Still life, baked in Blender" class="sel">Still life (Blender)</button>
+    <button data-f="prismatica-aurora-cathedral.x3d" data-b="Prismatica">Prismatica</button>
+    <button data-f="asterion.x3d" data-b="Asterion">Asterion</button>
+    <span class="pill" id="pBackend">renderer <b>-</b></span>
+    <span class="pill" id="pFps">fps <b>-</b></span>
+    <span class="pill" id="pInfo">-</span>
+  </div>
+  <div class="board" id="board">
+    <div id="tiles"></div>
+    <div class="busy" id="busy"></div>
+  </div>
+  <p class="note">Click "code" on a tile to read its TSL; double-click a tile to fill the board with it. The scenes are the Blender exports of the <a href="../../bridge-blenderizer/v1/index.html">bridge and blenderizer</a> showcase, read from there. The picture on each tile is drawn by your browser, live.</p>
+  <div class="panel" id="code"><h2 id="codeT"></h2><pre id="codeP"></pre></div>
+
+  <div class="grid3">
+    <div class="panel"><h2>What stays the same</h2>
+      <p><b>The X3D.</b> The scene is a plain X3D file. The bridge's reader builds the graph (shapes, lights, camera, ROUTEs); the tiles only change which material each mesh is drawn with.</p>
+      <p><b>The colours.</b> Every style reads the X3D material's diffuse colour, its texture or its baked vertex colours, so the same object stays recognisable in all nine.</p>
+    </div>
+    <div class="panel"><h2>Why TSL</h2>
+      <p>A TSL material is a small graph of nodes. three.js compiles that one graph to WGSL on WebGPU, or to GLSL on its WebGL 2 backend when WebGPU is not there. The header pill says which one your browser got.</p>
+      <p>The bridge's own shader patches (a texture projector, fog coordinates, the ADD stage) are written as GLSL strings. Writing them as TSL would make them run on both. That port is not done; this page shows the toolchain working.</p>
+    </div>
+    <div class="panel"><h2>Honest limits</h2>
+      <p>Shapes that the bridge draws with its own GLSL shaders (ComposedShader, volumes, 3D textures) are hidden on the tiles, because WebGPURenderer does not run raw GLSL. The bridge's headlight and X3D lights are used as they are; the styles that ignore lights say so.</p>
+      <p>No timing is claimed: frame rates depend on your machine.</p>
+    </div>
+  </div>
+  <footer>Libraries: three r187 (WebGPURenderer, TSL), pinned, from jsDelivr. The X3D scenes and the bridge bundle are the ones of the neighbouring demos.</footer>
+</main>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js","three/webgpu":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.webgpu.js","three/tsl":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.tsl.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import * as W from 'three/webgpu';   // the node materials and WebGPURenderer; the same core classes as THREE (both builds share three.core.js)
+import { vec3, float, color, uniform, normalView, normalWorld, positionWorld, positionView, vertexColor, texture, uv, mix, smoothstep, step, clamp, floor, fract, dot, normalize, length, sin, abs, max, time, screenCoordinate, fwidth, hue, vec2 } from 'three/tsl';
+window.THREE = THREE;
+const $ = (id) => document.getElementById(id), canvas = $('c'), busy = $('busy');
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const frame = () => new Promise((r) => requestAnimationFrame(() => r()));
+const showBusy = (t) => { busy.style.display = t ? 'flex' : 'none'; busy.textContent = t || ''; };
+
+// ---- the bridge reads the X3D and builds the scene graph; its own draw is switched off ----
+await new Promise((ok, no) => { const s = document.createElement('script'); s.src = '../../three-bvh/v1/bridge-three.js'; s.onload = ok; s.onerror = () => no(new Error('bridge-three.js did not load')); document.head.appendChild(s); });
+const hid = document.createElement('canvas'); hid.width = 640; hid.height = 400;   // the body's own (unused) surface: only its camera aspect matters, 16:10
+const body = new Body(hid, { tone: 'none', fontBase: '', onNote: () => {} });
+await body.init(); X3DSAI.setBody(body); body.renderAll = () => {};
+
+// ---- the nine looks: each builds a node material from the X3D material's own colour ----
+const INK = color(0.04, 0.05, 0.12), L = normalize(vec3(0.45, 0.8, 0.55));
+const base = (o) => o.vertexColors ? vertexColor() : (o.map ? texture(o.map, uv()).rgb.mul(color(o.color.r, o.color.g, o.color.b)) : color(o.color.r, o.color.g, o.color.b));
+const ndl = () => dot(normalView, L).max(0);
+const fres = () => float(1).sub(dot(normalView, normalize(positionView.negate())).abs());
+const mk = (o, node, extra) => { const m = new W.MeshBasicNodeMaterial(); m.colorNode = node; m.side = o.side; Object.assign(m, extra || {}); return m; };
+const STYLES = [
+ { id: 'orig', name: 'As the bridge draws it', note: 'the X3D materials, as three.js shades them', bg: 0x0b1020, make: null,
+   code: '// no override: the bridge\'s MeshPhong / MeshBasic materials,\n// converted by WebGPURenderer.' },
+ { id: 'toon', name: 'Toon with ink edge', note: 'three bands of light, a rim line from the view angle', bg: 0xf1ead8,
+   make: (o) => mk(o, mix(base(o).mul(floor(ndl().mul(3).add(0.35)).div(3).mul(0.7).add(0.3)), INK, smoothstep(0.66, 0.72, fres()))),
+   code: 'const band = floor(ndl.mul(3).add(0.35)).div(3);\nconst lit  = base.mul(band.mul(0.7).add(0.3));\nconst rim  = smoothstep(0.66, 0.72, fresnel);\nmaterial.colorNode = mix(lit, ink, rim);' },
+ { id: 'holo', name: 'Hologram', note: 'fresnel glow and scan lines, additive; ignores light', bg: 0x02060d,
+   make: (o) => { const scan = sin(positionWorld.y.mul(70).sub(time.mul(3))).mul(0.5).add(0.5), f = fres().pow(2); return mk(o, mix(vec3(0.05, 0.4, 0.5), vec3(0.4, 1, 0.95), f).add(scan.mul(0.15)), { transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacityNode: f.mul(0.9).add(scan.mul(0.18)).add(0.1) }); },
+   code: 'const scan = sin(positionWorld.y.mul(70).sub(time.mul(3))).mul(.5).add(.5);\nconst f = fresnel.pow(2);\nmaterial.colorNode   = mix(deep, glow, f).add(scan.mul(.15));\nmaterial.opacityNode = f.mul(.9).add(scan.mul(.18)).add(.1);\nmaterial.blending = AdditiveBlending;' },
+ { id: 'blue', name: 'Blueprint', note: 'edges where the normal turns, a faint grid in world space', bg: 0x0b2a5a,
+   make: (o) => { const e = smoothstep(0.02, 0.09, length(fwidth(normalWorld))), g = step(0.96, fract(positionWorld.x.mul(2))).max(step(0.96, fract(positionWorld.z.mul(2)))).mul(0.18); return mk(o, mix(vec3(0.09, 0.22, 0.45).add(g), vec3(0.92, 0.97, 1), e)); },
+   code: 'const edge = smoothstep(.02, .09, length(fwidth(normalWorld)));\nconst grid = step(.96, fract(positionWorld.x.mul(2)))\n  .max(step(.96, fract(positionWorld.z.mul(2)))).mul(.18);\nmaterial.colorNode = mix(paperBlue.add(grid), white, edge);' },
+ { id: 'half', name: 'Halftone print', note: 'ink dots whose size follows the light, in screen space', bg: 0xf4efe2,
+   make: (o) => { const c = base(o).mul(ndl().mul(0.7).add(0.3)), lum = dot(c, vec3(0.299, 0.587, 0.114)), cell = fract(screenCoordinate.xy.div(7)).sub(0.5), r = float(1).sub(lum).sqrt().mul(0.62); return mk(o, mix(vec3(0.97, 0.94, 0.86), vec3(0.06, 0.08, 0.2), step(length(cell), r))); },
+   code: 'const lum  = dot(lit, vec3(.299, .587, .114));\nconst cell = fract(screenCoordinate.xy.div(7)).sub(.5);\nconst r    = float(1).sub(lum).sqrt().mul(.62);\nmaterial.colorNode = mix(paper, ink, step(length(cell), r));' },
+ { id: 'heat', name: 'Thermal', note: 'height and light become a black to white-hot ramp', bg: 0x05020a,
+   make: (o) => { const t = clamp(ndl().mul(0.55).add(fres().mul(0.25)).add(positionWorld.y.mul(0.08).add(0.15)), 0, 1), a = vec3(0.02, 0, 0.12), b = vec3(0.55, 0.05, 0.45), c = vec3(1, 0.45, 0.05), d = vec3(1, 0.97, 0.7); return mk(o, mix(mix(a, b, smoothstep(0, 0.35, t)), mix(c, d, smoothstep(0.65, 1, t)), smoothstep(0.35, 0.65, t))); },
+   code: 'const t = clamp(ndl.mul(.55).add(fresnel.mul(.25))\n  .add(positionWorld.y.mul(.08).add(.15)), 0, 1);\nmaterial.colorNode = mix(mix(black, purple, smoothstep(0, .35, t)),\n  mix(orange, white, smoothstep(.65, 1, t)), smoothstep(.35, .65, t));' },
+ { id: 'norm', name: 'Normals', note: 'the surface direction as colour (a debugging view)', bg: 0x0a0d16,
+   make: (o) => mk(o, normalView.mul(0.5).add(0.5)), code: 'material.colorNode = normalView.mul(.5).add(.5);' },
+ { id: 'pearl', name: 'Pearl', note: 'the X3D colour, hue-shifted by the view angle', bg: 0x14101e,
+   make: (o) => mk(o, hue(base(o).mul(ndl().mul(0.55).add(0.45)).add(0.08), fres().mul(5.5).add(time.mul(0.4)))),
+   code: 'const lit = base.mul(ndl.mul(.55).add(.45)).add(.08);\nmaterial.colorNode = hue(lit, fresnel.mul(5.5).add(time.mul(.4)));' },
+ { id: 'dith', name: 'Retro dither', note: 'four levels per channel with an ordered-noise threshold', bg: 0x101018,
+   make: (o) => { const n = fract(fract(dot(screenCoordinate.xy, vec2(0.06711056, 0.00583715))).mul(52.9829189)), c = base(o).mul(ndl().mul(0.7).add(0.3)); return mk(o, floor(c.mul(3).add(n)).div(3)); },
+   code: 'const n = fract(fract(dot(screenCoordinate.xy,\n  vec2(.06711056, .00583715))).mul(52.9829189));\nmaterial.colorNode = floor(lit.mul(3).add(n)).div(3);' },
+];
+
+// ---- tiles: one canvas and one renderer per style ----
+const cache = new Map(); STYLES.forEach((s) => cache.set(s.id, new Map()));
+const styled = (s, o) => { if (!s.make) return o; const m = cache.get(s.id); if (!m.has(o)) m.set(o, s.make(o)); return m.get(o); };
+const tilesEl = $('tiles'); let focus = null; const R = [];
+for (let i = 0; i < STYLES.length; i++) {
+  const s = STYLES[i], d = document.createElement('div'); d.className = 'tile'; d.id = 't_' + s.id;
+  d.innerHTML = '<canvas></canvas><div class="lab"><b>' + (i + 1) + ' ' + s.name + '</b><span>' + s.note + '</span></div><button data-i="' + i + '">code</button>'; tilesEl.appendChild(d);
+  const r = new W.WebGPURenderer({ canvas: d.querySelector('canvas'), antialias: true, alpha: true }); await r.init(); r.setClearColor(0x000000, 0); d.style.background = '#' + new THREE.Color(s.bg).getHexString(THREE.SRGBColorSpace); r.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); R.push(r);
+}
+$('pBackend').innerHTML = 'renderer <b>' + (R[0].backend && R[0].backend.isWebGPUBackend ? 'WebGPU' : 'WebGL 2 backend') + '</b>';
+tilesEl.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; const s = STYLES[+b.dataset.i]; $('code').style.display = 'block'; $('codeT').textContent = s.name + ': TSL'; $('codeP').textContent = s.code; $('code').scrollIntoView({ behavior: 'smooth', block: 'nearest' }); });
+function layout() { tilesEl.classList.toggle('one', focus !== null); STYLES.forEach((s, i) => { const d = $('t_' + s.id); d.style.display = focus === null || focus === i ? 'block' : 'none'; const c = d.querySelector('canvas'), w = d.clientWidth || 320, h = d.clientHeight || 200; if (w && h) R[i].setSize(w, h, false); }); }
+new ResizeObserver(layout).observe($('board')); layout();
+tilesEl.addEventListener('dblclick', (e) => { const t = e.target.closest('.tile'); if (!t) return; focus = focus !== null ? null : STYLES.findIndex((s) => 't_' + s.id === t.id); layout(); });
+// navigation: a drag on any tile turns the one camera that all tiles share
+let drag = null;
+tilesEl.addEventListener('pointerdown', (e) => { if (e.target.closest('button')) return; drag = [e.clientX, e.clientY]; e.target.setPointerCapture && e.target.setPointerCapture(e.pointerId); });
+tilesEl.addEventListener('pointermove', (e) => { if (!drag) return; body.orbit(e.clientX - drag[0], e.clientY - drag[1]); drag = [e.clientX, e.clientY]; });
+tilesEl.addEventListener('pointerup', () => { drag = null; });
+tilesEl.addEventListener('wheel', (e) => { e.preventDefault(); body.zoom(Math.exp(Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 240) * 0.0012)); }, { passive: false });
+
+// ---- scenes ----
+let meshes = [];
+async function loadScene(file, label) {
+  showBusy('Reading ' + label + '...'); await sleep(40);
+  const t0 = performance.now(), url = '../../bridge-blenderizer/v1/scenes/' + file, xml = await (await fetch(url)).text();
+  body.baseUrl = new URL(url, location.href).href;
+  const sc = await X3DSAI.B.createX3DFromString(xml); await X3DSAI.B.replaceWorld(sc); await frame(); await frame();
+  meshes = []; let tris = 0, hidden = 0;
+  body.root.traverse((o) => { if (o.isMesh && o.material) { if (o.material.isShaderMaterial) { hidden++; o.userData.rawGlsl = true; } else { meshes.push(o); tris += (o.geometry.index ? o.geometry.index.count : o.geometry.attributes.position.count) / 3; } } });
+  $('pInfo').innerHTML = label + ': <b>' + meshes.length + '</b> meshes, <b>' + Math.round(tris).toLocaleString() + '</b> triangles' + (hidden ? ', ' + hidden + ' GLSL-shader shapes hidden' : '') + '; read in <b>' + Math.round(performance.now() - t0) + ' ms</b>';
+  showBusy('');
+  if (tris > 1e6) { focus = 1; layout(); $('pInfo').innerHTML += ' | <b>heavy</b>: nine passes of this is too much, so one tile is shown; double-click it to bring the board back'; }
+  else if (focus !== null) { focus = null; layout(); }
+}
+document.querySelectorAll('#scenes button').forEach((b) => { b.onclick = async () => { document.querySelectorAll('#scenes button').forEach((x) => x.classList.remove('sel')); b.classList.add('sel'); await loadScene(b.dataset.f, b.dataset.b); }; });
+
+// ---- the loop: the one scene graph drawn by nine renderers, a material set per tile ----
+const scene = body.scene;
+let fN = 0, fT = performance.now();
+function draw() {
+  requestAnimationFrame(draw);
+  if (!body.root || !meshes.length) return;
+  const bg = scene.background, fog = scene.fog, cm = body.cam;
+  STYLES.forEach((s, i) => {
+    if (focus !== null && focus !== i) return;
+    const d = $('t_' + s.id), w = d.clientWidth, h = d.clientHeight; if (!w || !h) return;
+    cm.aspect = w / h; cm.updateProjectionMatrix();
+    scene.background = null; scene.fog = null;
+    const orig = new Map(); const sky = []; scene.traverse((o) => { if (o.isMesh && o.renderOrder === -1000 && o.visible) { o.visible = false; sky.push(o); } }); for (const m of meshes) { orig.set(m, m.material); m.material = styled(s, m.material); }
+    body.root.traverse((o) => { if (o.userData && o.userData.rawGlsl) { o.userData._v = o.visible; o.visible = false; } });
+    R[i].render(scene, cm);
+    body.root.traverse((o) => { if (o.userData && o.userData.rawGlsl) o.visible = o.userData._v; });
+    for (const [m, mat] of orig) m.material = mat;
+    for (const o of sky) o.visible = true;
+  });
+  scene.background = bg; scene.fog = fog;
+  fN++; const now = performance.now(); if (now - fT > 600) { $('pFps').innerHTML = 'fps <b>' + (fN * 1000 / (now - fT)).toFixed(0) + '</b>'; fN = 0; fT = now; }
+}
+window.__style = { body, R, STYLES, loadScene, layout };
+await loadScene('stilllife-x3d40.x3d', 'Still life, baked in Blender');
+draw();
+</script>
+</body>
+</html>

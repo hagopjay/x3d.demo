@@ -131,3 +131,11 @@ Page written for this site. Data: x3d.loom x3d.webgpu/bridge at 7bca6e3 (the hea
 
 ## rigid-engines v1 (Four physics engines, one X3D scene)
 Page written for this site. Data: x3d.loom `x3d.physics/rigid-engines` (`results/speed.json` copied as `data/speed.json`; `data/stats.json` and the replays written by `tools/record-demo.js`). No third-party files copied; X_ITE 16.6.0 is loaded from a CDN.
+## yjs-collab v1 (Demo 25)
+Page written for this site from x3d.loom PR 74 (`x3d.yjs/demo/showcase/index.html`, two path changes). `dist/yx3d.js` is the `node tools/build.js` output of that folder (esbuild 0.28, minified, Yjs 13.6.33 and lib0 included; licences in `NOTICE.md`). `vendor/x_ite/` is X_ITE 16.6.0, the same files as `lumen-interference-xite/v1/vendor/x_ite/`. Checked headless on a software GPU (Chromium 153, SwiftShader) for correctness only; no timings.
+
+| file | sha256 | bytes |
+|---|---|---|
+| yjs-collab/v1/NOTICE.md | dbb0f3ec694ada71b146cf80f49c5ac9c766fd2880792af428dd7e51d46f5ef2 | 3974 |
+| yjs-collab/v1/dist/yx3d.js | b80a5f08b4b2b9242889fafc75fbc9687b9c1f30fe55dc35071e07105b82e372 | 108438 |
+| yjs-collab/v1/index.html | 0b2b92b7b22575124c1c5982dc9b923c69dfcb6cb1b98cad540b89c5817d3404 | 20530 |
