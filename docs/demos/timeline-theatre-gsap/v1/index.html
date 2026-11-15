@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Timelines to X3D: Theatre.js and GSAP</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%273%27 fill=%27%23ffb454%27/%3E%3C/svg%3E">
+<meta name="description" content="Theatre.js and GSAP timelines become X3D TimeSensor, interpolators and ROUTEs, play in X_ITE 16.6.0 and the three.js bridge, or drive the scene live through the SAI. Every number carries its rig.">
+<style>
+:root{--bg:#070a12;--panel:#101728;--panel2:#162038;--line:#232f4b;--line2:#2f3e63;--fg:#e9eefb;--mute:#97a3c0;--dim:#6b7694;--amber:#ffb454;--teal:#37d5c2;--violet:#9c8bff;--coral:#ff7a5c;--sky:#5db4ff;--sage:#7ddc6a;--red:#ff5d6c;--stage:#04060c;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 var(--sans);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:1180px;margin:0 auto;padding:22px 0 70px}
+a{color:var(--sky)}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+h1{font-size:clamp(1.9rem,5vw,3.2rem);line-height:1.03;margin:6px 0 10px;letter-spacing:-.025em;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(95deg,var(--amber),var(--coral) 45%,var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.4rem;margin:0 0 4px;letter-spacing:-.01em}
+p{margin:0 0 10px;max-width:76ch}
+.kick{font:600 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+.lede{font-size:1.1rem;color:var(--mute);max-width:78ch}
+.nav{font:12px var(--mono);color:var(--mute);margin-bottom:8px}.nav a{color:var(--mute);text-decoration:none;margin-right:14px}
+section{margin-top:46px}
+.sec-h{border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:14px}.sec-h p{margin:0;color:var(--mute);font-size:.94rem}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:10px;margin-top:16px}
+.tile{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:11px 13px;position:relative;overflow:hidden}
+.tile:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c,var(--amber))}
+.tile b{display:block;font:700 1.9rem/1.05 var(--sans);font-variant-numeric:tabular-nums}.tile span{display:block;font-size:.85rem;margin-top:3px}.tile small{display:block;font:10.5px/1.35 var(--mono);color:var(--dim);margin-top:6px}
+.panel{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr))}
+.stage{background:var(--stage);border:1px solid var(--line);border-radius:12px;overflow:hidden;aspect-ratio:4/3;position:relative}
+.stage x3d-canvas{width:100%;height:100%;display:block}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:10px 0 0;font:12.5px var(--mono);color:var(--mute)}
+.ctl input[type=range]{flex:1 1 180px;min-width:120px;accent-color:var(--amber)}
+button,select{font:12.5px var(--mono);background:var(--panel2);color:var(--fg);border:1px solid var(--line2);border-radius:8px;padding:5px 10px;cursor:pointer}
+button[aria-pressed=true]{border-color:var(--amber);color:var(--amber)}
+table{border-collapse:collapse;width:100%;font:12px var(--mono)}th,td{text-align:right;padding:4px 9px;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child,td:first-child{text-align:left}th{color:var(--mute);font-weight:600}
+pre{margin:0;font:11.5px/1.5 var(--mono);color:#cfe0ff;white-space:pre-wrap;word-break:break-all;max-height:260px;overflow:auto}
+.src{font:10.5px/1.4 var(--mono);color:var(--dim);margin-top:8px}
+.chip{display:inline-block;font:11.5px var(--mono);padding:2px 9px;border-radius:99px;border:1px solid var(--line2);color:var(--mute);background:var(--panel);margin:0 4px 4px 0}.chip.ok{color:var(--sage);border-color:rgba(125,220,106,.4)}.chip.warn{color:var(--amber);border-color:rgba(255,180,84,.45)}
+img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block}
+svg text{font:10.5px var(--mono);fill:var(--mute)}
+.note{border-left:3px solid var(--amber);padding:4px 12px;color:var(--mute);margin:12px 0;max-width:80ch}
+code{font:12px var(--mono);color:#cfe0ff}
+</style>
+</head>
+<body>
+<main>
+<div class="nav"><a href="../../../index.html">x3d.demo</a><a href="#live">live</a><a href="#ease">eases</a><a href="#numbers">numbers</a><a href="#hsv">colour finding</a><a href="#licence">licences</a></div>
+<div class="kick">Animation lane &middot; Theatre.js and GSAP</div>
+<h1>Author the timeline in a <em>tool</em>. Ship it as <em>X3D</em>.</h1>
+<p class="lede">A Theatre.js sequence or a GSAP timeline is turned into one <code>TimeSensor</code>, one interpolator per animated field and two <code>ROUTE</code>s per field. The result plays in any X3D browser with no JavaScript, or the tool keeps the clock and writes plain SAI field values into a running scene. This page loads X_ITE 16.6.0 and plays both.</p>
+<div class="tiles" id="tiles"></div>
+
+<section id="live">
+<div class="sec-h"><h2>Live: the same scene, two ways to move it</h2><p>X_ITE 16.6.0 in your browser. Left button group: which file. Right: who owns the clock.</p></div>
+<div class="two">
+ <div>
+  <div class="stage"><x3d-canvas id="c" splashScreen="false" contextMenu="false" notifications="false" timings="false"></x3d-canvas></div>
+  <div class="ctl">
+   <span>scene</span><button id="b-gsap" aria-pressed="true">GSAP orbit</button><button id="b-theatre" aria-pressed="false">Theatre box</button>
+   <span>clock</span><button id="m-x3d" aria-pressed="true">X3D interpolators</button><button id="m-live" aria-pressed="false">live GSAP via SAI</button>
+  </div>
+  <div class="ctl"><button id="play">pause</button><input id="scrub" type="range" min="0" max="1" step="0.001" value="0" aria-label="position in the cycle"><span id="tread">0.00 s</span></div>
+  <div class="src" id="livenote"></div>
+ </div>
+ <div class="panel"><div class="kick" style="margin-bottom:6px">the X3D that was written</div><pre id="xml">loading</pre><div class="src">file: scenes/&lt;case&gt;.x3d, written by <code>embed()</code> in x3d.loom/x3d.anim; Theatre state it came from: data/theatre-box.state.json</div></div>
+</div>
+</section>
+
+<section id="ease">
+<div class="sec-h"><h2>Eases become keys</h2><p>X3D interpolators are piecewise linear. Pick a GSAP ease and a tolerance; the baker samples at 60 fps and drops every sample the interpolator reproduces within the tolerance.</p></div>
+<div class="panel"><div class="ctl" style="margin-top:0"><span>ease</span><select id="easeSel"><option>power2.inOut</option><option>sine.inOut</option><option>expo.out</option><option>back.out(1.7)</option><option selected>elastic.out(1,0.5)</option><option>bounce.out</option><option>steps(6)</option></select>
+<span>tolerance x</span><input id="tol" type="range" min="0.1" max="8" step="0.1" value="1"><b id="tolv" style="color:var(--fg)">1.0</b><span id="easeread"></span></div>
+<svg id="curve" viewBox="0 0 720 220" width="100%" role="img" aria-label="The ease curve and its piecewise-linear bake"></svg>
+<div class="src">Rig: GSAP 3.15.1 in this browser samples the ease; <code>bake()</code> from src/bake.js reduces it; the reported error is measured at 4x the sample rate, offset a third of a step, against GSAP itself. Tolerance 1.0 = 0.2% of the value range.</div></div>
+</section>
+
+<section id="numbers">
+<div class="sec-h"><h2>The numbers, each with its rig</h2><p>Receipts written by <code>tools/verify.js</code>; the tables below are read from data/receipt-*.json, not typed.</p></div>
+<div class="two"><div class="panel" id="t-gsap"></div><div class="panel" id="t-theatre"></div></div>
+<p class="src" id="rig"></p>
+<h2 style="margin-top:22px">Pictures: X_ITE above, the three.js bridge below</h2>
+<div class="two"><div><img src="img/gsap-orbit-strip.jpg" alt="GSAP orbit at 25, 60 and 95 percent of the cycle, X_ITE above and the three.js bridge below" width="960" height="480"><div class="src" id="p-gsap"></div></div>
+<div><img src="img/theatre-box-strip.jpg" alt="Theatre box at 25, 60 and 95 percent of the cycle, X_ITE above and the three.js bridge below" width="960" height="480"><div class="src" id="p-theatre"></div></div></div>
+</section>
+
+<section id="hsv">
+<div class="sec-h"><h2>Found while measuring: ColorInterpolator blends in HSV</h2><p>It is in the spec (19775-1, interpolation), and X_ITE 16.6.0 does it. GSAP and Theatre blend in RGB.</p></div>
+<div class="panel"><p>Same two keys, red to blue, three ways. A baker that ignored this was 0.059 away from X_ITE on the first run; modelling HSV took the gap to 7.6e-8.</p>
+<canvas id="hsvCanvas" width="720" height="150" style="width:100%;max-width:720px;border-radius:8px;border:1px solid var(--line)" role="img" aria-label="Red to blue blended in RGB, in HSV, and the difference"></canvas>
+<div class="src">top: RGB lerp (what a tool tweens); middle: HSV lerp (what the interpolator plays, src/model.js <code>lerpHsv</code>); bottom: absolute difference, scaled x4. Rig: computed in this page.</div></div>
+</section>
+
+<section id="licence">
+<div class="sec-h"><h2>Licences, plainly</h2></div>
+<div class="panel">
+<p><span class="chip ok">@theatre/core 0.7.2: Apache-2.0</span><span class="chip warn">@theatre/studio 0.7.2: AGPL-3.0-only</span><span class="chip ok">GSAP 3.15.1: standard no-charge licence</span></p>
+<p>The exporter imports <b>@theatre/core</b> only, to evaluate an author's saved state with Theatre's own curve maths. <b>@theatre/studio</b> (the editor) is never imported, bundled or served here: the author runs it on their own machine and saves a JSON state, which is data. An X3D file made from that state contains no Theatre code. If you embed the studio in a page you ship to users, its AGPL terms apply to that page; this package does not.</p>
+<p>GSAP is loaded from jsDelivr in this page. Its licence is free for most uses but not for every one (for example, a tool that lets people build visual animation tools without GSAP's own Business licence); read <a href="https://gsap.com/standard-license/">gsap.com/standard-license</a> before putting it in a product. The exporter uses GSAP only at build time and the X3D it writes does not contain GSAP.</p>
+<p class="src">This is engineering notes, not legal advice.</p></div>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js"></script>
+<script src="../../blender-x3d-io/v1/vendor/x_ite/x_ite.min.js"></script>
+<link rel="stylesheet" href="../../blender-x3d-io/v1/vendor/x_ite/x_ite.css">
+<script type="module">
+import { bake } from './src/bake.js';
+import { lerpHsv } from './src/model.js';
+import { bindGsap } from './src/drive.js';
+const $ = (id) => document.getElementById(id), fmt = (x, d = 3) => (x === 0 ? '0' : x.toPrecision(d));
+const CASES = { gsap: { file: 'scenes/gsap-orbit.x3d', clock: 'Clock_gsap_orbit', receipt: 'data/receipt-gsap-orbit.json', title: 'GSAP orbit' }, theatre: { file: 'scenes/theatre-box.x3d', clock: 'Clock_theatre_box', receipt: 'data/receipt-theatre-box.json', title: 'Theatre box' } };
+const R = {}; for (const k in CASES) R[k] = await (await fetch(CASES[k].receipt)).json();
+
+/* ---------- headline tiles ---------- */
+const tile = (c, b, s, sm) => `<div class="tile" style="--c:var(${c})"><b>${b}</b><span>${s}</span><small>${sm}</small></div>`;
+const env = R.gsap.env;
+$('tiles').innerHTML = tile('--amber', fmt(Math.max(R.gsap.worstBridgeVsXite, R.theatre.worstBridgeVsXite), 2), 'bridge reader vs X_ITE, worst interpolator output', `${R.gsap.fractions} fractions x ${R.gsap.channels + R.theatre.channels} channels; three.js r${env.bridge.three} bridge reader against X_ITE ${env.x_ite}`)
+ + tile('--teal', fmt(Math.max(R.gsap.worstXiteVsOurs, R.theatre.worstXiteVsOurs), 2), 'our interpolator model vs X_ITE', 'includes HSV colour and slerp; value units, radians for rotation')
+ + tile('--violet', fmt(R.gsap.worstXiteVsOracle, 2) + ' / ' + fmt(R.theatre.worstXiteVsOracle, 2), 'X_ITE vs the tool itself (GSAP / Theatre)', 'the bake error: eases are curves, interpolators are lines')
+ + tile('--sage', Math.min(R.gsap.minPsnrInterp, R.theatre.minPsnrInterp, R.gsap.minPsnrLive, R.theatre.minPsnrLive).toFixed(1) + ' dB', 'worst picture pair, bridge vs X_ITE', `12 picture pairs, 320x240, ${env.chromium} SwiftShader, min foreground IoU ${Math.min(R.gsap.minIou, R.theatre.minIou)}`)
+ + tile('--coral', R.gsap.keys + ' / ' + R.theatre.keys, 'keys written (GSAP / Theatre)', `${R.gsap.channels} and ${R.theatre.channels} channels, ${R.gsap.duration} s and ${R.theatre.duration} s cycles`);
+$('rig').textContent = `Rig for every number above and below: ${env.chromium} headless on SwiftShader, X_ITE ${env.x_ite}, three.js r${env.bridge.three} with the x3d.threejs bridge body, GSAP 3.15.1 and @theatre/core 0.7.2 on Node 22 for the baking. No frame rates are quoted: software GL is about 0.6 s a frame.`;
+for (const [k, id] of [['gsap', 'gsap'], ['theatre', 'theatre']]) {
+  const r = R[k]; $('t-' + id).innerHTML = `<div class="kick" style="margin-bottom:6px">${CASES[k].title} (${r.source.tool})</div><table><tr><th>channel</th><th>keys</th><th>bake err</th><th>X_ITE vs tool</th><th>X_ITE vs model</th><th>bridge vs X_ITE</th></tr>`
+   + r.per.map((p) => `<tr><td>${p.channel}</td><td>${p.keys}</td><td>${p.bakeErr}</td><td>${p.xiteVsOracle}</td><td>${p.xiteVsOurs}</td><td>${p.bridgeVsXite}</td></tr>`).join('') + `</table><div class="src">units: value, rotation in radians. keys from ${r.samplesPerChannel} samples per channel; bake error measured at ${r.checkPoints} independent points; the other columns at ${r.fractions} fractions. Live read-back error (oracle state written through the SAI, read back from X_ITE): ${r.liveReadbackErr}.</div>`;
+  $('p-' + id).textContent = r.pictures.map((p) => `${Math.round(p.fraction * 100)}%: PSNR ${p.interp.psnr} dB, IoU ${p.interp.iou} (interpolators); ${p.live.psnr} dB, ${p.live.iou} (live)`).join('  |  ') + `  [${env.chromium} SwiftShader, X_ITE ${env.x_ite}, three.js r${env.bridge.three}]`;
+}
+
+/* ---------- live pane ---------- */
+let cur = 'gsap', mode = 'x3d', browser, scene, playing = true, tl = null, targets = null, offLive = null, clock = null, interps = [], dur = 1;
+const GSAP_REST = () => ({ Box: { translation: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: 0, z: 0 } }, BoxMat: { diffuseColor: { r: 0.9, g: 0.3, b: 0.1 }, transparency: 0 }, Ball: { translation: { x: -3, y: 0, z: 0 }, scale: { x: 1, y: 1, z: 1 } } });
+function buildGsap() { const t = GSAP_REST(), g = gsap.timeline({ paused: true });   // the same timeline as tools/cases.js, written out in the page
+  g.to(t.Box.translation, { x: 3, duration: 2, ease: 'power2.inOut' }, 0).to(t.Box.translation, { y: 1.5, duration: 1, ease: 'sine.inOut', yoyo: true, repeat: 1 }, 0).to(t.Box.rotation, { y: 270, z: 45, duration: 2.5, ease: 'back.out(1.7)' }, 0.5)
+   .to(t.BoxMat.diffuseColor, { r: 0.1, g: 0.9, b: 0.4, duration: 1.5, ease: 'none' }, 1).to(t.BoxMat, { transparency: 0.6, duration: 1.2, ease: 'bounce.out' }, 2.2).to(t.Ball.translation, { x: 2.5, y: 1, duration: 3, ease: 'elastic.out(1,0.5)' }, 0).to(t.Ball.scale, { x: 1.8, y: 1.8, z: 1.8, duration: 1, ease: 'expo.out' }, 2);
+  return [g, t]; }
+function note() { $('livenote').textContent = mode === 'live' ? 'Live: GSAP keeps the clock and its real eases (no baking); each frame its target values go to the scene as SAI writes (src/drive.js bindGsap). The interpolators in the file are frozen.' : 'Exported: the file alone. X_ITE\'s TimeSensor drives the interpolators through ROUTEs, no page JavaScript. ' + (cur === 'theatre' ? 'The Theatre box was authored as a Theatre state (data/theatre-box.state.json) and baked at 60 fps.' : ''); }
+async function load() {
+  if (offLive) { offLive(); offLive = null; } if (tl) { tl.kill(); tl = null; }
+  await browser.loadURL(new X3D.MFString(CASES[cur].file)); scene = browser.currentScene; clock = scene.getNamedNode(CASES[cur].clock); dur = clock.cycleInterval;
+  const xml = await (await fetch(CASES[cur].file)).text(); interps = [...xml.matchAll(/DEF='(I_[^']+)'/g)].map((m) => scene.getNamedNode(m[1])); const i = xml.indexOf("<!-- animation"); $('xml').textContent = xml.slice(i).replace(/keyValue='([^']{90})[^']*'/g, "keyValue='$1 ...'").replace(/key='([^']{70})[^']*'/g, "key='$1 ...'");
+  clock.addFieldCallback('ui', 'fraction_changed', (f) => { if (mode === 'x3d' && playing) { $('scrub').value = f; $('tread').textContent = (f * dur).toFixed(2) + ' s'; } });
+  setMode(mode);
+}
+function setMode(m) {
+  mode = m; for (const [id, v] of [['m-x3d', 'x3d'], ['m-live', 'live']]) $(id).setAttribute('aria-pressed', String(mode === v));
+  if (offLive) { offLive(); offLive = null; } if (tl) { tl.kill(); tl = null; }
+  if (mode === 'live' && cur !== 'gsap') { mode = 'x3d'; $('m-live').setAttribute('aria-pressed', 'false'); $('m-x3d').setAttribute('aria-pressed', 'true'); $('livenote').textContent = 'Live mode needs the timeline object in the page: only the GSAP scene has one here. The Theatre box would need @theatre/core bundled into the page (Apache-2.0, ~1 MB); it is driven live in tools/verify.js instead.'; }
+  if (mode === 'live') { clock.enabled = false; const [g, t] = buildGsap(); tl = g; targets = t; offLive = bindGsap(X3D, scene, g, t); const push = g.eventCallback('onUpdate'); g.eventCallback('onUpdate', () => { push(); $('scrub').value = g.progress(); $('tread').textContent = g.time().toFixed(2) + ' s'; }); g.repeat(-1); if (playing) g.play(); }
+  else { clock.enabled = true; if (playing) clock.startTime = Date.now() / 1000; }
+  note();
+}
+function scrub(f) { playing = false; $('play').textContent = 'play'; if (mode === 'live') { tl.pause(); tl.progress(f); tl.eventCallback('onUpdate')?.(); } else { clock.enabled = false; for (const ip of interps) ip.set_fraction = f; } $('tread').textContent = (f * (mode === 'live' ? tl.duration() : dur)).toFixed(2) + ' s'; }
+$('scrub').addEventListener('input', (e) => scrub(+e.target.value));
+$('play').addEventListener('click', () => { playing = !playing; $('play').textContent = playing ? 'pause' : 'play'; if (mode === 'live') { if (playing) tl.play(); else tl.pause(); } else if (playing) { clock.enabled = true; clock.startTime = Date.now() / 1000 - (+$('scrub').value) * dur; } else clock.enabled = false; });
+for (const [id, k] of [['b-gsap', 'gsap'], ['b-theatre', 'theatre']]) $(id).addEventListener('click', async () => { cur = k; for (const [i2, k2] of [['b-gsap', 'gsap'], ['b-theatre', 'theatre']]) $(i2).setAttribute('aria-pressed', String(k2 === k)); await load(); });
+$('m-x3d').addEventListener('click', () => setMode('x3d')); $('m-live').addEventListener('click', () => setMode('live'));
+browser = X3D.getBrowser('#c'); try { browser.setBrowserOption('Notifications', false); browser.setBrowserOption('Timings', false); } catch (e) {}
+await load();
+
+/* ---------- ease lab ---------- */
+function easeLab() {
+  const name = $("easeSel").value, tolx = +$('tol').value; $('tolv').textContent = tolx.toFixed(1);
+  const f = gsap.parseEase(name), ev = (t) => ({ X: { transparency: f(t / 2) } }), res = bake('ease', ev, { X: { transparency: 0 } }, { duration: 2, fps: 60, tol: tolx });
+  const ch = res.timeline.channels[0], r = res.report[0], W = 720, H = 220, px = (t) => 30 + t / 2 * (W - 50), vs = ch.keys.map((k) => k.v[0]).concat([0, 1]), lo = Math.min(...vs), hi = Math.max(...vs), py = (v) => H - 20 - (v - lo) / (hi - lo || 1) * (H - 40);
+  let curve = ''; for (let i = 0; i <= 240; i++) { const t = 2 * i / 240; curve += (i ? 'L' : 'M') + px(t).toFixed(1) + ' ' + py(f(t / 2)).toFixed(1); }
+  const poly = ch.keys.map((k, i) => (i ? 'L' : 'M') + px(k.t).toFixed(1) + ' ' + py(k.v[0]).toFixed(1)).join('');
+  $('curve').innerHTML = `<rect x="0" y="0" width="${W}" height="${H}" fill="#0a0f1c"/><line x1="30" x2="${W - 20}" y1="${py(0)}" y2="${py(0)}" stroke="#2f3e63" stroke-dasharray="3 4"/><line x1="30" x2="${W - 20}" y1="${py(1)}" y2="${py(1)}" stroke="#2f3e63" stroke-dasharray="3 4"/>
+   <path d="${curve}" fill="none" stroke="#5db4ff" stroke-width="2.4" opacity=".85"/><path d="${poly}" fill="none" stroke="#ffb454" stroke-width="1.4"/>${ch.keys.map((k) => `<circle cx="${px(k.t)}" cy="${py(k.v[0])}" r="2.4" fill="#ffb454"/>`).join('')}
+   <text x="34" y="14">blue: GSAP ${name}  amber: ${ch.keys.length} keys written to the ScalarInterpolator</text>`;
+  $('easeread').textContent = `${ch.keys.length} keys from ${r.samples} samples, max error ${fmt(r.maxErr, 2)} (tolerance ${fmt(r.tol, 2)}), ${res.checkPoints} check points`;
+}
+$("easeSel").addEventListener('change', easeLab); $('tol').addEventListener('input', easeLab); easeLab();
+
+/* ---------- HSV strip ---------- */
+{ const c = $("hsvCanvas"), g = c.getContext('2d'), W = c.width; const a = [1, 0, 0], b = [0, 0, 1];
+  for (let x = 0; x < W; x++) { const t = x / (W - 1), rgb = a.map((v, i) => v + (b[i] - v) * t), hsv = lerpHsv(a, b, t), s = (v) => Math.round(Math.max(0, Math.min(1, v)) * 255);
+    g.fillStyle = `rgb(${s(rgb[0])},${s(rgb[1])},${s(rgb[2])})`; g.fillRect(x, 0, 1, 50); g.fillStyle = `rgb(${s(hsv[0])},${s(hsv[1])},${s(hsv[2])})`; g.fillRect(x, 50, 1, 50); const d = hsv.map((v, i) => Math.min(1, Math.abs(v - rgb[i]) * 4)); g.fillStyle = `rgb(${s(d[0])},${s(d[1])},${s(d[2])})`; g.fillRect(x, 100, 1, 50); } }
+</script>
+</body>
+</html>

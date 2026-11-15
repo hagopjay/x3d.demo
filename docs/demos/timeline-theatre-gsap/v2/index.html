@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Timelines to X3D 2: one file, two engines</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%273%27 fill=%27%23ffb454%27/%3E%3C/svg%3E">
+<meta name="description" content="A GSAP timeline becomes plain X3D that two renderers play in lockstep, with no script. Move a slider and watch the compiler trade file size for error against the real GSAP eases, live.">
+<style>
+:root{--bg:#060810;--panel:#0e1424;--panel2:#141c33;--line:#222d4a;--line2:#2f3e63;--fg:#eaf0ff;--mute:#9aa6c4;--dim:#69759a;--amber:#ffb454;--teal:#37d5c2;--violet:#9c8bff;--coral:#ff7a5c;--sky:#5db4ff;--sage:#7ddc6a;--red:#ff5d6c;--stage:#03050b;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 var(--sans);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 520px at 12% -8%,rgba(255,122,92,.18),transparent 60%),radial-gradient(900px 520px at 92% 0%,rgba(93,180,255,.14),transparent 60%),radial-gradient(700px 500px at 50% 110%,rgba(156,139,255,.12),transparent 60%)}
+main{max-width:1240px;margin:0 auto;padding:20px 0 80px}
+a{color:var(--sky)}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.nav{font:12px var(--mono);color:var(--mute);display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:8px}.nav a{color:var(--mute);text-decoration:none}.nav a:hover{color:var(--fg)}
+.kick{font:600 11.5px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--amber)}
+h1{font-size:clamp(2.1rem,6vw,4.2rem);line-height:1;margin:8px 0 12px;letter-spacing:-.03em;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(95deg,var(--amber),var(--coral) 40%,var(--violet) 80%,var(--sky));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 9s ease-in-out infinite alternate}
+@keyframes sheen{to{background-position:100% 0}}
+@media (prefers-reduced-motion:reduce){h1 em{animation:none}}
+h2{font-size:1.5rem;margin:0 0 4px;letter-spacing:-.015em}
+p{margin:0 0 10px;max-width:78ch}
+.lede{font-size:1.15rem;color:var(--mute);max-width:80ch}
+section{margin-top:52px;scroll-margin-top:12px}
+.sec-h{border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:14px}.sec-h p{margin:0;color:var(--mute);font-size:.95rem}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px;margin-top:18px}
+.tile{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:12px 14px;position:relative;overflow:hidden}
+.tile:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c,var(--amber))}
+.tile b{display:block;font:700 2rem/1.05 var(--sans);font-variant-numeric:tabular-nums;letter-spacing:-.02em}.tile span{display:block;font-size:.86rem;margin-top:3px}.tile small{display:block;font:10.5px/1.4 var(--mono);color:var(--dim);margin-top:6px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:820px){.panes{grid-template-columns:1fr}}
+.pane{position:relative;background:var(--stage);border:1px solid var(--line2);border-radius:14px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 0 0 1px rgba(255,255,255,.02),0 18px 50px -20px rgba(255,122,92,.35)}
+.pane iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.pane .tag{position:absolute;left:10px;top:10px;z-index:2;font:11.5px var(--mono);padding:3px 10px;border-radius:99px;background:rgba(6,8,16,.78);border:1px solid var(--line2);color:var(--fg);pointer-events:none}
+.pane .tag i{font-style:normal;color:var(--dim)}
+.pane .fps{position:absolute;right:10px;top:10px;z-index:2;font:11px var(--mono);color:var(--teal);background:rgba(6,8,16,.78);border-radius:99px;padding:3px 9px;pointer-events:none}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:12px 0 0;font:12.5px var(--mono);color:var(--mute)}
+.ctl input[type=range]{flex:1 1 160px;min-width:110px;accent-color:var(--amber)}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+button,select{font:12.5px var(--mono);background:var(--panel2);color:var(--fg);border:1px solid var(--line2);border-radius:8px;padding:6px 11px;cursor:pointer}
+.seg button{border:0;border-radius:0;border-right:1px solid var(--line2)}.seg button:last-child{border-right:0}
+button[aria-pressed=true]{background:rgba(255,180,84,.14);color:var(--amber)}
+button.go{background:linear-gradient(95deg,var(--amber),var(--coral));color:#1a0d05;border:0;font-weight:700}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:12px}
+.stat div{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 11px}.stat b{display:block;font:700 1.25rem/1.15 var(--sans);font-variant-numeric:tabular-nums}.stat span{font:10.5px var(--mono);color:var(--dim)}
+.cv{display:block;width:100%;border-radius:10px;border:1px solid var(--line);background:#080c18}
+.wrapcv{position:relative}.wrapcv canvas+canvas{position:absolute;left:0;top:0}
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr))}
+.src{font:10.5px/1.45 var(--mono);color:var(--dim);margin-top:8px}
+.chip{display:inline-block;font:11.5px var(--mono);padding:2px 9px;border-radius:99px;border:1px solid var(--line2);color:var(--mute);background:var(--panel);margin:0 4px 4px 0}.chip.ok{color:var(--sage);border-color:rgba(125,220,106,.4)}.chip.warn{color:var(--amber);border-color:rgba(255,180,84,.45)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:14px 16px}.card h3{margin:0 0 6px;font-size:1.02rem}.card .n{font:700 1.6rem/1 var(--sans);color:var(--c,var(--amber));font-variant-numeric:tabular-nums}
+.card p{font-size:.92rem;color:var(--mute);margin:6px 0 0}
+table{border-collapse:collapse;width:100%;font:12px var(--mono)}th,td{text-align:right;padding:4px 9px;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child,td:first-child{text-align:left}th{color:var(--mute);font-weight:600}
+.scroll{overflow-x:auto}
+pre{margin:0;font:11.5px/1.5 var(--mono);color:#cfe0ff;white-space:pre-wrap;word-break:break-all;max-height:230px;overflow:auto}
+code{font:12px var(--mono);color:#cfe0ff}
+#status{font:11.5px var(--mono);color:var(--amber);min-height:1.4em;margin-top:8px}
+</style>
+</head>
+<body>
+<main>
+<div class="nav"><a href="../../../index.html">x3d.demo</a><a href="../v1/index.html">version 1</a><a href="#stage">the stage</a><a href="#compiler">the compiler</a><a href="#inspect">inspector</a><a href="#insights">what it shows</a><a href="#numbers">numbers</a><a href="#licence">licences</a></div>
+<div class="kick">Theatre.js &middot; GSAP &middot; X3D</div>
+<h1>Write the timeline once.<br><em>Play it everywhere.</em></h1>
+<p class="lede">Below, one GSAP timeline (about 20 lines of JavaScript, 24 satellites, a core, a camera move) has been compiled into plain X3D: a <code>TimeSensor</code>, interpolators and <code>ROUTE</code>s. <b>The file contains no script.</b> X_ITE and a three.js renderer each read the same file and move together (set the clock to autonomous and each runs it alone; the conductor only sends them the playhead so you can scrub). Then you get the compiler's dials and the real GSAP curves to check it against.</p>
+<div class="tiles" id="tiles"></div>
+
+<section id="stage">
+<div class="sec-h"><h2>The stage</h2><p>Left: X_ITE 16.6.0, the reference renderer. Right: the three.js bridge (the Loom reader on three.js r187). One X3D file in both, one clock above them.</p></div>
+<div class="ctl" style="margin-top:0">
+ <span>timeline</span><div class="seg"><button id="c-orrery" aria-pressed="true">Orrery &middot; GSAP</button><button id="c-theatre" aria-pressed="false">Box &middot; Theatre.js</button></div>
+ <span>clock</span><div class="seg"><button id="m-cond" aria-pressed="true" title="the page sends a fraction to both engines: scrubbable, in lockstep">conductor</button><button id="m-auto" aria-pressed="false" title="each engine runs the file's own TimeSensor, nothing drives it">autonomous</button></div>
+ <button id="ghost" aria-pressed="false" title="a red ghost follows the REAL GSAP / Theatre curve; the solid object follows the exported X3D">ghost: the real curve</button>
+</div>
+<div class="panes" style="margin-top:10px">
+ <div class="pane"><span class="tag">X_ITE <i id="v-xite">16.6.0</i></span><span class="fps" id="f-xite"></span><iframe id="p-xite" src="panes/xite.html" title="X_ITE pane" loading="eager"></iframe></div>
+ <div class="pane"><span class="tag">three.js bridge <i id="v-bridge">r187</i></span><span class="fps" id="f-bridge"></span><iframe id="p-bridge" src="panes/bridge.html" title="three.js bridge pane" loading="eager"></iframe></div>
+</div>
+<div class="ctl"><button id="play" class="go">pause</button><input id="scrub" type="range" min="0" max="1" step="0.0005" value="0" aria-label="position in the cycle"><span id="tread">0.00 s</span>
+ <span>speed</span><div class="seg"><button data-sp="0.25" aria-pressed="false">&frac14;x</button><button data-sp="1" aria-pressed="true">1x</button><button data-sp="2" aria-pressed="false">2x</button></div></div>
+<div id="status"></div>
+<div class="panel" id="ghostbox" style="margin-top:10px;display:none"><div class="ctl" style="margin:0"><span id="ghostlabel"></span><b id="gerr" style="color:var(--red);font:700 1.3rem var(--sans)"></b><canvas id="gspark" width="420" height="40" style="flex:1 1 200px;max-width:100%;height:40px"></canvas></div>
+ <div class="src">Solid object: the exported X3D interpolators (the file). Red ghost: GSAP's own eases, evaluated live in this page and written through the SAI. The number is the distance between them in scene units, from this page's model of the interpolator; that model matches X_ITE's own output to within 2e-6 (see the receipts).</div></div>
+</section>
+
+<section id="compiler">
+<div class="sec-h"><h2>The compiler, with the dials in your hand</h2><p>X3D interpolators are straight lines between keys. Eases are curves. Move a slider: the page re-bakes the timeline in your browser, writes new X3D, and reloads both engines. The file shrinks; the error against GSAP itself grows. You choose the trade.</p></div>
+<div class="panel">
+ <div class="ctl" style="margin-top:0"><span>tolerance &times;</span><input id="tol" type="range" min="0.25" max="16" step="0.25" value="2" aria-label="tolerance multiplier"><b id="tolv" style="color:var(--fg)">2.0</b>
+  <span>sample rate</span><div class="seg" id="fpsSeg"><button data-fps="15" aria-pressed="false">15</button><button data-fps="30" aria-pressed="true">30</button><button data-fps="60" aria-pressed="false">60</button><button data-fps="120" aria-pressed="false">120</button></div>
+  <button id="rebuild" class="go">compile and reload</button><button id="dl">download the .x3d</button></div>
+ <div class="stat" id="stat"></div>
+ <div class="wrapcv" style="margin-top:12px"><canvas id="sheet" class="cv"></canvas><canvas id="sheetph" class="cv" style="border-color:transparent;background:transparent;pointer-events:none"></canvas></div>
+ <div class="src" id="sheetnote"></div>
+</div>
+</section>
+
+<section id="inspect">
+<div class="sec-h"><h2>Inspector: the true curve against what X3D plays</h2><p>Pick any channel. Blue is the authoring tool's own curve; amber is the polyline the interpolator plays; diamonds are keys you authored; the strip underneath is the error.</p></div>
+<div class="panel"><div class="ctl" style="margin-top:0"><span>channel</span><select id="chsel"></select><span>component</span><select id="compsel"></select><span id="chread"></span></div>
+ <canvas id="plot" class="cv" style="margin-top:10px"></canvas><div class="src" id="plotnote"></div></div>
+</section>
+
+<section id="insights">
+<div class="sec-h"><h2>What this shows, and what we measured to be sure</h2><p>Each card is a number from a run. Rig: Chromium 153.0.8010.12 on SwiftShader, X_ITE 16.6.0, three.js r187, GSAP 3.15.1, @theatre/core 0.7.2.</p></div>
+<div class="cards" id="cards"></div>
+</section>
+
+<section id="numbers">
+<div class="sec-h"><h2>The receipts</h2><p>Read from data/receipt-*.json, written by <code>x3d.anim/tools/verify.js</code> in x3d.loom.</p></div>
+<div class="panel scroll"><table id="rt"></table><div class="src" id="rnote"></div></div>
+</section>
+
+<section id="licence">
+<div class="sec-h"><h2>Licences, plainly</h2></div>
+<div class="panel">
+<p><span class="chip ok">@theatre/core 0.7.2: Apache-2.0</span><span class="chip warn">@theatre/studio 0.7.2: AGPL-3.0-only</span><span class="chip ok">GSAP 3.15.1: standard no-charge licence</span><span class="chip ok">three.js r187: MIT</span></p>
+<p>The exporter reads a Theatre.js <b>state file</b> (JSON the author's studio saved) and evaluates it with <b>@theatre/core</b>. The studio package is never imported, bundled or served here, and the X3D that comes out contains no Theatre code. If you embed the studio in a page you ship to users, its AGPL terms apply to that page. This page has no Theatre code at all: the Theatre curves are samples that core evaluated earlier (data/theatre-box.oracle.json).</p>
+<p>GSAP loads from jsDelivr and runs in your browser for the orrery. Its licence is free for most uses, not for every one (for example, a tool that lets people build visual animation tools without GSAP's own Business licence); read <a href="https://gsap.com/standard-license/">gsap.com/standard-license</a> before using it in a product. The exported X3D contains none of it. Engineering notes, not legal advice.</p></div>
+</section>
+<p class="src" style="margin-top:30px">Panes: X_ITE 16.6.0 (vendored from Demo 12's folder); three.js r187 from jsDelivr with the x3d.threejs bridge body (<code>panes/bridge-body.js</code>, 0.99 MB, bundled from x3d.loom at the PR this page ships with). Source: x3d.loom/x3d.anim. Nothing here is timed on a reference machine; the fps chips are your own browser, live.</p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
