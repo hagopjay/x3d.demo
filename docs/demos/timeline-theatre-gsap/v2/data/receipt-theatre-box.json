@@ -1,0 +1,125 @@
+{
+ "env": {
+  "chromium": "153.0.8010.12",
+  "x_ite": "16.6.0",
+  "bridge": {
+   "chromium": "153.0.8010.12",
+   "three": "187",
+   "body": "x3d.threejs reader (shared with the Babylon bridge) + three.js body"
+  }
+ },
+ "tool": "Theatre.js",
+ "source": {
+  "tool": "Theatre.js",
+  "core": "@theatre/core",
+  "sheet": "Sheet1",
+  "theatreKeyframes": 6,
+  "tracks": 11
+ },
+ "duration": 4,
+ "channels": 5,
+ "keys": 273,
+ "samplesPerChannel": 241,
+ "checkPoints": 960,
+ "fractions": 41,
+ "per": [
+  {
+   "channel": "Box.translation",
+   "type": "SFVec3f",
+   "keys": 59,
+   "samples": 241,
+   "bakeErr": 0.00755,
+   "xiteVsOracle": 0.00695,
+   "xiteVsOurs": 1.79e-7,
+   "bridgeVsXite": 1.79e-7,
+   "unit": "value"
+  },
+  {
+   "channel": "Box.rotation",
+   "type": "SFRotation",
+   "keys": 64,
+   "samples": 241,
+   "bakeErr": 0.00203,
+   "xiteVsOracle": 0.002,
+   "xiteVsOurs": 1.68e-7,
+   "bridgeVsXite": 7.13e-7,
+   "unit": "rad"
+  },
+  {
+   "channel": "Box.scale",
+   "type": "SFVec3f",
+   "keys": 31,
+   "samples": 241,
+   "bakeErr": 0.00191,
+   "xiteVsOracle": 0.00161,
+   "xiteVsOurs": 8.67e-8,
+   "bridgeVsXite": 8.69e-8,
+   "unit": "value"
+  },
+  {
+   "channel": "BoxMat.diffuseColor",
+   "type": "SFColor",
+   "keys": 73,
+   "samples": 241,
+   "bakeErr": 0.00536,
+   "xiteVsOracle": 0.00326,
+   "xiteVsOurs": 1.02e-7,
+   "bridgeVsXite": 1.03e-7,
+   "unit": "value"
+  },
+  {
+   "channel": "BoxMat.transparency",
+   "type": "SFFloat",
+   "keys": 46,
+   "samples": 241,
+   "bakeErr": 0.000974,
+   "xiteVsOracle": 0.000804,
+   "xiteVsOurs": 6.36e-8,
+   "bridgeVsXite": 6.29e-8,
+   "unit": "value"
+  }
+ ],
+ "pictures": [
+  {
+   "fraction": 0.25,
+   "interp": {
+    "psnr": 55.01,
+    "iou": 0.997
+   },
+   "live": {
+    "psnr": 55.01,
+    "iou": 0.997
+   }
+  },
+  {
+   "fraction": 0.6,
+   "interp": {
+    "psnr": 55.14,
+    "iou": 0.9969
+   },
+   "live": {
+    "psnr": 55.14,
+    "iou": 0.9969
+   }
+  },
+  {
+   "fraction": 0.95,
+   "interp": {
+    "psnr": 57.14,
+    "iou": 0.9981
+   },
+   "live": {
+    "psnr": 57.14,
+    "iou": 0.9981
+   }
+  }
+ ],
+ "worstXiteVsOracle": 0.00695,
+ "worstXiteVsOurs": 1.79e-7,
+ "worstBridgeVsXite": 7.13e-7,
+ "liveReadbackErr": 0,
+ "minPsnrInterp": 55.01,
+ "minPsnrLive": 55.01,
+ "minIou": 0.9969,
+ "pageErrors": []
+}

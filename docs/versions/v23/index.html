@@ -460,6 +460,17 @@ code{font-family:var(--mono);font-size:.88em}
       <a href="https://github.com/hagopjay/x3d.loom/tree/main/x3d.zod">The generator (x3d.zod)</a>
     </div>
     <p class="facts">Zod 4.6.7 bundled (735 KB, 115 KB gzipped), scene drawn by X_ITE 16.6.0 from Demo 12, needs WebGL2. The repair is a scripted replay: no model is called. Timings were taken in a software-only container.</p>
+  <img src="assets/yjs-collab.jpg" alt="Three X_ITE panes of one orrery scene labelled Alice, Bob and Agent during a network split: Alice's copy differs (cube on the left, hash 838c0b) while Bob's and the agent's match (hash d25db1), above a wire timeline of Yjs updates and a log of who did what" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 25</div>
+    <h2>Three authors, one scene</h2>
+    <p>Alice and Bob are two browsers, the third author is an agent, and each holds its own copy of one animated X3D scene as a Yjs document. Press play: Alice drags a cube while Bob recolours it and both edits survive; the agent speeds up the planets and is refused when it names a node that does not exist; then Alice's network dies and the sides make conflicting edits (the cube moved two ways, a lamp deleted by one and moved by the other, two groups moved into each other). When the network heals every copy is identical again, and a table names the rule that settled each clash. A history slider rebuilds the scene from the first N updates, and a rescue button brings back the two groups that a concurrent move cut out of the scene.</p>
+    <div class="chips">
+      <a href="demos/yjs-collab/v1/index.html">Open the collaboration demo</a>
+      <a href="demos/yjs-collab/v1/NOTICE.md">Sources and checks</a>
+      <a href="https://github.com/hagopjay/x3d.loom/pull/74">x3d.loom PR 74 (x3d.yjs)</a>
+    </div>
+    <p class="facts">Needs WebGL2 only (X_ITE 16.6.0 and Yjs 13.6.33 bundled, no network requests). The link between the peers is in the page with an adjustable delay, so the on-screen timings are your browser, not a network; the "agent" is a scripted operation list through the real applier, no model is called. Checked headless on a software GPU (Chromium 153, SwiftShader) for correctness only; no frame rates are claimed.</p>
   </div>
 </section>
 
