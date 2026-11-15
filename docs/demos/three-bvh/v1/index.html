@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Touch a million triangles</title>
+<meta name="description" content="An X3D terrain of up to a million triangles under a TouchSensor, drawn by the three.js bridge. Flip three-mesh-bvh on and off and watch the pick, race the two on the same rays, and scan 24,000 rays from your camera.">
+<style>
+:root{--bg:#070a12;--bg2:#0c111d;--panel:#101728;--panel2:#162038;--line:#232f4b;--line2:#2f3e63;--fg:#e9eefb;--mute:#97a3c0;--dim:#6b7694;
+--amber:#ffb454;--teal:#37d5c2;--violet:#9c8bff;--coral:#ff7a5c;--sky:#5db4ff;--sage:#7ddc6a;--red:#ff5d6c;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 var(--sans);padding:0 max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(1000px 520px at 12% -8%,rgba(55,213,194,.14),transparent 60%),radial-gradient(900px 480px at 96% 0%,rgba(255,180,84,.10),transparent 60%)}
+a{color:var(--sky)}
+header{max-width:1240px;margin:0 auto;padding:22px 0 10px}
+.kick{font:600 12px var(--mono);letter-spacing:.12em;color:var(--teal);text-transform:uppercase}
+h1{margin:4px 0 6px;font-size:clamp(26px,4.6vw,42px);line-height:1.08;letter-spacing:-.01em}
+.lede{max-width:78ch;color:var(--mute);margin:0}
+main{max-width:1240px;margin:0 auto}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;margin-top:14px}
+@media(max-width:940px){.grid{grid-template-columns:minmax(0,1fr)}}
+.stage{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#04060c;min-height:320px}
+#c{display:block;width:100%;height:min(66vh,620px);min-height:320px;touch-action:none}
+.hud{position:absolute;left:12px;top:12px;display:flex;gap:8px;flex-wrap:wrap;pointer-events:none}
+.pill{background:rgba(7,10,18,.78);border:1px solid var(--line2);border-radius:999px;padding:4px 11px;font:12px var(--mono);color:var(--fg);backdrop-filter:blur(4px)}
+.pill b{color:var(--amber);font-weight:600}
+.pill.on b{color:var(--teal)}
+.pill.off b{color:var(--coral)}
+.busy{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(4,6,12,.72);font:14px var(--mono);color:var(--amber);text-align:center;padding:20px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.panel h2{margin:0 0 8px;font-size:15px;letter-spacing:.02em}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+button{font:600 13px var(--sans);background:var(--panel2);color:var(--fg);border:1px solid var(--line2);border-radius:9px;padding:8px 12px;cursor:pointer;min-height:40px}
+button:hover{border-color:var(--teal)}
+button.sel{background:#103a37;border-color:var(--teal);color:#d7fff9}
+button:disabled{opacity:.5;cursor:default}
+.big{width:100%}
+.bars{display:grid;gap:6px;margin:10px 0 2px}
+.bar{display:grid;grid-template-columns:86px 1fr 74px;gap:8px;align-items:center;font:12px var(--mono);color:var(--mute)}
+.bar i{display:block;height:12px;border-radius:6px;min-width:3px}
+.bar .t{color:var(--fg);text-align:right}
+.note{font-size:12.5px;color:var(--mute);margin:8px 0 0}
+.note b{color:var(--fg)}
+.log{font:12px/1.5 var(--mono);color:var(--mute);white-space:pre-wrap;max-height:150px;overflow:auto;background:var(--bg2);border:1px solid var(--line);border-radius:9px;padding:8px 10px;margin-top:8px}
+section.ins{margin-top:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media(max-width:940px){section.ins{grid-template-columns:minmax(0,1fr)}}
+.ins .panel p{margin:0 0 8px;color:var(--mute);font-size:14px}
+.ins .panel p b{color:var(--fg)}
+pre{margin:8px 0 0;background:var(--bg2);border:1px solid var(--line);border-radius:9px;padding:10px;overflow:auto;font:12px/1.5 var(--mono);color:#cfe1ff}
+footer{margin-top:24px;color:var(--dim);font-size:12.5px}
+</style>
+</head>
+<body>
+<header>
+  <div class="kick">three.js bridge &middot; three-mesh-bvh</div>
+  <h1>Touch a million triangles</h1>
+  <p class="lede">One X3D <code>ElevationGrid</code> under one <code>TouchSensor</code>. The glowing crosshair is moved by an X3D <code>ROUTE</code>, not by page code. Underneath, the three.js bridge asks <a href="https://github.com/gkjohnson/three-mesh-bvh">three-mesh-bvh</a> which triangle your pointer is over. Move the mouse over the terrain, then flip the tree off.</p>
+</header>
+<main>
+<div class="grid">
+  <div>
+    <div class="stage">
+      <canvas id="c"></canvas>
+      <div class="hud">
+        <span class="pill" id="pFps">fps <b>-</b></span>
+        <span class="pill" id="pTri">triangles <b>-</b></span>
+        <span class="pill on" id="pMode">pick <b>BVH on</b></span>
+        <span class="pill" id="pPick">last pick <b>-</b></span>
+      </div>
+      <div class="busy" id="busy"></div>
+    </div>
+    <p class="note">Drag to turn the view, wheel to zoom. Everything you see is the bridge's body for X3D (<code>x3d.loom/x3d.threejs/bridge</code>); the glowing dots after a scan are page code drawn over it, not X3D.</p>
+  </div>
+  <div class="panel">
+    <h2>1. Pick a size</h2>
+    <div class="row" id="sizes">
+      <button data-n="251">125,000</button><button data-n="500">500,000</button><button data-n="708" class="sel">1,000,000</button>
+    </div>
+    <div class="note" id="loadNote">Loading...</div>
+    <h2 style="margin-top:14px">2. Feel the difference</h2>
+    <div class="row"><button id="bBvh" class="big">Turn the bounds tree off</button></div>
+    <p class="note">With it off, the bridge falls back to three.js's plain raycast. On a big grid, hover gets heavy and the frame rate drops; the picked point does not change.</p>
+    <h2 style="margin-top:14px">3. Race them</h2>
+    <div class="row"><button id="bRace" class="big">Race 24 rays: tree against plain</button></div>
+    <div class="bars" id="bars"></div>
+    <h2 style="margin-top:14px">4. Scan what you see</h2>
+    <div class="row"><button id="bScan" class="big">Cast 24,000 rays from the camera</button></div>
+    <div class="log" id="log">Ready when the terrain is.</div>
+  </div>
+</div>
+
+<section class="ins">
+  <div class="panel"><h2>What stays the same</h2>
+    <p><b>The X3D.</b> The scene is a plain <code>ElevationGrid</code>, a <code>TouchSensor</code>, a <code>Transform</code> and one <code>ROUTE</code> from <code>hitPoint_changed</code> to <code>set_translation</code>. Nothing in it knows about a tree.</p>
+    <p><b>The answer.</b> The race button also checks that the tree and the plain raycast hit the same point on the same ray; a ray counts as the same when the two points are within a millionth of a unit.</p>
+  </div>
+  <div class="panel"><h2>Where the time goes</h2>
+    <p><b>Once:</b> building the tree on the first pick (shown under step 1). <b>Per ray:</b> a walk down a few dozen boxes instead of a loop over every triangle. The bridge only builds a tree for a mesh of 2,000 or more triangles and leaves skinned (HAnim) geometry alone, because it changes every frame.</p>
+    <p><b>Not changed:</b> drawing. The GPU still draws every triangle; the tree speeds up questions asked on the CPU: picking, sensors, scans.</p>
+  </div>
+  <div class="panel"><h2>How it plugs in</h2>
+    <p>Put the library on the page and the bridge notices:</p>
+<pre>import * as MB from 'three-mesh-bvh';
+window.MeshBVHLib = MB;
+// body.bvhOn = false  -> plain raycast
+// body.pickStats      -> calls, ms, trees</pre>
+  </div>
+</section>
+<footer>Timings on this page are measured live in your browser on your machine; nothing is pre-recorded. The scan's "plain" time is an extrapolation from a few plain rays and says so when shown. Libraries: three r187, three-mesh-bvh 0.9.18, both from jsDelivr.</footer>
+</main>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js","three-mesh-bvh":"https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.9.18/build/index.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import * as MB from 'three-mesh-bvh';
+window.THREE = THREE; window.MeshBVHLib = MB;
+
+const $ = (id) => document.getElementById(id), canvas = $('c'), logEl = $('log'), busy = $('busy');
+const log = (s) => { logEl.textContent = s + '\n' + logEl.textContent.split('\n').slice(0, 7).join('\n'); };
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const frame = () => new Promise((r) => requestAnimationFrame(() => r()));
+const fmt = (ms) => ms >= 100 ? ms.toFixed(0) + ' ms' : ms >= 1 ? ms.toFixed(1) + ' ms' : (ms * 1000).toFixed(0) + ' us';
+const showBusy = (t) => { busy.style.display = t ? 'flex' : 'none'; busy.textContent = t || ''; };
+
+// a classic script: the bridge's body bundle (reader + kit + three.js body), needs window.THREE
+await new Promise((ok, no) => { const s = document.createElement('script'); s.src = 'bridge-three.js'; s.onload = ok; s.onerror = () => no(new Error('bridge-three.js did not load')); document.head.appendChild(s); });
+const body = new Body(canvas, { tone: 'none', fontBase: '', onNote: () => {} });
+await body.init(); X3DSAI.setBody(body);
+const P = window.__R.bridge.three.pointer;
+body.bvhOn = true;
+new ResizeObserver(() => body.fit()).observe(canvas);
+
+// ---- the terrain: fractal value noise in JS, written as one X3D ElevationGrid ----
+const hash = (x, y) => { let h = (x * 374761393 + y * 668265263) | 0; h = (h ^ (h >>> 13)) * 1274126177 | 0; return ((h ^ (h >>> 16)) >>> 0) / 4294967295; };
+const vnoise = (x, y) => { const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi, u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+  return (hash(xi, yi) * (1 - u) + hash(xi + 1, yi) * u) * (1 - v) + (hash(xi, yi + 1) * (1 - u) + hash(xi + 1, yi + 1) * u) * v; };
+function sceneXml(n) {
+  const H = new Array(n * n); let k = 0;
+  for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) {
+    const x = i / (n - 1) * 5.5, y = j / (n - 1) * 5.5; let a = 0, amp = 1, f = 1, tot = 0;
+    for (let o = 0; o < 6; o++) { a += amp * vnoise(x * f + 17 * o, y * f + 31 * o); tot += amp; amp *= 0.5; f *= 2.03; }
+    const ridge = 1 - Math.abs(2 * (a / tot) - 1);   // ridged: sharper crests than plain noise
+    H[k++] = ((a / tot) * 5 + ridge * ridge * 4.5).toFixed(2);
+  }
+  const sp = (40 / (n - 1)).toFixed(5);
+  return `<?xml version="1.0" encoding="UTF-8"?><X3D profile="Immersive" version="4.0"><Scene>
+  <NavigationInfo type='"EXAMINE"' headlight="false"/>
+  <Viewpoint position="0 24 34" orientation="1 0 0 -0.55"/>
+  <DirectionalLight direction="-0.5 -0.8 -0.35" intensity="0.95" color="1 0.93 0.82"/>
+  <DirectionalLight direction="0.6 -0.3 0.7" intensity="0.35" color="0.55 0.7 1"/>
+  <Transform translation="-20 0 -20">
+    <Group>
+      <Shape><Appearance><Material diffuseColor="0.55 0.7 0.5" specularColor="0.1 0.1 0.1"/></Appearance>
+        <ElevationGrid xDimension="${n}" zDimension="${n}" xSpacing="${sp}" zSpacing="${sp}" solid="false" creaseAngle="1.2" height="${H.join(' ')}"/></Shape>
+      <TouchSensor DEF="T" description="terrain"/>
+    </Group>
+    <Transform DEF="MARK"><Shape><Appearance><Material emissiveColor="1 0.72 0.25"/></Appearance>
+      <IndexedLineSet coordIndex="0 1 -1 2 3 -1 4 5 -1"><Coordinate point="-0.8 0 0 0.8 0 0 0 -0.8 0 0 0.8 0 0 0 -0.8 0 0 0.8"/></IndexedLineSet></Shape>
+      <PointLight color="1 0.6 0.25" intensity="1.6" radius="6" location="0 1 0"/></Transform>
+  </Transform>
+  <ROUTE fromNode="T" fromField="hitPoint_changed" toNode="MARK" toField="set_translation"/>
+</Scene></X3D>`;
+}
+
+let tris = 0, terrain = null;
+const terrainMesh = () => { let m = null; body.root.traverse((o) => { if (o.isMesh && o.userData && o.userData.shape && o.geometry.attributes.position.count > 1000 && !m) m = o; }); return m; };
+const center = () => { const r = canvas.getBoundingClientRect(); return [r.left + r.width * 0.5, r.top + r.height * 0.6]; };
+async function loadScene(n) {
+  $('loadNote').textContent = 'Loading...'; showBusy('Building ' + (2 * (n - 1) * (n - 1)).toLocaleString() + ' triangles...'); await sleep(40);
+  const t0 = performance.now(), xml = sceneXml(n), t1 = performance.now();
+  const sc = await X3DSAI.B.createX3DFromString(xml); await X3DSAI.B.replaceWorld(sc); await frame(); await frame();
+  const t2 = performance.now(); terrain = terrainMesh(); tris = terrain ? terrain.geometry.attributes.position.count / 3 : 0;
+  body.pickStats = null; body.bvhOn = true; setMode();
+  const [cx, cy] = center(), p0 = performance.now(), hit = P.pick(body, cx, cy), p1 = performance.now();
+  const st = body.pickStats || { trees: 0, buildMs: 0 };
+  $('pTri').innerHTML = 'triangles <b>' + tris.toLocaleString() + '</b>';
+  $('loadNote').innerHTML = 'Generated in <b>' + fmt(t1 - t0) + '</b>, read and drawn by the bridge in <b>' + fmt(t2 - t1) + '</b>. First pick built <b>' + st.trees + '</b> bounds tree in <b>' + fmt(st.buildMs) + '</b>' + (hit ? '' : ' (the centre of the view was not on the terrain)') + '.';
+  log('Scene ready: ' + tris.toLocaleString() + ' triangles.');
+  clearScan(); showBusy('');
+}
+function setMode() { const on = body.bvhOn !== false; $('pMode').className = 'pill ' + (on ? 'on' : 'off'); $('pMode').innerHTML = 'pick <b>' + (on ? 'BVH on' : 'BVH off') + '</b>'; $('bBvh').textContent = on ? 'Turn the bounds tree off' : 'Turn the bounds tree on'; }
+
+// ---- live numbers: fps, and the average cost of the picks the bridge made ----
+let fN = 0, fT = performance.now(), last = { calls: 0, ms: 0 };
+(function loop() { fN++; const now = performance.now();
+  if (now - fT > 500) { $('pFps').innerHTML = 'fps <b>' + (fN * 1000 / (now - fT)).toFixed(0) + '</b>'; fN = 0; fT = now;
+    const s = body.pickStats; if (s && s.calls > last.calls) { $('pPick').innerHTML = 'avg pick <b>' + fmt((s.ms - last.ms) / (s.calls - last.calls)) + '</b>'; last = { calls: s.calls, ms: s.ms }; } }
+  requestAnimationFrame(loop); })();
+
+// ---- 2. the switch ----
+$('bBvh').onclick = () => { body.bvhOn = body.bvhOn === false; setMode(); log('Bounds tree ' + (body.bvhOn ? 'on' : 'off') + '. Move over the terrain.'); };
+
+// ---- 3. the race: the same rays through the plain raycast and through the tree ----
+$('bRace').onclick = async () => {
+  if (!terrain) return; const btn = $('bRace'); btn.disabled = true; const was = body.bvhOn; showBusy('Racing 24 rays...'); await sleep(60);
+  const r = canvas.getBoundingClientRect(), pts = []; for (let i = 0; i < 24; i++) pts.push([r.left + r.width * (0.12 + 0.76 * ((i * 0.618034) % 1)), r.top + r.height * (0.35 + 0.6 * ((i * 0.381966 + 0.2) % 1))]);
+  let tb = 0, tp = 0, same = 0, hits = 0;
+  for (const [x, y] of pts) {
+    body.bvhOn = true; const a0 = performance.now(), a = P.pick(body, x, y), a1 = performance.now();
+    body.bvhOn = false; const b0 = performance.now(), b = P.pick(body, x, y), b1 = performance.now();
+    if (a || b) { hits++; tb += a1 - a0; tp += b1 - b0; if (a && b && a.point.distanceTo(b.point) < 1e-6) same++; }
+  }
+  body.bvhOn = was; setMode(); showBusy(''); btn.disabled = false;
+  if (!hits) { log('No ray hit the terrain; turn the view so it fills the window and race again.'); return; }
+  race.plainPerRay = tp / hits; race.treePerRay = tb / hits;
+  const mx = Math.max(tp, tb) / hits, w = (v) => Math.max(2, v / mx * 100).toFixed(1) + '%';
+  $('bars').innerHTML = '<div class="bar"><span>plain</span><i style="width:' + w(tp / hits) + ';background:var(--coral)"></i><span class="t">' + fmt(tp / hits) + '</span></div>' +
+    '<div class="bar"><span>bounds tree</span><i style="width:' + w(tb / hits) + ';background:var(--teal)"></i><span class="t">' + fmt(tb / hits) + '</span></div>';
+  log('Race: ' + hits + ' rays on ' + tris.toLocaleString() + ' triangles. Tree ' + (tp / tb).toFixed(0) + 'x faster per pick; same point on ' + same + ' of ' + hits + ' rays.');
+};
+const race = { plainPerRay: 0, treePerRay: 0 };
+
+// ---- 4. the scan: 24,000 rays through the camera, drawn as dots ----
+let scanPts = null;
+function clearScan() { if (scanPts) { body.scene.remove(scanPts); scanPts.geometry.dispose(); scanPts.material.dispose(); scanPts = null; } }
+$('bScan').onclick = async () => {
+  if (!terrain) return; const btn = $('bScan'); btn.disabled = true; clearScan(); showBusy('Scanning...'); await sleep(60);
+  body.scene.updateMatrixWorld(true); const cam = body.cam; cam.updateMatrixWorld(true);
+  const W = 200, Hh = 120, rc = new THREE.Raycaster(); rc.firstHitOnly = true; rc.near = cam.near; rc.far = cam.far;
+  const pos = [], col = [], c = new THREE.Color(), t0 = performance.now(); let ymin = 1e9, ymax = -1e9;
+  for (let j = 0; j < Hh; j++) for (let i = 0; i < W; i++) {
+    rc.setFromCamera(new THREE.Vector2((i + 0.5) / W * 2 - 1, (j + 0.5) / Hh * 2 - 1), cam);
+    const h = rc.intersectObject(terrain, false); if (h.length) { const p = h[0].point; pos.push(p.x, p.y + 0.06, p.z); ymin = Math.min(ymin, p.y); ymax = Math.max(ymax, p.y); }
+  }
+  const dt = performance.now() - t0;
+  for (let k = 0; k < pos.length; k += 3) { const f = (pos[k + 1] - ymin) / Math.max(1e-6, ymax - ymin); c.setHSL(0.62 - 0.62 * f, 0.95, 0.55); col.push(c.r, c.g, c.b); }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+  scanPts = new THREE.Points(g, new THREE.PointsMaterial({ size: 3, sizeAttenuation: false, vertexColors: true, transparent: true, opacity: 0.95 })); scanPts.frustumCulled = false; body.scene.add(scanPts);
+  // the plain time for the same job: a few plain rays, scaled (an estimate, and labelled as one)
+  let est = race.plainPerRay;
+  if (!est) { const g0 = terrain.geometry, bt = g0.boundsTree; g0.boundsTree = undefined; const q0 = performance.now(); let q = 0; for (let i = 0; i < 6; i++) { rc.setFromCamera(new THREE.Vector2(-0.3 + i * 0.12, -0.2), cam); rc.intersectObject(terrain, false); q++; } est = (performance.now() - q0) / q; g0.boundsTree = bt; }
+  const rays = W * Hh, estS = est * rays / 1000;
+  log('Scan: ' + rays.toLocaleString() + ' rays, ' + (pos.length / 3).toLocaleString() + ' hit the terrain, in ' + fmt(dt) + ' with the tree (' + fmt(dt / rays) + ' per ray).\nPlain raycast, extrapolated from ' + (race.plainPerRay ? 'the race' : '6 plain rays') + ' at ' + fmt(est) + ' per ray: about ' + (estS >= 120 ? (estS / 60).toFixed(1) + ' minutes' : estS.toFixed(1) + ' seconds') + ' (an estimate, not run).');
+  showBusy(''); btn.disabled = false;
+};
+
+// ---- sizes ----
+document.querySelectorAll('#sizes button').forEach((b) => { b.onclick = async () => { document.querySelectorAll('#sizes button').forEach((x) => x.classList.remove('sel')); b.classList.add('sel'); $('bars').innerHTML = ''; race.plainPerRay = 0; await loadScene(+b.dataset.n); }; });
+window.__demo = { body, loadScene, P, race };
+await loadScene(708);
+</script>
+</body>
+</html>
