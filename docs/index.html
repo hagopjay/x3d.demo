@@ -474,6 +474,34 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
+<section class="demo">
+  <img src="assets/three-bvh.jpg" alt="An X3D hill of triangles, coloured by height, seen from above and drawn by the three.js bridge, with a glowing crosshair where the pointer touched it and a panel of pick timings" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 26</div>
+    <h2>Touch a million triangles</h2>
+    <p>An X3D ElevationGrid of 125,000, 500,000 or 1,000,000 triangles under a TouchSensor, drawn by the three.js bridge with a three-mesh-bvh bounds tree behind the picker. Move the pointer and a glow follows the hit point through an ordinary X3D ROUTE. Three buttons: turn the tree off and on, race it against three.js&rsquo;s plain raycast on the same rays (with a check that both find the same point), and cast 24,000 rays from the camera as a scan. Every timing on the page is measured live in your browser; the plain-raycast time for the scan is an extrapolation and the page says so. Measured when it was built: on 125,000 triangles the tree picked 33 times faster and found the same point on 23 of 23 rays.</p>
+    <div class="chips">
+      <a href="demos/three-bvh/v1/index.html">Open the picking demo</a>
+      <a href="https://github.com/hagopjay/x3d.loom/pull/75">x3d.loom PR 75 (three.js bridge)</a>
+    </div>
+    <p class="facts">Needs WebGL2 (three 0.187.0 and three-mesh-bvh 0.9.18 from jsDelivr). Checked headless on a software GPU (Chromium 153.0.8010.12, SwiftShader): at a million triangles the page draws about 1 to 2 frames a second there, so no frame rate is claimed.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/three-style-board.jpg" alt="Nine tiles of one still life, a sphere, cube, torus and vase on a table, each in a different look: the bridge&rsquo;s own materials, toon, hologram, blueprint, halftone, thermal, normals, pearl and retro dither" width="1200" height="751" loading="lazy">
+  <div>
+    <div class="no">DEMO 27</div>
+    <h2>One scene, nine looks</h2>
+    <p>The X3D file is read once and the same scene graph is drawn nine times a frame, each tile with a different three.js Shading Language (TSL) material built from the X3D material&rsquo;s own colours: the bridge&rsquo;s own materials, toon with an ink edge, hologram, blueprint, halftone, thermal, normals, pearl and a retro dither. Nothing in the X3D changes; the look belongs to the renderer. Three scenes (Still life, Prismatica, Asterion), a &ldquo;code&rdquo; button on every tile that shows its TSL, one camera that any tile can turn, and a double-click to focus one tile. A scene over a million triangles shows a single tile.</p>
+    <div class="chips">
+      <a href="demos/three-style-board/v1/index.html">Open the style board</a>
+      <a href="https://github.com/hagopjay/x3d.loom/pull/75">x3d.loom PR 75 (three.js bridge)</a>
+    </div>
+    <p class="facts">Needs WebGL2 (three 0.187.0 from jsDelivr; the renderer is WebGPURenderer and the page says which backend it got). Checked headless on a software GPU, where it chose the WebGL 2 backend and ran at a few frames a second; no WebGPU timing and no frame rate is claimed. Shapes that use a raw GLSL shader are hidden, since a node material cannot restyle them.</p>
+  </div>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -490,7 +518,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a>, <a href="versions/v17/index.html">v17</a>, <a href="versions/v18/index.html">v18</a>, <a href="versions/v19/index.html">v19</a>, <a href="versions/v21/index.html">v21</a>, <a href="versions/v22/index.html">v22</a>, <a href="versions/v23/index.html">v23</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a>, <a href="versions/v17/index.html">v17</a>, <a href="versions/v18/index.html">v18</a>, <a href="versions/v19/index.html">v19</a>, <a href="versions/v21/index.html">v21</a>, <a href="versions/v22/index.html">v22</a>, <a href="versions/v23/index.html">v23</a>, <a href="versions/v24/index.html">v24</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>

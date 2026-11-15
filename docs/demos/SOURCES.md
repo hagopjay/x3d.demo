@@ -139,3 +139,18 @@ Page written for this site from x3d.loom PR 74 (`x3d.yjs/demo/showcase/index.htm
 | yjs-collab/v1/NOTICE.md | dbb0f3ec694ada71b146cf80f49c5ac9c766fd2880792af428dd7e51d46f5ef2 | 3974 |
 | yjs-collab/v1/dist/yx3d.js | b80a5f08b4b2b9242889fafc75fbc9687b9c1f30fe55dc35071e07105b82e372 | 108438 |
 | yjs-collab/v1/index.html | 0b2b92b7b22575124c1c5982dc9b923c69dfcb6cb1b98cad540b89c5817d3404 | 20530 |
+
+## three-bvh v1 (Demo 26)
+Page written for this site. `bridge-three.js` is the body bundle of x3d.loom branch `claude/project-thread-1kk4vm` at 8a5a7e7 (merged as PR 75), built by `x3d.threejs/bridge/tools/bundle.js`. three 0.187.0 and three-mesh-bvh 0.9.18 are loaded from jsDelivr, not vendored. Measured numbers in the card are from the build run (Chromium 153.0.8010.12, SwiftShader).
+
+| file | sha256 | bytes |
+|---|---|---|
+| three-bvh/v1/index.html | c4f4658c9c47eda4ee68cc92000f24945f01cf72b83684946b6936ed386b40f1 | 19083 |
+| three-bvh/v1/bridge-three.js | 563a0f389c326e3e56b6ff4921718a442fd0f252353b3e7e4b903c9906fd180d | 1010898 |
+
+## three-style-board v1 (Demo 27)
+Page written for this site. It reads the Still life, Prismatica and Asterion scene files from `bridge-blenderizer/v1/scenes/` (no copies) and loads the bridge bundle from `three-bvh/v1/bridge-three.js` (no copy). three 0.187.0 from jsDelivr.
+
+| file | sha256 | bytes |
+|---|---|---|
+| three-style-board/v1/index.html | 60ee8d1b0bd400794fc5a59f982dbf69c80c27a05a16c9291011b102c45135fb | 19518 |
