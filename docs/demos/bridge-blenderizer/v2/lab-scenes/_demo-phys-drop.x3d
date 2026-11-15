@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">
+  <head><component name="RigidBodyPhysics" level="2"/><meta name="title" content="physics demo scene for the Demo 24 page"/></head>
+  <Scene>
+    <Background skyColor="0.06 0.07 0.12"/>
+    <NavigationInfo type='"EXAMINE" "ANY"' transitionType='"TELEPORT"'/>
+    <Viewpoint position="0 2.5 11" orientation="1 0 0 -0.12"/>
+    <Transform DEF="V_G" translation="0 -0.5 0"><Shape><Appearance><Material diffuseColor="0.25 0.3 0.4"/></Appearance><Box size="14 1 14"/></Shape></Transform>
+    <Transform DEF="V_S" translation="-1.6 4.5 0"><Shape><Appearance><Material diffuseColor="0.95 0.45 0.25"/></Appearance><Sphere radius="0.6"/></Shape></Transform>
+    <Transform DEF="V_B" translation="0.4 3 0" rotation="0 1 0 0.5"><Shape><Appearance><Material diffuseColor="0.3 0.8 0.85"/></Appearance><Box size="1 1 1"/></Shape></Transform>
+    <Transform DEF="V_C" translation="1.9 5.5 0" rotation="0 0 1 0.6"><Shape><Appearance><Material diffuseColor="0.8 0.75 0.3"/></Appearance><Box size="1.2 0.6 0.6"/></Shape></Transform>
+    <RigidBodyCollection DEF="W" gravity="0 -9.8 0">
+      <RigidBody DEF="G" position="0 -0.5 0" mass="1" fixed="true"><CollidableShape containerField="geometry"><Shape containerField="shape"><Box size="14 1 14"/></Shape></CollidableShape></RigidBody>
+      <RigidBody DEF="S" position="-1.6 4.5 0" mass="1"><CollidableShape containerField="geometry"><Shape containerField="shape"><Sphere radius="0.6"/></Shape></CollidableShape></RigidBody>
+      <RigidBody DEF="B" position="0.4 3 0" orientation="0 1 0 0.5" mass="1"><CollidableShape containerField="geometry"><Shape containerField="shape"><Box size="1 1 1"/></Shape></CollidableShape></RigidBody>
+      <RigidBody DEF="C" position="1.9 5.5 0" orientation="0 0 1 0.6" mass="1"><CollidableShape containerField="geometry"><Shape containerField="shape"><Box size="1.2 0.6 0.6"/></Shape></CollidableShape></RigidBody>
+      <CollisionCollection containerField="collider" bounce="0.3"/>
+    </RigidBodyCollection>
+    <ROUTE fromNode="G" fromField="position" toNode="V_G" toField="set_translation"/><ROUTE fromNode="G" fromField="orientation" toNode="V_G" toField="set_rotation"/><ROUTE fromNode="S" fromField="position" toNode="V_S" toField="set_translation"/><ROUTE fromNode="S" fromField="orientation" toNode="V_S" toField="set_rotation"/><ROUTE fromNode="B" fromField="position" toNode="V_B" toField="set_translation"/><ROUTE fromNode="B" fromField="orientation" toNode="V_B" toField="set_rotation"/><ROUTE fromNode="C" fromField="position" toNode="V_C" toField="set_translation"/><ROUTE fromNode="C" fromField="orientation" toNode="V_C" toField="set_rotation"/>
+  </Scene>
+</X3D>
