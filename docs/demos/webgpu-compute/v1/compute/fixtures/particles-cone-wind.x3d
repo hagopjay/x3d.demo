@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">
+  <head><meta name="title" content="particles-cone-wind.x3d"/><meta name="description" content="x3d.compute fixture: ConeEmitter + ForcePhysicsModel + WindPhysicsModel + BoundedPhysicsModel floor"/></head>
+  <Scene>
+    <Shape><Appearance><Material emissiveColor="1 0.7 0.2"/></Appearance>
+      <ParticleSystem DEF="PS" maxParticles="4096" particleLifetime="3" lifetimeVariation="0.1" geometryType="POINT">
+        <ConeEmitter containerField="emitter" position="0 0.2 0" direction="0 1 0" angle="0.5236" speed="4" variation="0.25" mass="0.01" surfaceArea="0"/>
+        <ForcePhysicsModel containerField="physics" force="0 -9.8 0"/>
+        <WindPhysicsModel containerField="physics" direction="1 0 0.3" speed="1.5" gustiness="0" turbulence="0"/>
+        <BoundedPhysicsModel containerField="physics"><Box size="40 6 40"/></BoundedPhysicsModel>
+      </ParticleSystem>
+    </Shape>
+  </Scene>
+</X3D>
