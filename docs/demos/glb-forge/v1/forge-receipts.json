@@ -1,0 +1,3320 @@
+{
+ "schema": "x3d.gltf.demo-receipt/v1",
+ "tools": {
+  "@gltf-transform/core": "4.5.1",
+  "@gltf-transform/extensions": "4.5.1",
+  "@gltf-transform/functions": "4.5.1",
+  "draco3dgltf": "1.5.9",
+  "gltf-validator": "2.0.0-dev.3.10",
+  "ktx2-encoder": "0.6.0",
+  "meshoptimizer": "1.3.0",
+  "sharp": "0.35.5",
+  "node": "v22.23.4",
+  "note": "sizes and sha256 are computed here, by the Node CLI path; the page recomputes the portable profiles in the visitor browser and compares"
+ },
+ "scenes": {
+  "cathedral": {
+   "title": "PRISMATICA Aurora Cathedral",
+   "file": "cathedral.glb",
+   "bytes": 1219372,
+   "sha256": "b77305d7769ad0bc952e63040e47840c26c2a56ea0bfdaa17587c3d3dc5a456d",
+   "transfer": {
+    "raw": 1219372,
+    "gzip": 538077,
+    "brotli": 394014
+   },
+   "profiles": {
+    "lossless": {
+     "portable": true,
+     "file": null,
+     "bytes": 1233324,
+     "sha256": "80cddbc697dd1a82ca8a8fe0c2a47f918487c6bf3c1f863d818920be6b9778ab",
+     "transfer": {
+      "raw": 1233324,
+      "gzip": 597138,
+      "brotli": 428389
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 104,
+     "drawCalls": [
+      1218,
+      1218
+     ],
+     "nodes": [
+      1224,
+      1224
+     ],
+     "triangles": [
+      600976,
+      600976
+     ],
+     "residentVertexBytes": [
+      649824,
+      649824
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 1251,
+      "preserved": 1251,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0,
+      "centroidP99Rel": 0,
+      "normalP99Deg": 0.0000017075472925031877,
+      "areaRelDelta": 0
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": []
+     },
+     "extensions": [
+      "KHR_lights_punctual",
+      "KHR_materials_unlit"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 3
+      },
+      {
+       "step": "prune",
+       "ms": 8
+      },
+      {
+       "step": "weld",
+       "ms": 20
+      }
+     ]
+    },
+    "meshopt-lossless": {
+     "portable": true,
+     "file": null,
+     "bytes": 935884,
+     "sha256": "cfa46d07e07e74c8d76b2ad6a2d7a522fe81af1a9cbc531d5c56e395c43a7119",
+     "transfer": {
+      "raw": 935884,
+      "gzip": 466256,
+      "brotli": 432974
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 212,
+     "drawCalls": [
+      1218,
+      1218
+     ],
+     "nodes": [
+      1224,
+      1224
+     ],
+     "triangles": [
+      600976,
+      600976
+     ],
+     "residentVertexBytes": [
+      649824,
+      649824
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 1251,
+      "preserved": 1251,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 1.8062538033254472e-16,
+      "centroidP99Rel": 8.027794681446431e-17,
+      "normalP99Deg": 0.0000017075472925031877,
+      "areaRelDelta": -6.60283303418508e-16
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_materials_unlit"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 16
+      },
+      {
+       "step": "prune",
+       "ms": 10
+      },
+      {
+       "step": "weld",
+       "ms": 50
+      },
+      {
+       "step": "reorder",
+       "ms": 34
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "quantized": {
+     "portable": true,
+     "file": null,
+     "bytes": 899012,
+     "sha256": "bcdda60609d789ee99609efc2ab93a2c8bcc32bdc778e58bd0469ad2bd11d1f5",
+     "transfer": {
+      "raw": 899012,
+      "gzip": 413234,
+      "brotli": 329649
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 179,
+     "drawCalls": [
+      1218,
+      1218
+     ],
+     "nodes": [
+      1224,
+      1224
+     ],
+     "triangles": [
+      600976,
+      600976
+     ],
+     "residentVertexBytes": [
+      649824,
+      284664
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 1251,
+      "preserved": 1251,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.00001936035324118075,
+      "centroidP99Rel": 0.000009269632376769189,
+      "normalP99Deg": 0.04714280947524389,
+      "areaRelDelta": -0.000010254304316451626
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": []
+     },
+     "extensions": [
+      "KHR_lights_punctual",
+      "KHR_materials_unlit",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 2
+      },
+      {
+       "step": "prune",
+       "ms": 2
+      },
+      {
+       "step": "weld",
+       "ms": 38
+      },
+      {
+       "step": "quantize",
+       "ms": 96
+      }
+     ]
+    },
+    "web": {
+     "portable": true,
+     "file": null,
+     "bytes": 653336,
+     "sha256": "148658d7fb7cc68ba30fc88766e9690b3612e01b4a06d95c60417780e89b657f",
+     "transfer": {
+      "raw": 653336,
+      "gzip": 234254,
+      "brotli": 204108
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 133,
+     "drawCalls": [
+      1218,
+      1218
+     ],
+     "nodes": [
+      1224,
+      1224
+     ],
+     "triangles": [
+      600976,
+      600976
+     ],
+     "residentVertexBytes": [
+      649824,
+      284664
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 1251,
+      "preserved": 1251,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.00001936035324118075,
+      "centroidP99Rel": 0.000009269632376769189,
+      "normalP99Deg": 0.04714280947524389,
+      "areaRelDelta": -0.000010254304316187513
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_materials_unlit",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 2
+      },
+      {
+       "step": "weld",
+       "ms": 13
+      },
+      {
+       "step": "reorder",
+       "ms": 10
+      },
+      {
+       "step": "quantize",
+       "ms": 53
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "web-filter": {
+     "portable": true,
+     "file": null,
+     "bytes": 597832,
+     "sha256": "7bab5eff2e29f4c8a964ce5f92a2b31c47087f6bd299f3532cdc998d5f1007df",
+     "transfer": {
+      "raw": 597832,
+      "gzip": 179242,
+      "brotli": 150327
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 138,
+     "drawCalls": [
+      1218,
+      1218
+     ],
+     "nodes": [
+      1224,
+      1224
+     ],
+     "triangles": [
+      600976,
+      600976
+     ],
+     "residentVertexBytes": [
+      649824,
+      238836
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 1251,
+      "preserved": 1251,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.00001936035324118075,
+      "centroidP99Rel": 0.000009269632376769189,
+      "normalP99Deg": 0.7272528718167076,
+      "areaRelDelta": -0.000010254304316187513
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_materials_unlit",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 9
+      },
+      {
+       "step": "weld",
+       "ms": 7
+      },
+      {
+       "step": "reorder",
+       "ms": 10
+      },
+      {
+       "step": "quantize",
+       "ms": 48
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "instanced": {
+     "portable": true,
+     "file": null,
+     "bytes": 456044,
+     "sha256": "06ada2762aecc9d23a92dfacb0075cfd1d7af0e585602fac3fad5b356565ea01",
+     "transfer": {
+      "raw": 456044,
+      "gzip": 214125,
+      "brotli": 176743
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 105,
+     "drawCalls": [
+      1218,
+      10
+     ],
+     "nodes": [
+      1224,
+      16
+     ],
+     "triangles": [
+      600976,
+      600976
+     ],
+     "residentVertexBytes": [
+      649824,
+      284664
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 1251,
+      "preserved": 1251,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.00001936035324118075,
+      "centroidP99Rel": 0.000009269632376769189,
+      "normalP99Deg": 0.04714280146584588,
+      "areaRelDelta": -0.000010282314514835402
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_mesh_gpu_instancing",
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_mesh_gpu_instancing",
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_materials_unlit",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 6
+      },
+      {
+       "step": "instance",
+       "ms": 44
+      },
+      {
+       "step": "reorder",
+       "ms": 7
+      },
+      {
+       "step": "quantize",
+       "ms": 28
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "static-joined": {
+     "portable": true,
+     "file": null,
+     "bytes": 1416708,
+     "sha256": "589e2188dd93ddee46cc24ec4bcc2eed36ce8bd49aad801563d59dd9b67d9d29",
+     "transfer": {
+      "raw": 1416708,
+      "gzip": 276596,
+      "brotli": 186863
+     },
+     "ok": false,
+     "failures": [
+      "geometry: 18994 triangles collapsed (more than 0.1% of 600976)",
+      "geometry: normals p99 1.412 degrees exceeds 1"
+     ],
+     "notes": [],
+     "nodeMs": 1390,
+     "drawCalls": [
+      1218,
+      10
+     ],
+     "nodes": [
+      1224,
+      16
+     ],
+     "triangles": [
+      600976,
+      600976
+     ],
+     "residentVertexBytes": [
+      649824,
+      1869429
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 1251,
+      "preserved": 43,
+      "lost": 1208,
+      "added": 0,
+      "lostByKind": {
+       "node": 1208
+      }
+     },
+     "geometry": {
+      "centroidMaxRel": 0.00028389868826725627,
+      "centroidP99Rel": 0.000025714662127781062,
+      "normalP99Deg": 1.4121273372757375,
+      "areaRelDelta": -0.00003158768519577936
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_materials_unlit",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 2
+      },
+      {
+       "step": "prune",
+       "ms": 11
+      },
+      {
+       "step": "flatten",
+       "ms": 5
+      },
+      {
+       "step": "join",
+       "ms": 712
+      },
+      {
+       "step": "weld",
+       "ms": 270
+      },
+      {
+       "step": "reorder",
+       "ms": 181
+      },
+      {
+       "step": "quantize",
+       "ms": 135
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "stock-instance": {
+     "portable": true,
+     "file": null,
+     "bytes": 878856,
+     "sha256": "466331966f6f32de7eefed71be62f591c94f9afaebdd7e9ced032085f6b29a38",
+     "transfer": {
+      "raw": 878856,
+      "gzip": 560888,
+      "brotli": 397592
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 141,
+     "drawCalls": [
+      1218,
+      10
+     ],
+     "nodes": [
+      1224,
+      16
+     ],
+     "triangles": [
+      600976,
+      600976
+     ],
+     "residentVertexBytes": [
+      649824,
+      649824
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 1251,
+      "preserved": 35,
+      "lost": 1216,
+      "added": 0,
+      "lostByKind": {
+       "node": 1216
+      }
+     },
+     "geometry": {
+      "centroidMaxRel": 2.5941706508976957e-8,
+      "centroidP99Rel": 3.420059766118128e-11,
+      "normalP99Deg": 0.000002091309789151873,
+      "areaRelDelta": -2.795948783373284e-8
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": [
+       "EXT_mesh_gpu_instancing"
+      ]
+     },
+     "extensions": [
+      "EXT_mesh_gpu_instancing",
+      "KHR_lights_punctual",
+      "KHR_materials_unlit"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 5
+      },
+      {
+       "step": "weld",
+       "ms": 47
+      },
+      {
+       "step": "instance",
+       "ms": 45
+      }
+     ]
+    },
+    "draco": {
+     "portable": false,
+     "file": "cathedral.draco.glb",
+     "bytes": 519312,
+     "sha256": "2bebc0d213de77538db65131d407158dbdf2ab39ec3dfd0613da8ae08e9825ec",
+     "transfer": {
+      "raw": 519312,
+      "gzip": 145444,
+      "brotli": 128276
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 125,
+     "drawCalls": [
+      1218,
+      1218
+     ],
+     "nodes": [
+      1224,
+      1224
+     ],
+     "triangles": [
+      600976,
+      600976
+     ],
+     "residentVertexBytes": [
+      649824,
+      649824
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 1251,
+      "preserved": 1251,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.000016565550474348814,
+      "centroidP99Rel": 0.00000849641082130847,
+      "normalP99Deg": 0.11964784898682958,
+      "areaRelDelta": -0.00002808722147027298
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "KHR_draco_mesh_compression"
+      ]
+     },
+     "extensions": [
+      "KHR_draco_mesh_compression",
+      "KHR_lights_punctual",
+      "KHR_materials_unlit"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 5
+      },
+      {
+       "step": "draco",
+       "ms": 6
+      }
+     ]
+    }
+   }
+  },
+  "asterion": {
+   "title": "Asterion (BRDF specimens)",
+   "file": "asterion.glb",
+   "bytes": 4510120,
+   "sha256": "2a77e8d4060ec635bc65c0f227f9ae769215f41cce5d312b8cb7024460f88c4a",
+   "transfer": {
+    "raw": 4510120,
+    "gzip": 638942,
+    "brotli": 368572
+   },
+   "profiles": {
+    "lossless": {
+     "portable": true,
+     "file": null,
+     "bytes": 4968344,
+     "sha256": "e0cf53e62626a3ace0ec11bed9fc42637608e26d0c03256be15237bccc1e10d5",
+     "transfer": {
+      "raw": 4968344,
+      "gzip": 652351,
+      "brotli": 391062
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 169,
+     "drawCalls": [
+      284,
+      284
+     ],
+     "nodes": [
+      288,
+      288
+     ],
+     "triangles": [
+      93682,
+      93682
+     ],
+     "residentVertexBytes": [
+      4172256,
+      4172256
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 587,
+      "preserved": 587,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0,
+      "centroidP99Rel": 0,
+      "normalP99Deg": 0.0000014787793334710982,
+      "areaRelDelta": 0
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": []
+     },
+     "extensions": [
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 9
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 46
+      }
+     ]
+    },
+    "meshopt-lossless": {
+     "portable": true,
+     "file": null,
+     "bytes": 2968068,
+     "sha256": "0a8bd071246e2925b6989f69f8308707f93f8868b5f0788c16d1f81e7f6131b0",
+     "transfer": {
+      "raw": 2968068,
+      "gzip": 453125,
+      "brotli": 355897
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 189,
+     "drawCalls": [
+      284,
+      284
+     ],
+     "nodes": [
+      288,
+      288
+     ],
+     "triangles": [
+      93682,
+      93682
+     ],
+     "residentVertexBytes": [
+      4172256,
+      4172256
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 587,
+      "preserved": 587,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 6.276910098626897e-18,
+      "centroidP99Rel": 2.4519180072761316e-20,
+      "normalP99Deg": 0.0000014787793334710982,
+      "areaRelDelta": 0
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 18
+      },
+      {
+       "step": "prune",
+       "ms": 7
+      },
+      {
+       "step": "weld",
+       "ms": 55
+      },
+      {
+       "step": "reorder",
+       "ms": 37
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "quantized": {
+     "portable": true,
+     "file": null,
+     "bytes": 844512,
+     "sha256": "1da809a75288b566c8b7c7b6b1711ce785340a7e3711185f8c5640b5d248e7c3",
+     "transfer": {
+      "raw": 844512,
+      "gzip": 370046,
+      "brotli": 265959
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 353,
+     "drawCalls": [
+      284,
+      284
+     ],
+     "nodes": [
+      288,
+      288
+     ],
+     "triangles": [
+      93682,
+      93682
+     ],
+     "residentVertexBytes": [
+      4172256,
+      2086128
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 587,
+      "preserved": 587,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.00000100253798967388,
+      "centroidP99Rel": 6.790270002685799e-7,
+      "normalP99Deg": 0.07289293936755065,
+      "areaRelDelta": 2.1023542086427996e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": []
+     },
+     "extensions": [
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 33
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 77
+      },
+      {
+       "step": "quantize",
+       "ms": 157
+      }
+     ]
+    },
+    "web": {
+     "portable": true,
+     "file": null,
+     "bytes": 508972,
+     "sha256": "c4c5e9d9ec48fbf3fc954debfc97d3751976db0c02b45567340159e0f4d161af",
+     "transfer": {
+      "raw": 508972,
+      "gzip": 193531,
+      "brotli": 159967
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 388,
+     "drawCalls": [
+      284,
+      284
+     ],
+     "nodes": [
+      288,
+      288
+     ],
+     "triangles": [
+      93682,
+      93682
+     ],
+     "residentVertexBytes": [
+      4172256,
+      2086128
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 587,
+      "preserved": 587,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.00000100253798967388,
+      "centroidP99Rel": 6.790270002685799e-7,
+      "normalP99Deg": 0.07289293936755065,
+      "areaRelDelta": 2.1023542086427996e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 25
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 43
+      },
+      {
+       "step": "reorder",
+       "ms": 48
+      },
+      {
+       "step": "quantize",
+       "ms": 220
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "web-filter": {
+     "portable": true,
+     "file": null,
+     "bytes": 431016,
+     "sha256": "86083a8f607726919ad6fd32dc4d7905c7ffa518a46146c800603b7a3baadb2e",
+     "transfer": {
+      "raw": 431016,
+      "gzip": 144180,
+      "brotli": 121495
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 409,
+     "drawCalls": [
+      284,
+      284
+     ],
+     "nodes": [
+      288,
+      288
+     ],
+     "triangles": [
+      93682,
+      93682
+     ],
+     "residentVertexBytes": [
+      4172256,
+      1694979
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 587,
+      "preserved": 587,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.00000100253798967388,
+      "centroidP99Rel": 6.790270002685799e-7,
+      "normalP99Deg": 0.7591338498787834,
+      "areaRelDelta": 2.1023542086427996e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 48
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 78
+      },
+      {
+       "step": "reorder",
+       "ms": 50
+      },
+      {
+       "step": "quantize",
+       "ms": 194
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "instanced": {
+     "portable": true,
+     "file": null,
+     "bytes": 508972,
+     "sha256": "c4c5e9d9ec48fbf3fc954debfc97d3751976db0c02b45567340159e0f4d161af",
+     "transfer": {
+      "raw": 508972,
+      "gzip": 193531,
+      "brotli": 159967
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 268,
+     "drawCalls": [
+      284,
+      284
+     ],
+     "nodes": [
+      288,
+      288
+     ],
+     "triangles": [
+      93682,
+      93682
+     ],
+     "residentVertexBytes": [
+      4172256,
+      2086128
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 587,
+      "preserved": 587,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.00000100253798967388,
+      "centroidP99Rel": 6.790270002685799e-7,
+      "normalP99Deg": 0.07289293936755065,
+      "areaRelDelta": 2.1023542086427996e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 23
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 50
+      },
+      {
+       "step": "instance",
+       "ms": 1
+      },
+      {
+       "step": "reorder",
+       "ms": 44
+      },
+      {
+       "step": "quantize",
+       "ms": 119
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "static-joined": {
+     "portable": true,
+     "file": null,
+     "bytes": 1051588,
+     "sha256": "a9bacce98dd4748b290add4293d106c6688ba1ac95543891040a9b887116668a",
+     "transfer": {
+      "raw": 1051588,
+      "gzip": 212943,
+      "brotli": 171136
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 211,
+     "drawCalls": [
+      284,
+      10
+     ],
+     "nodes": [
+      288,
+      14
+     ],
+     "triangles": [
+      93682,
+      93682
+     ],
+     "residentVertexBytes": [
+      4172256,
+      1564596
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 587,
+      "preserved": 39,
+      "lost": 548,
+      "added": 0,
+      "lostByKind": {
+       "node": 274,
+       "mesh": 274
+      }
+     },
+     "geometry": {
+      "centroidMaxRel": 0.000001710260795422364,
+      "centroidP99Rel": 0.0000012385898081225426,
+      "normalP99Deg": 0.07289293936755065,
+      "areaRelDelta": 7.484305738415828e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 11
+      },
+      {
+       "step": "prune",
+       "ms": 3
+      },
+      {
+       "step": "flatten",
+       "ms": 1
+      },
+      {
+       "step": "join",
+       "ms": 87
+      },
+      {
+       "step": "weld",
+       "ms": 18
+      },
+      {
+       "step": "reorder",
+       "ms": 13
+      },
+      {
+       "step": "quantize",
+       "ms": 51
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "stock-instance": {
+     "portable": true,
+     "file": null,
+     "bytes": 4968344,
+     "sha256": "e0cf53e62626a3ace0ec11bed9fc42637608e26d0c03256be15237bccc1e10d5",
+     "transfer": {
+      "raw": 4968344,
+      "gzip": 652351,
+      "brotli": 391062
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 196,
+     "drawCalls": [
+      284,
+      284
+     ],
+     "nodes": [
+      288,
+      288
+     ],
+     "triangles": [
+      93682,
+      93682
+     ],
+     "residentVertexBytes": [
+      4172256,
+      4172256
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 587,
+      "preserved": 587,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0,
+      "centroidP99Rel": 0,
+      "normalP99Deg": 0.0000014787793334710982,
+      "areaRelDelta": 0
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": []
+     },
+     "extensions": [
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 12
+      },
+      {
+       "step": "prune",
+       "ms": 2
+      },
+      {
+       "step": "weld",
+       "ms": 65
+      },
+      {
+       "step": "instance",
+       "ms": 0
+      }
+     ]
+    },
+    "draco": {
+     "portable": false,
+     "file": "asterion.draco.glb",
+     "bytes": 599000,
+     "sha256": "24582dc868b0d424b744973305ff935356beed0919edb94f249c24d3efd883ae",
+     "transfer": {
+      "raw": 599000,
+      "gzip": 127319,
+      "brotli": 114923
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 538,
+     "drawCalls": [
+      284,
+      284
+     ],
+     "nodes": [
+      288,
+      288
+     ],
+     "triangles": [
+      93682,
+      93682
+     ],
+     "residentVertexBytes": [
+      4172256,
+      4172256
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 587,
+      "preserved": 587,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.0000010302501068155097,
+      "centroidP99Rel": 6.352094248107534e-7,
+      "normalP99Deg": 0.13514454159886136,
+      "areaRelDelta": 1.420635606980361e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "KHR_draco_mesh_compression"
+      ]
+     },
+     "extensions": [
+      "KHR_draco_mesh_compression",
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 40
+      },
+      {
+       "step": "prune",
+       "ms": 6
+      },
+      {
+       "step": "weld",
+       "ms": 76
+      },
+      {
+       "step": "draco",
+       "ms": 108
+      }
+     ]
+    }
+   }
+  },
+  "lumen": {
+   "title": "LUMEN Interference Atelier",
+   "file": "lumen.glb",
+   "bytes": 2753652,
+   "sha256": "39a80c82ca56cde2d8d7c5007fb4f443b7fe7f516acf667bc40b2f0de8bb1458",
+   "transfer": {
+    "raw": 2753652,
+    "gzip": 1282269,
+    "brotli": 563977
+   },
+   "profiles": {
+    "lossless": {
+     "portable": true,
+     "file": null,
+     "bytes": 2761920,
+     "sha256": "73ed618ab8a676d6a4536499aa4c650254eb28724300b87e60e5022d549c153b",
+     "transfer": {
+      "raw": 2761920,
+      "gzip": 1382790,
+      "brotli": 586948
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 48,
+     "drawCalls": [
+      34,
+      34
+     ],
+     "nodes": [
+      39,
+      39
+     ],
+     "triangles": [
+      89568,
+      89568
+     ],
+     "residentVertexBytes": [
+      2194752,
+      2194752
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 86,
+      "preserved": 86,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0,
+      "centroidP99Rel": 0,
+      "normalP99Deg": 0.0000017075472925031877,
+      "areaRelDelta": 0
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": []
+     },
+     "extensions": [
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 1
+      },
+      {
+       "step": "prune",
+       "ms": 0
+      },
+      {
+       "step": "weld",
+       "ms": 18
+      }
+     ]
+    },
+    "meshopt-lossless": {
+     "portable": true,
+     "file": null,
+     "bytes": 1405636,
+     "sha256": "423f8c709e08f205e79b26cb3ce0c8c3ce08601c49bea725875ad3e00d82b0db",
+     "transfer": {
+      "raw": 1405636,
+      "gzip": 809861,
+      "brotli": 472824
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 104,
+     "drawCalls": [
+      34,
+      34
+     ],
+     "nodes": [
+      39,
+      39
+     ],
+     "triangles": [
+      89568,
+      89568
+     ],
+     "residentVertexBytes": [
+      2194752,
+      2194752
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 86,
+      "preserved": 86,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0,
+      "centroidP99Rel": 0,
+      "normalP99Deg": 0.0000017075472925031877,
+      "areaRelDelta": 0
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 1
+      },
+      {
+       "step": "prune",
+       "ms": 3
+      },
+      {
+       "step": "weld",
+       "ms": 38
+      },
+      {
+       "step": "reorder",
+       "ms": 22
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "quantized": {
+     "portable": true,
+     "file": null,
+     "bytes": 1732572,
+     "sha256": "40e1fb287b3e0fbe40fd86219d42afa4b22221f81827f094ee02f5c62cefb624",
+     "transfer": {
+      "raw": 1732572,
+      "gzip": 1067301,
+      "brotli": 487665
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [
+      "8 triangles collapsed below the quantization step"
+     ],
+     "nodeMs": 114,
+     "drawCalls": [
+      34,
+      34
+     ],
+     "nodes": [
+      39,
+      39
+     ],
+     "triangles": [
+      89568,
+      89568
+     ],
+     "residentVertexBytes": [
+      2194752,
+      986784
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 86,
+      "preserved": 86,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.0000068907299047632826,
+      "centroidP99Rel": 0.0000015499197901235569,
+      "normalP99Deg": 0.054239428503497576,
+      "areaRelDelta": -3.033102597246507e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": []
+     },
+     "extensions": [
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 1
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 19
+      },
+      {
+       "step": "quantize",
+       "ms": 56
+      }
+     ]
+    },
+    "web": {
+     "portable": true,
+     "file": null,
+     "bytes": 659596,
+     "sha256": "ec77e89780d49db2a7b44ae877116b34bb3b2e46d0bdad7bf8b467458880848c",
+     "transfer": {
+      "raw": 659596,
+      "gzip": 242408,
+      "brotli": 183338
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [
+      "8 triangles collapsed below the quantization step"
+     ],
+     "nodeMs": 113,
+     "drawCalls": [
+      34,
+      34
+     ],
+     "nodes": [
+      39,
+      39
+     ],
+     "triangles": [
+      89568,
+      89568
+     ],
+     "residentVertexBytes": [
+      2194752,
+      986784
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 86,
+      "preserved": 86,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.0000068907299047578616,
+      "centroidP99Rel": 0.0000015499197901235569,
+      "normalP99Deg": 0.054239428503497576,
+      "areaRelDelta": -3.033102597246507e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 1
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 20
+      },
+      {
+       "step": "reorder",
+       "ms": 23
+      },
+      {
+       "step": "quantize",
+       "ms": 49
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "web-filter": {
+     "portable": true,
+     "file": null,
+     "bytes": 502464,
+     "sha256": "654fb5cbb65152988c0662df58d144d0fb3744b1fe8a060e8356d00d39482a74",
+     "transfer": {
+      "raw": 502464,
+      "gzip": 143717,
+      "brotli": 108836
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [
+      "8 triangles collapsed below the quantization step"
+     ],
+     "nodeMs": 105,
+     "drawCalls": [
+      34,
+      34
+     ],
+     "nodes": [
+      39,
+      39
+     ],
+     "triangles": [
+      89568,
+      89568
+     ],
+     "residentVertexBytes": [
+      2194752,
+      822498
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 86,
+      "preserved": 86,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.0000068907299047578616,
+      "centroidP99Rel": 0.0000015499197901235569,
+      "normalP99Deg": 0.6365935759629071,
+      "areaRelDelta": -3.033102597246507e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 1
+      },
+      {
+       "step": "prune",
+       "ms": 0
+      },
+      {
+       "step": "weld",
+       "ms": 19
+      },
+      {
+       "step": "reorder",
+       "ms": 20
+      },
+      {
+       "step": "quantize",
+       "ms": 47
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "instanced": {
+     "portable": true,
+     "file": null,
+     "bytes": 659596,
+     "sha256": "ec77e89780d49db2a7b44ae877116b34bb3b2e46d0bdad7bf8b467458880848c",
+     "transfer": {
+      "raw": 659596,
+      "gzip": 242408,
+      "brotli": 183338
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [
+      "8 triangles collapsed below the quantization step"
+     ],
+     "nodeMs": 129,
+     "drawCalls": [
+      34,
+      34
+     ],
+     "nodes": [
+      39,
+      39
+     ],
+     "triangles": [
+      89568,
+      89568
+     ],
+     "residentVertexBytes": [
+      2194752,
+      986784
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 86,
+      "preserved": 86,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.0000068907299047578616,
+      "centroidP99Rel": 0.0000015499197901235569,
+      "normalP99Deg": 0.054239428503497576,
+      "areaRelDelta": -3.033102597246507e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 1
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 20
+      },
+      {
+       "step": "instance",
+       "ms": 0
+      },
+      {
+       "step": "reorder",
+       "ms": 22
+      },
+      {
+       "step": "quantize",
+       "ms": 67
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "static-joined": {
+     "portable": true,
+     "file": null,
+     "bytes": 566476,
+     "sha256": "0bf83348c72d2e63a6ac2a1563849e8267eefbab0ee8203f46dc382be98aa45c",
+     "transfer": {
+      "raw": 566476,
+      "gzip": 230359,
+      "brotli": 175067
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [
+      "22 triangles collapsed below the quantization step"
+     ],
+     "nodeMs": 103,
+     "drawCalls": [
+      34,
+      7
+     ],
+     "nodes": [
+      39,
+      12
+     ],
+     "triangles": [
+      89568,
+      89568
+     ],
+     "residentVertexBytes": [
+      2194752,
+      767724
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 86,
+      "preserved": 32,
+      "lost": 54,
+      "added": 0,
+      "lostByKind": {
+       "node": 27,
+       "mesh": 27
+      }
+     },
+     "geometry": {
+      "centroidMaxRel": 0.0000055536531839458385,
+      "centroidP99Rel": 0.0000015513709352540925,
+      "normalP99Deg": 0.05428914747041498,
+      "areaRelDelta": -2.540552900151572e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 2
+      },
+      {
+       "step": "prune",
+       "ms": 0
+      },
+      {
+       "step": "flatten",
+       "ms": 0
+      },
+      {
+       "step": "join",
+       "ms": 14
+      },
+      {
+       "step": "weld",
+       "ms": 15
+      },
+      {
+       "step": "reorder",
+       "ms": 19
+      },
+      {
+       "step": "quantize",
+       "ms": 37
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "stock-instance": {
+     "portable": true,
+     "file": null,
+     "bytes": 2761920,
+     "sha256": "73ed618ab8a676d6a4536499aa4c650254eb28724300b87e60e5022d549c153b",
+     "transfer": {
+      "raw": 2761920,
+      "gzip": 1382790,
+      "brotli": 586948
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 61,
+     "drawCalls": [
+      34,
+      34
+     ],
+     "nodes": [
+      39,
+      39
+     ],
+     "triangles": [
+      89568,
+      89568
+     ],
+     "residentVertexBytes": [
+      2194752,
+      2194752
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 86,
+      "preserved": 86,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0,
+      "centroidP99Rel": 0,
+      "normalP99Deg": 0.0000017075472925031877,
+      "areaRelDelta": 0
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": []
+     },
+     "extensions": [
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 1
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 18
+      },
+      {
+       "step": "instance",
+       "ms": 0
+      }
+     ]
+    },
+    "draco": {
+     "portable": false,
+     "file": "lumen.draco.glb",
+     "bytes": 236884,
+     "sha256": "0cd16e526933df2795a24dc3f3691f73331cb8ce4d9005c3ef9df31823ec271a",
+     "transfer": {
+      "raw": 236884,
+      "gzip": 169648,
+      "brotli": 165723
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [
+      "6 triangles collapsed below the quantization step"
+     ],
+     "nodeMs": 136,
+     "drawCalls": [
+      34,
+      34
+     ],
+     "nodes": [
+      39,
+      39
+     ],
+     "triangles": [
+      89568,
+      89568
+     ],
+     "residentVertexBytes": [
+      2194752,
+      2194752
+     ],
+     "gpuTextureBytes": [
+      0,
+      0
+     ],
+     "identity": {
+      "sourceTokens": 86,
+      "preserved": 86,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.0000018303730876058829,
+      "centroidP99Rel": 0.0000014406530526835875,
+      "normalP99Deg": 0.12795230885813952,
+      "areaRelDelta": -6.931665966178212e-7
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "KHR_draco_mesh_compression"
+      ]
+     },
+     "extensions": [
+      "KHR_draco_mesh_compression",
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 1
+      },
+      {
+       "step": "prune",
+       "ms": 1
+      },
+      {
+       "step": "weld",
+       "ms": 18
+      },
+      {
+       "step": "draco",
+       "ms": 20
+      }
+     ]
+    }
+   }
+  },
+  "stilllife": {
+   "title": "Still life (textured)",
+   "file": "stilllife.glb",
+   "bytes": 1684916,
+   "sha256": "f06446a21379a29d63221e2fed620c9a4e18062785d17a88c9d99a4b708ee3a4",
+   "transfer": {
+    "raw": 1684916,
+    "gzip": 1125211,
+    "brotli": 930257
+   },
+   "profiles": {
+    "lossless": {
+     "portable": true,
+     "file": null,
+     "bytes": 1684408,
+     "sha256": "50ef606503c784f5c17b7ce822c31edbc744245bd8201563c3d748976787cafc",
+     "transfer": {
+      "raw": 1684408,
+      "gzip": 1212064,
+      "brotli": 947082
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 73,
+     "drawCalls": [
+      5,
+      5
+     ],
+     "nodes": [
+      11,
+      11
+     ],
+     "triangles": [
+      27560,
+      27560
+     ],
+     "residentVertexBytes": [
+      796800,
+      796800
+     ],
+     "gpuTextureBytes": [
+      5592404,
+      5592404
+     ],
+     "identity": {
+      "sourceTokens": 27,
+      "preserved": 27,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0,
+      "centroidP99Rel": 0,
+      "normalP99Deg": 0.0000017075472925031877,
+      "areaRelDelta": 0
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": []
+     },
+     "extensions": [
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 37
+      },
+      {
+       "step": "weld",
+       "ms": 11
+      }
+     ]
+    },
+    "meshopt-lossless": {
+     "portable": true,
+     "file": null,
+     "bytes": 1367164,
+     "sha256": "9aa1bd58367f20e3fbd8ebd2b2341f9cc2bd74d7d3c05857d7f1f32280f8b0ce",
+     "transfer": {
+      "raw": 1367164,
+      "gzip": 1215797,
+      "brotli": 1166056
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 57,
+     "drawCalls": [
+      5,
+      5
+     ],
+     "nodes": [
+      11,
+      11
+     ],
+     "triangles": [
+      27560,
+      27560
+     ],
+     "residentVertexBytes": [
+      796800,
+      796800
+     ],
+     "gpuTextureBytes": [
+      5592404,
+      5592404
+     ],
+     "identity": {
+      "sourceTokens": 27,
+      "preserved": 27,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0,
+      "centroidP99Rel": 0,
+      "normalP99Deg": 0.0000017075472925031877,
+      "areaRelDelta": -3.5283203869362793e-16
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 24
+      },
+      {
+       "step": "weld",
+       "ms": 10
+      },
+      {
+       "step": "reorder",
+       "ms": 13
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "quantized": {
+     "portable": true,
+     "file": null,
+     "bytes": 1385940,
+     "sha256": "623a8617ee92a757eb3e2301f30d0a866fb69c9a664f4193cdfcd062e376f18e",
+     "transfer": {
+      "raw": 1385940,
+      "gzip": 1066523,
+      "brotli": 906922
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 96,
+     "drawCalls": [
+      5,
+      5
+     ],
+     "nodes": [
+      11,
+      11
+     ],
+     "triangles": [
+      27560,
+      27560
+     ],
+     "residentVertexBytes": [
+      796800,
+      398400
+     ],
+     "gpuTextureBytes": [
+      5592404,
+      5592404
+     ],
+     "identity": {
+      "sourceTokens": 27,
+      "preserved": 27,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.000016404755644927294,
+      "centroidP99Rel": 0.000006800726251532517,
+      "normalP99Deg": 0.05498349626511241,
+      "areaRelDelta": -0.000017546645005285335
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": []
+     },
+     "extensions": [
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 38
+      },
+      {
+       "step": "weld",
+       "ms": 8
+      },
+      {
+       "step": "quantize",
+       "ms": 18
+      }
+     ]
+    },
+    "web": {
+     "portable": true,
+     "file": null,
+     "bytes": 1098492,
+     "sha256": "cee7023ac382feb2789ee8d262f03cd3b91cf2f1b8635c1499f55f0fb0a618de",
+     "transfer": {
+      "raw": 1098492,
+      "gzip": 990296,
+      "brotli": 947203
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 55,
+     "drawCalls": [
+      5,
+      5
+     ],
+     "nodes": [
+      11,
+      11
+     ],
+     "triangles": [
+      27560,
+      27560
+     ],
+     "residentVertexBytes": [
+      796800,
+      398400
+     ],
+     "gpuTextureBytes": [
+      5592404,
+      5592404
+     ],
+     "identity": {
+      "sourceTokens": 27,
+      "preserved": 27,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.000016404755644927294,
+      "centroidP99Rel": 0.000006800726251532517,
+      "normalP99Deg": 0.05498349626511241,
+      "areaRelDelta": -0.000017546645005285335
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 18
+      },
+      {
+       "step": "weld",
+       "ms": 6
+      },
+      {
+       "step": "reorder",
+       "ms": 8
+      },
+      {
+       "step": "quantize",
+       "ms": 15
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "web-filter": {
+     "portable": true,
+     "file": null,
+     "bytes": 1006276,
+     "sha256": "1a9c7f1a43b5fdff0c1c42311b0aed676686e301c93e730e0849736e4bd00fbd",
+     "transfer": {
+      "raw": 1006276,
+      "gzip": 921635,
+      "brotli": 896178
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 90,
+     "drawCalls": [
+      5,
+      5
+     ],
+     "nodes": [
+      11,
+      11
+     ],
+     "triangles": [
+      27560,
+      27560
+     ],
+     "residentVertexBytes": [
+      796800,
+      323700
+     ],
+     "gpuTextureBytes": [
+      5592404,
+      5592404
+     ],
+     "identity": {
+      "sourceTokens": 27,
+      "preserved": 27,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.000016404755644927294,
+      "centroidP99Rel": 0.000006800726251532517,
+      "normalP99Deg": 0.5210248262194133,
+      "areaRelDelta": -0.000017546645005285335
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 29
+      },
+      {
+       "step": "weld",
+       "ms": 13
+      },
+      {
+       "step": "reorder",
+       "ms": 15
+      },
+      {
+       "step": "quantize",
+       "ms": 23
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "instanced": {
+     "portable": true,
+     "file": null,
+     "bytes": 1098492,
+     "sha256": "cee7023ac382feb2789ee8d262f03cd3b91cf2f1b8635c1499f55f0fb0a618de",
+     "transfer": {
+      "raw": 1098492,
+      "gzip": 990296,
+      "brotli": 947203
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 72,
+     "drawCalls": [
+      5,
+      5
+     ],
+     "nodes": [
+      11,
+      11
+     ],
+     "triangles": [
+      27560,
+      27560
+     ],
+     "residentVertexBytes": [
+      796800,
+      398400
+     ],
+     "gpuTextureBytes": [
+      5592404,
+      5592404
+     ],
+     "identity": {
+      "sourceTokens": 27,
+      "preserved": 27,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.000016404755644927294,
+      "centroidP99Rel": 0.000006800726251532517,
+      "normalP99Deg": 0.05498349626511241,
+      "areaRelDelta": -0.000017546645005285335
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 24
+      },
+      {
+       "step": "weld",
+       "ms": 7
+      },
+      {
+       "step": "instance",
+       "ms": 0
+      },
+      {
+       "step": "reorder",
+       "ms": 14
+      },
+      {
+       "step": "quantize",
+       "ms": 17
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "static-joined": {
+     "portable": true,
+     "file": null,
+     "bytes": 1014340,
+     "sha256": "8f1f919112bae06f0e6163551ed63f4a3bbc35ab29c80e07c68da17b5426ca00",
+     "transfer": {
+      "raw": 1014340,
+      "gzip": 933812,
+      "brotli": 901569
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 59,
+     "drawCalls": [
+      5,
+      5
+     ],
+     "nodes": [
+      11,
+      10
+     ],
+     "triangles": [
+      27560,
+      27560
+     ],
+     "residentVertexBytes": [
+      796800,
+      294780
+     ],
+     "gpuTextureBytes": [
+      5592404,
+      5592404
+     ],
+     "identity": {
+      "sourceTokens": 27,
+      "preserved": 26,
+      "lost": 1,
+      "added": 0,
+      "lostByKind": {
+       "node": 1
+      }
+     },
+     "geometry": {
+      "centroidMaxRel": 0.000016404755644927294,
+      "centroidP99Rel": 0.000006800726251532517,
+      "normalP99Deg": 0.05498349626511241,
+      "areaRelDelta": -0.000017546645005285335
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 20
+      },
+      {
+       "step": "flatten",
+       "ms": 1
+      },
+      {
+       "step": "join",
+       "ms": 5
+      },
+      {
+       "step": "weld",
+       "ms": 4
+      },
+      {
+       "step": "reorder",
+       "ms": 6
+      },
+      {
+       "step": "quantize",
+       "ms": 10
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    },
+    "stock-instance": {
+     "portable": true,
+     "file": null,
+     "bytes": 1684408,
+     "sha256": "50ef606503c784f5c17b7ce822c31edbc744245bd8201563c3d748976787cafc",
+     "transfer": {
+      "raw": 1684408,
+      "gzip": 1212064,
+      "brotli": 947082
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 100,
+     "drawCalls": [
+      5,
+      5
+     ],
+     "nodes": [
+      11,
+      11
+     ],
+     "triangles": [
+      27560,
+      27560
+     ],
+     "residentVertexBytes": [
+      796800,
+      796800
+     ],
+     "gpuTextureBytes": [
+      5592404,
+      5592404
+     ],
+     "identity": {
+      "sourceTokens": 27,
+      "preserved": 27,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0,
+      "centroidP99Rel": 0,
+      "normalP99Deg": 0.0000017075472925031877,
+      "areaRelDelta": 0
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": null,
+      "notValidated": []
+     },
+     "extensions": [
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 22
+      },
+      {
+       "step": "weld",
+       "ms": 10
+      },
+      {
+       "step": "instance",
+       "ms": 0
+      }
+     ]
+    },
+    "draco": {
+     "portable": false,
+     "file": "stilllife.draco.glb",
+     "bytes": 827640,
+     "sha256": "bb61377b331131868d37e76485db727a2c8077915b6516a4b40f375e2ffa9727",
+     "transfer": {
+      "raw": 827640,
+      "gzip": 809893,
+      "brotli": 804296
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 141,
+     "drawCalls": [
+      5,
+      5
+     ],
+     "nodes": [
+      11,
+      11
+     ],
+     "triangles": [
+      27560,
+      27560
+     ],
+     "residentVertexBytes": [
+      796800,
+      997728
+     ],
+     "gpuTextureBytes": [
+      5592404,
+      5592404
+     ],
+     "identity": {
+      "sourceTokens": 27,
+      "preserved": 27,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.00002180559924397434,
+      "centroidP99Rel": 0.000005801799007633846,
+      "normalP99Deg": 0.1253791526985253,
+      "areaRelDelta": -0.00004979627955857325
+     },
+     "validator": {
+      "delivered": [
+       0,
+       0
+      ],
+      "canonical": [
+       0,
+       0
+      ],
+      "notValidated": [
+       "KHR_draco_mesh_compression"
+      ]
+     },
+     "extensions": [
+      "KHR_draco_mesh_compression",
+      "KHR_lights_punctual"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 31
+      },
+      {
+       "step": "weld",
+       "ms": 11
+      },
+      {
+       "step": "draco",
+       "ms": 10
+      }
+     ]
+    },
+    "web-ktx2-etc1s": {
+     "portable": false,
+     "file": "stilllife.web-ktx2-etc1s.glb",
+     "bytes": 521360,
+     "sha256": "e5ea365a953a4aeb6610fb9e71b3cced7a11b15ecc385be24e2176ffa50a4571",
+     "transfer": {
+      "raw": 521360,
+      "gzip": 418014,
+      "brotli": 377110
+     },
+     "ok": true,
+     "failures": [],
+     "notes": [],
+     "nodeMs": 2856,
+     "drawCalls": [
+      5,
+      5
+     ],
+     "nodes": [
+      11,
+      11
+     ],
+     "triangles": [
+      27560,
+      27560
+     ],
+     "residentVertexBytes": [
+      796800,
+      398400
+     ],
+     "gpuTextureBytes": [
+      5592404,
+      699050.5
+     ],
+     "identity": {
+      "sourceTokens": 27,
+      "preserved": 27,
+      "lost": 0,
+      "added": 0,
+      "lostByKind": {}
+     },
+     "geometry": {
+      "centroidMaxRel": 0.000016404755644927294,
+      "centroidP99Rel": 0.000006800726251532517,
+      "normalP99Deg": 0.05498349626511241,
+      "areaRelDelta": -0.000017546645005285335
+     },
+     "validator": {
+      "delivered": [
+       0,
+       2
+      ],
+      "canonical": [
+       0,
+       2
+      ],
+      "notValidated": [
+       "EXT_meshopt_compression",
+       "KHR_texture_basisu"
+      ]
+     },
+     "extensions": [
+      "EXT_meshopt_compression",
+      "KHR_lights_punctual",
+      "KHR_mesh_quantization",
+      "KHR_texture_basisu"
+     ],
+     "steps": [
+      {
+       "step": "dedup",
+       "ms": 0
+      },
+      {
+       "step": "prune",
+       "ms": 22
+      },
+      {
+       "step": "weld",
+       "ms": 13
+      },
+      {
+       "step": "reorder",
+       "ms": 21
+      },
+      {
+       "step": "quantize",
+       "ms": 23
+      },
+      {
+       "step": "ktx2-etc1s",
+       "ms": 2764
+      },
+      {
+       "step": "meshopt-ext",
+       "ms": 0
+      }
+     ]
+    }
+   }
+  }
+ }
+}
