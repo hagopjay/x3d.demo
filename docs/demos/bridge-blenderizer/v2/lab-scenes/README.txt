@@ -1,7 +1,8 @@
 Scenes written for Demo 24 version 2 (the bridge and the blenderizer), 14 Nov 2026.
 
 They are NOT in the x3d.loom bridge repository. They draw the pictures in the volume and physics sections:
-  _demo-vol-*.x3d   one 32 x 32 x 32 voxel field (a torus, a core and a satellite) drawn by eight volume styles
+  _demo-vol-*.x3d   one 32 x 32 x 32 voxel field (a torus, a core and a satellite) drawn by eight volume styles; the volume is turned 0.7 rad about Y and the camera tilted down 0.25 rad
+  _demo-vol-*-r0.x3d  the same scene for Shaded, ToneMapped and the iso surface with the volume NOT turned (the only change)
   _demo-phys-*.x3d  a sphere and two boxes dropped on a fixed ground; a pendulum on a hinge with limits (-0.5 to 0.5 rad)
   *.test.json       the bridge's run-tests spec for each scene (steps and named shots)
 
