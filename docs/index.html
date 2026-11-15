@@ -450,16 +450,6 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <section class="demo">
-  <img src="assets/typed-x3d.jpg" alt="The Typed X3D page: a scene with a 0 to 255 colour mistake, the Zod gate closed with the exact paths of three issues, and the orrery greyed behind a red Gate closed panel" width="960" height="540" loading="lazy">
-  <div>
-    <div class="no">TYPED X3D</div>
-    <h2>A scene a model can be held to</h2>
-    <p>The Web3D X3D 4.0 JSON Schema compiled to Zod in your browser. Break an orrery nine realistic ways a model does, watch the gate name the exact path, replay the repair, and see the 261-node vocabulary shrink to a 25 KB schema (19.6 times smaller) a decoder can be constrained by. Three gates compared on the same nine mistakes (JSON Schema catches 8, the XSD 4, the semantic checks 2), and 1,432 repository scenes judged by four validators that agree on every one.</p>
-    <div class="chips">
-      <a href="demos/typed-x3d/v1/index.html">Open Typed X3D</a>
-      <a href="https://github.com/hagopjay/x3d.loom/tree/main/x3d.zod">The generator (x3d.zod)</a>
-    </div>
-    <p class="facts">Zod 4.6.7 bundled (735 KB, 115 KB gzipped), scene drawn by X_ITE 16.6.0 from Demo 12, needs WebGL2. The repair is a scripted replay: no model is called. Timings were taken in a software-only container.</p>
   <img src="assets/yjs-collab.jpg" alt="Three X_ITE panes of one orrery scene labelled Alice, Bob and Agent during a network split: Alice's copy differs (cube on the left, hash 838c0b) while Bob's and the agent's match (hash d25db1), above a wire timeline of Yjs updates and a log of who did what" width="960" height="540" loading="lazy">
   <div>
     <div class="no">DEMO 25</div>
@@ -502,6 +492,88 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
+<section class="demo">
+  <img src="assets/typed-x3d.jpg" alt="The Typed X3D page: a scene with a 0 to 255 colour mistake, the Zod gate closed with the exact paths of three issues, and the orrery greyed behind a red Gate closed panel" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 28</div>
+    <h2>A scene a model can be held to</h2>
+    <p>The Web3D X3D 4.0 JSON Schema compiled to Zod in your browser. Break an orrery nine realistic ways a model does, watch the gate name the exact path, replay the repair, and see the 261-node vocabulary shrink to a 25 KB schema (19.6 times smaller) a decoder can be constrained by. Three gates compared on the same nine mistakes (JSON Schema catches 8, the XSD 4, the semantic checks 2), and 1,432 repository scenes judged by four validators that agree on every one.</p>
+    <div class="chips">
+      <a href="demos/typed-x3d/v1/index.html">Open Typed X3D</a>
+      <a href="https://github.com/hagopjay/x3d.loom/tree/main/x3d.zod">The generator (x3d.zod)</a>
+    </div>
+    <p class="facts">Zod 4.6.7 bundled (735 KB, 115 KB gzipped), scene drawn by X_ITE 16.6.0 from Demo 12, needs WebGL2. The repair is a scripted replay: no model is called. Timings were taken in a software-only container.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/three-pathtracer.jpg" alt="Three rows of small renders, a grid of PBR spheres, a Cornell box and a ladder of light levels, each row showing one X3D scene as several small pictures side by side, the Cornell box with red and green walls" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 29</div>
+    <h2>The same X3D file, drawn by light</h2>
+    <p>Left of a white line, X_ITE 16.6.0 draws the file the way an X3D browser does: each light shades each surface on its own. Right of it, a path tracer in the page (three-gpu-pathtracer, fed by the x3d.threejs bridge reader and body) follows light bouncing between the surfaces. Drag the line, raise the bounces and watch the red and green walls bleed onto the white boxes; a switch lets emissive surfaces cast light. Three scenes (Cornell box, PBR grid, light ladder), and measured object-pixel FLIP scores of the path tracer, the bridge raster and Cycles against X_ITE, with the rig named and the noise floor (0.055) shown.</p>
+    <div class="chips">
+      <a href="demos/three-pathtracer/v1/index.html">Open the path-traced X3D demo</a>
+      <a href="demos/three-pathtracer/v1/NOTICE.md">Vendored libraries and notices</a>
+    </div>
+    <p class="facts">Needs WebGL2 (three r187, three-mesh-bvh 0.9.18 and three-gpu-pathtracer 0.0.28 vendored; X_ITE read from the LUMEN Interference demo&rsquo;s folder). Checked headless on a software GPU for correctness only (a path-traced canvas that is not black after 181 samples); no speed is claimed. The v23 changelog line calls this &ldquo;Demo 25&rdquo;; its number is 29 (see CHANGELOG v24).</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/timeline-theatre-gsap.jpg" alt="Two rows of three frames of a red cube and a blue sphere moving through a cycle, one row drawn by X_ITE 16.6.0 and one by the three.js bridge, at 25, 60 and 95 percent of the cycle, and they match" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 30</div>
+    <h2>Author the timeline in a tool, ship it as X3D</h2>
+    <p>A Theatre.js sequence or a GSAP timeline is turned into one TimeSensor, one interpolator per animated field and two ROUTEs per field. The result plays in any X3D browser with no JavaScript, or the tool keeps the clock and writes plain SAI field values into a running scene; the page loads X_ITE 16.6.0 and plays both. An ease lab bakes any GSAP ease in the page, and the colour finding is shown (X3D&rsquo;s ColorInterpolator blends in HSV). Every number carries its rig; licence notes cover Theatre core (Apache-2.0), Theatre studio (AGPL-3.0) and GSAP&rsquo;s standard licence. Version 2 compiles one GSAP timeline into plain X3D that X_ITE and a three.js renderer play in lockstep with no script, and a slider trades file size against error with the real GSAP eases drawn beside it.</p>
+    <div class="chips">
+      <a href="demos/timeline-theatre-gsap/v2/index.html">Open version 2: one file, two engines</a>
+      <a href="demos/timeline-theatre-gsap/v1/index.html">Version 1 (Theatre.js and GSAP)</a>
+      <a href="https://github.com/hagopjay/x3d.loom/pull/73">x3d.loom PR 73 (x3d.anim)</a>
+    </div>
+    <p class="facts">Needs WebGL2 (X_ITE 16.6.0 vendored from Demo 12&rsquo;s folder; GSAP 3.15.1 from jsDelivr). Version 1 receipt numbers: bridge against X_ITE worst 5.7e-7, X_ITE against the tools 0.0069 (Theatre) and 0.0137 (GSAP), twelve picture pairs worst 46.95 dB. Rig: Chromium 153.0.8010.12 SwiftShader, three.js r187. Version 2 was merged marked work in progress, review pending.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/rigid-engines.jpg" alt="Four panes of one avalanche of coloured shapes falling through a funnel, stepped by X_ITE&rsquo;s own Bullet live, the bridge&rsquo;s built-in engine, Rapier and cannon-es, with a red readout showing 10 of 40 bodies out of the funnel in the built-in engine" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 31</div>
+    <h2>Four physics engines, one X3D scene</h2>
+    <p>The same RigidBodyPhysics file, stepped four ways. The first pane runs X_ITE&rsquo;s own Bullet live; the other three are recordings of the bridge&rsquo;s built-in engine, Rapier 0.21.0 (WASM) and cannon-es 0.20.0, each a script-free X3D file you can open on its own. Same bodies, same gravity, same friction, same bounce, and the heaps are not the same. Three scenes (an avalanche of 40 bodies, Newton&rsquo;s cradle, a gate with hinge and slider limits), one shared scrub bar and a measured table. Findings shown: the built-in engine has no collider for a Cone (10 of 40 avalanche bodies escape), cannon-es adds energy in a bounce-1 chain, Rapier needs 4 sub-steps for the cradle, and X_ITE never applies hinge limits.</p>
+    <div class="chips">
+      <a href="demos/rigid-engines/v1/index.html">Open the physics demo</a>
+    </div>
+    <p class="facts">Needs WebGL2 (X_ITE 16.6.0 from a CDN for the live pane). Numbers come from the page&rsquo;s recorded stats (Node v22.23.4) and the x3d.loom rigid-engines results (Chromium 153.0.8010.12 SwiftShader); the recordings were not replayed in a second host.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/webgpu-compute.jpg" alt="Five panels of live GPU work: a cone of particles, a spiral galaxy of Gaussian splats, a rational NURBS surface, a skinned HAnim figure and a volume, each with GPU timestamp readouts" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 32</div>
+    <h2>Five X3D features, computed on the GPU</h2>
+    <p>A ParticleSystem (up to 2 million particles), a Gaussian splat cloud with a GPU bitonic sort, a NURBS patch tessellated in WGSL, an HAnim skin and a VolumeData ray march, each driven by the field names its X3D fixture uses and each checked against an independent CPU twin. Move the sliders: the per-frame arithmetic runs in compute shaders, the state stays in GPU memory, and the HUD shows GPU timestamps, not frame counters. A button runs the correctness gate on your GPU (each kernel against its CPU twin) and another a short benchmark, with the recorded run beside it; nothing is uploaded.</p>
+    <div class="chips">
+      <a href="demos/webgpu-compute/v1/index.html">Open the compute demo</a>
+    </div>
+    <p class="facts">Needs a browser with WebGPU; without <code>navigator.gpu</code> the page shows a picture and says why. The recorded run and the in-page gate (5 of 5) were made headless on a software adapter, so the timings there are scaling numbers, not GPU speed.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/glb-forge.jpg" alt="The glb Forge page headline, The optimiser that has to keep the names, over four result cards: 1,218 draw calls down to 10, 1,216 of 1,251 identity tokens lost by the stock optimiser, 31 of 32 portable cells passing every gate, and 5.33 MiB of texture memory down to 0.67 MiB" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 33</div>
+    <h2>The optimiser that has to keep the names</h2>
+    <p>A glb optimiser can cut a file by ten and still be useless to X3D: merge nodes and the DEF names the Blender add-on wrote into the glb are gone. This page runs the x3d.gltf lane&rsquo;s optimiser in your browser (glTF-Transform and meshoptimizer, in a worker) on four real scenes (the PRISMATICA cathedral, Asterion, LUMEN, Still life), shows the result against the original as a wipe or a difference picture, and checks identity: on the cathedral the stock <code>instance()</code> takes 1,218 draw calls to 10 and erases 1,216 of 1,251 identity tokens, the lane&rsquo;s profile takes the same 1,218 to 10 and keeps all 1,251. Every number is marked live, receipt or browser.</p>
+    <div class="chips">
+      <a href="demos/glb-forge/v1/index.html">Open glb Forge</a>
+    </div>
+    <p class="facts">Needs WebGL2 and a network (three.js r187 from jsDelivr). Draco, KTX2 and the Khronos validator run in Node only; their rows are recorded receipts and the page marks them so. Checked headless on a software adapter (Chromium 153.0.8010.12 SwiftShader), nothing timed on a GPU.</p>
+  </div>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -518,7 +590,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a>, <a href="versions/v17/index.html">v17</a>, <a href="versions/v18/index.html">v18</a>, <a href="versions/v19/index.html">v19</a>, <a href="versions/v21/index.html">v21</a>, <a href="versions/v22/index.html">v22</a>, <a href="versions/v23/index.html">v23</a>, <a href="versions/v24/index.html">v24</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a>, <a href="versions/v17/index.html">v17</a>, <a href="versions/v18/index.html">v18</a>, <a href="versions/v19/index.html">v19</a>, <a href="versions/v21/index.html">v21</a>, <a href="versions/v22/index.html">v22</a>, <a href="versions/v23/index.html">v23</a>, <a href="versions/v24/index.html">v24</a>, <a href="versions/v25/index.html">v25</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>

@@ -154,3 +154,16 @@ Page written for this site. It reads the Still life, Prismatica and Asterion sce
 | file | sha256 | bytes |
 |---|---|---|
 | three-style-board/v1/index.html | 60ee8d1b0bd400794fc5a59f982dbf69c80c27a05a16c9291011b102c45135fb | 19518 |
+
+## Front-page card pictures (v25)
+Made for this site from each demo's own pictures or a headless screenshot of its page (Chromium 153.0.8010.12, SwiftShader; X_ITE 16.6.0 and three r187 served locally in place of the CDN): `three-pathtracer` stacks the three `img/` strips of that demo, `timeline-theatre-gsap` is the v1 `img/gsap-orbit-strip.jpg` on a black ground, `webgpu-compute` is its `img/fallback.jpg` on a dark ground, `rigid-engines` and `glb-forge` are the top of each page at 1280 x 720 scaled to 960 x 540, and `three-bvh` and `three-style-board` are from PR 31 (both listed for completeness).
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/three-bvh.jpg | 927479cade8281380568ddb7dbb1bf30edb53b1ba3316fc6f1a95bc1ab762adc | 189831 |
+| assets/three-style-board.jpg | 7964c3c5d560e6c9284fa0075c6bbf69ac99bf5a3c016b7ea87cfecb8f7c4e6d | 141930 |
+| assets/three-pathtracer.jpg | 86354193e26286382ddb967b26a3912c3a44dacef8750586b853720f6bbd9cd5 | 66927 |
+| assets/timeline-theatre-gsap.jpg | 1f418cb50fa0451966febb574d6c8308fa9a2066cacccb2f298f34dc93d7b420 | 20992 |
+| assets/rigid-engines.jpg | 8c2bf5d251b45e8f17289991d3816c4c5942df649f6e2bb31e7c6a1ddf71043e | 68827 |
+| assets/webgpu-compute.jpg | e27de3a52cae1cbd27b6479a1450e374b8227658516d4f4b72bd66089a6ab142 | 42858 |
+| assets/glb-forge.jpg | 6318682fe9c6270f4085069d1496857025889c13611be8179ec4f127dc954fff | 120743 |
