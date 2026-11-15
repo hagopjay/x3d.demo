@@ -37,7 +37,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 104,
+     "nodeMs": 86,
      "drawCalls": [
       1218,
       1218
@@ -86,15 +86,15 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 3
+       "ms": 2
       },
       {
        "step": "prune",
-       "ms": 8
+       "ms": 6
       },
       {
        "step": "weld",
-       "ms": 20
+       "ms": 15
       }
      ]
     },
@@ -111,7 +111,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 212,
+     "nodeMs": 85,
      "drawCalls": [
       1218,
       1218
@@ -166,19 +166,19 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 16
+       "ms": 1
       },
       {
        "step": "prune",
-       "ms": 10
+       "ms": 2
       },
       {
        "step": "weld",
-       "ms": 50
+       "ms": 22
       },
       {
        "step": "reorder",
-       "ms": 34
+       "ms": 25
       },
       {
        "step": "meshopt-ext",
@@ -199,7 +199,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 179,
+     "nodeMs": 84,
      "drawCalls": [
       1218,
       1218
@@ -249,19 +249,19 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 2
+       "ms": 1
       },
       {
        "step": "prune",
-       "ms": 2
+       "ms": 1
       },
       {
        "step": "weld",
-       "ms": 38
+       "ms": 13
       },
       {
        "step": "quantize",
-       "ms": 96
+       "ms": 40
       }
      ]
     },
@@ -278,7 +278,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 133,
+     "nodeMs": 54,
      "drawCalls": [
       1218,
       1218
@@ -338,19 +338,19 @@
       },
       {
        "step": "prune",
-       "ms": 2
+       "ms": 1
       },
       {
        "step": "weld",
-       "ms": 13
+       "ms": 5
       },
       {
        "step": "reorder",
-       "ms": 10
+       "ms": 7
       },
       {
        "step": "quantize",
-       "ms": 53
+       "ms": 18
       },
       {
        "step": "meshopt-ext",
@@ -371,7 +371,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 138,
+     "nodeMs": 52,
      "drawCalls": [
       1218,
       1218
@@ -431,19 +431,19 @@
       },
       {
        "step": "prune",
-       "ms": 9
+       "ms": 2
       },
       {
        "step": "weld",
-       "ms": 7
+       "ms": 5
       },
       {
        "step": "reorder",
-       "ms": 10
+       "ms": 6
       },
       {
        "step": "quantize",
-       "ms": 48
+       "ms": 19
       },
       {
        "step": "meshopt-ext",
@@ -464,7 +464,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 105,
+     "nodeMs": 65,
      "drawCalls": [
       1218,
       10
@@ -530,11 +530,11 @@
       },
       {
        "step": "weld",
-       "ms": 6
+       "ms": 4
       },
       {
        "step": "instance",
-       "ms": 44
+       "ms": 23
       },
       {
        "step": "reorder",
@@ -542,7 +542,7 @@
       },
       {
        "step": "quantize",
-       "ms": 28
+       "ms": 17
       },
       {
        "step": "meshopt-ext",
@@ -566,7 +566,7 @@
       "geometry: normals p99 1.412 degrees exceeds 1"
      ],
      "notes": [],
-     "nodeMs": 1390,
+     "nodeMs": 551,
      "drawCalls": [
       1218,
       10
@@ -624,31 +624,31 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 2
+       "ms": 1
       },
       {
        "step": "prune",
-       "ms": 11
+       "ms": 3
       },
       {
        "step": "flatten",
-       "ms": 5
+       "ms": 3
       },
       {
        "step": "join",
-       "ms": 712
+       "ms": 219
       },
       {
        "step": "weld",
-       "ms": 270
+       "ms": 85
       },
       {
        "step": "reorder",
-       "ms": 181
+       "ms": 110
       },
       {
        "step": "quantize",
-       "ms": 135
+       "ms": 89
       },
       {
        "step": "meshopt-ext",
@@ -669,7 +669,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 141,
+     "nodeMs": 36,
      "drawCalls": [
       1218,
       10
@@ -727,15 +727,15 @@
       },
       {
        "step": "prune",
-       "ms": 5
+       "ms": 1
       },
       {
        "step": "weld",
-       "ms": 47
+       "ms": 8
       },
       {
        "step": "instance",
-       "ms": 45
+       "ms": 11
       }
      ]
     },
@@ -752,7 +752,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 125,
+     "nodeMs": 89,
      "drawCalls": [
       1218,
       1218
@@ -819,7 +819,7 @@
       },
       {
        "step": "draco",
-       "ms": 6
+       "ms": 5
       }
      ]
     }
@@ -849,7 +849,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 169,
+     "nodeMs": 121,
      "drawCalls": [
       284,
       284
@@ -905,7 +905,7 @@
       },
       {
        "step": "weld",
-       "ms": 46
+       "ms": 39
       }
      ]
     },
@@ -922,7 +922,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 189,
+     "nodeMs": 181,
      "drawCalls": [
       284,
       284
@@ -976,19 +976,19 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 18
+       "ms": 9
       },
       {
        "step": "prune",
-       "ms": 7
+       "ms": 1
       },
       {
        "step": "weld",
-       "ms": 55
+       "ms": 61
       },
       {
        "step": "reorder",
-       "ms": 37
+       "ms": 47
       },
       {
        "step": "meshopt-ext",
@@ -1009,7 +1009,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 353,
+     "nodeMs": 183,
      "drawCalls": [
       284,
       284
@@ -1058,7 +1058,7 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 33
+       "ms": 9
       },
       {
        "step": "prune",
@@ -1066,11 +1066,11 @@
       },
       {
        "step": "weld",
-       "ms": 77
+       "ms": 40
       },
       {
        "step": "quantize",
-       "ms": 157
+       "ms": 105
       }
      ]
     },
@@ -1087,7 +1087,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 388,
+     "nodeMs": 208,
      "drawCalls": [
       284,
       284
@@ -1142,7 +1142,7 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 25
+       "ms": 9
       },
       {
        "step": "prune",
@@ -1150,15 +1150,15 @@
       },
       {
        "step": "weld",
-       "ms": 43
+       "ms": 39
       },
       {
        "step": "reorder",
-       "ms": 48
+       "ms": 34
       },
       {
        "step": "quantize",
-       "ms": 220
+       "ms": 104
       },
       {
        "step": "meshopt-ext",
@@ -1179,7 +1179,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 409,
+     "nodeMs": 210,
      "drawCalls": [
       284,
       284
@@ -1234,7 +1234,7 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 48
+       "ms": 9
       },
       {
        "step": "prune",
@@ -1242,15 +1242,15 @@
       },
       {
        "step": "weld",
-       "ms": 78
+       "ms": 38
       },
       {
        "step": "reorder",
-       "ms": 50
+       "ms": 36
       },
       {
        "step": "quantize",
-       "ms": 194
+       "ms": 105
       },
       {
        "step": "meshopt-ext",
@@ -1271,7 +1271,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 268,
+     "nodeMs": 202,
      "drawCalls": [
       284,
       284
@@ -1326,7 +1326,7 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 23
+       "ms": 8
       },
       {
        "step": "prune",
@@ -1334,7 +1334,7 @@
       },
       {
        "step": "weld",
-       "ms": 50
+       "ms": 39
       },
       {
        "step": "instance",
@@ -1342,11 +1342,11 @@
       },
       {
        "step": "reorder",
-       "ms": 44
+       "ms": 33
       },
       {
        "step": "quantize",
-       "ms": 119
+       "ms": 103
       },
       {
        "step": "meshopt-ext",
@@ -1367,7 +1367,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 211,
+     "nodeMs": 210,
      "drawCalls": [
       284,
       10
@@ -1425,11 +1425,11 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 11
+       "ms": 17
       },
       {
        "step": "prune",
-       "ms": 3
+       "ms": 2
       },
       {
        "step": "flatten",
@@ -1437,19 +1437,19 @@
       },
       {
        "step": "join",
-       "ms": 87
+       "ms": 59
       },
       {
        "step": "weld",
-       "ms": 18
+       "ms": 19
       },
       {
        "step": "reorder",
-       "ms": 13
+       "ms": 14
       },
       {
        "step": "quantize",
-       "ms": 51
+       "ms": 54
       },
       {
        "step": "meshopt-ext",
@@ -1470,7 +1470,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 196,
+     "nodeMs": 154,
      "drawCalls": [
       284,
       284
@@ -1518,7 +1518,7 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 12
+       "ms": 15
       },
       {
        "step": "prune",
@@ -1526,7 +1526,7 @@
       },
       {
        "step": "weld",
-       "ms": 65
+       "ms": 59
       },
       {
        "step": "instance",
@@ -1547,7 +1547,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 538,
+     "nodeMs": 312,
      "drawCalls": [
       284,
       284
@@ -1601,19 +1601,19 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 40
+       "ms": 13
       },
       {
        "step": "prune",
-       "ms": 6
+       "ms": 1
       },
       {
        "step": "weld",
-       "ms": 76
+       "ms": 42
       },
       {
        "step": "draco",
-       "ms": 108
+       "ms": 40
       }
      ]
     }
@@ -1643,7 +1643,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 48,
+     "nodeMs": 45,
      "drawCalls": [
       34,
       34
@@ -1699,7 +1699,7 @@
       },
       {
        "step": "weld",
-       "ms": 18
+       "ms": 15
       }
      ]
     },
@@ -1716,7 +1716,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 104,
+     "nodeMs": 67,
      "drawCalls": [
       34,
       34
@@ -1774,15 +1774,15 @@
       },
       {
        "step": "prune",
-       "ms": 3
+       "ms": 1
       },
       {
        "step": "weld",
-       "ms": 38
+       "ms": 17
       },
       {
        "step": "reorder",
-       "ms": 22
+       "ms": 20
       },
       {
        "step": "meshopt-ext",
@@ -1805,7 +1805,7 @@
      "notes": [
       "8 triangles collapsed below the quantization step"
      ],
-     "nodeMs": 114,
+     "nodeMs": 84,
      "drawCalls": [
       34,
       34
@@ -1858,15 +1858,15 @@
       },
       {
        "step": "prune",
-       "ms": 1
+       "ms": 0
       },
       {
        "step": "weld",
-       "ms": 19
+       "ms": 18
       },
       {
        "step": "quantize",
-       "ms": 56
+       "ms": 37
       }
      ]
     },
@@ -1885,7 +1885,7 @@
      "notes": [
       "8 triangles collapsed below the quantization step"
      ],
-     "nodeMs": 113,
+     "nodeMs": 95,
      "drawCalls": [
       34,
       34
@@ -1948,15 +1948,15 @@
       },
       {
        "step": "weld",
-       "ms": 20
+       "ms": 17
       },
       {
        "step": "reorder",
-       "ms": 23
+       "ms": 19
       },
       {
        "step": "quantize",
-       "ms": 49
+       "ms": 42
       },
       {
        "step": "meshopt-ext",
@@ -1979,7 +1979,7 @@
      "notes": [
       "8 triangles collapsed below the quantization step"
      ],
-     "nodeMs": 105,
+     "nodeMs": 83,
      "drawCalls": [
       34,
       34
@@ -2042,15 +2042,15 @@
       },
       {
        "step": "weld",
-       "ms": 19
+       "ms": 15
       },
       {
        "step": "reorder",
-       "ms": 20
+       "ms": 16
       },
       {
        "step": "quantize",
-       "ms": 47
+       "ms": 36
       },
       {
        "step": "meshopt-ext",
@@ -2073,7 +2073,7 @@
      "notes": [
       "8 triangles collapsed below the quantization step"
      ],
-     "nodeMs": 129,
+     "nodeMs": 90,
      "drawCalls": [
       34,
       34
@@ -2136,7 +2136,7 @@
       },
       {
        "step": "weld",
-       "ms": 20
+       "ms": 16
       },
       {
        "step": "instance",
@@ -2144,11 +2144,11 @@
       },
       {
        "step": "reorder",
-       "ms": 22
+       "ms": 18
       },
       {
        "step": "quantize",
-       "ms": 67
+       "ms": 41
       },
       {
        "step": "meshopt-ext",
@@ -2171,7 +2171,7 @@
      "notes": [
       "22 triangles collapsed below the quantization step"
      ],
-     "nodeMs": 103,
+     "nodeMs": 85,
      "drawCalls": [
       34,
       7
@@ -2229,7 +2229,7 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 2
+       "ms": 1
       },
       {
        "step": "prune",
@@ -2241,19 +2241,19 @@
       },
       {
        "step": "join",
-       "ms": 14
+       "ms": 11
       },
       {
        "step": "weld",
-       "ms": 15
+       "ms": 12
       },
       {
        "step": "reorder",
-       "ms": 19
+       "ms": 18
       },
       {
        "step": "quantize",
-       "ms": 37
+       "ms": 30
       },
       {
        "step": "meshopt-ext",
@@ -2274,7 +2274,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 61,
+     "nodeMs": 60,
      "drawCalls": [
       34,
       34
@@ -2326,11 +2326,11 @@
       },
       {
        "step": "prune",
-       "ms": 1
+       "ms": 0
       },
       {
        "step": "weld",
-       "ms": 18
+       "ms": 24
       },
       {
        "step": "instance",
@@ -2353,7 +2353,7 @@
      "notes": [
       "6 triangles collapsed below the quantization step"
      ],
-     "nodeMs": 136,
+     "nodeMs": 176,
      "drawCalls": [
       34,
       34
@@ -2407,19 +2407,19 @@
      "steps": [
       {
        "step": "dedup",
-       "ms": 1
+       "ms": 2
       },
       {
        "step": "prune",
-       "ms": 1
+       "ms": 3
       },
       {
        "step": "weld",
-       "ms": 18
+       "ms": 35
       },
       {
        "step": "draco",
-       "ms": 20
+       "ms": 29
       }
      ]
     }
@@ -2449,7 +2449,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 73,
+     "nodeMs": 47,
      "drawCalls": [
       5,
       5
@@ -2501,11 +2501,11 @@
       },
       {
        "step": "prune",
-       "ms": 37
+       "ms": 21
       },
       {
        "step": "weld",
-       "ms": 11
+       "ms": 6
       }
      ]
     },
@@ -2522,7 +2522,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 57,
+     "nodeMs": 42,
      "drawCalls": [
       5,
       5
@@ -2580,15 +2580,15 @@
       },
       {
        "step": "prune",
-       "ms": 24
+       "ms": 20
       },
       {
        "step": "weld",
-       "ms": 10
+       "ms": 6
       },
       {
        "step": "reorder",
-       "ms": 13
+       "ms": 7
       },
       {
        "step": "meshopt-ext",
@@ -2609,7 +2609,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 96,
+     "nodeMs": 61,
      "drawCalls": [
       5,
       5
@@ -2662,15 +2662,15 @@
       },
       {
        "step": "prune",
-       "ms": 38
+       "ms": 24
       },
       {
        "step": "weld",
-       "ms": 8
+       "ms": 6
       },
       {
        "step": "quantize",
-       "ms": 18
+       "ms": 15
       }
      ]
     },
@@ -2687,7 +2687,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 55,
+     "nodeMs": 51,
      "drawCalls": [
       5,
       5
@@ -2746,19 +2746,19 @@
       },
       {
        "step": "prune",
-       "ms": 18
+       "ms": 16
       },
       {
        "step": "weld",
-       "ms": 6
+       "ms": 5
       },
       {
        "step": "reorder",
-       "ms": 8
+       "ms": 7
       },
       {
        "step": "quantize",
-       "ms": 15
+       "ms": 14
       },
       {
        "step": "meshopt-ext",
@@ -2779,7 +2779,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 90,
+     "nodeMs": 56,
      "drawCalls": [
       5,
       5
@@ -2838,19 +2838,19 @@
       },
       {
        "step": "prune",
-       "ms": 29
+       "ms": 20
       },
       {
        "step": "weld",
-       "ms": 13
+       "ms": 6
       },
       {
        "step": "reorder",
-       "ms": 15
+       "ms": 7
       },
       {
        "step": "quantize",
-       "ms": 23
+       "ms": 14
       },
       {
        "step": "meshopt-ext",
@@ -2871,7 +2871,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 72,
+     "nodeMs": 57,
      "drawCalls": [
       5,
       5
@@ -2930,11 +2930,11 @@
       },
       {
        "step": "prune",
-       "ms": 24
+       "ms": 17
       },
       {
        "step": "weld",
-       "ms": 7
+       "ms": 6
       },
       {
        "step": "instance",
@@ -2942,11 +2942,11 @@
       },
       {
        "step": "reorder",
-       "ms": 14
+       "ms": 10
       },
       {
        "step": "quantize",
-       "ms": 17
+       "ms": 15
       },
       {
        "step": "meshopt-ext",
@@ -2967,7 +2967,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 59,
+     "nodeMs": 51,
      "drawCalls": [
       5,
       5
@@ -3028,15 +3028,15 @@
       },
       {
        "step": "prune",
-       "ms": 20
+       "ms": 17
       },
       {
        "step": "flatten",
-       "ms": 1
+       "ms": 0
       },
       {
        "step": "join",
-       "ms": 5
+       "ms": 3
       },
       {
        "step": "weld",
@@ -3044,11 +3044,11 @@
       },
       {
        "step": "reorder",
-       "ms": 6
+       "ms": 7
       },
       {
        "step": "quantize",
-       "ms": 10
+       "ms": 12
       },
       {
        "step": "meshopt-ext",
@@ -3069,7 +3069,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 100,
+     "nodeMs": 37,
      "drawCalls": [
       5,
       5
@@ -3121,11 +3121,11 @@
       },
       {
        "step": "prune",
-       "ms": 22
+       "ms": 15
       },
       {
        "step": "weld",
-       "ms": 10
+       "ms": 6
       },
       {
        "step": "instance",
@@ -3146,7 +3146,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 141,
+     "nodeMs": 61,
      "drawCalls": [
       5,
       5
@@ -3204,15 +3204,15 @@
       },
       {
        "step": "prune",
-       "ms": 31
+       "ms": 20
       },
       {
        "step": "weld",
-       "ms": 11
+       "ms": 5
       },
       {
        "step": "draco",
-       "ms": 10
+       "ms": 6
       }
      ]
     },
@@ -3229,7 +3229,7 @@
      "ok": true,
      "failures": [],
      "notes": [],
-     "nodeMs": 2856,
+     "nodeMs": 2292,
      "drawCalls": [
       5,
       5
@@ -3290,23 +3290,23 @@
       },
       {
        "step": "prune",
-       "ms": 22
+       "ms": 15
       },
       {
        "step": "weld",
-       "ms": 13
+       "ms": 6
       },
       {
        "step": "reorder",
-       "ms": 21
+       "ms": 8
       },
       {
        "step": "quantize",
-       "ms": 23
+       "ms": 15
       },
       {
        "step": "ktx2-etc1s",
-       "ms": 2764
+       "ms": 2240
       },
       {
        "step": "meshopt-ext",

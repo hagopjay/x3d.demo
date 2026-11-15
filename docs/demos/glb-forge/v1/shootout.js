@@ -1,6 +1,6 @@
 // Everything that is computed from forge-receipts.json alone: the header tiles, the shootout table, its callouts and the limits list.
 // No number in here is typed in; each callout names the receipt rows it was read from.
-import { $, esc, fmt, kib, heat } from './util.js';
+import { $, esc, fmt, kib, mib, heat } from './util.js';
 
 export const ORDER = ['lossless', 'meshopt-lossless', 'quantized', 'web', 'web-filter', 'instanced', 'static-joined', 'stock-instance', 'draco', 'web-ktx2-etc1s'];
 export const SHORT = { cathedral: 'PRISMATICA cathedral', asterion: 'Asterion', lumen: 'LUMEN', stilllife: 'Still life' };
@@ -23,7 +23,7 @@ export function headerTiles(R, tools) {
   for (const [s, v] of Object.entries(sc)) for (const [p, c] of Object.entries(v.profiles)) if (c.portable) { n++; if (c.ok) ok++; else bad.push(`${s} ${p}`); }
   if (n) t.push(`<div class="tile" style="--c:var(--amber)"><b>${ok} of ${n} <small>portable cells pass every gate</small></b><span>${bad.length ? 'Fails: ' + esc(bad.join('; ')) + ' (' + esc((cell(R, bad[0].split(' ')[0], bad[0].split(' ')[1]).failures[0] || '').replace(/^geometry: /, '')) + ')' : 'none fail'}</span><small><span class="src rcpt">receipt</span> ${fmt(Object.keys(sc).length)} scenes × the 8 portable profiles, one Node run each; ${fmt(Object.values(sc).reduce((a, v) => a + Object.values(v.profiles).filter((c) => c.identity.lost > 0).length, 0))} cells lost identity tokens (counted, listed in section 6)</small></div>`);
   const k = cell(R, 'stilllife', 'web-ktx2-etc1s');
-  if (k) t.push(`<div class="tile" style="--c:var(--violet)"><b>${kib(k.gpuTextureBytes[0] / 1)} → ${kib(k.gpuTextureBytes[1])} <small>texture memory</small></b><span>Still life with KTX2 ETC1S (precomputed): estimated GPU texture bytes, ${P(k.gpuTextureBytes[1], k.gpuTextureBytes[0])} of the PNG's</span><small><span class="src rcpt">receipt</span> glTF-Transform's size formula, not a GPU measurement. ktx2-encoder ${esc((tools && tools['ktx2-encoder']) || '?')}</small></div>`);
+  if (k) t.push(`<div class="tile" style="--c:var(--violet)"><b>${mib(k.gpuTextureBytes[0])} → ${mib(k.gpuTextureBytes[1])} <small>texture memory</small></b><span>Still life with KTX2 ETC1S (precomputed): estimated GPU texture bytes, ${P(k.gpuTextureBytes[1], k.gpuTextureBytes[0])} of the PNG's</span><small><span class="src rcpt">receipt</span> glTF-Transform's size formula, not a GPU measurement. ktx2-encoder ${esc((tools && tools['ktx2-encoder']) || '?')}</small></div>`);
   return t.join('');
 }
 
@@ -96,7 +96,7 @@ export function callouts(R, st, laneMeta) {
     const wf = scenes.filter((s) => cell(R, s, 'web') && cell(R, s, 'web-filter')).map((s) => ({ s, r: cell(R, s, 'web-filter').bytes / cell(R, s, 'web').bytes, g: cell(R, s, 'web-filter').transfer.gzip / cell(R, s, 'web').transfer.gzip, b: cell(R, s, 'web-filter').transfer.brotli / cell(R, s, 'web').transfer.brotli }));
     const rng = (k) => { const v = wf.map((x) => (x[k] - 1) * 100); return `${Math.min(...v).toFixed(1)}% to ${Math.max(...v).toFixed(1)}%`; };
     const larger = (laneMeta && laneMeta['web-filter'] && /larger before/.test(laneMeta['web-filter'].summary || '')) && wf.every((x) => x.r < 1);
-    add(`<b>Ranking by raw size is not the ranking after transfer compression.</b> Among cells that pass every gate and lose nothing, the order by raw bytes differs from the order by brotli on ${fmt(changed.size)} of ${fmt(scenes.length)} scenes. ${top.map((f) => `On ${esc(SHORT[f.s])}, <b>${esc(f.p)}</b> is ${f.a}${ord(f.a)} of ${f.n} by raw size and ${f.b}${ord(f.b)} by brotli`).join('; ')}. <b>web-filter</b> against <b>web</b>: raw ${rng('r')}, gzip ${rng('g')}, brotli ${rng('b')} across the scenes.${larger ? ' The lane\'s own profile summary says web-filter is "larger before" compression; in these receipts it is smaller before too, on every scene.' : ''}`,
+    add(`<b>Ranking by raw size is not the ranking after transfer compression.</b> Among cells that pass every gate and lose nothing, the order by raw bytes differs from the order by brotli on ${fmt(changed.size)} of ${fmt(scenes.length)} scenes. Largest rank changes: ${top.map((f) => `on ${esc(SHORT[f.s])}, <b>${esc(f.p)}</b> is ${f.a}${ord(f.a)} of ${f.n} by raw size and ${f.b}${ord(f.b)} by brotli`).join('; ')}. <b>web-filter</b> against <b>web</b>: raw ${rng('r')}, gzip ${rng('g')}, brotli ${rng('b')} across the scenes.${larger ? ' The lane\'s own profile summary says web-filter is "larger before" compression; in these receipts it is smaller before too, on every scene.' : ''}`,
       `${top.map((f) => row(f.s, f.p, 'bytes') + ' and .transfer.brotli').join(', ')}; web-filter vs web: scenes.*.profiles.{web,web-filter}.transfer`, [...top.map((f) => f.s + '|' + f.p), ...wf.map((x) => x.s + '|web-filter')]);
   }
   // 4 KTX2
