@@ -2,6 +2,11 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v24 (2026-11-15)
+- New Demo 26: Touch a million triangles (`docs/demos/three-bvh/v1/`), an X3D ElevationGrid of 125,000 to 1,000,000 triangles under a TouchSensor, drawn by the three.js bridge with a three-mesh-bvh bounds tree behind the picker; tree on and off, a race against the plain raycast, a 24,000-ray scan. Card image `docs/assets/three-bvh.jpg`.
+- New Demo 27: One scene, nine looks (`docs/demos/three-style-board/v1/`), one X3D scene drawn nine ways with TSL node materials, three scenes, code on every tile. Card image `docs/assets/three-style-board.jpg`.
+- Both demos arrived in PR 31 without front-page cards; this version adds the two cards and the version snapshot only. Numbers 26 and 27 are the next free after Demo 25; the Path-traced X3D and Timelines demos (`three-pathtracer`, `timeline-theatre-gsap`) are not on the shelf yet and their numbers are not taken here. Demos 1 to 25 and v1 to v23 unchanged.
+
 ## v23 (2026-11-15)
 - Demo 25, Three authors, one scene (`docs/demos/yjs-collab/v1/`): live multi-user editing of an X3D scene with Yjs. Three peers (two X_ITE browsers and a scripted agent) each keep their own copy; a scripted three-act story shows concurrent edits, a network split with four kinds of clash and the rule that settled each, a rescue button and a history scrubber. Built from x3d.loom PR 74 (`x3d.yjs/`, `demo/showcase`); X_ITE 16.6.0 and Yjs 13.6.33 (MIT, `NOTICE.md`) bundled, no network requests. Checked headless (Chromium 153, SwiftShader): hashes differ during the split and match after, X_ITE node sets equal the document on all three peers, no page errors.
 - New card image `docs/assets/yjs-collab.jpg`. Demos 1 to 24 unchanged.
