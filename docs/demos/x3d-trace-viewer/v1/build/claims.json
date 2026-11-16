@@ -1,0 +1,37 @@
+{
+ "about": "Claims were written by hand for this page (a model copies the quote in the pipeline; the checker does not care who wrote it). Verdicts come from x3dtrace, plain code.",
+ "sets": [
+  {"id": "scene", "label": "Scene E2: Cornell box", "blurb": "Statements about the lab's Leg E scene, each with a quote copied from the scene text.",
+   "sources": [{"id": "e2-cornell-box.x3d", "file": "e2-cornell-box.x3d", "kind": "x3d"}],
+   "claims": [
+    {"statement": "The left wall is red.", "field": "left wall baseColor", "value": [0.63, 0.065, 0.05], "quote": "baseColor=\"0.63 0.065 0.05\"", "source": "e2-cornell-box.x3d", "kind": "true"},
+    {"statement": "The right wall is green.", "field": "right wall baseColor", "value": [0.14, 0.45, 0.091], "quote": "baseColor=\"0.14 0.45 0.091\"", "source": "e2-cornell-box.x3d", "kind": "true"},
+    {"statement": "The point light has intensity 12.", "field": "PointLight intensity", "value": 12, "quote": "intensity=\"12\"", "source": "e2-cornell-box.x3d", "kind": "true", "note": "A light has no geometry: the report falls back to the whole scene's box, and the page draws a marker at the light's location instead."},
+    {"statement": "The point light sits at height 4.6 m, under the ceiling panel.", "field": "PointLight location", "value": [0, 4.6, 0], "quote": "location=\"0 4.6 0\"", "source": "e2-cornell-box.x3d", "kind": "true"},
+    {"statement": "The tall box is 1.5 by 3 by 1.5 m.", "field": "tall box size", "value": [1.5, 3, 1.5], "quote": "size=\"1.5 3 1.5\"", "source": "e2-cornell-box.x3d", "kind": "true", "note": "The box drawn is the world box of the turned box, not its local size."},
+    {"statement": "The short box is a 1.5 m cube.", "field": "short box size", "value": 1.5, "quote": "size=\"1.5 1.5 1.5\"", "source": "e2-cornell-box.x3d", "kind": "true", "note": "One number stands for three equal components (the broadcast conversion)."},
+    {"statement": "The tall box is turned 0.30 rad about the vertical axis.", "field": "tall box rotation", "value": [0, 1, 0, 0.3], "quote": "rotation=\"0 1 0 0.30\"", "source": "e2-cornell-box.x3d", "kind": "true"},
+    {"statement": "The ceiling panel glows (1, 0.92, 0.8).", "field": "panel emissiveColor", "value": [1, 0.92, 0.8], "quote": "emissiveColor=\"1 0.92 0.8\"", "source": "e2-cornell-box.x3d", "kind": "true"},
+    {"statement": "The floor is a 0.73 grey.", "field": "floor baseColor", "value": [0.73, 0.73, 0.73], "quote": "baseColor=\"0.73 0.73 0.73\"", "source": "e2-cornell-box.x3d", "kind": "limit", "note": "This quote occurs 5 times (floor, ceiling, back wall, both boxes). With no hint the box goes to the first one, which happens to be the floor."},
+    {"statement": "The back wall is the same 0.73 grey.", "field": "back wall baseColor", "value": [0.73, 0.73, 0.73], "quote": "baseColor=\"0.73 0.73 0.73\"", "source": "e2-cornell-box.x3d", "kind": "limit", "note": "Verified, and boxed at the FLOOR: the same quote, no hint. Verified does not prove it is the right place."},
+    {"statement": "The back wall is the same 0.73 grey (with the node named).", "field": "back wall baseColor", "value": [0.73, 0.73, 0.73], "quote": "baseColor=\"0.73 0.73 0.73\"", "source": "e2-cornell-box.x3d", "path": "/X3D/Scene/Transform[3]", "kind": "true", "note": "Same quote, plus the path of the node it is about: now boxed at the back wall."},
+    {"statement": "The camera's field of view is 36.87 degrees.", "field": "Viewpoint fieldOfView (degrees)", "value": 36.87, "quote": "fieldOfView=\"0.6435\"", "source": "e2-cornell-box.x3d", "kind": "limit", "note": "Arithmetic is right (0.6435 rad = 36.87 deg) but the quote carries no unit, so a conversion is not accepted: check."},
+    {"statement": "PLANTED: the point light has intensity 120.", "field": "PointLight intensity", "value": 120, "quote": "intensity=\"12\"", "source": "e2-cornell-box.x3d", "kind": "planted", "note": "Planted error: one digit added."},
+    {"statement": "PLANTED: the right wall is red.", "field": "right wall baseColor", "value": [0.63, 0.065, 0.05], "quote": "baseColor=\"0.14 0.45 0.091\"", "source": "e2-cornell-box.x3d", "kind": "planted", "note": "Planted error: the left wall's numbers, the right wall's quote."},
+    {"statement": "PLANTED: the point light has intensity 8.", "field": "PointLight intensity", "value": 8, "quote": "intensity=\"8\"", "source": "e2-cornell-box.x3d", "kind": "planted", "note": "Planted error: a quote that is not in the scene."},
+    {"statement": "PLANTED: the left wall is red (paraphrased quote).", "field": "left wall baseColor", "value": [0.63, 0.065, 0.05], "quote": "the left wall is red", "source": "e2-cornell-box.x3d", "kind": "planted", "note": "Planted error: the writer did not copy the text exactly."}
+   ]},
+  {"id": "rig", "label": "Lab rig table", "blurb": "Rows of the Colab G4 rig table (x3d.lab notebooks/unreal/colab_g4/README.md) checked against the files the repository holds.",
+   "sources": [{"id": "pins.toml", "file": "pins.toml", "kind": "text"}, {"id": "tests.yml", "file": "tests.yml", "kind": "text"}, {"id": "unreal-README.md", "file": "unreal-README.md", "kind": "text"}],
+   "claims": [
+    {"statement": "X_ITE 16.7.0", "field": "rig.x_ite", "value": "16.7.0", "ftype": "version", "quote": "version = \"16.7.0\"", "source": "pins.toml", "kind": "true", "note": "The pin the notebooks load; the README says the G4 run used it."},
+    {"statement": "Blender 5.2.3 (Cycles)", "field": "rig.blender", "value": "5.2.3", "ftype": "version", "quote": "\"bpy==5.2.3\"", "source": "tests.yml", "kind": "limit", "note": "Verified against CI's Blender wheel. That is another machine than the G4 kernel: right number, possibly wrong place."},
+    {"statement": "Unreal 5.8.4", "field": "rig.unreal", "value": "5.8.4", "ftype": "version", "quote": "Linux_Unreal_Engine_5.8.4.zip", "source": "unreal-README.md", "kind": "true", "note": "The engine the notebook asks for; the log's own Engine Version line (with the build id) is on the owner's Drive."},
+    {"statement": "Unreal build 58902052", "field": "rig.unreal_build", "value": "58902052", "ftype": "version", "quote": "", "source": "", "kind": "gap", "note": "No quote: the number lives in an Unreal log on Drive."},
+    {"statement": "Driver 580.82.07", "field": "rig.driver", "value": "580.82.07", "ftype": "version", "quote": "", "source": "", "kind": "gap", "note": "No quote: nvidia-smi output on Drive."},
+    {"statement": "GPU memory 95.6 GB", "field": "rig.vram", "value": 95.6, "quote": "", "source": "", "kind": "gap", "note": "No quote."},
+    {"statement": "Chromium 159, ANGLE on Vulkan 1.4.312", "field": "rig.chromium", "value": "159", "quote": "", "source": "", "kind": "gap", "note": "No quote: the X_ITE step's own print on Drive."},
+    {"statement": "x3d.lab 70551e8 in the kernel", "field": "rig.lab_commit", "value": "70551e8", "quote": "", "source": "", "kind": "gap", "note": "No quote: git rev-parse in the notebook's card."}
+   ]}
+ ]
+}
