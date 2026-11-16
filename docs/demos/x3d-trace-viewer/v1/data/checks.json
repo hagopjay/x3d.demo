@@ -1,0 +1,7 @@
+[
+ {"what": "Recorded report vs live checker", "result": "24 of 24 verdicts agree, 17 of 17 marked spans sit inside the live match, 4 of 4 sha-256 sums equal.", "how": "node test/check.test.cjs, Node v22.23.4"},
+ {"what": "Boxes vs X_ITE", "result": "8 of 8 world boxes of the Cornell box shapes equal X_ITE 16.6.0's own bounding boxes, worst difference 4.4e-16 m.", "how": "build/xite_bbox_probe.cjs, headless Chromium 153.0.8010.12 on SwiftShader"},
+ {"what": "Engine", "result": "x3dtrace from hagopjay/x3d.ML, file sha-256 starts dcba70d739007c0d, Python 3.13.18, standard library only, no model call.", "how": "build/build_trace.py"},
+ {"what": "Limit: versions", "result": "The engine does not split the v of v16.7.0, so a correct claim about 'X_ITE v16.7.0' reads check; the rig rows are decided by a version rule in the build (a string, whole dotted token). The engine used to read a dotted triple as a date; that is fixed in the engine used here.", "how": "the lab receipt prototype, test_receipt.py (xfail case)"},
+ {"what": "Limit: not timed", "result": "Nothing here was timed; the 3D view was drawn on a software adapter.", "how": "SwiftShader"}
+]

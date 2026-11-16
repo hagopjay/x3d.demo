@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trace viewer: where a value came from</title>
+<link rel="icon" href="data:,">
+<meta name="description" content="Every claim about an X3D scene or a lab run next to the exact text it was copied from, with a verdict from plain code (find, compare, locate) and the box it points at in the 3D view.">
+<style>
+:root{--bg:#070a12;--bg2:#0c111d;--panel:#101728;--panel2:#162038;--line:#232f4b;--line2:#2f3e63;--fg:#e9eefb;--mute:#97a3c0;--dim:#6b7694;
+--amber:#ffb454;--teal:#37d5c2;--violet:#9c8bff;--coral:#ff7a5c;--sky:#5db4ff;--sage:#7ddc6a;--red:#ff5d6c;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 var(--sans);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(1000px 520px at 10% -10%,rgba(55,213,194,.13),transparent 60%),radial-gradient(800px 460px at 96% 0%,rgba(255,180,84,.10),transparent 60%)}
+main,header,footer,.wrap{max-width:1500px;margin:0 auto}
+a{color:var(--sky)}a:focus-visible,button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+h1{font-size:clamp(1.7rem,4vw,2.8rem);line-height:1.05;margin:4px 0 8px;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:1.15rem;margin:0 0 6px}
+p{margin:0 0 10px;max-width:84ch}
+code,.mono{font-family:var(--mono);font-size:.88em}
+.nav{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font:12px var(--mono);color:var(--mute);letter-spacing:.04em;padding-top:14px}
+.nav a{color:var(--mute);text-decoration:none}.nav a:hover{color:var(--fg)}
+.kick{font:600 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-top:12px}
+.lede{font-size:1.05rem;color:var(--mute)}
+.bar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:14px 0 10px;padding:10px 12px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab,.btn{font:600 13px var(--sans);color:var(--fg);background:var(--panel2);border:1px solid var(--line2);border-radius:8px;padding:8px 12px;min-height:40px;cursor:pointer}
+.tab[aria-selected=true]{background:#1d2c52;border-color:var(--sky)}
+.btn:hover,.tab:hover{border-color:var(--sky)}
+.ph .btn{padding:4px 10px;min-height:32px;font-size:12px}
+.btn[aria-pressed=true]{background:#2a2410;border-color:var(--amber);color:var(--amber)}
+.seg{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--mute)}
+.seg label{display:flex;gap:5px;align-items:center;min-height:40px;cursor:pointer}
+.tally{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;align-items:center}
+.cov{font-size:13px;color:var(--mute)}
+.chip{display:inline-flex;align-items:center;gap:5px;font:600 12px var(--mono);padding:3px 8px;border-radius:999px;border:1px solid;white-space:nowrap}
+.v-verified{color:var(--sage);border-color:#2f6b2a;background:#0f2410}
+.v-check{color:var(--red);border-color:#7a2a33;background:#2a0f13}
+.v-reworded{color:var(--violet);border-color:#4a3f8f;background:#17133a}
+.v-unchecked{color:var(--mute);border-color:var(--line2);background:var(--bg2)}
+.live{border-style:dashed}
+.app{display:grid;grid-template-columns:minmax(250px,330px) minmax(0,1.1fr) minmax(0,1fr);gap:12px;align-items:stretch;height:740px}
+.pane{background:var(--panel);border:1px solid var(--line);border-radius:12px;min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.ph{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-bottom:1px solid var(--line);font:12px var(--mono);color:var(--mute)}
+.ph b{color:var(--fg);font-weight:600}
+.claims ul{list-style:none;margin:0;padding:0;overflow:auto;flex:1;min-height:0}
+.claims li button{all:unset;box-sizing:border-box;display:block;width:100%;padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer;min-height:48px}
+.claims li button:hover{background:#141d33}
+.claims li button[aria-current=true]{background:#1a2748;box-shadow:inset 3px 0 0 var(--sky)}
+.claims li button:focus-visible{outline:2px solid var(--sky);outline-offset:-2px}
+.st{display:block;font-size:14px;margin-top:4px}
+.meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.tag{font:11px var(--mono);color:var(--amber);border:1px solid #5a4318;border-radius:4px;padding:1px 5px}
+.tag.planted{color:var(--coral);border-color:#6a2d20}.tag.gap{color:var(--mute);border-color:var(--line2)}
+#codewrap{flex:1 1 auto;min-height:160px;display:flex;flex-direction:column}
+.code{position:relative;font:12.5px/1.55 var(--mono);overflow:auto;flex:1;min-height:0;padding:6px 0;background:var(--bg2);tab-size:2}
+.ln{display:flex;white-space:pre-wrap}
+.no{flex:none;width:44px;text-align:right;padding-right:10px;color:var(--dim);user-select:none}
+.tx{flex:1 1 0;min-width:0;overflow-wrap:anywhere;padding-right:12px}
+mark{background:rgba(255,180,84,.18);color:inherit;border-radius:3px;outline:1px dashed #7a5a24}
+mark.sel{background:rgba(255,180,84,.55);color:#fff;outline:1px solid var(--amber)}
+textarea.code{display:block;width:100%;border:0;color:var(--fg);resize:none;white-space:pre-wrap;overflow:auto;padding:8px 12px;flex:1}
+.detail{flex:none;max-height:250px;overflow:auto;padding:10px 12px;border-top:1px solid var(--line);font-size:13.5px}
+.detail dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:8px 0}
+.detail dt{color:var(--dim);font:12px var(--mono)}.detail dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.q{font:12.5px var(--mono);background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:4px 7px;display:inline-block;max-width:100%;overflow-wrap:anywhere}
+.note{color:var(--amber);font-size:13px;margin:6px 0 0}
+.banner{margin:0;padding:8px 12px;background:#2a2410;border-bottom:1px solid #5a4318;color:var(--amber);font-size:13px}
+.view{position:relative}
+.stage{background:#04060c;flex:1;min-height:260px;position:relative}
+x3d-canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.stage .msg{position:absolute;left:8px;right:8px;bottom:8px;font:12px var(--mono);color:var(--mute);background:rgba(7,10,18,.82);padding:5px 8px;border-radius:6px;pointer-events:none}
+.locus{flex:none;max-height:170px;overflow:auto;padding:10px 12px;border-top:1px solid var(--line);font-size:13px}
+.locus dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:0}
+.locus dt{color:var(--dim);font:12px var(--mono)}.locus dd{margin:0;overflow-wrap:anywhere}
+.notes{margin:22px 0 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.notes section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.notes ul{margin:6px 0 0;padding-left:18px}.notes li{margin:3px 0}
+.sr{position:absolute;left:-9999px}
+@media(max-width:1020px){
+ .app{display:flex;flex-direction:column;height:auto}
+ .claims ul{flex:none;max-height:300px}#codewrap{flex:none}.code{flex:none;max-height:340px;min-height:200px}textarea.code{flex:none;height:300px}.detail{max-height:none}
+ .stage{flex:none;height:320px}.locus{max-height:none}
+ .tally{margin-left:0}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="nav"><a href="../../../index.html">x3d.demo</a><span>/</span><span>Trace viewer</span></nav>
+<header>
+ <div class="kick">Lineage and provenance of values</div>
+ <h1>Where a value came from, and where it sits</h1>
+ <p class="lede">A claim is a value plus a short quote copied from the text it was read from. Plain code, with no model, checks three things: is the quote in the text (find), is the value inside the quote (compare), and where is it (locate). Pick a claim on the left: the middle shows the text with the quote marked, the right shows the box it points at in the 3D scene.</p>
+</header>
+
+<div class="bar" role="group" aria-label="Claim set and policy">
+ <div class="tabs" role="tablist" aria-label="Claim set" id="tabs"></div>
+ <div class="seg" role="radiogroup" aria-label="Policy">Policy
+  <label><input type="radio" name="pol" value="default" checked> default</label>
+  <label><input type="radio" name="pol" value="strict"> strict</label>
+ </div>
+ <div class="tally" id="tally" aria-live="polite"></div>
+</div>
+<p class="cov" id="blurb"></p>
+
+<main class="app" id="app">
+ <section class="pane claims" aria-label="Claims">
+  <div class="ph"><b>Claims</b><span id="covline"></span></div>
+  <ul id="list" role="list"></ul>
+ </section>
+ <section class="pane src" aria-label="Source text">
+  <div class="ph"><b id="srcname">source</b><span id="sha"></span><span style="flex:1"></span>
+   <button class="btn" id="prev" aria-label="Previous place" hidden>&#9664;</button><span id="placeno"></span><button class="btn" id="next" aria-label="Next place" hidden>&#9654;</button>
+   <button class="btn" id="edit" aria-pressed="false">Edit the text</button><button class="btn" id="reset" hidden>Reset</button></div>
+  <p class="banner" id="banner" hidden></p>
+  <div id="codewrap"><div class="code" id="code" tabindex="0" role="region" aria-label="Source text with the quote marked"></div></div>
+  <div class="detail" id="detail"></div>
+ </section>
+ <section class="pane view" aria-label="3D view">
+  <div class="ph"><b>3D view</b><span id="xver">X_ITE</span></div>
+  <div class="stage"><x3d-canvas id="xc" splashScreen="false" contextMenu="false" notifications="false" timings="false"></x3d-canvas><div class="msg" id="stagemsg">loading X_ITE...</div></div>
+  <div class="locus" id="locus"></div>
+ </section>
+</main>
+
+<div class="notes" id="notes">
+ <section>
+  <h2>What a verdict says</h2>
+  <ul>
+   <li><b class="chip v-verified">&#10003; verified</b> the quote is in the text as a whole run and the value is inside it.</li>
+   <li><b class="chip v-check">&#10005; check</b> the quote is not there, or the value is not in it. A person looks.</li>
+   <li><b class="chip v-reworded">&#8776; reworded</b> the value's words are in the quote but not the same numbers.</li>
+   <li><b class="chip v-unchecked">&ndash; unchecked</b> no quote came with the value, so nothing could be checked. The coverage figure counts these.</li>
+  </ul>
+  <p style="margin-top:8px"><b>Verified is not proof the quote is the right place.</b> Try "The back wall is the same 0.73 grey": verified, boxed at the floor. Step through the 5 places, then see the version that names the node.</p>
+ </section>
+ <section>
+  <h2>What runs where</h2>
+  <ul>
+   <li>The recorded verdicts, spans and boxes come from <code>x3dtrace</code> (Python, standard library), run when the page was built (<code>build/build_trace.py</code>).</li>
+   <li>The page re-checks live, in your browser, only find and a number or version compare: edit the text and the chips turn dashed. The full engine is not ported here.</li>
+   <li>Boxes are world-space boxes from the report. The check against X_ITE's own bounding boxes is in the notes below the page's checks.</li>
+   <li>The claims on this page were written by hand for it, including the planted errors. In a pipeline a model copies the quote; the checker does not care who wrote it.</li>
+  </ul>
+ </section>
+ <section id="checks">
+  <h2>Checks and limits</h2>
+  <ul id="checklist"></ul>
+ </section>
+</div>
+<footer>
+ <p><b>Versions kept.</b> This is the trace viewer, version 1. Nothing earlier is overwritten. Method after Umair Ali Khan's article on traceability in structured extraction and the GAIK toolkit's source tracing (MIT); <code>x3dtrace</code> is an independent implementation. See <a href="NOTICE.md">NOTICE.md</a>. X_ITE is read from the Blender add-on demo's vendor folder (MIT, <code>LICENSE.md</code> beside it).</p>
+ <p style="color:var(--dim)">No timings are published here. Pictures were drawn on a software adapter and show correctness only.</p>
+</footer>
+</div>
+<script src="check.js"></script>
+<script src="viewer.js"></script>
+</body>
+</html>

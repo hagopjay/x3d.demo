@@ -1,0 +1,1001 @@
+{
+ "documents": [
+  "e2-cornell-box.x3d"
+ ],
+ "engine": {
+  "name": "x3dtrace/0.1",
+  "policy": "default",
+  "sha256": "dcba70d739007c0dce2095d91346a8321400aed36cf1d1fe519c6fac23554462"
+ },
+ "expected": [
+  "PointLight intensity",
+  "PointLight location",
+  "Viewpoint fieldOfView (degrees)",
+  "back wall baseColor",
+  "floor baseColor",
+  "left wall baseColor",
+  "panel emissiveColor",
+  "right wall baseColor",
+  "short box size",
+  "tall box rotation",
+  "tall box size"
+ ],
+ "policy": {
+  "ambiguous_quote_is_check": false,
+  "code_values_unchecked": false,
+  "conversions": [
+   "deg2rad",
+   "rad2deg",
+   "percent",
+   "rgb255",
+   "hex",
+   "colorname",
+   "numword",
+   "unit",
+   "broadcast",
+   "axis"
+  ],
+  "length_scale": "1.0",
+  "match_reformatted_identifiers": true,
+  "min_quote_words": 1,
+  "moved_is_check": false,
+  "number_tolerance": "1e-06",
+  "reworded_is_problem": false,
+  "round_to_printed": true
+ },
+ "schema": "x3dtrace/0.1",
+ "set": "scene",
+ "source_files": [
+  {
+   "bytes": 2651,
+   "id": "e2-cornell-box.x3d",
+   "kind": "x3d",
+   "sha256": "033a7a4065cc97658b3b5f1c9760399155fa9e23f5849a78c0e4d02614439724"
+  }
+ ],
+ "sources": [
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "left wall baseColor",
+   "locus": {
+    "aabb_e6": [
+     [
+      -2600000,
+      0,
+      -2500000,
+      -2500000,
+      5000000,
+      2500000
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene/Transform[4]/Shape",
+    "attr": "baseColor",
+    "col": 75,
+    "def": null,
+    "line": 13,
+    "node": "PhysicalMaterial",
+    "path": "/X3D/Scene/Transform[4]/Shape/Appearance/PhysicalMaterial",
+    "xpath": "/X3D/Scene/Transform[4]/Shape/Appearance/PhysicalMaterial"
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "baseColor=\"0.63 0.065 0.05\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "baseColor=\"0.63 0.065 0.05",
+     "prefix": "e><Appearance><PhysicalMaterial ",
+     "suffix": "\" metallic=\"0\" roughness=\"0.9\"/>",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 1756,
+     "start": 1730,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/Transform[4]/Shape/Appearance/PhysicalMaterial"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    1730,
+    1756
+   ],
+   "status": "found",
+   "value": [
+    "0.63",
+    "0.065",
+    "0.05"
+   ],
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "right wall baseColor",
+   "locus": {
+    "aabb_e6": [
+     [
+      2500000,
+      0,
+      -2500000,
+      2600000,
+      5000000,
+      2500000
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene/Transform[5]/Shape",
+    "attr": "baseColor",
+    "col": 74,
+    "def": null,
+    "line": 14,
+    "node": "PhysicalMaterial",
+    "path": "/X3D/Scene/Transform[5]/Shape/Appearance/PhysicalMaterial",
+    "xpath": "/X3D/Scene/Transform[5]/Shape/Appearance/PhysicalMaterial"
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "baseColor=\"0.14 0.45 0.091\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "baseColor=\"0.14 0.45 0.091",
+     "prefix": "e><Appearance><PhysicalMaterial ",
+     "suffix": "\" metallic=\"0\" roughness=\"0.9\"/>",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 1942,
+     "start": 1916,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/Transform[5]/Shape/Appearance/PhysicalMaterial"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    1916,
+    1942
+   ],
+   "status": "found",
+   "value": [
+    "0.14",
+    "0.45",
+    "0.091"
+   ],
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "PointLight intensity",
+   "locus": {
+    "aabb_e6": [
+     [
+      -2600000,
+      -100000,
+      -2600000,
+      2600000,
+      5100000,
+      2500000
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene",
+    "attr": "intensity",
+    "col": 46,
+    "def": null,
+    "line": 9,
+    "node": "PointLight",
+    "path": "/X3D/Scene/PointLight",
+    "xpath": "/X3D/Scene/PointLight"
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "intensity=\"12\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "intensity=\"12",
+     "prefix": "lobal=\"true\" location=\"0 4.6 0\" ",
+     "suffix": "\" attenuation=\"0 0 1\" radius=\"20",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 1048,
+     "start": 1035,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/PointLight"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    1035,
+    1048
+   ],
+   "status": "found",
+   "value": 12,
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "PointLight location",
+   "locus": {
+    "aabb_e6": [
+     [
+      -2600000,
+      -100000,
+      -2600000,
+      2600000,
+      5100000,
+      2500000
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene",
+    "attr": "location",
+    "col": 27,
+    "def": null,
+    "line": 9,
+    "node": "PointLight",
+    "path": "/X3D/Scene/PointLight",
+    "xpath": "/X3D/Scene/PointLight"
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "location=\"0 4.6 0\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "location=\"0 4.6 0",
+     "prefix": "35\"/>\n<PointLight global=\"true\" ",
+     "suffix": "\" intensity=\"12\" attenuation=\"0 ",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 1033,
+     "start": 1016,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/PointLight"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    1016,
+    1033
+   ],
+   "status": "found",
+   "value": [
+    0,
+    "4.6",
+    0
+   ],
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "tall box size",
+   "locus": {
+    "aabb_e6": [
+     [
+      -1788143,
+      0,
+      -1638143,
+      88143,
+      3000000,
+      238143
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene/Transform[7]/Shape",
+    "attr": "size",
+    "col": 175,
+    "def": null,
+    "line": 16,
+    "node": "Box",
+    "path": "/X3D/Scene/Transform[7]/Shape/Box",
+    "xpath": "/X3D/Scene/Transform[7]/Shape/Box"
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "size=\"1.5 3 1.5\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "size=\"1.5 3 1.5",
+     "prefix": "ghness=\"0.9\"/></Appearance><Box ",
+     "suffix": "\"/></Shape></Transform>\n<Transfo",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 2396,
+     "start": 2381,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/Transform[7]/Shape/Box"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    2381,
+    2396
+   ],
+   "status": "found",
+   "value": [
+    "1.5",
+    3,
+    "1.5"
+   ],
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "short box size",
+   "locus": {
+    "aabb_e6": [
+     [
+      -33147,
+      0,
+      -183147,
+      1833147,
+      1500000,
+      1683147
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene/Transform[8]/Shape",
+    "attr": "size",
+    "col": 175,
+    "def": null,
+    "line": 17,
+    "node": "Box",
+    "path": "/X3D/Scene/Transform[8]/Shape/Box",
+    "xpath": "/X3D/Scene/Transform[8]/Shape/Box"
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "size=\"1.5 1.5 1.5\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "size=\"1.5 1.5 1.5",
+     "prefix": "ghness=\"0.9\"/></Appearance><Box ",
+     "suffix": "\"/></Shape></Transform>\n</Scene>",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 2611,
+     "start": 2594,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/Transform[8]/Shape/Box"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    2594,
+    2611
+   ],
+   "status": "found",
+   "value": "1.5",
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "tall box rotation",
+   "locus": {
+    "aabb_e6": [
+     [
+      -1788143,
+      0,
+      -1638143,
+      88143,
+      3000000,
+      238143
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene/Transform[7]",
+    "attr": "rotation",
+    "col": 41,
+    "def": null,
+    "line": 16,
+    "node": "Transform",
+    "path": "/X3D/Scene/Transform[7]",
+    "xpath": "/X3D/Scene/Transform[7]"
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "rotation=\"0 1 0 0.30\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "rotation=\"0 1 0 0.30",
+     "prefix": "rm translation=\"-0.85 1.5 -0.7\" ",
+     "suffix": "\"><Shape><Appearance><PhysicalMa",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 2267,
+     "start": 2247,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/Transform[7]"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    2247,
+    2267
+   ],
+   "status": "found",
+   "value": [
+    0,
+    1,
+    0,
+    "0.3"
+   ],
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "panel emissiveColor",
+   "locus": {
+    "aabb_e6": [
+     [
+      -650000,
+      4970000,
+      -525000,
+      650000,
+      4990000,
+      525000
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene/Transform[6]/Shape",
+    "attr": "emissiveColor",
+    "col": 90,
+    "def": null,
+    "line": 15,
+    "node": "PhysicalMaterial",
+    "path": "/X3D/Scene/Transform[6]/Shape/Appearance/PhysicalMaterial",
+    "xpath": "/X3D/Scene/Transform[6]/Shape/Appearance/PhysicalMaterial"
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "emissiveColor=\"1 0.92 0.8\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "emissiveColor=\"1 0.92 0.8",
+     "prefix": "sicalMaterial baseColor=\"0 0 0\" ",
+     "suffix": "\"/></Appearance><Box size=\"1.3 0",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 2143,
+     "start": 2118,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/Transform[6]/Shape/Appearance/PhysicalMaterial"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    2118,
+    2143
+   ],
+   "status": "found",
+   "value": [
+    1,
+    "0.92",
+    "0.8"
+   ],
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "floor baseColor",
+   "locus": {
+    "aabb_e6": [
+     [
+      -2500000,
+      -100000,
+      -2500000,
+      2500000,
+      0,
+      2500000
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene/Transform[1]/Shape",
+    "attr": "baseColor",
+    "col": 73,
+    "def": null,
+    "line": 10,
+    "node": "PhysicalMaterial",
+    "path": "/X3D/Scene/Transform[1]/Shape/Appearance/PhysicalMaterial",
+    "xpath": "/X3D/Scene/Transform[1]/Shape/Appearance/PhysicalMaterial"
+   },
+   "note": "",
+   "occurrences": 5,
+   "page": 1,
+   "quote": "baseColor=\"0.73 0.73 0.73\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "baseColor=\"0.73 0.73 0.73",
+     "prefix": "e><Appearance><PhysicalMaterial ",
+     "suffix": "\" metallic=\"0\" roughness=\"0.9\"/>",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 1200,
+     "start": 1175,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/Transform[1]/Shape/Appearance/PhysicalMaterial"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    1175,
+    1200
+   ],
+   "status": "found",
+   "value": [
+    "0.73",
+    "0.73",
+    "0.73"
+   ],
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "back wall baseColor",
+   "locus": {
+    "aabb_e6": [
+     [
+      -2500000,
+      -100000,
+      -2500000,
+      2500000,
+      0,
+      2500000
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene/Transform[1]/Shape",
+    "attr": "baseColor",
+    "col": 73,
+    "def": null,
+    "line": 10,
+    "node": "PhysicalMaterial",
+    "path": "/X3D/Scene/Transform[1]/Shape/Appearance/PhysicalMaterial",
+    "xpath": "/X3D/Scene/Transform[1]/Shape/Appearance/PhysicalMaterial"
+   },
+   "note": "",
+   "occurrences": 5,
+   "page": 1,
+   "quote": "baseColor=\"0.73 0.73 0.73\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "baseColor=\"0.73 0.73 0.73",
+     "prefix": "e><Appearance><PhysicalMaterial ",
+     "suffix": "\" metallic=\"0\" roughness=\"0.9\"/>",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 1200,
+     "start": 1175,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/Transform[1]/Shape/Appearance/PhysicalMaterial"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    1175,
+    1200
+   ],
+   "status": "found",
+   "value": [
+    "0.73",
+    "0.73",
+    "0.73"
+   ],
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "path",
+   "document": 1,
+   "field": "back wall baseColor",
+   "hints": {
+    "path": "/X3D/Scene/Transform[3]"
+   },
+   "locus": {
+    "aabb_e6": [
+     [
+      -2500000,
+      0,
+      -2600000,
+      2500000,
+      5000000,
+      -2500000
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene/Transform[3]/Shape",
+    "attr": "baseColor",
+    "col": 75,
+    "def": null,
+    "line": 12,
+    "node": "PhysicalMaterial",
+    "path": "/X3D/Scene/Transform[3]/Shape/Appearance/PhysicalMaterial",
+    "xpath": "/X3D/Scene/Transform[3]/Shape/Appearance/PhysicalMaterial"
+   },
+   "note": "",
+   "occurrences": 5,
+   "page": 1,
+   "quote": "baseColor=\"0.73 0.73 0.73\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "baseColor=\"0.73 0.73 0.73",
+     "prefix": "e><Appearance><PhysicalMaterial ",
+     "suffix": "\" metallic=\"0\" roughness=\"0.9\"/>",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 1569,
+     "start": 1544,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/Transform[3]/Shape/Appearance/PhysicalMaterial"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    1544,
+    1569
+   ],
+   "status": "found",
+   "value": [
+    "0.73",
+    "0.73",
+    "0.73"
+   ],
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "Viewpoint fieldOfView (degrees)",
+   "locus": {
+    "aabb_e6": [
+     [
+      -2600000,
+      -100000,
+      -2600000,
+      2600000,
+      5100000,
+      2500000
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene",
+    "attr": "fieldOfView",
+    "col": 91,
+    "def": "Front",
+    "line": 8,
+    "node": "Viewpoint",
+    "path": "/X3D/Scene/Viewpoint[DEF=Front]",
+    "xpath": "/X3D/Scene/Viewpoint[@DEF='Front']"
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "fieldOfView=\"0.6435\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "fieldOfView=\"0.6435",
+     "prefix": " 9.2\" orientation=\"1 0 0 -0.02\" ",
+     "suffix": "\"/>\n<PointLight global=\"true\" lo",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 986,
+     "start": 967,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/Viewpoint[@DEF='Front']"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    967,
+    986
+   ],
+   "status": "found",
+   "value": "36.87",
+   "value_rects": [],
+   "value_status": "mismatch",
+   "verdict": "check"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "PointLight intensity",
+   "locus": {
+    "aabb_e6": [
+     [
+      -2600000,
+      -100000,
+      -2600000,
+      2600000,
+      5100000,
+      2500000
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene",
+    "attr": "intensity",
+    "col": 46,
+    "def": null,
+    "line": 9,
+    "node": "PointLight",
+    "path": "/X3D/Scene/PointLight",
+    "xpath": "/X3D/Scene/PointLight"
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "intensity=\"12\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "intensity=\"12",
+     "prefix": "lobal=\"true\" location=\"0 4.6 0\" ",
+     "suffix": "\" attenuation=\"0 0 1\" radius=\"20",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 1048,
+     "start": 1035,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/PointLight"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    1035,
+    1048
+   ],
+   "status": "found",
+   "value": 120,
+   "value_rects": [],
+   "value_status": "mismatch",
+   "verdict": "check"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "right wall baseColor",
+   "locus": {
+    "aabb_e6": [
+     [
+      2500000,
+      0,
+      -2500000,
+      2600000,
+      5000000,
+      2500000
+     ]
+    ],
+    "aabb_owner": "/X3D/Scene/Transform[5]/Shape",
+    "attr": "baseColor",
+    "col": 74,
+    "def": null,
+    "line": 14,
+    "node": "PhysicalMaterial",
+    "path": "/X3D/Scene/Transform[5]/Shape/Appearance/PhysicalMaterial",
+    "xpath": "/X3D/Scene/Transform[5]/Shape/Appearance/PhysicalMaterial"
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "baseColor=\"0.14 0.45 0.091\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "baseColor=\"0.14 0.45 0.091",
+     "prefix": "e><Appearance><PhysicalMaterial ",
+     "suffix": "\" metallic=\"0\" roughness=\"0.9\"/>",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 1942,
+     "start": 1916,
+     "type": "TextPositionSelector"
+    },
+    {
+     "type": "XPathSelector",
+     "value": "/X3D/Scene/Transform[5]/Shape/Appearance/PhysicalMaterial"
+    }
+   ],
+   "source": "e2-cornell-box.x3d",
+   "span": [
+    1916,
+    1942
+   ],
+   "status": "found",
+   "value": [
+    "0.63",
+    "0.065",
+    "0.05"
+   ],
+   "value_rects": [],
+   "value_status": "mismatch",
+   "verdict": "check"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "PointLight intensity",
+   "locus": {},
+   "note": "",
+   "occurrences": 0,
+   "page": 1,
+   "quote": "intensity=\"8\"",
+   "record": null,
+   "rects": [],
+   "selectors": [],
+   "source": "e2-cornell-box.x3d",
+   "span": null,
+   "status": "not_found",
+   "value": 8,
+   "value_rects": [],
+   "value_status": "unchecked",
+   "verdict": "check"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "left wall baseColor",
+   "locus": {},
+   "note": "",
+   "occurrences": 0,
+   "page": 1,
+   "quote": "the left wall is red",
+   "record": null,
+   "rects": [],
+   "selectors": [],
+   "source": "e2-cornell-box.x3d",
+   "span": null,
+   "status": "not_found",
+   "value": [
+    "0.63",
+    "0.065",
+    "0.05"
+   ],
+   "value_rects": [],
+   "value_status": "unchecked",
+   "verdict": "check"
+  }
+ ],
+ "summary": {
+  "ambiguous": 2,
+  "check": 5,
+  "coverage_ppm": 1000000,
+  "moved": 0,
+  "reworded": 0,
+  "total": 16,
+  "unchecked": 0,
+  "verified": 11,
+  "verified_coverage_ppm": 909091
+ }
+}

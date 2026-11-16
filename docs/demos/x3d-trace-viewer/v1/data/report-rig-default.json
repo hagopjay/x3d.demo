@@ -1,0 +1,316 @@
+{
+ "documents": [
+  "pins.toml",
+  "tests.yml",
+  "unreal-README.md"
+ ],
+ "engine": {
+  "name": "x3dtrace/0.1",
+  "policy": "default",
+  "sha256": "dcba70d739007c0dce2095d91346a8321400aed36cf1d1fe519c6fac23554462"
+ },
+ "expected": [
+  "rig.blender",
+  "rig.chromium",
+  "rig.driver",
+  "rig.lab_commit",
+  "rig.unreal",
+  "rig.unreal_build",
+  "rig.vram",
+  "rig.x_ite"
+ ],
+ "policy": {
+  "ambiguous_quote_is_check": false,
+  "code_values_unchecked": false,
+  "conversions": [
+   "deg2rad",
+   "rad2deg",
+   "percent",
+   "rgb255",
+   "hex",
+   "colorname",
+   "numword",
+   "unit",
+   "broadcast",
+   "axis"
+  ],
+  "length_scale": "1.0",
+  "match_reformatted_identifiers": true,
+  "min_quote_words": 1,
+  "moved_is_check": false,
+  "number_tolerance": "1e-06",
+  "reworded_is_problem": false,
+  "round_to_printed": true
+ },
+ "schema": "x3dtrace/0.1",
+ "set": "rig",
+ "source_files": [
+  {
+   "bytes": 2288,
+   "id": "pins.toml",
+   "kind": "text",
+   "sha256": "7483cc5fd0a80f17ba43a770055c0fa499959a43431228e0e0e9507e8695224b"
+  },
+  {
+   "bytes": 2379,
+   "id": "tests.yml",
+   "kind": "text",
+   "sha256": "aaf37bbcb574aedd94fd4f737bb00e1db43e7e0886bd897534567888a57031b1"
+  },
+  {
+   "bytes": 8550,
+   "id": "unreal-README.md",
+   "kind": "text",
+   "sha256": "514b0135d1390d0db110906bb901162aa0dff634d70ba81748ae668c6557e081"
+  }
+ ],
+ "sources": [
+  {
+   "cited_page": 1,
+   "derivation": [
+    "version"
+   ],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "rig.x_ite",
+   "locus": {
+    "col": 1,
+    "line": 34
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "version = \"16.7.0\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "version = \"16.7.0",
+     "prefix": "n everywhere, recorded per run.\n",
+     "suffix": "\"\ncdn = \"https://cdn.jsdelivr.ne",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 1899,
+     "start": 1882,
+     "type": "TextPositionSelector"
+    }
+   ],
+   "source": "pins.toml",
+   "span": [
+    1882,
+    1899
+   ],
+   "status": "found",
+   "value": "16.7.0",
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [
+    "version"
+   ],
+   "disambiguated_by": "",
+   "document": 2,
+   "field": "rig.blender",
+   "locus": {
+    "col": 52,
+    "line": 65
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "\"bpy==5.2.3\"",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "bpy==5.2.3",
+     "prefix": "ll -e \".[server,notebook,dev]\" \"",
+     "suffix": "\"\n      - name: Blender tests\n  ",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 2285,
+     "start": 2275,
+     "type": "TextPositionSelector"
+    }
+   ],
+   "source": "tests.yml",
+   "span": [
+    2275,
+    2285
+   ],
+   "status": "found",
+   "value": "5.2.3",
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [
+    "version"
+   ],
+   "disambiguated_by": "",
+   "document": 3,
+   "field": "rig.unreal",
+   "locus": {
+    "col": 25,
+    "line": 24
+   },
+   "note": "",
+   "occurrences": 1,
+   "page": 1,
+   "quote": "Linux_Unreal_Engine_5.8.4.zip",
+   "record": null,
+   "rects": [],
+   "selectors": [
+    {
+     "exact": "Linux_Unreal_Engine_5.8.4.zip",
+     "prefix": " you):\n\n* **A** (recommended): `",
+     "suffix": "` from <https://www.unrealengine",
+     "type": "TextQuoteSelector"
+    },
+    {
+     "end": 3248,
+     "start": 3219,
+     "type": "TextPositionSelector"
+    }
+   ],
+   "source": "unreal-README.md",
+   "span": [
+    3219,
+    3248
+   ],
+   "status": "found",
+   "value": "5.8.4",
+   "value_rects": [],
+   "value_status": "match",
+   "verdict": "verified"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "rig.unreal_build",
+   "locus": {},
+   "note": "",
+   "occurrences": 0,
+   "page": 1,
+   "quote": "",
+   "record": null,
+   "rects": [],
+   "selectors": [],
+   "source": "pins.toml",
+   "span": null,
+   "status": "no_quote",
+   "value": "58902052",
+   "value_rects": [],
+   "value_status": "unchecked",
+   "verdict": "unchecked"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "rig.driver",
+   "locus": {},
+   "note": "",
+   "occurrences": 0,
+   "page": 1,
+   "quote": "",
+   "record": null,
+   "rects": [],
+   "selectors": [],
+   "source": "pins.toml",
+   "span": null,
+   "status": "no_quote",
+   "value": "580.82.07",
+   "value_rects": [],
+   "value_status": "unchecked",
+   "verdict": "unchecked"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "rig.vram",
+   "locus": {},
+   "note": "",
+   "occurrences": 0,
+   "page": 1,
+   "quote": "",
+   "record": null,
+   "rects": [],
+   "selectors": [],
+   "source": "pins.toml",
+   "span": null,
+   "status": "no_quote",
+   "value": "95.6",
+   "value_rects": [],
+   "value_status": "unchecked",
+   "verdict": "unchecked"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "rig.chromium",
+   "locus": {},
+   "note": "",
+   "occurrences": 0,
+   "page": 1,
+   "quote": "",
+   "record": null,
+   "rects": [],
+   "selectors": [],
+   "source": "pins.toml",
+   "span": null,
+   "status": "no_quote",
+   "value": "159",
+   "value_rects": [],
+   "value_status": "unchecked",
+   "verdict": "unchecked"
+  },
+  {
+   "cited_page": 1,
+   "derivation": [],
+   "disambiguated_by": "",
+   "document": 1,
+   "field": "rig.lab_commit",
+   "locus": {},
+   "note": "",
+   "occurrences": 0,
+   "page": 1,
+   "quote": "",
+   "record": null,
+   "rects": [],
+   "selectors": [],
+   "source": "pins.toml",
+   "span": null,
+   "status": "no_quote",
+   "value": "70551e8",
+   "value_rects": [],
+   "value_status": "unchecked",
+   "verdict": "unchecked"
+  }
+ ],
+ "summary": {
+  "ambiguous": 0,
+  "check": 0,
+  "coverage_ppm": 375000,
+  "moved": 0,
+  "reworded": 0,
+  "total": 8,
+  "unchecked": 5,
+  "verified": 3,
+  "verified_coverage_ppm": 375000
+ }
+}
