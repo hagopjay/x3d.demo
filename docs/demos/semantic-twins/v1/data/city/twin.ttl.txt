@@ -1,0 +1,439 @@
+@prefix :        <https://example.org/scen/city/scene.ttl#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:  <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix x3d:     <https://www.web3d.org/specifications/x3d-4.1.xsd#> .
+@prefix x3do:    <https://www.web3d.org/specifications/X3dOntology4.1#> .
+
+:X3D a owl:NamedIndividual, x3do:X3D ;
+  x3do:hasHead :head ;
+  x3do:hasScene :Scene ;
+  x3do:profile "Immersive" ;
+  x3do:version "4.0" ;
+  x3do:noNamespaceSchemaLocation "https://www.web3d.org/specifications/x3d-4.0.xsd" .
+:head a owl:NamedIndividual, x3do:head ;
+  x3do:hasParent :X3D ;
+  x3do:hasComponent :component_1_1 ;
+  x3do:hasMeta :meta_1_2, :meta_1_3, :meta_1_4, :meta_1_5, :meta_1_6 .
+:component_1_1 a owl:NamedIndividual, x3do:component ;
+  x3do:hasParent :head ;
+  x3do:name "Shape" ;
+  x3do:level 2 .
+:meta_1_2 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "title" ;
+  x3do:content "The block that knows its shadows" .
+:meta_1_3 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "identifier" ;
+  x3do:content "https://example.org/scen/city/scene.x3d" .
+:meta_1_4 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "description" ;
+  x3do:content "A city block: parcels, buildings, a park, a flood zone and a transit stop; features and zoning in GeoSPARQL." .
+:meta_1_5 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "creator" ;
+  x3do:content "HagopJay and Claude" .
+:meta_1_6 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "license" ;
+  x3do:content "CC0 geometry" .
+:meta dcterms:title "The block that knows its shadows" .
+:meta dcterms:identifier "https://example.org/scen/city/scene.x3d" .
+:meta dcterms:description "A city block: parcels, buildings, a park, a flood zone and a transit stop; features and zoning in GeoSPARQL." .
+:meta dcterms:creator "HagopJay and Claude" .
+:meta dcterms:license "CC0 geometry" .
+:Scene a owl:NamedIndividual, x3do:Scene ;
+  x3do:hasParent :X3D ;
+  x3do:hasChildren :NavigationInfo_2_1, :Background_2_2, :V_Overview, :V_Transit, :DirectionalLight_2_5, :Root .
+:NavigationInfo_2_1 a owl:NamedIndividual, x3do:NavigationInfo ;
+  x3do:hasParent :Scene .
+:Background_2_2 a owl:NamedIndividual, x3do:Background ;
+  x3do:hasParent :Scene ;
+  x3do:skyColor ( 0.05 0.07 0.12 ) ;
+  x3do:groundColor ( 0.06 0.07 0.06 ) .
+:V_Overview a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Overview" ;
+  x3do:description "The block and the park" ;
+  x3do:position ( 60 140 190 ) ;
+  x3do:orientation ( -0.98 0.18 0.05 0.62 ) .
+:V_Transit a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Transit" ;
+  x3do:description "Out to the transit stop" ;
+  x3do:position ( -260 160 300 ) ;
+  x3do:orientation ( -0.8 -0.58 -0.17 0.62 ) ;
+  x3do:centerOfRotation ( -200 0 50 ) .
+:DirectionalLight_2_5 a owl:NamedIndividual, x3do:DirectionalLight ;
+  x3do:hasParent :Scene ;
+  x3do:direction ( -0.4 -1 -0.5 ) ;
+  x3do:intensity 0.8 .
+:Root a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :Park, :FloodZone, :TransitStop, :Street, :Parcel1, :Bldg1, :Parcel2, :Bldg2, :Parcel5, :Tower5, :Parcel3, :Bldg3, :Parcel4, :Bldg4, :Parcel6, :Bldg6 ;
+  x3do:DEF "Root" .
+:Park a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Park_Shape ;
+  x3do:DEF "Park" ;
+  x3do:translation ( 0 0.1 -80 ) .
+:Park_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Park ;
+  x3do:hasAppearance :Appearance_2_6_1_1_1 ;
+  x3do:hasGeometry :Box_2_6_1_1_2 ;
+  x3do:DEF "Park_Shape" .
+:Appearance_2_6_1_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Park_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_1_1_1_1 .
+:PhysicalMaterial_2_6_1_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_1_1_1 ;
+  x3do:baseColor ( 0.3 0.8 0.45 ) ;
+  x3do:emissiveColor ( 0.045 0.12 0.0675 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_1_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Park_Shape ;
+  x3do:size ( 80 0.2 40 ) .
+:FloodZone a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :FloodZone_Shape ;
+  x3do:DEF "FloodZone" ;
+  x3do:translation ( 65 0.3 50 ) .
+:FloodZone_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :FloodZone ;
+  x3do:hasAppearance :Appearance_2_6_2_1_1 ;
+  x3do:hasGeometry :Box_2_6_2_1_2 ;
+  x3do:DEF "FloodZone_Shape" .
+:Appearance_2_6_2_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :FloodZone_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_2_1_1_1 .
+:PhysicalMaterial_2_6_2_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_2_1_1 ;
+  x3do:baseColor ( 0.25 0.5 0.95 ) ;
+  x3do:emissiveColor ( 0.05 0.1 0.19 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.75 .
+:Box_2_6_2_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :FloodZone_Shape ;
+  x3do:size ( 70 0.4 100 ) .
+:TransitStop a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :TransitStop_Shape ;
+  x3do:DEF "TransitStop" ;
+  x3do:translation ( -400 4 100 ) .
+:TransitStop_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :TransitStop ;
+  x3do:hasAppearance :Appearance_2_6_3_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_3_1_2 ;
+  x3do:DEF "TransitStop_Shape" .
+:Appearance_2_6_3_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :TransitStop_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_3_1_1_1 .
+:PhysicalMaterial_2_6_3_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_3_1_1 ;
+  x3do:baseColor ( 1 0.7 0.25 ) ;
+  x3do:emissiveColor ( 0.4 0.28 0.1 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_3_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :TransitStop_Shape ;
+  x3do:radius 6 ;
+  x3do:height 8 .
+:Street a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Street_Shape ;
+  x3do:DEF "Street" ;
+  x3do:translation ( 0 0.05 30 ) .
+:Street_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Street ;
+  x3do:hasAppearance :Appearance_2_6_4_1_1 ;
+  x3do:hasGeometry :Box_2_6_4_1_2 ;
+  x3do:DEF "Street_Shape" .
+:Appearance_2_6_4_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Street_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_4_1_1_1 .
+:PhysicalMaterial_2_6_4_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_4_1_1 ;
+  x3do:baseColor ( 0.25 0.25 0.28 ) ;
+  x3do:emissiveColor ( 0.0125 0.0125 0.014 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_4_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Street_Shape ;
+  x3do:size ( 200 0.1 10 ) .
+:Parcel1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Parcel1_Shape ;
+  x3do:DEF "Parcel1" ;
+  x3do:translation ( -60 0.15 -20 ) .
+:Parcel1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Parcel1 ;
+  x3do:hasAppearance :Appearance_2_6_5_1_1 ;
+  x3do:hasGeometry :Box_2_6_5_1_2 ;
+  x3do:DEF "Parcel1_Shape" .
+:Appearance_2_6_5_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Parcel1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_5_1_1_1 .
+:PhysicalMaterial_2_6_5_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_5_1_1 ;
+  x3do:baseColor ( 0.4 0.42 0.36 ) ;
+  x3do:emissiveColor ( 0.02 0.021 0.018 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.3 .
+:Box_2_6_5_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Parcel1_Shape ;
+  x3do:size ( 30 0.1 30 ) .
+:Bldg1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Bldg1_Shape ;
+  x3do:DEF "Bldg1" ;
+  x3do:translation ( -60 6 -20 ) .
+:Bldg1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Bldg1 ;
+  x3do:hasAppearance :Appearance_2_6_6_1_1 ;
+  x3do:hasGeometry :Box_2_6_6_1_2 ;
+  x3do:DEF "Bldg1_Shape" .
+:Appearance_2_6_6_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Bldg1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_6_1_1_1 .
+:PhysicalMaterial_2_6_6_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_6_1_1 ;
+  x3do:baseColor ( 0.78 0.76 0.72 ) ;
+  x3do:emissiveColor ( 0.0624 0.0608 0.0576 ) ;
+  x3do:roughness 0.7 ;
+  x3do:metallic 0 .
+:Box_2_6_6_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Bldg1_Shape ;
+  x3do:size ( 20 12 20 ) .
+:Parcel2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Parcel2_Shape ;
+  x3do:DEF "Parcel2" ;
+  x3do:translation ( -20 0.15 10 ) .
+:Parcel2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Parcel2 ;
+  x3do:hasAppearance :Appearance_2_6_7_1_1 ;
+  x3do:hasGeometry :Box_2_6_7_1_2 ;
+  x3do:DEF "Parcel2_Shape" .
+:Appearance_2_6_7_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Parcel2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_7_1_1_1 .
+:PhysicalMaterial_2_6_7_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_7_1_1 ;
+  x3do:baseColor ( 0.4 0.42 0.36 ) ;
+  x3do:emissiveColor ( 0.02 0.021 0.018 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.3 .
+:Box_2_6_7_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Parcel2_Shape ;
+  x3do:size ( 30 0.1 30 ) .
+:Bldg2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Bldg2_Shape ;
+  x3do:DEF "Bldg2" ;
+  x3do:translation ( -20 9 10 ) .
+:Bldg2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Bldg2 ;
+  x3do:hasAppearance :Appearance_2_6_8_1_1 ;
+  x3do:hasGeometry :Box_2_6_8_1_2 ;
+  x3do:DEF "Bldg2_Shape" .
+:Appearance_2_6_8_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Bldg2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_8_1_1_1 .
+:PhysicalMaterial_2_6_8_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_8_1_1 ;
+  x3do:baseColor ( 0.78 0.76 0.72 ) ;
+  x3do:emissiveColor ( 0.0624 0.0608 0.0576 ) ;
+  x3do:roughness 0.7 ;
+  x3do:metallic 0 .
+:Box_2_6_8_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Bldg2_Shape ;
+  x3do:size ( 20 18 20 ) .
+:Parcel5 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Parcel5_Shape ;
+  x3do:DEF "Parcel5" ;
+  x3do:translation ( 20 0.15 -20 ) .
+:Parcel5_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Parcel5 ;
+  x3do:hasAppearance :Appearance_2_6_9_1_1 ;
+  x3do:hasGeometry :Box_2_6_9_1_2 ;
+  x3do:DEF "Parcel5_Shape" .
+:Appearance_2_6_9_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Parcel5_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_9_1_1_1 .
+:PhysicalMaterial_2_6_9_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_9_1_1 ;
+  x3do:baseColor ( 0.4 0.42 0.36 ) ;
+  x3do:emissiveColor ( 0.02 0.021 0.018 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.3 .
+:Box_2_6_9_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Parcel5_Shape ;
+  x3do:size ( 30 0.1 30 ) .
+:Tower5 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Tower5_Shape ;
+  x3do:DEF "Tower5" ;
+  x3do:translation ( 20 18 -20 ) .
+:Tower5_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Tower5 ;
+  x3do:hasAppearance :Appearance_2_6_10_1_1 ;
+  x3do:hasGeometry :Box_2_6_10_1_2 ;
+  x3do:DEF "Tower5_Shape" .
+:Appearance_2_6_10_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Tower5_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_10_1_1_1 .
+:PhysicalMaterial_2_6_10_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_10_1_1 ;
+  x3do:baseColor ( 0.78 0.76 0.72 ) ;
+  x3do:emissiveColor ( 0.0624 0.0608 0.0576 ) ;
+  x3do:roughness 0.7 ;
+  x3do:metallic 0 .
+:Box_2_6_10_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Tower5_Shape ;
+  x3do:size ( 20 36 20 ) .
+:Parcel3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Parcel3_Shape ;
+  x3do:DEF "Parcel3" ;
+  x3do:translation ( 60 0.15 10 ) .
+:Parcel3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Parcel3 ;
+  x3do:hasAppearance :Appearance_2_6_11_1_1 ;
+  x3do:hasGeometry :Box_2_6_11_1_2 ;
+  x3do:DEF "Parcel3_Shape" .
+:Appearance_2_6_11_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Parcel3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_11_1_1_1 .
+:PhysicalMaterial_2_6_11_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_11_1_1 ;
+  x3do:baseColor ( 0.4 0.42 0.36 ) ;
+  x3do:emissiveColor ( 0.02 0.021 0.018 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.3 .
+:Box_2_6_11_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Parcel3_Shape ;
+  x3do:size ( 30 0.1 30 ) .
+:Bldg3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Bldg3_Shape ;
+  x3do:DEF "Bldg3" ;
+  x3do:translation ( 60 4.5 10 ) .
+:Bldg3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Bldg3 ;
+  x3do:hasAppearance :Appearance_2_6_12_1_1 ;
+  x3do:hasGeometry :Box_2_6_12_1_2 ;
+  x3do:DEF "Bldg3_Shape" .
+:Appearance_2_6_12_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Bldg3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_12_1_1_1 .
+:PhysicalMaterial_2_6_12_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_12_1_1 ;
+  x3do:baseColor ( 0.78 0.76 0.72 ) ;
+  x3do:emissiveColor ( 0.0624 0.0608 0.0576 ) ;
+  x3do:roughness 0.7 ;
+  x3do:metallic 0 .
+:Box_2_6_12_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Bldg3_Shape ;
+  x3do:size ( 20 9 20 ) .
+:Parcel4 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Parcel4_Shape ;
+  x3do:DEF "Parcel4" ;
+  x3do:translation ( -60 0.15 50 ) .
+:Parcel4_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Parcel4 ;
+  x3do:hasAppearance :Appearance_2_6_13_1_1 ;
+  x3do:hasGeometry :Box_2_6_13_1_2 ;
+  x3do:DEF "Parcel4_Shape" .
+:Appearance_2_6_13_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Parcel4_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_13_1_1_1 .
+:PhysicalMaterial_2_6_13_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_13_1_1 ;
+  x3do:baseColor ( 0.4 0.42 0.36 ) ;
+  x3do:emissiveColor ( 0.02 0.021 0.018 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.3 .
+:Box_2_6_13_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Parcel4_Shape ;
+  x3do:size ( 30 0.1 30 ) .
+:Bldg4 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Bldg4_Shape ;
+  x3do:DEF "Bldg4" ;
+  x3do:translation ( -60 12 50 ) .
+:Bldg4_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Bldg4 ;
+  x3do:hasAppearance :Appearance_2_6_14_1_1 ;
+  x3do:hasGeometry :Box_2_6_14_1_2 ;
+  x3do:DEF "Bldg4_Shape" .
+:Appearance_2_6_14_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Bldg4_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_14_1_1_1 .
+:PhysicalMaterial_2_6_14_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_14_1_1 ;
+  x3do:baseColor ( 0.78 0.76 0.72 ) ;
+  x3do:emissiveColor ( 0.0624 0.0608 0.0576 ) ;
+  x3do:roughness 0.7 ;
+  x3do:metallic 0 .
+:Box_2_6_14_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Bldg4_Shape ;
+  x3do:size ( 20 24 20 ) .
+:Parcel6 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Parcel6_Shape ;
+  x3do:DEF "Parcel6" ;
+  x3do:translation ( 40 0.15 60 ) .
+:Parcel6_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Parcel6 ;
+  x3do:hasAppearance :Appearance_2_6_15_1_1 ;
+  x3do:hasGeometry :Box_2_6_15_1_2 ;
+  x3do:DEF "Parcel6_Shape" .
+:Appearance_2_6_15_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Parcel6_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_15_1_1_1 .
+:PhysicalMaterial_2_6_15_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_15_1_1 ;
+  x3do:baseColor ( 0.4 0.42 0.36 ) ;
+  x3do:emissiveColor ( 0.02 0.021 0.018 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.3 .
+:Box_2_6_15_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Parcel6_Shape ;
+  x3do:size ( 30 0.1 30 ) .
+:Bldg6 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Bldg6_Shape ;
+  x3do:DEF "Bldg6" ;
+  x3do:translation ( 40 7.5 60 ) .
+:Bldg6_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Bldg6 ;
+  x3do:hasAppearance :Appearance_2_6_16_1_1 ;
+  x3do:hasGeometry :Box_2_6_16_1_2 ;
+  x3do:DEF "Bldg6_Shape" .
+:Appearance_2_6_16_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Bldg6_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_16_1_1_1 .
+:PhysicalMaterial_2_6_16_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_16_1_1 ;
+  x3do:baseColor ( 0.78 0.76 0.72 ) ;
+  x3do:emissiveColor ( 0.0624 0.0608 0.0576 ) ;
+  x3do:roughness 0.7 ;
+  x3do:metallic 0 .
+:Box_2_6_16_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Bldg6_Shape ;
+  x3do:size ( 20 15 20 ) .

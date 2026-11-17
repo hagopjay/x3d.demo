@@ -1,0 +1,1002 @@
+@prefix :        <https://example.org/scen/farm/scene.ttl#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:  <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix x3d:     <https://www.web3d.org/specifications/x3d-4.1.xsd#> .
+@prefix x3do:    <https://www.web3d.org/specifications/X3dOntology4.1#> .
+
+:X3D a owl:NamedIndividual, x3do:X3D ;
+  x3do:hasHead :head ;
+  x3do:hasScene :Scene ;
+  x3do:profile "Immersive" ;
+  x3do:version "4.0" ;
+  x3do:noNamespaceSchemaLocation "https://www.web3d.org/specifications/x3d-4.0.xsd" .
+:head a owl:NamedIndividual, x3do:head ;
+  x3do:hasParent :X3D ;
+  x3do:hasComponent :component_1_1 ;
+  x3do:hasMeta :meta_1_2, :meta_1_3, :meta_1_4, :meta_1_5, :meta_1_6 .
+:component_1_1 a owl:NamedIndividual, x3do:component ;
+  x3do:hasParent :head ;
+  x3do:name "Shape" ;
+  x3do:level 2 .
+:meta_1_2 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "title" ;
+  x3do:content "Greenhouse 2 waters what is thirsty" .
+:meta_1_3 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "identifier" ;
+  x3do:content "https://example.org/scen/farm/scene.x3d" .
+:meta_1_4 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "description" ;
+  x3do:content "Greenhouse beds with moisture probes, valves, humidity sensors and vents; crops as AGROVOC concepts, readings in SOSA." .
+:meta_1_5 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "creator" ;
+  x3do:content "HagopJay and Claude" .
+:meta_1_6 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "license" ;
+  x3do:content "CC0 geometry" .
+:meta dcterms:title "Greenhouse 2 waters what is thirsty" .
+:meta dcterms:identifier "https://example.org/scen/farm/scene.x3d" .
+:meta dcterms:description "Greenhouse beds with moisture probes, valves, humidity sensors and vents; crops as AGROVOC concepts, readings in SOSA." .
+:meta dcterms:creator "HagopJay and Claude" .
+:meta dcterms:license "CC0 geometry" .
+:Scene a owl:NamedIndividual, x3do:Scene ;
+  x3do:hasParent :X3D ;
+  x3do:hasChildren :NavigationInfo_2_1, :Background_2_2, :V_Overview, :V_Plan, :DirectionalLight_2_5, :Root .
+:NavigationInfo_2_1 a owl:NamedIndividual, x3do:NavigationInfo ;
+  x3do:hasParent :Scene .
+:Background_2_2 a owl:NamedIndividual, x3do:Background ;
+  x3do:hasParent :Scene ;
+  x3do:skyColor ( 0.05 0.08 0.06 ) ;
+  x3do:groundColor ( 0.08 0.07 0.05 ) .
+:V_Overview a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Overview" ;
+  x3do:description "Greenhouse 2" ;
+  x3do:position ( 14 12 16 ) ;
+  x3do:orientation ( -0.75 0.62 0.23 0.85 ) ;
+  x3do:centerOfRotation ( 0 0.5 0 ) .
+:V_Plan a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Plan" ;
+  x3do:description "Plan view" ;
+  x3do:position ( 0 22 0.01 ) ;
+  x3do:orientation ( -1 0 0 1.571 ) .
+:DirectionalLight_2_5 a owl:NamedIndividual, x3do:DirectionalLight ;
+  x3do:hasParent :Scene ;
+  x3do:direction ( -0.4 -1 -0.5 ) ;
+  x3do:intensity 0.8 .
+:Root a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :Greenhouse2, :BedA1, :CropA1, :MoistA1, :ValveA1, :BedA2, :CropA2, :MoistA2, :ValveA2, :BedA3, :CropA3, :MoistA3, :ValveA3, :BedB1, :CropB1, :MoistB1, :ValveB1, :BedB2, :CropB2, :MoistB2, :ValveB2, :BedB3, :CropB3, :MoistB3, :ValveB3, :BedC1, :CropC1, :MoistC1, :ValveC1, :BedC2, :CropC2, :MoistC2, :ValveC2, :BedC3, :CropC3, :MoistC3, :ValveC3, :RH1, :RH2, :VentA, :VentC ;
+  x3do:DEF "Root" .
+:Greenhouse2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Greenhouse2_Shape ;
+  x3do:DEF "Greenhouse2" ;
+  x3do:translation ( 0 2 0 ) .
+:Greenhouse2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Greenhouse2 ;
+  x3do:hasAppearance :Appearance_2_6_1_1_1 ;
+  x3do:hasGeometry :Box_2_6_1_1_2 ;
+  x3do:DEF "Greenhouse2_Shape" .
+:Appearance_2_6_1_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Greenhouse2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_1_1_1_1 .
+:PhysicalMaterial_2_6_1_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_1_1_1 ;
+  x3do:baseColor ( 0.55 0.8 1 ) ;
+  x3do:emissiveColor ( 0.055 0.08 0.1 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_1_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Greenhouse2_Shape ;
+  x3do:size ( 24 4 12 ) .
+:BedA1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BedA1_Shape ;
+  x3do:DEF "BedA1" ;
+  x3do:translation ( -7 0.2 -4 ) .
+:BedA1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BedA1 ;
+  x3do:hasAppearance :Appearance_2_6_2_1_1 ;
+  x3do:hasGeometry :Box_2_6_2_1_2 ;
+  x3do:DEF "BedA1_Shape" .
+:Appearance_2_6_2_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BedA1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_2_1_1_1 .
+:PhysicalMaterial_2_6_2_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_2_1_1 ;
+  x3do:baseColor ( 0.36 0.25 0.16 ) ;
+  x3do:emissiveColor ( 0.018 0.0125 0.008 ) ;
+  x3do:roughness 0.9 ;
+  x3do:metallic 0 .
+:Box_2_6_2_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BedA1_Shape ;
+  x3do:size ( 6 0.4 1.2 ) .
+:CropA1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :CropA1_Shape ;
+  x3do:DEF "CropA1" ;
+  x3do:translation ( -7 0.6 -4 ) .
+:CropA1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CropA1 ;
+  x3do:hasAppearance :Appearance_2_6_3_1_1 ;
+  x3do:hasGeometry :Box_2_6_3_1_2 ;
+  x3do:DEF "CropA1_Shape" .
+:Appearance_2_6_3_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CropA1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_3_1_1_1 .
+:PhysicalMaterial_2_6_3_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_3_1_1 ;
+  x3do:baseColor ( 0.85 0.25 0.2 ) ;
+  x3do:emissiveColor ( 0.1275 0.0375 0.03 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_3_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :CropA1_Shape ;
+  x3do:size ( 5.6 0.4 0.9 ) .
+:MoistA1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :MoistA1_Shape ;
+  x3do:DEF "MoistA1" ;
+  x3do:translation ( -5 0.45 -3.55 ) .
+:MoistA1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :MoistA1 ;
+  x3do:hasAppearance :Appearance_2_6_4_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_4_1_2 ;
+  x3do:DEF "MoistA1_Shape" .
+:Appearance_2_6_4_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :MoistA1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_4_1_1_1 .
+:PhysicalMaterial_2_6_4_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_4_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_4_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :MoistA1_Shape ;
+  x3do:radius 0.03 ;
+  x3do:height 0.5 .
+:ValveA1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ValveA1_Shape ;
+  x3do:DEF "ValveA1" ;
+  x3do:translation ( -10.3 0.3 -4 ) .
+:ValveA1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ValveA1 ;
+  x3do:hasAppearance :Appearance_2_6_5_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_5_1_2 ;
+  x3do:DEF "ValveA1_Shape" .
+:Appearance_2_6_5_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ValveA1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_5_1_1_1 .
+:PhysicalMaterial_2_6_5_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_5_1_1 ;
+  x3do:baseColor ( 0.25 0.5 0.95 ) ;
+  x3do:emissiveColor ( 0.075 0.15 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_5_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :ValveA1_Shape ;
+  x3do:radius 0.08 ;
+  x3do:height 0.2 .
+:BedA2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BedA2_Shape ;
+  x3do:DEF "BedA2" ;
+  x3do:translation ( 0 0.2 -4 ) .
+:BedA2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BedA2 ;
+  x3do:hasAppearance :Appearance_2_6_6_1_1 ;
+  x3do:hasGeometry :Box_2_6_6_1_2 ;
+  x3do:DEF "BedA2_Shape" .
+:Appearance_2_6_6_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BedA2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_6_1_1_1 .
+:PhysicalMaterial_2_6_6_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_6_1_1 ;
+  x3do:baseColor ( 0.36 0.25 0.16 ) ;
+  x3do:emissiveColor ( 0.018 0.0125 0.008 ) ;
+  x3do:roughness 0.9 ;
+  x3do:metallic 0 .
+:Box_2_6_6_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BedA2_Shape ;
+  x3do:size ( 6 0.4 1.2 ) .
+:CropA2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :CropA2_Shape ;
+  x3do:DEF "CropA2" ;
+  x3do:translation ( 0 0.6 -4 ) .
+:CropA2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CropA2 ;
+  x3do:hasAppearance :Appearance_2_6_7_1_1 ;
+  x3do:hasGeometry :Box_2_6_7_1_2 ;
+  x3do:DEF "CropA2_Shape" .
+:Appearance_2_6_7_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CropA2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_7_1_1_1 .
+:PhysicalMaterial_2_6_7_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_7_1_1 ;
+  x3do:baseColor ( 0.85 0.25 0.2 ) ;
+  x3do:emissiveColor ( 0.1275 0.0375 0.03 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_7_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :CropA2_Shape ;
+  x3do:size ( 5.6 0.4 0.9 ) .
+:MoistA2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :MoistA2_Shape ;
+  x3do:DEF "MoistA2" ;
+  x3do:translation ( 2 0.45 -3.55 ) .
+:MoistA2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :MoistA2 ;
+  x3do:hasAppearance :Appearance_2_6_8_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_8_1_2 ;
+  x3do:DEF "MoistA2_Shape" .
+:Appearance_2_6_8_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :MoistA2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_8_1_1_1 .
+:PhysicalMaterial_2_6_8_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_8_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_8_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :MoistA2_Shape ;
+  x3do:radius 0.03 ;
+  x3do:height 0.5 .
+:ValveA2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ValveA2_Shape ;
+  x3do:DEF "ValveA2" ;
+  x3do:translation ( -3.3 0.3 -4 ) .
+:ValveA2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ValveA2 ;
+  x3do:hasAppearance :Appearance_2_6_9_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_9_1_2 ;
+  x3do:DEF "ValveA2_Shape" .
+:Appearance_2_6_9_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ValveA2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_9_1_1_1 .
+:PhysicalMaterial_2_6_9_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_9_1_1 ;
+  x3do:baseColor ( 0.25 0.5 0.95 ) ;
+  x3do:emissiveColor ( 0.075 0.15 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_9_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :ValveA2_Shape ;
+  x3do:radius 0.08 ;
+  x3do:height 0.2 .
+:BedA3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BedA3_Shape ;
+  x3do:DEF "BedA3" ;
+  x3do:translation ( 7 0.2 -4 ) .
+:BedA3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BedA3 ;
+  x3do:hasAppearance :Appearance_2_6_10_1_1 ;
+  x3do:hasGeometry :Box_2_6_10_1_2 ;
+  x3do:DEF "BedA3_Shape" .
+:Appearance_2_6_10_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BedA3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_10_1_1_1 .
+:PhysicalMaterial_2_6_10_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_10_1_1 ;
+  x3do:baseColor ( 0.36 0.25 0.16 ) ;
+  x3do:emissiveColor ( 0.018 0.0125 0.008 ) ;
+  x3do:roughness 0.9 ;
+  x3do:metallic 0 .
+:Box_2_6_10_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BedA3_Shape ;
+  x3do:size ( 6 0.4 1.2 ) .
+:CropA3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :CropA3_Shape ;
+  x3do:DEF "CropA3" ;
+  x3do:translation ( 7 0.6 -4 ) .
+:CropA3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CropA3 ;
+  x3do:hasAppearance :Appearance_2_6_11_1_1 ;
+  x3do:hasGeometry :Box_2_6_11_1_2 ;
+  x3do:DEF "CropA3_Shape" .
+:Appearance_2_6_11_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CropA3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_11_1_1_1 .
+:PhysicalMaterial_2_6_11_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_11_1_1 ;
+  x3do:baseColor ( 0.35 0.7 0.3 ) ;
+  x3do:emissiveColor ( 0.0525 0.105 0.045 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_11_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :CropA3_Shape ;
+  x3do:size ( 5.6 0.4 0.9 ) .
+:MoistA3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :MoistA3_Shape ;
+  x3do:DEF "MoistA3" ;
+  x3do:translation ( 9 0.45 -3.55 ) .
+:MoistA3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :MoistA3 ;
+  x3do:hasAppearance :Appearance_2_6_12_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_12_1_2 ;
+  x3do:DEF "MoistA3_Shape" .
+:Appearance_2_6_12_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :MoistA3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_12_1_1_1 .
+:PhysicalMaterial_2_6_12_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_12_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_12_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :MoistA3_Shape ;
+  x3do:radius 0.03 ;
+  x3do:height 0.5 .
+:ValveA3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ValveA3_Shape ;
+  x3do:DEF "ValveA3" ;
+  x3do:translation ( 3.7 0.3 -4 ) .
+:ValveA3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ValveA3 ;
+  x3do:hasAppearance :Appearance_2_6_13_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_13_1_2 ;
+  x3do:DEF "ValveA3_Shape" .
+:Appearance_2_6_13_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ValveA3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_13_1_1_1 .
+:PhysicalMaterial_2_6_13_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_13_1_1 ;
+  x3do:baseColor ( 0.25 0.5 0.95 ) ;
+  x3do:emissiveColor ( 0.075 0.15 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_13_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :ValveA3_Shape ;
+  x3do:radius 0.08 ;
+  x3do:height 0.2 .
+:BedB1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BedB1_Shape ;
+  x3do:DEF "BedB1" ;
+  x3do:translation ( -7 0.2 0 ) .
+:BedB1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BedB1 ;
+  x3do:hasAppearance :Appearance_2_6_14_1_1 ;
+  x3do:hasGeometry :Box_2_6_14_1_2 ;
+  x3do:DEF "BedB1_Shape" .
+:Appearance_2_6_14_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BedB1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_14_1_1_1 .
+:PhysicalMaterial_2_6_14_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_14_1_1 ;
+  x3do:baseColor ( 0.36 0.25 0.16 ) ;
+  x3do:emissiveColor ( 0.018 0.0125 0.008 ) ;
+  x3do:roughness 0.9 ;
+  x3do:metallic 0 .
+:Box_2_6_14_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BedB1_Shape ;
+  x3do:size ( 6 0.4 1.2 ) .
+:CropB1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :CropB1_Shape ;
+  x3do:DEF "CropB1" ;
+  x3do:translation ( -7 0.6 0 ) .
+:CropB1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CropB1 ;
+  x3do:hasAppearance :Appearance_2_6_15_1_1 ;
+  x3do:hasGeometry :Box_2_6_15_1_2 ;
+  x3do:DEF "CropB1_Shape" .
+:Appearance_2_6_15_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CropB1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_15_1_1_1 .
+:PhysicalMaterial_2_6_15_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_15_1_1 ;
+  x3do:baseColor ( 0.55 0.85 0.35 ) ;
+  x3do:emissiveColor ( 0.0825 0.1275 0.0525 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_15_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :CropB1_Shape ;
+  x3do:size ( 5.6 0.4 0.9 ) .
+:MoistB1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :MoistB1_Shape ;
+  x3do:DEF "MoistB1" ;
+  x3do:translation ( -5 0.45 0.45 ) .
+:MoistB1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :MoistB1 ;
+  x3do:hasAppearance :Appearance_2_6_16_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_16_1_2 ;
+  x3do:DEF "MoistB1_Shape" .
+:Appearance_2_6_16_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :MoistB1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_16_1_1_1 .
+:PhysicalMaterial_2_6_16_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_16_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_16_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :MoistB1_Shape ;
+  x3do:radius 0.03 ;
+  x3do:height 0.5 .
+:ValveB1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ValveB1_Shape ;
+  x3do:DEF "ValveB1" ;
+  x3do:translation ( -10.3 0.3 0 ) .
+:ValveB1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ValveB1 ;
+  x3do:hasAppearance :Appearance_2_6_17_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_17_1_2 ;
+  x3do:DEF "ValveB1_Shape" .
+:Appearance_2_6_17_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ValveB1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_17_1_1_1 .
+:PhysicalMaterial_2_6_17_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_17_1_1 ;
+  x3do:baseColor ( 0.25 0.5 0.95 ) ;
+  x3do:emissiveColor ( 0.075 0.15 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_17_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :ValveB1_Shape ;
+  x3do:radius 0.08 ;
+  x3do:height 0.2 .
+:BedB2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BedB2_Shape ;
+  x3do:DEF "BedB2" ;
+  x3do:translation ( 0 0.2 0 ) .
+:BedB2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BedB2 ;
+  x3do:hasAppearance :Appearance_2_6_18_1_1 ;
+  x3do:hasGeometry :Box_2_6_18_1_2 ;
+  x3do:DEF "BedB2_Shape" .
+:Appearance_2_6_18_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BedB2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_18_1_1_1 .
+:PhysicalMaterial_2_6_18_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_18_1_1 ;
+  x3do:baseColor ( 0.36 0.25 0.16 ) ;
+  x3do:emissiveColor ( 0.018 0.0125 0.008 ) ;
+  x3do:roughness 0.9 ;
+  x3do:metallic 0 .
+:Box_2_6_18_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BedB2_Shape ;
+  x3do:size ( 6 0.4 1.2 ) .
+:CropB2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :CropB2_Shape ;
+  x3do:DEF "CropB2" ;
+  x3do:translation ( 0 0.6 0 ) .
+:CropB2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CropB2 ;
+  x3do:hasAppearance :Appearance_2_6_19_1_1 ;
+  x3do:hasGeometry :Box_2_6_19_1_2 ;
+  x3do:DEF "CropB2_Shape" .
+:Appearance_2_6_19_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CropB2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_19_1_1_1 .
+:PhysicalMaterial_2_6_19_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_19_1_1 ;
+  x3do:baseColor ( 0.55 0.85 0.35 ) ;
+  x3do:emissiveColor ( 0.0825 0.1275 0.0525 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_19_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :CropB2_Shape ;
+  x3do:size ( 5.6 0.4 0.9 ) .
+:MoistB2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :MoistB2_Shape ;
+  x3do:DEF "MoistB2" ;
+  x3do:translation ( 9 0.45 0.45 ) .
+:MoistB2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :MoistB2 ;
+  x3do:hasAppearance :Appearance_2_6_20_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_20_1_2 ;
+  x3do:DEF "MoistB2_Shape" .
+:Appearance_2_6_20_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :MoistB2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_20_1_1_1 .
+:PhysicalMaterial_2_6_20_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_20_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_20_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :MoistB2_Shape ;
+  x3do:radius 0.03 ;
+  x3do:height 0.5 .
+:ValveB2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ValveB2_Shape ;
+  x3do:DEF "ValveB2" ;
+  x3do:translation ( -3.3 0.3 0 ) .
+:ValveB2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ValveB2 ;
+  x3do:hasAppearance :Appearance_2_6_21_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_21_1_2 ;
+  x3do:DEF "ValveB2_Shape" .
+:Appearance_2_6_21_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ValveB2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_21_1_1_1 .
+:PhysicalMaterial_2_6_21_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_21_1_1 ;
+  x3do:baseColor ( 0.25 0.5 0.95 ) ;
+  x3do:emissiveColor ( 0.075 0.15 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_21_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :ValveB2_Shape ;
+  x3do:radius 0.08 ;
+  x3do:height 0.2 .
+:BedB3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BedB3_Shape ;
+  x3do:DEF "BedB3" ;
+  x3do:translation ( 7 0.2 0 ) .
+:BedB3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BedB3 ;
+  x3do:hasAppearance :Appearance_2_6_22_1_1 ;
+  x3do:hasGeometry :Box_2_6_22_1_2 ;
+  x3do:DEF "BedB3_Shape" .
+:Appearance_2_6_22_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BedB3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_22_1_1_1 .
+:PhysicalMaterial_2_6_22_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_22_1_1 ;
+  x3do:baseColor ( 0.36 0.25 0.16 ) ;
+  x3do:emissiveColor ( 0.018 0.0125 0.008 ) ;
+  x3do:roughness 0.9 ;
+  x3do:metallic 0 .
+:Box_2_6_22_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BedB3_Shape ;
+  x3do:size ( 6 0.4 1.2 ) .
+:CropB3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :CropB3_Shape ;
+  x3do:DEF "CropB3" ;
+  x3do:translation ( 7 0.6 0 ) .
+:CropB3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CropB3 ;
+  x3do:hasAppearance :Appearance_2_6_23_1_1 ;
+  x3do:hasGeometry :Box_2_6_23_1_2 ;
+  x3do:DEF "CropB3_Shape" .
+:Appearance_2_6_23_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CropB3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_23_1_1_1 .
+:PhysicalMaterial_2_6_23_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_23_1_1 ;
+  x3do:baseColor ( 0.25 0.55 0.3 ) ;
+  x3do:emissiveColor ( 0.0375 0.0825 0.045 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_23_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :CropB3_Shape ;
+  x3do:size ( 5.6 0.4 0.9 ) .
+:MoistB3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :MoistB3_Shape ;
+  x3do:DEF "MoistB3" ;
+  x3do:translation ( 9 0.45 0.45 ) .
+:MoistB3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :MoistB3 ;
+  x3do:hasAppearance :Appearance_2_6_24_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_24_1_2 ;
+  x3do:DEF "MoistB3_Shape" .
+:Appearance_2_6_24_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :MoistB3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_24_1_1_1 .
+:PhysicalMaterial_2_6_24_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_24_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_24_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :MoistB3_Shape ;
+  x3do:radius 0.03 ;
+  x3do:height 0.5 .
+:ValveB3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ValveB3_Shape ;
+  x3do:DEF "ValveB3" ;
+  x3do:translation ( 3.7 0.3 0 ) .
+:ValveB3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ValveB3 ;
+  x3do:hasAppearance :Appearance_2_6_25_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_25_1_2 ;
+  x3do:DEF "ValveB3_Shape" .
+:Appearance_2_6_25_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ValveB3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_25_1_1_1 .
+:PhysicalMaterial_2_6_25_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_25_1_1 ;
+  x3do:baseColor ( 0.25 0.5 0.95 ) ;
+  x3do:emissiveColor ( 0.075 0.15 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_25_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :ValveB3_Shape ;
+  x3do:radius 0.08 ;
+  x3do:height 0.2 .
+:BedC1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BedC1_Shape ;
+  x3do:DEF "BedC1" ;
+  x3do:translation ( -7 0.2 4 ) .
+:BedC1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BedC1 ;
+  x3do:hasAppearance :Appearance_2_6_26_1_1 ;
+  x3do:hasGeometry :Box_2_6_26_1_2 ;
+  x3do:DEF "BedC1_Shape" .
+:Appearance_2_6_26_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BedC1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_26_1_1_1 .
+:PhysicalMaterial_2_6_26_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_26_1_1 ;
+  x3do:baseColor ( 0.36 0.25 0.16 ) ;
+  x3do:emissiveColor ( 0.018 0.0125 0.008 ) ;
+  x3do:roughness 0.9 ;
+  x3do:metallic 0 .
+:Box_2_6_26_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BedC1_Shape ;
+  x3do:size ( 6 0.4 1.2 ) .
+:CropC1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :CropC1_Shape ;
+  x3do:DEF "CropC1" ;
+  x3do:translation ( -7 0.6 4 ) .
+:CropC1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CropC1 ;
+  x3do:hasAppearance :Appearance_2_6_27_1_1 ;
+  x3do:hasGeometry :Box_2_6_27_1_2 ;
+  x3do:DEF "CropC1_Shape" .
+:Appearance_2_6_27_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CropC1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_27_1_1_1 .
+:PhysicalMaterial_2_6_27_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_27_1_1 ;
+  x3do:baseColor ( 0.85 0.25 0.2 ) ;
+  x3do:emissiveColor ( 0.1275 0.0375 0.03 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_27_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :CropC1_Shape ;
+  x3do:size ( 5.6 0.4 0.9 ) .
+:MoistC1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :MoistC1_Shape ;
+  x3do:DEF "MoistC1" ;
+  x3do:translation ( -5 0.45 4.45 ) .
+:MoistC1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :MoistC1 ;
+  x3do:hasAppearance :Appearance_2_6_28_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_28_1_2 ;
+  x3do:DEF "MoistC1_Shape" .
+:Appearance_2_6_28_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :MoistC1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_28_1_1_1 .
+:PhysicalMaterial_2_6_28_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_28_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_28_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :MoistC1_Shape ;
+  x3do:radius 0.03 ;
+  x3do:height 0.5 .
+:ValveC1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ValveC1_Shape ;
+  x3do:DEF "ValveC1" ;
+  x3do:translation ( -10.3 0.3 4 ) .
+:ValveC1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ValveC1 ;
+  x3do:hasAppearance :Appearance_2_6_29_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_29_1_2 ;
+  x3do:DEF "ValveC1_Shape" .
+:Appearance_2_6_29_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ValveC1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_29_1_1_1 .
+:PhysicalMaterial_2_6_29_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_29_1_1 ;
+  x3do:baseColor ( 0.25 0.5 0.95 ) ;
+  x3do:emissiveColor ( 0.075 0.15 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_29_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :ValveC1_Shape ;
+  x3do:radius 0.08 ;
+  x3do:height 0.2 .
+:BedC2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BedC2_Shape ;
+  x3do:DEF "BedC2" ;
+  x3do:translation ( 0 0.2 4 ) .
+:BedC2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BedC2 ;
+  x3do:hasAppearance :Appearance_2_6_30_1_1 ;
+  x3do:hasGeometry :Box_2_6_30_1_2 ;
+  x3do:DEF "BedC2_Shape" .
+:Appearance_2_6_30_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BedC2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_30_1_1_1 .
+:PhysicalMaterial_2_6_30_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_30_1_1 ;
+  x3do:baseColor ( 0.36 0.25 0.16 ) ;
+  x3do:emissiveColor ( 0.018 0.0125 0.008 ) ;
+  x3do:roughness 0.9 ;
+  x3do:metallic 0 .
+:Box_2_6_30_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BedC2_Shape ;
+  x3do:size ( 6 0.4 1.2 ) .
+:CropC2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :CropC2_Shape ;
+  x3do:DEF "CropC2" ;
+  x3do:translation ( 0 0.6 4 ) .
+:CropC2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CropC2 ;
+  x3do:hasAppearance :Appearance_2_6_31_1_1 ;
+  x3do:hasGeometry :Box_2_6_31_1_2 ;
+  x3do:DEF "CropC2_Shape" .
+:Appearance_2_6_31_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CropC2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_31_1_1_1 .
+:PhysicalMaterial_2_6_31_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_31_1_1 ;
+  x3do:baseColor ( 0.55 0.85 0.35 ) ;
+  x3do:emissiveColor ( 0.0825 0.1275 0.0525 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_31_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :CropC2_Shape ;
+  x3do:size ( 5.6 0.4 0.9 ) .
+:MoistC2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :MoistC2_Shape ;
+  x3do:DEF "MoistC2" ;
+  x3do:translation ( 2 0.45 4.45 ) .
+:MoistC2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :MoistC2 ;
+  x3do:hasAppearance :Appearance_2_6_32_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_32_1_2 ;
+  x3do:DEF "MoistC2_Shape" .
+:Appearance_2_6_32_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :MoistC2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_32_1_1_1 .
+:PhysicalMaterial_2_6_32_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_32_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_32_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :MoistC2_Shape ;
+  x3do:radius 0.03 ;
+  x3do:height 0.5 .
+:ValveC2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ValveC2_Shape ;
+  x3do:DEF "ValveC2" ;
+  x3do:translation ( -3.3 0.3 4 ) .
+:ValveC2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ValveC2 ;
+  x3do:hasAppearance :Appearance_2_6_33_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_33_1_2 ;
+  x3do:DEF "ValveC2_Shape" .
+:Appearance_2_6_33_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ValveC2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_33_1_1_1 .
+:PhysicalMaterial_2_6_33_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_33_1_1 ;
+  x3do:baseColor ( 0.25 0.5 0.95 ) ;
+  x3do:emissiveColor ( 0.075 0.15 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_33_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :ValveC2_Shape ;
+  x3do:radius 0.08 ;
+  x3do:height 0.2 .
+:BedC3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BedC3_Shape ;
+  x3do:DEF "BedC3" ;
+  x3do:translation ( 7 0.2 4 ) .
+:BedC3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BedC3 ;
+  x3do:hasAppearance :Appearance_2_6_34_1_1 ;
+  x3do:hasGeometry :Box_2_6_34_1_2 ;
+  x3do:DEF "BedC3_Shape" .
+:Appearance_2_6_34_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BedC3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_34_1_1_1 .
+:PhysicalMaterial_2_6_34_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_34_1_1 ;
+  x3do:baseColor ( 0.36 0.25 0.16 ) ;
+  x3do:emissiveColor ( 0.018 0.0125 0.008 ) ;
+  x3do:roughness 0.9 ;
+  x3do:metallic 0 .
+:Box_2_6_34_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BedC3_Shape ;
+  x3do:size ( 6 0.4 1.2 ) .
+:CropC3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :CropC3_Shape ;
+  x3do:DEF "CropC3" ;
+  x3do:translation ( 7 0.6 4 ) .
+:CropC3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CropC3 ;
+  x3do:hasAppearance :Appearance_2_6_35_1_1 ;
+  x3do:hasGeometry :Box_2_6_35_1_2 ;
+  x3do:DEF "CropC3_Shape" .
+:Appearance_2_6_35_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CropC3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_35_1_1_1 .
+:PhysicalMaterial_2_6_35_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_35_1_1 ;
+  x3do:baseColor ( 0.25 0.55 0.3 ) ;
+  x3do:emissiveColor ( 0.0375 0.0825 0.045 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_35_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :CropC3_Shape ;
+  x3do:size ( 5.6 0.4 0.9 ) .
+:MoistC3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :MoistC3_Shape ;
+  x3do:DEF "MoistC3" ;
+  x3do:translation ( 9 0.45 4.45 ) .
+:MoistC3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :MoistC3 ;
+  x3do:hasAppearance :Appearance_2_6_36_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_36_1_2 ;
+  x3do:DEF "MoistC3_Shape" .
+:Appearance_2_6_36_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :MoistC3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_36_1_1_1 .
+:PhysicalMaterial_2_6_36_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_36_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_36_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :MoistC3_Shape ;
+  x3do:radius 0.03 ;
+  x3do:height 0.5 .
+:ValveC3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ValveC3_Shape ;
+  x3do:DEF "ValveC3" ;
+  x3do:translation ( 3.7 0.3 4 ) .
+:ValveC3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ValveC3 ;
+  x3do:hasAppearance :Appearance_2_6_37_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_37_1_2 ;
+  x3do:DEF "ValveC3_Shape" .
+:Appearance_2_6_37_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ValveC3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_37_1_1_1 .
+:PhysicalMaterial_2_6_37_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_37_1_1 ;
+  x3do:baseColor ( 0.25 0.5 0.95 ) ;
+  x3do:emissiveColor ( 0.075 0.15 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_37_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :ValveC3_Shape ;
+  x3do:radius 0.08 ;
+  x3do:height 0.2 .
+:RH1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :RH1_Shape ;
+  x3do:DEF "RH1" ;
+  x3do:translation ( -5 1.6 -4 ) .
+:RH1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :RH1 ;
+  x3do:hasAppearance :Appearance_2_6_38_1_1 ;
+  x3do:hasGeometry :Box_2_6_38_1_2 ;
+  x3do:DEF "RH1_Shape" .
+:Appearance_2_6_38_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :RH1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_38_1_1_1 .
+:PhysicalMaterial_2_6_38_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_38_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_38_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :RH1_Shape ;
+  x3do:size ( 0.15 0.15 0.1 ) .
+:RH2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :RH2_Shape ;
+  x3do:DEF "RH2" ;
+  x3do:translation ( 5 1.6 4 ) .
+:RH2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :RH2 ;
+  x3do:hasAppearance :Appearance_2_6_39_1_1 ;
+  x3do:hasGeometry :Box_2_6_39_1_2 ;
+  x3do:DEF "RH2_Shape" .
+:Appearance_2_6_39_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :RH2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_39_1_1_1 .
+:PhysicalMaterial_2_6_39_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_39_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_39_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :RH2_Shape ;
+  x3do:size ( 0.15 0.15 0.1 ) .
+:VentA a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :VentA_Shape ;
+  x3do:DEF "VentA" ;
+  x3do:translation ( 0 4.05 -4 ) .
+:VentA_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :VentA ;
+  x3do:hasAppearance :Appearance_2_6_40_1_1 ;
+  x3do:hasGeometry :Box_2_6_40_1_2 ;
+  x3do:DEF "VentA_Shape" .
+:Appearance_2_6_40_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :VentA_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_40_1_1_1 .
+:PhysicalMaterial_2_6_40_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_40_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.045 0.048 0.052 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.4 .
+:Box_2_6_40_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :VentA_Shape ;
+  x3do:size ( 8 0.1 1.5 ) .
+:VentC a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :VentC_Shape ;
+  x3do:DEF "VentC" ;
+  x3do:translation ( 0 4.05 4 ) .
+:VentC_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :VentC ;
+  x3do:hasAppearance :Appearance_2_6_41_1_1 ;
+  x3do:hasGeometry :Box_2_6_41_1_2 ;
+  x3do:DEF "VentC_Shape" .
+:Appearance_2_6_41_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :VentC_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_41_1_1_1 .
+:PhysicalMaterial_2_6_41_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_41_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.045 0.048 0.052 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.4 .
+:Box_2_6_41_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :VentC_Shape ;
+  x3do:size ( 8 0.1 1.5 ) .

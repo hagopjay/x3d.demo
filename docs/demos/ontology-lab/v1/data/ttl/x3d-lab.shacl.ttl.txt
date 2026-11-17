@@ -1,0 +1,182 @@
+# Semantic Twin Lab: SHACL shapes for X3D scenes translated by X3dToTurtle (X3D Ontology 4.1 terms).
+# Seeds: scout sources-and-state-of-art/shapes/x3d-lab-shapes.ttl (S1-S7) and prior-research lab-seeds/shapes.ttl.
+# Thesis: the ontology proposes, SHACL shapes dispose, the validator gates.
+#
+# Every shape carries: lab:id, sh:message, sh:severity, lab:fixHint, and xs:checkId: the check id of the matching shape
+# in the x3d_mcp bundled x3d-core shapes (commit 7d3f1d5), so a lab shape passed to shacl_validate(extra_shapes_ttl=...)
+# reports the same check_id as the bundled one. receipts/fault-matrix.json records where the two shape sets differ. Some also carry sh:agentInstruction, a term from
+# the SHACL 1.2 Core editors' draft (natural-language instructions to software agents). SHACL 1.0 engines ignore it.
+#
+# Graph roles: the DATA graph must contain the scene Turtle plus the ontology slice (ontology/slice.ttl): the
+# rdfs:subClassOf hierarchy (for sh:class and sh:targetClass) and the hasChild-family rdfs:domain triples (for S6).
+# shacl-engine 1.1.3 resolves the class hierarchy from the SHAPES graph only: copy the slice's rdfs:subClassOf triples
+# into the shapes graph before validating with it (pitfall P1), or sh:class answers are wrong.
+# SPARQL-based constraints (S1b, S3, S3b, S5, S6) need SHACL-SPARQL: pyshacl has it built in; shacl-engine needs
+# `validations` from 'shacl-engine/sparql.js'; rdf-validate-shacl 0.6.5 does not run them.
+
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix x3do: <https://www.web3d.org/specifications/X3dOntology4.1#> .
+@prefix lab:  <https://semantic-twin-lab.example/shapes#> .
+@prefix xs:   <urn:x3d-mcp:shapes:x3d-core#> .
+
+lab: a owl:Ontology ;
+  rdfs:label "Semantic Twin Lab X3D shapes" ;
+  sh:declare [ sh:prefix "x3do" ; sh:namespace "https://www.web3d.org/specifications/X3dOntology4.1#"^^xsd:anyURI ] ,
+             [ sh:prefix "owl"  ; sh:namespace "http://www.w3.org/2002/07/owl#"^^xsd:anyURI ] ,
+             [ sh:prefix "rdf"  ; sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI ] ,
+             [ sh:prefix "rdfs" ; sh:namespace "http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI ] .
+
+lab:id a owl:AnnotationProperty ; rdfs:label "lab shape id" .
+lab:fixHint a owl:AnnotationProperty ; rdfs:label "suggested fix, in words" .
+
+# S1  Colour components are numbers in [0,1]. SHACL Core, list members reached by the path rdf:rest*/rdf:first.
+#     Value nodes are a SET: this checks the range of each distinct component, not how many there are (see S1b).
+lab:ColourRangeShape a sh:NodeShape ;
+  lab:id "S1" ; xs:checkId "colour-out-of-range" ;
+  sh:targetClass x3do:Material , x3do:PhysicalMaterial , x3do:UnlitMaterial , x3do:TwoSidedMaterial ;
+  sh:severity sh:Violation ;
+  lab:fixHint "Scale the colour so every component lies between 0 and 1." ;
+  sh:property [
+    sh:path ( x3do:diffuseColor [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ;
+    sh:minInclusive 0 ; sh:maxInclusive 1 ; sh:severity sh:Violation ; xs:checkId "colour-out-of-range" ;
+    sh:message "S1: diffuseColor component outside [0,1]" ] ;
+  sh:property [
+    sh:path ( x3do:baseColor [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ;
+    sh:minInclusive 0 ; sh:maxInclusive 1 ; sh:severity sh:Violation ; xs:checkId "colour-out-of-range" ;
+    sh:message "S1: baseColor component outside [0,1]" ] ;
+  sh:property [
+    sh:path ( x3do:emissiveColor [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ;
+    sh:minInclusive 0 ; sh:maxInclusive 1 ; sh:severity sh:Violation ; xs:checkId "colour-out-of-range" ;
+    sh:message "S1: emissiveColor component outside [0,1]" ] ;
+  sh:property [
+    sh:path x3do:transparency ; sh:minInclusive 0 ; sh:maxInclusive 1 ; sh:maxCount 1 ; sh:severity sh:Violation ;
+    xs:checkId "value-out-of-range" ;
+    sh:message "S1: transparency must be one number in [0,1]" ] .
+
+# S1b SFColor arity: exactly 3 list members. Needs SPARQL, because SHACL value nodes are a set ("1 1 1" is one value).
+#     Written without GROUP BY: shacl-engine pre-binds $this, and Comunica refuses a pre-bound GROUP BY variable.
+#     Each UNION branch binds ?list itself: SPARQL evaluates a group bottom-up, so a FILTER NOT EXISTS in a branch that
+#     does not bind ?list would ask about ANY list in the graph (standard engines then never report "fewer than 3").
+lab:ColourArityShape a sh:NodeShape ;
+  lab:id "S1b" ; xs:checkId "tuple-count" ;
+  sh:targetSubjectsOf x3do:diffuseColor , x3do:baseColor , x3do:emissiveColor ;
+  sh:severity sh:Violation ;
+  lab:fixHint "Give the colour exactly three numbers: red green blue." ;
+  sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes lab: ;
+    sh:message "S1b: {?propName} must have exactly 3 components ({?problem})" ;
+    sh:select """SELECT $this ?prop ?propName ?problem WHERE {
+        { $this ?prop ?list . FILTER(?prop IN (x3do:diffuseColor, x3do:baseColor, x3do:emissiveColor))
+          ?list rdf:rest/rdf:rest/rdf:rest/rdf:first ?extra . BIND("more than 3" AS ?problem) }
+        UNION
+        { $this ?prop ?list . FILTER(?prop IN (x3do:diffuseColor, x3do:baseColor, x3do:emissiveColor))
+          FILTER NOT EXISTS { ?list rdf:rest/rdf:rest/rdf:first ?third } BIND("fewer than 3" AS ?problem) }
+        BIND(STRAFTER(STR(?prop), "#") AS ?propName) }""" ] .
+
+# S2  A Shape draws nothing without geometry (a USE copy carries no fields of its own).
+lab:ShapeGeometryShape a sh:NodeShape ;
+  lab:id "S2" ; xs:checkId "shape-no-geometry" ;
+  sh:targetClass x3do:Shape ;
+  sh:severity sh:Warning ;
+  sh:or ( [ sh:path owl:sameAs ; sh:minCount 1 ]
+          [ sh:path x3do:hasGeometry ; sh:minCount 1 ; sh:maxCount 1 ] ) ;
+  sh:message "S2: Shape has no geometry (valid X3D, draws nothing)" ;
+  lab:fixHint "Add one geometry node (Box, Sphere, Cone, Cylinder, IndexedFaceSet ...) inside the Shape." ;
+  sh:agentInstruction "Every Shape you write must contain exactly one geometry node; a Shape without geometry is valid X3D but invisible." .
+
+# S3  A USE must be the same node type as the DEF it names. XML IDREF cannot check this; RDF can.
+lab:UseTypeShape a sh:NodeShape ;
+  lab:id "S3" ; xs:checkId "use-type-mismatch" ;
+  sh:targetSubjectsOf owl:sameAs ;
+  sh:severity sh:Violation ;
+  lab:fixHint "Point the USE at a DEF of the same node type, or change the USE element to that type." ;
+  sh:agentInstruction "When you reuse a node with USE, the element name must match the node type of the DEF it names." ;
+  sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes lab: ;
+    sh:message "S3: this USE is a {?useTypeName} but DEF {?targetName} is not" ;
+    sh:select """SELECT $this ?target ?useType ?useTypeName ?targetName WHERE {
+        $this owl:sameAs ?target ; a ?useType .
+        FILTER(STRSTARTS(STR(?useType), STR(x3do:)))
+        FILTER EXISTS { ?target x3do:DEF ?d }
+        FILTER NOT EXISTS { ?target a ?useType }
+        BIND(STRAFTER(STR(?useType), "#") AS ?useTypeName) BIND(STRAFTER(STR(?target), "#") AS ?targetName) }""" ] .
+
+# S3b A USE must name a DEF that exists in the graph.
+lab:UseTargetShape a sh:NodeShape ;
+  lab:id "S3b" ; xs:checkId "use-undefined-def" ;
+  sh:targetSubjectsOf owl:sameAs ;
+  sh:severity sh:Violation ;
+  lab:fixHint "Add the missing DEF, or correct the USE name." ;
+  sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes lab: ;
+    sh:message "S3b: dangling USE, no DEF named {?target}" ;
+    sh:select """SELECT $this ?target WHERE {
+        $this owl:sameAs ?target . FILTER NOT EXISTS { ?target x3do:DEF ?d } }""" ] .
+
+# S4  A Scene should contain at least one Viewpoint (best practice, so a Warning: 3 of 11 valid examples lack one).
+#     Written in SHACL-SPARQL. The SHACL Core form, sh:path [ sh:inversePath [ sh:oneOrMorePath x3do:hasParent ] ] with
+#     sh:qualifiedValueShape [ sh:class x3do:X3DViewpointNode ], works in pyshacl 0.40.2 but shacl-engine 1.1.3 returns
+#     no value nodes for transitive inverse paths, so it reports a false warning (see receipts/parity.json, P9).
+lab:SceneViewpointShape a sh:NodeShape ;
+  lab:id "S4" ; xs:checkId "no-viewpoint" ;
+  sh:targetClass x3do:Scene ;
+  sh:severity sh:Warning ;
+  lab:fixHint "Add a Viewpoint with a description so a viewer starts somewhere meaningful." ;
+  sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes lab: ;
+    sh:message "S4: Scene has no Viewpoint (or other X3DViewpointNode) descendant" ;
+    sh:select """SELECT $this WHERE {
+        FILTER NOT EXISTS { ?v x3do:hasParent+ $this ; a ?c . ?c rdfs:subClassOf* x3do:X3DViewpointNode } }""" ] .
+
+# S5  ROUTE endpoints must name a DEF in the graph (X3dToTurtle joins ROUTEs to nodes by the DEF string).
+lab:RouteEndpointShape a sh:NodeShape ;
+  lab:id "S5" ;
+  sh:targetClass x3do:ROUTE ;
+  sh:severity sh:Violation ;
+  lab:fixHint "Name an existing DEF in fromNode and toNode." ;
+  sh:agentInstruction "A ROUTE may only connect nodes that carry a DEF; check both names exist before you add it." ;
+  sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes lab: ; xs:checkId "route-missing-from-node" ;
+    sh:message "S5: ROUTE fromNode names DEF {?def}, which does not exist" ;
+    sh:select """SELECT $this ?def WHERE { $this x3do:fromNode ?def . FILTER NOT EXISTS { ?n x3do:DEF ?def } }""" ] ,
+  [ a sh:SPARQLConstraint ; sh:prefixes lab: ; xs:checkId "route-missing-to-node" ;
+    sh:message "S5: ROUTE toNode names DEF {?def}, which does not exist" ;
+    sh:select """SELECT $this ?def WHERE { $this x3do:toNode ?def . FILTER NOT EXISTS { ?n x3do:DEF ?def } }""" ] .
+
+# S6  Ontology-derived containment: each hasChild-family edge must be allowed by the property's rdfs:domain,
+#     read as a UNION through rdfs:subClassOf*. This is the ontology used as a MAP. Needs the slice in the data graph.
+#     Exceptions (legal X3D the domain lists miss): ProtoBody content, and root Metadata held by the Scene (hasValue).
+lab:ContainmentDomainShape a sh:NodeShape ;
+  lab:id "S6" ; xs:checkId "field-not-in-domain" ;
+  sh:targetSubjectsOf x3do:hasParent ;
+  sh:severity sh:Violation ;
+  lab:fixHint "Move the child into a field its parent type declares (see where_can_place / node_parents)." ;
+  sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes lab: ;
+    sh:message "S6: a {?type} may not carry field {?p} (not in that property's rdfs:domain)" ;
+    sh:select """SELECT $this ?p ?type WHERE {
+        $this ?p ?child ; a ?type .
+        ?p rdfs:subPropertyOf x3do:hasChild .
+        FILTER(STRSTARTS(STR(?type), STR(x3do:)))
+        FILTER(?type != x3do:ProtoBody)
+        FILTER(!(?type = x3do:Scene && ?p = x3do:hasValue))
+        FILTER NOT EXISTS { ?p rdfs:domain ?d . ?type rdfs:subClassOf* ?d } }""" ] .
+
+# S7  The gate the ontology does not give: every node in a children field must be an X3DChildNode.
+#     (hasChildren's pooled ranges include X3DNode, so the ontology alone lets a Box be a child.)
+lab:ChildrenAreChildNodesShape a sh:NodeShape ;
+  lab:id "S7" ; xs:checkId "children-not-child-node" ;
+  sh:targetObjectsOf x3do:hasChildren ;
+  sh:severity sh:Violation ;
+  sh:or ( [ sh:class x3do:X3DChildNode ] [ sh:path owl:sameAs ; sh:minCount 1 ] ) ;
+  sh:message "S7: node in a children field is not an X3DChildNode" ;
+  lab:fixHint "Wrap geometry in a Shape (Transform > Shape > Box), or move the node to a field that accepts it." ;
+  sh:agentInstruction "Only grouping, Shape, light, sensor, interpolator, viewpoint and other X3DChildNode types go in a children field; wrap geometry in a Shape." .
+
+# S8  One IRI, one place: a DEF'd node has one parent. Two hasParent values mean two XML nodes shared one DEF name
+#     and RDF merged them (XSD's xs:ID catches the duplicate DEF in the XML; this catches its shadow in the graph).
+lab:SingleParentShape a sh:NodeShape ;
+  lab:id "S8" ; xs:checkId "duplicate-def" ;
+  sh:targetSubjectsOf x3do:DEF ;
+  sh:severity sh:Violation ;
+  lab:fixHint "Give each node its own DEF name; reuse a node with USE, not with a second DEF." ;
+  sh:property [ sh:path x3do:hasParent ; sh:maxCount 1 ; sh:severity sh:Violation ;
+    sh:message "S8: one DEF name, two parents: a duplicate DEF merged two nodes into one IRI" ] .

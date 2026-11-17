@@ -1,0 +1,413 @@
+{
+ "server": "<checkout>/x3d_mcp/src/server.py",
+ "tools": 54,
+ "runs": {
+  "clean": [
+   {
+    "tool": "scene_to_rdf",
+    "args": {
+     "content": "<4,359 chars, sha256 2798d7a2fc9ce788>",
+     "return_mode": "summary"
+    },
+    "wall_ms": 46.5,
+    "reply_sha256": "abb949160e303e97007df0dbc84bd5628db2fd9de93ec79f272e801422da7d07",
+    "reply": {
+     "ok": true,
+     "graph_id": "9203cfbdac953f14",
+     "triples": 704,
+     "individuals": 70,
+     "base": "https://example.org/scen/hospital/scene.ttl#",
+     "warnings": []
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<947 chars, sha256 f4aaa4d871c771f0>",
+     "graph_id": "9203cfbdac953f14",
+     "data_ttl": "<4,272 chars, sha256 8dca5c453f18550a>",
+     "include_ontology": false
+    },
+    "wall_ms": 66.6,
+    "reply_sha256": "0fd11665cef849b8a7240ec6a9c2717b898d6d30869f8387de98d1582ebb0db7",
+    "reply": {
+     "ok": true,
+     "total": 5,
+     "rows": [
+      {
+       "device": "Anaesthesia workstation",
+       "where": "Operating Room 4",
+       "o": ":AnesthesiaMachine",
+       "ready": "false"
+      },
+      {
+       "device": "Defibrillator",
+       "where": "Equipment storage 2",
+       "o": "",
+       "ready": "false"
+      },
+      {
+       "device": "Mobile C-arm",
+       "where": "Operating Room 4",
+       "o": ":CArm",
+       "ready": "true"
+      },
+      {
+       "device": "Operating table",
+       "where": "Operating Room 4",
+       "o": ":ORTable",
+       "ready": "true"
+      },
+      {
+       "device": "Surgical light 1",
+       "where": "Operating Room 4",
+       "o": ":SurgicalLight1",
+       "ready": "true"
+      }
+     ],
+     "error": null,
+     "ms": 64.1
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<715 chars, sha256 b26a658c0192b856>",
+     "graph_id": "9203cfbdac953f14",
+     "data_ttl": "<4,272 chars, sha256 8dca5c453f18550a>",
+     "include_ontology": false
+    },
+    "wall_ms": 36.6,
+    "reply_sha256": "2b1d8cd698cad3191b2de2bbb0054a2ef6e3f94ff83d6a1edc5bda4a92bd0f9b",
+    "reply": {
+     "ok": true,
+     "total": 1,
+     "rows": [
+      {
+       "o": ":AnesthesiaMachine",
+       "device": "Anaesthesia workstation",
+       "due": "2026-11-10"
+      }
+     ],
+     "error": null,
+     "ms": 33.9
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<713 chars, sha256 b3c5a21aefea96ca>",
+     "graph_id": "9203cfbdac953f14",
+     "data_ttl": "<4,272 chars, sha256 8dca5c453f18550a>",
+     "include_ontology": false
+    },
+    "wall_ms": 27.4,
+    "reply_sha256": "fdb3e3938d33f490de50230fb90c7c64b2ae17d23045b8969bc6a64318283e8e",
+    "reply": {
+     "ok": true,
+     "total": 1,
+     "rows": [
+      {
+       "from": "Equipment storage 2",
+       "via": "Corridor, floor 2",
+       "to": "Operating Room 4"
+      }
+     ],
+     "error": null,
+     "ms": 24.9
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<671 chars, sha256 342f5edea88d9356>",
+     "graph_id": "9203cfbdac953f14",
+     "data_ttl": "<4,272 chars, sha256 8dca5c453f18550a>",
+     "include_ontology": false
+    },
+    "wall_ms": 26.8,
+    "reply_sha256": "c044f61396efb8f821ec06e57e4eb44d49a18f2907a1a827551d25d6d346390f",
+    "reply": {
+     "ok": true,
+     "total": 8,
+     "rows": [
+      {
+       "o": ":AnesthesiaMachine",
+       "device": "Anaesthesia workstation"
+      },
+      {
+       "o": ":InstrumentTable",
+       "device": "Instrument table"
+      },
+      {
+       "o": ":CArm",
+       "device": "Mobile C-arm"
+      },
+      {
+       "o": ":ORTable",
+       "device": "Operating table"
+      },
+      {
+       "o": ":ScrubSink",
+       "device": "Scrub sink"
+      },
+      {
+       "o": ":SupplyCart",
+       "device": "Supply cart"
+      },
+      {
+       "o": ":SurgicalLight1",
+       "device": "Surgical light 1"
+      },
+      {
+       "o": ":SurgicalLight2",
+       "device": "Surgical light 2"
+      }
+     ],
+     "error": null,
+     "ms": 24.6
+    }
+   },
+   {
+    "tool": "shacl_validate",
+    "args": {
+     "graph_id": "9203cfbdac953f14",
+     "shapes": "none",
+     "extra_shapes_ttl": "<1,997 chars, sha256 381a66fe59b865f8>",
+     "data_ttl": "<4,272 chars, sha256 8dca5c453f18550a>",
+     "return_mode": "full"
+    },
+    "wall_ms": 207.2,
+    "reply_sha256": "610c375c8111e35869d29a57ad5ff7472d366e56b42d480713b3277af754d9a0",
+    "reply": {
+     "ok": true,
+     "conforms": true,
+     "counts": {
+      "Violation": 0,
+      "Warning": 0,
+      "Info": 0
+     },
+     "results": [],
+     "error": null,
+     "ms": 204.6
+    }
+   }
+  ],
+  "fault": [
+   {
+    "tool": "scene_to_rdf",
+    "args": {
+     "content": "<4,360 chars, sha256 5b7190e946a5a47c>",
+     "return_mode": "summary"
+    },
+    "wall_ms": 18.0,
+    "reply_sha256": "dcd7b1f1c717569d37bb08bcfae47a0b980285d0105f20576994079d7af343d2",
+    "reply": {
+     "ok": true,
+     "graph_id": "96a68edab274cca0",
+     "triples": 704,
+     "individuals": 70,
+     "base": "https://example.org/scen/hospital/scene.ttl#",
+     "warnings": []
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<947 chars, sha256 f4aaa4d871c771f0>",
+     "graph_id": "96a68edab274cca0",
+     "data_ttl": "<4,282 chars, sha256 70f966c92cd8429a>",
+     "include_ontology": false
+    },
+    "wall_ms": 48.5,
+    "reply_sha256": "0cbb3349e18b9fed975ef00b9ed540221568ebed6a51437de03cf6b82916cbdd",
+    "reply": {
+     "ok": true,
+     "total": 5,
+     "rows": [
+      {
+       "device": "Anaesthesia workstation",
+       "where": "Operating Room 4",
+       "o": ":AnesthesiaMachine",
+       "ready": "false"
+      },
+      {
+       "device": "Defibrillator",
+       "where": "Equipment storage 2",
+       "o": "",
+       "ready": "false"
+      },
+      {
+       "device": "Mobile C-arm",
+       "where": "Equipment storage 2",
+       "o": ":CArm",
+       "ready": "false"
+      },
+      {
+       "device": "Operating table",
+       "where": "Operating Room 4",
+       "o": ":ORTable",
+       "ready": "true"
+      },
+      {
+       "device": "Surgical light 1",
+       "where": "Operating Room 4",
+       "o": ":SurgicalLight1",
+       "ready": "true"
+      }
+     ],
+     "error": null,
+     "ms": 46.1
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<715 chars, sha256 b26a658c0192b856>",
+     "graph_id": "96a68edab274cca0",
+     "data_ttl": "<4,282 chars, sha256 70f966c92cd8429a>",
+     "include_ontology": false
+    },
+    "wall_ms": 32.5,
+    "reply_sha256": "1e7e8550a46b6a6aafd1cc1c9016c726bb5ad0b7f445c4654986cf40599a028f",
+    "reply": {
+     "ok": true,
+     "total": 1,
+     "rows": [
+      {
+       "o": ":AnesthesiaMachine",
+       "device": "Anaesthesia workstation",
+       "due": "2026-11-10"
+      }
+     ],
+     "error": null,
+     "ms": 29.9
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<713 chars, sha256 b3c5a21aefea96ca>",
+     "graph_id": "96a68edab274cca0",
+     "data_ttl": "<4,282 chars, sha256 70f966c92cd8429a>",
+     "include_ontology": false
+    },
+    "wall_ms": 28.9,
+    "reply_sha256": "7e4bee07adaf997edcec6cd81fd5977a28834c4eb104a0d2c3fbaf50d188e589",
+    "reply": {
+     "ok": true,
+     "total": 1,
+     "rows": [
+      {
+       "from": "Equipment storage 2",
+       "via": "Corridor, floor 2",
+       "to": "Operating Room 4"
+      }
+     ],
+     "error": null,
+     "ms": 26.5
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<671 chars, sha256 342f5edea88d9356>",
+     "graph_id": "96a68edab274cca0",
+     "data_ttl": "<4,282 chars, sha256 70f966c92cd8429a>",
+     "include_ontology": false
+    },
+    "wall_ms": 27.9,
+    "reply_sha256": "ce26ca5f891aa8cc153e542bd64bb3dcaed471a387a0b5ca6bf870c657b45e87",
+    "reply": {
+     "ok": true,
+     "total": 8,
+     "rows": [
+      {
+       "o": ":AnesthesiaMachine",
+       "device": "Anaesthesia workstation"
+      },
+      {
+       "o": ":InstrumentTable",
+       "device": "Instrument table"
+      },
+      {
+       "o": ":CArm",
+       "device": "Mobile C-arm"
+      },
+      {
+       "o": ":ORTable",
+       "device": "Operating table"
+      },
+      {
+       "o": ":ScrubSink",
+       "device": "Scrub sink"
+      },
+      {
+       "o": ":SupplyCart",
+       "device": "Supply cart"
+      },
+      {
+       "o": ":SurgicalLight1",
+       "device": "Surgical light 1"
+      },
+      {
+       "o": ":SurgicalLight2",
+       "device": "Surgical light 2"
+      }
+     ],
+     "error": null,
+     "ms": 25.5
+    }
+   },
+   {
+    "tool": "shacl_validate",
+    "args": {
+     "graph_id": "96a68edab274cca0",
+     "shapes": "none",
+     "extra_shapes_ttl": "<1,997 chars, sha256 381a66fe59b865f8>",
+     "data_ttl": "<4,282 chars, sha256 70f966c92cd8429a>",
+     "return_mode": "full"
+    },
+    "wall_ms": 212.6,
+    "reply_sha256": "f88f80f71d0c96943dc3bb047ba0f0e86e1da5ccacf44020b64ede9753967e3f",
+    "reply": {
+     "ok": true,
+     "conforms": false,
+     "counts": {
+      "Violation": 2,
+      "Warning": 0,
+      "Info": 0
+     },
+     "results": [
+      {
+       "focus": "https://example.org/scen/hospital/record#SupplyCart1",
+       "def": null,
+       "node_type": null,
+       "path": "",
+       "value": "1.57",
+       "severity": "Violation",
+       "message": "A non-sterile device stands inside the sterile field (distance from the field's centre is below its radius).",
+       "shape": "https://example.org/scen/twin#S_P1",
+       "check_id": "//example.org/scen/twin#S_P1",
+       "fix_hint": null
+      },
+      {
+       "focus": "https://example.org/scen/hospital/record#CArm1",
+       "def": null,
+       "node_type": null,
+       "path": "",
+       "value": "https://example.org/scen/hospital/record#Storage2",
+       "severity": "Violation",
+       "message": "The record places this device in another room, but the scene draws it inside OR 4.",
+       "shape": "https://example.org/scen/twin#S_P2",
+       "check_id": "//example.org/scen/twin#S_P2",
+       "fix_hint": null
+      }
+     ],
+     "error": null,
+     "ms": 209.9
+    }
+   }
+  ]
+ }
+}

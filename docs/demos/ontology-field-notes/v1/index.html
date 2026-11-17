@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
+<title>Ontology Field Notes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a field notebook. One reading column with wide "plates" (ladder, matrix, timeline, landscape) that break out to full width. Four layer colours carry meaning everywhere: how much, what, where, allowed. */
+:root{
+  --bg:#eef1f4; --paper:#fbfcfd; --ink:#16202a; --ink2:#4a5866; --rule:#cfd7df; --wash:#e3e8ee;
+  --much:#a8650a; --what:#2846c4; --where:#0b7c72; --allow:#b3263e;
+  --much-w:#f6ead6; --what-w:#e2e7fb; --where-w:#d8efec; --allow-w:#f7dfe3;
+  --add:#6b4fa3;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f141a; --paper:#151c24; --ink:#e6ebf0; --ink2:#a3b0bd; --rule:#2c3641; --wash:#1c2530;
+  --much:#e0a14a; --what:#8ea2ff; --where:#4fc7bb; --allow:#f07a8e;
+  --much-w:#33270f; --what-w:#1d2547; --where-w:#0f3330; --allow-w:#3e1820; --add:#b9a1ea; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f141a; --paper:#151c24; --ink:#e6ebf0; --ink2:#a3b0bd; --rule:#2c3641; --wash:#1c2530;
+  --much:#e0a14a; --what:#8ea2ff; --where:#4fc7bb; --allow:#f07a8e;
+  --much-w:#33270f; --what-w:#1d2547; --where-w:#0f3330; --allow-w:#3e1820; --add:#b9a1ea; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--f-body);margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 72px}
+.col{max-width:68ch}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.1;margin:0}
+h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0}
+a{color:var(--what)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--what);outline-offset:2px}
+.eyebrow{font:500 .74rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
+.mono{font-family:var(--f-mono);font-size:.88em}
+section{display:grid;gap:18px;padding-block:44px;border-top:1px solid var(--rule)}
+.lede{font-size:1.18rem;color:var(--ink2)}
+.grade{display:inline-block;font:500 .7rem/1.5 var(--f-mono);padding:0 6px;border-radius:3px;border:1px solid currentColor;vertical-align:1px;white-space:nowrap}
+.g-c{color:var(--where)}.g-l{color:var(--much)}.g-s{color:var(--allow)}.g-a{color:var(--add)}
+.src{font-size:.82rem;color:var(--ink2)}
+/* hero */
+.hero{display:grid;gap:22px;padding-block:8px 40px}
+.hero .credit{font-size:.92rem;color:var(--ink2);border-left:3px solid var(--rule);padding-left:12px}
+.thesis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--rule);border-radius:6px;overflow:hidden;background:var(--paper)}
+.thesis div{padding:14px 14px 16px;display:grid;gap:6px;border-right:1px solid var(--rule);min-width:0}
+.thesis div:last-child{border-right:0}
+.thesis b{font:700 1.25rem/1.15 var(--f-display)}
+.thesis span{font-size:.86rem;color:var(--ink2)}
+.t-much{border-top:5px solid var(--much)}.t-what{border-top:5px solid var(--what)}.t-where{border-top:5px solid var(--where)}.t-allow{border-top:5px solid var(--allow)}
+.t-much b{color:var(--much)}.t-what b{color:var(--what)}.t-where b{color:var(--where)}.t-allow b{color:var(--allow)}
+@media (max-width:760px){.thesis{grid-template-columns:repeat(2,minmax(0,1fr))}.thesis div:nth-child(2){border-right:0}.thesis div:nth-child(-n+2){border-bottom:1px solid var(--rule)}}
+/* definition anatomy */
+.anat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.anat .cell{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:14px;display:grid;gap:8px;align-content:start;min-width:0}
+.anat .k{font:600 .8rem/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.anat code{display:block;font:400 .78rem/1.5 var(--f-mono);background:var(--wash);padding:8px;border-radius:4px;overflow-x:auto;white-space:pre}
+@media (max-width:860px){.anat{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.anat{grid-template-columns:1fr}}
+/* ladder */
+.ladder{display:grid;gap:10px}
+.rung{display:grid;grid-template-columns:150px minmax(0,1fr) minmax(0,1.1fr) minmax(0,1fr);gap:14px;align-items:start;background:var(--paper);border:1px solid var(--rule);border-left-width:6px;border-radius:6px;padding:14px}
+.rung .q{font:700 1.15rem/1.15 var(--f-display)}
+.rung small{display:block;font:500 .72rem/1.4 var(--f-mono);color:var(--ink2);letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.rung>div{min-width:0;font-size:.92rem}
+.r-much{border-left-color:var(--much)}.r-much .q{color:var(--much)}
+.r-what{border-left-color:var(--what)}.r-what .q{color:var(--what)}
+.r-where{border-left-color:var(--where)}.r-where .q{color:var(--where)}
+.r-allow{border-left-color:var(--allow)}.r-allow .q{color:var(--allow)}
+@media (max-width:860px){.rung{grid-template-columns:1fr}}
+/* proof */
+.big{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.stat{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:16px;display:grid;gap:6px}
+.stat .n{font:800 2.6rem/1 var(--f-display);font-variant-numeric:tabular-nums}
+.stat .n em{font-style:normal;color:var(--ink2);font-weight:500;font-size:1.3rem}
+.stat p{font-size:.9rem;color:var(--ink2)}
+@media (max-width:760px){.big{grid-template-columns:1fr}}
+.matrix{overflow-x:auto;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:14px}
+.matrix table{border-collapse:collapse;min-width:720px;width:100%;font-size:.84rem}
+.matrix th{font:500 .72rem/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);text-align:left;padding:4px 6px;border-bottom:1px solid var(--rule)}
+.matrix td{padding:5px 6px;border-bottom:1px solid var(--wash);vertical-align:middle}
+.matrix td.case{font-weight:600;white-space:nowrap}
+.chip{display:inline-flex;align-items:center;gap:4px;font:500 .72rem/1 var(--f-mono);padding:5px 6px;border-radius:4px;margin:2px 3px 2px 0;cursor:default;border:1px solid transparent}
+.c-dom{background:var(--what-w);color:var(--what)}
+.c-both{background:var(--where-w);color:var(--where);border-color:var(--where)}
+.c-caught{background:var(--what-w);color:var(--what)}
+.c-scene{background:var(--allow-w);color:var(--allow);border-color:var(--allow)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.82rem;color:var(--ink2)}
+.tip{font-size:.86rem;color:var(--ink2);min-height:2.6em;border-left:3px solid var(--where);padding-left:10px}
+/* timeline */
+.tl{position:relative;display:grid;gap:0;padding-left:26px}
+.tl::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--rule)}
+.ev{position:relative;display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;padding:8px 0}
+.ev::before{content:"";position:absolute;left:-23px;top:15px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--what)}
+.ev.add::before{border-color:var(--add);border-style:dashed}
+.ev.ours::before{background:var(--where);border-color:var(--where)}
+.ev .y{font:600 .9rem/1.6 var(--f-mono);font-variant-numeric:tabular-nums}
+.ev p{font-size:.94rem}
+.ev p span{color:var(--ink2)}
+/* lineage */
+.lin{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.br{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:12px;display:grid;gap:6px;align-content:start}
+.br h3{font-size:1rem}
+.br p{font-size:.86rem;color:var(--ink2)}
+.br p b{color:var(--ink);font-weight:600}
+.br .bar{display:flex;gap:3px}
+.br .bar i{height:5px;flex:1;border-radius:2px;background:var(--wash)}
+.br .bar i.on.much{background:var(--much)}.br .bar i.on.what{background:var(--what)}.br .bar i.on.where{background:var(--where)}.br .bar i.on.allow{background:var(--allow)}
+/* landscape table */
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;background:var(--paper)}
+.land{border-collapse:collapse;width:100%;min-width:860px;font-size:.86rem}
+.land th,.land td{padding:9px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--wash)}
+.land thead th{font:600 .95rem/1.2 var(--f-display);border-bottom:1px solid var(--rule)}
+.land tbody th{font:500 .72rem/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);width:130px}
+.land td.us{background:var(--where-w)}
+.land thead th.us{color:var(--where)}
+/* ontorank */
+.rank{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.sig{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:12px;display:grid;gap:8px;align-content:start;min-width:0}
+.sig h3{font-size:1rem}
+.sig .meter{height:6px;background:var(--wash);border-radius:3px;overflow:hidden}
+.sig .meter i{display:block;height:100%;background:var(--where)}
+.sig p{font-size:.85rem;color:var(--ink2)}
+@media (max-width:900px){.rank{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.rank{grid-template-columns:1fr}}
+/* maxims */
+.max{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mx{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;display:grid;gap:8px;align-content:start}
+.mx h3{font-size:1.05rem}
+.mx .from{font-size:.86rem;color:var(--ink2)}
+.mx .to{font-size:.9rem;border-top:1px dashed var(--rule);padding-top:8px}
+.mx .to b{color:var(--where)}
+@media (max-width:760px){.max{grid-template-columns:1fr}}
+.changed{display:grid;gap:8px;padding:0;margin:0;list-style:none}
+.changed li{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:10px 12px;display:grid;grid-template-columns:110px minmax(0,1fr);gap:10px;font-size:.92rem}
+.changed li .st{font:600 .72rem/1.6 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+.st.done{color:var(--where)}.st.next{color:var(--much)}
+@media (max-width:520px){.changed li{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--rule);padding-top:20px;font-size:.84rem;color:var(--ink2);display:grid;gap:8px}
+@media (prefers-reduced-motion:no-preference){.chip{transition:transform .12s}.chip:hover{transform:translateY(-1px)}}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Field notes &middot; X3D Semantic Twin Lab &middot; 16 Nov 2026</div>
+  <h1>An ontology answers<br>&ldquo;what is this thing?&rdquo;</h1>
+  <p class="lede col">Daniel Beach&rsquo;s essay walks the word from a 1600s monastery to today&rsquo;s agent platforms. These notes keep his best ideas, test them against the nine cases we built, and add two questions a 3D twin has to answer as well.</p>
+  <div class="thesis" role="list" aria-label="The four questions">
+    <div class="t-much" role="listitem"><b>How much?</b><span>Semantic layer. Metrics, sums, joins.</span></div>
+    <div class="t-what" role="listitem"><b>What is it?</b><span>Ontology. Concepts, relationships, rules.</span></div>
+    <div class="t-where" role="listitem"><b>Where is it?</b><span>X3D scene. Position, size, what touches what.</span></div>
+    <div class="t-allow" role="listitem"><b>Is it allowed?</b><span>SHACL. Checks that name what broke.</span></div>
+  </div>
+  <p class="credit">Source: Daniel Beach, &ldquo;What the !@#$% is Ontology? The new Data Mesh?&rdquo;, <a href="https://dataengineeringcentral.substack.com/" target="_blank" rel="noopener">Data Engineering Central</a>, 16 Nov 2026. The first two rungs are his framing; the second two are ours. Grades: <span class="grade g-c">Confirmed</span> measured here, <span class="grade g-l">Likely</span> well-sourced but not checked here, <span class="grade g-s">Suspected</span> the article&rsquo;s claim or our guess, <span class="grade g-a">Added</span> context the article does not give.</p>
+</header>
+
+<section aria-labelledby="def">
+  <div class="eyebrow">1 &middot; The definition, taken apart</div>
+  <h2 id="def">Three parts, and the third is optional</h2>
+  <p class="col">Beach settles on a working definition: <em>a machine-readable model of the concepts in a domain, their relationships, and, when needed, the rules governing those concepts.</em> Here is each part in our greenhouse case, plus the part a 3D twin adds.</p>
+  <div class="anat">
+    <div class="cell"><span class="k" style="color:var(--what)">Concept</span><p>A thing with a stable name that someone else publishes.</p><code>agrovoc:c_7805
+  skos:prefLabel "tomatoes"</code><p class="src">From FAO AGROVOC, fetched live.</p></div>
+    <div class="cell"><span class="k" style="color:var(--what)">Relationship</span><p>How concepts connect, so a question can climb.</p><code>c_7805 &rarr; c_3129
+  &rarr; c_8174 vegetables
+c_9093 basil &rarr; c_3568
+  culinary herbs</code><p class="src">That climb is why basil is not a vegetable.</p></div>
+    <div class="cell"><span class="k" style="color:var(--allow)">Rule (when needed)</span><p>What must hold, written so a machine can test it.</p><code>bed is thirsty when
+  soil water &lt; crop need
+litres = gap &times; area
+  &times; root depth</code><p class="src">Our N3 rule and SHACL check.</p></div>
+    <div class="cell"><span class="k" style="color:var(--where)">Place (our addition)</span><p>Where the thing sits, so &ldquo;in&rdquo; and &ldquo;near&rdquo; can be computed.</p><code>Bed A2 twin:depictedBy
+  sc:CropA2
+CropA2 translation
+  -3 0 2</code><p class="src">The X3D scene, converted to RDF by x3d_mcp.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="ladder">
+  <div class="eyebrow">2 &middot; The question ladder</div>
+  <h2 id="ladder">Each layer answers one kind of question</h2>
+  <p class="col">Beach draws the line between a semantic layer (&ldquo;how much or how many&rdquo;) and an ontology (&ldquo;what is this thing?&rdquo;), adding &ldquo;at least for now&rdquo;. A twin needs two more rungs. Every example below is a real question from our cases.</p>
+  <div class="ladder">
+    <div class="rung r-much"><div><small>Rung</small><span class="q">How much?</span></div><div><small>Answered by</small>Semantic or metrics layer: a reviewed formula, reused so the number is always computed the same way.</div><div><small>Example</small>&ldquo;How many litres does each thirsty bed need?&rdquo; <span class="mono">(farm A1)</span></div><div><small>Without it</small>Each agent invents its own formula and two dashboards disagree.</div></div>
+    <div class="rung r-what"><div><small>Rung</small><span class="q">What is it?</span></div><div><small>Answered by</small>Ontology: published vocabularies such as AGROVOC, Brick, GS1, CIDOC-CRM, FHIR.</div><div><small>Example</small>&ldquo;Which beds grow vegetables?&rdquo; Basil climbs to culinary herbs, not vegetables. <span class="mono">(farm rule)</span></div><div><small>Without it</small>&ldquo;Vegetable&rdquo; is a string match, and basil is miscounted.</div></div>
+    <div class="rung r-where"><div><small>Rung</small><span class="q">Where is it?</span></div><div><small>Answered by</small>X3D scene: every object DEF&rsquo;d, its position and size readable as triples.</div><div><small>Example</small>&ldquo;Whose noon shadow falls on the park at the winter solstice?&rdquo; <span class="mono">(city C1)</span></div><div><small>Without it</small>The records say Tower 5 exists. They cannot say what its shadow touches.</div></div>
+    <div class="rung r-allow"><div><small>Rung</small><span class="q">Is it allowed?</span></div><div><small>Answered by</small>SHACL shapes over scene and records together; each failure names the thing and the rule.</div><div><small>Example</small>&ldquo;Does every room over 49 people have two ways out?&rdquo; <span class="mono">(fire code E3, IBC table 1006.2.1)</span></div><div><small>Without it</small>A narrow door is a number nobody compared to the code.</div></div>
+  </div>
+</section>
+
+<section aria-labelledby="proof">
+  <div class="eyebrow">3 &middot; &ldquo;Is it worth it?&rdquo;</div>
+  <h2 id="proof">Beach asks for evals. Here is the first one.</h2>
+  <p class="col">His central doubt: is an agent with an ontology better than a good agent with a semantic layer? He says he would need &ldquo;evals and tests&rdquo; to believe it. We can start, because every case already has gold answers from the Python oracle. I reran every question, rule and check three ways: the scene alone, the records alone, and both together. <span class="grade g-c">Confirmed</span></p>
+  <div class="big">
+    <div class="stat"><span class="n">0<em> / 36</em></span><p><b>Scene alone</b> answers none of the questions or rules. Geometry without names is a pile of boxes.</p></div>
+    <div class="stat"><span class="n">27<em> / 36</em></span><p><b>Records alone</b> answer three quarters. The nine they miss all ask about position, area, distance or shadow.</p></div>
+    <div class="stat"><span class="n">5<em> / 18</em></span><p><b>Records alone</b> catch 5 of 18 planted faults. With the scene, all 18 are caught.</p></div>
+  </div>
+  <div class="legend" aria-hidden="true"><span><span class="chip c-dom">B1</span> answered by records alone</span><span><span class="chip c-both">C1</span> needs the scene too</span><span><span class="chip c-caught">rec</span> fault caught by records alone</span><span><span class="chip c-scene">geo</span> fault only visible with the scene</span></div>
+  <div class="matrix"><table id="mtx"><thead><tr><th>Case</th><th>Questions and rule</th><th>Planted faults</th></tr></thead><tbody></tbody></table></div>
+  <p class="tip" id="tip" aria-live="polite">Point at a chip to see the question or fault.</p>
+  <p class="col">The fire code case shows the subtle one. &ldquo;Exit stair B is locked&rdquo; is a plain record fault, yet the records alone flag nothing, because the rooms that fail are the ones whose remaining exit is too far away, and distance lives in the scene. The ontology tells you the stair is locked. Only the twin tells you who is now trapped.</p>
+  <p class="src col">Caveat: we wrote these cases and planted the faults, so the set favours what this stack is built to see. It measures lift between layers on our data; it is not a general result. Scripts and results: project files, ontology-lab/eval/.</p>
+</section>
+
+<section aria-labelledby="time">
+  <div class="eyebrow">4 &middot; Timeline</div>
+  <h2 id="time">An old idea that was waiting for a user</h2>
+  <p class="col">Beach&rsquo;s point is that ontology is not new; it lacked a use case until agents arrived. His dates are below in order, with a few added for context (dashed). The filled dots are our own.</p>
+  <div class="tl">
+    <div class="ev"><span class="y">c.1606</span><p>Latin <em>ontologia</em> appears: the study of being. <span>Beach gives &ldquo;circa 1600&rdquo;. Early printed uses are usually credited to Jacob Lorhard (1606) and Rudolf G&ouml;ckel (1613).</span> <span class="grade g-l">Likely</span></p></div>
+    <div class="ev"><span class="y">1967</span><p>Computer science borrows the word for how data relates to the world. <span>Beach cites &ldquo;Another Look at Data&rdquo; (1967).</span></p></div>
+    <div class="ev"><span class="y">1980s</span><p>Knowledge-based tools and expert systems. <span>Stanford&rsquo;s Prot&eacute;g&eacute; project (NIH-funded) grows from this line of work.</span></p></div>
+    <div class="ev add"><span class="y">1993</span><p>Gruber: an ontology is &ldquo;an explicit specification of a conceptualization&rdquo;. <span>The definition most papers still quote.</span> <span class="grade g-a">Added</span></p></div>
+    <div class="ev"><span class="y">1997</span><p>DARPA push, &ldquo;Toward Distributed Use of Large-Scale Ontologies&rdquo;. <span>The same year VRML97 becomes an ISO standard, the parent of X3D.</span></p></div>
+    <div class="ev add"><span class="y">2004</span><p>OWL and RDF become W3C Recommendations; X3D becomes ISO/IEC 19775. <span>Both of our layers are standards from the same year.</span> <span class="grade g-a">Added</span></p></div>
+    <div class="ev add"><span class="y">2017</span><p>SHACL becomes a W3C Recommendation. <span>The &ldquo;is it allowed?&rdquo; rung gets a standard.</span> <span class="grade g-a">Added</span></p></div>
+    <div class="ev"><span class="y">2024&ndash;25</span><p>SaaS vendors re-label context and semantic layers as ontology. <span>Databricks, Snowflake, Microsoft Fabric, AWS, Palantir.</span></p></div>
+    <div class="ev"><span class="y">2026</span><p>Databricks Genie Ontology reaches general availability; NVIDIA and AWS publish open-source ontology builders. <span>Per the article.</span> <span class="grade g-s">Suspected</span></p></div>
+    <div class="ev ours"><span class="y">Nov 2026</span><p>Our lab: nine twins, 116 vocabulary terms each declared in the publisher&rsquo;s own file, every answer checked by Python, by the MCP server and in the browser. <span class="grade g-c">Confirmed</span></p></div>
+  </div>
+</section>
+
+<section aria-labelledby="lin">
+  <div class="eyebrow">5 &middot; The lineage of bridges</div>
+  <h2 id="lin">Every one of these tried to write the business down</h2>
+  <p class="col">Beach lists ten earlier attempts to cross &ldquo;the great business-to-technology divide&rdquo;. Each one codified part of what people know. The bars show which of our four questions each one mainly answered, and the last line says what our lab keeps from it.</p>
+  <div class="lin" id="lin-grid"></div>
+</section>
+
+<section aria-labelledby="land">
+  <div class="eyebrow">6 &middot; The landscape</div>
+  <h2 id="land">Four approaches and one small lab, compared</h2>
+  <p class="col">Columns 1 to 3 are as Beach describes them; I have not run those tools. <span class="grade g-s">Suspected</span> The last column is what we measured. <span class="grade g-c">Confirmed</span></p>
+  <div class="tablewrap"><table class="land">
+    <thead><tr><th></th><th>NVIDIA auto-ontology</th><th>AWS context-ontology-accelerator</th><th>Databricks Genie Ontology</th><th class="us">Our Semantic Twin Lab</th></tr></thead>
+    <tbody>
+      <tr><th>Reads</th><td>SQL metadata, schemas, sample rows from Postgres, Snowflake, DuckDB and others</td><td>Data plus PDFs and Word files</td><td>Data assets, documents, tickets, wikis, Power BI, org directories</td><td class="us">X3D scenes plus domain records in Turtle</td></tr>
+      <tr><th>Core units</th><td>Term, SQL attribute, Relationship</td><td>A knowledge graph</td><td>Ontology snippets, metric views, domains, pages</td><td class="us">Published classes and properties, one N3 rule, SHACL shapes</td></tr>
+      <tr><th>Who drafts</th><td>An LLM crawls and proposes</td><td>Pipeline extraction</td><td>Automatic extraction plus human pages</td><td class="us">Hand-written now; an LLM drafting is the flywheel step to add</td></tr>
+      <tr><th>Who certifies</th><td>Human reviews and certifies</td><td>Not described</td><td>Certification is one OntoRank signal</td><td class="us">Python oracle, real MCP calls and browser engines must agree: 18/18 and 90/90</td></tr>
+      <tr><th>Every answer shows</th><td>Its SQL and the steps behind it</td><td>Not described</td><td>Not described</td><td class="us">Its SPARQL, the rows, and which shape failed on which thing</td></tr>
+      <tr><th>Weight</th><td>A service with its own UI, compute and database</td><td>Heavy: DataZone, Neptune, Athena, Bedrock and more, costs before the first question</td><td>Inside the Databricks platform</td><td class="us">Text files and one stdio process; no server</td></tr>
+      <tr><th>Multimodal</th><td>No (Beach&rsquo;s main complaint)</td><td>Yes, documents</td><td>Yes, documents</td><td class="us">Yes, 3D geometry: the source nobody else reads</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src col">Palantir&rsquo;s ontology guide, which Beach calls the most realistic and complete, is not in the table because he does not describe it in detail.</p>
+</section>
+
+<section aria-labelledby="rank">
+  <div class="eyebrow">7 &middot; OntoRank, mapped to our grades</div>
+  <h2 id="rank">Five ways to decide which knowledge to trust</h2>
+  <p class="col">Genie Ontology ranks knowledge by five signals. This is the most transferable idea in the article, because an agent with two conflicting facts needs a reason to prefer one. Here is how each signal maps onto what the lab already does, and how strongly (the bar).</p>
+  <div class="rank">
+    <div class="sig"><h3>Authority</h3><div class="meter"><i style="width:90%"></i></div><p><b>Have.</b> Every class and property is checked against the publisher&rsquo;s own vocabulary file (116 of 116).</p></div>
+    <div class="sig"><h3>Relevance</h3><div class="meter"><i style="width:70%"></i></div><p><b>Have.</b> A SPARQL question selects only what it needs; the scene highlights only those objects.</p></div>
+    <div class="sig"><h3>Certification</h3><div class="meter"><i style="width:75%"></i></div><p><b>Partly.</b> Our Confirmed / Likely / Suspected grades, and three engines that must agree. The heritage case already records disputed sources (CIDOC E13).</p></div>
+    <div class="sig"><h3>Popularity</h3><div class="meter"><i style="width:10%"></i></div><p><b>Missing.</b> Nobody uses these twins yet. Later: count which facts agents actually query.</p></div>
+    <div class="sig"><h3>Recency</h3><div class="meter"><i style="width:45%"></i></div><p><b>Partly.</b> Vocabularies carry their read date; sensor readings carry time. Records have no &ldquo;last checked&rdquo; yet.</p></div>
+  </div>
+  <p class="col">Proposal: give every domain record a <span class="mono">twin:grade</span> and a <span class="mono">prov:generatedAtTime</span>, and let a SHACL check warn when an answer rests on a Suspected fact. That turns our grading habit into data an agent can read.</p>
+</section>
+
+<section aria-labelledby="wis">
+  <div class="eyebrow">8 &middot; What to take from it</div>
+  <h2 id="wis">Eight lessons, each turned into a move for x3d</h2>
+  <div class="max">
+    <div class="mx"><h3>Data has no meaning without context</h3><p class="from">Beach: the definition of a &ldquo;customer&rdquo; changes from one department to the next.</p><p class="to"><b>For us:</b> a &ldquo;room&rdquo; is a BOT space, a Brick HVAC zone and an IBC occupant-load area at once. The fire case gives Room 407 an occupant load of 54 by its use, not by its walls.</p></div>
+    <div class="mx"><h3>Keep the format apart from the engine</h3><p class="from">Beach: a semantic-layer spec is a file format; auto-ontology is an engine that reads and writes it.</p><p class="to"><b>For us:</b> X3D and Turtle are the formats, x3d_mcp is one engine. Formats outlive engines, so the bet is on the files.</p></div>
+    <div class="mx"><h3>Every answer comes with its working</h3><p class="from">Auto-ontology returns the SQL and the steps behind each answer.</p><p class="to"><b>For us:</b> this is the tether. Each case page shows the SPARQL, the rows and the failing shape. Keep that non-negotiable.</p></div>
+    <div class="mx"><h3>The machine drafts, a person certifies</h3><p class="from">The common pattern: crawl and propose, humans review and approve, then serve to agents.</p><p class="to"><b>For us:</b> this is the flywheel loop. Next step: an LLM drafts a domain graph from a scene, and the oracle and shapes decide what survives.</p></div>
+    <div class="mx"><h3>Weight kills adoption</h3><p class="from">Beach: &ldquo;yet another service someone has to take care of&rdquo;; COA costs money before the first question.</p><p class="to"><b>For us:</b> files plus one stdio process, no server, no bill. That is a feature worth saying out loud.</p></div>
+    <div class="mx"><h3>The gold is in what isn&rsquo;t a table</h3><p class="from">Beach&rsquo;s main complaint about auto-ontology: no PDFs or documents, where most business knowledge lives.</p><p class="to"><b>For us:</b> 3D scenes are a multimodal source too. Measured above, 13 of 18 faults are invisible without them. That is our niche.</p></div>
+    <div class="mx"><h3>Evals or it didn&rsquo;t happen</h3><p class="from">Beach will not accept ontology&rsquo;s value without evals that show it beats a good agent with a semantic layer.</p><p class="to"><b>For us:</b> the eval set is built (45 items with gold answers). Running models on it is the next step.</p></div>
+    <div class="mx"><h3>Open source is thin, and the war is coming</h3><p class="from">Few serious repos; he expects an &ldquo;ontology war&rdquo; like the recent catalog war (Unity, Polaris, Nessie).</p><p class="to"><b>For us:</b> stand on W3C and ISO standards, not a vendor&rsquo;s layer. An open X3D twin lab fills a gap that is visibly empty.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="chg">
+  <div class="eyebrow">9 &middot; What changed in the project</div>
+  <h2 id="chg">Folded in today</h2>
+  <ul class="changed">
+    <li><span class="st done">Done</span><span><b>Layer test</b> over all nine cases: 36 questions and rules, 18 planted faults, each run on scene only, records only and both (section 3).</span></li>
+    <li><span class="st done">Done</span><span><b>Eval set v1</b>: 45 items with gold answers and three conditions to compare: A scene only, B raw records without vocabularies, C ontology through x3d_mcp. Scored on precision, recall, false alarms, tool calls and tokens.</span></li>
+    <li><span class="st done">Done</span><span><b>Field guide</b> gains the article&rsquo;s terms: semantic layer, context layer, OntoRank, Genie Ontology, auto-ontology, COA.</span></li>
+    <li><span class="st next">Next</span><span><b>Run the eval</b> with a model on conditions A, B and C. This is the experiment that answers Beach&rsquo;s question with numbers.</span></li>
+    <li><span class="st next">Next</span><span><b>Grades as data</b>: <span class="mono">twin:grade</span> and record dates on every fact, plus a shape that warns when an answer rests on a Suspected fact.</span></li>
+    <li><span class="st next">Next</span><span><b>Draft-and-certify loop</b>: an LLM drafts a domain graph from a bare scene; the oracle and shapes accept or reject each triple.</span></li>
+  </ul>
+</section>
+
+<footer>
+  <p>Credit: Daniel Beach, Data Engineering Central. Short quotations only; read the full essay at the source. The four-rung ladder extends his semantic-layer and ontology distinction, and the measurements are ours.</p>
+  <p>Measured with rdflib and pyshacl over the x3d_mcp converter on the nine Semantic Twin cases, 16 Nov 2026.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var M=[
+    ["Heritage",[["H1","Show everything whose only support is speculative",1],["H2","Where do the sources disagree about a dimension?",0],["H3","What does the model draw against what the record measured?",1],["INF","Everything inside Level 2, or the whole shaft",0]],[["geo","Shaft A drawn 12 m tall against the documented 9.62 m",1],["rec","The Hall of Records has lost its attribution",0]]],
+    ["Factory",[["F1","Which machines run hotter than their datasheet allows?",0],["F2","If the press station stops, what else stops?",0],["F3","Which assets have no maintenance record?",0],["INF","A failing sensor’s whole line",0]],[["geo","Station 3 moved 0.98 m, past the robot’s 2.1 m reach",1],["rec","A vibration reading recorded in degrees Celsius",0]]],
+    ["Hospital",[["P1","Is everything today’s procedure needs in OR 4 and in service?",0],["P2","Which devices are past their service date?",0],["P3","How do I bring the defibrillator from storage?",0],["INF","Roll devices up to the floor and the building",0]],[["geo","A non-sterile cart pushed inside the sterile field",1],["rec","The C-arm’s record says it is still in storage",0]]],
+    ["Building",[["B1","Which empty rooms are being heated anyway?",0],["B2","If air handler 1 trips, what loses air?",0],["B3","Which rooms are more than 2 K off setpoint?",0],["INF","Which rooms does each air handler serve?",0]],[["geo","Room 303’s sensor mounted in Room 304",1],["rec","Room 306’s temperature point deleted",0]]],
+    ["Warehouse",[["W1","Where is every pallet holding lot L-2291?",0],["W2","Which cereal should be picked first (first expiry, first out)?",0],["W3","Which bins are free for put-away?",0],["INF","A recall reaches through pallets and cases",0]],[["geo","Pallet P07 with chilled yoghurt put away in ambient Rack B",1],["geo","P03 drawn one bin over from its recorded bin",1]]],
+    ["City",[["C1","Whose noon shadow falls on the park at the winter solstice?",1],["C2","Which buildings stand in the flood zone?",1],["C3","Which buildings are within a 400 m walk of the new stop?",1],["INF","Buildings inherit their district from their parcel",0]],[["geo","Tower 5 drawn 48 m tall in a 36 m district",1],["geo","Building 2 drawn 8 m east, overhanging its parcel",1]]],
+    ["Concert",[["M1","Who is playing at 00:12:30?",0],["M2","What does the crew change between songs 3 and 4?",0],["M3","Who do the followspots pick up in song 4?",1],["INF","Everything on stage in Set 2",0]],[["geo","The guitar amp’s mic kicked 1.65 m downstage",1],["geo","The keys wedge set on the bass side",1]]],
+    ["Fire code",[["E1","How many people can each room hold, by the code?",1],["E2","How far is each room from its nearest open exit?",1],["E3","Does every room over 49 people have two ways out?",1],["INF","Every space that can reach Exit stair A",0]],[["geo","Door 402 drawn 0.76 m (30 in) wide",1],["rec","Exit stair B marked locked: a record fault, but only the scene shows which rooms are now too far from an open exit",1]]],
+    ["Farm",[["A1","Which beds are thirsty, and how much water do they need?",0],["A2","Where is powdery mildew likely, and which vent should open?",0],["A3","Which valves should open now?",0],["INF","All vegetable beds (and why basil is not one)",0]],[["geo","Bed B2’s moisture probe pushed into Bed B3",1],["rec","Bed C2’s valve never entered in the irrigation record",0]]]
+  ];
+  var tb=document.querySelector("#mtx tbody"), tip=document.getElementById("tip");
+  function chip(label,cls,text){var s=document.createElement("span");s.className="chip "+cls;s.textContent=label;s.tabIndex=0;s.setAttribute("aria-label",label+": "+text);
+    var show=function(){tip.textContent=label+": "+text;};s.addEventListener("mouseenter",show);s.addEventListener("focus",show);s.addEventListener("click",show);return s;}
+  M.forEach(function(r){var tr=document.createElement("tr");var a=document.createElement("td");a.className="case";a.textContent=r[0];
+    var b=document.createElement("td");r[1].forEach(function(q){b.appendChild(chip(q[0],q[2]?"c-both":"c-dom",q[1]+(q[2]?" (needs the scene)":" (records alone answer it)")));});
+    var c=document.createElement("td");r[2].forEach(function(f){c.appendChild(chip(f[0],f[2]?"c-scene":"c-caught",f[1]+(f[2]?" (only caught with the scene)":" (records alone catch it)")));});
+    tr.appendChild(a);tr.appendChild(b);tr.appendChild(c);tb.appendChild(tr);});
+  var L=[
+    ["Entity-relationship modelling","1976 on","Things and the keys that join them.",[0,1,0,0],"Every object DEF’d, so every row has a key."],
+    ["Data dictionaries","1970s on","What each column means, in words.",[0,1,0,0],"rdfs:label and comments on every record."],
+    ["Enterprise data models","1980s–90s","One model of the whole company.",[0,1,0,0],"A lesson: one giant model stalls. Reuse small published vocabularies."],
+    ["Semantic Web","2001 on","Global names (IRIs), RDF, OWL, SPARQL.",[0,1,0,1],"The whole stack: Turtle, SPARQL, SHACL."],
+    ["Service-oriented architecture","2000s","Business functions behind contracts.",[0,0,0,1],"MCP tools are the services an agent calls."],
+    ["Knowledge graphs","2012 on","Facts as a graph you can walk.",[0,1,1,0],"Scene plus records as one graph."],
+    ["Data catalogs and governance","2015 on","What exists, who owns it, can I use it.",[0,1,0,1],"Vocabulary read dates and publisher checks."],
+    ["Semantic and metrics layers","2018 on","One formula per metric, reused.",[1,0,0,0],"Reviewed formulas, such as litres or occupant load."],
+    ["Data mesh and data products","2019 on","Each domain owns and serves its data.",[0,1,0,0],"One twin per domain: farm, city, stage."],
+    ["Data contracts","2021 on","What a producer promises a consumer.",[0,0,0,1],"SHACL shapes are contracts a scene must keep."]
+  ];
+  var g=document.getElementById("lin-grid"),cl=["much","what","where","allow"];
+  L.forEach(function(x){var d=document.createElement("div");d.className="br";
+    var h=document.createElement("h3");h.textContent=x[0];d.appendChild(h);
+    var bar=document.createElement("div");bar.className="bar";bar.setAttribute("aria-hidden","true");x[3].forEach(function(on,i){var e=document.createElement("i");e.className=(on?"on ":"")+cl[i];bar.appendChild(e);});d.appendChild(bar);
+    var p=document.createElement("p");p.innerHTML="<span class=\"mono\">"+x[1]+"</span> &middot; "+x[2];d.appendChild(p);
+    var k=document.createElement("p");k.innerHTML="<b>We keep:</b> ";k.appendChild(document.createTextNode(x[4]));d.appendChild(k);g.appendChild(d);});
+})();
+</script>
+
+</html>

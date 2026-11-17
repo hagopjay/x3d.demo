@@ -1,0 +1,714 @@
+@prefix :        <https://example.org/scen/warehouse/scene.ttl#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:  <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix x3d:     <https://www.web3d.org/specifications/x3d-4.1.xsd#> .
+@prefix x3do:    <https://www.web3d.org/specifications/X3dOntology4.1#> .
+
+:X3D a owl:NamedIndividual, x3do:X3D ;
+  x3do:hasHead :head ;
+  x3do:hasScene :Scene ;
+  x3do:profile "Immersive" ;
+  x3do:version "4.0" ;
+  x3do:noNamespaceSchemaLocation "https://www.web3d.org/specifications/x3d-4.0.xsd" .
+:head a owl:NamedIndividual, x3do:head ;
+  x3do:hasParent :X3D ;
+  x3do:hasComponent :component_1_1 ;
+  x3do:hasMeta :meta_1_2, :meta_1_3, :meta_1_4, :meta_1_5, :meta_1_6 .
+:component_1_1 a owl:NamedIndividual, x3do:component ;
+  x3do:hasParent :head ;
+  x3do:name "Shape" ;
+  x3do:level 2 .
+:meta_1_2 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "title" ;
+  x3do:content "Recall lot L-2291 before lunch" .
+:meta_1_3 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "identifier" ;
+  x3do:content "https://example.org/scen/warehouse/scene.x3d" .
+:meta_1_4 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "description" ;
+  x3do:content "Racks, bins, pallets and a cold room; products, lots and expiry dates are in the GS1 Web Vocabulary." .
+:meta_1_5 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "creator" ;
+  x3do:content "HagopJay and Claude" .
+:meta_1_6 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "license" ;
+  x3do:content "CC0 geometry" .
+:meta dcterms:title "Recall lot L-2291 before lunch" .
+:meta dcterms:identifier "https://example.org/scen/warehouse/scene.x3d" .
+:meta dcterms:description "Racks, bins, pallets and a cold room; products, lots and expiry dates are in the GS1 Web Vocabulary." .
+:meta dcterms:creator "HagopJay and Claude" .
+:meta dcterms:license "CC0 geometry" .
+:Scene a owl:NamedIndividual, x3do:Scene ;
+  x3do:hasParent :X3D ;
+  x3do:hasChildren :NavigationInfo_2_1, :Background_2_2, :V_Overview, :V_Plan, :DirectionalLight_2_5, :Root .
+:NavigationInfo_2_1 a owl:NamedIndividual, x3do:NavigationInfo ;
+  x3do:hasParent :Scene .
+:Background_2_2 a owl:NamedIndividual, x3do:Background ;
+  x3do:hasParent :Scene ;
+  x3do:skyColor ( 0.04 0.04 0.06 ) ;
+  x3do:groundColor ( 0.1 0.1 0.1 ) .
+:V_Overview a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Overview" ;
+  x3do:description "Warehouse aisle" ;
+  x3do:position ( 0 9 13 ) ;
+  x3do:orientation ( 1 0 0 -0.55 ) ;
+  x3do:centerOfRotation ( 0 1 0 ) .
+:V_Plan a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Plan" ;
+  x3do:description "Plan view" ;
+  x3do:position ( 0 16 0.01 ) ;
+  x3do:orientation ( -1 0 0 1.571 ) .
+:DirectionalLight_2_5 a owl:NamedIndividual, x3do:DirectionalLight ;
+  x3do:hasParent :Scene ;
+  x3do:direction ( -0.4 -1 -0.5 ) ;
+  x3do:intensity 0.8 .
+:Root a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :ColdRoom, :Dock1, :Dock2, :BinA11, :BinA21, :BinA12, :BinA22, :BinA13, :BinA23, :BinB11, :BinB21, :BinB12, :BinB22, :BinB13, :BinB23, :BinK1, :BinK2, :BinK3, :BinK4, :P01, :P02, :P03, :P04, :P05, :P06, :P07, :P08, :P09 ;
+  x3do:DEF "Root" .
+:ColdRoom a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ColdRoom_Shape ;
+  x3do:DEF "ColdRoom" ;
+  x3do:translation ( 5 1.5 0 ) .
+:ColdRoom_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ColdRoom ;
+  x3do:hasAppearance :Appearance_2_6_1_1_1 ;
+  x3do:hasGeometry :Box_2_6_1_1_2 ;
+  x3do:DEF "ColdRoom_Shape" .
+:Appearance_2_6_1_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ColdRoom_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_1_1_1_1 .
+:PhysicalMaterial_2_6_1_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_1_1_1 ;
+  x3do:baseColor ( 0.25 0.5 0.95 ) ;
+  x3do:emissiveColor ( 0.0375 0.075 0.1425 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.82 .
+:Box_2_6_1_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :ColdRoom_Shape ;
+  x3do:size ( 3 3 7 ) .
+:Dock1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Dock1_Shape ;
+  x3do:DEF "Dock1" ;
+  x3do:translation ( -7 1.6 -2 ) .
+:Dock1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Dock1 ;
+  x3do:hasAppearance :Appearance_2_6_2_1_1 ;
+  x3do:hasGeometry :Box_2_6_2_1_2 ;
+  x3do:DEF "Dock1_Shape" .
+:Appearance_2_6_2_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Dock1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_2_1_1_1 .
+:PhysicalMaterial_2_6_2_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_2_1_1 ;
+  x3do:baseColor ( 1 0.7 0.25 ) ;
+  x3do:emissiveColor ( 0.15 0.105 0.0375 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.2 .
+:Box_2_6_2_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Dock1_Shape ;
+  x3do:size ( 0.15 3.2 3 ) .
+:Dock2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Dock2_Shape ;
+  x3do:DEF "Dock2" ;
+  x3do:translation ( -7 1.6 2.5 ) .
+:Dock2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Dock2 ;
+  x3do:hasAppearance :Appearance_2_6_3_1_1 ;
+  x3do:hasGeometry :Box_2_6_3_1_2 ;
+  x3do:DEF "Dock2_Shape" .
+:Appearance_2_6_3_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Dock2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_3_1_1_1 .
+:PhysicalMaterial_2_6_3_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_3_1_1 ;
+  x3do:baseColor ( 1 0.7 0.25 ) ;
+  x3do:emissiveColor ( 0.15 0.105 0.0375 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.2 .
+:Box_2_6_3_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Dock2_Shape ;
+  x3do:size ( 0.15 3.2 3 ) .
+:BinA11 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinA11_Shape ;
+  x3do:DEF "BinA11" ;
+  x3do:translation ( -4 0.65 -4 ) .
+:BinA11_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinA11 ;
+  x3do:hasAppearance :Appearance_2_6_4_1_1 ;
+  x3do:hasGeometry :Box_2_6_4_1_2 ;
+  x3do:DEF "BinA11_Shape" .
+:Appearance_2_6_4_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinA11_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_4_1_1_1 .
+:PhysicalMaterial_2_6_4_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_4_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_4_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinA11_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinA21 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinA21_Shape ;
+  x3do:DEF "BinA21" ;
+  x3do:translation ( -4 1.95 -4 ) .
+:BinA21_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinA21 ;
+  x3do:hasAppearance :Appearance_2_6_5_1_1 ;
+  x3do:hasGeometry :Box_2_6_5_1_2 ;
+  x3do:DEF "BinA21_Shape" .
+:Appearance_2_6_5_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinA21_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_5_1_1_1 .
+:PhysicalMaterial_2_6_5_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_5_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_5_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinA21_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinA12 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinA12_Shape ;
+  x3do:DEF "BinA12" ;
+  x3do:translation ( -2.7 0.65 -4 ) .
+:BinA12_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinA12 ;
+  x3do:hasAppearance :Appearance_2_6_6_1_1 ;
+  x3do:hasGeometry :Box_2_6_6_1_2 ;
+  x3do:DEF "BinA12_Shape" .
+:Appearance_2_6_6_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinA12_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_6_1_1_1 .
+:PhysicalMaterial_2_6_6_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_6_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_6_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinA12_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinA22 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinA22_Shape ;
+  x3do:DEF "BinA22" ;
+  x3do:translation ( -2.7 1.95 -4 ) .
+:BinA22_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinA22 ;
+  x3do:hasAppearance :Appearance_2_6_7_1_1 ;
+  x3do:hasGeometry :Box_2_6_7_1_2 ;
+  x3do:DEF "BinA22_Shape" .
+:Appearance_2_6_7_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinA22_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_7_1_1_1 .
+:PhysicalMaterial_2_6_7_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_7_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_7_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinA22_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinA13 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinA13_Shape ;
+  x3do:DEF "BinA13" ;
+  x3do:translation ( -1.4 0.65 -4 ) .
+:BinA13_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinA13 ;
+  x3do:hasAppearance :Appearance_2_6_8_1_1 ;
+  x3do:hasGeometry :Box_2_6_8_1_2 ;
+  x3do:DEF "BinA13_Shape" .
+:Appearance_2_6_8_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinA13_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_8_1_1_1 .
+:PhysicalMaterial_2_6_8_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_8_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_8_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinA13_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinA23 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinA23_Shape ;
+  x3do:DEF "BinA23" ;
+  x3do:translation ( -1.4 1.95 -4 ) .
+:BinA23_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinA23 ;
+  x3do:hasAppearance :Appearance_2_6_9_1_1 ;
+  x3do:hasGeometry :Box_2_6_9_1_2 ;
+  x3do:DEF "BinA23_Shape" .
+:Appearance_2_6_9_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinA23_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_9_1_1_1 .
+:PhysicalMaterial_2_6_9_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_9_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_9_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinA23_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinB11 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinB11_Shape ;
+  x3do:DEF "BinB11" ;
+  x3do:translation ( -4 0.65 0 ) .
+:BinB11_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinB11 ;
+  x3do:hasAppearance :Appearance_2_6_10_1_1 ;
+  x3do:hasGeometry :Box_2_6_10_1_2 ;
+  x3do:DEF "BinB11_Shape" .
+:Appearance_2_6_10_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinB11_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_10_1_1_1 .
+:PhysicalMaterial_2_6_10_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_10_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_10_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinB11_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinB21 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinB21_Shape ;
+  x3do:DEF "BinB21" ;
+  x3do:translation ( -4 1.95 0 ) .
+:BinB21_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinB21 ;
+  x3do:hasAppearance :Appearance_2_6_11_1_1 ;
+  x3do:hasGeometry :Box_2_6_11_1_2 ;
+  x3do:DEF "BinB21_Shape" .
+:Appearance_2_6_11_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinB21_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_11_1_1_1 .
+:PhysicalMaterial_2_6_11_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_11_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_11_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinB21_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinB12 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinB12_Shape ;
+  x3do:DEF "BinB12" ;
+  x3do:translation ( -2.7 0.65 0 ) .
+:BinB12_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinB12 ;
+  x3do:hasAppearance :Appearance_2_6_12_1_1 ;
+  x3do:hasGeometry :Box_2_6_12_1_2 ;
+  x3do:DEF "BinB12_Shape" .
+:Appearance_2_6_12_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinB12_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_12_1_1_1 .
+:PhysicalMaterial_2_6_12_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_12_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_12_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinB12_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinB22 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinB22_Shape ;
+  x3do:DEF "BinB22" ;
+  x3do:translation ( -2.7 1.95 0 ) .
+:BinB22_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinB22 ;
+  x3do:hasAppearance :Appearance_2_6_13_1_1 ;
+  x3do:hasGeometry :Box_2_6_13_1_2 ;
+  x3do:DEF "BinB22_Shape" .
+:Appearance_2_6_13_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinB22_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_13_1_1_1 .
+:PhysicalMaterial_2_6_13_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_13_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_13_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinB22_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinB13 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinB13_Shape ;
+  x3do:DEF "BinB13" ;
+  x3do:translation ( -1.4 0.65 0 ) .
+:BinB13_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinB13 ;
+  x3do:hasAppearance :Appearance_2_6_14_1_1 ;
+  x3do:hasGeometry :Box_2_6_14_1_2 ;
+  x3do:DEF "BinB13_Shape" .
+:Appearance_2_6_14_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinB13_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_14_1_1_1 .
+:PhysicalMaterial_2_6_14_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_14_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_14_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinB13_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinB23 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinB23_Shape ;
+  x3do:DEF "BinB23" ;
+  x3do:translation ( -1.4 1.95 0 ) .
+:BinB23_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinB23 ;
+  x3do:hasAppearance :Appearance_2_6_15_1_1 ;
+  x3do:hasGeometry :Box_2_6_15_1_2 ;
+  x3do:DEF "BinB23_Shape" .
+:Appearance_2_6_15_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinB23_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_15_1_1_1 .
+:PhysicalMaterial_2_6_15_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_15_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_15_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinB23_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinK1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinK1_Shape ;
+  x3do:DEF "BinK1" ;
+  x3do:translation ( 5 0.65 -2.4 ) .
+:BinK1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinK1 ;
+  x3do:hasAppearance :Appearance_2_6_16_1_1 ;
+  x3do:hasGeometry :Box_2_6_16_1_2 ;
+  x3do:DEF "BinK1_Shape" .
+:Appearance_2_6_16_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinK1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_16_1_1_1 .
+:PhysicalMaterial_2_6_16_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_16_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_16_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinK1_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinK2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinK2_Shape ;
+  x3do:DEF "BinK2" ;
+  x3do:translation ( 5 0.65 -0.8 ) .
+:BinK2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinK2 ;
+  x3do:hasAppearance :Appearance_2_6_17_1_1 ;
+  x3do:hasGeometry :Box_2_6_17_1_2 ;
+  x3do:DEF "BinK2_Shape" .
+:Appearance_2_6_17_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinK2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_17_1_1_1 .
+:PhysicalMaterial_2_6_17_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_17_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_17_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinK2_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinK3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinK3_Shape ;
+  x3do:DEF "BinK3" ;
+  x3do:translation ( 5 0.65 0.8 ) .
+:BinK3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinK3 ;
+  x3do:hasAppearance :Appearance_2_6_18_1_1 ;
+  x3do:hasGeometry :Box_2_6_18_1_2 ;
+  x3do:DEF "BinK3_Shape" .
+:Appearance_2_6_18_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinK3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_18_1_1_1 .
+:PhysicalMaterial_2_6_18_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_18_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_18_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinK3_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:BinK4 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :BinK4_Shape ;
+  x3do:DEF "BinK4" ;
+  x3do:translation ( 5 0.65 2.4 ) .
+:BinK4_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BinK4 ;
+  x3do:hasAppearance :Appearance_2_6_19_1_1 ;
+  x3do:hasGeometry :Box_2_6_19_1_2 ;
+  x3do:DEF "BinK4_Shape" .
+:Appearance_2_6_19_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :BinK4_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_19_1_1_1 .
+:PhysicalMaterial_2_6_19_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_19_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.88 .
+:Box_2_6_19_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BinK4_Shape ;
+  x3do:size ( 1.25 1.25 1.05 ) .
+:P01 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :P01_Shape ;
+  x3do:DEF "P01" ;
+  x3do:translation ( -4 0.53 -4 ) .
+:P01_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :P01 ;
+  x3do:hasAppearance :Appearance_2_6_20_1_1 ;
+  x3do:hasGeometry :Box_2_6_20_1_2 ;
+  x3do:DEF "P01_Shape" .
+:Appearance_2_6_20_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :P01_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_20_1_1_1 .
+:PhysicalMaterial_2_6_20_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_20_1_1 ;
+  x3do:baseColor ( 0.8 0.65 0.4 ) ;
+  x3do:emissiveColor ( 0.096 0.078 0.048 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 .
+:Box_2_6_20_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :P01_Shape ;
+  x3do:size ( 1 0.95 0.9 ) .
+:P02 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :P02_Shape ;
+  x3do:DEF "P02" ;
+  x3do:translation ( -2.7 0.53 -4 ) .
+:P02_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :P02 ;
+  x3do:hasAppearance :Appearance_2_6_21_1_1 ;
+  x3do:hasGeometry :Box_2_6_21_1_2 ;
+  x3do:DEF "P02_Shape" .
+:Appearance_2_6_21_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :P02_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_21_1_1_1 .
+:PhysicalMaterial_2_6_21_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_21_1_1 ;
+  x3do:baseColor ( 0.75 0.35 0.3 ) ;
+  x3do:emissiveColor ( 0.09 0.042 0.036 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 .
+:Box_2_6_21_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :P02_Shape ;
+  x3do:size ( 1 0.95 0.9 ) .
+:P03 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :P03_Shape ;
+  x3do:DEF "P03" ;
+  x3do:translation ( -1.4 1.83 -4 ) .
+:P03_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :P03 ;
+  x3do:hasAppearance :Appearance_2_6_22_1_1 ;
+  x3do:hasGeometry :Box_2_6_22_1_2 ;
+  x3do:DEF "P03_Shape" .
+:Appearance_2_6_22_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :P03_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_22_1_1_1 .
+:PhysicalMaterial_2_6_22_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_22_1_1 ;
+  x3do:baseColor ( 0.8 0.65 0.4 ) ;
+  x3do:emissiveColor ( 0.096 0.078 0.048 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 .
+:Box_2_6_22_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :P03_Shape ;
+  x3do:size ( 1 0.95 0.9 ) .
+:P04 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :P04_Shape ;
+  x3do:DEF "P04" ;
+  x3do:translation ( -4 0.53 0 ) .
+:P04_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :P04 ;
+  x3do:hasAppearance :Appearance_2_6_23_1_1 ;
+  x3do:hasGeometry :Box_2_6_23_1_2 ;
+  x3do:DEF "P04_Shape" .
+:Appearance_2_6_23_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :P04_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_23_1_1_1 .
+:PhysicalMaterial_2_6_23_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_23_1_1 ;
+  x3do:baseColor ( 0.6 0.6 0.62 ) ;
+  x3do:emissiveColor ( 0.072 0.072 0.0744 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 .
+:Box_2_6_23_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :P04_Shape ;
+  x3do:size ( 1 0.95 0.9 ) .
+:P05 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :P05_Shape ;
+  x3do:DEF "P05" ;
+  x3do:translation ( 5 0.53 -2.4 ) .
+:P05_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :P05 ;
+  x3do:hasAppearance :Appearance_2_6_24_1_1 ;
+  x3do:hasGeometry :Box_2_6_24_1_2 ;
+  x3do:DEF "P05_Shape" .
+:Appearance_2_6_24_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :P05_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_24_1_1_1 .
+:PhysicalMaterial_2_6_24_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_24_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.9 ) ;
+  x3do:emissiveColor ( 0.114 0.114 0.108 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 .
+:Box_2_6_24_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :P05_Shape ;
+  x3do:size ( 1 0.95 0.9 ) .
+:P06 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :P06_Shape ;
+  x3do:DEF "P06" ;
+  x3do:translation ( 5 0.53 -0.8 ) .
+:P06_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :P06 ;
+  x3do:hasAppearance :Appearance_2_6_25_1_1 ;
+  x3do:hasGeometry :Box_2_6_25_1_2 ;
+  x3do:DEF "P06_Shape" .
+:Appearance_2_6_25_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :P06_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_25_1_1_1 .
+:PhysicalMaterial_2_6_25_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_25_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.9 ) ;
+  x3do:emissiveColor ( 0.114 0.114 0.108 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 .
+:Box_2_6_25_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :P06_Shape ;
+  x3do:size ( 1 0.95 0.9 ) .
+:P07 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :P07_Shape ;
+  x3do:DEF "P07" ;
+  x3do:translation ( -2.7 1.83 0 ) .
+:P07_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :P07 ;
+  x3do:hasAppearance :Appearance_2_6_26_1_1 ;
+  x3do:hasGeometry :Box_2_6_26_1_2 ;
+  x3do:DEF "P07_Shape" .
+:Appearance_2_6_26_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :P07_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_26_1_1_1 .
+:PhysicalMaterial_2_6_26_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_26_1_1 ;
+  x3do:baseColor ( 1 0.6 0.2 ) ;
+  x3do:emissiveColor ( 0.12 0.072 0.024 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 .
+:Box_2_6_26_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :P07_Shape ;
+  x3do:size ( 1 0.95 0.9 ) .
+:P08 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :P08_Shape ;
+  x3do:DEF "P08" ;
+  x3do:translation ( 5 0.53 2.4 ) .
+:P08_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :P08 ;
+  x3do:hasAppearance :Appearance_2_6_27_1_1 ;
+  x3do:hasGeometry :Box_2_6_27_1_2 ;
+  x3do:DEF "P08_Shape" .
+:Appearance_2_6_27_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :P08_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_27_1_1_1 .
+:PhysicalMaterial_2_6_27_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_27_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.9 ) ;
+  x3do:emissiveColor ( 0.114 0.114 0.108 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 .
+:Box_2_6_27_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :P08_Shape ;
+  x3do:size ( 1 0.95 0.9 ) .
+:P09 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :P09_Shape ;
+  x3do:DEF "P09" ;
+  x3do:translation ( -4 1.83 -4 ) .
+:P09_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :P09 ;
+  x3do:hasAppearance :Appearance_2_6_28_1_1 ;
+  x3do:hasGeometry :Box_2_6_28_1_2 ;
+  x3do:DEF "P09_Shape" .
+:Appearance_2_6_28_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :P09_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_28_1_1_1 .
+:PhysicalMaterial_2_6_28_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_28_1_1 ;
+  x3do:baseColor ( 0.75 0.35 0.3 ) ;
+  x3do:emissiveColor ( 0.09 0.042 0.036 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 .
+:Box_2_6_28_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :P09_Shape ;
+  x3do:size ( 1 0.95 0.9 ) .

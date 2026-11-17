@@ -1,0 +1,414 @@
+@prefix :        <https://example.org/scen/factory/scene.ttl#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:  <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix x3d:     <https://www.web3d.org/specifications/x3d-4.1.xsd#> .
+@prefix x3do:    <https://www.web3d.org/specifications/X3dOntology4.1#> .
+
+:X3D a owl:NamedIndividual, x3do:X3D ;
+  x3do:hasHead :head ;
+  x3do:hasScene :Scene ;
+  x3do:profile "Immersive" ;
+  x3do:version "4.0" ;
+  x3do:noNamespaceSchemaLocation "https://www.web3d.org/specifications/x3d-4.0.xsd" .
+:head a owl:NamedIndividual, x3do:head ;
+  x3do:hasParent :X3D ;
+  x3do:hasComponent :component_1_1 ;
+  x3do:hasMeta :meta_1_2, :meta_1_3, :meta_1_4, :meta_1_5, :meta_1_6 .
+:component_1_1 a owl:NamedIndividual, x3do:component ;
+  x3do:hasParent :head ;
+  x3do:name "Shape" ;
+  x3do:level 2 .
+:meta_1_2 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "title" ;
+  x3do:content "Cell 7, the line that checks its own layout" .
+:meta_1_3 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "identifier" ;
+  x3do:content "https://example.org/scen/factory/scene.x3d" .
+:meta_1_4 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "description" ;
+  x3do:content "Assembly cell; each asset is described by an Asset Administration Shell, sensors by SOSA with QUDT units." .
+:meta_1_5 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "creator" ;
+  x3do:content "HagopJay and Claude" .
+:meta_1_6 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "license" ;
+  x3do:content "CC0 geometry" .
+:meta dcterms:title "Cell 7, the line that checks its own layout" .
+:meta dcterms:identifier "https://example.org/scen/factory/scene.x3d" .
+:meta dcterms:description "Assembly cell; each asset is described by an Asset Administration Shell, sensors by SOSA with QUDT units." .
+:meta dcterms:creator "HagopJay and Claude" .
+:meta dcterms:license "CC0 geometry" .
+:Scene a owl:NamedIndividual, x3do:Scene ;
+  x3do:hasParent :X3D ;
+  x3do:hasChildren :NavigationInfo_2_1, :Background_2_2, :V_Overview, :V_Robot, :DirectionalLight_2_5, :Root .
+:NavigationInfo_2_1 a owl:NamedIndividual, x3do:NavigationInfo ;
+  x3do:hasParent :Scene .
+:Background_2_2 a owl:NamedIndividual, x3do:Background ;
+  x3do:hasParent :Scene ;
+  x3do:skyColor ( 0.06 0.07 0.09 ) ;
+  x3do:groundColor ( 0.12 0.12 0.13 ) .
+:V_Overview a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Overview" ;
+  x3do:description "Cell 7 overview" ;
+  x3do:position ( 5.5 5.5 7.5 ) ;
+  x3do:orientation ( -0.58 0.76 0.29 0.95 ) ;
+  x3do:centerOfRotation ( 0 0.6 0 ) .
+:V_Robot a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Robot" ;
+  x3do:description "Robot reach" ;
+  x3do:position ( 0 6 0.01 ) ;
+  x3do:orientation ( -1 0 0 1.571 ) ;
+  x3do:centerOfRotation ( 0 0.6 0 ) .
+:DirectionalLight_2_5 a owl:NamedIndividual, x3do:DirectionalLight ;
+  x3do:hasParent :Scene ;
+  x3do:direction ( -0.4 -1 -0.5 ) ;
+  x3do:intensity 0.8 .
+:Root a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :Robot1Base, :Robot1Arm, :Conveyor1, :Station1, :Station2, :Station3, :PickPoint, :PlacePoint, :TempSensor1, :TempSensor2, :VibSensor1, :VibSensor2, :LightCurtain, :SafetyFence, :ArmClock, :ArmSwing ;
+  x3do:hasROUTE :ROUTE_2_6_17, :ROUTE_2_6_18 ;
+  x3do:DEF "Root" .
+:Robot1Base a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Robot1Base_Shape ;
+  x3do:DEF "Robot1Base" ;
+  x3do:translation ( 0 0.4 0 ) .
+:Robot1Base_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Robot1Base ;
+  x3do:hasAppearance :Appearance_2_6_1_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_1_1_2 ;
+  x3do:DEF "Robot1Base_Shape" .
+:Appearance_2_6_1_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Robot1Base_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_1_1_1_1 .
+:PhysicalMaterial_2_6_1_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_1_1_1 ;
+  x3do:baseColor ( 0.95 0.45 0.1 ) ;
+  x3do:emissiveColor ( 0.114 0.054 0.012 ) ;
+  x3do:roughness 0.4 ;
+  x3do:metallic 0.2 .
+:Cylinder_2_6_1_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :Robot1Base_Shape ;
+  x3do:radius 0.35 ;
+  x3do:height 0.8 .
+:Robot1Arm a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Robot1Arm_Shape ;
+  x3do:DEF "Robot1Arm" ;
+  x3do:translation ( 0.5 1.3 0 ) .
+:Robot1Arm_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Robot1Arm ;
+  x3do:hasAppearance :Appearance_2_6_2_1_1 ;
+  x3do:hasGeometry :Box_2_6_2_1_2 ;
+  x3do:DEF "Robot1Arm_Shape" .
+:Appearance_2_6_2_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Robot1Arm_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_2_1_1_1 .
+:PhysicalMaterial_2_6_2_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_2_1_1 ;
+  x3do:baseColor ( 0.95 0.45 0.1 ) ;
+  x3do:emissiveColor ( 0.114 0.054 0.012 ) ;
+  x3do:roughness 0.4 ;
+  x3do:metallic 0.2 .
+:Box_2_6_2_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Robot1Arm_Shape ;
+  x3do:size ( 1.2 0.18 0.18 ) .
+:Conveyor1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Conveyor1_Shape ;
+  x3do:DEF "Conveyor1" ;
+  x3do:translation ( 0 0.45 -1.6 ) .
+:Conveyor1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Conveyor1 ;
+  x3do:hasAppearance :Appearance_2_6_3_1_1 ;
+  x3do:hasGeometry :Box_2_6_3_1_2 ;
+  x3do:DEF "Conveyor1_Shape" .
+:Appearance_2_6_3_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Conveyor1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_3_1_1_1 .
+:PhysicalMaterial_2_6_3_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_3_1_1 ;
+  x3do:baseColor ( 0.15 0.15 0.17 ) ;
+  x3do:emissiveColor ( 0.018 0.018 0.0204 ) ;
+  x3do:roughness 0.7 ;
+  x3do:metallic 0.1 .
+:Box_2_6_3_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Conveyor1_Shape ;
+  x3do:size ( 6 0.1 0.6 ) .
+:Station1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Station1_Shape ;
+  x3do:DEF "Station1" ;
+  x3do:translation ( -2.2 0.5 1.3 ) .
+:Station1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Station1 ;
+  x3do:hasAppearance :Appearance_2_6_4_1_1 ;
+  x3do:hasGeometry :Box_2_6_4_1_2 ;
+  x3do:DEF "Station1_Shape" .
+:Appearance_2_6_4_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Station1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_4_1_1_1 .
+:PhysicalMaterial_2_6_4_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_4_1_1 ;
+  x3do:baseColor ( 0.6 0.62 0.66 ) ;
+  x3do:emissiveColor ( 0.072 0.0744 0.0792 ) ;
+  x3do:roughness 0.35 ;
+  x3do:metallic 0.8 .
+:Box_2_6_4_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Station1_Shape ;
+  x3do:size ( 0.8 1 0.8 ) .
+:Station2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Station2_Shape ;
+  x3do:DEF "Station2" ;
+  x3do:translation ( 0 0.5 1.5 ) .
+:Station2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Station2 ;
+  x3do:hasAppearance :Appearance_2_6_5_1_1 ;
+  x3do:hasGeometry :Box_2_6_5_1_2 ;
+  x3do:DEF "Station2_Shape" .
+:Appearance_2_6_5_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Station2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_5_1_1_1 .
+:PhysicalMaterial_2_6_5_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_5_1_1 ;
+  x3do:baseColor ( 0.6 0.62 0.66 ) ;
+  x3do:emissiveColor ( 0.072 0.0744 0.0792 ) ;
+  x3do:roughness 0.35 ;
+  x3do:metallic 0.8 .
+:Box_2_6_5_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Station2_Shape ;
+  x3do:size ( 0.8 1 0.8 ) .
+:Station3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Station3_Shape ;
+  x3do:DEF "Station3" ;
+  x3do:translation ( 1.6 0.5 0.9 ) .
+:Station3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Station3 ;
+  x3do:hasAppearance :Appearance_2_6_6_1_1 ;
+  x3do:hasGeometry :Box_2_6_6_1_2 ;
+  x3do:DEF "Station3_Shape" .
+:Appearance_2_6_6_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Station3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_6_1_1_1 .
+:PhysicalMaterial_2_6_6_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_6_1_1 ;
+  x3do:baseColor ( 0.6 0.62 0.66 ) ;
+  x3do:emissiveColor ( 0.072 0.0744 0.0792 ) ;
+  x3do:roughness 0.35 ;
+  x3do:metallic 0.8 .
+:Box_2_6_6_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Station3_Shape ;
+  x3do:size ( 0.8 1 0.8 ) .
+:PickPoint a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :PickPoint_Shape ;
+  x3do:DEF "PickPoint" ;
+  x3do:translation ( -1.2 0.55 -1.6 ) .
+:PickPoint_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :PickPoint ;
+  x3do:hasAppearance :Appearance_2_6_7_1_1 ;
+  x3do:hasGeometry :Sphere_2_6_7_1_2 ;
+  x3do:DEF "PickPoint_Shape" .
+:Appearance_2_6_7_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :PickPoint_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_7_1_1_1 .
+:PhysicalMaterial_2_6_7_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_7_1_1 ;
+  x3do:baseColor ( 0.2 0.8 0.4 ) ;
+  x3do:emissiveColor ( 0.024 0.096 0.048 ) ;
+  x3do:roughness 0.3 ;
+  x3do:metallic 0 .
+:Sphere_2_6_7_1_2 a owl:NamedIndividual, x3do:Sphere ;
+  x3do:hasParent :PickPoint_Shape ;
+  x3do:radius 0.08 .
+:PlacePoint a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :PlacePoint_Shape ;
+  x3do:DEF "PlacePoint" ;
+  x3do:translation ( 1.6 1.05 0.9 ) .
+:PlacePoint_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :PlacePoint ;
+  x3do:hasAppearance :Appearance_2_6_8_1_1 ;
+  x3do:hasGeometry :Sphere_2_6_8_1_2 ;
+  x3do:DEF "PlacePoint_Shape" .
+:Appearance_2_6_8_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :PlacePoint_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_8_1_1_1 .
+:PhysicalMaterial_2_6_8_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_8_1_1 ;
+  x3do:baseColor ( 0.2 0.8 0.4 ) ;
+  x3do:emissiveColor ( 0.024 0.096 0.048 ) ;
+  x3do:roughness 0.3 ;
+  x3do:metallic 0 .
+:Sphere_2_6_8_1_2 a owl:NamedIndividual, x3do:Sphere ;
+  x3do:hasParent :PlacePoint_Shape ;
+  x3do:radius 0.08 .
+:TempSensor1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :TempSensor1_Shape ;
+  x3do:DEF "TempSensor1" ;
+  x3do:translation ( 0 0.95 0.3 ) .
+:TempSensor1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :TempSensor1 ;
+  x3do:hasAppearance :Appearance_2_6_9_1_1 ;
+  x3do:hasGeometry :Box_2_6_9_1_2 ;
+  x3do:DEF "TempSensor1_Shape" .
+:Appearance_2_6_9_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :TempSensor1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_9_1_1_1 .
+:PhysicalMaterial_2_6_9_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_9_1_1 ;
+  x3do:baseColor ( 0.9 0.9 0.9 ) ;
+  x3do:emissiveColor ( 0.108 0.108 0.108 ) ;
+  x3do:roughness 0.3 ;
+  x3do:metallic 0.1 .
+:Box_2_6_9_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :TempSensor1_Shape ;
+  x3do:size ( 0.08 0.08 0.08 ) .
+:TempSensor2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :TempSensor2_Shape ;
+  x3do:DEF "TempSensor2" ;
+  x3do:translation ( 1.6 1.1 1.3 ) .
+:TempSensor2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :TempSensor2 ;
+  x3do:hasAppearance :Appearance_2_6_10_1_1 ;
+  x3do:hasGeometry :Box_2_6_10_1_2 ;
+  x3do:DEF "TempSensor2_Shape" .
+:Appearance_2_6_10_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :TempSensor2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_10_1_1_1 .
+:PhysicalMaterial_2_6_10_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_10_1_1 ;
+  x3do:baseColor ( 0.9 0.9 0.9 ) ;
+  x3do:emissiveColor ( 0.108 0.108 0.108 ) ;
+  x3do:roughness 0.3 ;
+  x3do:metallic 0.1 .
+:Box_2_6_10_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :TempSensor2_Shape ;
+  x3do:size ( 0.08 0.08 0.08 ) .
+:VibSensor1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :VibSensor1_Shape ;
+  x3do:DEF "VibSensor1" ;
+  x3do:translation ( 0 0.55 -1.25 ) .
+:VibSensor1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :VibSensor1 ;
+  x3do:hasAppearance :Appearance_2_6_11_1_1 ;
+  x3do:hasGeometry :Box_2_6_11_1_2 ;
+  x3do:DEF "VibSensor1_Shape" .
+:Appearance_2_6_11_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :VibSensor1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_11_1_1_1 .
+:PhysicalMaterial_2_6_11_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_11_1_1 ;
+  x3do:baseColor ( 0.9 0.9 0.9 ) ;
+  x3do:emissiveColor ( 0.108 0.108 0.108 ) ;
+  x3do:roughness 0.3 ;
+  x3do:metallic 0.1 .
+:Box_2_6_11_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :VibSensor1_Shape ;
+  x3do:size ( 0.08 0.08 0.08 ) .
+:VibSensor2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :VibSensor2_Shape ;
+  x3do:DEF "VibSensor2" ;
+  x3do:translation ( -2.2 1.05 1.3 ) .
+:VibSensor2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :VibSensor2 ;
+  x3do:hasAppearance :Appearance_2_6_12_1_1 ;
+  x3do:hasGeometry :Box_2_6_12_1_2 ;
+  x3do:DEF "VibSensor2_Shape" .
+:Appearance_2_6_12_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :VibSensor2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_12_1_1_1 .
+:PhysicalMaterial_2_6_12_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_12_1_1 ;
+  x3do:baseColor ( 0.9 0.9 0.9 ) ;
+  x3do:emissiveColor ( 0.108 0.108 0.108 ) ;
+  x3do:roughness 0.3 ;
+  x3do:metallic 0.1 .
+:Box_2_6_12_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :VibSensor2_Shape ;
+  x3do:size ( 0.08 0.08 0.08 ) .
+:LightCurtain a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :LightCurtain_Shape ;
+  x3do:DEF "LightCurtain" ;
+  x3do:translation ( 3.2 1 0 ) .
+:LightCurtain_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :LightCurtain ;
+  x3do:hasAppearance :Appearance_2_6_13_1_1 ;
+  x3do:hasGeometry :Box_2_6_13_1_2 ;
+  x3do:DEF "LightCurtain_Shape" .
+:Appearance_2_6_13_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :LightCurtain_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_13_1_1_1 .
+:PhysicalMaterial_2_6_13_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_13_1_1 ;
+  x3do:baseColor ( 0.9 0.15 0.15 ) ;
+  x3do:emissiveColor ( 0.108 0.018 0.018 ) ;
+  x3do:roughness 0.3 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.6 .
+:Box_2_6_13_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :LightCurtain_Shape ;
+  x3do:size ( 0.05 2 1.2 ) .
+:SafetyFence a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :SafetyFence_Shape ;
+  x3do:DEF "SafetyFence" ;
+  x3do:translation ( 0 1 3 ) .
+:SafetyFence_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :SafetyFence ;
+  x3do:hasAppearance :Appearance_2_6_14_1_1 ;
+  x3do:hasGeometry :Box_2_6_14_1_2 ;
+  x3do:DEF "SafetyFence_Shape" .
+:Appearance_2_6_14_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :SafetyFence_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_14_1_1_1 .
+:PhysicalMaterial_2_6_14_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_14_1_1 ;
+  x3do:baseColor ( 0.95 0.8 0.1 ) ;
+  x3do:emissiveColor ( 0.114 0.096 0.012 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0.3 ;
+  x3do:transparency 0.5 .
+:Box_2_6_14_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :SafetyFence_Shape ;
+  x3do:size ( 7 2 0.05 ) .
+:ArmClock a owl:NamedIndividual, x3do:TimeSensor ;
+  x3do:hasParent :Root ;
+  x3do:DEF "ArmClock" ;
+  x3do:cycleInterval "6" ;
+  x3do:loop true .
+:ArmSwing a owl:NamedIndividual, x3do:PositionInterpolator ;
+  x3do:hasParent :Root ;
+  x3do:DEF "ArmSwing" ;
+  x3do:key ( 0 0.5 1 ) ;
+  x3do:keyValue ( 0.5 1.3 0 0.4 1.3 0.5 0.5 1.3 0 ) .
+:ROUTE_2_6_17 a owl:NamedIndividual, x3do:ROUTE ;
+  x3do:hasParent :Root ;
+  x3do:fromNode "ArmClock" ;
+  x3do:fromField "fraction_changed" ;
+  x3do:toNode "ArmSwing" ;
+  x3do:toField "set_fraction" .
+:ROUTE_2_6_18 a owl:NamedIndividual, x3do:ROUTE ;
+  x3do:hasParent :Root ;
+  x3do:fromNode "ArmSwing" ;
+  x3do:fromField "value_changed" ;
+  x3do:toNode "Robot1Arm" ;
+  x3do:toField "set_translation" .

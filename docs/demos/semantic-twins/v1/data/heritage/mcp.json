@@ -1,0 +1,406 @@
+{
+ "server": "<checkout>/x3d_mcp/src/server.py",
+ "tools": 54,
+ "runs": {
+  "clean": [
+   {
+    "tool": "scene_to_rdf",
+    "args": {
+     "content": "<4,868 chars, sha256 bbe04d60432f7b27>",
+     "return_mode": "summary"
+    },
+    "wall_ms": 143.6,
+    "reply_sha256": "9a308b7fb634db4adf4122dafb424f682aecb0b9802bdd43cf839f62652dd94f",
+    "reply": {
+     "ok": true,
+     "graph_id": "f77cee50de96a949",
+     "triples": 806,
+     "individuals": 76,
+     "base": "https://example.org/scen/heritage/scene.ttl#",
+     "warnings": []
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<840 chars, sha256 c23653da8599f88b>",
+     "graph_id": "f77cee50de96a949",
+     "data_ttl": "<10,989 chars, sha256 dfb7d108622ddb29>",
+     "include_ontology": false
+    },
+    "wall_ms": 55.6,
+    "reply_sha256": "1de0bb8a17674458e379d9384271a6128ba99c6b7919c817bfc5eb560e62e844",
+    "reply": {
+     "ok": true,
+     "total": 2,
+     "rows": [
+      {
+       "o": ":HallOfRecords",
+       "label": "Hall of Records (Cayce readings)",
+       "grade": "L"
+      },
+      {
+       "o": ":UndergroundLink",
+       "label": "All of it as one connected system",
+       "grade": "S"
+      }
+     ],
+     "error": null,
+     "ms": 52.9
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<875 chars, sha256 463341e7f5a3c531>",
+     "graph_id": "f77cee50de96a949",
+     "data_ttl": "<10,989 chars, sha256 dfb7d108622ddb29>",
+     "include_ontology": false
+    },
+    "wall_ms": 41.4,
+    "reply_sha256": "78eea7ad4cc6ec4705d5be3fd972f9662995d08c98dcfc460dabf65d9b06cc20",
+    "reply": {
+     "ok": true,
+     "total": 1,
+     "rows": [
+      {
+       "feature": "Osiris Shaft",
+       "accounts": "3",
+       "low": "25.0",
+       "high": "41.48",
+       "spread": "16.48"
+      }
+     ],
+     "error": null,
+     "ms": 38.5
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,085 chars, sha256 875786ca3265483f>",
+     "graph_id": "f77cee50de96a949",
+     "data_ttl": "<10,989 chars, sha256 dfb7d108622ddb29>",
+     "include_ontology": false
+    },
+    "wall_ms": 47.0,
+    "reply_sha256": "f6ed13d4e224d3287defd97e970891cbe99ab545491e4f01240a2d3966188c68",
+    "reply": {
+     "ok": true,
+     "total": 5,
+     "rows": [
+      {
+       "o": ":KhufuKingsChamber",
+       "label": "King's Chamber, Great Pyramid",
+       "recorded": "10.47",
+       "drawn": "10.47"
+      },
+      {
+       "o": ":OsirisShaftB",
+       "label": "Osiris Shaft, Shaft B",
+       "recorded": "13.25",
+       "drawn": "13.25"
+      },
+      {
+       "o": ":OsirisChamberB",
+       "label": "Osiris Shaft, Chamber B with six side chambers",
+       "recorded": "6.8",
+       "drawn": "6.8"
+      },
+      {
+       "o": ":OsirisShaftC",
+       "label": "Osiris Shaft, Shaft C",
+       "recorded": "7.5",
+       "drawn": "7.5"
+      },
+      {
+       "o": ":OsirisShaftA",
+       "label": "Osiris Shaft, Shaft A",
+       "recorded": "9.62",
+       "drawn": "9.62"
+      }
+     ],
+     "error": null,
+     "ms": 43.8
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<715 chars, sha256 dd8a8140fb2f7597>",
+     "graph_id": "f77cee50de96a949",
+     "data_ttl": "<10,989 chars, sha256 dfb7d108622ddb29>",
+     "include_ontology": false
+    },
+    "wall_ms": 35.3,
+    "reply_sha256": "71afa3ff643c61bde849fdc84e6eb405a736b94e7453caa9b37247fde7ecf744",
+    "reply": {
+     "ok": true,
+     "total": 6,
+     "rows": [
+      {
+       "o": ":OsirisChamberA",
+       "label": "Osiris Shaft, Chamber A (size schematic)"
+      },
+      {
+       "o": ":OsirisChamberB",
+       "label": "Osiris Shaft, Chamber B with six side chambers"
+      },
+      {
+       "o": ":OsirisShaftA",
+       "label": "Osiris Shaft, Shaft A"
+      },
+      {
+       "o": ":OsirisShaftB",
+       "label": "Osiris Shaft, Shaft B"
+      },
+      {
+       "o": ":OsirisShaftC",
+       "label": "Osiris Shaft, Shaft C"
+      },
+      {
+       "o": ":OsirisLevel3Water",
+       "label": "Osiris Shaft, flooded Level 3"
+      }
+     ],
+     "error": null,
+     "ms": 31.8
+    }
+   },
+   {
+    "tool": "shacl_validate",
+    "args": {
+     "graph_id": "f77cee50de96a949",
+     "shapes": "none",
+     "extra_shapes_ttl": "<1,984 chars, sha256 bf58baa8be45462a>",
+     "data_ttl": "<10,989 chars, sha256 dfb7d108622ddb29>",
+     "return_mode": "full"
+    },
+    "wall_ms": 821.1,
+    "reply_sha256": "d77b728bc580e524876173e3da7190fe68e0e1ac7788e86cdcafa5857a0710bc",
+    "reply": {
+     "ok": true,
+     "conforms": true,
+     "counts": {
+      "Violation": 0,
+      "Warning": 0,
+      "Info": 0
+     },
+     "results": [],
+     "error": null,
+     "ms": 817.6
+    }
+   }
+  ],
+  "fault": [
+   {
+    "tool": "scene_to_rdf",
+    "args": {
+     "content": "<4,863 chars, sha256 37f9505e6f67942f>",
+     "return_mode": "summary"
+    },
+    "wall_ms": 18.8,
+    "reply_sha256": "3ae76885a06ba6b18118ecb2147fe7780d8b63962b89c92ecb574c4b9e82bad7",
+    "reply": {
+     "ok": true,
+     "graph_id": "7f71c2eeda2d6b36",
+     "triples": 806,
+     "individuals": 76,
+     "base": "https://example.org/scen/heritage/scene.ttl#",
+     "warnings": []
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<840 chars, sha256 c23653da8599f88b>",
+     "graph_id": "7f71c2eeda2d6b36",
+     "data_ttl": "<10,738 chars, sha256 f329235b0e8784b6>",
+     "include_ontology": false
+    },
+    "wall_ms": 50.1,
+    "reply_sha256": "59c32725c7e740056ee67ad43cf0de4328e6a028f133f1b1a3a2200c74e290c5",
+    "reply": {
+     "ok": true,
+     "total": 1,
+     "rows": [
+      {
+       "o": ":UndergroundLink",
+       "label": "All of it as one connected system",
+       "grade": "S"
+      }
+     ],
+     "error": null,
+     "ms": 47.1
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<875 chars, sha256 463341e7f5a3c531>",
+     "graph_id": "7f71c2eeda2d6b36",
+     "data_ttl": "<10,738 chars, sha256 f329235b0e8784b6>",
+     "include_ontology": false
+    },
+    "wall_ms": 49.6,
+    "reply_sha256": "92411e24df5c961ca0662bb128caa238dd767ed8b6edbb2a8eb99b71bbef8cfc",
+    "reply": {
+     "ok": true,
+     "total": 1,
+     "rows": [
+      {
+       "feature": "Osiris Shaft",
+       "accounts": "3",
+       "low": "25.0",
+       "high": "41.48",
+       "spread": "16.48"
+      }
+     ],
+     "error": null,
+     "ms": 46.7
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,085 chars, sha256 875786ca3265483f>",
+     "graph_id": "7f71c2eeda2d6b36",
+     "data_ttl": "<10,738 chars, sha256 f329235b0e8784b6>",
+     "include_ontology": false
+    },
+    "wall_ms": 47.1,
+    "reply_sha256": "4cd3a093ab737ae10393c0365bad404305572f8252034f56b8db207a2bff2f73",
+    "reply": {
+     "ok": true,
+     "total": 5,
+     "rows": [
+      {
+       "o": ":KhufuKingsChamber",
+       "label": "King's Chamber, Great Pyramid",
+       "recorded": "10.47",
+       "drawn": "10.47"
+      },
+      {
+       "o": ":OsirisShaftA",
+       "label": "Osiris Shaft, Shaft A",
+       "recorded": "9.62",
+       "drawn": "12"
+      },
+      {
+       "o": ":OsirisShaftB",
+       "label": "Osiris Shaft, Shaft B",
+       "recorded": "13.25",
+       "drawn": "13.25"
+      },
+      {
+       "o": ":OsirisChamberB",
+       "label": "Osiris Shaft, Chamber B with six side chambers",
+       "recorded": "6.8",
+       "drawn": "6.8"
+      },
+      {
+       "o": ":OsirisShaftC",
+       "label": "Osiris Shaft, Shaft C",
+       "recorded": "7.5",
+       "drawn": "7.5"
+      }
+     ],
+     "error": null,
+     "ms": 44.3
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<715 chars, sha256 dd8a8140fb2f7597>",
+     "graph_id": "7f71c2eeda2d6b36",
+     "data_ttl": "<10,738 chars, sha256 f329235b0e8784b6>",
+     "include_ontology": false
+    },
+    "wall_ms": 35.1,
+    "reply_sha256": "7fb20d0fa842397067431292f3daedb75ac276a308f0ad70145f1b8654352efc",
+    "reply": {
+     "ok": true,
+     "total": 6,
+     "rows": [
+      {
+       "o": ":OsirisChamberA",
+       "label": "Osiris Shaft, Chamber A (size schematic)"
+      },
+      {
+       "o": ":OsirisChamberB",
+       "label": "Osiris Shaft, Chamber B with six side chambers"
+      },
+      {
+       "o": ":OsirisShaftA",
+       "label": "Osiris Shaft, Shaft A"
+      },
+      {
+       "o": ":OsirisShaftB",
+       "label": "Osiris Shaft, Shaft B"
+      },
+      {
+       "o": ":OsirisShaftC",
+       "label": "Osiris Shaft, Shaft C"
+      },
+      {
+       "o": ":OsirisLevel3Water",
+       "label": "Osiris Shaft, flooded Level 3"
+      }
+     ],
+     "error": null,
+     "ms": 32.2
+    }
+   },
+   {
+    "tool": "shacl_validate",
+    "args": {
+     "graph_id": "7f71c2eeda2d6b36",
+     "shapes": "none",
+     "extra_shapes_ttl": "<1,984 chars, sha256 bf58baa8be45462a>",
+     "data_ttl": "<10,738 chars, sha256 f329235b0e8784b6>",
+     "return_mode": "full"
+    },
+    "wall_ms": 258.8,
+    "reply_sha256": "0ee88f1c18d976f5f608573a6360b102151b14d976f288c66b845730254ba9ca",
+    "reply": {
+     "ok": true,
+     "conforms": false,
+     "counts": {
+      "Violation": 2,
+      "Warning": 0,
+      "Info": 0
+     },
+     "results": [
+      {
+       "focus": ":HallOfRecords",
+       "def": "HallOfRecords",
+       "node_type": "x3do:Transform",
+       "path": "",
+       "value": ":HallOfRecords",
+       "severity": "Violation",
+       "message": "Drawn element has no attribution with a tier: the picture shows something the record does not vouch for.",
+       "shape": "https://example.org/scen/twin#S_H1",
+       "check_id": "//example.org/scen/twin#S_H1",
+       "fix_hint": null
+      },
+      {
+       "focus": "https://example.org/scen/heritage/record#dimShaftA",
+       "def": null,
+       "node_type": null,
+       "path": "",
+       "value": "12",
+       "severity": "Violation",
+       "message": "The drawn size differs from the documented measurement by more than 5 %.",
+       "shape": "https://example.org/scen/twin#S_H2",
+       "check_id": "//example.org/scen/twin#S_H2",
+       "fix_hint": null
+      }
+     ],
+     "error": null,
+     "ms": 254.9
+    }
+   }
+  ]
+ }
+}

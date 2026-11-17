@@ -1,0 +1,381 @@
+{
+ "server": "<checkout>/x3d_mcp/src/server.py",
+ "tools": 54,
+ "runs": {
+  "clean": [
+   {
+    "tool": "scene_to_rdf",
+    "args": {
+     "content": "<5,616 chars, sha256 481cdbe4b5070dca>",
+     "return_mode": "summary"
+    },
+    "wall_ms": 57.5,
+    "reply_sha256": "eaa0a3f638fdcd5f8a386ce1abfbb727b70bafe8662a963e039961f6fbc58315",
+    "reply": {
+     "ok": true,
+     "graph_id": "00c48b5d2d18e1a6",
+     "triples": 978,
+     "individuals": 95,
+     "base": "https://example.org/scen/city/scene.ttl#",
+     "warnings": []
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,657 chars, sha256 c5b9c07804fe3ffc>",
+     "graph_id": "00c48b5d2d18e1a6",
+     "data_ttl": "<5,728 chars, sha256 5f9cde03333161ce>",
+     "include_ontology": false
+    },
+    "wall_ms": 109.8,
+    "reply_sha256": "7b2f1d60e44ba08d8d6e1240e33f7e2705ce3973bb9a005491730859b4468f64",
+    "reply": {
+     "ok": true,
+     "total": 1,
+     "rows": [
+      {
+       "o": ":Tower5",
+       "building": "Tower 5",
+       "height": "36",
+       "shadow": "74.2716"
+      }
+     ],
+     "error": null,
+     "ms": 106.1
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,265 chars, sha256 dbe3b6be15d96fbc>",
+     "graph_id": "00c48b5d2d18e1a6",
+     "data_ttl": "<5,728 chars, sha256 5f9cde03333161ce>",
+     "include_ontology": false
+    },
+    "wall_ms": 69.6,
+    "reply_sha256": "96b181274a4f0c95d9d4cfc40b732b19407b4fc6a4b5bb2258f8036f43a61eeb",
+    "reply": {
+     "ok": true,
+     "total": 2,
+     "rows": [
+      {
+       "o": ":Bldg3",
+       "building": "Building 3"
+      },
+      {
+       "o": ":Bldg6",
+       "building": "Building 6"
+      }
+     ],
+     "error": null,
+     "ms": 66.6
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,075 chars, sha256 b2bf23786f5ec647>",
+     "graph_id": "00c48b5d2d18e1a6",
+     "data_ttl": "<5,728 chars, sha256 5f9cde03333161ce>",
+     "include_ontology": false
+    },
+    "wall_ms": 63.5,
+    "reply_sha256": "59569c73864f9bdc34419c2e0ddcc07c0a424881b68963866d3ae489c031118e",
+    "reply": {
+     "ok": true,
+     "total": 3,
+     "rows": [
+      {
+       "o": ":Bldg1",
+       "building": "Building 1"
+      },
+      {
+       "o": ":Bldg2",
+       "building": "Building 2"
+      },
+      {
+       "o": ":Bldg4",
+       "building": "Building 4"
+      }
+     ],
+     "error": null,
+     "ms": 60.2
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<711 chars, sha256 7317b552dc95e972>",
+     "graph_id": "00c48b5d2d18e1a6",
+     "data_ttl": "<5,728 chars, sha256 5f9cde03333161ce>",
+     "include_ontology": false
+    },
+    "wall_ms": 28.9,
+    "reply_sha256": "1016248611b60d78c637246e124e9d1db9d0b234b95d03081e3942fec5989b9d",
+    "reply": {
+     "ok": true,
+     "total": 6,
+     "rows": [
+      {
+       "o": ":Bldg1",
+       "building": "Building 1",
+       "district": "Commercial district C4-7"
+      },
+      {
+       "o": ":Bldg2",
+       "building": "Building 2",
+       "district": "Residential district R6"
+      },
+      {
+       "o": ":Bldg3",
+       "building": "Building 3",
+       "district": "Commercial district C4-7"
+      },
+      {
+       "o": ":Bldg4",
+       "building": "Building 4",
+       "district": "Residential district R6"
+      },
+      {
+       "o": ":Bldg6",
+       "building": "Building 6",
+       "district": "Residential district R6"
+      },
+      {
+       "o": ":Tower5",
+       "building": "Tower 5",
+       "district": "Commercial district C4-7"
+      }
+     ],
+     "error": null,
+     "ms": 26.4
+    }
+   },
+   {
+    "tool": "shacl_validate",
+    "args": {
+     "graph_id": "00c48b5d2d18e1a6",
+     "shapes": "none",
+     "extra_shapes_ttl": "<2,867 chars, sha256 401043a3dac4871b>",
+     "data_ttl": "<5,728 chars, sha256 5f9cde03333161ce>",
+     "return_mode": "full"
+    },
+    "wall_ms": 306.0,
+    "reply_sha256": "25aa25231cf48ab8aaa26ae62a4332615c3c44c9666edaa45a197aa1ae790f5f",
+    "reply": {
+     "ok": true,
+     "conforms": true,
+     "counts": {
+      "Violation": 0,
+      "Warning": 0,
+      "Info": 0
+     },
+     "results": [],
+     "error": null,
+     "ms": 302.5
+    }
+   }
+  ],
+  "fault": [
+   {
+    "tool": "scene_to_rdf",
+    "args": {
+     "content": "<5,616 chars, sha256 b724b6f70c200a18>",
+     "return_mode": "summary"
+    },
+    "wall_ms": 33.9,
+    "reply_sha256": "a7dd2a809c0ad7b11a7aee8b24ce082762598c937622e107775e75cb2b97c7cd",
+    "reply": {
+     "ok": true,
+     "graph_id": "677a7602794fc861",
+     "triples": 978,
+     "individuals": 95,
+     "base": "https://example.org/scen/city/scene.ttl#",
+     "warnings": []
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,657 chars, sha256 c5b9c07804fe3ffc>",
+     "graph_id": "677a7602794fc861",
+     "data_ttl": "<5,728 chars, sha256 5f9cde03333161ce>",
+     "include_ontology": false
+    },
+    "wall_ms": 107.8,
+    "reply_sha256": "d38512d48b5494ad1ed15e6f1ca3077c3cd4fee8e1f0bfc99c544f6725aa043c",
+    "reply": {
+     "ok": true,
+     "total": 1,
+     "rows": [
+      {
+       "o": ":Tower5",
+       "building": "Tower 5",
+       "height": "48",
+       "shadow": "99.0288"
+      }
+     ],
+     "error": null,
+     "ms": 104.5
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,265 chars, sha256 dbe3b6be15d96fbc>",
+     "graph_id": "677a7602794fc861",
+     "data_ttl": "<5,728 chars, sha256 5f9cde03333161ce>",
+     "include_ontology": false
+    },
+    "wall_ms": 71.5,
+    "reply_sha256": "358ab1cb946d3cc87e3ae97bbf03bcd02abe2ac7e703724b2cdd320643408fa3",
+    "reply": {
+     "ok": true,
+     "total": 2,
+     "rows": [
+      {
+       "o": ":Bldg3",
+       "building": "Building 3"
+      },
+      {
+       "o": ":Bldg6",
+       "building": "Building 6"
+      }
+     ],
+     "error": null,
+     "ms": 68.2
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,075 chars, sha256 b2bf23786f5ec647>",
+     "graph_id": "677a7602794fc861",
+     "data_ttl": "<5,728 chars, sha256 5f9cde03333161ce>",
+     "include_ontology": false
+    },
+    "wall_ms": 70.4,
+    "reply_sha256": "2deb01d76c1dac13d324c140dd73282f6d00d6b63a6b9a94792d1bceec12e2b2",
+    "reply": {
+     "ok": true,
+     "total": 3,
+     "rows": [
+      {
+       "o": ":Bldg1",
+       "building": "Building 1"
+      },
+      {
+       "o": ":Bldg2",
+       "building": "Building 2"
+      },
+      {
+       "o": ":Bldg4",
+       "building": "Building 4"
+      }
+     ],
+     "error": null,
+     "ms": 67.0
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<711 chars, sha256 7317b552dc95e972>",
+     "graph_id": "677a7602794fc861",
+     "data_ttl": "<5,728 chars, sha256 5f9cde03333161ce>",
+     "include_ontology": false
+    },
+    "wall_ms": 35.5,
+    "reply_sha256": "c82014b81ceac076c5a36b489d301eb5f43aa528ce7d5d972e06cf6377882401",
+    "reply": {
+     "ok": true,
+     "total": 6,
+     "rows": [
+      {
+       "o": ":Bldg1",
+       "building": "Building 1",
+       "district": "Commercial district C4-7"
+      },
+      {
+       "o": ":Bldg2",
+       "building": "Building 2",
+       "district": "Residential district R6"
+      },
+      {
+       "o": ":Bldg3",
+       "building": "Building 3",
+       "district": "Commercial district C4-7"
+      },
+      {
+       "o": ":Bldg4",
+       "building": "Building 4",
+       "district": "Residential district R6"
+      },
+      {
+       "o": ":Bldg6",
+       "building": "Building 6",
+       "district": "Residential district R6"
+      },
+      {
+       "o": ":Tower5",
+       "building": "Tower 5",
+       "district": "Commercial district C4-7"
+      }
+     ],
+     "error": null,
+     "ms": 32.4
+    }
+   },
+   {
+    "tool": "shacl_validate",
+    "args": {
+     "graph_id": "677a7602794fc861",
+     "shapes": "none",
+     "extra_shapes_ttl": "<2,867 chars, sha256 401043a3dac4871b>",
+     "data_ttl": "<5,728 chars, sha256 5f9cde03333161ce>",
+     "return_mode": "full"
+    },
+    "wall_ms": 511.4,
+    "reply_sha256": "38c15ae0664abb347bd1c43ea7ca91691945c851dc22fc4fcf974773771730d2",
+    "reply": {
+     "ok": true,
+     "conforms": false,
+     "counts": {
+      "Violation": 2,
+      "Warning": 0,
+      "Info": 0
+     },
+     "results": [
+      {
+       "focus": "https://example.org/scen/city/record#Tower5",
+       "def": null,
+       "node_type": null,
+       "path": "",
+       "value": "48",
+       "severity": "Violation",
+       "message": "The drawn building is taller than its zoning district allows.",
+       "shape": "https://example.org/scen/twin#S_C1",
+       "check_id": "//example.org/scen/twin#S_C1",
+       "fix_hint": null
+      },
+      {
+       "focus": "https://example.org/scen/city/record#Bldg2",
+       "def": null,
+       "node_type": null,
+       "path": "",
+       "value": ":Parcel2",
+       "severity": "Violation",
+       "message": "The drawn building does not fit inside its parcel.",
+       "shape": "https://example.org/scen/twin#S_C2",
+       "check_id": "//example.org/scen/twin#S_C2",
+       "fix_hint": null
+      }
+     ],
+     "error": null,
+     "ms": 508.6
+    }
+   }
+  ]
+ }
+}
