@@ -2,6 +2,11 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v28 (2026-11-17)
+- Demo 35, Nine twins that answer questions and catch planted faults, gets a version 2 link: evidence badges on every answer (`docs/demos/semantic-twins/v2/`, x3d.demo PR 44). A new version of Demo 35, not a new demo: the number stays 35 and the card keeps its v1 link. The card quotes the state counts from PR 44's description. No new picture; the snapshot `docs/versions/v28/index.html` is a copy of the new front page. No demo and no earlier version is touched; v1 to v27 unchanged.
+- The card points at a path that arrives with PR 44; merge PR 44 before, or with, this one.
+- Checked in headless Chromium: the front page lays out at 1280 and 390 px with no horizontal scroll.
+
 ## v27 (2026-11-17)
 - Demo 34, Semantic Twin Lab, gets a version 2 link set: the Evidence Edition (`docs/demos/ontology-lab/v2/`: `index.html`, `workbench.html`, `ONTOLOGY-FIELD-GUIDE.html`), added in x3d.demo PR 42. It is a new version of Demo 34, not a new demo, so the number stays 34 and the card keeps its v1 link. The card text names the three additions (witness workbench, field guide with a second-engine re-measurement, study audit). No new card picture; the snapshot `docs/versions/v27/index.html` is a copy of the new front page. No demo and no earlier version is touched; v1 to v26 unchanged.
 - The card points at v2 paths that arrive with PR 42; merge PR 42 before, or with, this one.
