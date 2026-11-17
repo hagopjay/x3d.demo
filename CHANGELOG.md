@@ -2,6 +2,11 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v27 (2026-11-17)
+- Demo 34, Semantic Twin Lab, gets a version 2 link set: the Evidence Edition (`docs/demos/ontology-lab/v2/`: `index.html`, `workbench.html`, `ONTOLOGY-FIELD-GUIDE.html`), added in x3d.demo PR 42. It is a new version of Demo 34, not a new demo, so the number stays 34 and the card keeps its v1 link. The card text names the three additions (witness workbench, field guide with a second-engine re-measurement, study audit). No new card picture; the snapshot `docs/versions/v27/index.html` is a copy of the new front page. No demo and no earlier version is touched; v1 to v26 unchanged.
+- The card points at v2 paths that arrive with PR 42; merge PR 42 before, or with, this one.
+- Checked in headless Chromium: the front page lays out at 1280 and 390 px with no horizontal scroll.
+
 ## Unnumbered, Giza v2: below the surface and up to the stars (2026-11-16)
 - New demo `docs/demos/giza-osiris-hall/v2/`, a second version of the Giza study (v1, `docs/demos/giza-osiris-hall/v1/`, is untouched and still works). No front-page card and no doc version: the site owner numbers the front page (the Giza v1 entry below was labelled v20 before numbering moved), so this is offered, not shelved.
 - What is new: real Blender Cycles light baked into vertex colour for sunrise, midday and afternoon (192 samples, receipts in `states.json`, script fingerprint in the file); the star catalogue from the x3d-blender-io demo page rotated into place with a precession scrub from 13,000 BC to 2100 AD, Orion's Belt, Leo and the Orion Correlation overlay; a walkable imagined Hall of Records interior, labelled speculative; Khufu's interior drawn from the survey record; three translucent glass lenses on toggle buttons (Technical, Wonder, Contested, plus the Ledger) where each Contested card is told as claim, then evidence.
