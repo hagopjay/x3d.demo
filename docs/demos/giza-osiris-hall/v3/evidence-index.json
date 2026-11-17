@@ -1,0 +1,725 @@
+{
+  "schema": "giza-evidence-index/v1",
+  "checked_at": "2026-11-16",
+  "scope": {
+    "topic_tier": "Applies to the selected study topic, not every simultaneously visible object.",
+    "source_access": "Original opened flags and grades are historical statements from the supplied research pass. Only newly_verified_sources were selectively checked in this enhancement.",
+    "field_verification": "No field survey, excavation or geophysical experiment was performed.",
+    "model_reconstruction": "Documented subject and documented dimensions do not imply that all geometry is surveyed."
+  },
+  "grade_semantics": {
+    "Confirmed": "In the supplied cards, the source was opened and read. This is not archaeological confirmation of every proposition.",
+    "Likely": "In the supplied cards, consistent across sources or computed from such inputs.",
+    "Suspected": "In the supplied cards, a summary or recollection.",
+    "hud_policy": "Use the archaeological tier and geometry_status independently; do not turn the legacy grade into a probability or a truth badge."
+  },
+  "tiers": {
+    "documented": "The named feature or specific measurement has a documented basis; model assumptions still apply.",
+    "theorized": "An interpretation of observations, not a directly established chamber or connection.",
+    "speculative": "A narrative or unverified claim visualized as an explicit what-if.",
+    "mixed": "The view combines observed subjects, calculations, schematic placement or separate evidence tiers."
+  },
+  "input": {
+    "content_file": "content.json",
+    "content_sha256": "44176227bb1a339ad4c72721d2757b61095977849c1505aa48be114cfced883d",
+    "tour_file": "tour.json",
+    "tour_sha256_at_index_build": "be275bb627b5cf0102783f518201f4a81a9c6165e7818e19d6ca012bea0b5a60",
+    "notice_file": "BASELINE-NOTICE-v2.md",
+    "notice_sha256_at_index_build": "abd5716ce8bc829aad5cd904becb2fab0e9c5be049742bb5a2a43438116425c2"
+  },
+  "asset_counts": {
+    "field_stars": 978,
+    "named_stars": 40,
+    "epoch_samples": 152,
+    "epoch_min": -13000,
+    "epoch_max": 2100
+  },
+  "recorded_counts": {
+    "cards": 75,
+    "lenses": {
+      "wonder": 21,
+      "contested": 22,
+      "technical": 32
+    },
+    "grades": {
+      "Likely": 41,
+      "Confirmed": 33,
+      "Suspected": 1
+    },
+    "distinct_source_urls": 128,
+    "marked_opened_in_supplied_study": 125,
+    "all_source_links_reopened_in_this_enhancement": false
+  },
+  "unknown_view": {
+    "title": "Model study context",
+    "tier": "mixed",
+    "geometry_status": "Consult the claim ledger for the selected object",
+    "limitations": [
+      "This camera view has no specific evidence entry. Do not infer survey accuracy from the image."
+    ],
+    "source_card_ids": [],
+    "source_urls": [],
+    "newly_verified_sources": []
+  },
+  "newly_verified_sources": {
+    "hawass2007": {
+      "title": "The Discovery of the Osiris Shaft at Giza",
+      "author": "Zahi Hawass",
+      "year": 2007,
+      "url": "https://d1g9lvwdq3dcse.cloudfront.net/images/MFA-images/Giza/GizaImage/full/library/hawass_fs_oconnor.pdf",
+      "catalogue_url": "https://giza.fas.harvard.edu/pubdocs/476/full/",
+      "kind": "primary excavation publication",
+      "checked": "2026-11-16",
+      "checked_scope": "Bibliographic record, architectural dimensions and Fig. 2 section inspected. Not a new field survey."
+    },
+    "muon2017": {
+      "title": "Discovery of a big void in Khufu’s Pyramid by observation of cosmic-ray muons",
+      "year": 2017,
+      "url": "https://doi.org/10.1038/nature24647",
+      "open_version": "https://arxiv.org/abs/1711.01576",
+      "kind": "primary research paper",
+      "checked": "2026-11-16",
+      "checked_scope": "Abstract and publication metadata checked: minimum 30 m extent above the Grand Gallery; purpose remains undetermined by that measurement."
+    },
+    "corridor2023": {
+      "title": "Precise characterization of a corridor-shaped structure in Khufu’s Pyramid by observation of cosmic-ray muons",
+      "year": 2023,
+      "url": "https://doi.org/10.1038/s41467-023-36351-0",
+      "open_version": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9981702/",
+      "kind": "primary research paper",
+      "checked": "2026-11-16",
+      "checked_scope": "Publication metadata and abstract checked; detailed publisher retrieval was intermittent. Distinct from the 2017 Big Void."
+    },
+    "corridor_official2023": {
+      "title": "Tourism ministry unveils discovery of new corridor inside Khufu pyramid",
+      "year": 2023,
+      "url": "https://sis.gov.eg/en/media-center/news/tourism-min-unveils-discovery-of-new-corridor-inside-khufu-pyramid/",
+      "kind": "Egypt State Information Service announcement",
+      "checked": "2026-11-16",
+      "checked_scope": "Official 2 March 2023 announcement reports a corridor approximately 9 m long and 2.1 m wide."
+    },
+    "khafre_statement2025": {
+      "title": "No discoveries were made beneath Pyramid of Khafre",
+      "year": 2025,
+      "url": "https://english.ahram.org.eg/newscontentp/9/543433/antiquities/no-discoveries-were-made-beneath-pyramid-of-khafre.aspx",
+      "kind": "reported archaeological authority statement",
+      "checked": "2026-11-16",
+      "checked_scope": "Hawass’s rejection and lack of authorization are reported here. This is not an independent subsurface survey."
+    },
+    "retraction2026": {
+      "title": "Retraction of Biondi and Malanga Remote Sensing 2022 article",
+      "year": 2026,
+      "url": "https://www.mdpi.com/2072-4292/18/16/2679",
+      "doi": "10.3390/rs18162679",
+      "kind": "official publisher retraction notice",
+      "checked": "2026-11-16",
+      "checked_scope": "Notice dated 10 August 2026 identifies methodological flaws and statistical errors; authors disagree. It concerns the 2022 Khufu article, not a field test of the separate Khafre claim."
+    }
+  },
+  "views": {
+    "V_Overview": {
+      "title": "Giza plateau and its separate evidence layers",
+      "tier": "mixed",
+      "geometry_status": "Schematic landscape with separately classified overlays",
+      "limitations": [
+        "Above-ground placement uses rounded published coordinates, not a precision survey.",
+        "Underground plan locations, orientations and connective links are illustrative.",
+        "A documented monument does not make every displayed interior or nearby conjecture documented."
+      ],
+      "source_card_ids": [
+        "one-fifth-of-a-pyramid",
+        "suppression-narrative",
+        "cayce-radiocarbon-test",
+        "deep-time-gaps",
+        "gobekli-tepe-scale",
+        "younger-dryas-comet",
+        "gobekli-pillar-43",
+        "alvarez-phantom-chamber",
+        "khufu-khafre-dimensions",
+        "giza-geology",
+        "merer-papyri",
+        "tallest-structure",
+        "base-area-pace",
+        "sphinx-causeway",
+        "workers-town",
+        "aliens-trope",
+        "m-validation"
+      ],
+      "source_urls": [
+        "https://d1g9lvwdq3dcse.cloudfront.net/images/MFA-images/Giza/GizaImage/full/library/hawass_fs_oconnor.pdf",
+        "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza",
+        "https://archive.org/stream/themessageofthesphinx.aquestforthehiddenlegacyofmankindbygrahamhancockrobertbauval/The%20Message%20of%20the%20Sphinx.%20A%20Quest%20for%20the%20Hidden%20Legacy%20of%20Mankind%20by%20Graham%20Hancock%2C%20Robert%20Bauval_djvu.txt",
+        "https://www.pbs.org/wgbh/nova/pyramid/mail/responses970210.html",
+        "https://aeraweb.org/wp-content/uploads/2026/05/AERAgram25_1-2.pdf",
+        "https://www.ldolphin.org/egypt/sphinx.html",
+        "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A967302ADD527BFEB9226457682C0B4A/S0033822200038558a.pdf/radiocarbon-dates-of-old-and-middle-kingdom-monuments-in-egypt.pdf",
+        "https://www.cambridge.org/core/journals/radiocarbon/article/reanalysis-of-the-chronological-discrepancies-obtained-by-the-old-and-middle-kingdom-monuments-project/70C1DD44D297BC29CD82A59692A235A1",
+        "https://en.wikipedia.org/wiki/Cleopatra",
+        "https://en.wikipedia.org/wiki/Apollo_11",
+        "https://en.wikipedia.org/wiki/Fourth_Dynasty_of_Egypt",
+        "https://zenodo.org/records/581724/files/6_7_8_Matters%20Arising.pdf",
+        "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A1AA4FB20657599F859860D94CCD090E/S0003598X00047840a.pdf/role_of_cult_and_feasting_in_the_emergence_of_neolithic_communities_new_evidence_from_gobekli_tepe_southeastern_turkey.pdf",
+        "https://en.wikipedia.org/wiki/G%C3%B6bekli_Tepe",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1073/pnas.0706977104&resultType=core&format=json",
+        "https://www.unm.edu/~mbeb/Publications/Boslough_2012_arguments_evidence_YDBS.pdf",
+        "https://pure.royalholloway.ac.uk/en/publications/comprehensive-refutation-of-the-younger-dryas-impact-hypothesis-y",
+        "https://www.research.ed.ac.uk/en/publications/rebuttal-of-holliday-et-als-comprehensive-gish-gallop-of-the-youn/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC3740870",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12445550",
+        "https://en.wikipedia.org/wiki/Younger_Dryas_impact_hypothesis",
+        "https://en.wikipedia.org/wiki/Younger_Dryas",
+        "https://bpb-us-e1.wpmucdn.com/sites.mit.edu/dist/9/2055/files/2025/08/AlvarezPyramids.pdf",
+        "https://en.wikipedia.org/wiki/Pyramid_of_Khafre",
+        "https://arxiv.org/pdf/1711.01576",
+        "https://www.rombergintegrali.org/gizapiramitleri/Pyramids_and_Temples_of_Gizeh/c6.html",
+        "https://www.rombergintegrali.org/gizapiramitleri/Pyramids_and_Temples_of_Gizeh/c8.html",
+        "https://en.wikipedia.org/wiki/Giza_pyramid_complex",
+        "https://encyclopedia.com/humanities/culture-magazines/fourth-dynasty-architecture-and-history",
+        "https://nautil.us/travels-in-geology-the-pyramids-of-giza-237415",
+        "https://aeraweb.org/geology-of-the-sphinx/",
+        "https://www.orient-mediterranee.com/wp-content/uploads/2022/04/1705_tallet.pdf",
+        "https://en.wikipedia.org/wiki/Diary_of_Merer",
+        "https://en.wikipedia.org/wiki/Old_St_Paul%27s_Cathedral",
+        "https://en.wikipedia.org/wiki/Lincoln_Cathedral",
+        "https://en.wikipedia.org/wiki/Football_pitch",
+        "http://www.egyptian-architecture.com/JAEA4/article27/JAEA4_Burgos_Laroze.pdf",
+        "https://en.wikipedia.org/wiki/Great_Sphinx_of_Giza",
+        "https://aeraweb.org/projects/sphinx/",
+        "https://www.smithsonianmag.com/history/uncovering-secrets-of-the-sphinx-5053442",
+        "https://www.aeraweb.org/lost-city/",
+        "https://phys.org/news/2010-01-egypt-slaves-didnt-pyramids.pdf",
+        "https://en.wikipedia.org/wiki/Ancient_astronauts",
+        "https://en.wikipedia.org/wiki/Egyptian_pyramid_construction_techniques",
+        "validation.json"
+      ],
+      "source_view": "V_Overview",
+      "newly_verified_sources": []
+    },
+    "V_Sunrise": {
+      "title": "The Sphinx and an eastward sightline",
+      "tier": "mixed",
+      "geometry_status": "Schematic monument and idealized sky illustration",
+      "limitations": [
+        "The baked sunrise light state has solar elevation +7 degrees; it is an artistic morning state, not a computed instant of sunrise.",
+        "Local sidereal time is not civil clock time or a universal dawn time.",
+        "Refraction, terrain horizon and a calendar-to-Sun model are not supplied by the original sky controls."
+      ],
+      "source_card_ids": [
+        "passage-found-by-memory",
+        "sphinx-erosion-mechanisms",
+        "sphinx-older-than-pharaohs",
+        "leo-first-time-10500",
+        "m-light",
+        "sphinx-sunrise"
+      ],
+      "source_urls": [
+        "https://www.pbs.org/wgbh/nova/pyramid/mail/responses970210.html",
+        "https://archive.org/stream/themessageofthesphinx.aquestforthehiddenlegacyofmankindbygrahamhancockrobertbauval/The%20Message%20of%20the%20Sphinx.%20A%20Quest%20for%20the%20Hidden%20Legacy%20of%20Mankind%20by%20Graham%20Hancock%2C%20Robert%20Bauval_djvu.txt",
+        "https://en.wikipedia.org/wiki/Great_Sphinx_of_Giza",
+        "https://en.wikipedia.org/wiki/Sphinx_water_erosion_hypothesis",
+        "https://hallofmaat.com/?p=435",
+        "https://api.crossref.org/works?query.bibliographic=Reader+geomorphological+study+Giza+Necropolis+Archaeometry+2001&rows=2&select=DOI,title,abstract,author,container-title,volume,issue,page,issued",
+        "https://the-past.com/review/books/rewriting-the-history-of-the-great-sphinx/",
+        "https://grahamhancock.com/?p=5277",
+        "https://en.wikipedia.org/wiki/Orion_correlation_theory",
+        "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A967302ADD527BFEB9226457682C0B4A/S0033822200038558a.pdf/radiocarbon-dates-of-old-and-middle-kingdom-monuments-in-egypt.pdf",
+        "https://en.wikipedia.org/wiki/Khufu",
+        "https://en.wikipedia.org/wiki/Regulus",
+        "https://en.wikipedia.org/wiki/Denebola",
+        "https://en.wikipedia.org/wiki/Spica",
+        "states.json",
+        "build/bake.py"
+      ],
+      "source_view": "V_Sunrise",
+      "newly_verified_sources": []
+    },
+    "V_Osiris": {
+      "title": "Osiris Shaft architectural study",
+      "tier": "documented",
+      "geometry_status": "Published dimensions with schematic underground placement",
+      "limitations": [
+        "Every underground plan position and chamber compass orientation is illustrative.",
+        "The three shaft drops sum to 30.37 m; section-datum depth is a separate quantity.",
+        "Some chamber heights and side-chamber shapes are drawn assumptions; see the claim ledger."
+      ],
+      "source_card_ids": [
+        "three-levels-architecture",
+        "level3-island-chamber",
+        "level2-sarcophagi",
+        "discovery-timeline",
+        "dating-layers",
+        "time-layers",
+        "swimming-hole",
+        "tomb-of-osiris",
+        "secret-tunnels",
+        "rostau-water-road",
+        "unopened-sarcophagus"
+      ],
+      "source_urls": [
+        "https://d1g9lvwdq3dcse.cloudfront.net/images/MFA-images/Giza/GizaImage/full/library/hawass_fs_oconnor.pdf",
+        "https://giza.fas.harvard.edu/pubdocs/476/full/",
+        "https://scholarworks.umt.edu/etd/11693",
+        "https://gizapyramids.org/static/pdf%20library/hassan_giza_5.pdf",
+        "https://archive.archaeology.org/0009/abstracts/crypt.html",
+        "https://www.deseret.com/2000/2/16/19491254/3-000-year-old-sarcophagus-is-found-at-giza-pyramids",
+        "https://en.wikipedia.org/wiki/Sixth_Dynasty_of_Egypt",
+        "https://en.wikisource.org/wiki/The_History_of_Herodotus_(Rawlinson)/Book_2",
+        "https://archive.org/stream/themessageofthesphinx.aquestforthehiddenlegacyofmankindbygrahamhancockrobertbauval/The%20Message%20of%20the%20Sphinx.%20A%20Quest%20for%20the%20Hidden%20Legacy%20of%20Mankind%20by%20Graham%20Hancock%2C%20Robert%20Bauval_djvu.txt",
+        "https://praylu.blogspot.com/2007/02/tomb-of-osiris-part-1.html",
+        "https://www.ancient-origins.net/node/10702"
+      ],
+      "source_view": "V_Osiris",
+      "newly_verified_sources": [
+        "hawass2007"
+      ]
+    },
+    "V_ChamberB": {
+      "title": "Inside the documented Chamber B study",
+      "tier": "documented",
+      "geometry_status": "Published main-chamber size; simplified surroundings",
+      "limitations": [
+        "The main chamber uses reported dimensions; equal side-chamber boxes are simplifications.",
+        "The drawing does not reproduce surveyed wall irregularities or a measured material surface.",
+        "Plan position and compass orientation remain schematic."
+      ],
+      "source_card_ids": [
+        "three-levels-architecture",
+        "level3-island-chamber",
+        "level2-sarcophagi",
+        "discovery-timeline",
+        "dating-layers",
+        "time-layers",
+        "swimming-hole",
+        "tomb-of-osiris",
+        "secret-tunnels",
+        "rostau-water-road",
+        "unopened-sarcophagus"
+      ],
+      "source_urls": [
+        "https://d1g9lvwdq3dcse.cloudfront.net/images/MFA-images/Giza/GizaImage/full/library/hawass_fs_oconnor.pdf",
+        "https://giza.fas.harvard.edu/pubdocs/476/full/",
+        "https://scholarworks.umt.edu/etd/11693",
+        "https://gizapyramids.org/static/pdf%20library/hassan_giza_5.pdf",
+        "https://archive.archaeology.org/0009/abstracts/crypt.html",
+        "https://www.deseret.com/2000/2/16/19491254/3-000-year-old-sarcophagus-is-found-at-giza-pyramids",
+        "https://en.wikipedia.org/wiki/Sixth_Dynasty_of_Egypt",
+        "https://en.wikisource.org/wiki/The_History_of_Herodotus_(Rawlinson)/Book_2",
+        "https://archive.org/stream/themessageofthesphinx.aquestforthehiddenlegacyofmankindbygrahamhancockrobertbauval/The%20Message%20of%20the%20Sphinx.%20A%20Quest%20for%20the%20Hidden%20Legacy%20of%20Mankind%20by%20Graham%20Hancock%2C%20Robert%20Bauval_djvu.txt",
+        "https://praylu.blogspot.com/2007/02/tomb-of-osiris-part-1.html",
+        "https://www.ancient-origins.net/node/10702"
+      ],
+      "source_view": "V_Osiris",
+      "newly_verified_sources": [
+        "hawass2007"
+      ]
+    },
+    "V_Depth": {
+      "title": "Shaft drops and the section datum",
+      "tier": "documented",
+      "geometry_status": "Comparative ruler with explicitly different depth quantities",
+      "limitations": [
+        "30.37 m is 9.62 + 13.25 + 7.50 m, a sum of shaft drops.",
+        "The supplied 35.45 m label refers to the published section datum; do not present these as rival measurements of one datum.",
+        "The unsourced 41.48 m figure is a reported claim, not the model’s measured baseline."
+      ],
+      "source_card_ids": [
+        "depth-reconciliation",
+        "water-and-access"
+      ],
+      "source_urls": [
+        "https://d1g9lvwdq3dcse.cloudfront.net/images/MFA-images/Giza/GizaImage/full/library/hawass_fs_oconnor.pdf",
+        "https://gizapyramids.org/static/pdf%20library/hassan_giza_5.pdf",
+        "https://www.deseret.com/2000/2/16/19491254/3-000-year-old-sarcophagus-is-found-at-giza-pyramids",
+        "https://praylu.blogspot.com/2007/02/tomb-of-osiris-part-1.html"
+      ],
+      "source_view": "V_Depth",
+      "newly_verified_sources": [
+        "hawass2007"
+      ]
+    },
+    "V_Anomaly": {
+      "title": "The seismic-anomaly interpretation",
+      "tier": "theorized",
+      "geometry_status": "Illustrative box for a reported geophysical interpretation",
+      "limitations": [
+        "A geophysical anomaly is not by itself an excavated chamber.",
+        "The box thickness and exact location are modeling assumptions.",
+        "Do not identify the anomaly with a Hall of Records or a connected tunnel system."
+      ],
+      "source_card_ids": [
+        "dobecki-schoch-1992-paper",
+        "sri-1977-78-surveys",
+        "waseda-1987-hind-paws",
+        "sphinx-openings-documented",
+        "gpr-2018-2019-rsvp",
+        "scale-of-the-search",
+        "nine-by-twelve-anomaly",
+        "one-system"
+      ],
+      "source_urls": [
+        "https://api.crossref.org/works/10.1002/gea.3340070603",
+        "https://www.hallofmaat.com/?p=3243",
+        "https://thebestofhabibi.net/vol-14-no-2-spring-1995/sphinx/",
+        "https://www.ldolphin.org/egypt/sphinx.html",
+        "https://www.pbs.org/wgbh/nova/pyramid/mail/responses970210.html",
+        "https://archive.org/stream/themessageofthesphinx.aquestforthehiddenlegacyofmankindbygrahamhancockrobertbauval/The%20Message%20of%20the%20Sphinx.%20A%20Quest%20for%20the%20Hidden%20Legacy%20of%20Mankind%20by%20Graham%20Hancock%2C%20Robert%20Bauval_djvu.txt",
+        "https://en.wikipedia.org/wiki/Great_Sphinx_of_Giza",
+        "https://www.smithsonianmag.com/history/the-secrets-of-the-sphinx-5053442/",
+        "https://aeraweb.org/wp-content/uploads/2026/05/AERAgram25_1-2.pdf",
+        "https://aeraweb.org/projects/sphinx/",
+        "https://geoexpro.com/the-great-sphinx-of-egypt-natures-shabby-chic-trick/",
+        "https://en.wikisource.org/wiki/The_History_of_Herodotus_(Rawlinson)/Book_2",
+        "https://d1g9lvwdq3dcse.cloudfront.net/images/MFA-images/Giza/GizaImage/full/library/hawass_fs_oconnor.pdf"
+      ],
+      "source_view": "V_Anomaly",
+      "newly_verified_sources": []
+    },
+    "V_Hall": {
+      "title": "Cayce’s imagined Hall of Records",
+      "tier": "speculative",
+      "geometry_status": "Invented architecture used to visualize a narrative",
+      "limitations": [
+        "Hall dimensions, placement, depth, columns, niches, dais, orb and lighting are invented.",
+        "This view is not an archaeological reconstruction or evidence that such a hall exists.",
+        "An evocative interior must retain its speculative label during camera movement and export."
+      ],
+      "source_card_ids": [
+        "medieval-sphinx-treasure-guide",
+        "lehner-the-believer-who-looked",
+        "cayce-readings-right-forepaw",
+        "hall-of-amenti"
+      ],
+      "source_urls": [
+        "https://www.jasoncolavito.com/blog/gwyneth-paltrows-goop-endorses-robert-schochs-lost-ice-age-civilization-plus-a-medieval-account-of-the-sphinxs-secret-chamber",
+        "https://archive.org/stream/themessageofthesphinx.aquestforthehiddenlegacyofmankindbygrahamhancockrobertbauval/The%20Message%20of%20the%20Sphinx.%20A%20Quest%20for%20the%20Hidden%20Legacy%20of%20Mankind%20by%20Graham%20Hancock%2C%20Robert%20Bauval_djvu.txt",
+        "https://www.smithsonianmag.com/history/the-secrets-of-the-sphinx-5053442/",
+        "https://content.edgarcayce.org/about-us/blog/blog-posts/our-research-into-cayce-s-hall-of-records/",
+        "https://content.edgarcayce.org/about-us/blog/blog-posts/2026-awakening/",
+        "https://en.wikipedia.org/wiki/Hall_of_Records",
+        "https://www.pbs.org/wgbh/nova/pyramid/mail/responses970210.html",
+        "https://ia801002.us.archive.org/30/items/the-emerald-tablets/the-emerald-tablets.pdf",
+        "https://en.wikipedia.org/wiki/Emerald_Tablets_of_Thoth_the_Atlantean",
+        "https://en.wikipedia.org/wiki/Sphinx_water_erosion_hypothesis"
+      ],
+      "source_view": "V_Hall",
+      "newly_verified_sources": []
+    },
+    "V_HallInside": {
+      "title": "Inside the imagined Hall",
+      "tier": "speculative",
+      "geometry_status": "Invented interior, not a discovered or surveyed room",
+      "limitations": [
+        "Every architectural and lighting detail is authored for this visualization.",
+        "The scene is an interpretation of a narrative, not evidence for the narrative.",
+        "Nearby documented shafts do not establish a physical connection to this hall."
+      ],
+      "source_card_ids": [
+        "medieval-sphinx-treasure-guide",
+        "lehner-the-believer-who-looked",
+        "cayce-readings-right-forepaw",
+        "hall-of-amenti"
+      ],
+      "source_urls": [
+        "https://www.jasoncolavito.com/blog/gwyneth-paltrows-goop-endorses-robert-schochs-lost-ice-age-civilization-plus-a-medieval-account-of-the-sphinxs-secret-chamber",
+        "https://archive.org/stream/themessageofthesphinx.aquestforthehiddenlegacyofmankindbygrahamhancockrobertbauval/The%20Message%20of%20the%20Sphinx.%20A%20Quest%20for%20the%20Hidden%20Legacy%20of%20Mankind%20by%20Graham%20Hancock%2C%20Robert%20Bauval_djvu.txt",
+        "https://www.smithsonianmag.com/history/the-secrets-of-the-sphinx-5053442/",
+        "https://content.edgarcayce.org/about-us/blog/blog-posts/our-research-into-cayce-s-hall-of-records/",
+        "https://content.edgarcayce.org/about-us/blog/blog-posts/2026-awakening/",
+        "https://en.wikipedia.org/wiki/Hall_of_Records",
+        "https://www.pbs.org/wgbh/nova/pyramid/mail/responses970210.html",
+        "https://ia801002.us.archive.org/30/items/the-emerald-tablets/the-emerald-tablets.pdf",
+        "https://en.wikipedia.org/wiki/Emerald_Tablets_of_Thoth_the_Atlantean",
+        "https://en.wikipedia.org/wiki/Sphinx_water_erosion_hypothesis"
+      ],
+      "source_view": "V_Hall",
+      "newly_verified_sources": []
+    },
+    "V_Khafre": {
+      "title": "The unverified 648 m Khafre claim",
+      "tier": "speculative",
+      "geometry_status": "Scale illustration of a disputed claim",
+      "limitations": [
+        "The eight shafts and cubes are not treated as verified structures.",
+        "Their radii, spiral pitches and positions are illustrative; claimed depth is not a new measurement.",
+        "The official 2026 retraction concerns a 2022 Khufu paper; it is not itself a field test of the separate 2025 Khafre claim."
+      ],
+      "source_card_ids": [
+        "khafre-648m-sar-claim"
+      ],
+      "source_urls": [
+        "https://www.nationalgeographic.com/history/article/is-there-a-secret-city-under-the-pyramids-",
+        "https://trtworld.com/article/1bd4fb6965ee",
+        "https://retractionwatch.com/2026/08/31/retraction-corridors-inside-great-pyramid-giza/",
+        "https://www.newsweek.com/bombshell-great-pyramid-giza-study-retracted-12412886",
+        "https://grahamhancock.com/?p=96730"
+      ],
+      "source_view": "V_Khafre",
+      "newly_verified_sources": [
+        "khafre_statement2025",
+        "retraction2026"
+      ]
+    },
+    "V_Khufu": {
+      "title": "Khufu: documented structure and muon evidence",
+      "tier": "mixed",
+      "geometry_status": "Published discoveries within a schematic interior",
+      "limitations": [
+        "The 2017 Big Void and 2023 North Face Corridor are distinct findings.",
+        "Muon density measurements constrain void extent, not intended use or contents.",
+        "The model’s internal positions and shapes are partly schematic; the Big Void box is not a complete measured chamber reconstruction."
+      ],
+      "source_card_ids": [
+        "khufu-date-window",
+        "big-void-muography",
+        "north-face-corridor",
+        "gantenbrink-door-1993",
+        "rover-djedi-second-door",
+        "subterranean-chamber-measurements",
+        "muon-x-ray-wonder",
+        "subterranean-chamber-puzzle",
+        "dixon-cedar-plank",
+        "giza-power-plant",
+        "star-shafts",
+        "big-void-hidden-chamber-debate",
+        "base-alignment",
+        "casing-joints",
+        "khufu-boat",
+        "machining-trope",
+        "pi-in-pyramid"
+      ],
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Fourth_Dynasty_of_Egypt",
+        "https://en.wikipedia.org/wiki/Khufu",
+        "https://boinc.sk/sites/default/files/node/2018/08/Spence%202000.pdf",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1126/science.1189395&resultType=core&format=json",
+        "https://arxiv.org/abs/1711.01576",
+        "https://arxiv.org/pdf/1711.01576",
+        "https://physicsworld.com/a/muons-reveal-hidden-void-in-egyptian-pyramid",
+        "https://en.wikipedia.org/wiki/ScanPyramids",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9981702/",
+        "https://www.sci.news/archaeology/cosmic-ray-muons-hidden-structure-khufus-pyramid-11715.html",
+        "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza",
+        "https://isida-project.org/upuaut-project/theupuautstory/the1993campaign/1993.html",
+        "https://isida-project.org/upuaut-project/thefindings/thelowersouthshaft/lowersouth.html",
+        "https://en.wikipedia.org/wiki/Upuaut_Project",
+        "https://www.cbsnews.com/news/one-sealed-door-reveals-another",
+        "https://www.nationalgeographic.com/history/article/great-pyramid-rover-robot",
+        "https://gizapower.com/gizeh/?p=143",
+        "https://en.wikipedia.org/wiki/Djedi_Project",
+        "https://stars.library.ucf.edu/scopus2010/6915",
+        "https://www.astronomy.com/science/are-the-egyptian-pyramids-aligned-with-the-stars/",
+        "https://www.pbs.org/wgbh/nova/lostempires/obelisk/explore/khufuunf.html",
+        "https://www.rombergintegrali.org/gizapiramitleri/Pyramids_and_Temples_of_Gizeh/c7.html",
+        "https://encyclopedia.com/humanities/culture-magazines/fourth-dynasty-architecture-and-history",
+        "https://bpb-us-e1.wpmucdn.com/sites.mit.edu/dist/9/2055/files/2025/08/AlvarezPyramids.pdf",
+        "https://archaeology.org/news/2020/12/16/201217-egypt-great-pyramid/",
+        "https://en.wikipedia.org/wiki/Giza_pyramid_complex",
+        "https://en.wikipedia.org/wiki/Star_shaft",
+        "https://grahamhancock.com/?p=83683",
+        "https://www.timesofisrael.com/egypt-archaeologist-criticizes-pyramid-void-discovery/",
+        "https://arxiv.org/pdf/1302.5622",
+        "https://www.gizapyramids.org/static/pdf%20library/petrie_gizeh.pdf",
+        "https://aeraweb.org/wp-content/uploads/2022/08/aeragram14_1.pdf",
+        "https://en.wikipedia.org/wiki/Khufu_ship",
+        "https://www.marinelink.com/news/ancient-egyptian-boat-move-489898",
+        "https://theglobaleducationproject.org/egypt/articles/cdunn.php",
+        "https://www.cambridge.org/core/journals/antiquity/article/immutable-laws-of-friction-preparing-and-fitting-stone-blocks-into-the-great-pyramid-of-giza/CD874146AF40155D37CE7CF9417B0755",
+        "https://www.pbs.org/wgbh/nova/lostempires/obelisk/cutting07.html"
+      ],
+      "source_view": "V_Khufu",
+      "newly_verified_sources": [
+        "muon2017",
+        "corridor2023",
+        "corridor_official2023"
+      ]
+    },
+    "V_Orion": {
+      "title": "A calculated sky and an interpretive correlation",
+      "tier": "mixed",
+      "geometry_status": "Astronomical model alongside a contested historical interpretation",
+      "limitations": [
+        "Precession geometry does not establish ancient design intent or a construction date.",
+        "Proper motion and atmospheric refraction are omitted by the supplied model.",
+        "The 978 nearby field stars are a selected catalogue subset, not a naked-eye completeness model.",
+        "Epoch and sidereal orientation are independent controls; resemblance under a selected view is not a statistical test."
+      ],
+      "source_card_ids": [
+        "zep-tepi-and-10500-bc",
+        "precession-clock",
+        "orion-geometry-check",
+        "orion-belt-altitude",
+        "wandering-pole",
+        "orion-correlation-theory",
+        "m-sky",
+        "m-orion-numbers"
+      ],
+      "source_urls": [
+        "https://archive.org/stream/themessageofthesphinx.aquestforthehiddenlegacyofmankindbygrahamhancockrobertbauval/The%20Message%20of%20the%20Sphinx.%20A%20Quest%20for%20the%20Hidden%20Legacy%20of%20Mankind%20by%20Graham%20Hancock%2C%20Robert%20Bauval_djvu.txt",
+        "https://en.wikipedia.org/wiki/The_Message_of_the_Sphinx",
+        "https://en.wikipedia.org/wiki/Ancient_Egyptian_creation_myths",
+        "https://en.wikipedia.org/wiki/Temple_of_Edfu",
+        "https://en.wikipedia.org/wiki/Sphinx_water_erosion_hypothesis",
+        "https://en.wikipedia.org/wiki/Axial_precession",
+        "https://en.wikipedia.org/wiki/Orion_correlation_theory",
+        "https://www.hallofmaat.com/?p=648",
+        "https://en.wikipedia.org/wiki/Pyramid_of_Khafre",
+        "https://en.wikipedia.org/wiki/Pyramid_of_Menkaure",
+        "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza",
+        "https://en.wikipedia.org/wiki/Alnilam",
+        "https://en.wikipedia.org/wiki/Alnitak",
+        "https://en.wikipedia.org/wiki/Mintaka",
+        "https://en.wikipedia.org/wiki/Thuban",
+        "https://en.wikipedia.org/wiki/Vega",
+        "https://boinc.sk/sites/default/files/node/2018/08/Spence%202000.pdf",
+        "https://en.wikipedia.org/wiki/Robert_Bauval",
+        "https://grahamhancock.com/?p=5277",
+        "https://github.com/hagopjay/x3d-blender-io/blob/main/docs/brag/stars.json",
+        "https://cds.unistra.fr/cgi-bin/Sesame",
+        "https://github.com/liberfa/erfa",
+        "https://doi.org/10.1051/0004-6361/201117274",
+        "https://en.wikipedia.org/wiki/Giza_pyramid_complex"
+      ],
+      "source_view": "V_Orion",
+      "newly_verified_sources": []
+    },
+    "V_Top": {
+      "title": "The model’s plan and coordinate frame",
+      "tier": "mixed",
+      "geometry_status": "Metre-grid diagram, not a site survey",
+      "limitations": [
+        "The Sphinx is the model origin; +X east, +Y up and +Z south.",
+        "Rounded input coordinates limit placement precision.",
+        "Underground offsets and chamber orientation are chosen for readability."
+      ],
+      "source_card_ids": [
+        "m-frame"
+      ],
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Giza_pyramid_complex",
+        "https://en.wikipedia.org/wiki/Pyramid_of_Khafre",
+        "https://en.wikipedia.org/wiki/Pyramid_of_Menkaure",
+        "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza"
+      ],
+      "source_view": "V_Top",
+      "newly_verified_sources": []
+    },
+    "V_Survey": {
+      "title": "Survey and coordinate context",
+      "tier": "mixed",
+      "geometry_status": "Measurement overlay on a schematic site model",
+      "limitations": [
+        "The grid measures this model, not independent survey truth.",
+        "Original coordinate rounding and underground placement assumptions remain."
+      ],
+      "source_card_ids": [
+        "m-frame"
+      ],
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Giza_pyramid_complex",
+        "https://en.wikipedia.org/wiki/Pyramid_of_Khafre",
+        "https://en.wikipedia.org/wiki/Pyramid_of_Menkaure",
+        "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza"
+      ],
+      "source_view": "V_Top",
+      "newly_verified_sources": []
+    },
+    "V_DepthCompare": {
+      "title": "Published depth quantities beside an unverified claim",
+      "tier": "mixed",
+      "geometry_status": "Comparative scale diagram, not a new subsurface measurement",
+      "limitations": [
+        "Shaft-drop sums, section-datum depth and the claimed 648 m are different quantities.",
+        "A common ruler does not give these entries equal evidential support."
+      ],
+      "source_card_ids": [
+        "depth-reconciliation",
+        "water-and-access"
+      ],
+      "source_urls": [
+        "https://d1g9lvwdq3dcse.cloudfront.net/images/MFA-images/Giza/GizaImage/full/library/hawass_fs_oconnor.pdf",
+        "https://gizapyramids.org/static/pdf%20library/hassan_giza_5.pdf",
+        "https://www.deseret.com/2000/2/16/19491254/3-000-year-old-sarcophagus-is-found-at-giza-pyramids",
+        "https://praylu.blogspot.com/2007/02/tomb-of-osiris-part-1.html"
+      ],
+      "source_view": "V_Depth",
+      "newly_verified_sources": [
+        "hawass2007",
+        "retraction2026"
+      ]
+    },
+    "V_HallDetail": {
+      "title": "Detail of the imagined Hall",
+      "tier": "speculative",
+      "geometry_status": "Invented architectural detail",
+      "limitations": [
+        "Every Hall detail is authored for visualization.",
+        "Detail and realistic lighting do not make the Hall an archaeological discovery."
+      ],
+      "source_card_ids": [
+        "medieval-sphinx-treasure-guide",
+        "lehner-the-believer-who-looked",
+        "cayce-readings-right-forepaw",
+        "hall-of-amenti"
+      ],
+      "source_urls": [
+        "https://www.jasoncolavito.com/blog/gwyneth-paltrows-goop-endorses-robert-schochs-lost-ice-age-civilization-plus-a-medieval-account-of-the-sphinxs-secret-chamber",
+        "https://archive.org/stream/themessageofthesphinx.aquestforthehiddenlegacyofmankindbygrahamhancockrobertbauval/The%20Message%20of%20the%20Sphinx.%20A%20Quest%20for%20the%20Hidden%20Legacy%20of%20Mankind%20by%20Graham%20Hancock%2C%20Robert%20Bauval_djvu.txt",
+        "https://www.smithsonianmag.com/history/the-secrets-of-the-sphinx-5053442/",
+        "https://content.edgarcayce.org/about-us/blog/blog-posts/our-research-into-cayce-s-hall-of-records/",
+        "https://content.edgarcayce.org/about-us/blog/blog-posts/2026-awakening/",
+        "https://en.wikipedia.org/wiki/Hall_of_Records",
+        "https://www.pbs.org/wgbh/nova/pyramid/mail/responses970210.html",
+        "https://ia801002.us.archive.org/30/items/the-emerald-tablets/the-emerald-tablets.pdf",
+        "https://en.wikipedia.org/wiki/Emerald_Tablets_of_Thoth_the_Atlantean",
+        "https://en.wikipedia.org/wiki/Sphinx_water_erosion_hypothesis"
+      ],
+      "source_view": "V_Hall",
+      "newly_verified_sources": []
+    },
+    "V_Section": {
+      "title": "Osiris cutaway inspection",
+      "tier": "documented",
+      "geometry_status": "Interactive section through a schematic archaeological study",
+      "limitations": [
+        "The clipping plane is an inspection tool, not a measured excavation face.",
+        "Reported dimensions and plan-placement assumptions retain their separate status."
+      ],
+      "source_card_ids": [
+        "three-levels-architecture",
+        "level3-island-chamber",
+        "level2-sarcophagi",
+        "discovery-timeline",
+        "dating-layers",
+        "time-layers",
+        "swimming-hole",
+        "tomb-of-osiris",
+        "secret-tunnels",
+        "rostau-water-road",
+        "unopened-sarcophagus"
+      ],
+      "source_urls": [
+        "https://d1g9lvwdq3dcse.cloudfront.net/images/MFA-images/Giza/GizaImage/full/library/hawass_fs_oconnor.pdf",
+        "https://giza.fas.harvard.edu/pubdocs/476/full/",
+        "https://scholarworks.umt.edu/etd/11693",
+        "https://gizapyramids.org/static/pdf%20library/hassan_giza_5.pdf",
+        "https://archive.archaeology.org/0009/abstracts/crypt.html",
+        "https://www.deseret.com/2000/2/16/19491254/3-000-year-old-sarcophagus-is-found-at-giza-pyramids",
+        "https://en.wikipedia.org/wiki/Sixth_Dynasty_of_Egypt",
+        "https://en.wikisource.org/wiki/The_History_of_Herodotus_(Rawlinson)/Book_2",
+        "https://archive.org/stream/themessageofthesphinx.aquestforthehiddenlegacyofmankindbygrahamhancockrobertbauval/The%20Message%20of%20the%20Sphinx.%20A%20Quest%20for%20the%20Hidden%20Legacy%20of%20Mankind%20by%20Graham%20Hancock%2C%20Robert%20Bauval_djvu.txt",
+        "https://praylu.blogspot.com/2007/02/tomb-of-osiris-part-1.html",
+        "https://www.ancient-origins.net/node/10702"
+      ],
+      "source_view": "V_Osiris",
+      "newly_verified_sources": [
+        "hawass2007"
+      ]
+    }
+  },
+  "ui_notes": [
+    "Keep the speculative label visible in Hall and Khafre-claim views.",
+    "Show a schematic/model-status label even for documented archaeological topics.",
+    "Display source opened/read status as provenance, not as a truth verdict.",
+    "A selected-view badge is contextual; free camera movement may reveal several evidence tiers at once."
+  ]
+}

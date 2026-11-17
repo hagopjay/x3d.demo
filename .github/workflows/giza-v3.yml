@@ -1,0 +1,27 @@
+name: giza-v3
+on:
+  pull_request:
+    paths: ['docs/demos/giza-osiris-hall/v3/**', '.github/workflows/giza-v3.yml']
+  push:
+    branches: [main]
+    paths: ['docs/demos/giza-osiris-hall/v3/**']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs/demos/giza-osiris-hall/v3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline checks (syntax, JSON, 30 Node + 8 Python tests, refs, scene identity)
+        run: make check
+      - name: Leak sweep
+        run: make sweep

@@ -1,0 +1,37 @@
+Giza Below the Surface — Evidence Atlas
+
+Extract the entire folder, then start its local server:
+
+  Windows:         double-click run.bat
+                   or run: py -3 serve.py
+  WSL/Linux/macOS: bash run.sh
+                   or run: python3 serve.py
+
+Open http://127.0.0.1:8800/ and keep the terminal running while exploring.
+Python 3 and a recent WebGL-capable Chrome, Edge or Firefox are required.
+The browser engine and ordinary scene assets are bundled; no npm install,
+Blender installation, account or internet connection is needed to explore.
+
+The page loads its scene and data over HTTP, so use the server rather than
+double-clicking index.html. To use another port:
+
+  python3 serve.py --port 8801
+  then open http://127.0.0.1:8801/
+
+Controls: C toggles the control dock; F toggles focus mode; T starts/stops the
+guided descent; 1–4 open Technical, Wonder, Contested and Ledger. Esc closes
+the source window or leaves focus mode. Keyboard shortcuts pause while typing.
+
+Try the survey overlay, north-side section, depth comparison and named-star
+probe. Speculative layers start hidden; their named viewpoints can enable them.
+Save an observation in the local camera notebook or export a session JSON file.
+Copied view links require the same installed study; if clipboard access is
+unavailable, export a session instead.
+
+Read README.md for the file map and rebuild commands. Open
+GIZA-FIELD-GUIDE.html for technical explanations and six experiments.
+NOTICE.md describes this edition; BASELINE-NOTICE-v2.md preserves the uploaded
+notice. STUDY-AUDIT.md and SKY-MODEL.md describe the evidence and sky limits.
+validation.json is the historical original-scene receipt, not a validation of
+the changed scene. VALIDATION.md records current checks. DEVELOPING.md and ROADMAP.md are
+for anyone changing the study; `make check` runs every offline check.

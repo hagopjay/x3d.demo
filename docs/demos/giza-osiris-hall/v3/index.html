@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giza · Evidence Atlas</title>
+<meta name="description" content="An X3D study of the Osiris Shaft and the Hall of Records ideas at Giza: Blender-baked light, a precession sky built from real stars, and three lenses (technical, wonder, contested) that keep fact, theory and speculation visibly apart.">
+<link rel="stylesheet" href="vendor/x_ite/x_ite.css"><script src="vendor/x_ite/x_ite.min.js"></script>
+<style>
+:root{color-scheme:dark;--bg:#05080f;--glass:rgba(8,13,22,.84);--glass2:rgba(8,13,22,.94);--D:#3de6d1;--T:#ffb347;--S:#ff4fd8;--tx:#e2eaf2;--mut:#8da1b3;--ln:#1d2c3d;--ac:#9fd8ff}
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--tx);font:13px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden}
+x3d-canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
+.glass{background:var(--glass);backdrop-filter:blur(10px) saturate(1.2);-webkit-backdrop-filter:blur(10px) saturate(1.2);border:1px solid var(--ln);border-radius:12px}
+button,select,input{font:inherit;color:var(--tx)}
+button{background:#101c2b;border:1px solid #2a3f55;border-radius:8px;padding:6px 10px;cursor:pointer;transition:border-color .15s,background .15s}
+button:hover{border-color:var(--ac)}button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+button.on{background:#17314a;border-color:var(--ac)}button.tD.on{border-color:var(--D)}button.tT.on{border-color:var(--T)}button.tS.on{border-color:var(--S)}
+#top{position:fixed;left:12px;right:12px;top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:7px 10px;z-index:5}
+#top h1{font-size:14px;margin:0 8px 0 2px;letter-spacing:.02em;font-weight:650}#top h1 small{display:block;font-weight:400;color:var(--mut);font-size:11px;letter-spacing:0}
+.sp{flex:1}.lens button{min-width:96px}.lens .ic{margin-right:5px}
+#dock{position:fixed;left:12px;top:68px;bottom:56px;width:304px;overflow:auto;padding:12px;z-index:4;transition:transform .25s}
+#dock.hide{transform:translateX(-330px)}
+#dock h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);margin:14px 0 6px;font-weight:600}#dock h2:first-child{margin-top:0}
+.row{display:flex;gap:6px;flex-wrap:wrap}.row>button{flex:1 1 auto}
+.sw{display:flex;gap:8px;align-items:flex-start;padding:6px 8px;border:1px solid var(--ln);border-radius:8px;margin:4px 0;cursor:pointer}
+.sw input{margin-top:3px}.sw i{width:11px;height:11px;border-radius:3px;margin-top:4px;flex:none}.sw b{font-size:12.5px;display:block}.sw span{color:var(--mut);font-size:11.5px}
+.rng{margin:8px 0}.rng label{display:flex;justify-content:space-between;font-size:12px}.rng output{color:var(--ac);font-variant-numeric:tabular-nums}input[type=range]{width:100%;accent-color:var(--ac)}
+#views{display:grid;grid-template-columns:1fr 1fr;gap:5px}#views button{text-align:left;font-size:12px;padding:5px 8px}
+#hud{position:fixed;left:12px;bottom:10px;right:12px;display:flex;gap:10px;align-items:flex-end;z-index:4;pointer-events:none}
+#hud>*{pointer-events:auto}#read{padding:6px 10px;font-size:11.5px;color:var(--mut);font-variant-numeric:tabular-nums}#read b{color:var(--tx);font-weight:600}
+#cap{flex:1;text-align:center;padding:8px 14px;font-size:14px;max-width:760px;margin:0 auto;display:none}#cap.on{display:block}
+#disc{padding:6px 10px;font-size:11.5px;color:var(--mut)}#disc b{color:var(--D)}
+#toast{position:fixed;left:50%;top:78px;transform:translate(-50%,-14px);opacity:0;padding:8px 14px;z-index:6;transition:all .3s;pointer-events:none;text-align:center}#toast.on{opacity:1;transform:translate(-50%,0)}
+#modal{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;background:rgba(2,5,10,.38)}
+#modal.on{display:flex}#mbox{width:min(1040px,94vw);height:min(760px,88vh);display:flex;flex-direction:column;background:var(--glass2);overflow:hidden}
+#mhead{display:flex;gap:8px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--ln);flex-wrap:wrap}
+#mhead h2{margin:0 10px 0 0;font-size:15px}.chips{display:flex;gap:5px;flex-wrap:wrap}.chip{padding:3px 9px;font-size:11.5px;border-radius:99px}
+#mhead .sp{display:none}#mhead h2{flex:1}#mclose{order:1}#chips{order:2;flex-basis:100%}
+#mbody{flex:1;overflow:auto;padding:12px 14px 20px}
+.card{border:1px solid var(--ln);border-radius:10px;padding:10px 12px;margin:0 0 10px;background:rgba(14,24,38,.55)}.card.focus{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac)}
+.card h3{margin:0 0 4px;font-size:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.card p{margin:4px 0}
+.pill{font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;color:#06101a;letter-spacing:.03em}.p-Confirmed{background:#7be09a}.p-Likely{background:#ffd166}.p-Suspected{background:#f08a7e}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.two>div{border-radius:8px;padding:8px 10px}.claim{background:rgba(255,79,216,.08);border:1px solid rgba(255,79,216,.3)}.evid{background:rgba(61,230,209,.07);border:1px solid rgba(61,230,209,.3)}
+.two h4{margin:0 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+table{border-collapse:collapse;width:100%;font-size:12px}td,th{border-top:1px solid var(--ln);padding:4px 5px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:500}
+.src{font-size:11.5px;color:var(--mut)}.src a{color:var(--ac)}.src .o{color:#7be09a}.src .n{color:#f08a7e}
+.acts{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}.big{font-size:22px;font-weight:700;color:var(--ac)}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:6px 0}.stat div{border:1px solid var(--ln);border-radius:8px;padding:8px}.stat small{color:var(--mut)}
+.disc{font-size:11.5px;color:var(--mut);border-top:1px solid var(--ln);margin-top:8px;padding-top:8px}
+svg.fig{width:100%;height:auto;background:#08101b;border:1px solid var(--ln);border-radius:8px}
+#err{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);padding:14px 18px;z-index:20;display:none;max-width:480px}
+@media(max-width:860px){#dock{width:min(304px,86vw)}.two{grid-template-columns:1fr}#top h1 small{display:none}.lens button{min-width:0}#hud #read{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style><link rel="stylesheet" href="atlas.css"></head><body>
+<a class="skip" href="#dock">Skip to controls</a>
+<x3d-canvas id="cv" src="giza-atlas-v3.x3d" splashScreen="false" contextMenu="false"></x3d-canvas>
+<header id="top" class="glass" role="banner">
+<button id="dockbtn" aria-expanded="true" aria-controls="dock" title="Controls (C)">☰</button>
+<h1>GIZA <span>BELOW THE SURFACE</span><small>E V I D E N C E &nbsp; A T L A S &nbsp; / &nbsp; 0 3</small></h1>
+<div class="sp"></div>
+<div class="lens row" role="group" aria-label="Lenses">
+<button data-lens="technical" title="Technical lens (1)"><span class="ic">⚙</span>Technical</button>
+<button data-lens="wonder" title="Wonder lens (2)"><span class="ic">✦</span>Wonder</button>
+<button data-lens="contested" title="Contested lens (3)"><span class="ic">⚠</span>Contested</button>
+<button data-lens="ledger" title="Claim ledger (4)"><span class="ic">☰</span>Ledger</button></div>
+<button id="tour" title="Guided descent (T)">▶ Guided descent</button><button id="focus" aria-pressed="false" title="Presentation mode (F)">Focus</button><a class="guide-link" href="GIZA-FIELD-GUIDE.html" target="_blank" rel="noopener">Field guide →</a>
+</header>
+<aside id="dock" class="glass" aria-label="Scene controls">
+<div class="dock-intro"><span class="eyebrow">EXPLORE / INVESTIGATE</span><h2>A plateau.<br><em>Several kinds of evidence.</em></h2><p>Follow the measurements.<br>Keep the imagined visible as imagined.</p></div>
+<h2><span class="num">01</span> Evidence layers</h2>
+<label class="sw"><input type="checkbox" id="cD" checked><i style="background:var(--D)"></i><div><b>Documented</b><span>Published measurements and imaging</span></div></label>
+<label class="sw"><input type="checkbox" id="cT" checked><i style="background:var(--T)"></i><div><b>Theorized</b><span>Contested proposals with some data</span></div></label>
+<label class="sw"><input type="checkbox" id="cS"><i style="background:var(--S)"></i><div><b>Speculative</b><span>Imagined or unverified structures</span></div></label>
+<label class="sw"><input type="checkbox" id="cO"><i style="background:var(--T)"></i><div><b>Orion correlation</b><span>Belt stars over the pyramids (Bauval)</span></div></label>
+<label class="sw"><input type="checkbox" id="cG"><i style="background:var(--T)"></i><div><b>Sphinx gaze</b><span>Due east to the equinox sunrise</span></div></label>
+<h2><span class="num">02</span> Image studio</h2>
+<div class="rng"><label for="exposure">Exposure gain<output id="exposure-value">1.00×</output></label><input id="exposure" type="range" min="0.25" max="2.5" step="0.01" value="1"></div>
+<label class="select-label" for="quality">Render resolution</label><select id="quality"><option value="performance">Performance</option><option value="balanced" selected>Balanced</option><option value="ultra">Ultra</option></select>
+<p class="fine">Baked Cycles appearance, with independent illustrative lighting presets.</p>
+<div class="row" id="light"></div>
+<div class="rng"><label for="xg">X-ray ground<output id="xgo"></output></label><input id="xg" type="range" min="0" max="0.95" step="0.01" value="0.45"></div>
+<div class="rng"><label for="xp">X-ray pyramids<output id="xpo"></output></label><input id="xp" type="range" min="0" max="0.95" step="0.01" value="0"></div>
+<h2><span class="num">03</span> Sky laboratory</h2>
+<label class="sw"><input type="checkbox" id="cK" checked><div><b>Stars and constellations</b><span><span id="star-count">Catalogue sample loading…</span></span></div></label>
+<div class="rng"><label for="ep">Epoch<output id="epo"></output></label><input id="ep" type="range" min="-13000" max="2100" step="1" value="-10499"></div>
+<div class="row"><button data-ep="2026">2026 CE</button><button data-ep="-2499">2500 BCE</button><button data-ep="-10499">10,500 BCE</button></div>
+<div class="rng"><label for="lst">Local sidereal time<output id="lsto"></output></label><input id="lst" type="range" min="0" max="24" step="0.05" value="18"></div>
+<div class="row"><button data-lst="dawn">Idealized equinox</button><button data-lst="orion">Orion transits</button><button data-lst="leo">Leo rises</button></div>
+<button id="sky-play" class="wide" aria-pressed="false">▶ Animate precession · 120 years/s</button>
+<label class="select-label" for="probe-star">Star probe</label><select id="probe-star"></select>
+<div id="skyinfo" class="sky-probe"></div><p class="fine">Precession only; proper motion and refraction omitted. LST is not a civil date or clock. The light preset is independent.</p>
+<h2><span class="num">04</span> Survey instruments</h2>
+<label class="sw"><input type="checkbox" id="survey"><div><b>Survey frame</b><span>Metric rings, compass and a schematic datum</span></div></label>
+<label class="sw"><input type="checkbox" id="scale"><div><b>Depth comparison</b><span>Different source quantities at one metric scale</span></div></label>
+<label class="sw"><input type="checkbox" id="section"><div><b>Section cut</b><span>Keep geometry north of the selected scene Z</span></div></label>
+<div class="rng"><label for="section-z">Section Z<output id="section-value">−28 m</output></label><input id="section-z" type="range" min="-700" max="600" step="1" value="-28"></div>
+<h2><span class="num">05</span> Viewpoints</h2><div id="views"></div>
+<h2><span class="num">06</span> Camera notebook</h2><div class="row"><button id="save-view">＋ Save view</button><button id="copy-link">Copy view link</button></div><ul id="bookmarks"></ul><div class="row"><button id="session-save">Export session</button><button id="session-open">Restore</button><button id="report">Report</button></div><input id="session-file" type="file" accept=".json,application/json" hidden>
+<h2>Labels</h2><div class="row" id="lab" data-mode="auto"><button data-m="auto" class="on">Near me</button><button data-m="all">All</button><button data-m="off">Off</button></div>
+<h2>Move</h2><div class="row" id="nav"><button data-nav="EXAMINE">Orbit</button><button data-nav="FLY">Fly</button><button data-nav="WALK">Walk</button></div>
+<div class="disc">Everything underground is schematic: no survey fixes these positions. Drag to orbit, wheel to zoom; in Fly or Walk use WASD or arrows. Click a glowing object for its story.</div>
+<div class="disc">Stars: HYG v4.1 (David Nash, CC BY-SA 4.0) through the x3d-blender-io demo page, bright-star positions from CDS Sesame, precession from ERFA. Light: Blender Cycles. <a href="NOTICE.md" target="_blank" rel="noopener noreferrer">Notice, checks and sources</a>.</div>
+</aside>
+<aside id="context" class="glass" aria-label="View evidence status"><div class="context-top"><span class="eyebrow">CURRENT STUDY CONTEXT</span><span id="context-tier" class="tier mixed">MIXED</span></div><h2 id="context-title">The Giza plateau</h2><p id="context-geometry">Schematic scene coordinates, not a survey reconstruction.</p><div class="context-details"><p id="context-limit"></p><button id="context-sources">Read this context’s sources</button><div class="engine-line"><span id="engine-state">Starting renderer</span><span>X_ITE 16.6.0</span></div></div></aside>
+<div id="view-stamp">SCHEMATIC PLAN · METRES · SPHINX ORIGIN</div>
+<div id="toast" class="glass" role="status" aria-live="polite"></div>
+<div id="hud"><div id="read" class="glass" aria-label="Position readout">loading…</div><div id="cap" class="glass" role="status" aria-live="polite"></div><div id="disc" class="glass">Places found <b id="dn">0</b> / 7</div></div>
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle"><div id="mbox" class="glass"><div id="mhead"><h2 id="mtitle"></h2><div class="chips" id="chips"></div><input id="card-search" type="search" placeholder="Search this lens" aria-label="Search source cards"><div class="sp"></div><button id="mclose" aria-label="Close (Esc)">✕</button></div><div id="mbody"></div></div></div>
+<div id="err" class="glass" role="alert"></div>
+<dialog id="report-dialog"><div class="report-heading"><span class="eyebrow">CURRENT SESSION / LOCAL RECEIPT</span><button id="report-close">Close</button></div><h2>Study report</h2><p>Source hashes, model settings and renderer readings describe this local session.</p><pre id="report-body"></pre><button id="report-save">Download report</button></dialog>
+<script src="sky-math.js"></script><script src="giza-core.js"></script><script src="giza.js"></script>
+</body></html>
