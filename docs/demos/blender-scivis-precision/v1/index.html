@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blender precision control</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--mut:#555;--line:#ccc;--acc:#0b5cad}
+@media(prefers-color-scheme:dark){:root{--bg:#121417;--fg:#e8e8e8;--mut:#9aa;--line:#333;--acc:#6fb1ff}}
+body{margin:0;padding:16px;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif;max-width:900px;margin-inline:auto}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+td.n{text-align:right;font-variant-numeric:tabular-nums}img{max-width:100%;height:auto}a{color:var(--acc)}.m{color:var(--mut);font-size:14px}
+</style></head><body>
+<h1>Blender precision and native-splat controls</h1>
+<p class="m">17 Nov 2026. Demo card for the sci-vis integration review. Numbers below are <b>reported</b> by the review's receipts; they were not re-run for this page. Source: <a href="https://github.com/hagopjay/x3d.STEM/tree/main/integration/blender-scivis/v2">x3d.STEM integration/blender-scivis/v2</a>.</p>
+
+<h2>1. Float32 storage versus a binary64 origin</h2>
+<p>Blender 5.2.4 LTS (build cd5dc428cce1) saved and reopened each fixture; <code>MeshVertex.co</code> was compared with an independent <code>struct</code> binary32 reference. Two synthetic metric frames.</p>
+<table><tr><th>Frame</th><th>Direct max error (m)</th><th>Local storage + binary64 origin (m)</th></tr>
+<tr><td>ECEF-like</td><td class="n">0.2345000003</td><td class="n">0.000001890585</td></tr>
+<tr><td>UTM-like</td><td class="n">0.1543210996</td><td class="n">0.000001890643</td></tr></table>
+<img src="Precision-Control.png" alt="Precision control plot: maximum coordinate error for direct storage versus local storage with origin restoration, two synthetic frames">
+<p class="m">Boundary: the origin is added back in Python binary64 outside Blender. Moving the object back to a very large world translation can reintroduce the loss. Centering keeps units; rescaling needs its own explicit conversion.</p>
+
+<h2>2. Native Gaussian splat probe</h2>
+<table><tr><th>Item</th><th>Result</th></tr>
+<tr><td>Runtime</td><td>Blender 5.3.0, build 02f0899d78e3, archive SHA-256 matches the vendor value</td></tr>
+<tr><td>Fixture</td><td>4 asymmetric SH3 PLY splats, 20 XML arrays independently checked</td></tr>
+<tr><td>Apply Transform</td><td>Represented covariance changed by 0.22836776 fixture units&sup2; (a deliberately kept loss)</td></tr>
+<tr><td>Not established</td><td>Renderer PSNR, large-splat scale, SPZ quality, CI matrix</td></tr></table>
+
+<h2>3. What ran for this fold-back</h2>
+<table><tr><th>Check</th><th>Result</th><th>Tool</th></tr>
+<tr><td>Inventory adapter tests</td><td class="n">13 pass</td><td>CPython 3.13.18</td></tr>
+<tr><td>Figure-link adapter tests</td><td class="n">8 pass</td><td>CPython 3.13.18</td></tr>
+<tr><td>x3dprov escape tests</td><td class="n">5 pass; 4 fail without the one-line fix</td><td>CPython 3.13.18</td></tr></table>
+<p class="m">Hash identity is not publisher authentication; a passing probe that reproduces a transform loss is not a preservation claim.</p>
+</body></html>
