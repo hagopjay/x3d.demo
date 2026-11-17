@@ -228,3 +228,10 @@ Checked headless in Chromium (software GL): no script errors; X_ITE's optional U
 
 ## blender-scivis-precision/v1
 Page built by hand from the review's receipts (`probes/precision/precision-control.json`, `probes/native53/results/native53-result.json` in hagopjay/x3d.STEM `integration/blender-scivis/v2`). Figure: `Precision-Control.png` from the same package. No front-page card yet; the numbering thread assigns the demo number.
+
+## Front-page card picture (v33)
+`chasm` is the project's own still `cavern/docs/media/chasm2-stone.webp` from `https://hagopjay.github.io/x3d.gamelab/cavern/` (960 x 540, a software-rendered run), converted to JPEG without resizing.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/chasm.jpg | c60eb1a37da3127f29558ee840acc934823a1420a48fe0d404287e4a57877448 | 73492 |
