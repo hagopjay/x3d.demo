@@ -189,3 +189,9 @@ Checked headless in Chromium (software GL): no script errors; X_ITE's optional U
 - `ontology-lab/v2`: the Semantic Twin Lab Evidence Edition, contributed by the project owner. It contains the 38-station lab, with eight study corrections applied as overlays and the original station bytes intact. It adds a witness workbench (a reasoning counterfactual, ordered RDF lists, evidence integrity, a repair witness), an ontology field guide, a study audit, a local companion (source audit, guarded edit, graph fingerprint, ledger) and tests. v1 is unchanged.
 - Re-run here: 117 of 117 Node tests and 32 of 32 Python tests pass, and all 58 manifest digests match. The F5 counterfactual was re-measured in pyshacl 0.40.2 with owlrl 7.6.2 (see the guide).
 - The guarded edit, the witness audit and the counterfactual are also x3d_mcp tools: `patch_x3d_attribute`, `source_witness_audit` and `shacl_counterfactual`.
+
+## Semantic twin cases v2: evidence states (17 Nov 2026)
+
+- `semantic-twins/v2`: the nine cases with an evidence state on every answer and check: the Python oracle recomputed, the x3d_mcp server today (typed results), and the stored MCP run of 16 Nov. The states come from `evidence.json`, written by hagopjay/x3d_mcp `examples/semantic_twins/build/evidence.py` (PR #24): 162 computed here, 60 recorded, 13 explained difference, 1 hash checked, 2 not packaged, 0 mismatch.
+- The 13 explained differences: the server of 16 Nov re-sorted every answer, so a query's ORDER BY was lost in 13 of 54 stored ordered answers. The rows were right. The in-page check now also compares order where a query asks for one.
+- v2 loads v1's scenes, data and engines from `../v1/`; v1 is unchanged. Checked headless in Chromium: no script errors (the X_ITE font 404 as before), no horizontal scroll at 400 px.
