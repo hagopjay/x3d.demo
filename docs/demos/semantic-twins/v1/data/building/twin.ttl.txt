@@ -1,0 +1,871 @@
+@prefix :        <https://example.org/scen/building/scene.ttl#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:  <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix x3d:     <https://www.web3d.org/specifications/x3d-4.1.xsd#> .
+@prefix x3do:    <https://www.web3d.org/specifications/X3dOntology4.1#> .
+
+:X3D a owl:NamedIndividual, x3do:X3D ;
+  x3do:hasHead :head ;
+  x3do:hasScene :Scene ;
+  x3do:profile "Immersive" ;
+  x3do:version "4.0" ;
+  x3do:noNamespaceSchemaLocation "https://www.web3d.org/specifications/x3d-4.0.xsd" .
+:head a owl:NamedIndividual, x3do:head ;
+  x3do:hasParent :X3D ;
+  x3do:hasComponent :component_1_1 ;
+  x3do:hasMeta :meta_1_2, :meta_1_3, :meta_1_4, :meta_1_5, :meta_1_6 .
+:component_1_1 a owl:NamedIndividual, x3do:component ;
+  x3do:hasParent :head ;
+  x3do:name "Shape" ;
+  x3do:level 2 .
+:meta_1_2 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "title" ;
+  x3do:content "Floor 3 heats an empty room" .
+:meta_1_3 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "identifier" ;
+  x3do:content "https://example.org/scen/building/scene.x3d" .
+:meta_1_4 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "description" ;
+  x3do:content "Office floor with air handlers, VAV boxes and room sensors; the points and the air path are in Brick." .
+:meta_1_5 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "creator" ;
+  x3do:content "HagopJay and Claude" .
+:meta_1_6 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "license" ;
+  x3do:content "CC0 geometry" .
+:meta dcterms:title "Floor 3 heats an empty room" .
+:meta dcterms:identifier "https://example.org/scen/building/scene.x3d" .
+:meta dcterms:description "Office floor with air handlers, VAV boxes and room sensors; the points and the air path are in Brick." .
+:meta dcterms:creator "HagopJay and Claude" .
+:meta dcterms:license "CC0 geometry" .
+:Scene a owl:NamedIndividual, x3do:Scene ;
+  x3do:hasParent :X3D ;
+  x3do:hasChildren :NavigationInfo_2_1, :Background_2_2, :V_Overview, :V_Plan, :DirectionalLight_2_5, :Root .
+:NavigationInfo_2_1 a owl:NamedIndividual, x3do:NavigationInfo ;
+  x3do:hasParent :Scene .
+:Background_2_2 a owl:NamedIndividual, x3do:Background ;
+  x3do:hasParent :Scene ;
+  x3do:skyColor ( 0.03 0.04 0.07 ) ;
+  x3do:groundColor ( 0.08 0.08 0.09 ) .
+:V_Overview a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Overview" ;
+  x3do:description "Floor 3 from the south" ;
+  x3do:position ( 0 17 26 ) ;
+  x3do:orientation ( 1 0 0 -0.58 ) ;
+  x3do:centerOfRotation ( 0 1.5 -1 ) .
+:V_Plan a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Plan" ;
+  x3do:description "Plan view" ;
+  x3do:position ( 0 34 0.01 ) ;
+  x3do:orientation ( -1 0 0 1.571 ) ;
+  x3do:centerOfRotation ( 0 0 -1 ) .
+:DirectionalLight_2_5 a owl:NamedIndividual, x3do:DirectionalLight ;
+  x3do:hasParent :Scene ;
+  x3do:direction ( -0.4 -1 -0.5 ) ;
+  x3do:intensity 0.8 .
+:Root a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :Corridor3, :Room301, :Window301, :VAV301, :TempSensor301, :OccSensor301, :Room302, :Window302, :VAV302, :TempSensor302, :OccSensor302, :Room303, :Window303, :VAV303, :TempSensor303, :OccSensor303, :Room304, :Window304, :VAV304, :TempSensor304, :OccSensor304, :Room305, :Window305, :VAV305, :TempSensor305, :OccSensor305, :Room306, :Window306, :VAV306, :TempSensor306, :OccSensor306, :AHU1, :AHU2, :Duct1, :Duct2 ;
+  x3do:DEF "Root" .
+:Corridor3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Corridor3_Shape ;
+  x3do:DEF "Corridor3" ;
+  x3do:translation ( 0 1.5 1.5 ) .
+:Corridor3_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Corridor3 ;
+  x3do:hasAppearance :Appearance_2_6_1_1_1 ;
+  x3do:hasGeometry :Box_2_6_1_1_2 ;
+  x3do:DEF "Corridor3_Shape" .
+:Appearance_2_6_1_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Corridor3_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_1_1_1_1 .
+:PhysicalMaterial_2_6_1_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_1_1_1 ;
+  x3do:baseColor ( 0.55 0.6 0.68 ) ;
+  x3do:emissiveColor ( 0.0275 0.03 0.034 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.85 .
+:Box_2_6_1_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Corridor3_Shape ;
+  x3do:size ( 30 3 3 ) .
+:Room301 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Room301_Shape ;
+  x3do:DEF "Room301" ;
+  x3do:translation ( -12.5 1.5 -3 ) .
+:Room301_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Room301 ;
+  x3do:hasAppearance :Appearance_2_6_2_1_1 ;
+  x3do:hasGeometry :Box_2_6_2_1_2 ;
+  x3do:DEF "Room301_Shape" .
+:Appearance_2_6_2_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Room301_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_2_1_1_1 .
+:PhysicalMaterial_2_6_2_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_2_1_1 ;
+  x3do:baseColor ( 0.55 0.6 0.68 ) ;
+  x3do:emissiveColor ( 0.033 0.036 0.0408 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.7 .
+:Box_2_6_2_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Room301_Shape ;
+  x3do:size ( 4.9 3 5.9 ) .
+:Window301 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Window301_Shape ;
+  x3do:DEF "Window301" ;
+  x3do:translation ( -12.5 1.6 -5.97 ) .
+:Window301_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Window301 ;
+  x3do:hasAppearance :Appearance_2_6_3_1_1 ;
+  x3do:hasGeometry :Box_2_6_3_1_2 ;
+  x3do:DEF "Window301_Shape" .
+:Appearance_2_6_3_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Window301_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_3_1_1_1 .
+:PhysicalMaterial_2_6_3_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_3_1_1 ;
+  x3do:baseColor ( 0.55 0.8 1 ) ;
+  x3do:emissiveColor ( 0.11 0.16 0.2 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.4 .
+:Box_2_6_3_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Window301_Shape ;
+  x3do:size ( 3 1.4 0.06 ) .
+:VAV301 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :VAV301_Shape ;
+  x3do:DEF "VAV301" ;
+  x3do:translation ( -12.5 3.2 -1 ) .
+:VAV301_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :VAV301 ;
+  x3do:hasAppearance :Appearance_2_6_4_1_1 ;
+  x3do:hasGeometry :Box_2_6_4_1_2 ;
+  x3do:DEF "VAV301_Shape" .
+:Appearance_2_6_4_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :VAV301_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_4_1_1_1 .
+:PhysicalMaterial_2_6_4_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_4_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.045 0.048 0.052 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0.6 .
+:Box_2_6_4_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :VAV301_Shape ;
+  x3do:size ( 0.8 0.4 0.6 ) .
+:TempSensor301 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :TempSensor301_Shape ;
+  x3do:DEF "TempSensor301" ;
+  x3do:translation ( -11 1.4 -5.5 ) .
+:TempSensor301_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :TempSensor301 ;
+  x3do:hasAppearance :Appearance_2_6_5_1_1 ;
+  x3do:hasGeometry :Box_2_6_5_1_2 ;
+  x3do:DEF "TempSensor301_Shape" .
+:Appearance_2_6_5_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :TempSensor301_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_5_1_1_1 .
+:PhysicalMaterial_2_6_5_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_5_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_5_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :TempSensor301_Shape ;
+  x3do:size ( 0.12 0.12 0.05 ) .
+:OccSensor301 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OccSensor301_Shape ;
+  x3do:DEF "OccSensor301" ;
+  x3do:translation ( -12.5 2.95 -3 ) .
+:OccSensor301_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OccSensor301 ;
+  x3do:hasAppearance :Appearance_2_6_6_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_6_1_2 ;
+  x3do:DEF "OccSensor301_Shape" .
+:Appearance_2_6_6_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OccSensor301_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_6_1_1_1 .
+:PhysicalMaterial_2_6_6_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_6_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_6_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :OccSensor301_Shape ;
+  x3do:radius 0.1 ;
+  x3do:height 0.06 .
+:Room302 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Room302_Shape ;
+  x3do:DEF "Room302" ;
+  x3do:translation ( -7.5 1.5 -3 ) .
+:Room302_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Room302 ;
+  x3do:hasAppearance :Appearance_2_6_7_1_1 ;
+  x3do:hasGeometry :Box_2_6_7_1_2 ;
+  x3do:DEF "Room302_Shape" .
+:Appearance_2_6_7_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Room302_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_7_1_1_1 .
+:PhysicalMaterial_2_6_7_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_7_1_1 ;
+  x3do:baseColor ( 0.55 0.6 0.68 ) ;
+  x3do:emissiveColor ( 0.033 0.036 0.0408 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.7 .
+:Box_2_6_7_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Room302_Shape ;
+  x3do:size ( 4.9 3 5.9 ) .
+:Window302 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Window302_Shape ;
+  x3do:DEF "Window302" ;
+  x3do:translation ( -7.5 1.6 -5.97 ) .
+:Window302_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Window302 ;
+  x3do:hasAppearance :Appearance_2_6_8_1_1 ;
+  x3do:hasGeometry :Box_2_6_8_1_2 ;
+  x3do:DEF "Window302_Shape" .
+:Appearance_2_6_8_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Window302_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_8_1_1_1 .
+:PhysicalMaterial_2_6_8_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_8_1_1 ;
+  x3do:baseColor ( 0.55 0.8 1 ) ;
+  x3do:emissiveColor ( 0.11 0.16 0.2 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.4 .
+:Box_2_6_8_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Window302_Shape ;
+  x3do:size ( 3 1.4 0.06 ) .
+:VAV302 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :VAV302_Shape ;
+  x3do:DEF "VAV302" ;
+  x3do:translation ( -7.5 3.2 -1 ) .
+:VAV302_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :VAV302 ;
+  x3do:hasAppearance :Appearance_2_6_9_1_1 ;
+  x3do:hasGeometry :Box_2_6_9_1_2 ;
+  x3do:DEF "VAV302_Shape" .
+:Appearance_2_6_9_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :VAV302_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_9_1_1_1 .
+:PhysicalMaterial_2_6_9_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_9_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.045 0.048 0.052 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0.6 .
+:Box_2_6_9_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :VAV302_Shape ;
+  x3do:size ( 0.8 0.4 0.6 ) .
+:TempSensor302 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :TempSensor302_Shape ;
+  x3do:DEF "TempSensor302" ;
+  x3do:translation ( -6 1.4 -5.5 ) .
+:TempSensor302_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :TempSensor302 ;
+  x3do:hasAppearance :Appearance_2_6_10_1_1 ;
+  x3do:hasGeometry :Box_2_6_10_1_2 ;
+  x3do:DEF "TempSensor302_Shape" .
+:Appearance_2_6_10_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :TempSensor302_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_10_1_1_1 .
+:PhysicalMaterial_2_6_10_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_10_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_10_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :TempSensor302_Shape ;
+  x3do:size ( 0.12 0.12 0.05 ) .
+:OccSensor302 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OccSensor302_Shape ;
+  x3do:DEF "OccSensor302" ;
+  x3do:translation ( -7.5 2.95 -3 ) .
+:OccSensor302_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OccSensor302 ;
+  x3do:hasAppearance :Appearance_2_6_11_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_11_1_2 ;
+  x3do:DEF "OccSensor302_Shape" .
+:Appearance_2_6_11_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OccSensor302_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_11_1_1_1 .
+:PhysicalMaterial_2_6_11_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_11_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_11_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :OccSensor302_Shape ;
+  x3do:radius 0.1 ;
+  x3do:height 0.06 .
+:Room303 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Room303_Shape ;
+  x3do:DEF "Room303" ;
+  x3do:translation ( -2.5 1.5 -3 ) .
+:Room303_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Room303 ;
+  x3do:hasAppearance :Appearance_2_6_12_1_1 ;
+  x3do:hasGeometry :Box_2_6_12_1_2 ;
+  x3do:DEF "Room303_Shape" .
+:Appearance_2_6_12_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Room303_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_12_1_1_1 .
+:PhysicalMaterial_2_6_12_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_12_1_1 ;
+  x3do:baseColor ( 0.55 0.6 0.68 ) ;
+  x3do:emissiveColor ( 0.033 0.036 0.0408 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.7 .
+:Box_2_6_12_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Room303_Shape ;
+  x3do:size ( 4.9 3 5.9 ) .
+:Window303 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Window303_Shape ;
+  x3do:DEF "Window303" ;
+  x3do:translation ( -2.5 1.6 -5.97 ) .
+:Window303_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Window303 ;
+  x3do:hasAppearance :Appearance_2_6_13_1_1 ;
+  x3do:hasGeometry :Box_2_6_13_1_2 ;
+  x3do:DEF "Window303_Shape" .
+:Appearance_2_6_13_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Window303_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_13_1_1_1 .
+:PhysicalMaterial_2_6_13_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_13_1_1 ;
+  x3do:baseColor ( 0.55 0.8 1 ) ;
+  x3do:emissiveColor ( 0.11 0.16 0.2 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.4 .
+:Box_2_6_13_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Window303_Shape ;
+  x3do:size ( 3 1.4 0.06 ) .
+:VAV303 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :VAV303_Shape ;
+  x3do:DEF "VAV303" ;
+  x3do:translation ( -2.5 3.2 -1 ) .
+:VAV303_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :VAV303 ;
+  x3do:hasAppearance :Appearance_2_6_14_1_1 ;
+  x3do:hasGeometry :Box_2_6_14_1_2 ;
+  x3do:DEF "VAV303_Shape" .
+:Appearance_2_6_14_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :VAV303_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_14_1_1_1 .
+:PhysicalMaterial_2_6_14_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_14_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.045 0.048 0.052 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0.6 .
+:Box_2_6_14_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :VAV303_Shape ;
+  x3do:size ( 0.8 0.4 0.6 ) .
+:TempSensor303 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :TempSensor303_Shape ;
+  x3do:DEF "TempSensor303" ;
+  x3do:translation ( -1 1.4 -5.5 ) .
+:TempSensor303_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :TempSensor303 ;
+  x3do:hasAppearance :Appearance_2_6_15_1_1 ;
+  x3do:hasGeometry :Box_2_6_15_1_2 ;
+  x3do:DEF "TempSensor303_Shape" .
+:Appearance_2_6_15_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :TempSensor303_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_15_1_1_1 .
+:PhysicalMaterial_2_6_15_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_15_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_15_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :TempSensor303_Shape ;
+  x3do:size ( 0.12 0.12 0.05 ) .
+:OccSensor303 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OccSensor303_Shape ;
+  x3do:DEF "OccSensor303" ;
+  x3do:translation ( -2.5 2.95 -3 ) .
+:OccSensor303_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OccSensor303 ;
+  x3do:hasAppearance :Appearance_2_6_16_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_16_1_2 ;
+  x3do:DEF "OccSensor303_Shape" .
+:Appearance_2_6_16_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OccSensor303_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_16_1_1_1 .
+:PhysicalMaterial_2_6_16_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_16_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_16_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :OccSensor303_Shape ;
+  x3do:radius 0.1 ;
+  x3do:height 0.06 .
+:Room304 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Room304_Shape ;
+  x3do:DEF "Room304" ;
+  x3do:translation ( 2.5 1.5 -3 ) .
+:Room304_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Room304 ;
+  x3do:hasAppearance :Appearance_2_6_17_1_1 ;
+  x3do:hasGeometry :Box_2_6_17_1_2 ;
+  x3do:DEF "Room304_Shape" .
+:Appearance_2_6_17_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Room304_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_17_1_1_1 .
+:PhysicalMaterial_2_6_17_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_17_1_1 ;
+  x3do:baseColor ( 0.55 0.6 0.68 ) ;
+  x3do:emissiveColor ( 0.033 0.036 0.0408 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.7 .
+:Box_2_6_17_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Room304_Shape ;
+  x3do:size ( 4.9 3 5.9 ) .
+:Window304 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Window304_Shape ;
+  x3do:DEF "Window304" ;
+  x3do:translation ( 2.5 1.6 -5.97 ) .
+:Window304_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Window304 ;
+  x3do:hasAppearance :Appearance_2_6_18_1_1 ;
+  x3do:hasGeometry :Box_2_6_18_1_2 ;
+  x3do:DEF "Window304_Shape" .
+:Appearance_2_6_18_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Window304_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_18_1_1_1 .
+:PhysicalMaterial_2_6_18_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_18_1_1 ;
+  x3do:baseColor ( 0.55 0.8 1 ) ;
+  x3do:emissiveColor ( 0.11 0.16 0.2 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.4 .
+:Box_2_6_18_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Window304_Shape ;
+  x3do:size ( 3 1.4 0.06 ) .
+:VAV304 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :VAV304_Shape ;
+  x3do:DEF "VAV304" ;
+  x3do:translation ( 2.5 3.2 -1 ) .
+:VAV304_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :VAV304 ;
+  x3do:hasAppearance :Appearance_2_6_19_1_1 ;
+  x3do:hasGeometry :Box_2_6_19_1_2 ;
+  x3do:DEF "VAV304_Shape" .
+:Appearance_2_6_19_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :VAV304_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_19_1_1_1 .
+:PhysicalMaterial_2_6_19_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_19_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.045 0.048 0.052 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0.6 .
+:Box_2_6_19_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :VAV304_Shape ;
+  x3do:size ( 0.8 0.4 0.6 ) .
+:TempSensor304 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :TempSensor304_Shape ;
+  x3do:DEF "TempSensor304" ;
+  x3do:translation ( 4 1.4 -5.5 ) .
+:TempSensor304_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :TempSensor304 ;
+  x3do:hasAppearance :Appearance_2_6_20_1_1 ;
+  x3do:hasGeometry :Box_2_6_20_1_2 ;
+  x3do:DEF "TempSensor304_Shape" .
+:Appearance_2_6_20_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :TempSensor304_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_20_1_1_1 .
+:PhysicalMaterial_2_6_20_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_20_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_20_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :TempSensor304_Shape ;
+  x3do:size ( 0.12 0.12 0.05 ) .
+:OccSensor304 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OccSensor304_Shape ;
+  x3do:DEF "OccSensor304" ;
+  x3do:translation ( 2.5 2.95 -3 ) .
+:OccSensor304_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OccSensor304 ;
+  x3do:hasAppearance :Appearance_2_6_21_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_21_1_2 ;
+  x3do:DEF "OccSensor304_Shape" .
+:Appearance_2_6_21_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OccSensor304_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_21_1_1_1 .
+:PhysicalMaterial_2_6_21_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_21_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_21_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :OccSensor304_Shape ;
+  x3do:radius 0.1 ;
+  x3do:height 0.06 .
+:Room305 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Room305_Shape ;
+  x3do:DEF "Room305" ;
+  x3do:translation ( 7.5 1.5 -3 ) .
+:Room305_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Room305 ;
+  x3do:hasAppearance :Appearance_2_6_22_1_1 ;
+  x3do:hasGeometry :Box_2_6_22_1_2 ;
+  x3do:DEF "Room305_Shape" .
+:Appearance_2_6_22_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Room305_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_22_1_1_1 .
+:PhysicalMaterial_2_6_22_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_22_1_1 ;
+  x3do:baseColor ( 0.55 0.6 0.68 ) ;
+  x3do:emissiveColor ( 0.033 0.036 0.0408 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.7 .
+:Box_2_6_22_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Room305_Shape ;
+  x3do:size ( 4.9 3 5.9 ) .
+:Window305 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Window305_Shape ;
+  x3do:DEF "Window305" ;
+  x3do:translation ( 7.5 1.6 -5.97 ) .
+:Window305_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Window305 ;
+  x3do:hasAppearance :Appearance_2_6_23_1_1 ;
+  x3do:hasGeometry :Box_2_6_23_1_2 ;
+  x3do:DEF "Window305_Shape" .
+:Appearance_2_6_23_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Window305_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_23_1_1_1 .
+:PhysicalMaterial_2_6_23_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_23_1_1 ;
+  x3do:baseColor ( 0.55 0.8 1 ) ;
+  x3do:emissiveColor ( 0.11 0.16 0.2 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.4 .
+:Box_2_6_23_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Window305_Shape ;
+  x3do:size ( 3 1.4 0.06 ) .
+:VAV305 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :VAV305_Shape ;
+  x3do:DEF "VAV305" ;
+  x3do:translation ( 7.5 3.2 -1 ) .
+:VAV305_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :VAV305 ;
+  x3do:hasAppearance :Appearance_2_6_24_1_1 ;
+  x3do:hasGeometry :Box_2_6_24_1_2 ;
+  x3do:DEF "VAV305_Shape" .
+:Appearance_2_6_24_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :VAV305_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_24_1_1_1 .
+:PhysicalMaterial_2_6_24_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_24_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.045 0.048 0.052 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0.6 .
+:Box_2_6_24_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :VAV305_Shape ;
+  x3do:size ( 0.8 0.4 0.6 ) .
+:TempSensor305 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :TempSensor305_Shape ;
+  x3do:DEF "TempSensor305" ;
+  x3do:translation ( 9 1.4 -5.5 ) .
+:TempSensor305_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :TempSensor305 ;
+  x3do:hasAppearance :Appearance_2_6_25_1_1 ;
+  x3do:hasGeometry :Box_2_6_25_1_2 ;
+  x3do:DEF "TempSensor305_Shape" .
+:Appearance_2_6_25_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :TempSensor305_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_25_1_1_1 .
+:PhysicalMaterial_2_6_25_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_25_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_25_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :TempSensor305_Shape ;
+  x3do:size ( 0.12 0.12 0.05 ) .
+:OccSensor305 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OccSensor305_Shape ;
+  x3do:DEF "OccSensor305" ;
+  x3do:translation ( 7.5 2.95 -3 ) .
+:OccSensor305_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OccSensor305 ;
+  x3do:hasAppearance :Appearance_2_6_26_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_26_1_2 ;
+  x3do:DEF "OccSensor305_Shape" .
+:Appearance_2_6_26_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OccSensor305_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_26_1_1_1 .
+:PhysicalMaterial_2_6_26_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_26_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_26_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :OccSensor305_Shape ;
+  x3do:radius 0.1 ;
+  x3do:height 0.06 .
+:Room306 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Room306_Shape ;
+  x3do:DEF "Room306" ;
+  x3do:translation ( 12.5 1.5 -3 ) .
+:Room306_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Room306 ;
+  x3do:hasAppearance :Appearance_2_6_27_1_1 ;
+  x3do:hasGeometry :Box_2_6_27_1_2 ;
+  x3do:DEF "Room306_Shape" .
+:Appearance_2_6_27_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Room306_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_27_1_1_1 .
+:PhysicalMaterial_2_6_27_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_27_1_1 ;
+  x3do:baseColor ( 0.55 0.6 0.68 ) ;
+  x3do:emissiveColor ( 0.033 0.036 0.0408 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.7 .
+:Box_2_6_27_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Room306_Shape ;
+  x3do:size ( 4.9 3 5.9 ) .
+:Window306 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Window306_Shape ;
+  x3do:DEF "Window306" ;
+  x3do:translation ( 12.5 1.6 -5.97 ) .
+:Window306_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Window306 ;
+  x3do:hasAppearance :Appearance_2_6_28_1_1 ;
+  x3do:hasGeometry :Box_2_6_28_1_2 ;
+  x3do:DEF "Window306_Shape" .
+:Appearance_2_6_28_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Window306_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_28_1_1_1 .
+:PhysicalMaterial_2_6_28_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_28_1_1 ;
+  x3do:baseColor ( 0.55 0.8 1 ) ;
+  x3do:emissiveColor ( 0.11 0.16 0.2 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.4 .
+:Box_2_6_28_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Window306_Shape ;
+  x3do:size ( 3 1.4 0.06 ) .
+:VAV306 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :VAV306_Shape ;
+  x3do:DEF "VAV306" ;
+  x3do:translation ( 12.5 3.2 -1 ) .
+:VAV306_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :VAV306 ;
+  x3do:hasAppearance :Appearance_2_6_29_1_1 ;
+  x3do:hasGeometry :Box_2_6_29_1_2 ;
+  x3do:DEF "VAV306_Shape" .
+:Appearance_2_6_29_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :VAV306_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_29_1_1_1 .
+:PhysicalMaterial_2_6_29_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_29_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.045 0.048 0.052 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0.6 .
+:Box_2_6_29_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :VAV306_Shape ;
+  x3do:size ( 0.8 0.4 0.6 ) .
+:TempSensor306 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :TempSensor306_Shape ;
+  x3do:DEF "TempSensor306" ;
+  x3do:translation ( 14 1.4 -5.5 ) .
+:TempSensor306_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :TempSensor306 ;
+  x3do:hasAppearance :Appearance_2_6_30_1_1 ;
+  x3do:hasGeometry :Box_2_6_30_1_2 ;
+  x3do:DEF "TempSensor306_Shape" .
+:Appearance_2_6_30_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :TempSensor306_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_30_1_1_1 .
+:PhysicalMaterial_2_6_30_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_30_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Box_2_6_30_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :TempSensor306_Shape ;
+  x3do:size ( 0.12 0.12 0.05 ) .
+:OccSensor306 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OccSensor306_Shape ;
+  x3do:DEF "OccSensor306" ;
+  x3do:translation ( 12.5 2.95 -3 ) .
+:OccSensor306_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OccSensor306 ;
+  x3do:hasAppearance :Appearance_2_6_31_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_31_1_2 ;
+  x3do:DEF "OccSensor306_Shape" .
+:Appearance_2_6_31_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OccSensor306_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_31_1_1_1 .
+:PhysicalMaterial_2_6_31_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_31_1_1 ;
+  x3do:baseColor ( 0.95 0.95 0.95 ) ;
+  x3do:emissiveColor ( 0.285 0.285 0.285 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_31_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :OccSensor306_Shape ;
+  x3do:radius 0.1 ;
+  x3do:height 0.06 .
+:AHU1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :AHU1_Shape ;
+  x3do:DEF "AHU1" ;
+  x3do:translation ( -8 4.3 4.2 ) .
+:AHU1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :AHU1 ;
+  x3do:hasAppearance :Appearance_2_6_32_1_1 ;
+  x3do:hasGeometry :Box_2_6_32_1_2 ;
+  x3do:DEF "AHU1_Shape" .
+:Appearance_2_6_32_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :AHU1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_32_1_1_1 .
+:PhysicalMaterial_2_6_32_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_32_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.036 0.0384 0.0416 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0.5 .
+:Box_2_6_32_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :AHU1_Shape ;
+  x3do:size ( 3 1.2 1.6 ) .
+:AHU2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :AHU2_Shape ;
+  x3do:DEF "AHU2" ;
+  x3do:translation ( 8 4.3 4.2 ) .
+:AHU2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :AHU2 ;
+  x3do:hasAppearance :Appearance_2_6_33_1_1 ;
+  x3do:hasGeometry :Box_2_6_33_1_2 ;
+  x3do:DEF "AHU2_Shape" .
+:Appearance_2_6_33_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :AHU2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_33_1_1_1 .
+:PhysicalMaterial_2_6_33_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_33_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.036 0.0384 0.0416 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0.5 .
+:Box_2_6_33_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :AHU2_Shape ;
+  x3do:size ( 3 1.2 1.6 ) .
+:Duct1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Duct1_Shape ;
+  x3do:DEF "Duct1" ;
+  x3do:translation ( -7.5 3.6 1 ) .
+:Duct1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Duct1 ;
+  x3do:hasAppearance :Appearance_2_6_34_1_1 ;
+  x3do:hasGeometry :Box_2_6_34_1_2 ;
+  x3do:DEF "Duct1_Shape" .
+:Appearance_2_6_34_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Duct1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_34_1_1_1 .
+:PhysicalMaterial_2_6_34_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_34_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.3 .
+:Box_2_6_34_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Duct1_Shape ;
+  x3do:size ( 15 0.35 0.35 ) .
+:Duct2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :Duct2_Shape ;
+  x3do:DEF "Duct2" ;
+  x3do:translation ( 7.5 3.6 1 ) .
+:Duct2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Duct2 ;
+  x3do:hasAppearance :Appearance_2_6_35_1_1 ;
+  x3do:hasGeometry :Box_2_6_35_1_2 ;
+  x3do:DEF "Duct2_Shape" .
+:Appearance_2_6_35_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Duct2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_35_1_1_1 .
+:PhysicalMaterial_2_6_35_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_35_1_1 ;
+  x3do:baseColor ( 0.45 0.48 0.52 ) ;
+  x3do:emissiveColor ( 0.0225 0.024 0.026 ) ;
+  x3do:roughness 0.6 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.3 .
+:Box_2_6_35_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Duct2_Shape ;
+  x3do:size ( 15 0.35 0.35 ) .

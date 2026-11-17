@@ -1,0 +1,361 @@
+@prefix :        <https://example.org/scen/heritage/scene.ttl#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:  <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix x3d:     <https://www.web3d.org/specifications/x3d-4.1.xsd#> .
+@prefix x3do:    <https://www.web3d.org/specifications/X3dOntology4.1#> .
+
+:X3D a owl:NamedIndividual, x3do:X3D ;
+  x3do:hasHead :head ;
+  x3do:hasScene :Scene ;
+  x3do:profile "Immersive" ;
+  x3do:version "4.0" ;
+  x3do:noNamespaceSchemaLocation "https://www.web3d.org/specifications/x3d-4.0.xsd" .
+:head a owl:NamedIndividual, x3do:head ;
+  x3do:hasParent :X3D ;
+  x3do:hasComponent :component_1_1 ;
+  x3do:hasMeta :meta_1_2, :meta_1_3, :meta_1_4, :meta_1_5, :meta_1_6 .
+:component_1_1 a owl:NamedIndividual, x3do:component ;
+  x3do:hasParent :head ;
+  x3do:name "Shape" ;
+  x3do:level 2 .
+:meta_1_2 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "title" ;
+  x3do:content "Osiris Shaft as a living record" .
+:meta_1_3 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "identifier" ;
+  x3do:content "https://example.org/scen/heritage/scene.x3d" .
+:meta_1_4 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "description" ;
+  x3do:content "Schematic Giza study; every element is tagged documented, theorized or speculative in its CIDOC-CRM record." .
+:meta_1_5 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "creator" ;
+  x3do:content "HagopJay and Claude" .
+:meta_1_6 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "license" ;
+  x3do:content "CC0 geometry" .
+:meta dcterms:title "Osiris Shaft as a living record" .
+:meta dcterms:identifier "https://example.org/scen/heritage/scene.x3d" .
+:meta dcterms:description "Schematic Giza study; every element is tagged documented, theorized or speculative in its CIDOC-CRM record." .
+:meta dcterms:creator "HagopJay and Claude" .
+:meta dcterms:license "CC0 geometry" .
+:Scene a owl:NamedIndividual, x3do:Scene ;
+  x3do:hasParent :X3D ;
+  x3do:hasChildren :NavigationInfo_2_1, :Background_2_2, :V_Overview, :V_Osiris, :V_Sphinx, :DirectionalLight_2_6, :Root .
+:NavigationInfo_2_1 a owl:NamedIndividual, x3do:NavigationInfo ;
+  x3do:hasParent :Scene .
+:Background_2_2 a owl:NamedIndividual, x3do:Background ;
+  x3do:hasParent :Scene ;
+  x3do:skyColor ( 0.01 0.015 0.03 ) ;
+  x3do:groundColor ( 0.05 0.04 0.03 ) .
+:V_Overview a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Overview" ;
+  x3do:description "Overview: Khufu, the Osiris Shaft, the Sphinx" ;
+  x3do:position ( -15 90 260 ) ;
+  x3do:orientation ( 1 0 0 -0.316 ) ;
+  x3do:centerOfRotation ( -15 5 0 ) .
+:V_Osiris a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Osiris" ;
+  x3do:description "Osiris Shaft, side section" ;
+  x3do:position ( 3 -14 42 ) ;
+  x3do:centerOfRotation ( 3 -14 0 ) .
+:V_Sphinx a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Sphinx" ;
+  x3do:description "Sphinx enclosure and the paw anomaly" ;
+  x3do:position ( 60 5 70 ) ;
+  x3do:orientation ( -0.2 0.97 0.05 0.3 ) ;
+  x3do:centerOfRotation ( 60 -5 5 ) .
+:DirectionalLight_2_6 a owl:NamedIndividual, x3do:DirectionalLight ;
+  x3do:hasParent :Scene ;
+  x3do:direction ( -0.4 -1 -0.5 ) ;
+  x3do:intensity 0.8 .
+:Root a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :OsirisShaftA, :OsirisChamberA, :OsirisShaftB, :OsirisChamberB, :OsirisShaftC, :OsirisLevel3Water, :SphinxBody, :SphinxPawVoid, :HallOfRecords, :KhufuKingsChamber, :KhufuBigVoid, :UndergroundLink ;
+  x3do:DEF "Root" .
+:OsirisShaftA a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OsirisShaftA_Shape ;
+  x3do:DEF "OsirisShaftA" ;
+  x3do:translation ( 0 -4.81 0 ) .
+:OsirisShaftA_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OsirisShaftA ;
+  x3do:hasAppearance :Appearance_2_7_1_1_1 ;
+  x3do:hasGeometry :Box_2_7_1_1_2 ;
+  x3do:DEF "OsirisShaftA_Shape" .
+:Appearance_2_7_1_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OsirisShaftA_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_1_1_1_1 .
+:PhysicalMaterial_2_7_1_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_1_1_1 ;
+  x3do:baseColor ( 0.24 0.9 0.82 ) ;
+  x3do:emissiveColor ( 0.108 0.405 0.369 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.35 .
+:Box_2_7_1_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :OsirisShaftA_Shape ;
+  x3do:size ( 1.2 9.62 1.2 ) .
+:OsirisChamberA a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OsirisChamberA_Shape ;
+  x3do:DEF "OsirisChamberA" ;
+  x3do:translation ( 0 -8.27 2.6 ) .
+:OsirisChamberA_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OsirisChamberA ;
+  x3do:hasAppearance :Appearance_2_7_2_1_1 ;
+  x3do:hasGeometry :Box_2_7_2_1_2 ;
+  x3do:DEF "OsirisChamberA_Shape" .
+:Appearance_2_7_2_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OsirisChamberA_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_2_1_1_1 .
+:PhysicalMaterial_2_7_2_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_2_1_1 ;
+  x3do:baseColor ( 0.24 0.9 0.82 ) ;
+  x3do:emissiveColor ( 0.108 0.405 0.369 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.55 .
+:Box_2_7_2_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :OsirisChamberA_Shape ;
+  x3do:size ( 5 2.7 4 ) .
+:OsirisShaftB a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OsirisShaftB_Shape ;
+  x3do:DEF "OsirisShaftB" ;
+  x3do:translation ( 4 -16.24 0 ) .
+:OsirisShaftB_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OsirisShaftB ;
+  x3do:hasAppearance :Appearance_2_7_3_1_1 ;
+  x3do:hasGeometry :Box_2_7_3_1_2 ;
+  x3do:DEF "OsirisShaftB_Shape" .
+:Appearance_2_7_3_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OsirisShaftB_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_3_1_1_1 .
+:PhysicalMaterial_2_7_3_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_3_1_1 ;
+  x3do:baseColor ( 0.24 0.9 0.82 ) ;
+  x3do:emissiveColor ( 0.108 0.405 0.369 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.35 .
+:Box_2_7_3_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :OsirisShaftB_Shape ;
+  x3do:size ( 1.2 13.25 1.2 ) .
+:OsirisChamberB a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OsirisChamberB_Shape ;
+  x3do:DEF "OsirisChamberB" ;
+  x3do:translation ( 4 -21.57 0 ) .
+:OsirisChamberB_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OsirisChamberB ;
+  x3do:hasAppearance :Appearance_2_7_4_1_1 ;
+  x3do:hasGeometry :Box_2_7_4_1_2 ;
+  x3do:DEF "OsirisChamberB_Shape" .
+:Appearance_2_7_4_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OsirisChamberB_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_4_1_1_1 .
+:PhysicalMaterial_2_7_4_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_4_1_1 ;
+  x3do:baseColor ( 0.24 0.9 0.82 ) ;
+  x3do:emissiveColor ( 0.108 0.405 0.369 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.55 .
+:Box_2_7_4_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :OsirisChamberB_Shape ;
+  x3do:size ( 6.8 2.6 3.65 ) .
+:OsirisShaftC a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OsirisShaftC_Shape ;
+  x3do:DEF "OsirisShaftC" ;
+  x3do:translation ( 6 -26.62 0 ) .
+:OsirisShaftC_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OsirisShaftC ;
+  x3do:hasAppearance :Appearance_2_7_5_1_1 ;
+  x3do:hasGeometry :Box_2_7_5_1_2 ;
+  x3do:DEF "OsirisShaftC_Shape" .
+:Appearance_2_7_5_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OsirisShaftC_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_5_1_1_1 .
+:PhysicalMaterial_2_7_5_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_5_1_1 ;
+  x3do:baseColor ( 0.24 0.9 0.82 ) ;
+  x3do:emissiveColor ( 0.108 0.405 0.369 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.35 .
+:Box_2_7_5_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :OsirisShaftC_Shape ;
+  x3do:size ( 1.2 7.5 1.2 ) .
+:OsirisLevel3Water a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OsirisLevel3Water_Shape ;
+  x3do:DEF "OsirisLevel3Water" ;
+  x3do:translation ( 6 -29.37 0 ) .
+:OsirisLevel3Water_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OsirisLevel3Water ;
+  x3do:hasAppearance :Appearance_2_7_6_1_1 ;
+  x3do:hasGeometry :Box_2_7_6_1_2 ;
+  x3do:DEF "OsirisLevel3Water_Shape" .
+:Appearance_2_7_6_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OsirisLevel3Water_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_6_1_1_1 .
+:PhysicalMaterial_2_7_6_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_6_1_1 ;
+  x3do:baseColor ( 0.2 0.45 0.85 ) ;
+  x3do:emissiveColor ( 0.02 0.045 0.085 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.45 .
+:Box_2_7_6_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :OsirisLevel3Water_Shape ;
+  x3do:size ( 9 2.8 6.4 ) .
+:SphinxBody a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :SphinxBody_Shape ;
+  x3do:DEF "SphinxBody" ;
+  x3do:translation ( 40 10 0 ) .
+:SphinxBody_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :SphinxBody ;
+  x3do:hasAppearance :Appearance_2_7_7_1_1 ;
+  x3do:hasGeometry :Box_2_7_7_1_2 ;
+  x3do:DEF "SphinxBody_Shape" .
+:Appearance_2_7_7_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :SphinxBody_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_7_1_1_1 .
+:PhysicalMaterial_2_7_7_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_7_1_1 ;
+  x3do:baseColor ( 0.72 0.62 0.45 ) ;
+  x3do:emissiveColor ( 0.072 0.062 0.045 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 .
+:Box_2_7_7_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :SphinxBody_Shape ;
+  x3do:size ( 57 20 19 ) .
+:SphinxPawVoid a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :SphinxPawVoid_Shape ;
+  x3do:DEF "SphinxPawVoid" ;
+  x3do:translation ( 75 -5 6 ) .
+:SphinxPawVoid_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :SphinxPawVoid ;
+  x3do:hasAppearance :Appearance_2_7_8_1_1 ;
+  x3do:hasGeometry :Box_2_7_8_1_2 ;
+  x3do:DEF "SphinxPawVoid_Shape" .
+:Appearance_2_7_8_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :SphinxPawVoid_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_8_1_1_1 .
+:PhysicalMaterial_2_7_8_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_8_1_1 ;
+  x3do:baseColor ( 1 0.7 0.28 ) ;
+  x3do:emissiveColor ( 0.45 0.315 0.126 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.5 .
+:Box_2_7_8_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :SphinxPawVoid_Shape ;
+  x3do:size ( 12 3 9 ) .
+:HallOfRecords a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :HallOfRecords_Shape ;
+  x3do:DEF "HallOfRecords" ;
+  x3do:translation ( 85 -15 14 ) .
+:HallOfRecords_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :HallOfRecords ;
+  x3do:hasAppearance :Appearance_2_7_9_1_1 ;
+  x3do:hasGeometry :Box_2_7_9_1_2 ;
+  x3do:DEF "HallOfRecords_Shape" .
+:Appearance_2_7_9_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :HallOfRecords_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_9_1_1_1 .
+:PhysicalMaterial_2_7_9_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_9_1_1 ;
+  x3do:baseColor ( 1 0.31 0.85 ) ;
+  x3do:emissiveColor ( 0.45 0.1395 0.3825 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.55 .
+:Box_2_7_9_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :HallOfRecords_Shape ;
+  x3do:size ( 14 6 10 ) .
+:KhufuKingsChamber a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :KhufuKingsChamber_Shape ;
+  x3do:DEF "KhufuKingsChamber" ;
+  x3do:translation ( -120 46 -60 ) .
+:KhufuKingsChamber_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :KhufuKingsChamber ;
+  x3do:hasAppearance :Appearance_2_7_10_1_1 ;
+  x3do:hasGeometry :Box_2_7_10_1_2 ;
+  x3do:DEF "KhufuKingsChamber_Shape" .
+:Appearance_2_7_10_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :KhufuKingsChamber_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_10_1_1_1 .
+:PhysicalMaterial_2_7_10_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_10_1_1 ;
+  x3do:baseColor ( 0.24 0.9 0.82 ) ;
+  x3do:emissiveColor ( 0.108 0.405 0.369 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.4 .
+:Box_2_7_10_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :KhufuKingsChamber_Shape ;
+  x3do:size ( 10.47 5.97 5.24 ) .
+:KhufuBigVoid a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :KhufuBigVoid_Shape ;
+  x3do:DEF "KhufuBigVoid" ;
+  x3do:translation ( -120 62 -60 ) .
+:KhufuBigVoid_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :KhufuBigVoid ;
+  x3do:hasAppearance :Appearance_2_7_11_1_1 ;
+  x3do:hasGeometry :Box_2_7_11_1_2 ;
+  x3do:DEF "KhufuBigVoid_Shape" .
+:Appearance_2_7_11_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :KhufuBigVoid_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_11_1_1_1 .
+:PhysicalMaterial_2_7_11_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_11_1_1 ;
+  x3do:baseColor ( 0.24 0.9 0.82 ) ;
+  x3do:emissiveColor ( 0.108 0.405 0.369 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.6 .
+:Box_2_7_11_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :KhufuBigVoid_Shape ;
+  x3do:size ( 30 8 2 ) .
+:UndergroundLink a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :UndergroundLink_Shape ;
+  x3do:DEF "UndergroundLink" ;
+  x3do:translation ( 40 -20 7 ) .
+:UndergroundLink_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :UndergroundLink ;
+  x3do:hasAppearance :Appearance_2_7_12_1_1 ;
+  x3do:hasGeometry :Box_2_7_12_1_2 ;
+  x3do:DEF "UndergroundLink_Shape" .
+:Appearance_2_7_12_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :UndergroundLink_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_7_12_1_1_1 .
+:PhysicalMaterial_2_7_12_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_7_12_1_1 ;
+  x3do:baseColor ( 1 0.31 0.85 ) ;
+  x3do:emissiveColor ( 0.45 0.1395 0.3825 ) ;
+  x3do:roughness 0.8 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.3 .
+:Box_2_7_12_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :UndergroundLink_Shape ;
+  x3do:size ( 80 0.6 0.6 ) .

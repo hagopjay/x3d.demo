@@ -1,0 +1,153 @@
+{
+ "ontology": {
+  "file": "ontology/X3dOntology4.1.ttl",
+  "sha256": "057f1ba083a636aa50332f87fda0bfa76793876c2b14c86f51dd6db55639f2d8",
+  "bytes": 1171176,
+  "triples": 18108,
+  "named_classes": 364,
+  "object_properties": 337,
+  "datatype_properties": 727,
+  "named_subclass_pairs": 454,
+  "disjointWith": 0,
+  "AllDisjointClasses": 0,
+  "restrictions": 0,
+  "functional_properties": 0,
+  "complementOf": 0,
+  "differentFrom_or_AllDifferent": 0,
+  "owl_Nothing_mentions": 0,
+  "hasChildren_domains_iri": 49,
+  "hasChildren_ranges_iri": 7,
+  "hasChildren_ranges_bnode": 16,
+  "DEF_domains": 337,
+  "hasGeometry_ranges": [
+   "X3DGeometryNode",
+   "X3DNBodyCollidableNode",
+   "X3DParametricGeometryNode"
+  ]
+ },
+ "slice": {
+  "file": "ontology/slice.ttl",
+  "sha256": "6a881c2cd243011f23afc844baf411124a7cdab992dd38cdcbc0acad6c5bac6d",
+  "bytes": 122184,
+  "triples": 3367,
+  "classes_in_hierarchy": 405,
+  "focus_classes_labelled": 61,
+  "focus_properties": 182,
+  "excluded_bnode_domain_range_triples": 45
+ },
+ "slice_vs_full_checks": {
+  "node_parents_Box": {
+   "rows_full": 12,
+   "rows_slice": 12,
+   "equal": true
+  },
+  "node_parents_ImageTexture": {
+   "rows_full": 85,
+   "rows_slice": 85,
+   "equal": true
+  },
+  "rdfs_named_types_cabinet": {
+   "nodes": 184,
+   "equal": true,
+   "spinner_types_full": 349,
+   "spinner_types_slice": 349
+  },
+  "subclass_types_cabinet": {
+   "equal": true
+  },
+  "rdfs_named_types_fault-F5": {
+   "nodes": 185,
+   "equal": true,
+   "spinner_types_full": 349,
+   "spinner_types_slice": 349
+  },
+  "subclass_types_fault-F5": {
+   "equal": true
+  },
+  "shacl_cabinet": {
+   "results_full": 0,
+   "results_slice": 0,
+   "equal": true,
+   "shapes": []
+  },
+  "shacl_fault-F1": {
+   "results_full": 1,
+   "results_slice": 1,
+   "equal": true,
+   "shapes": [
+    "S1"
+   ]
+  },
+  "shacl_fault-F2": {
+   "results_full": 1,
+   "results_slice": 1,
+   "equal": true,
+   "shapes": [
+    "S2"
+   ]
+  },
+  "shacl_fault-F3": {
+   "results_full": 1,
+   "results_slice": 1,
+   "equal": true,
+   "shapes": [
+    "S3"
+   ]
+  },
+  "shacl_fault-F4": {
+   "results_full": 1,
+   "results_slice": 1,
+   "equal": true,
+   "shapes": [
+    "S5"
+   ]
+  },
+  "shacl_fault-F5": {
+   "results_full": 1,
+   "results_slice": 1,
+   "equal": true,
+   "shapes": [
+    "S7"
+   ]
+  },
+  "shacl_fault-F6": {
+   "results_full": 0,
+   "results_slice": 0,
+   "equal": true,
+   "shapes": []
+  },
+  "shacl_fault-F7": {
+   "results_full": 2,
+   "results_slice": 2,
+   "equal": true,
+   "shapes": [
+    "S1",
+    "S8"
+   ]
+  },
+  "shacl_teach-exponent": {
+   "results_full": 1,
+   "results_slice": 1,
+   "equal": true,
+   "shapes": [
+    "S1"
+   ]
+  },
+  "shacl_teach-insert": {
+   "results_full": 0,
+   "results_slice": 0,
+   "equal": true,
+   "shapes": []
+  }
+ },
+ "all_checks_equal": true,
+ "checks_key": "f81721318e52d0a4689df95958652fca85bcb37e24c4b287e7a30737e5af8064",
+ "libs": {
+  "rdflib": "7.6.0",
+  "pyshacl": "0.40.2",
+  "owlrl": "7.6.2",
+  "saxonche": "13.1.1",
+  "lxml": "6.1.3"
+ },
+ "elapsed_s": 1.3
+}

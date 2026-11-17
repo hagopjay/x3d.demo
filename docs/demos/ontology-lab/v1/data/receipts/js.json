@@ -1,0 +1,4216 @@
+{
+ "engine": {
+  "node": "v22.23.4",
+  "n3": "2.13.12",
+  "comunica": "5.4.1",
+  "shacl-engine": "1.1.3"
+ },
+ "results": {
+  "T1.1:main": {
+   "triples": 1939,
+   "_ms": 42.3
+  },
+  "T1.1:individuals": {
+   "vars": [
+    "individuals"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "individuals": 184
+    }
+   ],
+   "_ms": 66.8
+  },
+  "T1.1:try": {
+   "vars": [
+    "p",
+    "o"
+   ],
+   "count": 8,
+   "rows": [
+    {
+     "p": "rdf:type",
+     "o": "owl:NamedIndividual"
+    },
+    {
+     "p": "rdf:type",
+     "o": "x3do:PhysicalMaterial"
+    },
+    {
+     "p": "x3do:hasParent",
+     "o": ":OrbALook"
+    },
+    {
+     "p": "x3do:DEF",
+     "o": "Gilt"
+    },
+    {
+     "p": "x3do:emissiveColor",
+     "o": "_:b"
+    },
+    {
+     "p": "x3do:baseColor",
+     "o": "_:b"
+    },
+    {
+     "p": "x3do:metallic",
+     "o": 0.35
+    },
+    {
+     "p": "x3do:roughness",
+     "o": 0.28
+    }
+   ],
+   "_ms": 32
+  },
+  "T1.2:main": {
+   "vars": [
+    "p",
+    "o"
+   ],
+   "count": 8,
+   "rows": [
+    {
+     "p": "rdf:type",
+     "o": "owl:NamedIndividual"
+    },
+    {
+     "p": "rdf:type",
+     "o": "x3do:PhysicalMaterial"
+    },
+    {
+     "p": "x3do:DEF",
+     "o": "Gilt"
+    },
+    {
+     "p": "x3do:baseColor",
+     "o": "_:b"
+    },
+    {
+     "p": "x3do:emissiveColor",
+     "o": "_:b"
+    },
+    {
+     "p": "x3do:hasParent",
+     "o": ":OrbALook"
+    },
+    {
+     "p": "x3do:metallic",
+     "o": 0.35
+    },
+    {
+     "p": "x3do:roughness",
+     "o": 0.28
+    }
+   ],
+   "_ms": 10.6
+  },
+  "T1.2:try": {
+   "vars": [
+    "s",
+    "p"
+   ],
+   "count": 3,
+   "rows": [
+    {
+     "s": ":OrbALook",
+     "p": "x3do:hasMaterial"
+    },
+    {
+     "s": ":Gilt-USE-1",
+     "p": "owl:sameAs"
+    },
+    {
+     "s": ":Gilt-USE-2",
+     "p": "owl:sameAs"
+    }
+   ],
+   "_ms": 11
+  },
+  "T1.3:main": {
+   "vars": [
+    "shape",
+    "geometry"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 11
+  },
+  "T1.3:try": {
+   "vars": [
+    "shape",
+    "geometry"
+   ],
+   "count": 27,
+   "rows": [
+    {
+     "shape": ":FloorSlab",
+     "geometry": ":Cylinder_2_8_1_2"
+    },
+    {
+     "shape": ":Inlay",
+     "geometry": ":Cylinder_2_9_1_2"
+    },
+    {
+     "shape": ":GlassColumn",
+     "geometry": ":PlinthDrum"
+    },
+    {
+     "shape": ":GlowCore",
+     "geometry": ":Cylinder_2_10_2_2_1_2"
+    },
+    {
+     "shape": ":TopDisc",
+     "geometry": ":Cylinder_2_10_2_3_1_2"
+    },
+    {
+     "shape": ":Rim",
+     "geometry": ":Cylinder_2_10_2_4_1_2"
+    },
+    {
+     "shape": ":Foot",
+     "geometry": ":Cylinder_2_10_2_5_1_2"
+    },
+    {
+     "shape": ":OrbAShape",
+     "geometry": ":OrbABall"
+    },
+    {
+     "shape": ":OrbBShape",
+     "geometry": ":OrbBBall"
+    },
+    {
+     "shape": ":OrbCShape",
+     "geometry": ":OrbCBall"
+    },
+    {
+     "shape": ":CrystalTop",
+     "geometry": ":CrystalCone"
+    },
+    {
+     "shape": ":CrystalBottom",
+     "geometry": ":CrystalCone-USE-1"
+    },
+    {
+     "shape": ":Halo",
+     "geometry": ":Cylinder_2_11_3_1_3_1_2"
+    },
+    {
+     "shape": ":RubyShape",
+     "geometry": ":Box_2_12_3_1_1_2"
+    },
+    {
+     "shape": ":PearlShape",
+     "geometry": ":Box_2_12_3_2_1_2"
+    },
+    {
+     "shape": ":JadeShape",
+     "geometry": ":Box_2_12_3_3_1_2"
+    },
+    {
+     "shape": ":CobaltShape",
+     "geometry": ":Box_2_12_3_4_1_2"
+    },
+    {
+     "shape": ":EmberShape",
+     "geometry": ":Box_2_12_3_5_1_2"
+    },
+    {
+     "shape": ":ChoiceCube",
+     "geometry": ":Box_2_13_3_1_1_2"
+    },
+    {
+     "shape": ":ChoiceCone",
+     "geometry": ":Cone_2_13_3_1_2_2"
+    },
+    {
+     "shape": ":ChoiceDrum",
+     "geometry": ":Cylinder_2_13_3_1_3_2"
+    },
+    {
+     "shape": ":BareSpecimen",
+     "geometry": ":BareCube"
+    },
+    {
+     "shape": ":Plaque",
+     "geometry": ":Box_2_15_3_2_1_2"
+    },
+    {
+     "shape": ":LanternBulb",
+     "geometry": ":Sphere_2_16_3_2_1_2"
+    },
+    {
+     "shape": ":Chimney",
+     "geometry": ":Cylinder_2_16_3_3_1_2"
+    },
+    {
+     "shape": ":LanternCap",
+     "geometry": ":Cone_2_16_3_4_1_2"
+    },
+    {
+     "shape": ":LanternBase",
+     "geometry": ":Cylinder_2_16_3_5_1_2"
+    }
+   ],
+   "_ms": 9.6
+  },
+  "T1.4:main": {
+   "vars": [
+    "class"
+   ],
+   "count": 2,
+   "rows": [
+    {
+     "class": "owl:NamedIndividual"
+    },
+    {
+     "class": "x3do:Transform"
+    }
+   ],
+   "_ms": 10.1
+  },
+  "T1.4:try": {
+   "vars": [
+    "super"
+   ],
+   "count": 4,
+   "rows": [
+    {
+     "super": "x3do:X3DGroupingNode"
+    },
+    {
+     "super": "x3do:X3DChildNode"
+    },
+    {
+     "super": "x3do:X3DBoundedObject"
+    },
+    {
+     "super": "x3do:X3DNode"
+    }
+   ],
+   "_ms": 53.6
+  },
+  "T1.5:main": {
+   "vars": [
+    "copy",
+    "original"
+   ],
+   "count": 12,
+   "rows": [
+    {
+     "copy": ":CageGold-USE-1",
+     "original": ":CageGold"
+    },
+    {
+     "copy": ":CrystalCone-USE-1",
+     "original": ":CrystalCone"
+    },
+    {
+     "copy": ":CrystalLook-USE-1",
+     "original": ":CrystalLook"
+    },
+    {
+     "copy": ":Gilt-USE-1",
+     "original": ":Gilt"
+    },
+    {
+     "copy": ":Gilt-USE-2",
+     "original": ":Gilt"
+    },
+    {
+     "copy": ":GlassLook-USE-1",
+     "original": ":GlassLook"
+    },
+    {
+     "copy": ":PlinthGroup-USE-1",
+     "original": ":PlinthGroup"
+    },
+    {
+     "copy": ":PlinthGroup-USE-2",
+     "original": ":PlinthGroup"
+    },
+    {
+     "copy": ":PlinthGroup-USE-3",
+     "original": ":PlinthGroup"
+    },
+    {
+     "copy": ":PlinthGroup-USE-4",
+     "original": ":PlinthGroup"
+    },
+    {
+     "copy": ":PlinthGroup-USE-5",
+     "original": ":PlinthGroup"
+    },
+    {
+     "copy": ":PlinthGroup-USE-6",
+     "original": ":PlinthGroup"
+    }
+   ],
+   "_ms": 10
+  },
+  "T1.5:try": {
+   "vars": [
+    "original",
+    "copies"
+   ],
+   "count": 6,
+   "rows": [
+    {
+     "original": ":PlinthGroup",
+     "copies": 6
+    },
+    {
+     "original": ":GlassLook",
+     "copies": 1
+    },
+    {
+     "original": ":Gilt",
+     "copies": 2
+    },
+    {
+     "original": ":CrystalLook",
+     "copies": 1
+    },
+    {
+     "original": ":CrystalCone",
+     "copies": 1
+    },
+    {
+     "original": ":CageGold",
+     "copies": 1
+    }
+   ],
+   "_ms": 19.4
+  },
+  "T1.6:main": {
+   "count_a": 184,
+   "count_b": 185,
+   "count": 34,
+   "values": [
+    ":Appearance_2_10_2_2_1_1",
+    ":Appearance_2_10_2_3_1_1",
+    ":Appearance_2_10_2_4_1_1",
+    ":Appearance_2_10_2_5_1_1",
+    ":Appearance_2_11_3_1_3_1_1",
+    ":Appearance_2_12_3_1_1_1",
+    ":Appearance_2_12_3_2_1_1",
+    ":Appearance_2_12_3_3_1_1",
+    ":Appearance_2_12_3_4_1_1",
+    ":Appearance_2_12_3_5_1_1",
+    ":Appearance_2_13_3_1_2_1",
+    ":Appearance_2_13_3_1_3_1",
+    ":Appearance_2_15_3_2_1_1",
+    ":Appearance_2_16_3_5_1_1",
+    ":Appearance_2_8_1_1",
+    ":Box_2_12_3_1_1_2",
+    ":Box_2_12_3_2_1_2",
+    ":Box_2_12_3_3_1_2",
+    ":Box_2_12_3_4_1_2",
+    ":Box_2_12_3_5_1_2",
+    ":Box_2_15_3_2_1_2",
+    ":Cone_2_13_3_1_2_2",
+    ":Cone_2_16_3_4_1_2",
+    ":Cylinder_2_10_2_2_1_2",
+    ":Cylinder_2_10_2_3_1_2",
+    ":Cylinder_2_10_2_4_1_2",
+    ":Cylinder_2_10_2_5_1_2",
+    ":Cylinder_2_11_3_1_3_1_2",
+    ":Cylinder_2_13_3_1_3_2",
+    ":Cylinder_2_16_3_3_1_2",
+    ":Cylinder_2_16_3_5_1_2",
+    ":Cylinder_2_8_1_2",
+    ":ROUTE_2_17",
+    ":Sphere_2_16_3_2_1_2"
+   ],
+   "_ms": 43.1
+  },
+  "T1.6:try": {
+   "count_a": 122,
+   "count_b": 122,
+   "count": 0,
+   "values": [],
+   "_ms": 31.4
+  },
+  "T1.7:main": {
+   "vars": [
+    "r",
+    "g",
+    "b"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "r": 0.85,
+     "g": 0.08,
+     "b": 0.16
+    }
+   ],
+   "_ms": 34
+  },
+  "T1.7:try": {
+   "vars": [
+    "cells"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "cells": 409
+    }
+   ],
+   "_ms": 23.8
+  },
+  "T2.1:main": {
+   "vars": [
+    "shape"
+   ],
+   "count": 27,
+   "rows": [
+    {
+     "shape": ":FloorSlab"
+    },
+    {
+     "shape": ":Inlay"
+    },
+    {
+     "shape": ":GlassColumn"
+    },
+    {
+     "shape": ":GlowCore"
+    },
+    {
+     "shape": ":TopDisc"
+    },
+    {
+     "shape": ":Rim"
+    },
+    {
+     "shape": ":Foot"
+    },
+    {
+     "shape": ":OrbAShape"
+    },
+    {
+     "shape": ":OrbBShape"
+    },
+    {
+     "shape": ":OrbCShape"
+    },
+    {
+     "shape": ":CrystalTop"
+    },
+    {
+     "shape": ":CrystalBottom"
+    },
+    {
+     "shape": ":Halo"
+    },
+    {
+     "shape": ":RubyShape"
+    },
+    {
+     "shape": ":PearlShape"
+    },
+    {
+     "shape": ":JadeShape"
+    },
+    {
+     "shape": ":CobaltShape"
+    },
+    {
+     "shape": ":EmberShape"
+    },
+    {
+     "shape": ":ChoiceCube"
+    },
+    {
+     "shape": ":ChoiceCone"
+    },
+    {
+     "shape": ":ChoiceDrum"
+    },
+    {
+     "shape": ":BareSpecimen"
+    },
+    {
+     "shape": ":Plaque"
+    },
+    {
+     "shape": ":LanternBulb"
+    },
+    {
+     "shape": ":Chimney"
+    },
+    {
+     "shape": ":LanternCap"
+    },
+    {
+     "shape": ":LanternBase"
+    }
+   ],
+   "_ms": 16.3
+  },
+  "T2.1:try": {
+   "vars": [
+    "m"
+   ],
+   "count": 13,
+   "rows": [
+    {
+     "m": ":Glass"
+    },
+    {
+     "m": ":Onyx"
+    },
+    {
+     "m": ":Brass"
+    },
+    {
+     "m": ":Gilt"
+    },
+    {
+     "m": ":Gilt-USE-1"
+    },
+    {
+     "m": ":Gilt-USE-2"
+    },
+    {
+     "m": ":Crystal"
+    },
+    {
+     "m": ":HaloGold"
+    },
+    {
+     "m": ":CubeTint"
+    },
+    {
+     "m": ":ConeTint"
+    },
+    {
+     "m": ":DrumTint"
+    },
+    {
+     "m": ":CageGold"
+    },
+    {
+     "m": ":CageGold-USE-1"
+    }
+   ],
+   "_ms": 7.7
+  },
+  "T2.2:main": {
+   "vars": [
+    "material",
+    "Y"
+   ],
+   "count": 5,
+   "rows": [
+    {
+     "material": ":Pearl",
+     "Y": 1
+    },
+    {
+     "material": ":PlaqueSkin",
+     "Y": 1
+    },
+    {
+     "material": ":Jade",
+     "Y": 0.552224
+    },
+    {
+     "material": ":Cobalt",
+     "Y": 0.294358
+    },
+    {
+     "material": ":Ruby",
+     "Y": 0.249478
+    }
+   ],
+   "_ms": 96.1
+  },
+  "T2.2:try": {
+   "vars": [
+    "material",
+    "Y"
+   ],
+   "count": 5,
+   "rows": [
+    {
+     "material": ":Obsidian",
+     "Y": 0.0238716
+    },
+    {
+     "material": ":InlayGlow",
+     "Y": 0
+    },
+    {
+     "material": ":CoreGlow",
+     "Y": 0
+    },
+    {
+     "material": ":RimGlow",
+     "Y": 0
+    },
+    {
+     "material": ":Flame",
+     "Y": 0
+    }
+   ],
+   "_ms": 64.4
+  },
+  "T2.3:main": {
+   "vars": [
+    "shape"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "shape": ":BareSpecimen"
+    }
+   ],
+   "_ms": 19.3
+  },
+  "T2.3:try": {
+   "vars": [
+    "shape"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "shape": ":BareSpecimen"
+    }
+   ],
+   "_ms": 24.1
+  },
+  "T2.4:main": {
+   "vars": [
+    "node",
+    "type"
+   ],
+   "count": 27,
+   "rows": [
+    {
+     "node": ":Cylinder_2_8_1_2",
+     "type": "x3do:Cylinder"
+    },
+    {
+     "node": ":Cylinder_2_9_1_2",
+     "type": "x3do:Cylinder"
+    },
+    {
+     "node": ":PlinthDrum",
+     "type": "x3do:Cylinder"
+    },
+    {
+     "node": ":Cylinder_2_10_2_2_1_2",
+     "type": "x3do:Cylinder"
+    },
+    {
+     "node": ":Cylinder_2_10_2_3_1_2",
+     "type": "x3do:Cylinder"
+    },
+    {
+     "node": ":Cylinder_2_10_2_4_1_2",
+     "type": "x3do:Cylinder"
+    },
+    {
+     "node": ":Cylinder_2_10_2_5_1_2",
+     "type": "x3do:Cylinder"
+    },
+    {
+     "node": ":Cylinder_2_11_3_1_3_1_2",
+     "type": "x3do:Cylinder"
+    },
+    {
+     "node": ":Cylinder_2_13_3_1_3_2",
+     "type": "x3do:Cylinder"
+    },
+    {
+     "node": ":Cylinder_2_16_3_3_1_2",
+     "type": "x3do:Cylinder"
+    },
+    {
+     "node": ":Cylinder_2_16_3_5_1_2",
+     "type": "x3do:Cylinder"
+    },
+    {
+     "node": ":OrbABall",
+     "type": "x3do:Sphere"
+    },
+    {
+     "node": ":OrbBBall",
+     "type": "x3do:Sphere"
+    },
+    {
+     "node": ":OrbCBall",
+     "type": "x3do:Sphere"
+    },
+    {
+     "node": ":Sphere_2_16_3_2_1_2",
+     "type": "x3do:Sphere"
+    },
+    {
+     "node": ":CrystalCone",
+     "type": "x3do:Cone"
+    },
+    {
+     "node": ":CrystalCone-USE-1",
+     "type": "x3do:Cone"
+    },
+    {
+     "node": ":Cone_2_13_3_1_2_2",
+     "type": "x3do:Cone"
+    },
+    {
+     "node": ":Cone_2_16_3_4_1_2",
+     "type": "x3do:Cone"
+    },
+    {
+     "node": ":Box_2_12_3_1_1_2",
+     "type": "x3do:Box"
+    },
+    {
+     "node": ":Box_2_12_3_2_1_2",
+     "type": "x3do:Box"
+    },
+    {
+     "node": ":Box_2_12_3_3_1_2",
+     "type": "x3do:Box"
+    },
+    {
+     "node": ":Box_2_12_3_4_1_2",
+     "type": "x3do:Box"
+    },
+    {
+     "node": ":Box_2_12_3_5_1_2",
+     "type": "x3do:Box"
+    },
+    {
+     "node": ":Box_2_13_3_1_1_2",
+     "type": "x3do:Box"
+    },
+    {
+     "node": ":BareCube",
+     "type": "x3do:Box"
+    },
+    {
+     "node": ":Box_2_15_3_2_1_2",
+     "type": "x3do:Box"
+    }
+   ],
+   "_ms": 46.2
+  },
+  "T2.4:try": {
+   "vars": [
+    "node",
+    "type"
+   ],
+   "count": 3,
+   "rows": [
+    {
+     "node": ":KeyLight",
+     "type": "x3do:DirectionalLight"
+    },
+    {
+     "node": ":FillLight",
+     "type": "x3do:DirectionalLight"
+    },
+    {
+     "node": ":Lantern",
+     "type": "x3do:PointLight"
+    }
+   ],
+   "_ms": 18.2
+  },
+  "T2.5:main": {
+   "vars": [
+    "from",
+    "via",
+    "to",
+    "toField"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "from": "Clock",
+     "via": "Spin",
+     "to": "Spinner",
+     "toField": "set_rotation"
+    }
+   ],
+   "_ms": 15
+  },
+  "T2.5:try": {
+   "vars": [
+    "r",
+    "from",
+    "to"
+   ],
+   "count": 2,
+   "rows": [
+    {
+     "r": ":ROUTE_2_18",
+     "from": "Spin",
+     "to": "Spinner"
+    },
+    {
+     "r": ":ROUTE_2_17",
+     "from": "Clock",
+     "to": "Spin"
+    }
+   ],
+   "_ms": 11.7
+  },
+  "T2.6:main": {
+   "vars": [
+    "type",
+    "count"
+   ],
+   "count": 29,
+   "rows": [
+    {
+     "type": "x3do:Transform",
+     "count": 37
+    },
+    {
+     "type": "x3do:Shape",
+     "count": 27
+    },
+    {
+     "type": "x3do:Appearance",
+     "count": 26
+    },
+    {
+     "type": "x3do:PhysicalMaterial",
+     "count": 13
+    },
+    {
+     "type": "x3do:Cylinder",
+     "count": 11
+    },
+    {
+     "type": "x3do:Material",
+     "count": 11
+    },
+    {
+     "type": "x3do:Viewpoint",
+     "count": 9
+    },
+    {
+     "type": "x3do:Box",
+     "count": 8
+    },
+    {
+     "type": "x3do:Group",
+     "count": 7
+    },
+    {
+     "type": "x3do:meta",
+     "count": 6
+    },
+    {
+     "type": "x3do:Cone",
+     "count": 4
+    },
+    {
+     "type": "x3do:Sphere",
+     "count": 4
+    },
+    {
+     "type": "x3do:MetadataString",
+     "count": 3
+    },
+    {
+     "type": "x3do:DirectionalLight",
+     "count": 2
+    },
+    {
+     "type": "x3do:ROUTE",
+     "count": 2
+    },
+    {
+     "type": "x3do:Background",
+     "count": 1
+    },
+    {
+     "type": "x3do:MetadataInteger",
+     "count": 1
+    },
+    {
+     "type": "x3do:MetadataSet",
+     "count": 1
+    },
+    {
+     "type": "x3do:NavigationInfo",
+     "count": 1
+    },
+    {
+     "type": "x3do:OrientationInterpolator",
+     "count": 1
+    },
+    {
+     "type": "x3do:PixelTexture",
+     "count": 1
+    },
+    {
+     "type": "x3do:PointLight",
+     "count": 1
+    },
+    {
+     "type": "x3do:Scene",
+     "count": 1
+    },
+    {
+     "type": "x3do:Switch",
+     "count": 1
+    },
+    {
+     "type": "x3do:TimeSensor",
+     "count": 1
+    },
+    {
+     "type": "x3do:WorldInfo",
+     "count": 1
+    },
+    {
+     "type": "x3do:X3D",
+     "count": 1
+    },
+    {
+     "type": "x3do:component",
+     "count": 1
+    },
+    {
+     "type": "x3do:head",
+     "count": 1
+    }
+   ],
+   "_ms": 37.6
+  },
+  "T2.6:try": {
+   "vars": [
+    "named"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "named": 122
+    }
+   ],
+   "_ms": 7.6
+  },
+  "T2.7:main": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "route": ":ROUTE_2_17",
+     "end": "fromNode",
+     "name": "Ghost"
+    }
+   ],
+   "_ms": 23.6
+  },
+  "T2.7:try": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 9.9
+  },
+  "T2.8:main": {
+   "ask": true,
+   "_ms": 9
+  },
+  "T2.8:try": {
+   "ask": false,
+   "_ms": 17
+  },
+  "T3.1:main": {
+   "added_x3do_types_on_scene_iris": 579,
+   "x3do_types_on_scene_iris_after": 763,
+   "n3_store_growth_triples": 1232,
+   "n3_reason_ms": 19.7,
+   "focus": {
+    ":Gilt": {
+     "count": 5,
+     "types": [
+      "PhysicalMaterial",
+      "X3DAppearanceChildNode",
+      "X3DMaterialNode",
+      "X3DNode",
+      "X3DOneSidedMaterialNode"
+     ]
+    },
+    ":Spinner": {
+     "count": 5,
+     "types": [
+      "Transform",
+      "X3DBoundedObject",
+      "X3DChildNode",
+      "X3DGroupingNode",
+      "X3DNode"
+     ]
+    },
+    ":BareCube": {
+     "count": 3,
+     "types": [
+      "Box",
+      "X3DGeometryNode",
+      "X3DNode"
+     ]
+    }
+   },
+   "_ms": 45.3
+  },
+  "T3.1:try": {
+   "added_x3do_types_on_scene_iris": 43185,
+   "x3do_types_on_scene_iris_after": 43369,
+   "n3_store_growth_triples": 47253,
+   "n3_reason_ms": 153.7,
+   "focus": {
+    ":Spinner": {
+     "count": 349,
+     "types": [
+      "AcousticProperties",
+      "Analyser",
+      "Anchor",
+      "Appearance",
+      "Arc2D",
+      "ArcClose2D",
+      "AudioClip",
+      "AudioDestination",
+      "Background",
+      "BallJoint",
+      "Billboard",
+      "BiquadFilter",
+      "BlendedVolumeStyle",
+      "BooleanFilter",
+      "BooleanSequencer",
+      "BooleanToggle",
+      "BooleanTrigger",
+      "BoundaryEnhancementVolumeStyle",
+      "BoundedPhysicsModel",
+      "Box",
+      "BufferAudioSource",
+      "CADAssembly",
+      "CADFace",
+      "CADLayer",
+      "CADPart",
+      "CartoonVolumeStyle",
+      "ChannelMerger",
+      "ChannelSelector",
+      "ChannelSplitter",
+      "Circle2D",
+      "ClipPlane",
+      "CollidableOffset",
+      "CollidableShape",
+      "Collision",
+      "CollisionCollection",
+      "CollisionSensor",
+      "CollisionSpace",
+      "Color",
+      "ColorChaser",
+      "ColorDamper",
+      "ColorInterpolator",
+      "ColorRGBA",
+      "ComposedCubeMapTexture",
+      "ComposedShader",
+      "ComposedTexture3D",
+      "ComposedVolumeStyle",
+      "Cone",
+      "ConeEmitter",
+      "Contact",
+      "Contour2D",
+      "ContourPolyline2D",
+      "Convolver",
+      "Coordinate",
+      "CoordinateChaser",
+      "CoordinateDamper",
+      "CoordinateDouble",
+      "CoordinateInterpolator",
+      "CoordinateInterpolator2D",
+      "Cylinder",
+      "CylinderSensor",
+      "DISEntityManager",
+      "DISEntityTypeMapping",
+      "Delay",
+      "DirectionalLight",
+      "Disk2D",
+      "DoubleAxisHingeJoint",
+      "DynamicsCompressor",
+      "EaseInEaseOut",
+      "EdgeEnhancementVolumeStyle",
+      "ElevationGrid",
+      "EnvironmentLight",
+      "EspduTransform",
+      "ExplosionEmitter",
+      "Extrusion",
+      "FillProperties",
+      "FloatVertexAttribute",
+      "Fog",
+      "FogCoordinate",
+      "FontLibrary",
+      "FontStyle",
+      "ForcePhysicsModel",
+      "Gain",
+      "GaussianSplats",
+      "GeneratedCubeMapTexture",
+      "GeoCoordinate",
+      "GeoElevationGrid",
+      "GeoLOD",
+      "GeoLocation",
+      "GeoMetadata",
+      "GeoOrigin",
+      "GeoPositionInterpolator",
+      "GeoProximitySensor",
+      "GeoTouchSensor",
+      "GeoTransform",
+      "GeoViewpoint",
+      "Group",
+      "HAnimDisplacer",
+      "HAnimHumanoid",
+      "HAnimJoint",
+      "HAnimMotion",
+      "HAnimPose",
+      "HAnimSegment",
+      "HAnimSite",
+      "ImageCubeMapTexture",
+      "ImageTexture",
+      "ImageTexture3D",
+      "IndexedFaceSet",
+      "IndexedLineSet",
+      "IndexedQuadSet",
+      "IndexedTriangleFanSet",
+      "IndexedTriangleSet",
+      "IndexedTriangleStripSet",
+      "Inline",
+      "InlineGeometry",
+      "IntegerSequencer",
+      "IntegerTrigger",
+      "IsoSurfaceVolumeData",
+      "KeySensor",
+      "LOD",
+      "Layer",
+      "LayerSet",
+      "Layout",
+      "LayoutGroup",
+      "LayoutLayer",
+      "LinePickSensor",
+      "LineProperties",
+      "LineSet",
+      "ListenerPointSource",
+      "LoadSensor",
+      "LocalFog",
+      "Material",
+      "Matrix3VertexAttribute",
+      "Matrix4VertexAttribute",
+      "MetadataBoolean",
+      "MetadataDouble",
+      "MetadataFloat",
+      "MetadataInteger",
+      "MetadataSet",
+      "MetadataString",
+      "MicrophoneSource",
+      "MotorJoint",
+      "MovieTexture",
+      "MultiTexture",
+      "MultiTextureCoordinate",
+      "MultiTextureTransform",
+      "NavigationInfo",
+      "Normal",
+      "NormalInterpolator",
+      "NurbsCurve",
+      "NurbsCurve2D",
+      "NurbsOrientationInterpolator",
+      "NurbsPatchSurface",
+      "NurbsPositionInterpolator",
+      "NurbsSet",
+      "NurbsSurfaceInterpolator",
+      "NurbsSweptSurface",
+      "NurbsSwungSurface",
+      "NurbsTextureCoordinate",
+      "NurbsTrimmedSurface",
+      "OpacityMapVolumeStyle",
+      "OrientationChaser",
+      "OrientationDamper",
+      "OrientationInterpolator",
+      "OrthoViewpoint",
+      "OscillatorSource",
+      "PackagedShader",
+      "ParticleSystem",
+      "PeriodicWave",
+      "PhysicalMaterial",
+      "PickableGroup",
+      "PixelTexture",
+      "PixelTexture3D",
+      "PlaneSensor",
+      "PointEmitter",
+      "PointLight",
+      "PointPickSensor",
+      "PointProperties",
+      "PointSet",
+      "Polyline2D",
+      "PolylineEmitter",
+      "Polypoint2D",
+      "PositionChaser",
+      "PositionChaser2D",
+      "PositionDamper",
+      "PositionDamper2D",
+      "PositionInterpolator",
+      "PositionInterpolator2D",
+      "PrimitivePickSensor",
+      "ProgramShader",
+      "ProjectionVolumeStyle",
+      "ProtoBody",
+      "ProtoInstance",
+      "ProximitySensor",
+      "QuadSet",
+      "ReceiverPdu",
+      "Rectangle2D",
+      "RenderedTexture",
+      "RigidBody",
+      "RigidBodyCollection",
+      "ScalarChaser",
+      "ScalarDamper",
+      "ScalarInterpolator",
+      "Scene",
+      "ScreenFontStyle",
+      "ScreenGroup",
+      "Script",
+      "SegmentedVolumeData",
+      "ShadedVolumeStyle",
+      "ShaderPart",
+      "ShaderProgram",
+      "Shape",
+      "SignalPdu",
+      "SilhouetteEnhancementVolumeStyle",
+      "SingleAxisHingeJoint",
+      "SliderJoint",
+      "Sound",
+      "SpatialSound",
+      "Sphere",
+      "SphereSensor",
+      "SplinePositionInterpolator",
+      "SplinePositionInterpolator2D",
+      "SplineScalarInterpolator",
+      "SpotLight",
+      "SquadOrientationInterpolator",
+      "StaticGroup",
+      "StreamAudioDestination",
+      "StreamAudioSource",
+      "StringSensor",
+      "SurfaceEmitter",
+      "Switch",
+      "Tangent",
+      "TexCoordChaser2D",
+      "TexCoordDamper2D",
+      "Text",
+      "TextureBackground",
+      "TextureCoordinate",
+      "TextureCoordinate3D",
+      "TextureCoordinate4D",
+      "TextureCoordinateGenerator",
+      "TextureProjector",
+      "TextureProjectorParallel",
+      "TextureProperties",
+      "TextureTransform",
+      "TextureTransform3D",
+      "TextureTransformMatrix3D",
+      "TimeSensor",
+      "TimeTrigger",
+      "ToneMappedVolumeStyle",
+      "TouchSensor",
+      "Transform",
+      "TransformSensor",
+      "TransmitterPdu",
+      "TriangleFanSet",
+      "TriangleSet",
+      "TriangleSet2D",
+      "TriangleStripSet",
+      "TwoSidedMaterial",
+      "UniversalJoint",
+      "UnlitMaterial",
+      "Viewpoint",
+      "ViewpointGroup",
+      "Viewport",
+      "VisibilitySensor",
+      "VolumeData",
+      "VolumeEmitter",
+      "VolumePickSensor",
+      "WaveShaper",
+      "WindPhysicsModel",
+      "WorldInfo",
+      "X3DAppearanceChildNode",
+      "X3DAppearanceNode",
+      "X3DBackgroundNode",
+      "X3DBindableNode",
+      "X3DBoundedObject",
+      "X3DChaserNode",
+      "X3DChildNode",
+      "X3DColorNode",
+      "X3DComposableVolumeRenderStyleNode",
+      "X3DComposedGeometryNode",
+      "X3DCoordinateNode",
+      "X3DDamperNode",
+      "X3DDragSensorNode",
+      "X3DEnvironmentTextureNode",
+      "X3DEnvironmentalSensorNode",
+      "X3DFogObject",
+      "X3DFollowerNode",
+      "X3DFontStyleNode",
+      "X3DGeometricPropertyNode",
+      "X3DGeometryNode",
+      "X3DGroupingNode",
+      "X3DInfoNode",
+      "X3DInterpolatorNode",
+      "X3DKeyDeviceSensorNode",
+      "X3DLayerNode",
+      "X3DLayoutNode",
+      "X3DLightNode",
+      "X3DMaterialNode",
+      "X3DMetadataObject",
+      "X3DNBodyCollidableNode",
+      "X3DNBodyCollisionSpaceNode",
+      "X3DNetworkSensorNode",
+      "X3DNode",
+      "X3DNormalNode",
+      "X3DNurbsControlCurveNode",
+      "X3DNurbsSurfaceGeometryNode",
+      "X3DOneSidedMaterialNode",
+      "X3DParametricGeometryNode",
+      "X3DParticleEmitterNode",
+      "X3DParticlePhysicsModelNode",
+      "X3DPickSensorNode",
+      "X3DPickableObject",
+      "X3DPointingDeviceSensorNode",
+      "X3DProductStructureChildNode",
+      "X3DProgrammableShaderObject",
+      "X3DPrototypeInstance",
+      "X3DRigidJointNode",
+      "X3DScriptNode",
+      "X3DSensorNode",
+      "X3DSequencerNode",
+      "X3DShaderNode",
+      "X3DShapeNode",
+      "X3DSingleTextureCoordinateNode",
+      "X3DSingleTextureNode",
+      "X3DSingleTextureTransformNode",
+      "X3DSoundChannelNode",
+      "X3DSoundDestinationNode",
+      "X3DSoundNode",
+      "X3DSoundProcessingNode",
+      "X3DSoundSourceNode",
+      "X3DStatement",
+      "X3DTangentNode",
+      "X3DTexture2DNode",
+      "X3DTexture3DNode",
+      "X3DTextureCoordinateNode",
+      "X3DTextureNode",
+      "X3DTextureProjectorNode",
+      "X3DTextureTransformNode",
+      "X3DTimeDependentNode",
+      "X3DTouchSensorNode",
+      "X3DTriggerNode",
+      "X3DUrlObject",
+      "X3DUrlOutputObject",
+      "X3DVertexAttributeNode",
+      "X3DViewpointNode",
+      "X3DViewportNode",
+      "X3DVolumeDataNode",
+      "X3DVolumeRenderStyleNode",
+      "field",
+      "fieldValue"
+     ]
+    }
+   },
+   "_ms": 285.4
+  },
+  "T3.2:main": {
+   "added_x3do_types_on_scene_iris": 43185,
+   "x3do_types_on_scene_iris_after": 43369,
+   "n3_store_growth_triples": 47253,
+   "n3_reason_ms": 133.5,
+   "focus": {
+    ":Spinner": {
+     "count": 349,
+     "types": [
+      "AcousticProperties",
+      "Analyser",
+      "Anchor",
+      "Appearance",
+      "Arc2D",
+      "ArcClose2D",
+      "AudioClip",
+      "AudioDestination",
+      "Background",
+      "BallJoint",
+      "Billboard",
+      "BiquadFilter",
+      "BlendedVolumeStyle",
+      "BooleanFilter",
+      "BooleanSequencer",
+      "BooleanToggle",
+      "BooleanTrigger",
+      "BoundaryEnhancementVolumeStyle",
+      "BoundedPhysicsModel",
+      "Box",
+      "BufferAudioSource",
+      "CADAssembly",
+      "CADFace",
+      "CADLayer",
+      "CADPart",
+      "CartoonVolumeStyle",
+      "ChannelMerger",
+      "ChannelSelector",
+      "ChannelSplitter",
+      "Circle2D",
+      "ClipPlane",
+      "CollidableOffset",
+      "CollidableShape",
+      "Collision",
+      "CollisionCollection",
+      "CollisionSensor",
+      "CollisionSpace",
+      "Color",
+      "ColorChaser",
+      "ColorDamper",
+      "ColorInterpolator",
+      "ColorRGBA",
+      "ComposedCubeMapTexture",
+      "ComposedShader",
+      "ComposedTexture3D",
+      "ComposedVolumeStyle",
+      "Cone",
+      "ConeEmitter",
+      "Contact",
+      "Contour2D",
+      "ContourPolyline2D",
+      "Convolver",
+      "Coordinate",
+      "CoordinateChaser",
+      "CoordinateDamper",
+      "CoordinateDouble",
+      "CoordinateInterpolator",
+      "CoordinateInterpolator2D",
+      "Cylinder",
+      "CylinderSensor",
+      "DISEntityManager",
+      "DISEntityTypeMapping",
+      "Delay",
+      "DirectionalLight",
+      "Disk2D",
+      "DoubleAxisHingeJoint",
+      "DynamicsCompressor",
+      "EaseInEaseOut",
+      "EdgeEnhancementVolumeStyle",
+      "ElevationGrid",
+      "EnvironmentLight",
+      "EspduTransform",
+      "ExplosionEmitter",
+      "Extrusion",
+      "FillProperties",
+      "FloatVertexAttribute",
+      "Fog",
+      "FogCoordinate",
+      "FontLibrary",
+      "FontStyle",
+      "ForcePhysicsModel",
+      "Gain",
+      "GaussianSplats",
+      "GeneratedCubeMapTexture",
+      "GeoCoordinate",
+      "GeoElevationGrid",
+      "GeoLOD",
+      "GeoLocation",
+      "GeoMetadata",
+      "GeoOrigin",
+      "GeoPositionInterpolator",
+      "GeoProximitySensor",
+      "GeoTouchSensor",
+      "GeoTransform",
+      "GeoViewpoint",
+      "Group",
+      "HAnimDisplacer",
+      "HAnimHumanoid",
+      "HAnimJoint",
+      "HAnimMotion",
+      "HAnimPose",
+      "HAnimSegment",
+      "HAnimSite",
+      "ImageCubeMapTexture",
+      "ImageTexture",
+      "ImageTexture3D",
+      "IndexedFaceSet",
+      "IndexedLineSet",
+      "IndexedQuadSet",
+      "IndexedTriangleFanSet",
+      "IndexedTriangleSet",
+      "IndexedTriangleStripSet",
+      "Inline",
+      "InlineGeometry",
+      "IntegerSequencer",
+      "IntegerTrigger",
+      "IsoSurfaceVolumeData",
+      "KeySensor",
+      "LOD",
+      "Layer",
+      "LayerSet",
+      "Layout",
+      "LayoutGroup",
+      "LayoutLayer",
+      "LinePickSensor",
+      "LineProperties",
+      "LineSet",
+      "ListenerPointSource",
+      "LoadSensor",
+      "LocalFog",
+      "Material",
+      "Matrix3VertexAttribute",
+      "Matrix4VertexAttribute",
+      "MetadataBoolean",
+      "MetadataDouble",
+      "MetadataFloat",
+      "MetadataInteger",
+      "MetadataSet",
+      "MetadataString",
+      "MicrophoneSource",
+      "MotorJoint",
+      "MovieTexture",
+      "MultiTexture",
+      "MultiTextureCoordinate",
+      "MultiTextureTransform",
+      "NavigationInfo",
+      "Normal",
+      "NormalInterpolator",
+      "NurbsCurve",
+      "NurbsCurve2D",
+      "NurbsOrientationInterpolator",
+      "NurbsPatchSurface",
+      "NurbsPositionInterpolator",
+      "NurbsSet",
+      "NurbsSurfaceInterpolator",
+      "NurbsSweptSurface",
+      "NurbsSwungSurface",
+      "NurbsTextureCoordinate",
+      "NurbsTrimmedSurface",
+      "OpacityMapVolumeStyle",
+      "OrientationChaser",
+      "OrientationDamper",
+      "OrientationInterpolator",
+      "OrthoViewpoint",
+      "OscillatorSource",
+      "PackagedShader",
+      "ParticleSystem",
+      "PeriodicWave",
+      "PhysicalMaterial",
+      "PickableGroup",
+      "PixelTexture",
+      "PixelTexture3D",
+      "PlaneSensor",
+      "PointEmitter",
+      "PointLight",
+      "PointPickSensor",
+      "PointProperties",
+      "PointSet",
+      "Polyline2D",
+      "PolylineEmitter",
+      "Polypoint2D",
+      "PositionChaser",
+      "PositionChaser2D",
+      "PositionDamper",
+      "PositionDamper2D",
+      "PositionInterpolator",
+      "PositionInterpolator2D",
+      "PrimitivePickSensor",
+      "ProgramShader",
+      "ProjectionVolumeStyle",
+      "ProtoBody",
+      "ProtoInstance",
+      "ProximitySensor",
+      "QuadSet",
+      "ReceiverPdu",
+      "Rectangle2D",
+      "RenderedTexture",
+      "RigidBody",
+      "RigidBodyCollection",
+      "ScalarChaser",
+      "ScalarDamper",
+      "ScalarInterpolator",
+      "Scene",
+      "ScreenFontStyle",
+      "ScreenGroup",
+      "Script",
+      "SegmentedVolumeData",
+      "ShadedVolumeStyle",
+      "ShaderPart",
+      "ShaderProgram",
+      "Shape",
+      "SignalPdu",
+      "SilhouetteEnhancementVolumeStyle",
+      "SingleAxisHingeJoint",
+      "SliderJoint",
+      "Sound",
+      "SpatialSound",
+      "Sphere",
+      "SphereSensor",
+      "SplinePositionInterpolator",
+      "SplinePositionInterpolator2D",
+      "SplineScalarInterpolator",
+      "SpotLight",
+      "SquadOrientationInterpolator",
+      "StaticGroup",
+      "StreamAudioDestination",
+      "StreamAudioSource",
+      "StringSensor",
+      "SurfaceEmitter",
+      "Switch",
+      "Tangent",
+      "TexCoordChaser2D",
+      "TexCoordDamper2D",
+      "Text",
+      "TextureBackground",
+      "TextureCoordinate",
+      "TextureCoordinate3D",
+      "TextureCoordinate4D",
+      "TextureCoordinateGenerator",
+      "TextureProjector",
+      "TextureProjectorParallel",
+      "TextureProperties",
+      "TextureTransform",
+      "TextureTransform3D",
+      "TextureTransformMatrix3D",
+      "TimeSensor",
+      "TimeTrigger",
+      "ToneMappedVolumeStyle",
+      "TouchSensor",
+      "Transform",
+      "TransformSensor",
+      "TransmitterPdu",
+      "TriangleFanSet",
+      "TriangleSet",
+      "TriangleSet2D",
+      "TriangleStripSet",
+      "TwoSidedMaterial",
+      "UniversalJoint",
+      "UnlitMaterial",
+      "Viewpoint",
+      "ViewpointGroup",
+      "Viewport",
+      "VisibilitySensor",
+      "VolumeData",
+      "VolumeEmitter",
+      "VolumePickSensor",
+      "WaveShaper",
+      "WindPhysicsModel",
+      "WorldInfo",
+      "X3DAppearanceChildNode",
+      "X3DAppearanceNode",
+      "X3DBackgroundNode",
+      "X3DBindableNode",
+      "X3DBoundedObject",
+      "X3DChaserNode",
+      "X3DChildNode",
+      "X3DColorNode",
+      "X3DComposableVolumeRenderStyleNode",
+      "X3DComposedGeometryNode",
+      "X3DCoordinateNode",
+      "X3DDamperNode",
+      "X3DDragSensorNode",
+      "X3DEnvironmentTextureNode",
+      "X3DEnvironmentalSensorNode",
+      "X3DFogObject",
+      "X3DFollowerNode",
+      "X3DFontStyleNode",
+      "X3DGeometricPropertyNode",
+      "X3DGeometryNode",
+      "X3DGroupingNode",
+      "X3DInfoNode",
+      "X3DInterpolatorNode",
+      "X3DKeyDeviceSensorNode",
+      "X3DLayerNode",
+      "X3DLayoutNode",
+      "X3DLightNode",
+      "X3DMaterialNode",
+      "X3DMetadataObject",
+      "X3DNBodyCollidableNode",
+      "X3DNBodyCollisionSpaceNode",
+      "X3DNetworkSensorNode",
+      "X3DNode",
+      "X3DNormalNode",
+      "X3DNurbsControlCurveNode",
+      "X3DNurbsSurfaceGeometryNode",
+      "X3DOneSidedMaterialNode",
+      "X3DParametricGeometryNode",
+      "X3DParticleEmitterNode",
+      "X3DParticlePhysicsModelNode",
+      "X3DPickSensorNode",
+      "X3DPickableObject",
+      "X3DPointingDeviceSensorNode",
+      "X3DProductStructureChildNode",
+      "X3DProgrammableShaderObject",
+      "X3DPrototypeInstance",
+      "X3DRigidJointNode",
+      "X3DScriptNode",
+      "X3DSensorNode",
+      "X3DSequencerNode",
+      "X3DShaderNode",
+      "X3DShapeNode",
+      "X3DSingleTextureCoordinateNode",
+      "X3DSingleTextureNode",
+      "X3DSingleTextureTransformNode",
+      "X3DSoundChannelNode",
+      "X3DSoundDestinationNode",
+      "X3DSoundNode",
+      "X3DSoundProcessingNode",
+      "X3DSoundSourceNode",
+      "X3DStatement",
+      "X3DTangentNode",
+      "X3DTexture2DNode",
+      "X3DTexture3DNode",
+      "X3DTextureCoordinateNode",
+      "X3DTextureNode",
+      "X3DTextureProjectorNode",
+      "X3DTextureTransformNode",
+      "X3DTimeDependentNode",
+      "X3DTouchSensorNode",
+      "X3DTriggerNode",
+      "X3DUrlObject",
+      "X3DUrlOutputObject",
+      "X3DVertexAttributeNode",
+      "X3DViewpointNode",
+      "X3DViewportNode",
+      "X3DVolumeDataNode",
+      "X3DVolumeRenderStyleNode",
+      "field",
+      "fieldValue"
+     ]
+    },
+    ":Gilt": {
+     "count": 344,
+     "types": [
+      "AcousticProperties",
+      "Analyser",
+      "Anchor",
+      "Appearance",
+      "Arc2D",
+      "ArcClose2D",
+      "AudioClip",
+      "AudioDestination",
+      "Background",
+      "BallJoint",
+      "Billboard",
+      "BiquadFilter",
+      "BlendedVolumeStyle",
+      "BooleanFilter",
+      "BooleanSequencer",
+      "BooleanToggle",
+      "BooleanTrigger",
+      "BoundaryEnhancementVolumeStyle",
+      "BoundedPhysicsModel",
+      "Box",
+      "BufferAudioSource",
+      "CADAssembly",
+      "CADFace",
+      "CADLayer",
+      "CADPart",
+      "CartoonVolumeStyle",
+      "ChannelMerger",
+      "ChannelSelector",
+      "ChannelSplitter",
+      "Circle2D",
+      "ClipPlane",
+      "CollidableOffset",
+      "CollidableShape",
+      "Collision",
+      "CollisionCollection",
+      "CollisionSensor",
+      "CollisionSpace",
+      "Color",
+      "ColorChaser",
+      "ColorDamper",
+      "ColorInterpolator",
+      "ColorRGBA",
+      "ComposedCubeMapTexture",
+      "ComposedShader",
+      "ComposedTexture3D",
+      "ComposedVolumeStyle",
+      "Cone",
+      "ConeEmitter",
+      "Contact",
+      "Contour2D",
+      "ContourPolyline2D",
+      "Convolver",
+      "Coordinate",
+      "CoordinateChaser",
+      "CoordinateDamper",
+      "CoordinateDouble",
+      "CoordinateInterpolator",
+      "CoordinateInterpolator2D",
+      "Cylinder",
+      "CylinderSensor",
+      "DISEntityManager",
+      "DISEntityTypeMapping",
+      "Delay",
+      "DirectionalLight",
+      "Disk2D",
+      "DoubleAxisHingeJoint",
+      "DynamicsCompressor",
+      "EaseInEaseOut",
+      "EdgeEnhancementVolumeStyle",
+      "ElevationGrid",
+      "EnvironmentLight",
+      "EspduTransform",
+      "ExplosionEmitter",
+      "Extrusion",
+      "FillProperties",
+      "FloatVertexAttribute",
+      "Fog",
+      "FogCoordinate",
+      "FontLibrary",
+      "FontStyle",
+      "ForcePhysicsModel",
+      "Gain",
+      "GaussianSplats",
+      "GeneratedCubeMapTexture",
+      "GeoCoordinate",
+      "GeoElevationGrid",
+      "GeoLOD",
+      "GeoLocation",
+      "GeoMetadata",
+      "GeoOrigin",
+      "GeoPositionInterpolator",
+      "GeoProximitySensor",
+      "GeoTouchSensor",
+      "GeoTransform",
+      "GeoViewpoint",
+      "Group",
+      "HAnimDisplacer",
+      "HAnimHumanoid",
+      "HAnimJoint",
+      "HAnimMotion",
+      "HAnimPose",
+      "HAnimSegment",
+      "HAnimSite",
+      "ImageCubeMapTexture",
+      "ImageTexture",
+      "ImageTexture3D",
+      "IndexedFaceSet",
+      "IndexedLineSet",
+      "IndexedQuadSet",
+      "IndexedTriangleFanSet",
+      "IndexedTriangleSet",
+      "IndexedTriangleStripSet",
+      "Inline",
+      "InlineGeometry",
+      "IntegerSequencer",
+      "IntegerTrigger",
+      "IsoSurfaceVolumeData",
+      "KeySensor",
+      "LOD",
+      "Layer",
+      "LayerSet",
+      "Layout",
+      "LayoutGroup",
+      "LayoutLayer",
+      "LinePickSensor",
+      "LineProperties",
+      "LineSet",
+      "ListenerPointSource",
+      "LoadSensor",
+      "LocalFog",
+      "Material",
+      "Matrix3VertexAttribute",
+      "Matrix4VertexAttribute",
+      "MetadataBoolean",
+      "MetadataDouble",
+      "MetadataFloat",
+      "MetadataInteger",
+      "MetadataSet",
+      "MetadataString",
+      "MicrophoneSource",
+      "MotorJoint",
+      "MovieTexture",
+      "MultiTexture",
+      "MultiTextureCoordinate",
+      "MultiTextureTransform",
+      "NavigationInfo",
+      "Normal",
+      "NormalInterpolator",
+      "NurbsCurve",
+      "NurbsCurve2D",
+      "NurbsOrientationInterpolator",
+      "NurbsPatchSurface",
+      "NurbsPositionInterpolator",
+      "NurbsSet",
+      "NurbsSurfaceInterpolator",
+      "NurbsSweptSurface",
+      "NurbsSwungSurface",
+      "NurbsTextureCoordinate",
+      "NurbsTrimmedSurface",
+      "OpacityMapVolumeStyle",
+      "OrientationChaser",
+      "OrientationDamper",
+      "OrientationInterpolator",
+      "OrthoViewpoint",
+      "OscillatorSource",
+      "PackagedShader",
+      "ParticleSystem",
+      "PeriodicWave",
+      "PhysicalMaterial",
+      "PickableGroup",
+      "PixelTexture",
+      "PixelTexture3D",
+      "PlaneSensor",
+      "PointEmitter",
+      "PointLight",
+      "PointPickSensor",
+      "PointProperties",
+      "PointSet",
+      "Polyline2D",
+      "PolylineEmitter",
+      "Polypoint2D",
+      "PositionChaser",
+      "PositionChaser2D",
+      "PositionDamper",
+      "PositionDamper2D",
+      "PositionInterpolator",
+      "PositionInterpolator2D",
+      "PrimitivePickSensor",
+      "ProgramShader",
+      "ProjectionVolumeStyle",
+      "ProtoInstance",
+      "ProximitySensor",
+      "QuadSet",
+      "ReceiverPdu",
+      "Rectangle2D",
+      "RenderedTexture",
+      "RigidBody",
+      "RigidBodyCollection",
+      "ScalarChaser",
+      "ScalarDamper",
+      "ScalarInterpolator",
+      "ScreenFontStyle",
+      "ScreenGroup",
+      "Script",
+      "SegmentedVolumeData",
+      "ShadedVolumeStyle",
+      "ShaderPart",
+      "ShaderProgram",
+      "Shape",
+      "SignalPdu",
+      "SilhouetteEnhancementVolumeStyle",
+      "SingleAxisHingeJoint",
+      "SliderJoint",
+      "Sound",
+      "SpatialSound",
+      "Sphere",
+      "SphereSensor",
+      "SplinePositionInterpolator",
+      "SplinePositionInterpolator2D",
+      "SplineScalarInterpolator",
+      "SpotLight",
+      "SquadOrientationInterpolator",
+      "StaticGroup",
+      "StreamAudioDestination",
+      "StreamAudioSource",
+      "StringSensor",
+      "SurfaceEmitter",
+      "Switch",
+      "Tangent",
+      "TexCoordChaser2D",
+      "TexCoordDamper2D",
+      "Text",
+      "TextureBackground",
+      "TextureCoordinate",
+      "TextureCoordinate3D",
+      "TextureCoordinate4D",
+      "TextureCoordinateGenerator",
+      "TextureProjector",
+      "TextureProjectorParallel",
+      "TextureProperties",
+      "TextureTransform",
+      "TextureTransform3D",
+      "TextureTransformMatrix3D",
+      "TimeSensor",
+      "TimeTrigger",
+      "ToneMappedVolumeStyle",
+      "TouchSensor",
+      "Transform",
+      "TransformSensor",
+      "TransmitterPdu",
+      "TriangleFanSet",
+      "TriangleSet",
+      "TriangleSet2D",
+      "TriangleStripSet",
+      "TwoSidedMaterial",
+      "UniversalJoint",
+      "UnlitMaterial",
+      "Viewpoint",
+      "ViewpointGroup",
+      "Viewport",
+      "VisibilitySensor",
+      "VolumeData",
+      "VolumeEmitter",
+      "VolumePickSensor",
+      "WaveShaper",
+      "WindPhysicsModel",
+      "WorldInfo",
+      "X3DAppearanceChildNode",
+      "X3DAppearanceNode",
+      "X3DBackgroundNode",
+      "X3DBindableNode",
+      "X3DBoundedObject",
+      "X3DChaserNode",
+      "X3DChildNode",
+      "X3DColorNode",
+      "X3DComposableVolumeRenderStyleNode",
+      "X3DComposedGeometryNode",
+      "X3DCoordinateNode",
+      "X3DDamperNode",
+      "X3DDragSensorNode",
+      "X3DEnvironmentTextureNode",
+      "X3DEnvironmentalSensorNode",
+      "X3DFogObject",
+      "X3DFollowerNode",
+      "X3DFontStyleNode",
+      "X3DGeometricPropertyNode",
+      "X3DGeometryNode",
+      "X3DGroupingNode",
+      "X3DInfoNode",
+      "X3DInterpolatorNode",
+      "X3DKeyDeviceSensorNode",
+      "X3DLayerNode",
+      "X3DLayoutNode",
+      "X3DLightNode",
+      "X3DMaterialNode",
+      "X3DMetadataObject",
+      "X3DNBodyCollidableNode",
+      "X3DNBodyCollisionSpaceNode",
+      "X3DNetworkSensorNode",
+      "X3DNode",
+      "X3DNormalNode",
+      "X3DNurbsControlCurveNode",
+      "X3DNurbsSurfaceGeometryNode",
+      "X3DOneSidedMaterialNode",
+      "X3DParametricGeometryNode",
+      "X3DParticleEmitterNode",
+      "X3DParticlePhysicsModelNode",
+      "X3DPickSensorNode",
+      "X3DPickableObject",
+      "X3DPointingDeviceSensorNode",
+      "X3DProductStructureChildNode",
+      "X3DProgrammableShaderObject",
+      "X3DPrototypeInstance",
+      "X3DRigidJointNode",
+      "X3DScriptNode",
+      "X3DSensorNode",
+      "X3DSequencerNode",
+      "X3DShaderNode",
+      "X3DShapeNode",
+      "X3DSingleTextureCoordinateNode",
+      "X3DSingleTextureNode",
+      "X3DSingleTextureTransformNode",
+      "X3DSoundChannelNode",
+      "X3DSoundDestinationNode",
+      "X3DSoundNode",
+      "X3DSoundProcessingNode",
+      "X3DSoundSourceNode",
+      "X3DTangentNode",
+      "X3DTexture2DNode",
+      "X3DTexture3DNode",
+      "X3DTextureCoordinateNode",
+      "X3DTextureNode",
+      "X3DTextureProjectorNode",
+      "X3DTextureTransformNode",
+      "X3DTimeDependentNode",
+      "X3DTouchSensorNode",
+      "X3DTriggerNode",
+      "X3DUrlObject",
+      "X3DUrlOutputObject",
+      "X3DVertexAttributeNode",
+      "X3DViewpointNode",
+      "X3DViewportNode",
+      "X3DVolumeDataNode",
+      "X3DVolumeRenderStyleNode"
+     ]
+    },
+    ":Appearance_2_12_3_1_1_1": {
+     "count": 6,
+     "types": [
+      "Appearance",
+      "ShadedVolumeStyle",
+      "X3DAppearanceNode",
+      "X3DComposableVolumeRenderStyleNode",
+      "X3DNode",
+      "X3DVolumeRenderStyleNode"
+     ]
+    }
+   },
+   "_ms": 293.5
+  },
+  "T3.2:try": {
+   "added_x3do_types_on_scene_iris": 43185,
+   "x3do_types_on_scene_iris_after": 43369,
+   "n3_store_growth_triples": 47253,
+   "n3_reason_ms": 139.1,
+   "focus": {
+    ":Appearance_2_12_3_1_1_1": {
+     "count": 6,
+     "types": [
+      "Appearance",
+      "ShadedVolumeStyle",
+      "X3DAppearanceNode",
+      "X3DComposableVolumeRenderStyleNode",
+      "X3DNode",
+      "X3DVolumeRenderStyleNode"
+     ]
+    }
+   },
+   "_ms": 261.6
+  },
+  "T3.3:main": {
+   "added_x3do_types_on_scene_iris": 43185,
+   "x3do_types_on_scene_iris_after": 43369,
+   "n3_store_growth_triples": 47253,
+   "n3_reason_ms": 203.5,
+   "focus": {
+    ":Box_2_12_3_1_1_2": {
+     "count": 23,
+     "types": [
+      "Box",
+      "FontStyle",
+      "GeneratedCubeMapTexture",
+      "GeoProximitySensor",
+      "Layout",
+      "ProximitySensor",
+      "Rectangle2D",
+      "TransformSensor",
+      "ViewpointGroup",
+      "VisibilitySensor",
+      "X3DAppearanceChildNode",
+      "X3DBoundedObject",
+      "X3DChildNode",
+      "X3DEnvironmentTextureNode",
+      "X3DEnvironmentalSensorNode",
+      "X3DFontStyleNode",
+      "X3DGeometryNode",
+      "X3DLayoutNode",
+      "X3DNBodyCollidableNode",
+      "X3DNode",
+      "X3DParametricGeometryNode",
+      "X3DSensorNode",
+      "X3DTextureNode"
+     ]
+    }
+   },
+   "_ms": 323.7
+  },
+  "T3.3:try": {
+   "vars": [
+    "range"
+   ],
+   "count": 3,
+   "rows": [
+    {
+     "range": "x3do:X3DGeometryNode"
+    },
+    {
+     "range": "x3do:X3DNBodyCollidableNode"
+    },
+    {
+     "range": "x3do:X3DParametricGeometryNode"
+    }
+   ],
+   "_ms": 13.2
+  },
+  "T3.4:main": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Box_2_12_3_6",
+     "shape": "S7",
+     "severity": "sh:Violation",
+     "component": "sh:OrConstraintComponent",
+     "message": "S7: node in a children field is not an X3DChildNode",
+     "value": ":Box_2_12_3_6"
+    }
+   ],
+   "ms_shacl_engine": 12.6,
+   "_ms": 44.1
+  },
+  "T3.4:try": {
+   "conforms": true,
+   "count": 0,
+   "results": [],
+   "ms_shacl_engine": 39.3,
+   "n3_rdfs_ms": 133.7,
+   "_ms": 190.4
+  },
+  "T3.5:main": {
+   "vars": [
+    "disjointAxioms"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "disjointAxioms": 0
+    }
+   ],
+   "_ms": 16.7
+  },
+  "T3.5:try": {
+   "ask": false,
+   "_ms": 11.8
+  },
+  "T3.6:main": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":BareSpecimen",
+     "shape": "lab:NeedsAppearance",
+     "severity": "sh:Violation",
+     "component": "sh:MinCountConstraintComponent",
+     "message": "Shape states no Appearance",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 2.6,
+   "_ms": 19.2
+  },
+  "T3.6:try": {
+   "ask": false,
+   "_ms": 9.9
+  },
+  "T4.1:main": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":BareSpecimen",
+     "shape": "lab:NeedsGeometry",
+     "severity": "sh:Warning",
+     "component": "sh:MinCountConstraintComponent",
+     "message": "Shape has no geometry",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 2.5,
+   "_ms": 35.2
+  },
+  "T4.1:try": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":BareSpecimen",
+     "shape": "S2",
+     "severity": "sh:Warning",
+     "component": "sh:OrConstraintComponent",
+     "message": "S2: Shape has no geometry (valid X3D, draws nothing)",
+     "value": ":BareSpecimen"
+    }
+   ],
+   "ms_shacl_engine": 2.8,
+   "_ms": 26.6
+  },
+  "T4.2:main": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Ruby",
+     "shape": "S1",
+     "severity": "sh:Violation",
+     "component": "sh:MaxInclusiveConstraintComponent",
+     "message": "S1: diffuseColor component outside [0,1]",
+     "value": 1.5
+    }
+   ],
+   "ms_shacl_engine": 13.4,
+   "_ms": 35.8
+  },
+  "T4.2:try": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Ruby",
+     "shape": "S1",
+     "severity": "sh:Violation",
+     "component": "sh:MaxInclusiveConstraintComponent",
+     "message": "S1: diffuseColor component outside [0,1]",
+     "value": 1.5
+    }
+   ],
+   "ms_shacl_engine": 11.2,
+   "_ms": 32.6
+  },
+  "T4.3:main": {
+   "conforms": false,
+   "count": 6,
+   "results": [
+    {
+     "focus": ":CoreGlow",
+     "shape": "lab:NaiveArity",
+     "severity": "sh:Violation",
+     "component": "sh:MinCountConstraintComponent",
+     "message": "naive: fewer than 3 diffuseColor components",
+     "value": null
+    },
+    {
+     "focus": ":Flame",
+     "shape": "lab:NaiveArity",
+     "severity": "sh:Violation",
+     "component": "sh:MinCountConstraintComponent",
+     "message": "naive: fewer than 3 diffuseColor components",
+     "value": null
+    },
+    {
+     "focus": ":InlayGlow",
+     "shape": "lab:NaiveArity",
+     "severity": "sh:Violation",
+     "component": "sh:MinCountConstraintComponent",
+     "message": "naive: fewer than 3 diffuseColor components",
+     "value": null
+    },
+    {
+     "focus": ":Pearl",
+     "shape": "lab:NaiveArity",
+     "severity": "sh:Violation",
+     "component": "sh:MinCountConstraintComponent",
+     "message": "naive: fewer than 3 diffuseColor components",
+     "value": null
+    },
+    {
+     "focus": ":PlaqueSkin",
+     "shape": "lab:NaiveArity",
+     "severity": "sh:Violation",
+     "component": "sh:MinCountConstraintComponent",
+     "message": "naive: fewer than 3 diffuseColor components",
+     "value": null
+    },
+    {
+     "focus": ":RimGlow",
+     "shape": "lab:NaiveArity",
+     "severity": "sh:Violation",
+     "component": "sh:MinCountConstraintComponent",
+     "message": "naive: fewer than 3 diffuseColor components",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 1.8,
+   "_ms": 24.1
+  },
+  "T4.3:try": {
+   "conforms": true,
+   "count": 0,
+   "results": [],
+   "ms_shacl_engine": 1744.3,
+   "_ms": 1761.9
+  },
+  "T4.4:main": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Weave-USE-1",
+     "shape": "S3",
+     "severity": "sh:Violation",
+     "component": "sh:SPARQLConstraintComponent",
+     "message": "S3: this USE is a \"PhysicalMaterial\" but DEF \"Weave\" is not",
+     "value": ":Weave-USE-1"
+    }
+   ],
+   "ms_shacl_engine": 464.5,
+   "_ms": 489.5
+  },
+  "T4.4:try": {
+   "vars": [
+    "use",
+    "useType",
+    "def"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "use": ":Weave-USE-1",
+     "useType": "x3do:PhysicalMaterial",
+     "def": ":Weave"
+    }
+   ],
+   "_ms": 12.1
+  },
+  "T4.5:main": {
+   "vars": [
+    "parent",
+    "field"
+   ],
+   "count": 12,
+   "rows": [
+    {
+     "parent": "x3do:BoundedPhysicsModel",
+     "field": "x3do:hasGeometry"
+    },
+    {
+     "parent": "x3do:LinePickSensor",
+     "field": "x3do:hasPickingGeometry"
+    },
+    {
+     "parent": "x3do:NurbsSet",
+     "field": "x3do:hasGeometry"
+    },
+    {
+     "parent": "x3do:ParticleSystem",
+     "field": "x3do:hasGeometry"
+    },
+    {
+     "parent": "x3do:PointPickSensor",
+     "field": "x3do:hasPickingGeometry"
+    },
+    {
+     "parent": "x3do:PrimitivePickSensor",
+     "field": "x3do:hasPickingGeometry"
+    },
+    {
+     "parent": "x3do:RigidBody",
+     "field": "x3do:hasGeometry"
+    },
+    {
+     "parent": "x3do:Shape",
+     "field": "x3do:hasGeometry"
+    },
+    {
+     "parent": "x3do:SurfaceEmitter",
+     "field": "x3do:hasSurface"
+    },
+    {
+     "parent": "x3do:VolumePickSensor",
+     "field": "x3do:hasPickingGeometry"
+    },
+    {
+     "parent": "x3do:X3DPickSensorNode",
+     "field": "x3do:hasPickingGeometry"
+    },
+    {
+     "parent": "x3do:X3DShapeNode",
+     "field": "x3do:hasGeometry"
+    }
+   ],
+   "_ms": 36.3
+  },
+  "T4.5:try": {
+   "vars": [
+    "parent",
+    "field"
+   ],
+   "count": 85,
+   "rows": [
+    {
+     "parent": "x3do:Analyser",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Anchor",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Appearance",
+     "field": "x3do:hasTexture"
+    },
+    {
+     "parent": "x3do:AudioDestination",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Billboard",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:BiquadFilter",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:BlendedVolumeStyle",
+     "field": "x3do:hasWeightTransferFunction1"
+    },
+    {
+     "parent": "x3do:BlendedVolumeStyle",
+     "field": "x3do:hasWeightTransferFunction2"
+    },
+    {
+     "parent": "x3do:CADAssembly",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:CADLayer",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:CADPart",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:ChannelMerger",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:ChannelSelector",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:ChannelSplitter",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Collision",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:ComposedCubeMapTexture",
+     "field": "x3do:hasBackTexture"
+    },
+    {
+     "parent": "x3do:ComposedCubeMapTexture",
+     "field": "x3do:hasBottomTexture"
+    },
+    {
+     "parent": "x3do:ComposedCubeMapTexture",
+     "field": "x3do:hasFrontTexture"
+    },
+    {
+     "parent": "x3do:ComposedCubeMapTexture",
+     "field": "x3do:hasLeftTexture"
+    },
+    {
+     "parent": "x3do:ComposedCubeMapTexture",
+     "field": "x3do:hasRightTexture"
+    },
+    {
+     "parent": "x3do:ComposedCubeMapTexture",
+     "field": "x3do:hasTopTexture"
+    },
+    {
+     "parent": "x3do:ComposedTexture3D",
+     "field": "x3do:hasTexture"
+    },
+    {
+     "parent": "x3do:Contour2D",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Convolver",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:DISEntityManager",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Delay",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:DynamicsCompressor",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:EnvironmentLight",
+     "field": "x3do:hasDiffuseTexture"
+    },
+    {
+     "parent": "x3do:EnvironmentLight",
+     "field": "x3do:hasSpecularTexture"
+    },
+    {
+     "parent": "x3do:EspduTransform",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Gain",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:GeoLOD",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:GeoLocation",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:GeoTransform",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Group",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:HAnimHumanoid",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:HAnimJoint",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:HAnimPose",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:HAnimSegment",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:HAnimSite",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:LOD",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Layer",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:LayoutGroup",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:LayoutLayer",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:LoadSensor",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Material",
+     "field": "x3do:hasAmbientTexture"
+    },
+    {
+     "parent": "x3do:Material",
+     "field": "x3do:hasDiffuseTexture"
+    },
+    {
+     "parent": "x3do:Material",
+     "field": "x3do:hasEmissiveTexture"
+    },
+    {
+     "parent": "x3do:Material",
+     "field": "x3do:hasNormalTexture"
+    },
+    {
+     "parent": "x3do:Material",
+     "field": "x3do:hasOcclusionTexture"
+    },
+    {
+     "parent": "x3do:Material",
+     "field": "x3do:hasShininessTexture"
+    },
+    {
+     "parent": "x3do:Material",
+     "field": "x3do:hasSpecularTexture"
+    },
+    {
+     "parent": "x3do:MultiTexture",
+     "field": "x3do:hasTexture"
+    },
+    {
+     "parent": "x3do:PhysicalMaterial",
+     "field": "x3do:hasBaseTexture"
+    },
+    {
+     "parent": "x3do:PhysicalMaterial",
+     "field": "x3do:hasEmissiveTexture"
+    },
+    {
+     "parent": "x3do:PhysicalMaterial",
+     "field": "x3do:hasMetallicRoughnessTexture"
+    },
+    {
+     "parent": "x3do:PhysicalMaterial",
+     "field": "x3do:hasNormalTexture"
+    },
+    {
+     "parent": "x3do:PhysicalMaterial",
+     "field": "x3do:hasOcclusionTexture"
+    },
+    {
+     "parent": "x3do:PickableGroup",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:ProtoBody",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Scene",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:ScreenGroup",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:SpatialSound",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:StaticGroup",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:StreamAudioDestination",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Switch",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:TextureBackground",
+     "field": "x3do:hasBackTexture"
+    },
+    {
+     "parent": "x3do:TextureBackground",
+     "field": "x3do:hasBottomTexture"
+    },
+    {
+     "parent": "x3do:TextureBackground",
+     "field": "x3do:hasFrontTexture"
+    },
+    {
+     "parent": "x3do:TextureBackground",
+     "field": "x3do:hasLeftTexture"
+    },
+    {
+     "parent": "x3do:TextureBackground",
+     "field": "x3do:hasRightTexture"
+    },
+    {
+     "parent": "x3do:TextureBackground",
+     "field": "x3do:hasTopTexture"
+    },
+    {
+     "parent": "x3do:TextureProjector",
+     "field": "x3do:hasTexture"
+    },
+    {
+     "parent": "x3do:TextureProjectorParallel",
+     "field": "x3do:hasTexture"
+    },
+    {
+     "parent": "x3do:Transform",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:UnlitMaterial",
+     "field": "x3do:hasEmissiveTexture"
+    },
+    {
+     "parent": "x3do:UnlitMaterial",
+     "field": "x3do:hasNormalTexture"
+    },
+    {
+     "parent": "x3do:ViewpointGroup",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:Viewport",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:WaveShaper",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:X3DGroupingNode",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:X3DTextureProjectorNode",
+     "field": "x3do:hasTexture"
+    },
+    {
+     "parent": "x3do:X3DViewportNode",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:field",
+     "field": "x3do:hasChildren"
+    },
+    {
+     "parent": "x3do:fieldValue",
+     "field": "x3do:hasChildren"
+    }
+   ],
+   "_ms": 74.8
+  },
+  "T4.6:main": {
+   "conforms": true,
+   "count": 0,
+   "results": [],
+   "ms_shacl_engine": 5.3,
+   "unfixed": {
+    "conforms": false,
+    "count": 83,
+    "ms": 7.9
+   },
+   "_ms": 30.4
+  },
+  "T4.6:try": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Scene",
+     "shape": "lab:SceneViewpointCore",
+     "severity": "sh:Warning",
+     "component": "sh:QualifiedMinCountConstraintComponent",
+     "message": "S4 (Core form): Scene has no Viewpoint descendant",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 1,
+   "_ms": 16.9
+  },
+  "T4.8:main": {
+   "conforms": true,
+   "count": 0,
+   "results": [],
+   "ms_shacl_engine": 10208.5,
+   "_ms": 10230
+  },
+  "T5.2:main": {
+   "vars": [
+    "material",
+    "Y"
+   ],
+   "count": 5,
+   "rows": [
+    {
+     "material": ":Pearl",
+     "Y": 1
+    },
+    {
+     "material": ":PlaqueSkin",
+     "Y": 1
+    },
+    {
+     "material": ":Jade",
+     "Y": 0.552224
+    },
+    {
+     "material": ":Cobalt",
+     "Y": 0.294358
+    },
+    {
+     "material": ":Ruby",
+     "Y": 0.249478
+    }
+   ],
+   "_ms": 46.4
+  },
+  "T5.2:try": {
+   "vars": [
+    "shape"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "shape": ":BareSpecimen"
+    }
+   ],
+   "_ms": 13.4
+  },
+  "T5.3:main": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Weave-USE-1",
+     "shape": "S3",
+     "severity": "sh:Violation",
+     "component": "sh:SPARQLConstraintComponent",
+     "message": "S3: this USE is a \"PhysicalMaterial\" but DEF \"Weave\" is not",
+     "value": ":Weave-USE-1"
+    }
+   ],
+   "ms_shacl_engine": 10707,
+   "_ms": 10737.1
+  },
+  "T5.3:try": {
+   "conforms": true,
+   "count": 0,
+   "results": [],
+   "ms_shacl_engine": 9660,
+   "_ms": 9683.5
+  },
+  "T5.4:main": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Cobalt",
+     "shape": "lab:HalfClear",
+     "severity": "sh:Violation",
+     "component": "sh:MaxInclusiveConstraintComponent",
+     "message": "Material is more than half transparent",
+     "value": 0.6
+    }
+   ],
+   "ms_shacl_engine": 1,
+   "_ms": 15.4
+  },
+  "T5.4:try": {
+   "conforms": true,
+   "count": 0,
+   "results": [],
+   "ms_shacl_engine": 0.6,
+   "_ms": 15.6
+  },
+  "T5.5:main": {
+   "vars": [
+    "shape",
+    "material",
+    "t"
+   ],
+   "count": 2,
+   "rows": [
+    {
+     "shape": ":GlassColumn",
+     "material": ":Glass",
+     "t": 0.7
+    },
+    {
+     "shape": ":CobaltShape",
+     "material": ":Cobalt",
+     "t": 0.6
+    }
+   ],
+   "_ms": 12.3
+  },
+  "T5.5:try": {
+   "vars": [
+    "shape",
+    "material",
+    "t"
+   ],
+   "count": 3,
+   "rows": [
+    {
+     "shape": ":GlassColumn",
+     "material": ":Glass",
+     "t": 0.7
+    },
+    {
+     "shape": ":Chimney",
+     "material": ":Glass",
+     "t": 0.7
+    },
+    {
+     "shape": ":CobaltShape",
+     "material": ":Cobalt",
+     "t": 0.6
+    }
+   ],
+   "_ms": 64.7
+  },
+  "T5.6:main": {
+   "vars": [
+    "material",
+    "Y"
+   ],
+   "count": 5,
+   "rows": [
+    {
+     "material": ":Pearl",
+     "Y": 1
+    },
+    {
+     "material": ":PlaqueSkin",
+     "Y": 1
+    },
+    {
+     "material": ":Jade",
+     "Y": 0.552224
+    },
+    {
+     "material": ":Cobalt",
+     "Y": 0.294358
+    },
+    {
+     "material": ":Ruby",
+     "Y": 0.249478
+    }
+   ],
+   "_ms": 27.6
+  },
+  "T5.6:try": {
+   "vars": [
+    "material",
+    "Y"
+   ],
+   "count": 3,
+   "rows": [
+    {
+     "material": ":Pearl",
+     "Y": 1
+    },
+    {
+     "material": ":PlaqueSkin",
+     "Y": 1
+    },
+    {
+     "material": ":Jade",
+     "Y": 0.552224
+    }
+   ],
+   "_ms": 26.1
+  },
+  "T5.7:main": {
+   "vars": [
+    "id",
+    "instruction"
+   ],
+   "count": 4,
+   "rows": [
+    {
+     "id": "S2",
+     "instruction": "Every Shape you write must contain exactly one geometry node; a Shape without geometry is valid X3D but invisible."
+    },
+    {
+     "id": "S3",
+     "instruction": "When you reuse a node with USE, the element name must match the node type of the DEF it names."
+    },
+    {
+     "id": "S5",
+     "instruction": "A ROUTE may only connect nodes that carry a DEF; check both names exist before you add it."
+    },
+    {
+     "id": "S7",
+     "instruction": "Only grouping, Shape, light, sensor, interpolator, viewpoint and other X3DChildNode types go in a children field; wrap geometry in a Shape."
+    }
+   ],
+   "_ms": 4.3
+  },
+  "T5.7:core": {
+   "vars": [
+    "instructed"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "instructed": 4
+    }
+   ],
+   "_ms": 4.8
+  },
+  "T5.7:try": {
+   "vars": [
+    "id",
+    "sev"
+   ],
+   "count": 10,
+   "rows": [
+    {
+     "id": "S1",
+     "sev": "sh:Violation"
+    },
+    {
+     "id": "S1b",
+     "sev": "sh:Violation"
+    },
+    {
+     "id": "S2",
+     "sev": "sh:Warning"
+    },
+    {
+     "id": "S3",
+     "sev": "sh:Violation"
+    },
+    {
+     "id": "S3b",
+     "sev": "sh:Violation"
+    },
+    {
+     "id": "S4",
+     "sev": "sh:Warning"
+    },
+    {
+     "id": "S5",
+     "sev": "sh:Violation"
+    },
+    {
+     "id": "S6",
+     "sev": "sh:Violation"
+    },
+    {
+     "id": "S7",
+     "sev": "sh:Violation"
+    },
+    {
+     "id": "S8",
+     "sev": "sh:Violation"
+    }
+   ],
+   "_ms": 2.8
+  },
+  "T5.8:main": {
+   "sha256": "526a30e27853972a6b79072751601a4ab628b9959e50af741cf912eef66fdf82",
+   "_ms": 0.7
+  },
+  "T5.8:slice": {
+   "sha256": "6a881c2cd243011f23afc844baf411124a7cdab992dd38cdcbc0acad6c5bac6d",
+   "_ms": 0.2
+  },
+  "T5.8:try": {
+   "sha256": "62975444cb759d270eecbe424413ad13661ab655ff8449ec9ceb766a3a317a40",
+   "_ms": 0
+  },
+  "C.1:main": {
+   "conforms": true,
+   "count": 0,
+   "results": [],
+   "ms_shacl_engine": 10511.8,
+   "_ms": 10530.8
+  },
+  "bench:axioms": {
+   "vars": [
+    "disjointWith",
+    "allDisjointClasses",
+    "functionalProperties",
+    "cardinalityAxioms",
+    "restrictions",
+    "classes"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "disjointWith": 0,
+     "allDisjointClasses": 0,
+     "functionalProperties": 0,
+     "cardinalityAxioms": 0,
+     "restrictions": 0,
+     "classes": 364
+    }
+   ],
+   "_ms": 1728.4
+  },
+  "bench:shacl:cabinet": {
+   "conforms": true,
+   "count": 0,
+   "results": [],
+   "ms_shacl_engine": 10450.8,
+   "_ms": 10467
+  },
+  "bench:core:cabinet": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Scene",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#SceneViewpoint",
+     "severity": "sh:Warning",
+     "component": "sh:QualifiedMinCountConstraintComponent",
+     "message": "Scene has no Viewpoint (or other X3DViewpointNode): the browser picks a default camera",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 9996.5,
+   "skipped_constraints": [
+    "urn:x3d-mcp:shapes:x3d-core#ColorArity"
+   ],
+   "_ms": 10023.3
+  },
+  "bench:owlrl:cabinet": {
+   "not_run": "OWL 2 RL closure is Python-only (owlrl); the page never reasons in OWL RL",
+   "_ms": 0
+  },
+  "bench:detect:fault-F1:cabinet": {
+   "vars": [
+    "material",
+    "v"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 25.1
+  },
+  "bench:detect:fault-F2:cabinet": {
+   "vars": [
+    "shape"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 12.6
+  },
+  "bench:detect:fault-F3:cabinet": {
+   "vars": [
+    "use",
+    "useType",
+    "def"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 25.6
+  },
+  "bench:detect:fault-F4:cabinet": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 14.3
+  },
+  "bench:detect:fault-F5:cabinet": {
+   "vars": [
+    "parent",
+    "child"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 641.8
+  },
+  "bench:detect:fault-F7:cabinet": {
+   "vars": [
+    "node"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 13.5
+  },
+  "bench:shacl:fault-F1": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Ruby",
+     "shape": "S1",
+     "severity": "sh:Violation",
+     "component": "sh:MaxInclusiveConstraintComponent",
+     "message": "S1: diffuseColor component outside [0,1]",
+     "value": 1.5
+    }
+   ],
+   "ms_shacl_engine": 11704.5,
+   "_ms": 11721.6
+  },
+  "bench:core:fault-F1": {
+   "conforms": false,
+   "count": 2,
+   "results": [
+    {
+     "focus": ":Ruby",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#MaterialRanges",
+     "severity": "sh:Violation",
+     "component": "sh:MaxInclusiveConstraintComponent",
+     "message": "diffuseColor component outside [0,1]",
+     "value": 1.5
+    },
+    {
+     "focus": ":Scene",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#SceneViewpoint",
+     "severity": "sh:Warning",
+     "component": "sh:QualifiedMinCountConstraintComponent",
+     "message": "Scene has no Viewpoint (or other X3DViewpointNode): the browser picks a default camera",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 9773.7,
+   "skipped_constraints": [
+    "urn:x3d-mcp:shapes:x3d-core#ColorArity"
+   ],
+   "_ms": 9791.8
+  },
+  "bench:owlrl:fault-F1": {
+   "not_run": "OWL 2 RL closure is Python-only (owlrl); the page never reasons in OWL RL",
+   "_ms": 0
+  },
+  "bench:detect:fault-F1:fault-F1": {
+   "vars": [
+    "material",
+    "v"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "material": ":Ruby",
+     "v": 1.5
+    }
+   ],
+   "_ms": 35.5
+  },
+  "bench:detect:fault-F2:fault-F1": {
+   "vars": [
+    "shape"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 11.9
+  },
+  "bench:detect:fault-F3:fault-F1": {
+   "vars": [
+    "use",
+    "useType",
+    "def"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 17.1
+  },
+  "bench:detect:fault-F4:fault-F1": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 7.9
+  },
+  "bench:detect:fault-F5:fault-F1": {
+   "vars": [
+    "parent",
+    "child"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 544.7
+  },
+  "bench:detect:fault-F7:fault-F1": {
+   "vars": [
+    "node"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 15.2
+  },
+  "bench:shacl:fault-F2": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":BareSpecimen",
+     "shape": "S2",
+     "severity": "sh:Warning",
+     "component": "sh:OrConstraintComponent",
+     "message": "S2: Shape has no geometry (valid X3D, draws nothing)",
+     "value": ":BareSpecimen"
+    }
+   ],
+   "ms_shacl_engine": 10748.2,
+   "_ms": 10765.1
+  },
+  "bench:core:fault-F2": {
+   "conforms": false,
+   "count": 2,
+   "results": [
+    {
+     "focus": ":Scene",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#SceneViewpoint",
+     "severity": "sh:Warning",
+     "component": "sh:QualifiedMinCountConstraintComponent",
+     "message": "Scene has no Viewpoint (or other X3DViewpointNode): the browser picks a default camera",
+     "value": null
+    },
+    {
+     "focus": ":BareSpecimen",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#ShapeGeometry",
+     "severity": "sh:Warning",
+     "component": "sh:OrConstraintComponent",
+     "message": "Shape has no geometry (and is not a USE copy): valid X3D that draws nothing",
+     "value": ":BareSpecimen"
+    }
+   ],
+   "ms_shacl_engine": 9469,
+   "skipped_constraints": [
+    "urn:x3d-mcp:shapes:x3d-core#ColorArity"
+   ],
+   "_ms": 9496.4
+  },
+  "bench:owlrl:fault-F2": {
+   "not_run": "OWL 2 RL closure is Python-only (owlrl); the page never reasons in OWL RL",
+   "_ms": 0
+  },
+  "bench:detect:fault-F1:fault-F2": {
+   "vars": [
+    "material",
+    "v"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 37.7
+  },
+  "bench:detect:fault-F2:fault-F2": {
+   "vars": [
+    "shape"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "shape": ":BareSpecimen"
+    }
+   ],
+   "_ms": 12.4
+  },
+  "bench:detect:fault-F3:fault-F2": {
+   "vars": [
+    "use",
+    "useType",
+    "def"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 13.3
+  },
+  "bench:detect:fault-F4:fault-F2": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 11.2
+  },
+  "bench:detect:fault-F5:fault-F2": {
+   "vars": [
+    "parent",
+    "child"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 614.7
+  },
+  "bench:detect:fault-F7:fault-F2": {
+   "vars": [
+    "node"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 21.1
+  },
+  "bench:shacl:fault-F3": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Weave-USE-1",
+     "shape": "S3",
+     "severity": "sh:Violation",
+     "component": "sh:SPARQLConstraintComponent",
+     "message": "S3: this USE is a \"PhysicalMaterial\" but DEF \"Weave\" is not",
+     "value": ":Weave-USE-1"
+    }
+   ],
+   "ms_shacl_engine": 11394.7,
+   "_ms": 11419.8
+  },
+  "bench:core:fault-F3": {
+   "conforms": false,
+   "count": 2,
+   "results": [
+    {
+     "focus": ":Scene",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#SceneViewpoint",
+     "severity": "sh:Warning",
+     "component": "sh:QualifiedMinCountConstraintComponent",
+     "message": "Scene has no Viewpoint (or other X3DViewpointNode): the browser picks a default camera",
+     "value": null
+    },
+    {
+     "focus": ":Weave-USE-1",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#UseRules",
+     "severity": "sh:Violation",
+     "component": "sh:SPARQLConstraintComponent",
+     "message": "USE has type \"PhysicalMaterial\" but DEF \"Weave\" has type \"PixelTexture\"",
+     "value": ":Weave-USE-1"
+    }
+   ],
+   "ms_shacl_engine": 10234.2,
+   "skipped_constraints": [
+    "urn:x3d-mcp:shapes:x3d-core#ColorArity"
+   ],
+   "_ms": 10253.5
+  },
+  "bench:owlrl:fault-F3": {
+   "not_run": "OWL 2 RL closure is Python-only (owlrl); the page never reasons in OWL RL",
+   "_ms": 0
+  },
+  "bench:detect:fault-F1:fault-F3": {
+   "vars": [
+    "material",
+    "v"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 35.9
+  },
+  "bench:detect:fault-F2:fault-F3": {
+   "vars": [
+    "shape"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 11.9
+  },
+  "bench:detect:fault-F3:fault-F3": {
+   "vars": [
+    "use",
+    "useType",
+    "def"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "use": ":Weave-USE-1",
+     "useType": "x3do:PhysicalMaterial",
+     "def": ":Weave"
+    }
+   ],
+   "_ms": 13.6
+  },
+  "bench:detect:fault-F4:fault-F3": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 10.4
+  },
+  "bench:detect:fault-F5:fault-F3": {
+   "vars": [
+    "parent",
+    "child"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 580.9
+  },
+  "bench:detect:fault-F7:fault-F3": {
+   "vars": [
+    "node"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 14.2
+  },
+  "bench:shacl:fault-F4": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":ROUTE_2_17",
+     "shape": "S5",
+     "severity": "sh:Violation",
+     "component": "sh:SPARQLConstraintComponent",
+     "message": "S5: ROUTE fromNode names DEF \"Ghost\", which does not exist",
+     "value": ":ROUTE_2_17"
+    }
+   ],
+   "ms_shacl_engine": 11631.8,
+   "_ms": 11651.8
+  },
+  "bench:core:fault-F4": {
+   "conforms": false,
+   "count": 2,
+   "results": [
+    {
+     "focus": ":ROUTE_2_17",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#RouteEndpoints",
+     "severity": "sh:Violation",
+     "component": "sh:SPARQLConstraintComponent",
+     "message": "ROUTE fromNode '\"Ghost\"' names no DEF in this scene",
+     "value": ":ROUTE_2_17"
+    },
+    {
+     "focus": ":Scene",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#SceneViewpoint",
+     "severity": "sh:Warning",
+     "component": "sh:QualifiedMinCountConstraintComponent",
+     "message": "Scene has no Viewpoint (or other X3DViewpointNode): the browser picks a default camera",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 11476.5,
+   "skipped_constraints": [
+    "urn:x3d-mcp:shapes:x3d-core#ColorArity"
+   ],
+   "_ms": 11504.1
+  },
+  "bench:owlrl:fault-F4": {
+   "not_run": "OWL 2 RL closure is Python-only (owlrl); the page never reasons in OWL RL",
+   "_ms": 0
+  },
+  "bench:detect:fault-F1:fault-F4": {
+   "vars": [
+    "material",
+    "v"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 42.7
+  },
+  "bench:detect:fault-F2:fault-F4": {
+   "vars": [
+    "shape"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 13.5
+  },
+  "bench:detect:fault-F3:fault-F4": {
+   "vars": [
+    "use",
+    "useType",
+    "def"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 14.7
+  },
+  "bench:detect:fault-F4:fault-F4": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "route": ":ROUTE_2_17",
+     "end": "fromNode",
+     "name": "Ghost"
+    }
+   ],
+   "_ms": 15.5
+  },
+  "bench:detect:fault-F5:fault-F4": {
+   "vars": [
+    "parent",
+    "child"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 959.6
+  },
+  "bench:detect:fault-F7:fault-F4": {
+   "vars": [
+    "node"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 18.2
+  },
+  "bench:shacl:fault-F5": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Box_2_12_3_6",
+     "shape": "S7",
+     "severity": "sh:Violation",
+     "component": "sh:OrConstraintComponent",
+     "message": "S7: node in a children field is not an X3DChildNode",
+     "value": ":Box_2_12_3_6"
+    }
+   ],
+   "ms_shacl_engine": 11260.3,
+   "_ms": 11286.6
+  },
+  "bench:core:fault-F5": {
+   "conforms": false,
+   "count": 2,
+   "results": [
+    {
+     "focus": ":Box_2_12_3_6",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#ChildrenAreChildNodes",
+     "severity": "sh:Violation",
+     "component": "sh:OrConstraintComponent",
+     "message": "node in a children field is not an X3DChildNode",
+     "value": ":Box_2_12_3_6"
+    },
+    {
+     "focus": ":Scene",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#SceneViewpoint",
+     "severity": "sh:Warning",
+     "component": "sh:QualifiedMinCountConstraintComponent",
+     "message": "Scene has no Viewpoint (or other X3DViewpointNode): the browser picks a default camera",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 10052.6,
+   "skipped_constraints": [
+    "urn:x3d-mcp:shapes:x3d-core#ColorArity"
+   ],
+   "_ms": 10083.2
+  },
+  "bench:owlrl:fault-F5": {
+   "not_run": "OWL 2 RL closure is Python-only (owlrl); the page never reasons in OWL RL",
+   "_ms": 0
+  },
+  "bench:detect:fault-F1:fault-F5": {
+   "vars": [
+    "material",
+    "v"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 55.2
+  },
+  "bench:detect:fault-F2:fault-F5": {
+   "vars": [
+    "shape"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 18.6
+  },
+  "bench:detect:fault-F3:fault-F5": {
+   "vars": [
+    "use",
+    "useType",
+    "def"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 27.4
+  },
+  "bench:detect:fault-F4:fault-F5": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 12.3
+  },
+  "bench:detect:fault-F5:fault-F5": {
+   "vars": [
+    "parent",
+    "child"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "parent": ":PrismShelf",
+     "child": ":Box_2_12_3_6"
+    }
+   ],
+   "_ms": 601.9
+  },
+  "bench:detect:fault-F7:fault-F5": {
+   "vars": [
+    "node"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 12.1
+  },
+  "bench:shacl:fault-F6": {
+   "conforms": true,
+   "count": 0,
+   "results": [],
+   "ms_shacl_engine": 10750.7,
+   "_ms": 10773.9
+  },
+  "bench:core:fault-F6": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Scene",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#SceneViewpoint",
+     "severity": "sh:Warning",
+     "component": "sh:QualifiedMinCountConstraintComponent",
+     "message": "Scene has no Viewpoint (or other X3DViewpointNode): the browser picks a default camera",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 9801.4,
+   "skipped_constraints": [
+    "urn:x3d-mcp:shapes:x3d-core#ColorArity"
+   ],
+   "_ms": 9819.5
+  },
+  "bench:owlrl:fault-F6": {
+   "not_run": "OWL 2 RL closure is Python-only (owlrl); the page never reasons in OWL RL",
+   "_ms": 0
+  },
+  "bench:detect:fault-F1:fault-F6": {
+   "vars": [
+    "material",
+    "v"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 32.9
+  },
+  "bench:detect:fault-F2:fault-F6": {
+   "vars": [
+    "shape"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 10.7
+  },
+  "bench:detect:fault-F3:fault-F6": {
+   "vars": [
+    "use",
+    "useType",
+    "def"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 12.1
+  },
+  "bench:detect:fault-F4:fault-F6": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 9.8
+  },
+  "bench:detect:fault-F5:fault-F6": {
+   "vars": [
+    "parent",
+    "child"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 567.9
+  },
+  "bench:detect:fault-F7:fault-F6": {
+   "vars": [
+    "node"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 12.4
+  },
+  "bench:shacl:fault-F7": {
+   "conforms": false,
+   "count": 2,
+   "results": [
+    {
+     "focus": ":Ruby",
+     "shape": "S1",
+     "severity": "sh:Violation",
+     "component": "sh:MaxCountConstraintComponent",
+     "message": "S1: transparency must be one number in [0,1]",
+     "value": null
+    },
+    {
+     "focus": ":Ruby",
+     "shape": "S8",
+     "severity": "sh:Violation",
+     "component": "sh:MaxCountConstraintComponent",
+     "message": "S8: one DEF name, two parents: a duplicate DEF merged two nodes into one IRI",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 10661.5,
+   "_ms": 10680.8
+  },
+  "bench:core:fault-F7": {
+   "conforms": false,
+   "count": 3,
+   "results": [
+    {
+     "focus": ":Ruby",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#DefUnique",
+     "severity": "sh:Violation",
+     "component": "sh:MaxCountConstraintComponent",
+     "message": "this DEF names nodes under more than one parent (duplicate DEF)",
+     "value": null
+    },
+    {
+     "focus": ":Ruby",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#MaterialRanges",
+     "severity": "sh:Violation",
+     "component": "sh:MaxCountConstraintComponent",
+     "message": "transparency outside [0,1]",
+     "value": null
+    },
+    {
+     "focus": ":Scene",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#SceneViewpoint",
+     "severity": "sh:Warning",
+     "component": "sh:QualifiedMinCountConstraintComponent",
+     "message": "Scene has no Viewpoint (or other X3DViewpointNode): the browser picks a default camera",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 9728.4,
+   "skipped_constraints": [
+    "urn:x3d-mcp:shapes:x3d-core#ColorArity"
+   ],
+   "_ms": 9745.8
+  },
+  "bench:owlrl:fault-F7": {
+   "not_run": "OWL 2 RL closure is Python-only (owlrl); the page never reasons in OWL RL",
+   "_ms": 0
+  },
+  "bench:detect:fault-F1:fault-F7": {
+   "vars": [
+    "material",
+    "v"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 35.3
+  },
+  "bench:detect:fault-F2:fault-F7": {
+   "vars": [
+    "shape"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 13.3
+  },
+  "bench:detect:fault-F3:fault-F7": {
+   "vars": [
+    "use",
+    "useType",
+    "def"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 21.1
+  },
+  "bench:detect:fault-F4:fault-F7": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 11.6
+  },
+  "bench:detect:fault-F5:fault-F7": {
+   "vars": [
+    "parent",
+    "child"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 685.4
+  },
+  "bench:detect:fault-F7:fault-F7": {
+   "vars": [
+    "node"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "node": ":Ruby"
+    }
+   ],
+   "_ms": 16.9
+  },
+  "bench:shacl:teach-exponent": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Ruby",
+     "shape": "S1",
+     "severity": "sh:Violation",
+     "component": "sh:MaxInclusiveConstraintComponent",
+     "message": "S1: diffuseColor component outside [0,1]",
+     "value": 1.5
+    }
+   ],
+   "ms_shacl_engine": 11234.8,
+   "_ms": 11257.6
+  },
+  "bench:core:teach-exponent": {
+   "conforms": false,
+   "count": 2,
+   "results": [
+    {
+     "focus": ":Ruby",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#MaterialRanges",
+     "severity": "sh:Violation",
+     "component": "sh:MaxInclusiveConstraintComponent",
+     "message": "diffuseColor component outside [0,1]",
+     "value": 1.5
+    },
+    {
+     "focus": ":Scene",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#SceneViewpoint",
+     "severity": "sh:Warning",
+     "component": "sh:QualifiedMinCountConstraintComponent",
+     "message": "Scene has no Viewpoint (or other X3DViewpointNode): the browser picks a default camera",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 10033.5,
+   "skipped_constraints": [
+    "urn:x3d-mcp:shapes:x3d-core#ColorArity"
+   ],
+   "_ms": 10052.7
+  },
+  "bench:detect:fault-F1:teach-exponent": {
+   "vars": [
+    "material",
+    "v"
+   ],
+   "count": 1,
+   "rows": [
+    {
+     "material": ":Ruby",
+     "v": 1.5
+    }
+   ],
+   "_ms": 73.4
+  },
+  "bench:detect:fault-F2:teach-exponent": {
+   "vars": [
+    "shape"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 19.1
+  },
+  "bench:detect:fault-F3:teach-exponent": {
+   "vars": [
+    "use",
+    "useType",
+    "def"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 25.1
+  },
+  "bench:detect:fault-F4:teach-exponent": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 12.5
+  },
+  "bench:detect:fault-F5:teach-exponent": {
+   "vars": [
+    "parent",
+    "child"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 761.1
+  },
+  "bench:detect:fault-F7:teach-exponent": {
+   "vars": [
+    "node"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 16.7
+  },
+  "bench:shacl:teach-insert": {
+   "conforms": true,
+   "count": 0,
+   "results": [],
+   "ms_shacl_engine": 11704.3,
+   "_ms": 11729.6
+  },
+  "bench:core:teach-insert": {
+   "conforms": false,
+   "count": 1,
+   "results": [
+    {
+     "focus": ":Scene",
+     "shape": "urn:x3d-mcp:shapes:x3d-core#SceneViewpoint",
+     "severity": "sh:Warning",
+     "component": "sh:QualifiedMinCountConstraintComponent",
+     "message": "Scene has no Viewpoint (or other X3DViewpointNode): the browser picks a default camera",
+     "value": null
+    }
+   ],
+   "ms_shacl_engine": 9707.2,
+   "skipped_constraints": [
+    "urn:x3d-mcp:shapes:x3d-core#ColorArity"
+   ],
+   "_ms": 9729.7
+  },
+  "bench:detect:fault-F1:teach-insert": {
+   "vars": [
+    "material",
+    "v"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 41.7
+  },
+  "bench:detect:fault-F2:teach-insert": {
+   "vars": [
+    "shape"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 12.5
+  },
+  "bench:detect:fault-F3:teach-insert": {
+   "vars": [
+    "use",
+    "useType",
+    "def"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 14.3
+  },
+  "bench:detect:fault-F4:teach-insert": {
+   "vars": [
+    "route",
+    "end",
+    "name"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 11.2
+  },
+  "bench:detect:fault-F5:teach-insert": {
+   "vars": [
+    "parent",
+    "child"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 673.6
+  },
+  "bench:detect:fault-F7:teach-insert": {
+   "vars": [
+    "node"
+   ],
+   "count": 0,
+   "rows": [],
+   "_ms": 20.6
+  }
+ },
+ "elapsed_s": 268
+}

@@ -1,0 +1,491 @@
+{
+ "server": "<checkout>/x3d_mcp/src/server.py",
+ "tools": 54,
+ "runs": {
+  "clean": [
+   {
+    "tool": "scene_to_rdf",
+    "args": {
+     "content": "<8,473 chars, sha256 1de0e6785ca0b586>",
+     "return_mode": "summary"
+    },
+    "wall_ms": 72.4,
+    "reply_sha256": "2d258ae5e4012cce2c49dba91f9a3f7fb6c06fd0e6304cff31086722f141bd65",
+    "reply": {
+     "ok": true,
+     "graph_id": "01d3e4e173f16c10",
+     "triples": 1439,
+     "individuals": 145,
+     "base": "https://example.org/scen/concert/scene.ttl#",
+     "warnings": []
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<911 chars, sha256 2aeee515fb85f5e8>",
+     "graph_id": "01d3e4e173f16c10",
+     "data_ttl": "<4,796 chars, sha256 e4bf1cb1e25f12d0>",
+     "include_ontology": false
+    },
+    "wall_ms": 54.6,
+    "reply_sha256": "82446d7a9e904e7217b6fd771da4fc7e6517f304e3d7f2cccaaa903c159ccbb6",
+    "reply": {
+     "ok": true,
+     "total": 7,
+     "rows": [
+      {
+       "o": ":BassAmp",
+       "who": "Bass rig",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":DrumKit",
+       "who": "Drum kit",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":GuitarAmp",
+       "who": "Electric guitar rig",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":PerfBass",
+       "who": "Bass",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":PerfDrums",
+       "who": "Drums",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":PerfGtr",
+       "who": "Electric guitar",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":PerfVox",
+       "who": "Lead vocal",
+       "song": "3. Saltwater Clock"
+      }
+     ],
+     "error": null,
+     "ms": 52.2
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<999 chars, sha256 173003f1866f7294>",
+     "graph_id": "01d3e4e173f16c10",
+     "data_ttl": "<4,796 chars, sha256 e4bf1cb1e25f12d0>",
+     "include_ontology": false
+    },
+    "wall_ms": 42.4,
+    "reply_sha256": "cc9628f173dd3095d3fb1acb79fe94c7c4be24bf04bdef7f1dd875f9fa2366f7",
+    "reply": {
+     "ok": true,
+     "total": 4,
+     "rows": [
+      {
+       "o": ":AcousticGtr",
+       "instrument": "Acoustic guitar",
+       "change": "bring on"
+      },
+      {
+       "o": ":KeysRig",
+       "instrument": "Keyboard rig",
+       "change": "bring on"
+      },
+      {
+       "o": ":DrumKit",
+       "instrument": "Drum kit",
+       "change": "take off"
+      },
+      {
+       "o": ":GuitarAmp",
+       "instrument": "Electric guitar rig",
+       "change": "take off"
+      }
+     ],
+     "error": null,
+     "ms": 39.8
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<855 chars, sha256 463bd6f3e397ddf8>",
+     "graph_id": "01d3e4e173f16c10",
+     "data_ttl": "<4,796 chars, sha256 e4bf1cb1e25f12d0>",
+     "include_ontology": false
+    },
+    "wall_ms": 34.1,
+    "reply_sha256": "552c12da6427a5281abdda6cbd3d1e19e3c66a917ed54bd0e9285653ab41d47f",
+    "reply": {
+     "ok": true,
+     "total": 4,
+     "rows": [
+      {
+       "o": ":PerfKeys",
+       "what": "Keys"
+      },
+      {
+       "o": ":PerfVox",
+       "what": "Lead vocal"
+      },
+      {
+       "o": ":Spot1",
+       "what": "Spot1"
+      },
+      {
+       "o": ":Spot2",
+       "what": "Spot2"
+      }
+     ],
+     "error": null,
+     "ms": 31.6
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<832 chars, sha256 cbde5c2ec1a6599b>",
+     "graph_id": "01d3e4e173f16c10",
+     "data_ttl": "<4,796 chars, sha256 e4bf1cb1e25f12d0>",
+     "include_ontology": false
+    },
+    "wall_ms": 29.8,
+    "reply_sha256": "d1bb54feb71a5a2376cbfa5df9cb9cd22f95e9f98fd4665dafe31cb8f2a9c22d",
+    "reply": {
+     "ok": true,
+     "total": 10,
+     "rows": [
+      {
+       "o": ":AcousticGtr",
+       "what": "Acoustic guitar"
+      },
+      {
+       "o": ":BassAmp",
+       "what": "Bass rig"
+      },
+      {
+       "o": ":DrumKit",
+       "what": "Drum kit"
+      },
+      {
+       "o": ":GuitarAmp",
+       "what": "Electric guitar rig"
+      },
+      {
+       "o": ":KeysRig",
+       "what": "Keyboard rig"
+      },
+      {
+       "o": ":PerfBass",
+       "what": "Bass"
+      },
+      {
+       "o": ":PerfDrums",
+       "what": "Drums"
+      },
+      {
+       "o": ":PerfGtr",
+       "what": "Electric guitar"
+      },
+      {
+       "o": ":PerfKeys",
+       "what": "Keys"
+      },
+      {
+       "o": ":PerfVox",
+       "what": "Lead vocal"
+      }
+     ],
+     "error": null,
+     "ms": 27.3
+    }
+   },
+   {
+    "tool": "shacl_validate",
+    "args": {
+     "graph_id": "01d3e4e173f16c10",
+     "shapes": "none",
+     "extra_shapes_ttl": "<2,745 chars, sha256 0bec38a18e90d7c7>",
+     "data_ttl": "<4,796 chars, sha256 e4bf1cb1e25f12d0>",
+     "return_mode": "full"
+    },
+    "wall_ms": 449.5,
+    "reply_sha256": "d18e499254364488d6d069be1979f19922a22529bf94fdc295db6750a2c58cf3",
+    "reply": {
+     "ok": true,
+     "conforms": true,
+     "counts": {
+      "Violation": 0,
+      "Warning": 0,
+      "Info": 0
+     },
+     "results": [],
+     "error": null,
+     "ms": 446.8
+    }
+   }
+  ],
+  "fault": [
+   {
+    "tool": "scene_to_rdf",
+    "args": {
+     "content": "<8,467 chars, sha256 1fe42ab99f6c0d8f>",
+     "return_mode": "summary"
+    },
+    "wall_ms": 29.3,
+    "reply_sha256": "9bdf4172c767f941e4a751870753cb59417ea49b4bc697c1d4bee282ba2d46fe",
+    "reply": {
+     "ok": true,
+     "graph_id": "41d4ff31365440b1",
+     "triples": 1439,
+     "individuals": 145,
+     "base": "https://example.org/scen/concert/scene.ttl#",
+     "warnings": []
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<911 chars, sha256 2aeee515fb85f5e8>",
+     "graph_id": "41d4ff31365440b1",
+     "data_ttl": "<4,796 chars, sha256 e4bf1cb1e25f12d0>",
+     "include_ontology": false
+    },
+    "wall_ms": 59.1,
+    "reply_sha256": "70220dadf1587deee582a47ded02870049beafe01a5e336b2ee17197a5cb9bfe",
+    "reply": {
+     "ok": true,
+     "total": 7,
+     "rows": [
+      {
+       "o": ":BassAmp",
+       "who": "Bass rig",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":DrumKit",
+       "who": "Drum kit",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":GuitarAmp",
+       "who": "Electric guitar rig",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":PerfBass",
+       "who": "Bass",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":PerfDrums",
+       "who": "Drums",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":PerfGtr",
+       "who": "Electric guitar",
+       "song": "3. Saltwater Clock"
+      },
+      {
+       "o": ":PerfVox",
+       "who": "Lead vocal",
+       "song": "3. Saltwater Clock"
+      }
+     ],
+     "error": null,
+     "ms": 54.2
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<999 chars, sha256 173003f1866f7294>",
+     "graph_id": "41d4ff31365440b1",
+     "data_ttl": "<4,796 chars, sha256 e4bf1cb1e25f12d0>",
+     "include_ontology": false
+    },
+    "wall_ms": 45.5,
+    "reply_sha256": "14e7681a8f2a592609868a82a887440d99efdc4a7847ed0c9a92e060fd35e26e",
+    "reply": {
+     "ok": true,
+     "total": 4,
+     "rows": [
+      {
+       "o": ":AcousticGtr",
+       "instrument": "Acoustic guitar",
+       "change": "bring on"
+      },
+      {
+       "o": ":KeysRig",
+       "instrument": "Keyboard rig",
+       "change": "bring on"
+      },
+      {
+       "o": ":DrumKit",
+       "instrument": "Drum kit",
+       "change": "take off"
+      },
+      {
+       "o": ":GuitarAmp",
+       "instrument": "Electric guitar rig",
+       "change": "take off"
+      }
+     ],
+     "error": null,
+     "ms": 42.7
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<855 chars, sha256 463bd6f3e397ddf8>",
+     "graph_id": "41d4ff31365440b1",
+     "data_ttl": "<4,796 chars, sha256 e4bf1cb1e25f12d0>",
+     "include_ontology": false
+    },
+    "wall_ms": 47.0,
+    "reply_sha256": "783c586c05f406f6f00500c01527856bb71fc0b7fe262fe9265e006b8be0a446",
+    "reply": {
+     "ok": true,
+     "total": 4,
+     "rows": [
+      {
+       "o": ":PerfKeys",
+       "what": "Keys"
+      },
+      {
+       "o": ":PerfVox",
+       "what": "Lead vocal"
+      },
+      {
+       "o": ":Spot1",
+       "what": "Spot1"
+      },
+      {
+       "o": ":Spot2",
+       "what": "Spot2"
+      }
+     ],
+     "error": null,
+     "ms": 43.9
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<832 chars, sha256 cbde5c2ec1a6599b>",
+     "graph_id": "41d4ff31365440b1",
+     "data_ttl": "<4,796 chars, sha256 e4bf1cb1e25f12d0>",
+     "include_ontology": false
+    },
+    "wall_ms": 37.4,
+    "reply_sha256": "d147aeec2cc36ef4d784ee03da6fa4b690b30b88eb55ac297be4dabdee403b91",
+    "reply": {
+     "ok": true,
+     "total": 10,
+     "rows": [
+      {
+       "o": ":AcousticGtr",
+       "what": "Acoustic guitar"
+      },
+      {
+       "o": ":BassAmp",
+       "what": "Bass rig"
+      },
+      {
+       "o": ":DrumKit",
+       "what": "Drum kit"
+      },
+      {
+       "o": ":GuitarAmp",
+       "what": "Electric guitar rig"
+      },
+      {
+       "o": ":KeysRig",
+       "what": "Keyboard rig"
+      },
+      {
+       "o": ":PerfBass",
+       "what": "Bass"
+      },
+      {
+       "o": ":PerfDrums",
+       "what": "Drums"
+      },
+      {
+       "o": ":PerfGtr",
+       "what": "Electric guitar"
+      },
+      {
+       "o": ":PerfKeys",
+       "what": "Keys"
+      },
+      {
+       "o": ":PerfVox",
+       "what": "Lead vocal"
+      }
+     ],
+     "error": null,
+     "ms": 34.0
+    }
+   },
+   {
+    "tool": "shacl_validate",
+    "args": {
+     "graph_id": "41d4ff31365440b1",
+     "shapes": "none",
+     "extra_shapes_ttl": "<2,745 chars, sha256 0bec38a18e90d7c7>",
+     "data_ttl": "<4,796 chars, sha256 e4bf1cb1e25f12d0>",
+     "return_mode": "full"
+    },
+    "wall_ms": 292.2,
+    "reply_sha256": "e0e5f082337920ebbeedcf7d01810fc3c6d89dcf0d2dad82d6f1ec016f725a93",
+    "reply": {
+     "ok": true,
+     "conforms": false,
+     "counts": {
+      "Violation": 2,
+      "Warning": 0,
+      "Info": 0
+     },
+     "results": [
+      {
+       "focus": "https://example.org/scen/concert/record#GuitarAmp",
+       "def": null,
+       "node_type": null,
+       "path": "",
+       "value": ":MicGtrAmp",
+       "severity": "Violation",
+       "message": "An instrument on the setlist has no mic or DI within 1.0 m on the stage plot.",
+       "shape": "https://example.org/scen/twin#S_M1",
+       "check_id": "//example.org/scen/twin#S_M1",
+       "fix_hint": null
+      },
+      {
+       "focus": "https://example.org/scen/concert/record#Keys",
+       "def": null,
+       "node_type": null,
+       "path": "",
+       "value": ":WedgeKeys",
+       "severity": "Violation",
+       "message": "A performer's monitor wedge is more than 2.5 m away from where they stand.",
+       "shape": "https://example.org/scen/twin#S_M2",
+       "check_id": "//example.org/scen/twin#S_M2",
+       "fix_hint": null
+      }
+     ],
+     "error": null,
+     "ms": 288.9
+    }
+   }
+  ]
+ }
+}

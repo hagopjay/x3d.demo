@@ -1,0 +1,297 @@
+{
+ "about": "  python -I build/render_report.py plan    -> build/out/render-jobs.json (what build/render/render_set.cjs renders)\n  node build/render/render_set.cjs build/out/render-jobs.json build/out/render-raw.json\n  python -I build/render_report.py report  -> receipts/render.json (pixel statistics, fault-vs-clean diffs, motion)",
+ "engine": {
+  "chromium": "153.0.8010.12",
+  "playwright": "1.63.0",
+  "x_ite": "16.5.1",
+  "gl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "csp_profile": "strict",
+  "viewport": "1280x720",
+  "deviceScaleFactor": 1,
+  "pillow": "11.3.0"
+ },
+ "cabinet": {
+  "scene": "scenes/cabinet.xml",
+  "loadURL_ms": 732.1,
+  "wall_ready_ms": 1287,
+  "viewpoints_found": [
+   "Overview",
+   "LookAway",
+   "View1",
+   "View2",
+   "View3",
+   "View4",
+   "View5",
+   "View6",
+   "View7"
+  ],
+  "csp_violations": [
+   "script-src wasm-eval"
+  ],
+  "load_errors": [],
+  "console": [
+   "error: Loading the font 'http://127.0.0.1:47763/p/strict/vendor/x_ite-16.5.1/package/dist/assets/fonts/PT_Sans/PTSans-Regular.woff2' violates the following Content Security Policy directive: \"default-src 'none'\". Note that 'font-src' was not explicitly set, so 'default-src' is used as a fallback. The actio",
+   "error: Loading the font 'http://127.0.0.1:47763/p/strict/vendor/x_ite-16.5.1/package/dist/assets/fonts/PT_Sans/PTSans-Bold.woff2' violates the following Content Security Policy directive: \"default-src 'none'\". Note that 'font-src' was not explicitly set, so 'default-src' is used as a fallback. The action h",
+   "error: Loading the font 'http://127.0.0.1:47763/p/strict/vendor/x_ite-16.5.1/package/dist/assets/fonts/PT_Sans/PTSans-Italic.woff2' violates the following Content Security Policy directive: \"default-src 'none'\". Note that 'font-src' was not explicitly set, so 'default-src' is used as a fallback. The action",
+   "pageerror: CompileError: WebAssembly.instantiateStreaming(): Compiling or instantiating WebAssembly module violates the following Content Security policy directive because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' htt"
+  ],
+  "shots": {
+   "Overview": {
+    "file": "shots/cabinet-Overview.png",
+    "description": "The Cabinet: all seven plinths",
+    "lit_frac": 0.062,
+    "bright_frac": 0.0054,
+    "mean_luma": 13.79,
+    "sha256": "3404b3d58c22c7c788991e425ac28cdde548d083fd36850c94bb186f485c6d26"
+   },
+   "View1": {
+    "file": "shots/cabinet-View1.png",
+    "description": "1 Twin Orbs: one Material, three orbs",
+    "lit_frac": 0.1044,
+    "bright_frac": 0.0069,
+    "mean_luma": 18.82,
+    "sha256": "16001d19f2593189bb0b6d2c262833e5e36e205392e2b9b4925b260b0e40111c"
+   },
+   "View2": {
+    "file": "shots/cabinet-View2.png",
+    "description": "2 Spinner: Clock drives Spin drives Spinner",
+    "lit_frac": 0.1096,
+    "bright_frac": 0.0142,
+    "mean_luma": 19.03,
+    "sha256": "2454dd886f97eb8179821c92af8a9fc5b0a1e81d021540c81974fa8c0a40da65"
+   },
+   "View3": {
+    "file": "shots/cabinet-View3.png",
+    "description": "3 Prism Shelf: five colours to filter and sort",
+    "lit_frac": 0.091,
+    "bright_frac": 0.0035,
+    "mean_luma": 16.47,
+    "sha256": "e8531106edeacffd7a3a6ee0cd552bbee7e0df7410e94b14a3655d4a632936d4"
+   },
+   "View4": {
+    "file": "shots/cabinet-View4.png",
+    "description": "4 Carousel: a Switch shows one of three",
+    "lit_frac": 0.0761,
+    "bright_frac": 0.0058,
+    "mean_luma": 14.84,
+    "sha256": "7a17bcfc60712a699add9f8846028b6049e65d74521a66e7213e530c6b17c0ec"
+   },
+   "View5": {
+    "file": "shots/cabinet-View5.png",
+    "description": "5 Bare Specimen: a Shape with no Appearance",
+    "lit_frac": 0.086,
+    "bright_frac": 0.0365,
+    "mean_luma": 20.5,
+    "sha256": "cba4d1bde4ff0e36edcf11064dd01e4934ffa3724220900fd9f31ec2617ad26e"
+   },
+   "View6": {
+    "file": "shots/cabinet-View6.png",
+    "description": "6 Label Plinth: facts the scene states about itself",
+    "lit_frac": 0.0829,
+    "bright_frac": 0.0198,
+    "mean_luma": 16.49,
+    "sha256": "e42d54daea5bfb7a99aa9ca446ac95a4fc9fc7d41b185187d233bfd2dfd81dd9"
+   },
+   "View7": {
+    "file": "shots/cabinet-View7.png",
+    "description": "7 Lantern: a light, and every way to look",
+    "lit_frac": 0.1138,
+    "bright_frac": 0.0123,
+    "mean_luma": 18.59,
+    "sha256": "523c0f9a36cb7193fda6df9b5ba0cb55f24c6853e9e510abb570e0654b044632"
+   },
+   "LookAway": {
+    "file": "shots/cabinet-LookAway.png",
+    "description": "Valid, not visible: the camera faces the empty dark",
+    "lit_frac": 0.0018,
+    "bright_frac": 0,
+    "mean_luma": 8.59,
+    "sha256": "e234c7ddb9d2e5672cf072b8d21c92b82df4ccc4a0f001628a36170e3888460e"
+   }
+  }
+ },
+ "bench": {
+  "later_ms": 1000,
+  "clean": {
+   "View1": {
+    "file": "shots/bench/cabinet-View1.png",
+    "later": "shots/bench/cabinet-View1-later.png",
+    "motion_frac": 0.0,
+    "motion_bbox": null,
+    "lit_frac": 0.1044
+   },
+   "View2": {
+    "file": "shots/bench/cabinet-View2.png",
+    "later": "shots/bench/cabinet-View2-later.png",
+    "motion_frac": 0.01167,
+    "motion_bbox": [
+     503,
+     217,
+     778,
+     453
+    ],
+    "lit_frac": 0.1097
+   },
+   "View3": {
+    "file": "shots/bench/cabinet-View3.png",
+    "later": "shots/bench/cabinet-View3-later.png",
+    "motion_frac": 0.0,
+    "motion_bbox": null,
+    "lit_frac": 0.091
+   },
+   "View5": {
+    "file": "shots/bench/cabinet-View5.png",
+    "later": "shots/bench/cabinet-View5-later.png",
+    "motion_frac": 0.0,
+    "motion_bbox": null,
+    "lit_frac": 0.086
+   },
+   "View7": {
+    "file": "shots/bench/cabinet-View7.png",
+    "later": "shots/bench/cabinet-View7-later.png",
+    "motion_frac": 0.0,
+    "motion_bbox": null,
+    "lit_frac": 0.1138
+   }
+  },
+  "clean_console": [
+   "error: Loading the font 'http://127.0.0.1:47763/p/strict/vendor/x_ite-16.5.1/package/dist/assets/fonts/PT_Sans/PTSans-Bold.woff2' violates the following Content Security Policy directive: \"default-src 'none'\". Note that 'font-src' was not explicitly set, so 'default-src' is used as a fallback. The action h",
+   "error: Loading the font 'http://127.0.0.1:47763/p/strict/vendor/x_ite-16.5.1/package/dist/assets/fonts/PT_Sans/PTSans-Italic.woff2' violates the following Content Security Policy directive: \"default-src 'none'\". Note that 'font-src' was not explicitly set, so 'default-src' is used as a fallback. The action",
+   "error: Loading the font 'http://127.0.0.1:47763/p/strict/vendor/x_ite-16.5.1/package/dist/assets/fonts/PT_Sans/PTSans-Regular.woff2' violates the following Content Security Policy directive: \"default-src 'none'\". Note that 'font-src' was not explicitly set, so 'default-src' is used as a fallback. The actio",
+   "pageerror: CompileError: WebAssembly.instantiateStreaming(): Compiling or instantiating WebAssembly module violates the following Content Security policy directive because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' htt"
+  ],
+  "faults": {
+   "fault-F1": {
+    "viewpoint": "View3",
+    "shot": "shots/bench/fault-F1-View3.png",
+    "clean_shot": "shots/bench/cabinet-View3.png",
+    "changed_frac_vs_clean": 0.0,
+    "changed_bbox": null,
+    "clean_motion_frac": 0.0,
+    "motion_frac": 0.0,
+    "pixel_change_beyond_motion": false,
+    "motion_lost": false,
+    "lit_frac": 0.0931,
+    "clean_lit_frac": 0.091,
+    "new_console": [],
+    "load_errors": [],
+    "seen": false
+   },
+   "fault-F2": {
+    "viewpoint": "View5",
+    "shot": "shots/bench/fault-F2-View5.png",
+    "clean_shot": "shots/bench/cabinet-View5.png",
+    "changed_frac_vs_clean": 0.0335,
+    "changed_bbox": [
+     530,
+     212,
+     745,
+     446
+    ],
+    "clean_motion_frac": 0.0,
+    "motion_frac": 0.0,
+    "pixel_change_beyond_motion": true,
+    "motion_lost": false,
+    "lit_frac": 0.0526,
+    "clean_lit_frac": 0.086,
+    "new_console": [],
+    "load_errors": [],
+    "seen": true
+   },
+   "fault-F3": {
+    "viewpoint": "View7",
+    "shot": "shots/bench/fault-F3-View7.png",
+    "clean_shot": "shots/bench/cabinet-View7.png",
+    "changed_frac_vs_clean": 0.00907,
+    "changed_bbox": [
+     558,
+     381,
+     722,
+     441
+    ],
+    "clean_motion_frac": 0.0,
+    "motion_frac": 0.0,
+    "pixel_change_beyond_motion": true,
+    "motion_lost": false,
+    "lit_frac": 0.1102,
+    "clean_lit_frac": 0.1138,
+    "new_console": [
+     "warning: XML Parser: DEF/USE mismatch, 'Weave', PhysicalMaterial != PixelTexture."
+    ],
+    "load_errors": [],
+    "seen": true
+   },
+   "fault-F4": {
+    "viewpoint": "View2",
+    "shot": "shots/bench/fault-F4-View2.png",
+    "clean_shot": "shots/bench/cabinet-View2.png",
+    "changed_frac_vs_clean": 0.01115,
+    "changed_bbox": [
+     503,
+     247,
+     777,
+     453
+    ],
+    "clean_motion_frac": 0.01167,
+    "motion_frac": 0.0,
+    "pixel_change_beyond_motion": false,
+    "motion_lost": true,
+    "lit_frac": 0.1095,
+    "clean_lit_frac": 0.1097,
+    "new_console": [
+     "warning: XML Parser: Unknown named or imported node 'Ghost'."
+    ],
+    "load_errors": [],
+    "seen": true
+   },
+   "fault-F5": {
+    "viewpoint": "View3",
+    "shot": "shots/bench/fault-F5-View3.png",
+    "clean_shot": "shots/bench/cabinet-View3.png",
+    "changed_frac_vs_clean": 0.0,
+    "changed_bbox": null,
+    "clean_motion_frac": 0.0,
+    "motion_frac": 0.0,
+    "pixel_change_beyond_motion": false,
+    "motion_lost": false,
+    "lit_frac": 0.091,
+    "clean_lit_frac": 0.091,
+    "new_console": [],
+    "load_errors": [],
+    "seen": false
+   },
+   "fault-F6": {
+    "viewpoint": "View1",
+    "shot": "shots/bench/fault-F6-View1.png",
+    "clean_shot": "shots/bench/cabinet-View1.png",
+    "changed_frac_vs_clean": 0.0,
+    "changed_bbox": null,
+    "clean_motion_frac": 0.0,
+    "motion_frac": 0.0,
+    "pixel_change_beyond_motion": false,
+    "motion_lost": false,
+    "lit_frac": 0.1044,
+    "clean_lit_frac": 0.1044,
+    "new_console": [],
+    "load_errors": [],
+    "seen": false
+   },
+   "fault-F7": {
+    "viewpoint": "View3",
+    "shot": "shots/bench/fault-F7-View3.png",
+    "clean_shot": "shots/bench/cabinet-View3.png",
+    "changed_frac_vs_clean": 0.0,
+    "changed_bbox": null,
+    "clean_motion_frac": 0.0,
+    "motion_frac": 0.0,
+    "pixel_change_beyond_motion": false,
+    "motion_lost": false,
+    "lit_frac": 0.091,
+    "clean_lit_frac": 0.091,
+    "new_console": [],
+    "load_errors": [],
+    "seen": false
+   }
+  }
+ }
+}
