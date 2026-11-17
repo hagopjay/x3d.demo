@@ -2,6 +2,11 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v29 (2026-11-17)
+- New Demo 37: Flop Lab (x3d.gamelab), a 2.5D ragdoll stunt platformer on an editable X3D 4.0 level, a custom XPBD-style JavaScript solver and the three.js bridge. The demo lives in its own repository, so the card links its live page (`https://hagopjay.github.io/x3d.gamelab/`) and the frozen build 0.3.0; nothing is copied into this repository. New card picture `docs/assets/flop-lab.jpg` (the project's own `docs/media/flop-midair.png`, cropped and scaled to 960 x 540), the snapshot `docs/versions/v29/index.html`, and a SOURCES line for the picture. Counts on the card (255 RigidBody nodes, 182 joints) are from the game's thread; the page here was not re-run.
+- Giza v3 (Evidence Atlas, PR 46) is merged and still unnumbered and off the shelf, as are Giza v2 and the trace viewer; no lane has asked for cards. No demo and no earlier version is touched; v1 to v28 unchanged.
+- Checked in headless Chromium: the front page lays out at 1280 and 390 px with no horizontal scroll and the card picture loads.
+
 ## Unnumbered, Giza v3: the Evidence Atlas, ready for development (2026-11-17)
 - New demo `docs/demos/giza-osiris-hall/v3/`; v1 and v2 are untouched. No front-page card and no doc version: numbering belongs to the site owner, so this is offered, not shelved. The v3 page says "Evidence Atlas / 03".
 - From the Evidence Atlas upgrade (an uploaded enhanced v2 edition, reviewed first and merged as plain files): evidence tiers shown separately from geometry status and source handling, survey overlay with compass and metric rings, a north-side section plane, a depth theatre comparing the 30.37 m shaft-drop sum with the 35.45 m published section label and the disputed 648 m claim, an observer-centred precession sky with shortest-arc rotation interpolation, a camera notebook with session export and import (input hashes recorded), focus mode, keyboard shortcuts, and a field guide with six experiments. Corrected "41 named stars" to 40 named plus 978 field stars (counted from `stars_v2.json`).

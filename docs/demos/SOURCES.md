@@ -195,3 +195,11 @@ Checked headless in Chromium (software GL): no script errors; X_ITE's optional U
 - `semantic-twins/v2`: the nine cases with an evidence state on every answer and check: the Python oracle recomputed, the x3d_mcp server today (typed results), and the stored MCP run of 16 Nov. The states come from `evidence.json`, written by hagopjay/x3d_mcp `examples/semantic_twins/build/evidence.py` (PR #24): 162 computed here, 60 recorded, 13 explained difference, 1 hash checked, 2 not packaged, 0 mismatch.
 - The 13 explained differences: the server of 16 Nov re-sorted every answer, so a query's ORDER BY was lost in 13 of 54 stored ordered answers. The rows were right. The in-page check now also compares order where a query asks for one.
 - v2 loads v1's scenes, data and engines from `../v1/`; v1 is unchanged. Checked headless in Chromium: no script errors (the X_ITE font 404 as before), no horizontal scroll at 400 px.
+
+## Front-page card picture (v29)
+`flop-lab` is the x3d.gamelab project's own screenshot `docs/media/flop-midair.png` (1360 x 800, fetched from its live site), cropped to the top 1360 x 765 and scaled to 960 x 540.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/flop-lab.jpg | 8efd50ad9167d29821d27d48a4854279d7ff3a59ae383504d7b48ac5bb62f549 | 97026 |
+
