@@ -210,6 +210,21 @@ Checked headless in Chromium (software GL): no script errors; X_ITE's optional U
 |---|---|---|
 | assets/math-lab.jpg | eff3c464f9b9f10c36462bc92fb06313fd2c903a04149e2d5e2f075b527cdbd4 | 66443 |
 
+## Front-page card picture (v31)
+`math-lab-18` is a headless screenshot (Chromium 153.0.8010.12, SwiftShader) of the live page `https://hagopjay.github.io/x3d.mathslab/` showing lesson 1 of 18 in a 1600 x 900 window, scaled to 960 x 540. It replaces `math-lab` for the card from v31; the earlier file stays for the v30 snapshot.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/math-lab-18.jpg | 4db58e18bf6ee90657fdc63bb659e844abd72a770f5d8fd461fd72c9c743d6d2 | 62374 |
+
+## Front-page card picture (v32)
+`blender-scivis-precision` is the chart `Precision-Control.png` from `docs/demos/blender-scivis-precision/v1/` (x3d.demo PR 49), scaled to 960 wide and padded to 960 x 540.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-scivis-precision.jpg | 10afeaa320351092de595d0977921cf701ace92aa353efe8ffdf15e85607b204 | 58388 |
+
+
 
 ## blender-scivis-precision/v1
 Page built by hand from the review's receipts (`probes/precision/precision-control.json`, `probes/native53/results/native53-result.json` in hagopjay/x3d.STEM `integration/blender-scivis/v2`). Figure: `Precision-Control.png` from the same package. No front-page card yet; the numbering thread assigns the demo number.

@@ -2,6 +2,16 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v32 (2026-11-17)
+- New Demo 39: Blender precision and native-splat controls (`docs/demos/blender-scivis-precision/v1/`, x3d.demo PR 49), a static summary of the sci-vis integration review's float32-against-binary64 origin check and its native Gaussian splat probe. New card picture `docs/assets/blender-scivis-precision.jpg` (the page's own chart, padded to 960 x 540), the snapshot `docs/versions/v32/index.html`, and a SOURCES line for the picture. The card quotes the page's numbers and says they were not re-run. No demo and no earlier version is touched; v1 to v31 unchanged.
+- The card points at a path that arrives with PR 49; merge PR 49 before, or with, this one. PR 49 adds its own unnumbered CHANGELOG row and SOURCES entry, so expect a trivial conflict at the top of CHANGELOG.md and the end of SOURCES.md; keep both.
+- Checked in headless Chromium: the front page lays out at 1280 and 390 px with no horizontal scroll and the card picture loads.
+
+## v31 (2026-11-17)
+- Demo 38, Math Lab, re-captioned: the lab has grown from 6 to 18 lessons (adds complex numbers, Taylor series, waves, probability, least squares, vector fields, SVD, Bayes, Lagrange, aliasing, heat and refraction), with lesson search and a level filter. The card text, title and picture are updated; the picture is a new file `docs/assets/math-lab-18.jpg` because the v30 snapshot still points at `math-lab.jpg` (unchanged). The number stays 38. New snapshot `docs/versions/v31/index.html`; no demo and no earlier version is touched; v1 to v30 unchanged.
+- Verified on the live page (`https://hagopjay.github.io/x3d.mathslab/`) in headless Chromium: 18 lessons listed, no console errors on load and on the first lesson; the other seventeen were not opened.
+- Checked in headless Chromium: the front page lays out at 1280 and 390 px with no horizontal scroll and the card picture loads.
+
 ## Unnumbered (2026-11-17)
 - Added docs/demos/blender-scivis-precision/v1 (Blender precision and native-splat control summary). No front-page card; number to be assigned by the bridge thread.
 
