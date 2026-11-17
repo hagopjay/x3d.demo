@@ -203,3 +203,10 @@ Checked headless in Chromium (software GL): no script errors; X_ITE's optional U
 |---|---|---|
 | assets/flop-lab.jpg | 8efd50ad9167d29821d27d48a4854279d7ff3a59ae383504d7b48ac5bb62f549 | 97026 |
 
+## Front-page card picture (v30)
+`math-lab` is a headless screenshot (Chromium 153.0.8010.12, SwiftShader) of the live page `https://hagopjay.github.io/x3d.mathslab/` showing lesson 1, 1280 x 720 scaled to 960 x 540.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/math-lab.jpg | eff3c464f9b9f10c36462bc92fb06313fd2c903a04149e2d5e2f075b527cdbd4 | 66443 |
+

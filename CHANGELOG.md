@@ -2,6 +2,11 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v30 (2026-11-17)
+- New Demo 38: Math Lab (x3d.mathslab), six interactive X3D math labs (linear maps, derivative, integral, Fourier, Lorenz, gradient descent) built in the browser by Python under Pyodide and drawn by X_ITE, with a Manim source export. The lab lives in its own repository, so the card links its live page (`https://hagopjay.github.io/x3d.mathslab/`, 200 when checked) and its source. New card picture `docs/assets/math-lab.jpg` (a headless screenshot of the live page, 1280 x 720 scaled to 960 x 540), the snapshot `docs/versions/v30/index.html`, and a SOURCES line for the picture. Held until the lab's thread confirmed the live URL.
+- Still held, URL not live: Accretion static viewer (planned Demo 39) and Gobbler Evidence Loom (requested Demo 40). Numbers go in the order cards ship, so these may shift.
+- Checked in headless Chromium: the front page lays out at 1280 and 390 px with no horizontal scroll and the card picture loads.
+
 ## v29 (2026-11-17)
 - New Demo 37: Flop Lab (x3d.gamelab), a 2.5D ragdoll stunt platformer on an editable X3D 4.0 level, a custom XPBD-style JavaScript solver and the three.js bridge. The demo lives in its own repository, so the card links its live page (`https://hagopjay.github.io/x3d.gamelab/`) and the frozen build 0.3.0; nothing is copied into this repository. New card picture `docs/assets/flop-lab.jpg` (the project's own `docs/media/flop-midair.png`, cropped and scaled to 960 x 540), the snapshot `docs/versions/v29/index.html`, and a SOURCES line for the picture. Counts on the card (255 RigidBody nodes, 182 joints) are from the game's thread; the page here was not re-run.
 - Giza v3 (Evidence Atlas, PR 46) is merged and still unnumbered and off the shelf, as are Giza v2 and the trace viewer; no lane has asked for cards. No demo and no earlier version is touched; v1 to v28 unchanged.
