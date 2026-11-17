@@ -217,3 +217,10 @@ Checked headless in Chromium (software GL): no script errors; X_ITE's optional U
 |---|---|---|
 | assets/math-lab-18.jpg | 4db58e18bf6ee90657fdc63bb659e844abd72a770f5d8fd461fd72c9c743d6d2 | 62374 |
 
+## Front-page card picture (v32)
+`blender-scivis-precision` is the chart `Precision-Control.png` from `docs/demos/blender-scivis-precision/v1/` (x3d.demo PR 49), scaled to 960 wide and padded to 960 x 540.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-scivis-precision.jpg | 10afeaa320351092de595d0977921cf701ace92aa353efe8ffdf15e85607b204 | 58388 |
+
