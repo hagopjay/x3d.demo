@@ -210,3 +210,10 @@ Checked headless in Chromium (software GL): no script errors; X_ITE's optional U
 |---|---|---|
 | assets/math-lab.jpg | eff3c464f9b9f10c36462bc92fb06313fd2c903a04149e2d5e2f075b527cdbd4 | 66443 |
 
+## Front-page card picture (v31)
+`math-lab-18` is a headless screenshot (Chromium 153.0.8010.12, SwiftShader) of the live page `https://hagopjay.github.io/x3d.mathslab/` showing lesson 1 of 18 in a 1600 x 900 window, scaled to 960 x 540. It replaces `math-lab` for the card from v31; the earlier file stays for the v30 snapshot.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/math-lab-18.jpg | 4db58e18bf6ee90657fdc63bb659e844abd72a770f5d8fd461fd72c9c743d6d2 | 62374 |
+
