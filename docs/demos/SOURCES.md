@@ -210,3 +210,6 @@ Checked headless in Chromium (software GL): no script errors; X_ITE's optional U
 |---|---|---|
 | assets/math-lab.jpg | eff3c464f9b9f10c36462bc92fb06313fd2c903a04149e2d5e2f075b527cdbd4 | 66443 |
 
+
+## blender-scivis-precision/v1
+Page built by hand from the review's receipts (`probes/precision/precision-control.json`, `probes/native53/results/native53-result.json` in hagopjay/x3d.STEM `integration/blender-scivis/v2`). Figure: `Precision-Control.png` from the same package. No front-page card yet; the numbering thread assigns the demo number.
