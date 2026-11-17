@@ -235,3 +235,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/chasm.jpg | c60eb1a37da3127f29558ee840acc934823a1420a48fe0d404287e4a57877448 | 73492 |
+
+## Front-page card picture (v34)
+`accretion` is a headless screenshot (Chromium, software GL) of the live page `https://hagopjay.github.io/x3d.accrete/web/index.html` after eight seconds, 1600 x 900 scaled to 960 x 540.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/accretion.jpg | 85715bee9fcf5d915f4c5779c68d83c1300094cdf504ec11a43370ad84542f3f | 77943 |
