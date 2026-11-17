@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<X3D profile='Immersive' version='4.1' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.1.xsd'>
+  <head>
+    <component level='2' name='Shape'/>
+    <meta content='TheCabinet.x3d' name='title'/>
+    <meta content='The Cabinet: seven glass plinths, each one a lesson hook for the Semantic Twin Lab (RDF, SPARQL, RDFS/OWL, SHACL on X3D).' name='description'/>
+    <meta content='Semantic Twin Lab' name='creator'/>
+    <meta content='13 November 2026' name='created'/>
+    <meta content='https://semantic-twin-lab.example/TheCabinet.x3d' name='identifier'/>
+    <meta content='build/make_scene.py' name='generator'/>
+  </head>
+  <Scene>
+    <!-- fault-F4: ROUTE from 'Ghost': dangling ROUTE endpoint -->
+    <WorldInfo DEF='CabinetInfo' title='The Cabinet'/>
+    <NavigationInfo DEF='Nav' headlight='false' type='"EXAMINE" "ANY"'/>
+    <Background DEF='Night' groundAngle='1.48 1.5708' groundColor='0.006 0.007 0.011 0.012 0.016 0.03 0.028 0.045 0.09' skyAngle='0.9 1.4 1.5708' skyColor='0.003 0.004 0.01 0.008 0.012 0.03 0.018 0.03 0.064 0.028 0.045 0.09'/>
+    <DirectionalLight DEF='KeyLight' color='0.86 0.9 1' direction='-0.35 -1 -0.55' intensity='1'/>
+    <DirectionalLight DEF='FillLight' color='0.5 0.95 0.9' direction='0.6 -0.35 0.75' intensity='0.3'/>
+    <Viewpoint DEF='Overview' description='The Cabinet: all seven plinths' orientation='1 0 0 -0.2328' position='0 3.3 8.4'/>
+    <Viewpoint DEF='LookAway' description='Valid, not visible: the camera faces the empty dark' orientation='0 1 0 3.1416' position='0 1.6 6.5'/>
+    <Transform DEF='Floor' translation='0 -0.05 0'>
+      <Shape DEF='FloorSlab'>
+        <Appearance>
+          <Material DEF='Obsidian' diffuseColor='0.02 0.024 0.034' shininess='0.05' specularColor='0.03 0.04 0.05'/>
+        </Appearance>
+        <Cylinder height='0.1' radius='60'/>
+      </Shape>
+    </Transform>
+    <Transform DEF='InlayRing' translation='0 0.012 3'>
+      <Shape DEF='Inlay'>
+        <Appearance>
+          <Material DEF='InlayGlow' diffuseColor='0 0 0' emissiveColor='0.16 0.6 0.55'/>
+        </Appearance>
+        <Cylinder bottom='false' height='0.02' radius='7.45' solid='false' top='false'/>
+      </Shape>
+    </Transform>
+    <Transform DEF='Bay1' rotation='0 1 0 1.0472' translation='-5.6292 0 -0.25'>
+      <Viewpoint DEF='View1' description='1 Twin Orbs: one Material, three orbs' orientation='1 0 0 -0.1853' position='0 1.75 2.4'/>
+      <Group DEF='PlinthGroup'>
+        <Transform DEF='GlassColumnT' translation='0 0.5 0'>
+          <Shape DEF='GlassColumn'>
+            <Appearance DEF='GlassLook'>
+              <PhysicalMaterial DEF='Glass' baseColor='0.7 0.9 1' metallic='0' roughness='0.05' transparency='0.7'/>
+            </Appearance>
+            <Cylinder DEF='PlinthDrum' height='1' radius='0.5'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='GlowCoreT' translation='0 0.5 0'>
+          <Shape DEF='GlowCore'>
+            <Appearance>
+              <Material DEF='CoreGlow' diffuseColor='0 0 0' emissiveColor='0.04 0.26 0.27' transparency='0.45'/>
+            </Appearance>
+            <Cylinder height='0.96' radius='0.3'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='TopDiscT' translation='0 1.0275 0'>
+          <Shape DEF='TopDisc'>
+            <Appearance>
+              <PhysicalMaterial DEF='Onyx' baseColor='0.025 0.03 0.04' metallic='0.1' roughness='0.25'/>
+            </Appearance>
+            <Cylinder height='0.025' radius='0.52'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='RimT' translation='0 1.028 0'>
+          <Shape DEF='Rim'>
+            <Appearance>
+              <Material DEF='RimGlow' diffuseColor='0 0 0' emissiveColor='0.24 0.9 0.82'/>
+            </Appearance>
+            <Cylinder bottom='false' height='0.022' radius='0.53' solid='false' top='false'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='FootT' translation='0 0.03 0'>
+          <Shape DEF='Foot'>
+            <Appearance>
+              <PhysicalMaterial DEF='Brass' baseColor='0.85 0.64 0.28' emissiveColor='0.08 0.05 0.01' metallic='0.5' roughness='0.35'/>
+            </Appearance>
+            <Cylinder height='0.06' radius='0.57'/>
+          </Shape>
+        </Transform>
+      </Group>
+      <Transform DEF='TwinOrbs' translation='0 1.04 0'>
+        <Transform DEF='OrbA' translation='-0.25 0.19 0.14'>
+          <Shape DEF='OrbAShape'>
+            <Appearance DEF='OrbALook'>
+              <PhysicalMaterial DEF='Gilt' baseColor='1 0.76 0.3' emissiveColor='0.3 0.19 0.04' metallic='0.35' roughness='0.28'/>
+            </Appearance>
+            <Sphere DEF='OrbABall' radius='0.19'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='OrbB' translation='0.25 0.19 0.14'>
+          <Shape DEF='OrbBShape'>
+            <Appearance DEF='OrbBLook'>
+              <PhysicalMaterial USE='Gilt'/>
+            </Appearance>
+            <Sphere DEF='OrbBBall' radius='0.19'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='OrbC' translation='0 0.23 -0.2'>
+          <Shape DEF='OrbCShape'>
+            <Appearance DEF='OrbCLook'>
+              <PhysicalMaterial USE='Gilt'/>
+            </Appearance>
+            <Sphere DEF='OrbCBall' radius='0.23'/>
+          </Shape>
+        </Transform>
+      </Transform>
+    </Transform>
+    <Transform DEF='Bay2' rotation='0 1 0 0.6981' translation='-4.1781 0 -1.9793'>
+      <Viewpoint DEF='View2' description='2 Spinner: Clock drives Spin drives Spinner' orientation='1 0 0 -0.1853' position='0 1.75 2.4'/>
+      <Group USE='PlinthGroup'/>
+      <Transform DEF='SpinnerStand' translation='0 1.04 0'>
+        <Transform DEF='Spinner' translation='0 0.48 0'>
+          <Shape DEF='CrystalTop'>
+            <Appearance DEF='CrystalLook'>
+              <PhysicalMaterial DEF='Crystal' baseColor='0.24 0.9 0.82' emissiveColor='0.03 0.3 0.26' metallic='0.1' roughness='0.18' transparency='0.12'/>
+            </Appearance>
+            <Cone DEF='CrystalCone' bottom='false' bottomRadius='0.22' height='0.36'/>
+          </Shape>
+          <Transform DEF='CrystalFlip' rotation='1 0 0 3.1416' translation='0 -0.36 0'>
+            <Shape DEF='CrystalBottom'>
+              <Appearance USE='CrystalLook'/>
+              <Cone USE='CrystalCone'/>
+            </Shape>
+          </Transform>
+          <Transform DEF='HaloTilt' rotation='1 0 0 0.35' translation='0 -0.18 0'>
+            <Shape DEF='Halo'>
+              <Appearance>
+                <PhysicalMaterial DEF='HaloGold' baseColor='1 0.78 0.34' emissiveColor='0.4 0.26 0.06' metallic='0.6' roughness='0.3'/>
+              </Appearance>
+              <Cylinder bottom='false' height='0.035' radius='0.38' solid='false' top='false'/>
+            </Shape>
+          </Transform>
+        </Transform>
+        <TimeSensor DEF='Clock' cycleInterval='16' loop='true'/>
+        <OrientationInterpolator DEF='Spin' key='0 0.5 1' keyValue='0 1 0 0 0 1 0 3.1416 0 1 0 6.2832'/>
+      </Transform>
+    </Transform>
+    <Transform DEF='Bay3' rotation='0 1 0 0.3491' translation='-2.2231 0 -3.108'>
+      <Viewpoint DEF='View3' description='3 Prism Shelf: five colours to filter and sort' orientation='1 0 0 -0.1853' position='0 1.75 2.4'/>
+      <Group USE='PlinthGroup'/>
+      <Transform DEF='PrismShelf' translation='0 1.04 0'>
+        <Transform DEF='RubyPrism' translation='-0.36 0.23 0'>
+          <Shape DEF='RubyShape'>
+            <Appearance>
+              <Material DEF='Ruby' diffuseColor='0.85 0.08 0.16' transparency='0.25'/>
+            </Appearance>
+            <Box size='0.15 0.46 0.15'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='PearlPrism' translation='-0.18 0.31 0'>
+          <Shape DEF='PearlShape'>
+            <Appearance>
+              <Material DEF='Pearl' diffuseColor='1 1 1' transparency='0.1'/>
+            </Appearance>
+            <Box size='0.15 0.62 0.15'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='JadePrism' translation='0 0.2 0'>
+          <Shape DEF='JadeShape'>
+            <Appearance>
+              <Material DEF='Jade' diffuseColor='0.1 0.7 0.42' transparency='0.4'/>
+            </Appearance>
+            <Box size='0.15 0.4 0.15'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='CobaltPrism' translation='0.18 0.27 0'>
+          <Shape DEF='CobaltShape'>
+            <Appearance>
+              <Material DEF='Cobalt' diffuseColor='0.12 0.28 0.95' transparency='0.6'/>
+            </Appearance>
+            <Box size='0.15 0.54 0.15'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='EmberPrism' translation='0.36 0.17 0'>
+          <Shape DEF='EmberShape'>
+            <Appearance>
+              <Material DEF='Ember' diffuseColor='0.5 0.12 0.02' emissiveColor='1 0.42 0.08'/>
+            </Appearance>
+            <Box size='0.15 0.34 0.15'/>
+          </Shape>
+        </Transform>
+      </Transform>
+    </Transform>
+    <Transform DEF='Bay4' rotation='0 1 0 0' translation='0 0 -3.5'>
+      <Viewpoint DEF='View4' description='4 Carousel: a Switch shows one of three' orientation='1 0 0 -0.1853' position='0 1.75 2.4'/>
+      <Group USE='PlinthGroup'/>
+      <Transform DEF='CarouselStand' translation='0 1.26 0'>
+        <Switch DEF='Carousel' whichChoice='1'>
+          <Shape DEF='ChoiceCube'>
+            <Appearance>
+              <PhysicalMaterial DEF='CubeTint' baseColor='0.24 0.9 0.82' emissiveColor='0.0432 0.162 0.1476' metallic='0.3' roughness='0.35'/>
+            </Appearance>
+            <Box size='0.4 0.4 0.4'/>
+          </Shape>
+          <Shape DEF='ChoiceCone'>
+            <Appearance>
+              <PhysicalMaterial DEF='ConeTint' baseColor='1 0.78 0.34' emissiveColor='0.18 0.1404 0.0612' metallic='0.3' roughness='0.35'/>
+            </Appearance>
+            <Cone bottomRadius='0.26' height='0.52'/>
+          </Shape>
+          <Shape DEF='ChoiceDrum'>
+            <Appearance>
+              <PhysicalMaterial DEF='DrumTint' baseColor='1 0.31 0.85' emissiveColor='0.18 0.0558 0.153' metallic='0.3' roughness='0.35'/>
+            </Appearance>
+            <Cylinder height='0.46' radius='0.2'/>
+          </Shape>
+        </Switch>
+      </Transform>
+    </Transform>
+    <Transform DEF='Bay5' rotation='0 1 0 -0.3491' translation='2.2231 0 -3.108'>
+      <Viewpoint DEF='View5' description='5 Bare Specimen: a Shape with no Appearance' orientation='1 0 0 -0.1853' position='0 1.75 2.4'/>
+      <Group USE='PlinthGroup'/>
+      <Transform DEF='BareStand' rotation='0.7071 0 -0.7071 0.9553' translation='0 1.38 0'>
+        <Shape DEF='BareSpecimen'>
+          <Box DEF='BareCube' size='0.38 0.38 0.38'/>
+        </Shape>
+      </Transform>
+    </Transform>
+    <Transform DEF='Bay6' rotation='0 1 0 -0.6981' translation='4.1781 0 -1.9793'>
+      <Viewpoint DEF='View6' description='6 Label Plinth: facts the scene states about itself' orientation='1 0 0 -0.1853' position='0 1.75 2.4'/>
+      <Group USE='PlinthGroup'/>
+      <Transform DEF='LabelPlinth' translation='0 1.04 0'>
+        <MetadataSet DEF='Provenance' containerField='metadata' name='provenance'>
+          <MetadataString DEF='SpecimenTitle' name='title' value='"The Cabinet"'/>
+          <MetadataString DEF='SpecimenCreator' name='creator' value='"Semantic Twin Lab"'/>
+          <MetadataString DEF='SpecimenNote' name='specimen' value='"A plaque that carries facts about itself"'/>
+          <MetadataInteger DEF='Accession' name='accession' value='6'/>
+        </MetadataSet>
+        <Transform DEF='PlaqueTilt' rotation='1 0 0 -0.6' translation='0 0.2 0.05'>
+          <Shape DEF='Plaque'>
+            <Appearance>
+              <Material DEF='PlaqueSkin' diffuseColor='1 1 1' emissiveColor='0.25 0.22 0.16'/>
+              <PixelTexture DEF='Weave' image='8 8 3 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0x2FB8A8 0xE0B050 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0x1B2733 0x10161E 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0x2FB8A8 0xE0B050 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0x1B2733 0x10161E' repeatS='true' repeatT='true'/>
+            </Appearance>
+            <Box size='0.62 0.4 0.03'/>
+          </Shape>
+        </Transform>
+      </Transform>
+    </Transform>
+    <Transform DEF='Bay7' rotation='0 1 0 -1.0472' translation='5.6292 0 -0.25'>
+      <Viewpoint DEF='View7' description='7 Lantern: a light, and every way to look' orientation='1 0 0 -0.1853' position='0 1.75 2.4'/>
+      <Group USE='PlinthGroup'/>
+      <Transform DEF='LanternStand' translation='0 1.04 0'>
+        <PointLight DEF='Lantern' attenuation='1 0 0.08' color='1 0.8 0.55' intensity='1.4' location='0 0.45 0' radius='14'/>
+        <Transform DEF='LanternBulbT' translation='0 0.45 0'>
+          <Shape DEF='LanternBulb'>
+            <Appearance>
+              <Material DEF='Flame' diffuseColor='0 0 0' emissiveColor='1 0.82 0.5'/>
+            </Appearance>
+            <Sphere radius='0.11'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='ChimneyT' translation='0 0.42 0'>
+          <Shape DEF='Chimney'>
+            <Appearance USE='GlassLook'/>
+            <Cylinder bottom='false' height='0.56' radius='0.2' solid='false' top='false'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='LanternCapT' translation='0 0.78 0'>
+          <Shape DEF='LanternCap'>
+            <Appearance DEF='CageLook'>
+              <PhysicalMaterial DEF='CageGold' baseColor='1 0.76 0.3' emissiveColor='0.3 0.19 0.04' metallic='0.35' roughness='0.3'/>
+            </Appearance>
+            <Cone bottomRadius='0.24' height='0.16'/>
+          </Shape>
+        </Transform>
+        <Transform DEF='LanternBaseT' translation='0 0.12 0'>
+          <Shape DEF='LanternBase'>
+            <Appearance>
+              <PhysicalMaterial USE='CageGold'/>
+            </Appearance>
+            <Cylinder height='0.06' radius='0.23'/>
+          </Shape>
+        </Transform>
+      </Transform>
+    </Transform>
+    <ROUTE fromField='fraction_changed' fromNode='Ghost' toField='set_fraction' toNode='Spin'/>
+    <ROUTE fromField='value_changed' fromNode='Spin' toField='set_rotation' toNode='Spinner'/>
+  </Scene>
+</X3D>

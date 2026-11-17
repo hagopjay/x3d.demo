@@ -1,0 +1,76 @@
+{
+  "schema": "semantic-twin-source-audit/v1",
+  "instrument": {
+    "name": "semantic-twin-companion",
+    "version": "1.0.0",
+    "checks": "lexical XML plus exact bounded RDF graph identity",
+    "canonicalization": "semantic-twin-graph-c14n/v1",
+    "network": "none"
+  },
+  "source": {
+    "basename": "fault-F6.xml",
+    "sha256": "ca0af0b5f6fe00e5ba3d265948bfd84d0349374886aac77ecd101b89109fb2e7",
+    "bytes": 14571
+  },
+  "xml": {
+    "schema": "semantic-twin-source-audit/v1",
+    "source_sha256": "ca0af0b5f6fe00e5ba3d265948bfd84d0349374886aac77ecd101b89109fb2e7",
+    "source_bytes": 14571,
+    "limitations": [
+      "No XSD, field-value, containerField, PROTO expansion, imported-scene, or render validation.",
+      "DEF/USE/ROUTE checks apply within lexical Scene and ProtoBody scopes; external DTD defaults are not loaded.",
+      "Witnesses locate opening tags within the exact source hash; they are not stable across edits."
+    ],
+    "ok": true,
+    "clean": false,
+    "elements": 184,
+    "definitions": 122,
+    "doctype": {
+      "present": false,
+      "external_dtd_loaded": false
+    },
+    "findings": [
+      {
+        "severity": "error",
+        "code": "forward-use",
+        "message": "USE 'Gilt' precedes its DEF",
+        "witness": {
+          "source_sha256": "ca0af0b5f6fe00e5ba3d265948bfd84d0349374886aac77ecd101b89109fb2e7",
+          "start_byte": 4581,
+          "end_byte": 4611,
+          "line": 85,
+          "column": 15,
+          "element": "PhysicalMaterial",
+          "def": null,
+          "xml_path": "/X3D[1]/Scene[1]/Transform[3]/Transform[1]/Transform[1]/Shape[1]/Appearance[1]/PhysicalMaterial[1]"
+        },
+        "related_witness": {
+          "source_sha256": "ca0af0b5f6fe00e5ba3d265948bfd84d0349374886aac77ecd101b89109fb2e7",
+          "start_byte": 4878,
+          "end_byte": 4994,
+          "line": 93,
+          "column": 15,
+          "element": "PhysicalMaterial",
+          "def": "Gilt",
+          "xml_path": "/X3D[1]/Scene[1]/Transform[3]/Transform[1]/Transform[2]/Shape[1]/Appearance[1]/PhysicalMaterial[1]"
+        }
+      }
+    ]
+  },
+  "rdf": {
+    "basename": "fault-F6.ttl.txt",
+    "source_sha256": "881891054c96f7788b0d6fc6e4c1fc166efc2fc3d6a22cde1c9db3cbba11cf51",
+    "source_bytes": 33440,
+    "parser_base_iri": "urn:semantic-twin:input:",
+    "algorithm": "semantic-twin-graph-c14n/v1",
+    "graph_sha256": "1f901692c9357c90dee5b4d70aafab3f133e9776ba66bf8df406e81d07364c6f",
+    "triples": 1939,
+    "blank_nodes": 409,
+    "refinement_rounds": 5,
+    "labelings_checked": 1,
+    "canonicalization_complete": true,
+    "literal_policy": "lexical value plus datatype and language; no numeric coercion",
+    "correspondence_verified": false,
+    "note": "XML and Turtle independently inspected; no derivation correspondence is certified."
+  }
+}

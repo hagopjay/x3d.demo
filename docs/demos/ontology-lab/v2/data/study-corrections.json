@@ -1,0 +1,136 @@
+{
+  "schema": "semantic-twin-corrections/v1",
+  "source_stations_sha256": "718d863b9efb90479baa5bedddc4d8a5a0b0cabeec48282b9872bd758bde8c27",
+  "checked": "2026-11-14",
+  "corrections": [
+    {
+      "id": "C01",
+      "station": "T4.5",
+      "field": "story",
+      "previous": "Ask the ontology where a Box may be placed and it proposes a list of parent fields. The X3D object model's own placement table lists fewer, and the XSD accepts fewer still. The ontology proposes, shapes dispose, the validator gates. (Map counts use named ranges only: owl:unionOf ranges are not expanded, hence isIRI(?range).)",
+      "replacement": "Compare a candidate placement map with the X3DUOM table and the XSD. This query matches a child's named superclasses to named ranges, explicitly excludes the generic X3DNode range, and does not expand owl:unionOf expressions. For Box, only X3DNode among its existing superclasses matches a named hasChildren range, so that field is excluded by this counting rule. This inverse map query differs from RDFS entailment after a hasChildren triple is asserted. Neither the candidate map nor an inferred type authorizes X3D placement.",
+      "reason": "The displayed query excludes X3DNode but the original prose omits that filter.",
+      "evidence": [
+        "data/stations.json#T4.5.editor.text",
+        "data/ttl/slice.ttl.txt",
+        "TOOL-FINDINGS.md#notes-for-the-lab"
+      ],
+      "status": "source-correction"
+    },
+    {
+      "id": "C02",
+      "station": "T4.6",
+      "field": "concept",
+      "previous": "Graph roles matter: shacl-engine 1.1.3 reads the class hierarchy from the SHAPES graph, pyshacl from the data graph. SHACL 1.0 defines \"SHACL instance\" (used by sh:class and sh:targetClass) through rdf:type/rdfs:subClassOf* in the data graph, so pyshacl follows the Recommendation and shacl-engine 1.1.3 departs from it. The SHACL 1.2 Core editors' draft adds a subClassOfInShapesGraph parameter; that is draft, not standard.",
+      "replacement": "Graph roles matter: the pinned engines disagree about where they read subclass axioms. The page copies data-graph subclass triples into the shapes graph as an explicit compatibility adaptation. SHACL 1.2 Core, in the W3C Working Draft dated 10 November 2026, discusses a subClassOfInShapesGraph parameter; that document remains a draft, not a Recommendation.",
+      "reason": "The feature is now present in a published Working Draft, not only an editor’s draft.",
+      "evidence": [
+        "https://www.w3.org/TR/2026/WD-shacl12-core-20261110/",
+        "data/receipts/parity.json#engine_limits.P1"
+      ],
+      "status": "standards-update"
+    },
+    {
+      "id": "C03",
+      "station": "T5.1",
+      "field": "story",
+      "previous": "An LLM meets an MCP server through its tool list and nothing else. The x3d_mcp list at commit 13121b6 could validate, repair and query the ontology, but it could not ask its own scene a question as a graph, run SHACL or reason. The tools branch adds five tools that close that gap (scene_to_rdf, sparql_scene, shacl_validate, rdf_infer, ontology_vs_gate) and a prompt that tells the model in which order to use them. Both tool lists were taken with numpy installed, which the two splat tools need to register.",
+      "replacement": "An MCP client can discover the server’s tools, prompts and resources, while client instructions and prior context also affect what an LLM knows. The pinned tool list at commit 13121b6 could validate, repair and query the ontology but did not expose scene-to-RDF, scene SPARQL, SHACL or reasoning tools. Commit 7d3f1d5 adds five semantic-web tools and a prompt describing an audit order. The compared tool lists used NumPy-enabled environments; these are historical measurements of those commits.",
+      "reason": "The shipped handshake includes prompts and resources as well as a tool list.",
+      "evidence": [
+        "data/sessions/transcripts.json#handshake",
+        "data/receipts/mcp-calls.json#tools_list"
+      ],
+      "status": "source-correction"
+    },
+    {
+      "id": "C04",
+      "station": "T5.7",
+      "field": "concept",
+      "previous": "SHACL 1.2 (editors' draft) adds sh:agentInstruction: the same shapes that check an agent can tell it the rule first.",
+      "replacement": "SHACL 1.2 Core Working Draft of 10 November 2026 includes sh:agentInstruction as a non-validating annotation. A workflow can show the instruction before generation and run the formal constraint afterwards. The annotation itself does not enforce the constraint.",
+      "reason": "Update publication status and preserve the distinction between annotation and validation.",
+      "evidence": [
+        "https://www.w3.org/TR/2026/WD-shacl12-core-20261110/"
+      ],
+      "status": "standards-update"
+    },
+    {
+      "id": "C05",
+      "station": "T5.7",
+      "field": "story",
+      "previous": "Lab shapes and the bundled x3d-core shapes carry an sh:agentInstruction sentence. A server can hand those sentences to the model before it writes, then validate with the very same shapes after; the semantic_audit prompt does the first half. sh:agentInstruction is from the SHACL 1.2 Core editors' draft; SHACL 1.0 engines ignore it.",
+      "replacement": "The lab and bundled x3d-core shapes carry sh:agentInstruction sentences. A workflow can present those sentences to a model before generation and validate against the formal constraints afterwards. SHACL 1.2 Core Working Draft of 10 November 2026 includes this property among non-validating shape characteristics. The pinned SHACL 1.0-era engines retain it as RDF data without using it as a validation constraint. Natural-language instructions do not establish tool authority or replace formal checks.",
+      "reason": "The annotation is now in a published Working Draft and remains non-validating.",
+      "evidence": [
+        "https://www.w3.org/TR/2026/WD-shacl12-core-20261110/",
+        "data/ttl/x3d-lab.shacl.ttl.txt",
+        "data/ttl/x3d-core.shacl.ttl.txt"
+      ],
+      "status": "standards-update"
+    },
+    {
+      "id": "C06",
+      "station": "T5.8",
+      "field": "concept",
+      "previous": "Every verdict carries what produced it: file hashes, versions, commit, and a grade (C confirmed, L likely, S suspected).",
+      "replacement": "A reproducible verdict needs its source identity, engine and rule configuration, and evidence scope. Some legacy tool responses omit parts of that instrument, so inspect the actual response rather than assuming completeness.",
+      "reason": "TOOL-FINDINGS F-12 documents legacy responses without release/instrument metadata.",
+      "evidence": [
+        "TOOL-FINDINGS.md#f-12",
+        "data/sessions/transcripts.json#sessions.S2"
+      ],
+      "status": "source-correction"
+    },
+    {
+      "id": "C07",
+      "station": "T5.8",
+      "field": "story",
+      "previous": "The page recomputes the SHA-256 of the Turtle twin and the ontology slice it loaded and compares them with the build receipts; if a hash differs, the station turns red. claim_append turns a verdict into a ledger record whose hash chains to the one before, and the instrument block of the verdict goes in with it.",
+      "replacement": "The page can recompute hashes of included files and compare them with the published-copy manifest. The session replay separately records claim_append and claims_verify results from the historical server. The full original ledger and raw logs are not included in this ZIP, so their original hash chain cannot be recomputed here. A recorded verification result and a current local hash check are different evidence scopes.",
+      "reason": "The complete original ledger and raw payloads referenced by the replay are absent from the archive.",
+      "evidence": [
+        "data/sessions/transcripts.json#ledger",
+        "data/manifest.json",
+        "data/receipts/mcp-calls.json#calls.T5.8"
+      ],
+      "status": "source-correction"
+    },
+    {
+      "id": "C08",
+      "station": "T4.3",
+      "field": "story",
+      "previous": "This shape looks right and is wrong. For the Pearl prism the components 1, 1, 1 collapse into the single value 1, so minCount 3 fails; every black glow material fails too. Counting cells needs a path that does not collapse them: SHACL Core can do it with fixed positions (sh:path (x3do:diffuseColor rdf:rest rdf:rest rdf:first) sh:minCount 1, plus sh:path (x3do:diffuseColor rdf:rest rdf:rest rdf:rest) sh:hasValue rdf:nil), or SHACL-SPARQL can (shape S1b), and both pass the whole Cabinet. The SHACL 1.2 Core editors' draft adds sh:minListLength/sh:maxListLength; pyshacl 0.40.2 ignores them and reports a false pass.",
+      "replacement": "This SHACL shape looks right and is wrong. SHACL counts a set of value nodes: Pearl’s repeated components (1, 1, 1) yield one distinct value, so minCount 3 fails; black glow materials fail too. Count list cells or constrain fixed positions instead, as S1b does. This does not imply that a plain SPARQL SELECT always collapses repeated bindings: the bundled engine can return all three Pearl bindings, while SELECT DISTINCT collapses them. Neither an unindexed member query nor DISTINCT reconstructs RGB axis order. SHACL 1.2 Core Working Draft of 10 November 2026 includes minListLength and maxListLength; the pinned older engines do not thereby gain those constraints.",
+      "reason": "Keep correct SHACL set semantics distinct from SPARQL multiset projection; update draft publication status.",
+      "evidence": [
+        "data/stations.json#T4.3.editor",
+        "data/receipts/oracle.json#jobs.T4.3:main",
+        "https://www.w3.org/TR/2026/WD-shacl12-core-20261110/"
+      ],
+      "status": "standards-update"
+    }
+  ],
+  "notes": [
+    {
+      "id": "N01",
+      "text": "T3.4’s direct hasChildren range-entailment explanation is correct. The X3DNode-only observation concerns inverse placement-map matching of Box’s existing superclasses, not forward range entailment."
+    },
+    {
+      "id": "N02",
+      "text": "All 58 original manifest-published hashes match included bytes. Seven source/published hashes differ; retain both and qualify the original manifest about text instead of rewriting historical receipts."
+    },
+    {
+      "id": "N03",
+      "text": "T1.7 already reads RGB by fixed list positions and needs no semantic correction. T4.3’s SHACL value-node set is different from a SELECT result multiset."
+    },
+    {
+      "id": "N04",
+      "text": "Recorded session XML input hashes differ from shipped teaching XML hashes. Matching labels do not identify matching bytes; the faithful Cabinet Turtle hash does match."
+    },
+    {
+      "id": "N05",
+      "text": "Historical parity is 143 equal,11 expected,8 Python-only jobs; 27 of38 third-engine full SHACL cases were refused then tested on reduced Core-only subsets."
+    }
+  ]
+}

@@ -1,0 +1,889 @@
+@prefix :        <https://semantic-twin-lab.example/TheCabinet.ttl#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:  <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix x3d:     <https://www.web3d.org/specifications/x3d-4.1.xsd#> .
+@prefix x3do:    <https://www.web3d.org/specifications/X3dOntology4.1#> .
+
+:X3D a owl:NamedIndividual, x3do:X3D ;
+  x3do:hasHead :head ;
+  x3do:hasScene :Scene ;
+  x3do:profile 'Immersive' ;
+  x3do:version '4.1' ;
+  x3do:noNamespaceSchemaLocation 'https://www.web3d.org/specifications/x3d-4.1.xsd' .
+:head a owl:NamedIndividual, x3do:head ;
+  x3do:hasParent :X3D ;
+  x3do:hasComponent :component_1_1 ;
+  x3do:hasMeta :meta_1_2, :meta_1_3, :meta_1_4, :meta_1_5, :meta_1_6, :meta_1_7 .
+:component_1_1 a owl:NamedIndividual, x3do:component ;
+  x3do:hasParent :head ;
+  x3do:level 2 ;
+  x3do:name 'Shape' .
+:meta_1_2 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:content 'TheCabinet.x3d' ;
+  x3do:name 'title' .
+:meta_1_3 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:content 'The Cabinet: seven glass plinths, each one a lesson hook for the Semantic Twin Lab (RDF, SPARQL, RDFS/OWL, SHACL on X3D).' ;
+  x3do:name 'description' .
+:meta_1_4 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:content 'Semantic Twin Lab' ;
+  x3do:name 'creator' .
+:meta_1_5 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:content '13 November 2026' ;
+  x3do:name 'created' .
+:meta_1_6 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:content 'https://semantic-twin-lab.example/TheCabinet.x3d' ;
+  x3do:name 'identifier' .
+:meta_1_7 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:content 'build/make_scene.py' ;
+  x3do:name 'generator' .
+:meta dcterms:title "TheCabinet.x3d" .
+:meta dcterms:description "The Cabinet: seven glass plinths, each one a lesson hook for the Semantic Twin Lab (RDF, SPARQL, RDFS/OWL, SHACL on X3D)." .
+:meta dcterms:creator "Semantic Twin Lab" .
+:meta dcterms:created "13 November 2026" .
+:meta dcterms:identifier "https://semantic-twin-lab.example/TheCabinet.x3d" .
+:meta dcterms:generator "build/make_scene.py" .
+:Scene a owl:NamedIndividual, x3do:Scene ;
+  x3do:hasParent :X3D ;
+  x3do:hasChildren :CabinetInfo, :Nav, :Night, :KeyLight, :FillLight, :Overview, :LookAway, :Floor, :InlayRing, :Bay1, :Bay2, :Bay3, :Bay4, :Bay5, :Bay6, :Bay7 ;
+  x3do:hasROUTE :ROUTE_2_17, :ROUTE_2_18 .
+:CabinetInfo a owl:NamedIndividual, x3do:WorldInfo ;
+  x3do:hasParent :Scene ;
+  x3do:DEF 'CabinetInfo' ;
+  x3do:title 'The Cabinet' .
+:Nav a owl:NamedIndividual, x3do:NavigationInfo ;
+  x3do:hasParent :Scene ;
+  x3do:DEF 'Nav' ;
+  x3do:headlight false .
+:Night a owl:NamedIndividual, x3do:Background ;
+  x3do:hasParent :Scene ;
+  x3do:DEF 'Night' ;
+  x3do:groundAngle ( 1.48 1.5708 ) ;
+  x3do:groundColor ( 0.006 0.007 0.011 0.012 0.016 0.03 0.028 0.045 0.09 ) ;
+  x3do:skyAngle ( 0.9 1.4 1.5708 ) ;
+  x3do:skyColor ( 0.003 0.004 0.01 0.008 0.012 0.03 0.018 0.03 0.064 0.028 0.045 0.09 ) .
+:KeyLight a owl:NamedIndividual, x3do:DirectionalLight ;
+  x3do:hasParent :Scene ;
+  x3do:DEF 'KeyLight' ;
+  x3do:color ( 0.86 0.9 1 ) ;
+  x3do:direction ( -0.35 -1 -0.55 ) .
+:FillLight a owl:NamedIndividual, x3do:DirectionalLight ;
+  x3do:hasParent :Scene ;
+  x3do:DEF 'FillLight' ;
+  x3do:color ( 0.5 0.95 0.9 ) ;
+  x3do:direction ( 0.6 -0.35 0.75 ) ;
+  x3do:intensity 0.3 .
+:Overview a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF 'Overview' ;
+  x3do:description 'The Cabinet: all seven plinths' ;
+  x3do:orientation ( 1 0 0 -0.2328 ) ;
+  x3do:position ( 0 3.3 8.4 ) .
+:LookAway a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF 'LookAway' ;
+  x3do:description 'Valid, not visible: the camera faces the empty dark' ;
+  x3do:orientation ( 0 1 0 3.1416 ) ;
+  x3do:position ( 0 1.6 6.5 ) .
+:Floor a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :FloorSlab ;
+  x3do:DEF 'Floor' ;
+  x3do:translation ( 0 -0.05 0 ) .
+:FloorSlab a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Floor ;
+  x3do:hasAppearance :Appearance_2_8_1_1 ;
+  x3do:hasGeometry :Cylinder_2_8_1_2 ;
+  x3do:DEF 'FloorSlab' .
+:Appearance_2_8_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :FloorSlab ;
+  x3do:hasMaterial :Obsidian .
+:Obsidian a owl:NamedIndividual, x3do:Material ;
+  x3do:hasParent :Appearance_2_8_1_1 ;
+  x3do:DEF 'Obsidian' ;
+  x3do:diffuseColor ( 0.02 0.024 0.034 ) ;
+  x3do:shininess 0.05 ;
+  x3do:specularColor ( 0.03 0.04 0.05 ) .
+:Cylinder_2_8_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :FloorSlab ;
+  x3do:height 0.1 ;
+  x3do:radius 60 .
+:InlayRing a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :Inlay ;
+  x3do:DEF 'InlayRing' ;
+  x3do:translation ( 0 0.012 3 ) .
+:Inlay a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :InlayRing ;
+  x3do:hasAppearance :Appearance_2_9_1_1 ;
+  x3do:hasGeometry :Cylinder_2_9_1_2 ;
+  x3do:DEF 'Inlay' .
+:Appearance_2_9_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Inlay ;
+  x3do:hasMaterial :InlayGlow .
+:InlayGlow a owl:NamedIndividual, x3do:Material ;
+  x3do:hasParent :Appearance_2_9_1_1 ;
+  x3do:DEF 'InlayGlow' ;
+  x3do:diffuseColor ( 0 0 0 ) ;
+  x3do:emissiveColor ( 0.16 0.6 0.55 ) .
+:Cylinder_2_9_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :Inlay ;
+  x3do:bottom false ;
+  x3do:height 0.02 ;
+  x3do:radius 7.45 ;
+  x3do:solid false ;
+  x3do:top false .
+:Bay1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :View1, :PlinthGroup, :TwinOrbs ;
+  x3do:DEF 'Bay1' ;
+  x3do:rotation ( 0 1 0 1.0472 ) ;
+  x3do:translation ( -5.6292 0 -0.25 ) .
+:View1 a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Bay1 ;
+  x3do:DEF 'View1' ;
+  x3do:description '1 Twin Orbs: one Material, three orbs' ;
+  x3do:orientation ( 1 0 0 -0.1853 ) ;
+  x3do:position ( 0 1.75 2.4 ) .
+:PlinthGroup a owl:NamedIndividual, x3do:Group ;
+  x3do:hasParent :Bay1 ;
+  x3do:hasChildren :GlassColumnT, :GlowCoreT, :TopDiscT, :RimT, :FootT ;
+  x3do:DEF 'PlinthGroup' .
+:GlassColumnT a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :PlinthGroup ;
+  x3do:hasChildren :GlassColumn ;
+  x3do:DEF 'GlassColumnT' ;
+  x3do:translation ( 0 0.5 0 ) .
+:GlassColumn a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :GlassColumnT ;
+  x3do:hasAppearance :GlassLook ;
+  x3do:hasGeometry :PlinthDrum ;
+  x3do:DEF 'GlassColumn' .
+:GlassLook a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :GlassColumn ;
+  x3do:hasMaterial :Glass ;
+  x3do:DEF 'GlassLook' .
+:Glass a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :GlassLook ;
+  x3do:DEF 'Glass' ;
+  x3do:baseColor ( 0.7 0.9 1 ) ;
+  x3do:metallic 0 ;
+  x3do:roughness 0.05 ;
+  x3do:transparency 0.7 .
+:PlinthDrum a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :GlassColumn ;
+  x3do:DEF 'PlinthDrum' ;
+  x3do:height 1 ;
+  x3do:radius 0.5 .
+:GlowCoreT a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :PlinthGroup ;
+  x3do:hasChildren :GlowCore ;
+  x3do:DEF 'GlowCoreT' ;
+  x3do:translation ( 0 0.5 0 ) .
+:GlowCore a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :GlowCoreT ;
+  x3do:hasAppearance :Appearance_2_10_2_2_1_1 ;
+  x3do:hasGeometry :Cylinder_2_10_2_2_1_2 ;
+  x3do:DEF 'GlowCore' .
+:Appearance_2_10_2_2_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :GlowCore ;
+  x3do:hasMaterial :CoreGlow .
+:CoreGlow a owl:NamedIndividual, x3do:Material ;
+  x3do:hasParent :Appearance_2_10_2_2_1_1 ;
+  x3do:DEF 'CoreGlow' ;
+  x3do:diffuseColor ( 0 0 0 ) ;
+  x3do:emissiveColor ( 0.04 0.26 0.27 ) ;
+  x3do:transparency 0.45 .
+:Cylinder_2_10_2_2_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :GlowCore ;
+  x3do:height 0.96 ;
+  x3do:radius 0.3 .
+:TopDiscT a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :PlinthGroup ;
+  x3do:hasChildren :TopDisc ;
+  x3do:DEF 'TopDiscT' ;
+  x3do:translation ( 0 1.0275 0 ) .
+:TopDisc a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :TopDiscT ;
+  x3do:hasAppearance :Appearance_2_10_2_3_1_1 ;
+  x3do:hasGeometry :Cylinder_2_10_2_3_1_2 ;
+  x3do:DEF 'TopDisc' .
+:Appearance_2_10_2_3_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :TopDisc ;
+  x3do:hasMaterial :Onyx .
+:Onyx a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_10_2_3_1_1 ;
+  x3do:DEF 'Onyx' ;
+  x3do:baseColor ( 0.025 0.03 0.04 ) ;
+  x3do:metallic 0.1 ;
+  x3do:roughness 0.25 .
+:Cylinder_2_10_2_3_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :TopDisc ;
+  x3do:height 0.025 ;
+  x3do:radius 0.52 .
+:RimT a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :PlinthGroup ;
+  x3do:hasChildren :Rim ;
+  x3do:DEF 'RimT' ;
+  x3do:translation ( 0 1.028 0 ) .
+:Rim a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :RimT ;
+  x3do:hasAppearance :Appearance_2_10_2_4_1_1 ;
+  x3do:hasGeometry :Cylinder_2_10_2_4_1_2 ;
+  x3do:DEF 'Rim' .
+:Appearance_2_10_2_4_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Rim ;
+  x3do:hasMaterial :RimGlow .
+:RimGlow a owl:NamedIndividual, x3do:Material ;
+  x3do:hasParent :Appearance_2_10_2_4_1_1 ;
+  x3do:DEF 'RimGlow' ;
+  x3do:diffuseColor ( 0 0 0 ) ;
+  x3do:emissiveColor ( 0.24 0.9 0.82 ) .
+:Cylinder_2_10_2_4_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :Rim ;
+  x3do:bottom false ;
+  x3do:height 0.022 ;
+  x3do:radius 0.53 ;
+  x3do:solid false ;
+  x3do:top false .
+:FootT a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :PlinthGroup ;
+  x3do:hasChildren :Foot ;
+  x3do:DEF 'FootT' ;
+  x3do:translation ( 0 0.03 0 ) .
+:Foot a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :FootT ;
+  x3do:hasAppearance :Appearance_2_10_2_5_1_1 ;
+  x3do:hasGeometry :Cylinder_2_10_2_5_1_2 ;
+  x3do:DEF 'Foot' .
+:Appearance_2_10_2_5_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Foot ;
+  x3do:hasMaterial :Brass .
+:Brass a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_10_2_5_1_1 ;
+  x3do:DEF 'Brass' ;
+  x3do:baseColor ( 0.85 0.64 0.28 ) ;
+  x3do:emissiveColor ( 0.08 0.05 0.01 ) ;
+  x3do:metallic 0.5 ;
+  x3do:roughness 0.35 .
+:Cylinder_2_10_2_5_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :Foot ;
+  x3do:height 0.06 ;
+  x3do:radius 0.57 .
+:TwinOrbs a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Bay1 ;
+  x3do:hasChildren :OrbA, :OrbB, :OrbC ;
+  x3do:DEF 'TwinOrbs' ;
+  x3do:translation ( 0 1.04 0 ) .
+:OrbA a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :TwinOrbs ;
+  x3do:hasChildren :OrbAShape ;
+  x3do:DEF 'OrbA' ;
+  x3do:translation ( -0.25 0.19 0.14 ) .
+:OrbAShape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OrbA ;
+  x3do:hasAppearance :OrbALook ;
+  x3do:hasGeometry :OrbABall ;
+  x3do:DEF 'OrbAShape' .
+:OrbALook a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OrbAShape ;
+  x3do:hasMaterial :Gilt ;
+  x3do:DEF 'OrbALook' .
+:Gilt a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :OrbALook ;
+  x3do:DEF 'Gilt' ;
+  x3do:baseColor ( 1 0.76 0.3 ) ;
+  x3do:emissiveColor ( 0.3 0.19 0.04 ) ;
+  x3do:metallic 0.35 ;
+  x3do:roughness 0.28 .
+:OrbABall a owl:NamedIndividual, x3do:Sphere ;
+  x3do:hasParent :OrbAShape ;
+  x3do:DEF 'OrbABall' ;
+  x3do:radius 0.19 .
+:OrbB a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :TwinOrbs ;
+  x3do:hasChildren :OrbBShape ;
+  x3do:DEF 'OrbB' ;
+  x3do:translation ( 0.25 0.19 0.14 ) .
+:OrbBShape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OrbB ;
+  x3do:hasAppearance :OrbBLook ;
+  x3do:hasGeometry :OrbBBall ;
+  x3do:DEF 'OrbBShape' .
+:OrbBLook a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OrbBShape ;
+  x3do:hasMaterial :Gilt-USE-1 ;
+  x3do:DEF 'OrbBLook' .
+:Gilt-USE-1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :OrbBLook ;
+  owl:sameAs :Gilt . # DEF matching this USE
+:OrbBBall a owl:NamedIndividual, x3do:Sphere ;
+  x3do:hasParent :OrbBShape ;
+  x3do:DEF 'OrbBBall' ;
+  x3do:radius 0.19 .
+:OrbC a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :TwinOrbs ;
+  x3do:hasChildren :OrbCShape ;
+  x3do:DEF 'OrbC' ;
+  x3do:translation ( 0 0.23 -0.2 ) .
+:OrbCShape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OrbC ;
+  x3do:hasAppearance :OrbCLook ;
+  x3do:hasGeometry :OrbCBall ;
+  x3do:DEF 'OrbCShape' .
+:OrbCLook a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OrbCShape ;
+  x3do:hasMaterial :Gilt-USE-2 ;
+  x3do:DEF 'OrbCLook' .
+:Gilt-USE-2 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :OrbCLook ;
+  owl:sameAs :Gilt . # DEF matching this USE
+:OrbCBall a owl:NamedIndividual, x3do:Sphere ;
+  x3do:hasParent :OrbCShape ;
+  x3do:DEF 'OrbCBall' ;
+  x3do:radius 0.23 .
+:Bay2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :View2, :PlinthGroup-USE-1, :SpinnerStand ;
+  x3do:DEF 'Bay2' ;
+  x3do:rotation ( 0 1 0 0.6981 ) ;
+  x3do:translation ( -4.1781 0 -1.9793 ) .
+:View2 a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Bay2 ;
+  x3do:DEF 'View2' ;
+  x3do:description '2 Spinner: Clock drives Spin drives Spinner' ;
+  x3do:orientation ( 1 0 0 -0.1853 ) ;
+  x3do:position ( 0 1.75 2.4 ) .
+:PlinthGroup-USE-1 a owl:NamedIndividual, x3do:Group ;
+  x3do:hasParent :Bay2 ;
+  owl:sameAs :PlinthGroup . # DEF matching this USE
+:SpinnerStand a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Bay2 ;
+  x3do:hasChildren :Spinner, :Clock, :Spin ;
+  x3do:DEF 'SpinnerStand' ;
+  x3do:translation ( 0 1.04 0 ) .
+:Spinner a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :SpinnerStand ;
+  x3do:hasChildren :CrystalTop, :CrystalFlip, :HaloTilt ;
+  x3do:DEF 'Spinner' ;
+  x3do:translation ( 0 0.48 0 ) .
+:CrystalTop a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Spinner ;
+  x3do:hasAppearance :CrystalLook ;
+  x3do:hasGeometry :CrystalCone ;
+  x3do:DEF 'CrystalTop' .
+:CrystalLook a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CrystalTop ;
+  x3do:hasMaterial :Crystal ;
+  x3do:DEF 'CrystalLook' .
+:Crystal a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :CrystalLook ;
+  x3do:DEF 'Crystal' ;
+  x3do:baseColor ( 0.24 0.9 0.82 ) ;
+  x3do:emissiveColor ( 0.03 0.3 0.26 ) ;
+  x3do:metallic 0.1 ;
+  x3do:roughness 0.18 ;
+  x3do:transparency 0.12 .
+:CrystalCone a owl:NamedIndividual, x3do:Cone ;
+  x3do:hasParent :CrystalTop ;
+  x3do:DEF 'CrystalCone' ;
+  x3do:bottom false ;
+  x3do:bottomRadius 0.22 ;
+  x3do:height 0.36 .
+:CrystalFlip a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Spinner ;
+  x3do:hasChildren :CrystalBottom ;
+  x3do:DEF 'CrystalFlip' ;
+  x3do:rotation ( 1 0 0 3.1416 ) ;
+  x3do:translation ( 0 -0.36 0 ) .
+:CrystalBottom a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CrystalFlip ;
+  x3do:hasAppearance :CrystalLook-USE-1 ;
+  x3do:hasGeometry :CrystalCone-USE-1 ;
+  x3do:DEF 'CrystalBottom' .
+:CrystalLook-USE-1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CrystalBottom ;
+  owl:sameAs :CrystalLook . # DEF matching this USE
+:CrystalCone-USE-1 a owl:NamedIndividual, x3do:Cone ;
+  x3do:hasParent :CrystalBottom ;
+  owl:sameAs :CrystalCone . # DEF matching this USE
+:HaloTilt a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Spinner ;
+  x3do:hasChildren :Halo ;
+  x3do:DEF 'HaloTilt' ;
+  x3do:rotation ( 1 0 0 0.35 ) ;
+  x3do:translation ( 0 -0.18 0 ) .
+:Halo a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :HaloTilt ;
+  x3do:hasAppearance :Appearance_2_11_3_1_3_1_1 ;
+  x3do:hasGeometry :Cylinder_2_11_3_1_3_1_2 ;
+  x3do:DEF 'Halo' .
+:Appearance_2_11_3_1_3_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Halo ;
+  x3do:hasMaterial :HaloGold .
+:HaloGold a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_11_3_1_3_1_1 ;
+  x3do:DEF 'HaloGold' ;
+  x3do:baseColor ( 1 0.78 0.34 ) ;
+  x3do:emissiveColor ( 0.4 0.26 0.06 ) ;
+  x3do:metallic 0.6 ;
+  x3do:roughness 0.3 .
+:Cylinder_2_11_3_1_3_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :Halo ;
+  x3do:bottom false ;
+  x3do:height 0.035 ;
+  x3do:radius 0.38 ;
+  x3do:solid false ;
+  x3do:top false .
+:Clock a owl:NamedIndividual, x3do:TimeSensor ;
+  x3do:hasParent :SpinnerStand ;
+  x3do:DEF 'Clock' ;
+  x3do:cycleInterval '16' ;
+  x3do:loop true .
+:Spin a owl:NamedIndividual, x3do:OrientationInterpolator ;
+  x3do:hasParent :SpinnerStand ;
+  x3do:DEF 'Spin' ;
+  x3do:key ( 0 0.5 1 ) ;
+  x3do:keyValue ( 0 1 0 0 0 1 0 3.1416 0 1 0 6.2832 ) .
+:Bay3 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :View3, :PlinthGroup-USE-2, :PrismShelf ;
+  x3do:DEF 'Bay3' ;
+  x3do:rotation ( 0 1 0 0.3491 ) ;
+  x3do:translation ( -2.2231 0 -3.108 ) .
+:View3 a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Bay3 ;
+  x3do:DEF 'View3' ;
+  x3do:description '3 Prism Shelf: five colours to filter and sort' ;
+  x3do:orientation ( 1 0 0 -0.1853 ) ;
+  x3do:position ( 0 1.75 2.4 ) .
+:PlinthGroup-USE-2 a owl:NamedIndividual, x3do:Group ;
+  x3do:hasParent :Bay3 ;
+  owl:sameAs :PlinthGroup . # DEF matching this USE
+:PrismShelf a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Bay3 ;
+  x3do:hasChildren :RubyPrism, :PearlPrism, :JadePrism, :CobaltPrism, :EmberPrism ;
+  x3do:DEF 'PrismShelf' ;
+  x3do:translation ( 0 1.04 0 ) .
+:RubyPrism a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :PrismShelf ;
+  x3do:hasChildren :RubyShape ;
+  x3do:DEF 'RubyPrism' ;
+  x3do:translation ( -0.36 0.23 0 ) .
+:RubyShape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :RubyPrism ;
+  x3do:hasAppearance :Appearance_2_12_3_1_1_1 ;
+  x3do:hasGeometry :Box_2_12_3_1_1_2 ;
+  x3do:DEF 'RubyShape' .
+:Appearance_2_12_3_1_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :RubyShape ;
+  x3do:hasMaterial :Ruby .
+:Ruby a owl:NamedIndividual, x3do:Material ;
+  x3do:hasParent :Appearance_2_12_3_1_1_1 ;
+  x3do:DEF 'Ruby' ;
+  x3do:diffuseColor ( 0.85 0.08 0.16 ) ;
+  x3do:transparency 0.25 .
+:Box_2_12_3_1_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :RubyShape ;
+  x3do:size ( 0.15 0.46 0.15 ) .
+:PearlPrism a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :PrismShelf ;
+  x3do:hasChildren :PearlShape ;
+  x3do:DEF 'PearlPrism' ;
+  x3do:translation ( -0.18 0.31 0 ) .
+:PearlShape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :PearlPrism ;
+  x3do:hasAppearance :Appearance_2_12_3_2_1_1 ;
+  x3do:hasGeometry :Box_2_12_3_2_1_2 ;
+  x3do:DEF 'PearlShape' .
+:Appearance_2_12_3_2_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :PearlShape ;
+  x3do:hasMaterial :Pearl .
+:Pearl a owl:NamedIndividual, x3do:Material ;
+  x3do:hasParent :Appearance_2_12_3_2_1_1 ;
+  x3do:DEF 'Pearl' ;
+  x3do:diffuseColor ( 1 1 1 ) ;
+  x3do:transparency 0.1 .
+:Box_2_12_3_2_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :PearlShape ;
+  x3do:size ( 0.15 0.62 0.15 ) .
+:JadePrism a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :PrismShelf ;
+  x3do:hasChildren :JadeShape ;
+  x3do:DEF 'JadePrism' ;
+  x3do:translation ( 0 0.2 0 ) .
+:JadeShape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :JadePrism ;
+  x3do:hasAppearance :Appearance_2_12_3_3_1_1 ;
+  x3do:hasGeometry :Box_2_12_3_3_1_2 ;
+  x3do:DEF 'JadeShape' .
+:Appearance_2_12_3_3_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :JadeShape ;
+  x3do:hasMaterial :Jade .
+:Jade a owl:NamedIndividual, x3do:Material ;
+  x3do:hasParent :Appearance_2_12_3_3_1_1 ;
+  x3do:DEF 'Jade' ;
+  x3do:diffuseColor ( 0.1 0.7 0.42 ) ;
+  x3do:transparency 0.4 .
+:Box_2_12_3_3_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :JadeShape ;
+  x3do:size ( 0.15 0.4 0.15 ) .
+:CobaltPrism a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :PrismShelf ;
+  x3do:hasChildren :CobaltShape ;
+  x3do:DEF 'CobaltPrism' ;
+  x3do:translation ( 0.18 0.27 0 ) .
+:CobaltShape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CobaltPrism ;
+  x3do:hasAppearance :Appearance_2_12_3_4_1_1 ;
+  x3do:hasGeometry :Box_2_12_3_4_1_2 ;
+  x3do:DEF 'CobaltShape' .
+:Appearance_2_12_3_4_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CobaltShape ;
+  x3do:hasMaterial :Cobalt .
+:Cobalt a owl:NamedIndividual, x3do:Material ;
+  x3do:hasParent :Appearance_2_12_3_4_1_1 ;
+  x3do:DEF 'Cobalt' ;
+  x3do:diffuseColor ( 0.12 0.28 0.95 ) ;
+  x3do:transparency 0.6 .
+:Box_2_12_3_4_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :CobaltShape ;
+  x3do:size ( 0.15 0.54 0.15 ) .
+:EmberPrism a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :PrismShelf ;
+  x3do:hasChildren :EmberShape ;
+  x3do:DEF 'EmberPrism' ;
+  x3do:translation ( 0.36 0.17 0 ) .
+:EmberShape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :EmberPrism ;
+  x3do:hasAppearance :Appearance_2_12_3_5_1_1 ;
+  x3do:hasGeometry :Box_2_12_3_5_1_2 ;
+  x3do:DEF 'EmberShape' .
+:Appearance_2_12_3_5_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :EmberShape ;
+  x3do:hasMaterial :Ember .
+:Ember a owl:NamedIndividual, x3do:Material ;
+  x3do:hasParent :Appearance_2_12_3_5_1_1 ;
+  x3do:DEF 'Ember' ;
+  x3do:diffuseColor ( 0.5 0.12 0.02 ) ;
+  x3do:emissiveColor ( 1 0.42 0.08 ) .
+:Box_2_12_3_5_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :EmberShape ;
+  x3do:size ( 0.15 0.34 0.15 ) .
+:Bay4 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :View4, :PlinthGroup-USE-3, :CarouselStand ;
+  x3do:DEF 'Bay4' ;
+  x3do:translation ( 0 0 -3.5 ) .
+:View4 a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Bay4 ;
+  x3do:DEF 'View4' ;
+  x3do:description '4 Carousel: a Switch shows one of three' ;
+  x3do:orientation ( 1 0 0 -0.1853 ) ;
+  x3do:position ( 0 1.75 2.4 ) .
+:PlinthGroup-USE-3 a owl:NamedIndividual, x3do:Group ;
+  x3do:hasParent :Bay4 ;
+  owl:sameAs :PlinthGroup . # DEF matching this USE
+:CarouselStand a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Bay4 ;
+  x3do:hasChildren :Carousel ;
+  x3do:DEF 'CarouselStand' ;
+  x3do:translation ( 0 1.26 0 ) .
+:Carousel a owl:NamedIndividual, x3do:Switch ;
+  x3do:hasParent :CarouselStand ;
+  x3do:hasChildren :ChoiceCube, :ChoiceCone, :ChoiceDrum ;
+  x3do:DEF 'Carousel' ;
+  x3do:whichChoice 1 .
+:ChoiceCube a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Carousel ;
+  x3do:hasAppearance :Appearance_2_13_3_1_1_1 ;
+  x3do:hasGeometry :Box_2_13_3_1_1_2 ;
+  x3do:DEF 'ChoiceCube' .
+:Appearance_2_13_3_1_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ChoiceCube ;
+  x3do:hasMaterial :CubeTint .
+:CubeTint a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_13_3_1_1_1 ;
+  x3do:DEF 'CubeTint' ;
+  x3do:baseColor ( 0.24 0.9 0.82 ) ;
+  x3do:emissiveColor ( 0.0432 0.162 0.1476 ) ;
+  x3do:metallic 0.3 ;
+  x3do:roughness 0.35 .
+:Box_2_13_3_1_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :ChoiceCube ;
+  x3do:size ( 0.4 0.4 0.4 ) .
+:ChoiceCone a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Carousel ;
+  x3do:hasAppearance :Appearance_2_13_3_1_2_1 ;
+  x3do:hasGeometry :Cone_2_13_3_1_2_2 ;
+  x3do:DEF 'ChoiceCone' .
+:Appearance_2_13_3_1_2_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ChoiceCone ;
+  x3do:hasMaterial :ConeTint .
+:ConeTint a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_13_3_1_2_1 ;
+  x3do:DEF 'ConeTint' ;
+  x3do:baseColor ( 1 0.78 0.34 ) ;
+  x3do:emissiveColor ( 0.18 0.1404 0.0612 ) ;
+  x3do:metallic 0.3 ;
+  x3do:roughness 0.35 .
+:Cone_2_13_3_1_2_2 a owl:NamedIndividual, x3do:Cone ;
+  x3do:hasParent :ChoiceCone ;
+  x3do:bottomRadius 0.26 ;
+  x3do:height 0.52 .
+:ChoiceDrum a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :Carousel ;
+  x3do:hasAppearance :Appearance_2_13_3_1_3_1 ;
+  x3do:hasGeometry :Cylinder_2_13_3_1_3_2 ;
+  x3do:DEF 'ChoiceDrum' .
+:Appearance_2_13_3_1_3_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ChoiceDrum ;
+  x3do:hasMaterial :DrumTint .
+:DrumTint a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_13_3_1_3_1 ;
+  x3do:DEF 'DrumTint' ;
+  x3do:baseColor ( 1 0.31 0.85 ) ;
+  x3do:emissiveColor ( 0.18 0.0558 0.153 ) ;
+  x3do:metallic 0.3 ;
+  x3do:roughness 0.35 .
+:Cylinder_2_13_3_1_3_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :ChoiceDrum ;
+  x3do:height 0.46 ;
+  x3do:radius 0.2 .
+:Bay5 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :View5, :PlinthGroup-USE-4, :BareStand ;
+  x3do:DEF 'Bay5' ;
+  x3do:rotation ( 0 1 0 -0.3491 ) ;
+  x3do:translation ( 2.2231 0 -3.108 ) .
+:View5 a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Bay5 ;
+  x3do:DEF 'View5' ;
+  x3do:description '5 Bare Specimen: a Shape with no Appearance' ;
+  x3do:orientation ( 1 0 0 -0.1853 ) ;
+  x3do:position ( 0 1.75 2.4 ) .
+:PlinthGroup-USE-4 a owl:NamedIndividual, x3do:Group ;
+  x3do:hasParent :Bay5 ;
+  owl:sameAs :PlinthGroup . # DEF matching this USE
+:BareStand a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Bay5 ;
+  x3do:hasChildren :BareSpecimen ;
+  x3do:DEF 'BareStand' ;
+  x3do:rotation ( 0.7071 0 -0.7071 0.9553 ) ;
+  x3do:translation ( 0 1.38 0 ) .
+:BareSpecimen a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :BareStand ;
+  x3do:hasGeometry :BareCube ;
+  x3do:DEF 'BareSpecimen' .
+:BareCube a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :BareSpecimen ;
+  x3do:DEF 'BareCube' ;
+  x3do:size ( 0.38 0.38 0.38 ) .
+:Bay6 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :View6, :PlinthGroup-USE-5, :LabelPlinth ;
+  x3do:DEF 'Bay6' ;
+  x3do:rotation ( 0 1 0 -0.6981 ) ;
+  x3do:translation ( 4.1781 0 -1.9793 ) .
+:View6 a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Bay6 ;
+  x3do:DEF 'View6' ;
+  x3do:description '6 Label Plinth: facts the scene states about itself' ;
+  x3do:orientation ( 1 0 0 -0.1853 ) ;
+  x3do:position ( 0 1.75 2.4 ) .
+:PlinthGroup-USE-5 a owl:NamedIndividual, x3do:Group ;
+  x3do:hasParent :Bay6 ;
+  owl:sameAs :PlinthGroup . # DEF matching this USE
+:LabelPlinth a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Bay6 ;
+  x3do:hasMetadata :Provenance ;
+  x3do:hasChildren :PlaqueTilt ;
+  x3do:DEF 'LabelPlinth' ;
+  x3do:translation ( 0 1.04 0 ) .
+:Provenance a owl:NamedIndividual, x3do:MetadataSet ;
+  x3do:hasParent :LabelPlinth ;
+  x3do:hasValue :SpecimenTitle, :SpecimenCreator, :SpecimenNote, :Accession ;
+  x3do:DEF 'Provenance' ;
+  x3do:name 'provenance' .
+:SpecimenTitle a owl:NamedIndividual, x3do:MetadataString ;
+  x3do:hasParent :Provenance ;
+  x3do:DEF 'SpecimenTitle' ;
+  x3do:name 'title' ;
+  x3do:value '"The Cabinet"' .
+:SpecimenCreator a owl:NamedIndividual, x3do:MetadataString ;
+  x3do:hasParent :Provenance ;
+  x3do:DEF 'SpecimenCreator' ;
+  x3do:name 'creator' ;
+  x3do:value '"Semantic Twin Lab"' .
+:SpecimenNote a owl:NamedIndividual, x3do:MetadataString ;
+  x3do:hasParent :Provenance ;
+  x3do:DEF 'SpecimenNote' ;
+  x3do:name 'specimen' ;
+  x3do:value '"A plaque that carries facts about itself"' .
+:Accession a owl:NamedIndividual, x3do:MetadataInteger ;
+  x3do:hasParent :Provenance ;
+  x3do:DEF 'Accession' ;
+  x3do:name 'accession' ;
+  x3do:value ( 6 ) .
+:PlaqueTilt a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :LabelPlinth ;
+  x3do:hasChildren :Plaque ;
+  x3do:DEF 'PlaqueTilt' ;
+  x3do:rotation ( 1 0 0 -0.6 ) ;
+  x3do:translation ( 0 0.2 0.05 ) .
+:Plaque a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :PlaqueTilt ;
+  x3do:hasAppearance :Appearance_2_15_3_2_1_1 ;
+  x3do:hasGeometry :Box_2_15_3_2_1_2 ;
+  x3do:DEF 'Plaque' .
+:Appearance_2_15_3_2_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Plaque ;
+  x3do:hasMaterial :PlaqueSkin ;
+  x3do:hasTexture :Weave .
+:PlaqueSkin a owl:NamedIndividual, x3do:Material ;
+  x3do:hasParent :Appearance_2_15_3_2_1_1 ;
+  x3do:DEF 'PlaqueSkin' ;
+  x3do:diffuseColor ( 1 1 1 ) ;
+  x3do:emissiveColor ( 0.25 0.22 0.16 ) .
+:Weave a owl:NamedIndividual, x3do:PixelTexture ;
+  x3do:hasParent :Appearance_2_15_3_2_1_1 ;
+  x3do:DEF 'Weave' ;
+  x3do:image '8 8 3 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0x2FB8A8 0xE0B050 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0x1B2733 0x10161E 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0xE0B050 0x2FB8A8 0x10161E 0x1B2733 0x2FB8A8 0xE0B050 0x1B2733 0x10161E 0x2FB8A8 0xE0B050 0x1B2733 0x10161E' .
+:Box_2_15_3_2_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :Plaque ;
+  x3do:size ( 0.62 0.4 0.03 ) .
+:Bay7 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :View7, :PlinthGroup-USE-6, :LanternStand ;
+  x3do:DEF 'Bay7' ;
+  x3do:rotation ( 0 1 0 -1.0472 ) ;
+  x3do:translation ( 5.6292 0 -0.25 ) .
+:View7 a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Bay7 ;
+  x3do:DEF 'View7' ;
+  x3do:description '7 Lantern: a light, and every way to look' ;
+  x3do:orientation ( 1 0 0 -0.1853 ) ;
+  x3do:position ( 0 1.75 2.4 ) .
+:PlinthGroup-USE-6 a owl:NamedIndividual, x3do:Group ;
+  x3do:hasParent :Bay7 ;
+  owl:sameAs :PlinthGroup . # DEF matching this USE
+:LanternStand a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Bay7 ;
+  x3do:hasChildren :Lantern, :LanternBulbT, :ChimneyT, :LanternCapT, :LanternBaseT ;
+  x3do:DEF 'LanternStand' ;
+  x3do:translation ( 0 1.04 0 ) .
+:Lantern a owl:NamedIndividual, x3do:PointLight ;
+  x3do:hasParent :LanternStand ;
+  x3do:DEF 'Lantern' ;
+  x3do:attenuation ( 1 0 0.08 ) ;
+  x3do:color ( 1 0.8 0.55 ) ;
+  x3do:intensity 1.4 ;
+  x3do:location ( 0 0.45 0 ) ;
+  x3do:radius 14 .
+:LanternBulbT a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :LanternStand ;
+  x3do:hasChildren :LanternBulb ;
+  x3do:DEF 'LanternBulbT' ;
+  x3do:translation ( 0 0.45 0 ) .
+:LanternBulb a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :LanternBulbT ;
+  x3do:hasAppearance :Appearance_2_16_3_2_1_1 ;
+  x3do:hasGeometry :Sphere_2_16_3_2_1_2 ;
+  x3do:DEF 'LanternBulb' .
+:Appearance_2_16_3_2_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :LanternBulb ;
+  x3do:hasMaterial :Flame .
+:Flame a owl:NamedIndividual, x3do:Material ;
+  x3do:hasParent :Appearance_2_16_3_2_1_1 ;
+  x3do:DEF 'Flame' ;
+  x3do:diffuseColor ( 0 0 0 ) ;
+  x3do:emissiveColor ( 1 0.82 0.5 ) .
+:Sphere_2_16_3_2_1_2 a owl:NamedIndividual, x3do:Sphere ;
+  x3do:hasParent :LanternBulb ;
+  x3do:radius 0.11 .
+:ChimneyT a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :LanternStand ;
+  x3do:hasChildren :Chimney ;
+  x3do:DEF 'ChimneyT' ;
+  x3do:translation ( 0 0.42 0 ) .
+:Chimney a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ChimneyT ;
+  x3do:hasAppearance :GlassLook-USE-1 ;
+  x3do:hasGeometry :Cylinder_2_16_3_3_1_2 ;
+  x3do:DEF 'Chimney' .
+:GlassLook-USE-1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :Chimney ;
+  owl:sameAs :GlassLook . # DEF matching this USE
+:Cylinder_2_16_3_3_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :Chimney ;
+  x3do:bottom false ;
+  x3do:height 0.56 ;
+  x3do:radius 0.2 ;
+  x3do:solid false ;
+  x3do:top false .
+:LanternCapT a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :LanternStand ;
+  x3do:hasChildren :LanternCap ;
+  x3do:DEF 'LanternCapT' ;
+  x3do:translation ( 0 0.78 0 ) .
+:LanternCap a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :LanternCapT ;
+  x3do:hasAppearance :CageLook ;
+  x3do:hasGeometry :Cone_2_16_3_4_1_2 ;
+  x3do:DEF 'LanternCap' .
+:CageLook a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :LanternCap ;
+  x3do:hasMaterial :CageGold ;
+  x3do:DEF 'CageLook' .
+:CageGold a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :CageLook ;
+  x3do:DEF 'CageGold' ;
+  x3do:baseColor ( 1 0.76 0.3 ) ;
+  x3do:emissiveColor ( 0.3 0.19 0.04 ) ;
+  x3do:metallic 0.35 ;
+  x3do:roughness 0.3 .
+:Cone_2_16_3_4_1_2 a owl:NamedIndividual, x3do:Cone ;
+  x3do:hasParent :LanternCap ;
+  x3do:bottomRadius 0.24 ;
+  x3do:height 0.16 .
+:LanternBaseT a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :LanternStand ;
+  x3do:hasChildren :LanternBase ;
+  x3do:DEF 'LanternBaseT' ;
+  x3do:translation ( 0 0.12 0 ) .
+:LanternBase a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :LanternBaseT ;
+  x3do:hasAppearance :Appearance_2_16_3_5_1_1 ;
+  x3do:hasGeometry :Cylinder_2_16_3_5_1_2 ;
+  x3do:DEF 'LanternBase' .
+:Appearance_2_16_3_5_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :LanternBase ;
+  x3do:hasMaterial :CageGold-USE-1 .
+:CageGold-USE-1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_16_3_5_1_1 ;
+  owl:sameAs :CageGold . # DEF matching this USE
+:Cylinder_2_16_3_5_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :LanternBase ;
+  x3do:height 0.06 ;
+  x3do:radius 0.23 .
+:ROUTE_2_17 a owl:NamedIndividual, x3do:ROUTE ;
+  x3do:hasParent :Scene ;
+  x3do:fromField 'fraction_changed' ;
+  x3do:fromNode 'Clock' ;
+  x3do:toField 'set_fraction' ;
+  x3do:toNode 'Spin' .
+:ROUTE_2_18 a owl:NamedIndividual, x3do:ROUTE ;
+  x3do:hasParent :Scene ;
+  x3do:fromField 'value_changed' ;
+  x3do:fromNode 'Spin' ;
+  x3do:toField 'set_rotation' ;
+  x3do:toNode 'Spinner' .

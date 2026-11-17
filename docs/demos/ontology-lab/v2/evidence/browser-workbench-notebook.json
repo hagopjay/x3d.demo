@@ -1,0 +1,1968 @@
+{
+  "schema": "semantic-twin-notebook/v1",
+  "hash_algorithm": "SHA-256(sorted-key JSON with JavaScript number serialization)",
+  "exported_utc": "2026-11-16T16:32:44.440Z",
+  "scope": "Local browser experiments; historical upstream sessions were not rerun.",
+  "integrity_note": "Digests establish internal consistency, not publisher authenticity or independent verification.",
+  "receipts": [
+    {
+      "schema": "semantic-twin-browser-witness/v1",
+      "hash_algorithm": "SHA-256(sorted-key JSON with JavaScript number serialization)",
+      "created_utc": "2026-11-16T16:32:38.813Z",
+      "operation": "reason",
+      "execution": "computed in this browser",
+      "elapsed_ms": 1015,
+      "instrument": {
+        "name": "semantic-twin-browser-workbench",
+        "version": "2.0.0",
+        "data_scope": "installed ontology slice and scenes",
+        "engines": {
+          "file": "vendor/lab-stack.js",
+          "bytes": 1474325,
+          "gzip9": 352867,
+          "sha256": "29132afa35ae2e10b73d3b5419012181575eceef5df95dc28282ef36dd69651f",
+          "esbuild": "0.28.2",
+          "n3": "2.13.12",
+          "comunica": "5.4.1",
+          "shacl-engine": "1.1.3",
+          "readable-stream": "4.8.0",
+          "inputs": 962,
+          "patch": "shacl-engine lib/sparql.js: one QueryEngine reused; N3 Store passed as the source"
+        },
+        "code": [
+          {
+            "path": "engine.js",
+            "sha256": "c1fb599fdb7d0d71c0aeb71d8675e3c41e84645120148415ed9041191112a522"
+          },
+          {
+            "path": "witness-core.js",
+            "sha256": "4701851d617611ac341b460140682c2cd98c56edb9752392a13b7bc67bfdbfff"
+          },
+          {
+            "path": "workbench-worker.js",
+            "sha256": "a652594230d1d73e7a0151948ce402c022c70bb962d9b24a4ac4e24292315f8c"
+          },
+          {
+            "path": "worker-client.js",
+            "sha256": "dfd7510d4923e00a613c99aebf12f5351b2e44f9d3f5f49d007fac2fe8b12afe"
+          },
+          {
+            "path": "workbench.js",
+            "sha256": "f8fd54ae1cfaabc75d8efb314c5a3469b5de4cbc48dcaa5f64ff30e8965e7dd7"
+          },
+          {
+            "path": "vendor/lab-stack.js",
+            "sha256": "29132afa35ae2e10b73d3b5419012181575eceef5df95dc28282ef36dd69651f"
+          }
+        ]
+      },
+      "result": {
+        "operation": "reasoning-counterfactual",
+        "scene": "fault-F5",
+        "profile": "rdfs",
+        "report": {
+          "assertedSceneTriples": 1950,
+          "ontologySliceTriples": 3367,
+          "closureTriples": 52616,
+          "derivedTriples": 47299,
+          "profile": "rdfs",
+          "focus": [
+            {
+              "iri": "https://semantic-twin-lab.example/TheCabinet.ttl#Box_2_12_3_6",
+              "assertedTypes": [
+                "http://www.w3.org/2002/07/owl#NamedIndividual",
+                "https://www.web3d.org/specifications/X3dOntology4.1#Box"
+              ],
+              "derivedTypes": [
+                "http://www.w3.org/2001/XMLSchema#NMTOKEN",
+                "https://www.web3d.org/specifications/X3dOntology4.1#CADFace",
+                "https://www.web3d.org/specifications/X3dOntology4.1#DISEntityTypeMapping",
+                "https://www.web3d.org/specifications/X3dOntology4.1#FontStyle",
+                "https://www.web3d.org/specifications/X3dOntology4.1#GeneratedCubeMapTexture",
+                "https://www.web3d.org/specifications/X3dOntology4.1#GeoProximitySensor",
+                "https://www.web3d.org/specifications/X3dOntology4.1#HAnimJoint",
+                "https://www.web3d.org/specifications/X3dOntology4.1#HAnimPose",
+                "https://www.web3d.org/specifications/X3dOntology4.1#Layout",
+                "https://www.web3d.org/specifications/X3dOntology4.1#ProximitySensor",
+                "https://www.web3d.org/specifications/X3dOntology4.1#Rectangle2D",
+                "https://www.web3d.org/specifications/X3dOntology4.1#TransformSensor",
+                "https://www.web3d.org/specifications/X3dOntology4.1#ViewpointGroup",
+                "https://www.web3d.org/specifications/X3dOntology4.1#VisibilitySensor",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DAppearanceChildNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DBoundedObject",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DChildNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DEnvironmentTextureNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DEnvironmentalSensorNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DFontStyleNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DGeometryNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DGroupingNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DInfoNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DLayoutNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DProductStructureChildNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DSensorNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DTextureNode",
+                "https://www.web3d.org/specifications/X3dOntology4.1#X3DUrlObject"
+              ]
+            }
+          ],
+          "sample": [
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#HAnimHumanoid",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#HAnimHumanoid"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#X3DChildNode",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#X3DChildNode"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#X3DNode",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#X3DNode"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "http://www.w3.org/2001/XMLSchema#NMTOKEN",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "http://www.w3.org/2001/XMLSchema#NMTOKEN"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#X3DStatement",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#X3DStatement"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#X3DBoundedObject",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#X3DBoundedObject"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeInputOutput",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#head"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeInputOutput",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeInputOutput",
+              "object": "Immersive",
+              "objectTerm": {
+                "termType": "Literal",
+                "value": "Immersive",
+                "datatype": "http://www.w3.org/2001/XMLSchema#string",
+                "language": ""
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeInputOutput",
+              "object": "4.1",
+              "objectTerm": {
+                "termType": "Literal",
+                "value": "4.1",
+                "datatype": "http://www.w3.org/2001/XMLSchema#string",
+                "language": ""
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasChild",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#head"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasChild",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#head"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#head"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "object": "Immersive",
+              "objectTerm": {
+                "termType": "Literal",
+                "value": "Immersive",
+                "datatype": "http://www.w3.org/2001/XMLSchema#string",
+                "language": ""
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "object": "4.1",
+              "objectTerm": {
+                "termType": "Literal",
+                "value": "4.1",
+                "datatype": "http://www.w3.org/2001/XMLSchema#string",
+                "language": ""
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://www.web3d.org/specifications/X3dOntology4.1#hasHead",
+              "predicate": "http://www.w3.org/2000/01/rdf-schema#subPropertyOf",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://www.web3d.org/specifications/X3dOntology4.1#hasHead",
+              "predicate": "http://www.w3.org/2000/01/rdf-schema#subPropertyOf",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "http://www.w3.org/2001/XMLSchema#NMTOKEN",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "http://www.w3.org/2001/XMLSchema#NMTOKEN"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#X3DStatement",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#X3DStatement"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeInputOutput",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#component_1_1",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#component_1_1"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeInputOutput",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_2",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_2"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeInputOutput",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_3",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_3"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeInputOutput",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_4",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_4"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeInputOutput",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_5",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_5"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeInputOutput",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_6",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_6"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeInputOutput",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_7",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_7"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasChild",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#component_1_1",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#component_1_1"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasChild",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_2",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_2"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasChild",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_3",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_3"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasChild",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_4",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_4"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasChild",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_5",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_5"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasChild",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_6",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_6"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasChild",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_7",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_7"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasAncestor",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#X3D"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#component_1_1",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#component_1_1"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_2",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_2"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_3",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_3"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_4",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_4"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_5",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_5"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_6",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_6"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_7",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_7"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#component_1_1",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#component_1_1"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_2",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_2"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_3",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_3"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_4",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_4"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_5",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_5"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_6",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_6"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#head",
+              "predicate": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "object": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_7",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#meta_1_7"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://www.web3d.org/specifications/X3dOntology4.1#hasScene",
+              "predicate": "http://www.w3.org/2000/01/rdf-schema#subPropertyOf",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#hasDescendant"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://www.web3d.org/specifications/X3dOntology4.1#hasScene",
+              "predicate": "http://www.w3.org/2000/01/rdf-schema#subPropertyOf",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#accessTypeProperty"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#Transform",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#Transform"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#Group",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#Group"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#Switch",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#Switch"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#Analyser",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#Analyser"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#Anchor",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#Anchor"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#AudioDestination",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#AudioDestination"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#Billboard",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#Billboard"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#BiquadFilter",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#BiquadFilter"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#CADAssembly",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#CADAssembly"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#CADLayer",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#CADLayer"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#CADPart",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#CADPart"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#ChannelMerger",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#ChannelMerger"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#ChannelSelector",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#ChannelSelector"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#ChannelSplitter",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#ChannelSplitter"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#Collision",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#Collision"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#Contour2D",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#Contour2D"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#Convolver",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#Convolver"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#DISEntityManager",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#DISEntityManager"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#Delay",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#Delay"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#DynamicsCompressor",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#DynamicsCompressor"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#EspduTransform",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#EspduTransform"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#Gain",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#Gain"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#GeoLOD",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#GeoLOD"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#GeoLocation",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#GeoLocation"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#GeoTransform",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#GeoTransform"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#HAnimHumanoid",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#HAnimHumanoid"
+              },
+              "origin": "derived"
+            },
+            {
+              "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Scene",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "https://www.web3d.org/specifications/X3dOntology4.1#HAnimJoint",
+              "objectTerm": {
+                "termType": "NamedNode",
+                "value": "https://www.web3d.org/specifications/X3dOntology4.1#HAnimJoint"
+              },
+              "origin": "derived"
+            }
+          ],
+          "sampleLimit": 80,
+          "baseGraphUnchanged": true,
+          "evidence": "Computed from the installed scene graph(s) plus the installed ontology slice; not the full published ontology."
+        },
+        "baseline": {
+          "conforms": false,
+          "count": 1,
+          "results": [
+            {
+              "focus": ":Box_2_12_3_6",
+              "shape": "S7",
+              "severity": "sh:Violation",
+              "component": "sh:OrConstraintComponent",
+              "message": "S7: node in a children field is not an X3DChildNode",
+              "value": ":Box_2_12_3_6",
+              "path": null,
+              "fix": "Wrap geometry in a Shape (Transform > Shape > Box), or move the node to a field that accepts it."
+            }
+          ],
+          "ms_shacl_engine": 14.8,
+          "inference_profile": "none",
+          "shapes_run": 1,
+          "sparql_constraints": 0,
+          "_ms": 68.8
+        },
+        "after": {
+          "conforms": true,
+          "count": 0,
+          "results": [],
+          "ms_shacl_engine": 30.3,
+          "n3_rdfs_ms": 183.5,
+          "inference_profile": "rdfs",
+          "shapes_run": 1,
+          "sparql_constraints": 0,
+          "_ms": 232.4
+        },
+        "inputs": [
+          {
+            "path": "data/ttl/fault-F5.ttl.txt",
+            "sha256": "a22d0054aa118991e5b5881268d32bbdd99066cebd0ebfbc640ed3ec8461c431",
+            "bytes": 33566
+          },
+          {
+            "path": "data/ttl/slice.ttl.txt",
+            "sha256": "6a881c2cd243011f23afc844baf411124a7cdab992dd38cdcbc0acad6c5bac6d",
+            "bytes": 122184
+          },
+          {
+            "path": "data/rules/rdfs.n3.txt",
+            "sha256": "344d6cff03fe77cef9e652d58c816b16058ffb49ad037cb6ff7fda4a49641258",
+            "bytes": 1084
+          }
+        ],
+        "shapesSha256": "cf1f44f0b9f1c8971102627065de6bc5a0859874b0bd3487399f710acbef86eb",
+        "scope": "Only S7 placement membership is checked; this is not full X3D validation.",
+        "sourceChanged": false
+      },
+      "receipt_sha256": "6e59a0148f9ce013c695b1cfc0daf802f51cd64e06b22d19c6e13babb67662b2"
+    },
+    {
+      "schema": "semantic-twin-browser-witness/v1",
+      "hash_algorithm": "SHA-256(sorted-key JSON with JavaScript number serialization)",
+      "created_utc": "2026-11-16T16:32:40.186Z",
+      "operation": "lists",
+      "execution": "computed in this browser",
+      "elapsed_ms": 106,
+      "instrument": {
+        "name": "semantic-twin-browser-workbench",
+        "version": "2.0.0",
+        "data_scope": "installed ontology slice and scenes",
+        "engines": {
+          "file": "vendor/lab-stack.js",
+          "bytes": 1474325,
+          "gzip9": 352867,
+          "sha256": "29132afa35ae2e10b73d3b5419012181575eceef5df95dc28282ef36dd69651f",
+          "esbuild": "0.28.2",
+          "n3": "2.13.12",
+          "comunica": "5.4.1",
+          "shacl-engine": "1.1.3",
+          "readable-stream": "4.8.0",
+          "inputs": 962,
+          "patch": "shacl-engine lib/sparql.js: one QueryEngine reused; N3 Store passed as the source"
+        },
+        "code": [
+          {
+            "path": "engine.js",
+            "sha256": "c1fb599fdb7d0d71c0aeb71d8675e3c41e84645120148415ed9041191112a522"
+          },
+          {
+            "path": "witness-core.js",
+            "sha256": "4701851d617611ac341b460140682c2cd98c56edb9752392a13b7bc67bfdbfff"
+          },
+          {
+            "path": "workbench-worker.js",
+            "sha256": "a652594230d1d73e7a0151948ce402c022c70bb962d9b24a4ac4e24292315f8c"
+          },
+          {
+            "path": "worker-client.js",
+            "sha256": "dfd7510d4923e00a613c99aebf12f5351b2e44f9d3f5f49d007fac2fe8b12afe"
+          },
+          {
+            "path": "workbench.js",
+            "sha256": "f8fd54ae1cfaabc75d8efb314c5a3469b5de4cbc48dcaa5f64ff30e8965e7dd7"
+          },
+          {
+            "path": "vendor/lab-stack.js",
+            "sha256": "29132afa35ae2e10b73d3b5419012181575eceef5df95dc28282ef36dd69651f"
+          }
+        ]
+      },
+      "result": {
+        "operation": "ordered-list",
+        "scene": "fault-F5",
+        "subject": "https://semantic-twin-lab.example/TheCabinet.ttl#Pearl",
+        "list": {
+          "length": 3,
+          "distinctValueCount": 1,
+          "cells": [
+            {
+              "index": 0,
+              "cell": {
+                "termType": "BlankNode",
+                "value": "n3-1095"
+              },
+              "value": {
+                "termType": "Literal",
+                "value": "1",
+                "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+                "language": ""
+              }
+            },
+            {
+              "index": 1,
+              "cell": {
+                "termType": "BlankNode",
+                "value": "n3-1096"
+              },
+              "value": {
+                "termType": "Literal",
+                "value": "1",
+                "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+                "language": ""
+              }
+            },
+            {
+              "index": 2,
+              "cell": {
+                "termType": "BlankNode",
+                "value": "n3-1097"
+              },
+              "value": {
+                "termType": "Literal",
+                "value": "1",
+                "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+                "language": ""
+              }
+            }
+          ],
+          "values": [
+            {
+              "termType": "Literal",
+              "value": "1",
+              "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+              "language": ""
+            },
+            {
+              "termType": "Literal",
+              "value": "1",
+              "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+              "language": ""
+            },
+            {
+              "termType": "Literal",
+              "value": "1",
+              "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+              "language": ""
+            }
+          ],
+          "unique": [
+            {
+              "termType": "Literal",
+              "value": "1",
+              "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+              "language": ""
+            }
+          ],
+          "order": "rdf:rest traversal",
+          "multiplicity": "preserved"
+        },
+        "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT ?component WHERE { :Pearl x3do:diffuseColor/rdf:rest*/rdf:first ?component }",
+        "bag": {
+          "vars": [
+            "component"
+          ],
+          "count": 3,
+          "rows": [
+            {
+              "component": 1
+            },
+            {
+              "component": 1
+            },
+            {
+              "component": 1
+            }
+          ],
+          "terms": [
+            {
+              "component": {
+                "termType": "Literal",
+                "value": "1",
+                "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+                "language": ""
+              }
+            },
+            {
+              "component": {
+                "termType": "Literal",
+                "value": "1",
+                "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+                "language": ""
+              }
+            },
+            {
+              "component": {
+                "termType": "Literal",
+                "value": "1",
+                "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+                "language": ""
+              }
+            }
+          ],
+          "order": {
+            "requested": "unspecified",
+            "preserved": true
+          },
+          "blank_node_scope": "this answer only; labels are not cross-answer identifiers",
+          "truncated": false,
+          "_ms": 56.5
+        },
+        "distinct": {
+          "vars": [
+            "component"
+          ],
+          "count": 1,
+          "rows": [
+            {
+              "component": 1
+            }
+          ],
+          "terms": [
+            {
+              "component": {
+                "termType": "Literal",
+                "value": "1",
+                "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+                "language": ""
+              }
+            }
+          ],
+          "order": {
+            "requested": "unspecified",
+            "preserved": true
+          },
+          "blank_node_scope": "this answer only; labels are not cross-answer identifiers",
+          "truncated": false,
+          "_ms": 34.6
+        },
+        "inputs": [
+          {
+            "path": "data/ttl/fault-F5.ttl.txt",
+            "sha256": "a22d0054aa118991e5b5881268d32bbdd99066cebd0ebfbc640ed3ec8461c431",
+            "bytes": 33566
+          }
+        ],
+        "note": "Plain SELECT preserves solution multiplicity here. DISTINCT and SHACL value-node sets are different projections; neither assigns an RGB axis."
+      },
+      "receipt_sha256": "51ebc82f4aa2ad3bc853344d7768da0371ce774a5ad17e5f8eb1b0b1b6702034"
+    },
+    {
+      "schema": "semantic-twin-browser-witness/v1",
+      "hash_algorithm": "SHA-256(sorted-key JSON with JavaScript number serialization)",
+      "created_utc": "2026-11-16T16:32:41.651Z",
+      "operation": "manifest-integrity",
+      "execution": "computed in this browser",
+      "elapsed_ms": 282,
+      "instrument": {
+        "name": "semantic-twin-browser-workbench",
+        "version": "2.0.0",
+        "data_scope": "installed ontology slice and scenes",
+        "engines": {
+          "file": "vendor/lab-stack.js",
+          "bytes": 1474325,
+          "gzip9": 352867,
+          "sha256": "29132afa35ae2e10b73d3b5419012181575eceef5df95dc28282ef36dd69651f",
+          "esbuild": "0.28.2",
+          "n3": "2.13.12",
+          "comunica": "5.4.1",
+          "shacl-engine": "1.1.3",
+          "readable-stream": "4.8.0",
+          "inputs": 962,
+          "patch": "shacl-engine lib/sparql.js: one QueryEngine reused; N3 Store passed as the source"
+        },
+        "code": [
+          {
+            "path": "engine.js",
+            "sha256": "c1fb599fdb7d0d71c0aeb71d8675e3c41e84645120148415ed9041191112a522"
+          },
+          {
+            "path": "witness-core.js",
+            "sha256": "4701851d617611ac341b460140682c2cd98c56edb9752392a13b7bc67bfdbfff"
+          },
+          {
+            "path": "workbench-worker.js",
+            "sha256": "a652594230d1d73e7a0151948ce402c022c70bb962d9b24a4ac4e24292315f8c"
+          },
+          {
+            "path": "worker-client.js",
+            "sha256": "dfd7510d4923e00a613c99aebf12f5351b2e44f9d3f5f49d007fac2fe8b12afe"
+          },
+          {
+            "path": "workbench.js",
+            "sha256": "f8fd54ae1cfaabc75d8efb314c5a3469b5de4cbc48dcaa5f64ff30e8965e7dd7"
+          },
+          {
+            "path": "vendor/lab-stack.js",
+            "sha256": "29132afa35ae2e10b73d3b5419012181575eceef5df95dc28282ef36dd69651f"
+          }
+        ]
+      },
+      "result": {
+        "operation": "manifest-integrity",
+        "authority": "colocated supplied manifest, not an independent trust root",
+        "manifest_sha256": "0d7a7b6ddfbd7fb95b71455d36527a02deb35ac64216005c86b48563d204e3e5",
+        "checked": 58,
+        "matched": 58,
+        "mismatched": 0,
+        "unavailable": 0,
+        "source_differs": 7,
+        "upstream_reexecuted": false,
+        "rows": [
+          {
+            "path": "data/scenes/cabinet.xml",
+            "status": "match",
+            "expected_sha256": "0fbaac5a2f98ba2dd6178cdf81bf06ed4431dd2a1574ff7a31238f7cf8e168f0",
+            "actual_sha256": "0fbaac5a2f98ba2dd6178cdf81bf06ed4431dd2a1574ff7a31238f7cf8e168f0",
+            "bytes": 14487,
+            "source_sha256": "0fbaac5a2f98ba2dd6178cdf81bf06ed4431dd2a1574ff7a31238f7cf8e168f0",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/cabinet.ttl.txt",
+            "status": "match",
+            "expected_sha256": "526a30e27853972a6b79072751601a4ab628b9959e50af741cf912eef66fdf82",
+            "actual_sha256": "526a30e27853972a6b79072751601a4ab628b9959e50af741cf912eef66fdf82",
+            "bytes": 33440,
+            "source_sha256": "526a30e27853972a6b79072751601a4ab628b9959e50af741cf912eef66fdf82",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/scenes/fault-F1.xml",
+            "status": "match",
+            "expected_sha256": "54fd9344db6e912e47da1603d5e95ca2f6f47f4da2a76a60c8d45cd1350d660c",
+            "actual_sha256": "54fd9344db6e912e47da1603d5e95ca2f6f47f4da2a76a60c8d45cd1350d660c",
+            "bytes": 14551,
+            "source_sha256": "54fd9344db6e912e47da1603d5e95ca2f6f47f4da2a76a60c8d45cd1350d660c",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/fault-F1.ttl.txt",
+            "status": "match",
+            "expected_sha256": "e8bf3ed2a788301347b6d41d6b998c759accc975d952c2f52ddd5ce898255690",
+            "actual_sha256": "e8bf3ed2a788301347b6d41d6b998c759accc975d952c2f52ddd5ce898255690",
+            "bytes": 33439,
+            "source_sha256": "e8bf3ed2a788301347b6d41d6b998c759accc975d952c2f52ddd5ce898255690",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/scenes/fault-F2.xml",
+            "status": "match",
+            "expected_sha256": "22377f740f85fbd3d703c5068365f120c39a3b055ea97d60d894073961dc2dac",
+            "actual_sha256": "22377f740f85fbd3d703c5068365f120c39a3b055ea97d60d894073961dc2dac",
+            "bytes": 14509,
+            "source_sha256": "22377f740f85fbd3d703c5068365f120c39a3b055ea97d60d894073961dc2dac",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/fault-F2.ttl.txt",
+            "status": "match",
+            "expected_sha256": "c66dca1a79678e84f2287ce406e908c6e775017ec60443ca549851e8808fea5b",
+            "actual_sha256": "c66dca1a79678e84f2287ce406e908c6e775017ec60443ca549851e8808fea5b",
+            "bytes": 33275,
+            "source_sha256": "c66dca1a79678e84f2287ce406e908c6e775017ec60443ca549851e8808fea5b",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/scenes/fault-F3.xml",
+            "status": "match",
+            "expected_sha256": "606a16cd660064a4331531c31cb255461b92f3479eb1dbb3c3c12fc9a066d455",
+            "actual_sha256": "606a16cd660064a4331531c31cb255461b92f3479eb1dbb3c3c12fc9a066d455",
+            "bytes": 14602,
+            "source_sha256": "606a16cd660064a4331531c31cb255461b92f3479eb1dbb3c3c12fc9a066d455",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/fault-F3.ttl.txt",
+            "status": "match",
+            "expected_sha256": "ad425b89f18cdc36f3e750e35d41019d28d645cf24bfa389e434b574b5341744",
+            "actual_sha256": "ad425b89f18cdc36f3e750e35d41019d28d645cf24bfa389e434b574b5341744",
+            "bytes": 33431,
+            "source_sha256": "ad425b89f18cdc36f3e750e35d41019d28d645cf24bfa389e434b574b5341744",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/scenes/fault-F4.xml",
+            "status": "match",
+            "expected_sha256": "64400f8b30b4dde3e68a9dea065bee3bf5369ef88a8db2a64b79b97568960fe0",
+            "actual_sha256": "64400f8b30b4dde3e68a9dea065bee3bf5369ef88a8db2a64b79b97568960fe0",
+            "bytes": 14554,
+            "source_sha256": "64400f8b30b4dde3e68a9dea065bee3bf5369ef88a8db2a64b79b97568960fe0",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/fault-F4.ttl.txt",
+            "status": "match",
+            "expected_sha256": "a71c4ed8b830eb2384f69f9cabdc8e92aad69f977c89313abcf32002417a7cb4",
+            "actual_sha256": "a71c4ed8b830eb2384f69f9cabdc8e92aad69f977c89313abcf32002417a7cb4",
+            "bytes": 33440,
+            "source_sha256": "a71c4ed8b830eb2384f69f9cabdc8e92aad69f977c89313abcf32002417a7cb4",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/scenes/fault-F5.xml",
+            "status": "match",
+            "expected_sha256": "9dbe2e8b3ae0cbb7f5ac44fdec157817366c719c4693e0a2aef3c0a41c0aaef0",
+            "actual_sha256": "9dbe2e8b3ae0cbb7f5ac44fdec157817366c719c4693e0a2aef3c0a41c0aaef0",
+            "bytes": 14655,
+            "source_sha256": "9dbe2e8b3ae0cbb7f5ac44fdec157817366c719c4693e0a2aef3c0a41c0aaef0",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/fault-F5.ttl.txt",
+            "status": "match",
+            "expected_sha256": "a22d0054aa118991e5b5881268d32bbdd99066cebd0ebfbc640ed3ec8461c431",
+            "actual_sha256": "a22d0054aa118991e5b5881268d32bbdd99066cebd0ebfbc640ed3ec8461c431",
+            "bytes": 33566,
+            "source_sha256": "a22d0054aa118991e5b5881268d32bbdd99066cebd0ebfbc640ed3ec8461c431",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/scenes/fault-F6.xml",
+            "status": "match",
+            "expected_sha256": "ca0af0b5f6fe00e5ba3d265948bfd84d0349374886aac77ecd101b89109fb2e7",
+            "actual_sha256": "ca0af0b5f6fe00e5ba3d265948bfd84d0349374886aac77ecd101b89109fb2e7",
+            "bytes": 14571,
+            "source_sha256": "ca0af0b5f6fe00e5ba3d265948bfd84d0349374886aac77ecd101b89109fb2e7",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/fault-F6.ttl.txt",
+            "status": "match",
+            "expected_sha256": "881891054c96f7788b0d6fc6e4c1fc166efc2fc3d6a22cde1c9db3cbba11cf51",
+            "actual_sha256": "881891054c96f7788b0d6fc6e4c1fc166efc2fc3d6a22cde1c9db3cbba11cf51",
+            "bytes": 33440,
+            "source_sha256": "881891054c96f7788b0d6fc6e4c1fc166efc2fc3d6a22cde1c9db3cbba11cf51",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/scenes/fault-F7.xml",
+            "status": "match",
+            "expected_sha256": "24af9ecee9dc0ea968fce807e22205632fe2c54f9d8982196ceb0a7926a77bc5",
+            "actual_sha256": "24af9ecee9dc0ea968fce807e22205632fe2c54f9d8982196ceb0a7926a77bc5",
+            "bytes": 14570,
+            "source_sha256": "24af9ecee9dc0ea968fce807e22205632fe2c54f9d8982196ceb0a7926a77bc5",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/fault-F7.ttl.txt",
+            "status": "match",
+            "expected_sha256": "8985ad8249cef823a02543695c7f3964b5d60b536fa5af378e3de48872a360be",
+            "actual_sha256": "8985ad8249cef823a02543695c7f3964b5d60b536fa5af378e3de48872a360be",
+            "bytes": 33440,
+            "source_sha256": "8985ad8249cef823a02543695c7f3964b5d60b536fa5af378e3de48872a360be",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/scenes/teach-exponent.xml",
+            "status": "match",
+            "expected_sha256": "8a815c158a8685e5f6d093d74e9e18209ef96c2a494e7d082ae98c0574e0f90d",
+            "actual_sha256": "8a815c158a8685e5f6d093d74e9e18209ef96c2a494e7d082ae98c0574e0f90d",
+            "bytes": 14489,
+            "source_sha256": "8a815c158a8685e5f6d093d74e9e18209ef96c2a494e7d082ae98c0574e0f90d",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/teach-exponent.ttl.txt",
+            "status": "match",
+            "expected_sha256": "14fccb345433e6310597293c83340bf3f5d44a05744873e8cc665fbc7517fc99",
+            "actual_sha256": "14fccb345433e6310597293c83340bf3f5d44a05744873e8cc665fbc7517fc99",
+            "bytes": 33442,
+            "source_sha256": "14fccb345433e6310597293c83340bf3f5d44a05744873e8cc665fbc7517fc99",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/scenes/teach-insert.xml",
+            "status": "match",
+            "expected_sha256": "2734bd8abe8c5928be853d8bbebcbab1545c8b0309af566f4438eabdc38c3ed5",
+            "actual_sha256": "2734bd8abe8c5928be853d8bbebcbab1545c8b0309af566f4438eabdc38c3ed5",
+            "bytes": 14565,
+            "source_sha256": "2734bd8abe8c5928be853d8bbebcbab1545c8b0309af566f4438eabdc38c3ed5",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/teach-insert.ttl.txt",
+            "status": "match",
+            "expected_sha256": "4d4edb807fe45d2836437347671a53382084dfa0c7a558fdbda197bda3aced02",
+            "actual_sha256": "4d4edb807fe45d2836437347671a53382084dfa0c7a558fdbda197bda3aced02",
+            "bytes": 33646,
+            "source_sha256": "4d4edb807fe45d2836437347671a53382084dfa0c7a558fdbda197bda3aced02",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/slice.ttl.txt",
+            "status": "match",
+            "expected_sha256": "6a881c2cd243011f23afc844baf411124a7cdab992dd38cdcbc0acad6c5bac6d",
+            "actual_sha256": "6a881c2cd243011f23afc844baf411124a7cdab992dd38cdcbc0acad6c5bac6d",
+            "bytes": 122184,
+            "source_sha256": "6a881c2cd243011f23afc844baf411124a7cdab992dd38cdcbc0acad6c5bac6d",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/x3d-lab.shacl.ttl.txt",
+            "status": "match",
+            "expected_sha256": "62975444cb759d270eecbe424413ad13661ab655ff8449ec9ceb766a3a317a40",
+            "actual_sha256": "62975444cb759d270eecbe424413ad13661ab655ff8449ec9ceb766a3a317a40",
+            "bytes": 12265,
+            "source_sha256": "62975444cb759d270eecbe424413ad13661ab655ff8449ec9ceb766a3a317a40",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/ttl/x3d-core.shacl.ttl.txt",
+            "status": "match",
+            "expected_sha256": "5fc558fdf92255f550e7f47ecc305e84e4f72f80abfd0c8bb48fc439554f1610",
+            "actual_sha256": "5fc558fdf92255f550e7f47ecc305e84e4f72f80abfd0c8bb48fc439554f1610",
+            "bytes": 14045,
+            "source_sha256": "5fc558fdf92255f550e7f47ecc305e84e4f72f80abfd0c8bb48fc439554f1610",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/rules/subclass.n3.txt",
+            "status": "match",
+            "expected_sha256": "c8c8f61f6b2b55e108f985f31baa83bde2159474be181f9b76b42cc2037d0057",
+            "actual_sha256": "c8c8f61f6b2b55e108f985f31baa83bde2159474be181f9b76b42cc2037d0057",
+            "bytes": 494,
+            "source_sha256": "c8c8f61f6b2b55e108f985f31baa83bde2159474be181f9b76b42cc2037d0057",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/rules/rdfs.n3.txt",
+            "status": "match",
+            "expected_sha256": "344d6cff03fe77cef9e652d58c816b16058ffb49ad037cb6ff7fda4a49641258",
+            "actual_sha256": "344d6cff03fe77cef9e652d58c816b16058ffb49ad037cb6ff7fda4a49641258",
+            "bytes": 1084,
+            "source_sha256": "344d6cff03fe77cef9e652d58c816b16058ffb49ad037cb6ff7fda4a49641258",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/variants.json",
+            "status": "match",
+            "expected_sha256": "b41d2dbc737d3c10617af54a61e245a1f6cb4b1d4e21fb260a1e243896d4637e",
+            "actual_sha256": "b41d2dbc737d3c10617af54a61e245a1f6cb4b1d4e21fb260a1e243896d4637e",
+            "bytes": 1213,
+            "source_sha256": "b41d2dbc737d3c10617af54a61e245a1f6cb4b1d4e21fb260a1e243896d4637e",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/twin-layout.json",
+            "status": "match",
+            "expected_sha256": "310e281b78a8262375f604c5c475563494e273251a56e09f0affb1767142733c",
+            "actual_sha256": "310e281b78a8262375f604c5c475563494e273251a56e09f0affb1767142733c",
+            "bytes": 457153,
+            "source_sha256": "310e281b78a8262375f604c5c475563494e273251a56e09f0affb1767142733c",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/pins.json",
+            "status": "match",
+            "expected_sha256": "62a2229374c45b1cc6fdfa0788c581bc28dce3e8f410f913c62801112473feb5",
+            "actual_sha256": "62a2229374c45b1cc6fdfa0788c581bc28dce3e8f410f913c62801112473feb5",
+            "bytes": 7352,
+            "source_sha256": "62a2229374c45b1cc6fdfa0788c581bc28dce3e8f410f913c62801112473feb5",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/fault-matrix.json",
+            "status": "match",
+            "expected_sha256": "eda084ba29a52e7100098b5427bd29dc0bbbaaea55c89c5148412c9128af7094",
+            "actual_sha256": "eda084ba29a52e7100098b5427bd29dc0bbbaaea55c89c5148412c9128af7094",
+            "bytes": 55770,
+            "source_sha256": "eda084ba29a52e7100098b5427bd29dc0bbbaaea55c89c5148412c9128af7094",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/render.json",
+            "status": "match",
+            "expected_sha256": "6800b46bfcc73fe9a38929fe34520911669ad2b45788f5a7df538bde0cc87ff7",
+            "actual_sha256": "6800b46bfcc73fe9a38929fe34520911669ad2b45788f5a7df538bde0cc87ff7",
+            "bytes": 10550,
+            "source_sha256": "6800b46bfcc73fe9a38929fe34520911669ad2b45788f5a7df538bde0cc87ff7",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/render-hero.json",
+            "status": "match",
+            "expected_sha256": "83919fc429d280287b6e9a64a89d47b979f17ebea69059f0403bf2344687534e",
+            "actual_sha256": "83919fc429d280287b6e9a64a89d47b979f17ebea69059f0403bf2344687534e",
+            "bytes": 4900,
+            "source_sha256": "83919fc429d280287b6e9a64a89d47b979f17ebea69059f0403bf2344687534e",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/wire-tool.json",
+            "status": "match",
+            "expected_sha256": "f83e3fbb1de336f7f74b507950cac51547c5a9206882b99d65a0ff18761dba05",
+            "actual_sha256": "f83e3fbb1de336f7f74b507950cac51547c5a9206882b99d65a0ff18761dba05",
+            "bytes": 2085,
+            "source_sha256": "f83e3fbb1de336f7f74b507950cac51547c5a9206882b99d65a0ff18761dba05",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/ontology.json",
+            "status": "match",
+            "expected_sha256": "9efaab9cdc37f601e8759b1eafb3017adae1cc5462d1789e3f53c3be66d0a5e6",
+            "actual_sha256": "9efaab9cdc37f601e8759b1eafb3017adae1cc5462d1789e3f53c3be66d0a5e6",
+            "bytes": 3018,
+            "source_sha256": "9efaab9cdc37f601e8759b1eafb3017adae1cc5462d1789e3f53c3be66d0a5e6",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/pipeline.json",
+            "status": "match",
+            "expected_sha256": "99b753fd907fdc14f10073f044105f50faa929770671f2b7228a5c073b1c013f",
+            "actual_sha256": "99b753fd907fdc14f10073f044105f50faa929770671f2b7228a5c073b1c013f",
+            "bytes": 16840,
+            "source_sha256": "99b753fd907fdc14f10073f044105f50faa929770671f2b7228a5c073b1c013f",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/rebuild-check.json",
+            "status": "match",
+            "expected_sha256": "970472438ca4aa157358d0c835a5a50d0abc55d6c3bdf9c6d1092f167de755fa",
+            "actual_sha256": "970472438ca4aa157358d0c835a5a50d0abc55d6c3bdf9c6d1092f167de755fa",
+            "bytes": 186,
+            "source_sha256": "970472438ca4aa157358d0c835a5a50d0abc55d6c3bdf9c6d1092f167de755fa",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/SHA256SUMS.txt",
+            "status": "match",
+            "expected_sha256": "f0e6d366ef70f883a9dc38d6268d5a7af2ac80d903ba3d8984f39f82d58c3536",
+            "actual_sha256": "f0e6d366ef70f883a9dc38d6268d5a7af2ac80d903ba3d8984f39f82d58c3536",
+            "bytes": 13077,
+            "source_sha256": "f0e6d366ef70f883a9dc38d6268d5a7af2ac80d903ba3d8984f39f82d58c3536",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/stations.json",
+            "status": "match",
+            "expected_sha256": "718d863b9efb90479baa5bedddc4d8a5a0b0cabeec48282b9872bd758bde8c27",
+            "actual_sha256": "718d863b9efb90479baa5bedddc4d8a5a0b0cabeec48282b9872bd758bde8c27",
+            "bytes": 330665,
+            "source_sha256": "ade300f01e51703b82a74e871b76c9021e9d9c65ab4ab560a3ba1760d8ac18d4",
+            "source_comparison": "different recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/parity.json",
+            "status": "match",
+            "expected_sha256": "015d01fd861432de6be47d151ae91605a7bc59d428c5e0c103547072a5a64fd0",
+            "actual_sha256": "015d01fd861432de6be47d151ae91605a7bc59d428c5e0c103547072a5a64fd0",
+            "bytes": 74840,
+            "source_sha256": "8e64e1165ba0999f5367d36fb1b7d4d6914cf18dbceeb117b7fe2bf7e0310edb",
+            "source_comparison": "different recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/validation.json",
+            "status": "match",
+            "expected_sha256": "485a9bd1039f8da12ed460e569026fc05c7a64c83a7483c4ab6d54a83b3ee870",
+            "actual_sha256": "485a9bd1039f8da12ed460e569026fc05c7a64c83a7483c4ab6d54a83b3ee870",
+            "bytes": 14280,
+            "source_sha256": "14d28eb32ee5abed76a619d4dd0a2a49e778a42f27eff45fd32b48470571dae0",
+            "source_comparison": "different recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/mcp-calls.json",
+            "status": "match",
+            "expected_sha256": "980d5e4275d94b312a9fcd33e79d452cc60a344c216c918fb54c0bf9c3dae51a",
+            "actual_sha256": "980d5e4275d94b312a9fcd33e79d452cc60a344c216c918fb54c0bf9c3dae51a",
+            "bytes": 153032,
+            "source_sha256": "39b38e5c3eae17a54778e916feeaa8068b8ec263485b08904761d7fcede83923",
+            "source_comparison": "different recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/oracle.json",
+            "status": "match",
+            "expected_sha256": "08145318dfce05679e200f604f288123e2426c59d013874a987e28a33c9c96c8",
+            "actual_sha256": "08145318dfce05679e200f604f288123e2426c59d013874a987e28a33c9c96c8",
+            "bytes": 166532,
+            "source_sha256": "08145318dfce05679e200f604f288123e2426c59d013874a987e28a33c9c96c8",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/js.json",
+            "status": "match",
+            "expected_sha256": "3a877f6a6be1732d2d1dc31de47c8b179f095738c343ef457f98e28daf6f69ab",
+            "actual_sha256": "3a877f6a6be1732d2d1dc31de47c8b179f095738c343ef457f98e28daf6f69ab",
+            "bytes": 84537,
+            "source_sha256": "3a877f6a6be1732d2d1dc31de47c8b179f095738c343ef457f98e28daf6f69ab",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/fork-tools-numpy.json",
+            "status": "match",
+            "expected_sha256": "81b1ccc71289eca6a1c59896f8aa6345a98967337be70b1a9bae9953bfc8f122",
+            "actual_sha256": "81b1ccc71289eca6a1c59896f8aa6345a98967337be70b1a9bae9953bfc8f122",
+            "bytes": 1562,
+            "source_sha256": "81b1ccc71289eca6a1c59896f8aa6345a98967337be70b1a9bae9953bfc8f122",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/wire-shape-tool.json",
+            "status": "match",
+            "expected_sha256": "988cbeeb8e6f7ec92a2227c479038a4512a0b5ffda740129fddb4522c205f51e",
+            "actual_sha256": "988cbeeb8e6f7ec92a2227c479038a4512a0b5ffda740129fddb4522c205f51e",
+            "bytes": 1555,
+            "source_sha256": "988cbeeb8e6f7ec92a2227c479038a4512a0b5ffda740129fddb4522c205f51e",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/shacl3.json",
+            "status": "match",
+            "expected_sha256": "24834c64e95042c8fdea492d56c6b014065c42a70d8651122ebdd577d2a25f44",
+            "actual_sha256": "24834c64e95042c8fdea492d56c6b014065c42a70d8651122ebdd577d2a25f44",
+            "bytes": 23252,
+            "source_sha256": "24834c64e95042c8fdea492d56c6b014065c42a70d8651122ebdd577d2a25f44",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/make_all.json",
+            "status": "match",
+            "expected_sha256": "723ecf7b27e4ddcc5a4cefe543e3bbaf653475af9fbd07c4c1870111b23452b5",
+            "actual_sha256": "723ecf7b27e4ddcc5a4cefe543e3bbaf653475af9fbd07c4c1870111b23452b5",
+            "bytes": 2886,
+            "source_sha256": "371fcf167a655ee0c2cc57eef25caba560e415d347b55afdd3e85642ce94008b",
+            "source_comparison": "different recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/receipts/fork-facts.json",
+            "status": "match",
+            "expected_sha256": "f462eb20974eac0abb12f9714c1ae6660c1a5c07f63a1efd6adb95b326e1b117",
+            "actual_sha256": "f462eb20974eac0abb12f9714c1ae6660c1a5c07f63a1efd6adb95b326e1b117",
+            "bytes": 21664,
+            "source_sha256": "03b382db7e62e793554fc052dad5688d4f32c5b5f5e4b77a3d6fb346a8d535bb",
+            "source_comparison": "different recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "data/sessions/transcripts.json",
+            "status": "match",
+            "expected_sha256": "442703f08a302e5a59952ba49862d960d0d6b82e538d4583ff941d364fecef51",
+            "actual_sha256": "442703f08a302e5a59952ba49862d960d0d6b82e538d4583ff941d364fecef51",
+            "bytes": 223497,
+            "source_sha256": "9ab5d00b20a65c93c22ed5b24bf43b9097164459bf44248c1ecb43ca90c2c085",
+            "source_comparison": "different recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "vendor/x_ite/x_ite.min.js",
+            "status": "match",
+            "expected_sha256": "66ce41650e084ac519f552b0129f625d3941c086ea8edf1623c7d68e365e08a3",
+            "actual_sha256": "66ce41650e084ac519f552b0129f625d3941c086ea8edf1623c7d68e365e08a3",
+            "bytes": 1306526,
+            "source_sha256": "66ce41650e084ac519f552b0129f625d3941c086ea8edf1623c7d68e365e08a3",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "vendor/x_ite/x_ite.css",
+            "status": "match",
+            "expected_sha256": "e9eb804d4bb8726d3c952af2aa878a9bc7090805a0af56d3bcf32b54e4dc4bb4",
+            "actual_sha256": "e9eb804d4bb8726d3c952af2aa878a9bc7090805a0af56d3bcf32b54e4dc4bb4",
+            "bytes": 15832,
+            "source_sha256": "e9eb804d4bb8726d3c952af2aa878a9bc7090805a0af56d3bcf32b54e4dc4bb4",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "vendor/x_ite/LICENSE.md.txt",
+            "status": "match",
+            "expected_sha256": "4b4a56dafaa360d8541ed5425e9e891cb678e6cd5eaf71bfe7ef25514db01695",
+            "actual_sha256": "4b4a56dafaa360d8541ed5425e9e891cb678e6cd5eaf71bfe7ef25514db01695",
+            "bytes": 2793,
+            "source_sha256": "4b4a56dafaa360d8541ed5425e9e891cb678e6cd5eaf71bfe7ef25514db01695",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "vendor/x_ite/assets/components/EventUtilitiesComponent.min.js",
+            "status": "match",
+            "expected_sha256": "debb52ec149388b8dc102263a53716acbd2e3dfd100d31787c7445e63e4c87ce",
+            "actual_sha256": "debb52ec149388b8dc102263a53716acbd2e3dfd100d31787c7445e63e4c87ce",
+            "bytes": 7603,
+            "source_sha256": "debb52ec149388b8dc102263a53716acbd2e3dfd100d31787c7445e63e4c87ce",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "vendor/x_ite/assets/components/Geometry2DComponent.min.js",
+            "status": "match",
+            "expected_sha256": "c3820f74e259fe2d965a7df525d0397c23c6d7171f7742ff6326dc812e6777d8",
+            "actual_sha256": "c3820f74e259fe2d965a7df525d0397c23c6d7171f7742ff6326dc812e6777d8",
+            "bytes": 16156,
+            "source_sha256": "c3820f74e259fe2d965a7df525d0397c23c6d7171f7742ff6326dc812e6777d8",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "vendor/x_ite/assets/components/KeyDeviceSensorComponent.min.js",
+            "status": "match",
+            "expected_sha256": "75f7d0029c086f32cea25f17e8de985b72cce73f34c95e627767f3c46dbea9f8",
+            "actual_sha256": "75f7d0029c086f32cea25f17e8de985b72cce73f34c95e627767f3c46dbea9f8",
+            "bytes": 7521,
+            "source_sha256": "75f7d0029c086f32cea25f17e8de985b72cce73f34c95e627767f3c46dbea9f8",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "vendor/x_ite/assets/components/ScriptingComponent.min.js",
+            "status": "match",
+            "expected_sha256": "eb8e388a42e0f1702bd2157303105ecef8dab85e3c186d656a83e4d2b5cd345d",
+            "actual_sha256": "eb8e388a42e0f1702bd2157303105ecef8dab85e3c186d656a83e4d2b5cd345d",
+            "bytes": 9716,
+            "source_sha256": "eb8e388a42e0f1702bd2157303105ecef8dab85e3c186d656a83e4d2b5cd345d",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "vendor/x_ite/assets/components/TextComponent.min.js",
+            "status": "match",
+            "expected_sha256": "d4ea785709b2a4fa603901f0bc9810443619f846a82b07deedfff9959dda157b",
+            "actual_sha256": "d4ea785709b2a4fa603901f0bc9810443619f846a82b07deedfff9959dda157b",
+            "bytes": 262880,
+            "source_sha256": "d4ea785709b2a4fa603901f0bc9810443619f846a82b07deedfff9959dda157b",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "vendor/x_ite/assets/images/logo.svg",
+            "status": "match",
+            "expected_sha256": "32957ec5753338f88dfc512b750b835ec024a80501e0b92701afb62be93a49dd",
+            "actual_sha256": "32957ec5753338f88dfc512b750b835ec024a80501e0b92701afb62be93a49dd",
+            "bytes": 414,
+            "source_sha256": "32957ec5753338f88dfc512b750b835ec024a80501e0b92701afb62be93a49dd",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          },
+          {
+            "path": "vendor/x_ite/assets/lib/mikktspace_bg.wasm",
+            "status": "match",
+            "expected_sha256": "d734e040ae6480a0d00ba08b8aaae29c2eb59c8705c38b7bc120885fc94c54e2",
+            "actual_sha256": "d734e040ae6480a0d00ba08b8aaae29c2eb59c8705c38b7bc120885fc94c54e2",
+            "bytes": 44694,
+            "source_sha256": "d734e040ae6480a0d00ba08b8aaae29c2eb59c8705c38b7bc120885fc94c54e2",
+            "source_comparison": "same recorded digest",
+            "source_available": false
+          }
+        ]
+      },
+      "receipt_sha256": "35fd442dce0151dfd6f07c190711a6dc92ab2ef45886d7438ec8fd6fcd212b53"
+    },
+    {
+      "schema": "semantic-twin-browser-witness/v1",
+      "hash_algorithm": "SHA-256(sorted-key JSON with JavaScript number serialization)",
+      "created_utc": "2026-11-16T16:32:43.499Z",
+      "operation": "repair",
+      "execution": "computed in this browser",
+      "elapsed_ms": 87,
+      "instrument": {
+        "name": "semantic-twin-browser-workbench",
+        "version": "2.0.0",
+        "data_scope": "installed ontology slice and scenes",
+        "engines": {
+          "file": "vendor/lab-stack.js",
+          "bytes": 1474325,
+          "gzip9": 352867,
+          "sha256": "29132afa35ae2e10b73d3b5419012181575eceef5df95dc28282ef36dd69651f",
+          "esbuild": "0.28.2",
+          "n3": "2.13.12",
+          "comunica": "5.4.1",
+          "shacl-engine": "1.1.3",
+          "readable-stream": "4.8.0",
+          "inputs": 962,
+          "patch": "shacl-engine lib/sparql.js: one QueryEngine reused; N3 Store passed as the source"
+        },
+        "code": [
+          {
+            "path": "engine.js",
+            "sha256": "c1fb599fdb7d0d71c0aeb71d8675e3c41e84645120148415ed9041191112a522"
+          },
+          {
+            "path": "witness-core.js",
+            "sha256": "4701851d617611ac341b460140682c2cd98c56edb9752392a13b7bc67bfdbfff"
+          },
+          {
+            "path": "workbench-worker.js",
+            "sha256": "a652594230d1d73e7a0151948ce402c022c70bb962d9b24a4ac4e24292315f8c"
+          },
+          {
+            "path": "worker-client.js",
+            "sha256": "dfd7510d4923e00a613c99aebf12f5351b2e44f9d3f5f49d007fac2fe8b12afe"
+          },
+          {
+            "path": "workbench.js",
+            "sha256": "f8fd54ae1cfaabc75d8efb314c5a3469b5de4cbc48dcaa5f64ff30e8965e7dd7"
+          },
+          {
+            "path": "vendor/lab-stack.js",
+            "sha256": "29132afa35ae2e10b73d3b5419012181575eceef5df95dc28282ef36dd69651f"
+          }
+        ]
+      },
+      "result": {
+        "operation": "repair-witness",
+        "witness": {
+          "nodeType": "Material",
+          "value": "1.5 0.08 0.16",
+          "start": 7576,
+          "end": 7589,
+          "quote": "'",
+          "def": "Ruby",
+          "attribute": "diffuseColor",
+          "line": 145,
+          "byteStart": 7576,
+          "byteEnd": 7589,
+          "lineText": "              <Material DEF='Ruby' diffuseColor='1.5 0.08 0.16' transparency='0.25'/>",
+          "oldValue": "1.5 0.08 0.16",
+          "newValue": "0.85 0.08 0.16",
+          "beforeSha256": "54fd9344db6e912e47da1603d5e95ca2f6f47f4da2a76a60c8d45cd1350d660c",
+          "afterSha256": "54c82e2d90572d1f80b83b665454f9d925dc38d861ff3da23aa9c7db7809e447",
+          "change": "one attribute value",
+          "scope": "fixture-scoped lexical X3D edit; not a schema validator"
+        },
+        "before": {
+          "conforms": false,
+          "count": 1,
+          "results": [
+            {
+              "focus": {
+                "termType": "NamedNode",
+                "value": "https://semantic-twin-lab.example/TheCabinet.ttl#Ruby"
+              },
+              "value": {
+                "termType": "Literal",
+                "value": "1.5",
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                "language": ""
+              },
+              "severity": {
+                "termType": "NamedNode",
+                "value": "http://www.w3.org/ns/shacl#Violation"
+              },
+              "message": "S1: diffuseColor component outside [0,1]"
+            }
+          ]
+        },
+        "after": {
+          "conforms": true,
+          "count": 0,
+          "results": []
+        },
+        "inputs": [
+          {
+            "path": "data/scenes/fault-F1.xml",
+            "sha256": "54fd9344db6e912e47da1603d5e95ca2f6f47f4da2a76a60c8d45cd1350d660c",
+            "bytes": 14551
+          },
+          {
+            "path": "data/ttl/fault-F1.ttl.txt",
+            "sha256": "e8bf3ed2a788301347b6d41d6b998c759accc975d952c2f52ddd5ce898255690",
+            "bytes": 33439
+          },
+          {
+            "path": "data/ttl/slice.ttl.txt",
+            "sha256": "6a881c2cd243011f23afc844baf411124a7cdab992dd38cdcbc0acad6c5bac6d",
+            "bytes": 122184
+          }
+        ],
+        "shapesSha256": "e3324a47f6546e6b318253c3d54595fda67abfa6c33ba62d9b68ccdaffeeca4f",
+        "projection": "The same RGB values were applied to the existing RDF list and checked with S1. This is not an independent XML-to-RDF rebuild or a full XSD gate."
+      },
+      "receipt_sha256": "5d8180b625f99fdbc2d22d9c747394c56c84cefe5cfa6b08ed09c94ac4948fd6"
+    }
+  ],
+  "notebook_sha256": "b2929a49041003af813a8e43e285fd91e9dd650705f34030c17823608d00c83e"
+}

@@ -1,0 +1,5866 @@
+{
+ "engine": {
+  "python": "3.13.18",
+  "rdflib": "7.6.0",
+  "pyshacl": "0.40.2",
+  "owlrl": "7.6.2",
+  "saxonche": "13.1.1",
+  "lxml": "6.1.3"
+ },
+ "inputs": {
+  "cabinet": {
+   "file": "ttl/cabinet.ttl",
+   "sha256": "526a30e27853972a6b79072751601a4ab628b9959e50af741cf912eef66fdf82"
+  },
+  "fault-F1": {
+   "file": "ttl/fault-F1.ttl",
+   "sha256": "e8bf3ed2a788301347b6d41d6b998c759accc975d952c2f52ddd5ce898255690"
+  },
+  "fault-F2": {
+   "file": "ttl/fault-F2.ttl",
+   "sha256": "c66dca1a79678e84f2287ce406e908c6e775017ec60443ca549851e8808fea5b"
+  },
+  "fault-F3": {
+   "file": "ttl/fault-F3.ttl",
+   "sha256": "ad425b89f18cdc36f3e750e35d41019d28d645cf24bfa389e434b574b5341744"
+  },
+  "fault-F4": {
+   "file": "ttl/fault-F4.ttl",
+   "sha256": "a71c4ed8b830eb2384f69f9cabdc8e92aad69f977c89313abcf32002417a7cb4"
+  },
+  "fault-F5": {
+   "file": "ttl/fault-F5.ttl",
+   "sha256": "a22d0054aa118991e5b5881268d32bbdd99066cebd0ebfbc640ed3ec8461c431"
+  },
+  "fault-F6": {
+   "file": "ttl/fault-F6.ttl",
+   "sha256": "881891054c96f7788b0d6fc6e4c1fc166efc2fc3d6a22cde1c9db3cbba11cf51"
+  },
+  "fault-F7": {
+   "file": "ttl/fault-F7.ttl",
+   "sha256": "8985ad8249cef823a02543695c7f3964b5d60b536fa5af378e3de48872a360be"
+  },
+  "teach-exponent": {
+   "file": "ttl/teach-exponent.ttl",
+   "sha256": "14fccb345433e6310597293c83340bf3f5d44a05744873e8cc665fbc7517fc99"
+  },
+  "teach-insert": {
+   "file": "ttl/teach-insert.ttl",
+   "sha256": "4d4edb807fe45d2836437347671a53382084dfa0c7a558fdbda197bda3aced02"
+  },
+  "slice": {
+   "file": "ontology/slice.ttl",
+   "sha256": "6a881c2cd243011f23afc844baf411124a7cdab992dd38cdcbc0acad6c5bac6d"
+  },
+  "shapes": {
+   "file": "shapes/x3d-lab.shacl.ttl",
+   "sha256": "62975444cb759d270eecbe424413ad13661ab655ff8449ec9ceb766a3a317a40"
+  }
+ },
+ "jobs": {
+  "T1.1:main": {
+   "spec": {
+    "kind": "count",
+    "graph": [
+     "cabinet"
+    ]
+   },
+   "result": {
+    "triples": 1939,
+    "_ms": 62.8
+   }
+  },
+  "T1.1:individuals": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT (COUNT(DISTINCT ?n) AS ?individuals) WHERE { ?n a owl:NamedIndividual }"
+   },
+   "result": {
+    "vars": [
+     "individuals"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "individuals": 184
+     }
+    ],
+    "_ms": 173.2
+   }
+  },
+  "T1.1:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?p ?o WHERE { :Gilt ?p ?o }"
+   },
+   "result": {
+    "vars": [
+     "p",
+     "o"
+    ],
+    "count": 8,
+    "rows": [
+     {
+      "p": "rdf:type",
+      "o": "owl:NamedIndividual"
+     },
+     {
+      "p": "rdf:type",
+      "o": "x3do:PhysicalMaterial"
+     },
+     {
+      "p": "x3do:hasParent",
+      "o": ":OrbALook"
+     },
+     {
+      "p": "x3do:DEF",
+      "o": "Gilt"
+     },
+     {
+      "p": "x3do:baseColor",
+      "o": "_:b"
+     },
+     {
+      "p": "x3do:emissiveColor",
+      "o": "_:b"
+     },
+     {
+      "p": "x3do:metallic",
+      "o": 0.35
+     },
+     {
+      "p": "x3do:roughness",
+      "o": 0.28
+     }
+    ],
+    "_ms": 46.4
+   }
+  },
+  "T1.2:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?p ?o WHERE {\n  :Gilt ?p ?o\n} ORDER BY ?p"
+   },
+   "result": {
+    "vars": [
+     "p",
+     "o"
+    ],
+    "count": 8,
+    "rows": [
+     {
+      "p": "rdf:type",
+      "o": "owl:NamedIndividual"
+     },
+     {
+      "p": "rdf:type",
+      "o": "x3do:PhysicalMaterial"
+     },
+     {
+      "p": "x3do:DEF",
+      "o": "Gilt"
+     },
+     {
+      "p": "x3do:baseColor",
+      "o": "_:b"
+     },
+     {
+      "p": "x3do:emissiveColor",
+      "o": "_:b"
+     },
+     {
+      "p": "x3do:hasParent",
+      "o": ":OrbALook"
+     },
+     {
+      "p": "x3do:metallic",
+      "o": 0.35
+     },
+     {
+      "p": "x3do:roughness",
+      "o": 0.28
+     }
+    ],
+    "_ms": 49.9
+   }
+  },
+  "T1.2:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?s ?p WHERE { ?s ?p :Gilt }"
+   },
+   "result": {
+    "vars": [
+     "s",
+     "p"
+    ],
+    "count": 3,
+    "rows": [
+     {
+      "s": ":OrbALook",
+      "p": "x3do:hasMaterial"
+     },
+     {
+      "s": ":Gilt-USE-1",
+      "p": "owl:sameAs"
+     },
+     {
+      "s": ":Gilt-USE-2",
+      "p": "owl:sameAs"
+     }
+    ],
+    "_ms": 46.1
+   }
+  },
+  "T1.3:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape ?geometry WHERE {\n  ?shape x3do:geometry ?geometry\n}"
+   },
+   "result": {
+    "vars": [
+     "shape",
+     "geometry"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 55.6
+   }
+  },
+  "T1.3:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape ?geometry WHERE {\n  ?shape x3do:hasGeometry ?geometry\n}"
+   },
+   "result": {
+    "vars": [
+     "shape",
+     "geometry"
+    ],
+    "count": 27,
+    "rows": [
+     {
+      "shape": ":FloorSlab",
+      "geometry": ":Cylinder_2_8_1_2"
+     },
+     {
+      "shape": ":Inlay",
+      "geometry": ":Cylinder_2_9_1_2"
+     },
+     {
+      "shape": ":GlassColumn",
+      "geometry": ":PlinthDrum"
+     },
+     {
+      "shape": ":GlowCore",
+      "geometry": ":Cylinder_2_10_2_2_1_2"
+     },
+     {
+      "shape": ":TopDisc",
+      "geometry": ":Cylinder_2_10_2_3_1_2"
+     },
+     {
+      "shape": ":Rim",
+      "geometry": ":Cylinder_2_10_2_4_1_2"
+     },
+     {
+      "shape": ":Foot",
+      "geometry": ":Cylinder_2_10_2_5_1_2"
+     },
+     {
+      "shape": ":OrbAShape",
+      "geometry": ":OrbABall"
+     },
+     {
+      "shape": ":OrbBShape",
+      "geometry": ":OrbBBall"
+     },
+     {
+      "shape": ":OrbCShape",
+      "geometry": ":OrbCBall"
+     },
+     {
+      "shape": ":CrystalTop",
+      "geometry": ":CrystalCone"
+     },
+     {
+      "shape": ":CrystalBottom",
+      "geometry": ":CrystalCone-USE-1"
+     },
+     {
+      "shape": ":Halo",
+      "geometry": ":Cylinder_2_11_3_1_3_1_2"
+     },
+     {
+      "shape": ":RubyShape",
+      "geometry": ":Box_2_12_3_1_1_2"
+     },
+     {
+      "shape": ":PearlShape",
+      "geometry": ":Box_2_12_3_2_1_2"
+     },
+     {
+      "shape": ":JadeShape",
+      "geometry": ":Box_2_12_3_3_1_2"
+     },
+     {
+      "shape": ":CobaltShape",
+      "geometry": ":Box_2_12_3_4_1_2"
+     },
+     {
+      "shape": ":EmberShape",
+      "geometry": ":Box_2_12_3_5_1_2"
+     },
+     {
+      "shape": ":ChoiceCube",
+      "geometry": ":Box_2_13_3_1_1_2"
+     },
+     {
+      "shape": ":ChoiceCone",
+      "geometry": ":Cone_2_13_3_1_2_2"
+     },
+     {
+      "shape": ":ChoiceDrum",
+      "geometry": ":Cylinder_2_13_3_1_3_2"
+     },
+     {
+      "shape": ":BareSpecimen",
+      "geometry": ":BareCube"
+     },
+     {
+      "shape": ":Plaque",
+      "geometry": ":Box_2_15_3_2_1_2"
+     },
+     {
+      "shape": ":LanternBulb",
+      "geometry": ":Sphere_2_16_3_2_1_2"
+     },
+     {
+      "shape": ":Chimney",
+      "geometry": ":Cylinder_2_16_3_3_1_2"
+     },
+     {
+      "shape": ":LanternCap",
+      "geometry": ":Cone_2_16_3_4_1_2"
+     },
+     {
+      "shape": ":LanternBase",
+      "geometry": ":Cylinder_2_16_3_5_1_2"
+     }
+    ],
+    "_ms": 73.3
+   }
+  },
+  "T1.4:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?class WHERE {\n  :Spinner a ?class\n}"
+   },
+   "result": {
+    "vars": [
+     "class"
+    ],
+    "count": 2,
+    "rows": [
+     {
+      "class": "owl:NamedIndividual"
+     },
+     {
+      "class": "x3do:Transform"
+     }
+    ],
+    "_ms": 73.8
+   }
+  },
+  "T1.4:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?super WHERE { x3do:Transform rdfs:subClassOf+ ?super }"
+   },
+   "result": {
+    "vars": [
+     "super"
+    ],
+    "count": 4,
+    "rows": [
+     {
+      "super": "x3do:X3DGroupingNode"
+     },
+     {
+      "super": "x3do:X3DBoundedObject"
+     },
+     {
+      "super": "x3do:X3DChildNode"
+     },
+     {
+      "super": "x3do:X3DNode"
+     }
+    ],
+    "_ms": 145.6
+   }
+  },
+  "T1.5:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?copy ?original WHERE {\n  ?copy owl:sameAs ?original\n} ORDER BY ?original ?copy"
+   },
+   "result": {
+    "vars": [
+     "copy",
+     "original"
+    ],
+    "count": 12,
+    "rows": [
+     {
+      "copy": ":CageGold-USE-1",
+      "original": ":CageGold"
+     },
+     {
+      "copy": ":CrystalCone-USE-1",
+      "original": ":CrystalCone"
+     },
+     {
+      "copy": ":CrystalLook-USE-1",
+      "original": ":CrystalLook"
+     },
+     {
+      "copy": ":Gilt-USE-1",
+      "original": ":Gilt"
+     },
+     {
+      "copy": ":Gilt-USE-2",
+      "original": ":Gilt"
+     },
+     {
+      "copy": ":GlassLook-USE-1",
+      "original": ":GlassLook"
+     },
+     {
+      "copy": ":PlinthGroup-USE-1",
+      "original": ":PlinthGroup"
+     },
+     {
+      "copy": ":PlinthGroup-USE-2",
+      "original": ":PlinthGroup"
+     },
+     {
+      "copy": ":PlinthGroup-USE-3",
+      "original": ":PlinthGroup"
+     },
+     {
+      "copy": ":PlinthGroup-USE-4",
+      "original": ":PlinthGroup"
+     },
+     {
+      "copy": ":PlinthGroup-USE-5",
+      "original": ":PlinthGroup"
+     },
+     {
+      "copy": ":PlinthGroup-USE-6",
+      "original": ":PlinthGroup"
+     }
+    ],
+    "_ms": 50.3
+   }
+  },
+  "T1.5:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?original (COUNT(?copy) AS ?copies) WHERE { ?copy owl:sameAs ?original } GROUP BY ?original"
+   },
+   "result": {
+    "vars": [
+     "original",
+     "copies"
+    ],
+    "count": 6,
+    "rows": [
+     {
+      "original": ":Gilt",
+      "copies": 2
+     },
+     {
+      "original": ":PlinthGroup",
+      "copies": 6
+     },
+     {
+      "original": ":CrystalLook",
+      "copies": 1
+     },
+     {
+      "original": ":CrystalCone",
+      "copies": 1
+     },
+     {
+      "original": ":GlassLook",
+      "copies": 1
+     },
+     {
+      "original": ":CageGold",
+      "copies": 1
+     }
+    ],
+    "_ms": 54.4
+   }
+  },
+  "T1.6:main": {
+   "spec": {
+    "kind": "diff",
+    "graph_a": [
+     "cabinet"
+    ],
+    "graph_b": [
+     "teach-insert"
+    ],
+    "var": "node",
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?node WHERE {\n  ?node a owl:NamedIndividual\n}"
+   },
+   "result": {
+    "count_a": 184,
+    "count_b": 185,
+    "count": 34,
+    "values": [
+     ":Appearance_2_10_2_2_1_1",
+     ":Appearance_2_10_2_3_1_1",
+     ":Appearance_2_10_2_4_1_1",
+     ":Appearance_2_10_2_5_1_1",
+     ":Appearance_2_11_3_1_3_1_1",
+     ":Appearance_2_12_3_1_1_1",
+     ":Appearance_2_12_3_2_1_1",
+     ":Appearance_2_12_3_3_1_1",
+     ":Appearance_2_12_3_4_1_1",
+     ":Appearance_2_12_3_5_1_1",
+     ":Appearance_2_13_3_1_2_1",
+     ":Appearance_2_13_3_1_3_1",
+     ":Appearance_2_15_3_2_1_1",
+     ":Appearance_2_16_3_5_1_1",
+     ":Appearance_2_8_1_1",
+     ":Box_2_12_3_1_1_2",
+     ":Box_2_12_3_2_1_2",
+     ":Box_2_12_3_3_1_2",
+     ":Box_2_12_3_4_1_2",
+     ":Box_2_12_3_5_1_2",
+     ":Box_2_15_3_2_1_2",
+     ":Cone_2_13_3_1_2_2",
+     ":Cone_2_16_3_4_1_2",
+     ":Cylinder_2_10_2_2_1_2",
+     ":Cylinder_2_10_2_3_1_2",
+     ":Cylinder_2_10_2_4_1_2",
+     ":Cylinder_2_10_2_5_1_2",
+     ":Cylinder_2_11_3_1_3_1_2",
+     ":Cylinder_2_13_3_1_3_2",
+     ":Cylinder_2_16_3_3_1_2",
+     ":Cylinder_2_16_3_5_1_2",
+     ":Cylinder_2_8_1_2",
+     ":ROUTE_2_17",
+     ":Sphere_2_16_3_2_1_2"
+    ],
+    "_ms": 102.4
+   }
+  },
+  "T1.6:try": {
+   "spec": {
+    "kind": "diff",
+    "graph_a": [
+     "cabinet"
+    ],
+    "graph_b": [
+     "teach-insert"
+    ],
+    "var": "node",
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?node WHERE { ?node x3do:DEF ?name }"
+   },
+   "result": {
+    "count_a": 122,
+    "count_b": 122,
+    "count": 0,
+    "values": [],
+    "_ms": 163.0
+   }
+  },
+  "T1.7:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?r ?g ?b WHERE {\n  :Ruby x3do:diffuseColor ?c .\n  ?c rdf:first ?r ; rdf:rest/rdf:first ?g ; rdf:rest/rdf:rest/rdf:first ?b\n}"
+   },
+   "result": {
+    "vars": [
+     "r",
+     "g",
+     "b"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "r": 0.85,
+      "g": 0.08,
+      "b": 0.16
+     }
+    ],
+    "_ms": 51.6
+   }
+  },
+  "T1.7:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT (COUNT(*) AS ?cells) WHERE { ?cell rdf:first ?x }"
+   },
+   "result": {
+    "vars": [
+     "cells"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "cells": 409
+     }
+    ],
+    "_ms": 49.9
+   }
+  },
+  "T2.1:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape\n}"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 27,
+    "rows": [
+     {
+      "shape": ":FloorSlab"
+     },
+     {
+      "shape": ":Inlay"
+     },
+     {
+      "shape": ":GlassColumn"
+     },
+     {
+      "shape": ":GlowCore"
+     },
+     {
+      "shape": ":TopDisc"
+     },
+     {
+      "shape": ":Rim"
+     },
+     {
+      "shape": ":Foot"
+     },
+     {
+      "shape": ":OrbAShape"
+     },
+     {
+      "shape": ":OrbBShape"
+     },
+     {
+      "shape": ":OrbCShape"
+     },
+     {
+      "shape": ":CrystalTop"
+     },
+     {
+      "shape": ":CrystalBottom"
+     },
+     {
+      "shape": ":Halo"
+     },
+     {
+      "shape": ":RubyShape"
+     },
+     {
+      "shape": ":PearlShape"
+     },
+     {
+      "shape": ":JadeShape"
+     },
+     {
+      "shape": ":CobaltShape"
+     },
+     {
+      "shape": ":EmberShape"
+     },
+     {
+      "shape": ":ChoiceCube"
+     },
+     {
+      "shape": ":ChoiceCone"
+     },
+     {
+      "shape": ":ChoiceDrum"
+     },
+     {
+      "shape": ":BareSpecimen"
+     },
+     {
+      "shape": ":Plaque"
+     },
+     {
+      "shape": ":LanternBulb"
+     },
+     {
+      "shape": ":Chimney"
+     },
+     {
+      "shape": ":LanternCap"
+     },
+     {
+      "shape": ":LanternBase"
+     }
+    ],
+    "_ms": 48.8
+   }
+  },
+  "T2.1:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?m WHERE { ?m a x3do:PhysicalMaterial }"
+   },
+   "result": {
+    "vars": [
+     "m"
+    ],
+    "count": 13,
+    "rows": [
+     {
+      "m": ":Glass"
+     },
+     {
+      "m": ":Onyx"
+     },
+     {
+      "m": ":Brass"
+     },
+     {
+      "m": ":Gilt"
+     },
+     {
+      "m": ":Gilt-USE-1"
+     },
+     {
+      "m": ":Gilt-USE-2"
+     },
+     {
+      "m": ":Crystal"
+     },
+     {
+      "m": ":HaloGold"
+     },
+     {
+      "m": ":CubeTint"
+     },
+     {
+      "m": ":ConeTint"
+     },
+     {
+      "m": ":DrumTint"
+     },
+     {
+      "m": ":CageGold"
+     },
+     {
+      "m": ":CageGold-USE-1"
+     }
+    ],
+    "_ms": 45.3
+   }
+  },
+  "T2.2:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?Y WHERE {\n  ?material a x3do:Material ; x3do:diffuseColor ?c .\n  ?c rdf:first ?r ; rdf:rest/rdf:first ?g ; rdf:rest/rdf:rest/rdf:first ?b .\n  BIND(0.2126 * ?r + 0.7152 * ?g + 0.0722 * ?b AS ?Y)\n  FILTER(?Y > 0.2)\n} ORDER BY DESC(?Y)"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "Y"
+    ],
+    "count": 5,
+    "rows": [
+     {
+      "material": ":Pearl",
+      "Y": 1.0
+     },
+     {
+      "material": ":PlaqueSkin",
+      "Y": 1.0
+     },
+     {
+      "material": ":Jade",
+      "Y": 0.552224
+     },
+     {
+      "material": ":Cobalt",
+      "Y": 0.294358
+     },
+     {
+      "material": ":Ruby",
+      "Y": 0.249478
+     }
+    ],
+    "_ms": 63.3
+   }
+  },
+  "T2.2:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?Y WHERE {\n  ?material a x3do:Material ; x3do:diffuseColor ?c .\n  ?c rdf:first ?r ; rdf:rest/rdf:first ?g ; rdf:rest/rdf:rest/rdf:first ?b .\n  BIND(0.2126 * ?r + 0.7152 * ?g + 0.0722 * ?b AS ?Y)\n  FILTER(?Y < 0.05)\n} ORDER BY DESC(?Y)"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "Y"
+    ],
+    "count": 5,
+    "rows": [
+     {
+      "material": ":Obsidian",
+      "Y": 0.0238716
+     },
+     {
+      "material": ":InlayGlow",
+      "Y": 0.0
+     },
+     {
+      "material": ":CoreGlow",
+      "Y": 0.0
+     },
+     {
+      "material": ":RimGlow",
+      "Y": 0.0
+     },
+     {
+      "material": ":Flame",
+      "Y": 0.0
+     }
+    ],
+    "_ms": 63.6
+   }
+  },
+  "T2.3:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape .\n  OPTIONAL { ?shape x3do:hasAppearance ?appearance }\n  FILTER(!BOUND(?appearance))\n}"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "shape": ":BareSpecimen"
+     }
+    ],
+    "_ms": 52.5
+   }
+  },
+  "T2.3:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE { ?shape a x3do:Shape FILTER NOT EXISTS { ?shape x3do:hasAppearance ?a } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "shape": ":BareSpecimen"
+     }
+    ],
+    "_ms": 55.5
+   }
+  },
+  "T2.4:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?node ?type WHERE {\n  ?node a ?type .\n  ?type rdfs:subClassOf* x3do:X3DGeometryNode\n}"
+   },
+   "result": {
+    "vars": [
+     "node",
+     "type"
+    ],
+    "count": 27,
+    "rows": [
+     {
+      "node": ":Box_2_12_3_1_1_2",
+      "type": "x3do:Box"
+     },
+     {
+      "node": ":Box_2_12_3_2_1_2",
+      "type": "x3do:Box"
+     },
+     {
+      "node": ":Box_2_12_3_3_1_2",
+      "type": "x3do:Box"
+     },
+     {
+      "node": ":Box_2_12_3_4_1_2",
+      "type": "x3do:Box"
+     },
+     {
+      "node": ":Box_2_12_3_5_1_2",
+      "type": "x3do:Box"
+     },
+     {
+      "node": ":Box_2_13_3_1_1_2",
+      "type": "x3do:Box"
+     },
+     {
+      "node": ":BareCube",
+      "type": "x3do:Box"
+     },
+     {
+      "node": ":Box_2_15_3_2_1_2",
+      "type": "x3do:Box"
+     },
+     {
+      "node": ":OrbABall",
+      "type": "x3do:Sphere"
+     },
+     {
+      "node": ":OrbBBall",
+      "type": "x3do:Sphere"
+     },
+     {
+      "node": ":OrbCBall",
+      "type": "x3do:Sphere"
+     },
+     {
+      "node": ":Sphere_2_16_3_2_1_2",
+      "type": "x3do:Sphere"
+     },
+     {
+      "node": ":CrystalCone",
+      "type": "x3do:Cone"
+     },
+     {
+      "node": ":CrystalCone-USE-1",
+      "type": "x3do:Cone"
+     },
+     {
+      "node": ":Cone_2_13_3_1_2_2",
+      "type": "x3do:Cone"
+     },
+     {
+      "node": ":Cone_2_16_3_4_1_2",
+      "type": "x3do:Cone"
+     },
+     {
+      "node": ":Cylinder_2_8_1_2",
+      "type": "x3do:Cylinder"
+     },
+     {
+      "node": ":Cylinder_2_9_1_2",
+      "type": "x3do:Cylinder"
+     },
+     {
+      "node": ":PlinthDrum",
+      "type": "x3do:Cylinder"
+     },
+     {
+      "node": ":Cylinder_2_10_2_2_1_2",
+      "type": "x3do:Cylinder"
+     },
+     {
+      "node": ":Cylinder_2_10_2_3_1_2",
+      "type": "x3do:Cylinder"
+     },
+     {
+      "node": ":Cylinder_2_10_2_4_1_2",
+      "type": "x3do:Cylinder"
+     },
+     {
+      "node": ":Cylinder_2_10_2_5_1_2",
+      "type": "x3do:Cylinder"
+     },
+     {
+      "node": ":Cylinder_2_11_3_1_3_1_2",
+      "type": "x3do:Cylinder"
+     },
+     {
+      "node": ":Cylinder_2_13_3_1_3_2",
+      "type": "x3do:Cylinder"
+     },
+     {
+      "node": ":Cylinder_2_16_3_3_1_2",
+      "type": "x3do:Cylinder"
+     },
+     {
+      "node": ":Cylinder_2_16_3_5_1_2",
+      "type": "x3do:Cylinder"
+     }
+    ],
+    "_ms": 127.3
+   }
+  },
+  "T2.4:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?node ?type WHERE { ?node a ?type . ?type rdfs:subClassOf* x3do:X3DLightNode }"
+   },
+   "result": {
+    "vars": [
+     "node",
+     "type"
+    ],
+    "count": 3,
+    "rows": [
+     {
+      "node": ":KeyLight",
+      "type": "x3do:DirectionalLight"
+     },
+     {
+      "node": ":FillLight",
+      "type": "x3do:DirectionalLight"
+     },
+     {
+      "node": ":Lantern",
+      "type": "x3do:PointLight"
+     }
+    ],
+    "_ms": 119.6
+   }
+  },
+  "T2.5:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?from ?via ?to ?toField WHERE {\n  ?r1 a x3do:ROUTE ; x3do:fromNode ?from ; x3do:toNode ?via .\n  ?r2 a x3do:ROUTE ; x3do:fromNode ?via ; x3do:toNode ?to ; x3do:toField ?toField .\n}"
+   },
+   "result": {
+    "vars": [
+     "from",
+     "via",
+     "to",
+     "toField"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "from": "Clock",
+      "via": "Spin",
+      "to": "Spinner",
+      "toField": "set_rotation"
+     }
+    ],
+    "_ms": 50.3
+   }
+  },
+  "T2.5:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?r ?from ?to WHERE { ?r a x3do:ROUTE ; x3do:fromNode ?from ; x3do:toNode ?to }"
+   },
+   "result": {
+    "vars": [
+     "r",
+     "from",
+     "to"
+    ],
+    "count": 2,
+    "rows": [
+     {
+      "r": ":ROUTE_2_17",
+      "from": "Clock",
+      "to": "Spin"
+     },
+     {
+      "r": ":ROUTE_2_18",
+      "from": "Spin",
+      "to": "Spinner"
+     }
+    ],
+    "_ms": 46.7
+   }
+  },
+  "T2.6:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?type (COUNT(?node) AS ?count) WHERE {\n  ?node a ?type .\n  FILTER(STRSTARTS(STR(?type), STR(x3do:)))\n} GROUP BY ?type ORDER BY DESC(?count) ?type"
+   },
+   "result": {
+    "vars": [
+     "type",
+     "count"
+    ],
+    "count": 29,
+    "rows": [
+     {
+      "type": "x3do:Transform",
+      "count": 37
+     },
+     {
+      "type": "x3do:Shape",
+      "count": 27
+     },
+     {
+      "type": "x3do:Appearance",
+      "count": 26
+     },
+     {
+      "type": "x3do:PhysicalMaterial",
+      "count": 13
+     },
+     {
+      "type": "x3do:Cylinder",
+      "count": 11
+     },
+     {
+      "type": "x3do:Material",
+      "count": 11
+     },
+     {
+      "type": "x3do:Viewpoint",
+      "count": 9
+     },
+     {
+      "type": "x3do:Box",
+      "count": 8
+     },
+     {
+      "type": "x3do:Group",
+      "count": 7
+     },
+     {
+      "type": "x3do:meta",
+      "count": 6
+     },
+     {
+      "type": "x3do:Cone",
+      "count": 4
+     },
+     {
+      "type": "x3do:Sphere",
+      "count": 4
+     },
+     {
+      "type": "x3do:MetadataString",
+      "count": 3
+     },
+     {
+      "type": "x3do:DirectionalLight",
+      "count": 2
+     },
+     {
+      "type": "x3do:ROUTE",
+      "count": 2
+     },
+     {
+      "type": "x3do:Background",
+      "count": 1
+     },
+     {
+      "type": "x3do:MetadataInteger",
+      "count": 1
+     },
+     {
+      "type": "x3do:MetadataSet",
+      "count": 1
+     },
+     {
+      "type": "x3do:NavigationInfo",
+      "count": 1
+     },
+     {
+      "type": "x3do:OrientationInterpolator",
+      "count": 1
+     },
+     {
+      "type": "x3do:PixelTexture",
+      "count": 1
+     },
+     {
+      "type": "x3do:PointLight",
+      "count": 1
+     },
+     {
+      "type": "x3do:Scene",
+      "count": 1
+     },
+     {
+      "type": "x3do:Switch",
+      "count": 1
+     },
+     {
+      "type": "x3do:TimeSensor",
+      "count": 1
+     },
+     {
+      "type": "x3do:WorldInfo",
+      "count": 1
+     },
+     {
+      "type": "x3do:X3D",
+      "count": 1
+     },
+     {
+      "type": "x3do:component",
+      "count": 1
+     },
+     {
+      "type": "x3do:head",
+      "count": 1
+     }
+    ],
+    "_ms": 84.4
+   }
+  },
+  "T2.6:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT (COUNT(DISTINCT ?node) AS ?named) WHERE { ?node x3do:DEF ?name }"
+   },
+   "result": {
+    "vars": [
+     "named"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "named": 122
+     }
+    ],
+    "_ms": 51.4
+   }
+  },
+  "T2.7:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F4"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "route": ":ROUTE_2_17",
+      "end": "fromNode",
+      "name": "Ghost"
+     }
+    ],
+    "_ms": 58.3
+   }
+  },
+  "T2.7:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 167.1
+   }
+  },
+  "T2.8:main": {
+   "spec": {
+    "kind": "ask",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nASK { ?v a x3do:Viewpoint }"
+   },
+   "result": {
+    "ask": true,
+    "_ms": 70.5
+   }
+  },
+  "T2.8:try": {
+   "spec": {
+    "kind": "ask",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nASK { ?f a x3do:Fog }"
+   },
+   "result": {
+    "ask": false,
+    "_ms": 84.3
+   }
+  },
+  "T3.1:main": {
+   "spec": {
+    "kind": "reason",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "rules": "subclass",
+    "focus": [
+     ":Gilt",
+     ":Spinner",
+     ":BareCube"
+    ]
+   },
+   "result": {
+    "added_x3do_types_on_scene_iris": 579,
+    "x3do_types_on_scene_iris_after": 763,
+    "focus": {
+     ":Gilt": {
+      "count": 5,
+      "stated": [
+       "PhysicalMaterial"
+      ],
+      "types": [
+       "PhysicalMaterial",
+       "X3DAppearanceChildNode",
+       "X3DMaterialNode",
+       "X3DNode",
+       "X3DOneSidedMaterialNode"
+      ]
+     },
+     ":Spinner": {
+      "count": 5,
+      "stated": [
+       "Transform"
+      ],
+      "types": [
+       "Transform",
+       "X3DBoundedObject",
+       "X3DChildNode",
+       "X3DGroupingNode",
+       "X3DNode"
+      ]
+     },
+     ":BareCube": {
+      "count": 3,
+      "stated": [
+       "Box"
+      ],
+      "types": [
+       "Box",
+       "X3DGeometryNode",
+       "X3DNode"
+      ]
+     }
+    },
+    "_ms": 242.7
+   }
+  },
+  "T3.1:try": {
+   "spec": {
+    "kind": "reason",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "rules": "rdfs",
+    "focus": [
+     ":Spinner"
+    ]
+   },
+   "result": {
+    "added_x3do_types_on_scene_iris": 43185,
+    "x3do_types_on_scene_iris_after": 43369,
+    "focus": {
+     ":Spinner": {
+      "count": 349,
+      "stated": [
+       "Transform"
+      ],
+      "types": [
+       "AcousticProperties",
+       "Analyser",
+       "Anchor",
+       "Appearance",
+       "Arc2D",
+       "ArcClose2D",
+       "AudioClip",
+       "AudioDestination",
+       "Background",
+       "BallJoint",
+       "Billboard",
+       "BiquadFilter",
+       "BlendedVolumeStyle",
+       "BooleanFilter",
+       "BooleanSequencer",
+       "BooleanToggle",
+       "BooleanTrigger",
+       "BoundaryEnhancementVolumeStyle",
+       "BoundedPhysicsModel",
+       "Box",
+       "BufferAudioSource",
+       "CADAssembly",
+       "CADFace",
+       "CADLayer",
+       "CADPart",
+       "CartoonVolumeStyle",
+       "ChannelMerger",
+       "ChannelSelector",
+       "ChannelSplitter",
+       "Circle2D",
+       "ClipPlane",
+       "CollidableOffset",
+       "CollidableShape",
+       "Collision",
+       "CollisionCollection",
+       "CollisionSensor",
+       "CollisionSpace",
+       "Color",
+       "ColorChaser",
+       "ColorDamper",
+       "ColorInterpolator",
+       "ColorRGBA",
+       "ComposedCubeMapTexture",
+       "ComposedShader",
+       "ComposedTexture3D",
+       "ComposedVolumeStyle",
+       "Cone",
+       "ConeEmitter",
+       "Contact",
+       "Contour2D",
+       "ContourPolyline2D",
+       "Convolver",
+       "Coordinate",
+       "CoordinateChaser",
+       "CoordinateDamper",
+       "CoordinateDouble",
+       "CoordinateInterpolator",
+       "CoordinateInterpolator2D",
+       "Cylinder",
+       "CylinderSensor",
+       "DISEntityManager",
+       "DISEntityTypeMapping",
+       "Delay",
+       "DirectionalLight",
+       "Disk2D",
+       "DoubleAxisHingeJoint",
+       "DynamicsCompressor",
+       "EaseInEaseOut",
+       "EdgeEnhancementVolumeStyle",
+       "ElevationGrid",
+       "EnvironmentLight",
+       "EspduTransform",
+       "ExplosionEmitter",
+       "Extrusion",
+       "FillProperties",
+       "FloatVertexAttribute",
+       "Fog",
+       "FogCoordinate",
+       "FontLibrary",
+       "FontStyle",
+       "ForcePhysicsModel",
+       "Gain",
+       "GaussianSplats",
+       "GeneratedCubeMapTexture",
+       "GeoCoordinate",
+       "GeoElevationGrid",
+       "GeoLOD",
+       "GeoLocation",
+       "GeoMetadata",
+       "GeoOrigin",
+       "GeoPositionInterpolator",
+       "GeoProximitySensor",
+       "GeoTouchSensor",
+       "GeoTransform",
+       "GeoViewpoint",
+       "Group",
+       "HAnimDisplacer",
+       "HAnimHumanoid",
+       "HAnimJoint",
+       "HAnimMotion",
+       "HAnimPose",
+       "HAnimSegment",
+       "HAnimSite",
+       "ImageCubeMapTexture",
+       "ImageTexture",
+       "ImageTexture3D",
+       "IndexedFaceSet",
+       "IndexedLineSet",
+       "IndexedQuadSet",
+       "IndexedTriangleFanSet",
+       "IndexedTriangleSet",
+       "IndexedTriangleStripSet",
+       "Inline",
+       "InlineGeometry",
+       "IntegerSequencer",
+       "IntegerTrigger",
+       "IsoSurfaceVolumeData",
+       "KeySensor",
+       "LOD",
+       "Layer",
+       "LayerSet",
+       "Layout",
+       "LayoutGroup",
+       "LayoutLayer",
+       "LinePickSensor",
+       "LineProperties",
+       "LineSet",
+       "ListenerPointSource",
+       "LoadSensor",
+       "LocalFog",
+       "Material",
+       "Matrix3VertexAttribute",
+       "Matrix4VertexAttribute",
+       "MetadataBoolean",
+       "MetadataDouble",
+       "MetadataFloat",
+       "MetadataInteger",
+       "MetadataSet",
+       "MetadataString",
+       "MicrophoneSource",
+       "MotorJoint",
+       "MovieTexture",
+       "MultiTexture",
+       "MultiTextureCoordinate",
+       "MultiTextureTransform",
+       "NavigationInfo",
+       "Normal",
+       "NormalInterpolator",
+       "NurbsCurve",
+       "NurbsCurve2D",
+       "NurbsOrientationInterpolator",
+       "NurbsPatchSurface",
+       "NurbsPositionInterpolator",
+       "NurbsSet",
+       "NurbsSurfaceInterpolator",
+       "NurbsSweptSurface",
+       "NurbsSwungSurface",
+       "NurbsTextureCoordinate",
+       "NurbsTrimmedSurface",
+       "OpacityMapVolumeStyle",
+       "OrientationChaser",
+       "OrientationDamper",
+       "OrientationInterpolator",
+       "OrthoViewpoint",
+       "OscillatorSource",
+       "PackagedShader",
+       "ParticleSystem",
+       "PeriodicWave",
+       "PhysicalMaterial",
+       "PickableGroup",
+       "PixelTexture",
+       "PixelTexture3D",
+       "PlaneSensor",
+       "PointEmitter",
+       "PointLight",
+       "PointPickSensor",
+       "PointProperties",
+       "PointSet",
+       "Polyline2D",
+       "PolylineEmitter",
+       "Polypoint2D",
+       "PositionChaser",
+       "PositionChaser2D",
+       "PositionDamper",
+       "PositionDamper2D",
+       "PositionInterpolator",
+       "PositionInterpolator2D",
+       "PrimitivePickSensor",
+       "ProgramShader",
+       "ProjectionVolumeStyle",
+       "ProtoBody",
+       "ProtoInstance",
+       "ProximitySensor",
+       "QuadSet",
+       "ReceiverPdu",
+       "Rectangle2D",
+       "RenderedTexture",
+       "RigidBody",
+       "RigidBodyCollection",
+       "ScalarChaser",
+       "ScalarDamper",
+       "ScalarInterpolator",
+       "Scene",
+       "ScreenFontStyle",
+       "ScreenGroup",
+       "Script",
+       "SegmentedVolumeData",
+       "ShadedVolumeStyle",
+       "ShaderPart",
+       "ShaderProgram",
+       "Shape",
+       "SignalPdu",
+       "SilhouetteEnhancementVolumeStyle",
+       "SingleAxisHingeJoint",
+       "SliderJoint",
+       "Sound",
+       "SpatialSound",
+       "Sphere",
+       "SphereSensor",
+       "SplinePositionInterpolator",
+       "SplinePositionInterpolator2D",
+       "SplineScalarInterpolator",
+       "SpotLight",
+       "SquadOrientationInterpolator",
+       "StaticGroup",
+       "StreamAudioDestination",
+       "StreamAudioSource",
+       "StringSensor",
+       "SurfaceEmitter",
+       "Switch",
+       "Tangent",
+       "TexCoordChaser2D",
+       "TexCoordDamper2D",
+       "Text",
+       "TextureBackground",
+       "TextureCoordinate",
+       "TextureCoordinate3D",
+       "TextureCoordinate4D",
+       "TextureCoordinateGenerator",
+       "TextureProjector",
+       "TextureProjectorParallel",
+       "TextureProperties",
+       "TextureTransform",
+       "TextureTransform3D",
+       "TextureTransformMatrix3D",
+       "TimeSensor",
+       "TimeTrigger",
+       "ToneMappedVolumeStyle",
+       "TouchSensor",
+       "Transform",
+       "TransformSensor",
+       "TransmitterPdu",
+       "TriangleFanSet",
+       "TriangleSet",
+       "TriangleSet2D",
+       "TriangleStripSet",
+       "TwoSidedMaterial",
+       "UniversalJoint",
+       "UnlitMaterial",
+       "Viewpoint",
+       "ViewpointGroup",
+       "Viewport",
+       "VisibilitySensor",
+       "VolumeData",
+       "VolumeEmitter",
+       "VolumePickSensor",
+       "WaveShaper",
+       "WindPhysicsModel",
+       "WorldInfo",
+       "X3DAppearanceChildNode",
+       "X3DAppearanceNode",
+       "X3DBackgroundNode",
+       "X3DBindableNode",
+       "X3DBoundedObject",
+       "X3DChaserNode",
+       "X3DChildNode",
+       "X3DColorNode",
+       "X3DComposableVolumeRenderStyleNode",
+       "X3DComposedGeometryNode",
+       "X3DCoordinateNode",
+       "X3DDamperNode",
+       "X3DDragSensorNode",
+       "X3DEnvironmentTextureNode",
+       "X3DEnvironmentalSensorNode",
+       "X3DFogObject",
+       "X3DFollowerNode",
+       "X3DFontStyleNode",
+       "X3DGeometricPropertyNode",
+       "X3DGeometryNode",
+       "X3DGroupingNode",
+       "X3DInfoNode",
+       "X3DInterpolatorNode",
+       "X3DKeyDeviceSensorNode",
+       "X3DLayerNode",
+       "X3DLayoutNode",
+       "X3DLightNode",
+       "X3DMaterialNode",
+       "X3DMetadataObject",
+       "X3DNBodyCollidableNode",
+       "X3DNBodyCollisionSpaceNode",
+       "X3DNetworkSensorNode",
+       "X3DNode",
+       "X3DNormalNode",
+       "X3DNurbsControlCurveNode",
+       "X3DNurbsSurfaceGeometryNode",
+       "X3DOneSidedMaterialNode",
+       "X3DParametricGeometryNode",
+       "X3DParticleEmitterNode",
+       "X3DParticlePhysicsModelNode",
+       "X3DPickSensorNode",
+       "X3DPickableObject",
+       "X3DPointingDeviceSensorNode",
+       "X3DProductStructureChildNode",
+       "X3DProgrammableShaderObject",
+       "X3DPrototypeInstance",
+       "X3DRigidJointNode",
+       "X3DScriptNode",
+       "X3DSensorNode",
+       "X3DSequencerNode",
+       "X3DShaderNode",
+       "X3DShapeNode",
+       "X3DSingleTextureCoordinateNode",
+       "X3DSingleTextureNode",
+       "X3DSingleTextureTransformNode",
+       "X3DSoundChannelNode",
+       "X3DSoundDestinationNode",
+       "X3DSoundNode",
+       "X3DSoundProcessingNode",
+       "X3DSoundSourceNode",
+       "X3DStatement",
+       "X3DTangentNode",
+       "X3DTexture2DNode",
+       "X3DTexture3DNode",
+       "X3DTextureCoordinateNode",
+       "X3DTextureNode",
+       "X3DTextureProjectorNode",
+       "X3DTextureTransformNode",
+       "X3DTimeDependentNode",
+       "X3DTouchSensorNode",
+       "X3DTriggerNode",
+       "X3DUrlObject",
+       "X3DUrlOutputObject",
+       "X3DVertexAttributeNode",
+       "X3DViewpointNode",
+       "X3DViewportNode",
+       "X3DVolumeDataNode",
+       "X3DVolumeRenderStyleNode",
+       "field",
+       "fieldValue"
+      ]
+     }
+    },
+    "owlrl_graph_growth_triples": 49214,
+    "named_individuals": 184,
+    "all_type_triples_added_on_named_individuals": 43553,
+    "non_x3do_types_added": {
+     "rdfs:Resource": 184,
+     "xsd:NMTOKEN": 184
+    },
+    "_ms": 11069.6
+   }
+  },
+  "T3.2:main": {
+   "spec": {
+    "kind": "reason",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "rules": "rdfs",
+    "focus": [
+     ":Spinner",
+     ":Gilt",
+     ":Appearance_2_12_3_1_1_1"
+    ]
+   },
+   "result": {
+    "added_x3do_types_on_scene_iris": 43185,
+    "x3do_types_on_scene_iris_after": 43369,
+    "focus": {
+     ":Spinner": {
+      "count": 349,
+      "stated": [
+       "Transform"
+      ],
+      "types": [
+       "AcousticProperties",
+       "Analyser",
+       "Anchor",
+       "Appearance",
+       "Arc2D",
+       "ArcClose2D",
+       "AudioClip",
+       "AudioDestination",
+       "Background",
+       "BallJoint",
+       "Billboard",
+       "BiquadFilter",
+       "BlendedVolumeStyle",
+       "BooleanFilter",
+       "BooleanSequencer",
+       "BooleanToggle",
+       "BooleanTrigger",
+       "BoundaryEnhancementVolumeStyle",
+       "BoundedPhysicsModel",
+       "Box",
+       "BufferAudioSource",
+       "CADAssembly",
+       "CADFace",
+       "CADLayer",
+       "CADPart",
+       "CartoonVolumeStyle",
+       "ChannelMerger",
+       "ChannelSelector",
+       "ChannelSplitter",
+       "Circle2D",
+       "ClipPlane",
+       "CollidableOffset",
+       "CollidableShape",
+       "Collision",
+       "CollisionCollection",
+       "CollisionSensor",
+       "CollisionSpace",
+       "Color",
+       "ColorChaser",
+       "ColorDamper",
+       "ColorInterpolator",
+       "ColorRGBA",
+       "ComposedCubeMapTexture",
+       "ComposedShader",
+       "ComposedTexture3D",
+       "ComposedVolumeStyle",
+       "Cone",
+       "ConeEmitter",
+       "Contact",
+       "Contour2D",
+       "ContourPolyline2D",
+       "Convolver",
+       "Coordinate",
+       "CoordinateChaser",
+       "CoordinateDamper",
+       "CoordinateDouble",
+       "CoordinateInterpolator",
+       "CoordinateInterpolator2D",
+       "Cylinder",
+       "CylinderSensor",
+       "DISEntityManager",
+       "DISEntityTypeMapping",
+       "Delay",
+       "DirectionalLight",
+       "Disk2D",
+       "DoubleAxisHingeJoint",
+       "DynamicsCompressor",
+       "EaseInEaseOut",
+       "EdgeEnhancementVolumeStyle",
+       "ElevationGrid",
+       "EnvironmentLight",
+       "EspduTransform",
+       "ExplosionEmitter",
+       "Extrusion",
+       "FillProperties",
+       "FloatVertexAttribute",
+       "Fog",
+       "FogCoordinate",
+       "FontLibrary",
+       "FontStyle",
+       "ForcePhysicsModel",
+       "Gain",
+       "GaussianSplats",
+       "GeneratedCubeMapTexture",
+       "GeoCoordinate",
+       "GeoElevationGrid",
+       "GeoLOD",
+       "GeoLocation",
+       "GeoMetadata",
+       "GeoOrigin",
+       "GeoPositionInterpolator",
+       "GeoProximitySensor",
+       "GeoTouchSensor",
+       "GeoTransform",
+       "GeoViewpoint",
+       "Group",
+       "HAnimDisplacer",
+       "HAnimHumanoid",
+       "HAnimJoint",
+       "HAnimMotion",
+       "HAnimPose",
+       "HAnimSegment",
+       "HAnimSite",
+       "ImageCubeMapTexture",
+       "ImageTexture",
+       "ImageTexture3D",
+       "IndexedFaceSet",
+       "IndexedLineSet",
+       "IndexedQuadSet",
+       "IndexedTriangleFanSet",
+       "IndexedTriangleSet",
+       "IndexedTriangleStripSet",
+       "Inline",
+       "InlineGeometry",
+       "IntegerSequencer",
+       "IntegerTrigger",
+       "IsoSurfaceVolumeData",
+       "KeySensor",
+       "LOD",
+       "Layer",
+       "LayerSet",
+       "Layout",
+       "LayoutGroup",
+       "LayoutLayer",
+       "LinePickSensor",
+       "LineProperties",
+       "LineSet",
+       "ListenerPointSource",
+       "LoadSensor",
+       "LocalFog",
+       "Material",
+       "Matrix3VertexAttribute",
+       "Matrix4VertexAttribute",
+       "MetadataBoolean",
+       "MetadataDouble",
+       "MetadataFloat",
+       "MetadataInteger",
+       "MetadataSet",
+       "MetadataString",
+       "MicrophoneSource",
+       "MotorJoint",
+       "MovieTexture",
+       "MultiTexture",
+       "MultiTextureCoordinate",
+       "MultiTextureTransform",
+       "NavigationInfo",
+       "Normal",
+       "NormalInterpolator",
+       "NurbsCurve",
+       "NurbsCurve2D",
+       "NurbsOrientationInterpolator",
+       "NurbsPatchSurface",
+       "NurbsPositionInterpolator",
+       "NurbsSet",
+       "NurbsSurfaceInterpolator",
+       "NurbsSweptSurface",
+       "NurbsSwungSurface",
+       "NurbsTextureCoordinate",
+       "NurbsTrimmedSurface",
+       "OpacityMapVolumeStyle",
+       "OrientationChaser",
+       "OrientationDamper",
+       "OrientationInterpolator",
+       "OrthoViewpoint",
+       "OscillatorSource",
+       "PackagedShader",
+       "ParticleSystem",
+       "PeriodicWave",
+       "PhysicalMaterial",
+       "PickableGroup",
+       "PixelTexture",
+       "PixelTexture3D",
+       "PlaneSensor",
+       "PointEmitter",
+       "PointLight",
+       "PointPickSensor",
+       "PointProperties",
+       "PointSet",
+       "Polyline2D",
+       "PolylineEmitter",
+       "Polypoint2D",
+       "PositionChaser",
+       "PositionChaser2D",
+       "PositionDamper",
+       "PositionDamper2D",
+       "PositionInterpolator",
+       "PositionInterpolator2D",
+       "PrimitivePickSensor",
+       "ProgramShader",
+       "ProjectionVolumeStyle",
+       "ProtoBody",
+       "ProtoInstance",
+       "ProximitySensor",
+       "QuadSet",
+       "ReceiverPdu",
+       "Rectangle2D",
+       "RenderedTexture",
+       "RigidBody",
+       "RigidBodyCollection",
+       "ScalarChaser",
+       "ScalarDamper",
+       "ScalarInterpolator",
+       "Scene",
+       "ScreenFontStyle",
+       "ScreenGroup",
+       "Script",
+       "SegmentedVolumeData",
+       "ShadedVolumeStyle",
+       "ShaderPart",
+       "ShaderProgram",
+       "Shape",
+       "SignalPdu",
+       "SilhouetteEnhancementVolumeStyle",
+       "SingleAxisHingeJoint",
+       "SliderJoint",
+       "Sound",
+       "SpatialSound",
+       "Sphere",
+       "SphereSensor",
+       "SplinePositionInterpolator",
+       "SplinePositionInterpolator2D",
+       "SplineScalarInterpolator",
+       "SpotLight",
+       "SquadOrientationInterpolator",
+       "StaticGroup",
+       "StreamAudioDestination",
+       "StreamAudioSource",
+       "StringSensor",
+       "SurfaceEmitter",
+       "Switch",
+       "Tangent",
+       "TexCoordChaser2D",
+       "TexCoordDamper2D",
+       "Text",
+       "TextureBackground",
+       "TextureCoordinate",
+       "TextureCoordinate3D",
+       "TextureCoordinate4D",
+       "TextureCoordinateGenerator",
+       "TextureProjector",
+       "TextureProjectorParallel",
+       "TextureProperties",
+       "TextureTransform",
+       "TextureTransform3D",
+       "TextureTransformMatrix3D",
+       "TimeSensor",
+       "TimeTrigger",
+       "ToneMappedVolumeStyle",
+       "TouchSensor",
+       "Transform",
+       "TransformSensor",
+       "TransmitterPdu",
+       "TriangleFanSet",
+       "TriangleSet",
+       "TriangleSet2D",
+       "TriangleStripSet",
+       "TwoSidedMaterial",
+       "UniversalJoint",
+       "UnlitMaterial",
+       "Viewpoint",
+       "ViewpointGroup",
+       "Viewport",
+       "VisibilitySensor",
+       "VolumeData",
+       "VolumeEmitter",
+       "VolumePickSensor",
+       "WaveShaper",
+       "WindPhysicsModel",
+       "WorldInfo",
+       "X3DAppearanceChildNode",
+       "X3DAppearanceNode",
+       "X3DBackgroundNode",
+       "X3DBindableNode",
+       "X3DBoundedObject",
+       "X3DChaserNode",
+       "X3DChildNode",
+       "X3DColorNode",
+       "X3DComposableVolumeRenderStyleNode",
+       "X3DComposedGeometryNode",
+       "X3DCoordinateNode",
+       "X3DDamperNode",
+       "X3DDragSensorNode",
+       "X3DEnvironmentTextureNode",
+       "X3DEnvironmentalSensorNode",
+       "X3DFogObject",
+       "X3DFollowerNode",
+       "X3DFontStyleNode",
+       "X3DGeometricPropertyNode",
+       "X3DGeometryNode",
+       "X3DGroupingNode",
+       "X3DInfoNode",
+       "X3DInterpolatorNode",
+       "X3DKeyDeviceSensorNode",
+       "X3DLayerNode",
+       "X3DLayoutNode",
+       "X3DLightNode",
+       "X3DMaterialNode",
+       "X3DMetadataObject",
+       "X3DNBodyCollidableNode",
+       "X3DNBodyCollisionSpaceNode",
+       "X3DNetworkSensorNode",
+       "X3DNode",
+       "X3DNormalNode",
+       "X3DNurbsControlCurveNode",
+       "X3DNurbsSurfaceGeometryNode",
+       "X3DOneSidedMaterialNode",
+       "X3DParametricGeometryNode",
+       "X3DParticleEmitterNode",
+       "X3DParticlePhysicsModelNode",
+       "X3DPickSensorNode",
+       "X3DPickableObject",
+       "X3DPointingDeviceSensorNode",
+       "X3DProductStructureChildNode",
+       "X3DProgrammableShaderObject",
+       "X3DPrototypeInstance",
+       "X3DRigidJointNode",
+       "X3DScriptNode",
+       "X3DSensorNode",
+       "X3DSequencerNode",
+       "X3DShaderNode",
+       "X3DShapeNode",
+       "X3DSingleTextureCoordinateNode",
+       "X3DSingleTextureNode",
+       "X3DSingleTextureTransformNode",
+       "X3DSoundChannelNode",
+       "X3DSoundDestinationNode",
+       "X3DSoundNode",
+       "X3DSoundProcessingNode",
+       "X3DSoundSourceNode",
+       "X3DStatement",
+       "X3DTangentNode",
+       "X3DTexture2DNode",
+       "X3DTexture3DNode",
+       "X3DTextureCoordinateNode",
+       "X3DTextureNode",
+       "X3DTextureProjectorNode",
+       "X3DTextureTransformNode",
+       "X3DTimeDependentNode",
+       "X3DTouchSensorNode",
+       "X3DTriggerNode",
+       "X3DUrlObject",
+       "X3DUrlOutputObject",
+       "X3DVertexAttributeNode",
+       "X3DViewpointNode",
+       "X3DViewportNode",
+       "X3DVolumeDataNode",
+       "X3DVolumeRenderStyleNode",
+       "field",
+       "fieldValue"
+      ]
+     },
+     ":Gilt": {
+      "count": 344,
+      "stated": [
+       "PhysicalMaterial"
+      ],
+      "types": [
+       "AcousticProperties",
+       "Analyser",
+       "Anchor",
+       "Appearance",
+       "Arc2D",
+       "ArcClose2D",
+       "AudioClip",
+       "AudioDestination",
+       "Background",
+       "BallJoint",
+       "Billboard",
+       "BiquadFilter",
+       "BlendedVolumeStyle",
+       "BooleanFilter",
+       "BooleanSequencer",
+       "BooleanToggle",
+       "BooleanTrigger",
+       "BoundaryEnhancementVolumeStyle",
+       "BoundedPhysicsModel",
+       "Box",
+       "BufferAudioSource",
+       "CADAssembly",
+       "CADFace",
+       "CADLayer",
+       "CADPart",
+       "CartoonVolumeStyle",
+       "ChannelMerger",
+       "ChannelSelector",
+       "ChannelSplitter",
+       "Circle2D",
+       "ClipPlane",
+       "CollidableOffset",
+       "CollidableShape",
+       "Collision",
+       "CollisionCollection",
+       "CollisionSensor",
+       "CollisionSpace",
+       "Color",
+       "ColorChaser",
+       "ColorDamper",
+       "ColorInterpolator",
+       "ColorRGBA",
+       "ComposedCubeMapTexture",
+       "ComposedShader",
+       "ComposedTexture3D",
+       "ComposedVolumeStyle",
+       "Cone",
+       "ConeEmitter",
+       "Contact",
+       "Contour2D",
+       "ContourPolyline2D",
+       "Convolver",
+       "Coordinate",
+       "CoordinateChaser",
+       "CoordinateDamper",
+       "CoordinateDouble",
+       "CoordinateInterpolator",
+       "CoordinateInterpolator2D",
+       "Cylinder",
+       "CylinderSensor",
+       "DISEntityManager",
+       "DISEntityTypeMapping",
+       "Delay",
+       "DirectionalLight",
+       "Disk2D",
+       "DoubleAxisHingeJoint",
+       "DynamicsCompressor",
+       "EaseInEaseOut",
+       "EdgeEnhancementVolumeStyle",
+       "ElevationGrid",
+       "EnvironmentLight",
+       "EspduTransform",
+       "ExplosionEmitter",
+       "Extrusion",
+       "FillProperties",
+       "FloatVertexAttribute",
+       "Fog",
+       "FogCoordinate",
+       "FontLibrary",
+       "FontStyle",
+       "ForcePhysicsModel",
+       "Gain",
+       "GaussianSplats",
+       "GeneratedCubeMapTexture",
+       "GeoCoordinate",
+       "GeoElevationGrid",
+       "GeoLOD",
+       "GeoLocation",
+       "GeoMetadata",
+       "GeoOrigin",
+       "GeoPositionInterpolator",
+       "GeoProximitySensor",
+       "GeoTouchSensor",
+       "GeoTransform",
+       "GeoViewpoint",
+       "Group",
+       "HAnimDisplacer",
+       "HAnimHumanoid",
+       "HAnimJoint",
+       "HAnimMotion",
+       "HAnimPose",
+       "HAnimSegment",
+       "HAnimSite",
+       "ImageCubeMapTexture",
+       "ImageTexture",
+       "ImageTexture3D",
+       "IndexedFaceSet",
+       "IndexedLineSet",
+       "IndexedQuadSet",
+       "IndexedTriangleFanSet",
+       "IndexedTriangleSet",
+       "IndexedTriangleStripSet",
+       "Inline",
+       "InlineGeometry",
+       "IntegerSequencer",
+       "IntegerTrigger",
+       "IsoSurfaceVolumeData",
+       "KeySensor",
+       "LOD",
+       "Layer",
+       "LayerSet",
+       "Layout",
+       "LayoutGroup",
+       "LayoutLayer",
+       "LinePickSensor",
+       "LineProperties",
+       "LineSet",
+       "ListenerPointSource",
+       "LoadSensor",
+       "LocalFog",
+       "Material",
+       "Matrix3VertexAttribute",
+       "Matrix4VertexAttribute",
+       "MetadataBoolean",
+       "MetadataDouble",
+       "MetadataFloat",
+       "MetadataInteger",
+       "MetadataSet",
+       "MetadataString",
+       "MicrophoneSource",
+       "MotorJoint",
+       "MovieTexture",
+       "MultiTexture",
+       "MultiTextureCoordinate",
+       "MultiTextureTransform",
+       "NavigationInfo",
+       "Normal",
+       "NormalInterpolator",
+       "NurbsCurve",
+       "NurbsCurve2D",
+       "NurbsOrientationInterpolator",
+       "NurbsPatchSurface",
+       "NurbsPositionInterpolator",
+       "NurbsSet",
+       "NurbsSurfaceInterpolator",
+       "NurbsSweptSurface",
+       "NurbsSwungSurface",
+       "NurbsTextureCoordinate",
+       "NurbsTrimmedSurface",
+       "OpacityMapVolumeStyle",
+       "OrientationChaser",
+       "OrientationDamper",
+       "OrientationInterpolator",
+       "OrthoViewpoint",
+       "OscillatorSource",
+       "PackagedShader",
+       "ParticleSystem",
+       "PeriodicWave",
+       "PhysicalMaterial",
+       "PickableGroup",
+       "PixelTexture",
+       "PixelTexture3D",
+       "PlaneSensor",
+       "PointEmitter",
+       "PointLight",
+       "PointPickSensor",
+       "PointProperties",
+       "PointSet",
+       "Polyline2D",
+       "PolylineEmitter",
+       "Polypoint2D",
+       "PositionChaser",
+       "PositionChaser2D",
+       "PositionDamper",
+       "PositionDamper2D",
+       "PositionInterpolator",
+       "PositionInterpolator2D",
+       "PrimitivePickSensor",
+       "ProgramShader",
+       "ProjectionVolumeStyle",
+       "ProtoInstance",
+       "ProximitySensor",
+       "QuadSet",
+       "ReceiverPdu",
+       "Rectangle2D",
+       "RenderedTexture",
+       "RigidBody",
+       "RigidBodyCollection",
+       "ScalarChaser",
+       "ScalarDamper",
+       "ScalarInterpolator",
+       "ScreenFontStyle",
+       "ScreenGroup",
+       "Script",
+       "SegmentedVolumeData",
+       "ShadedVolumeStyle",
+       "ShaderPart",
+       "ShaderProgram",
+       "Shape",
+       "SignalPdu",
+       "SilhouetteEnhancementVolumeStyle",
+       "SingleAxisHingeJoint",
+       "SliderJoint",
+       "Sound",
+       "SpatialSound",
+       "Sphere",
+       "SphereSensor",
+       "SplinePositionInterpolator",
+       "SplinePositionInterpolator2D",
+       "SplineScalarInterpolator",
+       "SpotLight",
+       "SquadOrientationInterpolator",
+       "StaticGroup",
+       "StreamAudioDestination",
+       "StreamAudioSource",
+       "StringSensor",
+       "SurfaceEmitter",
+       "Switch",
+       "Tangent",
+       "TexCoordChaser2D",
+       "TexCoordDamper2D",
+       "Text",
+       "TextureBackground",
+       "TextureCoordinate",
+       "TextureCoordinate3D",
+       "TextureCoordinate4D",
+       "TextureCoordinateGenerator",
+       "TextureProjector",
+       "TextureProjectorParallel",
+       "TextureProperties",
+       "TextureTransform",
+       "TextureTransform3D",
+       "TextureTransformMatrix3D",
+       "TimeSensor",
+       "TimeTrigger",
+       "ToneMappedVolumeStyle",
+       "TouchSensor",
+       "Transform",
+       "TransformSensor",
+       "TransmitterPdu",
+       "TriangleFanSet",
+       "TriangleSet",
+       "TriangleSet2D",
+       "TriangleStripSet",
+       "TwoSidedMaterial",
+       "UniversalJoint",
+       "UnlitMaterial",
+       "Viewpoint",
+       "ViewpointGroup",
+       "Viewport",
+       "VisibilitySensor",
+       "VolumeData",
+       "VolumeEmitter",
+       "VolumePickSensor",
+       "WaveShaper",
+       "WindPhysicsModel",
+       "WorldInfo",
+       "X3DAppearanceChildNode",
+       "X3DAppearanceNode",
+       "X3DBackgroundNode",
+       "X3DBindableNode",
+       "X3DBoundedObject",
+       "X3DChaserNode",
+       "X3DChildNode",
+       "X3DColorNode",
+       "X3DComposableVolumeRenderStyleNode",
+       "X3DComposedGeometryNode",
+       "X3DCoordinateNode",
+       "X3DDamperNode",
+       "X3DDragSensorNode",
+       "X3DEnvironmentTextureNode",
+       "X3DEnvironmentalSensorNode",
+       "X3DFogObject",
+       "X3DFollowerNode",
+       "X3DFontStyleNode",
+       "X3DGeometricPropertyNode",
+       "X3DGeometryNode",
+       "X3DGroupingNode",
+       "X3DInfoNode",
+       "X3DInterpolatorNode",
+       "X3DKeyDeviceSensorNode",
+       "X3DLayerNode",
+       "X3DLayoutNode",
+       "X3DLightNode",
+       "X3DMaterialNode",
+       "X3DMetadataObject",
+       "X3DNBodyCollidableNode",
+       "X3DNBodyCollisionSpaceNode",
+       "X3DNetworkSensorNode",
+       "X3DNode",
+       "X3DNormalNode",
+       "X3DNurbsControlCurveNode",
+       "X3DNurbsSurfaceGeometryNode",
+       "X3DOneSidedMaterialNode",
+       "X3DParametricGeometryNode",
+       "X3DParticleEmitterNode",
+       "X3DParticlePhysicsModelNode",
+       "X3DPickSensorNode",
+       "X3DPickableObject",
+       "X3DPointingDeviceSensorNode",
+       "X3DProductStructureChildNode",
+       "X3DProgrammableShaderObject",
+       "X3DPrototypeInstance",
+       "X3DRigidJointNode",
+       "X3DScriptNode",
+       "X3DSensorNode",
+       "X3DSequencerNode",
+       "X3DShaderNode",
+       "X3DShapeNode",
+       "X3DSingleTextureCoordinateNode",
+       "X3DSingleTextureNode",
+       "X3DSingleTextureTransformNode",
+       "X3DSoundChannelNode",
+       "X3DSoundDestinationNode",
+       "X3DSoundNode",
+       "X3DSoundProcessingNode",
+       "X3DSoundSourceNode",
+       "X3DTangentNode",
+       "X3DTexture2DNode",
+       "X3DTexture3DNode",
+       "X3DTextureCoordinateNode",
+       "X3DTextureNode",
+       "X3DTextureProjectorNode",
+       "X3DTextureTransformNode",
+       "X3DTimeDependentNode",
+       "X3DTouchSensorNode",
+       "X3DTriggerNode",
+       "X3DUrlObject",
+       "X3DUrlOutputObject",
+       "X3DVertexAttributeNode",
+       "X3DViewpointNode",
+       "X3DViewportNode",
+       "X3DVolumeDataNode",
+       "X3DVolumeRenderStyleNode"
+      ]
+     },
+     ":Appearance_2_12_3_1_1_1": {
+      "count": 6,
+      "stated": [
+       "Appearance"
+      ],
+      "types": [
+       "Appearance",
+       "ShadedVolumeStyle",
+       "X3DAppearanceNode",
+       "X3DComposableVolumeRenderStyleNode",
+       "X3DNode",
+       "X3DVolumeRenderStyleNode"
+      ]
+     }
+    },
+    "owlrl_graph_growth_triples": 49214,
+    "named_individuals": 184,
+    "all_type_triples_added_on_named_individuals": 43553,
+    "non_x3do_types_added": {
+     "rdfs:Resource": 184,
+     "xsd:NMTOKEN": 184
+    },
+    "_ms": 10621.4
+   }
+  },
+  "T3.2:try": {
+   "spec": {
+    "kind": "reason",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "rules": "rdfs",
+    "focus": [
+     ":Appearance_2_12_3_1_1_1"
+    ]
+   },
+   "result": {
+    "added_x3do_types_on_scene_iris": 43185,
+    "x3do_types_on_scene_iris_after": 43369,
+    "focus": {
+     ":Appearance_2_12_3_1_1_1": {
+      "count": 6,
+      "stated": [
+       "Appearance"
+      ],
+      "types": [
+       "Appearance",
+       "ShadedVolumeStyle",
+       "X3DAppearanceNode",
+       "X3DComposableVolumeRenderStyleNode",
+       "X3DNode",
+       "X3DVolumeRenderStyleNode"
+      ]
+     }
+    },
+    "owlrl_graph_growth_triples": 49214,
+    "named_individuals": 184,
+    "all_type_triples_added_on_named_individuals": 43553,
+    "non_x3do_types_added": {
+     "rdfs:Resource": 184,
+     "xsd:NMTOKEN": 184
+    },
+    "_ms": 10237.5
+   }
+  },
+  "T3.3:main": {
+   "spec": {
+    "kind": "reason",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "rules": "rdfs",
+    "focus": [
+     ":Box_2_12_3_1_1_2"
+    ]
+   },
+   "result": {
+    "added_x3do_types_on_scene_iris": 43185,
+    "x3do_types_on_scene_iris_after": 43369,
+    "focus": {
+     ":Box_2_12_3_1_1_2": {
+      "count": 23,
+      "stated": [
+       "Box"
+      ],
+      "types": [
+       "Box",
+       "FontStyle",
+       "GeneratedCubeMapTexture",
+       "GeoProximitySensor",
+       "Layout",
+       "ProximitySensor",
+       "Rectangle2D",
+       "TransformSensor",
+       "ViewpointGroup",
+       "VisibilitySensor",
+       "X3DAppearanceChildNode",
+       "X3DBoundedObject",
+       "X3DChildNode",
+       "X3DEnvironmentTextureNode",
+       "X3DEnvironmentalSensorNode",
+       "X3DFontStyleNode",
+       "X3DGeometryNode",
+       "X3DLayoutNode",
+       "X3DNBodyCollidableNode",
+       "X3DNode",
+       "X3DParametricGeometryNode",
+       "X3DSensorNode",
+       "X3DTextureNode"
+      ]
+     }
+    },
+    "owlrl_graph_growth_triples": 49214,
+    "named_individuals": 184,
+    "all_type_triples_added_on_named_individuals": 43553,
+    "non_x3do_types_added": {
+     "rdfs:Resource": 184,
+     "xsd:NMTOKEN": 184
+    },
+    "_ms": 10400.1
+   }
+  },
+  "T3.3:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?range WHERE { x3do:hasGeometry rdfs:range ?range }"
+   },
+   "result": {
+    "vars": [
+     "range"
+    ],
+    "count": 3,
+    "rows": [
+     {
+      "range": "x3do:X3DGeometryNode"
+     },
+     {
+      "range": "x3do:X3DNBodyCollidableNode"
+     },
+     {
+      "range": "x3do:X3DParametricGeometryNode"
+     }
+    ],
+    "_ms": 108.0
+   }
+  },
+  "T3.4:main": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F5",
+     "slice"
+    ],
+    "shape_ids": [
+     "S7"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "children-not-child-node",
+      "focus": ":Box_2_12_3_6",
+      "shape": "S7",
+      "severity": "sh:Violation",
+      "component": "sh:OrConstraintComponent",
+      "message": "S7: node in a children field is not an X3DChildNode",
+      "value": ":Box_2_12_3_6"
+     }
+    ],
+    "ms_pyshacl": 82.6,
+    "_ms": 281.2
+   }
+  },
+  "T3.4:try": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F5",
+     "slice"
+    ],
+    "shape_ids": [
+     "S7"
+    ],
+    "inference": "rdfs"
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 8698.5,
+    "_ms": 8842.2
+   }
+  },
+  "T3.5:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT (COUNT(*) AS ?disjointAxioms) WHERE {\n  ?a owl:disjointWith ?b\n}"
+   },
+   "result": {
+    "vars": [
+     "disjointAxioms"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "disjointAxioms": 0
+     }
+    ],
+    "_ms": 113.3
+   }
+  },
+  "T3.5:try": {
+   "spec": {
+    "kind": "ask",
+    "graph": [
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nASK { x3do:Box rdfs:subClassOf* x3do:X3DChildNode }"
+   },
+   "result": {
+    "ask": false,
+    "_ms": 72.7
+   }
+  },
+  "T3.6:main": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": null,
+      "focus": ":BareSpecimen",
+      "shape": "lab:NeedsAppearance",
+      "severity": "sh:Violation",
+      "component": "sh:MinCountConstraintComponent",
+      "message": "Shape states no Appearance",
+      "value": null
+     }
+    ],
+    "ms_pyshacl": 40.2,
+    "_ms": 150.9
+   }
+  },
+  "T3.6:try": {
+   "spec": {
+    "kind": "ask",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nASK { :BareSpecimen x3do:hasAppearance ?a }"
+   },
+   "result": {
+    "ask": false,
+    "_ms": 42.6
+   }
+  },
+  "T4.1:main": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F2",
+     "slice"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": null,
+      "focus": ":BareSpecimen",
+      "shape": "lab:NeedsGeometry",
+      "severity": "sh:Warning",
+      "component": "sh:MinCountConstraintComponent",
+      "message": "Shape has no geometry",
+      "value": null
+     }
+    ],
+    "ms_pyshacl": 40.2,
+    "_ms": 150.6
+   }
+  },
+  "T4.1:try": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F2",
+     "slice"
+    ],
+    "shape_ids": [
+     "S2"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "shape-no-geometry",
+      "focus": ":BareSpecimen",
+      "shape": "S2",
+      "severity": "sh:Warning",
+      "component": "sh:OrConstraintComponent",
+      "message": "S2: Shape has no geometry (valid X3D, draws nothing)",
+      "value": ":BareSpecimen"
+     }
+    ],
+    "ms_pyshacl": 49.1,
+    "_ms": 314.9
+   }
+  },
+  "T4.2:main": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F1",
+     "slice"
+    ],
+    "shape_ids": [
+     "S1"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "colour-out-of-range",
+      "focus": ":Ruby",
+      "shape": "S1",
+      "severity": "sh:Violation",
+      "component": "sh:MaxInclusiveConstraintComponent",
+      "message": "S1: diffuseColor component outside [0,1]",
+      "value": 1.5
+     }
+    ],
+    "ms_pyshacl": 51.2,
+    "_ms": 170.3
+   }
+  },
+  "T4.2:try": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "teach-exponent",
+     "slice"
+    ],
+    "shape_ids": [
+     "S1"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "colour-out-of-range",
+      "focus": ":Ruby",
+      "shape": "S1",
+      "severity": "sh:Violation",
+      "component": "sh:MaxInclusiveConstraintComponent",
+      "message": "S1: diffuseColor component outside [0,1]",
+      "value": 1.5
+     }
+    ],
+    "ms_pyshacl": 50.1,
+    "_ms": 161.1
+   }
+  },
+  "T4.3:main": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 6,
+    "results": [
+     {
+      "check_id": null,
+      "focus": ":CoreGlow",
+      "shape": "lab:NaiveArity",
+      "severity": "sh:Violation",
+      "component": "sh:MinCountConstraintComponent",
+      "message": "naive: fewer than 3 diffuseColor components",
+      "value": null
+     },
+     {
+      "check_id": null,
+      "focus": ":Flame",
+      "shape": "lab:NaiveArity",
+      "severity": "sh:Violation",
+      "component": "sh:MinCountConstraintComponent",
+      "message": "naive: fewer than 3 diffuseColor components",
+      "value": null
+     },
+     {
+      "check_id": null,
+      "focus": ":InlayGlow",
+      "shape": "lab:NaiveArity",
+      "severity": "sh:Violation",
+      "component": "sh:MinCountConstraintComponent",
+      "message": "naive: fewer than 3 diffuseColor components",
+      "value": null
+     },
+     {
+      "check_id": null,
+      "focus": ":Pearl",
+      "shape": "lab:NaiveArity",
+      "severity": "sh:Violation",
+      "component": "sh:MinCountConstraintComponent",
+      "message": "naive: fewer than 3 diffuseColor components",
+      "value": null
+     },
+     {
+      "check_id": null,
+      "focus": ":PlaqueSkin",
+      "shape": "lab:NaiveArity",
+      "severity": "sh:Violation",
+      "component": "sh:MinCountConstraintComponent",
+      "message": "naive: fewer than 3 diffuseColor components",
+      "value": null
+     },
+     {
+      "check_id": null,
+      "focus": ":RimGlow",
+      "shape": "lab:NaiveArity",
+      "severity": "sh:Violation",
+      "component": "sh:MinCountConstraintComponent",
+      "message": "naive: fewer than 3 diffuseColor components",
+      "value": null
+     }
+    ],
+    "ms_pyshacl": 43.6,
+    "_ms": 151.5
+   }
+  },
+  "T4.3:try": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "shape_ids": [
+     "S1b"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 654.4,
+    "_ms": 766.9
+   }
+  },
+  "T4.4:main": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F3",
+     "slice"
+    ],
+    "shape_ids": [
+     "S3"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "use-type-mismatch",
+      "focus": ":Weave-USE-1",
+      "shape": "S3",
+      "severity": "sh:Violation",
+      "component": "sh:SPARQLConstraintComponent",
+      "message": "S3: this USE is a PhysicalMaterial but DEF Weave is not",
+      "value": ":Weave-USE-1"
+     }
+    ],
+    "ms_pyshacl": 245.7,
+    "_ms": 361.4
+   }
+  },
+  "T4.4:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F3"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?use ?useType ?def WHERE {\n  ?use owl:sameAs ?def ; a ?useType .\n  FILTER(STRSTARTS(STR(?useType), STR(x3do:)))\n  FILTER NOT EXISTS { ?def a ?useType }\n}"
+   },
+   "result": {
+    "vars": [
+     "use",
+     "useType",
+     "def"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "use": ":Weave-USE-1",
+      "useType": "x3do:PhysicalMaterial",
+      "def": ":Weave"
+     }
+    ],
+    "_ms": 56.1
+   }
+  },
+  "T4.5:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?parent ?field WHERE {\n  ?field rdfs:subPropertyOf+ x3do:hasChild ; rdfs:range ?range ; rdfs:domain ?parent .\n  x3do:Box rdfs:subClassOf* ?range .\n  FILTER(isIRI(?range) && ?range != x3do:X3DNode)\n} ORDER BY ?parent ?field"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "field"
+    ],
+    "count": 12,
+    "rows": [
+     {
+      "parent": "x3do:BoundedPhysicsModel",
+      "field": "x3do:hasGeometry"
+     },
+     {
+      "parent": "x3do:LinePickSensor",
+      "field": "x3do:hasPickingGeometry"
+     },
+     {
+      "parent": "x3do:NurbsSet",
+      "field": "x3do:hasGeometry"
+     },
+     {
+      "parent": "x3do:ParticleSystem",
+      "field": "x3do:hasGeometry"
+     },
+     {
+      "parent": "x3do:PointPickSensor",
+      "field": "x3do:hasPickingGeometry"
+     },
+     {
+      "parent": "x3do:PrimitivePickSensor",
+      "field": "x3do:hasPickingGeometry"
+     },
+     {
+      "parent": "x3do:RigidBody",
+      "field": "x3do:hasGeometry"
+     },
+     {
+      "parent": "x3do:Shape",
+      "field": "x3do:hasGeometry"
+     },
+     {
+      "parent": "x3do:SurfaceEmitter",
+      "field": "x3do:hasSurface"
+     },
+     {
+      "parent": "x3do:VolumePickSensor",
+      "field": "x3do:hasPickingGeometry"
+     },
+     {
+      "parent": "x3do:X3DPickSensorNode",
+      "field": "x3do:hasPickingGeometry"
+     },
+     {
+      "parent": "x3do:X3DShapeNode",
+      "field": "x3do:hasGeometry"
+     }
+    ],
+    "_ms": 174.7
+   }
+  },
+  "T4.5:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?parent ?field WHERE {\n  ?field rdfs:subPropertyOf+ x3do:hasChild ; rdfs:range ?range ; rdfs:domain ?parent .\n  x3do:ImageTexture rdfs:subClassOf* ?range .\n  FILTER(isIRI(?range) && ?range != x3do:X3DNode)\n} ORDER BY ?parent ?field"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "field"
+    ],
+    "count": 85,
+    "rows": [
+     {
+      "parent": "x3do:Analyser",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Anchor",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Appearance",
+      "field": "x3do:hasTexture"
+     },
+     {
+      "parent": "x3do:AudioDestination",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Billboard",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:BiquadFilter",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:BlendedVolumeStyle",
+      "field": "x3do:hasWeightTransferFunction1"
+     },
+     {
+      "parent": "x3do:BlendedVolumeStyle",
+      "field": "x3do:hasWeightTransferFunction2"
+     },
+     {
+      "parent": "x3do:CADAssembly",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:CADLayer",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:CADPart",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:ChannelMerger",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:ChannelSelector",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:ChannelSplitter",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Collision",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:ComposedCubeMapTexture",
+      "field": "x3do:hasBackTexture"
+     },
+     {
+      "parent": "x3do:ComposedCubeMapTexture",
+      "field": "x3do:hasBottomTexture"
+     },
+     {
+      "parent": "x3do:ComposedCubeMapTexture",
+      "field": "x3do:hasFrontTexture"
+     },
+     {
+      "parent": "x3do:ComposedCubeMapTexture",
+      "field": "x3do:hasLeftTexture"
+     },
+     {
+      "parent": "x3do:ComposedCubeMapTexture",
+      "field": "x3do:hasRightTexture"
+     },
+     {
+      "parent": "x3do:ComposedCubeMapTexture",
+      "field": "x3do:hasTopTexture"
+     },
+     {
+      "parent": "x3do:ComposedTexture3D",
+      "field": "x3do:hasTexture"
+     },
+     {
+      "parent": "x3do:Contour2D",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Convolver",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:DISEntityManager",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Delay",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:DynamicsCompressor",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:EnvironmentLight",
+      "field": "x3do:hasDiffuseTexture"
+     },
+     {
+      "parent": "x3do:EnvironmentLight",
+      "field": "x3do:hasSpecularTexture"
+     },
+     {
+      "parent": "x3do:EspduTransform",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Gain",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:GeoLOD",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:GeoLocation",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:GeoTransform",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Group",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:HAnimHumanoid",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:HAnimJoint",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:HAnimPose",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:HAnimSegment",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:HAnimSite",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:LOD",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Layer",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:LayoutGroup",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:LayoutLayer",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:LoadSensor",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Material",
+      "field": "x3do:hasAmbientTexture"
+     },
+     {
+      "parent": "x3do:Material",
+      "field": "x3do:hasDiffuseTexture"
+     },
+     {
+      "parent": "x3do:Material",
+      "field": "x3do:hasEmissiveTexture"
+     },
+     {
+      "parent": "x3do:Material",
+      "field": "x3do:hasNormalTexture"
+     },
+     {
+      "parent": "x3do:Material",
+      "field": "x3do:hasOcclusionTexture"
+     },
+     {
+      "parent": "x3do:Material",
+      "field": "x3do:hasShininessTexture"
+     },
+     {
+      "parent": "x3do:Material",
+      "field": "x3do:hasSpecularTexture"
+     },
+     {
+      "parent": "x3do:MultiTexture",
+      "field": "x3do:hasTexture"
+     },
+     {
+      "parent": "x3do:PhysicalMaterial",
+      "field": "x3do:hasBaseTexture"
+     },
+     {
+      "parent": "x3do:PhysicalMaterial",
+      "field": "x3do:hasEmissiveTexture"
+     },
+     {
+      "parent": "x3do:PhysicalMaterial",
+      "field": "x3do:hasMetallicRoughnessTexture"
+     },
+     {
+      "parent": "x3do:PhysicalMaterial",
+      "field": "x3do:hasNormalTexture"
+     },
+     {
+      "parent": "x3do:PhysicalMaterial",
+      "field": "x3do:hasOcclusionTexture"
+     },
+     {
+      "parent": "x3do:PickableGroup",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:ProtoBody",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Scene",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:ScreenGroup",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:SpatialSound",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:StaticGroup",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:StreamAudioDestination",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Switch",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:TextureBackground",
+      "field": "x3do:hasBackTexture"
+     },
+     {
+      "parent": "x3do:TextureBackground",
+      "field": "x3do:hasBottomTexture"
+     },
+     {
+      "parent": "x3do:TextureBackground",
+      "field": "x3do:hasFrontTexture"
+     },
+     {
+      "parent": "x3do:TextureBackground",
+      "field": "x3do:hasLeftTexture"
+     },
+     {
+      "parent": "x3do:TextureBackground",
+      "field": "x3do:hasRightTexture"
+     },
+     {
+      "parent": "x3do:TextureBackground",
+      "field": "x3do:hasTopTexture"
+     },
+     {
+      "parent": "x3do:TextureProjector",
+      "field": "x3do:hasTexture"
+     },
+     {
+      "parent": "x3do:TextureProjectorParallel",
+      "field": "x3do:hasTexture"
+     },
+     {
+      "parent": "x3do:Transform",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:UnlitMaterial",
+      "field": "x3do:hasEmissiveTexture"
+     },
+     {
+      "parent": "x3do:UnlitMaterial",
+      "field": "x3do:hasNormalTexture"
+     },
+     {
+      "parent": "x3do:ViewpointGroup",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:Viewport",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:WaveShaper",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:X3DGroupingNode",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:X3DTextureProjectorNode",
+      "field": "x3do:hasTexture"
+     },
+     {
+      "parent": "x3do:X3DViewportNode",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:field",
+      "field": "x3do:hasChildren"
+     },
+     {
+      "parent": "x3do:fieldValue",
+      "field": "x3do:hasChildren"
+     }
+    ],
+    "_ms": 110.9
+   }
+  },
+  "T4.6:main": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "shape_ids": [
+     "S7"
+    ],
+    "inference": "none",
+    "js_also_unfixed": true
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 53.7,
+    "_ms": 168.9
+   }
+  },
+  "T4.6:try": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 67.2,
+    "_ms": 178.6
+   }
+  },
+  "T4.8:main": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 4793.6,
+    "_ms": 4915.1
+   }
+  },
+  "T5.2:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?Y WHERE {\n  ?material a x3do:Material ; x3do:diffuseColor ?c .\n  ?c rdf:first ?r ; rdf:rest/rdf:first ?g ; rdf:rest/rdf:rest/rdf:first ?b .\n  BIND(0.2126 * ?r + 0.7152 * ?g + 0.0722 * ?b AS ?Y)\n  FILTER(?Y > 0.2)\n} ORDER BY DESC(?Y)"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "Y"
+    ],
+    "count": 5,
+    "rows": [
+     {
+      "material": ":Pearl",
+      "Y": 1.0
+     },
+     {
+      "material": ":PlaqueSkin",
+      "Y": 1.0
+     },
+     {
+      "material": ":Jade",
+      "Y": 0.552224
+     },
+     {
+      "material": ":Cobalt",
+      "Y": 0.294358
+     },
+     {
+      "material": ":Ruby",
+      "Y": 0.249478
+     }
+    ],
+    "_ms": 60.7
+   }
+  },
+  "T5.2:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE { ?shape a x3do:Shape FILTER NOT EXISTS { ?shape x3do:hasAppearance ?a } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "shape": ":BareSpecimen"
+     }
+    ],
+    "_ms": 48.8
+   }
+  },
+  "T5.3:main": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F3",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "use-type-mismatch",
+      "focus": ":Weave-USE-1",
+      "shape": "S3",
+      "severity": "sh:Violation",
+      "component": "sh:SPARQLConstraintComponent",
+      "message": "S3: this USE is a PhysicalMaterial but DEF Weave is not",
+      "value": ":Weave-USE-1"
+     }
+    ],
+    "ms_pyshacl": 4664.2,
+    "_ms": 4779.0
+   }
+  },
+  "T5.3:try": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F6",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 5073.7,
+    "_ms": 5258.9
+   }
+  },
+  "T5.4:main": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "half-clear",
+      "focus": ":Cobalt",
+      "shape": "lab:HalfClear",
+      "severity": "sh:Violation",
+      "component": "sh:MaxInclusiveConstraintComponent",
+      "message": "Material is more than half transparent",
+      "value": 0.6
+     }
+    ],
+    "ms_pyshacl": 152.1,
+    "_ms": 322.8
+   }
+  },
+  "T5.4:try": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "inference": "none"
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 57.2,
+    "_ms": 217.0
+   }
+  },
+  "T5.5:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape ?material ?t WHERE {\n  ?shape a x3do:Shape ; x3do:hasAppearance/x3do:hasMaterial ?material .\n  ?material x3do:transparency ?t .\n  FILTER(?t > 0.5)\n} ORDER BY DESC(?t)"
+   },
+   "result": {
+    "vars": [
+     "shape",
+     "material",
+     "t"
+    ],
+    "count": 2,
+    "rows": [
+     {
+      "shape": ":GlassColumn",
+      "material": ":Glass",
+      "t": 0.7
+     },
+     {
+      "shape": ":CobaltShape",
+      "material": ":Cobalt",
+      "t": 0.6
+     }
+    ],
+    "_ms": 69.1
+   }
+  },
+  "T5.5:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape ?material ?t WHERE {\n  ?shape a x3do:Shape ; x3do:hasAppearance/owl:sameAs?/x3do:hasMaterial ?material .\n  ?material x3do:transparency ?t .\n  FILTER(?t > 0.5)\n} ORDER BY DESC(?t)"
+   },
+   "result": {
+    "vars": [
+     "shape",
+     "material",
+     "t"
+    ],
+    "count": 3,
+    "rows": [
+     {
+      "shape": ":GlassColumn",
+      "material": ":Glass",
+      "t": 0.7
+     },
+     {
+      "shape": ":Chimney",
+      "material": ":Glass",
+      "t": 0.7
+     },
+     {
+      "shape": ":CobaltShape",
+      "material": ":Cobalt",
+      "t": 0.6
+     }
+    ],
+    "_ms": 73.0
+   }
+  },
+  "T5.6:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?Y WHERE {\n  ?material a x3do:Material ; x3do:diffuseColor ?c .\n  ?c rdf:first ?r ; rdf:rest/rdf:first ?g ; rdf:rest/rdf:rest/rdf:first ?b .\n  BIND(0.2126 * ?r + 0.7152 * ?g + 0.0722 * ?b AS ?Y)\n  FILTER(?Y > 0.2)\n} ORDER BY DESC(?Y)"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "Y"
+    ],
+    "count": 5,
+    "rows": [
+     {
+      "material": ":Pearl",
+      "Y": 1.0
+     },
+     {
+      "material": ":PlaqueSkin",
+      "Y": 1.0
+     },
+     {
+      "material": ":Jade",
+      "Y": 0.552224
+     },
+     {
+      "material": ":Cobalt",
+      "Y": 0.294358
+     },
+     {
+      "material": ":Ruby",
+      "Y": 0.249478
+     }
+    ],
+    "_ms": 96.5
+   }
+  },
+  "T5.6:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?Y WHERE {\n  ?material a x3do:Material ; x3do:diffuseColor ?c .\n  ?c rdf:first ?r ; rdf:rest/rdf:first ?g ; rdf:rest/rdf:rest/rdf:first ?b .\n  BIND(0.2126 * ?r + 0.7152 * ?g + 0.0722 * ?b AS ?Y)\n  FILTER(?Y > 0.5)\n} ORDER BY DESC(?Y)"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "Y"
+    ],
+    "count": 3,
+    "rows": [
+     {
+      "material": ":Pearl",
+      "Y": 1.0
+     },
+     {
+      "material": ":PlaqueSkin",
+      "Y": 1.0
+     },
+     {
+      "material": ":Jade",
+      "Y": 0.552224
+     }
+    ],
+    "_ms": 98.8
+   }
+  },
+  "T5.7:main": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "shapes"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?id ?instruction WHERE {\n  ?shape lab:id ?id ; sh:agentInstruction ?instruction\n} ORDER BY ?id"
+   },
+   "result": {
+    "vars": [
+     "id",
+     "instruction"
+    ],
+    "count": 4,
+    "rows": [
+     {
+      "id": "S2",
+      "instruction": "Every Shape you write must contain exactly one geometry node; a Shape without geometry is valid X3D but invisible."
+     },
+     {
+      "id": "S3",
+      "instruction": "When you reuse a node with USE, the element name must match the node type of the DEF it names."
+     },
+     {
+      "id": "S5",
+      "instruction": "A ROUTE may only connect nodes that carry a DEF; check both names exist before you add it."
+     },
+     {
+      "id": "S7",
+      "instruction": "Only grouping, Shape, light, sensor, interpolator, viewpoint and other X3DChildNode types go in a children field; wrap geometry in a Shape."
+     }
+    ],
+    "_ms": 14.4
+   }
+  },
+  "T5.7:core": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "core-shapes"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nPREFIX xs: <urn:x3d-mcp:shapes:x3d-core#>\nSELECT (COUNT(DISTINCT ?shape) AS ?instructed) WHERE { ?shape sh:agentInstruction ?i }"
+   },
+   "result": {
+    "vars": [
+     "instructed"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "instructed": 4
+     }
+    ],
+    "_ms": 16.6
+   }
+  },
+  "T5.7:try": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "shapes"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?id ?sev WHERE { ?s lab:id ?id ; sh:severity ?sev } ORDER BY ?id"
+   },
+   "result": {
+    "vars": [
+     "id",
+     "sev"
+    ],
+    "count": 10,
+    "rows": [
+     {
+      "id": "S1",
+      "sev": "sh:Violation"
+     },
+     {
+      "id": "S1b",
+      "sev": "sh:Violation"
+     },
+     {
+      "id": "S2",
+      "sev": "sh:Warning"
+     },
+     {
+      "id": "S3",
+      "sev": "sh:Violation"
+     },
+     {
+      "id": "S3b",
+      "sev": "sh:Violation"
+     },
+     {
+      "id": "S4",
+      "sev": "sh:Warning"
+     },
+     {
+      "id": "S5",
+      "sev": "sh:Violation"
+     },
+     {
+      "id": "S6",
+      "sev": "sh:Violation"
+     },
+     {
+      "id": "S7",
+      "sev": "sh:Violation"
+     },
+     {
+      "id": "S8",
+      "sev": "sh:Violation"
+     }
+    ],
+    "_ms": 14.0
+   }
+  },
+  "T5.8:main": {
+   "spec": {
+    "kind": "sha256",
+    "file": "ttl/cabinet.ttl"
+   },
+   "result": {
+    "sha256": "526a30e27853972a6b79072751601a4ab628b9959e50af741cf912eef66fdf82",
+    "_ms": 0.2
+   }
+  },
+  "T5.8:slice": {
+   "spec": {
+    "kind": "sha256",
+    "file": "ontology/slice.ttl"
+   },
+   "result": {
+    "sha256": "6a881c2cd243011f23afc844baf411124a7cdab992dd38cdcbc0acad6c5bac6d",
+    "_ms": 0.2
+   }
+  },
+  "T5.8:try": {
+   "spec": {
+    "kind": "sha256",
+    "file": "shapes/x3d-lab.shacl.ttl"
+   },
+   "result": {
+    "sha256": "62975444cb759d270eecbe424413ad13661ab655ff8449ec9ceb766a3a317a40",
+    "_ms": 0.0
+   }
+  },
+  "C.1:main": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 6426.2,
+    "_ms": 6605.5
+   }
+  },
+  "bench:axioms": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "ontology"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT\n  (SUM(IF(?p = owl:disjointWith, 1, 0)) AS ?disjointWith)\n  (SUM(IF(?p = rdf:type && ?o = owl:AllDisjointClasses, 1, 0)) AS ?allDisjointClasses)\n  (SUM(IF(?p = rdf:type && ?o = owl:FunctionalProperty, 1, 0)) AS ?functionalProperties)\n  (SUM(IF(?p IN (owl:cardinality, owl:maxCardinality, owl:minCardinality, owl:qualifiedCardinality, owl:maxQualifiedCardinality), 1, 0)) AS ?cardinalityAxioms)\n  (SUM(IF(?p = rdf:type && ?o = owl:Restriction, 1, 0)) AS ?restrictions)\n  (SUM(IF(?p = rdf:type && ?o = owl:Class, 1, 0)) AS ?classes)\nWHERE { ?s ?p ?o }"
+   },
+   "result": {
+    "vars": [
+     "disjointWith",
+     "allDisjointClasses",
+     "functionalProperties",
+     "cardinalityAxioms",
+     "restrictions",
+     "classes"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "disjointWith": 0,
+      "allDisjointClasses": 0,
+      "functionalProperties": 0,
+      "cardinalityAxioms": 0,
+      "restrictions": 0,
+      "classes": 364
+     }
+    ],
+    "_ms": 5679.4
+   }
+  },
+  "bench:shacl:cabinet": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 5189.0,
+    "_ms": 5303.1
+   }
+  },
+  "bench:core:cabinet": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "shapes": "x3d-core",
+    "inference": "none",
+    "js_skip_group_by": true
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 10226.1,
+    "_ms": 10345.6
+   }
+  },
+  "bench:owlrl:cabinet": {
+   "spec": {
+    "kind": "consistency",
+    "graph": [
+     "cabinet",
+     "slice"
+    ]
+   },
+   "result": {
+    "consistent": true,
+    "inconsistency_messages": [],
+    "owl_nothing_members": [],
+    "triples_before": 5306,
+    "triples_after": 64269,
+    "ms_owlrl": 25055.6,
+    "_ms": 25224.0
+   }
+  },
+  "bench:detect:fault-F1:cabinet": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet",
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?v WHERE {\n  ?material x3do:diffuseColor/rdf:rest*/rdf:first ?v . FILTER(?v > 1 || ?v < 0) }"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "v"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 119.1
+   }
+  },
+  "bench:detect:fault-F2:cabinet": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape . FILTER NOT EXISTS { ?shape x3do:hasGeometry ?g } FILTER NOT EXISTS { ?shape owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 60.9
+   }
+  },
+  "bench:detect:fault-F3:cabinet": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?use ?useType ?def WHERE {\n  ?use owl:sameAs ?def ; a ?useType .\n  FILTER(STRSTARTS(STR(?useType), STR(x3do:)))\n  FILTER NOT EXISTS { ?def a ?useType }\n}"
+   },
+   "result": {
+    "vars": [
+     "use",
+     "useType",
+     "def"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 64.7
+   }
+  },
+  "bench:detect:fault-F4:cabinet": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 56.8
+   }
+  },
+  "bench:detect:fault-F5:cabinet": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?parent ?child WHERE {\n  ?parent x3do:hasChildren ?child .\n  FILTER NOT EXISTS { ?child a/rdfs:subClassOf* x3do:X3DChildNode } FILTER NOT EXISTS { ?child owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "child"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 257.7
+   }
+  },
+  "bench:detect:fault-F7:cabinet": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?node WHERE {\n  ?node x3do:hasParent ?a, ?b . FILTER(?a != ?b) }"
+   },
+   "result": {
+    "vars": [
+     "node"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 54.7
+   }
+  },
+  "bench:shacl:fault-F1": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F1",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "colour-out-of-range",
+      "focus": ":Ruby",
+      "shape": "S1",
+      "severity": "sh:Violation",
+      "component": "sh:MaxInclusiveConstraintComponent",
+      "message": "S1: diffuseColor component outside [0,1]",
+      "value": 1.5
+     }
+    ],
+    "ms_pyshacl": 4984.6,
+    "_ms": 5111.6
+   }
+  },
+  "bench:core:fault-F1": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F1",
+     "slice"
+    ],
+    "shapes": "x3d-core",
+    "inference": "none",
+    "js_skip_group_by": true
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "colour-out-of-range",
+      "focus": ":Ruby",
+      "shape": "urn:x3d-mcp:shapes:x3d-core#MaterialRanges",
+      "severity": "sh:Violation",
+      "component": "sh:MaxInclusiveConstraintComponent",
+      "message": "diffuseColor component outside [0,1]",
+      "value": 1.5
+     }
+    ],
+    "ms_pyshacl": 10371.8,
+    "_ms": 10549.2
+   }
+  },
+  "bench:owlrl:fault-F1": {
+   "spec": {
+    "kind": "consistency",
+    "graph": [
+     "fault-F1",
+     "slice"
+    ]
+   },
+   "result": {
+    "consistent": true,
+    "inconsistency_messages": [],
+    "owl_nothing_members": [],
+    "triples_before": 5306,
+    "triples_after": 64271,
+    "ms_owlrl": 24990.4,
+    "_ms": 25099.9
+   }
+  },
+  "bench:detect:fault-F1:fault-F1": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F1",
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?v WHERE {\n  ?material x3do:diffuseColor/rdf:rest*/rdf:first ?v . FILTER(?v > 1 || ?v < 0) }"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "v"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "material": ":Ruby",
+      "v": 1.5
+     }
+    ],
+    "_ms": 97.5
+   }
+  },
+  "bench:detect:fault-F2:fault-F1": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F1"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape . FILTER NOT EXISTS { ?shape x3do:hasGeometry ?g } FILTER NOT EXISTS { ?shape owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 53.1
+   }
+  },
+  "bench:detect:fault-F3:fault-F1": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F1"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?use ?useType ?def WHERE {\n  ?use owl:sameAs ?def ; a ?useType .\n  FILTER(STRSTARTS(STR(?useType), STR(x3do:)))\n  FILTER NOT EXISTS { ?def a ?useType }\n}"
+   },
+   "result": {
+    "vars": [
+     "use",
+     "useType",
+     "def"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 53.3
+   }
+  },
+  "bench:detect:fault-F4:fault-F1": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F1"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 54.7
+   }
+  },
+  "bench:detect:fault-F5:fault-F1": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F1",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?parent ?child WHERE {\n  ?parent x3do:hasChildren ?child .\n  FILTER NOT EXISTS { ?child a/rdfs:subClassOf* x3do:X3DChildNode } FILTER NOT EXISTS { ?child owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "child"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 153.8
+   }
+  },
+  "bench:detect:fault-F7:fault-F1": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F1"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?node WHERE {\n  ?node x3do:hasParent ?a, ?b . FILTER(?a != ?b) }"
+   },
+   "result": {
+    "vars": [
+     "node"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 227.7
+   }
+  },
+  "bench:shacl:fault-F2": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F2",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "shape-no-geometry",
+      "focus": ":BareSpecimen",
+      "shape": "S2",
+      "severity": "sh:Warning",
+      "component": "sh:OrConstraintComponent",
+      "message": "S2: Shape has no geometry (valid X3D, draws nothing)",
+      "value": ":BareSpecimen"
+     }
+    ],
+    "ms_pyshacl": 4937.3,
+    "_ms": 5081.3
+   }
+  },
+  "bench:core:fault-F2": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F2",
+     "slice"
+    ],
+    "shapes": "x3d-core",
+    "inference": "none",
+    "js_skip_group_by": true
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "shape-no-geometry",
+      "focus": ":BareSpecimen",
+      "shape": "urn:x3d-mcp:shapes:x3d-core#ShapeGeometry",
+      "severity": "sh:Warning",
+      "component": "sh:OrConstraintComponent",
+      "message": "Shape has no geometry (and is not a USE copy): valid X3D that draws nothing",
+      "value": ":BareSpecimen"
+     }
+    ],
+    "ms_pyshacl": 10377.1,
+    "_ms": 10501.7
+   }
+  },
+  "bench:owlrl:fault-F2": {
+   "spec": {
+    "kind": "consistency",
+    "graph": [
+     "fault-F2",
+     "slice"
+    ]
+   },
+   "result": {
+    "consistent": true,
+    "inconsistency_messages": [],
+    "owl_nothing_members": [],
+    "triples_before": 5294,
+    "triples_after": 63883,
+    "ms_owlrl": 26148.9,
+    "_ms": 26317.2
+   }
+  },
+  "bench:detect:fault-F1:fault-F2": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F2",
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?v WHERE {\n  ?material x3do:diffuseColor/rdf:rest*/rdf:first ?v . FILTER(?v > 1 || ?v < 0) }"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "v"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 163.7
+   }
+  },
+  "bench:detect:fault-F2:fault-F2": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F2"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape . FILTER NOT EXISTS { ?shape x3do:hasGeometry ?g } FILTER NOT EXISTS { ?shape owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "shape": ":BareSpecimen"
+     }
+    ],
+    "_ms": 87.1
+   }
+  },
+  "bench:detect:fault-F3:fault-F2": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F2"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?use ?useType ?def WHERE {\n  ?use owl:sameAs ?def ; a ?useType .\n  FILTER(STRSTARTS(STR(?useType), STR(x3do:)))\n  FILTER NOT EXISTS { ?def a ?useType }\n}"
+   },
+   "result": {
+    "vars": [
+     "use",
+     "useType",
+     "def"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 95.2
+   }
+  },
+  "bench:detect:fault-F4:fault-F2": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F2"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 92.6
+   }
+  },
+  "bench:detect:fault-F5:fault-F2": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F2",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?parent ?child WHERE {\n  ?parent x3do:hasChildren ?child .\n  FILTER NOT EXISTS { ?child a/rdfs:subClassOf* x3do:X3DChildNode } FILTER NOT EXISTS { ?child owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "child"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 219.0
+   }
+  },
+  "bench:detect:fault-F7:fault-F2": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F2"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?node WHERE {\n  ?node x3do:hasParent ?a, ?b . FILTER(?a != ?b) }"
+   },
+   "result": {
+    "vars": [
+     "node"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 96.8
+   }
+  },
+  "bench:shacl:fault-F3": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F3",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "use-type-mismatch",
+      "focus": ":Weave-USE-1",
+      "shape": "S3",
+      "severity": "sh:Violation",
+      "component": "sh:SPARQLConstraintComponent",
+      "message": "S3: this USE is a PhysicalMaterial but DEF Weave is not",
+      "value": ":Weave-USE-1"
+     }
+    ],
+    "ms_pyshacl": 5799.6,
+    "_ms": 6170.6
+   }
+  },
+  "bench:core:fault-F3": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F3",
+     "slice"
+    ],
+    "shapes": "x3d-core",
+    "inference": "none",
+    "js_skip_group_by": true
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "use-type-mismatch",
+      "focus": ":Weave-USE-1",
+      "shape": "urn:x3d-mcp:shapes:x3d-core#UseRules",
+      "severity": "sh:Violation",
+      "component": "sh:SPARQLConstraintComponent",
+      "message": "USE has type PhysicalMaterial but DEF Weave has type PixelTexture",
+      "value": ":Weave-USE-1"
+     }
+    ],
+    "ms_pyshacl": 10170.9,
+    "_ms": 10317.3
+   }
+  },
+  "bench:owlrl:fault-F3": {
+   "spec": {
+    "kind": "consistency",
+    "graph": [
+     "fault-F3",
+     "slice"
+    ]
+   },
+   "result": {
+    "consistent": true,
+    "inconsistency_messages": [],
+    "owl_nothing_members": [],
+    "triples_before": 5306,
+    "triples_after": 64264,
+    "ms_owlrl": 24359.7,
+    "_ms": 24549.8
+   }
+  },
+  "bench:detect:fault-F1:fault-F3": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F3",
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?v WHERE {\n  ?material x3do:diffuseColor/rdf:rest*/rdf:first ?v . FILTER(?v > 1 || ?v < 0) }"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "v"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 106.2
+   }
+  },
+  "bench:detect:fault-F2:fault-F3": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F3"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape . FILTER NOT EXISTS { ?shape x3do:hasGeometry ?g } FILTER NOT EXISTS { ?shape owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 51.4
+   }
+  },
+  "bench:detect:fault-F3:fault-F3": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F3"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?use ?useType ?def WHERE {\n  ?use owl:sameAs ?def ; a ?useType .\n  FILTER(STRSTARTS(STR(?useType), STR(x3do:)))\n  FILTER NOT EXISTS { ?def a ?useType }\n}"
+   },
+   "result": {
+    "vars": [
+     "use",
+     "useType",
+     "def"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "use": ":Weave-USE-1",
+      "useType": "x3do:PhysicalMaterial",
+      "def": ":Weave"
+     }
+    ],
+    "_ms": 59.8
+   }
+  },
+  "bench:detect:fault-F4:fault-F3": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F3"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 57.0
+   }
+  },
+  "bench:detect:fault-F5:fault-F3": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F3",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?parent ?child WHERE {\n  ?parent x3do:hasChildren ?child .\n  FILTER NOT EXISTS { ?child a/rdfs:subClassOf* x3do:X3DChildNode } FILTER NOT EXISTS { ?child owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "child"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 238.9
+   }
+  },
+  "bench:detect:fault-F7:fault-F3": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F3"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?node WHERE {\n  ?node x3do:hasParent ?a, ?b . FILTER(?a != ?b) }"
+   },
+   "result": {
+    "vars": [
+     "node"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 61.6
+   }
+  },
+  "bench:shacl:fault-F4": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F4",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "route-missing-from-node",
+      "focus": ":ROUTE_2_17",
+      "shape": "S5",
+      "severity": "sh:Violation",
+      "component": "sh:SPARQLConstraintComponent",
+      "message": "S5: ROUTE fromNode names DEF Ghost, which does not exist",
+      "value": ":ROUTE_2_17"
+     }
+    ],
+    "ms_pyshacl": 5134.8,
+    "_ms": 5293.8
+   }
+  },
+  "bench:core:fault-F4": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F4",
+     "slice"
+    ],
+    "shapes": "x3d-core",
+    "inference": "none",
+    "js_skip_group_by": true
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "route-missing-from-node",
+      "focus": ":ROUTE_2_17",
+      "shape": "urn:x3d-mcp:shapes:x3d-core#RouteEndpoints",
+      "severity": "sh:Violation",
+      "component": "sh:SPARQLConstraintComponent",
+      "message": "ROUTE fromNode 'Ghost' names no DEF in this scene",
+      "value": ":ROUTE_2_17"
+     }
+    ],
+    "ms_pyshacl": 9697.8,
+    "_ms": 9822.8
+   }
+  },
+  "bench:owlrl:fault-F4": {
+   "spec": {
+    "kind": "consistency",
+    "graph": [
+     "fault-F4",
+     "slice"
+    ]
+   },
+   "result": {
+    "consistent": true,
+    "inconsistency_messages": [],
+    "owl_nothing_members": [],
+    "triples_before": 5306,
+    "triples_after": 64271,
+    "ms_owlrl": 24853.7,
+    "_ms": 25037.8
+   }
+  },
+  "bench:detect:fault-F1:fault-F4": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F4",
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?v WHERE {\n  ?material x3do:diffuseColor/rdf:rest*/rdf:first ?v . FILTER(?v > 1 || ?v < 0) }"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "v"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 94.0
+   }
+  },
+  "bench:detect:fault-F2:fault-F4": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F4"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape . FILTER NOT EXISTS { ?shape x3do:hasGeometry ?g } FILTER NOT EXISTS { ?shape owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 54.6
+   }
+  },
+  "bench:detect:fault-F3:fault-F4": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F4"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?use ?useType ?def WHERE {\n  ?use owl:sameAs ?def ; a ?useType .\n  FILTER(STRSTARTS(STR(?useType), STR(x3do:)))\n  FILTER NOT EXISTS { ?def a ?useType }\n}"
+   },
+   "result": {
+    "vars": [
+     "use",
+     "useType",
+     "def"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 56.1
+   }
+  },
+  "bench:detect:fault-F4:fault-F4": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F4"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "route": ":ROUTE_2_17",
+      "end": "fromNode",
+      "name": "Ghost"
+     }
+    ],
+    "_ms": 47.7
+   }
+  },
+  "bench:detect:fault-F5:fault-F4": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F4",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?parent ?child WHERE {\n  ?parent x3do:hasChildren ?child .\n  FILTER NOT EXISTS { ?child a/rdfs:subClassOf* x3do:X3DChildNode } FILTER NOT EXISTS { ?child owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "child"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 259.5
+   }
+  },
+  "bench:detect:fault-F7:fault-F4": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F4"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?node WHERE {\n  ?node x3do:hasParent ?a, ?b . FILTER(?a != ?b) }"
+   },
+   "result": {
+    "vars": [
+     "node"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 84.8
+   }
+  },
+  "bench:shacl:fault-F5": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F5",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "children-not-child-node",
+      "focus": ":Box_2_12_3_6",
+      "shape": "S7",
+      "severity": "sh:Violation",
+      "component": "sh:OrConstraintComponent",
+      "message": "S7: node in a children field is not an X3DChildNode",
+      "value": ":Box_2_12_3_6"
+     }
+    ],
+    "ms_pyshacl": 4798.3,
+    "_ms": 4934.3
+   }
+  },
+  "bench:core:fault-F5": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F5",
+     "slice"
+    ],
+    "shapes": "x3d-core",
+    "inference": "none",
+    "js_skip_group_by": true
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "children-not-child-node",
+      "focus": ":Box_2_12_3_6",
+      "shape": "urn:x3d-mcp:shapes:x3d-core#ChildrenAreChildNodes",
+      "severity": "sh:Violation",
+      "component": "sh:OrConstraintComponent",
+      "message": "node in a children field is not an X3DChildNode",
+      "value": ":Box_2_12_3_6"
+     }
+    ],
+    "ms_pyshacl": 9273.7,
+    "_ms": 9401.0
+   }
+  },
+  "bench:owlrl:fault-F5": {
+   "spec": {
+    "kind": "consistency",
+    "graph": [
+     "fault-F5",
+     "slice"
+    ]
+   },
+   "result": {
+    "consistent": true,
+    "inconsistency_messages": [],
+    "owl_nothing_members": [],
+    "triples_before": 5317,
+    "triples_after": 64335,
+    "ms_owlrl": 27066.1,
+    "_ms": 27244.7
+   }
+  },
+  "bench:detect:fault-F1:fault-F5": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F5",
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?v WHERE {\n  ?material x3do:diffuseColor/rdf:rest*/rdf:first ?v . FILTER(?v > 1 || ?v < 0) }"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "v"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 167.6
+   }
+  },
+  "bench:detect:fault-F2:fault-F5": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F5"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape . FILTER NOT EXISTS { ?shape x3do:hasGeometry ?g } FILTER NOT EXISTS { ?shape owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 81.0
+   }
+  },
+  "bench:detect:fault-F3:fault-F5": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F5"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?use ?useType ?def WHERE {\n  ?use owl:sameAs ?def ; a ?useType .\n  FILTER(STRSTARTS(STR(?useType), STR(x3do:)))\n  FILTER NOT EXISTS { ?def a ?useType }\n}"
+   },
+   "result": {
+    "vars": [
+     "use",
+     "useType",
+     "def"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 98.1
+   }
+  },
+  "bench:detect:fault-F4:fault-F5": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F5"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 78.7
+   }
+  },
+  "bench:detect:fault-F5:fault-F5": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F5",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?parent ?child WHERE {\n  ?parent x3do:hasChildren ?child .\n  FILTER NOT EXISTS { ?child a/rdfs:subClassOf* x3do:X3DChildNode } FILTER NOT EXISTS { ?child owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "child"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "parent": ":PrismShelf",
+      "child": ":Box_2_12_3_6"
+     }
+    ],
+    "_ms": 497.6
+   }
+  },
+  "bench:detect:fault-F7:fault-F5": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F5"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?node WHERE {\n  ?node x3do:hasParent ?a, ?b . FILTER(?a != ?b) }"
+   },
+   "result": {
+    "vars": [
+     "node"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 140.0
+   }
+  },
+  "bench:shacl:fault-F6": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F6",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 5353.3,
+    "_ms": 5648.0
+   }
+  },
+  "bench:core:fault-F6": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F6",
+     "slice"
+    ],
+    "shapes": "x3d-core",
+    "inference": "none",
+    "js_skip_group_by": true
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 9736.5,
+    "_ms": 9861.1
+   }
+  },
+  "bench:owlrl:fault-F6": {
+   "spec": {
+    "kind": "consistency",
+    "graph": [
+     "fault-F6",
+     "slice"
+    ]
+   },
+   "result": {
+    "consistent": true,
+    "inconsistency_messages": [],
+    "owl_nothing_members": [],
+    "triples_before": 5306,
+    "triples_after": 64269,
+    "ms_owlrl": 25853.2,
+    "_ms": 26028.4
+   }
+  },
+  "bench:detect:fault-F1:fault-F6": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F6",
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?v WHERE {\n  ?material x3do:diffuseColor/rdf:rest*/rdf:first ?v . FILTER(?v > 1 || ?v < 0) }"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "v"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 99.3
+   }
+  },
+  "bench:detect:fault-F2:fault-F6": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F6"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape . FILTER NOT EXISTS { ?shape x3do:hasGeometry ?g } FILTER NOT EXISTS { ?shape owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 52.6
+   }
+  },
+  "bench:detect:fault-F3:fault-F6": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F6"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?use ?useType ?def WHERE {\n  ?use owl:sameAs ?def ; a ?useType .\n  FILTER(STRSTARTS(STR(?useType), STR(x3do:)))\n  FILTER NOT EXISTS { ?def a ?useType }\n}"
+   },
+   "result": {
+    "vars": [
+     "use",
+     "useType",
+     "def"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 53.0
+   }
+  },
+  "bench:detect:fault-F4:fault-F6": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F6"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 53.4
+   }
+  },
+  "bench:detect:fault-F5:fault-F6": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F6",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?parent ?child WHERE {\n  ?parent x3do:hasChildren ?child .\n  FILTER NOT EXISTS { ?child a/rdfs:subClassOf* x3do:X3DChildNode } FILTER NOT EXISTS { ?child owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "child"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 246.6
+   }
+  },
+  "bench:detect:fault-F7:fault-F6": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F6"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?node WHERE {\n  ?node x3do:hasParent ?a, ?b . FILTER(?a != ?b) }"
+   },
+   "result": {
+    "vars": [
+     "node"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 60.4
+   }
+  },
+  "bench:shacl:fault-F7": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F7",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 2,
+    "results": [
+     {
+      "check_id": "value-out-of-range",
+      "focus": ":Ruby",
+      "shape": "S1",
+      "severity": "sh:Violation",
+      "component": "sh:MaxCountConstraintComponent",
+      "message": "S1: transparency must be one number in [0,1]",
+      "value": null
+     },
+     {
+      "check_id": "duplicate-def",
+      "focus": ":Ruby",
+      "shape": "S8",
+      "severity": "sh:Violation",
+      "component": "sh:MaxCountConstraintComponent",
+      "message": "S8: one DEF name, two parents: a duplicate DEF merged two nodes into one IRI",
+      "value": null
+     }
+    ],
+    "ms_pyshacl": 4463.7,
+    "_ms": 4583.3
+   }
+  },
+  "bench:core:fault-F7": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "fault-F7",
+     "slice"
+    ],
+    "shapes": "x3d-core",
+    "inference": "none",
+    "js_skip_group_by": true
+   },
+   "result": {
+    "conforms": false,
+    "count": 3,
+    "results": [
+     {
+      "check_id": "tuple-count",
+      "focus": ":Ruby",
+      "shape": "urn:x3d-mcp:shapes:x3d-core#ColorArity",
+      "severity": "sh:Violation",
+      "component": "sh:SPARQLConstraintComponent",
+      "message": "diffuseColor has 6 components; an SFColor has 3",
+      "value": ":Ruby"
+     },
+     {
+      "check_id": "duplicate-def",
+      "focus": ":Ruby",
+      "shape": "urn:x3d-mcp:shapes:x3d-core#DefUnique",
+      "severity": "sh:Violation",
+      "component": "sh:MaxCountConstraintComponent",
+      "message": "this DEF names nodes under more than one parent (duplicate DEF)",
+      "value": null
+     },
+     {
+      "check_id": "value-out-of-range",
+      "focus": ":Ruby",
+      "shape": "urn:x3d-mcp:shapes:x3d-core#MaterialRanges",
+      "severity": "sh:Violation",
+      "component": "sh:MaxCountConstraintComponent",
+      "message": "transparency outside [0,1]",
+      "value": null
+     }
+    ],
+    "ms_pyshacl": 9304.9,
+    "_ms": 9509.0
+   }
+  },
+  "bench:owlrl:fault-F7": {
+   "spec": {
+    "kind": "consistency",
+    "graph": [
+     "fault-F7",
+     "slice"
+    ]
+   },
+   "result": {
+    "consistent": true,
+    "inconsistency_messages": [],
+    "owl_nothing_members": [],
+    "triples_before": 5303,
+    "triples_after": 63911,
+    "ms_owlrl": 24751.0,
+    "_ms": 24861.2
+   }
+  },
+  "bench:detect:fault-F1:fault-F7": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F7",
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?v WHERE {\n  ?material x3do:diffuseColor/rdf:rest*/rdf:first ?v . FILTER(?v > 1 || ?v < 0) }"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "v"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 93.7
+   }
+  },
+  "bench:detect:fault-F2:fault-F7": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F7"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape . FILTER NOT EXISTS { ?shape x3do:hasGeometry ?g } FILTER NOT EXISTS { ?shape owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 61.3
+   }
+  },
+  "bench:detect:fault-F3:fault-F7": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F7"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?use ?useType ?def WHERE {\n  ?use owl:sameAs ?def ; a ?useType .\n  FILTER(STRSTARTS(STR(?useType), STR(x3do:)))\n  FILTER NOT EXISTS { ?def a ?useType }\n}"
+   },
+   "result": {
+    "vars": [
+     "use",
+     "useType",
+     "def"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 58.7
+   }
+  },
+  "bench:detect:fault-F4:fault-F7": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F7"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 49.1
+   }
+  },
+  "bench:detect:fault-F5:fault-F7": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F7",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?parent ?child WHERE {\n  ?parent x3do:hasChildren ?child .\n  FILTER NOT EXISTS { ?child a/rdfs:subClassOf* x3do:X3DChildNode } FILTER NOT EXISTS { ?child owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "child"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 158.4
+   }
+  },
+  "bench:detect:fault-F7:fault-F7": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "fault-F7"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?node WHERE {\n  ?node x3do:hasParent ?a, ?b . FILTER(?a != ?b) }"
+   },
+   "result": {
+    "vars": [
+     "node"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "node": ":Ruby"
+     }
+    ],
+    "_ms": 174.7
+   }
+  },
+  "bench:shacl:teach-exponent": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "teach-exponent",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "colour-out-of-range",
+      "focus": ":Ruby",
+      "shape": "S1",
+      "severity": "sh:Violation",
+      "component": "sh:MaxInclusiveConstraintComponent",
+      "message": "S1: diffuseColor component outside [0,1]",
+      "value": 1.5
+     }
+    ],
+    "ms_pyshacl": 4771.9,
+    "_ms": 4886.2
+   }
+  },
+  "bench:core:teach-exponent": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "teach-exponent",
+     "slice"
+    ],
+    "shapes": "x3d-core",
+    "inference": "none",
+    "js_skip_group_by": true
+   },
+   "result": {
+    "conforms": false,
+    "count": 1,
+    "results": [
+     {
+      "check_id": "colour-out-of-range",
+      "focus": ":Ruby",
+      "shape": "urn:x3d-mcp:shapes:x3d-core#MaterialRanges",
+      "severity": "sh:Violation",
+      "component": "sh:MaxInclusiveConstraintComponent",
+      "message": "diffuseColor component outside [0,1]",
+      "value": 1.5
+     }
+    ],
+    "ms_pyshacl": 10437.8,
+    "_ms": 10568.8
+   }
+  },
+  "bench:detect:fault-F1:teach-exponent": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-exponent",
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?v WHERE {\n  ?material x3do:diffuseColor/rdf:rest*/rdf:first ?v . FILTER(?v > 1 || ?v < 0) }"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "v"
+    ],
+    "count": 1,
+    "rows": [
+     {
+      "material": ":Ruby",
+      "v": 1.5
+     }
+    ],
+    "_ms": 163.1
+   }
+  },
+  "bench:detect:fault-F2:teach-exponent": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-exponent"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape . FILTER NOT EXISTS { ?shape x3do:hasGeometry ?g } FILTER NOT EXISTS { ?shape owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 161.7
+   }
+  },
+  "bench:detect:fault-F3:teach-exponent": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-exponent"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?use ?useType ?def WHERE {\n  ?use owl:sameAs ?def ; a ?useType .\n  FILTER(STRSTARTS(STR(?useType), STR(x3do:)))\n  FILTER NOT EXISTS { ?def a ?useType }\n}"
+   },
+   "result": {
+    "vars": [
+     "use",
+     "useType",
+     "def"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 64.0
+   }
+  },
+  "bench:detect:fault-F4:teach-exponent": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-exponent"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 53.1
+   }
+  },
+  "bench:detect:fault-F5:teach-exponent": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-exponent",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?parent ?child WHERE {\n  ?parent x3do:hasChildren ?child .\n  FILTER NOT EXISTS { ?child a/rdfs:subClassOf* x3do:X3DChildNode } FILTER NOT EXISTS { ?child owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "child"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 154.9
+   }
+  },
+  "bench:detect:fault-F7:teach-exponent": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-exponent"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?node WHERE {\n  ?node x3do:hasParent ?a, ?b . FILTER(?a != ?b) }"
+   },
+   "result": {
+    "vars": [
+     "node"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 77.7
+   }
+  },
+  "bench:shacl:teach-insert": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "teach-insert",
+     "slice"
+    ],
+    "shapes": "all",
+    "inference": "none"
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 5302.6,
+    "_ms": 5488.7
+   }
+  },
+  "bench:core:teach-insert": {
+   "spec": {
+    "kind": "shacl",
+    "graph": [
+     "teach-insert",
+     "slice"
+    ],
+    "shapes": "x3d-core",
+    "inference": "none",
+    "js_skip_group_by": true
+   },
+   "result": {
+    "conforms": true,
+    "count": 0,
+    "results": [],
+    "ms_pyshacl": 9108.2,
+    "_ms": 9270.5
+   }
+  },
+  "bench:detect:fault-F1:teach-insert": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-insert",
+     "cabinet"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?material ?v WHERE {\n  ?material x3do:diffuseColor/rdf:rest*/rdf:first ?v . FILTER(?v > 1 || ?v < 0) }"
+   },
+   "result": {
+    "vars": [
+     "material",
+     "v"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 98.6
+   }
+  },
+  "bench:detect:fault-F2:teach-insert": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-insert"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?shape WHERE {\n  ?shape a x3do:Shape . FILTER NOT EXISTS { ?shape x3do:hasGeometry ?g } FILTER NOT EXISTS { ?shape owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "shape"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 109.1
+   }
+  },
+  "bench:detect:fault-F3:teach-insert": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-insert"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?use ?useType ?def WHERE {\n  ?use owl:sameAs ?def ; a ?useType .\n  FILTER(STRSTARTS(STR(?useType), STR(x3do:)))\n  FILTER NOT EXISTS { ?def a ?useType }\n}"
+   },
+   "result": {
+    "vars": [
+     "use",
+     "useType",
+     "def"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 56.9
+   }
+  },
+  "bench:detect:fault-F4:teach-insert": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-insert"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?route ?end ?name WHERE {\n  ?route a x3do:ROUTE .\n  { ?route x3do:fromNode ?name BIND(\"fromNode\" AS ?end) } UNION { ?route x3do:toNode ?name BIND(\"toNode\" AS ?end) }\n  FILTER NOT EXISTS { ?node x3do:DEF ?name }\n}"
+   },
+   "result": {
+    "vars": [
+     "route",
+     "end",
+     "name"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 49.3
+   }
+  },
+  "bench:detect:fault-F5:teach-insert": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-insert",
+     "slice"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT ?parent ?child WHERE {\n  ?parent x3do:hasChildren ?child .\n  FILTER NOT EXISTS { ?child a/rdfs:subClassOf* x3do:X3DChildNode } FILTER NOT EXISTS { ?child owl:sameAs ?x } }"
+   },
+   "result": {
+    "vars": [
+     "parent",
+     "child"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 135.3
+   }
+  },
+  "bench:detect:fault-F7:teach-insert": {
+   "spec": {
+    "kind": "select",
+    "graph": [
+     "teach-insert"
+    ],
+    "query": "PREFIX : <https://semantic-twin-lab.example/TheCabinet.ttl#>\nPREFIX x3do: <https://www.web3d.org/specifications/X3dOntology4.1#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX lab: <https://semantic-twin-lab.example/shapes#>\nSELECT DISTINCT ?node WHERE {\n  ?node x3do:hasParent ?a, ?b . FILTER(?a != ?b) }"
+   },
+   "result": {
+    "vars": [
+     "node"
+    ],
+    "count": 0,
+    "rows": [],
+    "_ms": 53.4
+   }
+  }
+ },
+ "elapsed_s": 449.4
+}
