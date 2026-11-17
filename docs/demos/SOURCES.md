@@ -168,6 +168,14 @@ Made for this site from each demo's own pictures or a headless screenshot of its
 | assets/webgpu-compute.jpg | e27de3a52cae1cbd27b6479a1450e374b8227658516d4f4b72bd66089a6ab142 | 42858 |
 | assets/glb-forge.jpg | 6318682fe9c6270f4085069d1496857025889c13611be8179ec4f127dc954fff | 120743 |
 
+## Front-page card pictures (v26)
+Headless screenshots (Chromium 153.0.8010.12, SwiftShader; X_ITE and three served locally) of the top of each page at 1280 x 720, scaled to 960 x 540, taken from x3d.demo PR 40: `ontology-lab`, `semantic-twins`, `ontology-field-notes`.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/ontology-lab.jpg | 055ce7c20dd7fab0d8fe4821cafcf2dc6936a8da82831c3962336537078996a4 | 109389 |
+| assets/semantic-twins.jpg | 910d2668cbd086039bf5dbd372b8787f08252f91a24ab4bd1034686e2a5782bc | 90190 |
+| assets/ontology-field-notes.jpg | dfa54ad509757a3977f17d1e363a2bdde9146d5978a93ca75707d68ae679d323 | 72754 |
 ## Ontology lab, semantic twins, ontology field notes (16 Nov 2026)
 
 - `ontology-lab/v1`: Semantic Twin Lab, 38 stations teaching RDF, SPARQL, SHACL and reasoning on X3D, with live in-browser engines (N3.js 2.13.12, Comunica 5.4.1, shacl-engine 1.1.3), X_ITE 16.5.1 vendored, and recorded calls to the x3d_mcp semantic tools (hagopjay/x3d_mcp PR #17, #18).
