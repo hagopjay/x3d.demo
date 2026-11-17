@@ -1,0 +1,157 @@
+{
+ "meshes": [
+  {
+   "name": "ground",
+   "n": 40020
+  },
+  {
+   "name": "khufu",
+   "n": 612
+  },
+  {
+   "name": "khafre",
+   "n": 612
+  },
+  {
+   "name": "menkaure",
+   "n": 264
+  },
+  {
+   "name": "sphinx_body",
+   "n": 450
+  },
+  {
+   "name": "sphinx_head",
+   "n": 90
+  },
+  {
+   "name": "sphinx_pawR",
+   "n": 138
+  },
+  {
+   "name": "sphinx_pawL",
+   "n": 138
+  },
+  {
+   "name": "causeway",
+   "n": 204
+  },
+  {
+   "name": "valley_temple",
+   "n": 8
+  }
+ ],
+ "states": [
+  {
+   "id": "sunrise",
+   "label": "Equinox sunrise",
+   "az": 90,
+   "el": 7,
+   "sun": [
+    1.0,
+    0.64,
+    0.36
+   ],
+   "exposure": 0.7629,
+   "exposure_ref_light": 1.9006,
+   "exposure_rule": "pyr95",
+   "bake": {
+    "state": "sunrise",
+    "az": 90.0,
+    "el": 7.0,
+    "sun_color": [
+     1.0,
+     0.64,
+     0.36
+    ],
+    "sun_strength": 5.0,
+    "sky_strength": 0.25,
+    "sky_type": "MULTIPLE_SCATTERING",
+    "samples": 192,
+    "blender": "5.2.2 LTS",
+    "cycles_device": "CPU",
+    "seconds": 25.6,
+    "script_sha256": "2ca5c2517954504dad159ac938c5e3d3b9f602b78e75e94cc93aee83ae8b7af9"
+   }
+  },
+  {
+   "id": "midday",
+   "label": "Midday",
+   "az": 165,
+   "el": 62,
+   "sun": [
+    1.0,
+    0.95,
+    0.85
+   ],
+   "exposure": 0.303,
+   "exposure_ref_light": 2.6401,
+   "exposure_rule": "ground70",
+   "bake": {
+    "state": "midday",
+    "az": 165.0,
+    "el": 62.0,
+    "sun_color": [
+     1.0,
+     0.95,
+     0.85
+    ],
+    "sun_strength": 5.0,
+    "sky_strength": 0.25,
+    "sky_type": "MULTIPLE_SCATTERING",
+    "samples": 192,
+    "blender": "5.2.2 LTS",
+    "cycles_device": "CPU",
+    "seconds": 17.0,
+    "script_sha256": "2ca5c2517954504dad159ac938c5e3d3b9f602b78e75e94cc93aee83ae8b7af9"
+   }
+  },
+  {
+   "id": "afternoon",
+   "label": "Late afternoon",
+   "az": 250,
+   "el": 22,
+   "sun": [
+    1.0,
+    0.76,
+    0.48
+   ],
+   "exposure": 0.512,
+   "exposure_ref_light": 2.6366,
+   "exposure_rule": "pyr95",
+   "bake": {
+    "state": "afternoon",
+    "az": 250.0,
+    "el": 22.0,
+    "sun_color": [
+     1.0,
+     0.76,
+     0.48
+    ],
+    "sun_strength": 5.0,
+    "sky_strength": 0.25,
+    "sky_type": "MULTIPLE_SCATTERING",
+    "samples": 192,
+    "blender": "5.2.2 LTS",
+    "cycles_device": "CPU",
+    "seconds": 23.8,
+    "script_sha256": "2ca5c2517954504dad159ac938c5e3d3b9f602b78e75e94cc93aee83ae8b7af9"
+   }
+  },
+  {
+   "id": "night",
+   "label": "Starlight",
+   "az": 0,
+   "el": -30,
+   "sun": [
+    0.2,
+    0.25,
+    0.5
+   ],
+   "note": "starlight: albedo x (0.045,0.06,0.11), no bake",
+   "bake": null
+  }
+ ],
+ "bytes": 510432,
+ "layout": "state-major, mesh order, per vertex uint8 sRGB r,g,b"
+}
