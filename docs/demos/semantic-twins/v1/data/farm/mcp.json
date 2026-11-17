@@ -1,0 +1,457 @@
+{
+ "server": "<checkout>/x3d_mcp/src/server.py",
+ "tools": 54,
+ "runs": {
+  "clean": [
+   {
+    "tool": "scene_to_rdf",
+    "args": {
+     "content": "<12,561 chars, sha256 f1c076d2384d1d04>",
+     "return_mode": "summary"
+    },
+    "wall_ms": 99.3,
+    "reply_sha256": "bb08dca122da9fbedc1cd4a59e84abffbd30116ab8e00f52e77d4823f6b71c11",
+    "reply": {
+     "ok": true,
+     "graph_id": "8c61061525cdd45a",
+     "triples": 2189,
+     "individuals": 220,
+     "base": "https://example.org/scen/farm/scene.ttl#",
+     "warnings": []
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,131 chars, sha256 6bf0a05795fa5e84>",
+     "graph_id": "8c61061525cdd45a",
+     "data_ttl": "<8,850 chars, sha256 55eb5021b1a48764>",
+     "include_ontology": false
+    },
+    "wall_ms": 74.4,
+    "reply_sha256": "9d4c670ea97f2ede5ec2cc86dae6a701af0201c979844370ac5c98bb3eadb5cb",
+    "reply": {
+     "ok": true,
+     "total": 3,
+     "rows": [
+      {
+       "o": ":CropA2",
+       "bed": "Bed A2",
+       "crop": "tomatoes",
+       "reading": "27",
+       "needs": "30",
+       "litres": "65"
+      },
+      {
+       "o": ":CropB1",
+       "bed": "Bed B1",
+       "crop": "lettuces",
+       "reading": "22",
+       "needs": "28",
+       "litres": "130"
+      },
+      {
+       "o": ":CropC3",
+       "bed": "Bed C3",
+       "crop": "basil",
+       "reading": "24",
+       "needs": "25",
+       "litres": "22"
+      }
+     ],
+     "error": null,
+     "ms": 71.7
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,071 chars, sha256 e230c28543be533c>",
+     "graph_id": "8c61061525cdd45a",
+     "data_ttl": "<8,850 chars, sha256 55eb5021b1a48764>",
+     "include_ontology": false
+    },
+    "wall_ms": 44.8,
+    "reply_sha256": "c811848ea180b6af2a9042407268ddf4a2a900ffbec34ceae197d058a44105c2",
+    "reply": {
+     "ok": true,
+     "total": 4,
+     "rows": [
+      {
+       "o": ":CropA1",
+       "what": "Bed A1",
+       "rh": "88"
+      },
+      {
+       "o": ":CropA2",
+       "what": "Bed A2",
+       "rh": "88"
+      },
+      {
+       "o": ":CropA3",
+       "what": "Bed A3",
+       "rh": "88"
+      },
+      {
+       "o": ":VentA",
+       "what": "Roof vent over row A",
+       "rh": "88"
+      }
+     ],
+     "error": null,
+     "ms": 41.7
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<994 chars, sha256 b6dfd9aa31806f51>",
+     "graph_id": "8c61061525cdd45a",
+     "data_ttl": "<8,850 chars, sha256 55eb5021b1a48764>",
+     "include_ontology": false
+    },
+    "wall_ms": 336.4,
+    "reply_sha256": "ccee1a090df79b83faa3ff6f9effd9770fd43d84e1cfd92bad858425da8ac5e3",
+    "reply": {
+     "ok": true,
+     "total": 3,
+     "rows": [
+      {
+       "o": ":ValveA2",
+       "valve": "Valve A2",
+       "bed": "Bed A2"
+      },
+      {
+       "o": ":ValveB1",
+       "valve": "Valve B1",
+       "bed": "Bed B1"
+      },
+      {
+       "o": ":ValveC3",
+       "valve": "Valve C3",
+       "bed": "Bed C3"
+      }
+     ],
+     "error": null,
+     "ms": 333.2
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<854 chars, sha256 0f569488c81b6cc3>",
+     "graph_id": "8c61061525cdd45a",
+     "data_ttl": "<8,850 chars, sha256 55eb5021b1a48764>",
+     "include_ontology": false
+    },
+    "wall_ms": 265.8,
+    "reply_sha256": "e2f893ae950ed0264c9c341a9979ff9e1b8608f025ab8bc5b8bbfec261261347",
+    "reply": {
+     "ok": true,
+     "total": 7,
+     "rows": [
+      {
+       "o": ":CropA1",
+       "bed": "Bed A1",
+       "crop": "tomatoes"
+      },
+      {
+       "o": ":CropA2",
+       "bed": "Bed A2",
+       "crop": "tomatoes"
+      },
+      {
+       "o": ":CropA3",
+       "bed": "Bed A3",
+       "crop": "cucumbers"
+      },
+      {
+       "o": ":CropB1",
+       "bed": "Bed B1",
+       "crop": "lettuces"
+      },
+      {
+       "o": ":CropB2",
+       "bed": "Bed B2",
+       "crop": "lettuces"
+      },
+      {
+       "o": ":CropC1",
+       "bed": "Bed C1",
+       "crop": "tomatoes"
+      },
+      {
+       "o": ":CropC2",
+       "bed": "Bed C2",
+       "crop": "lettuces"
+      }
+     ],
+     "error": null,
+     "ms": 262.7
+    }
+   },
+   {
+    "tool": "shacl_validate",
+    "args": {
+     "graph_id": "8c61061525cdd45a",
+     "shapes": "none",
+     "extra_shapes_ttl": "<2,527 chars, sha256 58cd8c0037ae263d>",
+     "data_ttl": "<8,850 chars, sha256 55eb5021b1a48764>",
+     "return_mode": "full"
+    },
+    "wall_ms": 409.2,
+    "reply_sha256": "bd81a4ca500d4db21ef70640881a71475fca21ac3f9d7b8c87df1937045426a9",
+    "reply": {
+     "ok": true,
+     "conforms": true,
+     "counts": {
+      "Violation": 0,
+      "Warning": 0,
+      "Info": 0
+     },
+     "results": [],
+     "error": null,
+     "ms": 406.1
+    }
+   }
+  ],
+  "fault": [
+   {
+    "tool": "scene_to_rdf",
+    "args": {
+     "content": "<12,561 chars, sha256 d63001e4f98a216a>",
+     "return_mode": "summary"
+    },
+    "wall_ms": 35.2,
+    "reply_sha256": "7e62b3fd44b864787d88b04ef74fcd18d3adfd6c811b6cc4e0d8992997992bb0",
+    "reply": {
+     "ok": true,
+     "graph_id": "3531a7a1426eec34",
+     "triples": 2189,
+     "individuals": 220,
+     "base": "https://example.org/scen/farm/scene.ttl#",
+     "warnings": []
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,131 chars, sha256 6bf0a05795fa5e84>",
+     "graph_id": "3531a7a1426eec34",
+     "data_ttl": "<8,747 chars, sha256 4f42b83aaa77705e>",
+     "include_ontology": false
+    },
+    "wall_ms": 68.0,
+    "reply_sha256": "8fe2e6b7ff6ffdbfcfa85c72cd26efb7b15ad68e6ea5492138b905c37a691239",
+    "reply": {
+     "ok": true,
+     "total": 3,
+     "rows": [
+      {
+       "o": ":CropA2",
+       "bed": "Bed A2",
+       "crop": "tomatoes",
+       "reading": "27",
+       "needs": "30",
+       "litres": "65"
+      },
+      {
+       "o": ":CropB1",
+       "bed": "Bed B1",
+       "crop": "lettuces",
+       "reading": "22",
+       "needs": "28",
+       "litres": "130"
+      },
+      {
+       "o": ":CropC3",
+       "bed": "Bed C3",
+       "crop": "basil",
+       "reading": "24",
+       "needs": "25",
+       "litres": "22"
+      }
+     ],
+     "error": null,
+     "ms": 65.3
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<1,071 chars, sha256 e230c28543be533c>",
+     "graph_id": "3531a7a1426eec34",
+     "data_ttl": "<8,747 chars, sha256 4f42b83aaa77705e>",
+     "include_ontology": false
+    },
+    "wall_ms": 46.7,
+    "reply_sha256": "b7a44175e8e26d4b556a19de820c18dfc836b77777358551188e7e7e85877220",
+    "reply": {
+     "ok": true,
+     "total": 4,
+     "rows": [
+      {
+       "o": ":CropA1",
+       "what": "Bed A1",
+       "rh": "88"
+      },
+      {
+       "o": ":CropA2",
+       "what": "Bed A2",
+       "rh": "88"
+      },
+      {
+       "o": ":CropA3",
+       "what": "Bed A3",
+       "rh": "88"
+      },
+      {
+       "o": ":VentA",
+       "what": "Roof vent over row A",
+       "rh": "88"
+      }
+     ],
+     "error": null,
+     "ms": 44.0
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<994 chars, sha256 b6dfd9aa31806f51>",
+     "graph_id": "3531a7a1426eec34",
+     "data_ttl": "<8,747 chars, sha256 4f42b83aaa77705e>",
+     "include_ontology": false
+    },
+    "wall_ms": 43.1,
+    "reply_sha256": "a89f8ca2c83c0f20a3f043613e23511ef7fcc94e9ea44e0bc5a695afd544dc8c",
+    "reply": {
+     "ok": true,
+     "total": 3,
+     "rows": [
+      {
+       "o": ":ValveA2",
+       "valve": "Valve A2",
+       "bed": "Bed A2"
+      },
+      {
+       "o": ":ValveB1",
+       "valve": "Valve B1",
+       "bed": "Bed B1"
+      },
+      {
+       "o": ":ValveC3",
+       "valve": "Valve C3",
+       "bed": "Bed C3"
+      }
+     ],
+     "error": null,
+     "ms": 40.4
+    }
+   },
+   {
+    "tool": "sparql_scene",
+    "args": {
+     "sparql": "<854 chars, sha256 0f569488c81b6cc3>",
+     "graph_id": "3531a7a1426eec34",
+     "data_ttl": "<8,747 chars, sha256 4f42b83aaa77705e>",
+     "include_ontology": false
+    },
+    "wall_ms": 32.5,
+    "reply_sha256": "711ce19ae9714ec971c456b78216d99129b3cd57c26c279202758d4f2794c5b5",
+    "reply": {
+     "ok": true,
+     "total": 7,
+     "rows": [
+      {
+       "o": ":CropA1",
+       "bed": "Bed A1",
+       "crop": "tomatoes"
+      },
+      {
+       "o": ":CropA2",
+       "bed": "Bed A2",
+       "crop": "tomatoes"
+      },
+      {
+       "o": ":CropA3",
+       "bed": "Bed A3",
+       "crop": "cucumbers"
+      },
+      {
+       "o": ":CropB1",
+       "bed": "Bed B1",
+       "crop": "lettuces"
+      },
+      {
+       "o": ":CropB2",
+       "bed": "Bed B2",
+       "crop": "lettuces"
+      },
+      {
+       "o": ":CropC1",
+       "bed": "Bed C1",
+       "crop": "tomatoes"
+      },
+      {
+       "o": ":CropC2",
+       "bed": "Bed C2",
+       "crop": "lettuces"
+      }
+     ],
+     "error": null,
+     "ms": 29.8
+    }
+   },
+   {
+    "tool": "shacl_validate",
+    "args": {
+     "graph_id": "3531a7a1426eec34",
+     "shapes": "none",
+     "extra_shapes_ttl": "<2,527 chars, sha256 58cd8c0037ae263d>",
+     "data_ttl": "<8,747 chars, sha256 4f42b83aaa77705e>",
+     "return_mode": "full"
+    },
+    "wall_ms": 431.5,
+    "reply_sha256": "0b6d5dd37e4f3ad06ee5bc406b9fbf3ff7b09faba4d2240c1edc3e49b56267c2",
+    "reply": {
+     "ok": true,
+     "conforms": false,
+     "counts": {
+      "Violation": 2,
+      "Warning": 0,
+      "Info": 0
+     },
+     "results": [
+      {
+       "focus": "https://example.org/scen/farm/record#MoistB2_obs",
+       "def": null,
+       "node_type": null,
+       "path": "",
+       "value": ":MoistB2",
+       "severity": "Violation",
+       "message": "The probe is drawn outside the bed its readings are filed under.",
+       "shape": "https://example.org/scen/twin#S_A1",
+       "check_id": "//example.org/scen/twin#S_A1",
+       "fix_hint": null
+      },
+      {
+       "focus": "https://example.org/scen/farm/record#BedC2",
+       "def": null,
+       "node_type": null,
+       "path": "",
+       "value": "https://example.org/scen/farm/record#BedC2",
+       "severity": "Violation",
+       "message": "A planted bed has no irrigation valve in the record.",
+       "shape": "https://example.org/scen/twin#S_A2",
+       "check_id": "//example.org/scen/twin#S_A2",
+       "fix_hint": null
+      }
+     ],
+     "error": null,
+     "ms": 428.6
+    }
+   }
+  ]
+ }
+}

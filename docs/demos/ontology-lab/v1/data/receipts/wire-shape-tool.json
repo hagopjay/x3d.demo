@@ -1,0 +1,66 @@
+{
+ "file": "build/wire_shape_tool.py",
+ "file_sha256": "ef086fc4f494df15bf3971ec6fc37e154d87bbccfb522fb3483a8584f4a93d8d",
+ "lines": 45,
+ "libs": {
+  "mcp": "1.30.0",
+  "rdflib": "7.6.0",
+  "pyshacl": "0.40.2"
+ },
+ "python": "3.13.18",
+ "tools_list": [
+  {
+   "name": "check_half_clear",
+   "description": "Check the Cabinet against the lab rule 'no classic Material more than half transparent'.\nReturns JSON: conforms (SHACL: false on any result) and one row per result with focus, value, severity and message."
+  }
+ ],
+ "call": {
+  "tool": "check_half_clear",
+  "args": {},
+  "isError": false,
+  "ms": 5.4,
+  "result": {
+   "conforms": false,
+   "results": [
+    {
+     "focus": "Cobalt",
+     "value": "0.6",
+     "severity": "Violation",
+     "message": "Material is more than half transparent"
+    }
+   ]
+  },
+  "result_sha256": "9d50bc7b069e7efc7d2690999831bdb3495eab6c8a667b87bbc22369292c9f60"
+ },
+ "stdio": {
+  "command": "python -I -B build/wire_shape_tool.py",
+  "server_name": "cabinet-rules",
+  "tools": [
+   "check_half_clear"
+  ],
+  "result": {
+   "conforms": false,
+   "results": [
+    {
+     "focus": "Cobalt",
+     "value": "0.6",
+     "severity": "Violation",
+     "message": "Material is more than half transparent"
+    }
+   ]
+  },
+  "result_sha256": "9d50bc7b069e7efc7d2690999831bdb3495eab6c8a667b87bbc22369292c9f60",
+  "wall_ms": 888.7
+ },
+ "stdio_equals_in_memory": true,
+ "vs_oracle": {
+  "job": "receipts/oracle.json jobs['T5.4:main']",
+  "oracle_focus": [
+   "Cobalt"
+  ],
+  "tool_focus": [
+   "Cobalt"
+  ],
+  "equal": true
+ }
+}

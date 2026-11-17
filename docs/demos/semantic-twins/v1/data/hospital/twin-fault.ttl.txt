@@ -1,0 +1,327 @@
+@prefix :        <https://example.org/scen/hospital/scene.ttl#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:  <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix x3d:     <https://www.web3d.org/specifications/x3d-4.1.xsd#> .
+@prefix x3do:    <https://www.web3d.org/specifications/X3dOntology4.1#> .
+
+:X3D a owl:NamedIndividual, x3do:X3D ;
+  x3do:hasHead :head ;
+  x3do:hasScene :Scene ;
+  x3do:profile "Immersive" ;
+  x3do:version "4.0" ;
+  x3do:noNamespaceSchemaLocation "https://www.web3d.org/specifications/x3d-4.0.xsd" .
+:head a owl:NamedIndividual, x3do:head ;
+  x3do:hasParent :X3D ;
+  x3do:hasComponent :component_1_1 ;
+  x3do:hasMeta :meta_1_2, :meta_1_3, :meta_1_4, :meta_1_5, :meta_1_6 .
+:component_1_1 a owl:NamedIndividual, x3do:component ;
+  x3do:hasParent :head ;
+  x3do:name "Shape" ;
+  x3do:level 2 .
+:meta_1_2 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "title" ;
+  x3do:content "Operating Room 4, ready or not" .
+:meta_1_3 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "identifier" ;
+  x3do:content "https://example.org/scen/hospital/scene.x3d" .
+:meta_1_4 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "description" ;
+  x3do:content "Operating room; spaces by BOT, devices and the scheduled procedure by HL7 FHIR." .
+:meta_1_5 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "creator" ;
+  x3do:content "HagopJay and Claude" .
+:meta_1_6 a owl:NamedIndividual, x3do:meta ;
+  x3do:hasParent :head ;
+  x3do:name "license" ;
+  x3do:content "CC0 geometry" .
+:meta dcterms:title "Operating Room 4, ready or not" .
+:meta dcterms:identifier "https://example.org/scen/hospital/scene.x3d" .
+:meta dcterms:description "Operating room; spaces by BOT, devices and the scheduled procedure by HL7 FHIR." .
+:meta dcterms:creator "HagopJay and Claude" .
+:meta dcterms:license "CC0 geometry" .
+:Scene a owl:NamedIndividual, x3do:Scene ;
+  x3do:hasParent :X3D ;
+  x3do:hasChildren :NavigationInfo_2_1, :Background_2_2, :V_Overview, :V_Plan, :DirectionalLight_2_5, :Root .
+:NavigationInfo_2_1 a owl:NamedIndividual, x3do:NavigationInfo ;
+  x3do:hasParent :Scene .
+:Background_2_2 a owl:NamedIndividual, x3do:Background ;
+  x3do:hasParent :Scene ;
+  x3do:skyColor ( 0.08 0.1 0.12 ) ;
+  x3do:groundColor ( 0.15 0.16 0.17 ) .
+:V_Overview a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Overview" ;
+  x3do:description "Operating Room 4" ;
+  x3do:position ( 6 6 8 ) ;
+  x3do:orientation ( -0.6 0.75 0.27 0.9 ) ;
+  x3do:centerOfRotation ( 0 0.8 0 ) .
+:V_Plan a owl:NamedIndividual, x3do:Viewpoint ;
+  x3do:hasParent :Scene ;
+  x3do:DEF "V_Plan" ;
+  x3do:description "Plan view with the sterile field" ;
+  x3do:position ( 0 11 0.01 ) ;
+  x3do:orientation ( -1 0 0 1.571 ) .
+:DirectionalLight_2_5 a owl:NamedIndividual, x3do:DirectionalLight ;
+  x3do:hasParent :Scene ;
+  x3do:direction ( -0.4 -1 -0.5 ) ;
+  x3do:intensity 0.8 .
+:Root a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Scene ;
+  x3do:hasChildren :OR4Room, :SterileField, :ORTable, :AnesthesiaMachine, :SurgicalLight1, :SurgicalLight2, :CArm, :InstrumentTable, :SupplyCart, :ScrubSink, :DoorMain ;
+  x3do:DEF "Root" .
+:OR4Room a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :OR4Room_Shape ;
+  x3do:DEF "OR4Room" ;
+  x3do:translation ( 0 1.5 0 ) .
+:OR4Room_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :OR4Room ;
+  x3do:hasAppearance :Appearance_2_6_1_1_1 ;
+  x3do:hasGeometry :Box_2_6_1_1_2 ;
+  x3do:DEF "OR4Room_Shape" .
+:Appearance_2_6_1_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :OR4Room_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_1_1_1_1 .
+:PhysicalMaterial_2_6_1_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_1_1_1 ;
+  x3do:baseColor ( 0.85 0.9 0.92 ) ;
+  x3do:emissiveColor ( 0.068 0.072 0.0736 ) ;
+  x3do:roughness 0.5 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.85 .
+:Box_2_6_1_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :OR4Room_Shape ;
+  x3do:size ( 7 3 6 ) .
+:SterileField a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :SterileField_Shape ;
+  x3do:DEF "SterileField" ;
+  x3do:translation ( 0 0.02 0 ) .
+:SterileField_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :SterileField ;
+  x3do:hasAppearance :Appearance_2_6_2_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_2_1_2 ;
+  x3do:DEF "SterileField_Shape" .
+:Appearance_2_6_2_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :SterileField_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_2_1_1_1 .
+:PhysicalMaterial_2_6_2_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_2_1_1 ;
+  x3do:baseColor ( 0.2 0.75 0.7 ) ;
+  x3do:emissiveColor ( 0.016 0.06 0.056 ) ;
+  x3do:roughness 0.5 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.6 .
+:Cylinder_2_6_2_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :SterileField_Shape ;
+  x3do:radius 1.6 ;
+  x3do:height 0.02 .
+:ORTable a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ORTable_Shape ;
+  x3do:DEF "ORTable" ;
+  x3do:translation ( 0 0.45 0 ) .
+:ORTable_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ORTable ;
+  x3do:hasAppearance :Appearance_2_6_3_1_1 ;
+  x3do:hasGeometry :Box_2_6_3_1_2 ;
+  x3do:DEF "ORTable_Shape" .
+:Appearance_2_6_3_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ORTable_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_3_1_1_1 .
+:PhysicalMaterial_2_6_3_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_3_1_1 ;
+  x3do:baseColor ( 0.55 0.58 0.62 ) ;
+  x3do:emissiveColor ( 0.044 0.0464 0.0496 ) ;
+  x3do:roughness 0.5 ;
+  x3do:metallic 0 .
+:Box_2_6_3_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :ORTable_Shape ;
+  x3do:size ( 2 0.9 0.6 ) .
+:AnesthesiaMachine a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :AnesthesiaMachine_Shape ;
+  x3do:DEF "AnesthesiaMachine" ;
+  x3do:translation ( -1.1 0.8 -2 ) .
+:AnesthesiaMachine_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :AnesthesiaMachine ;
+  x3do:hasAppearance :Appearance_2_6_4_1_1 ;
+  x3do:hasGeometry :Box_2_6_4_1_2 ;
+  x3do:DEF "AnesthesiaMachine_Shape" .
+:Appearance_2_6_4_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :AnesthesiaMachine_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_4_1_1_1 .
+:PhysicalMaterial_2_6_4_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_4_1_1 ;
+  x3do:baseColor ( 0.25 0.45 0.85 ) ;
+  x3do:emissiveColor ( 0.02 0.036 0.068 ) ;
+  x3do:roughness 0.5 ;
+  x3do:metallic 0 .
+:Box_2_6_4_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :AnesthesiaMachine_Shape ;
+  x3do:size ( 0.7 1.6 0.6 ) .
+:SurgicalLight1 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :SurgicalLight1_Shape ;
+  x3do:DEF "SurgicalLight1" ;
+  x3do:translation ( 0.4 2.6 0 ) .
+:SurgicalLight1_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :SurgicalLight1 ;
+  x3do:hasAppearance :Appearance_2_6_5_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_5_1_2 ;
+  x3do:DEF "SurgicalLight1_Shape" .
+:Appearance_2_6_5_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :SurgicalLight1_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_5_1_1_1 .
+:PhysicalMaterial_2_6_5_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_5_1_1 ;
+  x3do:baseColor ( 0.92 0.94 0.96 ) ;
+  x3do:emissiveColor ( 0.0736 0.0752 0.0768 ) ;
+  x3do:roughness 0.5 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_5_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :SurgicalLight1_Shape ;
+  x3do:radius 0.35 ;
+  x3do:height 0.1 .
+:SurgicalLight2 a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :SurgicalLight2_Shape ;
+  x3do:DEF "SurgicalLight2" ;
+  x3do:translation ( -0.5 2.6 0.3 ) .
+:SurgicalLight2_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :SurgicalLight2 ;
+  x3do:hasAppearance :Appearance_2_6_6_1_1 ;
+  x3do:hasGeometry :Cylinder_2_6_6_1_2 ;
+  x3do:DEF "SurgicalLight2_Shape" .
+:Appearance_2_6_6_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :SurgicalLight2_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_6_1_1_1 .
+:PhysicalMaterial_2_6_6_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_6_1_1 ;
+  x3do:baseColor ( 0.92 0.94 0.96 ) ;
+  x3do:emissiveColor ( 0.0736 0.0752 0.0768 ) ;
+  x3do:roughness 0.5 ;
+  x3do:metallic 0 .
+:Cylinder_2_6_6_1_2 a owl:NamedIndividual, x3do:Cylinder ;
+  x3do:hasParent :SurgicalLight2_Shape ;
+  x3do:radius 0.3 ;
+  x3do:height 0.1 .
+:CArm a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :CArm_Shape ;
+  x3do:DEF "CArm" ;
+  x3do:translation ( 2.2 1 1.6 ) .
+:CArm_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :CArm ;
+  x3do:hasAppearance :Appearance_2_6_7_1_1 ;
+  x3do:hasGeometry :Box_2_6_7_1_2 ;
+  x3do:DEF "CArm_Shape" .
+:Appearance_2_6_7_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :CArm_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_7_1_1_1 .
+:PhysicalMaterial_2_6_7_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_7_1_1 ;
+  x3do:baseColor ( 0.92 0.94 0.96 ) ;
+  x3do:emissiveColor ( 0.0736 0.0752 0.0768 ) ;
+  x3do:roughness 0.5 ;
+  x3do:metallic 0 .
+:Box_2_6_7_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :CArm_Shape ;
+  x3do:size ( 0.6 2 0.6 ) .
+:InstrumentTable a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :InstrumentTable_Shape ;
+  x3do:DEF "InstrumentTable" ;
+  x3do:translation ( 0.9 0.5 -0.9 ) .
+:InstrumentTable_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :InstrumentTable ;
+  x3do:hasAppearance :Appearance_2_6_8_1_1 ;
+  x3do:hasGeometry :Box_2_6_8_1_2 ;
+  x3do:DEF "InstrumentTable_Shape" .
+:Appearance_2_6_8_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :InstrumentTable_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_8_1_1_1 .
+:PhysicalMaterial_2_6_8_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_8_1_1 ;
+  x3do:baseColor ( 0.55 0.58 0.62 ) ;
+  x3do:emissiveColor ( 0.044 0.0464 0.0496 ) ;
+  x3do:roughness 0.5 ;
+  x3do:metallic 0 .
+:Box_2_6_8_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :InstrumentTable_Shape ;
+  x3do:size ( 0.8 1 0.5 ) .
+:SupplyCart a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :SupplyCart_Shape ;
+  x3do:DEF "SupplyCart" ;
+  x3do:translation ( 1.1 0.5 0.6 ) .
+:SupplyCart_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :SupplyCart ;
+  x3do:hasAppearance :Appearance_2_6_9_1_1 ;
+  x3do:hasGeometry :Box_2_6_9_1_2 ;
+  x3do:DEF "SupplyCart_Shape" .
+:Appearance_2_6_9_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :SupplyCart_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_9_1_1_1 .
+:PhysicalMaterial_2_6_9_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_9_1_1 ;
+  x3do:baseColor ( 0.7 0.55 0.35 ) ;
+  x3do:emissiveColor ( 0.056 0.044 0.028 ) ;
+  x3do:roughness 0.5 ;
+  x3do:metallic 0 .
+:Box_2_6_9_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :SupplyCart_Shape ;
+  x3do:size ( 0.6 1 0.5 ) .
+:ScrubSink a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :ScrubSink_Shape ;
+  x3do:DEF "ScrubSink" ;
+  x3do:translation ( -3.2 0.5 2.4 ) .
+:ScrubSink_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :ScrubSink ;
+  x3do:hasAppearance :Appearance_2_6_10_1_1 ;
+  x3do:hasGeometry :Box_2_6_10_1_2 ;
+  x3do:DEF "ScrubSink_Shape" .
+:Appearance_2_6_10_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :ScrubSink_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_10_1_1_1 .
+:PhysicalMaterial_2_6_10_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_10_1_1 ;
+  x3do:baseColor ( 0.92 0.94 0.96 ) ;
+  x3do:emissiveColor ( 0.0736 0.0752 0.0768 ) ;
+  x3do:roughness 0.5 ;
+  x3do:metallic 0 .
+:Box_2_6_10_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :ScrubSink_Shape ;
+  x3do:size ( 0.5 1 1.2 ) .
+:DoorMain a owl:NamedIndividual, x3do:Transform ;
+  x3do:hasParent :Root ;
+  x3do:hasChildren :DoorMain_Shape ;
+  x3do:DEF "DoorMain" ;
+  x3do:translation ( 3.5 1.1 0 ) .
+:DoorMain_Shape a owl:NamedIndividual, x3do:Shape ;
+  x3do:hasParent :DoorMain ;
+  x3do:hasAppearance :Appearance_2_6_11_1_1 ;
+  x3do:hasGeometry :Box_2_6_11_1_2 ;
+  x3do:DEF "DoorMain_Shape" .
+:Appearance_2_6_11_1_1 a owl:NamedIndividual, x3do:Appearance ;
+  x3do:hasParent :DoorMain_Shape ;
+  x3do:hasMaterial :PhysicalMaterial_2_6_11_1_1_1 .
+:PhysicalMaterial_2_6_11_1_1_1 a owl:NamedIndividual, x3do:PhysicalMaterial ;
+  x3do:hasParent :Appearance_2_6_11_1_1 ;
+  x3do:baseColor ( 0.5 0.55 0.6 ) ;
+  x3do:emissiveColor ( 0.04 0.044 0.048 ) ;
+  x3do:roughness 0.5 ;
+  x3do:metallic 0 ;
+  x3do:transparency 0.3 .
+:Box_2_6_11_1_2 a owl:NamedIndividual, x3do:Box ;
+  x3do:hasParent :DoorMain_Shape ;
+  x3do:size ( 0.1 2.2 1.6 ) .

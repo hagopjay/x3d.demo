@@ -1,0 +1,113 @@
+{
+ "file": "build/wire_your_own_tool.py",
+ "file_sha256": "aa1503e691eb1579a29f92f68cc69845393b11945f114ce8828996dfdbf53f1c",
+ "lines": 26,
+ "libs": {
+  "mcp": "1.30.0",
+  "rdflib": "7.6.0"
+ },
+ "python": "3.13.18",
+ "calls": [
+  {
+   "tool": "bright_materials",
+   "args": {
+    "min_luminance": 0.2
+   },
+   "isError": false,
+   "ms": 92.8,
+   "result": [
+    {
+     "material": "Pearl",
+     "Y": 1.0
+    },
+    {
+     "material": "PlaqueSkin",
+     "Y": 1.0
+    },
+    {
+     "material": "Jade",
+     "Y": 0.5522
+    },
+    {
+     "material": "Cobalt",
+     "Y": 0.2944
+    },
+    {
+     "material": "Ruby",
+     "Y": 0.2495
+    }
+   ],
+   "result_sha256": "2789801f9684ee5c23047b3cde869abbe974f3d0327bef169edc7c9e40b9a843"
+  },
+  {
+   "tool": "bright_materials",
+   "args": {
+    "min_luminance": 0.5
+   },
+   "isError": false,
+   "ms": 19.8,
+   "result": [
+    {
+     "material": "Pearl",
+     "Y": 1.0
+    },
+    {
+     "material": "PlaqueSkin",
+     "Y": 1.0
+    },
+    {
+     "material": "Jade",
+     "Y": 0.5522
+    }
+   ],
+   "result_sha256": "d26b772b3c5b964312126b0dc9913b902b7a2605e3a2313d96529a74a51de466"
+  }
+ ],
+ "tools_list": [
+  {
+   "name": "bright_materials",
+   "description": "Materials in the Cabinet whose diffuseColor is brighter than min_luminance (relative luminance 0..1).",
+   "inputSchema": {
+    "properties": {
+     "min_luminance": {
+      "default": 0.2,
+      "title": "Min Luminance",
+      "type": "number"
+     }
+    },
+    "title": "bright_materialsArguments",
+    "type": "object"
+   }
+  }
+ ],
+ "stdio": {
+  "command": "python -I -B build/wire_your_own_tool.py",
+  "server_name": "cabinet-twin",
+  "protocol": "2025-11-25",
+  "result": [
+   {
+    "material": "Pearl",
+    "Y": 1.0
+   },
+   {
+    "material": "PlaqueSkin",
+    "Y": 1.0
+   },
+   {
+    "material": "Jade",
+    "Y": 0.5522
+   },
+   {
+    "material": "Cobalt",
+    "Y": 0.2944
+   },
+   {
+    "material": "Ruby",
+    "Y": 0.2495
+   }
+  ],
+  "result_sha256": "2789801f9684ee5c23047b3cde869abbe974f3d0327bef169edc7c9e40b9a843",
+  "wall_ms": 732.4
+ },
+ "stdio_equals_in_memory": true
+}

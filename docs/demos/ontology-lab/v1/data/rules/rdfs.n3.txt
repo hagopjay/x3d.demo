@@ -1,0 +1,14 @@
+# Semantic Twin Lab: RDFS entailment rules used by the Chimera and launder stations (shown with a warning).
+# Rules rdfs2 (domain), rdfs3 (range), rdfs5/rdfs7 (subPropertyOf), rdfs9/rdfs11 (subClassOf). No axiomatic triples,
+# no rdfs4 (everything is a Resource), so counts compare to owlrl by the rdf:type triples on IRI subjects only.
+# Multiple rdfs:domain (or rdfs:range) values mean INTERSECTION: a subject gets every domain class at once.
+# Run with a derivation budget (e.g. new N3.Reasoner(store, { maxDerivations: 2e6 })).
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+{ ?p rdfs:domain ?c . ?s ?p ?o . } => { ?s rdf:type ?c . } .
+{ ?p rdfs:range ?c . ?s ?p ?o . } => { ?o rdf:type ?c . } .
+{ ?p rdfs:subPropertyOf ?q . ?s ?p ?o . } => { ?s ?q ?o . } .
+{ ?p rdfs:subPropertyOf ?q . ?q rdfs:subPropertyOf ?r . } => { ?p rdfs:subPropertyOf ?r . } .
+{ ?s rdf:type ?a . ?a rdfs:subClassOf ?b . } => { ?s rdf:type ?b . } .
+{ ?a rdfs:subClassOf ?b . ?b rdfs:subClassOf ?c . } => { ?a rdfs:subClassOf ?c . } .

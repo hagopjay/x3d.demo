@@ -1,0 +1,7 @@
+# Semantic Twin Lab: subclass-only reasoning (the safe default). For the N3.js Reasoner (basic graph patterns only).
+# rdfs9: an instance of a class is an instance of every superclass. rdfs11: subClassOf is transitive.
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+{ ?s rdf:type ?a . ?a rdfs:subClassOf ?b . } => { ?s rdf:type ?b . } .
+{ ?a rdfs:subClassOf ?b . ?b rdfs:subClassOf ?c . } => { ?a rdfs:subClassOf ?c . } .
