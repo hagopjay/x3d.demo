@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## Unnumbered (2026-11-17)
+- Added docs/demos/blender-scivis-precision/v1 (Blender precision and native-splat control summary). No front-page card; number to be assigned by the bridge thread.
+
 ## v30 (2026-11-17)
 - New Demo 38: Math Lab (x3d.mathslab), six interactive X3D math labs (linear maps, derivative, integral, Fourier, Lorenz, gradient descent) built in the browser by Python under Pyodide and drawn by X_ITE, with a Manim source export. The lab lives in its own repository, so the card links its live page (`https://hagopjay.github.io/x3d.mathslab/`, 200 when checked) and its source. New card picture `docs/assets/math-lab.jpg` (a headless screenshot of the live page, 1280 x 720 scaled to 960 x 540), the snapshot `docs/versions/v30/index.html`, and a SOURCES line for the picture. Held until the lab's thread confirmed the live URL.
 - Still held, URL not live: Accretion static viewer (planned Demo 39) and Gobbler Evidence Loom (requested Demo 40). Numbers go in the order cards ship, so these may shift.
