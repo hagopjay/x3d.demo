@@ -1,0 +1,50 @@
+'use strict';
+const assert = require('node:assert/strict');
+require('../parity.js');
+const compare = globalThis.LabParity.compare;
+let tests = 0;
+function test(name, fn) { fn(); tests++; console.log('ok', name); }
+const answer = (rows, extra = {}) => ({ vars: ['v'], count: rows.length, rows: rows.map(v => ({ v })), ...extra });
+const typed = (values, extra = {}) => ({ ...answer(values.map(v => v && v.value)), terms: values.map(v => ({ v })), ...extra });
+const node = value => ({ termType: 'NamedNode', value });
+const blank = value => ({ termType: 'BlankNode', value });
+const literal = (value, datatype = 'http://www.w3.org/2001/XMLSchema#string', language = '') => ({ termType: 'Literal', value, datatype, language });
+test('SELECT remains a bag by default', () => assert.equal(compare('select', answer([2, 1, 1]), answer([1, 2, 1])).equal, true));
+test('bag duplicate multiplicity is retained', () => assert.equal(compare('select', answer([1, 2, 2]), answer([1, 1, 2])).equal, false));
+test('truncated oracle cannot reuse one matching duplicate', () => assert.equal(compare('select', answer(['a', 'b', 'c']), answer(['a', 'a'], { count: 3 })).equal, false));
+test('truncated oracle matches with multiplicity and labels partial evidence', () => { const r = compare('select', answer(['b', 'a', 'a']), answer(['a', 'a'], { count: 3 })); assert.equal(r.equal, true); assert.equal(r.scope, 'sample-and-count'); });
+test('explicit ordered comparison detects reversal', () => assert.equal(compare('select', answer([2, 1]), answer([1, 2], { ordered: true })).equal, false));
+test('ordered truncated oracle is a prefix rather than an arbitrary subset', () => assert.equal(compare('select', answer([2, 1, 3]), answer([1, 3], { count: 3, ordered: true })).equal, false));
+test('live ordered metadata does not change legacy receipt semantics', () => assert.equal(compare('select', answer([2, 1], { ordered: true }), answer([1, 2])).equal, true));
+test('comparison options can request sequence validation', () => assert.equal(compare('select', answer([2, 1]), answer([1, 2]), { ordered: true }).equal, false));
+test('relative numeric tolerance spans a rounding boundary', () => assert.equal(compare('select', answer([1.234567]), answer([1.234568])).equal, true));
+test('small nonzero values do not collapse to zero', () => assert.equal(compare('select', answer([1e-14]), answer([0])).equal, false));
+test('exact numeric comparison can be selected', () => assert.equal(compare('select', answer([1]), answer([1.0000001]), { numericTolerance: 0 }).equal, false));
+test('strings and numbers are distinct', () => assert.equal(compare('select', answer(['1']), answer([1])).equal, false));
+test('unbound and empty string remain distinct', () => assert.equal(compare('select', answer([null]), answer([''])).equal, false));
+test('projected variable mismatch is rejected', () => assert.equal(compare('select', answer([null]), { vars: ['missing'], count: 1, rows: [{ missing: null }] }).equal, false));
+test('incomplete live answer is not certified', () => assert.equal(compare('select', answer([1], { count: 3 }), answer([1], { count: 3 })).equal, false));
+test('legacy blank labels are compared only within an explicitly weak projection', () => { const r = compare('select', answer(['_:b0', '_:b1']), answer(['_:b', '_:b'])); assert.equal(r.equal, true); assert.equal(r.scope, 'legacy-projection'); });
+test('structured terms distinguish a literal from an IRI', () => assert.equal(compare('select', typed([node('urn:a')]), typed([literal('urn:a')])).equal, false));
+test('structured terms retain datatype identity', () => assert.equal(compare('select', typed([literal('1', 'urn:int')]), typed([literal('1', 'urn:string')])).equal, false));
+test('structured terms retain numeric lexical form', () => assert.equal(compare('select', typed([literal('01', 'urn:int')]), typed([literal('1', 'urn:int')])).equal, false));
+test('blank node labels can be renamed per answer', () => assert.equal(compare('select', typed([blank('live0'), blank('live0')]), typed([blank('oracle9'), blank('oracle9')])).equal, true));
+test('structured blank co-reference cannot collapse two nodes into one', () => assert.equal(compare('select', typed([blank('live0'), blank('live1')]), typed([blank('oracle9'), blank('oracle9')])).equal, false));
+test('structured unordered blank mapping backtracks consistently across columns', () => {
+ const l = { vars: ['a','b'], count: 2, rows:[{},{}], terms:[{a:blank('a'),b:node('urn:2')},{a:blank('b'),b:node('urn:1')}] };
+ const e = { vars: ['a','b'], count: 2, rows:[{},{}], terms:[{a:blank('x'),b:node('urn:1')},{a:blank('y'),b:node('urn:2')}] };
+ assert.equal(compare('select',l,e).equal,true);
+});
+test('missing SHA256 values never count as equal', () => assert.equal(compare('sha256', {}, {}).equal, false));
+test('ASK requires an actual boolean', () => assert.equal(compare('ask', {ask:undefined}, {ask:undefined}).equal, false));
+console.log(`${tests} parity regression tests passed`);
+const fs = require('node:fs');
+const path = require('node:path');
+const stations = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/stations.json'), 'utf8')).stations;
+let receiptCases = 0;
+for (const station of stations) for (const [name, job] of Object.entries(station.jobs || {})) {
+  if (!['count','sha256','select','ask','diff','reason','shacl'].includes(job.spec && job.spec.kind)) continue;
+  assert.equal(compare(job.spec.kind, job.python, job.python).equal, true, `${station.id}:${name} legacy receipt compatibility`);
+  receiptCases++;
+}
+console.log(`${receiptCases} bundled receipt comparisons remain compatible`);

@@ -1,0 +1,76 @@
+{
+  "schema": "semantic-twin-source-audit/v1",
+  "instrument": {
+    "name": "semantic-twin-companion",
+    "version": "1.0.0",
+    "checks": "lexical XML plus exact bounded RDF graph identity",
+    "canonicalization": "semantic-twin-graph-c14n/v1",
+    "network": "none"
+  },
+  "source": {
+    "basename": "fault-F7.xml",
+    "sha256": "24af9ecee9dc0ea968fce807e22205632fe2c54f9d8982196ceb0a7926a77bc5",
+    "bytes": 14570
+  },
+  "xml": {
+    "schema": "semantic-twin-source-audit/v1",
+    "source_sha256": "24af9ecee9dc0ea968fce807e22205632fe2c54f9d8982196ceb0a7926a77bc5",
+    "source_bytes": 14570,
+    "limitations": [
+      "No XSD, field-value, containerField, PROTO expansion, imported-scene, or render validation.",
+      "DEF/USE/ROUTE checks apply within lexical Scene and ProtoBody scopes; external DTD defaults are not loaded.",
+      "Witnesses locate opening tags within the exact source hash; they are not stable across edits."
+    ],
+    "ok": true,
+    "clean": false,
+    "elements": 184,
+    "definitions": 122,
+    "doctype": {
+      "present": false,
+      "external_dtd_loaded": false
+    },
+    "findings": [
+      {
+        "severity": "error",
+        "code": "duplicate-def",
+        "message": "DEF 'Ruby' appears more than once in this lexical execution scope",
+        "witness": {
+          "source_sha256": "24af9ecee9dc0ea968fce807e22205632fe2c54f9d8982196ceb0a7926a77bc5",
+          "start_byte": 8179,
+          "end_byte": 8248,
+          "line": 161,
+          "column": 15,
+          "element": "Material",
+          "def": "Ruby",
+          "xml_path": "/X3D[1]/Scene[1]/Transform[5]/Transform[1]/Transform[3]/Shape[1]/Appearance[1]/Material[1]"
+        },
+        "related_witness": {
+          "source_sha256": "24af9ecee9dc0ea968fce807e22205632fe2c54f9d8982196ceb0a7926a77bc5",
+          "start_byte": 7559,
+          "end_byte": 7631,
+          "line": 145,
+          "column": 15,
+          "element": "Material",
+          "def": "Ruby",
+          "xml_path": "/X3D[1]/Scene[1]/Transform[5]/Transform[1]/Transform[1]/Shape[1]/Appearance[1]/Material[1]"
+        }
+      }
+    ]
+  },
+  "rdf": {
+    "basename": "fault-F7.ttl.txt",
+    "source_sha256": "8985ad8249cef823a02543695c7f3964b5d60b536fa5af378e3de48872a360be",
+    "source_bytes": 33440,
+    "parser_base_iri": "urn:semantic-twin:input:",
+    "algorithm": "semantic-twin-graph-c14n/v1",
+    "graph_sha256": "26f49ee13bf7bbe7514b2d6a9d219a2ed5f843c53297908940bf9a1ddc5a0802",
+    "triples": 1936,
+    "blank_nodes": 409,
+    "refinement_rounds": 5,
+    "labelings_checked": 1,
+    "canonicalization_complete": true,
+    "literal_policy": "lexical value plus datatype and language; no numeric coercion",
+    "correspondence_verified": false,
+    "note": "XML and Turtle independently inspected; no derivation correspondence is certified."
+  }
+}

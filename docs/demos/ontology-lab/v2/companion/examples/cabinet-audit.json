@@ -1,0 +1,50 @@
+{
+  "schema": "semantic-twin-source-audit/v1",
+  "instrument": {
+    "name": "semantic-twin-companion",
+    "version": "1.0.0",
+    "checks": "lexical XML plus exact bounded RDF graph identity",
+    "canonicalization": "semantic-twin-graph-c14n/v1",
+    "network": "none"
+  },
+  "source": {
+    "basename": "cabinet.xml",
+    "sha256": "0fbaac5a2f98ba2dd6178cdf81bf06ed4431dd2a1574ff7a31238f7cf8e168f0",
+    "bytes": 14487
+  },
+  "xml": {
+    "schema": "semantic-twin-source-audit/v1",
+    "source_sha256": "0fbaac5a2f98ba2dd6178cdf81bf06ed4431dd2a1574ff7a31238f7cf8e168f0",
+    "source_bytes": 14487,
+    "limitations": [
+      "No XSD, field-value, containerField, PROTO expansion, imported-scene, or render validation.",
+      "DEF/USE/ROUTE checks apply within lexical Scene and ProtoBody scopes; external DTD defaults are not loaded.",
+      "Witnesses locate opening tags within the exact source hash; they are not stable across edits."
+    ],
+    "ok": true,
+    "clean": true,
+    "elements": 184,
+    "definitions": 122,
+    "doctype": {
+      "present": false,
+      "external_dtd_loaded": false
+    },
+    "findings": []
+  },
+  "rdf": {
+    "basename": "cabinet.ttl.txt",
+    "source_sha256": "526a30e27853972a6b79072751601a4ab628b9959e50af741cf912eef66fdf82",
+    "source_bytes": 33440,
+    "parser_base_iri": "urn:semantic-twin:input:",
+    "algorithm": "semantic-twin-graph-c14n/v1",
+    "graph_sha256": "1f901692c9357c90dee5b4d70aafab3f133e9776ba66bf8df406e81d07364c6f",
+    "triples": 1939,
+    "blank_nodes": 409,
+    "refinement_rounds": 5,
+    "labelings_checked": 1,
+    "canonicalization_complete": true,
+    "literal_policy": "lexical value plus datatype and language; no numeric coercion",
+    "correspondence_verified": false,
+    "note": "XML and Turtle independently inspected; no derivation correspondence is certified."
+  }
+}

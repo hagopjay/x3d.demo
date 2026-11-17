@@ -1,0 +1,201 @@
+{
+ "about": "Every version and hash the Semantic Twin Lab content depends on. Regenerate with python -I build/make_all.py.",
+ "ontology": {
+  "file": "ontology/X3dOntology4.1.ttl",
+  "sha256": "057f1ba083a636aa50332f87fda0bfa76793876c2b14c86f51dd6db55639f2d8",
+  "bytes": 1171176,
+  "version": "4.1",
+  "source": "Web3D Consortium X3D Ontology 4.1 (SVN mirror r40416)",
+  "expected_sha256": "057f1ba083a636aa50332f87fda0bfa76793876c2b14c86f51dd6db55639f2d8",
+  "matches": true,
+  "slice": {
+   "file": "ontology/slice.ttl",
+   "sha256": "6a881c2cd243011f23afc844baf411124a7cdab992dd38cdcbc0acad6c5bac6d",
+   "bytes": 122184
+  },
+  "classes": {
+   "file": "ontology/classes.json",
+   "sha256": "d157a1158736acbb199d2cbf03fd60ac250707082bc71a02cd5b36e780278e74",
+   "bytes": 30267
+  }
+ },
+ "stylesheet": {
+  "file": "vendor/web3d/stylesheets/X3dToTurtle.xslt",
+  "sha256": "e3c5aa40756b97725f1ae1cbb6167f84b9b590e1d6e159255be7b6f77908c4c9",
+  "bytes": 232821,
+  "revision": "X3dToTurtle.xslt r40388 (SVN)",
+  "self_test": "5/5 byte-identical of the published Consortium example .ttl files reproduced"
+ },
+ "dtds": {
+  "x3d-3.3-Web3dExtensionsPrivate.dtd": {
+   "sha256": "10ba3e16b40b644306299131ce65d3663c3f3b748a86a7ba465ca120e8cd0411",
+   "bytes": 1209
+  },
+  "x3d-3.3-Web3dExtensionsPublic.dtd": {
+   "sha256": "dbc6202cd79e69a6ba85189745cf291690cfca5e34b76aa81707a151b7c9b068",
+   "bytes": 3277
+  },
+  "x3d-3.3.dtd": {
+   "sha256": "ecd77d17efc56ef9513c3b6e030d5deef4089b79278e363325ebd0b0d8b3711b",
+   "bytes": 143029
+  },
+  "x3d-4.0-Web3dExtensionsPrivate.dtd": {
+   "sha256": "e76f537568d1416e2699a33f7e0ff995e198116a5eea792c9512505e5baa0e0b",
+   "bytes": 1215
+  },
+  "x3d-4.0-Web3dExtensionsPublic.dtd": {
+   "sha256": "a9740759f1f1cbcf303f981930d0a048250a941e97dcd5d1a3be6fcfedf0da5e",
+   "bytes": 3339
+  },
+  "x3d-4.0.dtd": {
+   "sha256": "7ca41e6fd55cc5d05fb5d14f6d2e99d8267bb30e0d75fd93db1119e536140d1b",
+   "bytes": 190436
+  },
+  "x3d-4.1-Web3dExtensionsPrivate.dtd": {
+   "sha256": "ab67aff66bb1cc578f59efc962d4ae2a02c8b1f7ff0bffe1350df052c363f19f",
+   "bytes": 1198
+  },
+  "x3d-4.1-Web3dExtensionsPublic.dtd": {
+   "sha256": "a797dfe7359c63d02abba15649e2459b06cbd2f83ad9a164900ab8be0edae8b3",
+   "bytes": 3322
+  },
+  "x3d-4.1.dtd": {
+   "sha256": "6fa2ff2db37d0cf34c949d899aff55e3ded9f0e9f6ce73aad295360e409600ed",
+   "bytes": 193952
+  }
+ },
+ "examples": {
+  "Altar.ttl": "cc877fc4186a153782df54a33dc7af6dbf586825dd18b1e17bf665c2a9199ef5",
+  "Altar.x3d": "2a58bdbb81b60e6ee2cb68309f38489d566eb467e41938104058f49c2bcb95d9",
+  "HelloWorld.ttl": "7fdfc5b326f197376eec2822588331422362059a9c11a1198f5b6b197869d164",
+  "HelloWorld.x3d": "74efc983247213d8176317ca1a62dc1b5ad1301fa46ab51f8582bfd3764e318b",
+  "HelloX3dAuthorsAnimationChain.ttl": "8f9639116b300dcf3120f5053f2898323756119612af4b337bf1b22d9a2ce5c9",
+  "HelloX3dAuthorsAnimationChain.x3d": "3d18f8178d31f774f1009ba5693c7275c3fa34dcb7dfe4ef7ba908ddbee20355",
+  "MaterialModulator.ttl": "34b9a939ae25d5475a9b7c4e5ebb42641faf3a07c8fd89a4a788db3d87e592f0",
+  "MaterialModulator.x3d": "6c1359adae27c24d9e2856aa4e27b11d922640a153d0d93a8cb5903d7df2329d",
+  "MetadataNodeExamplesX3D4.ttl": "f153c6c9b31e3d7b66138251eb0317c698abe1da8320d519dee25fcd4f99f226",
+  "MetadataNodeExamplesX3D4.x3d": "d5a83f505bd6b9f15a0385f95878f68763273775f05d9b3f4602b23dc2329e01"
+ },
+ "x3d_mcp": {
+  "validators": {
+   "commit": "13121b6",
+   "copy": "fork/ = git archive 13121b6, installed in venv-fork",
+   "xsd": "src/validation/schemas/x3d-4.1.xsd",
+   "xsd_sha256": "1a7935caa7e6a63de2b275968bdc48da2f34124a43acb7b293674c3d16646a85",
+   "x3duom": "src/validation/schemas/X3dUnifiedObjectModel-4.1.xml",
+   "x3duom_sha256": "4fc10e8e15c0d6cf2a916e4f59b815b110104aa7ea734dc6afea9458095c792b",
+   "libs": {
+    "lxml": "6.1.3",
+    "xmlschema": "4.3.2",
+    "x3d": "4.0.65.8"
+   }
+  },
+  "tools": {
+   "commit": "7d3f1d5dca06cca9913f16cff6f88728c51df864",
+   "commits_since_13121b6": [
+    "7d3f1d5 Document the semantic-web tools",
+    "2e6700f Semantic-web tools: scene_to_rdf, sparql_scene, shacl_validate, rdf_infer, ontology_vs_gate",
+    "ba51626 scene_rdf: X3D to Turtle by the X3dToTurtle.xslt conventions, in Python",
+    "5a8b9f9 Bundle X3D Ontology 4.1 and pick a release by document version"
+   ],
+   "dirty_after_calls": false,
+   "instrument": {
+    "x3d_mcp_commit": "7d3f1d5dca06cca9913f16cff6f88728c51df864",
+    "x3d_mcp_dirty": false,
+    "ontology": {
+     "version": "4.1",
+     "file": "X3dOntology4.1.ttl",
+     "sha256": "057f1ba083a636aa50332f87fda0bfa76793876c2b14c86f51dd6db55639f2d8"
+    },
+    "shapes": {
+     "name": "x3d-core",
+     "sha256": "5fc558fdf92255f550e7f47ecc305e84e4f72f80abfd0c8bb48fc439554f1610"
+    },
+    "x3duom_sha256": "4fc10e8e15c0d6cf2a916e4f59b815b110104aa7ea734dc6afea9458095c792b",
+    "converter": {
+     "stylesheet": "X3dToTurtle.xslt r40388",
+     "stylesheet_sha256": "e3c5aa40756b97725f1ae1cbb6167f84b9b590e1d6e159255be7b6f77908c4c9",
+     "tables_sha256": "1a5f3229a7eebd4b8541bbca325fedfef38efd3065016dd0bd2f5cb1cda31e4b"
+    },
+    "rdflib": "7.6.0",
+    "pyshacl": "0.40.2",
+    "owlrl": "7.6.2",
+    "python": "3.13.18"
+   },
+   "core_shapes_copy": {
+    "file": "vendor/x3d_mcp-7d3f1d5/x3d-core.shacl.ttl",
+    "sha256": "5fc558fdf92255f550e7f47ecc305e84e4f72f80abfd0c8bb48fc439554f1610",
+    "bytes": 14045
+   },
+   "core_shapes_copy_matches_instrument": true
+  }
+ },
+ "engines": {
+  "python_content_venv": {
+   "rdflib": "7.6.0",
+   "pyshacl": "0.40.2",
+   "owlrl": "7.6.2",
+   "saxonche": "13.1.1",
+   "lxml": "6.1.3",
+   "pillow": "11.3.0",
+   "python": "3.13.18"
+  },
+  "python_tools_venv": {
+   "mcp": "1.30.0",
+   "rdflib": "7.6.0",
+   "pyshacl": "0.40.2",
+   "owlrl": "7.6.2",
+   "lxml": "6.1.3",
+   "xmlschema": "4.3.2",
+   "x3d": "4.0.65.8",
+   "python": "3.13.18"
+  },
+  "python_fork_venv": {
+   "lxml": "6.1.3",
+   "xmlschema": "4.3.2",
+   "x3d": "4.0.65.8",
+   "mcp": "1.30.0",
+   "rdflib": "7.6.0",
+   "python": "3.13.18"
+  },
+  "node": "v22.23.4",
+  "js": {
+   "n3": "2.13.12",
+   "@comunica/query-sparql-rdfjs-lite": "5.4.1",
+   "shacl-engine": "1.1.3",
+   "rdf-validate-shacl": "0.6.5",
+   "d3-force-3d": "3.0.6"
+  },
+  "js_roles": {
+   "n3": "page + JS cross-check",
+   "@comunica/query-sparql-rdfjs-lite": "page + JS cross-check",
+   "shacl-engine": "page + JS cross-check",
+   "rdf-validate-shacl": "third SHACL engine, build-time parity only (receipts/shacl3.json)",
+   "d3-force-3d": "installed, not used: the twin layout is computed in Python (build/make_layout.py)"
+  },
+  "package_lock_sha256": "36c503cf3e9e6225809aab73eaaaed82c423348c7b805eecda0b55bc23faa458"
+ },
+ "browser": {
+  "x_ite": "16.5.1",
+  "x_ite_tgz": {
+   "file": "vendor/x_ite-16.5.1.tgz",
+   "sha256": "f93bc35f2eec515ec2e38de9680a5125c3aa5178197763aaf7c603fc26b71be5",
+   "bytes": 14108010
+  },
+  "x_ite_min_js": {
+   "file": "vendor/x_ite-16.5.1/package/dist/x_ite.min.js",
+   "sha256": "66ce41650e084ac519f552b0129f625d3941c086ea8edf1623c7d68e365e08a3",
+   "bytes": 1306526
+  },
+  "x_ite_license": "MIT",
+  "chromium": "153.0.8010.12",
+  "playwright": "1.63.0",
+  "gl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "csp_profile": "strict",
+  "source": "receipts/render.json engine"
+ },
+ "host": {
+  "platform": "Linux-6.18.44-fc-v470-x86_64-with-glibc2.39",
+  "python": "3.13.18"
+ }
+}

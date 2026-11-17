@@ -1,0 +1,270 @@
+{
+  "schema": "semantic-twin-evidence-ledger/v1",
+  "instruments": {
+    "7d6deb70ecc4aac6b69f25a6ccf37c92fa8a402d210bf8bf8cf9363c069114ee": {
+      "name": "semantic-twin-companion",
+      "version": "1.0.0",
+      "checks": "lexical XML plus exact bounded RDF graph identity",
+      "canonicalization": "semantic-twin-graph-c14n/v1",
+      "network": "none"
+    }
+  },
+  "records": [
+    {
+      "sequence": 0,
+      "previous": "0000000000000000000000000000000000000000000000000000000000000000",
+      "instrument": "7d6deb70ecc4aac6b69f25a6ccf37c92fa8a402d210bf8bf8cf9363c069114ee",
+      "claim": "Local audit of cabinet produced these bounded observations.",
+      "evidence": {
+        "schema": "semantic-twin-source-audit/v1",
+        "instrument": {
+          "name": "semantic-twin-companion",
+          "version": "1.0.0",
+          "checks": "lexical XML plus exact bounded RDF graph identity",
+          "canonicalization": "semantic-twin-graph-c14n/v1",
+          "network": "none"
+        },
+        "source": {
+          "basename": "cabinet.xml",
+          "sha256": "0fbaac5a2f98ba2dd6178cdf81bf06ed4431dd2a1574ff7a31238f7cf8e168f0",
+          "bytes": 14487
+        },
+        "xml": {
+          "schema": "semantic-twin-source-audit/v1",
+          "source_sha256": "0fbaac5a2f98ba2dd6178cdf81bf06ed4431dd2a1574ff7a31238f7cf8e168f0",
+          "source_bytes": 14487,
+          "limitations": [
+            "No XSD, field-value, containerField, PROTO expansion, imported-scene, or render validation.",
+            "DEF/USE/ROUTE checks apply within lexical Scene and ProtoBody scopes; external DTD defaults are not loaded.",
+            "Witnesses locate opening tags within the exact source hash; they are not stable across edits."
+          ],
+          "ok": true,
+          "clean": true,
+          "elements": 184,
+          "definitions": 122,
+          "doctype": {
+            "present": false,
+            "external_dtd_loaded": false
+          },
+          "findings": []
+        },
+        "rdf": {
+          "basename": "cabinet.ttl.txt",
+          "source_sha256": "526a30e27853972a6b79072751601a4ab628b9959e50af741cf912eef66fdf82",
+          "source_bytes": 33440,
+          "parser_base_iri": "urn:semantic-twin:input:",
+          "algorithm": "semantic-twin-graph-c14n/v1",
+          "graph_sha256": "1f901692c9357c90dee5b4d70aafab3f133e9776ba66bf8df406e81d07364c6f",
+          "triples": 1939,
+          "blank_nodes": 409,
+          "refinement_rounds": 5,
+          "labelings_checked": 1,
+          "canonicalization_complete": true,
+          "literal_policy": "lexical value plus datatype and language; no numeric coercion",
+          "correspondence_verified": false,
+          "note": "XML and Turtle independently inspected; no derivation correspondence is certified."
+        }
+      },
+      "sha256": "2f867164e2c713b825f3a5d16e87c5344e9a47c47b66beab46186dfcf753070c"
+    },
+    {
+      "sequence": 1,
+      "previous": "2f867164e2c713b825f3a5d16e87c5344e9a47c47b66beab46186dfcf753070c",
+      "instrument": "7d6deb70ecc4aac6b69f25a6ccf37c92fa8a402d210bf8bf8cf9363c069114ee",
+      "claim": "Local audit of fault-F6 produced these bounded observations.",
+      "evidence": {
+        "schema": "semantic-twin-source-audit/v1",
+        "instrument": {
+          "name": "semantic-twin-companion",
+          "version": "1.0.0",
+          "checks": "lexical XML plus exact bounded RDF graph identity",
+          "canonicalization": "semantic-twin-graph-c14n/v1",
+          "network": "none"
+        },
+        "source": {
+          "basename": "fault-F6.xml",
+          "sha256": "ca0af0b5f6fe00e5ba3d265948bfd84d0349374886aac77ecd101b89109fb2e7",
+          "bytes": 14571
+        },
+        "xml": {
+          "schema": "semantic-twin-source-audit/v1",
+          "source_sha256": "ca0af0b5f6fe00e5ba3d265948bfd84d0349374886aac77ecd101b89109fb2e7",
+          "source_bytes": 14571,
+          "limitations": [
+            "No XSD, field-value, containerField, PROTO expansion, imported-scene, or render validation.",
+            "DEF/USE/ROUTE checks apply within lexical Scene and ProtoBody scopes; external DTD defaults are not loaded.",
+            "Witnesses locate opening tags within the exact source hash; they are not stable across edits."
+          ],
+          "ok": true,
+          "clean": false,
+          "elements": 184,
+          "definitions": 122,
+          "doctype": {
+            "present": false,
+            "external_dtd_loaded": false
+          },
+          "findings": [
+            {
+              "severity": "error",
+              "code": "forward-use",
+              "message": "USE 'Gilt' precedes its DEF",
+              "witness": {
+                "source_sha256": "ca0af0b5f6fe00e5ba3d265948bfd84d0349374886aac77ecd101b89109fb2e7",
+                "start_byte": 4581,
+                "end_byte": 4611,
+                "line": 85,
+                "column": 15,
+                "element": "PhysicalMaterial",
+                "def": null,
+                "xml_path": "/X3D[1]/Scene[1]/Transform[3]/Transform[1]/Transform[1]/Shape[1]/Appearance[1]/PhysicalMaterial[1]"
+              },
+              "related_witness": {
+                "source_sha256": "ca0af0b5f6fe00e5ba3d265948bfd84d0349374886aac77ecd101b89109fb2e7",
+                "start_byte": 4878,
+                "end_byte": 4994,
+                "line": 93,
+                "column": 15,
+                "element": "PhysicalMaterial",
+                "def": "Gilt",
+                "xml_path": "/X3D[1]/Scene[1]/Transform[3]/Transform[1]/Transform[2]/Shape[1]/Appearance[1]/PhysicalMaterial[1]"
+              }
+            }
+          ]
+        },
+        "rdf": {
+          "basename": "fault-F6.ttl.txt",
+          "source_sha256": "881891054c96f7788b0d6fc6e4c1fc166efc2fc3d6a22cde1c9db3cbba11cf51",
+          "source_bytes": 33440,
+          "parser_base_iri": "urn:semantic-twin:input:",
+          "algorithm": "semantic-twin-graph-c14n/v1",
+          "graph_sha256": "1f901692c9357c90dee5b4d70aafab3f133e9776ba66bf8df406e81d07364c6f",
+          "triples": 1939,
+          "blank_nodes": 409,
+          "refinement_rounds": 5,
+          "labelings_checked": 1,
+          "canonicalization_complete": true,
+          "literal_policy": "lexical value plus datatype and language; no numeric coercion",
+          "correspondence_verified": false,
+          "note": "XML and Turtle independently inspected; no derivation correspondence is certified."
+        }
+      },
+      "sha256": "329b2dc1dd170699bc51dff7610bb2e344f450ad6f7d5b519075548e916fbda6"
+    },
+    {
+      "sequence": 2,
+      "previous": "329b2dc1dd170699bc51dff7610bb2e344f450ad6f7d5b519075548e916fbda6",
+      "instrument": "7d6deb70ecc4aac6b69f25a6ccf37c92fa8a402d210bf8bf8cf9363c069114ee",
+      "claim": "Local audit of fault-F7 produced these bounded observations.",
+      "evidence": {
+        "schema": "semantic-twin-source-audit/v1",
+        "instrument": {
+          "name": "semantic-twin-companion",
+          "version": "1.0.0",
+          "checks": "lexical XML plus exact bounded RDF graph identity",
+          "canonicalization": "semantic-twin-graph-c14n/v1",
+          "network": "none"
+        },
+        "source": {
+          "basename": "fault-F7.xml",
+          "sha256": "24af9ecee9dc0ea968fce807e22205632fe2c54f9d8982196ceb0a7926a77bc5",
+          "bytes": 14570
+        },
+        "xml": {
+          "schema": "semantic-twin-source-audit/v1",
+          "source_sha256": "24af9ecee9dc0ea968fce807e22205632fe2c54f9d8982196ceb0a7926a77bc5",
+          "source_bytes": 14570,
+          "limitations": [
+            "No XSD, field-value, containerField, PROTO expansion, imported-scene, or render validation.",
+            "DEF/USE/ROUTE checks apply within lexical Scene and ProtoBody scopes; external DTD defaults are not loaded.",
+            "Witnesses locate opening tags within the exact source hash; they are not stable across edits."
+          ],
+          "ok": true,
+          "clean": false,
+          "elements": 184,
+          "definitions": 122,
+          "doctype": {
+            "present": false,
+            "external_dtd_loaded": false
+          },
+          "findings": [
+            {
+              "severity": "error",
+              "code": "duplicate-def",
+              "message": "DEF 'Ruby' appears more than once in this lexical execution scope",
+              "witness": {
+                "source_sha256": "24af9ecee9dc0ea968fce807e22205632fe2c54f9d8982196ceb0a7926a77bc5",
+                "start_byte": 8179,
+                "end_byte": 8248,
+                "line": 161,
+                "column": 15,
+                "element": "Material",
+                "def": "Ruby",
+                "xml_path": "/X3D[1]/Scene[1]/Transform[5]/Transform[1]/Transform[3]/Shape[1]/Appearance[1]/Material[1]"
+              },
+              "related_witness": {
+                "source_sha256": "24af9ecee9dc0ea968fce807e22205632fe2c54f9d8982196ceb0a7926a77bc5",
+                "start_byte": 7559,
+                "end_byte": 7631,
+                "line": 145,
+                "column": 15,
+                "element": "Material",
+                "def": "Ruby",
+                "xml_path": "/X3D[1]/Scene[1]/Transform[5]/Transform[1]/Transform[1]/Shape[1]/Appearance[1]/Material[1]"
+              }
+            }
+          ]
+        },
+        "rdf": {
+          "basename": "fault-F7.ttl.txt",
+          "source_sha256": "8985ad8249cef823a02543695c7f3964b5d60b536fa5af378e3de48872a360be",
+          "source_bytes": 33440,
+          "parser_base_iri": "urn:semantic-twin:input:",
+          "algorithm": "semantic-twin-graph-c14n/v1",
+          "graph_sha256": "26f49ee13bf7bbe7514b2d6a9d219a2ed5f843c53297908940bf9a1ddc5a0802",
+          "triples": 1936,
+          "blank_nodes": 409,
+          "refinement_rounds": 5,
+          "labelings_checked": 1,
+          "canonicalization_complete": true,
+          "literal_policy": "lexical value plus datatype and language; no numeric coercion",
+          "correspondence_verified": false,
+          "note": "XML and Turtle independently inspected; no derivation correspondence is certified."
+        }
+      },
+      "sha256": "4b9ee3841a43346cf60e2ec03cf8ea405932e30c8950fa4dfd3cfe1d71076da6"
+    },
+    {
+      "sequence": 3,
+      "previous": "4b9ee3841a43346cf60e2ec03cf8ea405932e30c8950fa4dfd3cfe1d71076da6",
+      "instrument": "7d6deb70ecc4aac6b69f25a6ccf37c92fa8a402d210bf8bf8cf9363c069114ee",
+      "claim": "A source-hash-guarded lexical edit changed only Ruby's diffuseColor value.",
+      "evidence": {
+        "schema": "semantic-twin-attribute-edit/v1",
+        "operation": "replace-existing-attribute",
+        "source_sha256": "54fd9344db6e912e47da1603d5e95ca2f6f47f4da2a76a60c8d45cd1350d660c",
+        "output_sha256": "54c82e2d90572d1f80b83b665454f9d925dc38d861ff3da23aa9c7db7809e447",
+        "witness": {
+          "source_sha256": "54fd9344db6e912e47da1603d5e95ca2f6f47f4da2a76a60c8d45cd1350d660c",
+          "start_byte": 7541,
+          "end_byte": 7612,
+          "line": 145,
+          "column": 15,
+          "element": "Material",
+          "def": "Ruby",
+          "xml_path": "/X3D[1]/Scene[1]/Transform[5]/Transform[1]/Transform[1]/Shape[1]/Appearance[1]/Material[1]"
+        },
+        "attribute": "diffuseColor",
+        "before_value": "1.5 0.08 0.16",
+        "after_value": "0.85 0.08 0.16",
+        "replaced_byte_range": [
+          7576,
+          7589
+        ],
+        "replacement_bytes": 14,
+        "quote": "'",
+        "validation": "well-formed XML only; X3D schema and field semantics were not checked"
+      },
+      "sha256": "a4d9f6f26c31afa99d9cea4b31d6da2b81f1ceda3b9d34ce32d380bfa2cc07c1"
+    }
+  ]
+}

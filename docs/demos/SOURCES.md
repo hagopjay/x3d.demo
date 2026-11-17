@@ -183,3 +183,9 @@ Headless screenshots (Chromium 153.0.8010.12, SwiftShader; X_ITE and three serve
 - `ontology-field-notes/v1`: Daniel Beach's essay "What the !@#$% is Ontology?" (Data Engineering Central) distilled, with a layer test measured on the nine cases. Short quotations only, credited on the page. Design notes: hagopjay/x3d.onto `semantic-lab/` (PR #18).
 
 Checked headless in Chromium (software GL): no script errors; X_ITE's optional UI font is not vendored (a 404 with no visible effect).
+
+## Ontology lab v2: Evidence Edition (17 Nov 2026)
+
+- `ontology-lab/v2`: the Semantic Twin Lab Evidence Edition, contributed by the project owner. It contains the 38-station lab, with eight study corrections applied as overlays and the original station bytes intact. It adds a witness workbench (a reasoning counterfactual, ordered RDF lists, evidence integrity, a repair witness), an ontology field guide, a study audit, a local companion (source audit, guarded edit, graph fingerprint, ledger) and tests. v1 is unchanged.
+- Re-run here: 117 of 117 Node tests and 32 of 32 Python tests pass, and all 58 manifest digests match. The F5 counterfactual was re-measured in pyshacl 0.40.2 with owlrl 7.6.2 (see the guide).
+- The guarded edit, the witness audit and the counterfactual are also x3d_mcp tools: `patch_x3d_attribute`, `source_witness_audit` and `shacl_counterfactual`.

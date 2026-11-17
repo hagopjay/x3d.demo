@@ -1,0 +1,1562 @@
+{
+ "about": "Which layer catches which fault. caught = the layer reports something on the fault variant that it does not report on the clean Cabinet. Layers: XSD and semantic = x3d_mcp validators at 13121b6; lab_shacl = shapes/x3d-lab.shacl.ttl (pyshacl); core_shacl = the bundled x3d-core shapes through the real shacl_validate tool at 7d3f1d5; sparql = one detection query per fault (stations_spec.DETECT); render = X_ITE 16.5.1 screenshots vs the clean Cabinet; reasoner = owlrl OWL 2 RL closure (inconsistency messages or owl:Nothing members). Grade C for every cell: each is a measurement named by its source.",
+ "columns": [
+  "xsd",
+  "semantic",
+  "lab_shacl",
+  "core_shacl",
+  "sparql",
+  "render",
+  "reasoner"
+ ],
+ "faults": {
+  "fault-F1": {
+   "what": "Colour 1.5 in a diffuseColor (Ruby prism)",
+   "layers": {
+    "xsd": {
+     "caught": true,
+     "evidence": [
+      "Line 146: Element 'Material', attribute 'diffuseColor': [facet 'pattern'] The value '1.5 0.08 0.16' is not accepted by the pattern '\\s*(([+]?((0(\\.[0-9]*)?|\\.[0-9]+)|1(\\.0*)?)([Ee][+-]?[0-9]+)?)\\s+){2}([+]?((0(\\.[0-9]*)?|\\.[0-9]+)|1(\\.0*)?)([Ee][+-]?[0-9]+)?)\\s*'."
+     ],
+     "source": "receipts/validation.json (x3d_mcp validate_xml at 13121b6, x3d-4.1.xsd)"
+    },
+    "semantic": {
+     "caught": true,
+     "severity": [
+      "error"
+     ],
+     "checks": [
+      "colour-out-of-range"
+     ],
+     "evidence": [
+      "Material (DEF='Ruby') diffuseColor: the colour is '1.5 0.08 0.16', but each component must be between 0 and 1 (1 component out of range). Clamp to 0..1, or divide by 255 if the values were written as "
+     ],
+     "source": "receipts/validation.json new_vs_clean (x3d_mcp semantic_diagnostics at 13121b6)"
+    },
+    "lab_shacl": {
+     "caught": true,
+     "severity": [
+      "sh:Violation"
+     ],
+     "shapes": [
+      "S1"
+     ],
+     "check_ids": [
+      "colour-out-of-range"
+     ],
+     "focus": [
+      ":Ruby"
+     ],
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F1'] minus the clean Cabinet's results (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "core_shacl": {
+     "caught": true,
+     "severity": [
+      "Violation"
+     ],
+     "check_ids": [
+      "colour-out-of-range"
+     ],
+     "focus": [
+      ":Ruby"
+     ],
+     "conforms": false,
+     "parity": {
+      "oracle_pyshacl_on_lab_turtle": 1,
+      "js_shacl_engine": 2,
+      "tool": 1,
+      "oracle_vs_tool_equal": true,
+      "python_vs_js": "expected",
+      "python_vs_js_note": "equal after two stated engine limits of shacl-engine 1.1.3 + Comunica 5.4.1: (1) constraints with GROUP BY (urn:x3d-mcp:shapes:x3d-core#ColorArity) cannot run with a pre-bound $this, so they were dropped in JS and their 0 Python result(s) set aside; (2) the S4 SHACL Core path sh:inversePath [ sh:oneOrMorePath x3do:hasParent ] collects no value nodes in shacl-engine, which adds a false no-viewpoint warning (repro R2). P10 (one sh:sparql per shape) was applied, because unsplit shacl-engine reports a false result when one shape carries two sh:sparql constraints (repro R1). Totals can coincide while keys differ (limits (1) and (2) offset each other); compare key_diff, not counts."
+     },
+     "source": "receipts/mcp-calls.json bench['fault-F1'].shacl_validate (x3d_mcp 7d3f1d5, bundled x3d-core shapes); same shapes on the lab Turtle: receipts/oracle.json jobs['bench:core:fault-F1'] and receipts/js.json"
+    },
+    "sparql": {
+     "caught": true,
+     "query": "colour component outside [0,1]",
+     "rows": 1,
+     "query_of": "fault-F1",
+     "note": null,
+     "other_queries_firing": [],
+     "source": "receipts/oracle.json jobs['bench:detect:*:fault-F1'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "render": {
+     "caught": false,
+     "how": [],
+     "console": [],
+     "changed_frac_vs_clean": 0.0,
+     "viewpoint": "View3",
+     "shot": "shots/bench/fault-F1-View3.png",
+     "source": "receipts/render.json bench.faults['fault-F1'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    "reasoner": {
+     "caught": false,
+     "consistent": true,
+     "owlrl_ms": 24990.4,
+     "triples_before": 5306,
+     "triples_after": 64271,
+     "source": "receipts/oracle.json jobs['bench:owlrl:fault-F1'] (owlrl 7.6.2 OWL 2 RL closure of scene + slice)"
+    }
+   },
+   "caught_by": [
+    "xsd",
+    "semantic",
+    "lab_shacl",
+    "core_shacl",
+    "sparql"
+   ],
+   "missed_by": [
+    "render",
+    "reasoner"
+   ],
+   "ladder_first_fail": 2,
+   "ladder_first_flag": 2
+  },
+  "fault-F2": {
+   "what": "Shape geometry removed (Bare Specimen loses its Box)",
+   "layers": {
+    "xsd": {
+     "caught": false,
+     "evidence": [],
+     "source": "receipts/validation.json (x3d_mcp validate_xml at 13121b6, x3d-4.1.xsd)"
+    },
+    "semantic": {
+     "caught": true,
+     "severity": [
+      "warning"
+     ],
+     "checks": [
+      "shape-no-geometry"
+     ],
+     "evidence": [
+      "Shape (DEF='BareSpecimen') has no geometry child. Add a geometry node like Box, Sphere, or IndexedFaceSet."
+     ],
+     "source": "receipts/validation.json new_vs_clean (x3d_mcp semantic_diagnostics at 13121b6)"
+    },
+    "lab_shacl": {
+     "caught": true,
+     "severity": [
+      "sh:Warning"
+     ],
+     "shapes": [
+      "S2"
+     ],
+     "check_ids": [
+      "shape-no-geometry"
+     ],
+     "focus": [
+      ":BareSpecimen"
+     ],
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F2'] minus the clean Cabinet's results (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "core_shacl": {
+     "caught": true,
+     "severity": [
+      "Warning"
+     ],
+     "check_ids": [
+      "shape-no-geometry"
+     ],
+     "focus": [
+      ":BareSpecimen"
+     ],
+     "conforms": true,
+     "parity": {
+      "oracle_pyshacl_on_lab_turtle": 1,
+      "js_shacl_engine": 2,
+      "tool": 1,
+      "oracle_vs_tool_equal": true,
+      "python_vs_js": "expected",
+      "python_vs_js_note": "equal after two stated engine limits of shacl-engine 1.1.3 + Comunica 5.4.1: (1) constraints with GROUP BY (urn:x3d-mcp:shapes:x3d-core#ColorArity) cannot run with a pre-bound $this, so they were dropped in JS and their 0 Python result(s) set aside; (2) the S4 SHACL Core path sh:inversePath [ sh:oneOrMorePath x3do:hasParent ] collects no value nodes in shacl-engine, which adds a false no-viewpoint warning (repro R2). P10 (one sh:sparql per shape) was applied, because unsplit shacl-engine reports a false result when one shape carries two sh:sparql constraints (repro R1). Totals can coincide while keys differ (limits (1) and (2) offset each other); compare key_diff, not counts."
+     },
+     "source": "receipts/mcp-calls.json bench['fault-F2'].shacl_validate (x3d_mcp 7d3f1d5, bundled x3d-core shapes); same shapes on the lab Turtle: receipts/oracle.json jobs['bench:core:fault-F2'] and receipts/js.json"
+    },
+    "sparql": {
+     "caught": true,
+     "query": "Shape with no geometry",
+     "rows": 1,
+     "query_of": "fault-F2",
+     "note": null,
+     "other_queries_firing": [],
+     "source": "receipts/oracle.json jobs['bench:detect:*:fault-F2'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "render": {
+     "caught": true,
+     "how": [
+      "pixels"
+     ],
+     "console": [],
+     "changed_frac_vs_clean": 0.0335,
+     "viewpoint": "View5",
+     "shot": "shots/bench/fault-F2-View5.png",
+     "source": "receipts/render.json bench.faults['fault-F2'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    "reasoner": {
+     "caught": false,
+     "consistent": true,
+     "owlrl_ms": 26148.9,
+     "triples_before": 5294,
+     "triples_after": 63883,
+     "source": "receipts/oracle.json jobs['bench:owlrl:fault-F2'] (owlrl 7.6.2 OWL 2 RL closure of scene + slice)"
+    }
+   },
+   "caught_by": [
+    "semantic",
+    "lab_shacl",
+    "core_shacl",
+    "sparql",
+    "render"
+   ],
+   "missed_by": [
+    "xsd",
+    "reasoner"
+   ],
+   "ladder_first_fail": 5,
+   "ladder_first_flag": 3
+  },
+  "fault-F3": {
+   "what": "Wrong-type USE: the Lantern base's PhysicalMaterial USE points at the PixelTexture DEF 'Weave'",
+   "layers": {
+    "xsd": {
+     "caught": false,
+     "evidence": [],
+     "source": "receipts/validation.json (x3d_mcp validate_xml at 13121b6, x3d-4.1.xsd)"
+    },
+    "semantic": {
+     "caught": false,
+     "severity": [],
+     "checks": [],
+     "evidence": [],
+     "source": "receipts/validation.json new_vs_clean (x3d_mcp semantic_diagnostics at 13121b6)"
+    },
+    "lab_shacl": {
+     "caught": true,
+     "severity": [
+      "sh:Violation"
+     ],
+     "shapes": [
+      "S3"
+     ],
+     "check_ids": [
+      "use-type-mismatch"
+     ],
+     "focus": [
+      ":Weave-USE-1"
+     ],
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F3'] minus the clean Cabinet's results (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "core_shacl": {
+     "caught": true,
+     "severity": [
+      "Violation"
+     ],
+     "check_ids": [
+      "use-type-mismatch"
+     ],
+     "focus": [
+      ":Weave-USE-1"
+     ],
+     "conforms": false,
+     "parity": {
+      "oracle_pyshacl_on_lab_turtle": 1,
+      "js_shacl_engine": 2,
+      "tool": 1,
+      "oracle_vs_tool_equal": true,
+      "python_vs_js": "expected",
+      "python_vs_js_note": "equal after two stated engine limits of shacl-engine 1.1.3 + Comunica 5.4.1: (1) constraints with GROUP BY (urn:x3d-mcp:shapes:x3d-core#ColorArity) cannot run with a pre-bound $this, so they were dropped in JS and their 0 Python result(s) set aside; (2) the S4 SHACL Core path sh:inversePath [ sh:oneOrMorePath x3do:hasParent ] collects no value nodes in shacl-engine, which adds a false no-viewpoint warning (repro R2). P10 (one sh:sparql per shape) was applied, because unsplit shacl-engine reports a false result when one shape carries two sh:sparql constraints (repro R1). Totals can coincide while keys differ (limits (1) and (2) offset each other); compare key_diff, not counts."
+     },
+     "source": "receipts/mcp-calls.json bench['fault-F3'].shacl_validate (x3d_mcp 7d3f1d5, bundled x3d-core shapes); same shapes on the lab Turtle: receipts/oracle.json jobs['bench:core:fault-F3'] and receipts/js.json"
+    },
+    "sparql": {
+     "caught": true,
+     "query": "USE whose type differs from its DEF",
+     "rows": 1,
+     "query_of": "fault-F3",
+     "note": null,
+     "other_queries_firing": [],
+     "source": "receipts/oracle.json jobs['bench:detect:*:fault-F3'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "render": {
+     "caught": true,
+     "how": [
+      "pixels",
+      "console"
+     ],
+     "console": [
+      "warning: XML Parser: DEF/USE mismatch, 'Weave', PhysicalMaterial != PixelTexture."
+     ],
+     "changed_frac_vs_clean": 0.00907,
+     "viewpoint": "View7",
+     "shot": "shots/bench/fault-F3-View7.png",
+     "source": "receipts/render.json bench.faults['fault-F3'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    "reasoner": {
+     "caught": false,
+     "consistent": true,
+     "owlrl_ms": 24359.7,
+     "triples_before": 5306,
+     "triples_after": 64264,
+     "source": "receipts/oracle.json jobs['bench:owlrl:fault-F3'] (owlrl 7.6.2 OWL 2 RL closure of scene + slice)"
+    }
+   },
+   "caught_by": [
+    "lab_shacl",
+    "core_shacl",
+    "sparql",
+    "render"
+   ],
+   "missed_by": [
+    "xsd",
+    "semantic",
+    "reasoner"
+   ],
+   "ladder_first_fail": 4,
+   "ladder_first_flag": 4
+  },
+  "fault-F4": {
+   "what": "ROUTE from 'Ghost': dangling ROUTE endpoint",
+   "layers": {
+    "xsd": {
+     "caught": false,
+     "evidence": [],
+     "source": "receipts/validation.json (x3d_mcp validate_xml at 13121b6, x3d-4.1.xsd)"
+    },
+    "semantic": {
+     "caught": true,
+     "severity": [
+      "error"
+     ],
+     "checks": [
+      "route-missing-from-node"
+     ],
+     "evidence": [
+      "ROUTE fromNode='Ghost' not found. Available DEFs: Accession, BareCube, BareSpecimen, BareStand, Bay1, Bay2, Bay3, Bay4, Bay5, Bay6, Bay7, Brass, CabinetInfo, CageGold, CageLook, Carousel, CarouselStan"
+     ],
+     "source": "receipts/validation.json new_vs_clean (x3d_mcp semantic_diagnostics at 13121b6)"
+    },
+    "lab_shacl": {
+     "caught": true,
+     "severity": [
+      "sh:Violation"
+     ],
+     "shapes": [
+      "S5"
+     ],
+     "check_ids": [
+      "route-missing-from-node"
+     ],
+     "focus": [
+      ":ROUTE_2_17"
+     ],
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F4'] minus the clean Cabinet's results (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "core_shacl": {
+     "caught": true,
+     "severity": [
+      "Violation"
+     ],
+     "check_ids": [
+      "route-missing-from-node"
+     ],
+     "focus": [
+      ":ROUTE_2_17"
+     ],
+     "conforms": false,
+     "parity": {
+      "oracle_pyshacl_on_lab_turtle": 1,
+      "js_shacl_engine": 2,
+      "tool": 1,
+      "oracle_vs_tool_equal": true,
+      "python_vs_js": "expected",
+      "python_vs_js_note": "equal after two stated engine limits of shacl-engine 1.1.3 + Comunica 5.4.1: (1) constraints with GROUP BY (urn:x3d-mcp:shapes:x3d-core#ColorArity) cannot run with a pre-bound $this, so they were dropped in JS and their 0 Python result(s) set aside; (2) the S4 SHACL Core path sh:inversePath [ sh:oneOrMorePath x3do:hasParent ] collects no value nodes in shacl-engine, which adds a false no-viewpoint warning (repro R2). P10 (one sh:sparql per shape) was applied, because unsplit shacl-engine reports a false result when one shape carries two sh:sparql constraints (repro R1). Totals can coincide while keys differ (limits (1) and (2) offset each other); compare key_diff, not counts."
+     },
+     "source": "receipts/mcp-calls.json bench['fault-F4'].shacl_validate (x3d_mcp 7d3f1d5, bundled x3d-core shapes); same shapes on the lab Turtle: receipts/oracle.json jobs['bench:core:fault-F4'] and receipts/js.json"
+    },
+    "sparql": {
+     "caught": true,
+     "query": "ROUTE endpoint names no DEF",
+     "rows": 1,
+     "query_of": "fault-F4",
+     "note": null,
+     "other_queries_firing": [],
+     "source": "receipts/oracle.json jobs['bench:detect:*:fault-F4'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "render": {
+     "caught": true,
+     "how": [
+      "motion lost",
+      "console"
+     ],
+     "console": [
+      "warning: XML Parser: Unknown named or imported node 'Ghost'."
+     ],
+     "changed_frac_vs_clean": 0.01115,
+     "viewpoint": "View2",
+     "shot": "shots/bench/fault-F4-View2.png",
+     "source": "receipts/render.json bench.faults['fault-F4'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    "reasoner": {
+     "caught": false,
+     "consistent": true,
+     "owlrl_ms": 24853.7,
+     "triples_before": 5306,
+     "triples_after": 64271,
+     "source": "receipts/oracle.json jobs['bench:owlrl:fault-F4'] (owlrl 7.6.2 OWL 2 RL closure of scene + slice)"
+    }
+   },
+   "caught_by": [
+    "semantic",
+    "lab_shacl",
+    "core_shacl",
+    "sparql",
+    "render"
+   ],
+   "missed_by": [
+    "xsd",
+    "reasoner"
+   ],
+   "ladder_first_fail": 3,
+   "ladder_first_flag": 3
+  },
+  "fault-F5": {
+   "what": "Box directly under a Transform (containerField='children'), appended to PrismShelf",
+   "layers": {
+    "xsd": {
+     "caught": true,
+     "evidence": [
+      "Line 183: Element 'Box': This element is not expected. Expected is one of ( ROUTE, ExternProtoDeclare, ProtoDeclare, IMPORT, EXPORT, Background, ColorInterpolator, CoordinateInterpolator, DirectionalLight, Group )."
+     ],
+     "source": "receipts/validation.json (x3d_mcp validate_xml at 13121b6, x3d-4.1.xsd)"
+    },
+    "semantic": {
+     "caught": true,
+     "severity": [
+      "error"
+     ],
+     "checks": [
+      "containerfield-type-mismatch"
+     ],
+     "evidence": [
+      "Transform.children does not accept a Box (accepts: X3DChildNode)."
+     ],
+     "source": "receipts/validation.json new_vs_clean (x3d_mcp semantic_diagnostics at 13121b6)"
+    },
+    "lab_shacl": {
+     "caught": true,
+     "severity": [
+      "sh:Violation"
+     ],
+     "shapes": [
+      "S7"
+     ],
+     "check_ids": [
+      "children-not-child-node"
+     ],
+     "focus": [
+      ":Box_2_12_3_6"
+     ],
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F5'] minus the clean Cabinet's results (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "core_shacl": {
+     "caught": true,
+     "severity": [
+      "Violation"
+     ],
+     "check_ids": [
+      "children-not-child-node"
+     ],
+     "focus": [
+      ":Box_2_12_3_6"
+     ],
+     "conforms": false,
+     "parity": {
+      "oracle_pyshacl_on_lab_turtle": 1,
+      "js_shacl_engine": 2,
+      "tool": 1,
+      "oracle_vs_tool_equal": true,
+      "python_vs_js": "expected",
+      "python_vs_js_note": "equal after two stated engine limits of shacl-engine 1.1.3 + Comunica 5.4.1: (1) constraints with GROUP BY (urn:x3d-mcp:shapes:x3d-core#ColorArity) cannot run with a pre-bound $this, so they were dropped in JS and their 0 Python result(s) set aside; (2) the S4 SHACL Core path sh:inversePath [ sh:oneOrMorePath x3do:hasParent ] collects no value nodes in shacl-engine, which adds a false no-viewpoint warning (repro R2). P10 (one sh:sparql per shape) was applied, because unsplit shacl-engine reports a false result when one shape carries two sh:sparql constraints (repro R1). Totals can coincide while keys differ (limits (1) and (2) offset each other); compare key_diff, not counts."
+     },
+     "source": "receipts/mcp-calls.json bench['fault-F5'].shacl_validate (x3d_mcp 7d3f1d5, bundled x3d-core shapes); same shapes on the lab Turtle: receipts/oracle.json jobs['bench:core:fault-F5'] and receipts/js.json"
+    },
+    "sparql": {
+     "caught": true,
+     "query": "children-field node that is not an X3DChildNode",
+     "rows": 1,
+     "query_of": "fault-F5",
+     "note": null,
+     "other_queries_firing": [],
+     "source": "receipts/oracle.json jobs['bench:detect:*:fault-F5'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "render": {
+     "caught": false,
+     "how": [],
+     "console": [],
+     "changed_frac_vs_clean": 0.0,
+     "viewpoint": "View3",
+     "shot": "shots/bench/fault-F5-View3.png",
+     "source": "receipts/render.json bench.faults['fault-F5'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    "reasoner": {
+     "caught": false,
+     "consistent": true,
+     "owlrl_ms": 27066.1,
+     "triples_before": 5317,
+     "triples_after": 64335,
+     "source": "receipts/oracle.json jobs['bench:owlrl:fault-F5'] (owlrl 7.6.2 OWL 2 RL closure of scene + slice)"
+    }
+   },
+   "caught_by": [
+    "xsd",
+    "semantic",
+    "lab_shacl",
+    "core_shacl",
+    "sparql"
+   ],
+   "missed_by": [
+    "render",
+    "reasoner"
+   ],
+   "ladder_first_fail": 2,
+   "ladder_first_flag": 2
+  },
+  "fault-F6": {
+   "what": "USE before DEF: OrbB (USE Gilt) moved before OrbA (DEF Gilt)",
+   "layers": {
+    "xsd": {
+     "caught": false,
+     "evidence": [],
+     "source": "receipts/validation.json (x3d_mcp validate_xml at 13121b6, x3d-4.1.xsd)"
+    },
+    "semantic": {
+     "caught": true,
+     "severity": [
+      "error"
+     ],
+     "checks": [
+      "use-before-def"
+     ],
+     "evidence": [
+      "USE='Gilt' (PhysicalMaterial) appears before its DEF in document order. A USE must follow the DEF it references."
+     ],
+     "source": "receipts/validation.json new_vs_clean (x3d_mcp semantic_diagnostics at 13121b6)"
+    },
+    "lab_shacl": {
+     "caught": false,
+     "severity": [],
+     "shapes": [],
+     "check_ids": [],
+     "focus": [],
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F6'] minus the clean Cabinet's results (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "core_shacl": {
+     "caught": false,
+     "severity": [],
+     "check_ids": [],
+     "focus": [],
+     "conforms": true,
+     "parity": {
+      "oracle_pyshacl_on_lab_turtle": 0,
+      "js_shacl_engine": 1,
+      "tool": 0,
+      "oracle_vs_tool_equal": true,
+      "python_vs_js": "expected",
+      "python_vs_js_note": "equal after two stated engine limits of shacl-engine 1.1.3 + Comunica 5.4.1: (1) constraints with GROUP BY (urn:x3d-mcp:shapes:x3d-core#ColorArity) cannot run with a pre-bound $this, so they were dropped in JS and their 0 Python result(s) set aside; (2) the S4 SHACL Core path sh:inversePath [ sh:oneOrMorePath x3do:hasParent ] collects no value nodes in shacl-engine, which adds a false no-viewpoint warning (repro R2). P10 (one sh:sparql per shape) was applied, because unsplit shacl-engine reports a false result when one shape carries two sh:sparql constraints (repro R1). Totals can coincide while keys differ (limits (1) and (2) offset each other); compare key_diff, not counts."
+     },
+     "source": "receipts/mcp-calls.json bench['fault-F6'].shacl_validate (x3d_mcp 7d3f1d5, bundled x3d-core shapes); same shapes on the lab Turtle: receipts/oracle.json jobs['bench:core:fault-F6'] and receipts/js.json"
+    },
+    "sparql": {
+     "caught": false,
+     "query": null,
+     "rows": null,
+     "query_of": null,
+     "note": "no SPARQL detection query: the Turtle is isomorphic to the clean Cabinet's Turtle",
+     "other_queries_firing": [],
+     "source": "receipts/oracle.json jobs['bench:detect:*:fault-F6'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "render": {
+     "caught": false,
+     "how": [],
+     "console": [],
+     "changed_frac_vs_clean": 0.0,
+     "viewpoint": "View1",
+     "shot": "shots/bench/fault-F6-View1.png",
+     "source": "receipts/render.json bench.faults['fault-F6'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    "reasoner": {
+     "caught": false,
+     "consistent": true,
+     "owlrl_ms": 25853.2,
+     "triples_before": 5306,
+     "triples_after": 64269,
+     "source": "receipts/oracle.json jobs['bench:owlrl:fault-F6'] (owlrl 7.6.2 OWL 2 RL closure of scene + slice)"
+    }
+   },
+   "caught_by": [
+    "semantic"
+   ],
+   "missed_by": [
+    "xsd",
+    "lab_shacl",
+    "core_shacl",
+    "sparql",
+    "render",
+    "reasoner"
+   ],
+   "ladder_first_fail": 3,
+   "ladder_first_flag": 3
+  },
+  "fault-F7": {
+   "what": "Duplicate DEF: the Jade prism's Material renamed DEF 'Ruby'",
+   "layers": {
+    "xsd": {
+     "caught": true,
+     "evidence": [
+      "Line 162: Element 'Material', attribute 'DEF': 'Ruby' is not a valid value of the atomic type 'xs:ID'."
+     ],
+     "source": "receipts/validation.json (x3d_mcp validate_xml at 13121b6, x3d-4.1.xsd)"
+    },
+    "semantic": {
+     "caught": true,
+     "severity": [
+      "error"
+     ],
+     "checks": [
+      "duplicate-def"
+     ],
+     "evidence": [
+      "Duplicate DEF name 'Ruby': first used on Material, also used on Material. DEF names must be unique within a scene."
+     ],
+     "source": "receipts/validation.json new_vs_clean (x3d_mcp semantic_diagnostics at 13121b6)"
+    },
+    "lab_shacl": {
+     "caught": true,
+     "severity": [
+      "sh:Violation"
+     ],
+     "shapes": [
+      "S1",
+      "S8"
+     ],
+     "check_ids": [
+      "duplicate-def",
+      "value-out-of-range"
+     ],
+     "focus": [
+      ":Ruby"
+     ],
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F7'] minus the clean Cabinet's results (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "core_shacl": {
+     "caught": true,
+     "severity": [
+      "Violation"
+     ],
+     "check_ids": [
+      "duplicate-def",
+      "tuple-count",
+      "value-out-of-range"
+     ],
+     "focus": [
+      ":Ruby"
+     ],
+     "conforms": false,
+     "parity": {
+      "oracle_pyshacl_on_lab_turtle": 3,
+      "js_shacl_engine": 3,
+      "tool": 3,
+      "oracle_vs_tool_equal": true,
+      "python_vs_js": "expected",
+      "python_vs_js_note": "equal after two stated engine limits of shacl-engine 1.1.3 + Comunica 5.4.1: (1) constraints with GROUP BY (urn:x3d-mcp:shapes:x3d-core#ColorArity) cannot run with a pre-bound $this, so they were dropped in JS and their 1 Python result(s) set aside; (2) the S4 SHACL Core path sh:inversePath [ sh:oneOrMorePath x3do:hasParent ] collects no value nodes in shacl-engine, which adds a false no-viewpoint warning (repro R2). P10 (one sh:sparql per shape) was applied, because unsplit shacl-engine reports a false result when one shape carries two sh:sparql constraints (repro R1). Totals can coincide while keys differ (limits (1) and (2) offset each other); compare key_diff, not counts."
+     },
+     "source": "receipts/mcp-calls.json bench['fault-F7'].shacl_validate (x3d_mcp 7d3f1d5, bundled x3d-core shapes); same shapes on the lab Turtle: receipts/oracle.json jobs['bench:core:fault-F7'] and receipts/js.json"
+    },
+    "sparql": {
+     "caught": true,
+     "query": "one IRI with two parents (merged duplicate DEF)",
+     "rows": 1,
+     "query_of": "fault-F7",
+     "note": null,
+     "other_queries_firing": [],
+     "source": "receipts/oracle.json jobs['bench:detect:*:fault-F7'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "render": {
+     "caught": false,
+     "how": [],
+     "console": [],
+     "changed_frac_vs_clean": 0.0,
+     "viewpoint": "View3",
+     "shot": "shots/bench/fault-F7-View3.png",
+     "source": "receipts/render.json bench.faults['fault-F7'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    "reasoner": {
+     "caught": false,
+     "consistent": true,
+     "owlrl_ms": 24751.0,
+     "triples_before": 5303,
+     "triples_after": 63911,
+     "source": "receipts/oracle.json jobs['bench:owlrl:fault-F7'] (owlrl 7.6.2 OWL 2 RL closure of scene + slice)"
+    }
+   },
+   "caught_by": [
+    "xsd",
+    "semantic",
+    "lab_shacl",
+    "core_shacl",
+    "sparql"
+   ],
+   "missed_by": [
+    "render",
+    "reasoner"
+   ],
+   "ladder_first_fail": 2,
+   "ladder_first_flag": 0
+  },
+  "teach-exponent": {
+   "what": "Teaching variant: the F1 colour 1.5 written as 0.15e1 (exponent form)",
+   "layers": {
+    "xsd": {
+     "caught": false,
+     "evidence": [],
+     "source": "receipts/validation.json (x3d_mcp validate_xml at 13121b6, x3d-4.1.xsd)"
+    },
+    "semantic": {
+     "caught": true,
+     "severity": [
+      "error"
+     ],
+     "checks": [
+      "colour-out-of-range"
+     ],
+     "evidence": [
+      "Material (DEF='Ruby') diffuseColor: the colour is '1.5 0.08 0.16', but each component must be between 0 and 1 (1 component out of range). Clamp to 0..1, or divide by 255 if the values were written as "
+     ],
+     "source": "receipts/validation.json new_vs_clean (x3d_mcp semantic_diagnostics at 13121b6)"
+    },
+    "lab_shacl": {
+     "caught": true,
+     "severity": [
+      "sh:Violation"
+     ],
+     "shapes": [
+      "S1"
+     ],
+     "check_ids": [
+      "colour-out-of-range"
+     ],
+     "focus": [
+      ":Ruby"
+     ],
+     "source": "receipts/oracle.json jobs['bench:shacl:teach-exponent'] minus the clean Cabinet's results (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "core_shacl": {
+     "caught": true,
+     "severity": [
+      "Violation"
+     ],
+     "check_ids": [
+      "colour-out-of-range"
+     ],
+     "focus": [
+      ":Ruby"
+     ],
+     "conforms": false,
+     "parity": {
+      "oracle_pyshacl_on_lab_turtle": 1,
+      "js_shacl_engine": 2,
+      "tool": 1,
+      "oracle_vs_tool_equal": true,
+      "python_vs_js": "expected",
+      "python_vs_js_note": "equal after two stated engine limits of shacl-engine 1.1.3 + Comunica 5.4.1: (1) constraints with GROUP BY (urn:x3d-mcp:shapes:x3d-core#ColorArity) cannot run with a pre-bound $this, so they were dropped in JS and their 0 Python result(s) set aside; (2) the S4 SHACL Core path sh:inversePath [ sh:oneOrMorePath x3do:hasParent ] collects no value nodes in shacl-engine, which adds a false no-viewpoint warning (repro R2). P10 (one sh:sparql per shape) was applied, because unsplit shacl-engine reports a false result when one shape carries two sh:sparql constraints (repro R1). Totals can coincide while keys differ (limits (1) and (2) offset each other); compare key_diff, not counts."
+     },
+     "source": "receipts/mcp-calls.json bench['teach-exponent'].shacl_validate (x3d_mcp 7d3f1d5, bundled x3d-core shapes); same shapes on the lab Turtle: receipts/oracle.json jobs['bench:core:teach-exponent'] and receipts/js.json"
+    },
+    "sparql": {
+     "caught": true,
+     "query": "colour component outside [0,1]",
+     "rows": 1,
+     "query_of": "fault-F1",
+     "note": null,
+     "other_queries_firing": [],
+     "source": "receipts/oracle.json jobs['bench:detect:*:teach-exponent'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "render": {
+     "caught": null,
+     "note": "not rendered (teaching variant)"
+    },
+    "reasoner": {
+     "caught": null,
+     "note": "not run on teaching variants"
+    }
+   },
+   "caught_by": [
+    "semantic",
+    "lab_shacl",
+    "core_shacl",
+    "sparql"
+   ],
+   "missed_by": [
+    "xsd"
+   ],
+   "ladder_first_fail": 3,
+   "ladder_first_flag": 3
+  },
+  "teach-insert": {
+   "what": "Teaching variant (not a fault): one unnamed DirectionalLight inserted first in the Scene",
+   "layers": {
+    "xsd": {
+     "caught": false,
+     "evidence": [],
+     "source": "receipts/validation.json (x3d_mcp validate_xml at 13121b6, x3d-4.1.xsd)"
+    },
+    "semantic": {
+     "caught": false,
+     "severity": [],
+     "checks": [],
+     "evidence": [],
+     "source": "receipts/validation.json new_vs_clean (x3d_mcp semantic_diagnostics at 13121b6)"
+    },
+    "lab_shacl": {
+     "caught": false,
+     "severity": [],
+     "shapes": [],
+     "check_ids": [],
+     "focus": [],
+     "source": "receipts/oracle.json jobs['bench:shacl:teach-insert'] minus the clean Cabinet's results (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "core_shacl": {
+     "caught": false,
+     "severity": [],
+     "check_ids": [],
+     "focus": [],
+     "conforms": true,
+     "parity": {
+      "oracle_pyshacl_on_lab_turtle": 0,
+      "js_shacl_engine": 1,
+      "tool": 0,
+      "oracle_vs_tool_equal": true,
+      "python_vs_js": "expected",
+      "python_vs_js_note": "equal after two stated engine limits of shacl-engine 1.1.3 + Comunica 5.4.1: (1) constraints with GROUP BY (urn:x3d-mcp:shapes:x3d-core#ColorArity) cannot run with a pre-bound $this, so they were dropped in JS and their 0 Python result(s) set aside; (2) the S4 SHACL Core path sh:inversePath [ sh:oneOrMorePath x3do:hasParent ] collects no value nodes in shacl-engine, which adds a false no-viewpoint warning (repro R2). P10 (one sh:sparql per shape) was applied, because unsplit shacl-engine reports a false result when one shape carries two sh:sparql constraints (repro R1). Totals can coincide while keys differ (limits (1) and (2) offset each other); compare key_diff, not counts."
+     },
+     "source": "receipts/mcp-calls.json bench['teach-insert'].shacl_validate (x3d_mcp 7d3f1d5, bundled x3d-core shapes); same shapes on the lab Turtle: receipts/oracle.json jobs['bench:core:teach-insert'] and receipts/js.json"
+    },
+    "sparql": {
+     "caught": false,
+     "query": null,
+     "rows": null,
+     "query_of": null,
+     "note": null,
+     "other_queries_firing": [],
+     "source": "receipts/oracle.json jobs['bench:detect:*:teach-insert'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2)"
+    },
+    "render": {
+     "caught": null,
+     "note": "not rendered (teaching variant)"
+    },
+    "reasoner": {
+     "caught": null,
+     "note": "not run on teaching variants"
+    }
+   },
+   "caught_by": [],
+   "missed_by": [
+    "xsd",
+    "semantic",
+    "lab_shacl",
+    "core_shacl",
+    "sparql"
+   ],
+   "ladder_first_fail": null,
+   "ladder_first_flag": null
+  }
+ },
+ "reasoner_axioms_full_ontology": {
+  "disjointWith": 0,
+  "allDisjointClasses": 0,
+  "functionalProperties": 0,
+  "cardinalityAxioms": 0,
+  "restrictions": 0,
+  "classes": 364,
+  "source": "receipts/oracle.json jobs['bench:axioms'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2); JS cross-check receipts/js.json (N3.js 2.13.12 / Comunica rdfjs-lite 5.4.1 / shacl-engine 1.1.3)"
+ },
+ "shape_alignment": {
+  "lab_shape_to_check_ids": {
+   "S1": [
+    "colour-out-of-range",
+    "value-out-of-range"
+   ],
+   "S1b": [
+    "tuple-count"
+   ],
+   "S2": [
+    "shape-no-geometry"
+   ],
+   "S3": [
+    "use-type-mismatch"
+   ],
+   "S3b": [
+    "use-undefined-def"
+   ],
+   "S4": [
+    "no-viewpoint"
+   ],
+   "S5": [
+    "route-missing-from-node",
+    "route-missing-to-node"
+   ],
+   "S6": [
+    "field-not-in-domain"
+   ],
+   "S7": [
+    "children-not-child-node"
+   ],
+   "S8": [
+    "duplicate-def"
+   ]
+  },
+  "bench_differences": [
+   {
+    "scene": "fault-F7",
+    "lab_only": [],
+    "core_only": [
+     "tuple-count"
+    ]
+   }
+  ],
+  "note": "Lab shapes carry xs:checkId values of the matching x3d-core shapes (x3d_mcp 7d3f1d5). bench_differences lists variants where the two shape sets report different check ids."
+ },
+ "ladder": {
+  "cabinet": {
+   "rungs": [
+    {
+     "rung": 0,
+     "status": "pass",
+     "detail": "well-formed",
+     "source": "receipts/validation.json files[].semantic_exception; receipts/pipeline.json scenes[].parse_note"
+    },
+    {
+     "rung": 1,
+     "status": "warn",
+     "baseline_undeclared": [
+      "hasROUTE",
+      "noNamespaceSchemaLocation"
+     ],
+     "new_undeclared": [],
+     "detail": "2 structural terms written by X3dToTurtle.xslt r40388 (hasROUTE, noNamespaceSchemaLocation) are not declared in Ontology 4.1 r40416; noted, not failed; scene-specific undeclared terms: 0; profile Immersive ok: True",
+     "source": "receipts/pipeline.json scenes[].undeclared_x3do_*; receipts/validation.json files[].profile_ok"
+    },
+    {
+     "rung": 2,
+     "status": "pass",
+     "detail": "XSD valid",
+     "source": "receipts/validation.json files['cabinet.x3d'].xsd_valid (validator 13121b6)"
+    },
+    {
+     "rung": 3,
+     "status": "pass",
+     "detail": "errors 0, warnings 0, infos 114; new vs clean: none",
+     "source": "receipts/validation.json files['cabinet.x3d'].semantic_counts (validator 13121b6)"
+    },
+    {
+     "rung": 4,
+     "status": "pass",
+     "detail": "lab shapes: 0 violations, 0 warnings; x3d-core: 0 violations, 0 warnings",
+     "source": "receipts/oracle.json jobs['bench:shacl:cabinet'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2); receipts/mcp-calls.json bench['cabinet'].shacl_validate (x3d_mcp 7d3f1d5)"
+    },
+    {
+     "rung": 5,
+     "status": "pass",
+     "detail": "Overview lit fraction 0.062 (share of pixels with Rec.709 luma > 40, whole frame), load errors 0",
+     "source": "receipts/render.json cabinet.shots.Overview (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    {
+     "rung": 6,
+     "status": "not-run",
+     "detail": "no judge is run in this lab",
+     "source": "stated"
+    },
+    {
+     "rung": 7,
+     "status": "pass",
+     "detail": "dcterms: created, creator, description, generator, identifier, title; Metadata nodes: 5",
+     "source": "ttl/cabinet.ttl (dcterms triples, x3do:Metadata* individuals; rdflib 7.6.0)"
+    }
+   ],
+   "first_fail": null,
+   "first_flag": null
+  },
+  "fault-F1": {
+   "rungs": [
+    {
+     "rung": 0,
+     "status": "pass",
+     "detail": "well-formed",
+     "source": "receipts/validation.json files[].semantic_exception; receipts/pipeline.json scenes[].parse_note"
+    },
+    {
+     "rung": 1,
+     "status": "warn",
+     "baseline_undeclared": [
+      "hasROUTE",
+      "noNamespaceSchemaLocation"
+     ],
+     "new_undeclared": [],
+     "detail": "2 structural terms written by X3dToTurtle.xslt r40388 (hasROUTE, noNamespaceSchemaLocation) are not declared in Ontology 4.1 r40416; noted, not failed; scene-specific undeclared terms: 0; profile Immersive ok: True",
+     "source": "receipts/pipeline.json scenes[].undeclared_x3do_*; receipts/validation.json files[].profile_ok"
+    },
+    {
+     "rung": 2,
+     "status": "fail",
+     "detail": "Line 146: Element 'Material', attribute 'diffuseColor': [facet 'pattern'] The value '1.5 0.08 0.16' is not accepted by the pattern '\\s*(([+]?((0(\\.[0-9]*)?|\\.[0",
+     "source": "receipts/validation.json files['fault-F1.x3d'].xsd_valid (validator 13121b6)"
+    },
+    {
+     "rung": 3,
+     "status": "fail",
+     "detail": "errors 1, warnings 0, infos 114; new vs clean: colour-out-of-range",
+     "source": "receipts/validation.json files['fault-F1.x3d'].semantic_counts (validator 13121b6)"
+    },
+    {
+     "rung": 4,
+     "status": "fail",
+     "detail": "lab shapes: 1 violations, 0 warnings; x3d-core: 1 violations, 0 warnings",
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F1'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2); receipts/mcp-calls.json bench['fault-F1'].shacl_validate (x3d_mcp 7d3f1d5)"
+    },
+    {
+     "rung": 5,
+     "status": "pass",
+     "detail": "renders like the clean Cabinet (View3, changed 0.0)",
+     "source": "receipts/render.json bench.faults['fault-F1'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    {
+     "rung": 6,
+     "status": "not-run",
+     "detail": "no judge is run in this lab",
+     "source": "stated"
+    },
+    {
+     "rung": 7,
+     "status": "pass",
+     "detail": "dcterms: created, creator, description, generator, identifier, title; Metadata nodes: 5",
+     "source": "ttl/fault-F1.ttl (dcterms triples, x3do:Metadata* individuals; rdflib 7.6.0)"
+    }
+   ],
+   "first_fail": 2,
+   "first_flag": 2
+  },
+  "fault-F2": {
+   "rungs": [
+    {
+     "rung": 0,
+     "status": "pass",
+     "detail": "well-formed",
+     "source": "receipts/validation.json files[].semantic_exception; receipts/pipeline.json scenes[].parse_note"
+    },
+    {
+     "rung": 1,
+     "status": "warn",
+     "baseline_undeclared": [
+      "hasROUTE",
+      "noNamespaceSchemaLocation"
+     ],
+     "new_undeclared": [],
+     "detail": "2 structural terms written by X3dToTurtle.xslt r40388 (hasROUTE, noNamespaceSchemaLocation) are not declared in Ontology 4.1 r40416; noted, not failed; scene-specific undeclared terms: 0; profile Immersive ok: True",
+     "source": "receipts/pipeline.json scenes[].undeclared_x3do_*; receipts/validation.json files[].profile_ok"
+    },
+    {
+     "rung": 2,
+     "status": "pass",
+     "detail": "XSD valid",
+     "source": "receipts/validation.json files['fault-F2.x3d'].xsd_valid (validator 13121b6)"
+    },
+    {
+     "rung": 3,
+     "status": "warn",
+     "detail": "errors 0, warnings 1, infos 113; new vs clean: shape-no-geometry",
+     "source": "receipts/validation.json files['fault-F2.x3d'].semantic_counts (validator 13121b6)"
+    },
+    {
+     "rung": 4,
+     "status": "warn",
+     "detail": "lab shapes: 0 violations, 1 warnings; x3d-core: 0 violations, 1 warnings",
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F2'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2); receipts/mcp-calls.json bench['fault-F2'].shacl_validate (x3d_mcp 7d3f1d5)"
+    },
+    {
+     "rung": 5,
+     "status": "fail",
+     "detail": "pixels changed beyond motion (View5, changed 0.0335)",
+     "source": "receipts/render.json bench.faults['fault-F2'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    {
+     "rung": 6,
+     "status": "not-run",
+     "detail": "no judge is run in this lab",
+     "source": "stated"
+    },
+    {
+     "rung": 7,
+     "status": "pass",
+     "detail": "dcterms: created, creator, description, generator, identifier, title; Metadata nodes: 5",
+     "source": "ttl/fault-F2.ttl (dcterms triples, x3do:Metadata* individuals; rdflib 7.6.0)"
+    }
+   ],
+   "first_fail": 5,
+   "first_flag": 3
+  },
+  "fault-F3": {
+   "rungs": [
+    {
+     "rung": 0,
+     "status": "pass",
+     "detail": "well-formed",
+     "source": "receipts/validation.json files[].semantic_exception; receipts/pipeline.json scenes[].parse_note"
+    },
+    {
+     "rung": 1,
+     "status": "warn",
+     "baseline_undeclared": [
+      "hasROUTE",
+      "noNamespaceSchemaLocation"
+     ],
+     "new_undeclared": [],
+     "detail": "2 structural terms written by X3dToTurtle.xslt r40388 (hasROUTE, noNamespaceSchemaLocation) are not declared in Ontology 4.1 r40416; noted, not failed; scene-specific undeclared terms: 0; profile Immersive ok: True",
+     "source": "receipts/pipeline.json scenes[].undeclared_x3do_*; receipts/validation.json files[].profile_ok"
+    },
+    {
+     "rung": 2,
+     "status": "pass",
+     "detail": "XSD valid",
+     "source": "receipts/validation.json files['fault-F3.x3d'].xsd_valid (validator 13121b6)"
+    },
+    {
+     "rung": 3,
+     "status": "pass",
+     "detail": "errors 0, warnings 0, infos 114; new vs clean: none",
+     "source": "receipts/validation.json files['fault-F3.x3d'].semantic_counts (validator 13121b6)"
+    },
+    {
+     "rung": 4,
+     "status": "fail",
+     "detail": "lab shapes: 1 violations, 0 warnings; x3d-core: 1 violations, 0 warnings",
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F3'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2); receipts/mcp-calls.json bench['fault-F3'].shacl_validate (x3d_mcp 7d3f1d5)"
+    },
+    {
+     "rung": 5,
+     "status": "fail",
+     "detail": "pixels changed beyond motion, new console warning (View7, changed 0.00907)",
+     "source": "receipts/render.json bench.faults['fault-F3'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    {
+     "rung": 6,
+     "status": "not-run",
+     "detail": "no judge is run in this lab",
+     "source": "stated"
+    },
+    {
+     "rung": 7,
+     "status": "pass",
+     "detail": "dcterms: created, creator, description, generator, identifier, title; Metadata nodes: 5",
+     "source": "ttl/fault-F3.ttl (dcterms triples, x3do:Metadata* individuals; rdflib 7.6.0)"
+    }
+   ],
+   "first_fail": 4,
+   "first_flag": 4
+  },
+  "fault-F4": {
+   "rungs": [
+    {
+     "rung": 0,
+     "status": "pass",
+     "detail": "well-formed",
+     "source": "receipts/validation.json files[].semantic_exception; receipts/pipeline.json scenes[].parse_note"
+    },
+    {
+     "rung": 1,
+     "status": "warn",
+     "baseline_undeclared": [
+      "hasROUTE",
+      "noNamespaceSchemaLocation"
+     ],
+     "new_undeclared": [],
+     "detail": "2 structural terms written by X3dToTurtle.xslt r40388 (hasROUTE, noNamespaceSchemaLocation) are not declared in Ontology 4.1 r40416; noted, not failed; scene-specific undeclared terms: 0; profile Immersive ok: True",
+     "source": "receipts/pipeline.json scenes[].undeclared_x3do_*; receipts/validation.json files[].profile_ok"
+    },
+    {
+     "rung": 2,
+     "status": "pass",
+     "detail": "XSD valid",
+     "source": "receipts/validation.json files['fault-F4.x3d'].xsd_valid (validator 13121b6)"
+    },
+    {
+     "rung": 3,
+     "status": "fail",
+     "detail": "errors 1, warnings 0, infos 115; new vs clean: route-missing-from-node",
+     "source": "receipts/validation.json files['fault-F4.x3d'].semantic_counts (validator 13121b6)"
+    },
+    {
+     "rung": 4,
+     "status": "fail",
+     "detail": "lab shapes: 1 violations, 0 warnings; x3d-core: 1 violations, 0 warnings",
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F4'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2); receipts/mcp-calls.json bench['fault-F4'].shacl_validate (x3d_mcp 7d3f1d5)"
+    },
+    {
+     "rung": 5,
+     "status": "fail",
+     "detail": "motion lost, new console warning (View2, changed 0.01115)",
+     "source": "receipts/render.json bench.faults['fault-F4'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    {
+     "rung": 6,
+     "status": "not-run",
+     "detail": "no judge is run in this lab",
+     "source": "stated"
+    },
+    {
+     "rung": 7,
+     "status": "pass",
+     "detail": "dcterms: created, creator, description, generator, identifier, title; Metadata nodes: 5",
+     "source": "ttl/fault-F4.ttl (dcterms triples, x3do:Metadata* individuals; rdflib 7.6.0)"
+    }
+   ],
+   "first_fail": 3,
+   "first_flag": 3
+  },
+  "fault-F5": {
+   "rungs": [
+    {
+     "rung": 0,
+     "status": "pass",
+     "detail": "well-formed",
+     "source": "receipts/validation.json files[].semantic_exception; receipts/pipeline.json scenes[].parse_note"
+    },
+    {
+     "rung": 1,
+     "status": "warn",
+     "baseline_undeclared": [
+      "hasROUTE",
+      "noNamespaceSchemaLocation"
+     ],
+     "new_undeclared": [],
+     "detail": "2 structural terms written by X3dToTurtle.xslt r40388 (hasROUTE, noNamespaceSchemaLocation) are not declared in Ontology 4.1 r40416; noted, not failed; scene-specific undeclared terms: 0; profile Immersive ok: True",
+     "source": "receipts/pipeline.json scenes[].undeclared_x3do_*; receipts/validation.json files[].profile_ok"
+    },
+    {
+     "rung": 2,
+     "status": "fail",
+     "detail": "Line 183: Element 'Box': This element is not expected. Expected is one of ( ROUTE, ExternProtoDeclare, ProtoDeclare, IMPORT, EXPORT, Background, ColorInterpolat",
+     "source": "receipts/validation.json files['fault-F5.x3d'].xsd_valid (validator 13121b6)"
+    },
+    {
+     "rung": 3,
+     "status": "fail",
+     "detail": "errors 1, warnings 0, infos 114; new vs clean: containerfield-type-mismatch",
+     "source": "receipts/validation.json files['fault-F5.x3d'].semantic_counts (validator 13121b6)"
+    },
+    {
+     "rung": 4,
+     "status": "fail",
+     "detail": "lab shapes: 1 violations, 0 warnings; x3d-core: 1 violations, 0 warnings",
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F5'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2); receipts/mcp-calls.json bench['fault-F5'].shacl_validate (x3d_mcp 7d3f1d5)"
+    },
+    {
+     "rung": 5,
+     "status": "pass",
+     "detail": "renders like the clean Cabinet (View3, changed 0.0)",
+     "source": "receipts/render.json bench.faults['fault-F5'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    {
+     "rung": 6,
+     "status": "not-run",
+     "detail": "no judge is run in this lab",
+     "source": "stated"
+    },
+    {
+     "rung": 7,
+     "status": "pass",
+     "detail": "dcterms: created, creator, description, generator, identifier, title; Metadata nodes: 5",
+     "source": "ttl/fault-F5.ttl (dcterms triples, x3do:Metadata* individuals; rdflib 7.6.0)"
+    }
+   ],
+   "first_fail": 2,
+   "first_flag": 2
+  },
+  "fault-F6": {
+   "rungs": [
+    {
+     "rung": 0,
+     "status": "pass",
+     "detail": "well-formed",
+     "source": "receipts/validation.json files[].semantic_exception; receipts/pipeline.json scenes[].parse_note"
+    },
+    {
+     "rung": 1,
+     "status": "warn",
+     "baseline_undeclared": [
+      "hasROUTE",
+      "noNamespaceSchemaLocation"
+     ],
+     "new_undeclared": [],
+     "detail": "2 structural terms written by X3dToTurtle.xslt r40388 (hasROUTE, noNamespaceSchemaLocation) are not declared in Ontology 4.1 r40416; noted, not failed; scene-specific undeclared terms: 0; profile Immersive ok: True",
+     "source": "receipts/pipeline.json scenes[].undeclared_x3do_*; receipts/validation.json files[].profile_ok"
+    },
+    {
+     "rung": 2,
+     "status": "pass",
+     "detail": "XSD valid",
+     "source": "receipts/validation.json files['fault-F6.x3d'].xsd_valid (validator 13121b6)"
+    },
+    {
+     "rung": 3,
+     "status": "fail",
+     "detail": "errors 1, warnings 0, infos 114; new vs clean: use-before-def",
+     "source": "receipts/validation.json files['fault-F6.x3d'].semantic_counts (validator 13121b6)"
+    },
+    {
+     "rung": 4,
+     "status": "pass",
+     "detail": "lab shapes: 0 violations, 0 warnings; x3d-core: 0 violations, 0 warnings",
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F6'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2); receipts/mcp-calls.json bench['fault-F6'].shacl_validate (x3d_mcp 7d3f1d5)"
+    },
+    {
+     "rung": 5,
+     "status": "pass",
+     "detail": "renders like the clean Cabinet (View1, changed 0.0)",
+     "source": "receipts/render.json bench.faults['fault-F6'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    {
+     "rung": 6,
+     "status": "not-run",
+     "detail": "no judge is run in this lab",
+     "source": "stated"
+    },
+    {
+     "rung": 7,
+     "status": "pass",
+     "detail": "dcterms: created, creator, description, generator, identifier, title; Metadata nodes: 5",
+     "source": "ttl/fault-F6.ttl (dcterms triples, x3do:Metadata* individuals; rdflib 7.6.0)"
+    }
+   ],
+   "first_fail": 3,
+   "first_flag": 3
+  },
+  "fault-F7": {
+   "rungs": [
+    {
+     "rung": 0,
+     "status": "warn",
+     "detail": "well-formed; DTD-aware parse: DTD-aware parse refused: ID Ruby already defined, line 161, column 82 (<string>, line 161); re-parsed with collect_ids=F",
+     "source": "receipts/validation.json files[].semantic_exception; receipts/pipeline.json scenes[].parse_note"
+    },
+    {
+     "rung": 1,
+     "status": "warn",
+     "baseline_undeclared": [
+      "hasROUTE",
+      "noNamespaceSchemaLocation"
+     ],
+     "new_undeclared": [],
+     "detail": "2 structural terms written by X3dToTurtle.xslt r40388 (hasROUTE, noNamespaceSchemaLocation) are not declared in Ontology 4.1 r40416; noted, not failed; scene-specific undeclared terms: 0; profile Immersive ok: True",
+     "source": "receipts/pipeline.json scenes[].undeclared_x3do_*; receipts/validation.json files[].profile_ok"
+    },
+    {
+     "rung": 2,
+     "status": "fail",
+     "detail": "Line 162: Element 'Material', attribute 'DEF': 'Ruby' is not a valid value of the atomic type 'xs:ID'.",
+     "source": "receipts/validation.json files['fault-F7.x3d'].xsd_valid (validator 13121b6)"
+    },
+    {
+     "rung": 3,
+     "status": "fail",
+     "detail": "errors 1, warnings 0, infos 113; new vs clean: duplicate-def",
+     "source": "receipts/validation.json files['fault-F7.x3d'].semantic_counts (validator 13121b6)"
+    },
+    {
+     "rung": 4,
+     "status": "fail",
+     "detail": "lab shapes: 2 violations, 0 warnings; x3d-core: 3 violations, 0 warnings",
+     "source": "receipts/oracle.json jobs['bench:shacl:fault-F7'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2); receipts/mcp-calls.json bench['fault-F7'].shacl_validate (x3d_mcp 7d3f1d5)"
+    },
+    {
+     "rung": 5,
+     "status": "pass",
+     "detail": "renders like the clean Cabinet (View3, changed 0.0)",
+     "source": "receipts/render.json bench.faults['fault-F7'] (X_ITE 16.5.1, Chromium 153.0.8010.12)"
+    },
+    {
+     "rung": 6,
+     "status": "not-run",
+     "detail": "no judge is run in this lab",
+     "source": "stated"
+    },
+    {
+     "rung": 7,
+     "status": "pass",
+     "detail": "dcterms: created, creator, description, generator, identifier, title; Metadata nodes: 5",
+     "source": "ttl/fault-F7.ttl (dcterms triples, x3do:Metadata* individuals; rdflib 7.6.0)"
+    }
+   ],
+   "first_fail": 2,
+   "first_flag": 0
+  },
+  "teach-exponent": {
+   "rungs": [
+    {
+     "rung": 0,
+     "status": "pass",
+     "detail": "well-formed",
+     "source": "receipts/validation.json files[].semantic_exception; receipts/pipeline.json scenes[].parse_note"
+    },
+    {
+     "rung": 1,
+     "status": "warn",
+     "baseline_undeclared": [
+      "hasROUTE",
+      "noNamespaceSchemaLocation"
+     ],
+     "new_undeclared": [],
+     "detail": "2 structural terms written by X3dToTurtle.xslt r40388 (hasROUTE, noNamespaceSchemaLocation) are not declared in Ontology 4.1 r40416; noted, not failed; scene-specific undeclared terms: 0; profile Immersive ok: True",
+     "source": "receipts/pipeline.json scenes[].undeclared_x3do_*; receipts/validation.json files[].profile_ok"
+    },
+    {
+     "rung": 2,
+     "status": "pass",
+     "detail": "XSD valid",
+     "source": "receipts/validation.json files['teach-exponent.x3d'].xsd_valid (validator 13121b6)"
+    },
+    {
+     "rung": 3,
+     "status": "fail",
+     "detail": "errors 1, warnings 0, infos 114; new vs clean: colour-out-of-range",
+     "source": "receipts/validation.json files['teach-exponent.x3d'].semantic_counts (validator 13121b6)"
+    },
+    {
+     "rung": 4,
+     "status": "fail",
+     "detail": "lab shapes: 1 violations, 0 warnings; x3d-core: 1 violations, 0 warnings",
+     "source": "receipts/oracle.json jobs['bench:shacl:teach-exponent'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2); receipts/mcp-calls.json bench['teach-exponent'].shacl_validate (x3d_mcp 7d3f1d5)"
+    },
+    {
+     "rung": 5,
+     "status": "not-run",
+     "detail": "teaching variant, not rendered",
+     "source": "receipts/render.json"
+    },
+    {
+     "rung": 6,
+     "status": "not-run",
+     "detail": "no judge is run in this lab",
+     "source": "stated"
+    },
+    {
+     "rung": 7,
+     "status": "pass",
+     "detail": "dcterms: created, creator, description, generator, identifier, title; Metadata nodes: 5",
+     "source": "ttl/teach-exponent.ttl (dcterms triples, x3do:Metadata* individuals; rdflib 7.6.0)"
+    }
+   ],
+   "first_fail": 3,
+   "first_flag": 3
+  },
+  "teach-insert": {
+   "rungs": [
+    {
+     "rung": 0,
+     "status": "pass",
+     "detail": "well-formed",
+     "source": "receipts/validation.json files[].semantic_exception; receipts/pipeline.json scenes[].parse_note"
+    },
+    {
+     "rung": 1,
+     "status": "warn",
+     "baseline_undeclared": [
+      "hasROUTE",
+      "noNamespaceSchemaLocation"
+     ],
+     "new_undeclared": [],
+     "detail": "2 structural terms written by X3dToTurtle.xslt r40388 (hasROUTE, noNamespaceSchemaLocation) are not declared in Ontology 4.1 r40416; noted, not failed; scene-specific undeclared terms: 0; profile Immersive ok: True",
+     "source": "receipts/pipeline.json scenes[].undeclared_x3do_*; receipts/validation.json files[].profile_ok"
+    },
+    {
+     "rung": 2,
+     "status": "pass",
+     "detail": "XSD valid",
+     "source": "receipts/validation.json files['teach-insert.x3d'].xsd_valid (validator 13121b6)"
+    },
+    {
+     "rung": 3,
+     "status": "pass",
+     "detail": "errors 0, warnings 0, infos 114; new vs clean: none",
+     "source": "receipts/validation.json files['teach-insert.x3d'].semantic_counts (validator 13121b6)"
+    },
+    {
+     "rung": 4,
+     "status": "pass",
+     "detail": "lab shapes: 0 violations, 0 warnings; x3d-core: 0 violations, 0 warnings",
+     "source": "receipts/oracle.json jobs['bench:shacl:teach-insert'] (rdflib 7.6.0 / pyshacl 0.40.2 / owlrl 7.6.2); receipts/mcp-calls.json bench['teach-insert'].shacl_validate (x3d_mcp 7d3f1d5)"
+    },
+    {
+     "rung": 5,
+     "status": "not-run",
+     "detail": "teaching variant, not rendered",
+     "source": "receipts/render.json"
+    },
+    {
+     "rung": 6,
+     "status": "not-run",
+     "detail": "no judge is run in this lab",
+     "source": "stated"
+    },
+    {
+     "rung": 7,
+     "status": "pass",
+     "detail": "dcterms: created, creator, description, generator, identifier, title; Metadata nodes: 5",
+     "source": "ttl/teach-insert.ttl (dcterms triples, x3do:Metadata* individuals; rdflib 7.6.0)"
+    }
+   ],
+   "first_fail": null,
+   "first_flag": null
+  }
+ },
+ "rungs": [
+  {
+   "rung": 0,
+   "name": "parses",
+   "instrument": "lxml well-formedness (validation gate) + DTD-aware parse note (pipeline)"
+  },
+  {
+   "rung": 1,
+   "name": "typed",
+   "instrument": "every x3do class and property the Turtle uses is declared in X3D Ontology 4.1; profile/components check"
+  },
+  {
+   "rung": 2,
+   "name": "valid",
+   "instrument": "XSD x3d-4.1.xsd via x3d_mcp validate_xml at 13121b6"
+  },
+  {
+   "rung": 3,
+   "name": "coherent",
+   "instrument": "x3d_mcp semantic_diagnostics at 13121b6 (errors fail, warnings amber)"
+  },
+  {
+   "rung": 4,
+   "name": "lawful",
+   "instrument": "SHACL: lab shapes (pyshacl) and bundled x3d-core shapes (x3d_mcp shacl_validate at 7d3f1d5); violations fail, warnings amber"
+  },
+  {
+   "rung": 5,
+   "name": "visible",
+   "instrument": "X_ITE 16.5.1 render in Chromium 153.0.8010.12 (SwiftShader): load errors, new console warnings, pixel change vs clean beyond motion, motion lost"
+  },
+  {
+   "rung": 6,
+   "name": "complete",
+   "instrument": "judge (a reviewer, human or model, asks whether the scene does what was asked): not run in this lab"
+  },
+  {
+   "rung": 7,
+   "name": "meaningful",
+   "instrument": "provenance stated in the scene: identifier and creator head meta (dcterms triples in the Turtle) and X3D Metadata nodes"
+  }
+ ]
+}
