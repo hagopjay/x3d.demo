@@ -1,0 +1,72 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Heritage + Geo Loom v3: atomic grades</title>
+<style>
+:root{--bg:#14110d;--fg:#eee6d6;--mut:#a89c85;--card:#1f1a13;--ln:#3a3226;--ac:#d8b25f;--C:#6fbf73;--L:#e0b84a;--S:#d9674e}
+@media (prefers-color-scheme:light){:root{--bg:#f6f1e6;--fg:#241d12;--mut:#6b5f48;--card:#fffaf0;--ln:#d8ccb2;--ac:#8a6320}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,sans-serif}
+header{padding:12px 16px;border-bottom:1px solid var(--ln)}h1{margin:0;font-size:18px}.sub{color:var(--mut);font-size:12px}
+main{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:12px;padding:12px 16px}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:6px;padding:10px;margin-bottom:12px}
+x3d-canvas{width:100%;height:440px;display:block;background:#222;border-radius:4px}
+.tabs button{background:none;border:1px solid var(--ln);color:var(--fg);padding:4px 10px;border-radius:4px;cursor:pointer;margin:0 4px 4px 0}
+.tabs button.on{background:var(--ac);color:#000}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{border-bottom:1px solid var(--ln);padding:4px 5px;text-align:left;vertical-align:top}th{color:var(--mut)}
+.g{display:inline-block;min-width:22px;text-align:center;border-radius:3px;color:#000;font-weight:700;padding:0 4px}.g.C{background:var(--C)}.g.L{background:var(--L)}.g.S{background:var(--S)}
+tr.cl{cursor:pointer}tr.cl:hover,tr.sel{background:rgba(216,178,95,.15)}h2{font-size:14px;margin:0 0 6px;color:var(--ac)}
+code{font-size:11px}#pick{min-height:3em;font-size:12px;color:var(--mut)}.note{font-size:12px;color:var(--mut)}
+</style></head><body>
+<header><h1>Giza provenance twin <span class="sub">v3: every grade generated from atomic claims; a finding shows its weakest part</span></h1>
+<div class="sub">Every claim is a CRM E13 Attribute Assignment carrying a grade: <span class="g C">C</span> Confirmed (run here) <span class="g L">L</span> Likely (published, not re-opened here) <span class="g S">S</span> Suspected or contested. Geometry is schematic (box pyramids), not a survey.</div></header>
+<main><div>
+ <div class="card"><div class="tabs"><button id="tb-g" class="on">Giza (4 monuments)</button><button id="tb-b">Burruss Hall and Drillfield (Google data, academic PoC)</button></div>
+ <x3d-canvas id="cv" src="giza-provenance-twin.x3d" splashScreen="false"></x3d-canvas>
+ <div id="pick">Click a monument to read its claims, or pick a claim on the right.</div></div>
+<div class="card"><h2>Findings (grade = weakest atomic part)</h2><table id="f"><thead><tr><th>Finding and its parts</th><th>Gr</th><th>Instrument</th></tr></thead><tbody></tbody></table></div>
+ <div class="card"><h2>Pleiades places (P87 is identified by)</h2><table id="pl"><thead><tr><th>Site</th><th>Pleiades</th><th>Point</th><th>v1 off by</th></tr></thead><tbody></tbody></table></div>
+ <div class="card"><h2>IFC placement row (authored, proposed IfcMapConversion)</h2><pre id="ifc" class="note" style="white-space:pre-wrap;margin:0"></pre></div>
+ <div class="card"><h2>Open data scout (live checks, 18 Nov 2026, from the build container)</h2><table id="src"><thead><tr><th>Source</th><th>What was run</th><th>Grade</th><th>Licence</th></tr></thead><tbody></tbody></table>
+ <p class="note">Overpass was unreachable from this container; that is a fact about the container, not the service. No Egyptian DEM was fetched, so Giza ground is a flat 60 m placeholder (S).</p></div>
+</div><div>
+ <div class="card"><h2>Claims (CRM E13): click to read</h2><table id="cl"><thead><tr><th>#</th><th>Subject</th><th>Statement</th><th>Gr</th></tr></thead><tbody></tbody></table>
+ <p class="note">Also published as <a href="claims.jsonld" style="color:var(--ac)">claims.jsonld</a> (crm:P140, P141, P2).</p></div>
+ <div class="card"><h2>CIDOC-CRM to X3D (proposal, grade S)</h2><table id="m1"><thead><tr><th>CRM</th><th>X3D</th><th>Note</th></tr></thead><tbody></tbody></table></div>
+ <div class="card"><h2>CityGML, IFC, GeoSPARQL to X3D Geospatial (proposal, grade S)</h2><table id="m2"><thead><tr><th>Source</th><th>X3D</th><th>Note</th></tr></thead><tbody></tbody></table><ul class="note" id="traps"></ul></div>
+ <div class="card"><h2>Receipt and licence</h2><div class="note" id="rcpt">loading</div>
+ <div class="note">Burruss Hall and Drillfield imagery and data are Google Solar API data, reused by Inline for an academic, non-commercial proof of concept only. See NOTICE.md. Nothing here is a redistribution licence.</div></div>
+</div></main>
+<script src="../../blender-x3d-io/v1/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),esc=t=>String(t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const SITE={khufu:'Great Pyramid',khafre:'Khafre',menkaure:'Menkaure',sphinx:'Sphinx'};
+let claims=[],tabOn='g';
+async function J(u){return (await fetch(u)).json()}
+function show(site,id){
+ document.querySelectorAll('tr.cl').forEach(r=>r.classList.toggle('sel',r.dataset.id===id));
+ const list=claims.filter(c=>c.site===site);
+ $('#pick').innerHTML='<b>'+SITE[site]+'</b>: '+list.map(c=>c.id+' <span class="g '+c.grade+'">'+c.grade+'</span> '+esc(c.statement)).join(' &middot; ');
+}
+function hook(){try{const sc=$('#cv').browser.currentScene;for(const s of Object.keys(SITE)){try{sc.getNamedNode('ts_'+s).getField('isActive').addFieldCallback('p'+s,v=>{if(v)show(s,(claims.find(c=>c.site===s)||{}).id)})}catch(e){}}}catch(e){}}
+async function tab(t){tabOn=t;$('#tb-g').classList.toggle('on',t==='g');$('#tb-b').classList.toggle('on',t==='b');
+ await $('#cv').browser.loadURL(new X3D.MFString(t==='g'?'giza-provenance-twin.x3d':'burruss-geo.x3d'));if(t==='g')hook();}
+$('#tb-g').onclick=()=>tab('g');$('#tb-b').onclick=()=>tab('b');
+$('#cv').addEventListener('load',()=>{if(tabOn==='g')hook()});
+(async()=>{
+ claims=await J('claims.json');
+ $('#cl tbody').innerHTML=claims.map(c=>'<tr class="cl" data-s="'+c.site+'" data-id="'+c.id+'"><td>'+c.id+'</td><td>'+SITE[c.site]+'<br><code>'+esc(c.crm_class.split('_')[0])+'</code></td><td>'+esc(c.statement)+'<br><span class="note">'+esc(c.source)+'</span></td><td><span class="g '+c.grade+'">'+c.grade+'</span></td></tr>').join('');
+ document.querySelectorAll('tr.cl').forEach(r=>r.onclick=()=>show(r.dataset.s,r.dataset.id));
+ const s=await J('data/open-data-sources.json');
+ $('#src tbody').innerHTML=s.map(r=>'<tr><td>'+esc(r[0])+'</td><td>'+esc(r[2])+'</td><td>'+esc(r[3])+'</td><td>'+esc(r[4])+'</td></tr>').join('');
+ 
+ try{const p=await J('data/pleiades-giza.json');$('#pl tbody').innerHTML=Object.entries(p.places).map(([k,r])=>'<tr><td>'+k+'</td><td><a style="color:var(--ac)" href="'+r.uri+'">'+r.pleiades_id+'</a></td><td>'+r.lat.toFixed(5)+', '+r.lon.toFixed(5)+'</td><td>'+(r.v1_offset_m!==undefined?r.v1_offset_m+' m':'-')+'</td></tr>').join('')}catch(e){}
+ try{const i=await J('ifc-placement.json');$('#ifc').textContent=JSON.stringify(i.ifcmapconversion_proposed,null,1)+'\n'+i.note}catch(e){}
+ try{const F=await J('data/findings.json');  // v3: grades come from data/findings.json (build.py), never typed here
+  $('#f tbody').innerHTML=F.map(f=>'<tr><td><b>'+esc(f.headline)+'</b><ul class="note">'+f.parts.map(a=>'<li><span class="g '+a.grade+'">'+a.grade+'</span> '+esc(a.statement)+'</li>').join('')+'</ul></td><td><span class="g '+f.grade+'">'+f.grade+'</span></td><td>'+f.parts.map(a=>esc(a.instrument)).join('<br>')+'</td></tr>').join('')}catch(e){$('#f tbody').innerHTML='<tr><td colspan="3">findings.json missing: no grade shown</td></tr>'}
+ const m=await J('data/crm-x3d-map.json');
+ const row=r=>'<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td>'+esc(r[2])+'</td></tr>';
+ $('#m1 tbody').innerHTML=m.crm_to_x3d.map(row).join('');
+ $('#m2 tbody').innerHTML=m.geo_to_x3d.map(row).join('');
+ $('#traps').innerHTML=m.traps.map(t=>'<li>'+esc(t)+'</li>').join('');
+ try{const v=await J('validation-v3.json');const id=v.validator;$('#rcpt').textContent=Object.entries(v.results).map(([n,r])=>n+' sha256 '+r.sha256.slice(0,12)+'... xsd valid='+r.valid+' errors='+r.errors.length+' semantic errors='+(r.semantic_errors||[]).length).join('; ')+' (x3d_mcp '+(id.x3d_mcp_commit||'?').slice(0,7)+(id.x3d_mcp_dirty?'+dirty':'')+', lxml '+id.lxml+', libxml2 '+id.libxml2+')'}catch(e){$('#rcpt').textContent='receipt missing'}
+})();
+</script></body></html>

@@ -1,0 +1,88 @@
+{
+ "suite": "tiles3d_to_x3d v2",
+ "python": "3.13.18",
+ "passed": 16,
+ "failed": 0,
+ "cases": [
+  {
+   "case": "v1 reproduces the review's nested-base defect",
+   "pass": true,
+   "detail": "../mesh.glb"
+  },
+  {
+   "case": "v2 resolves content against the tileset that names it",
+   "pass": true,
+   "detail": "../sub/mesh.glb"
+  },
+  {
+   "case": "v2 with --content-base keeps the sub folder",
+   "pass": true,
+   "detail": "tiles/sub/mesh.glb"
+  },
+  {
+   "case": "refuses refine-add",
+   "pass": true,
+   "detail": "t: refine ADD drawn as REPLACE (GeoLOD swaps its root for its children)"
+  },
+  {
+   "case": "--allow-lossy converts refine-add and records the loss",
+   "pass": true,
+   "detail": "2 loss(es)"
+  },
+  {
+   "case": "refuses multi-contents",
+   "pass": true,
+   "detail": "t: 2 contents; only the first is converted"
+  },
+  {
+   "case": "--allow-lossy converts multi-contents and records the loss",
+   "pass": true,
+   "detail": "1 loss(es)"
+  },
+  {
+   "case": "refuses ECEF-framed content (identity transform, as Google's glb)",
+   "pass": true,
+   "detail": "t: content frame is 53.376 deg from local ENU, scale off by 0.00e+00; placed unrotated and unscaled"
+  },
+  {
+   "case": "--allow-lossy converts ECEF-framed content (identity transform, as Google's glb) and records the loss",
+   "pass": true,
+   "detail": "1 loss(es)"
+  },
+  {
+   "case": "refuses scaled-content",
+   "pass": true,
+   "detail": "t: content frame is 0.000 deg from local ENU, scale off by 1.00e+00; placed unrotated and unscaled"
+  },
+  {
+   "case": "--allow-lossy converts scaled-content and records the loss",
+   "pass": true,
+   "detail": "1 loss(es)"
+  },
+  {
+   "case": "refuses missing-external",
+   "pass": true,
+   "detail": "t: external tileset nowhere.json not found"
+  },
+  {
+   "case": "--allow-lossy converts missing-external and records the loss",
+   "pass": true,
+   "detail": "1 loss(es)"
+  },
+  {
+   "case": "refuses an external tileset cycle",
+   "pass": true,
+   "detail": "t: external tileset cycle at loop.json"
+  },
+  {
+   "case": "more than 4 children still chunk (v1 behaviour kept)",
+   "pass": true,
+   "detail": "chunked 1, glb 9"
+  },
+  {
+   "case": "same tile count as v1 on a lossless tree",
+   "pass": true,
+   "detail": "v1 13 v2 13"
+  }
+ ]
+}

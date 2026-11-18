@@ -1,0 +1,68 @@
+[
+ {
+  "id": "elevation",
+  "headline": "Elevation 627 vs 617 m: measured residual near zero; the 'not a datum conflict' reading depends on an assumed tile centre.",
+  "grade": "S",
+  "grade_rule": "weakest of its atomic parts (C > L > S)",
+  "parts": [
+   {
+    "id": "e1",
+    "statement": "Median of EPQS minus (617 + DSM) is +0.03 m over 140 points at 30 m spacing.",
+    "grade": "C",
+    "instrument": "USGS EPQS 1 m, 18 Nov 2026; reconcile_elevation.py"
+   },
+   {
+    "id": "e2",
+    "statement": "Ground across the 400 x 300 m tile spans 619.8 to 632.9 m in EPQS, so 627.175 m is one point on the slope.",
+    "grade": "C",
+    "instrument": "USGS EPQS 1 m, 18 Nov 2026"
+   },
+   {
+    "id": "e3",
+    "statement": "The tile centre (37.2284, -80.4234) and z-southward orientation are assumptions (correlation 0.51 vs -0.40).",
+    "grade": "S",
+    "instrument": "reconcile_elevation.py fit; not surveyed"
+   },
+   {
+    "id": "e4",
+    "statement": "Therefore 627 vs 617 m is not a datum conflict: 617 m is the right reference for the DSM.",
+    "grade": "S",
+    "instrument": "interpretation that rests on e1-e3"
+   }
+  ]
+ },
+ {
+  "id": "pleiades",
+  "headline": "Correction: Khafre and Menkaure moved to their Pleiades points.",
+  "grade": "C",
+  "grade_rule": "weakest of its atomic parts (C > L > S)",
+  "parts": [
+   {
+    "id": "p1",
+    "statement": "v1 put Khafre 208 m and Menkaure 64 m from their Pleiades points (typed from memory); v2 and v3 use the Pleiades points.",
+    "grade": "C",
+    "instrument": "Pleiades dump 17 Nov 2026"
+   }
+  ]
+ },
+ {
+  "id": "ifc",
+  "headline": "IFC model carries no placement; the placement here is authored.",
+  "grade": "S",
+  "grade_rule": "weakest of its atomic parts (C > L > S)",
+  "parts": [
+   {
+    "id": "i1",
+    "statement": "The confluence-ifc model.ifc has no site placement and no IfcMapConversion.",
+    "grade": "C",
+    "instrument": "grep of model.ifc (2,030 lines)"
+   },
+   {
+    "id": "i2",
+    "statement": "The placement shown here is authored, not read from the file.",
+    "grade": "S",
+    "instrument": "authored in build.py"
+   }
+  ]
+ }
+]
