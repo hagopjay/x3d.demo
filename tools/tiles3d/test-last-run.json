@@ -1,7 +1,7 @@
 {
- "suite": "tiles3d_to_x3d v2.2",
+ "suite": "tiles3d_to_x3d v2.3",
  "python": "3.13.18",
- "passed": 27,
+ "passed": 33,
  "failed": 0,
  "cases": [
   {
@@ -138,6 +138,36 @@
    "case": "R3: a clean run into a reused folder rewrites the report (not the old lossy one) and lists the other files there",
    "pass": true,
    "detail": "['t.mesh.x3d', 't_0.x3d']"
+  },
+  {
+   "case": "R4-G1: parent scale 2, child scale 0.5 (unit-scale content): range uses 20 m world error",
+   "pass": true,
+   "detail": "range 1629.6, expected 1629.6"
+  },
+  {
+   "case": "R4-G1 control: v2.2 emits half the range on the same fixture",
+   "pass": true,
+   "detail": "v2.2 range 814.8"
+  },
+  {
+   "case": "R4-G1: unit-scale hierarchy keeps the local error",
+   "pass": true,
+   "detail": "814.8"
+  },
+  {
+   "case": "R4-G2: viewerRequestVolume refused in strict mode",
+   "pass": true,
+   "detail": "['t_0: viewerRequestVolume dropped (GeoLOD has no request volume, so the tile would load from any viewpoint)']"
+  },
+  {
+   "case": "R4-G2: --allow-lossy converts and records the dropped volume",
+   "pass": true,
+   "detail": "['t_0: viewerRequestVolume dropped (GeoLOD has no request volume, so the tile would load from any viewpoint)']"
+  },
+  {
+   "case": "R4-G2 control: v2.2 dropped it with no loss",
+   "pass": true,
+   "detail": "strict exit 0"
   }
  ]
 }

@@ -45,3 +45,12 @@ v2 fixture's ENU frame had no translation (content at the Earth's centre) and v2
 
 Checked with the reviewer's own `tiles-probes.py` (all 7 cases) and `test_tiles3d.py`, 27 of 27 (Python 3.13).
 MFString values escape `\` and `"`; XML attributes escape `& < > '`.
+
+## v2.3 (fourth external review, 18 Nov 2026)
+
+| Behaviour | v2.2 (kept as `v2.2-shipped.py`) | v2.3 |
+|---|---|---|
+| Parent transform scale 2, child counter-scaled 0.5 (unit-scale content), local geometricError 10 m | range 814.8 m from the local 10 m, strict exit 0, no loss | range 1629.6 m from the 20 m world error (3D Tiles 1.1 §6.7.1.6.1: geometricError scales with the transform's largest axis scale); `ge_scale` min/max in the report |
+| `viewerRequestVolume` on a tile | dropped silently; constrained and unconstrained leaves byte-identical | **refused**; `--allow-lossy` converts and records it (`viewer_request_volume` count) |
+
+Instrument: `python3 -I tools/tiles3d/test_tiles3d.py`, 33 of 33 (27 earlier + 6 new, each new one paired with v2.2 failing it), and the reviewer's `geo-probes.py` (scale 2 case: 1629.6; request-volume case: exit 2).

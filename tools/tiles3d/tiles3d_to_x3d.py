@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""tiles3d_to_x3d v2.2 (18 Nov 2026), third external review: URIs keep their query and fragment and are XML- and
+"""tiles3d_to_x3d v2.3 (18 Nov 2026), fourth external review: geometricError is scaled by the largest axis scale of the
+accumulated transform (3D Tiles 1.1 6.7.1.6.1; v2.2 used the local value, so a parent scale of 2 gave half the range with
+no loss reported), and a tile's viewerRequestVolume is refused as a loss (GeoLOD has no request volume; v2.2 dropped it
+silently). v2.2 is kept as v2.2-shipped.py. Earlier text:
+tiles3d_to_x3d v2.2 (18 Nov 2026), third external review: URIs keep their query and fragment and are XML- and
 MFString-escaped (v2.1 dropped `?query` and wrote `mesh&a.glb` raw, so strict mode could exit 0 with malformed XML or a
 different resource); percent-encoded local paths are decoded for the filesystem only; a region crossing the antimeridian
 (east < west) gets its midpoint on the right side of the Earth (v2.1 put the GeoLOD centre at 0 deg for 179.9..-179.9);
@@ -64,6 +68,9 @@ def enu_relative_rotation(M, lat, lon):
     E = (-math.sin(lo), math.cos(lo), 0); N = (-math.sin(la) * math.cos(lo), -math.sin(la) * math.sin(lo), math.cos(la))
     ex = (M[0], M[1], M[2]); n = math.sqrt(sum(v * v for v in ex)) or 1
     return math.degrees(math.acos(max(-1, min(1, sum(a * b for a, b in zip(ex, E)) / n))))
+def max_scale(M):
+    """Largest axis scale of a column-major 4x4: the factor 3D Tiles 1.1 applies to geometricError."""
+    return max(math.sqrt(M[c] ** 2 + M[c + 1] ** 2 + M[c + 2] ** 2) for c in (0, 4, 8))
 def frame_loss(M, lat, lon):
     """Rotation (deg) of the tile's x axis from local east, and the largest axis-scale deviation from 1."""
     cols = [(M[0], M[1], M[2]), (M[4], M[5], M[6]), (M[8], M[9], M[10])]
@@ -76,7 +83,7 @@ def frame_loss(M, lat, lon):
         n = math.sqrt(sum(v * v for v in c)) or 1
         ang = max(ang, math.degrees(math.acos(max(-1, min(1, sum(x * y for x, y in zip(c, b)) / n)))))
     return ang, scale
-HEAD = '<?xml version="1.0" encoding="UTF-8"?>\n<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">\n <head><component name="Geospatial" level="1"/><meta name="title" content="{t}"/><meta name="generator" content="tiles3d_to_x3d.py v2.2 (x3d.demo tools/tiles3d)"/></head>\n <Scene>\n{b}\n </Scene>\n</X3D>\n'
+HEAD = '<?xml version="1.0" encoding="UTF-8"?>\n<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">\n <head><component name="Geospatial" level="1"/><meta name="title" content="{t}"/><meta name="generator" content="tiles3d_to_x3d.py v2.3 (x3d.demo tools/tiles3d)"/></head>\n <Scene>\n{b}\n </Scene>\n</X3D>\n'
 def mfstring(u):
     """One-element X3D MFString in a single-quoted XML attribute: MFString escapes \\ and \" , XML escapes & < > '."""
     s = '"' + u.replace("\\", "\\\\").replace('"', '\\"') + '"'
@@ -86,7 +93,7 @@ class Unsupported(Exception):
     def __init__(self, items): super().__init__("; ".join(items)); self.items = items
 def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=45.0, dry=False, allow_lossy=False):
     tp = pathlib.Path(tileset_path).resolve(); ts = json.loads(tp.read_text()); out = pathlib.Path(outdir).resolve(); K = screen / (2 * math.tan(math.radians(fov / 2)) * sse)
-    stats = dict(tiles=0, with_content=0, glb=0, external_json=0, external_missing=0, add_refine=0, non_enu=0, chunked=0, multi_contents=0, implicit=0,
+    stats = dict(tiles=0, with_content=0, glb=0, external_json=0, external_missing=0, add_refine=0, non_enu=0, chunked=0, multi_contents=0, implicit=0, viewer_request_volume=0, ge_scale=[],
                  bv=dict(), max_depth=0, ranges=[], origin_offsets_m=[], content_uris=[], version=ts.get("asset", {}).get("version"))
     losses, files = [], {}
     def loss(where, what): losses.append(f"{where}: {what}")
@@ -110,7 +117,9 @@ def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=
         refine = node.get("refine", refine)
         if refine == "ADD": stats["add_refine"] += 1; loss(name, "refine ADD drawn as REPLACE (GeoLOD swaps its root for its children)")
         if "implicitTiling" in node: stats["implicit"] += 1; loss(name, "implicitTiling subtree not expanded")
-        lat, lon, h = centre(node, M); ge = float(node.get("geometricError", 0)); ge = min(ge, 1e12)
+        lat, lon, h = centre(node, M); ge = float(node.get("geometricError", 0)) * max_scale(M); ge = min(ge, 1e12)
+        stats["ge_scale"].append(round(max_scale(M), 12))
+        if "viewerRequestVolume" in node: stats["viewer_request_volume"] += 1; loss(name, "viewerRequestVolume dropped (GeoLOD has no request volume, so the tile would load from any viewpoint)")
         kids = [(k, base, chain) for k in node.get("children", [])]; body = None
         for c in contents_of(node, name):
             stats["with_content"] += 1; u = c["uri"]; kind = urlsplit(u).path
@@ -166,7 +175,7 @@ def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=
         return f"{name}.x3d"
     top = emit(ts["root"], IDENT, 0, "t", tp.parent, frozenset({tp}), ts["root"].get("refine", "REPLACE"))
     stats["root_file"] = top; stats["K"] = K; stats["files"] = len(files)
-    stats["ranges"] = dict(min=min(stats["ranges"]), max=max(stats["ranges"])); stats["losses"] = losses
+    stats["ranges"] = dict(min=min(stats["ranges"]), max=max(stats["ranges"])); stats["ge_scale"] = dict(min=min(stats["ge_scale"]), max=max(stats["ge_scale"])); stats["losses"] = losses
     if losses and not allow_lossy: raise Unsupported(losses)
     for n, c in files.items():    # never report success for bytes that are not XML
         try: ET.fromstring(c.encode("utf8"))
@@ -177,7 +186,7 @@ def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=
         # the report describes THIS run, every run (v2.1 wrote it only when lossy, so a reused folder kept a stale one)
         written = {n: hashlib.sha256(c.encode("utf8")).hexdigest() for n, c in files.items()}
         stale = sorted(x.name for x in out.glob("*.x3d") if x.name not in written)
-        rep = dict(stats, lossy=bool(losses), converter="tiles3d_to_x3d.py v2.2", tileset_sha256=hashlib.sha256(tp.read_bytes()).hexdigest(),
+        rep = dict(stats, lossy=bool(losses), converter="tiles3d_to_x3d.py v2.3", tileset_sha256=hashlib.sha256(tp.read_bytes()).hexdigest(),
                    files_written=written, other_x3d_in_folder=stale)
         fd, tmp = tempfile.mkstemp(dir=out, prefix=".conversion-report.", suffix=".tmp")
         with os.fdopen(fd, "w") as fh: fh.write(json.dumps(rep, indent=1, default=str) + "\n")
