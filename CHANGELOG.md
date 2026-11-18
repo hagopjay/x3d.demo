@@ -2,6 +2,11 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v46 (2026-11-18)
+- Demo 45 (Hypergraph) now also links Version 3 (`docs/demos/hypergraph/v3/`, x3d.demo PR 75): all 500 ECO codes with 3,865 named lines from the Lichess chess-openings table (CC0), 548 points and 99 hyperedges, drawn with Babylon.js 9.37.0, plus a static X3D 4.0 pose of the same positions. v1 and v2 stay linked; the card text is extended with what v3 reports and what was not done, and its picture is still version 1's. No new number.
+- Re-run for the card in headless Chromium (local, SwiftShader, 1500 x 900): 548 nodes, 99 hyperedges, a real hover and click on C60 with a 64-square board, no console errors, no 4xx, no horizontal scroll. Not re-run: the X3D validation, the transposition replay and the X_ITE static view. The live Pages URL for v3 answered 404 when I checked (the deploy had not caught up), so the check was local.
+- No demo and no earlier version is touched; v1 to v45 unchanged. Next free number is 51.
+
 ## v45 (2026-11-18)
 - New Demo 50: Gobbler Evidence Loom (hosted at https://hagopjay.github.io/x3d.gobbler/gobbler-flyte/, repo x3d.gobbler, lane commit 4a24d4b, fold-backs x3d.loom 91 and x3d.docs 31 merged). A twelve-feather X3D observatory over a pinned Atlas snapshot (2,181 entities, 7,222 typed edges, 44 laws, 34/591 numbers with an archived verified quotation); domain transfers are proposed, motion is illustrative. The card links out to the Pages site, because the page is not in this repository. The held card is released: the Pages URL answers 200 and the lane confirmed the path, the merge and its checks.
 - Not described: `evidence-lab/` (the Intervention Lab, a later piece from another lane). Picture: the lane's own receipt screenshot (`receipts/browser-observatory/02-feather.png` on the Pages site), cropped; no third-party imagery.
