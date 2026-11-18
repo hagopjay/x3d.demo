@@ -7,6 +7,7 @@ def load(p, n):
     s = importlib.util.spec_from_file_location(n, p); m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
 v2 = load(HERE / "tiles3d_to_x3d.py", "t2")
 v22 = load(HERE / "v2.2-shipped.py", "t22")
+v23 = load(HERE / "v2.3-shipped.py", "t23")
 v1 = load(HERE.parents[1] / "docs/demos/geotiling/v1/tiles3d_to_x3d.py", "t1")
 R = [math.radians(x) for x in (-80.425, 37.227, -80.421, 37.230)] + [600, 650]
 la, lo = (R[1] + R[3]) / 2, (R[0] + R[2]) / 2
@@ -22,6 +23,8 @@ def tile(**k):  # every content tile carries the ENU frame unless the case overr
 rows, bad = [], 0
 def case(name, ok, detail=""):
     global bad; bad += not ok; rows.append({"case": name, "pass": bool(ok), "detail": detail})
+def any_inline(out):  # v2.4 flattens a structural external wrapper, so the Inline may sit in the root file
+    return next(m.group(1) for f in sorted(out.glob("*.x3d")) for m in [re.search(r"Inline url='\"([^\"]+)\"'", f.read_text())] if m)
 def inline(out, f): return re.search(r"Inline url='\"([^\"]+)\"'", (out / f).read_text()).group(1)
 with tempfile.TemporaryDirectory() as d:
     d = pathlib.Path(d); (d / "sub").mkdir()
@@ -30,11 +33,11 @@ with tempfile.TemporaryDirectory() as d:
     (d / "sub/mesh.glb").write_bytes(b"glTF")
     o1, o2 = d / "out1", d / "out2"
     v1.convert(d / "root.json", o1); v2.convert(d / "root.json", o2)
-    u1 = inline(o1, "t_0.x3d"); u2 = inline(o2, "t_0.x3d")
+    u1 = inline(o1, "t_0.x3d"); u2 = any_inline(o2)
     case("v1 reproduces the review's nested-base defect", u1 == "../mesh.glb", u1)
     case("v2 resolves content against the tileset that names it", u2 == "../sub/mesh.glb" and (o2 / u2).resolve() == (d / "sub/mesh.glb").resolve(), u2)
     v2.convert(d / "root.json", d / "out3", content_base="tiles")
-    case("v2 with --content-base keeps the sub folder", inline(d / "out3", "t_0.x3d") == "tiles/sub/mesh.glb", inline(d / "out3", "t_0.x3d"))
+    case("v2 with --content-base keeps the sub folder", any_inline(d / "out3") == "tiles/sub/mesh.glb", any_inline(d / "out3"))
     def refuses(name, ts, needle):
         p = d / f"{name}.json"; p.write_text(json.dumps({"asset": {"version": "1.1"}, "root": ts}))
         try: v2.convert(p, d / f"o_{name}", dry=True); case(f"refuses {name}", False, "converted silently")
@@ -139,5 +142,22 @@ with tempfile.TemporaryDirectory() as d:
     rep = json.loads((d / "o4_vrv_lossy/conversion-report.json").read_text())
     case("R4-G2: --allow-lossy converts and records the dropped volume", rep["viewer_request_volume"] == 1 and rep["lossy"], str(rep["losses"]))
     s = v22.convert(q, d / "o4_vrv_22"); case("R4-G2 control: v2.2 dropped it with no loss", not s["losses"], "strict exit 0")
-print(json.dumps({"suite": "tiles3d_to_x3d v2.3", "python": sys.version.split()[0], "passed": len(rows) - bad, "failed": bad, "cases": rows}, indent=1))
+    # final external scan: an external-tileset wrapper with no content is structural, not an empty coarse level
+    leaf5 = {"boundingVolume": {"sphere": [0, 0, 0, 1]}, "geometricError": 0, "refine": "REPLACE", "content": {"uri": "mesh.glb"}}
+    (d / "w").mkdir(); (d / "w/mesh.glb").write_bytes(b"glTF"); (d / "w/sub.json").write_text(json.dumps({"asset": {"version": "1.1"}, "root": leaf5}))
+    def empty_lods(o):
+        return [f.name for f in o.glob("*.x3d") if "<GeoLOD" in f.read_text() and "rootUrl" not in f.read_text()]
+    for ge in (0, 10):
+        (d / f"w/wrap{ge}.json").write_text(json.dumps({"asset": {"version": "1.1"}, "root": {"boundingVolume": {"sphere": [0, 0, 0, 1000]}, "geometricError": ge,
+            "refine": "REPLACE", "transform": ENU, "content": {"uri": "sub.json"}}}))
+        o = d / f"o5_wrap{ge}"; s5 = v2.convert(d / f"w/wrap{ge}.json", o)
+        case(f"R5-8: external wrapper (geometricError {ge}) is replaced by its root: no GeoLOD without rootUrl, content in t.x3d",
+             not empty_lods(o) and "Inline" in (o / "t.x3d").read_text() and s5["flattened_external"] == 1 and not s5["losses"], str(empty_lods(o)))
+        o = d / f"o5_wrap{ge}_23"; v23.convert(d / f"w/wrap{ge}.json", o)
+        case(f"R5-8 control: v2.3 wrote an empty selectable GeoLOD for the same wrapper (ge {ge})", empty_lods(o) == ["t.x3d"], str(empty_lods(o)))
+    (d / "w/mixed.json").write_text(json.dumps({"asset": {"version": "1.1"}, "root": {"boundingVolume": {"sphere": [0, 0, 0, 1000]}, "geometricError": 10,
+        "refine": "REPLACE", "transform": ENU, "content": {"uri": "sub.json"}, "children": [dict(leaf5, content={"uri": "mesh.glb"})]}}))
+    try: v2.convert(d / "w/mixed.json", d / "o5_mixed"); case("R5-8: content-less wrapper with other children refused", False, "converted")
+    except v2.Unsupported as e: case("R5-8: content-less wrapper with other children refused", any("empty coarse level" in i for i in e.items), str(e.items))
+print(json.dumps({"suite": "tiles3d_to_x3d v2.4", "python": sys.version.split()[0], "passed": len(rows) - bad, "failed": bad, "cases": rows}, indent=1))
 sys.exit(1 if bad else 0)

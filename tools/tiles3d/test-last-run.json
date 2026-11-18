@@ -1,7 +1,7 @@
 {
- "suite": "tiles3d_to_x3d v2.3",
+ "suite": "tiles3d_to_x3d v2.4",
  "python": "3.13.18",
- "passed": 33,
+ "passed": 38,
  "failed": 0,
  "cases": [
   {
@@ -168,6 +168,31 @@
    "case": "R4-G2 control: v2.2 dropped it with no loss",
    "pass": true,
    "detail": "strict exit 0"
+  },
+  {
+   "case": "R5-8: external wrapper (geometricError 0) is replaced by its root: no GeoLOD without rootUrl, content in t.x3d",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "case": "R5-8 control: v2.3 wrote an empty selectable GeoLOD for the same wrapper (ge 0)",
+   "pass": true,
+   "detail": "['t.x3d']"
+  },
+  {
+   "case": "R5-8: external wrapper (geometricError 10) is replaced by its root: no GeoLOD without rootUrl, content in t.x3d",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "case": "R5-8 control: v2.3 wrote an empty selectable GeoLOD for the same wrapper (ge 10)",
+   "pass": true,
+   "detail": "['t.x3d']"
+  },
+  {
+   "case": "R5-8: content-less wrapper with other children refused",
+   "pass": true,
+   "detail": "['t: tile with no drawable content wraps an external tileset and has other children: GeoLOD would add an empty coarse level']"
   }
  ]
 }

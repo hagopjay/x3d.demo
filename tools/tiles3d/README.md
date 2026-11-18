@@ -54,3 +54,12 @@ MFString values escape `\` and `"`; XML attributes escape `& < > '`.
 | `viewerRequestVolume` on a tile | dropped silently; constrained and unconstrained leaves byte-identical | **refused**; `--allow-lossy` converts and records it (`viewer_request_volume` count) |
 
 Instrument: `python3 -I tools/tiles3d/test_tiles3d.py`, 33 of 33 (27 earlier + 6 new, each new one paired with v2.2 failing it), and the reviewer's `geo-probes.py` (scale 2 case: 1629.6; request-volume case: exit 2).
+
+## v2.4 (final external scan, 18 Nov 2026)
+
+| Behaviour | v2.3 (kept as `v2.3-shipped.py`) | v2.4 |
+|---|---|---|
+| Tile whose only content is an external tileset (`content: sub.json`, no glb) | GeoLOD with no `rootUrl`: outside its range it selects empty geometry; strict exit 0, no loss | the external root is written in the wrapper's place (same accumulated transform and base); `flattened_external` counted. 3D Tiles viewers refine through such a tile unconditionally (Cesium Native 0.66.0) |
+| The same wrapper with other children too | same empty level | **refused**; `--allow-lossy` records it |
+
+Instrument: `python3 -I tools/tiles3d/test_tiles3d.py`, 38 of 38 (33 earlier + 5 new; the v2.3 controls show the empty level), and the reviewer's `geo-final-probes.py` with its wrapper lookup made output-aware (the wrapper GeoLOD it indexes no longer exists): both wrapper cases now match the flat-content control.
