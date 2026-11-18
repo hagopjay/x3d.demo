@@ -1,0 +1,80 @@
+{
+ "axes": "CT = (-x, z, y) of BP3D, found by comparing left/right kidney and sternum/vertebra sides",
+ "scale": 0.9397,
+ "rotation_deg": 10.6,
+ "translation_mm": [
+  33.8,
+  -1109.6,
+  290.0
+ ],
+ "R": [
+  [
+   0.99863,
+   -0.0227,
+   0.0471
+  ],
+  [
+   0.01401,
+   0.98407,
+   0.17725
+  ],
+  [
+   -0.05037,
+   -0.17635,
+   0.98304
+  ]
+ ],
+ "fit_structures": 67,
+ "candidates": 84,
+ "robust_log": [
+  {
+   "iter": 0,
+   "used": 84,
+   "scale": 0.6464,
+   "median_mm": 58.7
+  },
+  {
+   "iter": 1,
+   "used": 67,
+   "scale": 0.8752,
+   "median_mm": 29.4
+  },
+  {
+   "iter": 2,
+   "used": 67,
+   "scale": 0.9218,
+   "median_mm": 29.4
+  },
+  {
+   "iter": 3,
+   "used": 67,
+   "scale": 0.9325,
+   "median_mm": 29.8
+  },
+  {
+   "iter": 4,
+   "used": 67,
+   "scale": 0.9397,
+   "median_mm": 31.1
+  },
+  {
+   "iter": 5,
+   "used": 67,
+   "scale": 0.9397,
+   "median_mm": 31.1
+  }
+ ],
+ "zip_sha256": "9fbc713fffeee924a5a657d9813d84d7eb957bded63adb854931dd5e3eb61c97",
+ "zip_bytes": 64888505,
+ "elements_in_zip": 1258,
+ "groups_fitted": [
+  "RIBCAGE",
+  "SPINE",
+  "ORGANS",
+  "LUNGS",
+  "HEART",
+  "VESSELS",
+  "VISCERA"
+ ],
+ "note": "similarity (scale, rotation, translation) on vertex-mean centroids, 6 rounds dropping the worst 20 percent; limbs, skin and head are not fitted"
+}
