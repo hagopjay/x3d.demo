@@ -1,0 +1,153 @@
+{
+ "xite": "16.7.1",
+ "chromium": "157.0.8103.78",
+ "steps": [
+  {
+   "label": "loaded",
+   "viewpoint": "Start",
+   "active": [
+    "SceneTimer"
+   ]
+  },
+  {
+   "label": "click DoorButton",
+   "viewpoint": "Start",
+   "active": [
+    "SceneTimer",
+    "TT_Door"
+   ]
+  },
+  {
+   "label": "door finished",
+   "viewpoint": "Start",
+   "active": [
+    "SceneTimer"
+   ]
+  },
+  {
+   "label": "click OverviewButton",
+   "viewpoint": "Overview",
+   "active": [
+    "SceneTimer"
+   ]
+  },
+  {
+   "label": "back to Start by SAI (a test-rig step, not a ROUTE)",
+   "viewpoint": "Start",
+   "active": [
+    "SceneTimer"
+   ]
+  },
+  {
+   "label": "tour t=0.9s",
+   "viewpoint": "Tour",
+   "active": [
+    "SceneTimer",
+    "TourTimer"
+   ]
+  },
+  {
+   "label": "tour t=1.9s",
+   "viewpoint": "Tour",
+   "active": [
+    "SceneTimer",
+    "TourTimer"
+   ]
+  },
+  {
+   "label": "tour t=3.9s",
+   "viewpoint": "Tour",
+   "active": [
+    "SceneTimer",
+    "TourTimer"
+   ]
+  },
+  {
+   "label": "tour t=4.9s",
+   "viewpoint": "Tour",
+   "active": [
+    "SceneTimer",
+    "TourTimer"
+   ]
+  },
+  {
+   "label": "tour t=5.8s",
+   "viewpoint": "Tour",
+   "active": [
+    "SceneTimer",
+    "TourTimer"
+   ]
+  },
+  {
+   "label": "tour t=6.8s",
+   "viewpoint": "Tour",
+   "active": [
+    "SceneTimer",
+    "TourTimer"
+   ]
+  },
+  {
+   "label": "tour t=9.1s",
+   "viewpoint": "Tour",
+   "active": [
+    "SceneTimer",
+    "TourTimer"
+   ]
+  },
+  {
+   "label": "tour t=10.1s",
+   "viewpoint": "Tour",
+   "active": [
+    "SceneTimer",
+    "TourTimer"
+   ]
+  },
+  {
+   "label": "tour t=11.0s",
+   "viewpoint": "Tour",
+   "active": [
+    "SceneTimer",
+    "TourTimer"
+   ]
+  },
+  {
+   "label": "tour t=12.8s",
+   "viewpoint": "Tour",
+   "active": [
+    "SceneTimer",
+    "TourTimer"
+   ]
+  },
+  {
+   "label": "tour t=13.8s",
+   "viewpoint": "Start",
+   "active": [
+    "SceneTimer"
+   ]
+  },
+  {
+   "label": "tour over",
+   "viewpoint": "Start",
+   "active": [
+    "SceneTimer"
+   ]
+  },
+  {
+   "label": "bind the camera inside the beacon box (SAI, a test-rig step)",
+   "viewpoint": "Tour stop 2",
+   "active": [
+    "SceneTimer",
+    "TT_Beacon",
+    "PS_Beacon"
+   ]
+  },
+  {
+   "label": "beacon animation finished",
+   "viewpoint": "Tour stop 2",
+   "active": [
+    "SceneTimer",
+    "PS_Beacon"
+   ]
+  }
+ ]
+}

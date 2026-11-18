@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blender ROUTE interaction</title>
+<meta name="description" content="Click-to-animate, proximity triggers and camera tours authored from Blender custom properties and exported as pure X3D 4.0 with no Script node. Every number names the tool that measured it.">
+<style>
+:root{
+  --bg:#f6f4ef; --panel:#ffffff; --panel2:#f3f0e8; --line:#ddd6c8; --fg:#16181f; --muted:#555b6b; --dim:#80869a;
+  --amber:#b8741a; --teal:#0f8a80; --violet:#6b56d6; --coral:#d9573a; --sky:#2f6fc0; --sage:#4a8a35; --red:#c8382c;
+  --amberbg:#fbf0de; --tealbg:#e0f3f1; --violetbg:#ece8ff; --coralbg:#fde9e3; --skybg:#e4eefb; --sagebg:#e7f3e1; --redbg:#fbe4e1;
+  --shadow:0 1px 2px rgba(20,20,30,.06),0 8px 24px rgba(20,20,30,.06);
+  --sans:"Helvetica Neue",Arial,sans-serif; --mono:ui-monospace,Menlo,Consolas,monospace; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b0f1a; --panel:#131a2c; --panel2:#19223a; --line:#26304a; --fg:#e9edf6; --muted:#a3adc8; --dim:#6f7a98;
+  --amber:#f0b45e; --teal:#4fd1c5; --violet:#a99bff; --coral:#ff8f73; --sky:#7cb7ff; --sage:#9fd98a; --red:#ff6b6b;
+  --amberbg:#2a2214; --tealbg:#0f2a2a; --violetbg:#1d1a38; --coralbg:#2d1a16; --skybg:#13223a; --sagebg:#16261a; --redbg:#2d1616;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.25); color-scheme:dark;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.55 var(--sans);overflow-x:hidden}
+a{color:var(--sky)} code,.mono{font-family:var(--mono);font-size:.86em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}@media(min-width:720px){.wrap{padding:0 32px}}
+.nav{padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted)}
+.nav a{margin-left:14px;white-space:nowrap}
+.eyebrow{font:600 12px var(--mono);letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-top:40px}
+h1{font:800 clamp(34px,5.4vw,64px)/1.04 var(--sans);letter-spacing:-1.2px;margin:12px 0 14px;max-width:18ch}
+h2{font:700 26px/1.2 var(--sans);margin:48px 0 6px}
+h3{font:700 16px var(--sans);margin:0 0 6px}
+.lede{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:68ch;margin:0 0 20px}
+.sub{color:var(--muted);max-width:74ch;margin:0 0 16px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:22px 0}
+.tile{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c,var(--teal));border-radius:8px;padding:12px 14px;box-shadow:var(--shadow)}
+.tile b{display:block;font:800 28px/1.1 var(--sans);letter-spacing:-.5px}
+.tile span{display:block;font-size:14px;margin-top:2px}
+.tile small{display:block;color:var(--dim);font-size:12px;margin-top:6px;line-height:1.35}
+table{border-collapse:collapse;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:14px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--panel2);font:600 12px var(--mono);letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.tw{overflow-x:auto}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:10px 0}
+.node{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:6px;padding:8px 10px;font-size:13px;min-width:130px}
+.node b{display:block;font:600 12px var(--mono)}
+.arrow{align-self:center;color:var(--dim);font:600 12px var(--mono)}
+.stage{position:relative;background:#0c1120;border-radius:10px;overflow:hidden;aspect-ratio:960/600;max-width:960px;box-shadow:var(--shadow)}
+.stage img,.stage x3d-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.go{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:12px 20px;border-radius:999px;border:0;background:var(--amber);color:#111;font:700 15px var(--sans);cursor:pointer}
+.tag{position:absolute;left:10px;top:10px;background:rgba(0,0,0,.6);color:#fff;font:600 11px var(--mono);padding:3px 8px;border-radius:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+figure img{display:block;width:100%;height:auto}
+figcaption{padding:8px 12px;font-size:13px;color:var(--muted)}
+figcaption b{color:var(--fg)}
+.card{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:8px;padding:12px 14px}
+.src{color:var(--dim);font-size:12px;margin-top:6px}
+.pill{display:inline-block;font:600 11px var(--mono);padding:1px 7px;border-radius:99px;background:var(--c);color:#fff}
+pre{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow-x:auto;font:12.5px/1.5 var(--mono);margin:8px 0}
+footer{margin:56px 0 40px;color:var(--dim);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="nav"><b>x3d.demo · Blender ROUTE interaction</b><a href="#live">live</a><a href="#authoring">authoring</a><a href="#graph">what gets written</a><a href="#receipt">receipt</a><a href="#findings">findings</a><a href="#untested">not tested</a><a href="../../../">demo shelf</a></div>
+
+<div class="eyebrow">Blender → X3D · interaction</div>
+<h1>Click it in Blender's data, click it in the browser</h1>
+<p class="lede">A Blender scene can't say "when clicked, play". X3D can, in plain nodes: a sensor, a timer, an interpolator, and ROUTEs between them. The X3D Blender I/O exporter now writes exactly that from custom properties on an object (or the new <b>X3D Interaction</b> panel), with no <code>Script</code> node. Below: one Blender file, one exported X3D file, driven by real mouse events in X_ITE.</p>
+
+<div class="tiles">
+ <div class="tile" style="--c:var(--teal)"><b>0 Script</b><span>nodes in the exported file</span><small>lxml node count of scenes/route-demo.x3d: 3 TouchSensor, 1 ProximitySensor, 4 TimeSensor, 1 BooleanFilter, 22 ROUTE</small></div>
+ <div class="tile" style="--c:var(--violet)"><b>validates</b><span>XSD and x3d.py</span><small>xmllint (libxml 2.9.14) vs x3d-4.0.xsd from web3d.org, fetched 18 Nov 2026; Web3D x3d.py 4.0.65.8 loader: valid, 0 warnings</small></div>
+ <div class="tile" style="--c:var(--amber)"><b>61,373 B</b><span>the whole interactive scene</span><small>route-demo.x3d, 9 Shapes, 7 Viewpoints; byte count from os.path.getsize after export (Blender 5.2.4 bpy wheel)</small></div>
+ <div class="tile" style="--c:var(--coral)"><b>4 of 4</b><span>interaction chains fired</span><small>click→animate, click→viewpoint, click→tour, proximity→animate; X_ITE 16.7.1, Chromium 157.0.8103.78, SwiftShader. One of the four needed a test-rig step: see the receipt</small></div>
+</div>
+
+<h2 id="live">Live scene</h2>
+<p class="sub">Press load, then click the <b style="color:var(--sage)">green</b> button (the door slides up: a button playing <i>another</i> object's animation), the <b style="color:var(--sky)">blue</b> one (jump to the Overview camera; the teal cube keeps spinning because nothing triggers it, so it keeps the free-running scene timer), the <b style="color:var(--amber)">orange</b> one (fly a four-stop camera tour; it ends back on your view). Walk up to the gold beacon and it rises. X_ITE loads from <code>vendor/x_ite</code> (16.7.1, bundled).</p>
+<div class="stage" id="stage"><img id="poster" src="img/01-start.webp" alt="The demo scene: a stone floor, a gate with a brown door, three coloured buttons, a gold beacon and a teal cube under a blue sky" width="960" height="600"><span class="tag" id="tag">X3D 4.0 · X_ITE 16.7.1</span><button class="go" id="go">▶ Load live scene</button></div>
+
+<h2 id="authoring">Authoring: custom properties, or the panel</h2>
+<p class="sub">Select an object, open <b>Properties → Object → X3D Interaction</b>, pick a preset. It only writes the properties below; a scene authored by hand with the same names exports the same file. Export with <b>X3D Version → 4.0</b> and <b>Animation</b> on.</p>
+<div class="tw"><table>
+<tr><th>Property</th><th>On</th><th>Values</th><th>What gets written</th></tr>
+<tr><td><code>x3d_trigger</code></td><td>object</td><td><code>click</code> | <code>proximity</code></td><td><code>TouchSensor</code> or <code>ProximitySensor</code> inside the object's Transform (a click works on the object and its children)</td></tr>
+<tr><td><code>x3d_action</code></td><td>object</td><td><code>animate</code> | <code>viewpoint</code> | <code>tour</code></td><td>animate: touchTime/enterTime → a <code>TimeSensor</code> (loop false) that drives the target's interpolators. viewpoint: <code>BooleanFilter</code> so a press binds the camera and the release does not unbind it. tour: starts the tour timer</td></tr>
+<tr><td><code>x3d_target</code></td><td>object</td><td>object name</td><td>animate: whose animation plays (default: itself). viewpoint: which camera to bind</td></tr>
+<tr><td><code>x3d_radius</code></td><td>object</td><td>metres, default 3</td><td>ProximitySensor box 2 × radius per side, in world units (the object's scale is divided back out)</td></tr>
+<tr><td><code>x3d_tour_order</code>, <code>x3d_tour_dwell</code></td><td>camera</td><td>int &gt; 0; seconds, default 2</td><td>the camera is a tour stop; stops are visited in order and rested at for the dwell</td></tr>
+<tr><td><code>x3d_tour_travel</code>, <code>_loop</code>, <code>_autostart</code></td><td>scene</td><td>seconds, default 3; bool; bool</td><td>flight time between stops; repeat; start at load (autostart implies loop)</td></tr>
+</table></div>
+<p class="src">Source: source/interaction.py, source/interaction_ui.py in x3d-blender-io (this thread's branch); defaults are in the code, not assumed.</p>
+
+<h2 id="graph">What the exporter writes</h2>
+<p class="sub">The same five-node pattern for every "animate" trigger, one extra rig for the tour. All of it is ordinary X3D 4.0, readable by any browser that implements the standard nodes.</p>
+<div class="flow">
+ <div class="node" style="--c:var(--sage)"><b>TouchSensor TS_DoorButton</b>inside OB_DoorButton</div><span class="arrow">touchTime →</span>
+ <div class="node" style="--c:var(--amber)"><b>TimeSensor TT_Door</b>loop false, startTime 1e+30</div><span class="arrow">fraction_changed →</span>
+ <div class="node" style="--c:var(--violet)"><b>PositionInterpolator PI_Door</b>48 sampled frames</div><span class="arrow">value_changed →</span>
+ <div class="node" style="--c:var(--teal)"><b>Transform OB_Door</b>set_translation</div>
+</div>
+<div class="flow">
+ <div class="node" style="--c:var(--sky)"><b>TouchSensor TS_OverviewButton</b></div><span class="arrow">isActive →</span>
+ <div class="node" style="--c:var(--sky)"><b>BooleanFilter</b></div><span class="arrow">inputTrue →</span>
+ <div class="node" style="--c:var(--sky)"><b>Viewpoint CA_Overview</b>set_bind</div>
+</div>
+<div class="flow">
+ <div class="node" style="--c:var(--amber)"><b>TouchSensor TS_TourButton</b></div><span class="arrow">touchTime →</span>
+ <div class="node" style="--c:var(--amber)"><b>TimeSensor TourTimer</b>13.5 s = 4 × 1.5 dwell + 3 × 2.5 travel</div><span class="arrow">fraction →</span>
+ <div class="node" style="--c:var(--violet)"><b>Position + OrientationInterpolator</b>2 keys per stop (arrive, leave)</div><span class="arrow">→</span>
+ <div class="node" style="--c:var(--teal)"><b>Transform TourRig</b>carries Viewpoint TourView; TourTimer.isActive → TourView.set_bind</div>
+</div>
+<div class="flow">
+ <div class="node" style="--c:var(--coral)"><b>ProximitySensor PS_Beacon</b>box 7 × 7 × 7 m (11.67 local ÷ 0.6 scale)</div><span class="arrow">enterTime →</span>
+ <div class="node" style="--c:var(--amber)"><b>TimeSensor TT_Beacon</b></div><span class="arrow">→ interpolators →</span>
+ <div class="node" style="--c:var(--teal)"><b>Transform OB_Beacon</b></div>
+</div>
+<p class="sub">An object some trigger targets stops being driven by the always-looping <code>SceneTimer</code>; untargeted objects (the teal cube) keep it.</p>
+
+<h2 id="receipt">Receipt: what the browser did</h2>
+<p class="sub">Real mouse events (Playwright 1.63.0) on the exported file in X_ITE 16.7.1, Chromium 157.0.8103.78 headless with SwiftShader software GL. The states are read from the running scene through the SAI. SwiftShader draws about 0.6 s a frame, so only the order of events and node states are claims, never a frame rate. Raw: <a href="receipts/xite-16.7.1-receipt.json">receipts/xite-16.7.1-receipt.json</a>.</p>
+<div class="tw"><table>
+<tr><th>Step</th><th>Active viewpoint</th><th>Running timers / sensors</th><th>Reads as</th></tr>
+<tr><td>loaded</td><td>Start</td><td>SceneTimer</td><td>only the untriggered cube is moving; the door is closed</td></tr>
+<tr><td>click green button</td><td>Start</td><td>SceneTimer, <b>TT_Door</b></td><td>click → TouchSensor → TimeSensor started</td></tr>
+<tr><td>2.6 s later</td><td>Start</td><td>SceneTimer</td><td>the door's one cycle (47 frames at 24 fps = 1.958 s) finished</td></tr>
+<tr><td>click blue button</td><td><b>Overview</b></td><td>SceneTimer</td><td>BooleanFilter → set_bind worked</td></tr>
+<tr><td>click orange button</td><td><b>Tour</b> → Start</td><td>SceneTimer, <b>TourTimer</b> for 13.7 s</td><td>four stops flown; the tour viewpoint unbinds itself at the end (13.5 s cycle)</td></tr>
+<tr><td>bind the camera inside the beacon box</td><td>Tour stop 2</td><td>SceneTimer, PS_Beacon, <b>TT_Beacon</b></td><td>enterTime → startTime worked; beacon rises</td></tr>
+</table></div>
+<div class="grid" style="margin-top:14px">
+ <figure><img src="img/01-start.webp" alt="Scene at load: door closed" loading="lazy"><figcaption><b>Load.</b> Door closed, beacon on its pad. 960×600, X_ITE 16.7.1.</figcaption></figure>
+ <figure><img src="img/03-door-open.webp" alt="After clicking the green button the door has slid up" loading="lazy"><figcaption><b>After the green click.</b> Door at the end of its animation.</figcaption></figure>
+ <figure><img src="img/04-overview.webp" alt="Overview camera looking straight down" loading="lazy"><figcaption><b>After the blue click.</b> Overview viewpoint bound.</figcaption></figure>
+ <figure><img src="img/05-tour-1.webp" alt="Camera mid-tour" loading="lazy"><figcaption><b>Tour, first frame sampled.</b></figcaption></figure>
+ <figure><img src="img/05-tour-2.webp" alt="Camera mid-tour looking across the floor" loading="lazy"><figcaption><b>Tour, mid-flight.</b></figcaption></figure>
+ <figure><img src="img/06-beacon.webp" alt="Camera next to the beacon as it rises" loading="lazy"><figcaption><b>Beacon.</b> Viewpoint inside the proximity box, beacon rising.</figcaption></figure>
+</div>
+
+<h2 id="findings">Findings from building it</h2>
+<div class="grid">
+ <div class="card" style="--c:var(--red)"><h3>A "play once" TimeSensor plays itself at load <span class="pill" style="--c:var(--red)">Confirmed</span></h3><p>With the default <code>startTime="0"</code> and <code>loop="false"</code>, X_ITE 16.7.1 sees a cycle that ended long ago and sends <code>fraction_changed = 1</code> at load, parking every targeted object at the <i>end</i> of its animation (the door loaded open). Every triggered timer is now written with <code>startTime="1e+30"</code>, which stays silent until a ROUTE sets it. Fixed in the exporter and pinned by a test.</p><div class="src">Seen in X_ITE 16.7.1 by reading doorPos and TT_Door state over the SAI before and after the fix; browser-specific behaviour is not claimed.</div></div>
+ <div class="card" style="--c:var(--amber)"><h3>Proximity did not fire during the live tour <span class="pill" style="--c:var(--amber)">Suspected</span></h3><p>The tour rig passes inside the beacon's box (stop 2 rests 1.5 s at the same pose as the camera that did trigger it), yet PS_Beacon stayed inactive in every poll (0.25 s apart) of a 16 s tour run; a minimal file (an interpolated Transform carrying a Viewpoint past a ProximitySensor) <i>does</i> fire in the same X_ITE. Cause unproven; one guess is the viewer pose after a bind transition. A viewer who walks into the box triggers it; the demo's receipt uses a bound camera to prove the sensor → timer ROUTE.</p><div class="src">X_ITE 16.7.1, Chromium 157 SwiftShader; scratch minimal file not shipped.</div></div>
+ <div class="card" style="--c:var(--teal)"><h3>A sensor inside a scaled Transform shrinks its box <span class="pill" style="--c:var(--teal)">Confirmed</span></h3><p>The beacon is scaled 0.6, so a <code>size="7 7 7"</code> sensor covered only 4.2 m. The exporter divides each axis by the object's scale so <code>x3d_radius</code> is in world metres (a parent's scale is not compensated; a rotated object turns its box).</p><div class="src">test_export_interaction_bpy.test_proximity_sensor_box_and_route, Blender 5.2.4 bpy wheel.</div></div>
+ <div class="card" style="--c:var(--violet)"><h3>Frame-1 pose, not frame-N <span class="pill" style="--c:var(--violet)">Confirmed</span></h3><p>The Transform's static value is Blender's object at the current frame, so a scene saved while the playhead sat on the last keyframe would also load "open". The demo builder calls <code>frame_set(1)</code> before exporting; authors must leave the playhead where they want the scene to start.</p><div class="src">route_demo.py in x3d-blender-io/tools.</div></div>
+</div>
+
+<h2 id="untested">Not tested</h2>
+<div class="tw"><table>
+<tr><th>Not run</th><th>Why it matters</th></tr>
+<tr><td>Any browser other than X_ITE 16.7.1 (Castle, FreeWRL, X3DOM, Blender's own importer round trip of these ROUTEs)</td><td>The file is standard nodes and validates, but "it validates" is not "every browser plays it"</td></tr>
+<tr><td>A hardware GPU, touch input, VR controllers</td><td>Software GL and a mouse only</td></tr>
+<tr><td>The Blender 4.5 / 5.1 / 5.2 headless CI matrix</td><td>Tests ran on the bpy 5.2.4 wheel with Python 3.13; CI will run the rest once the PR is open</td></tr>
+<tr><td>Interactions inside hierarchies with scaled parents, shape-key and HAnim animation as a trigger target</td><td>Only object-transform animation can be a target; a parent's scale is not compensated for the proximity box</td></tr>
+<tr><td>Re-clicking while a cycle is running, or a re-trigger after it ends</td><td>By the TimeSensor rules a click while active is ignored and one after the end restarts from frame 1 (the door drops shut and rises again); not exercised in the browser</td></tr>
+</table></div>
+
+<footer>
+Files: <a href="scenes/route-demo.x3d">scenes/route-demo.x3d</a> · <a href="scenes/route-demo.blend">scenes/route-demo.blend</a> (Blender 5.2.4, custom properties visible in Object properties) · builder <code>tools/route_demo.py</code> and browser check <code>tools/route_demo_verify.cjs</code> in x3d-blender-io.
+All images are screenshots of the scene above rendered for this page; no third-party imagery. X_ITE 16.7.1 is bundled under its own licence (<a href="vendor/x_ite/LICENSE.md">LICENSE.md</a>). Scene, scripts and page: GPL-3.0-or-later with the add-on.
+</footer>
+</div>
+<script>
+(function(){
+var go=document.getElementById('go'),stage=document.getElementById('stage'),tag=document.getElementById('tag');
+go.addEventListener('click',function(){
+  go.disabled=true;go.textContent='Loading X_ITE…';
+  var l=document.createElement('link');l.rel='stylesheet';l.href='vendor/x_ite/x_ite.css';document.head.appendChild(l);
+  var s=document.createElement('script');s.src='vendor/x_ite/x_ite.min.js';
+  s.onload=function(){
+    var c=document.createElement('x3d-canvas');
+    c.setAttribute('src','scenes/route-demo.x3d');c.setAttribute('contextMenu','false');c.setAttribute('notifications','false');
+    c.setAttribute('splashScreen','false');c.setAttribute('timings','false');
+    stage.insertBefore(c,tag);document.getElementById('poster').hidden=true;go.remove();tag.textContent='X3D 4.0 · X_ITE 16.7.1 · live';
+  };
+  s.onerror=function(){go.textContent='Could not load X_ITE';};
+  document.head.appendChild(s);
+});
+})();
+</script>
+</body>
+</html>
