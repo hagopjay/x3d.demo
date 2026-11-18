@@ -315,3 +315,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 |---|---|---|
 | assets/gobbler-evidence-loom.jpg | f69977c92894baa86a6705faef4b1a92b025cc011a2b04b0594c5b7917b7dfa2 | 94192 |
 
+## Front-page card picture (v49)
+`giza-vi` is `docs/demos/giza-osiris-hall/v6/assets/vi-I1-dusk.jpg` (1440 x 900, sha256 5769b312df9c7d944d046dfb5348e004244f1150872e1a29f444c5512aca6b29, the page's own Act I screenshot, headless Chromium 157 with SwiftShader) cropped to y 70 to 880 at full width and scaled to 960 x 540. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/giza-vi.jpg | 4487c88bf382e41e4da4a4751deb7eb22ca93260a5d7310f23cd2b23c9e218fc | 79881 |
+
