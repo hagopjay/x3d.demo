@@ -329,3 +329,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 |---|---|---|
 | assets/d3-bridge.jpg | a115c115b1a36cf1ae17ad6ab733ce89b6409003aa4137cb75f30d046897be45 | 52372 |
 
+## Front-page card picture (v51)
+`blender-route` is `docs/demos/blender-route/v1/img/03-door-open.webp` (960 x 600, the page's own screenshot after the green button click, X_ITE 16.7.1, headless Chromium with SwiftShader) cropped to y 30 to 570 and saved as 960 x 540 JPEG. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-route.jpg | 49094d0c57e2a3ea9108213b7b118f449a24aa01a894a4ad9c692a80e239c4f6 | 25666 |
+
