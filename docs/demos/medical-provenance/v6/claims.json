@@ -1,0 +1,92 @@
+[
+ {
+  "id": "series.provenance",
+  "struct": "series",
+  "kind": "provenance",
+  "grade": "C",
+  "statement": "Series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048 of collection Pancreas-CT (patient id as coded by the archive, PANCREAS_0051), 185 CT images, 97218758 bytes, released 2016-02-03, DOI https://doi.org/10.7937/K9/TCIA.2016.tNB1kqBU.",
+  "instrument": "NBIA API getSeries (cached response in data/cache/getSeries.json)",
+  "source": "TCIA Pancreas-CT series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+ },
+ {
+  "id": "series.licence",
+  "struct": "series",
+  "kind": "licence",
+  "grade": "C",
+  "statement": "The archive API reports the licence as 'Creative Commons Attribution 3.0 Unported License' (http://creativecommons.org/licenses/by/3.0/). Attribution to the dataset DOI is carried in the scene MetadataSet and in NOTICE-TCIA.md. The licence applies to the images; the derived 128-cube volume is shipped under the same terms.",
+  "instrument": "NBIA API getSeries (cached response in data/cache/getSeries.json)",
+  "source": "TCIA Pancreas-CT series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+ },
+ {
+  "id": "series.pixel-sha",
+  "struct": "series",
+  "kind": "integrity",
+  "grade": "C",
+  "statement": "SHA-256 over the concatenated PixelData of all 185 slices, sorted by z: 4b79731c455b610d8c0f9a67bffff049c2fcb8ff5c494bbc0b4a2e09e8d5f49a. A rebuild from the archive must reproduce it.",
+  "instrument": "build.py (numpy, pydicom) on the shipped arrays",
+  "source": "TCIA Pancreas-CT series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+ },
+ {
+  "id": "series.geometry",
+  "struct": "series",
+  "kind": "geometry",
+  "grade": "C",
+  "statement": "From the DICOM headers: 512x512 pixels at 0.703125 x 0.703125 mm, 185 slices at 1.0 mm, orientation [1.0, 0.0, 0.0, 0.0, -1.0, 0.0], rescale slope 1.0 intercept 0.0; HU range -1024 to 1375.",
+  "instrument": "pydicom headers",
+  "source": "TCIA Pancreas-CT series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+ },
+ {
+  "id": "volume.resample",
+  "struct": "series",
+  "kind": "processing",
+  "grade": "C",
+  "statement": "Block mean of HU by 4 x 2 x 4 gives 128 x 92 x 128 voxels of 2.812 x 2.0 x 2.812 mm (360 x 184 x 360 mm); intensity = clip((HU+200)/700*255) as u8. 482976 bytes gzip NRRD, sha256 c951bea093fbce8af37d74423a4008e78c8d1cf6959aba0c2294fa7d01dcdbc4. The window clips HU above 500; the block mean blurs thin structures and partial-volumes boundaries.",
+  "instrument": "build.py (numpy, pydicom) on the shipped arrays",
+  "source": "TCIA Pancreas-CT series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+ },
+ {
+  "id": "volume.axes",
+  "struct": "series",
+  "kind": "geometry",
+  "grade": "L",
+  "statement": "Axes: x = patient left, y = superior, z = anterior, which is right-handed (the DICOM LPS columns map straight to x). Checked by eye on axial slices (spine, kidneys and CT table at the low-z side, bowel gas at the high-z side) and numerically only weakly: the mean position of internal gas is 69.1 against a body mean of 68.8 of 128 (anterior of centre by 0.3 voxels). Left versus right is taken from the header, not from an organ-position test.",
+  "instrument": "build.py (numpy, pydicom) on the shipped arrays plus visual check",
+  "source": "TCIA Pancreas-CT series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+ },
+ {
+  "id": "segments.hu-bands",
+  "struct": "series",
+  "kind": "segmentation",
+  "grade": "S",
+  "statement": "The four segment ids are HU bands inside the body mask, not an anatomical segmentation: low density < -500 (gas or lung, 12 percent of body voxels), fat band -500 to -30 (14), soft band -30 to 250 (67), dense >= 250 (7). Block-mean partial volume pushes boundary voxels into the wrong band; contrast-filled bowel and the CT table land in the dense band; the body mask is a 2D flood fill of HU < -300 from the slice border.",
+  "instrument": "build.py (numpy, pydicom) on the shipped arrays",
+  "source": "TCIA Pancreas-CT series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+ },
+ {
+  "id": "segments.fma-terms",
+  "struct": "series",
+  "kind": "denotes",
+  "grade": "S",
+  "statement": "Terms offered for the bands: gas/lung FMA:7195 Lung, fat FMA:20110 Adipose tissue, dense FMA:224804 Bone tissue (all three exact-label hits in FMA 5.1.0 through EBI OLS4 on 2026-11-18); the soft band has no single anatomical term and carries none. The mapping from band to term is a judgement: the gas band is mostly bowel gas in this series, so Lung is wrong here, and the dense band includes non-bone.",
+  "instrument": "EBI OLS4 exact label search, then judgement",
+  "source": "TCIA Pancreas-CT series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+ },
+ {
+  "id": "series.no-registration",
+  "struct": "series",
+  "kind": "scope",
+  "grade": "S",
+  "statement": "The volume is not registered to the v3 CT torso scene, to BodyParts3D (v5) or to the v4 H-Anim skeleton; it is a different person, abdomen only (184 mm, upper abdomen), shown in its own scene. Linking organs across these needs a segmentation, for example the TotalSegmentator labels (Zenodo 10047292, CC BY 4.0), which was not used.",
+  "instrument": "scope note",
+  "source": "TCIA Pancreas-CT series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+ },
+ {
+  "id": "series.deid",
+  "struct": "series",
+  "kind": "privacy",
+  "grade": "L",
+  "statement": "The first slice header has PatientName equal to the coded id, empty birth date, sex and referring physician, InstitutionName NIH, a retained study date (2015-11-24), and no PatientIdentityRemoved or DeidentificationMethod tag; the archive states the collection is de-identified, which this build did not audit pixel by pixel. An abdominal field of view carries no face.",
+  "instrument": "pydicom header read plus archive statement",
+  "source": "TCIA Pancreas-CT series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+ }
+]

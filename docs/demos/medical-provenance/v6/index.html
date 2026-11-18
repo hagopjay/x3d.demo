@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open DICOM CT as X3D VolumeData (medical-provenance v6)</title>
+<style>
+:root{--bg:#0f1418;--fg:#e6eef2;--mut:#93a4ad;--card:#161d23;--ln:#2a3640;--ac:#58c4dd;--C:#6fbf73;--L:#e0b84a;--S:#d9674e}
+@media (prefers-color-scheme:light){:root{--bg:#f2f6f8;--fg:#14202a;--mut:#5a6b75;--card:#fff;--ln:#cfdae0;--ac:#0a6b86}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,sans-serif}
+header{padding:12px 16px;border-bottom:1px solid var(--ln)}h1{margin:0;font-size:18px}.sub{color:var(--mut);font-size:12px}
+.warn{background:#3a1f1a;color:#ffd9cc;border:1px solid #7a3a2a;border-radius:4px;padding:5px 9px;margin:8px 0 0;font-size:12px}
+@media (prefers-color-scheme:light){.warn{background:#fde8e2;color:#5a1d10}}
+main{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:12px;padding:12px 16px}
+@media(max-width:960px){main{grid-template-columns:minmax(0,1fr)}}main>div{min-width:0}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:6px;padding:10px;margin-bottom:12px}
+x3d-canvas{width:100%;height:440px;display:block;background:#0b1013;border-radius:4px}
+canvas#sl{width:100%;max-width:512px;image-rendering:pixelated;background:#000;border-radius:4px;display:block}
+.chip,button{background:none;border:1px solid var(--ln);color:var(--fg);padding:3px 9px;border-radius:4px;cursor:pointer;margin:0 4px 4px 0;font-size:12px}.chip.on{background:var(--ac);color:#001018;border-color:var(--ac)}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{border-bottom:1px solid var(--ln);padding:3px 5px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.g{display:inline-block;min-width:20px;text-align:center;border-radius:3px;color:#000;font-weight:700;padding:0 4px;font-size:11px}.g.C{background:var(--C)}.g.L{background:var(--L)}.g.S{background:var(--S)}
+h2{font-size:14px;margin:0 0 6px;color:var(--ac)}code{font-size:11px;overflow-wrap:anywhere}.note{font-size:12px;color:var(--mut)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:6px;margin-bottom:8px}.stat{border:1px solid var(--ln);border-radius:4px;padding:4px 7px;font-size:11px;color:var(--mut)}.stat b{display:block;font-size:16px;color:var(--fg)}
+input[type=range]{width:100%}.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+</style></head><body>
+<header><h1>Open DICOM CT as X3D VolumeData <span class="sub">TCIA Pancreas-CT, one series (v6)</span></h1>
+<div class="sub">Grades: <span class="g C">C</span> measured in this build <span class="g L">L</span> likely, not re-checked <span class="g S">S</span> judgement or scope doubt</div>
+<div class="warn"><b>Educational proof of concept. Not medical advice, not a medical device, not for diagnosis.</b> One de-identified abdominal CT from the Cancer Imaging Archive (CC BY 3.0), resampled to a coarse grid. The coloured segments are HU bands, not organs.</div></header>
+<main><div>
+ <div class="card"><div class="stats" id="stats"></div>
+ <button class="chip on" data-s="ct-volume">Volume (tone mapped)</button><button class="chip" data-s="ct-segments">Segments (HU bands, slower)</button>
+ <x3d-canvas id="cv" splashScreen="false"></x3d-canvas>
+ <div class="note" id="vnote" style="margin-top:6px">VolumeData and SegmentedVolumeData, X_ITE 16.6.0. Drag to rotate. The MetadataSet on the Transform carries the series UID, licence and hashes.</div></div>
+ <div class="card"><h2>Axial slice (the same shipped arrays, decoded in this page)</h2>
+  <canvas id="sl" width="128" height="128"></canvas>
+  <input type="range" id="rg" min="0" max="91" value="46" aria-label="slice"><div class="note" id="sln"></div>
+  <button class="chip on" id="tl">Class colours</button><span id="leg" class="note"></span></div>
+ <div class="card"><h2>Findings (graded)</h2><ul id="fd" style="padding-left:18px;margin:0"></ul></div>
+</div><div>
+ <div class="card"><h2>Claims</h2><table id="ct"><thead><tr><th>Grade</th><th>Claim</th><th>Instrument</th></tr></thead><tbody></tbody></table></div>
+ <div class="card"><h2>Hash check (browser WebCrypto)</h2><button class="chip" id="hv">Verify NRRD files against summary.json</button><div class="note" id="hr"></div></div>
+ <div class="card"><h2>Receipt and licence</h2><div class="note" id="rcpt">loading</div><div class="note" style="margin-top:6px">Data: Pancreas-CT, Roth et al., TCIA, <a style="color:var(--ac)" href="https://doi.org/10.7937/K9/TCIA.2016.tNB1kqBU">doi 10.7937/K9/TCIA.2016.tNB1kqBU</a>, CC BY 3.0. See NOTICE-TCIA.md. The original DICOM files are not in this repository.</div></div>
+</div></main>
+<script src="../../blender-x3d-io/v1/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const J=async u=>(await fetch(u)).json();const grade=g=>'<span class="g '+g+'">'+g+'</span>';
+const COL=[null,[140,190,255],[255,217,77],[217,115,102],[245,245,235]],NAMES=['outside','gas / lung','fat band','soft band','dense band'];
+let I=null,L=null,dims=null,on=true;
+async function nrrd(u){const b=new Uint8Array(await (await fetch(u)).arrayBuffer());let i=0;for(;i<b.length-1;i++)if(b[i]===10&&b[i+1]===10)break;
+ const h=new TextDecoder().decode(b.slice(0,i)),sz=h.match(/sizes:\s*(\d+)\s+(\d+)\s+(\d+)/).slice(1).map(Number);
+ const ds=new Response(new Blob([b.slice(i+2)]).stream().pipeThrough(new DecompressionStream('gzip')));return{sz,data:new Uint8Array(await ds.arrayBuffer()),raw:b}}
+function draw(){if(!I)return;const [nx,ny,nz]=I.sz,k=+$('#rg').value,cv=$('#sl'),c=cv.getContext('2d');cv.width=nx;cv.height=nz;const im=c.createImageData(nx,nz);
+ for(let a=0;a<nz;a++)for(let x=0;x<nx;x++){const o=(a*ny+k)*nx+x,v=I.data[o],cl=on&&L?COL[L.data[o]]:null,p=((nz-1-a)*nx+x)*4;
+  im.data[p]=cl?(cl[0]*.55+v*.45):v;im.data[p+1]=cl?(cl[1]*.55+v*.45):v;im.data[p+2]=cl?(cl[2]*.55+v*.45):v;im.data[p+3]=255}
+ c.putImageData(im,0,0);$('#sln').textContent='slice '+k+' of '+(ny-1)+' at '+(k*dims.vox[1]).toFixed(0)+' mm from the lowest slice. Top of the image is anterior, image left is patient right (x grows to patient left).'}
+(async()=>{
+ const sm=await J('data/summary.json'),cl=await J('claims.json');dims={vox:sm.checks.voxel_mm};
+ $('#stats').innerHTML=[[sm.images,'DICOM slices'],[sm.checks.voxels.join('×'),'voxels'],[sm.checks.voxel_mm.join('×')+' mm','voxel size'],[Math.round(sm.intensity_nrrd_bytes/1024)+' KB','intensity NRRD'],[sm.claim_grades.C+'/'+sm.claim_grades.L+'/'+sm.claim_grades.S,'claims C/L/S']].map(x=>'<div class="stat"><b>'+x[0]+'</b>'+x[1]+'</div>').join('');
+ $('#ct tbody').innerHTML=cl.map(c=>'<tr><td>'+grade(c.grade)+'</td><td><code>'+esc(c.id)+'</code><br>'+esc(c.statement)+'</td><td>'+esc(c.instrument)+'</td></tr>').join('');
+ $('#leg').innerHTML=NAMES.slice(1).map((n,i)=>'<span class="sw" style="background:rgb('+COL[i+1]+')"></span>'+n).join(' &nbsp; ');
+ try{I=await nrrd('scene/ct-intensity.nrrd');L=await nrrd('scene/ct-labels.nrrd');$('#rg').max=I.sz[1]-1;draw()}catch(e){$('#sln').textContent='slice viewer needs DecompressionStream: '+e.message}
+ $('#rg').oninput=draw;$('#tl').onclick=e=>{on=!on;e.target.classList.toggle('on',on);draw()};
+ $('#fd').innerHTML=(await J('data/findings.json')).map(x=>'<li>'+grade(x[0])+' '+esc(x[1])+'</li>').join('');
+ const v=await J('validation-v6.json');
+ $('#rcpt').innerHTML='Scenes validated with x3d_mcp <code>validate_xml</code>: volume '+(v['ct-volume'].valid?'valid':'INVALID')+' ('+(v['ct-volume'].errors||[]).length+' errors), segments '+(v['ct-segments'].valid?'valid':'INVALID')+' ('+(v['ct-segments'].errors||[]).length+' errors). Series <code>'+esc(sm.series)+'</code>; pixel-data sha256 <code>'+esc(sm.pixel_data_sha256)+'</code>.';
+ $('#hv').onclick=async()=>{const h=async u=>{const b=await (await fetch(u)).arrayBuffer();return[...new Uint8Array(await crypto.subtle.digest('SHA-256',b))].map(x=>x.toString(16).padStart(2,'0')).join('')};
+  const a=await h('scene/ct-intensity.nrrd'),b=await h('scene/ct-labels.nrrd');
+  $('#hr').innerHTML='intensity '+(a===sm.intensity_sha256?grade('C')+' match':grade('S')+' MISMATCH')+'<br>labels '+(b===sm.labels_sha256?grade('C')+' match':grade('S')+' MISMATCH')};
+})();
+function load(s){const c=$('#cv');c.setAttribute('src','scene/'+s+'.x3d');document.querySelectorAll('button[data-s]').forEach(b=>b.classList.toggle('on',b.dataset.s===s))}
+document.querySelectorAll('button[data-s]').forEach(b=>b.onclick=()=>load(b.dataset.s));
+$('#cv').addEventListener('load',()=>{window.__loaded=(window.__loaded||0)+1});load('ct-volume');
+</script></body></html>
