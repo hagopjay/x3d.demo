@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.1//EN" "https://www.web3d.org/specifications/x3d-4.1.dtd">
+<X3D version="4.1" profile="Immersive" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.1.xsd">
+  <head>
+    <component name="GaussianSplats" level="1" />
+    <meta name="generator" content="X3D Blender I/O v2.6.1" />
+    <meta name="filename" content="still-life-splats.x3d" />
+  </head>
+  <Scene>
+    <NavigationInfo headlight="false" type='"EXAMINE" "ANY"' />
+    <Background skyColor="1.000000 1.000000 1.000000" />
+    <Transform DEF="OB_Sun" translation="0.000000 0.000000 0.000000" rotation="-0.787191 0.579517 0.210927 0.866180" scale="1.000000 1.000000 1.000000">
+      <DirectionalLight DEF="LA_Sun" color="1.000000 1.000000 1.000000" intensity="1.000000" ambientIntensity="0.000000" global="true" shadows="true" direction="0.000000 0.000000 -1.000000" />
+    </Transform>
+    <Transform DEF="OB_Overview" translation="6.400000 4.600000 7.000000" rotation="-0.519605 0.830800 0.199457 0.865645" scale="1.000000 1.000000 1.000000">
+      <Viewpoint DEF="CA_Overview" description="Overview" position="0.000000 0.000000 0.000000" orientation="0.000000 0.000000 1.000000 0.000000" fieldOfView="0.399597" />
+    </Transform>
+    <Transform DEF="OB_StillLifeSplats" translation="0.000000 0.000000 0.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+      <Inline DEF="GS_StillLifeSplats" url='"StillLifeSplats.splats.glb"' />
+    </Transform>
+  </Scene>
+</X3D>
