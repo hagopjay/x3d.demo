@@ -13,4 +13,4 @@ Phone AR (AR.js 3.4.7 location-based on A-Frame 1.4.2) that stands a cutaway Gre
 - NOT run: live Overpass (blocked from the build container, so the query is untested against real data), a real phone, real GPS/compass behaviour, iOS Safari.
 
 ## Data rules
-Public information only (building name and position from OpenStreetMap). No member data. No list of lodges is stored or published in this repository: lodges are fetched live for the user's position only. `tools/aggregate_private.py` is a local research helper; it refuses to write inside a git repository, and its outputs must never be committed or published (`.gitignore` also blocks `us-masonic-*`). Contact the relevant Grand Lodges before publishing any aggregate.
+Public info only (building name and position). No member data. No aggregate list is published: `tools/aggregate_private.py` builds a national list for private use only; its outputs are gitignored and belong outside the repo. Grand Lodges should be contacted before any list is published.
