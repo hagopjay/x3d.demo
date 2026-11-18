@@ -1,0 +1,112 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Medical provenance atlas: FMA, SNOMED and H-Anim on the torso</title>
+<style>
+:root{--bg:#0f1418;--fg:#e6eef2;--mut:#93a4ad;--card:#161d23;--ln:#2a3640;--ac:#58c4dd;--C:#6fbf73;--L:#e0b84a;--S:#d9674e}
+@media (prefers-color-scheme:light){:root{--bg:#f2f6f8;--fg:#14202a;--mut:#5a6b75;--card:#fff;--ln:#cfdae0;--ac:#0a6b86}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,sans-serif}
+header{padding:12px 16px;border-bottom:1px solid var(--ln)}h1{margin:0;font-size:18px}.sub{color:var(--mut);font-size:12px}
+.warn{background:#3a1f1a;color:#ffd9cc;border:1px solid #7a3a2a;border-radius:4px;padding:5px 9px;margin:8px 0 0;font-size:12px}
+@media (prefers-color-scheme:light){.warn{background:#fde8e2;color:#5a1d10}}
+main{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:12px;padding:12px 16px}
+@media(max-width:960px){main{grid-template-columns:minmax(0,1fr)}}
+main>div{min-width:0}td,th{overflow-wrap:anywhere}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:6px;padding:10px;margin-bottom:12px}
+x3d-canvas{width:100%;height:460px;display:block;background:#0b1013;border-radius:4px}
+.tabs button,.chip{background:none;border:1px solid var(--ln);color:var(--fg);padding:3px 9px;border-radius:4px;cursor:pointer;margin:0 4px 4px 0;font-size:12px}
+.tabs button.on,.chip.on{background:var(--ac);color:#000;border-color:var(--ac)}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{border-bottom:1px solid var(--ln);padding:3px 5px;text-align:left;vertical-align:top}th{color:var(--mut);position:sticky;top:0;background:var(--card)}
+.g{display:inline-block;min-width:20px;text-align:center;border-radius:3px;color:#000;font-weight:700;padding:0 4px;font-size:11px}.g.C{background:var(--C)}.g.L{background:var(--L)}.g.S{background:var(--S)}
+tr.st{cursor:pointer}tr.st:hover,tr.sel{background:rgba(88,196,221,.16)}h2{font-size:14px;margin:0 0 6px;color:var(--ac)}
+code{font-size:11px}.note{font-size:12px;color:var(--mut)}.scroll{max-height:340px;overflow:auto}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:6px;margin-bottom:8px}.stat{border:1px solid var(--ln);border-radius:4px;padding:5px 8px}.stat b{display:block;font-size:18px}.stat span{font-size:11px;color:var(--mut)}
+#pick{font-size:12px;min-height:5em;max-height:330px;overflow:auto;margin-top:6px}#pick .kv{display:grid;grid-template-columns:110px 1fr;gap:1px 8px}#pick .kv div:nth-child(odd){color:var(--mut)}
+input[type=search]{background:var(--bg);border:1px solid var(--ln);color:var(--fg);padding:4px 7px;border-radius:4px;width:170px}
+a{color:var(--ac)}.cl{margin:3px 0;padding:3px 6px;border-left:3px solid var(--ln)}.cl.C{border-color:var(--C)}.cl.L{border-color:var(--L)}.cl.S{border-color:var(--S)}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+</style></head><body>
+<header><h1>Medical provenance atlas <span class="sub">FMA, SNOMED CT ids and H-Anim names on a CT torso, with a grade on every claim (v1)</span></h1>
+<div class="sub">Every claim carries a grade: <span class="g C">C</span> Confirmed (checked in this build, instrument named) <span class="g L">L</span> Likely (third-party or earlier build, not re-checked) <span class="g S">S</span> Suspected (judgement, scope doubt or gap).</div>
+<div class="warn"><b>Educational proof of concept. Not medical advice, not a medical device, no clinical use.</b> The torso is one public CT subject; the brain is a template and its fit to the torso is illustrative. A grade C means "this build checked it", not "an anatomist approved it".</div></header>
+<main><div>
+ <div class="card"><div class="stats" id="stats"></div>
+ <div class="tabs"><button id="tb-t" class="on">Torso CT (111 structures)</button><button id="tb-b">Brain (10 deep structures)</button> <span id="lay"></span></div>
+ <x3d-canvas id="cv" src="scene/torso-fma.x3dz" splashScreen="false"></x3d-canvas>
+ <div id="pick" class="note">Pick a structure in the table. Its group switches on and a marker shows where it sits.</div></div>
+ <div class="card"><h2>Claims by kind and grade</h2><table id="mx"><thead><tr><th>Kind</th><th>What the claim says</th><th>C</th><th>L</th><th>S</th></tr></thead><tbody></tbody></table></div>
+ <div class="card"><h2>Open sources scout (live checks, 18 Nov 2026, from the build container)</h2><div class="scroll"><table id="src"><thead><tr><th>Source</th><th>What was run</th><th>Gr</th><th>Licence and caveats</th></tr></thead><tbody></tbody></table></div></div>
+</div><div>
+ <div class="card"><h2>Structures</h2>
+  <input type="search" id="q" placeholder="filter by name, FMA, SNOMED id">
+  <span id="gf"></span><div class="scroll" style="max-height:380px;margin-top:6px"><table id="st"><thead><tr><th>Structure</th><th>FMA class</th><th>SNOMED CT id</th><th>H-Anim</th><th>Gr</th></tr></thead><tbody></tbody></table></div>
+  <p class="note">Gr is the grade of the denotes claim (does this mesh mean that FMA class). Also published as <a href="claims.jsonld">claims.jsonld</a> and <a href="claims.json">claims.json</a>.</p></div>
+ <div class="card"><h2>Findings (graded)</h2><ul id="fd" style="padding-left:18px;margin:0"></ul></div>
+ <div class="card"><h2>FMA, SNOMED, H-Anim to X3D (what is built, what is proposed)</h2><table id="m1"><thead><tr><th>Source term</th><th>X3D</th><th>Status</th></tr></thead><tbody></tbody></table><ul class="note" id="traps"></ul></div>
+ <div class="card"><h2>Receipt and licence</h2><div class="note" id="rcpt">loading</div>
+ <div class="note" style="margin-top:6px">Torso geometry: TotalSegmentator example subject s1397 (Wasserthal et al. 2023, CC BY 4.0 dataset record), changes made. Brain template: fsaverage (licence S) and MNI152 aseg. FMA labels and ids: University of Washington FMA via EBI OLS4. Uberon CC BY 3.0. BodyParts3D CC BY 4.0 (DBCLS). SNOMED CT ids only, no terms. See <a href="NOTICE.md">NOTICE.md</a>.</div></div>
+</div></main>
+<script src="../../blender-x3d-io/v1/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const J=async u=>(await fetch(u)).json();
+let S=[],C=[],byId={},sel=null,scene='torso',gfil=new Set(['C','L','S']),qtxt='',B=null;
+const KIND={'fma-term':'FMA class exists (OLS4 exact label)','denotes':'This mesh denotes that class (name judgement)','wikidata':'Wikidata item carries the FMA id','uberon':'Uberon agrees via its own FMA xref','snomed':'SNOMED CT id via Uberon xref (L) or gap (S)','hanim':'H-Anim segment name (XSD enum)','bp3d':'BodyParts3D has an open mesh for the class','laterality':'Left/right name agrees with centroid side','volume':'Volume in mL from the torso build','illustrative':'Template geometry, illustrative fit'};
+const grade=g=>'<span class="g '+g+'">'+g+'</span>';
+function paint(){
+ const rows=S.filter(r=>r.scene===scene&&gfil.has(r.denotes_grade)&&(!qtxt||(r.id+' '+(r.fma_label||'')+' '+(r.fma_id||'')+' '+(r.snomed_ct||[]).join(' ')+' '+(r.hanim_segment||'')).toLowerCase().includes(qtxt)));
+ $('#st tbody').innerHTML=rows.map(r=>'<tr class="st'+(r.uid===sel?' sel':'')+'" data-id="'+r.uid+'"><td>'+esc(r.id.replace('STRUCT_',''))+'</td><td>'+esc(r.fma_label||'none')+(r.fma_id?'<br><code>'+r.fma_id+'</code>':'')+'</td><td><code>'+esc((r.snomed_ct||[]).join(', ')||'-')+'</code></td><td><code>'+esc(r.hanim_segment||'-')+'</code></td><td>'+grade(r.denotes_grade)+'</td></tr>').join('')||'<tr><td colspan=5>no match</td></tr>';
+ document.querySelectorAll('tr.st').forEach(t=>t.onclick=()=>select(t.dataset.id));
+}
+function show(r){
+ const k=(a,b)=>b?'<div>'+a+'</div><div>'+b+'</div>':'';
+ $('#pick').innerHTML='<b>'+esc(r.id.replace('STRUCT_',''))+'</b> '+grade(r.denotes_grade)+'<div class="kv">'+
+  k('FMA',r.fma_id?esc(r.fma_label)+' <a href="'+esc(r.fma_iri)+'">'+r.fma_id+'</a>':'')+k('Uberon',r.uberon?esc(r.uberon_label)+' '+r.uberon:'')+k('Wikidata',r.wikidata?'<a href="https://www.wikidata.org/wiki/'+r.wikidata+'">'+r.wikidata+'</a>':'')+
+  k('SNOMED CT id',(r.snomed_ct||[]).join(', '))+k('MeSH',(r.mesh||[]).join(', '))+k('H-Anim',r.hanim_segment)+k('BodyParts3D',r.bp3d?r.bp3d.representation+' ('+esc(r.bp3d.name)+')':'')+
+  k('Volume',r.volume_ml!=null?r.volume_ml+' mL (3 mm voxels)':'')+k('Group',r.group)+'</div>'+
+  (r.note?'<div class="note" style="margin:4px 0">'+esc(r.note)+'</div>':'')+
+  r.claims.map(id=>{const c=C.find(x=>x.id===id);return '<div class="cl '+c.grade+'">'+grade(c.grade)+' <code>'+c.kind+'</code> '+esc(c.statement)+'<br><span class="note">'+esc(c.instrument)+'</span></div>'}).join('');
+}
+let MK=null;
+async function mark(r){
+ if(!B||!r.centroid_mm) return;
+ if(!MK){const x=await B.createX3DFromString("<X3D profile='Full' version='4.0'><Scene><Transform DEF='MP_MARK' scale='0 0 0'><Shape><Appearance><Material diffuseColor='1 0.9 0.2' emissiveColor='1 0.8 0.1' transparency='0.45'/></Appearance><Sphere radius='1'/></Shape></Transform></Scene></X3D>");
+  MK=x.rootNodes[0];B.currentScene.rootNodes.push(MK)}
+ const lo=r.bbox_min_mm||[-5,-5,-5],hi=r.bbox_max_mm||[5,5,5];const rad=Math.max(6,Math.min(60,Math.max(hi[0]-lo[0],hi[1]-lo[1],hi[2]-lo[2])/2));
+ MK.translation=new X3D.SFVec3f(...r.centroid_mm);MK.scale=new X3D.SFVec3f(rad,rad,rad);
+}
+function select(id){
+ const r=byId[id];sel=id;paint();show(r);
+ if(B){try{if(r.group){const sw=B.currentScene.getNamedNode(swFor(r.group));if(sw)sw.whichChoice=0}}catch(e){}mark(r)}
+}
+const SW={SKIN:'SW_SKIN',RIBCAGE:'SW_RIBCAGE',SPINE:'SW_SPINE',LIMBGIRDLE:'SW_GIRDLES',SKULL:'SW_SKULL',BRAINCT:'SW_BRAIN_CT',BRAIN:'SW_BRAIN',LUNGS:'SW_LUNGS',LUNGVESSELS:'SW_LUNGVESSELS',AIRWAY:'SW_AIRWAY',HEART:'SW_HEART',VESSELS:'SW_VESSELS',ORGANS:'SW_ORGANS',VISCERA:'SW_VISCERA'};
+const swFor=g=>SW[g];
+function layers(){
+ const gs=scene==='torso'?['SKIN','RIBCAGE','SPINE','LIMBGIRDLE','SKULL','LUNGS','HEART','VESSELS','ORGANS','VISCERA']:[];
+ $('#lay').innerHTML=gs.map(g=>'<button class="chip" data-g="'+g+'">'+g.toLowerCase()+'</button>').join('');
+ document.querySelectorAll('#lay .chip').forEach(b=>b.onclick=()=>{try{const n=B.currentScene.getNamedNode(swFor(b.dataset.g));n.whichChoice=n.whichChoice===0?-1:0;b.classList.toggle('on',n.whichChoice===0)}catch(e){}});
+}
+async function tab(t){scene=t;sel=null;$('#tb-t').classList.toggle('on',t==='torso');$('#tb-b').classList.toggle('on',t==='brain');
+ $('#pick').innerHTML='<span class="note">Pick a structure in the table.</span>';paint();layers();
+ await $('#cv').browser.loadURL(new X3D.MFString(t==='torso'?'scene/torso-fma.x3dz':'scene/brain-fma.x3dz'));}
+$('#tb-t').onclick=()=>tab('torso');$('#tb-b').onclick=()=>tab('brain');
+$('#cv').addEventListener('load',()=>{B=$('#cv').browser;MK=null;layers();window.__loaded=(window.__loaded||0)+1});
+$('#q').oninput=e=>{qtxt=e.target.value.toLowerCase();paint()};
+(async()=>{
+ [S,C]=await Promise.all([J('structures.json'),J('claims.json')]);S.forEach(r=>byId[r.uid]=r);
+ const sm=await J('data/summary.json');
+ $('#stats').innerHTML=[[sm.structures,'structures'],[sm.fma_mapped,'FMA classes'],[sm.snomed,'SNOMED ids'],[sm.hanim,'H-Anim names'],[sm.bp3d,'open meshes (BP3D)'],[sm.claims,'graded claims']].map(a=>'<div class="stat"><b>'+a[0]+'</b><span>'+a[1]+'</span></div>').join('');
+ $('#gf').innerHTML=['C','L','S'].map(g=>'<button class="chip on" data-g="'+g+'">'+g+'</button>').join('');
+ document.querySelectorAll('#gf .chip').forEach(b=>b.onclick=()=>{const g=b.dataset.g;gfil.has(g)?gfil.delete(g):gfil.add(g);b.classList.toggle('on');paint()});
+ paint();
+ const cnt={};C.forEach(c=>{(cnt[c.kind]=cnt[c.kind]||{C:0,L:0,S:0})[c.grade]++});
+ $('#mx tbody').innerHTML=Object.keys(KIND).filter(k=>cnt[k]).map(k=>'<tr><td><code>'+k+'</code></td><td>'+esc(KIND[k])+'</td><td class="n">'+cnt[k].C+'</td><td class="n">'+cnt[k].L+'</td><td class="n">'+cnt[k].S+'</td></tr>').join('')+'<tr><th colspan=2>total '+C.length+'</th><th class="n">'+sm.grades.C+'</th><th class="n">'+sm.grades.L+'</th><th class="n">'+sm.grades.S+'</th></tr>';
+ const src=await J('data/open-sources.json');
+ $('#src tbody').innerHTML=src.map(r=>'<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td>'+grade(r[2])+'</td><td>'+esc(r[3])+'</td></tr>').join('');
+ const m=await J('data/mapping.json');
+ $('#m1 tbody').innerHTML=m.fma_snomed_hanim_to_x3d.map(r=>'<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td>'+esc(r[2])+'</td></tr>').join('');
+ $('#traps').innerHTML=m.traps.map(t=>'<li>'+esc(t)+'</li>').join('');
+ const f=await J('data/findings.json');
+ $('#fd').innerHTML=f.map(x=>'<li>'+grade(x[0])+' '+esc(x[1])+'</li>').join('');
+ const v=await J('validation-v1.json');
+ $('#rcpt').innerHTML='Scenes validated with x3d_mcp <code>validate_xml</code>: torso '+(v['torso-fma.x3d'].valid?'valid':'INVALID')+' ('+(v['torso-fma.x3d'].errors||[]).length+' errors, '+v['torso-fma.x3d'].seconds+' s), brain '+(v['brain-fma.x3d'].valid?'valid':'INVALID')+' ('+(v['brain-fma.x3d'].errors||[]).length+' errors). Source scenes validated the same way before injection: '+JSON.stringify(v.baseline_source_scenes)+'.<br>Scene sha256 (uncompressed XML): torso <code>'+v['torso-fma.x3d'].sha256.slice(0,16)+'</code>, brain <code>'+v['brain-fma.x3d'].sha256.slice(0,16)+'</code>. Network ledger: <a href="data/ledger.json">data/ledger.json</a> ('+(sm.network_calls+sm.cache_reads)+' fetches with url, sha256 and time). Rebuild: <code>python3 -I build.py --gate &lt;x3d_mcp&gt;/src</code>.';
+})();
+</script></body></html>
