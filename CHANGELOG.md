@@ -2,6 +2,16 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v48 (2026-11-18)
+- Demo 47 (Math Lab concept graph) now opens Version 3 (`docs/demos/math-concept-graph/v3/`, x3d.demo PR 78) and links Versions 2 and 1 as chips: Wikidata Q-ids for all 18 lessons (15 exact, 3 close) and a Russian-label check of 50 cited OntoMathPro terms against Wikidata labels (19 agree, 7 search hit only, 24 no cross-check, 4 Russian-only terms still need a human reader). The links, terms and gaps are unchanged from v2 (90, 88, 26). The licence line adds Wikidata CC0 1.0 and keeps the private-crawl wording. No new number; the picture is still version 2's.
+- Re-run for the card in headless Chromium (local, SwiftShader, X_ITE 16.6.0, 1300 x 900): 18 lesson rows, 26 gap rows, 39 check rows, a Bayes pick, no console errors, no 4xx, no horizontal scroll. Not re-run: the Wikidata lookups, the validator, the JSON-LD parse; the counts are the lane's.
+- No demo and no earlier version is touched; v1 to v47 unchanged. Next free number is 51.
+
+## v47 (2026-11-18)
+- Demo 48 (Medical provenance atlas) now also links Versions 3 to 6 (`docs/demos/medical-provenance/v3` to `v6`, versions 4, 5 and 6 are x3d.demo PRs 74, 77 and 79): claim hashes in the scene, a jointed H-Anim skeleton, BodyParts3D meshes compared with the CT, and an open TCIA DICOM series as X3D VolumeData. The card's facts note summarises each as the page's own report (not re-run), keeps the educational, not-medical-advice lead, and notes that "no CT volume or DICOM" was version 1's statement. No new number; the picture is still version 1's.
+- Re-run for the card in headless Chromium (local, SwiftShader software GL): versions 3 to 6 each load with their tables (141, 70, 100 and 10 rows), no console errors, no 4xx, no horizontal scroll at 1280 px. Not exercised: the tamper checks, poses, overlays and volume scenes; no GPU, other browsers or frame rates.
+- Not linked in this version: Math Lab concept graph v3 (x3d.demo PR 78 merged; no request has arrived). No demo and no earlier version is touched; v1 to v46 unchanged. Next free number is 51.
+
 ## v46 (2026-11-18)
 - Demo 45 (Hypergraph) now also links Version 3 (`docs/demos/hypergraph/v3/`, x3d.demo PR 75): all 500 ECO codes with 3,865 named lines from the Lichess chess-openings table (CC0), 548 points and 99 hyperedges, drawn with Babylon.js 9.37.0, plus a static X3D 4.0 pose of the same positions. v1 and v2 stay linked; the card text is extended with what v3 reports and what was not done, and its picture is still version 1's. No new number.
 - Re-run for the card in headless Chromium (local, SwiftShader, 1500 x 900): 548 nodes, 99 hyperedges, a real hover and click on C60 with a 64-square board, no console errors, no 4xx, no horizontal scroll. Not re-run: the X3D validation, the transposition replay and the X_ITE static view. The live Pages URL for v3 answered 404 when I checked (the deploy had not caught up), so the check was local.
