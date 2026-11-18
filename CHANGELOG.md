@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## Unnumbered (2026-11-18, Masonic Lodge XR script removal)
+- Removed `tools/aggregate_private.py` from `docs/demos/masonic-lodge/v1/tools/` and `v2/tools/`, and trimmed the README and changelog mentions, at the owner's request (a script that builds a national lodge list is treated like the list itself). This is the one deliberate exception to never-overwrite. The files remain in git history (PR 53, 57); no list was ever committed. Nothing else in v1 or v2 changed.
+
 ## v38 (2026-11-18)
 - New Demo 45: Hypergraph, hyper-dimensionally (`docs/demos/hypergraph/v1/`, x3d.demo PR 54), a 4D X3D proof of concept for a DSA-tutor hypergraph RFC: 40 concepts, 15 hyperedges, 4D rotation, 3D and 2D lenses and a clique-expansion contrast. The card links the page, the X3D file and the notice. New card picture `docs/assets/hypergraph.jpg` (the demo's own `preview-4d.png`, cropped to its 3D window and scaled to 960 x 540). The concepts and hyperedges are an illustrative authored set, not the tutor's database, and the card says so.
 - Demo 44 (Masonic Lodge XR) re-pointed to `demos/masonic-lodge/v2/` (x3d.demo PR 57: viewpoint, sky and ground, sized canvas, softened README wording); v1 stays linked as "Version 1" and the v37 snapshot still shows the v1 card. New card picture `docs/assets/masonic-lodge-xr-v2.jpg` (a headless screenshot of v2's own opening preview), because the v1 picture came from a camera added for the shot. The number stays 44.
@@ -9,7 +12,7 @@ The demo doc is the page served at the site root. Every version is kept: `docs/v
 - Still held, URL not live: Gobbler Evidence Loom (next number 46). No demo and no earlier version is touched; v1 to v37 unchanged.
 
 ## Unnumbered (2026-11-18, Masonic Lodge XR v2)
-- `docs/demos/masonic-lodge/v2/`: fixes the v1 desktop preview (the X3D now has a Viewpoint, NavigationInfo and Background and the X_ITE canvas is sized; XSD-valid against x3d_mcp fa5dccf), softens the README wording about lists, and makes `tools/aggregate_private.py` refuse to write inside a git repository. v1 is untouched; v2 reuses `../v1/vendor/`.
+- `docs/demos/masonic-lodge/v2/`: fixes the v1 desktop preview (the X3D now has a Viewpoint, NavigationInfo and Background and the X_ITE canvas is sized; XSD-valid against x3d_mcp fa5dccf), softens the README wording about lists and removes a helper script from the repo. See the 2026-11-18 removal entry above. v1 is untouched; v2 reuses `../v1/vendor/`.
 
 ## Unnumbered (2026-11-18)
 - Masonic Lodge XR v1 (`docs/demos/masonic-lodge/v1/`): AR.js location-based overlay of a cutaway X3D Giza on Masonic buildings from OpenStreetMap near the phone. X3D file XSD-valid (x3d_mcp fa5dccf); fixture run in headless Chromium clean; live Overpass and real-phone use not tested. No front-page card (bridge thread owns numbering). No national list is published; the private aggregate script writes outside the repo.
