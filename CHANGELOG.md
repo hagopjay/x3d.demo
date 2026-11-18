@@ -2,6 +2,11 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v42 (2026-11-18)
+- New Demo 48: Medical provenance atlas (`docs/demos/medical-provenance/v1/`, x3d.demo PR 67), an educational proof of concept that puts FMA classes, SNOMED CT ids and H-Anim names, each as a graded C, L or S claim, on a CT torso and a brain template (913 claims). The card opens with "not medical advice, not a medical device" and states the licence position the notice gives (FMA unsettled, SNOMED bare ids with an open question, Uberon CC BY 3.0, BodyParts3D CC BY 4.0 with a flagged older CC BY-SA 2.1 JP page, torso CC BY 4.0 with changes made). New card picture `docs/assets/medical-provenance.jpg` (the demo's own `img/atlas-torso-heart.png`, cropped to the 3D view and scaled to 960 x 540).
+- Re-run for the card in headless Chromium (local): 111 torso rows, 10 brain rows, a structure pick, no console errors, no 4xx, no horizontal scroll at 1280 px. Not re-run: the vocabulary lookups, the validation, GPU, other browsers, mouse picking in the canvas.
+- Number: 47 had already gone to the Math Lab concept graph, so this is 48. Geotiling is next in line (49). This entry sits on top of PR 66 (v41). Still held: Gobbler Evidence Loom. No demo and no earlier version is touched; v1 to v41 unchanged.
+
 ## v41 (2026-11-18)
 - Correction to the Demo 46 (Heritage + Geo Loom) facts note that v40 introduced, on the heritage thread's review: "not a datum conflict" is now stated as Suspected. The numbers are Confirmed (median of the USGS elevation minus (617 m plus the Drillfield surface model) is +0.03 m over 140 points; v1's Khafre and Menkaure placements were 208.3 m and 64.1 m from their Pleiades points), but the reading rests on an assumed tile centre (37.2284, -80.4234) and a correlation of only 0.51. The v40 snapshot keeps its original wording. No other card, picture or demo changes; v1 to v40 unchanged.
 

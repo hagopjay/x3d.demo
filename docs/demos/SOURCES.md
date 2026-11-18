@@ -286,3 +286,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/math-concept-graph.jpg | 2c49054514b894e97dedf7542bf64f39e242a071521e78b48a0ff498d6e30af3 | 74789 |
+
+## Front-page card picture (v42)
+`medical-provenance` is `docs/demos/medical-provenance/v1/img/atlas-torso-heart.png` (2560 x 1440, a full-page screenshot of the page) cropped to the 3D view (x 54 to 1331, y 700 to 1418) and scaled to 960 x 540. The torso is the TotalSegmentator example subject s1397 (CC BY 4.0 dataset record, changes made); see that demo's NOTICE.md.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/medical-provenance.jpg | 2be6010fd45ccf779036659811717fe118c7574464c56d7847fc77723c4ecfaa | 45116 |
