@@ -300,3 +300,11 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/math-concept-graph-v2.jpg | 362bcca6b827b57ba46d7bab46045de985f85beabc1707fffa46b89354515e69 | 96395 |
+
+## Front-page card picture (v44)
+`geotiling` is a screenshot of `docs/demos/geotiling/v1/index.html` (X_ITE 16.6.0, headless Chromium, SwiftShader, 1280 x 900 at 2x) with every request for `tex/z*` and `*.glb` blocked, the 20 zoom-7 `Inline` tiles and the `GeoLOD` switched off, and the first `GeoViewpoint` moved to 13,000 km altitude over 37.2284, -80.4234. Only `tex/earth_2048.jpg` (NASA Blue Marble, public domain) is drawn; no Google satellite imagery is in the picture. Cropped to the 3D window (x 56 to 1382, y 290 to 1243 at 2x), padded with the window's own black to 16:9 and scaled to 960 x 540.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/geotiling.jpg | afc392b5e310ec0efffa3833b02f4332ffe92832cd337387f053cf99a987c9d0 | 37307 |
+
