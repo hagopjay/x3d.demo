@@ -1,0 +1,311 @@
+{
+ "built": "2026-11-18T17:35Z",
+ "versions": {
+  "d3": "7.9.0",
+  "d3-force-3d": "3.0.6",
+  "d3-sankey": "0.12.3",
+  "world-atlas": "2.0.2",
+  "topojson-client": "3.1.0"
+ },
+ "sources": "x3d-blender-io@044bea3, x3d.accrete@93063bf, x3d.castle@5b13f70, x3d.chess@17e0d05, x3d.demo@da6513b, x3d.docs@ef0ee74, x3d.gamelab@e0a0d97, x3d.gobbler@9ab6305, x3d.lab@37251e8, x3d.loom@ab462db, x3d.mashtots@3b57769, x3d.mathslab@d883fb7, x3d.ml@ef94650, x3d.music@355af58, x3d.stem@98f79d7, x3d_mcp@fa5dccf",
+ "harvested": {
+  "harvested_utc": "2026-11-18T17:16Z",
+  "uom": "X3dUnifiedObjectModel-4.0.xml",
+  "uom_sha256": "7e426a238656c21a"
+ },
+ "totals": {
+  "commits": 1391,
+  "commitsInWindow": 1326,
+  "x3dFiles": 620,
+  "typesUsed": 111,
+  "components": 26,
+  "concrete": 260
+ },
+ "charts": [
+  {
+   "id": "heatmap",
+   "file": "scenes/heatmap.x3d",
+   "bytes": 126342,
+   "tile": "HEATMAP",
+   "title": "Heat terrain",
+   "d3": [
+    "d3-scale (scaleLog)",
+    "d3-scale-chromatic (interpolateInferno)",
+    "d3-array"
+   ],
+   "gain": "Height repeats the colour channel, so magnitude reads twice: colour for class, height for rank. Orbit low across a row and the 24 x 33 matrix becomes a skyline you can compare by silhouette; look straight down and it is the 2D heatmap again (viewpoint 3).",
+   "numbers": {
+    "rows": 24,
+    "cols": 33,
+    "nonzero": 371,
+    "max": 3146
+   }
+  },
+  {
+   "id": "chord",
+   "file": "scenes/chord.x3d",
+   "bytes": 76407,
+   "tile": "CHORD",
+   "title": "Chord dome",
+   "d3": [
+    "d3-chord",
+    "d3-scale-chromatic"
+   ],
+   "gain": "In 2D every ribbon crosses the centre and the strongest flows hide the rest. Here each ribbon is an arch whose apex height is sqrt(flow): strong pairs rise above the weak ones, so crossings separate in height and the hairball becomes a dome you can walk under.",
+   "numbers": {
+    "groups": 14,
+    "chords": 91,
+    "maxSharedFiles": 384
+   }
+  },
+  {
+   "id": "treemap",
+   "file": "scenes/treemap.x3d",
+   "bytes": 77115,
+   "tile": "TREEMAP",
+   "title": "Treemap city",
+   "d3": [
+    "d3-hierarchy (treemap, treemapSquarify)"
+   ],
+   "gain": "A flat treemap shows the hierarchy only as nested borders. Here each level is a terrace (demo, then version), so the nesting is literally visible as terrain, and every file is a tower: area = bytes, height = log bytes, and .x3d files are drawn in a brighter, metallic finish so the scenes stand out from their vendor code.",
+   "numbers": {
+    "demos": 47,
+    "leaves": 681,
+    "towersDrawn": 330,
+    "totalBytes": 776143658
+   }
+  },
+  {
+   "id": "spacetime",
+   "file": "scenes/spacetime.x3d",
+   "bytes": 33325,
+   "tile": "MOVINGBUBBLES",
+   "title": "Space-time cube",
+   "d3": [
+    "d3-array",
+    "d3-scale-chromatic",
+    "d3-time-format"
+   ],
+   "gain": "Moving bubbles show one instant at a time; you must remember the past. Making time the vertical axis (Hagerstrand space-time cube) keeps the whole history on screen: a repository that dominates a day pulls in toward the axis, so bursts read as inward kinks, and the sweeping plane keeps the animation as a cursor rather than the only view.",
+   "numbers": {
+    "repos": 16,
+    "days": 49,
+    "bubbles": 104,
+    "commitsInWindow": 1326
+   }
+  },
+  {
+   "id": "forcegraph",
+   "file": "scenes/forcegraph.x3d",
+   "bytes": 41345,
+   "tile": "D3GRAPH",
+   "title": "3D force graph",
+   "d3": [
+    "d3-force-3d (numDimensions 3)"
+   ],
+   "gain": "A force layout in 2D must flatten clusters onto each other; with a third degree of freedom the same forces settle with fewer crossings and the components (colour) separate into lobes you can orbit around. Same D3 force model, numDimensions = 3.",
+   "numbers": {
+    "nodes": 77,
+    "links": 159,
+    "ticks": 500,
+    "components": 23
+   }
+  },
+  {
+   "id": "sankey",
+   "file": "scenes/sankey.x3d",
+   "bytes": 675535,
+   "tile": "SANKEY",
+   "title": "Sankey canyon",
+   "d3": [
+    "d3-sankey 0.12.3",
+    "d3-array (rollup, rollups)"
+   ],
+   "gain": "In 2D every ribbon shares one plane, so flows from different sources cross and blend. Here each source owns a depth lane and the ribbon is a solid with width = value, so you can look down the canyon and follow one demo through components to node types; the front view (viewpoint 2) is the exact D3 layout.",
+   "numbers": {
+    "nodes": 52,
+    "links": 160,
+    "totalFlow": 49002
+   }
+  },
+  {
+   "id": "scatter",
+   "file": "scenes/scatter.x3d",
+   "bytes": 153847,
+   "tile": "SCATTER",
+   "title": "3D scatter",
+   "d3": [
+    "d3-scale (scaleLinear, nice, ticks)",
+    "d3-array (extent)",
+    "d3-format"
+   ],
+   "gain": "A third real variable (XML nesting depth) instead of a third encoding squeezed into size or colour, and the three 2D scatters D3 would draw are cast as shadows on the floor and two walls, so you get the 3D cloud and all of its projections in one scene.",
+   "numbers": {
+    "points": 619,
+    "demos": 33,
+    "maxBytes": 14007399,
+    "maxNodes": 5141,
+    "maxDepth": 35
+   }
+  },
+  {
+   "id": "timeseries",
+   "file": "scenes/timeseries.x3d",
+   "bytes": 288878,
+   "tile": "TIMESERIES",
+   "title": "Ridgeline wall",
+   "d3": [
+    "d3-array",
+    "d3-time-format (utcFormat)",
+    "d3-scale-chromatic"
+   ],
+   "gain": "Sixteen lines on one 2D axis overplot into spaghetti. Giving each series its own depth row turns them into a ridgeline you can orbit: the front view still overlays them like the D3 chart, the side view lines up every burst on the same day.",
+   "numbers": {
+    "series": 16,
+    "days": 49,
+    "commitsInWindow": 1326,
+    "peakSmoothed": 127.99
+   }
+  },
+  {
+   "id": "elastic",
+   "file": "scenes/elastic.x3d",
+   "bytes": 46452,
+   "tile": "ELASTICGRAPH",
+   "title": "Elastic graph (live)",
+   "d3": [
+    "d3-force-3d 3.0.6 running in the browser"
+   ],
+   "gain": "This is the bridge working live rather than at build time: d3-force-3d runs in the page and writes each node position into an X3D Transform through the SAI, so D3 owns the physics and X3D owns light, material and navigation. Press Reheat to watch the 3D springs relax while you orbit.",
+   "numbers": {
+    "nodes": 137,
+    "components": 26,
+    "types": 111,
+    "links": 111
+   }
+  },
+  {
+   "id": "circlepacking",
+   "file": "scenes/circlepacking.x3d",
+   "bytes": 75182,
+   "tile": "CIRCLEPACKING",
+   "title": "Sphere packing",
+   "d3": [
+    "d3-hierarchy (pack)",
+    "d3-scale-chromatic (schemeTableau10)"
+   ],
+   "gain": "Circle packing shows nesting only as circles inside circles; deep levels get tiny and flat. Lifting each level onto its own tier and turning the leaves into spheres lets you read nesting as height and bytes as volume, and low viewpoints show which demo is heavy with images versus scenes at a glance.",
+   "numbers": {
+    "demos": 47,
+    "leaves": 345,
+    "extensions": 19,
+    "totalBytes": 776143658
+   }
+  },
+  {
+   "id": "violin",
+   "file": "scenes/violin.x3d",
+   "bytes": 36757,
+   "tile": "VIOLIN",
+   "title": "Violins of revolution",
+   "d3": [
+    "d3-array (sum, quantile)",
+    "d3-scale-chromatic"
+   ],
+   "gain": "A 2D violin mirrors the density for symmetry only. Spinning it into a solid of revolution makes the mirror meaningful: volume reads as mass, so you see where the work piles up across the day; the gold ring is the median and the silver rings the quartiles.",
+   "numbers": {
+    "repos": 12,
+    "commits": 1372,
+    "bandwidthHours": 1.4
+   }
+  },
+  {
+   "id": "relief",
+   "file": "scenes/relief.x3d",
+   "bytes": 221711,
+   "tile": "IMAGESLIDER",
+   "title": "Relief slider",
+   "d3": [
+    "harvest-time luminance",
+    "page range input via SAI"
+   ],
+   "gain": "A 2D before/after slider wipes between two pictures. In 3D the second picture is the same image raised into terrain by luminance, so the slider becomes a morph and grazing light reveals structure that colour alone hides.",
+   "numbers": {
+    "width": 128,
+    "height": 72,
+    "vertices": 9216
+   }
+  },
+  {
+   "id": "radial",
+   "file": "scenes/radial.x3d",
+   "bytes": 123605,
+   "tile": "RADIALGRAPH",
+   "title": "Type sphere",
+   "d3": [
+    "d3-hierarchy (stratify, cluster)",
+    "d3-scale-chromatic"
+   ],
+   "gain": "A radial tree spreads its leaves around one circle: 260 X3D node types would be packed at under 1.4 degrees apart. On a sphere the leaves get a whole surface (Fibonacci spiral in D3 cluster order), abstract types sit inside at their depth, and the types his demos actually use glow, so the used part of the spec shows as lit regions.",
+   "numbers": {
+    "types": 332,
+    "concrete": 260,
+    "leaves": 263,
+    "depth": 5,
+    "usedByDemos": 111
+   }
+  },
+  {
+   "id": "conetree",
+   "file": "scenes/conetree.x3d",
+   "bytes": 42690,
+   "tile": "TREE",
+   "title": "Cone tree",
+   "d3": [
+    "d3-hierarchy (hierarchy, each)"
+   ],
+   "gain": "A tidy tree grows only sideways, so a wide level (x3d.loom has many top folders) runs off the page. The cone tree (Xerox PARC, 1991) spends the third dimension on breadth: children ring their parent, so a level of any width fits in one cone and the translucent cones show each family as a unit.",
+   "numbers": {
+    "folders": 165,
+    "cones": 19,
+    "depth": 2,
+    "files": 1156
+   }
+  },
+  {
+   "id": "globe",
+   "file": "scenes/globe.x3d",
+   "bytes": 724108,
+   "tile": "MAPS",
+   "title": "Globe",
+   "d3": [
+    "d3-geo (geoContains, geoArea, geoCentroid, geoInterpolate, geoGraticule10, geoEqualEarth)",
+    "topojson-client"
+   ],
+   "gain": "Every flat map trades one distortion for another. On a sphere the countries keep true shape and the spikes (height = sqrt of area from d3.geoArea) stand on the real surface; the Equal Earth plate below is the exact 2D projection D3 would draw from the same features, so you can compare the two.",
+   "numbers": {
+    "countries": 177,
+    "textureLandPixels": 43502,
+    "texture": "512x256",
+    "meshVertices": 2701
+   }
+  },
+  {
+   "id": "particles",
+   "file": "scenes/particles.x3d",
+   "bytes": 83503,
+   "tile": "PARTICLES",
+   "title": "Particle type",
+   "d3": [
+    "d3-random (randomLcg, randomNormal)",
+    "d3-scale-chromatic (interpolateTurbo)"
+   ],
+   "gain": "Flat particle text has only x and y to scatter into. Here the letters have real thickness (sigma 0.22 in z), the scatter is a 3D cloud, and a swirl phase rotates the word through depth, so orbiting mid-animation shows parallax that a 2D canvas cannot.",
+   "numbers": {
+    "particles": 616,
+    "glyphs": 6,
+    "keyframes": 5
+   }
+  }
+ ]
+}

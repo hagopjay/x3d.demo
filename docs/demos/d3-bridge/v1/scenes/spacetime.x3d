@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "https://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Immersive' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <head>
+    <component name='Shape' level='5'/>
+    <component name='Lighting' level='3'/>
+    <meta name='title' content='Space-time cube: 16 repositories, 49 days'/>
+    <meta name='description' content='D3Blocks MovingBubbles re-expressed in 3D: time is the vertical axis, so every bubble path is visible at once; a glowing plane sweeps up as the animated &quot;now&quot;.'/>
+    <meta name='generator' content='d3-x3d bridge v1 (tools/build.mjs)'/>
+    <meta name='d3-modules' content='d3-array, d3-scale-chromatic, d3-time-format'/>
+    <meta name='data' content='git log author times, 16 repos, 1 Oct to 18 Nov 2026 UTC'/>
+  </head>
+  <Scene>
+    <WorldInfo title='Space-time cube: 16 repositories, 49 days' info='&quot;D3Blocks MovingBubbles re-expressed in 3D: time is the vertical axis, so every bubble path is visible at once; a glowing plane sweeps up as the animated \&quot;now\&quot;.&quot;'/>
+    <NavigationInfo type='"EXAMINE" "ANY"' headlight='false' transitionType='"ANIMATE"' transitionTime='1.2'/>
+    <Background skyColor='0.024 0.027 0.047, 0.063 0.075 0.114, 0.106 0.129 0.2' skyAngle='1.2 1.571' groundColor='0.024 0.027 0.047, 0.043 0.051 0.078' groundAngle='1.571'/>
+    <Viewpoint DEF='VP0' description='Oblique' position='11 9.5 11' orientation='-0.38333 0.90986 0.15878 0.85442' centerOfRotation='0 3.9 0' fieldOfView='0.785'/>
+    <Viewpoint DEF='VP1' description='From above (the 2D animation)' position='0 20 0.01' orientation='-1 0 0 1.57018' centerOfRotation='0 3.9 0' fieldOfView='0.785'/>
+    <Viewpoint DEF='VP2' description='Side, time up' position='0 3.9 15' orientation='0 0 1 0' centerOfRotation='0 3.9 0' fieldOfView='0.785'/>
+    <DirectionalLight DEF='Key' direction='-0.45 -0.8 -0.4' intensity='1.25' color='1 0.96 0.9'/>
+    <DirectionalLight DEF='Fill' direction='0.6 -0.35 0.5' intensity='0.45' color='0.75 0.85 1'/>
+    <DirectionalLight DEF='Rim' direction='0.1 0.3 1' intensity='0.35' color='0.9 0.9 1'/>
+    <Transform translation='0 3.92 0'><Shape><Appearance DEF='A0'><UnlitMaterial emissiveColor='0.227 0.259 0.345'/></Appearance><Cylinder radius='0.02' height='7.84'/></Shape></Transform>
+    <Transform translation='0.35 0 0'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A1'><UnlitMaterial emissiveColor='0.549 0.58 0.659'/></Appearance><Text string='&quot;Oct 01&quot;' solid='false'><FontStyle family='"SANS"' size='0.18' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='0.35 1.12 0'><Billboard axisOfRotation='0 0 0'><Shape><Appearance USE='A1'/><Text string='&quot;Oct 08&quot;' solid='false'><FontStyle family='"SANS"' size='0.18' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='0.35 2.24 0'><Billboard axisOfRotation='0 0 0'><Shape><Appearance USE='A1'/><Text string='&quot;Oct 15&quot;' solid='false'><FontStyle family='"SANS"' size='0.18' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='0.35 3.36 0'><Billboard axisOfRotation='0 0 0'><Shape><Appearance USE='A1'/><Text string='&quot;Oct 22&quot;' solid='false'><FontStyle family='"SANS"' size='0.18' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='0.35 4.48 0'><Billboard axisOfRotation='0 0 0'><Shape><Appearance USE='A1'/><Text string='&quot;Oct 29&quot;' solid='false'><FontStyle family='"SANS"' size='0.18' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='0.35 5.6 0'><Billboard axisOfRotation='0 0 0'><Shape><Appearance USE='A1'/><Text string='&quot;Nov 05&quot;' solid='false'><FontStyle family='"SANS"' size='0.18' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='0.35 6.72 0'><Billboard axisOfRotation='0 0 0'><Shape><Appearance USE='A1'/><Text string='&quot;Nov 12&quot;' solid='false'><FontStyle family='"SANS"' size='0.18' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='3.279 5.6 1.464'><Shape><Appearance DEF='A2'><PhysicalMaterial baseColor='0.976 0.396 0.129' roughness='0.3' metallic='0' emissiveColor='0.447 0.18 0.059'/></Appearance><Sphere radius='0.145'/></Shape></Transform>
+    <Transform translation='1.237 5.76 0.57'><Shape><Appearance USE='A2'/><Sphere radius='0.341'/></Shape></Transform>
+    <Transform translation='2.615 5.92 1.244'><Shape><Appearance USE='A2'/><Sphere radius='0.375'/></Shape></Transform>
+    <Transform translation='1.933 6.08 0.948'><Shape><Appearance USE='A2'/><Sphere radius='0.402'/></Shape></Transform>
+    <Transform translation='2.357 6.24 1.191'><Shape><Appearance USE='A2'/><Sphere radius='0.215'/></Shape></Transform>
+    <Transform translation='3.693 6.72 2.037'><Shape><Appearance USE='A2'/><Sphere radius='0.145'/></Shape></Transform>
+    <Transform translation='3.107 6.88 1.763'><Shape><Appearance USE='A2'/><Sphere radius='0.351'/></Shape></Transform>
+    <Transform translation='2.151 7.04 1.254'><Shape><Appearance USE='A2'/><Sphere radius='0.52'/></Shape></Transform>
+    <Transform translation='2.934 7.2 1.759'><Shape><Appearance USE='A2'/><Sphere radius='0.493'/></Shape></Transform>
+    <Transform translation='3.467 7.36 2.135'><Shape><Appearance USE='A2'/><Sphere radius='0.185'/></Shape></Transform>
+    <Transform translation='2.856 7.52 1.807'><Shape><Appearance USE='A2'/><Sphere radius='0.356'/></Shape></Transform>
+    <Transform translation='2.944 7.68 1.912'><Shape><Appearance USE='A2'/><Sphere radius='0.45'/></Shape></Transform>
+    <Shape><Appearance DEF='A3'><PhysicalMaterial baseColor='0.976 0.396 0.129' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='3.279 5.6 1.464 1.237 5.76 0.57 2.615 5.92 1.244 1.933 6.08 0.948 2.357 6.24 1.191 4.435 6.4 2.309 4.407 6.56 2.362 3.693 6.72 2.037 3.107 6.88 1.763 2.151 7.04 1.254 2.934 7.2 1.759 3.467 7.36 2.135 2.856 7.52 1.807 2.944 7.68 1.912' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='2.944 8.13 1.912'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A4'><UnlitMaterial emissiveColor='0.976 0.396 0.129'/></Appearance><Text string='&quot;x3d.loom&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='1.875 5.92 2.078'><Shape><Appearance DEF='A5'><PhysicalMaterial baseColor='0.255 0.247 1' roughness='0.3' metallic='0' emissiveColor='0.118 0.114 0.455'/></Appearance><Sphere radius='0.385'/></Shape></Transform>
+    <Transform translation='2.212 6.08 2.511'><Shape><Appearance USE='A5'/><Sphere radius='0.302'/></Shape></Transform>
+    <Transform translation='2.573 6.24 2.993'><Shape><Appearance USE='A5'/><Sphere radius='0.145'/></Shape></Transform>
+    <Transform translation='2.47 6.88 3.169'><Shape><Appearance USE='A5'/><Sphere radius='0.277'/></Shape></Transform>
+    <Transform translation='2.714 7.04 3.57'><Shape><Appearance USE='A5'/><Sphere radius='0.16'/></Shape></Transform>
+    <Transform translation='2.319 7.2 3.127'><Shape><Appearance USE='A5'/><Sphere radius='0.393'/></Shape></Transform>
+    <Transform translation='2.489 7.36 3.442'><Shape><Appearance USE='A5'/><Sphere radius='0.16'/></Shape></Transform>
+    <Transform translation='2.016 7.52 2.859'><Shape><Appearance USE='A5'/><Sphere radius='0.341'/></Shape></Transform>
+    <Transform translation='2.105 7.68 3.063'><Shape><Appearance USE='A5'/><Sphere radius='0.411'/></Shape></Transform>
+    <Shape><Appearance DEF='A6'><PhysicalMaterial baseColor='0.255 0.247 1' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='1.875 5.92 2.078 2.212 6.08 2.511 2.573 6.24 2.993 3.214 6.4 3.83 3.168 6.56 3.869 3.121 6.72 3.906 2.47 6.88 3.169 2.714 7.04 3.57 2.319 7.2 3.127 2.489 7.36 3.442 2.016 7.52 2.859 2.105 7.68 3.063' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='2.105 8.13 3.063'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A7'><UnlitMaterial emissiveColor='0.255 0.247 1'/></Appearance><Text string='&quot;x3d.demo&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='1.89 1.12 2.238'><Shape><Appearance DEF='A8'><PhysicalMaterial baseColor='0.388 0.976 0.133' roughness='0.3' metallic='0' emissiveColor='0.176 0.447 0.063'/></Appearance><Sphere radius='0.256'/></Shape></Transform>
+    <Transform translation='0.564 1.44 0.701'><Shape><Appearance USE='A8'/><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='2.611 1.6 3.328'><Shape><Appearance USE='A8'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='1.365 1.76 1.783'><Shape><Appearance USE='A8'/><Sphere radius='0.196'/></Shape></Transform>
+    <Transform translation='0.538 1.92 0.721'><Shape><Appearance USE='A8'/><Sphere radius='0.16'/></Shape></Transform>
+    <Transform translation='2.306 2.24 3.248'><Shape><Appearance USE='A8'/><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='2.056 2.4 2.971'><Shape><Appearance USE='A8'/><Sphere radius='0.206'/></Shape></Transform>
+    <Transform translation='2.277 2.56 3.375'><Shape><Appearance USE='A8'/><Sphere radius='0.145'/></Shape></Transform>
+    <Transform translation='1.946 2.72 2.961'><Shape><Appearance USE='A8'/><Sphere radius='0.185'/></Shape></Transform>
+    <Transform translation='1.259 3.68 2.254'><Shape><Appearance USE='A8'/><Sphere radius='0.241'/></Shape></Transform>
+    <Transform translation='1.246 3.84 2.295'><Shape><Appearance USE='A8'/><Sphere radius='0.38'/></Shape></Transform>
+    <Transform translation='1.379 4 2.614'><Shape><Appearance USE='A8'/><Sphere radius='0.16'/></Shape></Transform>
+    <Transform translation='1.838 4.48 3.81'><Shape><Appearance USE='A8'/><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='0.904 4.64 1.932'><Shape><Appearance USE='A8'/><Sphere radius='0.16'/></Shape></Transform>
+    <Transform translation='0.362 4.96 0.824'><Shape><Appearance USE='A8'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='0.342 5.28 0.833'><Shape><Appearance USE='A8'/><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='1.188 6.88 4.302'><Shape><Appearance USE='A8'/><Sphere radius='0.16'/></Shape></Transform>
+    <Transform translation='1.149 7.04 4.365'><Shape><Appearance USE='A8'/><Sphere radius='0.145'/></Shape></Transform>
+    <Transform translation='1.109 7.2 4.427'><Shape><Appearance USE='A8'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='0.881 7.36 3.704'><Shape><Appearance USE='A8'/><Sphere radius='0.215'/></Shape></Transform>
+    <Transform translation='0.95 7.52 4.219'><Shape><Appearance USE='A8'/><Sphere radius='0.196'/></Shape></Transform>
+    <Shape><Appearance DEF='A9'><PhysicalMaterial baseColor='0.388 0.976 0.133' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='1.89 1.12 2.238 3.18 1.28 3.858 0.564 1.44 0.701 2.611 1.6 3.328 1.365 1.76 1.783 0.538 1.92 0.721 2.943 2.08 4.042 2.306 2.24 3.248 2.056 2.4 2.971 2.277 2.56 3.375 1.946 2.72 2.961 2.696 2.88 4.211 2.645 3.04 4.243 2.594 3.2 4.275 2.542 3.36 4.305 2.49 3.52 4.336 1.259 3.68 2.254 1.246 3.84 2.295 1.379 4 2.614 2.28 4.16 4.45 2.226 4.32 4.477 1.838 4.48 3.81 0.904 4.64 1.932 2.063 4.8 4.554 0.362 4.96 0.824 1.954 5.12 4.603 0.342 5.28 0.833 1.843 5.44 4.648 1.787 5.6 4.67 1.73 5.76 4.691 1.674 5.92 4.711 1.617 6.08 4.731 1.56 6.24 4.75 1.503 6.4 4.769 1.446 6.56 4.786 1.388 6.72 4.803 1.188 6.88 4.302 1.149 7.04 4.365 1.109 7.2 4.427 0.881 7.36 3.704 0.95 7.52 4.219 1.039 7.68 4.891' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='1.039 8.13 4.891'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A10'><UnlitMaterial emissiveColor='0.388 0.976 0.133'/></Appearance><Text string='&quot;x3d_mcp&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='0.781 1.12 2.449'><Shape><Appearance DEF='A11'><PhysicalMaterial baseColor='0.914 0.047 0.541' roughness='0.3' metallic='0' emissiveColor='0.416 0.02 0.247'/></Appearance><Sphere radius='0.277'/></Shape></Transform>
+    <Transform translation='0.342 1.6 1.223'><Shape><Appearance USE='A11'/><Sphere radius='0.283'/></Shape></Transform>
+    <Transform translation='0.839 1.76 3.145'><Shape><Appearance USE='A11'/><Sphere radius='0.16'/></Shape></Transform>
+    <Transform translation='0.338 2.24 1.479'><Shape><Appearance USE='A11'/><Sphere radius='0.173'/></Shape></Transform>
+    <Transform translation='0.398 2.4 1.844'><Shape><Appearance USE='A11'/><Sphere radius='0.308'/></Shape></Transform>
+    <Transform translation='0.601 2.56 2.954'><Shape><Appearance USE='A11'/><Sphere radius='0.215'/></Shape></Transform>
+    <Transform translation='0.598 2.72 3.134'><Shape><Appearance USE='A11'/><Sphere radius='0.206'/></Shape></Transform>
+    <Transform translation='0.137 3.2 0.89'><Shape><Appearance USE='A11'/><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='0.388 4 4.171'><Shape><Appearance USE='A11'/><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='-0.298 6.72 2.67'><Shape><Appearance USE='A11'/><Sphere radius='0.263'/></Shape></Transform>
+    <Transform translation='-0.376 6.88 3.035'><Shape><Appearance USE='A11'/><Sphere radius='0.419'/></Shape></Transform>
+    <Transform translation='-0.519 7.04 3.813'><Shape><Appearance USE='A11'/><Sphere radius='0.33'/></Shape></Transform>
+    <Transform translation='-0.702 7.36 4.368'><Shape><Appearance USE='A11'/><Sphere radius='0.128'/></Shape></Transform>
+    <Shape><Appearance DEF='A12'><PhysicalMaterial baseColor='0.914 0.047 0.541' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='0.781 1.12 2.449 1.462 1.28 4.782 1.404 1.44 4.799 0.342 1.6 1.223 0.839 1.76 3.145 1.231 1.92 4.846 1.172 2.08 4.861 0.338 2.24 1.479 0.398 2.4 1.844 0.601 2.56 2.954 0.598 2.72 3.134 0.879 2.88 4.922 0.82 3.04 4.932 0.137 3.2 0.89 0.701 3.36 4.951 0.642 3.52 4.959 0.582 3.68 4.966 0.523 3.84 4.973 0.388 4 4.171 0.403 4.16 4.984 0.343 4.32 4.988 0.283 4.48 4.992 0.223 4.64 4.995 0.163 4.8 4.997 0.103 4.96 4.999 0.043 5.12 5 -0.017 5.28 5 -0.077 5.44 4.999 -0.136 5.6 4.998 -0.196 5.76 4.996 -0.256 5.92 4.993 -0.316 6.08 4.99 -0.376 6.24 4.986 -0.436 6.4 4.981 -0.496 6.56 4.975 -0.298 6.72 2.67 -0.376 6.88 3.035 -0.519 7.04 3.813 -0.734 7.2 4.946 -0.702 7.36 4.368 -0.852 7.52 4.927 -0.911 7.68 4.916' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='-0.911 8.13 4.916'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A13'><UnlitMaterial emissiveColor='0.914 0.047 0.541'/></Appearance><Text string='&quot;x3d-blender-io&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='-2.041 7.04 3.499'><Shape><Appearance DEF='A14'><PhysicalMaterial baseColor='0.004 0.686 0.808' roughness='0.3' metallic='0' emissiveColor='0 0.314 0.369'/></Appearance><Sphere radius='0.29'/></Shape></Transform>
+    <Transform translation='-1.61 7.2 2.685'><Shape><Appearance USE='A14'/><Sphere radius='0.545'/></Shape></Transform>
+    <Transform translation='-2.089 7.36 3.392'><Shape><Appearance USE='A14'/><Sphere radius='0.196'/></Shape></Transform>
+    <Transform translation='-2.185 7.52 3.455'><Shape><Appearance USE='A14'/><Sphere radius='0.248'/></Shape></Transform>
+    <Transform translation='-1.957 7.68 3.013'><Shape><Appearance USE='A14'/><Sphere radius='0.435'/></Shape></Transform>
+    <Shape><Appearance DEF='A15'><PhysicalMaterial baseColor='0.004 0.686 0.808' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='-2.041 7.04 3.499 -1.61 7.2 2.685 -2.089 7.36 3.392 -2.185 7.52 3.455 -1.957 7.68 3.013' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='-1.957 8.13 3.013'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A16'><UnlitMaterial emissiveColor='0.004 0.686 0.808'/></Appearance><Text string='&quot;x3d.docs&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='-2.24 5.44 2.172'><Shape><Appearance DEF='A17'><PhysicalMaterial baseColor='0.82 0.675 0.008' roughness='0.3' metallic='0' emissiveColor='0.373 0.306 0.004'/></Appearance><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='-2.852 5.6 2.7'><Shape><Appearance USE='A17'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='-3.208 5.76 2.965'><Shape><Appearance USE='A17'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='-2.663 6.24 2.289'><Shape><Appearance USE='A17'/><Sphere radius='0.173'/></Shape></Transform>
+    <Transform translation='-0.689 6.4 0.578'><Shape><Appearance USE='A17'/><Sphere radius='0.29'/></Shape></Transform>
+    <Transform translation='-0.696 6.56 0.57'><Shape><Appearance USE='A17'/><Sphere radius='0.371'/></Shape></Transform>
+    <Transform translation='-2.497 6.72 1.995'><Shape><Appearance USE='A17'/><Sphere radius='0.232'/></Shape></Transform>
+    <Transform translation='-3.639 7.04 2.767'><Shape><Appearance USE='A17'/><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='-3.535 7.2 2.621'><Shape><Appearance USE='A17'/><Sphere radius='0.232'/></Shape></Transform>
+    <Transform translation='-3.656 7.36 2.644'><Shape><Appearance USE='A17'/><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='-3.727 7.52 2.628'><Shape><Appearance USE='A17'/><Sphere radius='0.105'/></Shape></Transform>
+    <Shape><Appearance DEF='A18'><PhysicalMaterial baseColor='0.82 0.675 0.008' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='-2.24 5.44 2.172 -2.852 5.6 2.7 -3.208 5.76 2.965 -3.712 5.92 3.35 -3.752 6.08 3.305 -2.663 6.24 2.289 -0.689 6.4 0.578 -0.696 6.56 0.57 -2.497 6.72 1.995 -3.944 6.88 3.074 -3.639 7.04 2.767 -3.535 7.2 2.621 -3.656 7.36 2.644 -3.727 7.52 2.628 -4.121 7.68 2.832' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='-4.121 8.13 2.832'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A19'><UnlitMaterial emissiveColor='0.82 0.675 0.008'/></Appearance><Text string='&quot;x3d.lab&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='-2.499 2.56 1.686'><Shape><Appearance DEF='A20'><PhysicalMaterial baseColor='0.525 0.055 0.918' roughness='0.3' metallic='0' emissiveColor='0.239 0.024 0.42'/></Appearance><Sphere radius='0.215'/></Shape></Transform>
+    <Transform translation='-2.814 2.72 1.849'><Shape><Appearance USE='A20'/><Sphere radius='0.196'/></Shape></Transform>
+    <Transform translation='-2.548 3.68 1.423'><Shape><Appearance USE='A20'/><Sphere radius='0.224'/></Shape></Transform>
+    <Transform translation='-2.538 3.84 1.378'><Shape><Appearance USE='A20'/><Sphere radius='0.356'/></Shape></Transform>
+    <Transform translation='-2.614 4 1.379'><Shape><Appearance USE='A20'/><Sphere radius='0.16'/></Shape></Transform>
+    <Transform translation='-0.801 4.16 0.41'><Shape><Appearance USE='A20'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='-1.477 4.48 0.712'><Shape><Appearance USE='A20'/><Sphere radius='0.206'/></Shape></Transform>
+    <Transform translation='-3.05 4.64 1.426'><Shape><Appearance USE='A20'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='-4.243 5.92 1.508'><Shape><Appearance USE='A20'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='-4.304 7.36 1.023'><Shape><Appearance USE='A20'/><Sphere radius='0.128'/></Shape></Transform>
+    <Shape><Appearance DEF='A21'><PhysicalMaterial baseColor='0.525 0.055 0.918' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='-2.499 2.56 1.686 -2.814 2.72 1.849 -4.211 2.88 2.696 -4.243 3.04 2.645 -4.275 3.2 2.594 -4.305 3.36 2.542 -4.336 3.52 2.49 -2.548 3.68 1.423 -2.538 3.84 1.378 -2.614 4 1.379 -0.801 4.16 0.41 -4.477 4.32 2.226 -1.477 4.48 0.712 -3.05 4.64 1.426 -4.554 4.8 2.063 -4.579 4.96 2.009 -4.603 5.12 1.954 -4.626 5.28 1.898 -4.648 5.44 1.843 -4.67 5.6 1.787 -4.691 5.76 1.73 -4.243 5.92 1.508 -4.731 6.08 1.617 -4.75 6.24 1.56 -4.769 6.4 1.503 -4.786 6.56 1.446 -4.803 6.72 1.388 -4.82 6.88 1.331 -4.835 7.04 1.273 -4.85 7.2 1.215 -4.304 7.36 1.023 -4.878 7.52 1.098 -4.891 7.68 1.039' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='-4.891 8.13 1.039'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A22'><UnlitMaterial emissiveColor='0.525 0.055 0.918'/></Appearance><Text string='&quot;x3d.ml&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='-3.977 7.68 -0.737'><Shape><Appearance DEF='A23'><PhysicalMaterial baseColor='0.145 0.98 0.373' roughness='0.3' metallic='0' emissiveColor='0.067 0.447 0.169'/></Appearance><Sphere radius='0.336'/></Shape></Transform>
+    <Transform translation='-0.834 5.12 -0.337'><Shape><Appearance DEF='A24'><PhysicalMaterial baseColor='1 0.235 0.267' roughness='0.3' metallic='0' emissiveColor='0.455 0.106 0.122'/></Appearance><Sphere radius='0.296'/></Shape></Transform>
+    <Transform translation='-3.586 5.6 -1.601'><Shape><Appearance USE='A24'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='-3.941 6.88 -2.236'><Shape><Appearance USE='A24'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='-3.767 7.36 -2.32'><Shape><Appearance USE='A24'/><Sphere radius='0.128'/></Shape></Transform>
+    <Shape><Appearance DEF='A25'><PhysicalMaterial baseColor='1 0.235 0.267' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='-0.834 5.12 -0.337 -4.613 5.28 -1.929 -4.59 5.44 -1.984 -3.586 5.6 -1.601 -4.541 5.76 -2.093 -4.515 5.92 -2.148 -4.489 6.08 -2.202 -4.462 6.24 -2.256 -4.435 6.4 -2.309 -4.407 6.56 -2.362 -4.378 6.72 -2.415 -3.941 6.88 -2.236 -4.319 7.04 -2.519 -4.289 7.2 -2.571 -3.767 7.36 -2.32 -4.226 7.52 -2.673 -4.193 7.68 -2.723' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='-4.193 8.13 -2.723'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A26'><UnlitMaterial emissiveColor='1 0.235 0.267'/></Appearance><Text string='&quot;x3d.music&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='-3.156 4.48 -2.817'><Shape><Appearance DEF='A27'><PhysicalMaterial baseColor='0.118 0.408 0.973' roughness='0.3' metallic='0' emissiveColor='0.055 0.184 0.443'/></Appearance><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='-3.044 5.76 -3.293'><Shape><Appearance USE='A27'/><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='-2.675 7.2 -3.607'><Shape><Appearance USE='A27'/><Sphere radius='0.185'/></Shape></Transform>
+    <Transform translation='-2.334 7.36 -3.228'><Shape><Appearance USE='A27'/><Sphere radius='0.196'/></Shape></Transform>
+    <Shape><Appearance DEF='A28'><PhysicalMaterial baseColor='0.118 0.408 0.973' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='-3.156 4.48 -2.817 -3.69 4.64 -3.374 -3.649 4.8 -3.418 -3.608 4.96 -3.462 -3.566 5.12 -3.505 -3.524 5.28 -3.547 -3.481 5.44 -3.589 -3.438 5.6 -3.631 -3.044 5.76 -3.293 -3.35 5.92 -3.712 -3.305 6.08 -3.752 -3.26 6.24 -3.791 -3.214 6.4 -3.83 -3.168 6.56 -3.869 -3.121 6.72 -3.906 -3.074 6.88 -3.944 -3.026 7.04 -3.98 -2.675 7.2 -3.607 -2.334 7.36 -3.228 -2.881 7.52 -4.086 -2.832 7.68 -4.121' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='-2.832 8.13 -4.121'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A29'><UnlitMaterial emissiveColor='0.118 0.408 0.973'/></Appearance><Text string='&quot;x3d.mashtots&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='-1.133 6.88 -4.104'><Shape><Appearance DEF='A30'><PhysicalMaterial baseColor='0.561 0.898 0.039' roughness='0.3' metallic='0' emissiveColor='0.255 0.408 0.02'/></Appearance><Sphere radius='0.224'/></Shape></Transform>
+    <Transform translation='-1.156 7.04 -4.393'><Shape><Appearance USE='A30'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='-1.023 7.36 -4.304'><Shape><Appearance USE='A30'/><Sphere radius='0.128'/></Shape></Transform>
+    <Shape><Appearance DEF='A31'><PhysicalMaterial baseColor='0.561 0.898 0.039' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='-1.133 6.88 -4.104 -1.156 7.04 -4.393 -1.215 7.2 -4.85 -1.023 7.36 -4.304 -1.098 7.52 -4.878 -1.039 7.68 -4.891' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='-1.039 8.13 -4.891'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A32'><UnlitMaterial emissiveColor='0.561 0.898 0.039'/></Appearance><Text string='&quot;x3d.castle&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='0.036 5.44 -2.38'><Shape><Appearance DEF='A33'><PhysicalMaterial baseColor='0.788 0.004 0.71' roughness='0.3' metallic='0' emissiveColor='0.361 0 0.325'/></Appearance><Sphere radius='0.145'/></Shape></Transform>
+    <Transform translation='0.089 5.6 -3.253'><Shape><Appearance USE='A33'/><Sphere radius='0.16'/></Shape></Transform>
+    <Transform translation='0.176 5.76 -4.481'><Shape><Appearance USE='A33'/><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='0.231 5.92 -4.497'><Shape><Appearance USE='A33'/><Sphere radius='0.128'/></Shape></Transform>
+    <Transform translation='0.764 7.52 -4.416'><Shape><Appearance USE='A33'/><Sphere radius='0.145'/></Shape></Transform>
+    <Shape><Appearance DEF='A34'><PhysicalMaterial baseColor='0.788 0.004 0.71' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='0.036 5.44 -2.38 0.089 5.6 -3.253 0.176 5.76 -4.481 0.231 5.92 -4.497 0.316 6.08 -4.99 0.376 6.24 -4.986 0.436 6.4 -4.981 0.496 6.56 -4.975 0.555 6.72 -4.969 0.615 6.88 -4.962 0.674 7.04 -4.954 0.734 7.2 -4.946 0.793 7.36 -4.937 0.764 7.52 -4.416 0.911 7.68 -4.916' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='0.911 8.13 -4.916'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A35'><UnlitMaterial emissiveColor='0.788 0.004 0.71'/></Appearance><Text string='&quot;x3d.stem&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='2.438 7.52 -3.854'><Shape><Appearance DEF='A36'><PhysicalMaterial baseColor='0.012 0.835 0.655' roughness='0.3' metallic='0' emissiveColor='0.004 0.38 0.298'/></Appearance><Sphere radius='0.105'/></Shape></Transform>
+    <Transform translation='2.438 7.68 -3.754'><Shape><Appearance USE='A36'/><Sphere radius='0.185'/></Shape></Transform>
+    <Shape><Appearance DEF='A37'><PhysicalMaterial baseColor='0.012 0.835 0.655' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='2.438 7.52 -3.854 2.438 7.68 -3.754' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='2.438 8.13 -3.754'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A38'><UnlitMaterial emissiveColor='0.012 0.835 0.655'/></Appearance><Text string='&quot;x3d.gobbler&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='3.631 7.52 -2.56'><Shape><Appearance DEF='A39'><PhysicalMaterial baseColor='0.929 0.502 0.067' roughness='0.3' metallic='0' emissiveColor='0.424 0.227 0.031'/></Appearance><Sphere radius='0.16'/></Shape></Transform>
+    <Transform translation='3.757 7.68 -2.582'><Shape><Appearance USE='A39'/><Sphere radius='0.128'/></Shape></Transform>
+    <Shape><Appearance DEF='A40'><PhysicalMaterial baseColor='0.929 0.502 0.067' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='3.631 7.52 -2.56 3.757 7.68 -2.582' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='3.757 8.13 -2.582'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A41'><UnlitMaterial emissiveColor='0.929 0.502 0.067'/></Appearance><Text string='&quot;x3d.mathslab&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='4.334 7.52 -0.976'><Shape><Appearance DEF='A42'><PhysicalMaterial baseColor='0.353 0.161 0.988' roughness='0.3' metallic='0' emissiveColor='0.161 0.075 0.451'/></Appearance><Sphere radius='0.16'/></Shape></Transform>
+    <Shape><Appearance DEF='A43'><PhysicalMaterial baseColor='0.353 0.161 0.988' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='4.334 7.52 -0.976 4.891 7.68 -1.039' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='4.891 8.13 -1.039'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A44'><UnlitMaterial emissiveColor='0.353 0.161 0.988'/></Appearance><Text string='&quot;x3d.gamelab&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform translation='4.455 7.52 0.771'><Shape><Appearance DEF='A45'><PhysicalMaterial baseColor='0.286 1 0.216' roughness='0.3' metallic='0' emissiveColor='0.129 0.455 0.098'/></Appearance><Sphere radius='0.128'/></Shape></Transform>
+    <Shape><Appearance DEF='A46'><PhysicalMaterial baseColor='0.286 1 0.216' roughness='0.6' metallic='0' transparency='0.35'/></Appearance><Extrusion spine='4.455 7.52 0.771 4.916 7.68 0.911' crossSection='0.018 0 0.009 -0.0156 -0.009 -0.0156 -0.018 -0 -0.009 0.0156 0.009 0.0156 0.018 0' beginCap='false' endCap='false' creaseAngle='3.14' solid='false'/></Shape>
+    <Transform translation='4.916 8.13 0.911'><Billboard axisOfRotation='0 0 0'><Shape><Appearance DEF='A47'><UnlitMaterial emissiveColor='0.286 1 0.216'/></Appearance><Text string='&quot;x3d.accrete&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <Transform DEF='NOW'><Shape><Appearance DEF='A48'><UnlitMaterial emissiveColor='0.498 0.831 1' transparency='0.82'/></Appearance><Cylinder radius='5.3' height='0.012'/></Shape></Transform>
+    <TimeSensor DEF='CLOCK' cycleInterval='14' loop='true'/>
+    <PositionInterpolator DEF='SWEEP' key='0 1' keyValue='0 0 0 0 7.84 0'/>
+    <ROUTE fromNode='CLOCK' fromField='fraction_changed' toNode='SWEEP' toField='set_fraction'/>
+    <ROUTE fromNode='SWEEP' fromField='value_changed' toNode='NOW' toField='set_translation'/>
+  </Scene>
+</X3D>
