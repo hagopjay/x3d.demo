@@ -279,3 +279,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/heritage-geo.jpg | 2ff10659ca19b11e1525b6169c2ccb0bc781a8efedfbe149268b2aad42bfd5af | 87759 |
+
+## Front-page card picture (v40)
+`math-concept-graph` is `docs/demos/math-concept-graph/v1/preview.png` (2600 x 1800) cropped to the 3D window (x 55 to 1407, y 374 to 1135) and scaled to 960 x 540.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/math-concept-graph.jpg | 2c49054514b894e97dedf7542bf64f39e242a071521e78b48a0ff498d6e30af3 | 74789 |
