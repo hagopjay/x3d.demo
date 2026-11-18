@@ -1,7 +1,7 @@
 {
- "suite": "tiles3d_to_x3d v2.1",
+ "suite": "tiles3d_to_x3d v2.2",
  "python": "3.13.18",
- "passed": 21,
+ "passed": 27,
  "failed": 0,
  "cases": [
   {
@@ -108,6 +108,36 @@
    "case": "nested transforms: child content at parent frame + 100 m east",
    "pass": true,
    "detail": "0.0002 m; lon 0.0008983 vs 0.0008983"
+  },
+  {
+   "case": "R3: `mesh&a.glb` gives well-formed XML and keeps the & in the URI",
+   "pass": true,
+   "detail": "\"../mesh&a.glb\""
+  },
+  {
+   "case": "R3: absolute content URL keeps its query and fragment",
+   "pass": true,
+   "detail": "\"https://example.invalid/mesh.glb?variant=red&proof=1#f\""
+  },
+  {
+   "case": "R3: percent-encoded local tileset path is found and the output stays encoded",
+   "pass": true,
+   "detail": "['../sub%20dir/mesh.glb']"
+  },
+  {
+   "case": "R3: region 179.9..-179.9 has its GeoLOD centre at 180, not 0",
+   "pass": true,
+   "detail": "centre lon 180.0"
+  },
+  {
+   "case": "R3: exact north-pole origin converts (no ZeroDivisionError)",
+   "pass": true,
+   "detail": "[90.0, 0.0, 0.0]"
+  },
+  {
+   "case": "R3: a clean run into a reused folder rewrites the report (not the old lossy one) and lists the other files there",
+   "pass": true,
+   "detail": "['t.mesh.x3d', 't_0.x3d']"
   }
  ]
 }

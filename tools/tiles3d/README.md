@@ -31,3 +31,17 @@ bounding-volume centre. Reviewer's probe: ENU frame at ECEF (6378137, 0, 0), sph
 still uses the bounding volume. Content whose frame origin is the Earth's centre (ECEF-baked glb) is refused. The
 v2 fixture's ENU frame had no translation (content at the Earth's centre) and v2 hid it; the fixture now carries it.
 `test_tiles3d.py`: 21 of 21 pass (`test-last-run.json`), including a nested-translation case (0.0002 m).
+
+## v2.2 (18 Nov 2026, third external review defects 6 and 7)
+
+| Input | v2.1 (`v2.1-shipped.py`) | v2.2 |
+|---|---|---|
+| content `mesh&a.glb` | exit 0, output not XML (`EntityRef: expecting ';'`) | `url='"../mesh&amp;a.glb"'`; every output parsed before success |
+| content `...mesh.glb?variant=red&proof=synthetic` | query dropped: loopback HTTP 200 became 403 | query and fragment kept: 200 and 200 |
+| external `sub%20dir/child.json` | refused as missing | path decoded for the filesystem only; output stays `sub%20dir/` |
+| region west 179.9, east -179.9 | GeoLOD centre lon 0 (12,756,294 m chord off) | lon 180 |
+| origin exactly on the polar axis | ZeroDivisionError | lat 90, height above the pole |
+| clean run into a folder that held a lossy run | old lossy `conversion-report.json` left | report written every run: `lossy`, `files_written` with hashes, `other_x3d_in_folder` |
+
+Checked with the reviewer's own `tiles-probes.py` (all 7 cases) and `test_tiles3d.py`, 27 of 27 (Python 3.13).
+MFString values escape `\` and `"`; XML attributes escape `& < > '`.

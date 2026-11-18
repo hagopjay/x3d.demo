@@ -78,5 +78,41 @@ with tempfile.TemporaryDirectory() as d:
     want = v2.ecef_to_geodetic(6378137, 100, 0)
     err = v2.geo_distance(tuple(g), want)
     case("nested transforms: child content at parent frame + 100 m east", err < 0.01, f"{err:.4f} m; lon {g[1]:.7f} vs {want[1]:.7f}")
-print(json.dumps({"suite": "tiles3d_to_x3d v2.1", "python": sys.version.split()[0], "passed": len(rows) - bad, "failed": bad, "cases": rows}, indent=1))
+    # third review (18 Nov 2026): URI identity and XML, antimeridian, pole, encoded local path, stale report
+    import xml.etree.ElementTree as ET
+    def one(name, root, extra=None):
+        q = d / f"{name}.json"; q.write_text(json.dumps({"asset": {"version": "1.1"}, "root": root})); o = d / f"o3_{name}"
+        s = v2.convert(q, o); return s, o
+    (d / "mesh&a.glb").write_bytes(b"glTF")
+    s, o = one("amp", {"boundingVolume": {"sphere": [0, 0, 0, 5]}, "geometricError": 0, "transform": E0, "content": {"uri": "mesh&a.glb"}})
+    xml = (o / "t.x3d").read_text(); ok = True
+    try: el = ET.fromstring(xml); url = el.find(".//Inline").get("url")
+    except ET.ParseError as e: ok, url = False, str(e)
+    case("R3: `mesh&a.glb` gives well-formed XML and keeps the & in the URI", ok and url == '"../mesh&a.glb"', url)
+    s, o = one("query", {"boundingVolume": {"sphere": [0, 0, 0, 5]}, "geometricError": 0, "transform": E0,
+                         "content": {"uri": "https://example.invalid/mesh.glb?variant=red&proof=1#f"}})
+    url = ET.fromstring((o / "t.x3d").read_text()).find(".//Inline").get("url")
+    case("R3: absolute content URL keeps its query and fragment", url == '"https://example.invalid/mesh.glb?variant=red&proof=1#f"', url)
+    (d / "sub dir").mkdir(); (d / "sub dir/mesh.glb").write_bytes(b"glTF")
+    (d / "sub dir/child.json").write_text(json.dumps({"asset": {"version": "1.1"}, "root": {"boundingVolume": {"sphere": [0, 0, 0, 5]}, "geometricError": 0, "content": {"uri": "mesh.glb"}}}))
+    s, o = one("pct", {"boundingVolume": {"sphere": [0, 0, 0, 5]}, "geometricError": 1, "transform": E0, "content": {"uri": "sub%20dir/child.json"}})
+    case("R3: percent-encoded local tileset path is found and the output stays encoded", s["external_missing"] == 0 and s["content_uris"] == ["../sub%20dir/mesh.glb"], str(s["content_uris"]))
+    am = [math.radians(x) for x in (179.9, -0.1, -179.9, 0.1)] + [0, 20]
+    s, o = one("anti", {"boundingVolume": {"region": am}, "geometricError": 10, "children": [{"boundingVolume": {"region": am}, "geometricError": 0}]})
+    c = [float(x) for x in re.search(r'GeoLOD[^>]*center="([^"]+)"', (o / "t.x3d").read_text()).group(1).split()]
+    case("R3: region 179.9..-179.9 has its GeoLOD centre at 180, not 0", abs(abs(c[1]) - 180) < 1e-6, f"centre lon {c[1]}")
+    b = 6378137.0 * (1 - 1 / 298.257223563)
+    pole = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, b, 1]
+    try:
+        v2.convert((lambda q: (q.write_text(json.dumps({"asset": {}, "root": {"boundingVolume": {"sphere": [0, 0, 0, 5]}, "geometricError": 0, "transform": pole, "content": {"uri": "a.glb"}}})), q)[1])(d / "pole.json"), d / "o3_pole", allow_lossy=True)
+        g = geo(d / "o3_pole", "t.x3d"); case("R3: exact north-pole origin converts (no ZeroDivisionError)", abs(g[0] - 90) < 1e-9 and abs(g[2]) < 1e-3, str(g))
+    except ZeroDivisionError as e: case("R3: exact north-pole origin converts (no ZeroDivisionError)", False, repr(e))
+    reuse = d / "o3_reuse"; addp = d / "reuse-add.json"
+    addp.write_text(json.dumps({"asset": {}, "root": tile(ge=50, refine="ADD", content={"uri": "a.glb"}, children=[tile(child=True, content={"uri": "b.glb"})])}))
+    v2.convert(addp, reuse, allow_lossy=True)
+    v2.convert(d / "off.json", reuse)
+    rep = json.loads((reuse / "conversion-report.json").read_text())
+    case("R3: a clean run into a reused folder rewrites the report (not the old lossy one) and lists the other files there",
+         rep["lossy"] is False and not rep["losses"] and set(rep["files_written"]) == {"t.x3d"} and rep["other_x3d_in_folder"], str(rep["other_x3d_in_folder"]))
+print(json.dumps({"suite": "tiles3d_to_x3d v2.2", "python": sys.version.split()[0], "passed": len(rows) - bad, "failed": bad, "cases": rows}, indent=1))
 sys.exit(1 if bad else 0)
