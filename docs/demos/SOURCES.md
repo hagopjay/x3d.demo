@@ -293,3 +293,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/medical-provenance.jpg | 2be6010fd45ccf779036659811717fe118c7574464c56d7847fc77723c4ecfaa | 45116 |
+
+## Front-page card picture (v43)
+`math-concept-graph-v2` is `docs/demos/math-concept-graph/v2/preview.png` (2600 x 1800) cropped to the 3D window (x 55 to 1407, y 440 to 1201) and scaled to 960 x 540. The top edge of the window is trimmed slightly so the crop is 16:9; the two topmost cubes are partly cut.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/math-concept-graph-v2.jpg | 362bcca6b827b57ba46d7bab46045de985f85beabc1707fffa46b89354515e69 | 96395 |
