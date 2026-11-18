@@ -1,0 +1,562 @@
+[
+ {
+  "name": "humanoid_root",
+  "parent": null,
+  "abs_mm": [
+   -2.2,
+   -333.4,
+   4.4
+  ],
+  "rel_m": [
+   -0.0022,
+   -0.3334,
+   0.0044
+  ],
+  "how": "midpoint of the two hip joints",
+  "grade": "S"
+ },
+ {
+  "name": "l_acromioclavicular",
+  "parent": "l_sternoclavicular",
+  "abs_mm": [
+   -116.5,
+   167.6,
+   33.3
+  ],
+  "rel_m": [
+   -0.0972,
+   0.0608,
+   0.086
+  ],
+  "how": "clavicle vertex farthest from the midline",
+  "grade": "S"
+ },
+ {
+  "name": "l_hip",
+  "parent": "sacroiliac",
+  "abs_mm": [
+   -108.9,
+   -333.6,
+   9.2
+  ],
+  "rel_m": [
+   -0.1134,
+   -0.0347,
+   -0.0719
+  ],
+  "how": "mean of the top 15 percent (by height) of the femur vertices: stands in for the femoral head centre",
+  "grade": "S"
+ },
+ {
+  "name": "l_shoulder",
+  "parent": "l_acromioclavicular",
+  "abs_mm": [
+   -184.2,
+   240.1,
+   -171.0
+  ],
+  "rel_m": [
+   -0.0677,
+   0.0725,
+   -0.2043
+  ],
+  "how": "mean of the top 15 percent of the humerus vertices: stands in for the humeral head centre",
+  "grade": "S"
+ },
+ {
+  "name": "l_sternoclavicular",
+  "parent": "vt1",
+  "abs_mm": [
+   -19.3,
+   106.8,
+   -52.7
+  ],
+  "rel_m": [
+   -0.0206,
+   -0.0187,
+   -0.0891
+  ],
+  "how": "clavicle vertex nearest the midline",
+  "grade": "S"
+ },
+ {
+  "name": "r_acromioclavicular",
+  "parent": "r_sternoclavicular",
+  "abs_mm": [
+   102.0,
+   178.9,
+   17.6
+  ],
+  "rel_m": [
+   0.087,
+   0.084,
+   0.0639
+  ],
+  "how": "clavicle vertex farthest from the midline",
+  "grade": "S"
+ },
+ {
+  "name": "r_hip",
+  "parent": "sacroiliac",
+  "abs_mm": [
+   104.4,
+   -333.2,
+   -0.4
+  ],
+  "rel_m": [
+   0.0999,
+   -0.0343,
+   -0.0815
+  ],
+  "how": "mean of the top 15 percent (by height) of the femur vertices: stands in for the femoral head centre",
+  "grade": "S"
+ },
+ {
+  "name": "r_shoulder",
+  "parent": "r_acromioclavicular",
+  "abs_mm": [
+   168.3,
+   251.1,
+   -181.4
+  ],
+  "rel_m": [
+   0.0663,
+   0.0722,
+   -0.199
+  ],
+  "how": "mean of the top 15 percent of the humerus vertices: stands in for the humeral head centre",
+  "grade": "S"
+ },
+ {
+  "name": "r_sternoclavicular",
+  "parent": "vt1",
+  "abs_mm": [
+   15.0,
+   94.9,
+   -46.3
+  ],
+  "rel_m": [
+   0.0137,
+   -0.0306,
+   -0.0827
+  ],
+  "how": "clavicle vertex nearest the midline",
+  "grade": "S"
+ },
+ {
+  "name": "sacroiliac",
+  "parent": "humanoid_root",
+  "abs_mm": [
+   4.5,
+   -298.9,
+   81.1
+  ],
+  "rel_m": [
+   0.0067,
+   0.0345,
+   0.0767
+  ],
+  "how": "sacrum vertex mean",
+  "grade": "S"
+ },
+ {
+  "name": "skullbase",
+  "parent": "vc1",
+  "abs_mm": [
+   -5.2,
+   247.0,
+   -46.8
+  ],
+  "rel_m": [
+   -0.0009,
+   0.0223,
+   -0.0058
+  ],
+  "how": "top of the C1 mesh",
+  "grade": "S"
+ },
+ {
+  "name": "vc1",
+  "parent": "vc2",
+  "abs_mm": [
+   -4.3,
+   224.7,
+   -41.0
+  ],
+  "rel_m": [
+   -0.0008,
+   0.0155,
+   -0.011
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vc2",
+  "parent": "vc3",
+  "abs_mm": [
+   -3.5,
+   209.2,
+   -30.0
+  ],
+  "rel_m": [
+   0.0,
+   0.0153,
+   -0.0099
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vc3",
+  "parent": "vc4",
+  "abs_mm": [
+   -3.5,
+   193.9,
+   -20.1
+  ],
+  "rel_m": [
+   -0.0016,
+   0.0139,
+   -0.0101
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vc4",
+  "parent": "vc5",
+  "abs_mm": [
+   -1.9,
+   180.0,
+   -10.0
+  ],
+  "rel_m": [
+   -0.0008,
+   0.0145,
+   -0.0082
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vc5",
+  "parent": "vc6",
+  "abs_mm": [
+   -1.1,
+   165.5,
+   -1.8
+  ],
+  "rel_m": [
+   0.0002,
+   0.0122,
+   -0.0106
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vc6",
+  "parent": "vc7",
+  "abs_mm": [
+   -1.3,
+   153.3,
+   8.8
+  ],
+  "rel_m": [
+   -0.0015,
+   0.0117,
+   -0.0141
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vc7",
+  "parent": "vt1",
+  "abs_mm": [
+   0.2,
+   141.6,
+   22.9
+  ],
+  "rel_m": [
+   -0.0011,
+   0.0161,
+   -0.0135
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vl1",
+  "parent": "vl2",
+  "abs_mm": [
+   7.4,
+   -156.8,
+   78.2
+  ],
+  "rel_m": [
+   0.0018,
+   0.0266,
+   0.0045
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vl2",
+  "parent": "vl3",
+  "abs_mm": [
+   5.6,
+   -183.4,
+   73.7
+  ],
+  "rel_m": [
+   0.001,
+   0.0268,
+   0.0069
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vl3",
+  "parent": "vl4",
+  "abs_mm": [
+   4.6,
+   -210.2,
+   66.8
+  ],
+  "rel_m": [
+   0.001,
+   0.0251,
+   0.0066
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vl4",
+  "parent": "vl5",
+  "abs_mm": [
+   3.6,
+   -235.3,
+   60.2
+  ],
+  "rel_m": [
+   -0.0004,
+   0.0379,
+   -0.0095
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vl5",
+  "parent": "humanoid_root",
+  "abs_mm": [
+   4.0,
+   -273.2,
+   69.7
+  ],
+  "rel_m": [
+   0.0062,
+   0.0602,
+   0.0653
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt1",
+  "parent": "vt2",
+  "abs_mm": [
+   1.3,
+   125.5,
+   36.4
+  ],
+  "rel_m": [
+   -0.0019,
+   0.0205,
+   -0.0152
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt10",
+  "parent": "vt11",
+  "abs_mm": [
+   16.7,
+   -83.4,
+   81.2
+  ],
+  "rel_m": [
+   0.0013,
+   0.0267,
+   0.0005
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt11",
+  "parent": "vt12",
+  "abs_mm": [
+   15.4,
+   -110.1,
+   80.7
+  ],
+  "rel_m": [
+   0.0038,
+   0.0236,
+   0.0006
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt12",
+  "parent": "vl1",
+  "abs_mm": [
+   11.6,
+   -133.7,
+   80.1
+  ],
+  "rel_m": [
+   0.0042,
+   0.0231,
+   0.0019
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt2",
+  "parent": "vt3",
+  "abs_mm": [
+   3.2,
+   105.0,
+   51.6
+  ],
+  "rel_m": [
+   -0.001,
+   0.0225,
+   -0.0109
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt3",
+  "parent": "vt4",
+  "abs_mm": [
+   4.2,
+   82.5,
+   62.5
+  ],
+  "rel_m": [
+   -0.002,
+   0.0197,
+   -0.0075
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt4",
+  "parent": "vt5",
+  "abs_mm": [
+   6.2,
+   62.8,
+   70.0
+  ],
+  "rel_m": [
+   -0.0045,
+   0.0206,
+   -0.0069
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt5",
+  "parent": "vt6",
+  "abs_mm": [
+   10.7,
+   42.2,
+   76.9
+  ],
+  "rel_m": [
+   -0.0039,
+   0.0248,
+   -0.0034
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt6",
+  "parent": "vt7",
+  "abs_mm": [
+   14.6,
+   17.4,
+   80.3
+  ],
+  "rel_m": [
+   -0.0023,
+   0.0245,
+   -0.0013
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt7",
+  "parent": "vt8",
+  "abs_mm": [
+   16.9,
+   -7.1,
+   81.6
+  ],
+  "rel_m": [
+   -0.0014,
+   0.0247,
+   -0.0008
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt8",
+  "parent": "vt9",
+  "abs_mm": [
+   18.3,
+   -31.8,
+   82.4
+  ],
+  "rel_m": [
+   0.0002,
+   0.0256,
+   0.0008
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ },
+ {
+  "name": "vt9",
+  "parent": "vt10",
+  "abs_mm": [
+   18.1,
+   -57.4,
+   81.6
+  ],
+  "rel_m": [
+   0.0014,
+   0.026,
+   0.0004
+  ],
+  "how": "midpoint of this vertebra centroid and the one below it (sacrum for L5): the joint sits at the base of its segment",
+  "grade": "S"
+ }
+]
