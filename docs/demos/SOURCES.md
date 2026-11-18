@@ -249,3 +249,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/sri-yantra-harp.jpg | a17e987338ad01fce20fb1a1369b58f5d51826b0800e24d55c4dac5809e64600 | 80137 |
+
+## Front-page card picture (v36)
+`x3d-chess` is a headless screenshot (Chromium, software GL) of `https://hagopjay.github.io/x3d.chess/?heat=1` (replay mode, 20 boards) after twenty seconds, 1600 x 900 scaled to 960 x 540.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/x3d-chess.jpg | d95aed1f063cceacc864d4d3e0047fa851043f0f285bec22066bb29b58737131 | 144531 |
