@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open BodyParts3D meshes vs CT surfaces (medical-provenance v5)</title>
+<style>
+:root{--bg:#0f1418;--fg:#e6eef2;--mut:#93a4ad;--card:#161d23;--ln:#2a3640;--ac:#58c4dd;--C:#6fbf73;--L:#e0b84a;--S:#d9674e}
+@media (prefers-color-scheme:light){:root{--bg:#f2f6f8;--fg:#14202a;--mut:#5a6b75;--card:#fff;--ln:#cfdae0;--ac:#0a6b86}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,sans-serif}
+header{padding:12px 16px;border-bottom:1px solid var(--ln)}h1{margin:0;font-size:18px}.sub{color:var(--mut);font-size:12px}
+.warn{background:#3a1f1a;color:#ffd9cc;border:1px solid #7a3a2a;border-radius:4px;padding:5px 9px;margin:8px 0 0;font-size:12px}
+@media (prefers-color-scheme:light){.warn{background:#fde8e2;color:#5a1d10}}
+main{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:12px;padding:12px 16px}
+@media(max-width:960px){main{grid-template-columns:minmax(0,1fr)}}main>div{min-width:0}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:6px;padding:10px;margin-bottom:12px}
+x3d-canvas{width:100%;height:520px;display:block;background:#0b1013;border-radius:4px}
+.chip,select,button{background:none;border:1px solid var(--ln);color:var(--fg);padding:3px 9px;border-radius:4px;cursor:pointer;margin:0 4px 4px 0;font-size:12px}.chip.on{background:var(--ac);color:#000;border-color:var(--ac)}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{border-bottom:1px solid var(--ln);padding:3px 5px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{color:var(--mut);position:sticky;top:0;background:var(--card);cursor:pointer}
+.g{display:inline-block;min-width:20px;text-align:center;border-radius:3px;color:#000;font-weight:700;padding:0 4px;font-size:11px}.g.C{background:var(--C)}.g.L{background:var(--L)}.g.S{background:var(--S)}
+.ag{display:inline-block;border-radius:3px;padding:0 5px;font-size:11px;color:#000}.ag.close{background:var(--C)}.ag.partial{background:var(--L)}.ag.far{background:var(--S)}
+tr.m{cursor:pointer}tr.m:hover,tr.sel{background:rgba(88,196,221,.16)}h2{font-size:14px;margin:0 0 6px;color:var(--ac)}code{font-size:11px}.note{font-size:12px;color:var(--mut)}.scroll{max-height:380px;overflow:auto}a{color:var(--ac)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:6px;margin-bottom:8px}.stat{border:1px solid var(--ln);border-radius:4px;padding:5px 8px}.stat b{display:block;font-size:18px}.stat span{font-size:11px;color:var(--mut)}
+svg text{fill:var(--fg);font-size:10px}
+</style></head><body>
+<header><h1>Open BodyParts3D meshes vs the CT surfaces <span class="sub">100 FMA-keyed open meshes fitted into one CT subject (v5)</span></h1>
+<div class="sub">Grades: <span class="g C">C</span> measured in this build <span class="g L">L</span> likely, not re-checked <span class="g S">S</span> judgement or gap.</div>
+<div class="warn"><b>Educational proof of concept. Not medical advice, not a medical device.</b> BodyParts3D is a different person's anatomy at 1 percent of the original polygons; distances measure how two bodies differ, not error in either. Mesh licence conflict: see the licence card.</div></header>
+<main><div>
+ <div class="card"><div class="stats" id="stats"></div>
+ <button class="chip on" id="tc">CT surfaces</button><button class="chip on" id="tb">BodyParts3D overlay</button><button class="chip" id="ta">All BP3D opaque</button>
+ <x3d-canvas id="cv" src="scene/compare.x3dz" splashScreen="false"></x3d-canvas>
+ <div id="pick" class="note" style="margin-top:6px">Click a row to highlight that structure's BodyParts3D mesh. Cyan, red, gold, blue-white shapes are BodyParts3D; the glassy torso is the CT.</div></div>
+ <div class="card"><h2>Findings (graded)</h2><ul id="fd" style="padding-left:18px;margin:0"></ul></div>
+</div><div>
+ <div class="card"><h2>Mean surface distance by group (mm, median)</h2><div id="chart"></div><p class="note" id="fitnote"></p></div>
+ <div class="card"><h2>Structures (click a header to sort)</h2><div class="scroll"><table id="mt"><thead><tr><th data-k="uid">Structure</th><th data-k="fma">FMA</th><th data-k="elements">Elem.</th><th data-k="chamfer_mean_mm">Dist mm</th><th data-k="centroid_offset_mm">Cent. off mm</th><th data-k="agree">Agree</th></tr></thead><tbody></tbody></table></div></div>
+ <div class="card"><h2>Receipt and licence</h2><div class="note" id="rcpt">loading</div><div class="note" style="margin-top:6px"><b>Licence conflict:</b> BodyParts3D OBJ headers say CC BY-SA 2.1 Japan; the current licence page says CC BY 4.0. The shipped derived meshes are treated as CC BY-SA 2.1 Japan, with attribution "BodyParts3D, (c) The Database Center for Life Science". See <a href="NOTICE-BP3D.md">NOTICE-BP3D.md</a>. CT: TotalSegmentator example subject s1397 (CC BY 4.0 dataset record). FMA ids per <a href="../v3/NOTICE.md">v3 notice</a>.</div></div>
+</div></main>
+<script src="../../blender-x3d-io/v1/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const J=async u=>(await fetch(u)).json();const grade=g=>'<span class="g '+g+'">'+g+'</span>';
+let B=null,M=[],sel=null,sortk='chamfer_mean_mm',asc=true,opaque=false;
+const inl=n=>B.currentScene.getNamedNode(n);
+function paintTable(){const rows=[...M].sort((a,b)=>{const x=a[sortk],y=b[sortk];return (typeof x==='string'?x.localeCompare(y):x-y)*(asc?1:-1)});
+ $('#mt tbody').innerHTML=rows.map(m=>'<tr class="m'+(m.uid===sel?' sel':'')+'" data-u="'+m.uid+'"><td>'+esc(m.uid)+'</td><td>'+m.fma+'</td><td>'+m.elements+'</td><td>'+m.chamfer_mean_mm+'</td><td>'+m.centroid_offset_mm+'</td><td><span class="ag '+m.agree+'">'+m.agree+'</span></td></tr>').join('');
+ document.querySelectorAll('tr.m').forEach(r=>r.onclick=()=>choose(r.dataset.u))}
+function style(){if(!B)return;let n=null;try{n=inl('IN_BP')}catch(e){}
+ for(const m of M){try{const mat=B.currentScene.getNamedNode('M_'+m.uid)}catch(e){}}}
+async function choose(u){sel=u;paintTable();const m=M.find(x=>x.uid===u);
+ $('#pick').innerHTML='<b>'+esc(u)+'</b> '+grade('C')+' '+esc(m.label)+' ('+m.fma+'): '+m.elements+' BodyParts3D elements, '+m.src_faces+' source faces shipped as '+m.shipped_faces+'. Mean surface distance <b>'+m.chamfer_mean_mm+' mm</b> (bp to ct '+m.chamfer_bp_to_ct_mm+', ct to bp '+m.chamfer_ct_to_bp_mm+'), centroid offset '+m.centroid_offset_mm+' mm, extent ratio bp/ct (x,y,z) '+m.extent_ratio.join(', ')+'. '+(m.in_fit?'Used in the fit.':'Not used in the fit.');
+ if(!B)return;try{await hl(u)}catch(e){$('#pick').innerHTML+=' (highlight failed: '+esc(e.message)+')'}}
+async function hl(u){
+ for(const m of M){let mat=null;try{mat=B.currentScene.getImportedNode('M_'+m.uid)}catch(e){}if(!mat)continue;const on=m.uid===u;mat.transparency=opaque?0.0:(u?(on?0.05:0.8):0.45);mat.emissiveColor=on?new X3D.SFColor(1,0.7,0.1):new X3D.SFColor(0,0,0)}}
+$('#tc').onclick=e=>{const n=inl('IN_CT');n.load=!n.load;e.target.classList.toggle('on',n.load)};
+$('#tb').onclick=e=>{const n=inl('IN_BP');n.load=!n.load;e.target.classList.toggle('on',n.load)};
+$('#ta').onclick=async e=>{opaque=!opaque;e.target.classList.toggle('on',opaque);try{await hl(sel)}catch(x){}};
+document.addEventListener('click',e=>{const th=e.target.closest('th[data-k]');if(!th)return;const k=th.dataset.k;if(sortk===k)asc=!asc;else{sortk=k;asc=true}paintTable()});
+$('#cv').addEventListener('load',()=>{B=$('#cv').browser;window.__loaded=(window.__loaded||0)+1});
+(async()=>{
+ M=await J('data/metrics.json');const F=await J('data/fit.json'),sm=await J('data/summary.json');
+ $('#stats').innerHTML=[[sm.structures,'FMA-keyed open meshes'],[sm.elements,'BP3D element files'],[sm.shipped_faces.toLocaleString(),'faces shipped'],[F.scale,'fit scale'],[F.rotation_deg+'°','fit rotation'],[sm.agree.close+' / '+sm.agree.partial+' / '+sm.agree.far,'close / partial / far']].map(a=>'<div class="stat"><b>'+a[0]+'</b><span>'+a[1]+'</span></div>').join('');
+ $('#fitnote').textContent='Similarity fit on '+F.fit_structures+' of '+F.candidates+' trunk structures (groups '+F.groups_fitted.join(', ').toLowerCase()+'); limbs, skin, head are not fitted. '+F.note+'.';
+ const g={};M.forEach(m=>(g[m.group]=g[m.group]||[]).push(m.chamfer_mean_mm));const med=a=>{a=[...a].sort((x,y)=>x-y);return a[Math.floor(a.length/2)]};
+ const rows=Object.entries(g).map(([k,v])=>[k,med(v),v.length]).sort((a,b)=>a[1]-b[1]);const mx=Math.max(...rows.map(r=>r[1]));
+ $('#chart').innerHTML='<svg viewBox="0 0 420 '+(rows.length*18+6)+'" width="100%" role="img" aria-label="median distance by group">'+rows.map((r,i)=>'<text x="0" y="'+(i*18+13)+'">'+r[0].toLowerCase()+' ('+r[2]+')</text><rect x="110" y="'+(i*18+4)+'" width="'+(r[1]/mx*250)+'" height="12" fill="var(--ac)"/><text x="'+(114+r[1]/mx*250)+'" y="'+(i*18+13)+'">'+r[1].toFixed(1)+'</text>').join('')+'</svg>';
+ paintTable();
+ $('#fd').innerHTML=(await J('data/findings.json')).map(x=>'<li>'+grade(x[0])+' '+esc(x[1])+'</li>').join('');
+ const v=await J('validation-v5.json');
+ $('#rcpt').innerHTML='Scenes validated with x3d_mcp <code>validate_xml</code>: overlay '+(v['bp3d-overlay'].valid?'valid':'INVALID')+' ('+(v['bp3d-overlay'].errors||[]).length+' errors, '+v['bp3d-overlay'].seconds+' s), compare '+(v.compare.valid?'valid':'INVALID')+'. Source zip sha256 <code>'+F.zip_sha256.slice(0,16)+'</code> ('+F.zip_bytes+' bytes, '+F.elements_in_zip+' element files). Overlay sha256 <code>'+v['bp3d-overlay'].sha256.slice(0,16)+'</code>, '+sm.overlay_bytes_x3dz+' bytes gzip. Rebuild: <code>python3 -I build.py --gate &lt;x3d_mcp&gt;/src</code> (downloads and checks the zip; needs numpy).';
+})();
+</script></body></html>
