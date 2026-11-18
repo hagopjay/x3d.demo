@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## Unnumbered: D3 to X3D Bridge v2.2 (2026-11-18)
+- Added `docs/demos/d3-bridge/v2.2/`, a hygiene release; v2.1, v2 and v1 are untouched. A DEF pass in the emitter (`tools/x3d3.mjs`) keeps a name only when the scene USEs it, a ROUTE names it, or the page reaches it by SAI; it declares page-addressed names with EXPORT; and it uses WorldInfo instead of an empty Group for each label's far LOD level. The validator now reports warnings and info separately. The semantic receipt goes from 64 warnings and 1,305 info notes to 0 and 0 (x3d_mcp fa5dccf). The browser run still gives 16 of 16 scenes and 0 console errors.
+
 ## Unnumbered: D3 to X3D Bridge v2.1 (2026-11-18)
 - Added `docs/demos/d3-bridge/v2.1/`, a fix release of v2 (v1 and v2 untouched) for three external-review findings. First, `tools/validate.py` now runs XSD plus x3d_mcp semantic checks and fails loudly: exit 1 on any error, exit 2 on an empty set. Second, every scene now declares Rendering level 5, because ClipPlane in `spacetime.x3d` needs it: v2 was 15 of 16, v2.1 is 16 of 16. Third, the page no longer throws without WebGL and shows each scene's recorded frame instead (0 console errors with WebGL disabled).
 
