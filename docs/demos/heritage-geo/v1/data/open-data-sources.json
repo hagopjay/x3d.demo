@@ -1,0 +1,79 @@
+[
+ [
+  "USGS 3DEP point service (EPQS)",
+  "https://epqs.nationalmap.gov/v1/json",
+  "HTTP 200; 627.175 m at 37.2284 N, -80.4234 E, 1 m raster id 58593",
+  "C",
+  "Open, public domain (USGS)"
+ ],
+ [
+  "USGS TNM Access products API",
+  "https://tnmaccess.nationalmap.gov/api/v1/products",
+  "HTTP 200; 3 one-metre DEM tiles for a Blacksburg bbox",
+  "C",
+  "Open, public domain"
+ ],
+ [
+  "Smithsonian 3D API",
+  "https://3d-api.si.edu/api/v1.0/content/file/search",
+  "HTTP 200; q=egypt returned rows, q=pyramid 0 rows",
+  "C",
+  "Open Access CC0 for much of the collection; per-item check needed"
+ ],
+ [
+  "Europeana API (demo key)",
+  "https://api.europeana.eu/record/v2/search.json",
+  "HTTP 200; TYPE:3D pyramid total 12; giza total 609 but first 3 hits not Giza (fuzzy)",
+  "C",
+  "Per-item rights statements; demo key is not for production"
+ ],
+ [
+  "Pleiades gazetteer JSON",
+  "https://pleiades.stoa.org/places/<id>/json",
+  "HTTP 200; place 727070 is Alexandria (29.91 E, 31.20 N), so the Giza id was not found here",
+  "C fetch / not found",
+  "CC BY"
+ ],
+ [
+  "Wikidata SPARQL",
+  "https://query.wikidata.org/sparql",
+  "HTTP 200 but 3 of my queries returned 0 rows; cause not isolated",
+  "S",
+  "CC0"
+ ],
+ [
+  "CIDOC-CRM RDF 7.1.3",
+  "https://cidoc-crm.org/rdfs/7.1.3/CIDOC_CRM_v7.1.3.rdf",
+  "HTTP 200, 713,673 bytes; regex count 76 rdfs:Class, 309 rdf:Property, 75 distinct E-numbers; not reconciled with the official class count",
+  "C count",
+  "CC BY 4.0 (stated by the CRM SIG; not re-read)"
+ ],
+ [
+  "OpenStreetMap Overpass",
+  "https://overpass-api.de/api/interpreter",
+  "No answer from this container on two mirrors (curl code 000); says nothing about the service",
+  "C failed here",
+  "ODbL"
+ ],
+ [
+  "IFC samples (buildingSMART)",
+  "raw.githubusercontent.com/buildingSMART/Sample-Test-Files",
+  "Not fetched: repo outside this session's GitHub scope, one raw path guessed 404",
+  "not run",
+  "Per file"
+ ],
+ [
+  "Existing in repo: confluence-ifc/v1/snapshot/model.ifc",
+  "../../confluence-ifc/v1/snapshot/model.ifc",
+  "500,619 bytes, sha256 32dc7211... (SOURCES.md)",
+  "C (recorded)",
+  "Per its README"
+ ],
+ [
+  "Existing in repo: Drillfield DSM + orthophoto (Burruss Hall)",
+  "../../gobbler-worlds-within/v1/data/worlds/drillfield/drillfield.x3d",
+  "549,839 bytes; 400 x 300 m DSM 0.25 m resampled to 1 m, imagery 2019-06-02",
+  "C (recorded)",
+  "Google Solar API data; academic proof of concept use only"
+ ]
+]

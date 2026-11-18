@@ -1,0 +1,107 @@
+{
+ "@context": {
+  "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+  "dct": "http://purl.org/dc/terms/",
+  "x3d": "urn:x3d:vocab:"
+ },
+ "@graph": [
+  {
+   "@id": "urn:x3d:heritage-geo:c1",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:khufu"
+   },
+   "crm:P141_assigned": "Built in the 4th Dynasty, c. 2560 BCE (E12 Production, E52 Time-Span).",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:source": "Published chronology; not re-opened in this build",
+   "x3d:crmClass": "E22_Human-Made_Object",
+   "x3d:crmPath": "P108i_was_produced_by -> E12_Production -> P4_has_time-span"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c2",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:khufu"
+   },
+   "crm:P141_assigned": "Commissioned by Khufu.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:source": "Published consensus; not re-opened here",
+   "x3d:crmClass": "E22_Human-Made_Object",
+   "x3d:crmPath": "P14_carried_out_by -> E21_Person (Khufu)"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c3",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:khufu"
+   },
+   "crm:P141_assigned": "Position in WGS84 as placed by GeoLocation.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:source": "Public coordinates; not surveyed here",
+   "x3d:crmClass": "E27_Site",
+   "x3d:crmPath": "P168_place_is_defined_by (GeoLocation 29.9792 N 31.1342 E)"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c4",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:khafre"
+   },
+   "crm:P141_assigned": "Attributed to Khafre, son of Khufu.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:source": "Published consensus",
+   "x3d:crmClass": "E22_Human-Made_Object",
+   "x3d:crmPath": "P108i_was_produced_by -> E12_Production"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c5",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:sphinx"
+   },
+   "crm:P141_assigned": "Sphinx attributed to Khafre's reign; the attribution is argued, not proven.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:source": "Contested literature; see GIZA-EVIDENCE-ATLAS GZ-1",
+   "x3d:crmClass": "E22_Human-Made_Object",
+   "x3d:crmPath": "P14_carried_out_by -> E21_Person (Khafre?)"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c6",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:menkaure"
+   },
+   "crm:P141_assigned": "Base about 102 m, height about 65 m.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:source": "Published figures; the geometry here is a schematic box-pyramid (GZ-1: geometry status != evidence tier)",
+   "x3d:crmClass": "E22_Human-Made_Object",
+   "x3d:crmPath": "P43_has_dimension -> E54_Dimension"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c7",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:khufu"
+   },
+   "crm:P141_assigned": "This twin: each claim above is an E13 Attribute Assignment carrying its grade, so the grade is queryable.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:source": "jsonld built and parsed in this build (see receipt)",
+   "x3d:crmClass": "E13_Attribute_Assignment",
+   "x3d:crmPath": "P140_assigned_attribute_to / P141_assigned"
+  }
+ ]
+}

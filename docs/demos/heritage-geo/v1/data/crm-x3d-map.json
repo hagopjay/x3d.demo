@@ -1,0 +1,77 @@
+{
+ "_about": "Proposed mapping, grade S (design proposal, not yet round-tripped). CRM class names checked in CIDOC_CRM_v7.1.3.rdf fetched 18 Nov 2026 (class presence C).",
+ "crm_to_x3d": [
+  [
+   "E22 Human-Made Object",
+   "Transform + Shape (+ MetadataSet name=site)",
+   "Object identity stays on the node via DEF; the grade lives in the MetadataSet"
+  ],
+  [
+   "E27 Site",
+   "GeoLocation (geoSystem GD, WE)",
+   "A site is a place the claim is about; its geometry is the placement, not the shape"
+  ],
+  [
+   "E53 Place / E94 Space Primitive",
+   "GeoViewpoint / GeoCoordinate",
+   "P168 place is defined by -> geoCoords"
+  ],
+  [
+   "E52 Time-Span",
+   "MetadataString (ISO 8601 interval); TimeSensor for playback",
+   "Astronomical year numbering (year 0 = 1 BCE), as in Giza Atlas GZ-10"
+  ],
+  [
+   "E13 Attribute Assignment",
+   "MetadataSet name=cN with grade, source",
+   "Makes the C/L/S grade a first-class, queryable record"
+  ],
+  [
+   "E31 Document / E73 Information Object",
+   "MetadataString source; Anchor url",
+   "The source a claim cites"
+  ],
+  [
+   "E21 Person / E74 Group",
+   "MetadataSet name=actor",
+   "P14 carried out by"
+  ],
+  [
+   "E54 Dimension",
+   "MetadataDouble + unit string",
+   "P43 has dimension"
+  ]
+ ],
+ "geo_to_x3d": [
+  [
+   "IFC IfcSite + IfcMapConversion",
+   "GeoLocation geoCoords + rotation",
+   "IfcMapConversion eastings/northings/orthogonalHeight, scale and rotation give the placement; needs a CRS to WGS84 step"
+  ],
+  [
+   "IFC IfcBuilding / IfcBuildingStorey",
+   "Transform tree under GeoLocation",
+   "Reuse confluence-ifc/v1 IFC to X3D path (model.ifc, 500,619 bytes)"
+  ],
+  [
+   "CityGML Building (LoD1-2)",
+   "GeoLocation + IndexedFaceSet",
+   "Surfaces map to faces; semantic class kept as MetadataString"
+  ],
+  [
+   "GeoSPARQL geo:Feature / geo:hasGeometry / geo:asWKT",
+   "GeoLocation geoCoords (point), GeoCoordinate (polygon)",
+   "WKT point lat/lon swap risk: GeoSPARQL default CRS is lon,lat; X3D GD is lat,lon"
+  ],
+  [
+   "USGS 3DEP DEM (1 m)",
+   "GeoElevationGrid",
+   "Not built in v1; EPQS point value used as one Confirmed anchor"
+  ]
+ ],
+ "traps": [
+  "X3D GD order is latitude, longitude, elevation; GeoJSON, WKT and GeoSPARQL default are longitude, latitude.",
+  "In the X3D 4.0 XSD a node's metadata child must come first in its content, as the x3d_mcp validator found on this build.",
+  "A schematic pyramid has a geometry status of schematic regardless of how well documented the monument is (Giza Atlas GZ-1)."
+ ]
+}
