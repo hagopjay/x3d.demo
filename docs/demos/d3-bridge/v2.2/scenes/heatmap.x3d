@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "https://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Immersive' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <head>
+    <component name='Shape' level='5'/>
+    <component name='Lighting' level='3'/>
+    <component name='Rendering' level='5'/>
+    <meta name='title' content='Heat terrain: X3D node types x demos'/>
+    <meta name='description' content='D3Blocks Heatmap re-expressed in 3D: each cell is a column whose height and colour both carry log(count).'/>
+    <meta name='generator' content='d3-x3d bridge v2.2 (tools/build2.mjs + x3d3.mjs)'/>
+    <meta name='d3-modules' content='d3-scale, d3-scale-chromatic (interpolateInferno), d3-array'/>
+    <meta name='data' content='X3D element counts in 620 .x3d files of x3d.demo docs/demos'/>
+  </head>
+  <Scene>
+    <WorldInfo title='Heat terrain: X3D node types x demos' info='&quot;D3Blocks Heatmap re-expressed in 3D: each cell is a column whose height and colour both carry log(count).&quot;'/>
+    <NavigationInfo type='"EXAMINE" "ANY"' headlight='false' transitionType='"ANIMATE"' transitionTime='1.2'/>
+    <Background skyColor='0.024 0.027 0.047, 0.063 0.075 0.114, 0.106 0.129 0.2' skyAngle='1.2 1.571' groundColor='0.024 0.027 0.047, 0.043 0.051 0.078' groundAngle='1.571'/>
+    <Viewpoint DEF='VP0' description='Overview' position='7.5 8 10.5' orientation='-0.64978 0.73104 0.20823 0.82628' centerOfRotation='0 0 0' fieldOfView='0.785'/>
+    <Viewpoint DEF='VP1' description='Low across rows' position='0 2.2 9.5' orientation='-1 0 0 0.16686' centerOfRotation='0 0.6 0' fieldOfView='0.785'/>
+    <Viewpoint DEF='VP2' description='Top down (the 2D heatmap)' position='0 15 0.01' orientation='-1 0 0 1.57013' centerOfRotation='0 0 0' fieldOfView='0.785'/>
+    <DirectionalLight direction='-0.45 -0.8 -0.4' intensity='1.25' color='1 0.96 0.9' shadows='true' shadowIntensity='0.55'/>
+    <DirectionalLight direction='0.6 -0.35 0.5' intensity='0.45' color='0.75 0.85 1'/>
+    <DirectionalLight direction='0.1 0.3 1' intensity='0.35' color='0.9 0.9 1'/>
+    <Transform translation='0 -0.04 0'><Shape><Appearance><PhysicalMaterial baseColor='0.051 0.063 0.094' roughness='0.9' metallic='0'/></Appearance><Box size='13.1 0.04 10.4'/></Shape></Transform>
+    <Transform translation='-4.8 1.6 -3.45'><Shape><Appearance DEF='A1'><PhysicalMaterial baseColor='0.988 1 0.643' roughness='0.45' metallic='0' emissiveColor='0.2 0.067 0'/></Appearance><Box size='0.258 3.2 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.6 -3.15'><Shape><Appearance USE='A1'/><Box size='0.258 3.2 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.519 -2.85'><Shape><Appearance><PhysicalMaterial baseColor='0.945 0.929 0.443' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 3.039 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.364 -2.55'><Shape><Appearance><PhysicalMaterial baseColor='0.984 0.745 0.137' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.727 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.402 -2.25'><Shape><Appearance><PhysicalMaterial baseColor='0.976 0.788 0.196' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.804 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.948 -1.95'><Shape><Appearance DEF='A5'><PhysicalMaterial baseColor='0.847 0.298 0.243' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.896 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.185 -1.65'><Shape><Appearance><PhysicalMaterial baseColor='0.973 0.529 0.055' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.37 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.005 -1.35'><Shape><Appearance DEF='A7'><PhysicalMaterial baseColor='0.102 0.114 0.153' roughness='1' metallic='0'/></Appearance><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.249 -1.05'><Shape><Appearance DEF='A8'><PhysicalMaterial baseColor='0.984 0.6 0.024' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.497 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.288 -0.75'><Shape><Appearance><PhysicalMaterial baseColor='0.988 0.651 0.047' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.577 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.224 -0.45'><Shape><Appearance><PhysicalMaterial baseColor='0.98 0.573 0.027' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.449 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.342 -0.15'><Shape><Appearance><PhysicalMaterial baseColor='0.984 0.714 0.102' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.683 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.641 0.15'><Shape><Appearance DEF='A12'><PhysicalMaterial baseColor='0.561 0.141 0.412' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.282 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.614 0.45'><Shape><Appearance DEF='A13'><PhysicalMaterial baseColor='0.533 0.133 0.416' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.228 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.937 1.05'><Shape><Appearance><PhysicalMaterial baseColor='0.835 0.29 0.255' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.874 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.086 1.35'><Shape><Appearance DEF='A15'><PhysicalMaterial baseColor='0.937 0.424 0.137' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.172 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.866 1.65'><Shape><Appearance><PhysicalMaterial baseColor='0.78 0.243 0.298' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.733 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.514 1.95'><Shape><Appearance DEF='A17'><PhysicalMaterial baseColor='0.427 0.094 0.431' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.029 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.749 2.25'><Shape><Appearance><PhysicalMaterial baseColor='0.671 0.184 0.369' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.498 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.086 2.85'><Shape><Appearance USE='A15'/><Box size='0.258 2.172 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 1.086 3.15'><Shape><Appearance USE='A15'/><Box size='0.258 2.172 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.734 3.45'><Shape><Appearance DEF='A19'><PhysicalMaterial baseColor='0.651 0.176 0.376' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.468 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 1.397 -3.45'><Shape><Appearance DEF='A20'><PhysicalMaterial baseColor='0.976 0.78 0.184' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.795 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 1.397 -3.15'><Shape><Appearance USE='A20'/><Box size='0.258 2.795 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 1.371 -2.85'><Shape><Appearance><PhysicalMaterial baseColor='0.98 0.753 0.149' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.742 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 1.397 -2.55'><Shape><Appearance USE='A20'/><Box size='0.258 2.795 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.996 -2.25'><Shape><Appearance DEF='A22'><PhysicalMaterial baseColor='0.882 0.337 0.208' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.992 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 1.299 -1.65'><Shape><Appearance DEF='A23'><PhysicalMaterial baseColor='0.988 0.659 0.051' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.598 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.926 -1.05'><Shape><Appearance DEF='A24'><PhysicalMaterial baseColor='0.831 0.282 0.259' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.852 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.996 -0.75'><Shape><Appearance USE='A22'/><Box size='0.258 1.992 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.808 1.05'><Shape><Appearance DEF='A25'><PhysicalMaterial baseColor='0.725 0.208 0.337' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.615 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 1.048 1.35'><Shape><Appearance DEF='A26'><PhysicalMaterial baseColor='0.914 0.38 0.169' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.095 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.244 1.65'><Shape><Appearance DEF='A27'><PhysicalMaterial baseColor='0.141 0.047 0.31' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.988 1.95'><Shape><Appearance><PhysicalMaterial baseColor='0.878 0.333 0.212' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.975 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 1.048 2.85'><Shape><Appearance USE='A26'/><Box size='0.258 2.095 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 1.048 3.15'><Shape><Appearance USE='A26'/><Box size='0.258 2.095 0.258'/></Shape></Transform>
+    <Transform translation='-4.5 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 1.281 -3.45'><Shape><Appearance DEF='A29'><PhysicalMaterial baseColor='0.988 0.639 0.035' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.562 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 1.281 -3.15'><Shape><Appearance USE='A29'/><Box size='0.258 2.562 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 1.278 -2.85'><Shape><Appearance USE='A29'/><Box size='0.258 2.556 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 1.281 -2.55'><Shape><Appearance USE='A29'/><Box size='0.258 2.562 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.458 -2.25'><Shape><Appearance DEF='A30'><PhysicalMaterial baseColor='0.373 0.075 0.431' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 0.917 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 1.379 -1.95'><Shape><Appearance><PhysicalMaterial baseColor='0.98 0.769 0.165' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.759 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.808 -1.65'><Shape><Appearance USE='A25'/><Box size='0.258 1.615 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 1.239 -1.05'><Shape><Appearance DEF='A32'><PhysicalMaterial baseColor='0.984 0.592 0.024' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.479 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.458 -0.75'><Shape><Appearance USE='A30'/><Box size='0.258 0.917 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.808 1.35'><Shape><Appearance USE='A25'/><Box size='0.258 1.615 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.244 1.65'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 1.14 1.95'><Shape><Appearance DEF='A33'><PhysicalMaterial baseColor='0.957 0.475 0.094' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.28 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 1.144 2.25'><Shape><Appearance DEF='A34'><PhysicalMaterial baseColor='0.961 0.482 0.09' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.288 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.808 2.85'><Shape><Appearance USE='A25'/><Box size='0.258 1.615 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.808 3.15'><Shape><Appearance USE='A25'/><Box size='0.258 1.615 0.258'/></Shape></Transform>
+    <Transform translation='-4.2 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 1.3 -3.45'><Shape><Appearance><PhysicalMaterial baseColor='0.988 0.667 0.059' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.6 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 1.277 -3.15'><Shape><Appearance USE='A29'/><Box size='0.258 2.553 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 1.263 -2.85'><Shape><Appearance><PhysicalMaterial baseColor='0.988 0.624 0.027' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.526 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 1.125 -2.55'><Shape><Appearance DEF='A37'><PhysicalMaterial baseColor='0.953 0.463 0.106' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.25 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 1.114 -2.25'><Shape><Appearance><PhysicalMaterial baseColor='0.945 0.451 0.114' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.228 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.604 -1.65'><Shape><Appearance DEF='A39'><PhysicalMaterial baseColor='0.522 0.129 0.42' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.208 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.822 -1.05'><Shape><Appearance><PhysicalMaterial baseColor='0.741 0.22 0.325' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.643 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 1.068 -0.75'><Shape><Appearance><PhysicalMaterial baseColor='0.925 0.404 0.149' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.135 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.918 -0.45'><Shape><Appearance DEF='A42'><PhysicalMaterial baseColor='0.824 0.275 0.267' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.835 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.928 -0.15'><Shape><Appearance USE='A24'/><Box size='0.258 1.855 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.877 0.15'><Shape><Appearance DEF='A43'><PhysicalMaterial baseColor='0.792 0.251 0.29' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.754 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 1.09 0.45'><Shape><Appearance USE='A15'/><Box size='0.258 2.18 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.712 0.75'><Shape><Appearance DEF='A44'><PhysicalMaterial baseColor='0.635 0.169 0.384' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.423 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.974 1.05'><Shape><Appearance><PhysicalMaterial baseColor='0.867 0.318 0.227' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.949 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.781 1.35'><Shape><Appearance DEF='A46'><PhysicalMaterial baseColor='0.702 0.196 0.353' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.561 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.604 1.65'><Shape><Appearance USE='A39'/><Box size='0.258 1.208 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.03 1.95'><Shape><Appearance DEF='A47'><PhysicalMaterial baseColor='0 0 0.016' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.458 2.55'><Shape><Appearance USE='A30'/><Box size='0.258 0.917 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.3 2.85'><Shape><Appearance DEF='A48'><PhysicalMaterial baseColor='0.212 0.035 0.38' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.3 3.15'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='-3.9 0.497 3.45'><Shape><Appearance DEF='A49'><PhysicalMaterial baseColor='0.416 0.09 0.431' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 0.995 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 1.355 -3.45'><Shape><Appearance><PhysicalMaterial baseColor='0.984 0.737 0.129' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.71 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 1.239 -3.15'><Shape><Appearance USE='A32'/><Box size='0.258 2.479 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 1.323 -2.85'><Shape><Appearance><PhysicalMaterial baseColor='0.988 0.69 0.078' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.646 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 1.165 -2.55'><Shape><Appearance><PhysicalMaterial baseColor='0.969 0.51 0.071' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.33 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 1 -2.25'><Shape><Appearance><PhysicalMaterial baseColor='0.886 0.341 0.204' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.877 -1.65'><Shape><Appearance USE='A43'/><Box size='0.258 1.754 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 1.098 -1.05'><Shape><Appearance DEF='A54'><PhysicalMaterial baseColor='0.941 0.435 0.125' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.197 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.982 -0.75'><Shape><Appearance><PhysicalMaterial baseColor='0.875 0.325 0.216' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.964 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.458 -0.45'><Shape><Appearance USE='A30'/><Box size='0.258 0.917 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.712 -0.15'><Shape><Appearance USE='A44'/><Box size='0.258 1.423 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 1.298 0.15'><Shape><Appearance USE='A23'/><Box size='0.258 2.596 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.641 1.65'><Shape><Appearance USE='A12'/><Box size='0.258 1.282 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.3 2.55'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.6 1.013 3.45'><Shape><Appearance><PhysicalMaterial baseColor='0.894 0.353 0.192' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.026 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 1.458 -3.45'><Shape><Appearance><PhysicalMaterial baseColor='0.961 0.859 0.298' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.916 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 1.146 -3.15'><Shape><Appearance USE='A34'/><Box size='0.258 2.291 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 1.46 -2.85'><Shape><Appearance><PhysicalMaterial baseColor='0.957 0.867 0.31' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.919 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.497 -2.55'><Shape><Appearance USE='A49'/><Box size='0.258 0.995 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.948 -2.25'><Shape><Appearance USE='A5'/><Box size='0.258 1.896 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.514 -1.65'><Shape><Appearance USE='A17'/><Box size='0.258 1.029 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.435 -1.05'><Shape><Appearance DEF='A59'><PhysicalMaterial baseColor='0.353 0.067 0.431' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 1.136 -0.45'><Shape><Appearance USE='A33'/><Box size='0.258 2.272 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.03 -0.15'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.409 0.45'><Shape><Appearance DEF='A60'><PhysicalMaterial baseColor='0.322 0.055 0.427' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.03 0.75'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.244 1.05'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.593 1.65'><Shape><Appearance DEF='A61'><PhysicalMaterial baseColor='0.51 0.125 0.424' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.187 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.941 2.55'><Shape><Appearance><PhysicalMaterial baseColor='0.843 0.294 0.247' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.882 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3.3 0.593 3.45'><Shape><Appearance USE='A61'/><Box size='0.258 1.187 0.258'/></Shape></Transform>
+    <Transform translation='-3 1.098 -3.45'><Shape><Appearance USE='A54'/><Box size='0.258 2.197 0.258'/></Shape></Transform>
+    <Transform translation='-3 1.098 -3.15'><Shape><Appearance USE='A54'/><Box size='0.258 2.197 0.258'/></Shape></Transform>
+    <Transform translation='-3 1.083 -2.85'><Shape><Appearance DEF='A63'><PhysicalMaterial baseColor='0.933 0.416 0.141' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.166 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.005 -2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3 1.056 -2.25'><Shape><Appearance DEF='A64'><PhysicalMaterial baseColor='0.922 0.392 0.161' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.112 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3 1.35 -1.35'><Shape><Appearance DEF='A65'><PhysicalMaterial baseColor='0.984 0.729 0.122' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.7 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.96 -0.75'><Shape><Appearance DEF='A66'><PhysicalMaterial baseColor='0.855 0.306 0.235' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.92 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.768 0.15'><Shape><Appearance DEF='A67'><PhysicalMaterial baseColor='0.69 0.192 0.357' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.535 0.258'/></Shape></Transform>
+    <Transform translation='-3 1.042 0.45'><Shape><Appearance USE='A26'/><Box size='0.258 2.085 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.768 0.75'><Shape><Appearance USE='A67'/><Box size='0.258 1.535 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.999 1.05'><Shape><Appearance USE='A22'/><Box size='0.258 1.998 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.768 1.35'><Shape><Appearance USE='A67'/><Box size='0.258 1.535 0.258'/></Shape></Transform>
+    <Transform translation='-3 1.022 1.65'><Shape><Appearance DEF='A68'><PhysicalMaterial baseColor='0.898 0.361 0.188' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.044 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.244 1.95'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.379 2.55'><Shape><Appearance DEF='A69'><PhysicalMaterial baseColor='0.29 0.047 0.42' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 0.759 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.244 2.85'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.244 3.15'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-3 0.514 3.45'><Shape><Appearance USE='A17'/><Box size='0.258 1.029 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 1.098 -3.45'><Shape><Appearance USE='A54'/><Box size='0.258 2.197 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 1.098 -3.15'><Shape><Appearance USE='A54'/><Box size='0.258 2.197 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 1.083 -2.85'><Shape><Appearance USE='A63'/><Box size='0.258 2.166 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.005 -2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 1.056 -2.25'><Shape><Appearance USE='A64'/><Box size='0.258 2.112 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 1.35 -1.35'><Shape><Appearance USE='A65'/><Box size='0.258 2.7 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.96 -0.75'><Shape><Appearance USE='A66'/><Box size='0.258 1.92 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.768 0.15'><Shape><Appearance USE='A67'/><Box size='0.258 1.535 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 1.042 0.45'><Shape><Appearance USE='A26'/><Box size='0.258 2.085 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.768 0.75'><Shape><Appearance USE='A67'/><Box size='0.258 1.535 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.999 1.05'><Shape><Appearance USE='A22'/><Box size='0.258 1.998 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.768 1.35'><Shape><Appearance USE='A67'/><Box size='0.258 1.535 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 1.022 1.65'><Shape><Appearance USE='A68'/><Box size='0.258 2.044 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.244 1.95'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.379 2.55'><Shape><Appearance USE='A69'/><Box size='0.258 0.759 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.244 2.85'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.244 3.15'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-2.7 0.514 3.45'><Shape><Appearance USE='A17'/><Box size='0.258 1.029 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 1.247 -3.45'><Shape><Appearance USE='A8'/><Box size='0.258 2.494 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 1.247 -3.15'><Shape><Appearance USE='A8'/><Box size='0.258 2.494 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 1.193 -2.85'><Shape><Appearance><PhysicalMaterial baseColor='0.973 0.537 0.047' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.386 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 1.008 -2.55'><Shape><Appearance><PhysicalMaterial baseColor='0.89 0.349 0.2' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.016 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.344 -2.25'><Shape><Appearance DEF='A72'><PhysicalMaterial baseColor='0.259 0.039 0.408' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 0.687 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 1.199 -1.65'><Shape><Appearance><PhysicalMaterial baseColor='0.976 0.545 0.043' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.399 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.887 -1.05'><Shape><Appearance DEF='A74'><PhysicalMaterial baseColor='0.796 0.255 0.286' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.773 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.344 -0.75'><Shape><Appearance USE='A72'/><Box size='0.258 0.687 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.244 1.05'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.665 1.35'><Shape><Appearance DEF='A75'><PhysicalMaterial baseColor='0.584 0.149 0.404' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.33 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.244 1.65'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.665 2.85'><Shape><Appearance USE='A75'/><Box size='0.258 1.33 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.665 3.15'><Shape><Appearance USE='A75'/><Box size='0.258 1.33 0.258'/></Shape></Transform>
+    <Transform translation='-2.4 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 1.099 -3.45'><Shape><Appearance USE='A54'/><Box size='0.258 2.198 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 1.099 -3.15'><Shape><Appearance USE='A54'/><Box size='0.258 2.198 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 -2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 1.099 -2.55'><Shape><Appearance USE='A54'/><Box size='0.258 2.198 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 -2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.244 -0.15'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 1.096 0.75'><Shape><Appearance DEF='A76'><PhysicalMaterial baseColor='0.937 0.431 0.129' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.192 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 1.095 2.55'><Shape><Appearance USE='A76'/><Box size='0.258 2.19 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-2.1 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 1.139 -3.45'><Shape><Appearance USE='A33'/><Box size='0.258 2.277 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 1.095 -3.15'><Shape><Appearance USE='A76'/><Box size='0.258 2.19 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 1.095 -2.85'><Shape><Appearance USE='A76'/><Box size='0.258 2.19 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 1.095 -2.55'><Shape><Appearance USE='A76'/><Box size='0.258 2.19 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 -2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.884 -1.65'><Shape><Appearance USE='A74'/><Box size='0.258 1.768 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.955 -1.05'><Shape><Appearance DEF='A77'><PhysicalMaterial baseColor='0.851 0.302 0.239' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.91 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.793 -0.15'><Shape><Appearance><PhysicalMaterial baseColor='0.714 0.204 0.345' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.585 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.999 0.15'><Shape><Appearance USE='A22'/><Box size='0.258 1.998 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.514 1.65'><Shape><Appearance USE='A17'/><Box size='0.258 1.029 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.8 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 1.124 -3.45'><Shape><Appearance USE='A37'/><Box size='0.258 2.248 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 1.123 -3.15'><Shape><Appearance USE='A37'/><Box size='0.258 2.247 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 1.134 -2.85'><Shape><Appearance USE='A33'/><Box size='0.258 2.268 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.005 -2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.808 -2.25'><Shape><Appearance USE='A25'/><Box size='0.258 1.615 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.706 -1.65'><Shape><Appearance DEF='A79'><PhysicalMaterial baseColor='0.627 0.165 0.388' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.411 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.03 -1.05'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 1.075 -0.45'><Shape><Appearance><PhysicalMaterial baseColor='0.929 0.412 0.145' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.15 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.672 -0.15'><Shape><Appearance DEF='A81'><PhysicalMaterial baseColor='0.592 0.153 0.4' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.345 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.244 0.15'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.772 0.45'><Shape><Appearance USE='A67'/><Box size='0.258 1.544 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 1.049 0.75'><Shape><Appearance><PhysicalMaterial baseColor='0.918 0.388 0.165' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.097 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.781 1.05'><Shape><Appearance USE='A46'/><Box size='0.258 1.561 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.165 1.65'><Shape><Appearance DEF='A83'><PhysicalMaterial baseColor='0.071 0.039 0.196' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.808 2.55'><Shape><Appearance USE='A25'/><Box size='0.258 1.615 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.5 0.811 3.45'><Shape><Appearance><PhysicalMaterial baseColor='0.729 0.212 0.333' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.622 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.953 -3.45'><Shape><Appearance USE='A77'/><Box size='0.258 1.907 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.953 -3.15'><Shape><Appearance USE='A77'/><Box size='0.258 1.907 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.953 -2.85'><Shape><Appearance USE='A77'/><Box size='0.258 1.907 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.497 -2.55'><Shape><Appearance USE='A49'/><Box size='0.258 0.995 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.657 -2.25'><Shape><Appearance><PhysicalMaterial baseColor='0.576 0.149 0.404' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.315 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 1.262 -1.95'><Shape><Appearance><PhysicalMaterial baseColor='0.984 0.616 0.027' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.524 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.03 -1.05'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.03 -0.75'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.03 -0.45'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.828 0.75'><Shape><Appearance><PhysicalMaterial baseColor='0.749 0.224 0.322' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.656 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.03 1.65'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.948 1.95'><Shape><Appearance USE='A5'/><Box size='0.258 1.896 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.948 2.25'><Shape><Appearance USE='A5'/><Box size='0.258 1.896 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-1.2 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.835 -3.45'><Shape><Appearance DEF='A88'><PhysicalMaterial baseColor='0.753 0.227 0.318' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.669 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.835 -3.15'><Shape><Appearance USE='A88'/><Box size='0.258 1.669 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.754 -2.85'><Shape><Appearance DEF='A89'><PhysicalMaterial baseColor='0.678 0.188 0.365' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.508 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.861 -2.55'><Shape><Appearance DEF='A90'><PhysicalMaterial baseColor='0.776 0.239 0.302' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.722 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.835 -2.25'><Shape><Appearance USE='A88'/><Box size='0.258 1.669 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 1.16 -1.95'><Shape><Appearance><PhysicalMaterial baseColor='0.965 0.502 0.075' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 2.321 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.344 1.65'><Shape><Appearance USE='A72'/><Box size='0.258 0.687 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.891 2.25'><Shape><Appearance><PhysicalMaterial baseColor='0.8 0.259 0.282' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.783 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.9 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.979 -3.45'><Shape><Appearance DEF='A93'><PhysicalMaterial baseColor='0.871 0.322 0.22' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.958 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.979 -3.15'><Shape><Appearance USE='A93'/><Box size='0.258 1.958 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.65 -2.85'><Shape><Appearance DEF='A94'><PhysicalMaterial baseColor='0.573 0.145 0.408' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.299 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.005 -2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.952 -2.25'><Shape><Appearance USE='A77'/><Box size='0.258 1.903 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.244 -0.75'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.928 -0.45'><Shape><Appearance USE='A24'/><Box size='0.258 1.855 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.03 -0.15'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.53 0.15'><Shape><Appearance DEF='A95'><PhysicalMaterial baseColor='0.447 0.102 0.431' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.06 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.734 0.45'><Shape><Appearance USE='A19'/><Box size='0.258 1.468 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.858 0.75'><Shape><Appearance USE='A90'/><Box size='0.258 1.716 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.544 1.05'><Shape><Appearance DEF='A96'><PhysicalMaterial baseColor='0.459 0.106 0.431' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.089 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.165 1.35'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.641 1.65'><Shape><Appearance USE='A12'/><Box size='0.258 1.282 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.918 2.55'><Shape><Appearance USE='A42'/><Box size='0.258 1.835 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.3 2.85'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.3 3.15'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='-0.6 0.903 3.45'><Shape><Appearance><PhysicalMaterial baseColor='0.812 0.267 0.275' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.806 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.93 -3.45'><Shape><Appearance USE='A24'/><Box size='0.258 1.859 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.93 -3.15'><Shape><Appearance USE='A24'/><Box size='0.258 1.859 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.957 -2.85'><Shape><Appearance USE='A66'/><Box size='0.258 1.913 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.882 -2.55'><Shape><Appearance USE='A43'/><Box size='0.258 1.764 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.582 -2.25'><Shape><Appearance DEF='A98'><PhysicalMaterial baseColor='0.502 0.122 0.424' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.165 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.706 -1.65'><Shape><Appearance USE='A79'/><Box size='0.258 1.411 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.479 -1.05'><Shape><Appearance DEF='A99'><PhysicalMaterial baseColor='0.396 0.082 0.431' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 0.958 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.497 -0.45'><Shape><Appearance USE='A49'/><Box size='0.258 0.995 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.65 -0.15'><Shape><Appearance USE='A94'/><Box size='0.258 1.299 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.03 0.75'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.03 1.35'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.633 1.65'><Shape><Appearance DEF='A100'><PhysicalMaterial baseColor='0.553 0.137 0.412' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.265 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.479 2.55'><Shape><Appearance USE='A99'/><Box size='0.258 0.958 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.544 2.85'><Shape><Appearance USE='A96'/><Box size='0.258 1.089 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.544 3.15'><Shape><Appearance USE='A96'/><Box size='0.258 1.089 0.258'/></Shape></Transform>
+    <Transform translation='-0.3 0.633 3.45'><Shape><Appearance USE='A100'/><Box size='0.258 1.265 0.258'/></Shape></Transform>
+    <Transform translation='0 0.759 -3.45'><Shape><Appearance USE='A89'/><Box size='0.258 1.517 0.258'/></Shape></Transform>
+    <Transform translation='0 0.785 -3.15'><Shape><Appearance DEF='A101'><PhysicalMaterial baseColor='0.706 0.2 0.349' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.569 0.258'/></Shape></Transform>
+    <Transform translation='0 0.479 -2.85'><Shape><Appearance USE='A99'/><Box size='0.258 0.958 0.258'/></Shape></Transform>
+    <Transform translation='0 0.754 -2.55'><Shape><Appearance USE='A89'/><Box size='0.258 1.508 0.258'/></Shape></Transform>
+    <Transform translation='0 0.772 -2.25'><Shape><Appearance USE='A67'/><Box size='0.258 1.544 0.258'/></Shape></Transform>
+    <Transform translation='0 0.544 -1.95'><Shape><Appearance USE='A96'/><Box size='0.258 1.089 0.258'/></Shape></Transform>
+    <Transform translation='0 0.244 -1.65'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='0 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0 0.165 -0.75'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='0 0.693 -0.45'><Shape><Appearance><PhysicalMaterial baseColor='0.616 0.161 0.392' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.386 0.258'/></Shape></Transform>
+    <Transform translation='0 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0 0.379 0.15'><Shape><Appearance USE='A69'/><Box size='0.258 0.759 0.258'/></Shape></Transform>
+    <Transform translation='0 0.409 0.45'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='0 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0 0.244 1.05'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='0 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0 0.409 1.65'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='0 0.03 1.95'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='0 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0 0.165 2.55'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='0 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.754 -3.45'><Shape><Appearance USE='A89'/><Box size='0.258 1.508 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.754 -3.15'><Shape><Appearance USE='A89'/><Box size='0.258 1.508 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.641 -2.85'><Shape><Appearance USE='A12'/><Box size='0.258 1.282 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.244 -2.55'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.754 -2.25'><Shape><Appearance USE='A89'/><Box size='0.258 1.508 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.479 0.15'><Shape><Appearance USE='A99'/><Box size='0.258 0.958 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.03 0.75'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.165 1.05'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.3 1.65'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.3 1.95'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.3 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.847 -3.45'><Shape><Appearance DEF='A103'><PhysicalMaterial baseColor='0.765 0.231 0.31' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.693 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.847 -3.15'><Shape><Appearance USE='A103'/><Box size='0.258 1.693 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.858 -2.85'><Shape><Appearance USE='A90'/><Box size='0.258 1.716 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.3 -2.55'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 -2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.789 -1.65'><Shape><Appearance USE='A101'/><Box size='0.258 1.577 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.582 -1.05'><Shape><Appearance USE='A98'/><Box size='0.258 1.165 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.244 1.65'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.6 0.835 3.45'><Shape><Appearance USE='A88'/><Box size='0.258 1.669 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.497 -3.45'><Shape><Appearance USE='A49'/><Box size='0.258 0.995 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.497 -3.15'><Shape><Appearance USE='A49'/><Box size='0.258 0.995 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.781 -2.85'><Shape><Appearance USE='A46'/><Box size='0.258 1.561 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 -2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.544 -2.25'><Shape><Appearance USE='A96'/><Box size='0.258 1.089 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.497 -0.45'><Shape><Appearance USE='A49'/><Box size='0.258 0.995 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.244 0.15'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.514 1.05'><Shape><Appearance USE='A17'/><Box size='0.258 1.029 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='0.9 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.479 -3.45'><Shape><Appearance USE='A99'/><Box size='0.258 0.958 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.479 -3.15'><Shape><Appearance USE='A99'/><Box size='0.258 0.958 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.497 -2.85'><Shape><Appearance USE='A49'/><Box size='0.258 0.995 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.479 -2.55'><Shape><Appearance USE='A99'/><Box size='0.258 0.958 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.435 -2.25'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.93 -1.95'><Shape><Appearance USE='A24'/><Box size='0.258 1.859 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.165 -1.05'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.435 -0.45'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.435 1.95'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.665 2.25'><Shape><Appearance USE='A75'/><Box size='0.258 1.33 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.2 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.614 -3.45'><Shape><Appearance USE='A13'/><Box size='0.258 1.228 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.623 -3.15'><Shape><Appearance><PhysicalMaterial baseColor='0.541 0.133 0.416' roughness='0.45' metallic='0'/></Appearance><Box size='0.258 1.247 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.479 -2.85'><Shape><Appearance USE='A99'/><Box size='0.258 0.958 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.604 -2.55'><Shape><Appearance USE='A39'/><Box size='0.258 1.208 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.593 -2.25'><Shape><Appearance USE='A61'/><Box size='0.258 1.187 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.244 -1.65'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.165 -0.75'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.435 -0.45'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.379 0.15'><Shape><Appearance USE='A69'/><Box size='0.258 0.759 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.165 0.45'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.165 1.05'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.409 1.65'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.03 1.95'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.165 2.55'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.5 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.672 -3.45'><Shape><Appearance USE='A81'/><Box size='0.258 1.345 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.665 -3.15'><Shape><Appearance USE='A75'/><Box size='0.258 1.33 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.734 -2.85'><Shape><Appearance USE='A19'/><Box size='0.258 1.468 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.497 -2.55'><Shape><Appearance USE='A49'/><Box size='0.258 0.995 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 -2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.244 -1.95'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.3 -1.65'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.435 -1.05'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.497 -0.15'><Shape><Appearance USE='A49'/><Box size='0.258 0.995 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.409 1.05'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.458 1.65'><Shape><Appearance USE='A30'/><Box size='0.258 0.917 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.03 2.25'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='1.8 0.53 3.45'><Shape><Appearance USE='A95'/><Box size='0.258 1.06 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.544 -3.45'><Shape><Appearance USE='A96'/><Box size='0.258 1.089 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.544 -3.15'><Shape><Appearance USE='A96'/><Box size='0.258 1.089 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.458 -2.85'><Shape><Appearance USE='A30'/><Box size='0.258 0.917 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.409 -2.55'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.479 -2.25'><Shape><Appearance USE='A99'/><Box size='0.258 0.958 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.3 -1.65'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.3 -0.75'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.03 1.05'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.479 1.65'><Shape><Appearance USE='A99'/><Box size='0.258 0.958 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.1 0.409 3.45'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.593 -3.45'><Shape><Appearance USE='A61'/><Box size='0.258 1.187 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.593 -3.15'><Shape><Appearance USE='A61'/><Box size='0.258 1.187 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.593 -2.85'><Shape><Appearance USE='A61'/><Box size='0.258 1.187 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.593 -2.55'><Shape><Appearance USE='A61'/><Box size='0.258 1.187 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.379 -2.25'><Shape><Appearance USE='A69'/><Box size='0.258 0.759 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.514 -1.05'><Shape><Appearance USE='A17'/><Box size='0.258 1.029 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.379 -0.45'><Shape><Appearance USE='A69'/><Box size='0.258 0.759 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.165 1.05'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.03 1.65'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.4 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.409 -3.45'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.409 -3.15'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.03 -2.85'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.03 -2.55'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.344 -2.25'><Shape><Appearance USE='A72'/><Box size='0.258 0.687 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.409 -1.95'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.244 1.65'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.03 2.25'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='2.7 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.409 -3.45'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='3 0.409 -3.15'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='3 0.03 -2.85'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='3 0.03 -2.55'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='3 0.344 -2.25'><Shape><Appearance USE='A72'/><Box size='0.258 0.687 0.258'/></Shape></Transform>
+    <Transform translation='3 0.409 -1.95'><Shape><Appearance USE='A60'/><Box size='0.258 0.819 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.244 1.65'><Shape><Appearance USE='A27'/><Box size='0.258 0.488 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.03 2.25'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.435 -3.45'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.435 -3.15'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.435 -2.85'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.435 -2.55'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 -2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.3 -1.65'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.3 -1.05'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.344 0.15'><Shape><Appearance USE='A72'/><Box size='0.258 0.687 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.3 1.65'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.3 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.458 -3.45'><Shape><Appearance USE='A30'/><Box size='0.258 0.917 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.03 -3.15'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 -2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.03 -2.55'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.458 -2.25'><Shape><Appearance USE='A30'/><Box size='0.258 0.917 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.03 -1.05'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.6 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.435 -3.45'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.435 -3.15'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.435 -2.85'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 -2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 -2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.435 -1.05'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.03 1.65'><Shape><Appearance USE='A47'/><Box size='0.258 0.06 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='3.9 0.435 3.45'><Shape><Appearance USE='A59'/><Box size='0.258 0.871 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.3 -3.45'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.3 -3.15'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.3 -2.85'><Shape><Appearance USE='A48'/><Box size='0.258 0.6 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.165 -2.55'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.165 -2.25'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.165 -1.65'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.165 -0.45'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.165 1.65'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.2 0.165 3.45'><Shape><Appearance USE='A83'/><Box size='0.258 0.33 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.379 1.65'><Shape><Appearance USE='A69'/><Box size='0.258 0.759 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.5 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 -0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 0.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 0.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 0.75'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 1.05'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 1.35'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 1.65'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 1.95'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 2.25'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 2.55'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 2.85'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 3.15'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='4.8 0.005 3.45'><Shape><Appearance USE='A7'/><Box size='0.258 0.01 0.258'/></Shape></Transform>
+    <Transform translation='-4.8 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance DEF='A105'><UnlitMaterial emissiveColor='0.667 0.702 0.773'/></Appearance><Text string='&quot;giza-osiris-hall&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-4.5 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;hypergraph&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-4.2 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;math-concept-graph&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-3.9 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;gobbler-worlds-within&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-3.6 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;ten-minute-physics&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-3.3 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;bridge-blenderizer&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-3 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;dynasty-loom&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-2.7 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;dynasty-loom-webgpu&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-2.4 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;ontology-constellation&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-2.1 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;geotiling&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-1.8 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;rigid-engines&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-1.5 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;material-odyssey-webgpu&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-1.2 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;confluence-ifc&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-0.9 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;medical-provenance&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-0.6 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;library-hall-webgpu&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-0.3 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;blender-x3d-io&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='0 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;gobbler-gyroscope-webgpu&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='0.3 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;loomsong&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='0.6 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;three-pathtracer&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='0.9 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;gobbler-demiurge-webgpu&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='1.2 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;heritage-geo&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='1.5 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;gobbler3-webgpu&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='1.8 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;ontology-lab&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='2.1 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;stem&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='2.4 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;masonic-lodge&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='2.7 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;manifold-webgpu&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='3 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;manifold&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='3.3 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;timeline-theatre-gsap&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='3.6 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;webgpu-compute&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='3.9 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;x3d-trace-viewer&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='4.2 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;lumen-interference-xite&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='4.5 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;heritage-facade&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='4.8 0.01 3.85' rotation='-0.5774 0.5774 0.5774 2.0944'><Shape><Appearance USE='A105'/><Text string='&quot;tether-firehose&quot;' solid='false'><FontStyle family='"SANS"' size='0.13' justify='"BEGIN" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -3.45' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Shape&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -3.15' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Appearance&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -2.85' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Transform&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -2.55' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Material&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -2.25' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Coordinate&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -1.95' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;MetadataString&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -1.65' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Sphere&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -1.35' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;ProtoInstance&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -1.05' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Box&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -0.75' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;IndexedLineSet&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -0.45' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;IndexedFaceSet&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 -0.15' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Cylinder&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 0.15' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;PositionInterpolator&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 0.45' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;UnlitMaterial&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 0.75' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;ImageTexture&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 1.05' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Group&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 1.35' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Billboard&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 1.65' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Viewpoint&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 1.95' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;TouchSensor&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 2.25' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;MetadataSet&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 2.55' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;TextureCoordinate&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 2.85' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;Text&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 3.15' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;FontStyle&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-5.1 0.01 3.45' rotation='1 0 0 -1.5708'><Shape><Appearance USE='A105'/><Text string='&quot;PhysicalMaterial&quot;' solid='false'><FontStyle family='"SANS"' size='0.14' justify='"END" "MIDDLE"'/></Text></Shape></Transform>
+    <Transform translation='-4.75 3.6 -3.6'><Billboard axisOfRotation='0 0 0'><Shape><Appearance><UnlitMaterial emissiveColor='1 0.812 0.541'/></Appearance><Text string='&quot;max 3146&quot;' solid='false'><FontStyle family='"SANS"' size='0.2' justify='"MIDDLE" "MIDDLE"'/></Text></Shape></Billboard></Transform>
+    <EXPORT localDEF='VP0' AS='VP0'/>
+    <EXPORT localDEF='VP1' AS='VP1'/>
+    <EXPORT localDEF='VP2' AS='VP2'/>
+  </Scene>
+</X3D>
