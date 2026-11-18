@@ -242,3 +242,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/accretion.jpg | 85715bee9fcf5d915f4c5779c68d83c1300094cdf504ec11a43370ad84542f3f | 77943 |
+
+## Front-page card picture (v35)
+`sri-yantra-harp` is `x3d.mandala/docs/media/harp-2.0-strikes.png` from hagopjay/x3d.loom main (1280 x 800 PNG), cropped to y 20 to 740 (1280 x 720) and scaled to 960 x 540.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/sri-yantra-harp.jpg | a17e987338ad01fce20fb1a1369b58f5d51826b0800e24d55c4dac5809e64600 | 80137 |
