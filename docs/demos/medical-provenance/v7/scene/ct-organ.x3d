@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Full" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="http://www.web3d.org/specifications/x3d-4.0.xsd">
+<head><meta name="title" content="medical-provenance v7: CT with the NIH pancreas label"/><meta name="description" content="Open TCIA Pancreas-CT series with the open pancreas label as an FMA-linked segment; educational proof of concept, not medical advice."/></head>
+<Scene>
+<NavigationInfo type='"EXAMINE" "ANY"' headlight="true"/>
+<Viewpoint DEF="VP_FRONT" description="Front (anterior)" position="0 0 0.9" orientation="0 0 1 0" centerOfRotation="0 0 0"/>
+<Transform DEF="VOL_T">
+<MetadataSet containerField='metadata' name="provenance" reference="x3d-demo:medprov"><MetadataSet name="source" reference="x3d-demo:medprov"><MetadataString name="series-instance-uid" value='"1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"'/><MetadataString name="license" value='"CC BY 3.0 (TCIA Pancreas-CT)"'/><MetadataString name="doi" value='"https://doi.org/10.7937/K9/TCIA.2016.tNB1kqBU"'/><MetadataString name="pixel-data-sha256" value='"4b79731c455b610d8c0f9a67bffff049c2fcb8ff5c494bbc0b4a2e09e8d5f49a"'/><MetadataString name="intensity-from" value='"v6/scene/ct-intensity.nrrd sha256 c951bea093fbce8af37d74423a4008e78c8d1cf6959aba0c2294fa7d01dcdbc4"'/></MetadataSet><MetadataSet name="label" reference="x3d-demo:medprov"><MetadataString name="source-file" value='"TCIA_pancreas_labels-02-05-2017/label0051.nii.gz"'/><MetadataString name="source-zip-sha256" value='"b251816638d7e85316635c46623dd885a6cdb7fa4fcf4eabc8c38fe0c4403c99"'/><MetadataString name="labelled-by" value='"medical student, verified or modified by a radiologist (collection page)"'/><MetadataString name="axis-fix" value='"slice axis flipped; chosen by lowest HU std inside the label of 8 flips"'/><MetadataString name="labels-sha256" value='"ca678d44c7e91fa7b5fcb15f3c797ff9df71435d20cabd9e8201ea9dea2c1310"'/></MetadataSet><MetadataSet name="segment-5" reference="x3d-demo:medprov"><MetadataString name="name" value='"pancreas"'/><MetadataString name="term" value='"FMA:7198 Pancreas (exact label, FMA 5.1.0, EBI OLS4)"'/><MetadataString name="grade" value='"L: dataset naming and annotator trust, not re-checked by this build"'/></MetadataSet></MetadataSet>
+<SegmentedVolumeData DEF="VOL" dimensions="0.36000 0.18400 0.36000" segmentEnabled="false false false false false true">
+ <ImageTexture3D containerField="voxels" url='"../../v6/scene/ct-intensity.nrrd"'/>
+ <ImageTexture3D containerField="segmentIdentifiers" url='"ct-organ-labels.nrrd"'/>
+ <ShadedVolumeStyle DEF="STY_1" containerField="renderStyle" lighting="true"><Material diffuseColor="0.55 0.75 1.0" specularColor="0.3 0.3 0.3"/></ShadedVolumeStyle>
+ <ShadedVolumeStyle DEF="STY_2" containerField="renderStyle" lighting="true"><Material diffuseColor="1.0 0.85 0.3" specularColor="0.3 0.3 0.3"/></ShadedVolumeStyle>
+ <ShadedVolumeStyle DEF="STY_3" containerField="renderStyle" lighting="true"><Material diffuseColor="0.85 0.45 0.4" specularColor="0.3 0.3 0.3"/></ShadedVolumeStyle>
+ <ShadedVolumeStyle DEF="STY_4" containerField="renderStyle" lighting="true"><Material diffuseColor="0.95 0.95 0.9" specularColor="0.3 0.3 0.3"/></ShadedVolumeStyle>
+ <ShadedVolumeStyle DEF="STY_5" containerField="renderStyle" lighting="true"><Material diffuseColor="0.2 1.0 0.3" specularColor="0.3 0.3 0.3"/></ShadedVolumeStyle>
+</SegmentedVolumeData>
+</Transform>
+</Scene></X3D>
