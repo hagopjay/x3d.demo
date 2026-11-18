@@ -350,3 +350,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/d3-bridge-v2.jpg | 8b5e22a56a455d9ce1149c47cd4dc538b16bdc9872fe90fcd7c409e6c1380935 | 85637 |
+
+## Front-page card picture (v54)
+`blender-splat` is `docs/demos/blender-splat/v1/img/splats.webp` (960 x 600, the page's own still of the 30,000-splat scene, X_ITE 16.7.1, headless Chromium with SwiftShader) cropped to y 0 to 540 and saved as 960 x 540 JPEG. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-splat.jpg | d73a3f68caa352f3a217626257fb192a169c39c3f1348c8ed3cbbd7dc2e649cb | 21757 |
