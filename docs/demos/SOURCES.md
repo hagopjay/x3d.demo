@@ -178,7 +178,7 @@ Headless screenshots (Chromium 153.0.8010.12, SwiftShader; X_ITE and three serve
 | assets/ontology-field-notes.jpg | dfa54ad509757a3977f17d1e363a2bdde9146d5978a93ca75707d68ae679d323 | 72754 |
 ## Ontology lab, semantic twins, ontology field notes (16 Nov 2026)
 
-- `ontology-lab/v1`: Semantic Twin Lab, 38 stations teaching RDF, SPARQL, a115c115b1a36cf1ae17ad6ab733ce89b6409003aa4137cb75f30d046897be45CL and reasoning on X3D, with live in-browser engines (N3.js 2.13.12, Comunica 5.4.1, shacl-engine 1.1.3), X_ITE 16.5.1 vendored, and recorded calls to the x3d_mcp semantic tools (hagopjay/x3d_mcp PR #17, #18).
+- `ontology-lab/v1`: Semantic Twin Lab, 38 stations teaching RDF, SPARQL, SHACL and reasoning on X3D, with live in-browser engines (N3.js 2.13.12, Comunica 5.4.1, shacl-engine 1.1.3), X_ITE 16.5.1 vendored, and recorded calls to the x3d_mcp semantic tools (hagopjay/x3d_mcp PR #17, #18).
 - `semantic-twins/v1`: nine twin cases (heritage, factory, hospital, building, warehouse, city, concert, fire code, farm). Source, oracle and MCP recordings: hagopjay/x3d_mcp `examples/semantic_twins/` (PR #21). Browser engines match the Python oracle on 90 of 90 runs.
 - `ontology-field-notes/v1`: Daniel Beach's essay "What the !@#$% is Ontology?" (Data Engineering Central) distilled, with a layer test measured on the nine cases. Short quotations only, credited on the page. Design notes: hagopjay/x3d.onto `semantic-lab/` (PR #18).
 
