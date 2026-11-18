@@ -1,0 +1,110 @@
+{
+ "@context": {
+  "prov": "http://www.w3.org/ns/prov#",
+  "skos": "http://www.w3.org/2004/02/skos/core#",
+  "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+  "grade": "urn:x3d:medprov:grade",
+  "instrument": "urn:x3d:medprov:instrument"
+ },
+ "@graph": [
+  {
+   "@id": "urn:x3d:medprov:v7:label.provenance",
+   "@type": "prov:Entity",
+   "rdfs:label": "label.provenance",
+   "skos:note": "Label file TCIA_pancreas_labels-02-05-2017/label0051.nii.gz from https://www.cancerimagingarchive.net/wp-content/uploads/TCIA_pancreas_labels-02-05-2017.zip (zip sha256 b251816638d7e85316635c46623dd885a6cdb7fa4fcf4eabc8c38fe0c4403c99, 998629 bytes): a 512 x 512 x 185 uint8 NIfTI mask with values 0 and 1, grid (0.703125, 0.703125, 1.0) mm, axis codes LAI.",
+   "grade": "C",
+   "instrument": "nibabel header read in build.py",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048_plus_NIH_pancreas_labels_TCIA_pancreas_labels-02-05-2017/label0051.nii.gz"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v7:label.method",
+   "@type": "prov:Entity",
+   "rdfs:label": "label.method",
+   "skos:note": "The collection page states that a medical student segmented the pancreas slice by slice and an experienced radiologist verified or modified it; the DICOM files were made from anonymized NIfTI volumes with ITK. Quoted from the collection page read on 2026-11-18, not independently audited.",
+   "grade": "L",
+   "instrument": "TCIA collection page",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048_plus_NIH_pancreas_labels_TCIA_pancreas_labels-02-05-2017/label0051.nii.gz"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v7:label.licence",
+   "@type": "prov:Entity",
+   "rdfs:label": "label.licence",
+   "skos:note": "The collection is CC BY 3.0 (archive API, checked in v6 for the image series). The label zip is offered on the same collection page; this build did not find a separate licence for it, so it is treated as covered by the collection licence and the derived label volume is shipped under CC BY 3.0 with the same notice. Check before reuse.",
+   "grade": "L",
+   "instrument": "TCIA collection page",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048_plus_NIH_pancreas_labels_TCIA_pancreas_labels-02-05-2017/label0051.nii.gz"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v7:label.alignment",
+   "@type": "prov:Entity",
+   "rdfs:label": "label.alignment",
+   "skos:note": "The label NIfTI affine has an arbitrary origin, so alignment to the DICOM was tested, not assumed. All 8 flips of the three axes were tried; the winner (slice axis flipped only) puts the label on HU 105.1 +/- 20.0 with 100 percent of voxels in -30..250 HU. The other seven give std HU 41.0 to 270.4.",
+   "grade": "C",
+   "instrument": "build.py, HU read under each flip",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048_plus_NIH_pancreas_labels_TCIA_pancreas_labels-02-05-2017/label0051.nii.gz"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v7:label.stats-full",
+   "@type": "prov:Entity",
+   "rdfs:label": "label.stats-full",
+   "skos:note": "At full resolution: 176142 voxels = 87.1 mL over 84 slices (34 to 117 mm from the lowest slice); HU mean 105.1, std 20.0, range -74 to 252. A mean near 105 HU matches portal-venous enhancement, which the collection page states.",
+   "grade": "C",
+   "instrument": "build.py on DICOM and label",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048_plus_NIH_pancreas_labels_TCIA_pancreas_labels-02-05-2017/label0051.nii.gz"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v7:label.stats-shipped",
+   "@type": "prov:Entity",
+   "rdfs:label": "label.stats-shipped",
+   "skos:note": "Block-resampled like v6 (4 x 2 x 4, kept where at least half the block is label): 5602 voxels = 88.6 mL, 102 percent of the full-resolution volume; 100 percent of those voxels sit in the v6 soft-tissue band. Segment id 5 replaces the band id wherever it applies. Labels file sha256 ca678d44c7e91fa7b5fcb15f3c797ff9df71435d20cabd9e8201ea9dea2c1310.",
+   "grade": "C",
+   "instrument": "build.py on the shipped arrays",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048_plus_NIH_pancreas_labels_TCIA_pancreas_labels-02-05-2017/label0051.nii.gz"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v7:segment.fma-pancreas",
+   "@type": "prov:Entity",
+   "rdfs:label": "segment.fma-pancreas",
+   "skos:note": "Segment 5 denotes FMA:7198 Pancreas (exact-label hit in FMA 5.1.0 through EBI OLS4 on 2026-11-18). Unlike the v6 density bands this is a named organ from a human annotation, so the denotes claim is L rather than S; it is L and not C because the annotation itself was not re-checked.",
+   "grade": "L",
+   "instrument": "EBI OLS4 exact label search",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048_plus_NIH_pancreas_labels_TCIA_pancreas_labels-02-05-2017/label0051.nii.gz"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v7:scope.one-case",
+   "@type": "prov:Entity",
+   "rdfs:label": "scope.one-case",
+   "skos:note": "One patient, one annotator, one scan. This shows that an open label can carry a real FMA term into a volume scene with its evidence; it says nothing about annotation accuracy, inter-rater spread, or other organs. The other 79 labels in the same zip were not used.",
+   "grade": "S",
+   "instrument": "scope note",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048_plus_NIH_pancreas_labels_TCIA_pancreas_labels-02-05-2017/label0051.nii.gz"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v7:scope.no-registration",
+   "@type": "prov:Entity",
+   "rdfs:label": "scope.no-registration",
+   "skos:note": "Still not registered to the v3 torso, BodyParts3D (v5) or the v4 skeleton; the pancreas here is this patient's, compared with nothing. A cross-subject comparison would use the BodyParts3D pancreas (FMA:7198) after a registration.",
+   "grade": "S",
+   "instrument": "scope note",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048_plus_NIH_pancreas_labels_TCIA_pancreas_labels-02-05-2017/label0051.nii.gz"
+   }
+  }
+ ]
+}

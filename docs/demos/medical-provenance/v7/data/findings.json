@@ -1,0 +1,22 @@
+[
+ [
+  "C",
+  "A real organ label carries its FMA term and its evidence into the scene. The NIH pancreas label of this exact series (87.1 mL, 84 slices, mean 105 HU) is segment 5 of a SegmentedVolumeData, with FMA:7198 Pancreas, the label zip hash, annotator statement and axis fix in the MetadataSet; the scene validates with 0 errors (x3d_mcp fa5dccf)."
+ ],
+ [
+  "C",
+  "The label could not be aligned by trusting its header. Its NIfTI affine has an arbitrary origin, so all 8 axis flips were tested against the CT: only flipping the slice axis puts the label on uniform soft tissue (105 +/- 20 HU, 100 percent in the soft range); the next best is 41 HU std, the worst 270. The page shows all eight rows."
+ ],
+ [
+  "C",
+  "The shipped 128-grid mask is faithful in volume: 88.6 mL against 87.1 mL at full resolution (101.8 percent), and every shipped pancreas voxel lies in the v6 soft-tissue band, which is why the band view hid it: the label separates tissue the density bands cannot."
+ ],
+ [
+  "L",
+  "What this shows and does not: a human annotation (medical student, radiologist verified, per the collection page) is a better source for 'denotes FMA:7198' than a density threshold, but the annotation itself was not audited; one patient and one annotator say nothing about accuracy or spread."
+ ],
+ [
+  "S",
+  "Licence of the label zip is not stated separately from the collection (CC BY 3.0); treated as covered and flagged in NOTICE-TCIA.md. Next: register this volume to the v3 torso or BodyParts3D so the pancreas can be compared across people, and add more labelled organs (other open datasets, for example TotalSegmentator, CC BY 4.0, large download)."
+ ]
+]
