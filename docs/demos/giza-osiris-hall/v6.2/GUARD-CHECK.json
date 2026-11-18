@@ -1,0 +1,36 @@
+{
+ "schema": "x3d.demo.giza-guard-check/2",
+ "checked": "2026-11-18",
+ "tool": "tools/assurance/check_giza_ledger.cjs, playwright 1.63.0, headless Chromium",
+ "webgl_disabled": {
+  "schema": "x3d.demo.giza-ledger-check/1",
+  "page": "demos/giza-osiris-hall/v6.2/index.html",
+  "playwright": "1.63.0",
+  "browser": "chromium headless, --disable-webgl --disable-webgl2 --disable-gpu",
+  "outcome": "failed",
+  "ledger_rows": 33,
+  "rendered_rows": 33,
+  "undefined_cells": 0,
+  "links_expected": 23,
+  "links_rendered": 23,
+  "mismatches": 0,
+  "first_mismatches": [],
+  "console": [
+   "[gfx-guard] FAILED after 296 ms: WebGL is not available in this browser"
+  ],
+  "status": "pass"
+ },
+ "webgl_swiftshader": {
+  "outcome": "ready",
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "boot_done": true,
+  "page_errors": []
+ },
+ "control_v6_1_same_check": {
+  "status": "fail",
+  "rendered_rows": 33,
+  "undefined_cells": 132,
+  "links_rendered": 0,
+  "mismatches": 188
+ }
+}

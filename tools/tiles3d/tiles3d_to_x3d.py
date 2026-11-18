@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""tiles3d_to_x3d v2 (18 Nov 2026). The geotiling v1 converter (docs/demos/geotiling/v1/, left as shipped) with the
+"""tiles3d_to_x3d v2.1 (18 Nov 2026). v2.1: glb content is placed at its tile frame's origin (the accumulated
+transform's translation), not at the bounding-volume centre; the GeoLOD centre still uses the bounding volume.
+Origin-at-Earth-centre (ECEF-baked) content is refused. Earlier text:
+tiles3d_to_x3d v2 (18 Nov 2026). The geotiling v1 converter (docs/demos/geotiling/v1/, left as shipped) with the
 external accountability review's defect 7 fixed:
   * every content URI is resolved against the tileset file that names it, so root.json -> sub/child.json -> mesh.glb
     becomes ../sub/mesh.glb (v1 wrote ../mesh.glb: it resolved everything against the root tileset's folder);
@@ -35,6 +38,11 @@ def centre(node, M):
     c = bv["box"][:3] if "box" in bv else bv["sphere"][:3]
     X, Y, Z = (M[0] * c[0] + M[4] * c[1] + M[8] * c[2] + M[12], M[1] * c[0] + M[5] * c[1] + M[9] * c[2] + M[13], M[2] * c[0] + M[6] * c[1] + M[10] * c[2] + M[14])
     return ecef_to_geodetic(X, Y, Z)
+def geodetic_to_ecef(lat, lon, h):
+    la, lo = math.radians(lat), math.radians(lon); n = a_ / math.sqrt(1 - e2 * math.sin(la) ** 2)
+    return ((n + h) * math.cos(la) * math.cos(lo), (n + h) * math.cos(la) * math.sin(lo), (n * (1 - e2) + h) * math.sin(la))
+def geo_distance(p, q):
+    return math.dist(geodetic_to_ecef(*p), geodetic_to_ecef(*q))
 def enu_relative_rotation(M, lat, lon):
     """Angle between the tile's local axes and the east-north-up basis at its centre (0 for tiles that are already ENU, as geotiling writes them)."""
     la, lo = math.radians(lat), math.radians(lon)
@@ -53,13 +61,13 @@ def frame_loss(M, lat, lon):
         n = math.sqrt(sum(v * v for v in c)) or 1
         ang = max(ang, math.degrees(math.acos(max(-1, min(1, sum(x * y for x, y in zip(c, b)) / n)))))
     return ang, scale
-HEAD = '<?xml version="1.0" encoding="UTF-8"?>\n<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">\n <head><component name="Geospatial" level="1"/><meta name="title" content="{t}"/><meta name="generator" content="tiles3d_to_x3d.py v2 (x3d.demo tools/tiles3d)"/></head>\n <Scene>\n{b}\n </Scene>\n</X3D>\n'
+HEAD = '<?xml version="1.0" encoding="UTF-8"?>\n<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">\n <head><component name="Geospatial" level="1"/><meta name="title" content="{t}"/><meta name="generator" content="tiles3d_to_x3d.py v2.1 (x3d.demo tools/tiles3d)"/></head>\n <Scene>\n{b}\n </Scene>\n</X3D>\n'
 class Unsupported(Exception):
     def __init__(self, items): super().__init__("; ".join(items)); self.items = items
 def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=45.0, dry=False, allow_lossy=False):
     tp = pathlib.Path(tileset_path).resolve(); ts = json.loads(tp.read_text()); out = pathlib.Path(outdir).resolve(); K = screen / (2 * math.tan(math.radians(fov / 2)) * sse)
     stats = dict(tiles=0, with_content=0, glb=0, external_json=0, external_missing=0, add_refine=0, non_enu=0, chunked=0, multi_contents=0, implicit=0,
-                 bv=dict(), max_depth=0, ranges=[], version=ts.get("asset", {}).get("version"))
+                 bv=dict(), max_depth=0, ranges=[], origin_offsets_m=[], version=ts.get("asset", {}).get("version"))
     losses, files = [], {}
     def loss(where, what): losses.append(f"{where}: {what}")
     def content_url(base, u):
@@ -89,9 +97,17 @@ def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=
                     sub = json.loads(ext.read_text()); kids = [(sub["root"], ext.parent, chain | {ext})] + kids
                 else: stats["external_missing"] += 1; loss(name, f"external tileset {u} not found")
             else:
-                stats["glb"] += 1; ang, sc = frame_loss(M, lat, lon)
+                stats["glb"] += 1
+                # content vertices are in the tile's frame, so its local (0,0,0) sits at M's translation, wherever
+                # the bounding volume's centre is (second review, 18 Nov 2026, defect 4: v2 placed content at the
+                # bounding-volume centre, 9.996 m off for a sphere centred 10 m from the content origin)
+                if math.sqrt(M[12] ** 2 + M[13] ** 2 + M[14] ** 2) < 1000:
+                    stats["non_enu"] += 1; loss(name, "content has no geodetic origin (transform translation at the Earth's centre: ECEF-baked content); not placed")
+                    continue
+                olat, olon, oh = ecef_to_geodetic(M[12], M[13], M[14]); ang, sc = frame_loss(M, olat, olon)
                 if ang > 1e-3 or sc > 1e-6: stats["non_enu"] += 1; loss(name, f"content frame is {ang:.3f} deg from local ENU, scale off by {sc:.2e}; placed unrotated and unscaled")
-                body = f'  <GeoLocation geoSystem=\'"GD" "WE"\' geoCoords="{lat:.7f} {lon:.7f} {h:.2f}"><Inline url=\'"{content_url(base, u)}"\'/></GeoLocation>'
+                stats["origin_offsets_m"].append(round(geo_distance((lat, lon, h), (olat, olon, oh)), 3))
+                body = f'  <GeoLocation geoSystem=\'"GD" "WE"\' geoCoords="{olat:.9f} {olon:.9f} {oh:.3f}"><Inline url=\'"{content_url(base, u)}"\'/></GeoLocation>'
         if len(kids) > 4:
             stats["chunked"] += 1; q = (len(kids) + 3) // 4
             kids = [(dict(boundingVolume=node["boundingVolume"], geometricError=ge, children=[], _group=kids[i * q:(i + 1) * q]), base, chain) for i in range(4) if kids[i * q:(i + 1) * q]]
