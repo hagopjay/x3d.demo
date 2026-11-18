@@ -1,7 +1,7 @@
 {
- "suite": "tiles3d_to_x3d v2",
+ "suite": "tiles3d_to_x3d v2.1",
  "python": "3.13.18",
- "passed": 16,
+ "passed": 21,
  "failed": 0,
  "cases": [
   {
@@ -42,10 +42,20 @@
   {
    "case": "refuses ECEF-framed content (identity transform, as Google's glb)",
    "pass": true,
-   "detail": "t: content frame is 53.376 deg from local ENU, scale off by 0.00e+00; placed unrotated and unscaled"
+   "detail": "t: content has no geodetic origin (transform translation at the Earth's centre: ECEF-baked content); not placed"
   },
   {
    "case": "--allow-lossy converts ECEF-framed content (identity transform, as Google's glb) and records the loss",
+   "pass": true,
+   "detail": "1 loss(es)"
+  },
+  {
+   "case": "refuses rotated content (x axis pointing north)",
+   "pass": true,
+   "detail": "t: content frame is 90.000 deg from local ENU, scale off by 1.11e-16; placed unrotated and unscaled"
+  },
+  {
+   "case": "--allow-lossy converts rotated content (x axis pointing north) and records the loss",
    "pass": true,
    "detail": "1 loss(es)"
   },
@@ -83,6 +93,21 @@
    "case": "same tile count as v1 on a lossless tree",
    "pass": true,
    "detail": "v1 13 v2 13"
+  },
+  {
+   "case": "off-centre sphere: content placed at the frame origin (6378137, 0, 0)",
+   "pass": true,
+   "detail": "0.0000 m from the origin; bv centre offset [10.0]"
+  },
+  {
+   "case": "v2 as shipped reproduces the review's error (about 10 m)",
+   "pass": true,
+   "detail": "9.996 m"
+  },
+  {
+   "case": "nested transforms: child content at parent frame + 100 m east",
+   "pass": true,
+   "detail": "0.0002 m; lon 0.0008983 vs 0.0008983"
   }
  ]
 }

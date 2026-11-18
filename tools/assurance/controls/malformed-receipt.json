@@ -1,0 +1,59 @@
+{
+ "demo": "malformed",
+ "failed": 1,
+ "files": 2,
+ "glob": "scenes/*.x3d",
+ "results": {
+  "scenes/a.x3d": {
+   "bytes": 233,
+   "checked": true,
+   "errors": [],
+   "hints": [],
+   "notes": [],
+   "schema": "4.0",
+   "semantic_errors": [],
+   "semantic_status": "ran",
+   "semantic_warnings": [],
+   "sha256": "be51243862d7068292d4246d6dece7e02dcca32bcb1a561efdb77efadc442133",
+   "valid": true
+  },
+  "scenes/b.x3d": {
+   "bytes": 34,
+   "checked": true,
+   "errors": [
+    "XML parse error: Premature end of data in tag Shape line 1, line 2, column 1 (<string>, line 2)"
+   ],
+   "hints": [],
+   "notes": [],
+   "schema": null,
+   "semantic_errors": [],
+   "semantic_reason": "the file does not parse, so meaning cannot be read",
+   "semantic_status": "not_run",
+   "semantic_warnings": [],
+   "sha256": "7af5dd01f19e7b34f959cd8a50a4f58d6091919c4f40d9e5dd8d5000c12ffd76",
+   "valid": false
+  }
+ },
+ "schema": "x3d.demo.validate-scenes/1",
+ "semantic": true,
+ "status": "fail",
+ "validator": {
+  "libxml2": "2.14.6",
+  "lxml": "6.1.3",
+  "python": "3.13.18",
+  "schemas": {
+   "4.0": {
+    "file": "x3d-4.0.xsd",
+    "sha256": "0509fa5bd6016a0b9104ced3c91d6585c8073041f79b8c3f9758748d131b5192"
+   },
+   "4.1": {
+    "file": "x3d-4.1.xsd",
+    "sha256": "1a7935caa7e6a63de2b275968bdc48da2f34124a43acb7b293674c3d16646a85"
+   }
+  },
+  "tool": "x3d_mcp validation.validate.validate_xml_with_hints",
+  "x3d_mcp_commit": "5e38f0155eeac06b3cdbf9c6771a3776ef80ec2c",
+  "x3d_mcp_dirty": false,
+  "x3d_mcp_remote": "x3d_mcp"
+ }
+}

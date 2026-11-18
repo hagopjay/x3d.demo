@@ -1,0 +1,48 @@
+{
+ "schema": "x3d.demo.giza-ledger-check/1",
+ "page": "demos/giza-osiris-hall/v6.1/index.html",
+ "playwright": "1.63.0",
+ "browser": "chromium headless, --disable-webgl --disable-webgl2 --disable-gpu",
+ "outcome": "failed",
+ "ledger_rows": 33,
+ "rendered_rows": 33,
+ "undefined_cells": 132,
+ "links_expected": 23,
+ "links_rendered": 0,
+ "mismatches": 188,
+ "first_mismatches": [
+  {
+   "id": "L01",
+   "field": "id",
+   "want": "L01",
+   "got": "undefined"
+  },
+  {
+   "id": "L01",
+   "field": "grade",
+   "want": "C · Confirmed",
+   "got": "undefined"
+  },
+  {
+   "id": "L01",
+   "field": "claim",
+   "want": "Khufu base 230.33 m, 138.5 m today, 146.6 m original",
+   "got": "undefined"
+  },
+  {
+   "id": "L01",
+   "field": "from",
+   "want": "v3",
+   "got": "undefined"
+  },
+  {
+   "id": "L01",
+   "field": "src",
+   "want": "Wikipedia: Great Pyramid of Giza"
+  }
+ ],
+ "console": [
+  "[gfx-guard] FAILED after 314 ms: WebGL is not available in this browser"
+ ],
+ "status": "fail"
+}

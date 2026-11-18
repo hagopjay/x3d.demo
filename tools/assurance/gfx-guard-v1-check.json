@@ -1,0 +1,54 @@
+{
+ "schema": "x3d.demo.gfx-guard-check/1",
+ "lib": "docs/lib/gfx-guard.js",
+ "playwright": "1.63.0",
+ "failed": 2,
+ "rows": [
+  {
+   "case": "slow: alert with title and safe links appears after timeoutMs",
+   "ok": false,
+   "got": {
+    "outcome": "slow",
+    "alert": false,
+    "text": "",
+    "links": []
+   }
+  },
+  {
+   "case": "slow then ready: the note is removed",
+   "ok": true,
+   "got": {
+    "outcome": "ready",
+    "alert": false,
+    "text": "",
+    "links": []
+   }
+  },
+  {
+   "case": "no WebGL: failure panel with reason, javascript: link dropped",
+   "ok": false,
+   "got": {
+    "outcome": "failed",
+    "alert": true,
+    "text": "Demo could not start its 3D view\n\nReason: WebGL is not available in this browser\n\nTry: turn on hardware acceleration in the browser settings, update the graphics driver, or open the page in another browser. In Chrome, chrome://gpu shows whether WebGL is blocked on this machine.\n\nThese work without 3D graphics:\n\nText ledger\nBad\n\nTry again",
+    "links": [
+     "../v6/",
+     "javascript:alert(1)"
+    ]
+   }
+  },
+  {
+   "case": "start-up error: failure panel",
+   "ok": true,
+   "got": {
+    "outcome": "failed",
+    "alert": true,
+    "text": "Demo could not start its 3D view\n\nReason: script error during start-up: Uncaught Error: boom\n\nTry: turn on hardware acceleration in the browser settings, update the graphics driver, or open the page in another browser. In Chrome, chrome://gpu shows whether WebGL is blocked on this machine.\n\nThese work without 3D graphics:\n\nText ledger\nBad\n\nTry again",
+    "links": [
+     "../v6/",
+     "javascript:alert(1)"
+    ]
+   }
+  }
+ ]
+}

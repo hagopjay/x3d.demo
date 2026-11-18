@@ -11,7 +11,10 @@ R = [math.radians(x) for x in (-80.425, 37.227, -80.421, 37.230)] + [600, 650]
 la, lo = (R[1] + R[3]) / 2, (R[0] + R[2]) / 2
 E = [-math.sin(lo), math.cos(lo), 0]; N = [-math.sin(la) * math.cos(lo), -math.sin(la) * math.sin(lo), math.cos(la)]
 U = [math.cos(la) * math.cos(lo), math.cos(la) * math.sin(lo), math.sin(la)]
-ENU = E + [0] + N + [0] + U + [0] + [0, 0, 0, 1]   # column-major east-north-up frame at the fixture centre (as geotiling v1 writes)
+C = v2.geodetic_to_ecef(math.degrees(la), math.degrees(lo), 625.0)
+# column-major east-north-up frame AT the fixture centre (v2.1: the frame's translation is where content sits; the v2
+# fixture had no translation, i.e. content at the Earth's centre, and v2 hid it by placing content at the region centre)
+ENU = E + [0] + N + [0] + U + [0] + list(C) + [1]
 def tile(**k):  # every content tile carries the ENU frame unless the case overrides it; children inherit it, so they carry none
     if ("content" in k or "contents" in k) and "transform" not in k and not k.pop("child", False): k["transform"] = ENU
     return dict(boundingVolume={"region": R}, geometricError=k.pop("ge", 10), **k)
@@ -41,8 +44,9 @@ with tempfile.TemporaryDirectory() as d:
     (d / "a.glb").write_bytes(b"glTF"); (d / "b.glb").write_bytes(b"glTF")
     refuses("refine-add", tile(ge=50, refine="ADD", content={"uri": "a.glb"}, children=[tile(child=True, content={"uri": "b.glb"})]), "refine ADD")
     refuses("multi-contents", tile(contents=[{"uri": "a.glb"}, {"uri": "b.glb"}]), "2 contents")
-    refuses("ECEF-framed content (identity transform, as Google's glb)", tile(transform=[1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], content={"uri": "a.glb"}), "from local ENU")
-    refuses("scaled-content", tile(transform=[2 * x for x in ENU[:12]] + [0, 0, 0, 1], content={"uri": "a.glb"}), "scale off")
+    refuses("ECEF-framed content (identity transform, as Google's glb)", tile(transform=[1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], content={"uri": "a.glb"}), "ECEF-baked")
+    refuses("rotated content (x axis pointing north)", tile(transform=N + [0] + [-x for x in E] + [0] + U + [0] + list(C) + [1], content={"uri": "a.glb"}), "from local ENU")
+    refuses("scaled-content", tile(transform=[2 * x for x in ENU[:12]] + list(C) + [1], content={"uri": "a.glb"}), "scale off")
     refuses("missing-external", tile(content={"uri": "nowhere.json"}), "not found")
     (d / "loop.json").write_text(json.dumps({"asset": {"version": "1.1"}, "root": tile(content={"uri": "loop.json"})}))
     try: v2.convert(d / "loop.json", d / "o_loop", dry=True); case("refuses an external tileset cycle", False)
@@ -52,5 +56,27 @@ with tempfile.TemporaryDirectory() as d:
     case("more than 4 children still chunk (v1 behaviour kept)", s["chunked"] >= 1 and s["glb"] == 9 and not s["losses"], f"chunked {s['chunked']}, glb {s['glb']}")
     s1 = v1.convert(d / "many.json", d / "o_many1", dry=True)
     case("same tile count as v1 on a lossless tree", s["tiles"] == s1["tiles"], f"v1 {s1['tiles']} v2 {s['tiles']}")
-print(json.dumps({"suite": "tiles3d_to_x3d v2", "python": sys.version.split()[0], "passed": len(rows) - bad, "failed": bad, "cases": rows}, indent=1))
+    # second review, defect 4: the reviewer's probe. ENU at (0 N, 0 E, 0 m): ECEF (6378137, 0, 0); a sphere centred
+    # 10 m east of the content origin. Content must sit at the origin; v2 put it at the sphere centre (9.996 m off).
+    E0 = [0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 6378137, 0, 0, 1]
+    (d / "off.json").write_text(json.dumps({"asset": {"version": "1.1"}, "root": {"boundingVolume": {"sphere": [10, 0, 0, 20]},
+        "geometricError": 0, "transform": E0, "content": {"uri": "a.glb"}}}))
+    def geo(out, f): return [float(x) for x in re.search(r'GeoLocation[^>]*geoCoords="([^"]+)"', (out / f).read_text()).group(1).split()]
+    v2_shipped = load(HERE / "v2-shipped.py", "t2s") if (HERE / "v2-shipped.py").exists() else None
+    s = v2.convert(d / "off.json", d / "o_off"); g = geo(d / "o_off", "t.x3d")
+    err = v2.geo_distance(tuple(g), (0.0, 0.0, 0.0))
+    case("off-centre sphere: content placed at the frame origin (6378137, 0, 0)", err < 0.01, f"{err:.4f} m from the origin; bv centre offset {s['origin_offsets_m']}")
+    if v2_shipped:
+        v2_shipped.convert(d / "off.json", d / "o_off_v2"); g0 = geo(d / "o_off_v2", "t.x3d")
+        e0 = v2.geo_distance(tuple(g0), (0.0, 0.0, 0.0))
+        case("v2 as shipped reproduces the review's error (about 10 m)", 9.9 < e0 < 10.1, f"{e0:.3f} m")
+    # nested translations accumulate: parent frame at the origin above, child translated 100 m east in that frame
+    child = {"boundingVolume": {"sphere": [0, 0, 0, 5]}, "geometricError": 0, "transform": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 100, 0, 0, 1], "content": {"uri": "b.glb"}}
+    (d / "nest.json").write_text(json.dumps({"asset": {"version": "1.1"}, "root": {"boundingVolume": {"sphere": [0, 0, 0, 200]},
+        "geometricError": 50, "transform": E0, "children": [child]}}))
+    v2.convert(d / "nest.json", d / "o_nest"); g = geo(d / "o_nest", "t_0.x3d")
+    want = v2.ecef_to_geodetic(6378137, 100, 0)
+    err = v2.geo_distance(tuple(g), want)
+    case("nested transforms: child content at parent frame + 100 m east", err < 0.01, f"{err:.4f} m; lon {g[1]:.7f} vs {want[1]:.7f}")
+print(json.dumps({"suite": "tiles3d_to_x3d v2.1", "python": sys.version.split()[0], "passed": len(rows) - bad, "failed": bad, "cases": rows}, indent=1))
 sys.exit(1 if bad else 0)

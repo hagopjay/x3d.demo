@@ -11,7 +11,8 @@ as a shared tool that any demo version can call; old receipts stay as they were 
 
 Exit codes (same convention as x3d.loom kit/loom):
   0  every expected scene is XSD-valid (and, with --semantic, has zero semantic errors)
-  1  at least one scene is invalid or has a semantic error (the receipt is still written, in full)
+  1  at least one scene is invalid or has a semantic error (the receipt is still written, in full, even when a
+     file is malformed: that file records semantic_status not_run; tools/assurance/controls/malformed)
   2  instrument or input error: no files matched, the expected set does not match, x3d_mcp not importable,
      or the receipt already exists without --force
 
@@ -93,16 +94,39 @@ def main(argv=None) -> int:
 
     results, bad = {}, 0
     for p, r in zip(files, rel):
+        # one bad file must not take the receipt down with it (second review, 18 Nov 2026, defect 8: a malformed
+        # file under --semantic raised before the receipt was written). Each stage records error or not_run.
         data = p.read_bytes()
-        res = validate_xml_with_hints(data.decode("utf-8"))
-        row = {"sha256": sha256_bytes(data), "bytes": len(data), "valid": bool(res.get("valid")),
-               "checked": res.get("checked", True), "schema": res.get("schema_version"),
-               "errors": res.get("errors", []), "hints": res.get("hints", []), "notes": res.get("notes", [])}
+        row = {"sha256": sha256_bytes(data), "bytes": len(data), "valid": False, "checked": False, "schema": None,
+               "errors": [], "hints": [], "notes": []}
+        try:
+            text = data.decode("utf-8")
+        except UnicodeDecodeError as e:
+            text = None
+            row["errors"] = [f"not UTF-8: {e}"]
+        if text is not None:
+            try:
+                res = validate_xml_with_hints(text)
+                row.update(valid=bool(res.get("valid")), checked=res.get("checked", True), schema=res.get("schema_version"),
+                           errors=res.get("errors", []), hints=res.get("hints", []), notes=res.get("notes", []))
+            except Exception as e:
+                row["xsd_instrument_error"] = f"{type(e).__name__}: {e}"
+                row["errors"] = [row["xsd_instrument_error"]]
         if semantic is not None:
-            d = semantic(data.decode("utf-8"))
-            row["semantic_errors"] = [x.__dict__ for x in d if x.level == "error"]
-            row["semantic_warnings"] = [x.__dict__ for x in d if x.level == "warning"]
-        ok = row["valid"] and row["checked"] is not False and not row.get("semantic_errors")
+            row["semantic_errors"], row["semantic_warnings"] = [], []
+            if text is None or not row["valid"] and any("parse error" in str(e).lower() or "syntaxerror" in str(e).lower() for e in row["errors"]):
+                row["semantic_status"] = "not_run"
+                row["semantic_reason"] = "the file does not parse, so meaning cannot be read"
+            else:
+                try:
+                    d = semantic(text)
+                    row["semantic_status"] = "ran"
+                    row["semantic_errors"] = [x.__dict__ for x in d if x.level == "error"]
+                    row["semantic_warnings"] = [x.__dict__ for x in d if x.level == "warning"]
+                except Exception as e:
+                    row["semantic_status"] = "error"
+                    row["semantic_errors"] = [{"level": "error", "code": "SEMANTIC_INSTRUMENT_ERROR", "message": f"{type(e).__name__}: {e}"}]
+        ok = row["valid"] and row["checked"] is not False and not row.get("semantic_errors") and row.get("semantic_status", "ran") == "ran"
         bad += not ok
         results[r] = row
         print(f"{'ok  ' if ok else 'FAIL'} {r} xsd={'valid' if row['valid'] else 'INVALID'} errors={len(row['errors'])}"
