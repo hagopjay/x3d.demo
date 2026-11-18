@@ -2,6 +2,12 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v39 (2026-11-18)
+- New Demo 46: Heritage + Geo Loom, a Giza provenance twin (`docs/demos/heritage-geo/v1/`, x3d.demo PR 61): CIDOC-CRM E13 claims with grades C, L and S on four GeoLocation monuments, a Burruss Hall and Drillfield tab, an eleven-row open-data scout and proposed CRM, CityGML, IFC and GeoSPARQL mappings. The card links the page, the JSON-LD claims, the readme and the notice. New card picture `docs/assets/heritage-geo.jpg` (a headless screenshot of the page's Giza tab with the Sphinx claim selected, 1280 x 720 scaled to 960 x 540). The Burruss imagery is Google Solar API data reused for an academic, non-commercial proof of concept only, so it is not used for the picture and the card says so.
+- Demo 45 (Hypergraph) now also links Version 2 (`docs/demos/hypergraph/v2/`, PR 59: Chess ECO A to E overlay, 96 concepts, 36 hyperedges, five bridges). The card text and facts note are extended; the picture is still version 1's. Version 1 is untouched and still linked.
+- Re-run for the cards in headless Chromium: heritage-geo locally (7 claims, 11 source rows, both tabs load, no console errors, no 4xx, no horizontal scroll at 1280); hypergraph v2 on the live site (36 hyperedge rows, 97 concept options, no console errors, no 4xx, 2D lens and clique buttons ran). Not run: GPU, other browsers, real mouse selection, the page's live data calls.
+- Still held, URL not live: Gobbler Evidence Loom (next number 47). No demo and no earlier version is touched; v1 to v38 unchanged.
+
 ## Unnumbered (2026-11-18, Masonic Lodge XR script removal)
 - Removed `tools/aggregate_private.py` from `docs/demos/masonic-lodge/v1/tools/` and `v2/tools/`, and trimmed the README and changelog mentions, at the owner's request (a script that builds a national lodge list is treated like the list itself). This is the one deliberate exception to never-overwrite. The files remain in git history (PR 53, 57); no list was ever committed. Nothing else in v1 or v2 changed.
 
