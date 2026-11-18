@@ -1,0 +1,2 @@
+# Notice
+Ids, short labels and symbol/element names from OntoMathPro (Kazan Federal University; no licence text found, so no dump is redistributed), OpenMath CDs (verbatim redistribution allowed; no CD text copied), MathML 3 (W3C document use; names only) and PhySH (APS, CC0 1.0; the PhySH name used for attribution only). The scene, mapping and claims are original to this repo. Math Lab lesson titles come from hagopjay/x3d.mathslab.
