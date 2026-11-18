@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jointed H-Anim skeleton from CT bones (medical-provenance v4)</title>
+<style>
+:root{--bg:#0f1418;--fg:#e6eef2;--mut:#93a4ad;--card:#161d23;--ln:#2a3640;--ac:#58c4dd;--C:#6fbf73;--L:#e0b84a;--S:#d9674e}
+@media (prefers-color-scheme:light){:root{--bg:#f2f6f8;--fg:#14202a;--mut:#5a6b75;--card:#fff;--ln:#cfdae0;--ac:#0a6b86}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,sans-serif}
+header{padding:12px 16px;border-bottom:1px solid var(--ln)}h1{margin:0;font-size:18px}.sub{color:var(--mut);font-size:12px}
+.warn{background:#3a1f1a;color:#ffd9cc;border:1px solid #7a3a2a;border-radius:4px;padding:5px 9px;margin:8px 0 0;font-size:12px}
+@media (prefers-color-scheme:light){.warn{background:#fde8e2;color:#5a1d10}}
+main{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:12px;padding:12px 16px}
+@media(max-width:960px){main{grid-template-columns:minmax(0,1fr)}}main>div{min-width:0}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:6px;padding:10px;margin-bottom:12px}
+x3d-canvas{width:100%;height:520px;display:block;background:#0b1013;border-radius:4px}
+.chip,select,button{background:none;border:1px solid var(--ln);color:var(--fg);padding:3px 9px;border-radius:4px;cursor:pointer;margin:0 4px 4px 0;font-size:12px}select{background:var(--bg)}
+input[type=range]{width:220px;vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{border-bottom:1px solid var(--ln);padding:3px 5px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{color:var(--mut);position:sticky;top:0;background:var(--card)}
+.g{display:inline-block;min-width:20px;text-align:center;border-radius:3px;color:#000;font-weight:700;padding:0 4px;font-size:11px}.g.C{background:var(--C)}.g.L{background:var(--L)}.g.S{background:var(--S)}
+tr.j{cursor:pointer}tr.j:hover,tr.sel{background:rgba(88,196,221,.16)}h2{font-size:14px;margin:0 0 6px;color:var(--ac)}code{font-size:11px}.note{font-size:12px;color:var(--mut)}.scroll{max-height:320px;overflow:auto}a{color:var(--ac)}
+</style></head><body>
+<header><h1>Jointed H-Anim skeleton <span class="sub">35 joints and 35 segments built from CT torso bones, with FMA classes on the segments (v4)</span></h1>
+<div class="sub">Grades: <span class="g C">C</span> checked in this build <span class="g L">L</span> likely, not re-checked <span class="g S">S</span> estimate, judgement or gap.</div>
+<div class="warn"><b>Educational proof of concept. Not medical advice, not a medical device.</b> Joint centres are estimated from bone meshes of one public CT subject; the skeleton has no joint limits and is not a biomechanical model.</div></header>
+<main><div>
+ <div class="card"><x3d-canvas id="cv" src="hanim-skeleton.x3dz" splashScreen="false"></x3d-canvas>
+ <div style="margin-top:6px"><select id="js"></select>
+  <label class="note">angle <input type="range" id="ang" min="-90" max="90" value="0"> <b id="av">0</b>&deg;</label>
+  <select id="ax"><option value="0">about X (flex, forward-back)</option><option value="1">about Y (twist)</option><option value="2" selected>about Z (side-bend, raise)</option></select>
+  <button id="rs">Reset pose</button><button id="p1">Raise both arms</button><button id="p2">Bend forward</button><button id="p3">Twist spine</button></div>
+ <div id="pick" class="note" style="margin-top:4px">Pick a joint, or choose a pose. Blue translucent shapes are ribs, sternum and cartilage: H-Anim has no segment for them.</div></div>
+ <div class="card"><h2>Findings (graded)</h2><ul id="fd" style="padding-left:18px;margin:0"></ul></div>
+</div><div>
+ <div class="card"><h2>Joints</h2><div class="scroll"><table id="jt"><thead><tr><th>Joint</th><th>Parent</th><th>Centre estimated from</th><th>Gr</th></tr></thead><tbody></tbody></table></div></div>
+ <div class="card"><h2>Segments and their FMA classes</h2><div class="scroll"><table id="sg"><thead><tr><th>Segment</th><th>Joint</th><th>CT structure</th><th>FMA</th></tr></thead><tbody></tbody></table></div>
+ <p class="note">Segment metadata carries the same FMA id and claim digest as <a href="../v3/index.html">v3</a>, so a segment can be traced to its graded claims.</p></div>
+ <div class="card"><h2>Receipt and licence</h2><div class="note" id="rcpt">loading</div>
+ <div class="note" style="margin-top:6px">Bone meshes: TotalSegmentator example subject s1397 (Wasserthal et al. 2023, CC BY 4.0 dataset record), changes made; scene from <code>brain-torso-xite/v1</code>. FMA ids, SNOMED and licence caveats as in <a href="../v3/NOTICE.md">v3 NOTICE</a>. H-Anim names from the X3D 4.1 XSD (ISO/IEC 19774).</div></div>
+</div></main>
+<script src="../../blender-x3d-io/v1/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const J=async u=>(await fetch(u)).json();const grade=g=>'<span class="g '+g+'">'+g+'</span>';
+let B=null,joints=[];const rot={};
+function node(n){return B.currentScene.getNamedNode('J_'+n)}
+function setRot(n,axis,deg){const j=node(n);const a=[0,0,0];a[axis]=1;j.rotation=new X3D.SFRotation(a[0],a[1],a[2],deg*Math.PI/180);rot[n]=[axis,deg]}
+function reset(){Object.keys(rot).forEach(n=>{try{node(n).rotation=new X3D.SFRotation(0,0,1,0)}catch(e){}});for(const k in rot)delete rot[k];$('#ang').value=0;$('#av').textContent=0}
+function pick(n){const j=joints.find(x=>x.name===n);$('#js').value=n;document.querySelectorAll('tr.j').forEach(r=>r.classList.toggle('sel',r.dataset.n===n));
+ $('#pick').innerHTML='<b>'+esc(n)+'</b> '+grade('S')+' parent <code>'+esc(j.parent||'none (root)')+'</code>; absolute centre (scene mm) <code>'+j.abs_mm.join(', ')+'</code>; '+esc(j.how)+'.'}
+$('#js').onchange=e=>{pick(e.target.value);const r=rot[e.target.value];$('#ang').value=r?r[1]:0;$('#av').textContent=r?r[1]:0};
+$('#ang').oninput=e=>{if(!B)return;const n=$('#js').value;$('#av').textContent=e.target.value;setRot(n,+$('#ax').value,+e.target.value)};
+$('#rs').onclick=()=>B&&reset();
+$('#p1').onclick=()=>{if(!B)return;reset();setRot('l_shoulder',2,-80);setRot('r_shoulder',2,80)};
+$('#p2').onclick=()=>{if(!B)return;reset();['vl5','vl3','vt10','vt6'].forEach(n=>setRot(n,0,18))};
+$('#p3').onclick=()=>{if(!B)return;reset();['vl1','vt8','vt4','vc4'].forEach(n=>setRot(n,1,22))};
+$('#cv').addEventListener('load',()=>{B=$('#cv').browser;window.__loaded=1});
+(async()=>{
+ joints=await J('joints.json');const segs=await J('segments.json');
+ $('#js').innerHTML=joints.map(j=>'<option>'+j.name+'</option>').join('');
+ $('#jt tbody').innerHTML=joints.map(j=>'<tr class="j" data-n="'+j.name+'"><td>'+j.name+'</td><td>'+esc(j.parent||'-')+'</td><td>'+esc(j.how)+'</td><td>'+grade('S')+'</td></tr>').join('');
+ document.querySelectorAll('tr.j').forEach(r=>r.onclick=()=>{pick(r.dataset.n);$('#ang').value=rot[r.dataset.n]?rot[r.dataset.n][1]:0});
+ $('#sg tbody').innerHTML=segs.map(s=>'<tr><td>'+s.segment+'</td><td>'+s.joint+'</td><td>'+esc(s.structure)+'</td><td>'+esc(s.fma||'')+' '+grade(s.grade)+'</td></tr>').join('');
+ $('#fd').innerHTML=(await J('data/findings.json')).map(x=>'<li>'+grade(x[0])+' '+esc(x[1])+'</li>').join('');
+ const v=await J('validation-v4.json'),sm=await J('data/summary.json'),xn=await J('data/xsd-name-check.json');
+ $('#rcpt').innerHTML='Scene validated with x3d_mcp <code>validate_xml</code>: '+(v.valid?'valid':'INVALID')+', '+(v.errors||[]).length+' errors, '+v.seconds+' s. XSD name check: '+xn.joints_in_xsd+'/'+xn.joints+' joint names, '+xn.segments_in_xsd+'/'+xn.segments+' segment names. Forward-kinematics max error '+sm.fk_max_error_m+' m. Scene sha256 <code>'+v.sha256.slice(0,16)+'</code>, '+sm.bytes_x3dz+' bytes gzip. Rebuild: <code>python3 -I build.py --gate &lt;x3d_mcp&gt;/src</code>.';
+ pick('l_shoulder');
+})();
+</script></body></html>

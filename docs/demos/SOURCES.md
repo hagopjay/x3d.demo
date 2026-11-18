@@ -300,3 +300,18 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/math-concept-graph-v2.jpg | 362bcca6b827b57ba46d7bab46045de985f85beabc1707fffa46b89354515e69 | 96395 |
+
+## Front-page card picture (v44)
+`geotiling` is a screenshot of `docs/demos/geotiling/v1/index.html` (X_ITE 16.6.0, headless Chromium, SwiftShader, 1280 x 900 at 2x) with every request for `tex/z*` and `*.glb` blocked, the 20 zoom-7 `Inline` tiles and the `GeoLOD` switched off, and the first `GeoViewpoint` moved to 13,000 km altitude over 37.2284, -80.4234. Only `tex/earth_2048.jpg` (NASA Blue Marble, public domain) is drawn; no Google satellite imagery is in the picture. Cropped to the 3D window (x 56 to 1382, y 290 to 1243 at 2x), padded with the window's own black to 16:9 and scaled to 960 x 540.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/geotiling.jpg | afc392b5e310ec0efffa3833b02f4332ffe92832cd337387f053cf99a987c9d0 | 37307 |
+
+## Front-page card picture (v45)
+`gobbler-evidence-loom` is `https://hagopjay.github.io/x3d.gobbler/receipts/browser-observatory/02-feather.png` (1440 x 900, sha256 dbd918a30f03310afb5ed340883e8706c90cde12f657e43650fef222168d29ce, the Gobbler lane's own browser-check screenshot of its X3D scene, software GL), cropped to the 3D view (x 300 to 1140, y 235 to 707) and scaled to 960 x 540. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/gobbler-evidence-loom.jpg | f69977c92894baa86a6705faef4b1a92b025cc011a2b04b0594c5b7917b7dfa2 | 94192 |
+

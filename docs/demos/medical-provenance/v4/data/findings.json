@@ -1,0 +1,10 @@
+[
+ ["C", "A real HAnimHumanoid, not metadata: 35 HAnimJoints (humanoid_root, sacroiliac, 2 hips, 24 vertebral joints vl5 to vc1, skullbase, and sternoclavicular, acromioclavicular, shoulder on each side) and 35 HAnimSegments (34 bones plus a pelvis made from both hip bones). The X3D file is valid with 0 errors in x3d_mcp validate_xml (profile Full, HAnim level 2)."],
+ ["C", "All 35 joint names and all 35 segment names exist in the X3D 4.1 XSD enumerations (hanimJointNameValues, hanimSegmentNameValues); the builder checks this on every run."],
+ ["C", "Forward kinematics: walking the emitted relative translations from the root reproduces every intended absolute joint position (max error 0.000000 m over 35 joints), so the joint tree is consistent with the placement table."],
+ ["S", "Every joint centre is ESTIMATED from the meshes (top 15 percent of femur and humerus for the hip and shoulder, midpoints between vertebra centroids, nearest and farthest clavicle vertex). They are not anatomical landmarks. Moving a joint shows plausible bending, not true joint mechanics. No joint limits, no skinning, rigid bones only."],
+ ["C", "Convention trap: the CT scene has +X patient-right and +Z posterior; H-Anim wants the body facing +Z with the character's left at +X. A 180 degree turn about Y (Transform FLIP) fixes both at once: right moves to -X and posterior to -Z."],
+ ["C", "H-Anim gap, seen not just stated: 24 ribs, the sternum and the costal cartilages have no segment name, so they are drawn as translucent blue shapes outside the humanoid (26 shapes)."],
+ ["L", "Pelvis: H-Anim has one pelvis segment; the two CT hip bones are merged into it, and the sacrum is its own segment on the sacroiliac joint. This follows the segment names, not a reading of the H-Anim figure."],
+ ["S", "Posing is a rigid-body hierarchy in X_ITE 16.6.0. Whether other H-Anim players (Blender, Castle, game engines) read this file the same way was not tested."]
+]

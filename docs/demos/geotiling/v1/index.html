@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Geotiling v1: Burruss Hall to Earth in X3D</title>
+<style>
+:root{--bg:#10151a;--fg:#e6edf3;--mut:#93a1ad;--card:#18202a;--ln:#2a3644;--ac:#5cc8ff;--C:#6fbf73;--L:#e0b84a;--S:#d9674e}
+@media (prefers-color-scheme:light){:root{--bg:#f3f6f9;--fg:#15202b;--mut:#5b6b7a;--card:#fff;--ln:#d3dce5;--ac:#0b6bb0}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,sans-serif}
+header{padding:12px 16px;border-bottom:1px solid var(--ln)}h1{margin:0;font-size:18px}.sub{color:var(--mut);font-size:12px}
+main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:12px;padding:12px 16px}@media(max-width:960px){main{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:6px;padding:10px;margin-bottom:12px}
+x3d-canvas{width:100%;height:480px;display:block;background:#000;border-radius:4px}
+h2{font-size:14px;margin:0 0 6px;color:var(--ac)}table{width:100%;border-collapse:collapse;font-size:12px}th,td{border-bottom:1px solid var(--ln);padding:3px 5px;text-align:left;vertical-align:top}th{color:var(--mut)}
+button{background:none;border:1px solid var(--ln);color:var(--fg);padding:4px 9px;border-radius:4px;cursor:pointer;margin:0 4px 4px 0;font:inherit}button.on{background:var(--ac);color:#000}
+.g{display:inline-block;min-width:20px;text-align:center;border-radius:3px;color:#000;font-weight:700;padding:0 4px}.g.C{background:var(--C)}.g.L{background:var(--L)}.g.S{background:var(--S)}
+input[type=range]{width:100%}code{font-size:11px}.note{font-size:12px;color:var(--mut)}
+#tel{font:12px/1.5 ui-monospace,monospace;display:grid;grid-template-columns:repeat(4,1fr);gap:2px 10px;margin-top:6px}#bars{display:flex;gap:2px;align-items:flex-end;height:46px;margin-top:6px}
+#bars div{flex:1;background:var(--ac);min-height:1px;position:relative;opacity:.85}#bars span{position:absolute;bottom:-14px;left:0;font-size:9px;color:var(--mut)}
+</style></head><body>
+<header><h1>Geotiling v1 <span class="sub">Burruss Hall to Earth, X3D Geospatial: GeoLOD, GeoElevationGrid, GeoLocation, GeoViewpoint, 3D Tiles to X3D</span></h1>
+<div class="sub">Every tile on the left is a real X3D file fetched on demand as the camera moves. Grades: <span class="g C">C</span> run in this build <span class="g L">L</span> published or inferred <span class="g S">S</span> suspected or untested. Satellite imagery is Google data for an academic, non-commercial proof of concept only (see NOTICE.md).</div></header>
+<main><div>
+ <div class="card"><div id="tabs"><button id="tb-n" class="on">Native X3D GeoLOD (root.x3d)</button><button id="tb-c">Converted from 3D Tiles (converted/t.x3d)</button></div>
+ <x3d-canvas id="cv" src="root.x3d" splashScreen="false"></x3d-canvas>
+ <input id="alt" type="range" min="0" max="1000" value="300" aria-label="altitude">
+ <div><button data-a="2.5">Burruss 300 m</button><button data-a="3.6">4 km</button><button data-a="4.4">25 km</button><button data-a="5.2">150 km</button><button data-a="6.1">1.2e6 m</button><button data-a="7.4">Space</button>
+ <button id="tour">Zoom out (X3D interpolators)</button><button id="dive">Dive in (script)</button></div>
+ <div id="tel"><span>altitude <b id="t-alt">-</b></span><span>fps <b id="t-fps">-</b></span><span>tiles fetched <b id="t-n">0</b></span><span>bytes <b id="t-b">0</b></span></div>
+ <div id="bars" aria-label="tiles fetched per zoom level"></div><div class="note" style="margin-top:16px">Bars: tile files fetched per zoom level (z7 left to z15 right), counted from the browser's Resource Timing. The viewer here may be slow on a software renderer; the build container measured X_ITE 16.6.0 on SwiftShader (no GPU).</div></div>
+ <div class="card"><h2>X3D Geospatial features exercised</h2><table id="feat"><thead><tr><th>Node or tool</th><th>Used for</th><th>Evidence</th><th>Gr</th></tr></thead><tbody></tbody></table></div>
+</div><div>
+ <div class="card"><h2>Tile pyramid (counted from the build)</h2><table id="lv"><thead><tr><th>z</th><th>tiles</th><th>true-data tiles</th><th>width</th><th>texel</th><th>geometricError</th><th>GeoLOD range</th></tr></thead><tbody></tbody></table>
+ <p class="note">range = geometricError x 81.48 (3D Tiles screen-space error: 1080 px, 45 deg, 16 px). 33 x 33 posts per tile, 256 px texture. Tiles with no finer source are upsampled leaves, not new information.</p></div>
+ <div class="card"><h2>Source tiles in the archive</h2><table id="src"><thead><tr><th>dir</th><th>what</th><th>files</th><th>bytes</th></tr></thead><tbody></tbody></table>
+ <p class="note" id="srcnote"></p></div>
+ <div class="card"><h2>Findings (read before quoting)</h2><ul class="note" id="fnd"></ul></div>
+ <div class="card"><h2>Receipt</h2><div class="note" id="rcpt">loading</div></div>
+</div></main>
+<script src="../../blender-x3d-io/v1/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),esc=t=>String(t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const J=async u=>(await fetch(u)).json(),B=47,C=617-32.6;let vp=null,scene='n',anim=null;
+const LA0=37.2284,LO0=-80.4234;
+function setAlt(la){ // la = log10 altitude above ground (m)
+ const t=Math.min(1,Math.max(0,(la-Math.log10(300))/(Math.log10(2.5e7)-Math.log10(300)))),ang=-0.95-0.6207963*Math.min(1,t/0.45),alt=Math.pow(10,la);
+ const south=ang>-1.5?alt/Math.tan(-ang):0;if(!vp)return;
+ vp.position=new X3D.SFVec3d(LA0-south/111320,LO0,alt+(alt<2e5?584.4:0));vp.orientation=new X3D.SFRotation(1,0,0,ang);$('#t-alt').textContent=fmt(alt);}
+const fmt=a=>a>=1e5?(a/1e3).toFixed(0)+' km':a>=1e3?(a/1e3).toFixed(1)+' km':a.toFixed(0)+' m';
+function bind(){const b=$('#cv').browser,s=b.currentScene;try{vp=s.getNamedNode('vp0')}catch(e){vp=null}
+ if(!vp){vp=s.createNode('GeoViewpoint');vp.geoSystem=['GD','WE'];s.rootNodes.push(vp);vp.set_bind=true}
+ setAlt(2.5+ +$('#alt').value/1000*(7.4-2.5))}
+$('#cv').addEventListener('load',()=>setTimeout(bind,200));
+function stopAnim(){if(anim){cancelAnimationFrame(anim);anim=null}try{const s=$('#cv').browser.currentScene;const t=s.getNamedNode('tour_t');t.stopTime=Date.now()/1000}catch(e){}}
+$('#alt').oninput=()=>{stopAnim();setAlt(2.5+ +$('#alt').value/1000*(7.4-2.5))};
+document.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{stopAnim();$('#alt').value=(+b.dataset.a-2.5)/(7.4-2.5)*1000;setAlt(+b.dataset.a)});
+$('#tour').onclick=()=>{stopAnim();try{const s=$('#cv').browser.currentScene,t=s.getNamedNode('tour_t');t.startTime=Date.now()/1000}catch(e){$('#tour').textContent='tour needs the native scene'}};
+$('#dive').onclick=()=>{stopAnim();let la=7.4;const f=()=>{la-=0.012;$('#alt').value=(la-2.5)/(7.4-2.5)*1000;setAlt(la);if(la>2.5)anim=requestAnimationFrame(f)};f()};
+async function tab(t){scene=t;$('#tb-n').classList.toggle('on',t==='n');$('#tb-c').classList.toggle('on',t==='c');stopAnim();
+ await $('#cv').browser.loadURL(new X3D.MFString(t==='n'?'root.x3d':'converted/t.x3d'))}
+$('#tb-n').onclick=()=>tab('n');$('#tb-c').onclick=()=>tab('c');
+let t0=performance.now();
+setInterval(()=>{const r=performance.getEntriesByType('resource').filter(e=>/(tiles|gltf|converted)\//.test(e.name)&&performance.now()-e.startTime<1e9&&e.startTime>=0);
+ const lv={};let by=0;r.forEach(e=>{const m=e.name.match(/z(\d+)_\d+_\d+(\.mesh)?\.(x3d|glb)/);if(m&&!m[2]||m&&m[3]==='glb'){lv[m[1]]=(lv[m[1]]||0)+1}by+=e.encodedBodySize||0});
+ const n=Object.values(lv).reduce((a,b)=>a+b,0),mx=Math.max(1,...Object.values(lv));$('#t-n').textContent=n;$('#t-b').textContent=(by/1048576).toFixed(1)+' MB';
+ $('#bars').innerHTML=[7,8,9,10,11,12,13,14,15].map(z=>`<div style="height:${Math.max(1,(lv[z]||0)/mx*46)}px" title="z${z}: ${lv[z]||0}"><span>z${z}</span></div>`).join('');
+ try{const f=$('#cv').browser.currentFrameRate;$('#t-fps').textContent=f?f.toFixed(1):'-'}catch(e){}},1000);
+(async()=>{
+ const inv=await J('data/inventory.json'),st=await J('data/build-stats.json');
+ $('#lv tbody').innerHTML=inv.levels.map(l=>`<tr><td>${l.z}</td><td>${l.tiles}</td><td>${l.native_source_tiles}</td><td>${(l.width_m/1000).toFixed(1)} km</td><td>${l.px_size_m} m</td><td>${l.geometric_error_m} m</td><td>${(l.range_m/1000).toFixed(1)} km</td></tr>`).join('');
+ $('#src tbody').innerHTML=inv.sources.map(r=>`<tr><td><code>${r.dir}</code></td><td>${esc(r.what)}</td><td>${r.files}</td><td>${(r.bytes/1024).toFixed(0)} KB</td></tr>`).join('');
+ const g=inv.sources.filter(r=>r.dir.startsWith('sat')),gt=g.reduce((a,r)=>a+r.files,0),gb=g.reduce((a,r)=>a+r.bytes,0);
+ $('#srcnote').textContent=`Google satellite: ${gt} tiles, ${(gb/1048576).toFixed(1)} MB in all. The original build's own spend log shows about $0.04 for them; the paid Google 3D Tiles were only ever streamed, never stored (only a 64 KB root.json was kept).`;
+ const m=await J('data/measured.json');
+ $('#feat tbody').innerHTML=m.features.map(f=>`<tr><td><code>${esc(f[0])}</code></td><td>${esc(f[1])}</td><td>${esc(f[2])}</td><td><span class="g ${f[3]}">${f[3]}</span></td></tr>`).join('');
+ $('#fnd').innerHTML=m.findings.map(f=>`<li>${esc(f)}</li>`).join('');
+ try{const v=await J('validation-tiles.json');$('#rcpt').innerHTML=`${v.validator}: <b>${v.checked}</b> X3D files checked, <b>${v.invalid}</b> invalid. Build: ${st.tiles} tiles, ${(st.x3d_bytes/1048576).toFixed(1)} MB X3D, ${(st.tex_bytes/1048576).toFixed(1)} MB textures, ${(st.glb_bytes/1048576).toFixed(1)} MB GLB. ${esc(m.receipt)}`}catch(e){$('#rcpt').textContent='receipt missing'}
+})();
+</script></body></html>

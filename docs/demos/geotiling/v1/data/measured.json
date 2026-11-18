@@ -1,0 +1,114 @@
+{
+ "features": [
+  [
+   "GeoLOD",
+   "132 tiles (264 files: mesh plus GeoLOD wrapper) z7 to z15; each non-leaf is a GeoLOD (rootUrl = own mesh, child1..4Url = the four quadrants); Drillfield loads only inside 2.5 km",
+   "tiles/*.x3d; streamed to z14 in about 25 s at 4.5 km altitude (X_ITE 16.6.0, SwiftShader)",
+   "C"
+  ],
+  [
+   "GeoElevationGrid",
+   "33 x 33 posts per tile from AWS terrarium heights, Mercator-correct texCoord, geoGridOrigin = tile SW corner; 361 x 181 globe at 1 degree",
+   "validated 0 errors on every tile (x3d_mcp fa5dccf)",
+   "C"
+  ],
+  [
+   "GeoLocation",
+   "Burruss pin, three 60 km city beacons, the Drillfield 0.25 m DSM placed by Inline",
+   "root.x3d, drillfield-geo.x3d",
+   "C"
+  ],
+  [
+   "GeoViewpoint",
+   "six viewpoints from 300 m to 2.5e7 m; the page also drives position and orientation by script",
+   "root.x3d",
+   "C"
+  ],
+  [
+   "GeoPositionInterpolator",
+   "90 s zoom-out tour from Burruss to space in pure X3D, 49 keys log-spaced in altitude, no Script",
+   "root.x3d tour_t / tour_p / tour_o",
+   "C"
+  ],
+  [
+   "3D Tiles 1.1 export",
+   "tileset.json (133 nodes, region volumes, REPLACE, relative transforms) with 132 GLB tiles in local ENU",
+   "tileset.json, gltf/",
+   "C"
+  ],
+  [
+   "tiles3d_to_x3d.py",
+   "tileset.json to a GeoLOD tree; the converted tree renders the same pyramid (same per-level tile counts)",
+   "converted/ (177 files, 149 GeoLOD nodes after chunking, 0 invalid); dry run parses Google's saved root.json: 125 nodes, 120 contents, box volumes",
+   "C"
+  ],
+  [
+   "Google photorealistic 3D Tiles content",
+   "no tile bodies exist in the archive, so the converter's ECEF-baked glTF path is untested",
+   "only root.json was saved (64 KB, expired session)",
+   "S"
+  ],
+  [
+   "Terrain skirts / crack hiding",
+   "none; hairline cracks show where neighbouring tiles differ in level",
+   "visible in the converted-tab render (one black seam)",
+   "S"
+  ]
+ ],
+ "findings": [
+  "The archive held no photorealistic 3D Tiles bodies: those were streamed live (terms forbid caching). What it holds is 68 Google 2D satellite tiles (1.9 MB), two 0.25 m Solar API tiles of the Drillfield, and 180 free AWS terrain tiles (64 at z3). Grade C (counted here).",
+  "The bundled XSD requires a GeoOrigin whenever a GeoLOD has inline rootNode children (validator hint, x3d_mcp fa5dccf), although ISO 19775-1 makes it optional. This build uses rootUrl for the low-detail mesh, so no GeoOrigin is needed. Grade C.",
+  "X_ITE streams GeoLOD levels frame by frame: about 5 s per level at 4 to 5 fps, but about 100 s per level at 0.5 fps once the Drillfield DSM (shadows on) is in view on SwiftShader. Streaming speed is frame-bound, so the numbers on a real GPU will differ. Grade C for the two measurements, S for any GPU figure.",
+  "3D Tiles child transforms are relative to the parent; writing absolute ones makes the round trip fail. The converter's ENU check found 112 of 132 tiles off-axis until the exporter wrote relative transforms, 0 after. Grade C.",
+  "GeoLOD has exactly four child slots; a 3D Tiles node with more children is chunked into extra GeoLOD levels (5 chunked nodes here: the synthetic root over the 20 z7 tiles and its chunks). Refine ADD is treated as REPLACE and warned. Grade L.",
+  "Heights: GD uses ellipsoid height; the build adds -32.6 m (geoid undulation near Blacksburg, from the planet-scale build) to terrarium ASL heights. Terrarium z15 reads 625.69 m at the Burruss stub and 623.01 m at the Drillfield origin (bilinear, one method). Grade L.",
+  "X_ITE has no native 3D Tiles loader (as the GCP plan inferred); the converter is the bridge. X3DOM's GeoTileset (Plesch, Havele, McCann, Aug 2026, per the GCP plan) is the Consortium's own answer and was not tested here. Grade S.",
+  "The Drillfield finale is lifted 8 m (DRILL_LIFT in build.py): terrarium z15 reads 623 to 626 m on the field while the DSM ground sits near 617 to 620, which buried the field under the terrain; the east edge is still partly buried. A registration choice, not a survey. Grade S."
+ ],
+ "receipt": "X_ITE 16.6.0, headless Chromium with SwiftShader (no GPU), 1000 x 640, build container; validator hagopjay/x3d_mcp fa5dccf validate_xml.",
+ "views": [
+  {
+   "view": "space",
+   "altitude": "25,119 km",
+   "fps": 5.4,
+   "tile_files_fetched": 32,
+   "MB": 0.7
+  },
+  {
+   "view": "eastern US",
+   "altitude": "1,208 km",
+   "fps": "0.1 (read during a stall; not representative)",
+   "tile_files_fetched": 32,
+   "MB": 0.7
+  },
+  {
+   "view": "valley",
+   "altitude": "151 km",
+   "fps": 6.2,
+   "tile_files_fetched": 32,
+   "MB": 0.7
+  },
+  {
+   "view": "town",
+   "altitude": "25.2 km",
+   "fps": 6.6,
+   "tile_files_fetched": 68,
+   "MB": 1.5
+  },
+  {
+   "view": "campus",
+   "altitude": "4.0 km",
+   "fps": 6.0,
+   "tile_files_fetched": 108,
+   "MB": 2.3
+  },
+  {
+   "view": "Burruss and Drillfield",
+   "altitude": "705 m",
+   "fps": 0.5,
+   "tile_files_fetched": 76,
+   "MB": 1.6
+  }
+ ],
+ "views_note": "Cumulative counts since page load, one browser session, X_ITE 16.6.0, headless Chromium, SwiftShader, 1100 x 620 (finale 760 x 760). Stills are kept in the project Library, not in the repo, because they show Google imagery."
+}
