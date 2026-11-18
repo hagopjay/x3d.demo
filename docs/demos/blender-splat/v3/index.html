@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blender to splats to X3D v3</title>
+<meta name="description" content="A Blender splat object exports as a KHR_gaussian_splatting glb plus an X3D Inline. The splats here are seeded from a mesh surface, not trained. Every number names the tool that measured it.">
+<style>
+:root{
+  --bg:#f6f4ef; --panel:#ffffff; --panel2:#f3f0e8; --line:#ddd6c8; --fg:#16181f; --muted:#555b6b; --dim:#80869a;
+  --amber:#b8741a; --teal:#0f8a80; --violet:#6b56d6; --coral:#d9573a; --sky:#2f6fc0; --sage:#4a8a35; --red:#c8382c;
+  --amberbg:#fbf0de; --tealbg:#e0f3f1; --violetbg:#ece8ff; --coralbg:#fde9e3; --skybg:#e4eefb; --sagebg:#e7f3e1; --redbg:#fbe4e1;
+  --shadow:0 1px 2px rgba(20,20,30,.06),0 8px 24px rgba(20,20,30,.06);
+  --sans:"Helvetica Neue",Arial,sans-serif; --mono:ui-monospace,Menlo,Consolas,monospace; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b0f1a; --panel:#131a2c; --panel2:#19223a; --line:#26304a; --fg:#e9edf6; --muted:#a3adc8; --dim:#6f7a98;
+  --amber:#f0b45e; --teal:#4fd1c5; --violet:#a99bff; --coral:#ff8f73; --sky:#7cb7ff; --sage:#9fd98a; --red:#ff6b6b;
+  --amberbg:#2a2214; --tealbg:#0f2a2a; --violetbg:#1d1a38; --coralbg:#2d1a16; --skybg:#13223a; --sagebg:#16261a; --redbg:#2d1616;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.25); color-scheme:dark;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.55 var(--sans);overflow-x:hidden}
+a{color:var(--sky)} code,.mono{font-family:var(--mono);font-size:.86em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}@media(min-width:720px){.wrap{padding:0 32px}}
+.nav{padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted)}
+.nav a{margin-left:14px;white-space:nowrap}
+.eyebrow{font:600 12px var(--mono);letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-top:40px}
+h1{font:800 clamp(34px,5.4vw,64px)/1.04 var(--sans);letter-spacing:-1.2px;margin:12px 0 14px;max-width:18ch}
+h2{font:700 26px/1.2 var(--sans);margin:48px 0 6px}
+h3{font:700 16px var(--sans);margin:0 0 6px}
+.lede{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:68ch;margin:0 0 20px}
+.sub{color:var(--muted);max-width:74ch;margin:0 0 16px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:22px 0}
+.tile{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c,var(--teal));border-radius:8px;padding:12px 14px;box-shadow:var(--shadow)}
+.tile b{display:block;font:800 28px/1.1 var(--sans);letter-spacing:-.5px}
+.tile span{display:block;font-size:14px;margin-top:2px}
+.tile small{display:block;color:var(--dim);font-size:12px;margin-top:6px;line-height:1.35}
+table{border-collapse:collapse;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:14px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--panel2);font:600 12px var(--mono);letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.tw{overflow-x:auto}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:10px 0}
+.node{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:6px;padding:8px 10px;font-size:13px;min-width:130px}
+.node b{display:block;font:600 12px var(--mono)}
+.arrow{align-self:center;color:var(--dim);font:600 12px var(--mono)}
+.stage{position:relative;background:#0c1120;border-radius:10px;overflow:hidden;aspect-ratio:960/600;max-width:960px;box-shadow:var(--shadow)}
+.stage img,.stage x3d-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.go{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:12px 20px;border-radius:999px;border:0;background:var(--amber);color:#111;font:700 15px var(--sans);cursor:pointer}
+.tag{position:absolute;left:10px;top:10px;background:rgba(0,0,0,.6);color:#fff;font:600 11px var(--mono);padding:3px 8px;border-radius:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+figure img{display:block;width:100%;height:auto}
+figcaption{padding:8px 12px;font-size:13px;color:var(--muted)}
+figcaption b{color:var(--fg)}
+.card{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:8px;padding:12px 14px}
+.src{color:var(--dim);font-size:12px;margin-top:6px}
+.pill{display:inline-block;font:600 11px var(--mono);padding:1px 7px;border-radius:99px;background:var(--c);color:#fff}
+pre{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow-x:auto;font:12.5px/1.5 var(--mono);margin:8px 0}
+footer{margin:56px 0 40px;color:var(--dim);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+<script src="../../../lib/gfx-guard-v2.js"></script>
+</head>
+<body>
+<div class="wrap">
+<div class="nav"><b>v3 · x3d.demo · Blender to splats to X3D</b><a href="#live">live</a><a href="#sizes">sizes</a><a href="#how">how</a><a href="#untrained">not trained</a><a href="#untested">not tested</a><a href="../../../">demo shelf</a></div>
+<div class="eyebrow">Blender → splats → X3D</div>
+<h1>A splat set that stays a Blender object</h1>
+<p class="lede">The exporter now writes a Blender splat object as a <code>KHR_gaussian_splatting</code> glb beside the scene, and the X3D file points at it with one <code>Inline</code>. Below, the same still life (cube, sphere, cone) is drawn as a mesh and as 30,000 splats. <b>The splats are not trained.</b> They are sampled on the mesh surface, so this page shows what the add-on does with a splat object, not what a trainer would produce.</p>
+<p class="sub"><b>v3:</b> each live pane now keeps its own state. If one pane stalls or fails, that pane shows the reason and a Retry button while the other keeps running, and the page is told it is ready only after every started pane is live. v2 let the first pane to load mark the whole page ready. v1 and v2 are kept unchanged; v3 reads scenes, pictures and X_ITE from the v1 folder.</p>
+<div class="tiles">
+ <div class="tile" style="--c:var(--teal)"><b>1,627 B</b><span>the splat scene file</span><small>os.path.getsize of still-life-splats.x3d: the splats live in the glb, the X3D holds one Inline</small></div>
+ <div class="tile" style="--c:var(--amber)"><b>1,681,280 B</b><span>the splat glb</span><small>os.path.getsize of StillLifeSplats.splats.glb: 30,000 splats at 56 bytes each (position, rotation, scale, opacity, colour; degree-0 colour only)</small></div>
+ <div class="tile" style="--c:var(--sky)"><b>42,184 B</b><span>the same scene as a mesh</span><small>os.path.getsize of still-life-mesh.x3d: 1,034 triangles; mesh stays 40× smaller than the splat set</small></div>
+ <div class="tile" style="--c:var(--coral)"><b>S</b><span>trained splats: not run</span><small>no splat trainer consumed tools/splat_capture.py output yet; graded Suspected</small></div>
+</div>
+<div id="gfx"></div>
+<h2 id="live">Live: mesh and splats, same camera</h2>
+<p class="sub">X_ITE 16.7.1 (bundled with the ROUTE demo, <code>../../blender-route/v1/vendor/x_ite</code>). Drag to orbit. Each pane loads on click.</p>
+<div class="grid">
+ <div class="stage" id="stageA"><img id="posterA" src="../v1/img/mesh.webp" alt="A red cube, gold sphere and green cone drawn as a lit mesh" width="960" height="600"><span class="tag" id="tagA">mesh · X3D 4.1</span><button class="go" data-i="A" data-src="../v1/scenes/still-life-mesh.x3d">▶ Load mesh</button></div>
+ <div class="stage" id="stageB"><img id="posterB" src="../v1/img/splats.webp" alt="The same objects drawn as 30,000 Gaussian splats, with small gaps between them" width="960" height="600"><span class="tag" id="tagB">30,000 splats · glb Inline</span><button class="go" data-i="B" data-src="../v1/scenes/still-life-splats.x3d">▶ Load splats</button></div>
+</div>
+<h2 id="sizes">Files</h2>
+<div class="tw"><table>
+<tr><th>File</th><th>What it is</th><th>Bytes</th></tr>
+<tr><td><a href="../v1/scenes/still-life-mesh.x3d">still-life-mesh.x3d</a></td><td>mesh scene (X3D 4.1)</td><td>42,184</td></tr>
+<tr><td><a href="../v1/scenes/still-life-splats.x3d">still-life-splats.x3d</a></td><td>one Transform, one <code>Inline url="StillLifeSplats.splats.glb"</code></td><td>1,627</td></tr>
+<tr><td><a href="../v1/scenes/StillLifeSplats.splats.glb">StillLifeSplats.splats.glb</a></td><td>KHR_gaussian_splatting, 30,000 splats</td><td>1,681,280</td></tr>
+<tr><td><a href="../v1/scenes/still-life.blend">still-life.blend</a></td><td>the Blender source (Blender 5.2.4)</td><td>481,854</td></tr>
+</table></div>
+<p class="src">Measured with os.path.getsize on the files in this folder (Python 3.13). The build receipt is <a href="../v1/receipts/build-receipt.json">receipts/build-receipt.json</a>.</p>
+<h2 id="how">How it is made</h2>
+<div class="flow">
+ <div class="node" style="--c:var(--sky)"><b>Blender</b>mesh object with splat_* point attributes and <code>x3d_splat_glb</code></div><div class="arrow">export →</div>
+ <div class="node" style="--c:var(--amber)"><b>glb</b>KHR_gaussian_splatting, Y-up frame, prefixed SH attribute</div><div class="arrow">Inline →</div>
+ <div class="node" style="--c:var(--teal)"><b>X3D</b>Transform + Inline, GaussianSplats component</div>
+</div>
+<p class="sub"><code>tools/splat_demo.py</code> builds this page's scenes: it samples 30,000 points on the surface of the triangles (seed 7, area-weighted), turns each into a flat disc tangent to the surface, and colours it with the material's base colour times a baked Lambert term from the sun. <code>tools/splat_capture.py</code> is the other half: Fibonacci-sphere cameras, rendered images, <code>transforms_train.json</code> and a seed <code>points3d.ply</code> for a trainer.</p>
+<h2 id="untrained">What these splats are not</h2>
+<ul class="sub"><li>Not trained: no photometric optimisation, no view-dependent colour (degree 0 only), opacity fixed at 1.</li><li>The gaps between discs are real: 30,000 splats cover 36.65 m² at about 3.5 cm spacing.</li><li>The mesh pane is lit by X_ITE's own shading; the splat colours carry a baked light. The two are for shape comparison, not for a colour-difference claim.</li></ul>
+<h2 id="untested">Not tested</h2>
+<ul class="sub"><li>A splat trainer on <code>splat_capture.py</code> output (the loop Blender → images → splats → X3D is half closed).</li><li>A real GPU or any frame rate: the pictures come from headless Chromium with SwiftShader software GL.</li><li>Other splat viewers, spherical harmonics above degree 0, the X3D 4.0 PointSet fallback.</li><li>Delta-E or SSIM against Cycles: the fidelity gates in <code>x3d-blender-fidelity/v1</code> (x3d.loom) have no comparator yet.</li></ul>
+<footer>Blender 5.2.4 LTS bpy wheel · x3d-blender-io PR #46 · X_ITE 16.7.1 · stills from headless Chromium, SwiftShader · no third-party imagery.</footer>
+</div>
+<script>
+(function(){
+var XITE='../../blender-route/v1/vendor/x_ite/',loaded=false,required=false,panes={};
+/* v3: each pane owns its own lifecycle (idle, loading, live, failed). The guard is used for the WebGL probe and for
+   start-up script errors; it is told "ready" only once every pane that was started is live, and a pane that times out
+   shows a failure note inside that pane with a Retry button instead of leaving the page in a ready state. */
+function loadXite(ok,bad){
+  if(loaded){ok();return;}
+  var l=document.createElement('link');l.rel='stylesheet';l.href=XITE+'x_ite.css';document.head.appendChild(l);
+  var s=document.createElement('script');s.src=XITE+'x_ite.min.js';
+  s.onload=function(){loaded=true;ok();};s.onerror=bad;document.head.appendChild(s);
+}
+function paneFail(p,msg){
+  p.state='failed';if(p.canvas){p.canvas.remove();p.canvas=null;}
+  p.tag.textContent=p.label+' · '+msg;
+  p.go.hidden=false;p.go.disabled=false;p.go.textContent='↻ Retry '+p.name;
+  p.poster.hidden=false;
+}
+function allLive(){return Object.keys(panes).every(function(k){return panes[k].state==='live';});}
+function start(p){
+  p.state='loading';p.go.disabled=true;p.go.textContent='Loading…';
+  loadXite(function(){
+    var c=document.createElement('x3d-canvas');p.canvas=c;
+    c.setAttribute('src',p.src);c.setAttribute('contextMenu','false');c.setAttribute('notifications','false');
+    c.setAttribute('splashScreen','false');c.setAttribute('timings','false');
+    p.stage.insertBefore(c,p.tag);p.tag.textContent=p.label+' · loading…';
+    var t0=Date.now();
+    (function poll(){
+      if(p.state!=='loading'||p.canvas!==c)return;
+      var up=false;try{up=X3D.getBrowser(c).currentScene.rootNodes.length>0;}catch(e){}
+      if(up){p.state='live';p.poster.hidden=true;p.go.hidden=true;p.tag.textContent=p.label+' · live';
+        if(allLive()&&GfxGuard.state.outcome!=='failed')GfxGuard.ready();return;}
+      if(GfxGuard.state.outcome==='failed')return;
+      if(Date.now()-t0>(window.__paneTimeoutMs||120000)){paneFail(p,'did not load in time');return;}
+      setTimeout(poll,250);
+    })();
+  },function(){paneFail(p,'the X_ITE viewer file could not be loaded');});
+}
+document.querySelectorAll('.go').forEach(function(go){
+  var i=go.dataset.i,tag=document.getElementById('tag'+i);
+  var p=panes[i]={name:i==='A'?'mesh':'splats',go:go,src:go.dataset.src,state:'idle',canvas:null,tag:tag,label:tag.textContent,
+    poster:document.getElementById('poster'+i),stage:document.getElementById('stage'+i)};
+  go.addEventListener('click',function(){
+    if(p.state==='loading'||p.state==='live')return;
+    if(!required){
+      required=true;
+      if(!GfxGuard.require({api:'webgl2',bootId:'gfx',timeoutMs:20000,title:'This live comparison',still:p.poster.getAttribute('src'),
+          stillAlt:p.poster.getAttribute('alt'),fallbacks:[{href:'../v1/scenes/still-life-mesh.x3d',label:'The mesh scene (X3D)'},{href:'../v1/scenes/StillLifeSplats.splats.glb',label:'The splat file (glTF)'}]})){
+        Object.keys(panes).forEach(function(k){panes[k].go.remove();});return;}
+    }
+    if(GfxGuard.state.outcome==='failed')return;
+    start(p);
+  });
+});
+window.__panes=panes;   /* read by the page test */
+})();
+</script>
+
+</body>
+</html>
