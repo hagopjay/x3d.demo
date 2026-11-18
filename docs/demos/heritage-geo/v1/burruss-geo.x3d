@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">
+ <head>
+  <component name="Geospatial" level="1"/>
+  <meta name="title" content="Burruss Hall and the Drillfield placed with GeoLocation (heritage-geo v1)"/>
+  <meta name="description" content="Reuses the Drillfield world (Google Solar API data, academic proof of concept only) by Inline, placed at 37.2284 N, -80.4234 E."/>
+  <meta name="attribution" content="Imagery and data: Google"/>
+ </head>
+ <Scene>
+  <NavigationInfo type='"EXAMINE" "ANY"' headlight="true"/>
+  <GeoViewpoint DEF="vp_burruss" description="Drillfield overview" geoSystem='"GD" "WE"' position="37.2284 -80.4234 1000" orientation="1 0 0 -1.5707963" centerOfRotation="37.2284 -80.4234 617"/>
+  <GeoLocation DEF="gl_drillfield" geoSystem='"GD" "WE"' geoCoords="37.2284 -80.4234 617">
+   <Transform DEF="t_up" rotation="1 0 0 0">
+    <Inline DEF="drillfield" url='"../../gobbler-worlds-within/v1/data/worlds/drillfield/drillfield.x3d"'/>
+   </Transform>
+  </GeoLocation>
+ </Scene>
+</X3D>

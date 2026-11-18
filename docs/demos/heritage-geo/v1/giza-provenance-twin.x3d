@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">
+ <head>
+  <component name="Geospatial" level="1"/>
+  <meta name="title" content="Giza provenance twin (heritage + geospatial Loom demo, v1)"/>
+  <meta name="description" content="Four Giza monuments placed with GeoLocation; every CRM claim is a MetadataSet carrying a Confirmed/Likely/Suspected grade. Geometry is schematic."/>
+  <meta name="generator" content="x3d.demo heritage-geo v1 build.py"/>
+ </head>
+ <Scene>
+  <GeoMetadata DEF="geo" summary="&quot;WGS84 GD, lat lon degrees; placeholder ground 60 m; Burruss stub elevation from USGS EPQS 1 m&quot;"/>
+  <NavigationInfo type='"EXAMINE" "ANY"' headlight="true"/>
+  <Background skyColor="0.55 0.7 0.9 0.85 0.8 0.7" skyAngle="1.5" groundColor="0.7 0.6 0.4" groundAngle="0"/>
+  <DirectionalLight direction="-0.4 -1 -0.3" intensity="0.9"/>
+  <GeoViewpoint DEF="vp_giza" description="Giza overview" geoSystem='"GD" "WE"' position="29.9640 31.1330 900" orientation="1 0 0 -0.62" centerOfRotation="29.9755 31.1325 60"/>
+  <GeoViewpoint DEF="vp_burruss" description="Burruss stub" geoSystem='"GD" "WE"' position="37.2200 -80.4234 900" orientation="1 0 0 -0.9" centerOfRotation="37.2284 -80.4234 627"/>
+  <GeoLocation DEF="gl_khufu" geoSystem='"GD" "WE"' geoCoords="29.9792 31.1342 60">
+   <Transform DEF="t_khufu">
+    <MetadataSet name="site" containerField="metadata"><MetadataString name="label" value='"Great Pyramid (Khufu)"'/>
+          <MetadataSet name="c1" reference="http://www.cidoc-crm.org/cidoc-crm/E22">
+            <MetadataString name="crm_class" value='"E22_Human-Made_Object"'/>
+            <MetadataString name="crm_path" value='"P108i_was_produced_by -&gt; E12_Production -&gt; P4_has_time-span"'/>
+            <MetadataString name="statement" value='"Built in the 4th Dynasty, c. 2560 BCE (E12 Production, E52 Time-Span)."'/>
+            <MetadataString name="grade" value='"L"'/>
+            <MetadataString name="source" value='"Published chronology; not re-opened in this build"'/>
+          </MetadataSet>
+          <MetadataSet name="c2" reference="http://www.cidoc-crm.org/cidoc-crm/E22">
+            <MetadataString name="crm_class" value='"E22_Human-Made_Object"'/>
+            <MetadataString name="crm_path" value='"P14_carried_out_by -&gt; E21_Person (Khufu)"'/>
+            <MetadataString name="statement" value='"Commissioned by Khufu."'/>
+            <MetadataString name="grade" value='"L"'/>
+            <MetadataString name="source" value='"Published consensus; not re-opened here"'/>
+          </MetadataSet>
+          <MetadataSet name="c3" reference="http://www.cidoc-crm.org/cidoc-crm/E27">
+            <MetadataString name="crm_class" value='"E27_Site"'/>
+            <MetadataString name="crm_path" value='"P168_place_is_defined_by (GeoLocation 29.9792 N 31.1342 E)"'/>
+            <MetadataString name="statement" value='"Position in WGS84 as placed by GeoLocation."'/>
+            <MetadataString name="grade" value='"L"'/>
+            <MetadataString name="source" value='"Public coordinates; not surveyed here"'/>
+          </MetadataSet>
+          <MetadataSet name="c7" reference="http://www.cidoc-crm.org/cidoc-crm/E13">
+            <MetadataString name="crm_class" value='"E13_Attribute_Assignment"'/>
+            <MetadataString name="crm_path" value='"P140_assigned_attribute_to / P141_assigned"'/>
+            <MetadataString name="statement" value='"This twin: each claim above is an E13 Attribute Assignment carrying its grade, so the grade is queryable."'/>
+            <MetadataString name="grade" value='"C"'/>
+            <MetadataString name="source" value='"jsonld built and parsed in this build (see receipt)"'/>
+          </MetadataSet>
+    </MetadataSet>
+    <Shape DEF="shape_khufu"><Appearance><Material diffuseColor="0.85 0.72 0.45"/></Appearance>
+     <IndexedFaceSet coordIndex="0 1 2 3 -1  0 4 1 -1  1 4 2 -1  2 4 3 -1  3 4 0 -1" solid="false"><Coordinate point="-115.15 0 -115.15  115.15 0 -115.15  115.15 0 115.15  -115.15 0 115.15  0 138.5 0"/>
+     </IndexedFaceSet></Shape>
+    <TouchSensor DEF="ts_khufu" description="Great Pyramid (Khufu)"/>
+   </Transform>
+  </GeoLocation>
+  <GeoLocation DEF="gl_khafre" geoSystem='"GD" "WE"' geoCoords="29.9753 31.1308 60">
+   <Transform DEF="t_khafre">
+    <MetadataSet name="site" containerField="metadata"><MetadataString name="label" value='"Pyramid of Khafre"'/>
+          <MetadataSet name="c4" reference="http://www.cidoc-crm.org/cidoc-crm/E22">
+            <MetadataString name="crm_class" value='"E22_Human-Made_Object"'/>
+            <MetadataString name="crm_path" value='"P108i_was_produced_by -&gt; E12_Production"'/>
+            <MetadataString name="statement" value='"Attributed to Khafre, son of Khufu."'/>
+            <MetadataString name="grade" value='"L"'/>
+            <MetadataString name="source" value='"Published consensus"'/>
+          </MetadataSet>
+    </MetadataSet>
+    <Shape DEF="shape_khafre"><Appearance><Material diffuseColor="0.80 0.68 0.42"/></Appearance>
+     <IndexedFaceSet coordIndex="0 1 2 3 -1  0 4 1 -1  1 4 2 -1  2 4 3 -1  3 4 0 -1" solid="false"><Coordinate point="-107.65 0 -107.65  107.65 0 -107.65  107.65 0 107.65  -107.65 0 107.65  0 143.5 0"/>
+     </IndexedFaceSet></Shape>
+    <TouchSensor DEF="ts_khafre" description="Pyramid of Khafre"/>
+   </Transform>
+  </GeoLocation>
+  <GeoLocation DEF="gl_menkaure" geoSystem='"GD" "WE"' geoCoords="29.9725 31.1283 60">
+   <Transform DEF="t_menkaure">
+    <MetadataSet name="site" containerField="metadata"><MetadataString name="label" value='"Pyramid of Menkaure"'/>
+          <MetadataSet name="c6" reference="http://www.cidoc-crm.org/cidoc-crm/E22">
+            <MetadataString name="crm_class" value='"E22_Human-Made_Object"'/>
+            <MetadataString name="crm_path" value='"P43_has_dimension -&gt; E54_Dimension"'/>
+            <MetadataString name="statement" value='"Base about 102 m, height about 65 m."'/>
+            <MetadataString name="grade" value='"L"'/>
+            <MetadataString name="source" value='"Published figures; the geometry here is a schematic box-pyramid (GZ-1: geometry status != evidence tier)"'/>
+          </MetadataSet>
+    </MetadataSet>
+    <Shape DEF="shape_menkaure"><Appearance><Material diffuseColor="0.78 0.64 0.40"/></Appearance>
+     <IndexedFaceSet coordIndex="0 1 2 3 -1  0 4 1 -1  1 4 2 -1  2 4 3 -1  3 4 0 -1" solid="false"><Coordinate point="-51.1 0 -51.1  51.1 0 -51.1  51.1 0 51.1  -51.1 0 51.1  0 65.5 0"/>
+     </IndexedFaceSet></Shape>
+    <TouchSensor DEF="ts_menkaure" description="Pyramid of Menkaure"/>
+   </Transform>
+  </GeoLocation>
+  <GeoLocation DEF="gl_sphinx" geoSystem='"GD" "WE"' geoCoords="29.9753 31.1376 60">
+   <Transform DEF="t_sphinx">
+    <MetadataSet name="site" containerField="metadata"><MetadataString name="label" value='"Great Sphinx"'/>
+          <MetadataSet name="c5" reference="http://www.cidoc-crm.org/cidoc-crm/E22">
+            <MetadataString name="crm_class" value='"E22_Human-Made_Object"'/>
+            <MetadataString name="crm_path" value='"P14_carried_out_by -&gt; E21_Person (Khafre?)"'/>
+            <MetadataString name="statement" value="&quot;Sphinx attributed to Khafre's reign; the attribution is argued, not proven.&quot;"/>
+            <MetadataString name="grade" value='"S"'/>
+            <MetadataString name="source" value='"Contested literature; see GIZA-EVIDENCE-ATLAS GZ-1"'/>
+          </MetadataSet>
+    </MetadataSet>
+    <Shape DEF="shape_sphinx"><Appearance><Material diffuseColor="0.70 0.60 0.45"/></Appearance>
+     <IndexedFaceSet coordIndex="0 1 2 3 -1  0 4 1 -1  1 4 2 -1  2 4 3 -1  3 4 0 -1" solid="false"><Coordinate point="-9.5 0 -9.5  9.5 0 -9.5  9.5 0 9.5  -9.5 0 9.5  0 20.0 0"/>
+     </IndexedFaceSet></Shape>
+    <TouchSensor DEF="ts_sphinx" description="Great Sphinx"/>
+   </Transform>
+  </GeoLocation>
+  <GeoLocation DEF="gl_burruss" geoSystem='"GD" "WE"' geoCoords="37.2284 -80.4234 627.175">
+   <MetadataSet name="stub" containerField="metadata"><MetadataString name="note" value='"Placeholder box, not the building. Elevation 627.175 m from USGS EPQS 1 m (rasterId 58593). IFC to X3D is the next step; see MAPPING.md"'/></MetadataSet>
+   <Shape><Appearance><Material diffuseColor="0.5 0.2 0.2" transparency="0.4"/></Appearance><Box size="60 30 40"/></Shape>
+  </GeoLocation>
+ </Scene>
+</X3D>
