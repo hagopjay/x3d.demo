@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## Unnumbered (2026-11-18, Masonic Lodge XR v2)
+- `docs/demos/masonic-lodge/v2/`: fixes the v1 desktop preview (the X3D now has a Viewpoint, NavigationInfo and Background and the X_ITE canvas is sized; XSD-valid against x3d_mcp fa5dccf), softens the README wording about lists, and makes `tools/aggregate_private.py` refuse to write inside a git repository. v1 is untouched; v2 reuses `../v1/vendor/`.
+
 ## Unnumbered (2026-11-18)
 - Masonic Lodge XR v1 (`docs/demos/masonic-lodge/v1/`): AR.js location-based overlay of a cutaway X3D Giza on Masonic buildings from OpenStreetMap near the phone. X3D file XSD-valid (x3d_mcp fa5dccf); fixture run in headless Chromium clean; live Overpass and real-phone use not tested. No front-page card (bridge thread owns numbering). No national list is published; the private aggregate script writes outside the repo.
 
