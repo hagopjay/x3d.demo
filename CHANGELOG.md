@@ -234,6 +234,9 @@ The demo doc is the page served at the site root. Every version is kept: `docs/v
 ## Unnumbered: Hypergraph demo page (2026-11-18)
 - Added `docs/demos/hypergraph/v1/`: 40 DSA concepts as 4D points, 15 hyperedges as hubs and bounds, 4D rotation, 2D/3D/4D lens, clique-expansion contrast. Sources and checks in its NOTICE.md. Front-page card and number come from the bridge thread (not edited here).
 
+## Hypergraph v2 (2026-11-18)
+- Added `docs/demos/hypergraph/v2/`: Chess ECO A to E overlaid on the Hypergraph (48 openings, 8 engine concepts, 16 chess hyperedges, 5 DSA-to-chess bridges, layer switch). v1 is unchanged. Sources, grades and limits in its NOTICE.md. Front-page card is the bridge thread's.
+
 ## v5 (2026-11-07)
 - Demo 3 is now Neural Canvas, the brain and torso CT drawn with Babylon.js on WebGPU through our own X3D reader (built from x3d.loom PR #13 with `build-brain.py --single`). It replaces the placeholder. Sources and licence grades are in `docs/demos/brain-torso/v1/NOTICE*.md`. The cortex shapes come from TemplateFlow fsaverage, whose licence is graded Suspected (no licence file found); it is shown for educational use at the owner's direction and may be removed if the rights holder asks.
 
