@@ -1,0 +1,72 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Math Lab concept graph (OntoMathPro, OpenMath, MathML, PhySH)</title>
+<style>
+:root{--bg:#0d1117;--fg:#e6edf3;--mut:#8b98a8;--card:#161b22;--ln:#2a313c;--ac:#73dfff;--C:#59d36a;--L:#e6b93c;--S:#e5604a;--omp:#59bfff;--om:#ff73cc;--ml:#d9d9e6;--ph:#4dd9cc;--oe:#ffa033}
+@media (prefers-color-scheme:light){:root{--bg:#f4f6f9;--fg:#18202a;--mut:#5b6877;--card:#fff;--ln:#d5dbe3;--ac:#0b6a8f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,sans-serif}
+header{padding:12px 16px;border-bottom:1px solid var(--ln)}h1{margin:0;font-size:18px}.sub{color:var(--mut);font-size:12px}
+main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:12px;padding:12px 16px}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:6px;padding:10px;margin-bottom:12px}
+x3d-canvas{width:100%;height:480px;display:block;background:#111;border-radius:4px}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{border-bottom:1px solid var(--ln);padding:3px 5px;text-align:left;vertical-align:top}th{color:var(--mut)}
+.g{display:inline-block;min-width:20px;text-align:center;border-radius:3px;color:#000;font-weight:700;padding:0 4px}.g.C{background:var(--C)}.g.L{background:var(--L)}.g.S{background:var(--S)}
+.tick{display:inline-block;width:12px;height:12px;margin-right:2px;border-radius:2px;background:#2a2f38;vertical-align:middle}
+.tick.omp.on{background:var(--omp)}.tick.om.on{background:var(--om)}.tick.ml.on{background:var(--ml)}.tick.ph.on{background:var(--ph)}
+tr.ls{cursor:pointer}tr.ls:hover,tr.sel{background:rgba(115,223,255,.14)}h2{font-size:14px;margin:0 0 6px;color:var(--ac)}
+code{font-size:11px}#pick{min-height:4em;font-size:12px}.note{font-size:12px;color:var(--mut)}
+button{background:none;border:1px solid var(--ln);color:var(--fg);padding:3px 9px;border-radius:4px;cursor:pointer;margin:0 4px 4px 0}button.on{background:var(--ac);color:#000}
+.src-omp{color:var(--omp)}.src-om{color:var(--om)}.src-ml{color:var(--ml)}.src-ph{color:var(--ph)}.src-oe{color:var(--oe)}.tick.oe.on{background:var(--oe)}
+</style></head><body>
+<header><h1>Math Lab concept graph <span class="sub">18 lessons x 5 sources, every link a graded claim (v2)</span></h1>
+<div class="sub">Grades: <span class="g C">C</span> Confirmed (exact match, id and label fetched live in this build) <span class="g L">L</span> Likely (id fetched; close/broad/related, or definition not opened) <span class="g S">S</span> Suspected (translation guess, analogy or false friend). Ticks under each sphere: OntoMathPro, OpenMath, MathML, PhySH, OEIS (lit = at least one link). v2 corrects v1: see the errata card.</div></header>
+<main><div>
+ <div class="card"><div id="flt"><button data-g="C" class="on">C links</button><button data-g="L" class="on">L links</button><button data-g="S" class="on">S links</button></div>
+ <x3d-canvas id="cv" src="concept-graph.x3d" splashScreen="false"></x3d-canvas>
+ <div id="pick">Click a lesson sphere or a row to read its links and confirmed gaps.</div></div>
+ <div class="card"><h2>Where the ontologies run out (Confirmed negatives, live regex over each listing)</h2><table id="gp"><thead><tr><th>Lesson</th><th>Source</th><th>Searched for</th><th>Result</th></tr></thead><tbody></tbody></table>
+ <p class="note">A gap means the stated search found nothing in the stated listing on the fetch date. It does not prove the concept is absent elsewhere.</p></div>
+</div><div>
+ <div class="card"><h2>Lessons: links by grade and coverage</h2><table id="ls"><thead><tr><th>Lesson</th><th>C</th><th>L</th><th>S</th><th>Src</th><th title="arXiv titles matching the lesson among 2,974 recent physics.ed-ph, math.HO, physics.class-ph papers">arXiv</th></tr></thead><tbody></tbody></table><div class="note" id="tot"></div></div>
+ <div class="card"><h2>Sources, licences, and what the Gobbler agents may ingest</h2><table><thead><tr><th>Source</th><th>Licence (grade)</th><th>Ingest route</th></tr></thead><tbody id="lic"></tbody></table></div>
+ <div class="card"><h2>Errata: what v2 corrects in v1 (found with the bilingual crawl)</h2><div class="note" id="err">loading</div></div>
+ <div class="card"><h2>Receipt</h2><div class="note" id="rcpt">loading</div></div>
+</div></main>
+<script src="../../blender-x3d-io/v1/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),esc=t=>String(t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const NAME={omp:'OntoMathPro',om:'OpenMath',ml:'MathML 3',ph:'PhySH',oe:'OEIS'};
+const LIC=[['OntoMathPro (ontomathpro.org, Kazan Federal University)','no licence text found on the site (S). The full crawl of 3,449 class pages is held in a PRIVATE quarantine, not in this repo; this page carries only ids, short labels and superclass chains of cited terms.','one HTML page per class (labels en/ru, superclasses, comments). Concept dereferencing (/ontology/E1) returns 404; no RDF content negotiation.'],
+['OpenMath CDs (openmath.org)','CD files allow verbatim redistribution; modified copies must be renamed (read in the CD header, C). Symbol names are cited, CD text is not copied.','symbols index (1537 symbols) and per-CD .ocd XML, plain HTTP.'],
+['MathML 3 (W3C)','W3C document use rules, (C: copyright line read). Element names cited only.','chapter 4 content markup, 36+ element names checked as occurrences.'],
+['PhySH (APS)','CC0 1.0 (C, read at physh.org/licensing). The name PhySH may not be used without APS permission.','JSON REST: /concepts, /disciplines, /concepts?discipline=ID. 544 concepts gathered.'],
+['OEIS (oeis.org)','CC BY-SA 4.0 (C, read at oeis.org/LICENSE). The two cited names are attributed to the OEIS; the 402,048-name dump is quarantined, not published.','names.gz (7.8 MB) fetched; per-sequence JSON also answers.'],
+['arXiv (counts and ids only)','metadata terms not re-read here (L); each paper has its own licence, so figures are per-paper (S). Only counts and arXiv ids are published.','export.arxiv.org API: 2,974 unique papers (2023-09-25 to 2026-11-17) from physics.ed-ph, math.HO, physics.class-ph; titles and abstracts quarantined.'],
+['Open textbooks (OpenStax etc.)','published as CC BY 4.0 (L, not re-opened here)','not probed in this build.']];
+let AX={},ER=[],G=[],claims=[],cov={},gaps=[],sel=null,vis={C:1,L:1,S:1};
+const J=async u=>(await fetch(u)).json();
+function show(les){
+ sel=les;document.querySelectorAll('tr.ls').forEach(r=>r.classList.toggle('sel',r.dataset.l===les));
+ const L=G.filter(x=>x['x3d:lesson']&&x['x3d:lesson']['@id']==='urn:x3d:mathlab:lesson:'+les&&x['@type']==='x3d:MappingClaim');
+ const gp=gaps.filter(g=>g.lesson===les);
+ $('#pick').innerHTML='<b>'+les+'</b> ('+L.length+' links, '+gp.length+' confirmed gaps)<br>'+L.map(c=>'<span class="g '+c['x3d:grade']['@id'].slice(-1)+'">'+c['x3d:grade']['@id'].slice(-1)+'</span> <span class="src-'+({OntoMathPro:'omp',OpenMath:'om','MathML 3 content':'ml',PhySH:'ph',OEIS:'oe'}[c['x3d:source']])+'">'+esc(c['x3d:source'])+'</span> '+esc(c['x3d:relation']['@id'].split('#')[1]||c['x3d:relation']['@id'].replace('skos:',''))+' <i>'+esc(c['skos:prefLabel'])+'</i>'+(c['dct:description']&&c['dct:description']!==c['skos:prefLabel']?' <span class="note">('+esc(c['dct:description'])+')</span>':'')).join('<br>')+(gp.length?'<br><span class="note">gaps: '+gp.map(g=>NAME[g.src]+': '+esc(g.note)).join('; ')+'</span>':'');
+}
+function applyVis(){try{const sc=$('#cv').browser.currentScene;for(const g of 'CLS'){const n=sc.getNamedNode('lines_'+g);n.visible=!!vis[g];}}catch(e){}}
+function hook(){try{const sc=$('#cv').browser.currentScene;for(const l of Object.keys(cov.per_lesson)){try{sc.getNamedNode('ts_'+l).getField('isActive').addFieldCallback('p'+l,v=>{if(v)show(l)})}catch(e){}}}catch(e){}window.__mcg.hooked=true}
+(async()=>{window.__mcg={ready:false};
+ const [cv,cl,vt,rc,ax,er]=await Promise.all([J('coverage.json'),J('claims.jsonld'),J('data/verified-terms.json'),J('data/receipts.json'),J('data/arxiv-hits.json'),J('data/errata-v1.json')]);AX=ax;ER=er.errata;
+ cov=cv;G=cl['@graph'];gaps=vt.gaps;const t=cv.totals;
+ $('#ls tbody').innerHTML=Object.entries(cv.per_lesson).map(([l,r])=>{const s=k=>Object.values(r).reduce((a,x)=>a+x[k],0);
+  return '<tr class="ls" data-l="'+l+'"><td>'+l+'</td><td>'+s('C')+'</td><td>'+s('L')+'</td><td>'+s('S')+'</td><td>'+Object.keys(NAME).map(k=>'<span class="tick '+k+(r[k].links?' on':'')+'" title="'+NAME[k]+': '+r[k].links+' links'+(r[k].gap?', confirmed gap':'')+'"></span>').join('')+'</td><td>'+AX[l].n_title+'</td></tr>'}).join('');
+ document.querySelectorAll('tr.ls').forEach(r=>r.onclick=()=>show(r.dataset.l));
+ $('#tot').textContent=t.lessons+' lessons, '+t.links+' links ('+t.grades.C+' C, '+t.grades.L+' L, '+t.grades.S+' S), '+t.terms+' distinct terms, '+t.gaps+' confirmed gaps. Lessons with at least one Confirmed link: OntoMathPro '+t.lessons_with_any_C_link.omp+', OpenMath '+t.lessons_with_any_C_link.om+', MathML '+t.lessons_with_any_C_link.ml+', PhySH '+t.lessons_with_any_C_link.ph+' of '+t.lessons+'.';
+ $('#gp tbody').innerHTML=gaps.map(g=>'<tr><td>'+g.lesson+'</td><td class="src-'+g.src+'">'+NAME[g.src]+'</td><td><code>'+esc(g.regex)+'</code></td><td>'+esc(g.note)+'</td></tr>').join('');
+ $('#lic').innerHTML=LIC.map(r=>'<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td>'+esc(r[2])+'</td></tr>').join('');
+ $('#rcpt').innerHTML='Fetched '+rc.fetched+' from the build container (curl via agent proxy). OntoMathPro '+rc.omp_classes+' classes ('+rc.omp_en+' with an English label, '+rc.omp_ru+' with a Russian label, '+rc.omp_ru_only+' Russian-only), OEIS '+rc.oeis_sequences+' sequence names, OpenMath '+rc.openmath_symbols+' symbols, PhySH '+rc.physh_concepts+' concepts; '+rc.files.length+' fetches with sha256 in <a href="data/receipts.json">receipts.json</a>. Scene validity: <span id="vv">loading</span>. Links: <a href="claims.jsonld">claims.jsonld</a>, <a href="coverage.json">coverage.json</a>, <a href="concept-graph.x3d">concept-graph.x3d</a>.';
+ try{const v=await J('validation-v2.json');$('#vv').textContent=(v.valid?'valid':'INVALID')+' by '+v.validator+', sha256 '+v.scene_sha256.slice(0,12)}catch(e){$('#vv').textContent='no receipt'}
+ $('#err').innerHTML='<ul style="margin:0;padding-left:18px"><li>v1 searched ONE label per OntoMathPro class (English if present, else Russian). Searching both languages refuted '+ER.length+' v1 gap claim(s): '+ER.map(e=>e.lesson+'/'+e.src+' (found '+e.refuted_by.map(x=>x[0]+' '+esc(x[1].join(' | '))).join('; ')+')').join('; ')+'.</li><li>v1 graded E2698 "Vector function" for the vector-field lesson and implied no generic class existed. E246 "Field of vectors / векторное поле" is that class (now C).</li><li>v1 gave the generic E2855 for the integral lesson; E2865 "интеграл Римана" (Riemann integral) is the better match (now C).</li><li>Russian-only class count: v1 said 737 (regex on the listing); the page crawl gives '+rc.omp_ru_only+'.</li></ul>';
+document.querySelectorAll('#flt button').forEach(b=>b.onclick=()=>{vis[b.dataset.g]=vis[b.dataset.g]?0:1;b.classList.toggle('on',!!vis[b.dataset.g]);applyVis()});
+ window.__mcg.ready=true;window.__mcg.show=show;window.__mcg.vis=vis;window.__mcg.applyVis=applyVis;
+})();
+$('#cv').addEventListener('load',()=>{hook();applyVis()});
+</script></body></html>
