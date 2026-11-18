@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blender DEF/USE instancing</title>
+<meta name="description" content="Collection instances in Blender become one DEF'd Group and USE references in X3D 4.0. 72 placements: 134,377 bytes against 6,755,470 without sharing. Every number names the tool that measured it.">
+<style>
+:root{
+  --bg:#f6f4ef; --panel:#ffffff; --panel2:#f3f0e8; --line:#ddd6c8; --fg:#16181f; --muted:#555b6b; --dim:#80869a;
+  --amber:#b8741a; --teal:#0f8a80; --violet:#6b56d6; --coral:#d9573a; --sky:#2f6fc0; --sage:#4a8a35; --red:#c8382c;
+  --amberbg:#fbf0de; --tealbg:#e0f3f1; --violetbg:#ece8ff; --coralbg:#fde9e3; --skybg:#e4eefb; --sagebg:#e7f3e1; --redbg:#fbe4e1;
+  --shadow:0 1px 2px rgba(20,20,30,.06),0 8px 24px rgba(20,20,30,.06);
+  --sans:"Helvetica Neue",Arial,sans-serif; --mono:ui-monospace,Menlo,Consolas,monospace; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b0f1a; --panel:#131a2c; --panel2:#19223a; --line:#26304a; --fg:#e9edf6; --muted:#a3adc8; --dim:#6f7a98;
+  --amber:#f0b45e; --teal:#4fd1c5; --violet:#a99bff; --coral:#ff8f73; --sky:#7cb7ff; --sage:#9fd98a; --red:#ff6b6b;
+  --amberbg:#2a2214; --tealbg:#0f2a2a; --violetbg:#1d1a38; --coralbg:#2d1a16; --skybg:#13223a; --sagebg:#16261a; --redbg:#2d1616;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.25); color-scheme:dark;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.55 var(--sans);overflow-x:hidden}
+a{color:var(--sky)} code,.mono{font-family:var(--mono);font-size:.86em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}@media(min-width:720px){.wrap{padding:0 32px}}
+.nav{padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted)}
+.nav a{margin-left:14px;white-space:nowrap}
+.eyebrow{font:600 12px var(--mono);letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-top:40px}
+h1{font:800 clamp(34px,5.4vw,64px)/1.04 var(--sans);letter-spacing:-1.2px;margin:12px 0 14px;max-width:18ch}
+h2{font:700 26px/1.2 var(--sans);margin:48px 0 6px}
+h3{font:700 16px var(--sans);margin:0 0 6px}
+.lede{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:68ch;margin:0 0 20px}
+.sub{color:var(--muted);max-width:74ch;margin:0 0 16px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:22px 0}
+.tile{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c,var(--teal));border-radius:8px;padding:12px 14px;box-shadow:var(--shadow)}
+.tile b{display:block;font:800 28px/1.1 var(--sans);letter-spacing:-.5px}
+.tile span{display:block;font-size:14px;margin-top:2px}
+.tile small{display:block;color:var(--dim);font-size:12px;margin-top:6px;line-height:1.35}
+table{border-collapse:collapse;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:14px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--panel2);font:600 12px var(--mono);letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.tw{overflow-x:auto}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:10px 0}
+.node{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:6px;padding:8px 10px;font-size:13px;min-width:130px}
+.node b{display:block;font:600 12px var(--mono)}
+.arrow{align-self:center;color:var(--dim);font:600 12px var(--mono)}
+.stage{position:relative;background:#0c1120;border-radius:10px;overflow:hidden;aspect-ratio:960/600;max-width:960px;box-shadow:var(--shadow)}
+.stage img,.stage x3d-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.go{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:12px 20px;border-radius:999px;border:0;background:var(--amber);color:#111;font:700 15px var(--sans);cursor:pointer}
+.tag{position:absolute;left:10px;top:10px;background:rgba(0,0,0,.6);color:#fff;font:600 11px var(--mono);padding:3px 8px;border-radius:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+figure img{display:block;width:100%;height:auto}
+figcaption{padding:8px 12px;font-size:13px;color:var(--muted)}
+figcaption b{color:var(--fg)}
+.card{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:8px;padding:12px 14px}
+.src{color:var(--dim);font-size:12px;margin-top:6px}
+.pill{display:inline-block;font:600 11px var(--mono);padding:1px 7px;border-radius:99px;background:var(--c);color:#fff}
+pre{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow-x:auto;font:12.5px/1.5 var(--mono);margin:8px 0}
+footer{margin:56px 0 40px;color:var(--dim);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="nav"><b>x3d.demo · Blender DEF/USE instancing</b><a href="#live">live</a><a href="#sizes">sizes</a><a href="#same">same picture</a><a href="#how">how</a><a href="#findings">findings</a><a href="#untested">not tested</a><a href="../../../">demo shelf</a></div>
+<div class="eyebrow">Blender → X3D · instancing</div>
+<h1>Seventy-two placements, written once</h1>
+<p class="lede">In Blender you build a Tree once, put it in a collection and instance it. Until now the X3D exporter wrote those instance Empties as bare Transforms and dropped the content. It now writes each instanced collection once as a <code>Group DEF</code> and every further placement as <code>Group USE</code>. The grove below is 60 trees and 12 huts: 72 placements.</p>
+<div class="tiles">
+ <div class="tile" style="--c:var(--teal)"><b>134,377 B</b><span>collection instances, this exporter</span><small>os.path.getsize of grove-A, Blender 5.2.4 bpy wheel; 6 Shapes for 80 Transforms</small></div>
+ <div class="tile" style="--c:var(--coral)"><b>6,755,470 B</b><span>same placements, no sharing</span><small>grove-C: realised objects, every mesh single-user; 205 Shapes. 50.3× larger (gzip -9: 1,701,044 vs 33,127, 51.3×)</small></div>
+ <div class="tile" style="--c:var(--amber)"><b>25.4%</b><span>smaller than realised with shared meshes</span><small>134,377 vs 180,036 B (what linked duplicates already cost); gzip -9 only 8.3% smaller (33,127 vs 36,138)</small></div>
+ <div class="tile" style="--c:var(--violet)"><b>14,877 B</b><span>what main wrote before this change</span><small>origin/main at 044bea3, same scene: 1 Shape, the ground; all 72 instances were empty Transforms. The grove was missing from the file</small></div>
+</div>
+<h2 id="live">Live: the instanced grove</h2>
+<p class="sub">grove-A in X_ITE 16.7.1 (bundled with the ROUTE demo, <code>../../blender-route/v1/vendor/x_ite</code>). Drag to orbit.</p>
+<div class="stage" id="stage"><img id="poster" src="img/A.webp" alt="A grove of 60 trees and 12 huts on grass, seen from above" width="960" height="600"><span class="tag" id="tag">X3D 4.0 · X_ITE 16.7.1</span><button class="go" id="go">▶ Load live scene</button></div>
+<h2 id="sizes">Four files, one scene</h2>
+<div class="tw"><table>
+<tr><th>File</th><th>What it is</th><th>Bytes</th><th>gzip -9</th><th>Shape</th><th>Transform</th><th>IndexedFaceSet</th><th>DEF / USE</th></tr>
+<tr><td>grove-main-before</td><td>origin/main exporter, collection instances</td><td>14,877</td><td>3,773</td><td>1</td><td>75</td><td>1</td><td>80 / 0</td></tr>
+<tr><td><b>grove-A</b></td><td>collection instances, this PR</td><td><b>134,377</b></td><td>33,127</td><td>6</td><td>80</td><td>6</td><td>100 / 71</td></tr>
+<tr><td>grove-B</td><td>realised copies, shared mesh data</td><td>180,036</td><td>36,138</td><td>205</td><td>207</td><td>205</td><td>225 / 399</td></tr>
+<tr><td>grove-C</td><td>realised copies, single-user meshes (no sharing)</td><td>6,755,470</td><td>1,701,044</td><td>205</td><td>207</td><td>205</td><td>424 / 200</td></tr>
+</table></div>
+<p class="src">Bytes: Python os.path.getsize / len of the file; gzip: Python 3.13 gzip.compress level 9; node counts: byte counts of "&lt;Shape", "&lt;Transform", " DEF=", " USE=" in the file. tools/instancing_demo.py in x3d-blender-io builds all four and writes receipts/sizes.json.</p>
+<div class="grid" style="margin:14px 0">
+ <figure><div style="padding:8px 12px;font:600 12px var(--mono)">BYTES (linear)</div>
+  <svg viewBox="0 0 400 130" width="100%" role="img" aria-label="Bar chart of the four file sizes on a log scale"><g font-family="monospace" font-size="11" fill="currentColor">
+  <text x="4" y="20">before</text><rect x="70" y="8" width="0.7" height="16" fill="#d9573a"/><text x="76" y="20" fill="#fff">14.9 KB</text>
+  <text x="4" y="52">A</text><rect x="70" y="40" width="6.4" height="16" fill="#0f8a80"/><text x="80" y="52">134.4 KB</text>
+  <text x="4" y="84">B</text><rect x="70" y="72" width="8.5" height="16" fill="#b8741a"/><text x="83" y="84">180.0 KB</text>
+  <text x="4" y="116">C</text><rect x="70" y="104" width="320" height="16" fill="#6b56d6"/><text x="76" y="116" fill="#fff">6,755 KB</text></g></svg>
+  <figcaption>Bar lengths are to scale (linear). "before" is short because it is missing the grove, not because it is efficient. Same numbers as the table.</figcaption></figure>
+</div>
+<h2 id="same">Same picture, measured</h2>
+<p class="sub">Left, what main wrote for the instanced scene; right, grove-A. grove-B and grove-C draw the same pixels as each other (max difference 0 of 255) and, against grove-A, a mean absolute difference of 0.0004/255 with 12 of 576,000 pixels differing by more than 8 (max 32): float rounding at edges. X_ITE 16.7.1, Chromium 157.0.8103.78, SwiftShader, 960×600; numpy abs difference on RGB.</p>
+<div class="grid">
+ <figure><img src="img/before.webp" alt="Only the grass: the instances were dropped" width="960" height="600" loading="lazy"><figcaption><b>main, before:</b> grass only.</figcaption></figure>
+ <figure><img src="img/A.webp" alt="The grove drawn from collection instances" width="960" height="600" loading="lazy"><figcaption><b>This PR:</b> 60 trees, 12 huts, drawn from 2 DEF'd Groups.</figcaption></figure>
+ <figure><img src="img/B.webp" alt="The grove drawn from realised copies" width="960" height="600" loading="lazy"><figcaption><b>Realised copies (B).</b> Pixel-equal to A within rounding.</figcaption></figure>
+</div>
+<h2 id="how">What gets written</h2>
+<pre>&lt;Transform DEF="OB_Tree_00" translation="…" rotation="…" scale="…"&gt;
+  &lt;Group DEF="CO_Tree"&gt;                     &lt;!-- first placement: the content, once --&gt;
+    &lt;Transform DEF="OB_Tree_TreeTrunk" …&gt;&lt;Shape&gt;…&lt;/Shape&gt;&lt;/Transform&gt;
+    &lt;Transform DEF="OB_Tree_TreeCrownLow" …&gt;…&lt;/Transform&gt;
+  &lt;/Group&gt;
+&lt;/Transform&gt;
+&lt;Transform DEF="OB_Tree_01" …&gt;&lt;Group USE="CO_Tree" /&gt;&lt;/Transform&gt;   &lt;!-- every other placement --&gt;</pre>
+<p class="sub">Members are written in the collection's own frame with its <code>instance_offset</code> at the origin; the placing Empty's Transform carries position, rotation and scale. The collection's objects are placed from their own transform channels, not <code>matrix_world</code> (below).</p>
+<h2 id="findings">Findings</h2>
+<div class="grid">
+ <div class="card" style="--c:var(--red)"><h3>Collection instances were silently dropped <span class="pill" style="--c:var(--red)">Confirmed</span></h3><p>origin/main (044bea3) wrote 72 empty Transforms and no geometry for this scene: 1 Shape, 14,877 bytes. A file that validates and loads but lacks the scene.</p><div class="src">tools/instancing_demo.py run against a worktree of origin/main, Blender 5.2.4.</div></div>
+ <div class="card" style="--c:var(--amber)"><h3><code>matrix_world</code> is stale for an asset library <span class="pill" style="--c:var(--amber)">Confirmed</span></h3><p>Objects that live only in a collection kept out of the scene never get their world matrix refreshed. In a first run the realised copies (built from <code>matrix_world</code>) came out flat on the ground while the exporter happened to be right; the exporter now places members from <code>matrix_basis</code> and parent inverses so it does not depend on that.</p><div class="src">Seen in the demo build; static_world_matrix in source/extract.py.</div></div>
+ <div class="card" style="--c:var(--teal)"><h3>Most of the win is geometry sharing, which already existed <span class="pill" style="--c:var(--teal)">Confirmed</span></h3><p>Linked duplicates already shared mesh data through DEF/USE (B is 37× smaller than C). The new part is the Group: 25.4% over B uncompressed and only 8.3% after gzip, because repeated Transform lines compress well. It matters more for the node count a browser must build: 6 Shapes against 205.</p><div class="src">Counts from the table above.</div></div>
+</div>
+<h2 id="untested">Not tested</h2>
+<div class="tw"><table>
+<tr><th>Not run</th><th>Why it matters</th></tr>
+<tr><td>Nested collection instances, and instanced objects that are animated, skinned, lights or cameras</td><td>Only mesh-like members are written (curves, surfaces, text included); other member types are skipped without a message</td></tr>
+<tr><td>Per-instance overrides (Geometry Nodes instances, material overrides on the Empty)</td><td>All placements share one look by construction</td></tr>
+<tr><td>Load time and frame rate</td><td>Software GL; no performance claim is made, only bytes and node counts</td></tr>
+<tr><td>Browsers other than X_ITE 16.7.1; the Blender 4.5/5.1 CI legs</td><td>As on the ROUTE page</td></tr>
+<tr><td>Round trip of the Group back into Blender collection instances</td><td>Not run: what the importer makes of a Group USE; no collection is rebuilt on import by design of this change</td></tr>
+</table></div>
+<footer>Files: <a href="scenes/grove-A-collection-instances.x3d">grove-A</a> · <a href="scenes/grove-B-realised-shared-meshes.x3d">grove-B</a> · <a href="scenes/grove-C-realised-single-user.x3d">grove-C (6.7 MB)</a> · <a href="scenes/grove-main-before.x3d">main before</a> · <a href="scenes/grove.blend">grove.blend</a> · <a href="receipts/sizes.json">sizes.json</a>. Images are screenshots of these files; no third-party imagery. GPL-3.0-or-later with the add-on.</footer>
+</div>
+<script>
+(function(){
+var go=document.getElementById('go'),stage=document.getElementById('stage'),tag=document.getElementById('tag');
+go.addEventListener('click',function(){
+  go.disabled=true;go.textContent='Loading X_ITE…';
+  var l=document.createElement('link');l.rel='stylesheet';l.href='../../blender-route/v1/vendor/x_ite/x_ite.css';document.head.appendChild(l);
+  var s=document.createElement('script');s.src='../../blender-route/v1/vendor/x_ite/x_ite.min.js';
+  s.onload=function(){
+    var c=document.createElement('x3d-canvas');
+    c.setAttribute('src','scenes/grove-A-collection-instances.x3d');c.setAttribute('contextMenu','false');c.setAttribute('notifications','false');
+    c.setAttribute('splashScreen','false');c.setAttribute('timings','false');
+    stage.insertBefore(c,tag);document.getElementById('poster').hidden=true;go.remove();tag.textContent='X3D 4.0 · X_ITE 16.7.1 · live';
+  };
+  s.onerror=function(){go.textContent='Could not load X_ITE';};
+  document.head.appendChild(s);
+});
+})();
+</script>
+</body>
+</html>
