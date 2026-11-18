@@ -1,0 +1,19 @@
+{
+ "fma_snomed_hanim_to_x3d": [
+  ["FMA class (organ identity)", "MetadataSet name=provenance reference=FMA IRI, first child of the organ Shape", "Built and validated: reference carries the class IRI, MetadataString carries label, grade and claim ids. XSD requires metadata before Appearance."],
+  ["SNOMED CT concept id", "MetadataString name=snomed_ct", "Ids only, from a third-party crosswalk, grade L. Terms and hierarchy are not copied."],
+  ["Uberon, Wikidata, MeSH ids", "MetadataString name=uberon / wikidata / mesh", "Useful for joins with open data; each came from a fetch logged in data/ledger.json."],
+  ["H-Anim segment name", "MetadataString name=hanim (today), HAnimSegment name= (proposal)", "37 of 121 shapes map to a name that exists in the X3D 4.1 enumeration. The scene is not an HAnimHumanoid: no joints, no skinning. A real humanoid is the next step."],
+  ["BodyParts3D representation id", "MetadataString name=bp3d", "Tells a consumer an open mesh exists for the class; meshes are not shipped."],
+  ["Claim grade C / L / S", "MetadataString name=grade plus claims.jsonld x3d:grade", "Same grade vocabulary as heritage-geo v1 (Confirmed, Likely, Suspected)."],
+  ["Claim provenance", "claims.jsonld prov:wasGeneratedBy, dct:source", "Names the instrument per claim (OLS4, Wikidata, builder, earlier torso build)."],
+  ["DICOM series (proposal, not built)", "VolumeData + ImageTexture3D / ISOSurfaceVolumeData, MetadataSet carries series UID and licence", "Not built: no DICOM was downloaded. Volumes work in X_ITE 16.6.0 but are the most expensive node on software GL (earlier Loom finding)."],
+  ["Segmentation label volume (proposal, not built)", "SegmentedVolumeData with segmentIdentifiers tied to FMA classes", "Would let each voxel label carry an FMA id. Not built."]
+ ],
+ "traps": [
+  "FMA distinguishes Left and Right classes; Uberon and SNOMED often have one bilateral class. A left rib maps to FMA 'Left first rib' but has no Uberon or SNOMED id through this chain.",
+  "A segmentation label is a name, not a class: 'iliac_artery' may cover more than FMA 'Common iliac artery'. Extent was not checked, so those claims are S.",
+  "The OLS4 search tool returns classes, not meanings. An exact label hit proves the class exists (C); it does not prove the mesh is that structure (L at best).",
+  "Wikidata P1402 values are bare numbers (7197), the FMA IRI uses fma7197, BodyParts3D uses FMA7197. The builder normalises all three."
+ ]
+}
