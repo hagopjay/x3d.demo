@@ -272,3 +272,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 |---|---|---|
 | assets/masonic-lodge-xr-v2.jpg | 4b33c6e6c8daff7cbb19363bb27e9e9fd865c3151620d482c67c14ecbc36875c | 11180 |
 | assets/hypergraph.jpg | d3e5082aa1251a7297914798759ee24f4961ff257a7c1f32ccd3f0284c8bba19 | 46446 |
+
+## Front-page card picture (v39)
+`heritage-geo` is a headless screenshot (Chromium, software GL, X_ITE 16.6.0) of `docs/demos/heritage-geo/v1/index.html` served locally, Giza tab, claim c5 selected, 1280 x 720 scaled to 960 x 540. It shows no Google Solar API imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/heritage-geo.jpg | 2ff10659ca19b11e1525b6169c2ccb0bc781a8efedfbe149268b2aad42bfd5af | 87759 |
