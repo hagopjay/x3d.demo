@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## Unnumbered (2026-11-18)
+- Masonic Lodge XR v1 (`docs/demos/masonic-lodge/v1/`): AR.js location-based overlay of a cutaway X3D Giza on Masonic buildings from OpenStreetMap near the phone. X3D file XSD-valid (x3d_mcp fa5dccf); fixture run in headless Chromium clean; live Overpass and real-phone use not tested. No front-page card (bridge thread owns numbering). No national list is published; the private aggregate script writes outside the repo.
+
 ## v36 (2026-11-18)
 - New Demo 43: x3d.chess, a 20-board X3D chess spectator (640 pieces in one X_ITE scene) with click-to-fly boards, a game panel, a phase-space view, a heatmap and themes. Default mode replays games with a material-count proxy; `?engine=wasm` plays them live with Stockfish in the browser. The project lives in its own repository (GitHub Pages on, PRs 1 to 4 merged), so the card links the live page (200 when checked) and two address variants. New card picture `docs/assets/x3d-chess.jpg` (a headless screenshot of the live page in replay mode with `?heat=1`, 1600 x 900 scaled to 960 x 540), the snapshot `docs/versions/v36/index.html`, and a SOURCES line for the picture.
 - Checked on the live page in headless Chromium: default load with no console errors and no 4xx; a click on a board opens its game panel; `?engine=wasm&boards=4&depth=6` ran 124 moves in twenty seconds with no errors. Not run: the 20-board depth-12 Stockfish mode. The card says there are no native-engine numbers yet and that the replay eval is a material proxy.
