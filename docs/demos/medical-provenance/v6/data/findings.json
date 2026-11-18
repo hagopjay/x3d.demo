@@ -1,0 +1,26 @@
+[
+ [
+  "C",
+  "The open series is real and reproducible: TCIA Pancreas-CT, 185 slices, licence CC BY 3.0 read from the archive API, pixel-data SHA-256 recorded; the volume is a 128 x 92 x 128 block-mean resampling (2.8 x 2.0 x 2.8 mm voxels) whose two NRRD files (about 536 KB gzip) are hash-checked by the page in the browser."
+ ],
+ [
+  "C",
+  "X3D carries the whole provenance chain on the scene: one MetadataSet (first child of the Transform) with source UID, DOI, licence, processing factors, window and hashes; VolumeData and SegmentedVolumeData with ImageTexture3D NRRD (gzip, u8) both validate with 0 errors and render in headless Chromium (X_ITE 16.6.0, software GL)."
+ ],
+ [
+  "C",
+  "Schema trap found: OpacityMapVolumeStyle.transferFunction cannot be written in XML that passes the x3d_mcp validator, because the XSD containerField enumeration for PixelTexture omits transferFunction. (X_ITE does need explicit containerField on volume children: ImageTexture3D without containerField=\"voxels\" was filed under 'texture' and ignored.) The shipped scenes therefore use ComposedVolumeStyle (BoundaryEnhancement + ToneMapped) and per-segment ShadedVolumeStyle, which need no texture child. Colour-by-density needs a transfer function and so a validator exception."
+ ],
+ [
+  "C",
+  "Handedness trap found: x = patient right, y = superior, z = anterior is a mirror image. (x,y,z) = (left, superior, anterior) is right-handed, so a camera on +z shows the front with patient left on screen right. This series' DICOM rows run toward anterior, so the in-plane flip had to be derived from the header, not assumed."
+ ],
+ [
+  "S",
+  "The segment ids are HU bands, not organs. Labelling a band with an FMA term is a judgement (the gas band is bowel gas here, not lung). A real segment-to-FMA link needs organ labels such as TotalSegmentator's (Zenodo 10047292, CC BY 4.0), which is the next step, together with registration to the v3 torso."
+ ],
+ [
+  "L",
+  "Software-GL timings are not a performance claim: the segmented scene took tens of seconds to draw one frame in headless Chromium; a GPU browser was not tested. DICOM 'not for diagnosis': the 128-cube volume discards the original resolution and the window clips above 500 HU."
+ ]
+]

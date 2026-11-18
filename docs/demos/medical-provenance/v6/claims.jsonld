@@ -1,0 +1,121 @@
+{
+ "@context": {
+  "prov": "http://www.w3.org/ns/prov#",
+  "skos": "http://www.w3.org/2004/02/skos/core#",
+  "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+  "grade": "urn:x3d:medprov:grade",
+  "instrument": "urn:x3d:medprov:instrument"
+ },
+ "@graph": [
+  {
+   "@id": "urn:x3d:medprov:v6:series.provenance",
+   "@type": "prov:Entity",
+   "rdfs:label": "series.provenance",
+   "skos:note": "Series 1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048 of collection Pancreas-CT (patient id as coded by the archive, PANCREAS_0051), 185 CT images, 97218758 bytes, released 2016-02-03, DOI https://doi.org/10.7937/K9/TCIA.2016.tNB1kqBU.",
+   "grade": "C",
+   "instrument": "NBIA API getSeries (cached response in data/cache/getSeries.json)",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v6:series.licence",
+   "@type": "prov:Entity",
+   "rdfs:label": "series.licence",
+   "skos:note": "The archive API reports the licence as 'Creative Commons Attribution 3.0 Unported License' (http://creativecommons.org/licenses/by/3.0/). Attribution to the dataset DOI is carried in the scene MetadataSet and in NOTICE-TCIA.md. The licence applies to the images; the derived 128-cube volume is shipped under the same terms.",
+   "grade": "C",
+   "instrument": "NBIA API getSeries (cached response in data/cache/getSeries.json)",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v6:series.pixel-sha",
+   "@type": "prov:Entity",
+   "rdfs:label": "series.pixel-sha",
+   "skos:note": "SHA-256 over the concatenated PixelData of all 185 slices, sorted by z: 4b79731c455b610d8c0f9a67bffff049c2fcb8ff5c494bbc0b4a2e09e8d5f49a. A rebuild from the archive must reproduce it.",
+   "grade": "C",
+   "instrument": "build.py (numpy, pydicom) on the shipped arrays",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v6:series.geometry",
+   "@type": "prov:Entity",
+   "rdfs:label": "series.geometry",
+   "skos:note": "From the DICOM headers: 512x512 pixels at 0.703125 x 0.703125 mm, 185 slices at 1.0 mm, orientation [1.0, 0.0, 0.0, 0.0, -1.0, 0.0], rescale slope 1.0 intercept 0.0; HU range -1024 to 1375.",
+   "grade": "C",
+   "instrument": "pydicom headers",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v6:volume.resample",
+   "@type": "prov:Entity",
+   "rdfs:label": "volume.resample",
+   "skos:note": "Block mean of HU by 4 x 2 x 4 gives 128 x 92 x 128 voxels of 2.812 x 2.0 x 2.812 mm (360 x 184 x 360 mm); intensity = clip((HU+200)/700*255) as u8. 482976 bytes gzip NRRD, sha256 c951bea093fbce8af37d74423a4008e78c8d1cf6959aba0c2294fa7d01dcdbc4. The window clips HU above 500; the block mean blurs thin structures and partial-volumes boundaries.",
+   "grade": "C",
+   "instrument": "build.py (numpy, pydicom) on the shipped arrays",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v6:volume.axes",
+   "@type": "prov:Entity",
+   "rdfs:label": "volume.axes",
+   "skos:note": "Axes: x = patient left, y = superior, z = anterior, which is right-handed (the DICOM LPS columns map straight to x). Checked by eye on axial slices (spine, kidneys and CT table at the low-z side, bowel gas at the high-z side) and numerically only weakly: the mean position of internal gas is 69.1 against a body mean of 68.8 of 128 (anterior of centre by 0.3 voxels). Left versus right is taken from the header, not from an organ-position test.",
+   "grade": "L",
+   "instrument": "build.py (numpy, pydicom) on the shipped arrays plus visual check",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v6:segments.hu-bands",
+   "@type": "prov:Entity",
+   "rdfs:label": "segments.hu-bands",
+   "skos:note": "The four segment ids are HU bands inside the body mask, not an anatomical segmentation: low density < -500 (gas or lung, 12 percent of body voxels), fat band -500 to -30 (14), soft band -30 to 250 (67), dense >= 250 (7). Block-mean partial volume pushes boundary voxels into the wrong band; contrast-filled bowel and the CT table land in the dense band; the body mask is a 2D flood fill of HU < -300 from the slice border.",
+   "grade": "S",
+   "instrument": "build.py (numpy, pydicom) on the shipped arrays",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v6:segments.fma-terms",
+   "@type": "prov:Entity",
+   "rdfs:label": "segments.fma-terms",
+   "skos:note": "Terms offered for the bands: gas/lung FMA:7195 Lung, fat FMA:20110 Adipose tissue, dense FMA:224804 Bone tissue (all three exact-label hits in FMA 5.1.0 through EBI OLS4 on 2026-11-18); the soft band has no single anatomical term and carries none. The mapping from band to term is a judgement: the gas band is mostly bowel gas in this series, so Lung is wrong here, and the dense band includes non-bone.",
+   "grade": "S",
+   "instrument": "EBI OLS4 exact label search, then judgement",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v6:series.no-registration",
+   "@type": "prov:Entity",
+   "rdfs:label": "series.no-registration",
+   "skos:note": "The volume is not registered to the v3 CT torso scene, to BodyParts3D (v5) or to the v4 H-Anim skeleton; it is a different person, abdomen only (184 mm, upper abdomen), shown in its own scene. Linking organs across these needs a segmentation, for example the TotalSegmentator labels (Zenodo 10047292, CC BY 4.0), which was not used.",
+   "grade": "S",
+   "instrument": "scope note",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+   }
+  },
+  {
+   "@id": "urn:x3d:medprov:v6:series.deid",
+   "@type": "prov:Entity",
+   "rdfs:label": "series.deid",
+   "skos:note": "The first slice header has PatientName equal to the coded id, empty birth date, sex and referring physician, InstitutionName NIH, a retained study date (2015-11-24), and no PatientIdentityRemoved or DeidentificationMethod tag; the archive states the collection is de-identified, which this build did not audit pixel by pixel. An abdominal field of view carries no face.",
+   "grade": "L",
+   "instrument": "pydicom header read plus archive statement",
+   "prov:wasDerivedFrom": {
+    "@id": "TCIA_Pancreas-CT_series_1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"
+   }
+  }
+ ]
+}

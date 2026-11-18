@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Full" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="http://www.web3d.org/specifications/x3d-4.0.xsd">
+<head><meta name="title" content="medical-provenance v6: CT volume, intensity"/><meta name="description" content="Open TCIA Pancreas-CT series as volume rendering; educational proof of concept, not medical advice."/></head>
+<Scene>
+<NavigationInfo type='"EXAMINE" "ANY"' headlight="true"/>
+<Viewpoint DEF="VP_FRONT" description="Front (anterior)" position="0 0 0.9" orientation="0 0 1 0" centerOfRotation="0 0 0"/>
+<Transform DEF="VOL_T">
+<MetadataSet containerField='metadata' name="provenance" reference="x3d-demo:medprov"><MetadataSet name="source" reference="x3d-demo:medprov"><MetadataString name="collection" value='"Pancreas-CT"'/><MetadataString name="patient-id-coded" value='"PANCREAS_0051"'/><MetadataString name="series-instance-uid" value='"1.2.826.0.1.3680043.2.1125.1.77419915248783746629465382576486048"'/><MetadataString name="doi" value='"https://doi.org/10.7937/K9/TCIA.2016.tNB1kqBU"'/><MetadataString name="license" value='"Creative Commons Attribution 3.0 Unported License"'/><MetadataString name="license-uri" value='"http://creativecommons.org/licenses/by/3.0/"'/><MetadataString name="images" value='"185"'/><MetadataString name="pixel-data-sha256" value='"4b79731c455b610d8c0f9a67bffff049c2fcb8ff5c494bbc0b4a2e09e8d5f49a"'/><MetadataString name="not-medical-advice" value='"educational proof of concept"'/></MetadataSet><MetadataSet name="processing" reference="x3d-demo:medprov"><MetadataString name="block-mean-factors-xyz" value='"4 2 4"'/><MetadataString name="window-hu" value='"-200..500"'/><MetadataString name="axes" value='"x patient left, y superior, z anterior (right-handed; from DICOM LPS)"'/><MetadataString name="intensity-sha256" value='"c951bea093fbce8af37d74423a4008e78c8d1cf6959aba0c2294fa7d01dcdbc4"'/><MetadataString name="labels-sha256" value='"7301cfef5a8bc474bdb07471caf67250189420407bc62efd440eaf5a10386794"'/></MetadataSet></MetadataSet>
+<VolumeData DEF="VOL" dimensions="0.36000 0.18400 0.36000">
+ <ImageTexture3D DEF="TEX" containerField="voxels" url='"ct-intensity.nrrd"'/>
+ <ComposedVolumeStyle DEF="STY"><BoundaryEnhancementVolumeStyle retainedOpacity="0.15" boundaryOpacity="0.9" opacityFactor="2"/><ToneMappedVolumeStyle coolColor="0.2 0.3 0.6 1" warmColor="1 0.85 0.6 1"/></ComposedVolumeStyle>
+</VolumeData>
+</Transform>
+</Scene></X3D>
