@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""tiles3d_to_x3d v2.1 (18 Nov 2026). v2.1: glb content is placed at its tile frame's origin (the accumulated
+"""tiles3d_to_x3d v2.2 (18 Nov 2026), third external review: URIs keep their query and fragment and are XML- and
+MFString-escaped (v2.1 dropped `?query` and wrote `mesh&a.glb` raw, so strict mode could exit 0 with malformed XML or a
+different resource); percent-encoded local paths are decoded for the filesystem only; a region crossing the antimeridian
+(east < west) gets its midpoint on the right side of the Earth (v2.1 put the GeoLOD centre at 0 deg for 179.9..-179.9);
+an exact polar origin no longer divides by zero; every output file is parsed before anything is written; and
+conversion-report.json is written on EVERY run, listing exactly the files that run wrote (v2.1 left a stale lossy report
+in a reused folder). Earlier text:
+tiles3d_to_x3d v2.1 (18 Nov 2026). v2.1: glb content is placed at its tile frame's origin (the accumulated
 transform's translation), not at the bounding-volume centre; the GeoLOD centre still uses the bounding volume.
 Origin-at-Earth-centre (ECEF-baked) content is refused. Earlier text:
 tiles3d_to_x3d v2 (18 Nov 2026). The geotiling v1 converter (docs/demos/geotiling/v1/, left as shipped) with the
@@ -20,21 +27,29 @@ Mapping, SSE -> range: a tile is refined when geometricError * screenHeight / (d
 range = geometricError * screenHeight / (2 tan(fov/2) * maxSSE)  (default 1080 px, 45 deg, 16 px -> x81.48).
 Limits (grade S, not hidden): refine ADD is treated as REPLACE (warned); tiles with more than 4 children are chunked into extra GeoLOD levels
 (GeoLOD has exactly four child slots); glTF content is placed by GeoLocation, assuming content is local-ENU as geotiling v1 writes it (Google's ECEF-baked glb is NOT re-framed here: untested, no tile bodies on hand)."""
-import json, math, sys, pathlib, os
+import json, math, sys, pathlib, os, hashlib, tempfile
+from urllib.parse import urlsplit, urlunsplit, unquote, quote
+import xml.etree.ElementTree as ET
 a_, f_ = 6378137.0, 1 / 298.257223563; e2 = f_ * (2 - f_)
 def mat_mul(A, B):
     return [sum(A[k * 4 + r] * B[c * 4 + k] for k in range(4)) for c in range(4) for r in range(4)]     # column-major 4x4
 IDENT = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
 def ecef_to_geodetic(X, Y, Z):
     if math.sqrt(X * X + Y * Y + Z * Z) < 1000: return 0.0, 0.0, 0.0       # box centred on the Earth's centre (Google's root): no geodetic position
-    lon = math.atan2(Y, X); p = math.hypot(X, Y); lat = math.atan2(Z, p * (1 - e2))
+    lon = math.atan2(Y, X); p = math.hypot(X, Y)
+    if p < 1e-6:   # on the polar axis: latitude +-90 exactly, longitude undefined (0 by convention), height above the pole
+        b = a_ * (1 - f_); return (90.0 if Z >= 0 else -90.0), 0.0, abs(Z) - b
+    lat = math.atan2(Z, p * (1 - e2))
     for _ in range(6):
         n = a_ / math.sqrt(1 - e2 * math.sin(lat) ** 2); h = p / math.cos(lat) - n; lat = math.atan2(Z, p * (1 - e2 * n / (n + h)))
     n = a_ / math.sqrt(1 - e2 * math.sin(lat) ** 2); return math.degrees(lat), math.degrees(lon), p / math.cos(lat) - n
 def centre(node, M):
     bv = node["boundingVolume"]
     if "region" in bv:
-        w, s, e, n, h0, h1 = bv["region"]; return math.degrees((s + n) / 2), math.degrees((w + e) / 2), (h0 + h1) / 2     # region is absolute: transform ignored (spec)
+        w, s, e, n, h0, h1 = bv["region"]     # region is absolute: transform ignored (spec)
+        if e < w: e += 2 * math.pi            # east < west crosses the antimeridian (3D Tiles 1.1 region; Cesium GlobeRectangle)
+        lon = math.degrees((w + e) / 2); lon = (lon + 180) % 360 - 180 if not -180 <= lon <= 180 else lon
+        return math.degrees((s + n) / 2), lon, (h0 + h1) / 2
     c = bv["box"][:3] if "box" in bv else bv["sphere"][:3]
     X, Y, Z = (M[0] * c[0] + M[4] * c[1] + M[8] * c[2] + M[12], M[1] * c[0] + M[5] * c[1] + M[9] * c[2] + M[13], M[2] * c[0] + M[6] * c[1] + M[10] * c[2] + M[14])
     return ecef_to_geodetic(X, Y, Z)
@@ -61,20 +76,29 @@ def frame_loss(M, lat, lon):
         n = math.sqrt(sum(v * v for v in c)) or 1
         ang = max(ang, math.degrees(math.acos(max(-1, min(1, sum(x * y for x, y in zip(c, b)) / n)))))
     return ang, scale
-HEAD = '<?xml version="1.0" encoding="UTF-8"?>\n<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">\n <head><component name="Geospatial" level="1"/><meta name="title" content="{t}"/><meta name="generator" content="tiles3d_to_x3d.py v2.1 (x3d.demo tools/tiles3d)"/></head>\n <Scene>\n{b}\n </Scene>\n</X3D>\n'
+HEAD = '<?xml version="1.0" encoding="UTF-8"?>\n<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">\n <head><component name="Geospatial" level="1"/><meta name="title" content="{t}"/><meta name="generator" content="tiles3d_to_x3d.py v2.2 (x3d.demo tools/tiles3d)"/></head>\n <Scene>\n{b}\n </Scene>\n</X3D>\n'
+def mfstring(u):
+    """One-element X3D MFString in a single-quoted XML attribute: MFString escapes \\ and \" , XML escapes & < > '."""
+    s = '"' + u.replace("\\", "\\\\").replace('"', '\\"') + '"'
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("'", "&apos;")
+def xml_text(s): return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 class Unsupported(Exception):
     def __init__(self, items): super().__init__("; ".join(items)); self.items = items
 def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=45.0, dry=False, allow_lossy=False):
     tp = pathlib.Path(tileset_path).resolve(); ts = json.loads(tp.read_text()); out = pathlib.Path(outdir).resolve(); K = screen / (2 * math.tan(math.radians(fov / 2)) * sse)
     stats = dict(tiles=0, with_content=0, glb=0, external_json=0, external_missing=0, add_refine=0, non_enu=0, chunked=0, multi_contents=0, implicit=0,
-                 bv=dict(), max_depth=0, ranges=[], origin_offsets_m=[], version=ts.get("asset", {}).get("version"))
+                 bv=dict(), max_depth=0, ranges=[], origin_offsets_m=[], content_uris=[], version=ts.get("asset", {}).get("version"))
     losses, files = [], {}
     def loss(where, what): losses.append(f"{where}: {what}")
+    def local(base, u):
+        """Filesystem path for a relative URI reference: the path component, percent-decoded (RFC 3986 3.3)."""
+        return (base / unquote(urlsplit(u).path)).resolve()
     def content_url(base, u):
-        if "://" in u or u.startswith("/"): return u                          # absolute URL: kept as written
-        target = (base / u).resolve()
-        if content_base is not None: return content_base.rstrip("/") + "/" + os.path.relpath(target, tp.parent).replace("\\", "/")
-        return os.path.relpath(target, out).replace("\\", "/")
+        sp = urlsplit(u)
+        if sp.scheme or u.startswith("/"): return u                           # absolute URL or absolute path: kept exactly, query included
+        rel = os.path.relpath(local(base, u), tp.parent if content_base is not None else out).replace("\\", "/")
+        path = (content_base.rstrip("/") + "/" if content_base is not None else "") + quote(rel, safe="/:@!$&'()*+,;=-._~")
+        return urlunsplit(("", "", path, sp.query, sp.fragment))
     def contents_of(node, name):
         if node.get("content"): return [node["content"]]
         cs = [c for c in node.get("contents", []) if c and c.get("uri")]
@@ -89,9 +113,9 @@ def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=
         lat, lon, h = centre(node, M); ge = float(node.get("geometricError", 0)); ge = min(ge, 1e12)
         kids = [(k, base, chain) for k in node.get("children", [])]; body = None
         for c in contents_of(node, name):
-            stats["with_content"] += 1; u = c["uri"].split("?")[0]
-            if u.endswith(".json"):
-                stats["external_json"] += 1; ext = (base / u).resolve()
+            stats["with_content"] += 1; u = c["uri"]; kind = urlsplit(u).path
+            if kind.endswith(".json"):
+                stats["external_json"] += 1; ext = local(base, u)
                 if ext in chain: loss(name, f"external tileset cycle at {u}"); continue
                 if ext.exists():
                     sub = json.loads(ext.read_text()); kids = [(sub["root"], ext.parent, chain | {ext})] + kids
@@ -107,7 +131,8 @@ def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=
                 olat, olon, oh = ecef_to_geodetic(M[12], M[13], M[14]); ang, sc = frame_loss(M, olat, olon)
                 if ang > 1e-3 or sc > 1e-6: stats["non_enu"] += 1; loss(name, f"content frame is {ang:.3f} deg from local ENU, scale off by {sc:.2e}; placed unrotated and unscaled")
                 stats["origin_offsets_m"].append(round(geo_distance((lat, lon, h), (olat, olon, oh)), 3))
-                body = f'  <GeoLocation geoSystem=\'"GD" "WE"\' geoCoords="{olat:.9f} {olon:.9f} {oh:.3f}"><Inline url=\'"{content_url(base, u)}"\'/></GeoLocation>'
+                cu = content_url(base, u); stats["content_uris"].append(cu)
+                body = f'  <GeoLocation geoSystem=\'"GD" "WE"\' geoCoords="{olat:.9f} {olon:.9f} {oh:.3f}"><Inline url=\'{mfstring(cu)}\'/></GeoLocation>'
         if len(kids) > 4:
             stats["chunked"] += 1; q = (len(kids) + 3) // 4
             kids = [(dict(boundingVolume=node["boundingVolume"], geometricError=ge, children=[], _group=kids[i * q:(i + 1) * q]), base, chain) for i in range(4) if kids[i * q:(i + 1) * q]]
@@ -131,7 +156,7 @@ def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=
         rng = min(ge * K, 1e10); stats["ranges"].append(rng)
         return write(name, lat, lon, h, rng, None, kfiles)
     def write(name, lat, lon, h, rng, body, kfiles):
-        if body is not None: files[f"{name}.mesh.x3d"] = HEAD.format(t=f"tile {name}", b=body)
+        if body is not None: files[f"{name}.mesh.x3d"] = HEAD.format(t=xml_text(f"tile {name}"), b=body)
         if kfiles:
             cu = " ".join(f'child{i + 1}Url=\'"{k}"\'' for i, k in enumerate(kfiles))
             root = f' rootUrl=\'"{name}.mesh.x3d"\'' if body is not None else ""
@@ -143,10 +168,20 @@ def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=
     stats["root_file"] = top; stats["K"] = K; stats["files"] = len(files)
     stats["ranges"] = dict(min=min(stats["ranges"]), max=max(stats["ranges"])); stats["losses"] = losses
     if losses and not allow_lossy: raise Unsupported(losses)
+    for n, c in files.items():    # never report success for bytes that are not XML
+        try: ET.fromstring(c.encode("utf8"))
+        except ET.ParseError as e: raise Unsupported([f"{n}: output is not well-formed XML ({e})"])
     if not dry:
         out.mkdir(parents=True, exist_ok=True)
         for n, c in files.items(): (out / n).write_text(c, encoding="utf8")
-        if losses: (out / "conversion-report.json").write_text(json.dumps(dict(stats, lossy=True), indent=1, default=str) + "\n")
+        # the report describes THIS run, every run (v2.1 wrote it only when lossy, so a reused folder kept a stale one)
+        written = {n: hashlib.sha256(c.encode("utf8")).hexdigest() for n, c in files.items()}
+        stale = sorted(x.name for x in out.glob("*.x3d") if x.name not in written)
+        rep = dict(stats, lossy=bool(losses), converter="tiles3d_to_x3d.py v2.2", tileset_sha256=hashlib.sha256(tp.read_bytes()).hexdigest(),
+                   files_written=written, other_x3d_in_folder=stale)
+        fd, tmp = tempfile.mkstemp(dir=out, prefix=".conversion-report.", suffix=".tmp")
+        with os.fdopen(fd, "w") as fh: fh.write(json.dumps(rep, indent=1, default=str) + "\n")
+        os.replace(tmp, out / "conversion-report.json")
     return stats
 if __name__ == "__main__":
     av = sys.argv[1:]; g = lambda k, d: av[av.index(k) + 1] if k in av else d

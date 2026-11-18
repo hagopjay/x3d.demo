@@ -96,14 +96,21 @@ def main(argv=None) -> int:
     for p, r in zip(files, rel):
         # one bad file must not take the receipt down with it (second review, 18 Nov 2026, defect 8: a malformed
         # file under --semantic raised before the receipt was written). Each stage records error or not_run.
-        data = p.read_bytes()
-        row = {"sha256": sha256_bytes(data), "bytes": len(data), "valid": False, "checked": False, "schema": None,
+        row = {"sha256": None, "bytes": None, "valid": False, "checked": False, "schema": None,
                "errors": [], "hints": [], "notes": []}
-        try:
-            text = data.decode("utf-8")
-        except UnicodeDecodeError as e:
-            text = None
-            row["errors"] = [f"not UTF-8: {e}"]
+        try:   # an unreadable file (permissions, vanished, a directory) is a recorded failure, not a lost receipt
+            data = p.read_bytes()
+        except OSError as e:   # third review, 18 Nov 2026: mode 000 raised before the per-file boundary
+            data, text = None, None
+            row["errors"] = [f"unreadable: {type(e).__name__}: {e.strerror or e}"]
+            row["read_error"] = True
+        if data is not None:
+            row.update(sha256=sha256_bytes(data), bytes=len(data))
+            try:
+                text = data.decode("utf-8")
+            except UnicodeDecodeError as e:
+                text = None
+                row["errors"] = [f"not UTF-8: {e}"]
         if text is not None:
             try:
                 res = validate_xml_with_hints(text)
@@ -116,7 +123,7 @@ def main(argv=None) -> int:
             row["semantic_errors"], row["semantic_warnings"] = [], []
             if text is None or not row["valid"] and any("parse error" in str(e).lower() or "syntaxerror" in str(e).lower() for e in row["errors"]):
                 row["semantic_status"] = "not_run"
-                row["semantic_reason"] = "the file does not parse, so meaning cannot be read"
+                row["semantic_reason"] = "the file could not be read or does not parse, so meaning cannot be read"
             else:
                 try:
                     d = semantic(text)

@@ -28,6 +28,21 @@ const noGL = `HTMLCanvasElement.prototype.getContext=function(){return null};`;
     g => g.outcome === 'failed' && g.alert && /not available/.test(g.text) && g.links.join() === '../v6/');
   await run('start-up error: failure panel', page('', `GfxGuard.require(${opts});setTimeout(()=>{throw new Error('boom')},50)`), 250, look,
     g => g.outcome === 'failed' && /boom/.test(g.text));
+  if (/gfx-guard-v3/.test(lib)) {
+    const panes = `GfxGuard.require(${opts});
+      window.A = GfxGuard.pane('mesh', {timeoutMs: 100, failAfterMs: 300, title: 'Mesh pane'});
+      window.B = GfxGuard.pane('splat', {timeoutMs: 100, failAfterMs: 300, title: 'Splat pane', fallbacks: [{href:'../v1/', label:'v1'}],
+        onRetry: h => setTimeout(() => h.ready(), 50)});
+      setTimeout(() => A.ready(), 30);`;
+    const lookP = () => ({ mesh: A.state.outcome, splat: B.state.outcome, panels: [...document.querySelectorAll('.gfx-guard-pane')].map(n => n.dataset.pane),
+      retry: !!document.querySelector('.gfx-guard-pane[data-pane=splat] .gg-retry') });
+    await run('v3 panes: mesh ready, splat stalls -> splat alone fails with a Retry', page('', panes), 600, lookP,
+      g => g.mesh === 'ready' && g.splat === 'failed' && g.panels.join() === 'splat' && g.retry);
+    await run('v3 panes: Retry on the stalled pane -> it becomes ready and its panel goes', page('', panes + `setTimeout(() => document.querySelector('.gg-retry').click(), 450)`), 800, lookP,
+      g => g.mesh === 'ready' && g.splat === 'ready' && g.panels.length === 0);
+    await run('v3 panes: no WebGL -> every pane fails', page(noGL, `GfxGuard.require(${opts}); window.A = GfxGuard.pane('mesh', {}); window.B = GfxGuard.pane('splat', {});`), 200, lookP,
+      g => g.mesh === 'failed' && g.splat === 'failed');
+  }
   await b.close();
   const out = { schema: 'x3d.demo.gfx-guard-check/1', lib: path.relative(process.cwd(), lib), playwright: require('playwright/package.json').version,
     failed: rows.filter(r => !r.ok).length, rows };
