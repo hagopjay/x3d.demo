@@ -1,0 +1,21 @@
+{
+  "name": "d3-x3d-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "D3 computes the layouts, d3-x3d (x3d.mjs) writes X3D 4.0 scenes.",
+  "type": "module",
+  "scripts": {
+    "harvest": "python3 -I harvest.py ../../../../../.. ../../../../../../x3d_mcp/src/validation/schemas/X3dUnifiedObjectModel-4.0.xml ../data/data.json",
+    "build": "node build2.mjs ../data/data.json ../data/relief.json .. ../data/demo_dates.txt ../data/sites.json",
+    "bundle": "esbuild live-entry.mjs --bundle --minify --format=iife --global-name=d3f --outfile=../vendor/d3-force-3d.bundle.js --legal-comments=inline",
+    "validate": "python3 validate.py .."
+  },
+  "dependencies": {
+    "d3": "7.9.0",
+    "d3-force-3d": "3.0.6",
+    "d3-sankey": "0.12.3",
+    "esbuild": "0.24.2",
+    "topojson-client": "3.1.0",
+    "world-atlas": "2.0.2"
+  }
+}
