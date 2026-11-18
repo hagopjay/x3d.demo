@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v41 (2026-11-18)
+- Correction to the Demo 46 (Heritage + Geo Loom) facts note that v40 introduced, on the heritage thread's review: "not a datum conflict" is now stated as Suspected. The numbers are Confirmed (median of the USGS elevation minus (617 m plus the Drillfield surface model) is +0.03 m over 140 points; v1's Khafre and Menkaure placements were 208.3 m and 64.1 m from their Pleiades points), but the reading rests on an assumed tile centre (37.2284, -80.4234) and a correlation of only 0.51. The v40 snapshot keeps its original wording. No other card, picture or demo changes; v1 to v40 unchanged.
+
 ## v40 (2026-11-18)
 - New Demo 47: Math Lab concept graph (`docs/demos/math-concept-graph/v1/`, x3d.demo PR 64): the 18 Math Lab lessons linked to OntoMathPro, OpenMath, MathML 3 and PhySH terms as graded C, L and S claims (69 links, 67 terms, 27 confirmed gaps). The card links the page, the JSON-LD claims, the readme and Math Lab. New card picture `docs/assets/math-concept-graph.jpg` (the demo's own `preview.png`, cropped to the 3D window and scaled to 960 x 540). The card states each source's licence as the page does.
 - Demo 46 (Heritage + Geo Loom) now also links Version 2 (`docs/demos/heritage-geo/v2/`, PR 63: Pleiades placement, elevation reconciliation, IFC placement row). Its facts note is corrected: the 627.175 m against 617 m question and the v1 Khafre and Menkaure positions (typed from memory, 208.3 m and 64.1 m off) are updated from version 2's readme. The v39 snapshot keeps its original wording. Version 1 is untouched and still linked.
