@@ -1,0 +1,70 @@
+[
+ [
+  "C",
+  "New in v3: every shape's claim list is hashed (SHA-256 of canonical JSON, sorted keys) and stored in its MetadataSet; one root (SHA-256 over 'uid digest' lines sorted by uid) is stored in the scene head. Root: b3a6e1ac3b237154d06a08a7922e33cc61bac7e495d4fe643f2e4f8f2e594def. The page recomputes all digests with WebCrypto from claims.json: 111 of 111 match; changing one claim's text is caught (110 of 111, skin named, root differs). verify.py does the same offline for both scenes."
+ ],
+ [
+  "S",
+  "What this does not give: a hash is not a signature. Whoever edits claims.json can also rewrite the scene digests and the root. It becomes accountable only when the root is held somewhere the editor cannot change (the PR text and the merged commit are the first such places); a keyed signature (Ed25519, Sigstore) is the next step and needs a key policy from the owner."
+ ],
+ [
+  "C",
+  "New in v2: FMA is-a ancestors for all 120 mapped shapes (OLS4 hierarchicalAncestors, 120 new C claims, 1033 in total). 108 distinct non-generic ancestor classes; most shared: Organ 77, Bone organ 60, Long bone 30, Irregular bone 27, Vertebra 25, Rib 24. A class filter now selects, say, all 24 ribs in one step."
+ ],
+ [
+  "C",
+  "New in v2: the page can check the scene against the claims. It reads each shape's MetadataSet back out of the running X3D scene and compares grade, FMA id, SNOMED id and claim ids with structures.json: 111 of 111 torso shapes agree. Editing one grade in memory (skin S to C) is caught as 110 of 111, naming the shape. This is a self-consistency check, not a signature: someone who edits both files defeats it."
+ ],
+ [
+  "S",
+  "FMA labels can carry stray whitespace ('Arterial tree' came back with a trailing newline from OLS4); the page trims them. Ancestor labels are class names, not stable ids: the ids are in claims.jsonld."
+ ],
+ [
+  "C",
+  "All 117 distinct FMA labels chosen for the 121 shapes resolved to a class by exact-label search in FMA 5.1.0 (OLS4). 120 of 121 shapes carry an FMA class; the one without is lungvessels (a CT iso-surface of many vessels, no single class)."
+ ],
+ [
+  "C",
+  "Two independent routes to Uberon agree: for all 82 shapes reached, Uberon's own FMA xref equals the FMA id we started from (0 disagreements). Wikidata gave exactly one item per FMA id (0 duplicates)."
+ ],
+ [
+  "C",
+  "Laterality: all 56 shapes named left or right have a centroid on the matching side of the midline in the scene convention (patient-right is +X). 0 inconsistent."
+ ],
+ [
+  "C",
+  "H-Anim has no segment for ribs, sternum or costal cartilages (checked against the 146 segment names in the X3D 4.1 XSD). 37 of 121 shapes (24 vertebrae, sacrum plus S1, skull, clavicles, scapulae, humeri, femurs) map to an existing name; hip bones map only loosely to pelvis (L). H-Anim is a skeleton model: no organ has a segment."
+ ],
+ [
+  "C",
+  "Metadata placement survives validation: 121 MetadataSets inserted as the first child of each organ Shape, both scenes still valid in x3d_mcp validate_xml (the source scenes were valid before injection too)."
+ ],
+ [
+  "L",
+  "SNOMED CT ids reached 78 of 120 mapped shapes, all through Uberon's SCTID xref. The other 42 are mostly left/right bones (24 ribs, scapulae, humeri, femurs, hips, clavicles) and paired veins: FMA names left and right separately, Uberon and SNOMED often do not. Gap in the chain, not proof that SNOMED lacks a class."
+ ],
+ [
+  "L",
+  "BodyParts3D lists an open mesh for 112 of 120 mapped classes. Missing: left auricle, colon, thyroid gland, first sacral vertebra, cerebral cortex (x2), hippocampus, nucleus accumbens. A mesh-for-FMA swap is therefore possible for most of the torso; none was downloaded here."
+ ],
+ [
+  "S",
+  "18 of 121 denotes claims are S: scope mismatch (small bowel includes the duodenum in FMA but the scene draws both; colon may include rectum; portal vein merged with splenic; iliac vessels may run past the common iliac; pulmonary veins and costal cartilages are sets mapped to a generic class; S1 overlaps the sacrum), a CT threshold (skin), a single hemisphere mapped to a bilateral class, and brain-scene hippocampus and ventricles whose scope was not verified."
+ ],
+ [
+  "S",
+  "4 volume claims are S because one 3 mm voxel is 0.027 mL and the structures are tiny (both adrenals 0.7 and 2.6 mL, ribs 11 and 12 of 1.3 and 1.7 mL). The other 101 volumes are L: taken from the earlier torso build, not re-measured."
+ ],
+ [
+  "C",
+  "BodyParts3D publishes two licence texts that disagree: the info page says CC-BY SA 2.1 JP, lic.html (updated 2025/02/27) says CC BY 4.0. Both were read; this page follows the newer text and flags the conflict."
+ ],
+ [
+  "C",
+  "The torso's source dataset record on Zenodo (10047292, 117 structures, 1228 CT images) states licence cc-by-4.0. The earlier torso notice graded this only Likely; the dataset licence is now Confirmed, while subject s1397 belonging to this record and the pyvista copy's own record stay Likely."
+ ],
+ [
+  "S",
+  "FMA licence is unsettled: OBO Foundry registry says CUSTOM (inactive), OLS shows none, the UW release page points at a 2006 draft licence not opened here. This page ships ids and labels only."
+ ]
+]
