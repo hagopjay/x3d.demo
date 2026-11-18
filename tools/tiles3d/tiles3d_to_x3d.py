@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""tiles3d_to_x3d v2.3 (18 Nov 2026), fourth external review: geometricError is scaled by the largest axis scale of the
+"""tiles3d_to_x3d v2.4 (18 Nov 2026), final external scan: a tile whose only content is an external tileset is
+structural, not a coarse level. 3D Tiles viewers always refine through it (Cesium Native: unconditionally refined), but
+v2.3 wrote it as a GeoLOD with no rootUrl, so outside its range the GeoLOD selected empty geometry. v2.4 puts the
+external tileset's root in the wrapper's place (same accumulated transform and base); a content-less wrapper that also
+has other children is refused as a loss. v2.3 is kept as v2.3-shipped.py. Earlier text:
+tiles3d_to_x3d v2.3 (18 Nov 2026), fourth external review: geometricError is scaled by the largest axis scale of the
 accumulated transform (3D Tiles 1.1 6.7.1.6.1; v2.2 used the local value, so a parent scale of 2 gave half the range with
 no loss reported), and a tile's viewerRequestVolume is refused as a loss (GeoLOD has no request volume; v2.2 dropped it
 silently). v2.2 is kept as v2.2-shipped.py. Earlier text:
@@ -83,7 +88,7 @@ def frame_loss(M, lat, lon):
         n = math.sqrt(sum(v * v for v in c)) or 1
         ang = max(ang, math.degrees(math.acos(max(-1, min(1, sum(x * y for x, y in zip(c, b)) / n)))))
     return ang, scale
-HEAD = '<?xml version="1.0" encoding="UTF-8"?>\n<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">\n <head><component name="Geospatial" level="1"/><meta name="title" content="{t}"/><meta name="generator" content="tiles3d_to_x3d.py v2.3 (x3d.demo tools/tiles3d)"/></head>\n <Scene>\n{b}\n </Scene>\n</X3D>\n'
+HEAD = '<?xml version="1.0" encoding="UTF-8"?>\n<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">\n <head><component name="Geospatial" level="1"/><meta name="title" content="{t}"/><meta name="generator" content="tiles3d_to_x3d.py v2.4 (x3d.demo tools/tiles3d)"/></head>\n <Scene>\n{b}\n </Scene>\n</X3D>\n'
 def mfstring(u):
     """One-element X3D MFString in a single-quoted XML attribute: MFString escapes \\ and \" , XML escapes & < > '."""
     s = '"' + u.replace("\\", "\\\\").replace('"', '\\"') + '"'
@@ -93,7 +98,7 @@ class Unsupported(Exception):
     def __init__(self, items): super().__init__("; ".join(items)); self.items = items
 def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=45.0, dry=False, allow_lossy=False):
     tp = pathlib.Path(tileset_path).resolve(); ts = json.loads(tp.read_text()); out = pathlib.Path(outdir).resolve(); K = screen / (2 * math.tan(math.radians(fov / 2)) * sse)
-    stats = dict(tiles=0, with_content=0, glb=0, external_json=0, external_missing=0, add_refine=0, non_enu=0, chunked=0, multi_contents=0, implicit=0, viewer_request_volume=0, ge_scale=[],
+    stats = dict(tiles=0, with_content=0, glb=0, external_json=0, external_missing=0, add_refine=0, non_enu=0, chunked=0, multi_contents=0, implicit=0, viewer_request_volume=0, flattened_external=0, ge_scale=[],
                  bv=dict(), max_depth=0, ranges=[], origin_offsets_m=[], content_uris=[], version=ts.get("asset", {}).get("version"))
     losses, files = [], {}
     def loss(where, what): losses.append(f"{where}: {what}")
@@ -120,14 +125,14 @@ def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=
         lat, lon, h = centre(node, M); ge = float(node.get("geometricError", 0)) * max_scale(M); ge = min(ge, 1e12)
         stats["ge_scale"].append(round(max_scale(M), 12))
         if "viewerRequestVolume" in node: stats["viewer_request_volume"] += 1; loss(name, "viewerRequestVolume dropped (GeoLOD has no request volume, so the tile would load from any viewpoint)")
-        kids = [(k, base, chain) for k in node.get("children", [])]; body = None
+        kids = [(k, base, chain) for k in node.get("children", [])]; body = None; external = 0
         for c in contents_of(node, name):
             stats["with_content"] += 1; u = c["uri"]; kind = urlsplit(u).path
             if kind.endswith(".json"):
                 stats["external_json"] += 1; ext = local(base, u)
                 if ext in chain: loss(name, f"external tileset cycle at {u}"); continue
                 if ext.exists():
-                    sub = json.loads(ext.read_text()); kids = [(sub["root"], ext.parent, chain | {ext})] + kids
+                    sub = json.loads(ext.read_text()); kids = [(sub["root"], ext.parent, chain | {ext})] + kids; external += 1
                 else: stats["external_missing"] += 1; loss(name, f"external tileset {u} not found")
             else:
                 stats["glb"] += 1
@@ -142,6 +147,11 @@ def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=
                 stats["origin_offsets_m"].append(round(geo_distance((lat, lon, h), (olat, olon, oh)), 3))
                 cu = content_url(base, u); stats["content_uris"].append(cu)
                 body = f'  <GeoLocation geoSystem=\'"GD" "WE"\' geoCoords="{olat:.9f} {olon:.9f} {oh:.3f}"><Inline url=\'{mfstring(cu)}\'/></GeoLocation>'
+        if external and body is None:
+            if len(kids) == 1:   # structural wrapper: the external root takes its place (no empty selectable level)
+                stats["flattened_external"] += 1; k, kb, kc = kids[0]
+                return emit(k, M, depth + 1, name, kb, kc, refine)
+            loss(name, "tile with no drawable content wraps an external tileset and has other children: GeoLOD would add an empty coarse level")
         if len(kids) > 4:
             stats["chunked"] += 1; q = (len(kids) + 3) // 4
             kids = [(dict(boundingVolume=node["boundingVolume"], geometricError=ge, children=[], _group=kids[i * q:(i + 1) * q]), base, chain) for i in range(4) if kids[i * q:(i + 1) * q]]
@@ -186,7 +196,7 @@ def convert(tileset_path, outdir, content_base=None, sse=16.0, screen=1080, fov=
         # the report describes THIS run, every run (v2.1 wrote it only when lossy, so a reused folder kept a stale one)
         written = {n: hashlib.sha256(c.encode("utf8")).hexdigest() for n, c in files.items()}
         stale = sorted(x.name for x in out.glob("*.x3d") if x.name not in written)
-        rep = dict(stats, lossy=bool(losses), converter="tiles3d_to_x3d.py v2.3", tileset_sha256=hashlib.sha256(tp.read_bytes()).hexdigest(),
+        rep = dict(stats, lossy=bool(losses), converter="tiles3d_to_x3d.py v2.4", tileset_sha256=hashlib.sha256(tp.read_bytes()).hexdigest(),
                    files_written=written, other_x3d_in_folder=stale)
         fd, tmp = tempfile.mkstemp(dir=out, prefix=".conversion-report.", suffix=".tmp")
         with os.fdopen(fd, "w") as fh: fh.write(json.dumps(rep, indent=1, default=str) + "\n")
