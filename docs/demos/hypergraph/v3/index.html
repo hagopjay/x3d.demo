@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hypergraph v3: ECO A to E and DSA (Babylon)</title>
+<meta name="color-scheme" content="dark">
+<style>
+:root{color-scheme:dark;--bg:#070a14;--card:#0e1424cc;--bd:#222c46;--fg:#e6eaf7;--mut:#8b96b8;--ac:#7aa2ff}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:var(--bg);color:var(--fg);font:13.5px/1.45 system-ui,-apple-system,Segoe UI,sans-serif;display:flex;flex-direction:column}
+header{padding:10px 16px 8px;border-bottom:1px solid var(--bd);display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+h1{font-size:17px;margin:0;font-weight:650;letter-spacing:.01em}.sub{color:var(--mut);font-size:12.5px;flex:1;min-width:260px}
+main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 370px;min-height:0}
+@media(max-width:980px){main{grid-template-columns:1fr;grid-template-rows:62vh auto}body{height:auto}}
+#stage{position:relative;min-height:420px;background:radial-gradient(ellipse at 50% 45%,#0b1226 0%,#05070f 70%)}
+#cv{position:absolute;inset:0;width:100%;height:100%;display:block;outline:none;touch-action:none;cursor:grab}
+#vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(2,3,8,.55) 100%)}
+#labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.lb{position:absolute;left:0;top:0;white-space:nowrap;font:600 11.5px/18px system-ui,sans-serif;text-shadow:0 0 3px #000,0 0 6px #000,0 1px 2px #000;padding:0 4px;will-change:transform;opacity:.95}
+.lb.he.family{font-weight:550;opacity:.82}.lb.he.volume{font-size:13px;font-weight:700;letter-spacing:.05em;opacity:.7;text-transform:none}
+.lb.he.bridge{font-weight:700}.lb.sel{font-size:13px;font-weight:700;background:rgba(5,8,18,.7);border-radius:4px;border:1px solid #ffffff22}.lb.nb{font-weight:500;opacity:.9}
+.bar{position:absolute;left:12px;top:12px;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100% - 24px)}
+.grp{background:var(--card);border:1px solid var(--bd);border-radius:9px;padding:4px;display:flex;gap:3px;backdrop-filter:blur(8px)}
+button{background:transparent;color:var(--fg);border:0;border-radius:6px;padding:5px 10px;cursor:pointer;font:inherit;font-size:12.5px}button:hover{background:#ffffff12}button.on{background:var(--ac);color:#06102a;font-weight:650}
+#legend{position:absolute;left:12px;bottom:12px;display:flex;gap:6px 14px;flex-wrap:wrap;background:var(--card);border:1px solid var(--bd);border-radius:9px;padding:6px 10px;font-size:11.5px;max-width:calc(100% - 24px);backdrop-filter:blur(8px)}
+#legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}#legend em{color:var(--mut);font-style:normal}
+#hint{position:absolute;right:12px;top:14px;color:var(--mut);font-size:11.5px;text-align:right;pointer-events:none;text-shadow:0 0 4px #000}
+aside{overflow:auto;border-left:1px solid var(--bd);padding:10px 12px 40px;background:#080c18}
+.card{background:#0c1222;border:1px solid var(--bd);border-radius:9px;padding:9px 11px;margin-bottom:10px}
+h2{font-size:11px;margin:0 0 7px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);font-weight:650}h3{margin:0 0 6px;font-size:15px;line-height:1.25}
+label.sl{display:flex;align-items:center;gap:8px;margin:3px 0;font-size:12.5px}label.sl b{width:22px;color:var(--mut)}label.sl input{flex:1}label.sl span{width:38px;text-align:right;color:var(--mut)}
+.mut{color:var(--mut)}code{background:#151d33;padding:1px 5px;border-radius:4px;font-size:11.5px;word-break:break-word}
+input[type=search]{width:100%;background:#0a0f1d;border:1px solid var(--bd);border-radius:7px;color:var(--fg);padding:7px 9px;font:inherit}
+#sres a{display:block;padding:4px 6px;border-radius:5px;cursor:pointer;font-size:12.5px}#sres a:hover{background:#ffffff10}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0 0}.chips a{border:1px solid var(--bd);border-radius:12px;padding:1px 9px;cursor:pointer;font-size:11.5px}.chips a:hover{background:#ffffff12}
+.two{display:grid;grid-template-columns:150px 1fr;gap:10px;margin-bottom:6px}.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 8px;font-size:12px;align-content:start}.kv span{color:var(--mut)}
+.bd{display:grid;grid-template-columns:repeat(8,1fr);width:150px;height:150px;border-radius:5px;overflow:hidden;border:1px solid var(--bd)}
+.bd i{font-style:normal;display:flex;align-items:center;justify-content:center;font-size:19px;line-height:1}.bd .l{background:#2b3552}.bd .d{background:#1a2138}.bd .w{color:#f6f1e4;text-shadow:0 0 1px #000,0 0 3px #000}.bd .b{color:#0b0d16;text-shadow:0 0 1px #fff8,0 0 2px #fff6}
+details{margin:2px 0}summary{cursor:pointer;padding:3px 0;font-size:12.5px}summary label{cursor:pointer}.hl{display:flex;align-items:center;gap:7px;padding:2px 4px 2px 18px;border-radius:5px;cursor:pointer;font-size:12px}.hl span{margin-left:auto}.hl:hover,.hl.on{background:#ffffff14}.hl i{width:8px;height:8px;border-radius:50%;flex:none}
+#hlist{max-height:340px;overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:12px}td,th{border-bottom:1px solid var(--bd);padding:3px 5px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600}
+.note{font-size:11.5px;color:var(--mut)}a.lk{color:var(--ac)}
+</style></head><body>
+<header><h1>Hypergraph v3: all 500 ECO codes, DSA and engine concepts</h1><div class="sub">Each point is an ECO code (colour = volume A to E, size = named lines), a DSA concept or an engine concept. A hyperedge joins 3 or more of them at once. Four dimensions: x, y, z plus w (ECO volume, or tier S to D for DSA).</div></header>
+<main>
+<div id="stage"><canvas id="cv" aria-label="4D hypergraph of ECO openings and DSA concepts"></canvas><div id="vig"></div><div id="labels"></div>
+<div class="bar"><div class="grp"><button data-layer="chess">Chess ECO</button><button data-layer="dsa">DSA</button><button data-layer="both" class="on">Both + bridges</button></div>
+<div class="grp"><button data-lens="4" class="on">4D</button><button data-lens="3">3D</button><button data-lens="2">2D</button></div>
+<div class="grp"><button id="spin">Spin 4D</button><button id="reset">Reset view</button></div>
+<div class="grp"><button data-q="hq" class="on">High quality</button><button data-q="sq">Light</button></div></div>
+<div id="legend"></div><div id="hint">drag to orbit · wheel to zoom · right-drag to pan · Esc clears</div></div>
+<aside>
+<div class="card"><h2>Find an opening</h2><input type="search" id="q" placeholder="B90, Najdorf, Ruy Lopez, trie..." autocomplete="off"><div id="sres"></div></div>
+<div class="card"><h2>Selection</h2><div id="info"></div></div>
+<div class="card"><h2>4D rotation (radians)</h2>
+<label class="sl"><b>XW</b><input type="range" id="rxw" min="-3.1416" max="3.1416" step="0.01" value="0"><span id="vxw">0.00</span></label>
+<label class="sl"><b>YW</b><input type="range" id="ryw" min="-3.1416" max="3.1416" step="0.01" value="0"><span id="vyw">0.00</span></label>
+<label class="sl"><b>ZW</b><input type="range" id="rzw" min="-3.1416" max="3.1416" step="0.01" value="0"><span id="vzw">0.00</span></label>
+<p class="note" style="margin:6px 0 0">Rotating into w trades ECO volume for space: families that cross volumes (Benoni, Queen's Pawn, English) stretch along w.</p></div>
+<div class="card"><h2>Hyperedges (tick to show, click a name to isolate)</h2><div id="hlist"></div></div>
+<div class="card"><h2>Numbers</h2><table id="stats"></table></div>
+<div class="card"><h2>Sources and limits</h2><p class="note">ECO codes, names and move lines: Lichess <code>chess-openings</code> table, commit 3ba6b20, CC0, bundled under <code>source/</code>. Positions replayed with python-chess 1.10 to find transpositions. Layout: seeded 4D relaxation (<code>tools/build.py</code>); families are clusters, codes sit on a spiral inside. Drawn with Babylon.js 9.37 (WebGL, custom shaders); the portable scene is <a class="lk" href="hypergraph.x3d">hypergraph.x3d</a> (X3D 4.0, XSD-valid, static pose, <a class="lk" href="xite.html">view in X_ITE</a>). The DSA set, engine concepts and 5 bridges are authored, not published. No game statistics: nothing here ranks openings. Full notes: NOTICE.md.</p></div>
+</aside></main>
+<script src="bundle.js"></script>
+</body></html>

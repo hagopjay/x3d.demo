@@ -2,6 +2,11 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v46 (2026-11-18)
+- Demo 45 (Hypergraph) now also links Version 3 (`docs/demos/hypergraph/v3/`, x3d.demo PR 75): all 500 ECO codes with 3,865 named lines from the Lichess chess-openings table (CC0), 548 points and 99 hyperedges, drawn with Babylon.js 9.37.0, plus a static X3D 4.0 pose of the same positions. v1 and v2 stay linked; the card text is extended with what v3 reports and what was not done, and its picture is still version 1's. No new number.
+- Re-run for the card in headless Chromium (local, SwiftShader, 1500 x 900): 548 nodes, 99 hyperedges, a real hover and click on C60 with a 64-square board, no console errors, no 4xx, no horizontal scroll. Not re-run: the X3D validation, the transposition replay and the X_ITE static view. The live Pages URL for v3 answered 404 when I checked (the deploy had not caught up), so the check was local.
+- No demo and no earlier version is touched; v1 to v45 unchanged. Next free number is 51.
+
 ## v45 (2026-11-18)
 - New Demo 50: Gobbler Evidence Loom (hosted at https://hagopjay.github.io/x3d.gobbler/gobbler-flyte/, repo x3d.gobbler, lane commit 4a24d4b, fold-backs x3d.loom 91 and x3d.docs 31 merged). A twelve-feather X3D observatory over a pinned Atlas snapshot (2,181 entities, 7,222 typed edges, 44 laws, 34/591 numbers with an archived verified quotation); domain transfers are proposed, motion is illustrative. The card links out to the Pages site, because the page is not in this repository. The held card is released: the Pages URL answers 200 and the lane confirmed the path, the merge and its checks.
 - Not described: `evidence-lab/` (the Intervention Lab, a later piece from another lane). Picture: the lane's own receipt screenshot (`receipts/browser-observatory/02-feather.png` on the Pages site), cropped; no third-party imagery.
@@ -14,6 +19,9 @@ The demo doc is the page served at the site root. Every version is kept: `docs/v
 - Demo 48 (Medical provenance atlas) now also links Version 2 (`docs/demos/medical-provenance/v2/`, PR 70: FMA is-a ancestors, in-page scene-vs-claims check). The facts note says the card's counts are version 1's and quotes version 2's readme counts (1,033 claims) as its own; no new number and the picture is still version 1's.
 - Re-run for the cards in headless Chromium (local): geotiling space view (72 tile files, no page errors) and converted tab (no console errors, no 4xx); medical v2 page (no console errors, no 4xx, no horizontal scroll at 1280 px). Not re-run: validation, tour, close-up, converter, the class filter and tamper demo. This entry sits on a new branch from main after PR 66 (v41 to v43); no demo and no earlier version is touched; v1 to v43 unchanged.
 - Still held: Gobbler Evidence Loom (next number 50), until its Pages URL answers 200.
+
+## Hypergraph v3 (2026-11-18)
+- Added `docs/demos/hypergraph/v3/`: the ECO overlay rebuilt from the Lichess chess-openings table (CC0): 500 ECO codes, 3,865 lines, 27 family hyperedges, 40 transposition meeting points computed by replay, plus the DSA and engine layers and 5 bridges. Drawn with Babylon.js 9.37 for graphics quality; the XSD-valid X3D scene and an X_ITE view are included. v1 and v2 are unchanged. Sources, grades and limits in its NOTICE.md. Card link is the bridge thread's.
 
 ## v43 (2026-11-18)
 - Demo 47 (Math Lab concept graph) now points to Version 2 (`docs/demos/math-concept-graph/v2/`, x3d.demo PR 68): 90 links (40 C, 39 L, 11 S) to 88 distinct terms, 26 confirmed gaps, 1,363 JSON-LD triples, plus OEIS and arXiv title-hit counts; it corrects version 1 (errata card). The card text, facts note and licence line are updated (the OntoMathPro crawl is held privately and not redistributed; the names of two OEIS sequences are CC BY-SA 4.0 and attributed). Version 1 stays linked as "Version 1", and its numbers are marked as superseded; the v40 to v42 snapshots keep their wording. The card's picture is a new file, `assets/math-concept-graph-v2.jpg`; the v1 picture is kept.
