@@ -217,6 +217,9 @@ The demo doc is the page served at the site root. Every version is kept: `docs/v
 - New STEM shelf: the six x3d.STEM studies (Kerr 2, Turing Garden, Electron Cloud, Chirp, Living Heart, Vortex Reconnection & Sound), linked to their source and evidence in hagopjay/x3d.STEM, not to live pages: their data files are not committed, so the published study pages stop at "could not be shown" (checked in a headless browser, 6 of 6 give 404 on their data files). They can point at live pages once the data is published.
 - Demos 1 to 3 unchanged. The lede now says which demos need WebGPU.
 
+## Unnumbered: Hypergraph demo page (2026-11-18)
+- Added `docs/demos/hypergraph/v1/`: 40 DSA concepts as 4D points, 15 hyperedges as hubs and bounds, 4D rotation, 2D/3D/4D lens, clique-expansion contrast. Sources and checks in its NOTICE.md. Front-page card and number come from the bridge thread (not edited here).
+
 ## v5 (2026-11-07)
 - Demo 3 is now Neural Canvas, the brain and torso CT drawn with Babylon.js on WebGPU through our own X3D reader (built from x3d.loom PR #13 with `build-brain.py --single`). It replaces the placeholder. Sources and licence grades are in `docs/demos/brain-torso/v1/NOTICE*.md`. The cortex shapes come from TemplateFlow fsaverage, whose licence is graded Suspected (no licence file found); it is shown for educational use at the owner's direction and may be removed if the rights holder asks.
 

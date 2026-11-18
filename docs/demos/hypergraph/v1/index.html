@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hypergraph, hyper-dimensionally (X3D)</title>
+<style>
+:root{--bg:#0b0d12;--fg:#e8eaf0;--mut:#8c94a8;--card:#141821;--bd:#262c3a;--A:#6ab0ff;--ok:#5fd38d}
+@media (prefers-color-scheme:light){:root:not([data-theme=dark]){--bg:#f3f5f9;--fg:#141824;--mut:#59627a;--card:#fff;--bd:#d6dbe6;--A:#1b6fd1;--ok:#12804a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,sans-serif;padding:14px 16px 40px}
+h1{font-size:20px;margin:0}.sub{color:var(--mut);margin:2px 0 10px;max-width:900px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:12px}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:10px 12px;margin-bottom:10px}
+#cv{height:560px;border:1px solid var(--bd);border-radius:8px;overflow:hidden;background:#0a0c10}x3d-canvas{width:100%;height:100%;display:block}
+label{display:flex;align-items:center;gap:8px;margin:3px 0}input[type=range]{flex:1}
+button{background:var(--card);color:var(--fg);border:1px solid var(--bd);border-radius:6px;padding:4px 10px;cursor:pointer;font:inherit}button:hover,button.on{border-color:var(--A)}button.on{background:var(--A);color:#fff}
+table{border-collapse:collapse;width:100%;font-size:12.5px}td,th{border-bottom:1px solid var(--bd);padding:3px 6px;text-align:left}th{color:var(--mut);font-weight:600}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}.he{cursor:pointer}.he.off{opacity:.35}
+.mut{color:var(--mut)}code{background:var(--bd);padding:0 4px;border-radius:3px}h2{font-size:13px;margin:0 0 6px;letter-spacing:.04em;text-transform:uppercase;color:var(--mut)}
+</style></head><body>
+<h1>Hypergraph, hyper-dimensionally</h1>
+<p class="sub">40 DSA concepts are points in <b>four</b> dimensions (x, y, z and w = difficulty tier). 15 <b>hyperedges</b> each join 4 to 7 concepts at once; each is a hub with spokes and a translucent bound. Spin the 4D rotation planes to trade difficulty for space, drop to 2D or 3D, or flip to the pairwise "clique expansion" to see what an ordinary graph does to a hyperedge.</p>
+<div class="grid"><div>
+<div id="cv"><x3d-canvas id="xc" src="" update="auto" contextMenu="false"></x3d-canvas></div>
+<div class="card" style="margin-top:10px"><h2>Hyperedges (click to toggle)</h2><table id="het"></table></div>
+</div><div>
+<div class="card"><h2>4D rotation (radians)</h2>
+<label>XW <input type="range" id="rxw" min="-3.1416" max="3.1416" step="0.01" value="0"><span id="vxw">0.00</span></label>
+<label>YW <input type="range" id="ryw" min="-3.1416" max="3.1416" step="0.01" value="0"><span id="vyw">0.00</span></label>
+<label>ZW <input type="range" id="rzw" min="-3.1416" max="3.1416" step="0.01" value="0"><span id="vzw">0.00</span></label>
+<div style="margin-top:6px"><button id="spin">Auto-spin</button> <button id="reset">Reset</button></div></div>
+<div class="card"><h2>Dimension lens</h2><button data-lens="4" class="on">4D</button> <button data-lens="3">3D (w dropped)</button> <button data-lens="2">2D (z, w dropped)</button>
+<h2 style="margin-top:10px">Edge model</h2><button id="mHyper" class="on">Hyperedge hubs</button> <button id="mClique">Clique expansion</button> <button id="hulls" class="on">Bounds</button></div>
+<div class="card"><h2>Selected concept</h2><select id="pick"></select><div id="sel" class="mut" style="margin-top:6px"></div></div>
+<div class="card"><h2>Numbers</h2><table id="stats"></table></div>
+</div></div>
+<p class="sub" style="margin-top:14px"><b>Sources.</b> The 40 concepts, tiers S to D and 15 hyperedges are an illustrative set authored for this proof of concept; they are not the DSA Tutor database (the RFC supplies a schema, not data). Layout: seeded 4D force relaxation (<code>build.py</code>, seed 20261118) with w pinned to tier. Scene file <code>hypergraph.x3d</code> validated against the X3D 4.0 XSD by the x3d_mcp validator (see NOTICE.md). Drawn by X_ITE 16.6.0 (bundled). Counts in the table are computed in this page from <code>data.json</code>.</p>
+<script src="vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let D,B,S,state={a:[0,0,0],lens:4,hyper:true,hulls:true,on:[],sel:null,spin:false},frames=0,t0=performance.now();
+const cmp=(a,b)=>a-b;
+function rot(p,a){let [x,y,z,w]=p;
+ let c=Math.cos(a[0]),s=Math.sin(a[0]);[x,w]=[x*c-w*s,x*s+w*c];
+ c=Math.cos(a[1]);s=Math.sin(a[1]);[y,w]=[y*c-w*s,y*s+w*c];
+ c=Math.cos(a[2]);s=Math.sin(a[2]);[z,w]=[z*c-w*s,z*s+w*c];return [x,y,z,w]}
+function proj(p){const q=rot(p,state.a);
+ if(state.lens==2)return [q[0]*1.1,q[1]*1.1,0];
+ if(state.lens==3)return [q[0],q[1],q[2]];
+ const s=0.85*Math.exp(-0.12*q[3]);return [q[0]*s,q[1]*s,q[2]*s]}
+const V=(v)=>new X3D.SFVec3f(v[0],v[1],v[2]);
+function update(){
+ const pos={};for(const n of D.nodes)pos[n.id]=proj(n.p);
+ for(const n of D.nodes)S.nodes[n.id].translation=V(pos[n.id]);
+ const cl=B.currentScene.getNamedNode('CL_C');
+ if(!state.hyper){cl.point=new X3D.MFVec3f(...D.nodes.map(n=>V(pos[n.id])))}
+ D.hes.forEach((h,k)=>{ if(!state.on[k]||!state.hyper)return;
+  const qs=h.m.map(m=>pos[m]);const c=[0,1,2].map(i=>qs.reduce((s,q)=>s+q[i],0)/qs.length);
+  S.hT[k].translation=V(c);const r=Math.max(...qs.map(q=>Math.hypot(q[0]-c[0],q[1]-c[1],q[2]-c[2])))*1.08+1e-3;
+  S.hS[k].scale=V([r,r,r]);S.hC[k].point=new X3D.MFVec3f(...[c,...qs].map(V))});
+ S.sw.forEach((w,k)=>w.whichChoice=(state.on[k]&&state.hyper)?0:-1);
+ S.swC.whichChoice=state.hyper?-1:0;
+ frames++}
+function paintSel(){
+ const id=state.sel;D.nodes.forEach(n=>{const m=S.mat[n.id];const he=id&&D.hes.some(h=>h.m.includes(id)&&h.m.includes(n.id));
+  const on=!id||n.id==id||he;m.transparency=on?0.05:0.8;S.nodes[n.id].scale=V(n.id==id?[1.6,1.6,1.6]:[1,1,1])});
+ D.hes.forEach((h,k)=>{S.hSM[k].transparency=state.hulls?(id?(h.m.includes(id)?0.8:0.99):0.93):1});
+ if(!id){$('sel').innerHTML='<span class=mut>Click a sphere or pick one.</span>';return}
+ const hs=D.hes.map((h,k)=>[h,k]).filter(([h])=>h.m.includes(id));const nb=new Set(hs.flatMap(([h])=>h.m));nb.delete(id);
+ $('sel').innerHTML=`<b>${id}</b> tier ${D.nodes.find(n=>n.id==id).tier}<br>In <b>${hs.length}</b> hyperedges: ${hs.map(([h])=>h.name).join(', ')}<br>Hyper-neighbours: <b>${nb.size}</b> (${[...nb].sort().join(', ')})`}
+function setSel(id){state.sel=id;$('pick').value=id||'';paintSel()}
+function stats(){const s=D.stats,deg=D.nodes.map(n=>D.hes.filter(h=>h.m.includes(n.id)).length),sz=D.hes.map(h=>h.m.length);
+ const row=(a,b,c)=>`<tr><td>${a}</td><td><b>${b}</b></td><td class=mut>${c}</td></tr>`;
+ $('stats').innerHTML=`<tr><th>Metric</th><th>Value</th><th>Source</th></tr>`+
+ row('Concepts',s.nodes,'data.json')+row('Hyperedges',s.hyperedges,'data.json')+row('Incidences (node,hyperedge)',s.incidences,'sum of sizes')+
+ row('Hyperedge size min/max',Math.min(...sz)+' / '+Math.max(...sz),'computed here')+row('Max node degree',Math.max(...deg)+' ('+D.nodes[deg.indexOf(Math.max(...deg))].id+')','computed here')+
+ row('Pairwise edges after clique expansion',s.clique_edges_dedup,'deduped pairs, build.py')+row('Pairwise edges before dedup',s.clique_edges_raw,'sum C(k,2)')+
+ row('Pairs per incidence (graph vs hypergraph)',(s.clique_edges_dedup/s.incidences).toFixed(2),'138 / 73')+row('Frames drawn / s (this tab)','<span id=fps>-</span>','your browser, X_ITE 16.6.0')}
+async function main(){
+ D=await (await fetch('data.json')).json();
+ B=X3D.getBrowser($('xc'));B.loadURL(new X3D.MFString('hypergraph.x3d'));
+ await new Promise(r=>{const t=setInterval(()=>{if(B.currentScene&&B.currentScene.rootNodes.length>3){clearInterval(t);r()}},30)});
+ const g=n=>B.currentScene.getNamedNode(n),N=n=>'N_'+n.replace(/-/g,'_');
+ S={nodes:{},mat:{},hT:[],hS:[],hC:[],hSM:[],sw:[],swC:g('SW_C')};
+ for(const n of D.nodes){S.nodes[n.id]=g(N(n.id));S.mat[n.id]=g('M_'+N(n.id))}
+ D.hes.forEach((h,k)=>{S.hT[k]=g('H'+k+'_T');S.hS[k]=g('H'+k+'_S');S.hC[k]=g('H'+k+'_C');S.hSM[k]=g('H'+k+'_SM');S.sw[k]=g('H'+k+'_W');state.on[k]=true});
+ $('pick').innerHTML='<option value="">(none)</option>'+D.nodes.map(n=>`<option>${n.id}</option>`).join('');
+ $('pick').onchange=e=>setSel(e.target.value||null);
+ $('het').innerHTML=D.hes.map((h,k)=>`<tr class="he" data-k="${k}"><td><span class="sw" style="background:rgb(${h.color.split(' ').map(v=>Math.round(v*255)).join(',')})"></span>${h.name}</td><td class=mut>${h.m.length}</td><td class=mut style="font-size:11.5px">${h.m.join(', ')}</td></tr>`).join('');
+ document.querySelectorAll('.he').forEach(r=>r.onclick=()=>{const k=+r.dataset.k;state.on[k]=!state.on[k];r.classList.toggle('off',!state.on[k])});
+ for(const n of D.nodes)g('TS_'+N(n.id)).addFieldCallback('pick_'+n.id,'isActive',v=>{if(!v)setSel(state.sel==n.id?null:n.id)});
+ ['xw','yw','zw'].forEach((a,i)=>$('r'+a).oninput=e=>{state.a[i]=+e.target.value;$('v'+a).textContent=(+e.target.value).toFixed(2)});
+ document.querySelectorAll('[data-lens]').forEach(b=>b.onclick=()=>{state.lens=+b.dataset.lens;document.querySelectorAll('[data-lens]').forEach(x=>x.classList.toggle('on',x==b))});
+ $('mHyper').onclick=()=>{state.hyper=true;$('mHyper').classList.add('on');$('mClique').classList.remove('on')};
+ $('mClique').onclick=()=>{state.hyper=false;$('mClique').classList.add('on');$('mHyper').classList.remove('on')};
+ $('hulls').onclick=()=>{state.hulls=!state.hulls;$('hulls').classList.toggle('on',state.hulls);paintSel()};
+ $('spin').onclick=()=>{state.spin=!state.spin;$('spin').classList.toggle('on',state.spin)};
+ $('reset').onclick=()=>{state.a=[0,0,0];['xw','yw','zw'].forEach(a=>{$('r'+a).value=0;$('v'+a).textContent='0.00'})};
+ stats();paintSel();
+ let last=performance.now();
+ (function loop(){const now=performance.now();
+  if(state.spin){state.a[0]+=0.004;state.a[1]+=0.0027;state.a[2]+=0.0017;['xw','yw','zw'].forEach((a,i)=>{$('r'+a).value=((state.a[i]+Math.PI)%(2*Math.PI))-Math.PI;$('v'+a).textContent=(+$('r'+a).value).toFixed(2)})}
+  update();if(now-t0>1000){const f=$('fps');if(f)f.textContent=(frames*1000/(now-t0)).toFixed(1);frames=0;t0=now}
+  requestAnimationFrame(loop)})();
+ window.__hg={state,D,S,setSel,ready:true};
+}
+main().catch(e=>{console.error(e);document.body.insertAdjacentHTML('afterbegin','<pre style="color:#f66">'+e+'</pre>')});
+</script></body></html>
