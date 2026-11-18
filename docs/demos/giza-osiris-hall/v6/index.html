@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giza VI · The Five Witnesses</title>
+<meta name="description" content="One night at Giza in five acts: measured stone (v3 Evidence Atlas), reported depths and Hawara (Witness Atlas v4.1), a modelled chamber (Giza IV Horizon Engine), an imagined planetary coil (Giza V), and a computed precession sky. Every caption is graded Confirmed, Likely, Suspected or Authored. Babylon.js renderer, X3D 4.0 twin.">
+<link rel="stylesheet" href="giza6.css">
+<script src="vendor/babylon/babylon.js"></script>
+<script src="vendor/babylon/babylon.skyMaterial.min.js"></script>
+<script src="../v3/sky-math.js"></script>
+</head>
+<body>
+<canvas id="scene" aria-label="Giza VI scene. Drag to look around; the tour pauses."></canvas>
+<div id="fade"></div>
+
+<header id="top">
+  <div class="brand"><b>GIZA <span>VI</span></b><small>THE FIVE WITNESSES · ONE NIGHT, ONE LEDGER</small></div>
+  <nav class="versions" aria-label="Versions">
+    <a href="../v1/index.html">v1</a><a href="../v2/index.html">v2</a><a href="../v3/index.html">v3 Atlas</a><a href="../v4/index.html">v4 Hawara</a><a href="../v4-horizon/index.html">IV Horizon</a><a href="../v5/index.html">V Coil</a><a class="cur" aria-current="page">VI</a>
+  </nav>
+  <div class="tools">
+    <button id="btn-visor" data-state="auto" title="V: VISOR look (edge and false colour of the model; not a sensor)">VISOR · auto</button>
+    <button id="btn-ledger" title="L: one ledger across all five editions">Ledger</button>
+    <a class="btn" href="twin.html" title="The same geometry as an X3D 4.0 file, drawn by X_ITE">X3D twin</a>
+    <select id="tier" aria-label="Render quality"><option value="cinematic">Cinematic</option><option value="balanced">Balanced</option><option value="lite">Lite</option></select>
+  </div>
+</header>
+
+<aside id="rail" aria-label="Acts"></aside>
+
+<section id="caption" aria-live="polite">
+  <h2 id="cap-title"></h2>
+  <div id="cap-lines"></div>
+</section>
+
+<aside id="instrument" aria-label="Instrument"></aside>
+
+<footer id="timeline">
+  <button id="play" aria-label="Pause">❚❚</button>
+  <div class="track"><input id="scrub" type="range" min="0" step="0.1" value="0" aria-label="Tour time"><div id="marks"></div></div>
+  <span id="clock">0:00</span>
+</footer>
+
+<div id="legend">
+  <span class="g g-C">Confirmed</span><span class="g g-L">Likely</span><span class="g g-S">Suspected</span><span class="g g-A">Authored</span>
+  <small>Authored marks invention; it is not a truth grade.</small>
+</div>
+<div id="hud" aria-live="off"></div>
+<pre id="log" aria-label="Verbose log"></pre>
+
+<section id="ledger" aria-label="Evidence ledger">
+  <h2>One ledger, five editions <small id="ledger-count"></small></h2>
+  <div id="ledger-filter"><button data-g="all">All</button><button data-g="C">Confirmed</button><button data-g="L">Likely</button><button data-g="S">Suspected</button><button data-g="A">Authored</button></div>
+  <ol id="ledger-list"></ol>
+  <p class="fine">Grades follow the v3 discipline: the subject's evidence, the geometry's modelling status and the source handling are separate. A dramatic rendering never upgrades a grade.</p>
+</section>
+
+<div id="boot"><div><b>GIZA VI</b><p>Baking stone textures, building 39 meshes, loading 978 + 40 catalogue stars…</p><small>Babylon.js 8.56.2 · WebGL 2</small></div></div>
+<noscript>Giza VI needs JavaScript and WebGL 2. The <a href="twin.html">X3D twin</a> and <a href="../v3/index.html">v3 Atlas</a> are alternatives.</noscript>
+<script type="module" src="app.mjs"></script>
+</body>
+</html>
