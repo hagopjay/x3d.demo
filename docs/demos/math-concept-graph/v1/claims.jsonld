@@ -1,0 +1,2139 @@
+{
+ "@context": {
+  "skos": "http://www.w3.org/2004/02/skos/core#",
+  "dct": "http://purl.org/dc/terms/",
+  "prov": "http://www.w3.org/ns/prov#",
+  "x3d": "urn:x3d:vocab:"
+ },
+ "@graph": [
+  {
+   "@id": "urn:x3d:mathlab:lesson:linear",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "The Shape of a Matrix",
+   "skos:exactMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E1703"
+    },
+    {
+     "@id": "https://openmath.org/cd/linalg2.ocd#matrix"
+    },
+    {
+     "@id": "https://openmath.org/cd/linalg1.ocd#determinant"
+    },
+    {
+     "@id": "https://openmath.org/cd/linalg4.ocd#eigenvector"
+    },
+    {
+     "@id": "https://openmath.org/cd/linalg4.ocd#eigenvalue"
+    },
+    {
+     "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element determinant)"
+    },
+    {
+     "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element matrix)"
+    }
+   ],
+   "skos:closeMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E1403"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:derivative",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "A Secant Becomes a Tangent",
+   "skos:exactMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E3040"
+    },
+    {
+     "@id": "https://openmath.org/cd/calculus1.ocd#diff"
+    },
+    {
+     "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element diff)"
+    }
+   ],
+   "skos:broadMatch": [
+    {
+     "@id": "https://openmath.org/cd/limit1.ocd#limit"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:integral",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "Build an Area from Samples",
+   "skos:broadMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E2855"
+    }
+   ],
+   "skos:closeMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E2856"
+    }
+   ],
+   "skos:exactMatch": [
+    {
+     "@id": "https://openmath.org/cd/calculus1.ocd#defint"
+    },
+    {
+     "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element int)"
+    }
+   ],
+   "skos:relatedMatch": [
+    {
+     "@id": "https://openmath.org/cd/calculus2.ocd#integrand"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:fourier",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "A Wave Made of Circles",
+   "skos:exactMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E3079"
+    }
+   ],
+   "skos:relatedMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E2975"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:lorenz",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "Two Almost-Identical Beginnings",
+   "skos:exactMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E598"
+    },
+    {
+     "@id": "https://doi.org/10.29172/bb2351de-d2a6-4d4c-a33e-9396bc991c32"
+    }
+   ],
+   "skos:broadMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E1897"
+    },
+    {
+     "@id": "http://ontomathpro.org/ontology/E2811"
+    },
+    {
+     "@id": "https://doi.org/10.29172/1ec03196-e8d2-40b7-891a-fc8e4a1cbbdb"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:gradient",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "Find the Floor of a Valley",
+   "skos:exactMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E472"
+    },
+    {
+     "@id": "https://openmath.org/cd/veccalc1.ocd#grad"
+    },
+    {
+     "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element grad)"
+    }
+   ],
+   "skos:closeMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E1700"
+    }
+   ],
+   "skos:broadMatch": [
+    {
+     "@id": "https://doi.org/10.29172/b96ba7a9-cce1-470c-b80c-6dadb2c6b8e9"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:complex",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "Multiplication Becomes Motion",
+   "skos:exactMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E2127"
+    },
+    {
+     "@id": "https://openmath.org/cd/complex1.ocd#complex_polar"
+    },
+    {
+     "@id": "https://openmath.org/cd/complex1.ocd#argument"
+    },
+    {
+     "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element arg)"
+    }
+   ],
+   "skos:closeMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E1662"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:taylor",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "How Far Can a Local Idea Reach?",
+   "skos:exactMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E3071"
+    }
+   ],
+   "skos:closeMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E2924"
+    },
+    {
+     "@id": "http://ontomathpro.org/ontology/E2021"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:waves",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "Two Moving Waves Make Still Nodes",
+   "skos:relatedMatch": [
+    {
+     "@id": "https://doi.org/10.29172/2375c1d2-a3fc-4d5b-8fde-4f9029004962"
+    },
+    {
+     "@id": "https://doi.org/10.29172/0a677b11-f06d-4ced-9385-cf0bf1061a59"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:svd",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "A Matrix Reveals Its Favorite Directions",
+   "skos:relatedMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E3303"
+    },
+    {
+     "@id": "https://openmath.org/cd/linalg4.ocd#rank"
+    }
+   ],
+   "skos:broadMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E1703"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:bayes",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "A Positive Signal Changes the Denominator",
+   "skos:exactMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E1836"
+    }
+   ],
+   "skos:closeMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E2419"
+    },
+    {
+     "@id": "http://ontomathpro.org/ontology/E2412"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:lagrange",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "The Best Move May Be Forbidden",
+   "skos:closeMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E1621"
+    }
+   ],
+   "skos:broadMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E3128"
+    },
+    {
+     "@id": "https://doi.org/10.29172/b96ba7a9-cce1-470c-b80c-6dadb2c6b8e9"
+    }
+   ],
+   "skos:relatedMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E684"
+    },
+    {
+     "@id": "https://openmath.org/cd/minmax1.ocd#min"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:aliasing",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "Different Motions, Identical Samples",
+   "skos:closeMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E3406"
+    }
+   ],
+   "skos:relatedMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E3378"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:heat",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "Why Fine Detail Melts First",
+   "skos:exactMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E1921"
+    }
+   ],
+   "skos:closeMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E1930"
+    },
+    {
+     "@id": "https://doi.org/10.29172/cbf5d6c2-2523-4ba3-abb5-133219e2ce5a"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:refraction",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "The Fastest Route Bends",
+   "skos:broadMatch": [
+    {
+     "@id": "https://doi.org/10.29172/23cdcd6b-ae22-4b6d-92cd-24a9a8bd0577"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:probability",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "A Bell Curve from Coin Counts",
+   "skos:exactMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E2498"
+    },
+    {
+     "@id": "http://ontomathpro.org/ontology/E1847"
+    },
+    {
+     "@id": "http://ontomathpro.org/ontology/E2514"
+    }
+   ],
+   "skos:relatedMatch": [
+    {
+     "@id": "https://openmath.org/cd/s_dist1.ocd#mean"
+    },
+    {
+     "@id": "https://openmath.org/cd/s_dist1.ocd#variance"
+    },
+    {
+     "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element mean)"
+    },
+    {
+     "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element variance)"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:least_squares",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "The Closest Reachable Point",
+   "skos:exactMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E690"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:mathlab:lesson:vector_field",
+   "@type": "x3d:MathLabLesson",
+   "dct:title": "A Source Is Not a Whirlpool",
+   "skos:exactMatch": [
+    {
+     "@id": "https://openmath.org/cd/veccalc1.ocd#divergence"
+    },
+    {
+     "@id": "https://openmath.org/cd/veccalc1.ocd#curl"
+    },
+    {
+     "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element divergence)"
+    },
+    {
+     "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element curl)"
+    }
+   ],
+   "skos:relatedMatch": [
+    {
+     "@id": "http://ontomathpro.org/ontology/E2698"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:0",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:linear"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E1703"
+   },
+   "skos:prefLabel": "Matrix",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Matrix",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:1",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:linear"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E1403"
+   },
+   "skos:prefLabel": "Linear mapping",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "a matrix is a linear map; lesson shows the map",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:2",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:linear"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/linalg2.ocd#matrix"
+   },
+   "skos:prefLabel": "linalg2:matrix",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:3",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:linear"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/linalg1.ocd#determinant"
+   },
+   "skos:prefLabel": "linalg1:determinant",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "lesson shows signed area factor = det",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:4",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:linear"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/linalg4.ocd#eigenvector"
+   },
+   "skos:prefLabel": "linalg4:eigenvector",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:5",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:linear"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/linalg4.ocd#eigenvalue"
+   },
+   "skos:prefLabel": "linalg4:eigenvalue",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:6",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:linear"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element determinant)"
+   },
+   "skos:prefLabel": "<determinant/> (3 occurrences in ch.4)",
+   "x3d:source": "MathML 3 content",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:7",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:linear"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element matrix)"
+   },
+   "skos:prefLabel": "<matrix/> (6 occurrences in ch.4)",
+   "x3d:source": "MathML 3 content",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:8",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:derivative"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E3040"
+   },
+   "skos:prefLabel": "Производная функции",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Russian-only label 'Производная функции'",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:9",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:derivative"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/calculus1.ocd#diff"
+   },
+   "skos:prefLabel": "calculus1:diff",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:10",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:derivative"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element diff)"
+   },
+   "skos:prefLabel": "<diff/> (11 occurrences in ch.4)",
+   "x3d:source": "MathML 3 content",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:11",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:derivative"
+   },
+   "x3d:relation": {
+    "@id": "skos:broadMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/limit1.ocd#limit"
+   },
+   "skos:prefLabel": "limit1:limit",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "derivative as a limit of secants",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:12",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:integral"
+   },
+   "x3d:relation": {
+    "@id": "skos:broadMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2855"
+   },
+   "skos:prefLabel": "интеграл",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Russian-only label 'интеграл', generic",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:13",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:integral"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2856"
+   },
+   "skos:prefLabel": "интеграл Дарбу",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Darboux integral; definition not opened",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:14",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:integral"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/calculus1.ocd#defint"
+   },
+   "skos:prefLabel": "calculus1:defint",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:15",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:integral"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/calculus2.ocd#integrand"
+   },
+   "skos:prefLabel": "calculus2:integrand",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:16",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:integral"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element int)"
+   },
+   "skos:prefLabel": "<int/> (16 occurrences in ch.4)",
+   "x3d:source": "MathML 3 content",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:17",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:fourier"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E3079"
+   },
+   "skos:prefLabel": "Ряд Фурье",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Russian-only label 'Ряд Фурье' (Fourier series)",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:18",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:fourier"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2975"
+   },
+   "skos:prefLabel": "Fourier transformation",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Fourier transformation",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:19",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lorenz"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E598"
+   },
+   "skos:prefLabel": "Runge-Kutta method",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Runge-Kutta method (lesson uses RK4)",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:20",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lorenz"
+   },
+   "x3d:relation": {
+    "@id": "skos:broadMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E1897"
+   },
+   "skos:prefLabel": "Ordinary differential equation",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Ordinary differential equation",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:21",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lorenz"
+   },
+   "x3d:relation": {
+    "@id": "skos:broadMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2811"
+   },
+   "skos:prefLabel": "Dynamical system",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Dynamical system",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:22",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lorenz"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://doi.org/10.29172/bb2351de-d2a6-4d4c-a33e-9396bc991c32"
+   },
+   "skos:prefLabel": "Chaos",
+   "x3d:source": "PhySH",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Chaos",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:23",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lorenz"
+   },
+   "x3d:relation": {
+    "@id": "skos:broadMatch"
+   },
+   "x3d:term": {
+    "@id": "https://doi.org/10.29172/1ec03196-e8d2-40b7-891a-fc8e4a1cbbdb"
+   },
+   "skos:prefLabel": "Chaos & nonlinear dynamics",
+   "x3d:source": "PhySH",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Chaos & nonlinear dynamics",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:24",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:gradient"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E472"
+   },
+   "skos:prefLabel": "Gradient descent method",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Gradient descent method",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:25",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:gradient"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E1700"
+   },
+   "skos:prefLabel": "Gradient",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Gradient",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:26",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:gradient"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/veccalc1.ocd#grad"
+   },
+   "skos:prefLabel": "veccalc1:grad",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:27",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:gradient"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element grad)"
+   },
+   "skos:prefLabel": "<grad/> (4 occurrences in ch.4)",
+   "x3d:source": "MathML 3 content",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:28",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:gradient"
+   },
+   "x3d:relation": {
+    "@id": "skos:broadMatch"
+   },
+   "x3d:term": {
+    "@id": "https://doi.org/10.29172/b96ba7a9-cce1-470c-b80c-6dadb2c6b8e9"
+   },
+   "skos:prefLabel": "Optimization problems",
+   "x3d:source": "PhySH",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Optimization problems",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:29",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:complex"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2127"
+   },
+   "skos:prefLabel": "Complex number",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Complex number",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:30",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:complex"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E1662"
+   },
+   "skos:prefLabel": "Argument value",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Argument value",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:31",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:complex"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/complex1.ocd#complex_polar"
+   },
+   "skos:prefLabel": "complex1:complex_polar",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:32",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:complex"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/complex1.ocd#argument"
+   },
+   "skos:prefLabel": "complex1:argument",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:33",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:complex"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element arg)"
+   },
+   "skos:prefLabel": "<arg/> (3 occurrences in ch.4)",
+   "x3d:source": "MathML 3 content",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:34",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:taylor"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E3071"
+   },
+   "skos:prefLabel": "Ряд Тейлора",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Russian-only label 'Ряд Тейлора'",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:35",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:taylor"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2924"
+   },
+   "skos:prefLabel": "Многочлен Тейлора",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Russian-only 'Многочлен Тейлора' (polynomial)",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:36",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:taylor"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2021"
+   },
+   "skos:prefLabel": "Формула Тейлора",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Russian-only 'Формула Тейлора'",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:37",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:waves"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "https://doi.org/10.29172/2375c1d2-a3fc-4d5b-8fde-4f9029004962"
+   },
+   "skos:prefLabel": "Nonlinear waves",
+   "x3d:source": "PhySH",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:description": "Nonlinear waves: lesson is linear superposition, so a neighbour only",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:38",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:waves"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "https://doi.org/10.29172/0a677b11-f06d-4ced-9385-cf0bf1061a59"
+   },
+   "skos:prefLabel": "Waves and free surface flows",
+   "x3d:source": "PhySH",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:description": "Waves and free surface flows: a neighbour only",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:39",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:svd"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E3303"
+   },
+   "skos:prefLabel": "Singular number",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:description": "'Singular number': probably the operator singular value; definition not opened, English label only",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:40",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:svd"
+   },
+   "x3d:relation": {
+    "@id": "skos:broadMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E1703"
+   },
+   "skos:prefLabel": "Matrix",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Matrix",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:41",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:svd"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/linalg4.ocd#rank"
+   },
+   "skos:prefLabel": "linalg4:rank",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:description": "SVD exposes rank; no SVD symbol exists",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:42",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:bayes"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E1836"
+   },
+   "skos:prefLabel": "Bayes theorem",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Bayes theorem",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:43",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:bayes"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2419"
+   },
+   "skos:prefLabel": "Conditional probability",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Conditional probability",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:44",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:bayes"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2412"
+   },
+   "skos:prefLabel": "A posteriori probability",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "A posteriori probability",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:45",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lagrange"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E1621"
+   },
+   "skos:prefLabel": "Lagrange function",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Lagrange function; definition not opened",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:46",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lagrange"
+   },
+   "x3d:relation": {
+    "@id": "skos:broadMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E3128"
+   },
+   "skos:prefLabel": "Экстремум",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Russian-only 'Экстремум' (extremum)",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:47",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lagrange"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E684"
+   },
+   "skos:prefLabel": "Lagrange method of modified function",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:description": "Lagrange method of modified function: unclear it is the multiplier method",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:48",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lagrange"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/minmax1.ocd#min"
+   },
+   "skos:prefLabel": "minmax1:min",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "objective being minimised",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:49",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lagrange"
+   },
+   "x3d:relation": {
+    "@id": "skos:broadMatch"
+   },
+   "x3d:term": {
+    "@id": "https://doi.org/10.29172/b96ba7a9-cce1-470c-b80c-6dadb2c6b8e9"
+   },
+   "skos:prefLabel": "Optimization problems",
+   "x3d:source": "PhySH",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Optimization problems",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:50",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:aliasing"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E3406"
+   },
+   "skos:prefLabel": "Kotel'nikov frequency",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Kotel'nikov frequency (Nyquist-Shannon); definition not opened",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:51",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:aliasing"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E3378"
+   },
+   "skos:prefLabel": "Discretization error",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:description": "Discretization error",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:52",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:heat"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E1921"
+   },
+   "skos:prefLabel": "Уравнение теплопроводности",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Russian-only 'Уравнение теплопроводности' (heat equation)",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:53",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:heat"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E1930"
+   },
+   "skos:prefLabel": "Diffusion equation",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Diffusion equation",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:54",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:heat"
+   },
+   "x3d:relation": {
+    "@id": "skos:closeMatch"
+   },
+   "x3d:term": {
+    "@id": "https://doi.org/10.29172/cbf5d6c2-2523-4ba3-abb5-133219e2ce5a"
+   },
+   "skos:prefLabel": "Diffusion & random walks",
+   "x3d:source": "PhySH",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Diffusion & random walks",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:55",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:refraction"
+   },
+   "x3d:relation": {
+    "@id": "skos:broadMatch"
+   },
+   "x3d:term": {
+    "@id": "https://doi.org/10.29172/23cdcd6b-ae22-4b6d-92cd-24a9a8bd0577"
+   },
+   "skos:prefLabel": "Optics & lasers",
+   "x3d:source": "PhySH",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "Optics & lasers",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:56",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:probability"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2498"
+   },
+   "skos:prefLabel": "Binomial distribution",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Binomial distribution",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:57",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:probability"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E1847"
+   },
+   "skos:prefLabel": "Integral de Moivre Laplace theorem",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Integral de Moivre-Laplace theorem",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:58",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:probability"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2514"
+   },
+   "skos:prefLabel": "Normal distribution",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Normal distribution",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:59",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:probability"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/s_dist1.ocd#mean"
+   },
+   "skos:prefLabel": "s_dist1:mean",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:60",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:probability"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/s_dist1.ocd#variance"
+   },
+   "skos:prefLabel": "s_dist1:variance",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:61",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:probability"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element mean)"
+   },
+   "skos:prefLabel": "<mean/> (5 occurrences in ch.4)",
+   "x3d:source": "MathML 3 content",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:62",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:probability"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element variance)"
+   },
+   "skos:prefLabel": "<variance/> (4 occurrences in ch.4)",
+   "x3d:source": "MathML 3 content",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:63",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:least_squares"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E690"
+   },
+   "skos:prefLabel": "Least square method",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "Least square method",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:64",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:vector_field"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/veccalc1.ocd#divergence"
+   },
+   "skos:prefLabel": "veccalc1:divergence",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:65",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:vector_field"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://openmath.org/cd/veccalc1.ocd#curl"
+   },
+   "skos:prefLabel": "veccalc1:curl",
+   "x3d:source": "OpenMath",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:66",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:vector_field"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element divergence)"
+   },
+   "skos:prefLabel": "<divergence/> (5 occurrences in ch.4)",
+   "x3d:source": "MathML 3 content",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:67",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:vector_field"
+   },
+   "x3d:relation": {
+    "@id": "skos:exactMatch"
+   },
+   "x3d:term": {
+    "@id": "https://www.w3.org/TR/MathML3/chapter4.html (element curl)"
+   },
+   "skos:prefLabel": "<curl/> (3 occurrences in ch.4)",
+   "x3d:source": "MathML 3 content",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:description": "",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:link:68",
+   "@type": "x3d:MappingClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:vector_field"
+   },
+   "x3d:relation": {
+    "@id": "skos:relatedMatch"
+   },
+   "x3d:term": {
+    "@id": "http://ontomathpro.org/ontology/E2698"
+   },
+   "skos:prefLabel": "Vector function",
+   "x3d:source": "OntoMathPro",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:description": "'Vector function' is not 'vector field'; E249/E251/E253 are manifold-specific kinds",
+   "prov:wasGeneratedBy": "tools/scout.py (live fetch) + tools/mapping.py (hand-authored)"
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:0",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:fourier"
+   },
+   "x3d:source": "OpenMath",
+   "x3d:searched": "fourier|transform",
+   "dct:description": "no Fourier or transform symbol",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:1",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:fourier"
+   },
+   "x3d:source": "MathML 3 content",
+   "x3d:searched": "fourier",
+   "dct:description": "no Fourier element",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:2",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:taylor"
+   },
+   "x3d:source": "OpenMath",
+   "x3d:searched": "taylor|series|maclaurin",
+   "dct:description": "no Taylor or series symbol",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:3",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:taylor"
+   },
+   "x3d:source": "MathML 3 content",
+   "x3d:searched": "taylor",
+   "dct:description": "no <taylor/>",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:4",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:waves"
+   },
+   "x3d:source": "OntoMathPro",
+   "x3d:searched": "wave equation|string vibration|^wave$|уравнение колебаний|волновое",
+   "dct:description": "no wave equation class (wavelet classes only)",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:5",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:waves"
+   },
+   "x3d:source": "OpenMath",
+   "x3d:searched": "wave",
+   "dct:description": "no wave symbol",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:6",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:waves"
+   },
+   "x3d:source": "MathML 3 content",
+   "x3d:searched": "wave",
+   "dct:description": "no wave element",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:7",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:svd"
+   },
+   "x3d:source": "OpenMath",
+   "x3d:searched": "singular|svd",
+   "dct:description": "no SVD or singular value symbol",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:8",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:svd"
+   },
+   "x3d:source": "MathML 3 content",
+   "x3d:searched": "svd|singular",
+   "dct:description": "no SVD element",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:9",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:bayes"
+   },
+   "x3d:source": "OpenMath",
+   "x3d:searched": "bayes|probab|random|stats1|prob1",
+   "dct:description": "no probability or Bayes symbol (prob1, stats1 CDs also 404)",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:10",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:bayes"
+   },
+   "x3d:source": "MathML 3 content",
+   "x3d:searched": "bayes",
+   "dct:description": "no Bayes element",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:11",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lagrange"
+   },
+   "x3d:source": "MathML 3 content",
+   "x3d:searched": "lagrange|multiplier",
+   "dct:description": "no constrained optimisation element",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:12",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lagrange"
+   },
+   "x3d:source": "OpenMath",
+   "x3d:searched": "lagrange|multiplier|optim|constraint",
+   "dct:description": "no multiplier or optimisation symbol (only minmax1)",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:13",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:aliasing"
+   },
+   "x3d:source": "OpenMath",
+   "x3d:searched": "sampl|nyquist|alias",
+   "dct:description": "no sampling symbol",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:14",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:aliasing"
+   },
+   "x3d:source": "MathML 3 content",
+   "x3d:searched": "nyquist|alias|sampl",
+   "dct:description": "no sampling element",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:15",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:aliasing"
+   },
+   "x3d:source": "PhySH",
+   "x3d:searched": "sampling|alias",
+   "dct:description": "no sampling concept in the listed 461",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:16",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:heat"
+   },
+   "x3d:source": "OpenMath",
+   "x3d:searched": "^[a-z_0-9]*:(heat_?eq|heatequation|pde)",
+   "dct:description": "no heat equation symbol (SI_DerivedQuantities1:heat is a unit-quantity, not the PDE)",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:17",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:heat"
+   },
+   "x3d:source": "MathML 3 content",
+   "x3d:searched": "heat",
+   "dct:description": "no heat equation element",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:18",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:refraction"
+   },
+   "x3d:source": "OntoMathPro",
+   "x3d:searched": "snell|refraction|fermat principle|принцип ферма|преломлен",
+   "dct:description": "no Snell, refraction or Fermat principle class (E1041 'Fermat number' is a false friend)",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:19",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:refraction"
+   },
+   "x3d:source": "OpenMath",
+   "x3d:searched": "refract|snell|optic",
+   "dct:description": "no optics symbol",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:20",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:refraction"
+   },
+   "x3d:source": "MathML 3 content",
+   "x3d:searched": "refract|snell",
+   "dct:description": "no optics element",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:21",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lorenz"
+   },
+   "x3d:source": "OpenMath",
+   "x3d:searched": "runge|odesolve|lorenz|(^|[^a-z])ode:",
+   "dct:description": "no ODE solver symbol",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:22",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:lorenz"
+   },
+   "x3d:source": "MathML 3 content",
+   "x3d:searched": "lorenz|runge",
+   "dct:description": "no ODE element",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:23",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:least_squares"
+   },
+   "x3d:source": "OpenMath",
+   "x3d:searched": "regress|least_?squares|lsq",
+   "dct:description": "no regression symbol",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:24",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:least_squares"
+   },
+   "x3d:source": "MathML 3 content",
+   "x3d:searched": "regress|least",
+   "dct:description": "no regression element",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:25",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:probability"
+   },
+   "x3d:source": "PhySH",
+   "x3d:searched": "probabil",
+   "dct:description": "no probability concept in the listed 461",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  },
+  {
+   "@id": "urn:x3d:math-concept-graph:gap:26",
+   "@type": "x3d:GapClaim",
+   "x3d:lesson": {
+    "@id": "urn:x3d:mathlab:lesson:vector_field"
+   },
+   "x3d:source": "PhySH",
+   "x3d:searched": "vector field",
+   "dct:description": "no vector field concept",
+   "x3d:grade": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:negative": true
+  }
+ ]
+}
