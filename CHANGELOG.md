@@ -2,6 +2,12 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v38 (2026-11-18)
+- New Demo 45: Hypergraph, hyper-dimensionally (`docs/demos/hypergraph/v1/`, x3d.demo PR 54), a 4D X3D proof of concept for a DSA-tutor hypergraph RFC: 40 concepts, 15 hyperedges, 4D rotation, 3D and 2D lenses and a clique-expansion contrast. The card links the page, the X3D file and the notice. New card picture `docs/assets/hypergraph.jpg` (the demo's own `preview-4d.png`, cropped to its 3D window and scaled to 960 x 540). The concepts and hyperedges are an illustrative authored set, not the tutor's database, and the card says so.
+- Demo 44 (Masonic Lodge XR) re-pointed to `demos/masonic-lodge/v2/` (x3d.demo PR 57: viewpoint, sky and ground, sized canvas, softened README wording); v1 stays linked as "Version 1" and the v37 snapshot still shows the v1 card. New card picture `docs/assets/masonic-lodge-xr-v2.jpg` (a headless screenshot of v2's own opening preview), because the v1 picture came from a camera added for the shot. The number stays 44.
+- Re-run for the cards in headless Chromium: Masonic v2 Test points mode 4 of 4 entities and overlays, no console errors, preview window 726 x 320; Hypergraph live page with 15 hyperedge rows and 41 concept options, no console errors and no 4xx, 2D lens and clique button ran without error. Not run: real phone and live Overpass for Masonic; GPU, Firefox, Safari and real mouse selection for Hypergraph.
+- Still held, URL not live: Gobbler Evidence Loom (next number 46). No demo and no earlier version is touched; v1 to v37 unchanged.
+
 ## Unnumbered (2026-11-18, Masonic Lodge XR v2)
 - `docs/demos/masonic-lodge/v2/`: fixes the v1 desktop preview (the X3D now has a Viewpoint, NavigationInfo and Background and the X_ITE canvas is sized; XSD-valid against x3d_mcp fa5dccf), softens the README wording about lists, and makes `tools/aggregate_private.py` refuse to write inside a git repository. v1 is untouched; v2 reuses `../v1/vendor/`.
 
