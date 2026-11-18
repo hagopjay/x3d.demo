@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>D3 to X3D Bridge v2</title>
+<style>
+:root{--bg:#0a0c11;--fg:#e8eaf0;--mut:#8c94a8;--card:#131720;--bd:#252b39;--A:#6ab0ff;--B:#ffcf8a;--ok:#5fd38d}
+@media (prefers-color-scheme:light){:root:not([data-theme=dark]){--bg:#f3f5f9;--fg:#141824;--mut:#59627a;--card:#fff;--bd:#d6dbe6;--A:#1b6fd1;--B:#a2620a;--ok:#12804a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,-apple-system,Segoe UI,sans-serif;padding:16px 16px 48px;max-width:1500px;margin:auto}
+h1{font-size:22px;margin:0}h2{font-size:12.5px;margin:0 0 8px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.sub{color:var(--mut);margin:4px 0 12px;max-width:980px}.mut{color:var(--mut)}b.k{color:var(--B)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.tile{position:relative;border:1px solid var(--bd);border-radius:8px;overflow:hidden;cursor:pointer;background:#07090d;aspect-ratio:16/10}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;opacity:.92;transition:transform .25s,opacity .25s}.tile:hover img{transform:scale(1.05);opacity:1}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:5px 8px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff;font-size:12px;line-height:1.25}
+.tile .cap s{text-decoration:none;opacity:.65;font-size:10.5px;letter-spacing:.05em;display:block}
+.tile .star{position:absolute;top:6px;right:8px;color:#ffd27a;font-size:15px;text-shadow:0 0 6px #000}.tile.on{outline:2px solid var(--A);outline-offset:-2px}
+.view{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:12px}@media(max-width:980px){.view{grid-template-columns:1fr}}
+#cv{height:620px;border:1px solid var(--bd);border-radius:10px;overflow:hidden;background:#06070c}@media(max-width:700px){#cv{height:420px}}
+x3d-canvas{width:100%;height:100%;display:block}
+button{background:var(--card);color:var(--fg);border:1px solid var(--bd);border-radius:6px;padding:4px 10px;cursor:pointer;font:inherit;margin:0 4px 4px 0}button:hover{border-color:var(--A)}button.on{background:var(--A);color:#fff;border-color:var(--A)}
+table{border-collapse:collapse;width:100%;font-size:12.5px}td,th{border-bottom:1px solid var(--bd);padding:4px 6px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600}
+td.n{text-align:right;font-variant-numeric:tabular-nums}code{background:var(--bd);padding:0 4px;border-radius:3px;font-size:12px}
+.scroll{overflow-x:auto}.pill{display:inline-block;border:1px solid var(--bd);border-radius:10px;padding:0 7px;font-size:11.5px;margin:0 3px 3px 0}
+.ok{color:var(--ok)}label{display:flex;gap:8px;align-items:center}input[type=range]{flex:1}
+svg text{font:12px system-ui,sans-serif;fill:var(--fg)}svg .m{fill:var(--mut);font-size:11px}
+</style></head><body>
+<h1>D3 to X3D Bridge <span class="mut" style="font-size:14px">v2 &middot; <a href="../v1/index.html">v1</a></span></h1>
+<p class="sub">Sixteen ideas from the D3 / D3Blocks gallery, rebuilt as true 3D X3D scenes. <b>D3 does the maths</b> (hierarchy, force, chord, sankey, geo, scales, colour); a 300-line emitter, <code>d3-x3d</code>, writes the result as X3D 4.0, which an XSD validator checks and X_ITE draws. Every chart is fed by <b>real data from these repositories</b>: their commits, their X3D files, their folders and the X3D 4.0 type system itself. Each card says what the third dimension adds that the flat original cannot. <b>New in v2:</b> five flagships marked &#9733; (a living graph that grows through time, a clickable chord dome with flow beads, a sankey canyon with pulses and a fly-through, the project globe with great-circle arcs to the twin sites, a space-time cube sliced by a moving time slab) and screen-space label declutter on every scene.</p>
+
+<div class="card"><h2>How the bridge works</h2>
+<div class="scroll"><svg viewBox="0 0 1180 170" width="100%" style="min-width:820px" role="img" aria-label="Pipeline from data to D3 layout to X3D emitter to validator to X_ITE, plus a live path where d3-force-3d drives X3D through the SAI">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#6ab0ff"/></marker></defs>
+<g stroke="#6ab0ff" stroke-width="1.6" fill="none" marker-end="url(#ar)"><path d="M168 50H210"/><path d="M398 50H440"/><path d="M628 50H670"/><path d="M858 50H900"/><path d="M300 108V128H965V80"/></g>
+<g fill="#131a28" stroke="#2c3550"><rect x="8" y="18" width="160" height="64" rx="8"/><rect x="212" y="18" width="186" height="64" rx="8"/><rect x="442" y="18" width="186" height="64" rx="8"/><rect x="672" y="18" width="186" height="64" rx="8"/><rect x="902" y="18" width="270" height="64" rx="8"/><rect x="212" y="92" width="186" height="34" rx="8" stroke="#ffcf8a"/></g>
+<text x="20" y="42">1 Harvest (Python)</text><text class="m" x="20" y="60">git log, .x3d node counts,</text><text class="m" x="20" y="74">file trees, X3DUOM 4.0</text>
+<text x="224" y="42">2 D3 layout (Node)</text><text class="m" x="224" y="60">d3-hierarchy, force-3d, chord,</text><text class="m" x="224" y="74">sankey, geo, scale, chromatic</text>
+<text x="454" y="42">3 d3-x3d emitter</text><text class="m" x="454" y="60">PBR, lights, shadows, DEF/USE,</text><text class="m" x="454" y="74">tubes, revolve, ribbons, ROUTEs</text>
+<text x="684" y="42">4 XSD gate</text><text class="m" x="684" y="60">x3d_mcp validate_xml,</text><text class="m" x="684" y="74">X3D 4.0 schema, 16 of 16 valid</text>
+<text x="914" y="42">5 X_ITE 16.6.0 in the page</text><text class="m" x="914" y="60">orbit, viewpoints, animation;</text><text class="m" x="914" y="74">the 2D view is one viewpoint</text>
+<text x="224" y="114" style="fill:var(--B)">Live: d3-force-3d in browser</text><text class="m" x="454" y="104">declutter: labels projected through VP0, overlaps go to LOD</text><text class="m" x="410" y="146">each tick writes Transform.translation, hull scale and bundled edge points through the SAI (Living graph)</text>
+</svg></div></div>
+
+<div class="card"><h2>Gallery: click a card <span class="mut" style="text-transform:none;letter-spacing:0">(small caps = the D3Blocks original it re-expresses)</span></h2><div class="gal" id="gal"></div></div>
+
+<div class="view"><div>
+<div id="cv"><x3d-canvas id="xc" update="auto" contextMenu="false" splashScreen="false" notifications="false" timings="false"></x3d-canvas></div>
+</div><div>
+<div class="card"><h2 id="ttl">Loading</h2><div id="d3m"></div><p id="gain" style="margin:8px 0 6px"></p><div id="vps"></div><div id="extra"></div></div>
+<div class="card"><h2>Numbers in this scene</h2><table id="nums"></table><p class="mut" style="font-size:12px;margin:6px 0 0" id="src"></p></div>
+</div></div>
+
+<div class="card"><h2>The bridge matrix</h2><div class="scroll"><table id="mx"></table></div>
+<p class="mut" style="font-size:12px;margin:8px 0 0" id="mxnote"></p></div>
+
+<div class="card"><h2>What carried over, what changed</h2><div class="scroll"><table>
+<tr><th>D3 idea</th><th>How it lands in X3D</th><th>Why it is better in 3D</th></tr>
+<tr><td>Layout is data, not pixels</td><td>D3 layout outputs (x, y, r, angles, depth) become Transform translations and geometry sizes; nothing is rasterised</td><td>One layout feeds many viewpoints; the 2D chart survives as a top or front viewpoint</td></tr>
+<tr><td>Scales and colour schemes</td><td><code>d3-scale</code> and <code>d3-scale-chromatic</code> map values to height, radius and PBR <code>baseColor</code></td><td>A value can drive two channels (height and colour) without clutter</td></tr>
+<tr><td>Data joins (enter/update)</td><td>DEF-named Transforms are the join keys; the page updates them by name through the SAI</td><td>Live D3 simulations drive a lit, navigable scene (Elastic graph)</td></tr>
+<tr><td>Transitions</td><td>TimeSensor + PositionInterpolator / CoordinateInterpolator and ROUTEs</td><td>Animations run inside the scene file, with no script, in any X3D browser</td></tr>
+<tr><td>Projections (d3-geo)</td><td>The same TopoJSON features go on a sphere and on an Equal Earth plate</td><td>No projection distortion on the globe; the plate keeps the 2D comparison</td></tr>
+<tr><td>Hierarchy layouts</td><td>Terraces (treemap), tiers (pack), cones (tree), shells (radial)</td><td>Depth in the hierarchy becomes physical height or radius</td></tr>
+</table></div></div>
+
+<div class="card"><h2>Checks and sources</h2><div id="checks" class="mut" style="font-size:12.5px"></div></div>
+
+<script src="vendor/x_ite/x_ite.min.js"></script>
+<script src="vendor/d3-force-3d.bundle.js"></script>
+<script>
+const $=id=>document.getElementById(id);let M,B,cur=null,live=null;
+const fmt=x=>typeof x==='number'?(Math.abs(x)>=1e5?x.toLocaleString('en-US'):String(x)):x;
+const LABELS={rows:'rows (node types)',cols:'columns (demos)',nonzero:'non-zero cells',max:'largest cell (elements)',groups:'groups (node types)',chords:'ribbons',maxSharedFiles:'most shared files (one pair)',demos:'demos',leaves:'leaves',towersDrawn:'towers drawn (>= 0.004 units)',totalBytes:'bytes in tree',repos:'repositories',days:'days',bubbles:'repo-days with commits',commitsInWindow:'commits in window',nodes:'nodes',links:'links',ticks:'simulation ticks',components:'X3D components',totalFlow:'total flow (elements)',points:'points (files)',maxBytes:'largest file (bytes)',maxNodes:'most nodes in a file',maxDepth:'deepest nesting',series:'series',peakSmoothed:'peak (smoothed commits/day)',types:'node types',commits:'commits',bandwidthHours:'KDE bandwidth (h)',width:'grid width',height:'grid depth',vertices:'vertices',concrete:'concrete types',depth:'tree depth',usedByDemos:'concrete types used by demos',folders:'folders',cones:'cones',files:'files',countries:'countries',textureLandPixels:'land texels (geoContains)',texture:'texture',meshVertices:'globe mesh vertices',particles:'particles',glyphs:'glyphs',keyframes:'key frames',extensions:'file extensions'};
+async function main(){
+ M=await (await fetch('manifest.json')).json();
+ $('gal').innerHTML=M.charts.map(c=>`<div class="tile" data-id="${c.id}"><img loading="lazy" src="previews/${c.id}.jpg" alt="${c.title}">${c.flagship?'<span class=star>&#9733;</span>':''}<div class="cap"><s>${c.tile}</s>${c.title}</div></div>`).join('');
+ document.querySelectorAll('.tile').forEach(t=>t.onclick=()=>{open(t.dataset.id);$('cv').scrollIntoView({behavior:'smooth',block:'center'})});
+ const X=await (await fetch('receipt-xsd.json')).json();let BR={scenes:{}};try{BR=await (await fetch('receipt-browser.json')).json()}catch(e){}
+ $('mx').innerHTML='<tr><th>#</th><th>D3Blocks tile</th><th>3D form</th><th>D3 modules</th><th class=n>Scene bytes</th><th>XSD 4.0</th><th class=n>Label overlaps (before &rarr; after)</th><th class=n>Load s</th><th class=n>Frames / 5 s</th><th>Key number</th></tr>'+M.charts.map((c,i)=>{const r=X.results[c.id+'.x3d'];const k=Object.entries(c.numbers)[0];const b=BR.scenes[c.id]||{};const L=c.labels;
+  return `<tr><td>${i+1}</td><td>${c.tile}</td><td><a href="#${c.id}">${c.title}</a></td><td>${c.d3.join('; ')}</td><td class=n>${c.bytes.toLocaleString('en-US')}</td><td class="${r&&r.valid?'ok':''}">${r&&r.valid?'valid':'INVALID'}</td><td class=n>${L?L.overlapPairsBefore+' &rarr; '+L.overlapPairsAfter:'-'}</td><td class=n>${b.secondsToShot??'-'}</td><td class=n>${b.framesIn5s??'-'}</td><td>${LABELS[k[0]]||k[0]}: <b>${fmt(k[1])}</b></td></tr>`}).join('');
+ const T=M.totals;$('mxnote').textContent=`Totals: ${T.commits.toLocaleString('en-US')} commits in ${M.sources.split(',').length} repositories (${T.commitsInWindow.toLocaleString('en-US')} between 1 Oct and 18 Nov 2026 UTC), ${T.x3dFiles} .x3d files in x3d.demo using ${T.typesUsed} of ${T.concrete} X3D 4.0 node types from ${T.components} components. Scene bytes are the generated .x3d files. XSD column: ${X.validator}. Load and frames columns: ${BR.rig||'not run'} (software GL, correctness only; frames counted by requestAnimationFrame over 5 s, not a GPU figure). Label overlaps: pairs of label rectangles overlapping at the default viewpoint, before and after the build-time declutter.`;
+ $('checks').innerHTML=`<p><b class=k>Layout</b>: D3 ${M.versions.d3}, d3-force-3d ${M.versions['d3-force-3d']}, d3-sankey ${M.versions['d3-sankey']}, world-atlas ${M.versions['world-atlas']}, topojson-client ${M.versions['topojson-client']}, run in Node at build time (tools/build.mjs, built ${M.built}). The page itself loads only X_ITE and, for the live graph, a 25 KB esbuild bundle of d3-force-3d.</p><p><b class=k>Data</b> (harvested ${M.harvested.harvested_utc}, tools/harvest.py, counts and timestamps only, no names): ${M.sources}. X3D type system: ${M.harvested.uom} (sha256 ${M.harvested.uom_sha256}...).</p><p><b class=k>Validation</b>: ${X.validator}; receipt-xsd.json holds each scene's sha256. <b class=k>Rendering</b>: see receipt-browser.json for the headless run (software GL, correctness only, no frame rates claimed).</p>`;
+ B=X3D.getBrowser($('xc'));
+ const id=(location.hash||'').slice(1);open(M.charts.some(c=>c.id===id)?id:'living');
+ window.__d3x={ready:true,open,M};
+}
+function sceneReady(){return new Promise(r=>{const t0=performance.now();const t=setInterval(()=>{if((B.currentScene&&B.currentScene.rootNodes.length>3)||performance.now()-t0>20000){clearInterval(t);r()}},40)})}
+async function open(id){
+ const c=M.charts.find(x=>x.id===id);cur=c;if(live){cancelAnimationFrame(live.raf);live.sim.stop();live=null;window.__d3x.live=null}
+ document.querySelectorAll('.tile').forEach(t=>t.classList.toggle('on',t.dataset.id===id));history.replaceState(null,'','#'+id);
+ $('ttl').textContent=`${c.title}  (D3Blocks: ${c.tile})`;$('d3m').innerHTML=c.d3.map(x=>`<span class=pill>${x}</span>`).join('');$('gain').innerHTML='<b class=k>The 3D advantage.</b> '+c.gain;
+ $('nums').innerHTML='<tr><th>Metric</th><th class=n>Value</th></tr>'+Object.entries(c.numbers).map(([k,v])=>`<tr><td>${LABELS[k]||k}</td><td class=n><b>${fmt(v)}</b></td></tr>`).join('')+`<tr><td>scene file</td><td class=n><a href="${c.file}">${c.bytes.toLocaleString('en-US')} B</a></td></tr>`;
+ $('src').textContent='Counted by tools/build.mjs from the harvested data; the scene file carries the same provenance in its <head> meta.';
+ $('extra').innerHTML='';$('vps').innerHTML='';
+ await B.loadURL(new X3D.MFString(c.file)).catch(()=>{});await sceneReady();if(cur!==c)return;
+ const vps=[];for(let i=0;i<12;i++){const n=(()=>{try{return B.currentScene.getNamedNode('VP'+i)}catch(e){return null}})();if(n)vps.push(n)}
+ $('vps').innerHTML=vps.map((n,i)=>`<button data-vp="${i}" class="${i?'':'on'}">${n.description}</button>`).join('');
+ document.querySelectorAll('[data-vp]').forEach(b=>b.onclick=()=>{vps[+b.dataset.vp].set_bind=true;document.querySelectorAll('[data-vp]').forEach(x=>x.classList.toggle('on',x===b))});
+ if(id==='relief'){$('extra').innerHTML='<label>flat <input type="range" id="rs" min="0.01" max="1" step="0.01" value="1"> relief</label><p class=mut style="font-size:12px;margin:4px 0 0">Moving the slider stops the built-in morph (TimeSensor) and sets the scale through the SAI.</p>';
+  $('rs').oninput=e=>{B.currentScene.getNamedNode('CLOCK').enabled=false;B.currentScene.getNamedNode('SQUASH').scale=new X3D.SFVec3f(1,+e.target.value,1)}}
+ if(id==='living')startLiving();
+ if(id==='chord')startChord();
+ if(id==='sankey'){$('extra').innerHTML='<button id="tour">Play the 5-stop tour</button><span class=mut style="font-size:12px" id="tstop"></span>';$('tour').onclick=async()=>{for(let k=3;k<8;k++){if(cur.id!=='sankey')return;vps[k].set_bind=true;$('tstop').textContent=' '+vps[k].description;await new Promise(r=>setTimeout(r,3800))}}}
+ if(id==='spacetime'){$('extra').innerHTML='<p style="margin:4px 0 0">Slab day: <b id="sday">-</b> <span class=mut>(lit below, ghost above)</span></p>';const C=B.currentScene.getNamedNode('CLOCK');const t0=Date.UTC(2026,9,1);const tick=()=>{if(cur.id!=='spacetime'||!$('sday'))return;const fr=C.fraction_changed;$('sday').textContent=new Date(t0+Math.floor(fr*49)*864e5).toISOString().slice(0,10);requestAnimationFrame(tick)};tick()}
+}
+async function startChord(){
+ const I=await (await fetch('chord.json')).json();const S=B.currentScene;let sel=null;
+ $('extra').innerHTML='<p style="margin:4px 0 0" id="csel" class=mut>Click an arch to isolate it.</p>';
+ const paint=()=>{I.forEach(c=>{S.getNamedNode('CM'+c.i).transparency=sel===null?0.25:(c.i===sel?0.05:0.92)});
+  $('csel').innerHTML=sel===null?'Click an arch to isolate it.':`<b>${I[sel].a} + ${I[sel].b}</b>: ${I[sel].shared} files share both, Jaccard ${I[sel].jaccard}. Click it again to restore.`};
+ I.forEach(c=>S.getNamedNode('CT'+c.i).addFieldCallback('pick'+c.i,'isActive',v=>{if(!v){sel=sel===c.i?null:c.i;paint()}}));
+ window.__d3x.chord={I,isolate:i=>{sel=i;paint();return I.filter(c=>S.getNamedNode('CM'+c.i).transparency<0.5).length}};
+}
+async function startLiving(){
+ const E=await (await fetch('living.json')).json();const S=B.currentScene,sc=E.scale;
+ const N=E.nodes.map((n,i)=>({...n,i,T:S.getNamedNode('N'+i),M:S.getNamedNode('NM'+i)}));const byId=new Map(N.map(n=>[n.id,n]));
+ const L=E.links.map(l=>({source:l.s,target:l.t,arr:l.arr}));const H=E.comps.map((c,i)=>S.getNamedNode('H'+i));const EC=S.getNamedNode('EC');
+ let upto=E.demos.length-1,sel=null,playing=false;
+ const sim=d3f.forceSimulation([],3).force('link',d3f.forceLink([]).id(d=>d.id).distance(14).strength(0.08)).force('charge',d3f.forceManyBody().strength(d=>d.kind==='demo'?-220:-25))
+  .force('x',d3f.forceX().strength(0.03)).force('y',d3f.forceY().strength(0.03)).force('z',d3f.forceZ().strength(0.03)).force('center',d3f.forceCenter()).stop();
+ const vis=()=>N.filter(n=>n.arr<=upto),visL=()=>L.filter(l=>l.arr<=upto);
+ const V3=(a)=>new X3D.SFVec3f(a[0],a[1],a[2]);
+ const push=()=>{const on=new Set(vis().map(n=>n.id));const nb=sel?new Set([sel,...L.filter(l=>l.arr<=upto&&(l.source.id||l.source)===sel).map(l=>l.target.id||l.target),...L.filter(l=>l.arr<=upto&&(l.target.id||l.target)===sel).map(l=>l.source.id||l.source)]):null;
+  N.forEach(n=>{const o=on.has(n.id);n.T.translation=V3([n.x*sc,n.y*sc,n.z*sc]);n.T.scale=V3(o?[1,1,1]:[0.001,0.001,0.001]);n.M.transparency=nb&&!nb.has(n.id)?0.88:0});
+  const cen=E.comps.map(c=>{const m=N.filter(n=>n.comp===c&&on.has(n.id));if(!m.length)return null;const p=[0,1,2].map(q=>m.reduce((s,n)=>s+[n.x,n.y,n.z][q],0)/m.length);const ds=m.map(n=>Math.hypot(n.x-p[0],n.y-p[1],n.z-p[2])).sort((x,y)=>x-y);const r=ds[Math.floor(ds.length*0.75)]*0.9+1.2;return {p,r,n:m.length}});
+  cen.forEach((c,i)=>{if(!c||c.n<4){H[i].scale=V3([0.001,0.001,0.001]);return}H[i].translation=V3(c.p.map(x=>x*sc));H[i].scale=V3([c.r*sc,c.r*sc,c.r*sc])});
+  const ci=new Map(E.comps.map((c,i)=>[c,i]));const pts=[];
+  E.links.forEach(l=>{const a=byId.get(l.s),b=byId.get(l.t);const A=[a.x,a.y,a.z],Bp=[b.x,b.y,b.z];const o=l.arr<=upto;const c=cen[ci.get(b.comp)];const m=[0,1,2].map(q=>0.5*(A[q]+Bp[q])*0.55+(c?c.p[q]:0.5*(A[q]+Bp[q]))*0.45);
+   for(let k=0;k<5;k++){const t=k/4,u=1-t;const p=o?[0,1,2].map(q=>(u*u*A[q]+2*u*t*m[q]+t*t*Bp[q])*sc):[a.x*sc,a.y*sc,a.z*sc];pts.push(V3(p))}});
+  EC.point=new X3D.MFVec3f(...pts)};
+ const restart=a=>{const vs=vis();vs.forEach(n=>{if(n.x===undefined||n.fresh){}});sim.nodes(vs);sim.force('link').links(visL().map(l=>({source:l.source.id||l.source,target:l.target.id||l.target})));sim.alpha(a)};
+ const setUpto=k=>{const prev=upto;upto=k;$('ld').textContent=`${E.demos[k].id} (${E.demos[k].date}), ${k+1} of ${E.demos.length} demos, ${vis().length} nodes`;$('lr').value=k;
+  if(k>prev){const d=N.find(n=>n.kind==='demo'&&n.arr===k);N.filter(n=>n.arr===k&&n.kind==='type').forEach(n=>{n.x=d.x+(Math.random()-.5)*8;n.y=d.y+(Math.random()-.5)*8;n.z=d.z+(Math.random()-.5)*8;n.vx=n.vy=n.vz=0})}
+  restart(0.5);push()};
+ $('extra').innerHTML=`<button id="lp">Play from the first demo</button><button id="lh">Reheat</button><label>demo <input type="range" id="lr" min="0" max="${E.demos.length-1}" step="1" value="${upto}"></label><p class=mut style="font-size:12px;margin:2px 0" id="ld"></p><p class=mut style="font-size:12px;margin:2px 0">ticks <b id="tk">0</b>, alpha <b id="al">0</b>. Click a node to isolate it.</p>`;
+ $('lr').oninput=e=>setUpto(+e.target.value);$('lh').onclick=()=>restart(1);
+ $('lp').onclick=async()=>{if(playing)return;playing=true;for(let k=0;k<E.demos.length;k++){if(cur.id!=='living')break;setUpto(k);await new Promise(r=>setTimeout(r,1400))}playing=false};
+ N.forEach(n=>S.getNamedNode('NT'+n.i).addFieldCallback('lp'+n.i,'isActive',v=>{if(!v){sel=sel===n.id?null:n.id;push()}}));
+ live={sim,ticks:0,raf:0};restart(0);setUpto(upto);
+ const loop=()=>{if(sim.alpha()>0.003){for(let k=0;k<3;k++){sim.tick();live.ticks++}push();$('tk').textContent=live.ticks;$('al').textContent=sim.alpha().toFixed(3)}live.raf=requestAnimationFrame(loop)};
+ window.__d3x.live=live;window.__d3x.living={N,E,setUpto,select:id=>{sel=id;push();return N.filter(n=>n.M.transparency<0.5&&n.arr<=upto).length},visible:()=>vis().length,edgesVisible:()=>visL().length};loop();
+}
+main();
+</script>
+</body></html>

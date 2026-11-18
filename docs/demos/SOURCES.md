@@ -336,3 +336,17 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 |---|---|---|
 | assets/blender-route.jpg | 49094d0c57e2a3ea9108213b7b118f449a24aa01a894a4ad9c692a80e239c4f6 | 25666 |
 
+
+## Front-page card picture (v52)
+`blender-instancing` is `docs/demos/blender-instancing/v1/img/A.webp` (960 x 600, the page's own screenshot of the grove-A scene, X_ITE 16.7.1, headless Chromium with SwiftShader) cropped to y 30 to 570 and saved as 960 x 540 JPEG. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-instancing.jpg | 7ecdc0ef0ecbcedf4e4cd061484dbd0c040730a76cff71bbb248f6583c55de88 | 51341 |
+
+## Front-page card picture (v53)
+`d3-bridge-v2` is `docs/assets/d3-bridge-v2.jpg` as merged with PR 91 (960 x 540, the project globe frame from the v2 gallery: headless Chromium with SwiftShader, X_ITE 16.6.0; our own data, Natural Earth country shapes). Not re-encoded here. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/d3-bridge-v2.jpg | 8b5e22a56a455d9ce1149c47cd4dc538b16bdc9872fe90fcd7c409e6c1380935 | 85637 |
