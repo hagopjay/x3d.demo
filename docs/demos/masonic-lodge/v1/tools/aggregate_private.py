@@ -17,6 +17,13 @@ def run(st):
             return json.load(urllib.request.urlopen(req, timeout=240))
         except Exception as e: last = e
     raise last
+import os
+d = os.path.abspath(OUT)
+while True:
+    if os.path.exists(os.path.join(d, '.git')): sys.exit('Refusing: output dir is inside a git repository. Choose a private folder outside any repo.')
+    if os.path.dirname(d) == d: break
+    d = os.path.dirname(d)
+os.makedirs(OUT, exist_ok=True)
 rows, seen = [], set()
 for st in STATES:
     try: j = run(st)

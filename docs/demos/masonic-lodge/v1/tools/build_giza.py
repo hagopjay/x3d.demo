@@ -15,11 +15,12 @@ def pyr(name, cx, cz, base, h, faces, color, tr=0.0):
 def box(name, t, s, color, rot='0 0 1 0', tr=0.0, emissive='0 0 0'):
     return f"""<Transform DEF='{name}' translation='{t}' rotation='{rot}'><Shape><Appearance><Material diffuseColor='{color}' emissiveColor='{emissive}' transparency='{tr}'/></Appearance><Box size='{s}'/></Shape></Transform>"""
 import math
+VP='<NavigationInfo type=\'"EXAMINE" "ANY"\' headlight=\'true\' speed=\'60\'/><Viewpoint DEF=\'VP_OVERVIEW\' description=\'Overview from the south-east\' position=\'330 190 640\' orientation=\'-0.3162 0.9487 0 0.4850\' fieldOfView=\'0.9\'/><Background skyColor=\'0.45 0.62 0.85\' groundColor=\'0.45 0.40 0.30\'/>'
 a=math.radians(26.17)
 out=["<?xml version='1.0' encoding='UTF-8'?>",
 "<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.0.xsd'>",
 "<head><meta name='title' content='Giza partial rendition for Masonic Lodge XR'/><meta name='description' content='Cutaway Great Pyramid (south face removed) with schematic King and Queen chambers, Grand Gallery and descending passage, plus Khafre and Menkaure shells. Metres, y up. Interior positions are schematic.'/><meta name='creator' content='HagopJay and Claude'/><meta name='generator' content='tools/build_giza.py'/><meta name='license' content='CC0 (geometry)'/><meta name='sources' content='Wikipedia Great Pyramid of Giza, Pyramid of Khafre, Pyramid of Menkaure (dimensions); interior schematic'/></head>",
-"<Scene>","<Group DEF='GIZA'>",
+"<Scene>",VP,"<Group DEF='GIZA'>",
 pyr('KHUFU',0,0,230.34,146.6,'NEW','0.85 0.72 0.45',0.0),
 pyr('KHAFRE',-340,-370*0.0+ -420,215.25,143.5,'NESW','0.80 0.68 0.42'),
 pyr('MENKAURE',-640,-780,102.2,65.5,'NESW','0.78 0.66 0.40'),
