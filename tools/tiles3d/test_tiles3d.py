@@ -6,6 +6,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 def load(p, n):
     s = importlib.util.spec_from_file_location(n, p); m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
 v2 = load(HERE / "tiles3d_to_x3d.py", "t2")
+v22 = load(HERE / "v2.2-shipped.py", "t22")
 v1 = load(HERE.parents[1] / "docs/demos/geotiling/v1/tiles3d_to_x3d.py", "t1")
 R = [math.radians(x) for x in (-80.425, 37.227, -80.421, 37.230)] + [600, 650]
 la, lo = (R[1] + R[3]) / 2, (R[0] + R[2]) / 2
@@ -114,5 +115,29 @@ with tempfile.TemporaryDirectory() as d:
     rep = json.loads((reuse / "conversion-report.json").read_text())
     case("R3: a clean run into a reused folder rewrites the report (not the old lossy one) and lists the other files there",
          rep["lossy"] is False and not rep["losses"] and set(rep["files_written"]) == {"t.x3d"} and rep["other_x3d_in_folder"], str(rep["other_x3d_in_folder"]))
-print(json.dumps({"suite": "tiles3d_to_x3d v2.2", "python": sys.version.split()[0], "passed": len(rows) - bad, "failed": bad, "cases": rows}, indent=1))
+    # fourth review: parent scale in geometricError; viewerRequestVolume refused, not dropped
+    S2 = [2 * x for x in ENU[:12]] + ENU[12:]
+    half = [0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 1]
+    def scaled(scale_root, scale_child):
+        return {"asset": {"version": "1.1"}, "root": {"boundingVolume": {"sphere": [0, 0, 0, 1000]}, "geometricError": 10, "refine": "REPLACE",
+                "transform": scale_root, "children": [{"boundingVolume": {"sphere": [0, 0, 0, 10]}, "geometricError": 0, "transform": scale_child, "content": {"uri": "a.glb"}}]}}
+    rng = lambda o: float(re.search(r'range="([^"]+)"', (o / "t.x3d").read_text()).group(1))
+    for label, conv in (("v2.3", v2), ("v2.2 (shipped)", v22)):
+        q = d / f"scale-{label[:4]}.json"; q.write_text(json.dumps(scaled(S2, half)))
+        s = conv.convert(q, d / f"o4_scale_{label[:4]}")
+        r = rng(d / f"o4_scale_{label[:4]}")
+        want = 10 * 2 * s["K"]
+        if conv is v2: case("R4-G1: parent scale 2, child scale 0.5 (unit-scale content): range uses 20 m world error", abs(r - want) < 0.1 and not s["losses"], f"range {r}, expected {want:.1f}")
+        else: case("R4-G1 control: v2.2 emits half the range on the same fixture", abs(r - want / 2) < 0.1, f"v2.2 range {r}")
+    q = d / "unit.json"; q.write_text(json.dumps(scaled(ENU, IDENT := [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1])))
+    s = v2.convert(q, d / "o4_unit"); case("R4-G1: unit-scale hierarchy keeps the local error", abs(rng(d / "o4_unit") - 10 * s["K"]) < 0.1, str(rng(d / "o4_unit")))
+    vr = scaled(ENU, IDENT); vr["root"]["children"][0]["viewerRequestVolume"] = {"sphere": [0, 0, 0, 50]}
+    q = d / "vrv.json"; q.write_text(json.dumps(vr))
+    try: v2.convert(q, d / "o4_vrv"); case("R4-G2: viewerRequestVolume refused in strict mode", False, "converted")
+    except v2.Unsupported as e: case("R4-G2: viewerRequestVolume refused in strict mode", any("viewerRequestVolume" in i for i in e.items), str(e.items))
+    s = v2.convert(q, d / "o4_vrv_lossy", allow_lossy=True)
+    rep = json.loads((d / "o4_vrv_lossy/conversion-report.json").read_text())
+    case("R4-G2: --allow-lossy converts and records the dropped volume", rep["viewer_request_volume"] == 1 and rep["lossy"], str(rep["losses"]))
+    s = v22.convert(q, d / "o4_vrv_22"); case("R4-G2 control: v2.2 dropped it with no loss", not s["losses"], "strict exit 0")
+print(json.dumps({"suite": "tiles3d_to_x3d v2.3", "python": sys.version.split()[0], "passed": len(rows) - bad, "failed": bad, "cases": rows}, indent=1))
 sys.exit(1 if bad else 0)

@@ -1,0 +1,116 @@
+{
+  "instrument": {
+    "node": "v22.23.5",
+    "dom": "linkedom0.18.12",
+    "browser": "none",
+    "gpu": "none; fakeGL",
+    "clock": "controlled, no measured duration"
+  },
+  "sources": {
+    "guard": "docs/lib/gfx-guard-v3.js",
+    "page": "docs/demos/blender-splat/v4/index.html"
+  },
+  "rows": [
+    {
+      "case": "old second-pane stall",
+      "scope": "modeled mesh ready and splat not ready; scene timer advanced",
+      "got": {
+        "guard": "ready",
+        "panes": {
+          "A": {
+            "state": "live",
+            "label": "mesh · X3D 4.1 · live",
+            "button": "Loading…",
+            "disabled": true,
+            "hidden": true
+          },
+          "B": {
+            "state": "failed",
+            "label": "30,000 splats · glb Inline · did not load in time",
+            "button": "↻ Retry splats",
+            "disabled": false,
+            "hidden": false
+          }
+        },
+        "alerts": []
+      },
+      "oldDefectClosed": true
+    },
+    {
+      "case": "one selected pane live, other never selected",
+      "got": {
+        "guard": "ready",
+        "panes": {
+          "A": {
+            "state": "live",
+            "label": "mesh · X3D 4.1 · live",
+            "button": "Loading…",
+            "disabled": true,
+            "hidden": true
+          },
+          "B": {
+            "state": "idle",
+            "label": "30,000 splats · glb Inline",
+            "button": "▶ Load splats",
+            "disabled": false,
+            "hidden": false
+          }
+        },
+        "alerts": []
+      }
+    },
+    {
+      "case": "viewer-library request never settles",
+      "scope": "no library onload/onerror is delivered",
+      "got": {
+        "guard": "slow",
+        "panes": {
+          "A": {
+            "state": "failed",
+            "label": "mesh · X3D 4.1 · the X_ITE viewer file did not load in time",
+            "button": "↻ Retry mesh",
+            "disabled": false,
+            "hidden": false
+          },
+          "B": {
+            "state": "idle",
+            "label": "30,000 splats · glb Inline",
+            "button": "▶ Load splats",
+            "disabled": false,
+            "hidden": false
+          }
+        },
+        "alerts": []
+      },
+      "scheduledTimers": [
+        20000,
+        60000
+      ]
+    },
+    {
+      "case": "retry after library deadline",
+      "scripts": 2,
+      "late_first_answer_ignored": true,
+      "got": {
+        "guard": "ready",
+        "panes": {
+          "A": {
+            "state": "live",
+            "label": "mesh · X3D 4.1 · live",
+            "button": "Loading…",
+            "disabled": true,
+            "hidden": true
+          },
+          "B": {
+            "state": "idle",
+            "label": "30,000 splats · glb Inline",
+            "button": "▶ Load splats",
+            "disabled": false,
+            "hidden": false
+          }
+        },
+        "alerts": []
+      }
+    }
+  ]
+}
