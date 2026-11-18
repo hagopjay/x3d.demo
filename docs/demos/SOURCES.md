@@ -322,3 +322,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 |---|---|---|
 | assets/giza-vi.jpg | 4487c88bf382e41e4da4a4751deb7eb22ca93260a5d7310f23cd2b23c9e218fc | 79881 |
 
+## Front-page card picture (v50)
+`d3-bridge` is `docs/assets/d3-bridge.jpg` (960 x 540), supplied by the D3 to X3D Bridge lane in x3d.demo PR 85 from its own X_ITE render of the chord dome (see `docs/demos/d3-bridge/v1/previews/chord.jpg`), not re-cropped here. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/d3-bridge.jpg | a115c115b1a36cf1ae17ad6ab733ce89b6409003aa4137cb75f30d046897be45 | 52372 |
+
