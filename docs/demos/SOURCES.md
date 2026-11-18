@@ -256,3 +256,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/x3d-chess.jpg | d95aed1f063cceacc864d4d3e0047fa851043f0f285bec22066bb29b58737131 | 144531 |
+
+## Front-page card picture (v37)
+`masonic-lodge-xr` is a headless screenshot (Chromium, software GL, X_ITE 16.6.0 as vendored in the demo) of `docs/demos/masonic-lodge/v1/giza-lodge.x3d` served locally, with a Viewpoint added at runtime (position -60 70 330, orientation 1 0 0 -0.12, field of view 0.8) and the canvas sized to 960 x 540. No repository file was changed to take it.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/masonic-lodge-xr.jpg | 07d920e286ba096de7dd15f01c24f260cf01fb1ec20faed2f05ee1a998d7b445 | 18009 |
