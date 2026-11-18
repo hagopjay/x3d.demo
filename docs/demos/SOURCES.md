@@ -308,3 +308,10 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 |---|---|---|
 | assets/geotiling.jpg | afc392b5e310ec0efffa3833b02f4332ffe92832cd337387f053cf99a987c9d0 | 37307 |
 
+## Front-page card picture (v45)
+`gobbler-evidence-loom` is `https://hagopjay.github.io/x3d.gobbler/receipts/browser-observatory/02-feather.png` (1440 x 900, sha256 dbd918a30f03310afb5ed340883e8706c90cde12f657e43650fef222168d29ce, the Gobbler lane's own browser-check screenshot of its X3D scene, software GL), cropped to the 3D view (x 300 to 1140, y 235 to 707) and scaled to 960 x 540. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/gobbler-evidence-loom.jpg | f69977c92894baa86a6705faef4b1a92b025cc011a2b04b0594c5b7917b7dfa2 | 94192 |
+

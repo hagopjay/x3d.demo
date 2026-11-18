@@ -2,6 +2,12 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v45 (2026-11-18)
+- New Demo 50: Gobbler Evidence Loom (hosted at https://hagopjay.github.io/x3d.gobbler/gobbler-flyte/, repo x3d.gobbler, lane commit 4a24d4b, fold-backs x3d.loom 91 and x3d.docs 31 merged). A twelve-feather X3D observatory over a pinned Atlas snapshot (2,181 entities, 7,222 typed edges, 44 laws, 34/591 numbers with an archived verified quotation); domain transfers are proposed, motion is illustrative. The card links out to the Pages site, because the page is not in this repository. The held card is released: the Pages URL answers 200 and the lane confirmed the path, the merge and its checks.
+- Not described: `evidence-lab/` (the Intervention Lab, a later piece from another lane). Picture: the lane's own receipt screenshot (`receipts/browser-observatory/02-feather.png` on the Pages site), cropped; no third-party imagery.
+- Re-run for the card in headless Chromium (live site, 1440 x 900, software GL): the page's status line, the counts, the hash line (8/8), four Foldback steps, no console errors, no 4xx, no horizontal scroll. Not re-run: the lane's unit tests, offline checks, Atlas witness and browser check. The single-file edition was not opened.
+- Number: 50. Next free is 51. No demo and no earlier version is touched; v1 to v44 unchanged.
+
 ## v44 (2026-11-18)
 - New Demo 49: Geotiling (`docs/demos/geotiling/v1/`, x3d.demo PR 69): a Burruss Hall to Earth tile pyramid as native X3D `GeoLOD` (132 tiles, z7 to z15), as a 3D Tiles 1.1 tileset, and converted back from 3D Tiles to X3D. Number 49 because 47 and 48 had gone to the Math Lab concept graph and the Medical provenance atlas; the readme still says "candidate Demo 47".
 - Imagery rule kept: the page uses Google satellite tiles for an academic, non-commercial proof of concept only (owner decision, 18 Nov 2026), so the card picture is Google-free: the page's own NASA Blue Marble globe with the Google tile requests blocked and the zoom-7 Inline tiles switched off, so the picture shows none of the pyramid. `--open-textures` is the route for a public still.
