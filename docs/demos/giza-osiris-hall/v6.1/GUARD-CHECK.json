@@ -1,0 +1,51 @@
+{
+ "tool": "playwright 1.63.0",
+ "cases": [
+  {
+   "mode": "webgl-disabled",
+   "page": "demos/giza-osiris-hall/v6.1/index.html",
+   "guard": {
+    "api": "webgl",
+    "probe": {
+     "ok": false,
+     "reason": "WebGL is not available in this browser"
+    },
+    "outcome": "failed",
+    "reason": "WebGL is not available in this browser",
+    "renderer": ""
+   },
+   "bootText": "Giza VI could not start its 3D view\n\nReason: WebGL is not available in this browser\n\nTry: turn on hardware acceleration in the browser settings, update the graphics driver, or open the page in another browser. In Chrome, chrome://gpu shows whether WebGL is blocked on this machine.\n\nThese work withou",
+   "bootDone": false,
+   "alert": true,
+   "ledgerRows": 33,
+   "console": [
+    "[gfx-guard] FAILED after 365 ms: WebGL is not available in this browser"
+   ]
+  },
+  {
+   "mode": "webgl-swiftshader",
+   "page": "demos/giza-osiris-hall/v6.1/index.html",
+   "guard": {
+    "api": "webgl",
+    "probe": {
+     "ok": true,
+     "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+    },
+    "outcome": "ready",
+    "reason": "",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+   },
+   "bootText": "GIZA VI\n\nBaking stone textures, building 39 meshes, loading 978 + 40 catalogue stars\u2026\n\nBabylon.js 8.56.2 \u00b7 WebGL 2",
+   "bootDone": true,
+   "alert": false,
+   "ledgerRows": 0,
+   "console": [
+    "[gfx-guard] webgl ok, renderer \"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)\"",
+    "[gfx-guard] ready after 2056 ms"
+   ]
+  }
+ ],
+ "browser": "157.0.8103.78",
+ "date": "2026-11-18",
+ "note": "headless Chromium; webgl-disabled = --disable-webgl --disable-webgl2 --disable-3d-apis; webgl-swiftshader = --use-angle=swiftshader. Waits: 6 s disabled, 25 s enabled. v6 under webgl-disabled: boot overlay stayed, PAGEERROR WebGL not supported (same harness, run 1)."
+}

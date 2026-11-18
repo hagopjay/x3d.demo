@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="4.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">
+ <head>
+  <component name="Geospatial" level="1"/>
+  <meta name="title" content="Burruss Drillfield with reconciled elevation and an IFC footprint marker (heritage-geo v3)"/>
+  <meta name="attribution" content="Imagery and data: Google (Drillfield world, academic proof of concept only)"/>
+ </head>
+ <Scene>
+  <NavigationInfo type='"EXAMINE" "ANY"' headlight="true"/>
+  <GeoViewpoint DEF="vp_burruss" description="Drillfield overview" geoSystem='"GD" "WE"' position="37.2284 -80.4234 1017.0" orientation="1 0 0 -1.5707963" centerOfRotation="37.2284 -80.4234 617.0"/>
+  <GeoLocation DEF="gl_drillfield" geoSystem='"GD" "WE"' geoCoords="37.2284 -80.4234 617.000">
+   <Transform DEF="t_drillfield"><Inline DEF="drillfield" url='"../../gobbler-worlds-within/v1/data/worlds/drillfield/drillfield.x3d"'/></Transform>
+  </GeoLocation>
+  <GeoLocation DEF="gl_ifc_marker" geoSystem='"GD" "WE"' geoCoords="37.22840000 -80.42238462 624.100">
+   <Transform DEF="t_ifc">
+    <MetadataSet name="ifc_placement" containerField="metadata"><MetadataString name="label" value='"Illustrative marker: footprint of the Confluence IFC gallery pavilion, not Burruss Hall and not a real site"'/><MetadataString name="ifc_source" value='"docs/demos/confluence-ifc/v1/snapshot/model.ifc sha256 32dc72111d14d91964ba523f8f04ef65e0b6909fd161d5e068ab0cfb5ceef0fb"'/><MetadataString name="ifc_project_globalid" value='"0mF5c0HZTIqPqOOn9j7JEG"'/><MetadataString name="crs" value='"EPSG:32617 UTM 17N (proposed IfcProjectedCRS)"'/><MetadataString name="eastings_m" value='"551240.049"'/><MetadataString name="northings_m" value='"4120366.277"'/><MetadataString name="orthogonal_height_m" value='"621.900"'/><MetadataString name="grade" value='"S: placement is authored here; the IFC file carries no IfcMapConversion"'/></MetadataSet>
+    <Shape><Appearance><Material diffuseColor="0.85 0.35 0.25" transparency="0.35"/></Appearance><Box size="24 4.4 16"/></Shape>
+   </Transform>
+  </GeoLocation>
+ </Scene>
+</X3D>

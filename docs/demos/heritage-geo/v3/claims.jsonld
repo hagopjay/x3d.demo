@@ -1,0 +1,286 @@
+{
+ "@context": {
+  "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+  "dct": "http://purl.org/dc/terms/",
+  "x3d": "urn:x3d:vocab:"
+ },
+ "@graph": [
+  {
+   "@id": "urn:x3d:heritage-geo:c1",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:khufu"
+   },
+   "crm:P87_is_identified_by": {
+    "@id": "https://pleiades.stoa.org/places/704360201"
+   },
+   "crm:P141_assigned": "Built in the 4th Dynasty, c. 2560 BCE.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:source": "Published chronology; not re-opened here",
+   "x3d:crmClass": "E22_Human-Made_Object",
+   "x3d:crmPath": "P108i_was_produced_by -> E12_Production -> P4_has_time-span"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c2",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:khufu"
+   },
+   "crm:P87_is_identified_by": {
+    "@id": "https://pleiades.stoa.org/places/704360201"
+   },
+   "crm:P141_assigned": "Commissioned by Khufu.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:source": "Published consensus; not re-opened here",
+   "x3d:crmClass": "E22_Human-Made_Object",
+   "x3d:crmPath": "P14_carried_out_by -> E21_Person (Khufu)"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c3",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:khufu"
+   },
+   "crm:P87_is_identified_by": {
+    "@id": "https://pleiades.stoa.org/places/704360201"
+   },
+   "crm:P141_assigned": "Placed at the Pleiades representative point 29.97916 N, 31.13422 E.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:source": "Pleiades dump of 17 Nov 2026 read here (locationPrecision: precise); that the monument is there is L",
+   "x3d:crmClass": "E27_Site",
+   "x3d:crmPath": "P168_place_is_defined_by; P87_is_identified_by Pleiades 704360201"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c4",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:khafre"
+   },
+   "crm:P87_is_identified_by": {
+    "@id": "https://pleiades.stoa.org/places/866839043"
+   },
+   "crm:P141_assigned": "Attributed to Khafre, son of Khufu.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:source": "Published consensus",
+   "x3d:crmClass": "E22_Human-Made_Object",
+   "x3d:crmPath": "P108i_was_produced_by -> E12_Production"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c5",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:sphinx"
+   },
+   "crm:P87_is_identified_by": {
+    "@id": "https://pleiades.stoa.org/places/536839380"
+   },
+   "crm:P141_assigned": "Sphinx attributed to Khafre's reign; the attribution is argued, not proven.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:source": "Contested literature; see GIZA-EVIDENCE-ATLAS GZ-1",
+   "x3d:crmClass": "E22_Human-Made_Object",
+   "x3d:crmPath": "P14_carried_out_by -> E21_Person (Khafre?)"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c6",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:menkaure"
+   },
+   "crm:P87_is_identified_by": {
+    "@id": "https://pleiades.stoa.org/places/599695861"
+   },
+   "crm:P141_assigned": "Base about 102 m, height about 65 m; drawn here as a schematic box-pyramid.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:L"
+   },
+   "dct:source": "Published figures; geometry status is schematic (GZ-1)",
+   "x3d:crmClass": "E22_Human-Made_Object",
+   "x3d:crmPath": "P43_has_dimension -> E54_Dimension"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c7",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:khufu"
+   },
+   "crm:P87_is_identified_by": {
+    "@id": "https://pleiades.stoa.org/places/704360201"
+   },
+   "crm:P141_assigned": "Each claim is an E13 Attribute Assignment carrying its grade, so the grade is queryable.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:source": "claims.jsonld built and parsed here",
+   "x3d:crmClass": "E13_Attribute_Assignment",
+   "x3d:crmPath": "P140_assigned_attribute_to / P141_assigned"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c8",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:khafre"
+   },
+   "crm:P87_is_identified_by": {
+    "@id": "https://pleiades.stoa.org/places/866839043"
+   },
+   "crm:P141_assigned": "v1 placed Khafre 208 m from its Pleiades point (and Menkaure 64 m); v2 uses the Pleiades points.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:source": "Offsets computed in data/pleiades-giza.json; v1 coordinates were typed from memory, not read from a source",
+   "x3d:crmClass": "E27_Site",
+   "x3d:crmPath": "P168_place_is_defined_by; P87_is_identified_by Pleiades 866839043"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:c9",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P140_assigned_attribute_to": {
+    "@id": "urn:x3d:heritage-geo:site:sphinx"
+   },
+   "crm:P87_is_identified_by": {
+    "@id": "https://pleiades.stoa.org/places/536839380"
+   },
+   "crm:P141_assigned": "Sphinx point from Pleiades 536839380 (v1 differed by 4.3 m).",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:source": "Pleiades dump read here",
+   "x3d:crmClass": "E27_Site",
+   "x3d:crmPath": "P87_is_identified_by Pleiades 536839380"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:finding:elevation:e1",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P141_assigned": "Median of EPQS minus (617 + DSM) is +0.03 m over 140 points at 30 m spacing.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:source": "USGS EPQS 1 m, 18 Nov 2026; reconcile_elevation.py",
+   "x3d:finding": "elevation"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:finding:elevation:e2",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P141_assigned": "Ground across the 400 x 300 m tile spans 619.8 to 632.9 m in EPQS, so 627.175 m is one point on the slope.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:source": "USGS EPQS 1 m, 18 Nov 2026",
+   "x3d:finding": "elevation"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:finding:elevation:e3",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P141_assigned": "The tile centre (37.2284, -80.4234) and z-southward orientation are assumptions (correlation 0.51 vs -0.40).",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:source": "reconcile_elevation.py fit; not surveyed",
+   "x3d:finding": "elevation"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:finding:elevation:e4",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P141_assigned": "Therefore 627 vs 617 m is not a datum conflict: 617 m is the right reference for the DSM.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:source": "interpretation that rests on e1-e3",
+   "x3d:finding": "elevation"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:finding:elevation",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P141_assigned": "Elevation 627 vs 617 m: measured residual near zero; the 'not a datum conflict' reading depends on an assumed tile centre.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "x3d:gradeRule": "weakest of its atomic parts (C > L > S)",
+   "x3d:hasPart": [
+    {
+     "@id": "urn:x3d:heritage-geo:finding:elevation:e1"
+    },
+    {
+     "@id": "urn:x3d:heritage-geo:finding:elevation:e2"
+    },
+    {
+     "@id": "urn:x3d:heritage-geo:finding:elevation:e3"
+    },
+    {
+     "@id": "urn:x3d:heritage-geo:finding:elevation:e4"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:finding:pleiades:p1",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P141_assigned": "v1 put Khafre 208 m and Menkaure 64 m from their Pleiades points (typed from memory); v2 and v3 use the Pleiades points.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:source": "Pleiades dump 17 Nov 2026",
+   "x3d:finding": "pleiades"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:finding:pleiades",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P141_assigned": "Correction: Khafre and Menkaure moved to their Pleiades points.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "x3d:gradeRule": "weakest of its atomic parts (C > L > S)",
+   "x3d:hasPart": [
+    {
+     "@id": "urn:x3d:heritage-geo:finding:pleiades:p1"
+    }
+   ]
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:finding:ifc:i1",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P141_assigned": "The confluence-ifc model.ifc has no site placement and no IfcMapConversion.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:C"
+   },
+   "dct:source": "grep of model.ifc (2,030 lines)",
+   "x3d:finding": "ifc"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:finding:ifc:i2",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P141_assigned": "The placement shown here is authored, not read from the file.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "dct:source": "authored in build.py",
+   "x3d:finding": "ifc"
+  },
+  {
+   "@id": "urn:x3d:heritage-geo:finding:ifc",
+   "@type": "crm:E13_Attribute_Assignment",
+   "crm:P141_assigned": "IFC model carries no placement; the placement here is authored.",
+   "crm:P2_has_type": {
+    "@id": "urn:x3d:grade:S"
+   },
+   "x3d:gradeRule": "weakest of its atomic parts (C > L > S)",
+   "x3d:hasPart": [
+    {
+     "@id": "urn:x3d:heritage-geo:finding:ifc:i1"
+    },
+    {
+     "@id": "urn:x3d:heritage-geo:finding:ifc:i2"
+    }
+   ]
+  }
+ ]
+}
