@@ -263,3 +263,12 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/masonic-lodge-xr.jpg | 07d920e286ba096de7dd15f01c24f260cf01fb1ec20faed2f05ee1a998d7b445 | 18009 |
+
+## Front-page card pictures (v38)
+`masonic-lodge-xr-v2` is a headless screenshot (Chromium, software GL, 2x scale) of the opening preview of `docs/demos/masonic-lodge/v2/index.html` served locally, the X_ITE window cropped to 16:9 and scaled to 960 x 540. It replaces `masonic-lodge-xr` for the card from v38; the earlier file stays for the v37 snapshot.
+`hypergraph` is `docs/demos/hypergraph/v1/preview-4d.png` (1300 x 900) cropped to the 3D window (x 18 to 940, y 118 to 637) and scaled to 960 x 540.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/masonic-lodge-xr-v2.jpg | 4b33c6e6c8daff7cbb19363bb27e9e9fd865c3151620d482c67c14ecbc36875c | 11180 |
+| assets/hypergraph.jpg | d3e5082aa1251a7297914798759ee24f4961ff257a7c1f32ccd3f0284c8bba19 | 46446 |
