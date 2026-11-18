@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## Unnumbered: D3 to X3D Bridge v2.1 (2026-11-18)
+- Added `docs/demos/d3-bridge/v2.1/`, a fix release of v2 (v1 and v2 untouched) for three external-review findings. First, `tools/validate.py` now runs XSD plus x3d_mcp semantic checks and fails loudly: exit 1 on any error, exit 2 on an empty set. Second, every scene now declares Rendering level 5, because ClipPlane in `spacetime.x3d` needs it: v2 was 15 of 16, v2.1 is 16 of 16. Third, the page no longer throws without WebGL and shows each scene's recorded frame instead (0 console errors with WebGL disabled).
+
 ## Unnumbered: D3 to X3D Bridge v1 (2026-11-18)
 - Added `docs/demos/d3-bridge/v1/`: sixteen D3 / D3Blocks chart ideas rebuilt as true 3D X3D 4.0 scenes (heat terrain, chord dome, treemap city, space-time cube, 3D force graph, sankey canyon, 3D scatter with wall shadows, ridgeline wall, live elastic graph, sphere packing, violins of revolution, relief slider, type sphere, cone tree, globe with Equal Earth plate, particle type). D3 7.9.0, d3-force-3d 3.0.6, d3-sankey 0.12.3 compute the layouts at build time; the elastic graph runs d3-force-3d live and drives X3D through the SAI. Data is harvested from the x3d.* repositories themselves (counts and timestamps only).
 - 16 of 16 scenes valid against the X3D 4.0 XSD (x3d_mcp validate_xml, lxml 6.1.3, fa5dccf); 16 of 16 load in headless Chromium with SwiftShader and X_ITE 16.6.0, 0 console errors. Card picture `docs/assets/d3-bridge.jpg` is the chord dome frame from that run. Front-page card and number come from the bridge thread (not edited here).
