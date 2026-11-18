@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giza V — Earth’s Tesla Coil</title>
+<meta name="description" content="A speculative X3D Earth-coil observatory: powered arc channels, a finite capacitor reservoir, compressed upper atmosphere, illuminated Nile valley, and switchable royal journey.">
+<link rel="stylesheet" href="../v3/vendor/x_ite/x_ite.css">
+<link rel="stylesheet" href="horizon.css">
+<script src="../v3/vendor/x_ite/x_ite.min.js"></script>
+</head>
+<body>
+<a class="skip" href="#instrument">Skip to instruments</a>
+<x3d-canvas id="world" src="horizon.x3d" splashScreen="false" contextMenu="false" aria-label="Interactive schematic pyramid and imagined royal chamber"></x3d-canvas>
+<div class="vignette" aria-hidden="true"></div>
+<header>
+ <a class="wordmark" href="../v3/index.html" title="Return to the v3 Evidence Atlas">GIZA <span>V</span><small>EARTH’S TESLA COIL</small></a>
+ <nav class="lenses" aria-label="Interpretation lens">
+ <button data-lens="archaeology">01 <span>Stone</span></button><button data-lens="lab" class="active" aria-pressed="true">02 <span>Circuit</span></button><button data-lens="mythic">03 <span>Vision</span></button>
+ </nav>
+ <div class="header-actions"><button id="sources-open">Evidence & vision ↗</button><button id="panels-toggle" aria-expanded="true" aria-controls="instrument">Instruments</button></div>
+</header>
+<main>
+ <section id="intro" class="intro" aria-label="Experience introduction">
+  <div class="eyebrow"><span class="live-dot"></span> A PLANETARY CIRCUIT / AN AUTHORED VISION</div>
+  <h1>The Earth.<br><em>A Tesla coil.</em></h1>
+  <p>Charge the sky. Sustain the arc. Illuminate the valley.<br>Enter the king’s passage through a world made electric.</p>
+  <button id="begin" class="primary">Begin the passage <span>↗</span></button>
+  <button id="encounter-preview" class="encounter-link">Visit the encounter ↗</button>
+  <div class="intro-note">108 seconds · two perspectives · sound optional</div>
+ </section>
+ <section class="perspective-bar" aria-label="Journey perspective">
+  <span class="eyebrow">ACCOMPANY THE KING</span>
+  <div role="group" aria-label="Camera mode"><button data-camera="witness" aria-pressed="true" class="active">Witness</button><button data-camera="first-person" aria-pressed="false">First-person</button></div>
+  <span id="camera-note">V to switch · continuous journey cameras</span>
+ </section>
+ <section class="camera-bar" aria-label="Camera viewpoints">
+  <button data-view="V_Tesla" class="active">Tesla coil</button><button data-view="V_Regional">Valley</button><button data-view="V_Atmosphere">Atmosphere</button><button data-view="V_Earth">Earth circuit</button><button data-view="V_Overview">Plateau</button><button data-view="V_Cutaway">Cutaway</button><button data-view="V_Chamber">King’s Chamber</button><button data-view="V_Ritual">Heart & brow</button><button data-view="V_Stars">Horizon</button>
+ </section>
+ <aside id="instrument" class="instrument" aria-label="Resonance instruments">
+  <div class="panel-title"><span class="eyebrow">POWER OBSERVATORY / 05</span><span id="engine">Loading X3D</span></div>
+  <h2>The sky is one plate.</h2>
+  <p id="tesla-context">A fictional planetary resonator, powered by an explicit source and a finite capacitor bank. Arcs consume stored energy.</p>
+  <div class="tesla-tier" id="tesla-mode">MYTHIC AMPLIFICATION · ASSUMED RATINGS</div>
+  <div class="meter tesla-meter"><div><strong id="stored-energy-tesla">—</strong><small>STORED ENERGY / GJ</small></div><div><strong id="arc-power">—</strong><small>DELIVERED ARC POWER / GW</small></div></div>
+  <canvas id="circuit-scope" width="540" height="145" role="img" aria-label="Stored capacitor energy over time"></canvas>
+  <div class="plot-key"><span>Energy history · 30 s</span><span id="circuit-state">PRECHARGED BENCH</span></div>
+  <div class="circuit-actions"><button id="circuit-play" aria-pressed="true">Hold circuit</button><button id="charge-bank">Precharge</button><button id="circuit-reset">Drain / reset</button></div>
+  <div class="presets"><button data-tesla-preset="mythic">Earth’s Tesla coil</button><button data-tesla-preset="canopy">Two-mile canopy</button><button data-tesla-preset="reference">250 kV reference</button><button data-tesla-preset="dark">Supply off</button></div>
+  <label class="check"><input id="tesla-enabled" type="checkbox" checked> Planetary circuit layer <b>FICTION / BENCH</b></label>
+  <label class="range">Rated voltage <output id="tesla-voltage-out"></output><input id="tesla-voltage" type="range" min="0" max="120" step="0.25" value="50"></label>
+  <label class="range">Reservoir capacitance <output id="tesla-capacitance-out"></output><input id="tesla-capacitance" type="range" min="0.01" max="100" step="0.01" value="10"></label>
+  <label class="range">External source power <output id="tesla-source-out"></output><input id="tesla-source" type="range" min="0" max="5000" step="1" value="600"></label>
+  <label class="range">Requested arc power <output id="tesla-arc-out"></output><input id="tesla-arc" type="range" min="0" max="5000" step="1" value="1000"></label>
+  <label class="range">Arc duty fraction <output id="tesla-duty-out"></output><input id="tesla-duty" type="range" min="0" max="1" step="0.01" value="0.6"></label>
+  <details id="tesla-assumptions"><summary>Sky, tuning & energy ledger <span>＋</span></summary>
+   <label class="range">Upper electrode altitude <output id="tesla-height-out"></output><input id="tesla-height" type="range" min="3.218688" max="300" step="0.001" value="80"></label>
+   <p id="height-note" class="fine">Upper-atmosphere height is compressed for display. A two-mile layer is a fictional storm canopy.</p>
+   <label class="range">Primary excitation <output id="tesla-frequency-out"></output><input id="tesla-frequency" type="range" min="10" max="2000" step="1" value="950"></label>
+   <label class="range">Secondary inductance <output id="tesla-inductance-out"></output><input id="tesla-inductance" type="range" min="0.001" max="100" step="0.001" value="0.28"></label>
+   <label class="range">Secondary capacitance <output id="tesla-secondary-out"></output><input id="tesla-secondary" type="range" min="10" max="5000" step="1" value="100"></label>
+   <label class="range">Assumed coupling <output id="tesla-coupling-out"></output><input id="tesla-coupling" type="range" min="0" max="1" step="0.01" value="0.65"></label>
+   <label class="range">Assumed loaded-Q input <output id="tesla-q-out"></output><input id="tesla-q" type="range" min="2" max="60" step="1" value="16"></label>
+   <label class="range">Reservoir leakage power <output id="tesla-leakage-out"></output><input id="tesla-leakage" type="range" min="0" max="100" step="0.1" value="5"></label>
+   <button id="tesla-tune">Tune the LC secondary</button>
+   <label class="check"><input id="tesla-arcs" type="checkbox" checked> Maintain arc channels</label>
+   <label class="check"><input id="tesla-regional" type="checkbox" checked> Illuminate schematic valley</label>
+   <label class="check"><input id="tesla-globe" type="checkbox" checked> Earth–sky circuit analogy</label>
+   <div class="charge energy-ledger"><span>Initial bank energy <strong id="initial-energy">—</strong></span><span>Supplied <strong id="supplied-energy">—</strong></span><span>Discharged through arcs <strong id="arc-energy">—</strong></span><span>Lost / spilled <strong id="lost-energy">—</strong></span><span>Ledger residual <strong id="energy-residual">—</strong></span><span>Assumed LC resonance <strong id="tesla-f0">—</strong></span></div>
+   <p class="fine">E = ½CV². GJ measure stored energy; GW measure discharge power. Precharge explicitly restarts with a full fictional bank. LC tuning is a separate teaching overlay and modulates the corona; arc power follows the rated load and energy ledger. These are circuit analogies, not Giza measurements. Stable arc geometry replaces flashing lightning.</p>
+  </details>
+  <details id="rf-lab"><summary>RF & quartz laboratory <span>＋</span></summary>
+  <h2>Listen to the stone.</h2>
+  <p id="lens-description">A driven resonator analogy. Field ribbons show illustrative amplitude, not a computed electromagnetic map.</p>
+  <div class="meter"><div><strong id="gain">—</strong><small>RELATIVE RESPONSE</small></div><div><strong id="phase">—</strong><small>PHASE LAG</small></div></div>
+  <canvas id="spectrum" width="540" height="170" role="img" aria-label="Illustrative frequency response, from 0.5 to 1.5 MHz"></canvas>
+  <div class="plot-key"><span>0.5 MHz</span><span id="peak">assumed mode</span><span>1.5 MHz</span></div>
+  <label class="range">External RF frequency <output id="frequency-out"></output><input id="frequency" type="range" min="0.5" max="1.5" step="0.001" value="0.95"></label>
+  <label class="range">External drive <output id="drive-out"></output><input id="drive" type="range" min="0" max="1" step="0.01" value="0.65"></label>
+  <div class="presets" aria-label="Experiments"><button data-preset="baseline">Limestone</button><button data-preset="quartz">Quartz hypothesis</button><button data-preset="off">Source off</button><button id="tune">Tune peak</button></div>
+  <details><summary>Change the assumptions <span>＋</span></summary>
+   <div class="charge"><span>RF input rate proxy <strong id="input-rate">—</strong></span><span>RF loss rate proxy <strong id="loss-rate">—</strong></span><span>RF stored energy proxy <strong id="stored-energy">—</strong></span><p class="fine">Steady state: supplied and lost rates balance. Stored energy is a separate quantity. All values are dimensionless.</p></div>
+   <label class="range">Loss control · dry Q <output id="q-out"></output><input id="q" type="range" min="2" max="40" step="1" value="12"></label>
+   <label class="range">Moisture assumption <output id="moisture-out"></output><input id="moisture" type="range" min="0" max="1" step="0.01" value="0.25"></label>
+   <label class="check"><input id="crystals" type="checkbox"> Assumed quartz foundation <b>HYPOTHESIS</b></label>
+   <label class="check"><input id="conductor" type="checkbox"> Imagined metal network <b>HYPOTHESIS</b></label>
+   <label class="range">Quartz fraction <output id="quartz-out"></output><input id="quartz" type="range" min="0" max="1" step="0.01" value="0.3"></label>
+   <label class="range">Effective crystal alignment <output id="alignment-out"></output><input id="alignment" type="range" min="0" max="1" step="0.01" value="0.15"></label>
+   <label class="range">Assumed load <output id="load-out"></output><input id="load" type="range" min="0" max="1" step="0.01" value="0.65"></label>
+   <label class="select">Mechanical experiment<select id="mechanical"><option value="static">Constant preload</option><option value="cyclic">Cyclic strain · 0.75 Hz analogy</option></select></label>
+   <div class="charge"><span>RC voltage proxy <strong id="voltage">0.000</strong></span><button id="reload">Unload / load</button><canvas id="transient" width="540" height="110" role="img" aria-label="History of the dimensionless piezoelectric voltage proxy"></canvas></div>
+   <p class="fine">Quartz must be enabled for this circuit analogy. A load change makes a transient; constant weight supplies no continuing power. Water, metal and crystal parameters are assumptions. The cyclic strain rate is separate from RF.</p>
+  </details>
+  </details>
+  <details><summary>Stage & accessibility <span>＋</span></summary>
+   <label class="range">Floodplain level <output id="water-out">0.3 m</output><input id="water" type="range" min="-2" max="3" step="0.1" value="0.3"></label>
+   <div class="ritual-device"><span class="eyebrow">THE RITUAL / AUTHORED FICTION</span><p><b>Ankh at the heart.</b><br><b>Was-sceptre at the brow.</b><br>The was becomes the visual key to the opening.</p></div>
+   <label class="select">Maximum encounter reveal<select id="encounter"><option value="geometry">Celestial geometry</option><option value="craft">Ancient machinery & craft</option><option value="beings" selected>Full nonhuman encounter</option></select></label>
+   <p id="encounter-status" class="fine" role="status">Chamber machinery → celestial geometry → craft → beings. All encounter imagery is invented.</p>
+   <label class="select">Render resolution<select id="quality"><option value="0.7">Performance</option><option value="1" selected>Balanced</option><option value="1.5">Fine</option></select></label>
+   <label class="check"><input id="motion" type="checkbox"> Reduce motion / hold camera</label>
+   <label class="check"><input id="fields" type="checkbox" checked> Show illustrative field ribbons</label>
+   <label class="check"><input id="cutaway" type="checkbox" checked> Open pyramid section</label>
+   <button id="audio" aria-pressed="false">Enable sound</button><p class="fine">Quiet sonification of LC tuning and arc availability. This is not a measured pyramid sound. Mute at any time.</p>
+  </details>
+  <div class="session"><button id="compare">Pin comparison A</button><button id="export">Export</button><button id="import">Import</button><input id="session-file" type="file" accept=".json,application/json" hidden></div>
+  <p id="change-note" class="fine" role="status">Try switching the external source off, then compare constant load with cyclic strain.</p>
+ </aside>
+ <div id="failure" role="alert" hidden></div>
+</main>
+<footer>
+ <div class="status-row"><button id="tier" class="tier" aria-label="Read evidence and vision">ILLUSTRATIVE MODEL</button><span id="status-text">Schematic geometry · assumed coefficients · no measured output</span><button id="intro-toggle">Hide title</button></div>
+ <div class="journey-heading"><button id="play" aria-label="Play journey">▶</button><div><span class="eyebrow" id="chapter-number">THE PASSAGE / 01</span><h2 id="chapter-title">The Inundation</h2></div><p id="caption" role="status">The river is a documented lifeline. Its electrical role here is an imagined experiment.</p><output id="time">00:00 / 01:48</output><button id="reset" title="Return to start">↺</button></div>
+ <label class="sr-only" for="timeline">Journey time in seconds</label><input id="timeline" type="range" min="0" max="108" step="0.1" value="0">
+ <div class="chapters"><button data-time="0">01 <span>Inundation</span></button><button data-time="18">02 <span>Stone remembers</span></button><button data-time="36">03 <span>Tuning the hall</span></button><button data-time="54">04 <span>Heart & horizon</span></button><button data-time="72">05 <span>Opening the ways</span></button><button data-time="90">06 <span>Return</span></button></div>
+</footer>
+<dialog id="evidence"><div class="dialog-head"><div><span class="eyebrow">THE EVIDENCE / THE EXPERIMENT / THE VISION</span><h2>Wonder, with its workings visible.</h2></div><button id="sources-close" autofocus>Close ✕</button></div><p class="lede">This world asks “what if?” Egyptian builders and their achievements ground the architecture; the supernatural voyage, craft and nonhuman figures are authored fiction. Each layer carries its own status.</p><div id="evidence-cards"></div><a href="SPECIFICATION.md" target="_blank" rel="noopener">Read the complete v4 specification ↗</a><p class="fine">View controls: drag to orbit, wheel to move closer. Space plays or pauses the passage; V switches witness/first-person outside inputs. Escape closes this panel. Reduced motion holds the camera; selecting a chapter or perspective explicitly reframes it.</p></dialog>
+<noscript>This experience needs JavaScript for X3D. <a href="SPECIFICATION.md">Read the specification</a> or open <a href="horizon.x3d">the X3D scene</a> in an X3D viewer.</noscript>
+<script type="module" src="app.mjs"></script>
+</body></html>

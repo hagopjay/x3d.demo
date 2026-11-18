@@ -1,0 +1,24 @@
+#witness-bar{position:fixed;right:16px;bottom:65px;z-index:7;display:flex;gap:8px;padding:8px}#witness-bar button[aria-pressed=true]{border-color:#5cf6df;background:#174344}
+#witness-panel{position:fixed;inset:76px 346px 116px 330px;z-index:6;background:#08121a;border:1px solid #42615f;border-radius:16px;overflow:hidden;box-shadow:0 20px 80px #0009}#witness-panel[hidden],#visor[hidden]{display:none!important}
+#witness-scene{position:absolute;inset:0 0 43% 0}#witness-scene x3d-canvas,#visor x3d-canvas{position:absolute!important;inset:0;width:100%;height:100%;display:block}
+#witness-text{position:absolute;inset:57% 0 0;padding:18px 24px;overflow:auto;background:linear-gradient(#13262b,#08121a)}#witness-text h2{font-size:24px;line-height:1.15;margin:7px 0}#witness-text p{color:#c5d5db;max-width:80ch}#witness-text a{color:#90f5de}#witness-text nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}#witness-tier{color:#ffcc82;font-size:10px;letter-spacing:.12em}#witness-label{position:absolute;left:12px;top:10px;z-index:2;color:#eacb91;font-size:10px;letter-spacing:.13em;pointer-events:none}
+#visor{position:fixed;right:16px;top:218px;bottom:125px;width:312px;z-index:6;display:flex;flex-direction:column;gap:8px;overflow:auto;background:#050e13e8;padding:9px;border:1px solid #27756f;border-radius:12px}#visor header{display:flex;justify-content:space-between;align-items:center}#visor h2{font-size:12px;margin:0;color:#7df7da}#visor p{font-size:10px;color:#abc8ca;margin:2px 0}#visor label{font-size:11px;display:block}#visor input[type=range]{margin:0}#visor select{background:#102631;max-width:100%}.visor-feed{position:relative;min-height:140px;flex:1;border:1px solid #2d6067;background:#06121b;overflow:hidden}.visor-feed::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(transparent 0 3px,#68ffdd06 3px 4px);box-shadow:inset 0 0 32px #071c1d}.feed-title{position:absolute;bottom:4px;left:6px;right:6px;z-index:2;pointer-events:none;background:#061119d9;color:#7df7da;font:10px monospace;padding:3px}.visor-error{position:absolute;inset:25px 12px;z-index:3;font-size:11px;color:#ffd78e}#visor-loading{font-size:10px;color:#f9c783}
+@media(min-width:1500px){#witness-panel{right:365px;left:335px}#visor{width:330px}.visor-feed{min-height:170px}}
+@media(max-width:1100px){#witness-panel{left:24px;right:350px}#witness-text h2{font-size:20px}}
+@media(max-width:700px){#witness-bar{bottom:60px;right:8px;left:8px;justify-content:center}#witness-panel{inset:105px 8px 120px}body.visor-open #witness-panel{display:none}#visor{top:110px;bottom:120px;right:8px;width:min(330px,calc(100vw - 16px))}#witness-text{padding:12px}#witness-text h2{font-size:19px}#witness-bar button{font-size:11px}#witness-panel #witness-scene{bottom:55%}#witness-text{top:45%}}
+@media(prefers-reduced-motion:reduce){.visor-feed::after{background:none}}
+
+body.hawara-open #context,body.hawara-open #view-stamp,body.hawara-open #dock{display:none}body.hawara-open #witness-panel{left:24px}@media(max-width:700px){body.hawara-open #witness-panel{left:8px}}
+
+/* Stable viewport boxes, recoverable cameras, and a scrollable instrument bank. */
+.hawara-viewport{position:absolute;inset:0}
+#visor-feeds{display:flex;flex-direction:column;gap:9px;flex:none;min-height:0}
+#visor .visor-feed{height:170px;min-height:170px;flex:none}
+#visor details{flex:none}#visor summary{cursor:pointer;font-size:11px;color:#8debd9;padding:4px 0}
+#visor select{width:100%}#visor label{margin-top:5px}#visor :disabled{opacity:.4;cursor:default}
+.main-reset,.feed-reset{position:absolute;right:7px;top:7px;z-index:4;font-size:10px;padding:4px 7px;background:#081923e8}
+.main-reset{top:36px}.feed-title{padding-right:4px;line-height:1.3}
+#witness-label{right:10px;font-size:9px}#witness-title:focus{outline:1px solid #68dcca;outline-offset:5px}
+body.hawara-open #tour,body.hawara-open #dockbtn{visibility:hidden}
+#visor-retry{font-size:11px}
+@media(max-width:700px){#visor .visor-feed{height:210px;min-height:210px}#visor{top:110px}#visor-settings p{line-height:1.4}}
