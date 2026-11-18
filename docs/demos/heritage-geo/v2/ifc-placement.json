@@ -1,0 +1,38 @@
+{
+ "note": "Authored placement, grade S. confluence-ifc/v1/snapshot/model.ifc has IFCSITE with every placement and lat/lon field null and no IFCMAPCONVERSION or IFCPROJECTEDCRS (grep, 2,030 lines).",
+ "ifc_units": "IFCSIUNIT LENGTHUNIT MILLI METRE (model coordinates are millimetres)",
+ "footprint_mm": [
+  24000,
+  16000
+ ],
+ "height_m_approx": 4.4,
+ "ifcmapconversion_proposed": {
+  "SourceCRS": "IfcGeometricRepresentationContext 'Model'",
+  "TargetCRS": "IfcProjectedCRS EPSG:32617 (WGS84 / UTM 17N)",
+  "Eastings": 551240.049,
+  "Northings": 4120366.277,
+  "OrthogonalHeight": 621.9,
+  "XAxisAbscissa": 1.0,
+  "XAxisOrdinate": 0.0,
+  "Scale": 0.001,
+  "Scale_note": "0.001 because the model is in millimetres and the target CRS is in metres"
+ },
+ "x3d_geolocation": {
+  "geoSystem": [
+   "GD",
+   "WE"
+  ],
+  "geoCoords": [
+   37.2284,
+   -80.42238462,
+   624.1
+  ],
+  "site_surface_m": 621.9,
+  "site_surface_source": "Drillfield DSM at the marker (surface incl. objects), 617 m reference"
+ },
+ "drillfield_centre_utm": [
+  551149.973,
+  4120365.728
+ ],
+ "projection": "UTM 17N forward Krueger series, stdlib, WGS84; accuracy not checked against PROJ (pyproj not installed here)"
+}
