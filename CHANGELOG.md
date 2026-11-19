@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v64 (2026-11-19)
+- Front-page card for Demo 58, the Baked Light Gallery (`docs/demos/blender-baked-light/v1/`, merged as PR 119), with image `assets/blender-baked-light.jpg` (the page's own X_ITE frame). I recomputed PSNR from the shipped frames (28.14 and 28.15 dB) and loaded the page headless without errors; SSIM and the XSD result are the build lane's own. Versions v1 to v63 are untouched.
+
 ## v63 (2026-11-19)
 - Front-page card for Demo 62, x3d.wgpu in the browser (`docs/demos/wgpu-web/v1/`, merged as PR 117), with image `assets/wgpu-web.jpg` taken from my own headless WebGL2 run. The card states what I ran (WebGL2 path, two scenes, no errors, fallback from WebGPU), the wasm size I measured, and what nobody tested (WebGPU pixels, real GPU, frame rate). Versions v1 to v62 are untouched.
 
