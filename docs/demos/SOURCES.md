@@ -369,3 +369,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/x3d-coverage.jpg | ad7531296a48e2c72105e3233046b5c24c7dc14876da7f5fa49844a4ee75c3f4 | 31673 |
+
+`wgpu-web` is a 1066 x 599 stage screenshot of `docs/demos/wgpu-web/v1/index.html?backend=gl` (scene 05 still life, WebGL2 on SwiftShader, headless Chromium) resized to 960 x 540 JPEG. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/wgpu-web.jpg | fac4ab6f0406faa7ee23fbdbbb124b8efc5ae46eb7344658875b57d18deebd19 | 29733 |
