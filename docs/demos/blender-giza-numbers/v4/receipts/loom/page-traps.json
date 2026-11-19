@@ -1,0 +1,56 @@
+{
+  "coverage": {
+    "rules": 8
+  },
+  "development": false,
+  "environment": {
+    "optimized": false,
+    "python": "3.13.18"
+  },
+  "evidence": [],
+  "finished_at": "2026-11-19T23:03:53+00:00",
+  "grade": "C",
+  "instrument": {
+    "rules": [
+      "anchor-download-hosted",
+      "js-syntax",
+      "loadurl-unbudgeted",
+      "nav-before-scene",
+      "sim-nonportable-math",
+      "window-global-shadow",
+      "xite-browser-currenttime",
+      "xite-callback-unguarded"
+    ],
+    "rules_sha256": "ec35cc88d624b49aa86783d7d4200434df9808e18d82fd2cb624b702a773d2ac",
+    "tool": "loomkit.pagetraps"
+  },
+  "limitations": [
+    "Static pattern reading of page JavaScript; a clean result means none of these known traps is present, not that the page behaves correctly.",
+    "Reads .js files and the inline <script> blocks of .html files listed in --files; 'seen' counts the field callbacks and world loads it read (zero means the X_ITE rules had nothing to judge), and sim_units, the files and inline scripts that declare // loom:sim (zero means sim-nonportable-math judged nothing: a deterministic simulation must be marked to be held to it).",
+    "Rules are labelled with the runtime they were observed on (X_ITE 16.5.1 unless stated)."
+  ],
+  "measurements": {
+    "errors": 0,
+    "files": 5,
+    "hits": {
+      "atlas-math.mjs": [],
+      "atlas.mjs": [],
+      "index.html": [],
+      "sky-math.mjs": [],
+      "stage.mjs": []
+    },
+    "seen": {
+      "field_callbacks": 0,
+      "inline_scripts": 0,
+      "sim_units": 0,
+      "world_loads": 2
+    },
+    "warnings": 0
+  },
+  "origin": "executed",
+  "reason": "",
+  "schema": "loom.witness/1",
+  "status": "pass",
+  "subject_sha256": "26df35acd0b6a6bcf1536fef09a2d34d26d5cea0ac6d8fde7f5d04ceb65eb7ed",
+  "witness": "page-traps"
+}

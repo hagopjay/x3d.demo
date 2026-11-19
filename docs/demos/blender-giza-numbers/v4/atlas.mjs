@@ -1,0 +1,314 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+/** Demo 65 v4 page controller: stage, sky clock, grand tour, atlas cards, shaft clock. */
+import { createStage } from "./stage.mjs";
+import { yearLabel, culminationAltitude } from "./sky-math.mjs";
+import { fmt, markDigits, filterClaims, NUMBER_GRADES, DESIGN_GRADES } from "./atlas-math.mjs";
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const params = new URLSearchParams(location.search);
+const section = $("#stage");
+let stage = null, stagePromise = null, atlas = null, v4claims = null, tourToken = 0;
+const KEY = ["Alnitak", "Sirius", "Thuban", "Kochab", "Betelgeuse", "Polaris", "Regulus", "Vega"];
+
+const receipts = Promise.all([
+  fetch("receipts/atlas.json").then((r) => r.json()),
+  fetch("receipts/claims-v4.json").then((r) => r.json()),
+  fetch("receipts/witness.json").then((r) => (r.ok ? r.json() : null)).catch(() => null),
+]);
+
+/* ------------------------------------------------------------------ stage */
+function status(t) { $("#status").textContent = t; }
+function ensureStage() {
+  if (stagePromise) return stagePromise;
+  status("Starting the renderer…");
+  stagePromise = createStage({ canvas: $("#scene"), overlay: $("#labels"), onStatus: status, onFrame: onFrame })
+    .then((st) => {
+      stage = st; window.gizaStage = st;
+      section.dataset.state = "live";
+      $("#hud").hidden = false; $("#chips").hidden = false;
+      st.skyReady.then(() => { syncSkyUI(); renderStars(); status(""); });
+      return st;
+    })
+    .catch((err) => {
+      status("The live 3D stage could not start here (" + err.message + "). The atlas below still works.");
+      throw err;
+    });
+  return stagePromise;
+}
+let lastYear = null;
+function onFrame(S) {
+  if (S.year !== lastYear) { lastYear = S.year; renderStars(); drawShaftChart(); }
+}
+async function fadeThrough(fn) {
+  const f = $("#fade");
+  f.classList.add("on"); await sleep(390);
+  await fn();
+  await sleep(160); f.classList.remove("on");
+}
+function setNow(kicker, title, chipsHtml = "", caption = "") {
+  $("#nowkicker").textContent = kicker; $("#nowtitle").textContent = title;
+  $("#nowchips").innerHTML = chipsHtml; $("#caption").innerHTML = caption;
+}
+/** Apply a proof stop: light, rig, x-ray, sky, camera. */
+async function applyProof(p, { seconds = 2.6 } = {}) {
+  const st = await ensureStage();
+  section.classList.add("used");
+  const S = st.state;
+  const change = () => {
+    if (S.world !== "plateau") st.home();
+    st.setLight(p.light || "day");
+    st.setRig(p.rig || null);
+    st.setXray(!!p.xray);
+    if (p.sky) st.setSky({ year: p.sky.year, culminate: p.sky.culminate, lower: p.sky.lower, lst: p.sky.lst });
+    if (p.sky?.culminate && [...$("#culminate").options].some((o) => o.value === p.sky.culminate)) $("#culminate").value = p.sky.culminate;
+    section.dataset.light = S.light; section.dataset.world = S.world;
+    syncSkyUI();
+  };
+  if ((p.light || "day") !== S.light || S.world !== "plateau") { await fadeThrough(async () => { change(); await st.goto(p.stop, { seconds: 0 }); }); }
+  else { change(); await st.goto(p.stop, { seconds }); }
+  $("#homebtn").hidden = true;
+}
+const chipHtml = (c) => `<span class="chip n-${c.number}">${c.number}</span><span class="chip d-${c.design}">${c.design}</span>`;
+async function showClaim(id, { scroll = true, seconds } = {}) {
+  const c = atlas.claims.find((x) => x.id === id);
+  if (!c) return;
+  stopTour();
+  if (scroll) section.scrollIntoView({ behavior: "smooth", block: "start" });
+  $$(".card.active").forEach((n) => n.classList.remove("active"));
+  $(`.card[data-id="${id}"]`)?.classList.add("active");
+  setNow(c.family, c.title, chipHtml(c), `<b>The claim.</b> ${esc(c.wonder)}<br><b>The test.</b> ${esc(c.test)}`);
+  await applyProof(c.proof, { seconds });
+}
+const GO = {
+  hero: () => { setNow("Golden hour", "The plateau from the south-east", "", "Light path-traced once in Blender Cycles and baked into the X3D: your browser draws it without computing a single lamp."); return applyProof({ stop: "hero", light: "day" }); },
+  night: () => { setNow("Night, 2560 BC", "The sky Khufu's builders saw", "", "52,602 real stars at their true distances, wound back 4,586 years. Polaris is nowhere near the pole."); return applyProof({ stop: "moon", light: "night", sky: { year: -2559, culminate: "Alnitak" } }); },
+  shafts: () => showClaim("shaft_stars", { scroll: false }),
+  thuban: () => showClaim("thuban_pole", { scroll: false }),
+  belt: () => { setNow("Night, 2560 BC", "Orion's belt over the three pyramids", "", "Alnitak, Alnilam, Mintaka: crossing the meridian 44.7° up. Now press “Belt on the ground”."); return applyProof({ stop: "belt", light: "night", sky: { year: -2559, culminate: "Alnitak" } }); },
+  plan: () => showClaim("orion_belt", { scroll: false }),
+  xray: () => showClaim("kings_chamber", { scroll: false }),
+  fly: () => flyOut(),
+  home: async () => { const st = await ensureStage(); await fadeThrough(async () => { st.home(); await st.goto("belt", { seconds: 0 }); }); $("#homebtn").hidden = true; section.dataset.world = "plateau"; GO.belt(); },
+};
+async function flyOut() {
+  const st = await ensureStage(); await st.skyReady;
+  section.classList.add("used");
+  if (st.state.light !== "night" || st.state.world !== "plateau") await applyProof({ stop: "belt", light: "night", sky: { year: st.state.year, culminate: "Alnitak" } });
+  st.setRig(null); st.setSky({ labels: Math.max(st.state.labels, 120) }); syncSkyUI();
+  setNow("Leaving Earth", "Flying to Orion's belt", "", "<b>736 light-years</b> to Alnitak. Watch the belt: Alnilam is 1,977 light-years away, nearly three times as far. The row is only a row from here.");
+  $("#homebtn").hidden = false; section.dataset.world = "cosmos";
+  await st.flyTo("Alnitak", { fraction: 0.8, seconds: 16 });
+  setNow("589 light-years out", "The belt, from the side", "", "Drag to look around: the Sun is one faint star behind you. A constellation is a view, not a thing. Whatever the builders drew, they drew the view from Giza.");
+}
+
+/* ------------------------------------------------------------------ grand tour */
+function stopTour() { tourToken++; section.classList.remove("touring"); $("#tourbtn").textContent = "▶ Grand tour"; }
+async function playTour() {
+  const my = ++tourToken;
+  await ensureStage(); await stage.skyReady;
+  section.classList.add("touring", "used"); $("#tourbtn").textContent = "■ Stop the tour";
+  const alive = () => my === tourToken;
+  const hold = async (ms) => { const t0 = performance.now(); while (alive() && performance.now() - t0 < ms) await sleep(100); };
+  const claimStep = async (id, ms = 6500) => {
+    const c = atlas.claims.find((x) => x.id === id);
+    setNow(c.family, c.title, "", `<b>The claim.</b> ${esc(c.wonder)}`);
+    $$(".card.active").forEach((n) => n.classList.remove("active"));
+    await applyProof(c.proof, { seconds: 3.2 });
+    await hold(ms);
+    if (!alive()) return;
+    setNow(c.family, c.title, chipHtml(c), `<b>The test.</b> ${esc(c.test)}`);
+    await hold(ms + 2500);
+  };
+  await GO.hero(); await hold(5000);
+  for (const id of ["v1_pi", "khafre_345", "kings_chamber", "kc_half_area", "shaft_stars", "thuban_pole", "passage_thuban", "leo_10500", "orion_belt"]) { if (!alive()) return; await claimStep(id); }
+  if (!alive()) return;
+  await GO.belt(); await hold(4500);
+  if (!alive()) return;
+  await flyOut(); await hold(9000);
+  if (!alive()) return;
+  await GO.home(); await hold(1500);
+  if (!alive()) return;
+  setNow("The verdict", `${atlas.count} claims`, "", `<b>${atlas.number_grades.Confirmed}</b> hold as numbers. Only <b>${atlas.design_grades.Designed}</b> were surely meant: the cubit plan, the sekeds, the 3-4-5, the square, the level, true north. The rest is what any big, careful, simple shape does when you bring enough units to it. Scroll down: every card has its own 3D proof.`);
+  stopTour();
+}
+
+/* ------------------------------------------------------------------ sky panel */
+function syncSkyUI() {
+  if (!stage) return;
+  const S = stage.state;
+  $("#year").value = S.year; $("#yearout").textContent = yearLabel(S.year);
+  $("#labelcount").value = S.labels; $("#labelout").textContent = S.labels;
+  $("#faint").checked = S.faint; $("#figures").checked = S.figures;
+  $$("[data-light-set]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lightSet === S.light)));
+  $$("#yearticks button").forEach((b) => b.classList.toggle("on", Math.abs(+b.dataset.year - S.year) < 6));
+  section.dataset.light = S.light;
+  renderStars();
+}
+function renderStars() {
+  if (!stage || !stage.state.skyData) return;
+  const S = stage.state, body = $("#startable tbody");
+  body.innerHTML = KEY.map((n) => {
+    const i = stage.starInfo(n);
+    return i ? `<tr data-star="${n}" class="${i.alt < 0 ? "below" : ""}"><td>${n}</td><td>${i.alt.toFixed(2)}°</td><td>${i.az.toFixed(1)}°</td><td>${Math.round(i.distance).toLocaleString("en-US")}</td></tr>` : "";
+  }).join("");
+  const shafts = v4claims?.claims.find((c) => c.key === "shaft_stars")?.shafts;
+  const box = $("#readout");
+  if (shafts && S.light === "night" && S.world === "plateau") {
+    box.hidden = false;
+    box.innerHTML = `<b>${yearLabel(S.year)}</b> · meridian heights<br>` + shafts.map((s) => {
+      const i = stage.starInfo(s.star), alt = culminationAltitude(i.dec), d = alt - s.gantenbrink_deg;
+      return `${s.key} ${s.star} ${alt.toFixed(2)}° · shaft ${s.gantenbrink_deg.toFixed(2)}° (${d >= 0 ? "+" : "−"}${Math.abs(d).toFixed(2)}°)`;
+    }).join("<br>");
+  } else box.hidden = true;
+}
+function wireSky() {
+  const need = async (fn) => { const st = await ensureStage(); await st.skyReady; fn(st); syncSkyUI(); renderStars(); };
+  // each handler reads its control now: by the time the stage is ready, syncSkyUI may have written the control back
+  $("#year").addEventListener("input", (e) => { const year = +e.target.value, culminate = $("#culminate").value; need((st) => st.setSky({ year, culminate })); });
+  $$("#yearticks button").forEach((b) => b.addEventListener("click", () => need((st) => st.setSky({ year: +b.dataset.year, culminate: $("#culminate").value }))));
+  $("#culminate").addEventListener("change", (e) => { const culminate = e.target.value; need((st) => st.setSky({ culminate })); });
+  $("#labelcount").addEventListener("input", (e) => { const labels = +e.target.value; need((st) => st.setSky({ labels })); });
+  $("#faint").addEventListener("change", (e) => { const faint = e.target.checked; need((st) => st.setSky({ faint })); });
+  $("#figures").addEventListener("change", (e) => { const figures = e.target.checked; need((st) => st.setSky({ figures })); });
+  $$("[data-light-set]").forEach((b) => b.addEventListener("click", async () => {
+    const st = await ensureStage(); section.classList.add("used");
+    if (st.state.world !== "plateau") return GO.home();
+    await fadeThrough(async () => { st.setLight(b.dataset.lightSet); if (b.dataset.lightSet === "night") st.setSky({ culminate: $("#culminate").value }); });
+    syncSkyUI(); renderStars();
+  }));
+  $("#startable").addEventListener("click", (e) => {
+    const tr = e.target.closest("tr[data-star]"); if (!tr) return;
+    if ([...$("#culminate").options].some((o) => o.value === tr.dataset.star)) $("#culminate").value = tr.dataset.star;
+    need((st) => st.setSky({ culminate: tr.dataset.star }));
+  });
+}
+
+/* ------------------------------------------------------------------ atlas */
+const filters = { family: new Set(), number: new Set(), design: new Set(), q: "" };
+const COLORS = { Confirmed: "#9fd49a", Likely: "#e9bf76", Suspected: "#f0a35e", False: "#ea8f86", Untested: "#5d6d7c", Designed: "#74d3d9", Possible: "#3f8f96", Coincidence: "#b9a3f5", Unknown: "#5d6d7c" };
+function digitsHtml(c) {
+  if (c.measured == null || c.target == null || c.literal == null) return "";
+  const row = (v) => markDigits(fmt(v), c.literal).map(([t, h]) => (h == null ? esc(t) : `<span class="${h ? "hit" : "miss"}">${esc(t)}</span>`)).join("");
+  const note = c.literal === 0 ? "no leading digit in common" + (c.rounding ? ` (they round together to ${c.rounding})` : "")
+    : `${c.literal} literal digit${c.literal === 1 ? "" : "s"} shared` + (c.rounding > c.literal ? `, ${c.rounding} after rounding` : "");
+  return `<div class="digits"><span class="k">measured</span><span>${row(c.measured)} <span class="k">${esc(c.unit)}</span></span><span class="k">claimed</span><span>${row(c.target)}</span><span class="dnote">${note}</span></div>`;
+}
+function cardHtml(c) {
+  return `<article class="card" data-id="${c.id}">
+    ${c.invented ? '<span class="inv">MADE UP HERE</span>' : ""}
+    <div class="fam"><span>${esc(c.family)}</span><em>${c.origin === "v1" ? "from v1" : "new in v4"}</em></div>
+    <h3>${esc(c.title)}</h3>
+    <p class="wonder">${esc(c.wonder)}</p>
+    ${digitsHtml(c)}
+    <p class="test">${esc(c.test)}</p>
+    <p class="src">${esc(c.source)}</p>
+    <div class="foot">${chipHtml(c)}<button class="show" data-show="${c.id}" aria-label="Show ${esc(c.title)} in 3D">Show in 3D ▶</button></div>
+  </article>`;
+}
+function renderCards() {
+  const list = filterClaims(atlas.claims, filters);
+  $("#cards").innerHTML = list.map(cardHtml).join("");
+  $("#count").textContent = `${list.length} of ${atlas.count} claims shown`;
+}
+function chipset(node, values, key, counts) {
+  node.innerHTML = values.map((v) => `<button aria-pressed="false" data-v="${esc(v)}">${esc(v)}${counts ? ` <b>${counts[v] || 0}</b>` : ""}</button>`).join("");
+  node.addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    const on = b.getAttribute("aria-pressed") !== "true"; b.setAttribute("aria-pressed", String(on));
+    on ? filters[key].add(b.dataset.v) : filters[key].delete(b.dataset.v);
+    renderCards();
+  });
+}
+function renderTally() {
+  const bar = (title, grades, counts, say) => `<div class="bar"><h3>${title}</h3><div class="track">${grades.map((g) => `<i style="flex:${counts[g] || 0};background:${COLORS[g]}" title="${g}: ${counts[g] || 0}"></i>`).join("")}</div>
+    <div class="keys">${grades.map((g) => `<span><b>${counts[g] || 0}</b> ${g}</span>`).join("")}</div><p class="fine" style="margin:8px 0 0">${say}</p></div>`;
+  const n = atlas.number_grades, d = atlas.design_grades;
+  $("#tally").innerHTML = bar("Does the number hold?", NUMBER_GRADES, n, `${n.Confirmed + n.Likely} of ${atlas.count} claims are true or nearly true as arithmetic.`)
+    + bar("Was it designed?", DESIGN_GRADES, d, `Only ${d.Designed} are surely the builders' intent; ${d.Coincidence} are accidents of units or of the shape itself.`);
+  $("#k-claims").textContent = atlas.count;
+  $("#search").placeholder = `Search ${atlas.count} claims…`;
+}
+
+/* ------------------------------------------------------------------ shaft clock */
+const SC = { x0: 56, x1: 744, y0: 20, y1: 380, yr0: -3600, yr1: -1600, a0: 27, a1: 48 };
+const COL = { KS: "#ff9a3f", KN: "#4dffd9", QS: "#bfd9ff", QN: "#ffe666" };
+const sx = (y) => SC.x0 + (y - SC.yr0) / (SC.yr1 - SC.yr0) * (SC.x1 - SC.x0);
+const sy = (a) => SC.y1 - (a - SC.a0) / (SC.a1 - SC.a0) * (SC.y1 - SC.y0);
+function drawShaftChart() {
+  const svg = $("#shaftchart");
+  const sh = v4claims?.claims.find((c) => c.key === "shaft_stars");
+  if (!svg || !sh) return;
+  let h = `<rect x="${SC.x0}" y="${SC.y0}" width="${SC.x1 - SC.x0}" height="${SC.y1 - SC.y0}" fill="#0a1119" stroke="#25364a"/>`;
+  for (let a = 28; a <= 48; a += 4) h += `<line x1="${SC.x0}" x2="${SC.x1}" y1="${sy(a)}" y2="${sy(a)}" stroke="#16222f"/><text x="${SC.x0 - 6}" y="${sy(a) + 4}" text-anchor="end">${a}°</text>`;
+  for (let y = -3500; y <= -1700; y += 300) h += `<line y1="${SC.y0}" y2="${SC.y1}" x1="${sx(y)}" x2="${sx(y)}" stroke="#16222f"/><text x="${sx(y)}" y="${SC.y1 + 16}" text-anchor="middle">${yearLabel(y)}</text>`;
+  // Khufu's reign as commonly cited (about 2589 to 2566 BC)
+  h += `<rect x="${sx(-2588)}" y="${SC.y0}" width="${sx(-2565) - sx(-2588)}" height="${SC.y1 - SC.y0}" fill="#e9bf7630"/><text x="${sx(-2577)}" y="${SC.y0 + 12}" text-anchor="middle" style="fill:#e9bf76">Khufu's reign</text>`;
+  for (const s of sh.shafts) {
+    const c = COL[s.key];
+    h += `<line x1="${SC.x0}" x2="${SC.x1}" y1="${sy(s.gantenbrink_deg)}" y2="${sy(s.gantenbrink_deg)}" stroke="${c}" stroke-width="1.4"/>`;
+    if (s.petrie_deg >= SC.a0 && s.petrie_deg <= SC.a1) h += `<line x1="${SC.x0}" x2="${SC.x1}" y1="${sy(s.petrie_deg)}" y2="${sy(s.petrie_deg)}" stroke="${c}" stroke-width="1" stroke-dasharray="4 5" opacity=".6"/>`;
+    const pts = s.track.filter(([, a]) => a >= SC.a0 - 1 && a <= SC.a1 + 1).map(([y, a]) => `${sx(y).toFixed(1)},${sy(a).toFixed(1)}`).join(" ");
+    h += `<polyline points="${pts}" fill="none" stroke="${c}" stroke-width="2.6" stroke-linecap="round"/>`;
+    for (const y of s.match_years) h += `<circle cx="${sx(y)}" cy="${sy(s.gantenbrink_deg)}" r="5" fill="#060a11" stroke="${c}" stroke-width="2"/><text x="${sx(y) + 8}" y="${sy(s.gantenbrink_deg) - 7}" style="fill:${c}">${yearLabel(y)}</text>`;
+    const last = s.track[s.track.length - 1];
+    h += `<text x="${SC.x1 - 4}" y="${Math.max(SC.y0 + 10, Math.min(SC.y1 - 4, sy(last[1]) - 6))}" text-anchor="end" style="fill:${c};font-weight:700">${s.star} · ${s.key}</text>`;
+  }
+  const yr = stage ? stage.state.year : -2559;
+  if (yr >= SC.yr0 && yr <= SC.yr1) h += `<line x1="${sx(yr)}" x2="${sx(yr)}" y1="${SC.y0}" y2="${SC.y1}" stroke="#f3efe2" stroke-width="1.5"/><text x="${sx(yr) + 5}" y="${SC.y1 - 6}" style="fill:#f3efe2">${yearLabel(yr)}</text>`;
+  svg.innerHTML = h;
+}
+function wireShaftChart() {
+  const svg = $("#shaftchart");
+  let down = false;
+  const at = async (e) => {
+    const r = svg.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 760;
+    const year = Math.round((SC.yr0 + (x - SC.x0) / (SC.x1 - SC.x0) * (SC.yr1 - SC.yr0)) / 5) * 5;
+    if (year < SC.yr0 || year > SC.yr1) return;
+    const st = await ensureStage(); await st.skyReady;
+    st.setSky({ year, culminate: $("#culminate").value }); syncSkyUI(); renderStars(); drawShaftChart();
+  };
+  svg.addEventListener("pointerdown", (e) => { down = true; svg.setPointerCapture(e.pointerId); at(e); });
+  svg.addEventListener("pointermove", (e) => down && at(e));
+  svg.addEventListener("pointerup", () => { down = false; });
+}
+
+/* ------------------------------------------------------------------ boot */
+async function boot() {
+  let witness;
+  [atlas, v4claims, witness] = await receipts;
+  renderTally();
+  chipset($("#f-family"), atlas.families, "family");
+  chipset($("#f-number"), NUMBER_GRADES, "number", atlas.number_grades);
+  chipset($("#f-design"), DESIGN_GRADES, "design", atlas.design_grades);
+  renderCards();
+  $("#search").addEventListener("input", (e) => { filters.q = e.target.value; renderCards(); });
+  $("#cards").addEventListener("click", (e) => { const b = e.target.closest("[data-show]"); if (b) showClaim(b.dataset.show); });
+  $$(".lens button").forEach((b) => b.addEventListener("click", () => {
+    $$(".lens button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    $("#atlas").dataset.lens = b.dataset.lens;
+  }));
+  const sp = atlas.claims.find((c) => c.id === "spence_alignment");
+  const tick = $('#yearticks [data-year="-2465"]');
+  if (sp?.year && tick) { tick.dataset.year = sp.year; tick.textContent = yearLabel(sp.year); tick.title = "Kochab over Mizar: Spence's alignment year in this model"; }
+  const sh = v4claims.claims.find((c) => c.key === "shaft_stars");
+  $("#sc-verdict").textContent = `Nearest fits: ${sh.shafts.map((s) => `${s.star} ${s.nearest_label}`).join(", ")}. A spread of ${sh.spread_years} years, all after Khufu's reign. In 2560 BC the four stars stood ${sh.shafts.map((s) => Math.abs(s.miss_2560BC_deg).toFixed(2) + "°").join(", ")} from their shafts: a real aim at the sky, not a date stamp.`;
+  drawShaftChart(); wireShaftChart(); wireSky();
+  if (witness) $("#witness tbody").innerHTML = witness.rows.map((r) => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join("");
+  $$("[data-go]").forEach((b) => b.addEventListener("click", () => { stopTour(); GO[b.dataset.go](); }));
+  $("#enter").addEventListener("click", () => { section.classList.add("used"); GO.hero(); });
+  $("#playtour").addEventListener("click", playTour);
+  $("#tourbtn").addEventListener("click", () => (section.classList.contains("touring") ? stopTour() : playTour()));
+  // start the renderer by itself on wide screens; phones wait for a tap (two WebGL megabytes are a choice there)
+  if (params.get("poster") !== "1" && (window.innerWidth >= 700 || params.has("claim") || params.has("go"))) {
+    ensureStage().then(() => {
+      if (params.get("claim")) showClaim(params.get("claim"), { scroll: false, seconds: 0 });
+      else if (params.get("go") && GO[params.get("go")]) { section.classList.add("used"); GO[params.get("go")](); }
+    }).catch(() => {});
+  }
+  window.gizaAtlas = { showClaim, playTour, stopTour, GO, atlas, ensureStage };
+}
+boot().catch((err) => { status("The atlas data did not load: " + err.message); console.error(err); });

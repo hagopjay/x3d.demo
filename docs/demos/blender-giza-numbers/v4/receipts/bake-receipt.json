@@ -1,0 +1,225 @@
+{
+ "schema": "x3d.io/bake-receipt/1",
+ "blender": "5.3.0",
+ "preview": false,
+ "lights": {
+  "day": {
+   "elev": 10.0,
+   "travel_az": 68.0,
+   "color": [
+    1.0,
+    0.6,
+    0.3
+   ],
+   "energy": 7.0,
+   "disc": 1.5,
+   "sky": 0.16,
+   "sky_elev": 10.0,
+   "sky_filter": [
+    1.0,
+    0.8,
+    0.62
+   ],
+   "expose_q": 70,
+   "expose_to": 0.74,
+   "tint": [
+    1.0,
+    0.96,
+    0.9
+   ],
+   "floor": [
+    0.04,
+    0.042,
+    0.06
+   ],
+   "saturation": 1.22,
+   "exposure": 1.32475,
+   "edge_colour": [
+    0.7428,
+    0.5484,
+    0.3508
+   ],
+   "ground_percentiles": {
+    "5": 0.4861,
+    "50": 0.5469,
+    "95": 0.5937
+   },
+   "pyramid_percentiles": {
+    "Khufu": {
+     "5": 0.3478,
+     "50": 0.5663,
+     "95": 0.8381
+    },
+    "Khafre": {
+     "5": 0.1589,
+     "50": 0.4577,
+     "95": 0.8348
+    },
+    "KhafreCap": {
+     "5": 0.5273,
+     "50": 0.6575,
+     "95": 0.9131
+    },
+    "Menkaure": {
+     "5": 0.2704,
+     "50": 0.4676,
+     "95": 0.8301
+    },
+    "Queens": {
+     "5": 0.3192,
+     "50": 0.4146,
+     "95": 0.7546
+    }
+   }
+  },
+  "night": {
+   "elev": 44.0,
+   "travel_az": 120.0,
+   "color": [
+    0.7,
+    0.8,
+    1.0
+   ],
+   "energy": 1.0,
+   "disc": 1.0,
+   "sky": null,
+   "sky_rgb": [
+    0.1,
+    0.14,
+    0.3
+   ],
+   "sky_strength": 0.35,
+   "expose_q": 70,
+   "expose_to": 0.12,
+   "tint": [
+    0.26,
+    0.48,
+    1.0
+   ],
+   "floor": [
+    0.012,
+    0.016,
+    0.03
+   ],
+   "saturation": 1.25,
+   "exposure": 0.47983,
+   "edge_colour": [
+    0.11,
+    0.1516,
+    0.2097
+   ],
+   "ground_percentiles": {
+    "5": 0.1474,
+    "50": 0.157,
+    "95": 0.1654
+   },
+   "pyramid_percentiles": {
+    "Khufu": {
+     "5": 0.0491,
+     "50": 0.1441,
+     "95": 0.1903
+    },
+    "Khafre": {
+     "5": 0.0485,
+     "50": 0.1333,
+     "95": 0.1859
+    },
+    "KhafreCap": {
+     "5": 0.0992,
+     "50": 0.2033,
+     "95": 0.2462
+    },
+    "Menkaure": {
+     "5": 0.0333,
+     "50": 0.1204,
+     "95": 0.1858
+    },
+    "Queens": {
+     "5": 0.0505,
+     "50": 0.1491,
+     "95": 0.1911
+    }
+   }
+  }
+ },
+ "meshes": {
+  "day": {
+   "Khufu": {
+    "faces": 9720,
+    "corners": 38880
+   },
+   "Khafre": {
+    "faces": 5488,
+    "corners": 21952
+   },
+   "KhafreCap": {
+    "faces": 321,
+    "corners": 1284
+   },
+   "Menkaure": {
+    "faces": 1416,
+    "corners": 5664
+   },
+   "Queens": {
+    "faces": 1064,
+    "corners": 4256
+   }
+  },
+  "night": {
+   "Khufu": {
+    "faces": 9720,
+    "corners": 38880
+   },
+   "Khafre": {
+    "faces": 5488,
+    "corners": 21952
+   },
+   "KhafreCap": {
+    "faces": 321,
+    "corners": 1284
+   },
+   "Menkaure": {
+    "faces": 1416,
+    "corners": 5664
+   },
+   "Queens": {
+    "faces": 1064,
+    "corners": 4256
+   }
+  }
+ },
+ "timings": {
+  "day": {
+   "vertex_bake_s": 28.1,
+   "ground_bake_s": 291.1
+  },
+  "night": {
+   "vertex_bake_s": 2.7,
+   "ground_bake_s": 147.6
+  }
+ },
+ "hero": {
+  "camera": [
+   560.0,
+   -1330.0,
+   34.0
+  ],
+  "target": [
+   -330.0,
+   -400.0,
+   70.0
+  ],
+  "lens_mm": 34,
+  "samples": 160,
+  "view_transform": "AgX",
+  "exposure_stops": 0.306
+ },
+ "script_sha256": "596c76188fc7353a918a37f518982684ec7e0252a842c29af249fc1809077186",
+ "illustrative": [
+  "course heights and counts",
+  "today's missing tops",
+  "queens' pyramids",
+  "ground relief",
+  "base levels (Khafre and Menkaure +10 m)"
+ ]
+}
