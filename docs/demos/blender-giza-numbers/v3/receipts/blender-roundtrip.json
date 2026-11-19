@@ -1,0 +1,203 @@
+{
+ "schema": "x3d.demo.blender-roundtrip/1",
+ "demo": "blender-giza-numbers/v3",
+ "input": {
+  "file": "../v2/assets/observatory.x3d",
+  "sha256": "00760f89c15e963df7e7ab6e407f2ca91c590307662bd111cde1d9bbdff60bd0",
+  "bytes": 1097157
+ },
+ "pipeline": {
+  "blender": "5.3.0 (bpy wheel, headless)",
+  "addon": "x3d-blender-io 8310e7b",
+  "import": "bpy.ops.import_scene.x3d",
+  "export": "bpy.ops.export_scene.x3d(x3d_version='X3D40', use_selection=False, use_animation=False)",
+  "script": "build/roundtrip_observatory.py"
+ },
+ "returned": {
+  "sha256": "6477bf6727f6e1e73569a8389847cc59bd8c3a36b3a9ac7f954f30bc9d453b07",
+  "bytes": 2741032,
+  "validator": "x3d_mcp 39c6e94 validate_xml (XSD 4.0) + validate_semantic",
+  "schema_valid": true,
+  "xsd_errors": 0,
+  "semantic_errors": 0,
+  "semantic_warnings": 0,
+  "semantic_infos": 296,
+  "note": "the returned file is not shipped (2.7 MB); rebuild it with the script"
+ },
+ "blender_census": {
+  "import_result": [
+   "FINISHED"
+  ],
+  "objects": 136,
+  "by_type": {
+   "CAMERA": 8,
+   "LIGHT": 2,
+   "MESH": 39,
+   "CURVE": 47,
+   "FONT": 33,
+   "EMPTY": 7
+  },
+  "mesh_polygons": 3494,
+  "edge_only_meshes": 0,
+  "materials": 30,
+  "images": [
+   "limestone-base.png",
+   "limestone-normal.png"
+  ],
+  "cameras": [
+   "CA_Ground",
+   "CA_Interior",
+   "CA_Latitude",
+   "CA_Overview",
+   "CA_Phi",
+   "CA_Pi",
+   "CA_Plan",
+   "CA_Survey"
+  ],
+  "lights": [
+   "DirectLight",
+   "Sun"
+  ],
+  "fonts_or_text": 33,
+  "world_bounds_m": {
+   "min": [
+    -1200.0,
+    -1200.0,
+    -10.074
+   ],
+   "max": [
+    1200.0,
+    1200.0,
+    169.0
+   ]
+  },
+  "defs_matched_by_object_name": 22
+ },
+ "importer_warnings": [
+  "Color has 1600 values but is indexed up to 1680; padding",
+  "TextureCoordinate has 3 values but is indexed up to 4; padding",
+  "No font file found"
+ ],
+ "importer_warning_finding": "Both padding warnings are false alarms: the scene is correct (1600 per-face colours for 1600 faces with colorPerVertex false; texCoordIndex never exceeds 2). The importer's _index_need takes the maximum over coordIndex as well, which the X3D rules only allow when colorPerVertex is true and colorIndex is empty (likewise texCoordIndex). Padding is appended after the used values, so the import is unaffected. Grade: Confirmed (read in import_x3d.py lines 2301 and 2359).",
+ "rows": [
+  {
+   "node": "Shape",
+   "source": 119,
+   "blender": "39 meshes + 47 curves + 33 text objects",
+   "returned": 119,
+   "status": "kept",
+   "note": "all 119 come back"
+  },
+  {
+   "node": "Box / Cylinder / Sphere",
+   "source": "11 / 15 / 6",
+   "blender": "kept as primitives",
+   "returned": "11 / 15 / 6",
+   "status": "kept",
+   "note": "11 / 15 / 6 in, same out"
+  },
+  {
+   "node": "IndexedLineSet",
+   "source": 47,
+   "blender": "47 curves",
+   "returned": 47,
+   "status": "kept",
+   "note": "lines survive as curves"
+  },
+  {
+   "node": "Viewpoint",
+   "source": 8,
+   "blender": "8 cameras",
+   "returned": 8,
+   "status": "kept",
+   "note": "all 8 cameras, renamed OB_CA_…"
+  },
+  {
+   "node": "DirectionalLight",
+   "source": 2,
+   "blender": "2 sun lamps",
+   "returned": 2,
+   "status": "kept",
+   "note": ""
+  },
+  {
+   "node": "ImageTexture",
+   "source": 2,
+   "blender": "2 images",
+   "returned": 2,
+   "status": "kept",
+   "note": "limestone base + normal map"
+  },
+  {
+   "node": "PhysicalMaterial",
+   "source": 2,
+   "blender": "2",
+   "returned": 2,
+   "status": "kept",
+   "note": ""
+  },
+  {
+   "node": "Material",
+   "source": 117,
+   "blender": "30 Blender materials",
+   "returned": "9 + 17 Unlit",
+   "status": "changed",
+   "note": "117 in; 9 Material + 17 UnlitMaterial out (emissive lines become unlit, duplicates merged)"
+  },
+  {
+   "node": "Text",
+   "source": 33,
+   "blender": "33 text objects, body intact",
+   "returned": "0 (33 meshes)",
+   "status": "changed",
+   "note": "exported as meshes: 33 extra IndexedFaceSets, no Text, FontStyle or Billboard (labels stop facing the camera)"
+  },
+  {
+   "node": "Color (per face)",
+   "source": 2,
+   "blender": "colour attribute",
+   "returned": "0 (2 ColorRGBA)",
+   "status": "changed",
+   "note": "comes back as ColorRGBA"
+  },
+  {
+   "node": "Switch",
+   "source": 8,
+   "blender": "flattened",
+   "returned": 0,
+   "status": "lost",
+   "note": "8 in, 0 out: the page's layer toggles have nothing to switch"
+  },
+  {
+   "node": "Group / WorldInfo",
+   "source": "6 / 1",
+   "blender": "flattened",
+   "returned": "0 / 0",
+   "status": "lost",
+   "note": "6 Groups and the WorldInfo are not written back"
+  },
+  {
+   "node": "TextureTransform",
+   "source": 1,
+   "blender": "not carried",
+   "returned": 0,
+   "status": "lost",
+   "note": "the 28 × 28 limestone tiling is dropped; the texture stretches across each face"
+  },
+  {
+   "node": "DEF names",
+   "source": 32,
+   "blender": "object names",
+   "returned": 0,
+   "status": "changed",
+   "note": "0 of 32 come back as written: CA_Overview returns as OB_CA_Overview, OverlayLatitude as OB_OverlayLatitude_001 …; getNamedNode calls would all miss"
+  }
+ ],
+ "summary": "Grade: Confirmed for every row (counted in Blender and in the returned file). The trip keeps the geometry, cameras, lights and textures and returns a valid X3D 4.0 file 2.5 times larger. It loses what an interactive page needs: switches, DEF names, billboarded text and texture tiling. So v3 keeps loading the generated scene, and Blender serves as witness and renderer (the Cycles still), not as the live source.",
+ "hero_still": {
+  "file": "shots/hero-cycles.webp",
+  "engine": "Cycles CPU, 64 samples, denoised, seed 7, AgX",
+  "script": "build/cycles_hero.py",
+  "edits": "sky texture, one low sun, emission on the pi circle and base square, TextureTransform tiling restored by hand; labels and other overlays hidden"
+ }
+}
