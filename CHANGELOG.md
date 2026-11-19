@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v70 (2026-11-19)
+- Front-page card for Demo 65, Great Pyramid Numbers (`docs/demos/blender-giza-numbers/v1/`, merged as PR 131), with image `assets/blender-giza-numbers.jpg` (four frames from the page's own scene; no Google imagery, and not the CC BY-SA photo overlay). I re-ran `verify_numbers.py` (27 claims, identical to the shipped receipt; 13 Confirmed, 8 Likely, 4 Suspected, 2 False), recomputed pi, tau and phi from the stated base and height, and loaded the page headless without errors. I did not check the survey sources; the XSD result is the build lane's own. Versions v1 to v69 are untouched.
+
 ## v69 (2026-11-19)
 - Front-page card for Demo 64, Giza Fall (`docs/demos/blender-giza-fall/v1/`, merged as PR 129), with image `assets/blender-giza-fall.jpg` (four frames from the page's own scene; no Google imagery). I read the fall receipt (534 frames, 197 hits, 22.12 m/s, rest 12.3 m), counted humanoids and interpolators in the shipped X3D, and loaded the page headless without errors. I did not test the sound (no audio device in headless) and did not repeat the Bullet run; the XSD result is the build lane's own. Versions v1 to v68 are untouched.
 
