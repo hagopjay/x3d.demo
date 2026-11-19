@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Walking Twin</title>
+<meta name="description" content="An IFC4 building and an H-Anim 2.0 walker in one X3D scene, built in Blender. Click any wall, slab, column or window to read its IFC GlobalId and embodied carbon straight out of the X3D.">
+<link rel="stylesheet" href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css">
+<style>
+:root{--bg:#0a0b0e;--panel:#12141a;--line:#252a33;--ink:#eef0f3;--dim:#9aa3b0;--hi:#ff8a1f;--ok:#5ed39a;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f5f6f8;--panel:#fff;--line:#dde1e7;--ink:#121620;--dim:#566070;--hi:#c25d00;--ok:#178a50}}
+:root[data-theme="dark"]{--bg:#0a0b0e;--panel:#12141a;--line:#252a33;--ink:#eef0f3;--dim:#9aa3b0;--hi:#ff8a1f;--ok:#5ed39a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:var(--hi)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 0;border-bottom:1px solid var(--line);font:11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.top b{color:var(--ink)}
+h1{font-size:clamp(32px,5vw,58px);line-height:1.03;letter-spacing:-.02em;margin:30px 0 8px}
+h1 em{font-style:normal;color:var(--hi)}
+.lede{color:var(--dim);font-size:18px;max-width:52em;margin:0 0 20px}
+.app{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px}
+.view{position:relative;aspect-ratio:16/10;background:#000;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.view x3d-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hud{position:absolute;left:10px;top:10px;display:flex;flex-direction:column;gap:6px;z-index:2;pointer-events:none}
+.hud span{font:11px var(--mono);background:rgba(0,0,0,.65);color:#fff;padding:4px 8px;border-radius:4px;align-self:flex-start}
+.hud .room{font-size:13px;color:#ffc58a}
+.bar{position:absolute;left:10px;bottom:10px;right:10px;display:flex;flex-wrap:wrap;gap:6px;z-index:2}
+.bar button{font:600 12px var(--mono);padding:7px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.25);background:rgba(10,11,14,.78);color:#fff;cursor:pointer}
+.bar button.on{border-color:var(--hi);color:#ffc58a}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card h3{margin:0 0 2px;font-size:20px}
+.card .cls{font:12px var(--mono);color:var(--hi)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:12px 0 0;font-size:14px}
+.kv dt{color:var(--dim)}
+.kv dd{margin:0;font-family:var(--mono);font-size:13px;word-break:break-all}
+.big{font:700 34px/1 var(--mono);margin:14px 0 2px}
+.big small{font-size:14px;color:var(--dim)}
+.share{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:6px 0 2px}
+.share i{display:block;height:100%;background:var(--hi)}
+.ok{color:var(--ok);font:12px var(--mono)}
+.hint{color:var(--dim);font-size:14px}
+h2{font-size:26px;margin:46px 0 6px}
+.sub{color:var(--dim);margin:0 0 14px;max-width:58em}
+.cols{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{padding:8px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+td.m{font-family:var(--mono);font-size:12.5px}
+td.r{text-align:right;font-family:var(--mono)}
+tr.sel td{background:rgba(255,138,31,.12)}
+#list tr{cursor:pointer}
+.scroll{overflow-x:auto}
+.mbar{display:grid;grid-template-columns:150px 1fr 70px;gap:10px;align-items:center;font-size:14px;margin:8px 0}
+.mbar div{height:14px;border-radius:3px}
+.mbar span:last-child{font-family:var(--mono);text-align:right}
+.chain{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.chain div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:14px}
+.chain b{display:block;font:700 13px var(--mono);color:var(--hi);margin-bottom:4px}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 44px;color:var(--dim);font-size:13px}
+@media (max-width:980px){.app,.cols{grid-template-columns:1fr}.chain{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.chain{grid-template-columns:1fr}.view{aspect-ratio:4/5}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><span><b>The Walking Twin</b> · Blender pipelines</span><span>IFC4 → Blender → x3d-blender-io → X3D 4.0 + H-Anim 2.0 → X_ITE</span></div>
+<h1>Click the wall. <em>Read its GlobalId.</em></h1>
+<p class="lede">A small timber, brick and concrete field station, authored as IFC4, and a site worker walking through it as an H-Anim 2.0 humanoid, in one X3D file built in Blender. Each wall, slab, column, beam, window and door keeps its IFC GlobalId and its quantities inside the X3D itself, as metadata. This page reads them live from the scene, checks each GlobalId against the IFC file, and colours the building by embodied carbon.</p>
+
+<div class="app">
+  <div class="view">
+    <div id="host"></div>
+    <div class="hud"><span id="tag">loading X_ITE</span><span class="room" id="room">walker: —</span></div>
+    <div class="bar">
+      <button id="bRoof">Roof: off</button>
+      <button id="bCarbon">Colour: materials</button>
+      <button id="bVp1" class="on">Overview</button>
+      <button id="bVp2">Follow the walker</button>
+      <button id="bVp3">Street</button>
+      <button id="bPause">Pause walker</button>
+    </div>
+  </div>
+  <aside class="card" id="card">
+    <div class="cls">IFC ELEMENT</div>
+    <h3>Click any part of the building</h3>
+    <p class="hint">Walls, slabs, columns, the ridge beam, the windows and the open door all respond. The numbers come from the X3D MetadataSet on that element, not from a separate file.</p>
+    <div class="big" id="tot">— <small>kgCO₂e, whole building</small></div>
+  </aside>
+</div>
+
+<h2>Where the carbon is</h2>
+<p class="sub">Volume is measured from the IFC geometry in Blender. Mass and carbon use the illustrative factors listed below. Click a row to find the element in the model.</p>
+<div class="cols">
+  <div class="scroll"><table><thead><tr><th>Element</th><th>Class</th><th>Material</th><th style="text-align:right">m³</th><th style="text-align:right">kgCO₂e</th></tr></thead><tbody id="list"></tbody></table></div>
+  <div class="card"><b>By material</b><div id="mats"></div>
+    <p class="hint" style="margin-top:14px">The steel is about 1% of the building's mass and 7% of its carbon. The ground slab alone holds 35%.</p></div>
+</div>
+
+<h2>One identity, four places</h2>
+<div class="chain">
+  <div><b>1 · IFC4</b>ifcopenshell 0.9.0 writes <a href="assets/station.ifc">station.ifc</a>: 24 elements, 5 materials, a storey. Schema and EXPRESS-rule validation: 0 issues.</div>
+  <div><b>2 · Blender</b>Each element's geometry becomes a mesh; its volume is measured there, and an <code>x3d_metadata</code> custom property holds GlobalId, class, material and quantities.</div>
+  <div><b>3 · X3D 4.0</b>x3d-blender-io writes a MetadataSet on each element's Transform. x3d_mcp 39c6e94: XSD valid, 0 semantic errors, 0 warnings.</div>
+  <div><b>4 · This page</b>X_ITE reads the MetadataSet through SAI when you click, and the page looks the GlobalId up in station.ifc: <span id="verified">checking</span>.</div>
+</div>
+
+<h2>The walker</h2>
+<div class="scroll"><table>
+<tr><th>What</th><th>Value</th></tr>
+<tr><td>Humanoid</td><td class="m">HAnimHumanoid, 16 joints with H-Anim 2.0 standard names (humanoid_root, sacroiliac, vl5, skullbase, hips, knees, talocrural, shoulders, elbows, radiocarpal), one skinned mesh, rigid weights</td></tr>
+<tr><td>Motion</td><td class="m">a walk cycle keyed in Blender at 12 fps: hip swing ±24°, knee flexion 6° to 54°, counter-swinging arms, 2.5 cm pelvic bob; 26 cycles over a 30.3 s loop at 1.2 m/s</td></tr>
+<tr><td>Route</td><td class="m">in through the front door, through the partition doorway, a lap of the east room and back out (12 waypoints, turns over 0.5 s)</td></tr>
+<tr><td>Found on the way</td><td>The add-on's joint-name table still uses the H-Anim 1.x names <code>ankle</code> and <code>wrist</code>; x3d_mcp's semantic check flagged them, and the H-Anim 2.0 names go in as per-bone overrides (<code>x3d_hanim_joint</code>). Confirmed.</td></tr>
+</table></div>
+
+<h2>Factors (illustrative)</h2>
+<div class="scroll"><table id="factors"><tr><th>Material</th><th style="text-align:right">density kg/m³</th><th style="text-align:right">kgCO₂e per kg (A1 to A3)</th></tr></table></div>
+<p class="sub" style="margin-top:10px">These factors are rough values of the kind generic databases publish. They are not taken from a certified EPD or checked against any database, and timber carbon excludes biogenic storage. The demo shows the plumbing: IFC identity, measured quantity, X3D metadata, live readout. A real project swaps in its own factors.</p>
+
+<footer>The Walking Twin v1 · original synthetic building and figure · <a href="assets/twin.x3d">twin.x3d</a> · <a href="assets/station.ifc">station.ifc</a> · generators in <a href="build/">build/</a> (gen_ifc.py, build_twin.py) · Blender 5.3.0 (bpy), x3d-blender-io 8310e7b, X_ITE 16.7.1 · published on <a href="../../../">x3d.demo</a>.</footer>
+</div>
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script>
+(async function(){
+const $=id=>document.getElementById(id);
+const MAT_COL={'Concrete C30/37':'#9e9e99','Cross-laminated timber':'#c78f57','Clay brick':'#9e432c','Steel S355':'#58606b','Float glass':'#8cb8cc'};
+const cv=document.createElement('x3d-canvas');cv.setAttribute('splashScreen','false');cv.setAttribute('contextMenu','false');$('host').appendChild(cv);
+const B=X3D.getBrowser(cv);B.setBrowserOption('StraightenHorizon',false);
+const EL=[];// {def, node, md, mats:[{m, base, emis}]}
+let ifcText='';fetch('assets/station.ifc').then(r=>r.text()).then(t=>{ifcText=t;verify();});
+await B.loadURL(new X3D.MFString('assets/twin.x3d'));
+const S=B.currentScene;$('tag').textContent='X_ITE '+B.version+' · drag to orbit · click to inspect';
+function walk(node,fn){if(!node)return;fn(node);try{for(const c of node.children||[])walk(c,fn);}catch(_){}}
+// x3d-blender-io writes the element's MetadataSet on its Shape, and shares one Appearance per material through
+// DEF/USE. Each element gets its own material copy here so it can be highlighted and recoloured on its own.
+function ownMaterial(shape){const src=shape.appearance.material;const m=S.createNode(src.getNodeTypeName());
+ for(const f of ['baseColor','emissiveColor','metallic','roughness','transparency','diffuseColor','specularColor','shininess','ambientIntensity'])
+  {try{if(src.getField(f))m[f]=src[f];}catch(_){}}
+ const a=S.createNode('Appearance');a.material=m;shape.appearance=a;return m;}
+for(const n of S.rootNodes){walk(n,x=>{
+  if(x.getNodeTypeName()!=='Transform')return;let rec=null;
+  for(const c of x.children){if(!c.getNodeTypeName||c.getNodeTypeName()!=='Shape')continue;const md=c.metadata;if(!md||md.name!=='IFC')continue;
+   if(!rec){rec={def:x.getNodeName(),node:x,md:{},mats:[]};for(const m of md.value){rec.md[m.name]=m.value[0];}}
+   if(c.appearance&&c.appearance.material){const m=ownMaterial(c);rec.mats.push({m,base:m.baseColor?m.baseColor.copy():null,emis:m.emissiveColor.copy()});}}
+  if(!rec)return;
+  const ts=S.createNode('TouchSensor');x.addChildren=new X3D.MFNode(ts);ts.getField('touchTime').addFieldCallback(rec.def,()=>select(rec));
+  EL.push(rec);});}
+const total=EL.reduce((a,r)=>a+r.md.kgCO2e_A1A3_illustrative,0);
+$('tot').innerHTML=Math.round(total).toLocaleString()+' <small>kgCO₂e, whole building (illustrative)</small>';
+// roof hidden by default so the walker shows
+const roof=EL.find(r=>r.md.Name==='Roof');let roofOn=false;roof.node.visible=false;
+$('bRoof').onclick=()=>{roofOn=!roofOn;roof.node.visible=roofOn;$('bRoof').textContent='Roof: '+(roofOn?'on':'off');$('bRoof').classList.toggle('on',roofOn);};
+let sel=null;
+function setEmis(r,c){for(const x of r.mats)x.m.emissiveColor=c?new X3D.SFColor(...c):x.emis;}
+function select(r){if(sel)setEmis(sel,null);sel=r;setEmis(r,[0.55,0.28,0.02]);const md=r.md,share=md.kgCO2e_A1A3_illustrative/total;
+ const inIfc=ifcText?ifcText.includes("'"+md.GlobalId+"'"):null;
+ $('card').innerHTML='<div class="cls">'+md.IfcClass+'</div><h3>'+md.Name+'</h3>'+
+ '<div class="big">'+Math.round(md.kgCO2e_A1A3_illustrative).toLocaleString()+' <small>kgCO₂e</small></div><div class="share"><i style="width:'+(share*100).toFixed(1)+'%"></i></div><span class="hint">'+(share*100).toFixed(1)+'% of the building</span>'+
+ '<dl class="kv"><dt>GlobalId</dt><dd>'+md.GlobalId+'</dd><dt>in station.ifc</dt><dd>'+(inIfc===null?'checking':inIfc?'<span class="ok">found ✓</span>':'<span style="color:#ff6b6b">not found</span>')+'</dd><dt>Material</dt><dd>'+md.Material+'</dd><dt>Volume</dt><dd>'+md.volume_m3+' m³</dd><dt>Mass</dt><dd>'+Math.round(md.mass_kg).toLocaleString()+' kg</dd><dt>X3D DEF</dt><dd>'+r.def+'</dd></dl>'+
+ '<p class="hint" style="margin-top:12px">Read through SAI from this element\'s MetadataSet in twin.x3d.</p>';
+ document.querySelectorAll('#list tr').forEach(tr=>tr.classList.toggle('sel',tr.dataset.def===r.def));}
+// table and material bars
+const rows=[...EL].sort((a,b)=>b.md.kgCO2e_A1A3_illustrative-a.md.kgCO2e_A1A3_illustrative);
+$('list').innerHTML=rows.map(r=>'<tr data-def="'+r.def+'"><td>'+r.md.Name+'</td><td class="m">'+r.md.IfcClass+'</td><td>'+r.md.Material+'</td><td class="r">'+r.md.volume_m3.toFixed(3)+'</td><td class="r">'+Math.round(r.md.kgCO2e_A1A3_illustrative).toLocaleString()+'</td></tr>').join('');
+$('list').querySelectorAll('tr').forEach(tr=>tr.onclick=()=>{select(EL.find(r=>r.def===tr.dataset.def));$('host').scrollIntoView({behavior:'smooth',block:'center'});});
+const by={};for(const r of EL){by[r.md.Material]=(by[r.md.Material]||0)+r.md.kgCO2e_A1A3_illustrative;}
+const mx=Math.max(...Object.values(by));
+$('mats').innerHTML=Object.entries(by).sort((a,b)=>b[1]-a[1]).map(([k,v])=>'<div class="mbar"><span>'+k+'</span><div style="width:'+(v/mx*100)+'%;background:'+MAT_COL[k]+'"></div><span>'+Math.round(v/total*100)+'%</span></div>').join('');
+// carbon colouring: kgCO2e per element on a log scale, blue (low) to orange (high)
+let carbon=false;const lo=Math.log(Math.min(...EL.map(r=>r.md.kgCO2e_A1A3_illustrative))),hi=Math.log(mx>0?Math.max(...EL.map(r=>r.md.kgCO2e_A1A3_illustrative)):1);
+function ramp(t){const a=[0.15,0.35,0.85],b=[1.0,0.92,0.35],c=[0.95,0.22,0.05];return t<0.5?a.map((v,i)=>v+(b[i]-v)*t*2):b.map((v,i)=>v+(c[i]-v)*(t-0.5)*2);}
+$('bCarbon').onclick=()=>{carbon=!carbon;$('bCarbon').textContent='Colour: '+(carbon?'carbon':'materials');$('bCarbon').classList.toggle('on',carbon);
+ for(const r of EL){const t=(Math.log(r.md.kgCO2e_A1A3_illustrative)-lo)/(hi-lo||1);for(const x of r.mats){if(!x.base)continue;x.m.baseColor=carbon?new X3D.SFColor(...ramp(t)):x.base;}}};
+// viewpoints and walker
+const VPS=[['bVp1','CA_Overview'],['bVp2','CA_Follow_the_walker'],['bVp3','CA_Street']];
+function bindVp(id){for(const [b,d] of VPS){const on=b===id;$(b).classList.toggle('on',on);if(on)S.getNamedNode(d).set_bind=true;}}
+for(const [b] of VPS)$(b).onclick=()=>bindVp(b);
+bindVp('bVp1');   // the file lists the follow camera first; open on the overview
+const timer=S.getNamedNode('SceneTimer'),carrier=S.getNamedNode('OB_Walker_path');let paused=false;
+$('bPause').onclick=()=>{paused=!paused;if(paused){timer.pauseTime=B.currentTime;}else{timer.resumeTime=B.currentTime;}$('bPause').textContent=paused?'Resume walker':'Pause walker';$('bPause').classList.toggle('on',paused);};
+// X3D is Y-up: Blender (x, y) on the ground maps to X3D (x, -z)
+setInterval(()=>{const t=carrier.translation;const x=t.x,y=-t.z;const room=y<0.2?'outside':x<6?'west room':'east room';$('room').textContent='walker: '+room+' · ('+x.toFixed(1)+', '+y.toFixed(1)+') m';},250);
+function verify(){if(!EL.length){setTimeout(verify,300);return;}const n=EL.filter(r=>ifcText.includes("'"+r.md.GlobalId+"'")).length;$('verified').innerHTML='<span class="ok">'+n+' of '+EL.length+' GlobalIds found ✓</span>';}
+// factors table from the receipt
+try{const R=await (await fetch('receipts/elements.json')).json();$('factors').innerHTML+=Object.entries(R.factors).map(([k,v])=>'<tr><td>'+k+'</td><td class="r">'+v.density+'</td><td class="r">'+v.kgco2e_per_kg+'</td></tr>').join('');}catch(_){}
+window.twin={EL,select};
+})();
+</script>
+</body>
+</html>
