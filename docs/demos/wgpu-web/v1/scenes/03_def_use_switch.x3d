@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "https://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Interchange' version='4.0'>
+  <head>
+    <component name='Grouping' level='2'/>
+    <meta name='title' content='DEF/USE, Switch, transparency'/>
+    <meta name='description' content='25 spheres share one mesh; a Switch picks one child; a glass slab is transparent.'/>
+    <meta name='generator' content='x3d.wgpu sample scenes'/>
+  </head>
+  <Scene>
+
+    <Viewpoint description='Grid' position='0 5 8' orientation='1 0 0 -0.55'/>
+    <Background skyColor='0.08 0.08 0.1'/>
+    <DirectionalLight direction='-0.3 -1 -0.4' intensity='0.8' ambientIntensity='0.3'/>
+    <!-- One Sphere is DEF'd; the other 24 USE it. The renderer uploads one mesh. -->
+    <Group DEF='Grid'>
+      <Transform translation='-2.4 0 -2.4'><Shape><Appearance><Material diffuseColor='1 0.25 0.25' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere DEF='Ball' radius='0.4'/></Shape></Transform>
+      <Transform translation='-2.4 0 -1.2'><Shape><Appearance><Material diffuseColor='0.9843 0.3655 0.1502' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='-2.4 0 0'><Shape><Appearance><Material diffuseColor='0.9382 0.4895 0.07232' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='-2.4 0 1.2'><Shape><Appearance><Material diffuseColor='0.8645 0.6142 0.02134' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='-2.4 0 2.4'><Shape><Appearance><Material diffuseColor='0.7679 0.7316 0.0004386' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='-1.2 0 -2.4'><Shape><Appearance><Material diffuseColor='0.6545 0.8346 0.01093' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='-1.2 0 -1.2'><Shape><Appearance><Material diffuseColor='0.5314 0.9165 0.05214' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='-1.2 0 0'><Shape><Appearance><Material diffuseColor='0.4063 0.9722 0.1215' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='-1.2 0 1.2'><Shape><Appearance><Material diffuseColor='0.2871 0.9982 0.2146' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='-1.2 0 2.4'><Shape><Appearance><Material diffuseColor='0.1813 0.993 0.3257' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='0 0 -2.4'><Shape><Appearance><Material diffuseColor='0.09549 0.9568 0.4477' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='0 0 -1.2'><Shape><Appearance><Material diffuseColor='0.03511 0.8918 0.573' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='0 0 0'><Shape><Appearance><Material diffuseColor='0.003943 0.8023 0.6938' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='0 0 1.2'><Shape><Appearance><Material diffuseColor='0.003943 0.6938 0.8023' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='0 0 2.4'><Shape><Appearance><Material diffuseColor='0.03511 0.573 0.8918' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='1.2 0 -2.4'><Shape><Appearance><Material diffuseColor='0.09549 0.4477 0.9568' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='1.2 0 -1.2'><Shape><Appearance><Material diffuseColor='0.1813 0.3257 0.993' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='1.2 0 0'><Shape><Appearance><Material diffuseColor='0.2871 0.2146 0.9982' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='1.2 0 1.2'><Shape><Appearance><Material diffuseColor='0.4063 0.1215 0.9722' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='1.2 0 2.4'><Shape><Appearance><Material diffuseColor='0.5314 0.05214 0.9165' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='2.4 0 -2.4'><Shape><Appearance><Material diffuseColor='0.6545 0.01093 0.8346' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='2.4 0 -1.2'><Shape><Appearance><Material diffuseColor='0.7679 0.0004386 0.7316' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='2.4 0 0'><Shape><Appearance><Material diffuseColor='0.8645 0.02134 0.6142' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='2.4 0 1.2'><Shape><Appearance><Material diffuseColor='0.9382 0.07232 0.4895' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+      <Transform translation='2.4 0 2.4'><Shape><Appearance><Material diffuseColor='0.9843 0.1502 0.3655' specularColor='0.5 0.5 0.5' shininess='0.4'/></Appearance><Sphere USE='Ball'/></Shape></Transform>
+    </Group>
+    <!-- whichChoice='2' shows only the cone; try 0, 1 or -1 and save (the viewer hot-reloads) -->
+    <Transform translation='0 1.4 0'>
+      <Switch whichChoice='2'>
+        <Shape><Appearance><Material diffuseColor='1 0 0'/></Appearance><Box size='0.6 0.6 0.6'/></Shape>
+        <Shape><Appearance><Material diffuseColor='0 1 0'/></Appearance><Sphere radius='0.4'/></Shape>
+        <Shape><Appearance><Material diffuseColor='1 1 1' specularColor='1 1 1' shininess='0.8'/></Appearance><Cone bottomRadius='0.4' height='0.8'/></Shape>
+      </Switch>
+    </Transform>
+    <!-- Transparent things are drawn last, sorted back to front -->
+    <Transform translation='0 0.3 2.6'>
+      <Shape>
+        <Appearance><Material diffuseColor='0.6 0.85 1' transparency='0.6' specularColor='1 1 1' shininess='0.9'/></Appearance>
+        <Box size='6 1.4 0.1'/>
+      </Shape>
+    </Transform>
+  </Scene>
+</X3D>
