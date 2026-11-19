@@ -1,0 +1,51 @@
+--- gen3.py	2026-11-19 17:05:21.742677819 +0000
++++ gen4.py	2026-11-19 17:10:04.510526983 +0000
+@@ -1,5 +1,5 @@
+ # SPDX-License-Identifier: GPL-3.0-or-later
+-"""Flywheel Forge, generation 3: answers gen 2's gate (G8: X_ITE much darker than Cycles near the lamp).
++"""Flywheel Forge, generation 4: beauty pass on a passing scene (8/8 must still hold): planets on rods, engraved orbit rings, a ringed giant, a closer camera.
+ Usage: python gen0.py OUT_DIR ADDON_SOURCE_DIR
+ """
+ import bpy  # noqa: F401
+@@ -65,6 +65,29 @@
+     planet.data.materials.append(material("Planet %d paint" % (i + 1), planet_colours[i], 0.0, 0.45))
+     planet.parent = pivot
+     planet.location = (radius, 0, 0.18)
++    # beauty: a brass rod carries each planet up from its arm (gen 3 planets floated above the arm ends)
++    bpy.ops.mesh.primitive_cylinder_add(radius=0.012, depth=0.18, vertices=12)
++    rod = bpy.context.active_object
++    rod.name = "Rod %d" % (i + 1)
++    rod.data.materials.append(brass)
++    rod.parent = pivot
++    rod.location = (radius, 0, 0.09)
++    # beauty: an engraved orbit ring inlaid in the walnut
++    bpy.ops.mesh.primitive_torus_add(major_radius=radius, minor_radius=0.012, major_segments=128, minor_segments=8,
++                                     location=(0, 0, 0.004))
++    ring = bpy.context.active_object
++    ring.name = "Orbit ring %d" % (i + 1)
++    ring.data.materials.append(brass)
++    if i == 2:
++        bpy.ops.mesh.primitive_torus_add(major_radius=size * 1.9, minor_radius=size * 0.35, major_segments=64,
++                                         minor_segments=6)
++        band = bpy.context.active_object
++        band.name = "Ring band"
++        band.scale = (1, 1, 0.12)
++        band.data.materials.append(material("Ring band ivory", (0.86, 0.78, 0.6), 0.0, 0.5))
++        band.parent = planet
++        band.location = (0, 0, 0)
++        band.rotation_euler = (math.radians(24), 0, 0)
+     pivot.rotation_euler = (0, 0, 0)
+     pivot.keyframe_insert("rotation_euler", frame=1)
+     pivot.rotation_euler = (0, 0, 2 * math.pi * 240 / period)
+@@ -103,8 +126,9 @@
+ cam_data = bpy.data.cameras.new("Camera")
+ cam = bpy.data.objects.new("Camera", cam_data)
+ scene.collection.objects.link(cam)
+-cam.location = (7.5, -7.5, 5.0)
+-cam.rotation_euler = (math.radians(65), 0, math.radians(45))
++cam.location = (5.4, -5.4, 3.4)    # beauty: closer, lower, the orrery fills the frame
++cam.rotation_euler = (math.radians(66), 0, math.radians(45))
++cam_data.lens = 42
+ scene.camera = cam
+ 
+ sys.path.insert(0, os.path.join(OUT, "_addon"))

@@ -1,0 +1,37 @@
+--- gen1.py	2026-11-19 17:00:41.976335602 +0000
++++ gen2.py	2026-11-19 17:01:14.333384745 +0000
+@@ -1,5 +1,5 @@
+ # SPDX-License-Identifier: GPL-3.0-or-later
+-"""Flywheel Forge, generation 1: answers gen 0's gate (G5 dark, G6 framing, G7 no motion).
++"""Flywheel Forge, generation 2: answers gen 1's gate (G5 still dark, G7 motion too faint).
+ Usage: python gen0.py OUT_DIR ADDON_SOURCE_DIR
+ """
+ import bpy  # noqa: F401
+@@ -28,7 +28,9 @@
+     return m
+ 
+ 
+-brass = material("Brass", (0.78, 0.57, 0.24), 1.0, 0.28)
++# G5 fix (2 of 2): a fully metallic surface in X_ITE with no environment map only shows light-source highlights,
++# so the brass read black. Lower metallic, a little rougher: it keeps its colour under direct light.
++brass = material("Brass", (0.78, 0.57, 0.24), 0.7, 0.38)
+ walnut = material("Walnut", (0.20, 0.10, 0.05), 0.0, 0.6)
+ sun_mat = material("Sun glow", (1.0, 0.7, 0.2), 0.0, 0.5, emission=(1.0, 0.62, 0.18))
+ planet_colours = [(0.55, 0.52, 0.5), (0.85, 0.65, 0.35), (0.20, 0.42, 0.75), (0.75, 0.30, 0.18)]
+@@ -80,6 +82,16 @@
+ lamp.location = (0, 0, 1.7)
+ scene.collection.objects.link(lamp)
+ 
++# G5 fix (1 of 2): one 400 W lamp exports as intensity 1 with radius 40, too little for a 6 m model.
++# Add a warm key and a cool rim sun (DirectionalLight in X3D).
++for name, energy, colour, rot in (("Key sun", 3.0, (1.0, 0.9, 0.78), (math.radians(50), 0, math.radians(30))),
++                                  ("Rim sun", 1.6, (0.62, 0.75, 1.0), (math.radians(-60), 0, math.radians(200)))):
++    d = bpy.data.lights.new(name, "SUN")
++    d.energy, d.color, d.use_shadow = energy, colour, False
++    o = bpy.data.objects.new(name, d)
++    o.rotation_euler = rot
++    scene.collection.objects.link(o)
++
+ cam_data = bpy.data.cameras.new("Camera")
+ cam = bpy.data.objects.new("Camera", cam_data)
+ scene.collection.objects.link(cam)

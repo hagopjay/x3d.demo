@@ -1,0 +1,31 @@
+--- gen2.py	2026-11-19 17:01:14.333384745 +0000
++++ gen3.py	2026-11-19 17:05:21.742677819 +0000
+@@ -1,5 +1,5 @@
+ # SPDX-License-Identifier: GPL-3.0-or-later
+-"""Flywheel Forge, generation 2: answers gen 1's gate (G5 still dark, G7 motion too faint).
++"""Flywheel Forge, generation 3: answers gen 2's gate (G8: X_ITE much darker than Cycles near the lamp).
+ Usage: python gen0.py OUT_DIR ADDON_SOURCE_DIR
+ """
+ import bpy  # noqa: F401
+@@ -78,6 +78,12 @@
+ # G5 fix: the lamp sits inside the Sun sphere and the exporter keeps Blender's cast-shadow flag
+ # (PointLight shadows="true"), so X_ITE shadowed the whole orrery with the Sun's own mesh.
+ light.use_shadow = False
++# G8 fix: the exporter caps a Blender-made light at intensity 1 and writes no attenuation, so the browser lamp had
++# no falloff and a fraction of Cycles' light. Give the lamp X3D's inverse-square attenuation and Cycles' radiant
++# intensity (400 W / 4 pi = 31.8). Setting x3d_intensity tells the exporter the value is meant, so it is not capped.
++light["x3d_energy_per_intensity"] = 4 * math.pi
++light["x3d_intensity"] = light.energy / (4 * math.pi)
++light["x3d_attenuation"] = [0.0, 0.0, 1.0]
+ lamp = bpy.data.objects.new("Sun lamp", light)
+ lamp.location = (0, 0, 1.7)
+ scene.collection.objects.link(lamp)
+@@ -88,6 +94,8 @@
+                                   ("Rim sun", 1.6, (0.62, 0.75, 1.0), (math.radians(-60), 0, math.radians(200)))):
+     d = bpy.data.lights.new(name, "SUN")
+     d.energy, d.color, d.use_shadow = energy, colour, False
++    d["x3d_energy_per_intensity"] = 1.0      # G8 fix: 1 W/m2 of Blender sun = X3D intensity 1, uncapped
++    d["x3d_intensity"] = energy
+     o = bpy.data.objects.new(name, d)
+     o.rotation_euler = rot
+     scene.collection.objects.link(o)

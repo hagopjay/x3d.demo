@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flywheel Forge</title>
+<meta name="description" content="Watch an AI agent build a Blender scene, get rejected by an X3D gate, fix it and try again, eight generations, every check and every fix on the record.">
+<link rel="stylesheet" href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css">
+<style>
+:root{--bg:#0a0b0e;--panel:#12141a;--line:#252a33;--ink:#eef0f3;--dim:#9aa3b0;--brass:#e0b257;--ok:#5ed39a;--bad:#ff6b6b;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f5f6f8;--panel:#fff;--line:#dde1e7;--ink:#121620;--dim:#566070;--brass:#94650f;--ok:#178a50;--bad:#c62e2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:var(--brass)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 0;border-bottom:1px solid var(--line);font:11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.top b{color:var(--ink)}
+h1{font-size:clamp(32px,5vw,60px);line-height:1.03;letter-spacing:-.02em;margin:32px 0 8px}
+h1 em{font-style:normal;color:var(--brass)}
+.lede{color:var(--dim);font-size:18px;max-width:48em;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:18px;align-items:stretch}
+.view{position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.view x3d-canvas{position:absolute;inset:0;width:100%;height:100%}
+.view .tag{position:absolute;left:10px;top:10px;font:11px var(--mono);background:rgba(0,0,0,.6);color:#fff;padding:4px 8px;border-radius:4px}
+.loop{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.loop svg{width:100%;height:auto}
+.spark{display:flex;align-items:flex-end;gap:6px;height:120px;margin:12px 0 4px;padding:0 4px;border-bottom:1px solid var(--line)}
+.spark div{flex:1;background:var(--brass);border-radius:3px 3px 0 0;position:relative;opacity:.85}
+.spark div.full{background:var(--ok)}
+.spark div span{position:absolute;top:-18px;left:0;right:0;text-align:center;font:11px var(--mono);color:var(--dim)}
+.sparkx{display:flex;gap:6px;padding:0 4px;font:10.5px var(--mono);color:var(--dim)}.sparkx span{flex:1;text-align:center}
+h2{font-size:26px;margin:50px 0 6px}
+.sub{color:var(--dim);margin:0 0 16px;max-width:54em}
+.gens{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.gen{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.gen header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}
+.gen header b{font-size:17px}
+.score{font:700 15px var(--mono)}
+.score.full{color:var(--ok)}
+.pics{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#000}
+.pics figure{margin:0;position:relative}
+.pics img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.pics figcaption{position:absolute;left:6px;bottom:6px;font:10px var(--mono);background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:3px}
+.dots{display:flex;gap:5px;padding:10px 14px 0;flex-wrap:wrap}
+.dot{font:10.5px var(--mono);padding:2px 6px;border-radius:3px;border:1px solid currentColor}
+.dot.p{color:var(--ok)}.dot.f{color:var(--bad)}
+.note{padding:8px 14px 4px;font-size:14px}
+.note .why{color:var(--dim);font-size:13px}
+details{padding:0 14px 12px}
+summary{cursor:pointer;font:12px var(--mono);color:var(--brass)}
+pre{font:11.5px/1.45 var(--mono);background:#06070a;color:#d7dbe2;border-radius:6px;padding:10px;overflow:auto;max-height:300px}
+pre .a{color:#6fe3a5}pre .r{color:#ff8a8a}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+td.m{font-family:var(--mono);font-size:12.5px}
+.scroll{overflow-x:auto}
+.g{display:inline-block;font:10.5px var(--mono);padding:2px 7px;border-radius:3px;border:1px solid currentColor;color:var(--ok)}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 44px;color:var(--dim);font-size:13px}
+@media (max-width:900px){.hero,.gens{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><span><b>Flywheel Forge</b> · Blender pipelines</span><span>agent → Blender → x3d-blender-io → X3D gate → fix → again</span></div>
+<h1>An agent builds. The gate says no. <em>It learns.</em></h1>
+<p class="lede">A brass orrery, written as a Blender script by an AI agent (Claude, in this session) and exported to X3D 4.0. Every generation goes through the same eight checks, from the X3D schema to "does the browser frame look like Blender's?". Each next generation changes only what a check reported. All eight generations are kept on the record, including the beauty pass that regressed and the change that did nothing.</p>
+
+<div class="hero">
+  <div class="view"><div id="live"></div><span class="tag" id="liveTag">GEN 7 · LIVE X_ITE</span></div>
+  <div class="loop">
+    <b>Checks passed per generation</b>
+    <div class="spark" id="spark"></div>
+    <div class="sparkx" id="sparkx"></div>
+    <p class="sub" style="margin:12px 0 0;font-size:13.5px">Valid isn't the same as visible: generation 0 passed the schema, the semantic check, the size budget and a clean load, and still drew a black frame. Generation 4's beauty pass broke a check that was passing, and the gate caught it.</p>
+  </div>
+</div>
+
+<h2>The eight checks</h2>
+<div class="scroll"><table>
+<tr><th>#</th><th>Check</th><th>Tool</th><th>Pass when</th></tr>
+<tr><td>G1</td><td>X3D 4.0 schema</td><td class="m">x3d_mcp 39c6e94 validate_xml</td><td>valid</td></tr>
+<tr><td>G2</td><td>Semantic errors</td><td class="m">x3d_mcp 39c6e94 validate_semantic</td><td>0 errors</td></tr>
+<tr><td>G3</td><td>Size budget</td><td class="m">gzip -9</td><td>under 400,000 bytes</td></tr>
+<tr><td>G4</td><td>Loads clean</td><td class="m">X_ITE 16.7.1, headless Chromium 157 (SwiftShader)</td><td>0 console errors</td></tr>
+<tr><td>G5</td><td>Not too dark</td><td class="m">mean frame value (numpy)</td><td>above 0.10</td></tr>
+<tr><td>G6</td><td>Subject fills the frame</td><td class="m">pixels unlike the border colour</td><td>25 to 92%</td></tr>
+<tr><td>G7</td><td>It moves</td><td class="m">frame at fraction 0 vs 0.25, interpolators driven through SAI</td><td>mean difference above 0.5/255</td></tr>
+<tr><td>G8</td><td>Looks like Blender</td><td class="m">SSIM vs a Cycles render of the same .blend (scikit-image)</td><td>SSIM ≥ 0.80 and mean difference under 20/255</td></tr>
+</table></div>
+
+<h2>Eight generations</h2>
+<p class="sub">Left: the X_ITE frame at animation fraction 0. Right: Blender Cycles, frame 1, same camera (96 samples, OIDN). Open a card to see the exact code change.</p>
+<div class="gens" id="gens"></div>
+
+<h2>What the loop taught (all Confirmed on this rig)</h2>
+<div class="scroll"><table>
+<tr><th>Lesson</th><th>Found in</th><th>Rule for the next agent</th></tr>
+<tr><td>The exporter keeps Blender's cast-shadow flag, so a lamp placed inside the Sun mesh exports as <code>PointLight shadows="true"</code> and X_ITE shadows the whole scene with the Sun itself.</td><td>gen 0 → 1</td><td>Turn shadows off for a lamp inside an emitter, or move it out.</td></tr>
+<tr><td>Animation export is off unless <code>use_animation=True</code> is set: a keyframed scene exports frozen and still passes every validator.</td><td>gen 0 → 1</td><td>Always set it, and gate on motion.</td></tr>
+<tr><td>Metallic 1.0 in X_ITE with no environment map shows only highlights, so the brass read black.</td><td>gen 1 → 2</td><td>Metallic around 0.7, or ship an environment.</td></tr>
+<tr><td>Blender-made lights are capped at intensity 1 with no attenuation, so the browser lamp had no falloff and a fraction of Cycles' light.</td><td>gen 2 → 3</td><td>Set <code>x3d_attenuation</code> to 0 0 1 and <code>x3d_energy_per_intensity</code> (4π for a point lamp).</td></tr>
+<tr><td>A glowing mesh lights the scene in Cycles but not in X3D, where <code>emissiveColor</code> lights nothing.</td><td>gen 4 → 5</td><td>Let the lamps carry the light; switch the emitter's diffuse visibility off in Cycles.</td></tr>
+<tr><td>X_ITE 16.7.1 ignores a light's <code>ambientIntensity</code> under PhysicalMaterial: the frames came out byte-identical.</td><td>gen 6 (dead end)</td><td>Don't use ambientIntensity as bounce fill with PBR.</td></tr>
+<tr><td>The exporter writes energy ÷ <code>x3d_energy_per_intensity</code>; <code>x3d_intensity</code> only marks the value as meant, so setting it alone changed nothing.</td><td>gen 7, first try</td><td>Calibrate through the divisor.</td></tr>
+<tr><td>The gate had two bugs of its own: a grey Cycles world the browser never draws, and a wall-clock motion check that flipped between 0.41 and 0.54 across runs.</td><td>gen 2 and gen 1</td><td>Gate the gate: black world, motion driven through SAI.</td></tr>
+</table></div>
+
+<footer>Flywheel Forge v1 · original synthetic scene · scripts <a href="build/">gen0.py to gen7.py, gate.py, frames.cjs, cycles_ref.py</a> · every generation's X3D, .blend, frames and gate.json under <a href="gens/">gens/</a> · Blender 5.3.0 (bpy), x3d-blender-io 8310e7b · published on <a href="../../../">x3d.demo</a>. Software-GL frame rates are not quoted.</footer>
+</div>
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script>
+(async function(){
+const $=id=>document.getElementById(id);
+const NOTES={
+ 0:['First draft','Brass orrery: walnut base, spindle, glowing Sun, four planets on arms, a 400 W lamp, keyframed orbits.'],
+ 1:['Answering G5, G6 and G7','Lamp shadows off (it sat inside the Sun mesh); use_animation=True.'],
+ 2:['Answering G5 and G7','Brass metallic 1.0 → 0.7; a warm key sun and a cool rim sun.'],
+ 3:['Answering G8','Inverse-square attenuation and Cycles\' radiant intensity for the lamp; suns uncapped.'],
+ 4:['Beauty pass','Planets on rods, inlaid orbit rings, a ringed giant, a closer camera. Regressed G8, and the gate caught it.'],
+ 5:['Answering G8 and the cropped Sun','The Sun mesh stops lighting diffuse surfaces in Cycles; camera tilt.'],
+ 6:['Dead end','ambientIntensity 0.35 on both suns as bounce fill. Frames byte-identical to gen 5.'],
+ 7:['Answering G8','Bounce calibration ×1.35 through x3d_energy_per_intensity.']};
+const gates=[];for(let g=0;g<8;g++){try{gates.push(await (await fetch('gens/gen'+g+'/gate.json')).json());}catch(_){gates.push(null);}}
+const spark=$('spark'),sx=$('sparkx');
+gates.forEach((r,g)=>{const d=document.createElement('div');const n=r?r.passed:0;d.style.height=(n/8*100)+'%';if(n===8)d.className='full';d.innerHTML='<span>'+n+'/8</span>';spark.appendChild(d);const l=document.createElement('span');l.textContent='g'+g;sx.appendChild(l);});
+const host=$('gens');
+for(let g=0;g<8;g++){const r=gates[g];const c=document.createElement('article');c.className='gen';
+ const n=r?r.passed:0;const dots=r?r.checks.map(k=>'<span class="dot '+(k.pass?'p':'f')+'" title="'+k.check+': '+k.detail.replace(/"/g,'&quot;')+'">'+k.id+'</span>').join(''):'';
+ const fails=r?r.checks.filter(k=>!k.pass).map(k=>'<div class="why">'+k.id+' '+k.check+': '+k.detail+'</div>').join(''):'';
+ c.innerHTML='<header><b>Gen '+g+' · '+NOTES[g][0]+'</b><span class="score'+(n===8?' full':'')+'">'+n+'/8</span></header>'+
+ '<div class="pics"><figure><img loading="lazy" src="gens/gen'+g+'/frame-still.webp" alt="X_ITE frame, generation '+g+'"><figcaption>X_ITE</figcaption></figure><figure><img loading="lazy" src="gens/gen'+g+'/cycles.webp" alt="Cycles frame, generation '+g+'"><figcaption>CYCLES</figcaption></figure></div>'+
+ '<div class="dots">'+dots+'</div><div class="note">'+NOTES[g][1]+fails+'</div>'+(g?'<details><summary>code change from gen '+(g-1)+'</summary><pre data-diff="gens/gen'+g+'/change.diff">loading…</pre></details>':'');
+ host.appendChild(c);}
+document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',async()=>{const p=d.querySelector('pre');if(p.dataset.done)return;p.dataset.done=1;
+ const t=await (await fetch(p.dataset.diff)).text();p.innerHTML=t.split('\n').map(l=>{const e=l.replace(/&/g,'&amp;').replace(/</g,'&lt;');return l.startsWith('+')&&!l.startsWith('+++')?'<span class="a">'+e+'</span>':l.startsWith('-')&&!l.startsWith('---')?'<span class="r">'+e+'</span>':e;}).join('\n');}));
+const cv=document.createElement('x3d-canvas');cv.setAttribute('splashScreen','false');cv.setAttribute('contextMenu','false');$('live').appendChild(cv);
+const b=X3D.getBrowser(cv);b.setBrowserOption('StraightenHorizon',false);
+b.loadURL(new X3D.MFString('gens/gen7/orrery.x3d')).then(()=>{$('liveTag').textContent='GEN 7 · LIVE X_ITE '+b.version+' · drag to orbit';}).catch(e=>{$('liveTag').textContent='X_ITE failed: '+e;});
+})();
+</script>
+</body>
+</html>

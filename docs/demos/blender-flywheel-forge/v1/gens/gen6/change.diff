@@ -1,0 +1,19 @@
+--- gen5.py	2026-11-19 17:11:27.471487354 +0000
++++ gen6.py	2026-11-19 17:12:40.967759316 +0000
+@@ -1,5 +1,5 @@
+ # SPDX-License-Identifier: GPL-3.0-or-later
+-"""Flywheel Forge, generation 5: answers gen 4's regression (G8 |delta| 23.5) and its cropped Sun.
++"""Flywheel Forge, generation 6: answers gen 5's G8 (|delta| 20.1, the browser frame still darker than Cycles overall).
+ Usage: python gen0.py OUT_DIR ADDON_SOURCE_DIR
+ """
+ import bpy  # noqa: F401
+@@ -123,6 +123,9 @@
+     d.energy, d.color, d.use_shadow = energy, colour, False
+     d["x3d_energy_per_intensity"] = 1.0      # G8 fix: 1 W/m2 of Blender sun = X3D intensity 1, uncapped
+     d["x3d_intensity"] = energy
++    # G8 fix: Cycles adds light bounced off the walnut and brass; X3D has no bounce. Each sun's ambientIntensity
++    # (an X3D field the exporter reads from x3d_ambient_intensity) stands in for it.
++    d["x3d_ambient_intensity"] = 0.35
+     o = bpy.data.objects.new(name, d)
+     o.rotation_euler = rot
+     scene.collection.objects.link(o)
