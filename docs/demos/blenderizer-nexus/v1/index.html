@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXUS X3D Hub</title>
+<meta name="description" content="Demo 56. x3d-blender-io proof of concept: Blender as a two-way X3D 4.0 hub. Eight chapters, every file downloadable, every number with its tool.">
+<style>
+:root{--bg:#070b12;--panel:#0d1420;--line:#1d2a3b;--ink:#eef3f8;--dim:#93a3b8;--cyan:#38d6e0;--amber:#e8a33c;--red:#ef6a6a;--green:#5fd39a;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f4f6f9;--panel:#fff;--line:#d9e0ea;--ink:#0d1624;--dim:#4c5b6e;--cyan:#0a8f99;--amber:#a86512;--red:#b83232;--green:#1d8a55}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:var(--cyan)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);font:12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);gap:12px;flex-wrap:wrap}
+header.top b{color:var(--ink);letter-spacing:.3em}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center;padding:48px 0 28px}
+.kicker{font:12px var(--mono);letter-spacing:.18em;color:var(--cyan);text-transform:uppercase}
+h1{font-size:clamp(34px,5.4vw,64px);line-height:1.02;margin:.25em 0 .3em;letter-spacing:-.025em}
+h1 em{font-style:normal;color:var(--amber)}
+.lede{color:var(--dim);font-size:18px;max-width:36em}
+.chain{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0;font:12px var(--mono)}
+.chain span{padding:6px 10px;border:1px solid var(--line);border-radius:4px;background:var(--panel)}
+.chain i{color:var(--dim);font-style:normal;align-self:center}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none;border:1px solid var(--cyan)}
+.btn.primary{background:var(--cyan);color:#041014}.btn.ghost{color:var(--cyan)}
+video{width:100%;border-radius:10px;border:1px solid var(--line);background:#000;display:block;aspect-ratio:768/480}
+.cap{font:11px var(--mono);color:var(--dim);margin-top:6px}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:28px 0}
+.num{background:var(--panel);padding:18px}
+.num b{display:block;font-size:30px;letter-spacing:-.02em}
+.num span{display:block;color:var(--dim);font-size:13px}
+.num small{display:block;font:10.5px var(--mono);color:var(--dim);opacity:.8;margin-top:6px}
+h2{font-size:28px;margin:56px 0 6px;letter-spacing:-.01em}
+.sub{color:var(--dim);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-3px);border-color:var(--cyan)}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:#0b111a}
+.card div{padding:12px 14px 14px}
+.card .k{font:10.5px var(--mono);color:var(--amber);letter-spacing:.1em}
+.card h3{margin:4px 0 4px;font-size:16px}
+.card p{margin:0;color:var(--dim);font-size:13px}
+.card .proof{font:10.5px var(--mono);color:var(--cyan);margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+td.m{font-family:var(--mono);font-size:12.5px}
+.tag{display:inline-block;font:10.5px var(--mono);padding:2px 7px;border-radius:3px;border:1px solid currentColor}
+.c{color:var(--green)}.l{color:var(--amber)}.x{color:var(--red)}
+.scroll{overflow-x:auto}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pair figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px}
+.pair img{width:100%;display:block;border-radius:6px}
+figcaption{font-size:13px;color:var(--dim);margin-top:8px}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.shots img{width:100%;border-radius:6px;border:1px solid var(--line);display:block}
+.flow{width:100%;height:auto;display:block;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:24px 0 48px;color:var(--dim);font-size:13px}
+code{font-family:var(--mono);font-size:.9em}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.nums{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.pair{grid-template-columns:1fr}.shots{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><span><b>NEXUS</b> &nbsp;X3D hub observatory</span><span>Demo 56 · x3d-blender-io 2.6.4 @ cc4864c · Blender 5.1.2 · X3D 4.0</span></header>
+
+<section class="hero">
+  <div>
+    <div class="kicker">Blenderizer · proof of concept 001</div>
+    <h1>Blender, as a two-way <em>X3D 4.0</em> hub.</h1>
+    <p class="lede">Eight original scenes go out of Blender as X3D, come back into a fresh Blender, and leave again as GLB and OpenUSD. IFC and USD come in the other way. Every intermediate file is on this page, and every number below names the tool that produced it.</p>
+    <div class="chain"><span>scene.blend</span><i>→</i><span>scene.x3d</span><i>→</i><span>imported.blend</span><i>→</i><span>roundtrip.x3d</span><i>→</i><span>hub.glb · hub.usda</span></div>
+    <div class="cta"><a class="btn primary" href="observatory/">Enter the observatory →</a><a class="btn ghost" href="#receipts">Read the receipts</a><a class="btn ghost" href="observatory/assets/addon/x3d_blender_io-2.6.4-cc4864c.zip">Get the add-on</a></div>
+  </div>
+  <div>
+    <video src="observatory/assets/nexus-reel.mp4" poster="img/reel-poster.jpg" controls muted playsinline loop preload="metadata"></video>
+    <div class="cap">Director's cut, 30 s, 768×480 h264 + AAC score. Rendered from the actual X3D in X_ITE 16.7.1 (headless Chromium 131, shadows off, 96 sampled frames motion-interpolated to 24 fps). Source: observatory/assets/nexus-reel.receipt.json.</div>
+  </div>
+</section>
+
+<div class="nums">
+  <div class="num"><b>8 / 8</b><span>chapters exported, re-imported fresh, re-exported</span><small>release evidence.json, Blender 5.1.2</small></div>
+  <div class="num"><b>7.03×</b><span>smaller X3D from DEF/USE: 407,712 vs 2,867,747 B (144 linked modules)</span><small>measure_instancing.py, same scene, only mesh sharing changed</small></div>
+  <div class="num"><b>36 / 36</b><span>IFC GlobalIds survive into X3D, hub GLB and hub USD</span><small>release audit.json + evidence.json</small></div>
+  <div class="num"><b>608</b><span>nonzero HAnim skin weights kept exactly; joints within 0.586 mm</span><small>release skin-motion-evidence.json</small></div>
+  <div class="num"><b>3.25e-5</b><span>max matrix-component error at 5 matched times</span><small>release motion-evidence.json (component error, not a distance bound)</small></div>
+  <div class="num"><b>180 / 0</b><span>format checks pass / fail (2 warn: HAnim GLB skin-parent)</span><small>release audit.json: Khronos glTF validator, OpenUSD reopen</small></div>
+  <div class="num"><b>910</b><span>add-on tests OK, 48 skipped, including this page's fix</span><small>bpy 5.3.0, our re-run 19 Nov</small></div>
+  <div class="num"><b>8 / 8</b><span>chapters load, 0 console errors</span><small>our re-run: Chromium 157 headless, SwiftShader, X_ITE 16.7.1</small></div>
+</div>
+
+<h2>The hub, as a diagram</h2>
+<p class="sub">Formats enter on the left, Blender is the editable centre, X3D is the accountable publication format. Dashed lines are prepared but not executed in this release.</p>
+<svg class="flow" viewBox="0 0 1200 300" role="img" aria-label="Formats flow through Blender into X3D and back out">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker></defs>
+  <g font-family="ui-monospace,Menlo,monospace" font-size="14" fill="currentColor" style="color:var(--dim)">
+    <g style="color:var(--ink)">
+      <rect x="20" y="30" width="170" height="44" rx="6" fill="none" stroke="currentColor" opacity=".5"/><text x="105" y="57" text-anchor="middle">X3D source</text>
+      <rect x="20" y="92" width="170" height="44" rx="6" fill="none" stroke="currentColor" opacity=".5"/><text x="105" y="119" text-anchor="middle">GLB (Inline)</text>
+      <rect x="20" y="154" width="170" height="44" rx="6" fill="none" stroke="currentColor" opacity=".5"/><text x="105" y="181" text-anchor="middle">IFC4</text>
+      <rect x="20" y="216" width="170" height="44" rx="6" fill="none" stroke="currentColor" opacity=".5"/><text x="105" y="243" text-anchor="middle">OpenUSD</text>
+    </g>
+    <g style="color:var(--amber)"><rect x="440" y="90" width="230" height="120" rx="12" fill="none" stroke="currentColor" stroke-width="2"/><text x="555" y="140" text-anchor="middle" font-size="22" fill="currentColor">Blender 5.1.2</text><text x="555" y="168" text-anchor="middle">x3d-blender-io 2.6.4</text></g>
+    <g style="color:var(--cyan)"><rect x="900" y="40" width="270" height="70" rx="10" fill="none" stroke="currentColor" stroke-width="2"/><text x="1035" y="72" text-anchor="middle" font-size="20" fill="currentColor">X3D 4.0</text><text x="1035" y="95" text-anchor="middle">validated · X_ITE live</text></g>
+    <g style="color:var(--ink)"><rect x="900" y="150" width="125" height="44" rx="6" fill="none" stroke="currentColor" opacity=".5"/><text x="962" y="177" text-anchor="middle">hub.glb</text><rect x="1045" y="150" width="125" height="44" rx="6" fill="none" stroke="currentColor" opacity=".5"/><text x="1107" y="177" text-anchor="middle">hub.usda</text></g>
+    <g style="color:var(--dim)"><rect x="900" y="226" width="125" height="44" rx="6" fill="none" stroke="currentColor" stroke-dasharray="5 4"/><text x="962" y="253" text-anchor="middle">Unreal</text><rect x="1045" y="226" width="125" height="44" rx="6" fill="none" stroke="currentColor" stroke-dasharray="5 4"/><text x="1107" y="253" text-anchor="middle">Bonsai</text></g>
+    <g stroke="currentColor" fill="none" style="color:var(--dim)" marker-end="url(#a)"><path d="M190 52 C320 52 330 120 438 130"/><path d="M190 114 C320 114 340 140 438 142"/><path d="M190 176 C320 176 340 160 438 158"/><path d="M190 238 C320 238 330 180 438 172"/></g>
+    <g stroke="currentColor" fill="none" style="color:var(--cyan)" stroke-width="2"><path d="M670 125 C780 110 800 80 898 76" marker-end="url(#a)"/><path d="M898 92 C800 110 780 160 672 170" marker-end="url(#a)" stroke-dasharray="6 4"/></g>
+    <text x="780" y="78" fill="currentColor" style="color:var(--cyan)">export</text><text x="745" y="182" fill="currentColor" style="color:var(--cyan)">fresh import</text>
+    <g stroke="currentColor" fill="none" style="color:var(--ink)" opacity=".6" marker-end="url(#a)"><path d="M670 190 C780 200 820 172 898 172"/><path d="M670 200 C800 248 860 248 898 248" stroke-dasharray="5 4"/></g>
+  </g>
+</svg>
+
+<h2>Eight chapters</h2>
+<p class="sub">Cycles posters of the Blender source scenes (render settings in each poster-receipt.json). Click a card to open that chapter live in X_ITE.</p>
+<div class="grid">
+  <a class="card" href="observatory/#foundry"><img src="img/foundry.webp" alt="Asterion engine poster" loading="lazy"><div><span class="k">01 · BLENDER → X3D</span><h3>The Asterion engine</h3><p>PBR gyroscope, nested hierarchy, sampled animation, click sensors and a camera tour.</p><div class="proof">TouchSensor · BooleanFilter · ROUTE</div></div></a>
+  <a class="card" href="observatory/#materials"><img src="img/materials.webp" alt="Material spectrum poster" loading="lazy"><div><span class="k">02 · LOOK DEV</span><h3>The material spectrum</h3><p>Thirty metallic and roughness pairs, glass, emission and a UV calibration texture.</p><div class="proof">PhysicalMaterial · ImageTexture</div></div></a>
+  <a class="card" href="observatory/#instances"><img src="img/instances.webp" alt="Metropolis poster" loading="lazy"><div><span class="k">03 · IDENTITY &amp; REUSE</span><h3>One mesh. A metropolis.</h3><p>144 linked modules exported as real DEF/USE: 143 geometry USEs, 65 coordinate definitions instead of 208.</p><div class="proof">7.034× smaller · gzip 44,413 vs 67,461 B</div></div></a>
+  <a class="card" href="observatory/#x3d_ingress"><img src="img/x3d_ingress.webp" alt="Return journey poster" loading="lazy"><div><span class="k">04 · X3D → BLENDER → X3D</span><h3>The return journey</h3><p>Independently authored X3D: one animated node used twice under different parents, editable in Blender.</p><div class="proof">midpoint error 1.09e-7 m</div></div></a>
+  <a class="card" href="observatory/#federation"><img src="img/federation.webp" alt="References poster" loading="lazy"><div><span class="k">05 · GLB → INLINE → BLENDER</span><h3>A scene of references</h3><p>One generated turbine GLB referenced three times through X3D Inline and rebuilt by the hub.</p><div class="proof">Inline · glTF ingest</div></div></a>
+  <a class="card" href="observatory/#bim"><img src="img/bim.webp" alt="Pavilion poster" loading="lazy"><div><span class="k">06 · IFC → BLENDER → X3D</span><h3>Open design pavilion</h3><p>Synthetic IFC4 elements tessellated to meshes; GlobalId, class and carbon data ride along as metadata.</p><div class="proof">36 / 36 GUIDs conserved</div></div></a>
+  <a class="card" href="observatory/#usd"><img src="img/usd.webp" alt="Studio interchange poster" loading="lazy"><div><span class="k">07 · USD → BLENDER → X3D</span><h3>The studio interchange</h3><p>A real USD export reopened by Blender and published as X3D, and back out to USD.</p><div class="proof">OpenUSD reopen pass</div></div></a>
+  <a class="card" href="observatory/#hanim"><img src="img/hanim.webp" alt="Articulated study poster" loading="lazy"><div><span class="k">08 · H-ANIM &amp; SKINNING</span><h3>The articulated study</h3><p>A three-joint weighted limb as HAnimHumanoid 2.0, returning as an editable armature. Partial rig, no LOA claim.</p><div class="proof">608 weights exact · 0.586 mm</div></div></a>
+</div>
+
+<h2>Live in the browser</h2>
+<p class="sub">Our own frames, not the release's: headless Chromium 157.0.8103.78, SwiftShader software GL (no GPU), X_ITE 16.7.1 as vendored, 1440×900. Load times 4.2 to 36.7 s per chapter on that rig are software-rendering times, not a speed claim.</p>
+<div class="shots">
+  <img src="receipts/shots/live-ch0.webp" alt="Live chapter 1" loading="lazy"><img src="receipts/shots/live-ch1.webp" alt="Live chapter 2" loading="lazy"><img src="receipts/shots/live-ch2.webp" alt="Live chapter 3" loading="lazy"><img src="receipts/shots/live-ch3.webp" alt="Live chapter 4" loading="lazy">
+  <img src="receipts/shots/live-ch4.webp" alt="Live chapter 5" loading="lazy"><img src="receipts/shots/live-ch5.webp" alt="Live chapter 6" loading="lazy"><img src="receipts/shots/live-ch6.webp" alt="Live chapter 7" loading="lazy"><img src="receipts/shots/live-ch7.webp" alt="Live chapter 8" loading="lazy">
+</div>
+
+<h2 id="receipts">Receipts</h2>
+<p class="sub">"X3D is the 3D format an AI can be held accountable to." So we checked the release before bragging about it. Grades: <span class="tag c">Confirmed</span> we re-ran it, <span class="tag l">Likely</span> strong evidence, not proven. Full log: <a href="receipts/RECHECK.json">RECHECK.json</a>.</p>
+<div class="scroll"><table>
+<tr><th>Check</th><th>Tool</th><th>Result</th><th>Grade</th></tr>
+<tr><td>Release integrity</td><td class="m">sha256sum -c checksums.txt</td><td>304 of 304 files match</td><td><span class="tag c">Confirmed</span></td></tr>
+<tr><td>X3D 4.0 XSD</td><td class="m">x3d_mcp 39c6e94 validate_xml</td><td>19 of 20 valid. <b>hanim/scene.x3d fails</b>: <code>name="Articulation study"</code> on HAnimHumanoid is not an NMTOKEN. Round trip already writes <code>Articulation_study</code>.</td><td><span class="tag c">Confirmed</span></td></tr>
+<tr><td>Why the release said 0 errors</td><td class="m">Web3D x3d.py 4.0.65.8 adapter</td><td>The field adapter does not check NMTOKEN, so a second validator caught what the first missed.</td><td><span class="tag c">Confirmed</span></td></tr>
+<tr><td>Add-on fix</td><td class="m">bpy 5.3.0 unittest</td><td>emit_x3d40 now writes HAnim <code>name</code> values as NMTOKENs (spaces → _); DEF names unchanged. New test fails before, passes after; suite 910 OK, 48 skipped.</td><td><span class="tag c">Confirmed</span></td></tr>
+<tr><td>Semantic lint</td><td class="m">x3d_mcp 39c6e94 validate_semantic</td><td>bim: MetadataSet <code>name="IFC identity"</code> flagged (style rule; the XSD allows it). usd: one empty Transform. Info-level unused DEFs elsewhere.</td><td><span class="tag c">Confirmed</span></td></tr>
+<tr><td>Browser</td><td class="m">Playwright · Chromium 157 · SwiftShader</td><td>8 of 8 chapters load, 0 console errors</td><td><span class="tag c">Confirmed</span></td></tr>
+<tr><td>Chapters 04 and 05 look tilted</td><td class="m">X_ITE StraightenHorizon on / off</td><td>The authored source cameras carry a roll that X_ITE's StraightenHorizon hides. After Blender the camera sits under a rotated Transform, so the roll shows. Geometry is preserved. Fix belongs in the fixture's camera, not in the add-on.</td><td><span class="tag l">Likely</span></td></tr>
+<tr><td>Leak sweep</td><td class="m">grep + zstd-decompressed .blend</td><td>No keys, emails or private links. Only generic build paths (/home/agent, /workspace/scratch).</td><td><span class="tag c">Confirmed</span></td></tr>
+</table></div>
+
+<div class="pair" style="margin-top:16px">
+  <figure><img src="receipts/shots/straighten-on.webp" alt="Source, first trip and round trip with StraightenHorizon on" loading="lazy"><figcaption>StraightenHorizon on (X_ITE default). Left: authored source.x3d looks level. Middle and right: first trip and round trip show the roll.</figcaption></figure>
+  <figure><img src="receipts/shots/straighten-off.webp" alt="All three with StraightenHorizon off" loading="lazy"><figcaption>StraightenHorizon off. All three match: the roll was in the source camera all along.</figcaption></figure>
+</div>
+
+<h2>Numbers we did not re-measure</h2>
+<p class="sub">These come from the release's own evidence files and are shown as reported: motion matrices (3.25e-5), HAnim millimetre bounds, Khronos glTF and OpenUSD validation, IFC tessellation. Not tested anywhere yet: a real GPU, Castle or X3DOM, the Unreal and Bonsai editors.</p>
+
+<h2>Downloads</h2>
+<div class="scroll"><table>
+<tr><th>What</th><th>Where</th></tr>
+<tr><td>The add-on used to build everything (2.6.4, commit cc4864c)</td><td class="m"><a href="observatory/assets/addon/x3d_blender_io-2.6.4-cc4864c.zip">x3d_blender_io-2.6.4-cc4864c.zip</a></td></tr>
+<tr><td>Per chapter: scene.blend, scene.x3d, imported.blend, roundtrip.x3d, scene/hub .glb and .usda, evidence JSON</td><td class="m">observatory/assets/&lt;chapter&gt;/ (also in the observatory's evidence panel)</td></tr>
+<tr><td>Release README, evidence, checksums, build-recipe patch, licences</td><td class="m"><a href="release/README.md">release/</a> · <a href="release/RELEASE-EVIDENCE.json">RELEASE-EVIDENCE.json</a> · <a href="release/NEXUS-X3D-Hub-Source.patch">source patch</a></td></tr>
+<tr><td>Our re-check</td><td class="m"><a href="receipts/RECHECK.json">RECHECK.json</a> · <a href="receipts/x3d_mcp-39c6e94-validation.json">x3d_mcp validation</a></td></tr>
+</table></div>
+
+<footer>Demo 56 · NEXUS X3D Hub Observatory v1 · all scenes synthetic and original · built with <a href="https://github.com/hagopjay/x3d-blender-io">x3d-blender-io</a>, published on <a href="../../../">x3d.demo</a>. Code GPL-3.0-or-later, data per release/LICENSE-DATA.txt. The 5.5 MB WAV soundtrack is left out here; the reel carries the same score.</footer>
+</div>
+</body>
+</html>

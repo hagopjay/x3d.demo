@@ -1,0 +1,114 @@
+[
+  {
+    "kind": "value",
+    "path": "X3D/Scene[~OB__1___Hero]/Transform[DEF=OB_Instrument_tick_24]",
+    "tag": "Transform",
+    "attr": "rotation",
+    "a": "-0.000000 -0.707107 -0.707107 3.141593",
+    "b": "-0.000000 0.707107 0.707107 3.141592  (max |d| 1.41)"
+  },
+  {
+    "kind": "value",
+    "path": "X3D/Scene[~OB__1___Hero]/Transform[DEF=OB_Articulation_study]/HAnimHumanoid[DEF=hanim_Articulation_study]",
+    "tag": "HAnimHumanoid",
+    "attr": "name",
+    "a": "Articulation study",
+    "b": "Articulation_study"
+  },
+  {
+    "kind": "value",
+    "path": "X3D/Scene[~OB__1___Hero]/Transform[DEF=OB_Articulation_study]/HAnimHumanoid[DEF=hanim_Articulation_study]/HAnimJoint[DEF=hanim_Articulation_study_humanoid_root]/HAnimJoint[DEF=hanim_Articulation_study_l_acromioclavicular]",
+    "tag": "HAnimJoint",
+    "attr": "skinCoordIndex",
+    "a": "246 numbers",
+    "b": "232 numbers"
+  },
+  {
+    "kind": "value",
+    "path": "X3D/Scene[~OB__1___Hero]/Transform[DEF=OB_Articulation_study]/HAnimHumanoid[DEF=hanim_Articulation_study]/HAnimJoint[DEF=hanim_Articulation_study_humanoid_root]/HAnimJoint[DEF=hanim_Articulation_study_l_acromioclavicular]",
+    "tag": "HAnimJoint",
+    "attr": "skinCoordWeight",
+    "a": "246 numbers",
+    "b": "232 numbers"
+  },
+  {
+    "kind": "value",
+    "path": "X3D/Scene[~OB__1___Hero]/Transform[DEF=OB_Articulation_study]/HAnimHumanoid[DEF=hanim_Articulation_study]/HAnimJoint[DEF=hanim_Articulation_study_humanoid_root]/HAnimJoint[DEF=hanim_Articulation_study_l_acromioclavicular]/HAnimJoint[DEF=hanim_Articulation_study_l_elbow]",
+    "tag": "HAnimJoint",
+    "attr": "skinCoordIndex",
+    "a": "202 numbers",
+    "b": "188 numbers"
+  },
+  {
+    "kind": "value",
+    "path": "X3D/Scene[~OB__1___Hero]/Transform[DEF=OB_Articulation_study]/HAnimHumanoid[DEF=hanim_Articulation_study]/HAnimJoint[DEF=hanim_Articulation_study_humanoid_root]/HAnimJoint[DEF=hanim_Articulation_study_l_acromioclavicular]/HAnimJoint[DEF=hanim_Articulation_study_l_elbow]",
+    "tag": "HAnimJoint",
+    "attr": "skinCoordWeight",
+    "a": "202 numbers",
+    "b": "188 numbers"
+  },
+  {
+    "kind": "value",
+    "path": "X3D/Scene[~OB__1___Hero]/OrientationInterpolator[DEF=OI_Articulation_study_l_acromioclavicular]",
+    "tag": "OrientationInterpolator",
+    "attr": "keyValue",
+    "a": "0.000000 0.000000 1.000000 0.000000 -0.966831 -0.000303 0.302135 0.002072 -0.956",
+    "b": "0.000000 0.000000 1.000000 0.000000 -0.954488 -0.000299 0.298278 0.002072 -0.954  (max |d| 0.0123)"
+  },
+  {
+    "kind": "value",
+    "path": "X3D/Scene[~OB__1___Hero]/OrientationInterpolator[DEF=OI_Articulation_study_l_elbow]",
+    "tag": "OrientationInterpolator",
+    "attr": "keyValue",
+    "a": "0.000000 0.000000 1.000000 0.000000 0.982937 0.000308 0.234032 0.002674 0.974124",
+    "b": "0.000000 0.000000 1.000000 0.000000 0.972775 0.000305 0.231613 0.002674 0.972805  (max |d| 0.0102)"
+  },
+  {
+    "kind": "value",
+    "path": "X3D/Scene[~OB__1___Hero]/ROUTE[3]",
+    "tag": "ROUTE",
+    "attr": "toField",
+    "a": "set_rotation",
+    "b": "set_translation"
+  },
+  {
+    "kind": "extra",
+    "path": "X3D/Scene[~OB__1___Hero]/PositionInterpolator[DEF=PI_Articulation_study_l_elbow]",
+    "tag": "PositionInterpolator",
+    "attr": null,
+    "a": null,
+    "b": null
+  },
+  {
+    "kind": "extra",
+    "path": "X3D/Scene[~OB__1___Hero]/ROUTE[4]",
+    "tag": "ROUTE",
+    "attr": null,
+    "a": null,
+    "b": null
+  },
+  {
+    "kind": "extra",
+    "path": "X3D/Scene[~OB__1___Hero]/ROUTE[5]",
+    "tag": "ROUTE",
+    "attr": null,
+    "a": null,
+    "b": null
+  },
+  {
+    "kind": "value",
+    "path": "X3D/Scene[~OB__1___Hero]/ROUTE[2]",
+    "tag": "ROUTE",
+    "attr": "toNode",
+    "a": "OI_Articulation_study_l_elbow",
+    "b": "PI_Articulation_study_l_elbow"
+  },
+  {
+    "kind": "value",
+    "path": "X3D/Scene[~OB__1___Hero]/ROUTE[3]",
+    "tag": "ROUTE",
+    "attr": "fromNode",
+    "a": "OI_Articulation_study_l_elbow",
+    "b": "PI_Articulation_study_l_elbow"
+  }
+]

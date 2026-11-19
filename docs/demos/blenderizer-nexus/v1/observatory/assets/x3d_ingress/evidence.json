@@ -1,0 +1,265 @@
+{
+  "chapter": "x3d_ingress",
+  "before": {
+    "objects": 32,
+    "meshes": 25,
+    "unique_meshes": 24,
+    "vertices": 2722,
+    "triangles": 5364,
+    "materials": 5,
+    "shared_mesh_users": 2,
+    "bounds_min": [
+      -7.4,
+      -7.4,
+      -0.700001
+    ],
+    "bounds_max": [
+      7.4,
+      7.4,
+      5.995974
+    ],
+    "animated_objects": 3,
+    "ifc_guids": [],
+    "camera_labels": [
+      "01 \u2014 Hero",
+      "02 \u2014 Detail",
+      "03 \u2014 Plan"
+    ],
+    "x3d_bytes": 379119,
+    "x3d_nodes": 186,
+    "geometry_use_count": 0
+  },
+  "after": {
+    "objects": 32,
+    "meshes": 25,
+    "unique_meshes": 24,
+    "vertices": 4642,
+    "triangles": 5364,
+    "materials": 5,
+    "shared_mesh_users": 2,
+    "bounds_min": [
+      -7.4,
+      -7.4,
+      -0.700001
+    ],
+    "bounds_max": [
+      7.4,
+      7.4,
+      5.995974
+    ],
+    "animated_objects": 6,
+    "ifc_guids": [],
+    "camera_labels": [
+      "01 \u2014 Hero",
+      "02 \u2014 Detail",
+      "03 \u2014 Plan"
+    ]
+  },
+  "bound_error_m": 0.0,
+  "structural_difference_count": 2,
+  "x3d_node_types": {
+    "X3D": 1,
+    "head": 1,
+    "component": 1,
+    "meta": 8,
+    "Scene": 1,
+    "NavigationInfo": 1,
+    "Background": 1,
+    "Transform": 32,
+    "Viewpoint": 3,
+    "DirectionalLight": 2,
+    "Shape": 25,
+    "Appearance": 25,
+    "PhysicalMaterial": 5,
+    "Cylinder": 17,
+    "IndexedFaceSet": 5,
+    "Coordinate": 5,
+    "Normal": 5,
+    "TextureCoordinate": 5,
+    "Sphere": 1,
+    "Box": 2,
+    "TimeSensor": 1,
+    "OrientationInterpolator": 4,
+    "PositionInterpolator": 9,
+    "ROUTE": 26
+  },
+  "checks": [
+    {
+      "label": "Synthetic data",
+      "status": "pass",
+      "detail": "Deterministic original geometry; no LLM API or downloaded asset."
+    },
+    {
+      "label": "Independent animation endpoints",
+      "status": "pass",
+      "detail": "Both reused modules reach expected midpoint height 2.4 m; maximum sampled error 1.09479e-07 m.",
+      "expected_world_midpoint": [
+        [
+          -3.7,
+          0,
+          2.4
+        ],
+        [
+          3.7,
+          0,
+          2.4
+        ]
+      ],
+      "observed_world_midpoint": [
+        [
+          -3.700000047683716,
+          -7.105427357601002e-15,
+          2.4000000953674316
+        ],
+        [
+          3.700000047683716,
+          -1.094785702093759e-07,
+          2.4000000953674316
+        ]
+      ]
+    },
+    {
+      "label": "X3D 4.0 validation",
+      "status": "pass",
+      "detail": "XML plus repository field checks."
+    },
+    {
+      "label": "Native glTF / GLB written",
+      "status": "pass",
+      "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+    },
+    {
+      "label": "Native OpenUSD written",
+      "status": "pass",
+      "detail": "Blender USD exporter completed. Full USD composition is not implied."
+    },
+    {
+      "label": "X3D ingress \u2192 GLB",
+      "status": "pass",
+      "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+    },
+    {
+      "label": "X3D ingress \u2192 OpenUSD",
+      "status": "pass",
+      "detail": "Blender USD exporter completed. Full USD composition is not implied."
+    },
+    {
+      "label": "X3D \u2192 Blender \u2192 X3D",
+      "status": "pass",
+      "detail": "Imported into a fresh scene and re-exported; 25 mesh objects reconstructed."
+    },
+    {
+      "label": "First-trip structure",
+      "status": "info",
+      "detail": "2 structural differences reported; exact equivalence is not assumed."
+    },
+    {
+      "label": "World bounds preservation",
+      "status": "pass",
+      "detail": "Maximum bound difference 0 m at the start frame."
+    },
+    {
+      "label": "Unreal / Bonsai editor",
+      "status": "not_run",
+      "detail": "Interchange assets and adapter supplied; these editors were not executed here."
+    },
+    {
+      "label": "Sampled world transforms",
+      "status": "pass",
+      "detail": "27/27 rigid identities at five source-interval phases, equal elapsed seconds; max matrix-component error 4.76837e-07, translation 2.77167e-07 m."
+    }
+  ],
+  "build_seconds": 1.67,
+  "blender": "5.1.2",
+  "python": "3.13.9",
+  "source_kind": "X3D",
+  "source_file": "/workspace/scratch/7da1540abffc/repo/demo/hub_observatory/web/assets/x3d_ingress/source.x3d",
+  "source_snapshot": {
+    "objects": 32,
+    "meshes": 25,
+    "unique_meshes": 24,
+    "vertices": 2722,
+    "triangles": 5364,
+    "materials": 5,
+    "shared_mesh_users": 2,
+    "bounds_min": [
+      -7.4,
+      -7.4,
+      -0.700001
+    ],
+    "bounds_max": [
+      7.4,
+      7.4,
+      5.995974
+    ],
+    "animated_objects": 3,
+    "ifc_guids": [],
+    "camera_labels": [
+      "01 \u2014 Hero",
+      "02 \u2014 Detail",
+      "03 \u2014 Plan"
+    ],
+    "x3d_bytes": 379119,
+    "x3d_nodes": 186,
+    "geometry_use_count": 0,
+    "object_count": 32,
+    "mesh_count": 25,
+    "world_bounds": [
+      [
+        -7.4,
+        -7.4,
+        -0.700001
+      ],
+      [
+        7.4,
+        7.4,
+        5.995974
+      ]
+    ],
+    "total_triangles": 5364,
+    "material_count": 5
+  },
+  "imported_snapshot": {
+    "objects": 32,
+    "meshes": 25,
+    "unique_meshes": 24,
+    "vertices": 4642,
+    "triangles": 5364,
+    "materials": 5,
+    "shared_mesh_users": 2,
+    "bounds_min": [
+      -7.4,
+      -7.4,
+      -0.700001
+    ],
+    "bounds_max": [
+      7.4,
+      7.4,
+      5.995974
+    ],
+    "animated_objects": 6,
+    "ifc_guids": [],
+    "camera_labels": [
+      "01 \u2014 Hero",
+      "02 \u2014 Detail",
+      "03 \u2014 Plan"
+    ],
+    "object_count": 32,
+    "mesh_count": 25,
+    "world_bounds": [
+      [
+        -7.4,
+        -7.4,
+        -0.700001
+      ],
+      [
+        7.4,
+        7.4,
+        5.995974
+      ]
+    ],
+    "total_triangles": 5364,
+    "material_count": 5
+  },
+  "motion_evidence": "motion-evidence.json"
+}

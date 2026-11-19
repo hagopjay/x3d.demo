@@ -1,0 +1,88 @@
+{
+  "schema": "nexus-release-evidence/1",
+  "date": "2026-11-19",
+  "source_commit": "cc4864c56844a27efa4485f3ffbe1725c279e9b6",
+  "addon_version": "2.6.4",
+  "x3d_version": "4.0",
+  "chapter_count": 8,
+  "synthetic": true,
+  "requires_llm_api": false,
+  "core_suite": {
+    "tests": 909,
+    "skipped": 48,
+    "status": "OK",
+    "blender": "5.1.2",
+    "python": "3.13.9"
+  },
+  "independent_format_audit": {
+    "chapter_count": 8,
+    "input_count": 1,
+    "pass": 180,
+    "warn": 2,
+    "fail": 0,
+    "not_run": 0,
+    "all_required_checks_passed": true,
+    "scope": "Format validity, offline dependencies and reopenability only; semantic and visual preservation are separate checks"
+  },
+  "web3d_fields": {
+    "files": 20,
+    "errors": 0,
+    "warnings": 0,
+    "version": "4.0.65.8"
+  },
+  "browser": {
+    "source_and_roundtrip_loads": 16,
+    "native_click_controls": "real-mouse pass",
+    "camera_bind_reset": "pass",
+    "mobile_width": 390,
+    "horizontal_overflow": false,
+    "portable_verifier_status": "pass",
+    "verifier_sha256": "9fa1e0fafc06d6988d5d7e294e2762d80321402ee6fb31ec0cd5908d4bcb98d9",
+    "manifest_sha256": "a11d21070b550b29b1fc7d522155fb154e72b4c18585b0be1991771e9887e4ca"
+  },
+  "film": {
+    "duration_seconds": 30.0,
+    "source_frames": 96,
+    "encoded_fps": 24,
+    "bytes": 3194512,
+    "capture_profile": {
+      "shadow_map_size": 256,
+      "shadows_disabled": true,
+      "source_files_modified": false
+    }
+  },
+  "instancing": {
+    "schema": "nexus-instancing-measurement/1",
+    "blender": "5.1.2",
+    "mesh_objects": 208,
+    "shared_mesh_users_before": 144,
+    "shared": {
+      "bytes": 407712,
+      "gzip_bytes": 44413,
+      "coordinate_definitions": 65,
+      "geometry_uses": 143
+    },
+    "single_user_copies": {
+      "bytes": 2867747,
+      "gzip_bytes": 67461,
+      "coordinate_definitions": 208,
+      "geometry_uses": 0
+    },
+    "byte_reduction_percent": 85.783,
+    "size_ratio": 7.034,
+    "scope": "Same scene, export options and materials; only mesh data sharing is changed. File size is not a render-speed benchmark."
+  },
+  "external_editors": {
+    "Unreal Engine": "prepared, not executed",
+    "Bonsai": "IFC validated and tessellated; editor not executed"
+  },
+  "known_limits": [
+    "HAnim GLB skin-parent validator warnings are retained",
+    "Foundry camera tour extends Blender timeline; motion checked at equal seconds over source interval",
+    "Structural differences remain reported; universal equivalence is not claimed",
+    "Film motion interpolation and software shadow profile are recorded; no realtime FPS claim"
+  ],
+  "source_patch": "NEXUS-X3D-Hub-Source.patch",
+  "remote_pr": null,
+  "source_patch_sha256": "c1ef36051707129a189498b8cf2af29c4c35bd966b2c60d7b0923d6198b9d628"
+}

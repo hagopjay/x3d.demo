@@ -1,0 +1,16 @@
+{
+  "schema": "x3d-demo/recheck/1",
+  "date": "2026-11-19",
+  "what": "Independent re-check of the NEXUS X3D Hub Observatory release before publishing it as Demo 56",
+  "checks": [
+    {"name": "release checksums", "tool": "sha256sum -c checksums.txt (GNU coreutils)", "result": "304 of 304 OK", "grade": "Confirmed"},
+    {"name": "X3D 4.0 XSD", "tool": "x3d_mcp 39c6e94 validation.validate.validate_xml (lxml + X3D 4.0 XSD)", "result": "19 of 20 valid; assets/hanim/scene.x3d invalid: HAnimHumanoid name='Articulation study' is not an xs:NMTOKEN (line 616)", "grade": "Confirmed"},
+    {"name": "X3D semantic", "tool": "x3d_mcp 39c6e94 validation.semantic.validate_semantic", "result": "3 files with 1 error each (naming-convention: whitespace in name on HAnimHumanoid and on MetadataSet 'IFC identity' in bim scene+roundtrip); 2 files with 1 warning (empty-group OB__materials in usd); the rest info only", "grade": "Confirmed"},
+    {"name": "release's own claim", "tool": "Web3D x3d.py 4.0.65.8 via repository adapter (from the release)", "result": "20 files, 0 errors, 0 warnings: this adapter does not check NMTOKEN, so it missed the HAnim name", "grade": "Confirmed"},
+    {"name": "browser load", "tool": "Playwright, headless Chromium 157.0.8103.78, SwiftShader (no GPU), X_ITE 16.7.1 as vendored, 1440x900", "result": "8 of 8 chapters loaded, 0 console errors, first ready 7.9 s, chapter loads 4.2 to 36.7 s (software rendering, not an FPS claim)", "grade": "Confirmed"},
+    {"name": "chapters 04 and 05 look tilted", "tool": "same rig, X_ITE StraightenHorizon on vs off", "result": "the authored source.x3d Viewpoints carry a roll; X_ITE's default StraightenHorizon hides it in the source, but after Blender the camera sits under a rotated Transform and the roll shows. Geometry and Transforms are preserved (Blender bounds are upright). Fixture camera issue, not an add-on geometry bug", "grade": "Likely"},
+    {"name": "leak sweep", "tool": "grep over text files; zstandard-decompressed .blend strings", "result": "no keys, emails or claude.ai links; .blend files hold the generic temp dir /home/agent; reel receipt holds the builder path /workspace/scratch/...", "grade": "Confirmed"},
+    {"name": "add-on suite with the HAnim fix", "tool": "bpy 5.3.0 (pip wheel), python -m unittest discover in tests/", "result": "910 tests OK, 48 skipped; the new test fails without the fix", "grade": "Confirmed"}
+  ],
+  "not_tested": ["a real GPU", "other X3D browsers (Castle, X3DOM)", "Unreal and Bonsai editors (the release says prepared, not executed)", "Khronos glTF validator and OpenUSD reopen were not re-run here; those numbers are the release's own", "motion-matrix and HAnim millimetre numbers are the release's own, not re-measured"]
+}

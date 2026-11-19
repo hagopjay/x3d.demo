@@ -1,0 +1,1044 @@
+{
+  "chapters": [
+    {
+      "id": "foundry",
+      "title": "The Asterion engine",
+      "kicker": "01 / BLENDER \u2192 X3D",
+      "description": "A kinetic jewel built in Blender becomes native X3D geometry, PBR materials and timed ROUTEs.",
+      "source_kind": "Blender",
+      "features": [
+        "PhysicalMaterial PBR",
+        "Nested Transform hierarchy",
+        "Sampled animation + ROUTEs",
+        "Emission",
+        "Click sensors + camera tour",
+        "Multiple Viewpoints",
+        "Mesh normals"
+      ],
+      "duration_seconds": 14,
+      "x3d": "assets/foundry/scene.x3d",
+      "roundtrip_x3d": "assets/foundry/roundtrip.x3d",
+      "poster": "assets/foundry/poster.png",
+      "downloads": {
+        "blend": "assets/foundry/scene.blend",
+        "glb": "assets/foundry/hub.glb",
+        "usd": "assets/foundry/hub.usda",
+        "native_glb": "assets/foundry/scene.glb",
+        "native_usd": "assets/foundry/scene.usda",
+        "imported_blend": "assets/foundry/imported.blend"
+      },
+      "metrics": {
+        "objects": 122,
+        "meshes": 113,
+        "unique_meshes": 113,
+        "vertices": 9674,
+        "triangles": 18940,
+        "materials": 6,
+        "shared_mesh_users": 0,
+        "bounds_min": [
+          -7.0,
+          -7.0,
+          -0.63
+        ],
+        "bounds_max": [
+          7.0,
+          7.0,
+          5.691226
+        ],
+        "animated_objects": 4,
+        "ifc_guids": [],
+        "camera_labels": [
+          "01 \u2014 Hero",
+          "02 \u2014 Detail",
+          "03 \u2014 Plan"
+        ],
+        "x3d_bytes": 1554501,
+        "x3d_nodes": 916,
+        "geometry_use_count": 0
+      },
+      "checks": [
+        {
+          "label": "Synthetic data",
+          "status": "pass",
+          "detail": "Deterministic original geometry; no LLM API or downloaded asset."
+        },
+        {
+          "label": "X3D 4.0 validation",
+          "status": "pass",
+          "detail": "XML plus repository field checks."
+        },
+        {
+          "label": "Native glTF / GLB written",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "Native OpenUSD written",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D ingress \u2192 GLB",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "X3D ingress \u2192 OpenUSD",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D \u2192 Blender \u2192 X3D",
+          "status": "pass",
+          "detail": "Imported into a fresh scene and re-exported; 113 mesh objects reconstructed."
+        },
+        {
+          "label": "First-trip structure",
+          "status": "info",
+          "detail": "182 structural differences reported; exact equivalence is not assumed."
+        },
+        {
+          "label": "World bounds preservation",
+          "status": "pass",
+          "detail": "Maximum bound difference 1e-06 m at the start frame."
+        },
+        {
+          "label": "Unreal / Bonsai editor",
+          "status": "not_run",
+          "detail": "Interchange assets and adapter supplied; these editors were not executed here."
+        },
+        {
+          "label": "Sampled world transforms",
+          "status": "pass",
+          "detail": "117/117 rigid identities at five source-interval phases, equal elapsed seconds; max matrix-component error 3.25441e-05, translation 6.7435e-07 m."
+        }
+      ],
+      "camera_labels": [
+        "01 \u2014 Hero",
+        "02 \u2014 Detail",
+        "03 \u2014 Plan"
+      ],
+      "evidence": "assets/foundry/evidence.json"
+    },
+    {
+      "id": "materials",
+      "title": "The material spectrum",
+      "kicker": "02 / LOOK DEVELOPMENT",
+      "description": "Thirty measured metallic\u2013roughness combinations and a generated UV calibration texture cross the hub.",
+      "source_kind": "Blender",
+      "features": [
+        "30 PBR combinations",
+        "Metallic / roughness sweep",
+        "PhysicalMaterial",
+        "Generated ImageTexture",
+        "TextureCoordinate UVs",
+        "Material identity"
+      ],
+      "duration_seconds": 14,
+      "x3d": "assets/materials/scene.x3d",
+      "roundtrip_x3d": "assets/materials/roundtrip.x3d",
+      "poster": "assets/materials/poster.png",
+      "downloads": {
+        "blend": "assets/materials/scene.blend",
+        "glb": "assets/materials/hub.glb",
+        "usd": "assets/materials/hub.usda",
+        "native_glb": "assets/materials/scene.glb",
+        "native_usd": "assets/materials/scene.usda",
+        "imported_blend": "assets/materials/imported.blend"
+      },
+      "metrics": {
+        "objects": 118,
+        "meshes": 113,
+        "unique_meshes": 113,
+        "vertices": 16444,
+        "triangles": 32444,
+        "materials": 36,
+        "shared_mesh_users": 0,
+        "bounds_min": [
+          -8.7,
+          -8.7,
+          -0.63
+        ],
+        "bounds_max": [
+          8.7,
+          8.7,
+          1.72
+        ],
+        "animated_objects": 0,
+        "ifc_guids": [],
+        "camera_labels": [
+          "01 \u2014 Hero",
+          "02 \u2014 Detail",
+          "03 \u2014 Plan"
+        ],
+        "x3d_bytes": 1990262,
+        "x3d_nodes": 849,
+        "geometry_use_count": 0
+      },
+      "checks": [
+        {
+          "label": "Synthetic data",
+          "status": "pass",
+          "detail": "Deterministic original geometry; no LLM API or downloaded asset."
+        },
+        {
+          "label": "X3D 4.0 validation",
+          "status": "pass",
+          "detail": "XML plus repository field checks."
+        },
+        {
+          "label": "Native glTF / GLB written",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "Native OpenUSD written",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D ingress \u2192 GLB",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "X3D ingress \u2192 OpenUSD",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D \u2192 Blender \u2192 X3D",
+          "status": "pass",
+          "detail": "Imported into a fresh scene and re-exported; 113 mesh objects reconstructed."
+        },
+        {
+          "label": "First-trip structure",
+          "status": "info",
+          "detail": "1 structural differences reported; exact equivalence is not assumed."
+        },
+        {
+          "label": "World bounds preservation",
+          "status": "pass",
+          "detail": "Maximum bound difference 1e-06 m at the start frame."
+        },
+        {
+          "label": "Unreal / Bonsai editor",
+          "status": "not_run",
+          "detail": "Interchange assets and adapter supplied; these editors were not executed here."
+        },
+        {
+          "label": "Sampled world transforms",
+          "status": "pass",
+          "detail": "113/113 rigid identities at five source-interval phases, equal elapsed seconds; max matrix-component error 4.76837e-07, translation 4.76837e-07 m."
+        }
+      ],
+      "camera_labels": [
+        "01 \u2014 Hero",
+        "02 \u2014 Detail",
+        "03 \u2014 Plan"
+      ],
+      "evidence": "assets/materials/evidence.json"
+    },
+    {
+      "id": "instances",
+      "title": "One mesh. A metropolis.",
+      "kicker": "03 / IDENTITY & REUSE",
+      "description": "A deterministic city of 144 linked modules proves geometry reuse instead of merely showing repeated objects.",
+      "source_kind": "Blender",
+      "features": [
+        "144 linked mesh users",
+        "Geometry DEF / USE",
+        "Per-instance transforms",
+        "Deterministic synthetic city",
+        "Shared materials",
+        "USD / GLB exchange"
+      ],
+      "duration_seconds": 13,
+      "x3d": "assets/instances/scene.x3d",
+      "roundtrip_x3d": "assets/instances/roundtrip.x3d",
+      "poster": "assets/instances/poster.png",
+      "downloads": {
+        "blend": "assets/instances/scene.blend",
+        "glb": "assets/instances/hub.glb",
+        "usd": "assets/instances/hub.usda",
+        "native_glb": "assets/instances/scene.glb",
+        "native_usd": "assets/instances/scene.usda",
+        "imported_blend": "assets/instances/imported.blend"
+      },
+      "metrics": {
+        "objects": 213,
+        "meshes": 208,
+        "unique_meshes": 65,
+        "vertices": 10208,
+        "triangles": 19592,
+        "materials": 6,
+        "shared_mesh_users": 144,
+        "bounds_min": [
+          -11.0,
+          -11.0,
+          -0.63
+        ],
+        "bounds_max": [
+          11.0,
+          11.0,
+          3.712231
+        ],
+        "animated_objects": 0,
+        "ifc_guids": [],
+        "camera_labels": [
+          "01 \u2014 Hero",
+          "02 \u2014 Detail",
+          "03 \u2014 Plan"
+        ],
+        "x3d_bytes": 407934,
+        "x3d_nodes": 1055,
+        "geometry_use_count": 143
+      },
+      "checks": [
+        {
+          "label": "Synthetic data",
+          "status": "pass",
+          "detail": "Deterministic original geometry; no LLM API or downloaded asset."
+        },
+        {
+          "label": "X3D 4.0 validation",
+          "status": "pass",
+          "detail": "XML plus repository field checks."
+        },
+        {
+          "label": "Native glTF / GLB written",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "Native OpenUSD written",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D ingress \u2192 GLB",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "X3D ingress \u2192 OpenUSD",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D \u2192 Blender \u2192 X3D",
+          "status": "pass",
+          "detail": "Imported into a fresh scene and re-exported; 208 mesh objects reconstructed."
+        },
+        {
+          "label": "First-trip structure",
+          "status": "info",
+          "detail": "1 structural differences reported; exact equivalence is not assumed."
+        },
+        {
+          "label": "World bounds preservation",
+          "status": "pass",
+          "detail": "Maximum bound difference 1e-06 m at the start frame."
+        },
+        {
+          "label": "Unreal / Bonsai editor",
+          "status": "not_run",
+          "detail": "Interchange assets and adapter supplied; these editors were not executed here."
+        },
+        {
+          "label": "Sampled world transforms",
+          "status": "pass",
+          "detail": "208/208 rigid identities at five source-interval phases, equal elapsed seconds; max matrix-component error 1.83971e-06, translation 5.06639e-07 m."
+        }
+      ],
+      "camera_labels": [
+        "01 \u2014 Hero",
+        "02 \u2014 Detail",
+        "03 \u2014 Plan"
+      ],
+      "evidence": "assets/instances/evidence.json"
+    },
+    {
+      "id": "x3d_ingress",
+      "title": "The return journey",
+      "kicker": "04 / X3D \u2192 BLENDER \u2192 X3D",
+      "description": "An independently authored X3D source brings hierarchy, shared definitions and ROUTE animation into editable Blender data.",
+      "source_kind": "X3D",
+      "features": [
+        "Independent X3D source",
+        "DEF / USE across parents",
+        "ROUTE animation ingress",
+        "Hierarchy reconstruction",
+        "PBR materials",
+        "Editable Blender scene"
+      ],
+      "duration_seconds": 15,
+      "x3d": "assets/x3d_ingress/scene.x3d",
+      "roundtrip_x3d": "assets/x3d_ingress/roundtrip.x3d",
+      "poster": "assets/x3d_ingress/poster.png",
+      "downloads": {
+        "blend": "assets/x3d_ingress/scene.blend",
+        "glb": "assets/x3d_ingress/hub.glb",
+        "usd": "assets/x3d_ingress/hub.usda",
+        "native_glb": "assets/x3d_ingress/scene.glb",
+        "native_usd": "assets/x3d_ingress/scene.usda",
+        "imported_blend": "assets/x3d_ingress/imported.blend",
+        "source": "assets/x3d_ingress/source.x3d"
+      },
+      "metrics": {
+        "objects": 32,
+        "meshes": 25,
+        "unique_meshes": 24,
+        "vertices": 2722,
+        "triangles": 5364,
+        "materials": 5,
+        "shared_mesh_users": 2,
+        "bounds_min": [
+          -7.4,
+          -7.4,
+          -0.700001
+        ],
+        "bounds_max": [
+          7.4,
+          7.4,
+          5.995974
+        ],
+        "animated_objects": 3,
+        "ifc_guids": [],
+        "camera_labels": [
+          "01 \u2014 Hero",
+          "02 \u2014 Detail",
+          "03 \u2014 Plan"
+        ],
+        "x3d_bytes": 379119,
+        "x3d_nodes": 186,
+        "geometry_use_count": 0
+      },
+      "checks": [
+        {
+          "label": "Synthetic data",
+          "status": "pass",
+          "detail": "Deterministic original geometry; no LLM API or downloaded asset."
+        },
+        {
+          "label": "Independent animation endpoints",
+          "status": "pass",
+          "detail": "Both reused modules reach expected midpoint height 2.4 m; maximum sampled error 1.09479e-07 m.",
+          "expected_world_midpoint": [
+            [
+              -3.7,
+              0,
+              2.4
+            ],
+            [
+              3.7,
+              0,
+              2.4
+            ]
+          ],
+          "observed_world_midpoint": [
+            [
+              -3.700000047683716,
+              -7.105427357601002e-15,
+              2.4000000953674316
+            ],
+            [
+              3.700000047683716,
+              -1.094785702093759e-07,
+              2.4000000953674316
+            ]
+          ]
+        },
+        {
+          "label": "X3D 4.0 validation",
+          "status": "pass",
+          "detail": "XML plus repository field checks."
+        },
+        {
+          "label": "Native glTF / GLB written",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "Native OpenUSD written",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D ingress \u2192 GLB",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "X3D ingress \u2192 OpenUSD",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D \u2192 Blender \u2192 X3D",
+          "status": "pass",
+          "detail": "Imported into a fresh scene and re-exported; 25 mesh objects reconstructed."
+        },
+        {
+          "label": "First-trip structure",
+          "status": "info",
+          "detail": "2 structural differences reported; exact equivalence is not assumed."
+        },
+        {
+          "label": "World bounds preservation",
+          "status": "pass",
+          "detail": "Maximum bound difference 0 m at the start frame."
+        },
+        {
+          "label": "Unreal / Bonsai editor",
+          "status": "not_run",
+          "detail": "Interchange assets and adapter supplied; these editors were not executed here."
+        },
+        {
+          "label": "Sampled world transforms",
+          "status": "pass",
+          "detail": "27/27 rigid identities at five source-interval phases, equal elapsed seconds; max matrix-component error 4.76837e-07, translation 2.77167e-07 m."
+        }
+      ],
+      "camera_labels": [
+        "01 \u2014 Hero",
+        "02 \u2014 Detail",
+        "03 \u2014 Plan"
+      ],
+      "evidence": "assets/x3d_ingress/evidence.json"
+    },
+    {
+      "id": "federation",
+      "title": "A scene of references",
+      "kicker": "05 / GLB \u2192 INLINE \u2192 BLENDER",
+      "description": "One generated glTF binary is referenced three times by X3D Inline, then reconstructed by the Blender hub.",
+      "source_kind": "glTF / GLB",
+      "features": [
+        "glTF binary asset",
+        "Three Inline occurrences",
+        "Reference-aware re-export",
+        "Blender GLB import adapter",
+        "Native X3D composition"
+      ],
+      "duration_seconds": 14,
+      "x3d": "assets/federation/scene.x3d",
+      "roundtrip_x3d": "assets/federation/roundtrip.x3d",
+      "poster": "assets/federation/poster.png",
+      "downloads": {
+        "blend": "assets/federation/scene.blend",
+        "glb": "assets/federation/hub.glb",
+        "usd": "assets/federation/hub.usda",
+        "native_glb": "assets/federation/scene.glb",
+        "native_usd": "assets/federation/scene.usda",
+        "imported_blend": "assets/federation/imported.blend",
+        "source": "assets/federation/source.x3d"
+      },
+      "metrics": {
+        "objects": 45,
+        "meshes": 37,
+        "unique_meshes": 37,
+        "vertices": 7595,
+        "triangles": 5892,
+        "materials": 15,
+        "shared_mesh_users": 0,
+        "bounds_min": [
+          -7.4,
+          -7.4,
+          -0.700001
+        ],
+        "bounds_max": [
+          7.4,
+          7.4,
+          1.9
+        ],
+        "animated_objects": 0,
+        "ifc_guids": [],
+        "camera_labels": [
+          "01 \u2014 Hero",
+          "02 \u2014 Detail",
+          "03 \u2014 Plan"
+        ],
+        "x3d_bytes": 199159,
+        "x3d_nodes": 58,
+        "geometry_use_count": 0
+      },
+      "checks": [
+        {
+          "label": "Synthetic data",
+          "status": "pass",
+          "detail": "Deterministic original geometry; no LLM API or downloaded asset."
+        },
+        {
+          "label": "X3D 4.0 validation",
+          "status": "pass",
+          "detail": "XML plus repository field checks."
+        },
+        {
+          "label": "Native glTF / GLB written",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "Native OpenUSD written",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D ingress \u2192 GLB",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "X3D ingress \u2192 OpenUSD",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D \u2192 Blender \u2192 X3D",
+          "status": "pass",
+          "detail": "Imported into a fresh scene and re-exported; 37 mesh objects reconstructed."
+        },
+        {
+          "label": "First-trip structure",
+          "status": "info",
+          "detail": "1 structural differences reported; exact equivalence is not assumed."
+        },
+        {
+          "label": "World bounds preservation",
+          "status": "pass",
+          "detail": "Maximum bound difference 0 m at the start frame."
+        },
+        {
+          "label": "Unreal / Bonsai editor",
+          "status": "not_run",
+          "detail": "Interchange assets and adapter supplied; these editors were not executed here."
+        },
+        {
+          "label": "Sampled world transforms",
+          "status": "pass",
+          "detail": "40/40 rigid identities at five source-interval phases, equal elapsed seconds; max matrix-component error 0, translation 0 m."
+        }
+      ],
+      "camera_labels": [
+        "01 \u2014 Hero",
+        "02 \u2014 Detail",
+        "03 \u2014 Plan"
+      ],
+      "evidence": "assets/federation/evidence.json"
+    },
+    {
+      "id": "bim",
+      "title": "Open design pavilion",
+      "kicker": "06 / IFC \u2192 BLENDER \u2192 X3D",
+      "description": "Synthetic IFC4 building elements become actual Blender meshes; GlobalId and class accompany their web geometry.",
+      "source_kind": "IFC4",
+      "features": [
+        "Real IFC4 geometry ingestion",
+        "Persistent GlobalId",
+        "Building element classes",
+        "X3D MetadataSet",
+        "Blender editability",
+        "Bonsai-ready IFC"
+      ],
+      "duration_seconds": 15,
+      "x3d": "assets/bim/scene.x3d",
+      "roundtrip_x3d": "assets/bim/roundtrip.x3d",
+      "poster": "assets/bim/poster.png",
+      "downloads": {
+        "blend": "assets/bim/scene.blend",
+        "glb": "assets/bim/hub.glb",
+        "usd": "assets/bim/hub.usda",
+        "native_glb": "assets/bim/scene.glb",
+        "native_usd": "assets/bim/scene.usda",
+        "imported_blend": "assets/bim/imported.blend"
+      },
+      "metrics": {
+        "objects": 93,
+        "meshes": 88,
+        "unique_meshes": 88,
+        "vertices": 2336,
+        "triangles": 4328,
+        "materials": 41,
+        "shared_mesh_users": 0,
+        "bounds_min": [
+          -10.0,
+          -10.0,
+          -0.63
+        ],
+        "bounds_max": [
+          10.0,
+          10.0,
+          4.69
+        ],
+        "animated_objects": 0,
+        "ifc_guids": [
+          "0OnWguhGvOLAnxsxYVUp$T",
+          "0p_BMBADfNxOfDcq0rv2Yi",
+          "0sQP$$CpPMXAIfwdNReVlb",
+          "0vUH1EnTfLWPipoF8$qRuv",
+          "0xkaGXpVLJ5PiZJ$QB6bS$",
+          "19qToScRvVt87Z0lEsHwNl",
+          "1DzVUjuoTQVx3Ltxk3mul3",
+          "1SFkXtX9vJhP9j8P2$Imt5",
+          "1UC4PcwmXP7xv2TFqNFEBr",
+          "1W4K4gJhPLwgqpU9Ipl8c7",
+          "1ZHWAeU39Ot93OJAIe3Ko3",
+          "1dLDUrlfrRc98ZmF2kT1Kx",
+          "1t8yWGEnvGzwwfJ5nYWzZ5",
+          "1zVJb3zJjVmuzrXOP9m8ba",
+          "24pfmBf$TTjPwNbM7M2wMZ",
+          "28wTbi2r9LiP5ricpNcnjT",
+          "2HBz4s9prJzOiRkpjLeWvq",
+          "2IxdcXFbrPEgbjNyhIJfeL",
+          "2KHuEDUBPRbOLxndmC34EE",
+          "2QW7ilYQTVoQmoi6iTe7d$",
+          "2TMvU5BRvV6g6Ug3yMFDuj",
+          "2fu6naFErRBRzzq9v5M6I$",
+          "2hhzulI2XLGBaG1JoJ1Its",
+          "31Z3$D16rOl9q9wjWBR5Sw",
+          "33VHu8CwjPpBYU8QUAGrd0",
+          "3CqFmDWwjIGgBUcMA$Bncn",
+          "3IjQp8iHnK58Ws8NyF$oEz",
+          "3TuctI185OTgfOBYv1CAKW",
+          "3fMtAdEeLH6eLK0m5Pzw0p",
+          "3ijWhuyiHNpRF$uZkV5HbR",
+          "3omyfL0BvRUxT4$9znJ5Kc",
+          "3p2FB0bi9IDAHoR3F2WG1y",
+          "3rTOcon2bOtflUALhKLmSx",
+          "3rTxWTG3PN8wsi72ImLn_S",
+          "3xXLGKMrHKkeXR8g0stmBN",
+          "3zFmSUqv1H7xeroaKjY4_5"
+        ],
+        "camera_labels": [
+          "01 \u2014 Hero",
+          "02 \u2014 Detail",
+          "03 \u2014 Plan"
+        ],
+        "x3d_bytes": 424181,
+        "x3d_nodes": 1074,
+        "geometry_use_count": 0
+      },
+      "checks": [
+        {
+          "label": "Synthetic data",
+          "status": "pass",
+          "detail": "Deterministic original geometry; no LLM API or downloaded asset."
+        },
+        {
+          "label": "X3D 4.0 validation",
+          "status": "pass",
+          "detail": "XML plus repository field checks."
+        },
+        {
+          "label": "Native glTF / GLB written",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "Native OpenUSD written",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "IFC \u2192 USD metadata adapter",
+          "status": "pass",
+          "detail": "36 X3D MetadataSets explicitly promoted to scalar IFC properties for USD export."
+        },
+        {
+          "label": "X3D ingress \u2192 GLB",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "X3D ingress \u2192 OpenUSD",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D \u2192 Blender \u2192 X3D",
+          "status": "pass",
+          "detail": "Imported into a fresh scene and re-exported; 88 mesh objects reconstructed."
+        },
+        {
+          "label": "First-trip structure",
+          "status": "info",
+          "detail": "37 structural differences reported; exact equivalence is not assumed."
+        },
+        {
+          "label": "World bounds preservation",
+          "status": "pass",
+          "detail": "Maximum bound difference 1e-06 m at the start frame."
+        },
+        {
+          "label": "IFC identity preservation",
+          "status": "pass",
+          "detail": "36 GlobalId values recovered from imported X3D metadata."
+        },
+        {
+          "label": "Unreal / Bonsai editor",
+          "status": "not_run",
+          "detail": "Interchange assets and adapter supplied; these editors were not executed here."
+        },
+        {
+          "label": "Sampled world transforms",
+          "status": "pass",
+          "detail": "88/88 rigid identities at five source-interval phases, equal elapsed seconds; max matrix-component error 4.76837e-07, translation 4.76837e-07 m."
+        }
+      ],
+      "camera_labels": [
+        "01 \u2014 Hero",
+        "02 \u2014 Detail",
+        "03 \u2014 Plan"
+      ],
+      "evidence": "assets/bim/evidence.json"
+    },
+    {
+      "id": "usd",
+      "title": "The studio interchange",
+      "kicker": "07 / USD \u2192 BLENDER \u2192 X3D",
+      "description": "A real USD export is reopened through Blender and published as X3D, making the DCC handoff inspectable.",
+      "source_kind": "OpenUSD",
+      "features": [
+        "Real USD source file",
+        "USD \u2192 Blender import",
+        "Blender \u2192 X3D publication",
+        "Materials and geometry",
+        "Native USD re-export"
+      ],
+      "duration_seconds": 14,
+      "x3d": "assets/usd/scene.x3d",
+      "roundtrip_x3d": "assets/usd/roundtrip.x3d",
+      "poster": "assets/usd/poster.png",
+      "downloads": {
+        "blend": "assets/usd/scene.blend",
+        "glb": "assets/usd/hub.glb",
+        "usd": "assets/usd/hub.usda",
+        "native_glb": "assets/usd/scene.glb",
+        "native_usd": "assets/usd/scene.usda",
+        "imported_blend": "assets/usd/imported.blend",
+        "source": "assets/usd/source.usda"
+      },
+      "metrics": {
+        "objects": 121,
+        "meshes": 111,
+        "unique_meshes": 111,
+        "vertices": 9514,
+        "triangles": 18628,
+        "materials": 6,
+        "shared_mesh_users": 0,
+        "bounds_min": [
+          -7.0,
+          -7.0,
+          -0.63
+        ],
+        "bounds_max": [
+          7.0,
+          7.0,
+          5.691226
+        ],
+        "animated_objects": 0,
+        "ifc_guids": [],
+        "camera_labels": [
+          "01 \u2014 Hero",
+          "02 \u2014 Detail",
+          "03 \u2014 Plan"
+        ],
+        "x3d_bytes": 1535460,
+        "x3d_nodes": 893,
+        "geometry_use_count": 0
+      },
+      "checks": [
+        {
+          "label": "Synthetic data",
+          "status": "pass",
+          "detail": "Deterministic original geometry; no LLM API or downloaded asset."
+        },
+        {
+          "label": "X3D 4.0 validation",
+          "status": "pass",
+          "detail": "XML plus repository field checks."
+        },
+        {
+          "label": "Native glTF / GLB written",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "Native OpenUSD written",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D ingress \u2192 GLB",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "X3D ingress \u2192 OpenUSD",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D \u2192 Blender \u2192 X3D",
+          "status": "pass",
+          "detail": "Imported into a fresh scene and re-exported; 111 mesh objects reconstructed."
+        },
+        {
+          "label": "First-trip structure",
+          "status": "info",
+          "detail": "114 structural differences reported; exact equivalence is not assumed."
+        },
+        {
+          "label": "World bounds preservation",
+          "status": "pass",
+          "detail": "Maximum bound difference 1e-06 m at the start frame."
+        },
+        {
+          "label": "Unreal / Bonsai editor",
+          "status": "not_run",
+          "detail": "Interchange assets and adapter supplied; these editors were not executed here."
+        },
+        {
+          "label": "Sampled world transforms",
+          "status": "pass",
+          "detail": "116/116 rigid identities at five source-interval phases, equal elapsed seconds; max matrix-component error 2.08616e-06, translation 6.7435e-07 m."
+        }
+      ],
+      "camera_labels": [
+        "01 \u2014 Hero",
+        "02 \u2014 Detail",
+        "03 \u2014 Plan"
+      ],
+      "evidence": "assets/usd/evidence.json"
+    },
+    {
+      "id": "hanim",
+      "title": "The articulated study",
+      "kicker": "08 / H-ANIM & SKINNING",
+      "description": "A partial three-joint mechanical limb carries real skin weights and joint animation into H-Anim 2.0, then returns as an editable armature.",
+      "source_kind": "Blender armature",
+      "features": [
+        "H-Anim 2.0 partial rig",
+        "Three weighted joints",
+        "Skin weights",
+        "Joint animation ROUTEs",
+        "Editable reconstructed armature",
+        "No LOA conformance claim"
+      ],
+      "duration_seconds": 14,
+      "x3d": "assets/hanim/scene.x3d",
+      "roundtrip_x3d": "assets/hanim/roundtrip.x3d",
+      "poster": "assets/hanim/poster.png",
+      "downloads": {
+        "blend": "assets/hanim/scene.blend",
+        "glb": "assets/hanim/hub.glb",
+        "usd": "assets/hanim/hub.usda",
+        "native_glb": "assets/hanim/scene.glb",
+        "native_usd": "assets/hanim/scene.usda",
+        "imported_blend": "assets/hanim/imported.blend"
+      },
+      "metrics": {
+        "objects": 68,
+        "meshes": 62,
+        "unique_meshes": 62,
+        "vertices": 6572,
+        "triangles": 12928,
+        "materials": 5,
+        "shared_mesh_users": 0,
+        "bounds_min": [
+          -5.5,
+          -5.5,
+          -1.185
+        ],
+        "bounds_max": [
+          5.5,
+          5.5,
+          5.585
+        ],
+        "animated_objects": 1,
+        "ifc_guids": [],
+        "camera_labels": [
+          "01 \u2014 Hero",
+          "02 \u2014 Detail",
+          "03 \u2014 Plan"
+        ],
+        "x3d_bytes": 820301,
+        "x3d_nodes": 482,
+        "geometry_use_count": 3
+      },
+      "checks": [
+        {
+          "label": "Synthetic data",
+          "status": "pass",
+          "detail": "Deterministic original geometry; no LLM API or downloaded asset."
+        },
+        {
+          "label": "X3D 4.0 validation",
+          "status": "pass",
+          "detail": "XML plus repository field checks."
+        },
+        {
+          "label": "Native glTF / GLB written",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "Native OpenUSD written",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D ingress \u2192 GLB",
+          "status": "pass",
+          "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+        },
+        {
+          "label": "X3D ingress \u2192 OpenUSD",
+          "status": "pass",
+          "detail": "Blender USD exporter completed. Full USD composition is not implied."
+        },
+        {
+          "label": "X3D \u2192 Blender \u2192 X3D",
+          "status": "pass",
+          "detail": "Imported into a fresh scene and re-exported; 64 mesh objects reconstructed."
+        },
+        {
+          "label": "First-trip structure",
+          "status": "info",
+          "detail": "14 structural differences reported; exact equivalence is not assumed."
+        },
+        {
+          "label": "World bounds preservation",
+          "status": "pass",
+          "detail": "Maximum bound difference 0 m at the start frame."
+        },
+        {
+          "label": "Unreal / Bonsai editor",
+          "status": "not_run",
+          "detail": "Interchange assets and adapter supplied; these editors were not executed here."
+        },
+        {
+          "label": "Sampled world transforms",
+          "status": "pass",
+          "detail": "61/61 rigid identities at five source-interval phases, equal elapsed seconds; max matrix-component error 4.76837e-07, translation 6.7435e-07 m."
+        },
+        {
+          "label": "Sampled H-Anim skin motion",
+          "status": "pass",
+          "detail": "1 partial rig, five times; joint-centre error 0.000585726 m; deformed-skin bound error 0.000442386 m. No LOA claim."
+        }
+      ],
+      "camera_labels": [
+        "01 \u2014 Hero",
+        "02 \u2014 Detail",
+        "03 \u2014 Plan"
+      ],
+      "evidence": "assets/hanim/evidence.json"
+    }
+  ],
+  "errors": [],
+  "runtime": {
+    "blender": "5.1.2",
+    "python": "3.13.9"
+  }
+}
