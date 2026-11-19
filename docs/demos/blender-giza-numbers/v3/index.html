@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en" data-density="rich">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Pyramid Observatory v3 · The Reveal</title>
+    <meta
+      name="description"
+      content="The Great Pyramid's famous numbers, staged as a reveal and then tested: pi, phi, the speed-of-light latitude, the sky's 864,000, a Coincidence Engine and a live X3D instrument."
+    />
+    <link
+      rel="stylesheet"
+      href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css"
+    />
+    <link rel="stylesheet" href="observatory.css" />
+    <script
+      defer
+      src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"
+    ></script>
+    <script type="module" src="observatory.mjs"></script>
+    <script type="module" src="wonder.mjs"></script>
+    <link rel="stylesheet" href="wonder.css" />
+  </head>
+  <body>
+    <a class="skip" href="#workbench">Skip to the instruments</a>
+    <header class="masthead">
+      <a class="brand" href="../../../"
+        ><span class="brand-mark">△</span
+        ><span
+          >PYRAMID <b>OBSERVATORY</b
+          ><small>GIZA / GEOMETRY / EVIDENCE / v3</small></span
+        ></a
+      >
+      <nav aria-label="Page">
+        <a href="#reveal">The Reveal</a><a href="#workbench">Instruments</a><a href="#engine">Coincidence Engine</a
+        ><a href="#evidence">Evidence atlas</a><a href="#methods">Methods</a
+        ><a href="../v2/">v2 ↗</a><a href="../v1/">v1 ↗</a>
+      </nav>
+      <button id="density" aria-pressed="true" class="quiet">
+        Density: rich
+      </button>
+    </header>
+    <main>
+      <section id="reveal" class="reveal" data-lens="wonder" aria-label="The Reveal: five famous numbers, staged and then tested">
+        <div class="rv-inner">
+          <div class="rv-top">
+            <span class="eyebrow"><span class="pulse"></span> THE REVEAL · ACT <b id="rvAct">1</b> / 5</span>
+            <div class="lens" role="group" aria-label="Lens">
+              <button id="rvWonder" aria-pressed="true">✦ Wonder</button><button id="rvTest" aria-pressed="false">⚖ Test</button>
+            </div>
+          </div>
+          <p class="rv-kicker" id="rvKicker">THE GREAT PYRAMID STANDS AT LATITUDE</p>
+          <div class="rv-digits" id="rvClaim" aria-live="polite">29.9792458</div>
+          <p class="rv-aside" id="rvAside"></p>
+          <div class="rv-vs" id="rvVs" hidden>
+            <span class="rv-label" id="rvMeasLabel">THE STONE SAYS</span>
+            <div class="rv-digits measured" id="rvMeas"></div>
+          </div>
+          <h2 class="rv-head" id="rvHead">The same nine digits.</h2>
+          <p class="rv-body" id="rvBody"></p>
+          <div class="rv-stamp" id="rvStamp" hidden></div>
+          <div class="rv-controls">
+            <button id="rvPrev" aria-label="Previous act">◀</button
+            ><div class="rv-dots" id="rvDots" role="group" aria-label="Acts"></div
+            ><button id="rvNext" aria-label="Next act">▶</button
+            ><button id="rvPlay" aria-pressed="true">❚❚ Pause</button
+            ><button id="rvOpen" class="rv-open">Test it in the instrument →</button>
+          </div>
+          <p class="rv-legend"><span class="d gold">9</span> the claim as told · <span class="d shared">9</span> digits that really match, character for character · <span class="d off">9</span> digits that do not</p>
+        </div>
+        <p class="rv-credit">Backdrop: Cycles still of this page's scene after a round trip through Blender 5.3 and x3d-blender-io 8310e7b (see the witness below). The gold ring is the circle of radius = height.</p>
+      </section>
+      <section class="intro">
+        <div>
+          <div class="eyebrow">
+            <span class="pulse"></span> FIELD INSTRUMENT 03 · X3D 4.0
+          </div>
+          <h1>A monument.<br /><em>A thousand ways to look.</em></h1>
+        </div>
+        <div class="intro-note">
+          <p>Measure the geometry. Move the Sun. Challenge the numbers.</p>
+          <p class="muted">
+            A reconstructed casing envelope becomes a live scientific
+            instrument. Every striking resemblance is an invitation to test a
+            model; numerical agreement alone does not establish the builders’
+            intent.
+          </p>
+        </div>
+      </section>
+      <div class="metrics" aria-label="Current model measurements">
+        <div>
+          <span>BASE SIDE</span
+          ><strong id="metricBase">230.363 <small>m</small></strong
+          ><em>Dash 2015 mean casing base</em>
+        </div>
+        <div>
+          <span>RECONSTRUCTED HEIGHT</span
+          ><strong id="metricHeight">146.721 <small>m</small></strong
+          ><em>derived from base × slope</em>
+        </div>
+        <div>
+          <span>FACE SLOPE</span
+          ><strong id="metricSlope">51.8667<small>°</small></strong
+          ><em id="metricSeked">5.492 palms / cubit</em>
+        </div>
+        <div>
+          <span>ENCLOSED VOLUME</span
+          ><strong id="metricVolume">2.595 <small>×10⁶ m³</small></strong
+          ><em>ideal full envelope, no voids</em>
+        </div>
+        <div class="rich">
+          <span>PERIMETER − 2πh</span
+          ><strong id="metricResidual">−0.420 <small>m</small></strong
+          ><em>small residual, large lesson</em>
+        </div>
+      </div>
+
+      <section
+        id="workbench"
+        class="workbench"
+        aria-label="Pyramid instruments"
+      >
+        <div class="modebar" role="group" aria-label="Investigation">
+          <button data-mode="geometry" class="active" aria-pressed="true">
+            <span>01</span> Geometry
+          </button>
+          <button data-mode="survey" aria-pressed="false">
+            <span>02</span> Survey
+          </button>
+          <button data-mode="latitude" aria-pressed="false">
+            <span>03</span> Latitude
+          </button>
+          <button data-mode="solar" aria-pressed="false">
+            <span>04</span> Sun & shadow
+          </button>
+          <div class="mode-actions">
+            <button id="tour" aria-pressed="false">▷ Guided tour</button
+            ><button id="focus" aria-pressed="false">Expand view</button>
+          </div>
+        </div>
+        <div class="instrument-grid">
+          <aside class="control-rail">
+            <div class="rail-heading">
+              <span class="eyebrow">RECONSTRUCTION LAB</span
+              ><button id="reset" class="text-button">Reset</button>
+            </div>
+            <label class="field"
+              >Base side <output id="baseOut" for="base">230.363 m</output
+              ><input
+                id="base"
+                type="range"
+                min="228"
+                max="233"
+                value="230.363"
+                step="0.001"
+            /></label>
+            <label class="field"
+              >Face slope <output id="slopeOut" for="slope">51.8667°</output
+              ><input
+                id="slope"
+                type="range"
+                min="50"
+                max="54"
+                value="51.8666666667"
+                step="any"
+            /></label>
+            <div class="presets" aria-label="Geometry presets">
+              <button data-preset="survey" class="selected">Survey model</button
+              ><button data-preset="seked">Seked 5½</button
+              ><button data-preset="pi">Exact π</button
+              ><button data-preset="phi">Exact φ</button>
+            </div>
+            <p class="micro" id="modelStatus" role="status">
+              REFERENCE · base + historical casing slope
+            </p>
+            <hr />
+            <div class="rail-heading">
+              <span class="eyebrow">SCENE LAYERS</span
+              ><span class="micro">X3D</span>
+            </div>
+            <div class="layer-list">
+              <label
+                ><input type="checkbox" id="layerPi" checked /> Circle &
+                perimeter <i class="swatch gold"></i
+              ></label>
+              <label
+                ><input type="checkbox" id="layerPhi" /> Face triangle
+                <i class="swatch cyan"></i
+              ></label>
+              <label
+                ><input type="checkbox" id="layerSurvey" checked /> Survey
+                instruments</label
+              >
+              <label
+                ><input type="checkbox" id="layerCourses" checked /> Masonry
+                courses <span class="micro">illustrative</span></label
+              >
+              <label
+                ><input type="checkbox" id="layerInterior" /> Interior
+                schematic</label
+              >
+              <label
+                ><input type="checkbox" id="layerLatitude" /> Latitude
+                transects</label
+              >
+              <label
+                ><input type="checkbox" id="layerSolar" /> Solar path &
+                shadow</label
+              >
+            </div>
+            <label class="field compact"
+              >Casing opacity <output id="opacityOut" for="opacity">100%</output
+              ><input
+                id="opacity"
+                type="range"
+                min="5"
+                max="100"
+                value="100"
+                step="1"
+            /></label>
+            <hr />
+            <div class="rail-heading">
+              <span class="eyebrow">LIGHTING</span>
+            </div>
+            <label class="field compact"
+              >Local solar time
+              <output id="timeOut" for="solarTime">15:00</output
+              ><input
+                id="solarTime"
+                type="range"
+                min="6"
+                max="18"
+                step="0.05"
+                value="15"
+            /></label>
+            <label class="field compact"
+              >Solar declination
+              <output id="declOut" for="declination">0.00°</output
+              ><input
+                id="declination"
+                type="range"
+                min="-23.44"
+                max="23.44"
+                step="0.01"
+                value="0"
+            /></label>
+            <div class="presets mini">
+              <button data-season="23.44">June</button
+              ><button data-season="0" class="selected">Equinox</button
+              ><button data-season="-23.44">December</button>
+            </div>
+            <label class="field compact rich"
+              >Render quality<select id="quality">
+                <option value="balanced">Balanced · 2× MSAA</option>
+                <option value="high" selected>High · 4× MSAA</option>
+                <option value="ultra">Ultra · 8× MSAA</option>
+              </select></label
+            >
+          </aside>
+
+          <div class="viewport-column">
+            <div class="viewport" id="viewport">
+              <x3d-canvas
+                id="scene"
+                aria-label="Interactive 3D reconstruction of the Great Pyramid"
+                splashScreen="false"
+                notifications="false"
+                contextMenu="false"
+                antialiased="true"
+                multisampling="4"
+                update="auto"
+                maximumFrameRate="45"
+                contentScale="1"
+                toneMapping="ACES_NARKOWICZ"
+              ></x3d-canvas>
+              <div id="fallback" class="fallback" hidden>
+                <svg
+                  viewBox="0 0 600 360"
+                  role="img"
+                  aria-label="Static schematic of the pyramid"
+                >
+                  <defs>
+                    <linearGradient id="stone">
+                      <stop stop-color="#dcb37b" />
+                      <stop offset="1" stop-color="#4a3b2b" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M60 290 300 40 540 290 300 340Z"
+                    fill="url(#stone)"
+                    stroke="#f3c479"
+                  />
+                  <path
+                    d="M300 40 300 340 540 290"
+                    fill="#231e1a"
+                    stroke="#a98b62"
+                  />
+                  <ellipse
+                    cx="300"
+                    cy="285"
+                    rx="250"
+                    ry="60"
+                    fill="none"
+                    stroke="#e6bf6c"
+                  />
+                  <path
+                    d="M50 310 550 310M300 40 300 345"
+                    stroke="#75d9df"
+                    stroke-dasharray="5 5"
+                  />
+                </svg>
+                <p id="fallbackMessage">
+                  The 3D renderer is unavailable. All analytical instruments
+                  below remain usable.
+                </p>
+              </div>
+              <div class="view-top">
+                <span class="live-badge" id="renderStatus" role="status"
+                  >INITIALIZING X3D</span
+                ><span class="view-id" id="cameraLabel"
+                  >OBLIQUE / RECONSTRUCTED CASING</span
+                >
+              </div>
+              <div class="view-title">
+                <span id="viewEyebrow">THE MEASURED MONUMENT</span
+                ><strong id="viewTitle">A square. A slope. A circle.</strong>
+              </div>
+              <div class="view-corner rich">
+                <span>Y ↑ / N −Z</span><span>1 UNIT = 1 METRE</span
+                ><span id="sceneState">REFERENCE GEOMETRY</span>
+              </div>
+              <div class="view-caption" id="viewCaption">
+                Reconstructed full casing · courses and terrain are illustrative
+                · drag to orbit, scroll to zoom
+              </div>
+            </div>
+            <div class="camera-strip" role="group" aria-label="Camera views">
+              <button data-camera="CA_Overview" class="active">Oblique</button
+              ><button data-camera="CA_Plan">Plan</button
+              ><button data-camera="CA_Pi">Circle</button
+              ><button data-camera="CA_Phi">Elevation</button
+              ><button data-camera="CA_Ground">Human scale</button
+              ><button data-camera="CA_Interior">Interior</button
+              ><button data-camera="CA_Survey">Survey</button
+              ><button id="orbit" aria-pressed="false">↻ Orbit</button>
+            </div>
+            <div class="view-telemetry">
+              <span><i class="swatch gold"></i> height-radius circle</span
+              ><span><i class="swatch cyan"></i> square & measurements</span
+              ><span id="sunTelemetry">SUN ALT 37.8° · AZ 243.4°</span>
+            </div>
+          </div>
+
+          <aside class="analysis-rail">
+            <div class="rail-heading">
+              <span class="eyebrow" id="insightKicker">GEOMETRY / LIVE</span
+              ><span class="small-badge">MODEL</span>
+            </div>
+            <h2 id="insightTitle">How close is close?</h2>
+            <p id="insightText" class="muted">
+              The perimeter nearly matches a circle whose radius is the
+              reconstructed height. Magnify the difference: resemblance becomes
+              measurable.
+            </p>
+            <div class="ratio-cards">
+              <button data-ratio="pi" class="selected">
+                <span>π TEST <small>2b / h</small></span
+                ><strong id="ratioPi">3.14016</strong
+                ><em id="errorPi">−0.046%</em>
+              </button>
+              <button data-ratio="phi">
+                <span>φ TEST <small>slant / half-base</small></span
+                ><strong id="ratioPhi">1.61946</strong
+                ><em id="errorPhi">+0.088%</em>
+              </button>
+              <button data-ratio="tau">
+                <span>τ TEST <small>4b / h</small></span
+                ><strong id="ratioTau">6.2803</strong
+                ><em id="errorTau">−0.046%</em>
+              </button>
+            </div>
+            <div class="chart-label">
+              <span id="residualLabel">HEIGHT RESIDUAL</span
+              ><span>magnified</span>
+            </div>
+            <svg
+              id="residualChart"
+              viewBox="0 0 320 150"
+              role="img"
+              aria-label="Height difference from exact pi and phi models"
+            ></svg>
+            <p class="micro" id="residualNote">
+              Markers compare ideal slopes at the same base. The 3D lines are
+              deliberately thicker than the discrepancies.
+            </p>
+            <div class="insight-callout" id="modeCallout">
+              <b>One degree of freedom.</b> Once the slope is chosen, π-like and
+              φ-like ratios move together. τ is exactly twice the π test.
+            </div>
+            <div class="mini-metrics rich">
+              <div>SLANT HEIGHT <b id="slantReadout">186.53 m</b></div>
+              <div>BASE AREA <b id="areaReadout">53,067 m²</b></div>
+              <div>SUN ALTITUDE <b id="sunAlt">37.8°</b></div>
+              <div>APEX PROJECTION <b id="shadowReadout">189 m</b></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="instruments-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <span class="eyebrow">05 / SLOPE MICROSCOPE</span
+            ><span class="small-badge">50–54°</span>
+          </div>
+          <h2>Almost the same is not identical.</h2>
+          <p class="muted">
+            Exact π, exact φ and a 5½-palm seked sit close together. The shaded
+            range is Petrie’s reported ±2′ slope range, used as an illustrative
+            interval.
+          </p>
+          <svg
+            id="slopeChart"
+            viewBox="0 0 640 245"
+            role="img"
+            aria-label="Pi and phi ratios against face slope"
+          ></svg>
+          <p class="micro">
+            Vertical deviations normalized to each target, in percent. The gray
+            band is a reported historical range, not a calibrated probability
+            distribution.
+          </p>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <span class="eyebrow">06 / SURVEY INTERVALS</span
+            ><span class="small-badge">DASH 2015</span>
+          </div>
+          <h2>The square is an idealization.</h2>
+          <p class="muted">
+            Four reconstructed casing sides, with their published 95% interval
+            endpoints. These are side estimates, not four direct measurements of
+            surviving corners.
+          </p>
+          <svg
+            id="surveyChart"
+            viewBox="0 0 640 245"
+            role="img"
+            aria-label="North east south west casing side length intervals"
+          ></svg>
+          <p class="micro">
+            Mean of the four central estimates: 230.3635 m (published mean
+            230.363 m). Bounds are asymmetric. Side spread does not supply a
+            Gaussian standard deviation.
+          </p>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <span class="eyebrow">07 / GEODESY BENCH</span
+            ><span class="small-badge">ILLUSTRATIVE COORDINATES</span>
+          </div>
+          <h2>Move the point. Change the digits.</h2>
+          <p class="muted">
+            The famous 29.9792458° line crosses this coordinate model. A
+            specific point, datum and uncertainty are essential before
+            interpreting any digits.
+          </p>
+          <label class="field inline"
+            >Probe north of model centre
+            <output id="probeOut" for="probe">7.85 m</output
+            ><input
+              id="probe"
+              type="range"
+              min="-115.1815"
+              max="115.1815"
+              step="0.01"
+              value="7.85" /></label
+          ><svg
+            id="latitudeChart"
+            viewBox="0 0 640 205"
+            role="img"
+            aria-label="Latitude probe across pyramid base and gallery schematic"
+          ></svg>
+          <div class="coordinate">
+            <strong id="probeLatitude">29.9792458° N</strong
+            ><span id="probeDelta">near the selected numerical target</span>
+          </div>
+          <p class="micro">
+            Centre 29.979175° from v1 mapping references; not a new geodetic
+            solution. Each 10⁻⁷° step ≈ 1.11 cm. Modern SI units and decimal
+            degrees determine this resemblance.
+            <a
+              href="https://www.aeraweb.org/wp-content/uploads/2019/10/AG19_1.pdf"
+              >AERA’s measured geodetic control ↗</a
+            >
+          </p>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <span class="eyebrow">08 / SOLAR GEOMETRY</span
+            ><span class="small-badge">LOCAL SOLAR TIME</span>
+          </div>
+          <h2>The pyramid as a light instrument.</h2>
+          <p class="muted">
+            Explore seasonal paths at 29.979° north. The gold point follows the
+            lighting controls; the 3D apex projection shows how altitude becomes
+            a ground distance.
+          </p>
+          <svg
+            id="solarChart"
+            viewBox="0 0 640 245"
+            role="img"
+            aria-label="Seasonal solar altitude paths from six to eighteen hours"
+          ></svg>
+          <div class="solar-readouts">
+            <span>AZIMUTH <b id="solarAz">243.4°</b></span
+            ><span>ALTITUDE <b id="solarAltitude">37.8°</b></span
+            ><span>h / tan(alt) <b id="solarShadow">189 m</b></span>
+          </div>
+          <p class="micro">
+            Geometric Sun, no refraction, terrain or ephemeris. Solar time
+            differs from civil clock time. Projected shadow is an ideal
+            parallel-ray construction.
+          </p>
+        </article>
+        <article class="panel span-two rich">
+          <div class="panel-head">
+            <span class="eyebrow">09 / SENSITIVITY LAB</span
+            ><span class="small-badge">EXPLICIT ASSUMPTIONS</span>
+          </div>
+          <h2>Uncertainty is a model you must specify.</h2>
+          <div class="sensitivity-layout">
+            <div>
+              <p class="muted">
+                Try a hypothetical joint Gaussian model for base and
+                independently estimated height. Correlation matters. These
+                controls are an experiment, not a reanalysis of the
+                archaeological surveys.
+              </p>
+              <label class="field compact"
+                >Base σ
+                <output id="baseSigmaOut" for="baseSigma">0.070 m</output
+                ><input
+                  type="range"
+                  id="baseSigma"
+                  min="0.001"
+                  max="0.3"
+                  step="0.001"
+                  value="0.07" /></label
+              ><label class="field compact"
+                >Height σ
+                <output id="heightSigmaOut" for="heightSigma">0.180 m</output
+                ><input
+                  type="range"
+                  id="heightSigma"
+                  min="0.001"
+                  max="0.6"
+                  step="0.001"
+                  value="0.18" /></label
+              ><label class="field compact"
+                >Correlation ρ <output id="rhoOut" for="rho">0.00</output
+                ><input
+                  type="range"
+                  id="rho"
+                  min="-0.99"
+                  max="0.99"
+                  step="0.01"
+                  value="0"
+              /></label>
+            </div>
+            <div>
+              <svg
+                id="uncertaintyChart"
+                viewBox="0 0 700 235"
+                role="img"
+                aria-label="Deterministic Monte Carlo distribution of the pi ratio under assumed uncertainties"
+              ></svg>
+              <p class="micro" id="uncertaintySummary">
+                2,400 deterministic samples · first-order propagation
+              </p>
+              <p class="micro">
+                If height is derived as h = (b/2) tan θ, then 2b/h = 4/tan θ:
+                base cancels. Do not assign b and h independent survey errors in
+                that model.
+              </p>
+            </div>
+          </div>
+        </article>
+        <article class="panel rich">
+          <div class="panel-head">
+            <span class="eyebrow">10 / CONSTRUCTION SCALE</span
+            ><span class="small-badge">IDEAL SOLID MODEL</span>
+          </div>
+          <h2>Most of the work is near the ground.</h2>
+          <p class="muted">
+            An ideal pyramid holds 87.5% of its volume below half-height. Its
+            centre of mass is h/4. Change assumed density and block mass to
+            explore scale, rather than infer an actual construction schedule.
+          </p>
+          <div class="two-controls">
+            <label class="field"
+              >Bulk density
+              <output id="densityOut" for="bulkDensity">2,600 kg/m³</output
+              ><input
+                id="bulkDensity"
+                type="range"
+                min="1800"
+                max="2900"
+                value="2600"
+                step="10" /></label
+            ><label class="field"
+              >Equivalent block mass
+              <output id="blockOut" for="blockMass">2.50 t</output
+              ><input
+                id="blockMass"
+                type="range"
+                min="1"
+                max="15"
+                value="2.5"
+                step="0.1"
+            /></label>
+          </div>
+          <svg
+            id="constructionChart"
+            viewBox="0 0 640 210"
+            role="img"
+            aria-label="Volume distribution by height of an ideal square pyramid"
+          ></svg>
+          <div class="solar-readouts">
+            <span>ENVELOPE MASS <b id="massReadout">6.75 Mt</b></span
+            ><span>BLOCK EQUIVALENTS <b id="blocksReadout">2.70 M</b></span
+            ><span>IDEAL LIFT ENERGY <b id="energyReadout">2.43 TJ</b></span>
+          </div>
+          <p class="micro">
+            M = ρV; E = Mg(h/4), using g = 9.80665 m/s². No voids, bedrock core,
+            material variation, quarrying, transport, friction or human
+            efficiency. This is gravitational potential energy, not total
+            construction energy.
+          </p>
+        </article>
+        <article class="panel rich">
+          <div class="panel-head">
+            <span class="eyebrow">11 / UNITS & INVARIANTS</span
+            ><span class="small-badge">SAME GEOMETRY</span>
+          </div>
+          <h2>Some numbers survive a change of units.</h2>
+          <p class="muted">
+            Lengths change their numerical values when the unit changes.
+            Dimensionless ratios survive. That distinction separates geometric
+            relationships from coincidences chosen in feet, miles or modern SI
+            digits.
+          </p>
+          <div class="unit-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Quantity</th>
+                  <th>Metres</th>
+                  <th>Feet</th>
+                  <th>Royal cubits*</th>
+                </tr>
+              </thead>
+              <tbody id="unitsTable"></tbody>
+            </table>
+          </div>
+          <div class="invariant">
+            <span>2b / h</span><b id="invariantRatio">3.140160</b
+            ><span>in every consistent length unit</span>
+          </div>
+          <div class="unit-light">
+            <span>VACUUM LIGHT SPEED</span>
+            <div>299,792,458 <small>m/s</small></div>
+            <div>983,571,056.43 <small>ft/s</small></div>
+          </div>
+          <p class="micro">
+            1 foot = 0.3048 m exactly. *Illustrative cubit = 0.5236 m, a
+            selected historical length model rather than a universal exact unit.
+            c is exact in SI; its digit string changes with the unit.
+          </p>
+        </article>
+        <article id="engine" class="panel span-two engine">
+          <div class="panel-head">
+            <span class="eyebrow">12 / THE COINCIDENCE ENGINE</span
+            ><span class="small-badge">LOOK-ELSEWHERE</span>
+          </div>
+          <h2>Find your own speed of light.</h2>
+          <p class="muted">
+            The engine does what every numerology chart does, only honestly: it measures a pyramid in ten length
+            units, inverts, divides one length by another, reads the latitude, and checks every result against
+            sixteen famous constants. It then counts how many "discoveries" pure chance should have produced.
+          </p>
+          <div class="eng-grid">
+            <div class="eng-controls">
+              <label>Monument
+                <select id="engMon">
+                  <option value="great" selected>Great Pyramid (Khufu)</option>
+                  <option value="khafre">Khafre's pyramid</option>
+                  <option value="menkaure">Menkaure's pyramid</option>
+                  <option value="red">Red Pyramid, Dahshur</option>
+                  <option value="louvre">Louvre Pyramid, Paris (1989)</option>
+                  <option value="yours">Your pyramid…</option>
+                </select></label>
+              <div id="engYours" class="eng-yours" hidden>
+                <label>Base (m)<input id="engBase" type="number" value="100" min="1" step="0.01" /></label>
+                <label>Height (m)<input id="engHeight" type="number" value="60" min="1" step="0.01" /></label>
+                <label>Latitude (°)<input id="engLat" type="number" value="40.7128" step="0.0001" /></label>
+                <label>Longitude (°)<input id="engLon" type="number" value="-74.006" step="0.0001" /></label>
+              </div>
+              <label>Call it a match at <b id="engDigitsOut">4 digits</b>
+                <input id="engDigits" type="range" min="3" max="6" value="4" /></label>
+              <fieldset><legend>Freedoms the numerologist takes</legend>
+                <label><input id="engUnits" type="checkbox" checked /> any unit (feet, cubits, miles, megalithic yards…)</label>
+                <label><input id="engInv" type="checkbox" checked /> turn it upside down (1 ÷ x)</label>
+                <label><input id="engRatios" type="checkbox" checked /> divide any length by any other</label>
+                <label><input id="engSite" type="checkbox" checked /> read the latitude and longitude</label>
+              </fieldset>
+              <p class="micro">Dimensions: <span id="engNote"></span>. Others are commonly cited, rounded values, used as controls. Every power of ten is free (2.99, 29.9 and 299 all count as c).</p>
+            </div>
+            <div class="eng-out">
+              <div class="eng-score">
+                <div><span>NUMBERS TRIED</span><b id="engTries">0</b></div>
+                <div><span>COMPARISONS</span><b id="engComparisons">0</b></div>
+                <div class="gold"><span>DISCOVERIES</span><b id="engFound">0</b></div>
+                <div><span>CHANCE ALONE</span><b id="engExpected">0</b></div>
+              </div>
+              <ol id="engHits" class="eng-hits"></ol>
+              <div id="engChart" class="eng-chart"></div>
+            </div>
+          </div>
+          <p class="micro">Targets: <span id="engTargets"></span>. Chance model: a number built from arbitrary units has a log-uniform mantissa (Benford), so it starts with the first d digits of a target t with probability log₁₀(1 + 10¹⁻ᵈ / t_d). Tries are correlated (one slope feeds many ratios), so this is a teaching yardstick, not a p-value. Ratios fixed by the square alone (diagonal ÷ side = √2) are left out.</p>
+        </article>
+        <article id="sky" class="panel span-two sky">
+          <div class="panel-head">
+            <span class="eyebrow">13 / THE SKY'S OWN COINCIDENCE</span
+            ><span class="small-badge">REAL, AND TEMPORARY</span>
+          </div>
+          <h2>The Moon fits the Sun. For now.</h2>
+          <p class="muted">
+            Here is a coincidence that does not depend on a unit: the Sun is about 400 times wider than the Moon
+            and about 389 times further away, so in our sky they look almost exactly the same size. That is why
+            total eclipses happen. The Moon drifts away about 3.8 cm a year, so the fit is temporary.
+          </p>
+          <div class="sky-grid">
+            <div>
+              <div id="skyChart" class="sky-chart"></div>
+              <label class="sky-time">Time <b id="skyTimeOut">today</b>
+                <input id="skyTime" type="range" min="-1000" max="1000" step="10" value="0" /></label>
+              <p id="skyVerdict" class="sky-verdict"></p>
+              <p class="micro">Geocentric angular diameters in arcminutes; perigee 356,400 km and apogee 406,700 km; Sun at 147.1 and 152.1 million km; IAU nominal solar radius 695,700 km. The recession is extrapolated linearly at today's rate, which has not been constant, so read the time axis as illustrative. On that reading the last total eclipse is about <b id="skyLast">600</b> million years away.</p>
+            </div>
+            <div class="unit-table">
+              <table>
+                <thead><tr><th>Number</th><th>Miles</th><th>Kilometres</th><th>Claimed</th><th>Literal digits</th></tr></thead>
+                <tbody id="skyTable"></tbody>
+              </table>
+              <p class="micro">The 864 / 432 / 108 family appears in miles because the statute mile (1593) is 5,280 feet. In kilometres it disappears. The 400 : 400 pair survives any unit, which makes it the real coincidence on this page.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="evidence" class="evidence-section">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">14 / THE EVIDENCE ATLAS</div>
+            <h2>Keep the wonder. Inspect the claim.</h2>
+          </div>
+          <button id="export" class="quiet">↓ Export experiment JSON</button>
+        </div>
+        <p class="muted">
+          All 27 original claims are retained for inspection. Badges below
+          describe the kind of claim, not a probability of historical intent.
+          Original v1 verdicts are preserved in the downloadable receipt and
+          critically reviewed here.
+        </p>
+        <div class="ledger-controls">
+          <label
+            >Search claims<input
+              type="search"
+              id="search"
+              placeholder="π, latitude, cubits, shafts…" /></label
+          ><label
+            >Domain<select id="sectionFilter">
+              <option value="all">All domains</option>
+            </select></label
+          ><label
+            >Evidence class<select id="classFilter">
+              <option value="all">All classes</option>
+              <option value="geometry">Geometric comparison</option>
+              <option value="measurement">Measurement / estimate</option>
+              <option value="convention">Unit / definition dependent</option>
+              <option value="history">Historical interpretation</option>
+              <option value="contradicted">Contradicted comparison</option>
+            </select></label
+          ><span id="ledgerCount" role="status">27 claims</span>
+        </div>
+        <div class="ledger-table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Claim / interpretation</th>
+                <th scope="col">Claimed</th>
+                <th scope="col">Reference value</th>
+                <th scope="col">Difference</th>
+                <th scope="col">Evidence class</th>
+              </tr>
+            </thead>
+            <tbody id="ledger"></tbody>
+          </table>
+        </div>
+        <p id="noResults" class="muted" hidden>
+          No claims match. Clear the search or select all domains.
+        </p>
+      </section>
+
+      <section id="methods" class="methods">
+        <div>
+          <div class="eyebrow">THE INSTRUMENT’S LIMITS</div>
+          <h2>Precision on screen.<br />Honesty in the model.</h2>
+          <p>
+            The full casing is reconstructed from a mean base and a reported
+            historical slope. Courses, terrain, chambers and the coordinate
+            transect are visual models. This is neither a scan nor a new survey.
+          </p>
+          <p>
+            The original Blender export remains available as a selectable
+            reference scene. The Observatory’s enhanced geometry is generated
+            directly as X3D. v3 then sends that scene through Blender and back
+            (the witness below): it survives as valid X3D, but its names and
+            switches do not, so the live page still loads the generated file.
+          </p>
+          <button id="sourceScene" aria-pressed="false" class="quiet">
+            Load original Blender export
+          </button>
+          <p class="micro" id="sourceStatus">
+            Enhanced procedural X3D scene selected.
+          </p>
+        </div>
+        <div class="method-links">
+          <a href="../v2/REVIEW.md"
+            ><span>01</span><b>Technical & scientific review</b
+            ><small>Findings, fixes and future directions ↗</small></a
+          ><a href="README.md"
+            ><span>02</span><b>Rebuild & verification guide</b
+            ><small>Source, tests and rendering assumptions ↗</small></a
+          ><a href="../v2/assets/observatory.x3d"
+            ><span>03</span><b>Inspect the X3D geometry</b
+            ><small>Deterministic scene, named controls ↗</small></a
+          ><a href="../v1/receipts/claims.json"
+            ><span>04</span><b>Original 27-claim receipt</b
+            ><small>Unmodified v1 calculations and verdicts ↗</small></a
+          ><a
+            href="https://irp.cdn-website.com/ef20729f/files/uploaded/AERAGRAM16_2_GDash.pdf"
+            ><span>05</span><b>Dash’s published survey intervals</b
+            ><small>AERAGRAM 16.2, primary survey report ↗</small></a
+          ><a href="https://www.bipm.org/en/si-base-units/metre"
+            ><span>06</span><b>The SI definition of the metre</b
+            ><small>Why the numerical value of c depends on units ↗</small></a
+          >
+        </div>
+      </section>
+
+      <section id="witness" class="witness">
+        <div class="witness-text">
+          <div class="eyebrow">15 / BLENDERIZER WITNESS</div>
+          <h2>Through Blender and back.</h2>
+          <p class="muted">The review asked for round-trip evidence (its research item 5). The Observatory scene was imported into Blender 5.3 with x3d-blender-io 8310e7b, counted, exported again as X3D 4.0 and validated (x3d_mcp 39c6e94: XSD valid, 0 errors, 0 warnings). Geometry, cameras, lights and textures make it. Names, switches, text and the texture tiling do not.</p>
+          <p id="rtSummary" class="micro"></p>
+          <figure>
+            <img src="shots/hero-cycles.webp" alt="Cycles render of the round-tripped Observatory scene: the pyramid at a low sun with a glowing gold circle around its base" loading="lazy" width="1600" height="900" />
+            <figcaption>Cycles, CPU, 64 samples, from the round-tripped .blend. The TextureTransform tiling lost in the trip was put back by hand for this still; nothing else was added except the sky, a low sun and glow on the π circle and base square.</figcaption>
+          </figure>
+        </div>
+        <div class="unit-table witness-table">
+          <table>
+            <thead><tr><th>X3D node</th><th>In</th><th>In Blender</th><th>Back</th><th>Verdict</th></tr></thead>
+            <tbody id="rtRows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span>PYRAMID OBSERVATORY / v3 / 2026</span
+      ><span
+        >Native X3D geometry · local X_ITE 16.7.1 · no analytics · no remote
+        assets</span
+      ><span><a href="../v2/">v2, as reviewed ↗</a> · <a href="../v1/">v1 ↗</a></span>
+    </footer>
+    <noscript
+      ><p>
+        This observatory needs JavaScript for the interactive instruments.
+        <a href="../v1/receipts/claims.json">Read the original data</a> or
+        <a href="../v2/REVIEW.md">the review</a>.
+      </p></noscript
+    >
+  </body>
+</html>
