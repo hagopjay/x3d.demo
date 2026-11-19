@@ -417,3 +417,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-giza-numbers.jpg | 22432515d04c0d81eb3916a7271dbf3b379548167c96b87a51f6cae15368b85f | 40447 |
+
+`blender-giza-numbers-v3` is `docs/demos/blender-giza-numbers/v3/shots/hero-cycles.webp` (a Cycles still of the round-tripped Observatory scene, 1600 x 900) resized to 960 x 540 JPEG. No Google or third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-giza-numbers-v3.jpg | 84776d815324836dbbe4f1f67b9c042471d6c9c4e86fbf4a969c39ebfd01ae79 | 30859 |
