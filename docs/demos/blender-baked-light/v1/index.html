@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Baked Light Gallery</title>
+<meta name="description" content="Path-traced light, carried by X3D, drawn live in the browser. Drag the wipe to compare Blender Cycles with X_ITE or Babylon, frame for frame, with the pixel scores beside it.">
+<link rel="stylesheet" href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css">
+<style>
+:root{--bg:#07080b;--panel:#101218;--line:#22262f;--ink:#f1ede6;--dim:#a19a8d;--gold:#e9b45a;--ember:#ff7a2e;--sky:#7fb7ff;--ok:#62d39a;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f6f3ee;--panel:#fff;--line:#e2dccf;--ink:#1d1a15;--dim:#6b6355;--gold:#9a6512;--ember:#b6470c;--sky:#2b65b8;--ok:#1b8752}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:var(--gold)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid var(--line);font:11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.top b{color:var(--ink)}
+h1{font-size:clamp(32px,5vw,58px);line-height:1.04;letter-spacing:-.02em;margin:34px 0 8px}
+h1 em{font-style:normal;color:var(--gold)}
+.lede{color:var(--dim);font-size:18px;max-width:46em;margin:0 0 22px}
+.stage{position:relative;width:100%;aspect-ratio:16/9;background:#000;border:1px solid var(--line);border-radius:12px;overflow:hidden;user-select:none;touch-action:none}
+.stage x3d-canvas,.stage canvas.bab{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage .ref{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.stage .heat{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;mix-blend-mode:screen;display:none}
+.stage.heaton .heat{display:block}
+.wipe{position:absolute;top:0;bottom:0;width:2px;background:var(--gold);box-shadow:0 0 12px var(--gold);pointer-events:none}
+.knob{position:absolute;top:50%;left:-17px;width:36px;height:36px;margin-top:-18px;border-radius:50%;background:var(--gold);color:#120c03;font:700 15px var(--mono);display:grid;place-items:center}
+.tag{position:absolute;top:12px;font:11px var(--mono);letter-spacing:.1em;padding:5px 9px;border-radius:4px;background:rgba(0,0,0,.62);color:#fff;pointer-events:none}
+.tag.l{left:12px}.tag.r{right:12px}
+.shield{position:absolute;inset:0;cursor:ew-resize}
+.stage.explore .shield,.stage.explore .ref,.stage.explore .wipe{display:none}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px;align-items:center}
+.bar button{font:600 13px Inter,system-ui,sans-serif;padding:8px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.bar button[aria-pressed="true"]{border-color:var(--gold);color:var(--gold)}
+.bar .sp{flex:1}
+.status{font:11.5px var(--mono);color:var(--dim)}
+.scores{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:16px 0 6px}
+.sc{background:var(--panel);padding:14px 16px}
+.sc b{display:block;font-size:26px;letter-spacing:-.01em}
+.sc span{color:var(--dim);font-size:13px;display:block}
+.src{font:11px var(--mono);color:var(--dim);margin:0 0 8px}
+h2{font-size:26px;margin:52px 0 6px}
+.sub{color:var(--dim);margin:0 0 18px;max-width:52em}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+td.m{font-family:var(--mono);font-size:12.5px}
+.scroll{overflow-x:auto}
+.g{display:inline-block;font:10.5px var(--mono);padding:2px 7px;border-radius:3px;border:1px solid currentColor}
+.C{color:var(--ok)}.L{color:var(--gold)}
+svg.flow{width:100%;height:auto;display:block;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.trio figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px}
+.trio img{width:100%;display:block;border-radius:6px}
+figcaption{font-size:12.5px;color:var(--dim);margin-top:6px}
+footer{border-top:1px solid var(--line);margin-top:60px;padding:22px 0 44px;color:var(--dim);font-size:13px}
+@media (max-width:860px){.scores{grid-template-columns:repeat(2,1fr)}.trio{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><span><b>Baked Light Gallery</b> · Blender pipelines</span><span id="topline">Blender Cycles → x3d-blender-io → X3D 4.0 → X_ITE / Babylon</span></div>
+
+<h1>Path-traced light, <em>live in a browser tab</em>.</h1>
+<p class="lede">An original corbelled stone gallery, lit once in Blender Cycles: a blade of sun through a roof slot, four ember braziers and bounce light off the stone. That light is baked into the X3D file, one colour per face corner, so the browser only draws it. Drag the gold line. The left side is Blender's path-traced frame and the right side is the live scene, from the same camera.</p>
+
+<div class="stage" id="stage">
+  <div id="live"></div>
+  <img class="heat" id="heat" alt="Per-pixel difference heat map" src="receipts/heat-xite.png">
+  <img class="ref" id="ref" alt="Blender Cycles path-traced reference frame" src="receipts/reference.png">
+  <div class="wipe" id="wipe"><div class="knob">⇆</div></div>
+  <span class="tag l">CYCLES · PATH TRACED</span><span class="tag r" id="rtag">X_ITE · LIVE X3D</span>
+  <div class="shield" id="shield" aria-label="Drag to move the wipe"></div>
+</div>
+<div class="bar">
+  <button id="bX" aria-pressed="true">X_ITE (X3D)</button>
+  <button id="bB" aria-pressed="false">Babylon (GLB)</button>
+  <button id="bH" aria-pressed="false">Difference heat map</button>
+  <button id="bE" aria-pressed="false">Explore freely</button>
+  <span class="sp"></span><span class="status" id="status">loading…</span>
+</div>
+
+<div class="scores" id="scores">
+  <div class="sc"><b id="sPSNR">–</b><span>PSNR vs Cycles (dB)</span></div>
+  <div class="sc"><b id="sSSIM">–</b><span>SSIM vs Cycles</span></div>
+  <div class="sc"><b id="sMAD">–</b><span>mean |Δ| of 255</span></div>
+  <div class="sc"><b id="sLum">–</b><span>brightness ratio</span></div>
+  <div class="sc"><b id="sSize">–</b><span>X3D, gzip</span></div>
+</div>
+<p class="src" id="scoreSrc">scores: receipts/scores.json</p>
+
+<h2>How the light gets into the file</h2>
+<p class="sub">Everything is generated by one script; a fix goes into the script and the files are rebuilt. Each box names the tool that ran.</p>
+<svg class="flow" viewBox="0 0 1200 210" role="img" aria-label="Pipeline from Python generator to Cycles bake to X3D to browsers">
+ <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker></defs>
+ <g font-family="ui-monospace,Menlo,monospace" font-size="13" fill="currentColor" style="color:var(--ink)">
+  <g fill="none" stroke="currentColor" opacity=".55"><rect x="10" y="40" width="170" height="90" rx="8"/><rect x="215" y="40" width="190" height="90" rx="8"/><rect x="440" y="40" width="190" height="90" rx="8"/><rect x="665" y="40" width="170" height="90" rx="8"/></g>
+  <g fill="none" stroke="currentColor" style="color:var(--gold)" stroke-width="2"><rect x="870" y="20" width="150" height="60" rx="8"/><rect x="870" y="110" width="150" height="60" rx="8"/></g>
+  <g fill="none" stroke="currentColor" style="color:var(--sky)" stroke-width="2"><rect x="1045" y="20" width="145" height="60" rx="8"/><rect x="1045" y="110" width="145" height="60" rx="8"/></g>
+  <text x="95" y="72" text-anchor="middle">bmesh build</text><text x="95" y="94" text-anchor="middle" fill="var(--dim)">31k quads</text><text x="95" y="114" text-anchor="middle" fill="var(--dim)">albedo per face</text>
+  <text x="310" y="72" text-anchor="middle">Cycles bake</text><text x="310" y="94" text-anchor="middle" fill="var(--dim)">diffuse, light only</text><text x="310" y="114" text-anchor="middle" fill="var(--dim)">→ vertex colours</text>
+  <text x="535" y="72" text-anchor="middle">finish (numpy)</text><text x="535" y="94" text-anchor="middle" fill="var(--dim)">smooth · expose</text><text x="535" y="114" text-anchor="middle" fill="var(--dim)">× albedo · sRGB</text>
+  <text x="750" y="72" text-anchor="middle">export</text><text x="750" y="94" text-anchor="middle" fill="var(--dim)">x3d-blender-io</text><text x="750" y="114" text-anchor="middle" fill="var(--dim)">+ Blender glTF</text>
+  <text x="945" y="47" text-anchor="middle">X3D 4.0</text><text x="945" y="67" text-anchor="middle" fill="var(--dim)">x3d_mcp gate</text>
+  <text x="945" y="137" text-anchor="middle">GLB</text><text x="945" y="157" text-anchor="middle" fill="var(--dim)">COLOR_0</text>
+  <text x="1117" y="55" text-anchor="middle">X_ITE</text><text x="1117" y="145" text-anchor="middle">Babylon</text>
+  <g stroke="currentColor" fill="none" marker-end="url(#ar)" opacity=".7"><path d="M180 85H213"/><path d="M405 85H438"/><path d="M630 85H663"/><path d="M835 75L868 52"/><path d="M835 95L868 138"/><path d="M1020 50H1043"/><path d="M1020 140H1043"/></g>
+  <text x="310" y="190" text-anchor="middle" fill="var(--dim)">same scene, full path tracing → reference.png (the left of the wipe)</text>
+  <path d="M310 132V170" stroke="currentColor" opacity=".4" stroke-dasharray="4 4"/>
+ </g>
+</svg>
+
+<h2>Three frames, one camera</h2>
+<p class="sub">Captured by the build, not by your browser: headless Chromium, software GL (SwiftShader, no GPU), 960×540.</p>
+<div class="trio">
+  <figure><img src="receipts/reference.png" alt="Cycles reference" loading="lazy"><figcaption>Blender Cycles, path traced with denoising (the reference).</figcaption></figure>
+  <figure><img src="receipts/xite.png" alt="X_ITE frame" loading="lazy"><figcaption>X_ITE drawing the baked X3D, unlit, headlight off.</figcaption></figure>
+  <figure><img src="receipts/babylon.png" alt="Babylon frame" loading="lazy"><figcaption>Babylon drawing the same bake from the GLB.</figcaption></figure>
+</div>
+
+<h2>The bake, in numbers</h2>
+<div class="scroll"><table id="bakeTable"><tr><th>What</th><th>Value</th><th>Source</th></tr></table></div>
+
+<h2>What we found building it</h2>
+<div class="scroll"><table>
+<tr><th>Finding</th><th>Grade</th><th>What we did</th></tr>
+<tr><td>A vertex-colour bake gathers light only on the side the face normal points to. Patches built facing out picked up the outside sun, so ledges and roof glowed white while the path-traced frame was dark.</td><td><span class="g C">Confirmed</span></td><td>The generator now turns every face into the room (and box faces away from the box). Frames before and after are in the build log.</td></tr>
+<tr><td>One sample point per corner means a bake at 64 samples looked like crushed glitter in both engines, though the path-traced frame (denoised) was smooth.</td><td><span class="g C">Confirmed</span></td><td>384 samples, plus a 3-pass smoothing that averages corners sharing a vertex and a facing, so light never leaks from wall to floor. Shadow edges soften by about two cells (26 cm).</td></tr>
+<tr><td>The recipe's exposure rule (70th-percentile floor corner = 1.0) assumes a room lit mostly by daylight. In a slot-lit room most corners are in shadow, so it blew the frame out.</td><td><span class="g C">Confirmed</span></td><td>The script exposes on the 99.5th percentile instead (inside the sun blade), and says so in bake-stats.json.</td></tr>
+<tr><td>X_ITE and Babylon draw the same baked colours: their frames differ from each other by far less than either differs from Cycles.</td><td><span class="g C">Confirmed</span></td><td>See scores.json. The gap to Cycles is the bake itself (per-corner resolution, smoothing, the shoulder), not the engines.</td></tr>
+<tr><td>The exported camera's rotation axis has length 1.000046 instead of 1 (rounding in the exporter).</td><td><span class="g C">Confirmed</span></td><td>Harmless here (both browsers renormalise); logged for the add-on.</td></tr>
+</table></div>
+
+<h2>Gate</h2>
+<div class="scroll"><table id="gateTable"><tr><th>Check</th><th>Tool</th><th>Result</th></tr></table></div>
+<p class="sub" style="margin-top:12px">Not tested: a real GPU, phones (the page works at phone width, but no phone frame rate was measured), Castle or X3DOM. Software-GL frame rates are not quoted.</p>
+
+<footer>Baked Light Gallery v1 · original synthetic scene, no real site is depicted · generator <a href="build/build_gallery.py">build_gallery.py</a>, <a href="build/postprocess.py">postprocess.py</a>, <a href="build/score.py">score.py</a> · files <a href="gallery.x3d">gallery.x3d</a>, <a href="gallery.glb">gallery.glb</a>, <a href="build/gallery.blend">gallery.blend</a> · published on <a href="../../../">x3d.demo</a>.</footer>
+</div>
+
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/babylonjs@7.54.0/babylon.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/babylonjs-loaders@7.54.0/babylonjs.loaders.min.js" defer></script>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const stage=$('stage'),ref=$('ref'),wipe=$('wipe'),live=$('live'),statusEl=$('status');
+let engine='xite',scores=null,xiteBrowser=null,bab=null,frac=0.5;
+function setWipe(f){frac=Math.max(0,Math.min(1,f));const pct=(frac*100).toFixed(2)+'%';ref.style.clipPath='inset(0 '+(100-frac*100).toFixed(2)+'% 0 0)';wipe.style.left=pct;}
+setWipe(0.5);
+let drag=false;
+$('shield').addEventListener('pointerdown',e=>{drag=true;e.target.setPointerCapture(e.pointerId);move(e);});
+$('shield').addEventListener('pointermove',e=>{if(drag)move(e);});
+$('shield').addEventListener('pointerup',()=>{drag=false;});
+function move(e){const r=stage.getBoundingClientRect();setWipe((e.clientX-r.left)/r.width);}
+function showScores(){if(!scores)return;const s=scores.frames[engine];if(!s)return;
+ $('sPSNR').textContent=s.psnr_db.toFixed(1);$('sSSIM').textContent=s.ssim.toFixed(3);$('sMAD').textContent=s.mean_abs_delta_255.toFixed(1);$('sLum').textContent=s.mean_luminance_ratio.toFixed(2)+'×';
+ $('scoreSrc').textContent='scores: receipts/scores.json · '+scores.tool+' · frames from headless Chromium '+(scores.rig?scores.rig.chromium:'')+' SwiftShader at '+scores.size.join('×');
+ $('heat').src='receipts/heat-'+engine+'.png';}
+function startXite(){if(xiteBrowser){return;}
+ const c=document.createElement('x3d-canvas');c.setAttribute('splashScreen','false');c.setAttribute('contextMenu','false');c.setAttribute('notifications','false');live.appendChild(c);
+ xiteBrowser=X3D.getBrowser(c);xiteBrowser.setBrowserOption('StraightenHorizon',false);
+ xiteBrowser.loadURL(new X3D.MFString('gallery.x3d')).then(()=>{statusEl.textContent='X_ITE '+xiteBrowser.version+' · live';}).catch(e=>{statusEl.textContent='X_ITE failed: '+e;});}
+function startBabylon(){if(bab){bab.canvas.style.display='block';return;}
+ if(!window.BABYLON){statusEl.textContent='Babylon still loading…';setTimeout(startBabylon,400);return;}
+ const cv=document.createElement('canvas');cv.className='bab';live.appendChild(cv);
+ const eng=new BABYLON.Engine(cv,true,{preserveDrawingBuffer:true});const s=new BABYLON.Scene(eng);s.useRightHandedSystem=true;s.clearColor=new BABYLON.Color4(0,0,0,1);
+ const cam=new BABYLON.UniversalCamera('c',new BABYLON.Vector3(0,1.62,-0.55),s);cam.setTarget(new BABYLON.Vector3(0,3.05,-16.0));cam.fov=1.024779;cam.minZ=0.05;cam.fovMode=BABYLON.Camera.FOVMODE_VERTICAL_FIXED;cam.speed=0.15;
+ bab={canvas:cv,engine:eng,scene:s,cam};
+ BABYLON.SceneLoader.ImportMeshAsync('','','gallery.glb',s).then(r=>{const m=new BABYLON.StandardMaterial('baked',s);m.disableLighting=true;m.emissiveColor=new BABYLON.Color3(1,1,1);m.diffuseColor=new BABYLON.Color3(0,0,0);m.specularColor=new BABYLON.Color3(0,0,0);
+  r.meshes.forEach(x=>{if(x.getTotalVertices()>0){x.material=m;x.useVertexColors=true;x.hasVertexAlpha=false;}});
+  eng.runRenderLoop(()=>s.render());addEventListener('resize',()=>eng.resize());statusEl.textContent='Babylon '+BABYLON.Engine.Version+' · live';});}
+function useEngine(e){engine=e;$('bX').setAttribute('aria-pressed',e==='xite');$('bB').setAttribute('aria-pressed',e==='babylon');$('rtag').textContent=e==='xite'?'X_ITE · LIVE X3D':'BABYLON · LIVE GLB';
+ const xc=live.querySelector('x3d-canvas');if(xc)xc.style.display=e==='xite'?'block':'none';if(bab)bab.canvas.style.display=e==='babylon'?'block':'none';
+ if(e==='xite')startXite();else startBabylon();showScores();}
+$('bX').onclick=()=>useEngine('xite');$('bB').onclick=()=>useEngine('babylon');
+$('bH').onclick=()=>{const on=!stage.classList.contains('heaton');stage.classList.toggle('heaton',on);$('bH').setAttribute('aria-pressed',on);};
+$('bE').onclick=()=>{const on=!stage.classList.contains('explore');stage.classList.toggle('explore',on);$('bE').setAttribute('aria-pressed',on);
+ if(!on){ if(xiteBrowser){try{xiteBrowser.firstViewpoint();}catch(_){}} if(bab){bab.cam.detachControl();bab.cam.position.set(0,1.62,-0.55);bab.cam.setTarget(new BABYLON.Vector3(0,3.05,-16.0));} }
+ else if(bab&&engine==='babylon'){bab.cam.attachControl(bab.canvas,true);} };
+fetch('receipts/scores.json').then(r=>r.json()).then(j=>{scores=j;showScores();}).catch(()=>{});
+fetch('receipts/bake-stats.json').then(r=>r.json()).then(b=>{
+ const rows=[['Blender',b.blender+' (build '+b.build_hash.slice(0,12)+')','bpy pip wheel'],['Bake','Cycles CPU, '+b.bake.samples+' samples, '+b.bake.type+', '+b.bake.seconds+' s','bake-stats.json'],
+  ['Key light','sun '+b.bake.sun.energy+' at '+b.bake.sun.elevation_deg+'° elevation through a 0.6 m roof slot','build_gallery.py'],['Fill','sky ('+b.bake.sky.type+') strength '+b.bake.sky.strength+'; '+b.bake.embers,'build_gallery.py'],
+  ['Geometry',Object.entries(b.meshes).map(([k,v])=>k+' '+v.faces.toLocaleString()+' faces').join(' · '),'bake-stats.json'],
+  ['Exposure',b.finish.exposure+' ('+b.finish.rule+')','bake-stats.json'],['Reference','Cycles '+b.reference.samples+' samples, '+b.reference.denoiser+', '+b.reference.seconds+' s','bake-stats.json'],
+  ['Script sha256',b.script_sha256.slice(0,16)+'…','build/build_gallery.py']];
+ if(b.files){$('sSize').textContent=(b.files['gallery.x3d.gz']/1048576).toFixed(2)+' MB';rows.push(['Files','gallery.x3d '+(b.files['gallery.x3d']/1048576).toFixed(2)+' MB ('+(b.files['gallery.x3d.gz']/1048576).toFixed(2)+' MB gzip) · gallery.glb '+(b.files['gallery.glb']/1048576).toFixed(2)+' MB','wc -c, gzip -9']);}
+ const t=$('bakeTable');rows.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML='<td>'+r[0]+'</td><td class="m">'+r[1]+'</td><td class="m">'+r[2]+'</td>';t.appendChild(tr);});
+ const g=$('gateTable');(b.gate||[]).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML='<td>'+r.check+'</td><td class="m">'+r.tool+'</td><td>'+r.result+'</td>';g.appendChild(tr);});
+}).catch(()=>{});
+useEngine('xite');
+})();
+</script>
+</body>
+</html>

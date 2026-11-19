@@ -1,0 +1,31 @@
+{
+ "schema": "x3d-demo/frame-score/1",
+ "reference": "reference.png",
+ "size": [
+  960,
+  540
+ ],
+ "tool": "scikit-image 0.26.0 structural_similarity (channel_axis=2, data_range=1) and peak_signal_noise_ratio",
+ "frames": {
+  "xite": {
+   "psnr_db": 28.14,
+   "ssim": 0.9595,
+   "mean_abs_delta_255": 4.09,
+   "p95_abs_delta_255": 8.33,
+   "mean_luminance_ratio": 0.969
+  },
+  "babylon": {
+   "psnr_db": 28.15,
+   "ssim": 0.9596,
+   "mean_abs_delta_255": 4.08,
+   "p95_abs_delta_255": 8.33,
+   "mean_luminance_ratio": 0.969
+  }
+ },
+ "rig": {
+  "chromium": "157.0.8103.78",
+  "x_ite": "16.7.1",
+  "babylon": "7.54.0",
+  "gl": "SwiftShader (no GPU)"
+ }
+}
