@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>x3d.wgpu in the browser</title>
+<style>
+  :root { --bg:#0d1117; --fg:#e6edf3; --mut:#8b949e; --card:#161b22; --line:#30363d; --acc:#58a6ff; --bad:#ff7b72; --ok:#3fb950; }
+  @media (prefers-color-scheme: light) { :root { --bg:#fff; --fg:#1f2328; --mut:#59636e; --card:#f6f8fa; --line:#d1d9e0; --acc:#0969da; --bad:#cf222e; --ok:#1a7f37; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.45 system-ui, sans-serif; }
+  main { max-width:1100px; margin:0 auto; padding:16px; }
+  h1 { font-size:20px; margin:0 0 4px; } p.sub { margin:0 0 12px; color:var(--mut); }
+  #stage { position:relative; background:#000; border:1px solid var(--line); border-radius:8px; overflow:hidden; aspect-ratio:16/9; }
+  canvas { width:100%; height:100%; display:block; touch-action:none; }
+  #hud { position:absolute; left:8px; bottom:8px; right:8px; font:12px ui-monospace, monospace; color:#e6edf3; text-shadow:0 1px 2px #000; pointer-events:none; }
+  .bar { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; margin:10px 0; }
+  label { display:inline-flex; gap:6px; align-items:center; color:var(--mut); }
+  select, button, textarea { background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; padding:5px 8px; font:inherit; }
+  button { cursor:pointer; } button:hover { border-color:var(--acc); }
+  textarea { width:100%; height:110px; font:12px ui-monospace, monospace; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:10px 0; }
+  #status { font:12px ui-monospace, monospace; white-space:pre-wrap; }
+  .bad { color:var(--bad); } .ok { color:var(--ok); }
+  table { border-collapse:collapse; width:100%; font-size:12px; } td,th { text-align:left; padding:3px 8px; border-top:1px solid var(--line); } th { color:var(--mut); font-weight:500; }
+</style>
+</head>
+<body>
+<main>
+  <h1>x3d.wgpu in the browser</h1>
+  <p class="sub">The same Rust renderer as the desktop viewer, compiled to WebAssembly. WebGPU first, WebGL2 as a fallback. X3D 4.0 XML in, pixels out; no JavaScript renderer.</p>
+
+  <div id="stage"><canvas id="c"></canvas><div id="hud"></div></div>
+
+  <div class="bar">
+    <label>Scene <select id="scene"></select></label>
+    <label><input type="checkbox" id="shadows"> shadows</label>
+    <label>tone map <select id="tone"><option value="0">off</option><option value="1">ACES</option><option value="2">AgX</option></select></label>
+    <label>bloom <input type="range" id="bloom" min="0" max="0.5" step="0.05" value="0"></label>
+    <label>backend <select id="backend"><option value="auto">auto (WebGPU, then WebGL2)</option><option value="webgpu">WebGPU only</option><option value="gl">WebGL2 only</option></select></label>
+    <button id="restart">Apply backend</button>
+  </div>
+
+  <div class="card"><div id="status">starting…</div></div>
+
+  <div class="card">
+    <b>Your own X3D</b> (XML encoding; Inline and texture URLs are not fetched here and are reported as skipped)
+    <textarea id="src" spellcheck="false"></textarea>
+    <div class="bar"><button id="load">Load this X3D</button><span id="loadmsg"></span></div>
+  </div>
+
+  <div class="card">
+    <table id="what"><tr><th>What you are looking at</th><th>Source</th></tr></table>
+  </div>
+</main>
+<script type="module">
+import init, { Viewer } from "./pkg/x3d_web.js";
+
+const $ = (id) => document.getElementById(id);
+const SCENES = [
+  ["01_primitives", "01 primitives"], ["02_indexed_face_sets", "02 indexed face sets"], ["03_def_use_switch", "03 DEF/USE and Switch"],
+  ["04_lines_and_points", "04 lines and points"], ["05_still_life", "05 still life (lights)"], ["06_terrain", "06 terrain"], ["07_strips_and_fans", "07 strips and fans"],
+];
+for (const [f, label] of SCENES) $("scene").add(new Option(label, f));
+$("scene").value = "05_still_life";
+
+let viewer = null, canvas = null, t0 = performance.now(), frames = 0, fpsT = performance.now(), fps = 0, sceneLine = "", err = "";
+const status = (html) => { $("status").innerHTML = html; };
+
+function freshCanvas() {
+  // A canvas keeps the first context type it is given, so a backend change needs a new element.
+  const old = $("c"); const c = document.createElement("canvas"); c.id = "c";
+  old.replaceWith(c); canvas = c; sizeCanvas(); attachInput(c); return c;
+}
+function sizeCanvas() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const r = canvas.getBoundingClientRect();
+  canvas.width = Math.max(1, Math.round(r.width * dpr)); canvas.height = Math.max(1, Math.round(r.height * dpr));
+}
+
+async function start(mode) {
+  viewer = null; err = "";
+  const order = mode === "auto" ? ["webgpu", "gl"] : [mode];
+  const notes = [];
+  for (const be of order) {
+    freshCanvas(); // a canvas keeps the first context type it gets, so every attempt starts clean
+    try {
+      viewer = await Viewer.create(canvas, be);
+      break;
+    } catch (e) { notes.push(`${be}: ${e}`); }
+  }
+  if (!viewer) { status(`<span class="bad">No usable graphics API.</span>\n${notes.join("\n")}`); return; }
+  for (const [k, id] of [["shadows", "shadows"], ["tone_map", "tone"], ["bloom", "bloom"]]) apply(k, id);
+  await loadSceneFile($("scene").value);
+  report(notes);
+}
+
+function apply(key, id) {
+  if (!viewer) return;
+  const el = $(id); const v = el.type === "checkbox" ? (el.checked ? 1 : 0) : Number(el.value);
+  try { viewer.set_option(key, v); } catch (e) { err = String(e); }
+}
+
+async function loadSceneFile(name) {
+  const xml = await (await fetch(`./scenes/${name}.x3d`)).text();
+  $("src").value = xml; loadXml(xml);
+}
+function loadXml(xml) {
+  try { sceneLine = viewer.load_scene(xml); $("loadmsg").textContent = sceneLine; $("loadmsg").className = "ok"; }
+  catch (e) { $("loadmsg").textContent = String(e); $("loadmsg").className = "bad"; }
+}
+
+function report(notes) {
+  const a = viewer.adapter();
+  status(`<span class="ok">Running:</span> ${a}\nbudget: ${viewer.budget()}\nMSAA: ${viewer.sample_count()}x${notes.length ? "\nfallback notes: " + notes.join(" | ") : ""}`);
+  const rows = [
+    ["API and adapter", `${a}`, "wgpu adapter.get_info() in this browser"],
+    ["Scene", sceneLine || "(none)", "x3d-scene parser, loss report stats"],
+    ["Frame rate", "see the overlay (bottom of the canvas)", `performance.now() over 0.5 s windows, ${navigator.userAgent.match(/(Chrome|Firefox|Safari)\/[\d.]+/)?.[0] ?? "this browser"}`],
+  ];
+  const t = $("what"); [...t.querySelectorAll("tr")].slice(1).forEach((r) => r.remove());
+  for (const r of rows) { const tr = t.insertRow(); r.forEach((x) => { tr.insertCell().textContent = x; }); }
+}
+
+function loop(now) {
+  if (viewer) {
+    try { viewer.frame((now - t0) / 1000); } catch (e) { err = String(e); }
+    frames++;
+    if (now - fpsT > 500) { fps = frames * 1000 / (now - fpsT); frames = 0; fpsT = now; }
+    $("hud").textContent = `${fps.toFixed(0)} fps · ${canvas.width}×${canvas.height} · ${sceneLine}${err ? " · " + err : ""}`;
+  }
+  requestAnimationFrame(loop);
+}
+
+function attachInput(c) {
+  let drag = null;
+  c.addEventListener("pointerdown", (e) => { c.setPointerCapture(e.pointerId); drag = { x: e.clientX, y: e.clientY, pan: e.button === 2 || e.shiftKey }; });
+  c.addEventListener("pointerup", () => { drag = null; });
+  c.addEventListener("pointermove", (e) => {
+    if (!drag || !viewer) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.x = e.clientX; drag.y = e.clientY;
+    if (drag.pan) viewer.pan(dx, dy); else viewer.orbit(dx, dy);
+  });
+  c.addEventListener("wheel", (e) => { e.preventDefault(); viewer?.zoom(-Math.sign(e.deltaY)); }, { passive: false });
+  c.addEventListener("contextmenu", (e) => e.preventDefault());
+}
+
+$("scene").onchange = () => viewer && loadSceneFile($("scene").value);
+$("shadows").onchange = () => apply("shadows", "shadows");
+$("tone").onchange = () => apply("tone_map", "tone");
+$("bloom").oninput = () => apply("bloom", "bloom");
+$("load").onclick = () => viewer && loadXml($("src").value);
+$("restart").onclick = () => start($("backend").value);
+window.addEventListener("resize", () => { sizeCanvas(); viewer?.resize(canvas.width, canvas.height); });
+
+await init();
+canvas = $("c"); sizeCanvas(); attachInput(canvas);
+const q = new URLSearchParams(location.search).get("backend");
+if (q) $("backend").value = q;
+requestAnimationFrame(loop);
+await start($("backend").value);
+</script>
+</body>
+</html>

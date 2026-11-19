@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "https://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Interchange' version='4.0'>
+  <head>
+    <component name='Lighting' level='2'/>
+    <component name='Shape' level='2'/>
+    <meta name='title' content='Still life'/>
+    <meta name='description' content='Three kinds of light, specular highlights, PhysicalMaterial, a transparent glass.'/>
+    <meta name='generator' content='x3d.wgpu sample scenes'/>
+  </head>
+  <Scene>
+
+    <NavigationInfo headlight='false'/>
+    <Background skyColor='0.18 0.16 0.15'/>
+    <Viewpoint description='Table' position='0 1.6 4.2' orientation='1 0 0 -0.32' centerOfRotation='0 0.3 0'/>
+    <DirectionalLight direction='-0.5 -0.7 -0.5' intensity='0.55' ambientIntensity='0.2' color='1 0.95 0.85'/>
+    <PointLight location='1.5 1.8 1.5' intensity='0.7' color='1 0.85 0.6' attenuation='1 0 0.08'/>
+    <SpotLight location='-1.5 2.5 0.5' direction='0.55 -1 -0.2' beamWidth='0.25' cutOffAngle='0.45' intensity='0.9' color='0.75 0.85 1'/>
+    <!-- table top and legs -->
+    <Shape DEF='TableTop'>
+      <Appearance><Material diffuseColor='0.45 0.28 0.16' specularColor='0.25 0.2 0.15' shininess='0.25'/></Appearance>
+      <Box size='3 0.08 1.8'/>
+    </Shape>
+    <Transform translation='-1.35 -0.55 -0.75'><Shape DEF='Leg'><Appearance><Material diffuseColor='0.35 0.22 0.12'/></Appearance><Cylinder radius='0.05' height='1.1'/></Shape></Transform>
+    <Transform translation='1.35 -0.55 -0.75'><Shape USE='Leg'/></Transform>
+    <Transform translation='-1.35 -0.55 0.75'><Shape USE='Leg'/></Transform>
+    <Transform translation='1.35 -0.55 0.75'><Shape USE='Leg'/></Transform>
+    <!-- fruit -->
+    <Transform translation='-0.5 0.24 0.2'><Shape><Appearance><Material diffuseColor='0.85 0.12 0.1' specularColor='0.9 0.9 0.9' shininess='0.7'/></Appearance><Sphere radius='0.2'/></Shape></Transform>
+    <Transform translation='-0.15 0.22 0.45'><Shape><Appearance><Material diffuseColor='0.95 0.6 0.1' specularColor='0.5 0.5 0.4' shininess='0.3'/></Appearance><Sphere radius='0.18'/></Shape></Transform>
+    <Transform translation='-0.75 0.2 0.5' scale='1 0.8 1'><Shape><Appearance><Material diffuseColor='0.55 0.75 0.15' specularColor='0.6 0.6 0.5' shininess='0.5'/></Appearance><Sphere radius='0.2'/></Shape></Transform>
+    <!-- a metal vase (PhysicalMaterial: approximated as Blinn-Phong) -->
+    <Transform translation='0.7 0.39 -0.3'><Shape><Appearance><PhysicalMaterial baseColor='0.8 0.7 0.45' metallic='0.9' roughness='0.3'/></Appearance><Cylinder radius='0.18' height='0.7'/></Shape></Transform>
+    <Transform translation='0.7 0.82 -0.3'><Shape><Appearance><PhysicalMaterial baseColor='0.8 0.7 0.45' metallic='0.9' roughness='0.3'/></Appearance><Cone bottomRadius='0.18' height='0.16'/></Shape></Transform>
+    <!-- a drinking glass: transparent, so drawn after everything opaque -->
+    <Transform translation='0.25 0.25 0.45'><Shape><Appearance><Material diffuseColor='0.7 0.9 1' specularColor='1 1 1' shininess='0.9' transparency='0.65'/></Appearance><Cylinder radius='0.12' height='0.42' top='false'/></Shape></Transform>
+    <!-- the floor -->
+    <Transform translation='0 -1.1 0'><Shape><Appearance><Material diffuseColor='0.3 0.3 0.32'/></Appearance><Box size='8 0.02 6'/></Shape></Transform>
+  </Scene>
+</X3D>

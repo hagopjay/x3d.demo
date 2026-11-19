@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## Demo 62 (2026-11-19)
+- Demo 62, x3d.wgpu in the browser (`docs/demos/wgpu-web/v1/`): the Rust wgpu renderer from hagopjay/x3d.wgpu compiled to WebAssembly (5.5 MB), WebGPU first with a WebGL2 fallback, seven sample scenes and a paste-your-own-X3D box. Built from x3d.wgpu PR #6 with `web/build.sh` (rustc 1.97.0, wasm-bindgen 0.2.130). Checked in headless Chromium on SwiftShader: the WebGL2 path renders; WebGPU pixels were not seen (headless cannot present them). No front-page card yet.
+
 ## v62 (2026-11-19)
 - Demo 57, the X3D 4.0 coverage board (`docs/demos/x3d-coverage/v1/`), and its front-page card with image `assets/x3d-coverage.jpg`. The page is generated: `tools/probe.js` asks X_ITE 16.6.0 for each of the 260 node names, `tools/gen.py` joins the x3d.loom three.js and Babylon trackers with a word match over the Blender add-on source and the Castle scout's 70 scenes, `tools/build.py` writes the page, the side-by-side pictures and `receipts-summary.json`. The pictures come from a re-run of the x3d.loom three.js fixture rig. Versions v1 to v61 are untouched.
 
