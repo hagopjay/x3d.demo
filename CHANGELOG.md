@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## Unnumbered: Giza VI.3, X3D twin that flies by default (2026-11-19)
+- Added `docs/demos/giza-osiris-hall/v6.3/`; v6, v6.1 and v6.2 are untouched. In X_ITE 16.6, EXAMINE kept orbiting after a drag was released and could swing the camera under the plateau, so the pyramids seemed to turn by themselves. The v6.3 twin opens in FLY with a per-Viewpoint speed and a Fly / Examine toggle; the rebuild is byte-identical and the twin passes the same validator (x3d_mcp fa5dccf: XSD valid, 0 semantic errors or warnings). The Giza card now points at v6.3. Authored by hagsmac in #112, moved from an in-place edit of v6 into a new folder.
+
 ## Unnumbered: D3 to X3D Bridge v2.2 (2026-11-18)
 - Added `docs/demos/d3-bridge/v2.2/`, a hygiene release; v2.1, v2 and v1 are untouched. A DEF pass in the emitter (`tools/x3d3.mjs`) keeps a name only when the scene USEs it, a ROUTE names it, or the page reaches it by SAI; it declares page-addressed names with EXPORT; and it uses WorldInfo instead of an empty Group for each label's far LOD level. The validator now reports warnings and info separately. The semantic receipt goes from 64 warnings and 1,305 info notes to 0 and 0 (x3d_mcp fa5dccf). The browser run still gives 16 of 16 scenes and 0 console errors.
 
