@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v69 (2026-11-19)
+- Front-page card for Demo 64, Giza Fall (`docs/demos/blender-giza-fall/v1/`, merged as PR 129), with image `assets/blender-giza-fall.jpg` (four frames from the page's own scene; no Google imagery). I read the fall receipt (534 frames, 197 hits, 22.12 m/s, rest 12.3 m), counted humanoids and interpolators in the shipped X3D, and loaded the page headless without errors. I did not test the sound (no audio device in headless) and did not repeat the Bullet run; the XSD result is the build lane's own. Versions v1 to v68 are untouched.
+
 ## v68 (2026-11-19)
 - Front-page card for Demo 63, Giza Crawl (`docs/demos/blender-giza-crawl/v1/`, merged as PR 127), with image `assets/blender-giza-crawl.jpg` (four frames from the page's own scene; no Google imagery). I counted the joints, interpolators, lights and file size in the shipped X3D, read the route receipt, and loaded the page headless without errors; the XSD result and the survey measurements are the build lane's own and were not checked against their sources. Versions v1 to v67 are untouched.
 
