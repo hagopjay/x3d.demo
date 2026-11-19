@@ -1,0 +1,143 @@
+{
+ "schema": "x3d-demo/bake-stats/1",
+ "blender": "5.3.0",
+ "build_hash": "02f0899d78e3",
+ "script_sha256": "44c0c9222304fd6e323bca278c625c42e307a0152a0b9638589e9e18780bb191",
+ "bake": {
+  "type": "DIFFUSE direct+indirect, colour pass off",
+  "target": "VERTEX_COLORS",
+  "samples": 384,
+  "denoise": false,
+  "clamp_indirect": 4.0,
+  "seed": 7,
+  "seconds": 167.8,
+  "sun": {
+   "elevation_deg": 52.0,
+   "azimuth_deg": 0.0,
+   "energy": 5.0,
+   "color": [
+    1.0,
+    0.85,
+    0.62
+   ]
+  },
+  "sky": {
+   "type": "MULTIPLE_SCATTERING",
+   "strength": 0.25,
+   "sun_elevation_deg": 26
+  },
+  "embers": "4 mesh lights, emission strength 7.0"
+ },
+ "finish": {
+  "exposure": 3.46832,
+  "rule": "99.5th percentile floor+wall corner = 2.60 (deviates from the recipe 70th-percentile rule: a slot-lit room is mostly shadow)",
+  "light_floor": [
+   0.012,
+   0.016,
+   0.028
+  ],
+  "srgb": true,
+  "shoulder_from": 0.8
+ },
+ "reference": {
+  "samples": 256,
+  "denoiser": "OIDN",
+  "view_transform": "Standard",
+  "exposure_stops": 1.7942,
+  "size": [
+   960,
+   540
+  ],
+  "seconds": 696.2,
+  "note": "full path tracing (sun + sky + embers) with the bake's exposure; materials diffuse rough 0.85"
+ },
+ "meshes": {
+  "Floor": {
+   "faces": 2500,
+   "corners": 10000,
+   "vertices": 2682
+  },
+  "Walls": {
+   "faces": 25704,
+   "corners": 102816,
+   "vertices": 26898
+  },
+  "Sarcophagus": {
+   "faces": 536,
+   "corners": 2144,
+   "vertices": 562
+  },
+  "Braziers": {
+   "faces": 128,
+   "corners": 512,
+   "vertices": 136
+  }
+ },
+ "display_luminance_percentiles": {
+  "Floor": {
+   "5": 0.0359,
+   "50": 0.104,
+   "95": 0.4491
+  },
+  "Walls": {
+   "5": 0.1231,
+   "50": 0.1955,
+   "95": 0.461
+  },
+  "Sarcophagus": {
+   "5": 0.0579,
+   "50": 0.0983,
+   "95": 0.7658
+  },
+  "Braziers": {
+   "5": 0.0623,
+   "50": 0.1147,
+   "95": 0.6519
+  }
+ },
+ "x3d_export": [
+  "FINISHED"
+ ],
+ "total_seconds": 866.2,
+ "camera": {
+  "location": [
+   0.0,
+   0.550000011920929,
+   1.6200000047683716
+  ],
+  "lens_mm": 18.0,
+  "sensor_mm": 36.0
+ },
+ "files": {
+  "gallery.x3d": 2648024,
+  "gallery.x3d.gz": 542417,
+  "gallery.glb": 2045912
+ },
+ "gate": [
+  {
+   "check": "X3D 4.0 XSD",
+   "tool": "x3d_mcp 39c6e94 validate_xml",
+   "result": "valid"
+  },
+  {
+   "check": "Semantic",
+   "tool": "x3d_mcp 39c6e94 validate_semantic",
+   "result": "Found 0 error(s), 0 warning(s), 10 info(s)."
+  },
+  {
+   "check": "X_ITE load",
+   "tool": "X_ITE 16.7.1, headless Chromium 157.0.8103.78 SwiftShader",
+   "result": "0 console errors"
+  },
+  {
+   "check": "Babylon load",
+   "tool": "Babylon.js 7.54.0, same rig",
+   "result": "0 console errors"
+  },
+  {
+   "check": "X_ITE vs Babylon",
+   "tool": "scikit-image SSIM",
+   "result": "SSIM 0.9992 between the two live frames"
+  }
+ ]
+}
