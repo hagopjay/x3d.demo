@@ -1,0 +1,39 @@
+--- gen6.py	2026-11-19 17:12:40.967759316 +0000
++++ gen7.py	2026-11-19 17:15:07.183771671 +0000
+@@ -1,5 +1,5 @@
+ # SPDX-License-Identifier: GPL-3.0-or-later
+-"""Flywheel Forge, generation 6: answers gen 5's G8 (|delta| 20.1, the browser frame still darker than Cycles overall).
++"""Flywheel Forge, generation 7: gen 6 changed nothing (frames byte-identical: X_ITE's PhysicalMaterial ignores a light's ambientIntensity); calibrate instead.
+ Usage: python gen0.py OUT_DIR ADDON_SOURCE_DIR
+ """
+ import bpy  # noqa: F401
+@@ -108,8 +108,8 @@
+ # G8 fix: the exporter caps a Blender-made light at intensity 1 and writes no attenuation, so the browser lamp had
+ # no falloff and a fraction of Cycles' light. Give the lamp X3D's inverse-square attenuation and Cycles' radiant
+ # intensity (400 W / 4 pi = 31.8). Setting x3d_intensity tells the exporter the value is meant, so it is not capped.
+-light["x3d_energy_per_intensity"] = 4 * math.pi
+-light["x3d_intensity"] = light.energy / (4 * math.pi)
++light["x3d_energy_per_intensity"] = 4 * math.pi / 1.35   # gen 7 bounce calibration
++light["x3d_intensity"] = light.energy / (4 * math.pi) * 1.35   # same bounce calibration (gen 7)
+ light["x3d_attenuation"] = [0.0, 0.0, 1.0]
+ lamp = bpy.data.objects.new("Sun lamp", light)
+ lamp.location = (0, 0, 1.7)
+@@ -122,10 +122,14 @@
+     d = bpy.data.lights.new(name, "SUN")
+     d.energy, d.color, d.use_shadow = energy, colour, False
+     d["x3d_energy_per_intensity"] = 1.0      # G8 fix: 1 W/m2 of Blender sun = X3D intensity 1, uncapped
+-    d["x3d_intensity"] = energy
+-    # G8 fix: Cycles adds light bounced off the walnut and brass; X3D has no bounce. Each sun's ambientIntensity
+-    # (an X3D field the exporter reads from x3d_ambient_intensity) stands in for it.
+-    d["x3d_ambient_intensity"] = 0.35
++    # G8 fix: Cycles adds light bounced off the walnut and brass; X3D has no bounce. Gen 6 tried each sun's
++    # ambientIntensity: X_ITE 16.7.1 ignores it under PhysicalMaterial (byte-identical frames). Gen 5 measured the
++    # Cycles frame 1.35x brighter on average, so the browser suns get that factor (Blender's stay as they are).
++    BOUNCE = 1.35
++    # the exporter writes energy / x3d_energy_per_intensity (x3d_intensity only marks the value as meant), so the
++    # factor goes into the divisor: a first try that set x3d_intensity alone exported 3.0 unchanged
++    d["x3d_energy_per_intensity"] = 1.0 / BOUNCE
++    d["x3d_intensity"] = energy * BOUNCE
+     o = bpy.data.objects.new(name, d)
+     o.rotation_euler = rot
+     scene.collection.objects.link(o)

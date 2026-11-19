@@ -1,0 +1,29 @@
+--- gen4.py	2026-11-19 17:10:04.510526983 +0000
++++ gen5.py	2026-11-19 17:11:27.471487354 +0000
+@@ -1,5 +1,5 @@
+ # SPDX-License-Identifier: GPL-3.0-or-later
+-"""Flywheel Forge, generation 4: beauty pass on a passing scene (8/8 must still hold): planets on rods, engraved orbit rings, a ringed giant, a closer camera.
++"""Flywheel Forge, generation 5: answers gen 4's regression (G8 |delta| 23.5) and its cropped Sun.
+ Usage: python gen0.py OUT_DIR ADDON_SOURCE_DIR
+ """
+ import bpy  # noqa: F401
+@@ -47,6 +47,10 @@
+ sun = bpy.context.active_object
+ sun.name = "The Sun"
+ sun.data.materials.append(sun_mat)
++# G8 fix: in Cycles the glowing Sun mesh is itself a light (emission 3) and brightened the walnut near the spindle;
++# an X3D emissiveColor lights nothing. The lamp inside already carries the Sun's light, so the mesh stops lighting
++# diffuse surfaces in Cycles: both renderers now get their light from the same lamps.
++sun.visible_diffuse = False
+ 
+ for i, (radius, size, period) in enumerate(((0.9, 0.10, 60), (1.45, 0.16, 110), (2.05, 0.18, 170), (2.7, 0.14, 240))):
+     bpy.ops.object.empty_add(location=(0, 0, 1.0 + 0.12 * i))
+@@ -127,7 +131,7 @@
+ cam = bpy.data.objects.new("Camera", cam_data)
+ scene.collection.objects.link(cam)
+ cam.location = (5.4, -5.4, 3.4)    # beauty: closer, lower, the orrery fills the frame
+-cam.rotation_euler = (math.radians(66), 0, math.radians(45))
++cam.rotation_euler = (math.radians(70), 0, math.radians(45))   # framing fix: gen 4 cropped the Sun
+ cam_data.lens = 42
+ scene.camera = cam
+ 
