@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v68 (2026-11-19)
+- Front-page card for Demo 63, Giza Crawl (`docs/demos/blender-giza-crawl/v1/`, merged as PR 127), with image `assets/blender-giza-crawl.jpg` (four frames from the page's own scene; no Google imagery). I counted the joints, interpolators, lights and file size in the shipped X3D, read the route receipt, and loaded the page headless without errors; the XSD result and the survey measurements are the build lane's own and were not checked against their sources. Versions v1 to v67 are untouched.
+
 ## v67 (2026-11-19)
 - Front-page card for Demo 61, The Walking Twin (`docs/demos/blender-walking-twin/v1/`, merged as PR 125), with image `assets/blender-walking-twin.jpg` (the page's own X_ITE canvas). I checked that all 24 GlobalIds of the element table appear in both the IFC and the X3D, the carbon total and the 35% slab share, and loaded the page headless without errors (the walker moves); the IFC validation and the H-Anim joint count are the build lane's own, and the carbon factors are illustrative. Versions v1 to v66 are untouched.
 
