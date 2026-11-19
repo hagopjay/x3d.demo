@@ -50,7 +50,7 @@ Keys: Space play/pause, ← → previous/next shot, V cycles VISOR auto/on/off, 
 | `story.mjs` | 5 acts, 16 shots (camera paths, sun, epoch, layers), graded captions, the 33-row ledger |
 | `app.mjs` | Babylon renderer, director, instruments, HUD, verbose log, `window.__giza6.report()` |
 | `index.html`, `giza6.css` | the page |
-| `giza-vi.x3d` | X3D 4.0 twin of the same vertices with per-Shape grade metadata, 16 Viewpoints |
+| `giza-vi.x3d` | X3D 4.0 twin of the same vertices with per-Shape grade metadata, 16 Viewpoints, each with its own FLY NavigationInfo (speed scaled to the shot; EXAMINE second, and a Fly / Examine toggle in twin.html) |
 | `twin.html` | the twin drawn by X_ITE 16.6.0 (from v3/vendor); Authored layers start hidden (a `Switch`), one checkbox shows them |
 | `validation-vi.json` | x3d_mcp receipt for the exact twin bytes |
 | `build/export_x3d.mjs`, `build/gate.sh` | rebuild the twin; validate it |

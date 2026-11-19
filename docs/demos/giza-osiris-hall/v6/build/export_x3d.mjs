@@ -34,7 +34,14 @@ function shape(d) {
 
 const meshes = world(), c = census(meshes), layers = {};
 for (const m of meshes) (layers[m.layer] ||= []).push(m);
-const vps = ACTS.flatMap(a => a.shots).map(s => `<Viewpoint DEF='VP_${s.id.replace('.', '_')}' description='${esc(s.id + ' ' + s.title)}' position='${num(s.p1)}' centerOfRotation='${num(s.t1)}' orientation='${orient(s.p1, s.t1)}' fieldOfView='${s.fov}'/>`).join('\n');
+// Navigation: FLY first. EXAMINE (X_ITE 16.6) keeps orbiting after a flick-release until the next click and can swing the
+// camera under the plateau, so every pyramid seemed to turn by itself; it stays available second (twin.html's toggle).
+// X_ITE's FLY moves drag-pixels x speed x 0.007 m/s, so each Viewpoint carries its own NavigationInfo with a speed that
+// crosses the shot's distance in about 10 s on a 100 px drag: ~125 over the plateau, 0.25 in the King's Chamber.
+const NAV_TYPES = `'"FLY" "EXAMINE" "ANY"'`;
+const flySpeed = s => Math.max(0.25, +(Math.hypot(...s.p1.map((v, i) => v - s.t1[i])) / 7).toPrecision(2));
+const navInfo = (speed, field = '') => `<NavigationInfo${field} type=${NAV_TYPES} speed='${speed}' headlight='false' visibilityLimit='60000'/>`;
+const vps = ACTS.flatMap(a => a.shots).map(s => `<Viewpoint DEF='VP_${s.id.replace('.', '_')}' description='${esc(s.id + ' ' + s.title)}' position='${num(s.p1)}' centerOfRotation='${num(s.t1)}' orientation='${orient(s.p1, s.t1)}' fieldOfView='${s.fov}'>${navInfo(flySpeed(s), " containerField='navigationInfo'")}</Viewpoint>`).join('\n');
 function orient(p, t) { // axis-angle that turns the default view (-z, up +y) toward t
   const f = [t[0] - p[0], t[1] - p[1], t[2] - p[2]], l = Math.hypot(...f); f[0] /= l; f[1] /= l; f[2] /= l;
   const yaw = Math.atan2(-f[0], -f[2]), pitch = Math.asin(f[1]);
@@ -56,7 +63,7 @@ const x3d = `<?xml version="1.0" encoding="UTF-8"?>
 </head>
 <Scene>
 <WorldInfo title='Giza VI: The Five Witnesses' info='"Measured stone (v3)" "Reported depths and Hawara (v4.1)" "Modelled chamber (Giza IV)" "Imagined coil (Giza V)" "Computed sky (v2/v3)"'/>
-<NavigationInfo type='"EXAMINE" "ANY"' headlight='false' visibilityLimit='60000'/>
+${navInfo(flySpeed(ACTS[0].shots[0]))}
 <Background skyColor='.05 .07 .13 .55 .42 .36 .93 .62 .38' skyAngle='1.2 1.5' groundColor='.18 .13 .09'/>
 <DirectionalLight DEF='SUN' direction='.75 -.1 .34' color='1 .74 .48' intensity='1.6'/>
 <DirectionalLight DEF='FILL' direction='-.3 -.9 -.2' color='.55 .62 .8' intensity='.6' ambientIntensity='.35'/>
