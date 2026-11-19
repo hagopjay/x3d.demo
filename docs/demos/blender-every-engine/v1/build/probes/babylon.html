@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#000}canvas{display:block}</style>
+<script src="https://cdn.jsdelivr.net/npm/babylonjs@7.54.0/babylon.js"></script><script src="https://cdn.jsdelivr.net/npm/babylonjs-loaders@7.54.0/babylonjs.loaders.min.js"></script></head><body>
+<canvas id="c" width="960" height="540" style="width:960px;height:540px"></canvas>
+<script>
+let E,S;
+window.go=async(url)=>{E=new BABYLON.Engine(document.getElementById('c'),true,{preserveDrawingBuffer:true});S=new BABYLON.Scene(E);S.clearColor=new BABYLON.Color4(0,0,0,1);
+ await BABYLON.SceneLoader.AppendAsync('',url,S);const cam=S.cameras.find(c=>c.name!=='default camera')||S.cameras[0];S.activeCamera=cam;
+ S.animationGroups.forEach(g=>{g.play(true);g.pause();g.goToFrame(g.from);});S.render();window.engine='Babylon.js '+BABYLON.Engine.Version;return window.engine;};
+window.at=async(f)=>{S.animationGroups.forEach(g=>{g.goToFrame(g.from+f*(g.to-g.from));});S.render();await new Promise(r=>setTimeout(r,200));S.render();};
+</script></body></html>

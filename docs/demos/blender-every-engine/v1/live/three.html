@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>three.js leg</title>
+<style>html,body{margin:0;height:100%;background:#000;overflow:hidden}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script></head><body>
+<script type="module">
+import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const f=new URLSearchParams(location.search).get('f')||'orrery-fixed.glb';
+const R=new THREE.WebGLRenderer({antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));document.body.appendChild(R.domElement);
+const g=await new GLTFLoader().loadAsync('../assets/'+f);const S=g.scene;S.background=new THREE.Color(0,0,0);
+const C=g.cameras[0];const W=new THREE.Vector3();C.getWorldPosition(W);C.updateWorldMatrix(true,false);const cam=new THREE.PerspectiveCamera(C.fov,1,0.1,1000);cam.position.copy(W);cam.quaternion.copy(C.getWorldQuaternion(new THREE.Quaternion()));
+const ctl=new OrbitControls(cam,R.domElement);const dir=new THREE.Vector3(0,0,-1).applyQuaternion(cam.quaternion);ctl.target.copy(W.clone().add(dir.multiplyScalar(W.length()*0.9)));ctl.update();
+const M=new THREE.AnimationMixer(S);g.animations.forEach(c=>M.clipAction(c).play());const clk=new THREE.Clock();
+const fit=()=>{R.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();};addEventListener('resize',fit);fit();
+R.setAnimationLoop(()=>{M.update(clk.getDelta());R.render(S,cam);});parent.postMessage({leg:'three',engine:'three.js r'+THREE.REVISION},'*');
+</script></body></html>
