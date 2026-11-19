@@ -387,3 +387,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-flywheel-forge.jpg | 53dc35e68e8f1ba5723ca4d2bec48f76ae4ce7e2f20bea2df34b7c04e4b86021 | 40382 |
+
+`blender-every-engine` is a 2 x 2 grid of 480 x 270 tiles from `docs/demos/blender-every-engine/v1/shots/`: `cycles-t0` and `xite-t0` on top, `three-t0` (default glTF export) and `three-fixed-t0` (with the two exporter flags) below, saved as 960 x 540 JPEG. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-every-engine.jpg | df3c404d39d56ce898acb1f5297845fa2eff1f6cd5f78817ebbdc47512bd377e | 58239 |
