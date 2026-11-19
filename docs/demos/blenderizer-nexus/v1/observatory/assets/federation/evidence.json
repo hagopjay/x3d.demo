@@ -1,0 +1,231 @@
+{
+  "chapter": "federation",
+  "before": {
+    "objects": 45,
+    "meshes": 37,
+    "unique_meshes": 37,
+    "vertices": 7595,
+    "triangles": 5892,
+    "materials": 15,
+    "shared_mesh_users": 0,
+    "bounds_min": [
+      -7.4,
+      -7.4,
+      -0.700001
+    ],
+    "bounds_max": [
+      7.4,
+      7.4,
+      1.9
+    ],
+    "animated_objects": 0,
+    "ifc_guids": [],
+    "camera_labels": [
+      "01 \u2014 Hero",
+      "02 \u2014 Detail",
+      "03 \u2014 Plan"
+    ],
+    "x3d_bytes": 199159,
+    "x3d_nodes": 58,
+    "geometry_use_count": 0
+  },
+  "after": {
+    "objects": 45,
+    "meshes": 37,
+    "unique_meshes": 37,
+    "vertices": 8747,
+    "triangles": 5892,
+    "materials": 15,
+    "shared_mesh_users": 0,
+    "bounds_min": [
+      -7.4,
+      -7.4,
+      -0.700001
+    ],
+    "bounds_max": [
+      7.4,
+      7.4,
+      1.9
+    ],
+    "animated_objects": 0,
+    "ifc_guids": [],
+    "camera_labels": [
+      "01 \u2014 Hero",
+      "02 \u2014 Detail",
+      "03 \u2014 Plan"
+    ]
+  },
+  "bound_error_m": 0.0,
+  "structural_difference_count": 1,
+  "x3d_node_types": {
+    "X3D": 1,
+    "head": 1,
+    "component": 1,
+    "meta": 8,
+    "Scene": 1,
+    "NavigationInfo": 1,
+    "Background": 1,
+    "Transform": 12,
+    "Viewpoint": 3,
+    "DirectionalLight": 2,
+    "Shape": 4,
+    "Appearance": 4,
+    "PhysicalMaterial": 3,
+    "Cylinder": 1,
+    "IndexedFaceSet": 3,
+    "Coordinate": 3,
+    "Normal": 3,
+    "TextureCoordinate": 3,
+    "Inline": 3
+  },
+  "checks": [
+    {
+      "label": "Synthetic data",
+      "status": "pass",
+      "detail": "Deterministic original geometry; no LLM API or downloaded asset."
+    },
+    {
+      "label": "X3D 4.0 validation",
+      "status": "pass",
+      "detail": "XML plus repository field checks."
+    },
+    {
+      "label": "Native glTF / GLB written",
+      "status": "pass",
+      "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+    },
+    {
+      "label": "Native OpenUSD written",
+      "status": "pass",
+      "detail": "Blender USD exporter completed. Full USD composition is not implied."
+    },
+    {
+      "label": "X3D ingress \u2192 GLB",
+      "status": "pass",
+      "detail": "Blender glTF exporter completed; Khronos validation is a separate check."
+    },
+    {
+      "label": "X3D ingress \u2192 OpenUSD",
+      "status": "pass",
+      "detail": "Blender USD exporter completed. Full USD composition is not implied."
+    },
+    {
+      "label": "X3D \u2192 Blender \u2192 X3D",
+      "status": "pass",
+      "detail": "Imported into a fresh scene and re-exported; 37 mesh objects reconstructed."
+    },
+    {
+      "label": "First-trip structure",
+      "status": "info",
+      "detail": "1 structural differences reported; exact equivalence is not assumed."
+    },
+    {
+      "label": "World bounds preservation",
+      "status": "pass",
+      "detail": "Maximum bound difference 0 m at the start frame."
+    },
+    {
+      "label": "Unreal / Bonsai editor",
+      "status": "not_run",
+      "detail": "Interchange assets and adapter supplied; these editors were not executed here."
+    },
+    {
+      "label": "Sampled world transforms",
+      "status": "pass",
+      "detail": "40/40 rigid identities at five source-interval phases, equal elapsed seconds; max matrix-component error 0, translation 0 m."
+    }
+  ],
+  "build_seconds": 1.668,
+  "blender": "5.1.2",
+  "python": "3.13.9",
+  "source_kind": "glTF / GLB",
+  "source_file": "/workspace/scratch/7da1540abffc/repo/demo/hub_observatory/web/assets/federation/source.x3d",
+  "source_snapshot": {
+    "objects": 45,
+    "meshes": 37,
+    "unique_meshes": 37,
+    "vertices": 7595,
+    "triangles": 5892,
+    "materials": 15,
+    "shared_mesh_users": 0,
+    "bounds_min": [
+      -7.4,
+      -7.4,
+      -0.700001
+    ],
+    "bounds_max": [
+      7.4,
+      7.4,
+      1.9
+    ],
+    "animated_objects": 0,
+    "ifc_guids": [],
+    "camera_labels": [
+      "01 \u2014 Hero",
+      "02 \u2014 Detail",
+      "03 \u2014 Plan"
+    ],
+    "x3d_bytes": 199159,
+    "x3d_nodes": 58,
+    "geometry_use_count": 0,
+    "object_count": 45,
+    "mesh_count": 37,
+    "world_bounds": [
+      [
+        -7.4,
+        -7.4,
+        -0.700001
+      ],
+      [
+        7.4,
+        7.4,
+        1.9
+      ]
+    ],
+    "total_triangles": 5892,
+    "material_count": 15
+  },
+  "imported_snapshot": {
+    "objects": 45,
+    "meshes": 37,
+    "unique_meshes": 37,
+    "vertices": 8747,
+    "triangles": 5892,
+    "materials": 15,
+    "shared_mesh_users": 0,
+    "bounds_min": [
+      -7.4,
+      -7.4,
+      -0.700001
+    ],
+    "bounds_max": [
+      7.4,
+      7.4,
+      1.9
+    ],
+    "animated_objects": 0,
+    "ifc_guids": [],
+    "camera_labels": [
+      "01 \u2014 Hero",
+      "02 \u2014 Detail",
+      "03 \u2014 Plan"
+    ],
+    "object_count": 45,
+    "mesh_count": 37,
+    "world_bounds": [
+      [
+        -7.4,
+        -7.4,
+        -0.700001
+      ],
+      [
+        7.4,
+        7.4,
+        1.9
+      ]
+    ],
+    "total_triangles": 5892,
+    "material_count": 15
+  },
+  "motion_evidence": "motion-evidence.json"
+}

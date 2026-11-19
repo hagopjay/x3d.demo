@@ -1,0 +1,17 @@
+SOURCE foundry
+SOURCE materials
+SOURCE instances
+SOURCE x3d_ingress
+SOURCE federation
+SOURCE bim
+SOURCE usd
+SOURCE hanim
+ROUNDTRIP hanim
+ROUNDTRIP usd
+ROUNDTRIP bim
+ROUNDTRIP federation
+ROUNDTRIP x3d_ingress
+ROUNDTRIP instances
+ROUNDTRIP materials
+ROUNDTRIP foundry
+PASS 8 source/round-trip pairs; UI controls; two real native sensor clicks

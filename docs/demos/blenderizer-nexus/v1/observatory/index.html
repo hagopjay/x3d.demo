@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1014">
+  <meta name="description" content="A measured, synthetic showcase of Blender and X3D 4.0 as an open 3D pipeline hub.">
+  <title>NEXUS — X3D Hub Observatory</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./vendor/x_ite/x_ite.min.js" onerror="window.nexusRuntimeFailed = true"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#viewport">Skip to the 3D scene</a>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="Nexus home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M6 31V9l28 22V9M6 20l14-11 14 11-14 11Z"/></svg></span>
+      <span><strong>NEXUS<span class="brand-dot">.</span></strong><small>X3D HUB OBSERVATORY</small></span>
+    </a>
+    <div class="masthead-center"><span class="fine-line"></span>OPEN STANDARDS. CONNECTED POSSIBILITIES.<span class="fine-line"></span></div>
+    <div class="build-label"><span class="status-dot"></span><span>X3D 4.0</span><span class="build-divider">/</span><a id="repoLink" href="https://github.com/hagopjay/x3d-blender-io" target="_blank" rel="noreferrer">Blender I/O <span aria-hidden="true">→</span></a></div>
+  </header>
+
+  <main>
+    <section class="introduction" aria-labelledby="pageTitle">
+      <div><p class="eyebrow"><span>THE OPEN 3D PIPELINE</span><span class="eyebrow-index">/ PROOF OF CONCEPT 001</span></p><h1 id="pageTitle">The open 3D pipeline,<br class="mobile-break"> in motion.</h1></div>
+      <div class="intro-note"><p>Author. Exchange. Inspect. Repeat.</p><span>A synthetic world. Real files. Measured handoffs.</span></div>
+    </section>
+
+    <section class="observatory" aria-label="Interactive X3D showcase">
+      <aside class="playlist-panel" aria-label="Chapter playlist">
+        <div class="panel-heading"><h2>EXPLORATION PLAYLIST</h2><span id="chapterCount">— CHAPTERS</span></div>
+        <ol id="playlist" class="playlist"><li class="playlist-placeholder">Preparing the observatory…</li></ol>
+        <div class="playlist-bottom">
+          <div class="small-keyline"></div>
+          <p class="eyebrow">BUILT TO BE OPENED</p>
+          <p class="rail-description">Every chapter is a working asset.<br>Take it apart. Make it yours.</p>
+          <button id="filmButton" class="text-button" disabled><span aria-hidden="true">▷</span> Watch the director’s cut <span aria-hidden="true">→</span></button>
+          <div class="rail-fingerprint"><span>ADD-ON COMMIT</span><code id="commit">—</code></div>
+        </div>
+      </aside>
+
+      <div class="scene-column">
+        <div id="viewport" class="viewport" tabindex="-1" aria-label="Interactive 3D scene" aria-busy="true">
+          <img id="scenePoster" class="scene-poster" alt="" hidden>
+          <x3d-canvas id="scene" contextMenu="true" notifications="false" splashScreen="false" antialiased="true" multisampling="4" maximumFrameRate="60" aria-label="X3D scene: drag to orbit, scroll to zoom"></x3d-canvas>
+          <div class="viewport-vignette" aria-hidden="true"></div>
+          <div class="stage-top">
+            <div class="live-badge"><span id="liveDot" class="status-dot"></span><span id="renderLabel">CONNECTING RENDERER</span></div>
+            <div class="comparison-control" role="group" aria-label="Choose X3D version to view">
+              <button id="sourceButton" class="selected" aria-pressed="true" title="View the first exported X3D file">Source</button>
+              <button id="roundtripButton" aria-pressed="false" title="View X3D after import into Blender and re-export">Round trip <span aria-hidden="true">↻</span></button>
+            </div>
+          </div>
+          <div id="sceneLoading" class="scene-loading" role="status"><span class="loading-orbit" aria-hidden="true"></span><p>Opening a world of possibilities<span id="loadingDetail">Loading the dataset…</span></p></div>
+          <div id="sceneError" class="scene-error" hidden><strong>Live scene unavailable</strong><p id="sceneErrorDetail"></p><button id="retryButton" class="secondary-button">Try again</button></div>
+          <div class="stage-caption">
+            <p id="chapterKicker" class="eyebrow">THE OBSERVATORY</p>
+            <h2 id="chapterTitle">An open world<br>is taking shape.</h2>
+            <p id="chapterDescription">A guided journey through Blender, X3D and the formats that connect them.</p>
+            <div id="featureChips" class="feature-chips"></div>
+          </div>
+          <div class="stage-right">
+            <button id="fullscreenButton" class="icon-button" aria-label="Enter fullscreen" title="Fullscreen (F)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button>
+            <div class="stage-coordinate" aria-hidden="true">X<br><span>Y</span><br>Z</div>
+          </div>
+          <div class="view-controls" role="group" aria-label="Scene controls">
+            <button id="homeViewButton" class="view-button" title="Restore the entry camera (R)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 10 8-7 8 7v10h-6v-6h-4v6H4Z"/></svg><span>Reset view</span></button>
+            <button id="cameraButton" class="view-button" title="Next scene camera (C)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h4l2-3h6l2 3h4v13H3Z"/><circle cx="12" cy="13" r="4"/></svg><span id="cameraLabel">Next camera</span></button>
+            <button id="motionButton" class="view-button" title="Pause scene animation (M)" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path id="motionIcon" d="M8 5v14M16 5v14"/></svg><span id="motionLabel">Pause motion</span></button>
+            <span class="view-help">DRAG TO ORBIT <i>·</i> SCROLL TO EXPLORE</span>
+          </div>
+        </div>
+
+        <div class="transport">
+          <div class="transport-buttons"><button id="previousButton" class="icon-button" aria-label="Previous chapter" title="Previous chapter (←)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5v14m14-14L8 12l11 7Z"/></svg></button><button id="playButton" class="play-button" aria-label="Play the guided playlist" title="Play the guided playlist (Space)"><svg viewBox="0 0 24 24" aria-hidden="true"><path id="playIcon" d="m8 5 11 7-11 7Z"/></svg></button><button id="nextButton" class="icon-button" aria-label="Next chapter" title="Next chapter (→)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5v14M5 5l11 7-11 7Z"/></svg></button></div>
+          <div class="transport-title"><span id="playState">EXPLORE AT YOUR PACE</span><strong id="currentChapter">Select a chapter</strong></div>
+          <div class="progress-area"><div class="time-label"><span id="elapsed">00:00</span><span id="duration">00:00</span></div><div id="progressTrack" class="progress-track" role="progressbar" aria-label="Chapter playlist time" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressFill"></span></div></div>
+          <button id="evidenceButton" class="evidence-button" aria-expanded="false" aria-controls="evidencePanel" title="Inspect scene evidence (E)"><span class="evidence-symbol" aria-hidden="true">⌁</span> Inspect the evidence <span aria-hidden="true">→</span></button>
+        </div>
+
+        <div class="scene-summary">
+          <div class="summary-heading"><p class="eyebrow">THE SCENE, IN NUMBERS</p><span id="sourceKind">SYNTHETIC DATASET</span></div>
+          <div id="metrics" class="metrics-grid"><div class="metric"><strong>—</strong><span>OBJECTS</span></div><div class="metric"><strong>—</strong><span>TRIANGLES</span></div><div class="metric"><strong>—</strong><span>MATERIALS</span></div><div class="metric"><strong>—</strong><span>X3D SIZE</span></div></div>
+          <div class="asset-row"><span>OPEN THIS CHAPTER IN</span><div id="downloads" class="download-links"><span class="muted">Assets load with the dataset</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pipeline-section" aria-labelledby="pipelineTitle"><div class="section-heading"><div><p class="eyebrow">CONNECTED BY DESIGN</p><h2 id="pipelineTitle">Follow the scene across the pipeline.</h2></div><p>Each route carries its own evidence.<br>“Prepared” is distinct from “verified”.</p></div><div id="pipelineRoutes" class="pipeline-routes"><p class="muted">Exchange routes will appear when the dataset loads.</p></div></section>
+    <footer class="footer"><span>NEXUS / X3D HUB OBSERVATORY</span><p>Deterministic synthetic data. No LLM service required.</p><button id="keyboardButton" class="text-button">Keyboard guide <span aria-hidden="true">⌘</span></button></footer>
+  </main>
+
+  <dialog id="evidencePanel" class="evidence-panel" aria-labelledby="evidenceTitle"><div class="dialog-heading"><div><p class="eyebrow">MEASUREMENT, NOT ASSUMPTION</p><h2 id="evidenceTitle">Under the surface.</h2></div><button class="icon-button" data-close="evidencePanel" aria-label="Close evidence panel">×</button></div><div class="evidence-inner"><p id="evidenceDescription" class="evidence-description"></p><div id="checks" class="check-list"></div><h3>Scene inventory</h3><dl id="detailedMetrics" class="detailed-metrics"></dl><h3>Features in this chapter</h3><div id="evidenceFeatures" class="feature-chips"></div><h3>Every handoff artifact</h3><div id="evidenceDownloads" class="download-links"></div><div class="evidence-footprint"><span id="runtimeFingerprint"></span><a href="./data/manifest.json" download="nexus-manifest.json">Download dataset manifest →</a></div></div></dialog>
+  <dialog id="filmDialog" class="film-dialog" aria-labelledby="filmTitle"><div class="dialog-heading"><div><p class="eyebrow">THE DIRECTOR’S CUT</p><h2 id="filmTitle">From open scene to moving image.</h2></div><button class="icon-button" data-close="filmDialog" aria-label="Close video">×</button></div><video id="reel" controls playsinline preload="none"></video><p class="video-note">Rendered from the synthetic dataset. Explore the actual X3D scenes in the playlist.</p></dialog>
+  <dialog id="keyboardDialog" class="keyboard-dialog" aria-labelledby="keyboardTitle"><div class="dialog-heading"><div><p class="eyebrow">TAKE THE CONTROLS</p><h2 id="keyboardTitle">Your flight deck.</h2></div><button class="icon-button" data-close="keyboardDialog" aria-label="Close keyboard guide">×</button></div><dl class="keyboard-list"><div><dt><kbd>Space</kbd></dt><dd>Play or pause the guided playlist</dd></div><div><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Previous / next chapter</dd></div><div><dt><kbd>1</kbd>–<kbd>9</kbd></dt><dd>Jump to a chapter</dd></div><div><dt><kbd>C</kbd></dt><dd>Next camera</dd></div><div><dt><kbd>R</kbd></dt><dd>Reset the entry view</dd></div><div><dt><kbd>M</kbd></dt><dd>Pause or resume scene motion</dd></div><div><dt><kbd>E</kbd></dt><dd>Inspect measurements and checks</dd></div><div><dt><kbd>F</kbd></dt><dd>Fullscreen scene</dd></div><div><dt>Drag / wheel</dt><dd>Orbit / zoom in the live X3D view</dd></div></dl></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
