@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>One Asset, Every Engine</title>
+<meta name="description" content="One Blender orrery exported to X3D, glTF and USD, drawn by X_ITE, X3DOM, Castle, three.js, Babylon.js and Blender itself, each scored against Cycles. Two exporter flags decide whether it looks right.">
+<style>
+:root{--bg:#0a0b0e;--panel:#12141a;--line:#252a33;--ink:#eef0f3;--dim:#9aa3b0;--brass:#e0b257;--ok:#5ed39a;--warn:#f0b450;--bad:#ff6b6b;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f5f6f8;--panel:#fff;--line:#dde1e7;--ink:#121620;--dim:#566070;--brass:#94650f;--ok:#178a50;--warn:#a86a00;--bad:#c62e2e}}
+:root[data-theme="dark"]{--bg:#0a0b0e;--panel:#12141a;--line:#252a33;--ink:#eef0f3;--dim:#9aa3b0;--brass:#e0b257;--ok:#5ed39a;--warn:#f0b450;--bad:#ff6b6b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:var(--brass)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 0;border-bottom:1px solid var(--line);font:11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.top b{color:var(--ink)}
+h1{font-size:clamp(32px,5vw,60px);line-height:1.03;letter-spacing:-.02em;margin:32px 0 8px}
+h1 em{font-style:normal;color:var(--brass)}
+.lede{color:var(--dim);font-size:18px;max-width:50em;margin:0 0 22px}
+.switch{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:0 0 18px}
+.switch button{font:600 14px Inter,system-ui,sans-serif;padding:10px 18px;border:0;background:var(--panel);color:var(--dim);cursor:pointer}
+.switch button.on{background:var(--brass);color:#120d02}
+.big{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 26px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat b{display:block;font:700 30px/1.1 var(--mono)}
+.stat span{color:var(--dim);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.tile.ref{border-color:var(--brass)}
+.tile .pic{position:relative;background:#000;aspect-ratio:16/9}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile .fmt{position:absolute;left:8px;top:8px;font:10.5px var(--mono);background:rgba(0,0,0,.65);color:#fff;padding:2px 7px;border-radius:3px}
+.tile .body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.tile h3{margin:0;font-size:16px}
+.tile .ver{font:11px var(--mono);color:var(--dim)}
+.nums{display:flex;gap:12px;font:12.5px var(--mono)}
+.nums b{font-size:17px}
+.v-ok{color:var(--ok)}.v-warn{color:var(--warn)}.v-bad{color:var(--bad)}
+.tile .why{font-size:13px;color:var(--dim)}
+.tile button{margin-top:auto;align-self:flex-start;font:600 12.5px var(--mono);padding:6px 10px;border-radius:6px;border:1px solid var(--brass);background:transparent;color:var(--brass);cursor:pointer}
+h2{font-size:26px;margin:52px 0 6px}
+.sub{color:var(--dim);margin:0 0 16px;max-width:56em}
+.stage{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pane{position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.pane iframe,.pane img{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.pane .tag{position:absolute;left:10px;top:10px;font:11px var(--mono);background:rgba(0,0,0,.65);color:#fff;padding:4px 8px;border-radius:4px;z-index:2}
+.legs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.legs button{font:600 13px var(--mono);padding:7px 12px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.legs button.on{border-color:var(--brass);color:var(--brass)}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+td.m{font-family:var(--mono);font-size:12.5px}
+.scroll{overflow-x:auto}
+.g{display:inline-block;font:10.5px var(--mono);padding:2px 7px;border-radius:3px;border:1px solid currentColor;white-space:nowrap}
+pre{font:12.5px/1.5 var(--mono);background:#06070a;color:#d7dbe2;border-radius:10px;padding:14px;overflow:auto}
+pre .a{color:#6fe3a5}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 44px;color:var(--dim);font-size:13px}
+@media (max-width:1000px){.grid,.big{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.grid,.big,.stage{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><span><b>One Asset, Every Engine</b> · Blender pipelines</span><span>1 .blend → X3D · glTF · USD → 6 renderers → scored against Cycles</span></div>
+<h1>One Blender file. Six renderers. <em>Two flags decide.</em></h1>
+<p class="lede">The brass orrery from <a href="../../blender-flywheel-forge/v1/">Flywheel Forge</a>, exported once to each format and drawn by every engine we could run, from the same camera at the same two moments of its animation. Each frame is scored against Blender's own path tracer. Every file passed its validator, and still, with default settings, four of the eight legs drew most of the frame pure white. Two glTF exporter flags fix three of them; the fourth is X3DOM's own.</p>
+
+<div class="switch" role="tablist"><button id="mDefault" class="on">As exported by default</button><button id="mFixed">With the two flags</button></div>
+<div class="big" id="big"></div>
+<div class="grid" id="grid"></div>
+
+<h2>Drive it yourself</h2>
+<p class="sub">The live scene on the left, in the engine you pick, animating and orbitable. On the right, Cycles at frame 1. Web legs only: Castle and Blender are desktop programs, so their frames above are stills.</p>
+<div class="legs" id="legs"></div>
+<div class="stage">
+  <div class="pane"><span class="tag" id="liveTag">loading</span><iframe id="live" title="Live engine view" loading="lazy"></iframe></div>
+  <div class="pane"><span class="tag">BLENDER CYCLES · 96 spp · FRAME 1</span><img src="shots/cycles-t0.webp" alt="Cycles reference frame"></div>
+</div>
+
+<h2>What broke, and the fix (all Confirmed on this rig)</h2>
+<div class="scroll"><table>
+<tr><th>Finding</th><th>Who</th><th>Evidence</th><th>Fix</th></tr>
+<tr><td>Blender's glTF exporter writes lights in physical units by default: the 3.0 key sun becomes 2,049 lux and the 400 W lamp 21,741 cd. With no exposure control, three.js, Babylon.js and Castle draw 53% of the frame pure white.</td><td class="m">Blender 5.3.0 glTF exporter</td><td class="m">SSIM 0.81 → 0.966 (three.js), 0.81 → 0.965 (Babylon), 0.81 → 0.936 (Castle)</td><td><code>export_import_convert_lighting_mode="COMPAT"</code></td></tr>
+<tr><td>In the default ACTIONS mode, each object's action becomes its own glTF animation. Web engines play all four. Blender's own importer plays only the first and stashes the other three as muted NLA tracks, so three of the four planets stand still.</td><td class="m">Blender 5.3.0 glTF importer</td><td class="m">motion 0.79 → 8.61 /255 on re-import; 4 animations → 1 with 4 channels</td><td><code>export_animation_mode="ACTIVE_ACTIONS"</code></td></tr>
+<tr><td>A glTF exported in COMPAT units has to be imported in COMPAT units too. The importer's physical default reads 3.0 as lux and loses almost all the light.</td><td class="m">Blender 5.3.0 glTF importer</td><td class="m">SSIM 0.553 → 0.880</td><td>import with the same <code>export_import_convert_lighting_mode</code></td></tr>
+<tr><td>The lamp's cast-shadow switch doesn't survive glTF or USD. The re-imported lamp casts shadows again, and since it sits inside the Sun mesh, the Sun blocks its light.</td><td class="m">glTF (no shadow field) and Blender 5.3.0 USD</td><td class="m">USD re-import SSIM 0.880 → 0.990 (mean delta 24.7 → 0.9) with only <code>use_shadow=False</code> restored</td><td>keep lamps out of emitter meshes, or set the flag after import</td></tr>
+<tr><td>X3DOM 1.8.3 draws this PhysicalMaterial scene mostly white. With the same lights and every PhysicalMaterial changed to Material, white falls from 53% to 4.5% of the frame.</td><td class="m">X3DOM 1.8.3</td><td class="m">single-variable test, receipts/web-runs.json</td><td>none in the file; ship a Material fallback for X3DOM</td></tr>
+<tr><td>Castle clears to 26/255 grey when a scene has no Background (X3D's default is black). With that single colour normalised to black, Castle's X3D frame scores SSIM 0.931, level with X_ITE.</td><td class="m">castle-model-viewer 5.3.0</td><td class="m">raw frames kept: shots/castle-raw-*</td><td>write an explicit <code>Background</code></td></tr>
+</table></div>
+
+<h2>The export call</h2>
+<pre>bpy.ops.export_scene.gltf(filepath="orrery.glb", export_format="GLB",
+    export_cameras=True, export_lights=True, export_animations=True, export_apply=True,
+<span class="a">    export_import_convert_lighting_mode="COMPAT",   # lights in Blender's own numbers
+    export_animation_mode="ACTIVE_ACTIONS")         # one animation, every object in it</span></pre>
+
+<h2>The rig</h2>
+<div class="scroll"><table>
+<tr><th>Leg</th><th>Engine</th><th>Runs on</th></tr>
+<tr><td>Reference</td><td class="m">Blender 5.3.0 Cycles, CPU, 96 spp, OIDN, Standard view, black world, frames 1 and 61</td><td class="m">bpy wheel, cloud container</td></tr>
+<tr><td>X3D</td><td class="m">x3d-blender-io 8310e7b; X_ITE 16.7.1; X3DOM 1.8.3</td><td class="m">headless Chromium 157.0.8103.78, SwiftShader, 960 × 540</td></tr>
+<tr><td>X3D + glTF</td><td class="m">castle-model-viewer 5.3.0 (Castle 7.0-alpha.3 snapshot)</td><td class="m">Xvfb + Mesa llvmpipe</td></tr>
+<tr><td>glTF</td><td class="m">three.js r170; Babylon.js 7.54.0</td><td class="m">same Chromium</td></tr>
+<tr><td>glTF + USD round trip</td><td class="m">Blender 5.3.0 importers → Cycles, same settings as the reference</td><td class="m">bpy wheel</td></tr>
+<tr><td>Validators</td><td class="m">x3d_mcp 39c6e94: XSD valid, 0 semantic errors; Khronos glTF-Validator 2.0.0-dev.3.10: 0 errors, 0 warnings on all three GLBs</td><td class="m"><a href="receipts/">receipts/</a></td></tr>
+</table></div>
+<p class="sub" style="margin-top:12px">Scores: scikit-image 0.26 SSIM and mean absolute difference (0 to 255) against Cycles; "moves" means the frame at animation fraction 0.25 differs from fraction 0 by more than 0.5/255. Software rendering only, so no frame rates are quoted. Not tested: a real GPU, phones, Unreal, Unity, Godot.</p>
+
+<footer>One Asset, Every Engine v1 · original synthetic scene · files in <a href="assets/">assets/</a> (orrery.x3d, orrery.glb default, orrery-fixed.glb, orrery.usdc) · scripts in <a href="build/">build/</a> · published on <a href="../../../">x3d.demo</a>.</footer>
+</div>
+<script>
+(async function(){
+const $=id=>document.getElementById(id);
+const LEGS={
+ xite:{name:'X_ITE',ver:'16.7.1',fmt:'X3D',live:'xite'},
+ x3dom:{name:'X3DOM',ver:'1.8.3',fmt:'X3D',live:'x3dom'},
+ castle:{name:'Castle',ver:'model-viewer 5.3.0',fmt:'X3D'},
+ three:{name:'three.js',ver:'r170',fmt:'glTF',live:'three',file:'orrery.glb'},
+ babylon:{name:'Babylon.js',ver:'7.54.0',fmt:'glTF',live:'babylon',file:'orrery.glb'},
+ 'castle-glb':{name:'Castle',ver:'model-viewer 5.3.0',fmt:'glTF'},
+ 'blender-glb':{name:'Blender',ver:'5.3.0 re-import',fmt:'glTF'},
+ 'blender-usdc':{name:'Blender',ver:'5.3.0 re-import',fmt:'USD'},
+ 'three-fixed':{name:'three.js',ver:'r170',fmt:'glTF + flags',live:'three',file:'orrery-fixed.glb'},
+ 'babylon-fixed':{name:'Babylon.js',ver:'7.54.0',fmt:'glTF + flags',live:'babylon',file:'orrery-fixed.glb'},
+ 'castle-glb-fixed':{name:'Castle',ver:'model-viewer 5.3.0',fmt:'glTF + flags'},
+ 'blender-glb-fixed':{name:'Blender',ver:'5.3.0 re-import',fmt:'glTF + flags'},
+ 'blender-usdc-restored':{name:'Blender',ver:'5.3.0 re-import',fmt:'USD + shadow flag'}};
+const SETS={
+ def:['xite','x3dom','castle','three','babylon','castle-glb','blender-glb','blender-usdc'],
+ fix:['xite','x3dom','castle','three-fixed','babylon-fixed','castle-glb-fixed','blender-glb-fixed','blender-usdc-restored']};
+const WHY={
+ xite:'Hand-calibrated lights from Flywheel Forge gen 7.',x3dom:'PhysicalMaterial path draws white.',castle:'Grey clear colour normalised to black.',
+ three:'Lights arrive in lux and candela: white.',babylon:'Lights arrive in lux and candela: white.','castle-glb':'Same physical light units: white.',
+ 'blender-glb':'Only 1 of 4 animations plays; lamp shadow back on.','blender-usdc':'Lamp shadow back on: the Sun mesh blocks it.',
+ 'three-fixed':'COMPAT light units, one merged animation.','babylon-fixed':'COMPAT light units, one merged animation.','castle-glb-fixed':'COMPAT light units.',
+ 'blender-glb-fixed':'All 4 planets move; lamp shadow still on.','blender-usdc-restored':'One flag restored after import.'};
+let S={legs:{}};try{S=await (await fetch('receipts/scores.json')).json();}catch(_){}
+const cls=s=>s>=0.92?'v-ok':s>=0.85?'v-warn':'v-bad';
+function draw(mode){
+ $('mDefault').classList.toggle('on',mode==='def');$('mFixed').classList.toggle('on',mode==='fix');
+ const set=SETS[mode];const sc=set.map(k=>S.legs[k]||{});
+ const good=sc.filter(r=>r.ssim_t0>=0.92).length, white=sc.filter(r=>r.white_pct>10).length, moving=sc.filter(r=>r.moves).length;
+ const best=Math.max(...sc.map(r=>r.ssim_t0||0));
+ $('big').innerHTML=[[good+'/8','legs at SSIM ≥ 0.92 vs Cycles'],[white+'/8','legs over 10% pure white'],[moving+'/8','legs animate'],[best.toFixed(3),'best SSIM']].map(([b,s])=>'<div class="stat"><b>'+b+'</b><span>'+s+'</span></div>').join('');
+ $('grid').innerHTML=set.map(k=>{const L=LEGS[k],r=S.legs[k]||{};return '<article class="tile"><div class="pic"><img loading="lazy" src="shots/'+k+'-t0.webp" alt="'+L.name+' frame"><span class="fmt">'+L.fmt+'</span></div><div class="body"><h3>'+L.name+'</h3><span class="ver">'+L.ver+'</span>'+
+ '<div class="nums"><span>SSIM <b class="'+cls(r.ssim_t0)+'">'+(r.ssim_t0??'–')+'</b></span><span>Δ <b>'+(r.delta_t0??'–')+'</b></span><span>'+(r.moves?'<span class="v-ok">moves</span>':'<span class="v-bad">still</span>')+'</span></div>'+
+ '<div class="why">'+WHY[k]+(r.white_pct>10?' <span class="v-bad">'+r.white_pct+'% white</span>':'')+'</div>'+(L.live?'<button data-k="'+k+'">drive it live ↓</button>':'')+'</div></article>';}).join('');
+ $('grid').querySelectorAll('button').forEach(b=>b.onclick=()=>{live(b.dataset.k);$('live').scrollIntoView({behavior:'smooth',block:'center'});});
+}
+const LIVE=['xite','x3dom','three','babylon','three-fixed','babylon-fixed'];
+$('legs').innerHTML=LIVE.map(k=>'<button data-k="'+k+'">'+LEGS[k].name+' · '+LEGS[k].fmt+'</button>').join('');
+$('legs').querySelectorAll('button').forEach(b=>b.onclick=()=>live(b.dataset.k));
+function live(k){const L=LEGS[k];$('legs').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.k===k));$('liveTag').textContent=L.name+' '+L.ver+' · '+L.fmt+' · loading';
+ $('live').src='live/'+L.live+'.html'+(L.file?'?f='+L.file:'');$('live').dataset.k=k;}
+addEventListener('message',e=>{if(e.data&&e.data.engine){const k=$('live').dataset.k;$('liveTag').textContent=e.data.engine+' · '+LEGS[k].fmt+' · LIVE · drag to orbit';}});
+$('mDefault').onclick=()=>draw('def');$('mFixed').onclick=()=>draw('fix');
+draw('def');live('three-fixed');
+})();
+</script>
+</body>
+</html>

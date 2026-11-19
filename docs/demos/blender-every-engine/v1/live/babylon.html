@@ -1,0 +1,7 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Babylon.js leg</title>
+<style>html,body{margin:0;height:100%;background:#000;overflow:hidden}canvas{display:block;width:100%;height:100%;touch-action:none}</style>
+<script src="https://cdn.jsdelivr.net/npm/babylonjs@7.54.0/babylon.js"></script><script src="https://cdn.jsdelivr.net/npm/babylonjs-loaders@7.54.0/babylonjs.loaders.min.js"></script></head><body>
+<canvas id="c"></canvas>
+<script>(async()=>{const f=new URLSearchParams(location.search).get('f')||'orrery-fixed.glb';const E=new BABYLON.Engine(document.getElementById('c'),true);const S=new BABYLON.Scene(E);S.clearColor=new BABYLON.Color4(0,0,0,1);
+await BABYLON.SceneLoader.AppendAsync('../assets/',f,S);const cam=S.cameras.find(c=>c.name!=='default camera')||S.cameras[0];S.activeCamera=cam;cam.attachControl(document.getElementById('c'),true);
+S.animationGroups.forEach(g=>g.play(true));E.runRenderLoop(()=>S.render());addEventListener('resize',()=>E.resize());parent.postMessage({leg:'babylon',engine:'Babylon.js '+BABYLON.Engine.Version},'*');})();</script></body></html>

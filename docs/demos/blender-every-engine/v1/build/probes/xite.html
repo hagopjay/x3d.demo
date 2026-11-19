@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#000}x3d-canvas{display:block;width:960px;height:540px}</style>
+<script src="../../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script></head><body><x3d-canvas splashScreen="false" notifications="false" contextMenu="false"></x3d-canvas>
+<script>
+const names=fetch('interps.json').then(r=>r.json());
+window.go=async(url)=>{const b=X3D.getBrowser(document.querySelector('x3d-canvas'));b.setBrowserOption('StraightenHorizon',false);b.setBrowserOption('Antialiased',true);await b.loadURL(new X3D.MFString(url));
+ const s=b.currentScene;s.getNamedNode('SceneTimer').enabled=false;window.engine='X_ITE '+b.version;return window.engine;};
+window.at=async(f)=>{const s=X3D.getBrowser(document.querySelector('x3d-canvas')).currentScene;for(const n of await names){try{s.getNamedNode(n).set_fraction=f;}catch(_){}}};
+</script></body></html>

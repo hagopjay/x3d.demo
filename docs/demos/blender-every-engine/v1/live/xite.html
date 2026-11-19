@@ -1,0 +1,5 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>X_ITE leg</title>
+<link rel="stylesheet" href="../../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css"><style>html,body{margin:0;height:100%;background:#000}x3d-canvas{display:block;width:100%;height:100%}</style>
+<script src="../../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script></head><body><x3d-canvas splashScreen="false" contextMenu="false"></x3d-canvas>
+<script>const b=X3D.getBrowser(document.querySelector('x3d-canvas'));b.setBrowserOption('StraightenHorizon',false);
+b.loadURL(new X3D.MFString('../assets/'+(new URLSearchParams(location.search).get('f')||'orrery.x3d'))).then(()=>parent.postMessage({leg:'xite',engine:'X_ITE '+b.version},'*'));</script></body></html>

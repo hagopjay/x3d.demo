@@ -1,0 +1,11 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script></head><body>
+<script type="module">
+import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+let R,S,C,M,clips;
+window.go=async(url)=>{R=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});R.setSize(960,540);R.setPixelRatio(1);document.body.appendChild(R.domElement);
+ const g=await new GLTFLoader().loadAsync(url);S=g.scene;S.background=new THREE.Color(0,0,0);C=g.cameras[0];C.aspect=960/540;C.updateProjectionMatrix();
+ M=new THREE.AnimationMixer(S);clips=g.animations;clips.forEach(c=>M.clipAction(c).play());M.setTime(0);R.render(S,C);
+ window.engine='three.js r'+THREE.REVISION;return window.engine;};
+window.at=async(f)=>{const d=Math.max(...clips.map(c=>c.duration));M.setTime(f*d);R.render(S,C);};
+</script></body></html>
