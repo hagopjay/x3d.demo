@@ -1,0 +1,108 @@
+{
+ "schema": "x3d.io/giza-witness/1",
+ "made": "2026-11-19",
+ "rows": [
+  [
+   "X3D grammar",
+   "giza.x3d valid against the X3D 4.0 XSD, sky.x3d against 4.1: 0 errors. Validator: x3d_mcp fork 39c6e94."
+  ],
+  [
+   "X3D meaning",
+   "0 errors, 0 warnings from the same fork's semantic checks (profile and component cover included)."
+  ],
+  [
+   "Loom traps",
+   "15 rules over both scenes, strict host: 0 errors, 0 warnings. Status pass."
+  ],
+  [
+   "Loom page traps",
+   "8 rules over 5 page files: 0 errors, 0 warnings. Status pass."
+  ],
+  [
+   "Unit tests",
+   "8 of 8 pass (node --test tests/atlas.test.mjs): the page's sky against the Python receipt, literal digits, camera maths."
+  ],
+  [
+   "Renderer",
+   "X_ITE 16.7.1 in headless Chromium 157.0.8103.78 with SwiftShader, at 1366 and 390 px: all 63 claims shown, tour, fly-out and sliders driven. Console clean, no failed request."
+  ],
+  [
+   "Not checked",
+   "A real GPU, a real phone, Firefox, Safari. No frame rate is quoted: software GL says nothing about one."
+  ],
+  [
+   "Bake",
+   "Blender 5.3.0 Cycles on the CPU; x3d-blender-io 1040830. Ground bake 291.1 s (day) and 147.6 s (night). Script sha256 596c76188fc7…"
+  ],
+  [
+   "Stars",
+   "HYG v4.1 (David Nash, CC BY-SA 4.0), catalogue sha256 d9f69fd86bbf…; precession ERFA ltp (Vondrak 2011)."
+  ],
+  [
+   "Atlas",
+   "63 claims: Confirmed 30, Suspected 5, Likely 22, False 5, Untested 1. Design: Designed 11, Coincidence 29, Unknown 8, Possible 15."
+  ]
+ ],
+ "files_sha256": {
+  "assets/giza.x3d": "43a2be7590ecbd704bfa2eae33fee69a40b07ab0c7f1a5100ecbd897a8397a51",
+  "assets/sky.x3d": "bddce51568e92bedeb20f59dfd6dbdc0f56eb814060c78bcf393b565abcaf4e2",
+  "assets/sky-data.json": "154a712f34e3eb22fd1f2bf32f93001ef172503bcc87f9e052452af185e52e04",
+  "assets/stage-data.json": "7ef71da7d569c962faf4c7cdeecbf026ace035e2575ad332db0be2fc141540e0",
+  "assets/ground-day.jpg": "3cbb95b1c36c9e052c12c584581b70e5d420d3cb39d45e60af6fe5962d408cf3",
+  "assets/ground-night.jpg": "1c4637eca92f5f1ec48076a6f0078138579cf4089a37582e40b5abcce2d1146a",
+  "receipts/atlas.json": "9bc445a4437895c7fd7285e7d0f0d9a9a3e86731c427a165e77f4c30927214cf",
+  "receipts/claims-v4.json": "dd2b4756c2ec3c8d79fbf573b33489146e677d601238c2f52d10564ad5dcf725"
+ },
+ "validator": {
+  "tool": "x3d_mcp fork (validate_xml + semantic_diagnostics)",
+  "commit": "39c6e94b96f5211ac05408c64d28ea008f9df24a"
+ },
+ "loom": {
+  "traps_rules_sha256": "880195a4974650b9b682e4526fb4852c86446d44d4083e64c5182fe5593601cc",
+  "page_traps_rules_sha256": "ec35cc88d624b49aa86783d7d4200434df9808e18d82fd2cb624b702a773d2ac"
+ },
+ "browser": {
+  "chromium": "157.0.8103.78",
+  "runs": [
+   {
+    "name": "desktop",
+    "width": 1366,
+    "steps": {
+     "cards": 63,
+     "state0": "poster",
+     "live": true,
+     "claims": 63,
+     "labels_placed_at_800": 198,
+     "cosmos": "cosmos",
+     "home": "plateau",
+     "touring": true,
+     "tour_stopped": true,
+     "tour_played_to_end": true,
+     "search_orion": 3,
+     "overflow_px": 0
+    },
+    "console": [],
+    "requests": []
+   },
+   {
+    "name": "phone",
+    "width": 390,
+    "steps": {
+     "cards": 63,
+     "state0": "poster",
+     "live": true,
+     "claims": 63,
+     "labels_placed_at_800": 28,
+     "cosmos": "cosmos",
+     "home": "plateau",
+     "touring": true,
+     "tour_stopped": true,
+     "search_orion": 3,
+     "overflow_px": 0
+    },
+    "console": [],
+    "requests": []
+   }
+  ]
+ }
+}

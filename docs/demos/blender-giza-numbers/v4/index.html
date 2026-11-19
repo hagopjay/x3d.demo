@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Giza · The Sacred Geometry Atlas (v4)</title>
+    <meta
+      name="description"
+      content="Sixty-three sacred-geometry claims about the Giza pyramids, each staged with full wonder and then tested: a Blender Cycles baked plateau, the sky of 2560 BC as 52,602 Gaussian-splat stars with 3,547 labels, shaft rays, Orion's belt on the ground, all in X3D."
+    />
+    <link rel="stylesheet" href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css" />
+    <link rel="stylesheet" href="atlas.css" />
+    <script defer src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+    <script type="module" src="atlas.mjs"></script>
+  </head>
+  <body>
+    <a class="skip" href="#atlas">Skip to the atlas</a>
+    <header class="mast">
+      <a class="brand" href="../../../"><span class="mark">△</span><span>GIZA <b>SACRED GEOMETRY ATLAS</b><small>X3D · BLENDER · 52,602 STARS · v4</small></span></a>
+      <nav aria-label="Page">
+        <a href="#stage">Stage</a><a href="#atlas">Atlas</a><a href="#shafts">Shaft clock</a><a href="#made">How it was made</a>
+        <a href="../v3/">v3 The Reveal ↗</a><a href="../v2/">v2 ↗</a><a href="../v1/">v1 ↗</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="stage" class="stage" data-state="poster" data-light="day" data-world="plateau" aria-label="The plateau: a live 3D stage">
+        <div class="stage-frame" id="frame">
+          <img class="poster" id="poster" src="shots/hero-cycles.webp" alt="The three pyramids of Giza at golden hour, path-traced in Blender Cycles" />
+          <x3d-canvas
+            id="scene"
+            aria-label="Interactive 3D model of the Giza plateau and its sky"
+            splashScreen="false"
+            notifications="false"
+            contextMenu="false"
+            antialiased="true"
+            multisampling="4"
+            update="auto"
+            maximumFrameRate="60"
+          ></x3d-canvas>
+          <canvas id="labels" aria-hidden="true"></canvas>
+          <div class="fade" id="fade" aria-hidden="true"></div>
+
+          <div class="title-card" id="titlecard">
+            <p class="kicker">Demo 65 · version 4 · Giza, 29.979° N</p>
+            <h1>As above,<br />so below?</h1>
+            <p class="lede">
+              Sixty-three claims of sacred geometry. Each one staged in full, then measured against Petrie's survey and the real sky of
+              <b>2560 BC</b>.
+            </p>
+            <div class="cta">
+              <button id="enter" class="primary">Enter the plateau</button>
+              <button id="playtour" class="ghost">▶ Play the grand tour</button>
+            </div>
+            <p class="status" id="status" role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="hud hud-top" id="hud" hidden>
+            <div class="now">
+              <span class="now-k" id="nowkicker">Golden hour</span>
+              <strong id="nowtitle">The plateau from the south-east</strong>
+              <span class="now-chips" id="nowchips"></span>
+            </div>
+            <p class="caption" id="caption"></p>
+          </div>
+
+          <div class="readout" id="readout" hidden></div>
+
+          <div class="hud hud-bottom" id="chips" hidden>
+            <div class="chiprow" role="toolbar" aria-label="Stops">
+              <button data-go="hero" data-light="day">Golden hour</button>
+              <button data-go="night" class="moon">Night of 2560 BC</button>
+              <button data-go="shafts">The four shafts</button>
+              <button data-go="thuban">Pole star</button>
+              <button data-go="belt">Orion's belt</button>
+              <button data-go="plan">Belt on the ground</button>
+              <button data-go="xray">X-ray</button>
+              <button data-go="fly" class="star">Fly to Orion ✦</button>
+              <button data-go="home" id="homebtn" hidden>← Back to Giza</button>
+              <button id="tourbtn" class="tour">▶ Grand tour</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="sky" id="skypanel" aria-label="Sky controls">
+          <div class="sky-head">
+            <h2>The sky clock</h2>
+            <div class="seg" role="group" aria-label="Light">
+              <button data-light-set="day" aria-pressed="true">Day</button><button data-light-set="night" aria-pressed="false">Night</button>
+            </div>
+          </div>
+          <label class="yr">
+            <span>Year <output id="yearout">2,560 BC</output></span>
+            <input id="year" type="range" min="-13000" max="2100" step="10" value="-2560" aria-label="Year" />
+          </label>
+          <div class="ticks" id="yearticks">
+            <button data-year="-10499">10,500 BC</button><button data-year="-2559" class="on">2560 BC</button><button data-year="-2465">2466 BC</button
+            ><button data-year="2026">Today</button>
+          </div>
+          <label class="sel">
+            <span>On the meridian</span>
+            <select id="culminate" aria-label="Star crossing the meridian">
+              <option>Alnitak</option><option>Sirius</option><option>Thuban</option><option>Kochab</option><option>Betelgeuse</option><option>Regulus</option
+              ><option>Vega</option><option>Polaris</option>
+            </select>
+          </label>
+          <label class="yr">
+            <span>Star labels <output id="labelout">60</output> of 3,547</span>
+            <input id="labelcount" type="range" min="0" max="800" step="10" value="60" aria-label="Number of star labels" />
+          </label>
+          <div class="toggles">
+            <label><input type="checkbox" id="faint" checked /> 43,888 faint stars</label>
+            <label><input type="checkbox" id="figures" checked /> Constellation lines</label>
+          </div>
+          <table class="stars" id="startable" aria-label="Where the key stars stand">
+            <thead>
+              <tr><th>Star</th><th>Altitude</th><th>Azimuth</th><th>Light-years</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <p class="fine">
+            52,602 stars from the HYG catalogue as X3D 4.1 Gaussian splats: the nearest 50,000 (out to 579 light-years), every naked-eye star and
+            every named star. Precession by ERFA; 1,619 named and fast stars also move by their own measured motion.
+          </p>
+        </aside>
+      </section>
+
+      <section class="strip" aria-label="What is on this page">
+        <div><b id="k-claims">63</b><span>claims, each graded twice</span></div>
+        <div><b>52,602</b><span>stars at true 3D positions</span></div>
+        <div><b>3,547</b><span>star labels</span></div>
+        <div><b>2 bakes</b><span>Cycles light: golden hour, moonlit night</span></div>
+        <div><b>11</b><span>3D proof rigs</span></div>
+        <div><b>0</b><span>validator errors or warnings</span></div>
+      </section>
+
+      <section id="atlas" class="atlas">
+        <div class="atlas-head">
+          <div>
+            <p class="kicker">The atlas</p>
+            <h2>Every claim, told in full, then tested</h2>
+            <p class="sub">
+              Two grades on every card. <b>The number</b>: does the arithmetic hold against the survey? <b>The design</b>: did the builders mean
+              it? A claim can be exactly true and still be an accident; that is where most of the magic lives.
+            </p>
+          </div>
+          <div class="lens" role="group" aria-label="Voice">
+            <button data-lens="both" aria-pressed="true">Wonder + test</button><button data-lens="wonder" aria-pressed="false">Wonder</button
+            ><button data-lens="test" aria-pressed="false">Test</button>
+          </div>
+        </div>
+        <div class="tally" id="tally"></div>
+        <div class="filters">
+          <div class="chipset" id="f-family" role="group" aria-label="Family"></div>
+          <div class="chipset" id="f-number" role="group" aria-label="Number grade"></div>
+          <div class="chipset" id="f-design" role="group" aria-label="Design grade"></div>
+          <input id="search" type="search" placeholder="Search 63 claims…" aria-label="Search claims" />
+        </div>
+        <p class="count" id="count" aria-live="polite"></p>
+        <div class="cards" id="cards"></div>
+      </section>
+
+      <section id="shafts" class="shaftclock">
+        <div class="sc-text">
+          <p class="kicker">The shaft clock</p>
+          <h2>Four shafts, four stars, four different years</h2>
+          <p>
+            Each curve is the height at which a star crossed the meridian over Giza, year by year, as the Earth's axis wobbles. Each level line is
+            a shaft's angle. Where a curve meets its line, the shaft pointed at its star.
+          </p>
+          <p id="sc-verdict" class="verdict"></p>
+          <p class="fine">
+            Solid lines: Gantenbrink's 1993 angles as commonly cited. Dashed: Petrie's 1883 angles. Geometric altitudes, no refraction. Drag
+            the year: the stage follows.
+          </p>
+        </div>
+        <div class="sc-chart"><svg id="shaftchart" viewBox="0 0 760 420" role="img" aria-label="Culmination altitude of four stars against the four shaft angles, 3600 BC to 1600 BC"></svg></div>
+      </section>
+
+      <section id="made" class="made">
+        <p class="kicker">How it was made</p>
+        <h2>One chain, every link named</h2>
+        <ol class="chain">
+          <li><b>Survey</b><span>Petrie 1883, read section by section from the Birdsall transcription; Dash 2015 for the base.</span></li>
+          <li><b>Verify</b><span><code>verify_sacred.py</code> and <code>build_atlas.py</code> compute every number on the cards. ERFA long-term precession, HYG space motion.</span></li>
+          <li><b>Model + light</b><span>Blender 5.3 builds the plateau and bakes Cycles light twice: 256 samples per vertex, 96 per lightmap texel.</span></li>
+          <li><b>Export</b><span><code>x3d-blender-io</code> writes X3D 4.0; <code>build_stage.py</code> welds it, adds the proof rigs and the two layers.</span></li>
+          <li><b>Gate</b><span>x3d_mcp XSD and semantic checks, Loom witnesses, then X_ITE 16.7.1 with the console open.</span></li>
+          <li><b>Look</b><span>Frames at every stop, desktop and phone, before anything ships.</span></li>
+        </ol>
+        <div class="made-grid">
+          <article>
+            <h3>What is illustrative, not surveyed</h3>
+            <ul id="illustrative">
+              <li>Course heights and counts, and how much of each top is missing.</li>
+              <li>The queens' pyramids, the ground relief and the base levels (Khafre and Menkaure stand 10 m higher here).</li>
+              <li>The passage run and the chambers' east offset. The angles on the labels are Petrie's.</li>
+              <li>The Sun and Moon positions are stage lights, not an ephemeris. The stars are real.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Grades</h3>
+            <ul class="legend">
+              <li><i class="g g-Confirmed"></i><b>Confirmed</b> inside the survey's own error.</li>
+              <li><i class="g g-Likely"></i><b>Likely</b> close, or the source was not re-read here.</li>
+              <li><i class="g g-Suspected"></i><b>Suspected</b> depends on a free choice.</li>
+              <li><i class="g g-False"></i><b>False</b> the survey rules it out.</li>
+              <li><i class="g g-Untested"></i><b>Untested</b> not measured in this session.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Witnesses</h3>
+            <table class="witness" id="witness"><tbody></tbody></table>
+          </article>
+          <article>
+            <h3>Credits and licences</h3>
+            <ul>
+              <li>Stars: <a href="https://github.com/astronexus/HYG-Database">HYG Database v4.1</a> by David Nash, CC BY-SA 4.0. The star files here are derived from it and carry the same licence.</li>
+              <li>Survey: W. M. Flinders Petrie, <i>The Pyramids and Temples of Gizeh</i> (1883), public domain, via Ronald Birdsall's transcription.</li>
+              <li>Renderer: X_ITE 16.7.1 (MIT). Modelling and light: Blender 5.3 (GPL). Exporter: x3d-blender-io.</li>
+              <li>Page code and scene generators: GPL-3.0-or-later. <a href="README.md">README</a> · <a href="receipts/atlas.json">atlas.json</a> · <a href="receipts/bake-receipt.json">bake receipt</a></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="foot">
+      <span>Demo 65 v4 · x3d.io · X3D is the 3D format an AI can be held accountable to.</span>
+      <span><a href="../v3/">v3 The Reveal and the Coincidence Engine</a> · <a href="../v2/">v2 Observatory</a> · <a href="../v1/">v1</a></span>
+    </footer>
+  </body>
+</html>
