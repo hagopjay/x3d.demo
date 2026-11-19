@@ -399,3 +399,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-walking-twin.jpg | 563786a4b7369d6fa622d4cd86679226a539b5037f4adcb2ace599bb566bc678 | 42984 |
+
+`blender-giza-crawl` is a 2 x 2 grid of 480 x 270 tiles from `docs/demos/blender-giza-crawl/v1/shots/` (`ch00` entrance, `ch12` crawl, `ch22` Osiris Shaft, `ch26` imagined hall; X_ITE 16.7.1 frames from the page's own scene, headless Chromium with SwiftShader), saved as 960 x 540 JPEG. No Google or other third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-giza-crawl.jpg | 18f84ddaf16da35b4bb7c27aade1114ae2ad56cb398bd0508631f791fd5d9a52 | 34387 |
