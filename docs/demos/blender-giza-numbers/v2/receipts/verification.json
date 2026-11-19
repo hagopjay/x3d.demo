@@ -1,0 +1,69 @@
+{
+  "schema": "pyramid-observatory-verification/v1",
+  "review_date": "2026-11-19",
+  "baseline_commit": "028f25f475934661bb05c7197d68552a798f6276",
+  "tools": {
+    "node": "v24.22.3",
+    "python": "3.12.14",
+    "linkedom": "0.18.12"
+  },
+  "checks": {
+    "math_tests": {
+      "passed": 10
+    },
+    "renderer_lifecycle_tests": {
+      "passed": 11,
+      "mocked_runtime": true
+    },
+    "dom_integration_tests": {
+      "passed": 11,
+      "renderer": "mocked SAI; real application JS and actual asset DEF lists"
+    },
+    "total": {
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0
+    },
+    "structural_integrity": {
+      "status": "pass",
+      "unique_defs": 32,
+      "required_sai_nodes": 28,
+      "local_file_references": 13,
+      "deterministic_assets": 3
+    },
+    "scene_xsd_and_semantic": {
+      "status": "pass",
+      "errors": 0,
+      "warnings": 0,
+      "receipt": "scene-validation.json"
+    },
+    "v1_live_page": {
+      "status": "startup failure observed",
+      "message": "Cannot read properties of undefined (reading 'loadURL')"
+    }
+  },
+  "not_verified": [
+    "v2 WebGL pixels and material appearance",
+    "actual browser custom-element execution with the real X_ITE runtime",
+    "native range input behavior, layout and accessibility",
+    "mobile and other browser interactions",
+    "real GPU performance",
+    "new Blender IO roundtrip",
+    "independent re-survey of archaeological geometry"
+  ],
+  "reason_v2_browser_unavailable": "Cloud browser could not reach the local preview server. DOM checks are not represented as visual or GPU verification.",
+  "sources_reviewed": "REVIEW.md",
+  "sha256": {
+    "assets/limestone-base.png": "10b89b883bcc9ec42dcad0e35034889ae498841663245bae5727c8b9673f1910",
+    "assets/limestone-normal.png": "d88a57ee0d9bc26dd6d67322a93ccae33b683c227ba6d1866c2fb6b31db4a0cc",
+    "assets/observatory.x3d": "00760f89c15e963df7e7ab6e407f2ca91c590307662bd111cde1d9bbdff60bd0",
+    "index.html": "074e6d2b10ba5b15be9c953fb81ff2a08e929c542cb26b6608a15780d9b26c64",
+    "lab-math.mjs": "1ed723a7f82e1b112334474fb4626b7a4ab69f224a89ebd6788f28854e013e98",
+    "observatory.css": "01fd4c8aa8cd11683b5e8408f64e486ec2f0363b200e1c0f4d7f21fe87a49ec8",
+    "observatory.mjs": "0fdfb49b40ce352373a84eaf9a39e11efb62bc89d5473afb4a25df87a635f7f8",
+    "renderer.mjs": "b740401dc92049aa98a72f1a107b426f1a9cf82424d0a86fab086053f78fcb9e",
+    "tests/math.test.mjs": "5fe1f46932b6615cd2703ba43444c4ddcdd35e5b042a65d4706ba2dd5beb6b5e",
+    "tests/runtime.test.mjs": "9c4684d71b650886dc1015e4d2cf4eb467a7f2de5a714220f73c700682bf4a48",
+    "tests/ui.test.mjs": "6384c4ef6e2b0c7b9c72ff4e2019b462cc822c658d98bcba731fe6b06917f276"
+  }
+}
