@@ -381,3 +381,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-baked-light.jpg | ce489379c7ede95f83485a93e1907cdc9644c396dd7443d68b4a0d172c34cd35 | 39957 |
+
+`blender-flywheel-forge` is a 2 x 2 grid of 480 x 270 tiles from `docs/demos/blender-flywheel-forge/v1/gens/`: top row generation 0 (X_ITE frame, Cycles render), bottom row generation 7 (X_ITE frame, Cycles render), saved as 960 x 540 JPEG. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-flywheel-forge.jpg | 53dc35e68e8f1ba5723ca4d2bec48f76ae4ce7e2f20bea2df34b7c04e4b86021 | 40382 |
