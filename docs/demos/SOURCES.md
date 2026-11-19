@@ -357,3 +357,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-splat.jpg | d73a3f68caa352f3a217626257fb192a169c39c3f1348c8ed3cbbd7dc2e649cb | 21757 |
+
+`blender-nexus` is `docs/demos/blenderizer-nexus/v1/img/foundry.webp` (640 x 400, a still from the NEXUS foundry chapter, X_ITE) cropped to y 20 to 380 and resized to 960 x 540 JPEG. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-nexus.jpg | 021ee14afc376f44e859b2420299152d4f957080bc639c5315b7e88eceb8831f | 55415 |

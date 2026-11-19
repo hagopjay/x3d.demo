@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v61 (2026-11-19)
+- Front-page card for Demo 56, the NEXUS X3D Hub Observatory (`docs/demos/blenderizer-nexus/v1/`, merged as PR 114). Card image `assets/blender-nexus.jpg`. The card gives the build lane's own Confirmed checks, the one number I re-measured (the 7.03x instancing ratio), the figures I did not re-measure, and what nobody tested. Versions v1 to v60 are untouched.
+
 ## Unnumbered: Giza VI.3, X3D twin that flies by default (2026-11-19)
 - Added `docs/demos/giza-osiris-hall/v6.3/`; v6, v6.1 and v6.2 are untouched. In X_ITE 16.6, EXAMINE kept orbiting after a drag was released and could swing the camera under the plateau, so the pyramids seemed to turn by themselves. The v6.3 twin opens in FLY with a per-Viewpoint speed and a Fly / Examine toggle; the rebuild is byte-identical and the twin passes the same validator (x3d_mcp fa5dccf: XSD valid, 0 semantic errors or warnings). The Giza card now points at v6.3. Authored by hagsmac in #112, moved from an in-place edit of v6 into a new folder.
 
