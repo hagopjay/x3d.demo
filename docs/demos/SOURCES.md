@@ -393,3 +393,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-every-engine.jpg | df3c404d39d56ce898acb1f5297845fa2eff1f6cd5f78817ebbdc47512bd377e | 58239 |
+
+`blender-walking-twin` is a canvas screenshot of `docs/demos/blender-walking-twin/v1/index.html` (X_ITE 16.7.1, headless Chromium with SwiftShader, overview camera, 30 s after load), cropped to 872 x 491 and resized to 960 x 540 JPEG. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-walking-twin.jpg | 563786a4b7369d6fa622d4cd86679226a539b5037f4adcb2ace599bb566bc678 | 42984 |
