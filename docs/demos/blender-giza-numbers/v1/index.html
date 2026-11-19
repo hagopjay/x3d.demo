@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Great Pyramid Numbers</title>
+<meta name="description" content="Pi, tau, phi and the speed of light in the Great Pyramid: each famous number revealed in a live X3D model built in Blender, with a verdict panel that checks it against the published surveys, digit by digit, with error bars.">
+<link rel="stylesheet" href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css">
+<style>
+:root{--bg:#07060a;--panel:#120f16;--line:#2a2430;--ink:#f6f0e4;--dim:#a99f92;--gold:#ffc547;--cyan:#5fe0ff;--ok:#4fdc94;--lik:#a8d65a;--sus:#ffb347;--no:#ff5a6a;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f7f2e8;--panel:#fff;--line:#e4dccd;--ink:#1a1610;--dim:#6b6253;--gold:#a86e00;--cyan:#087f9c;--ok:#13804d;--lik:#5c7d12;--sus:#a85f00;--no:#c0223a}}
+:root[data-theme="dark"]{--bg:#07060a;--panel:#120f16;--line:#2a2430;--ink:#f6f0e4;--dim:#a99f92;--gold:#ffc547;--cyan:#5fe0ff;--ok:#4fdc94;--lik:#a8d65a;--sus:#ffb347;--no:#ff5a6a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:var(--gold)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 0;border-bottom:1px solid var(--line);font:11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.top b{color:var(--ink)}
+.hero{padding:42px 0 18px}
+.kicker{font:700 12px var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+h1{font-size:clamp(36px,6.4vw,84px);line-height:.98;letter-spacing:-.03em;margin:10px 0 14px}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--gold),#fff1c2,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{color:var(--dim);font-size:18px;max-width:52em;margin:0}
+.ticker{font:700 clamp(22px,4.2vw,46px)/1 var(--mono);letter-spacing:.04em;margin:26px 0 6px;color:var(--gold);text-shadow:0 0 24px rgba(255,197,71,.35)}
+.ticker small{display:block;font:12px var(--mono);letter-spacing:.12em;color:var(--dim);text-shadow:none;margin-top:8px;text-transform:uppercase}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 12px}
+.acts button{font:700 13px var(--mono);letter-spacing:.06em;padding:10px 14px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.acts button.on{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.stage{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:14px}
+.view{position:relative;aspect-ratio:16/10;background:#000;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.view x3d-canvas{position:absolute;inset:0;width:100%;height:100%}
+.vtag{position:absolute;left:10px;top:10px;z-index:2;font:11px var(--mono);background:rgba(0,0,0,.66);color:#fff;padding:4px 8px;border-radius:4px;pointer-events:none}
+.vbar{position:absolute;left:10px;bottom:10px;z-index:2;display:flex;gap:6px;flex-wrap:wrap}
+.vbar button{font:600 12px var(--mono);padding:7px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.25);background:rgba(10,8,14,.8);color:#fff;cursor:pointer}
+.vbar button.on{border-color:var(--gold);color:#ffe3a1}
+.reveal{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.rv-claim{font:700 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.rv-title{font-size:24px;line-height:1.15;font-weight:800;margin:0}
+.digits{font:800 clamp(28px,3.6vw,44px)/1.1 var(--mono);letter-spacing:.02em;word-break:break-all}
+.digits span{display:inline-block;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
+.digits span.in{opacity:1;transform:none}
+.digits .hit{color:var(--gold);text-shadow:0 0 18px rgba(255,197,71,.5)}
+.digits .miss{color:var(--no);text-decoration:line-through;text-decoration-thickness:3px}
+.digits .na{color:var(--dim)}
+.rv-sub{font:13px var(--mono);color:var(--dim)}
+.verdict{border-top:1px solid var(--line);padding-top:12px;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:14px}
+.verdict dt{color:var(--dim);font:12px var(--mono);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.verdict dd{margin:0}
+.chip{display:inline-block;font:800 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;color:#06120b}
+.chip.Confirmed{background:var(--ok)}.chip.Likely{background:var(--lik)}.chip.Suspected{background:var(--sus)}.chip.False{background:var(--no);color:#fff}
+.nl{width:100%;height:76px;display:block}
+.why{font-size:14.5px;line-height:1.5}
+h2{font-size:28px;margin:54px 0 6px}
+.sub{color:var(--dim);margin:0 0 14px;max-width:62em}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{padding:8px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+td.m{font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+tr.sec td{background:rgba(255,197,71,.07);font:700 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.fig{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;align-items:start}
+.fig img{width:100%;border-radius:10px;border:1px solid var(--line);display:block}
+.fig figcaption{font-size:13px;color:var(--dim);margin-top:6px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 44px;color:var(--dim);font-size:13px}
+@media (max-width:980px){.stage,.fig{grid-template-columns:1fr}}
+@media (max-width:560px){.view{aspect-ratio:4/5}}
+@media (prefers-reduced-motion:reduce){.digits span{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><span><b>Great Pyramid Numbers</b> · Blender pipelines</span><span>verify_numbers.py → Blender → x3d-blender-io → X3D 4.0 → X_ITE</span></div>
+<div class="hero">
+  <div class="kicker">Giza · 2560 BC · 230.363 m · 146.72 m</div>
+  <h1>The pyramid that <em>knows π, φ and the speed of light.</em></h1>
+  <p class="lede">Four numbers have followed the Great Pyramid for centuries. Each is drawn here in gold on a model built in Blender at the surveyed size, then held to the surveys digit by digit, with the error bars showing. Gold digits hold. Red digits don't.</p>
+  <div class="ticker" id="ticker">29.9792458° N<small>the latitude, they say, of the speed of light</small></div>
+</div>
+
+<div class="acts" id="acts">
+  <button data-act="pi" class="on">Act I · π</button>
+  <button data-act="tau">Act II · τ</button>
+  <button data-act="phi">Act III · φ</button>
+  <button data-act="latitude">Act IV · c</button>
+</div>
+
+<div class="stage">
+  <div class="view">
+    <div id="host"></div>
+    <div class="vtag" id="tag">loading X_ITE</div>
+    <div class="vbar">
+      <button id="bOver">Overview</button>
+      <button id="bAct" class="on">This act</button>
+      <button id="bX">X-ray: off</button>
+    </div>
+  </div>
+  <div class="reveal" id="reveal">
+    <div class="rv-claim" id="rvClaim">The claim</div>
+    <h3 class="rv-title" id="rvTitle">—</h3>
+    <div class="digits" id="rvDigits"></div>
+    <div class="rv-sub" id="rvSub"></div>
+    <svg class="nl" id="rvNL" viewBox="0 0 600 84" preserveAspectRatio="none" aria-label="Number line: claim against the surveyed value and its error bar"></svg>
+    <dl class="verdict">
+      <dt>Verdict</dt><dd><span class="chip" id="rvGrade">—</span></dd>
+      <dt>Digits</dt><dd id="rvDig">—</dd>
+      <dt>Why</dt><dd class="why" id="rvWhy">—</dd>
+      <dt>Sources</dt><dd class="why" id="rvSrc">—</dd>
+    </dl>
+  </div>
+</div>
+
+<h2>Every claim, checked</h2>
+<p class="sub">Claimed value against the survey. "Agree" counts the leading significant digits the two share; "Supported" counts how many digits the survey's error bar can carry. A match with more agreeing digits than the survey supports is luck, not design. Computed by <a href="build/verify_numbers.py">verify_numbers.py</a> into <a href="receipts/claims.json">claims.json</a>; the scene reads the same file.</p>
+<div class="scroll"><table><thead><tr><th>Claim</th><th>Claimed</th><th>Survey</th><th>Off by</th><th>Agree</th><th>Supported</th><th>Grade</th></tr></thead><tbody id="ledger"></tbody></table></div>
+
+<h2>The latitude, in centimetres</h2>
+<div class="cols card" id="latcard"></div>
+
+<h2>The picture that started it</h2>
+<div class="fig">
+  <figure style="margin:0"><img src="assets/golden-ratio-overlay-daniel-mayer-cc-by-sa-4.jpg" alt="A golden-ratio overlay of spirals and circles drawn on a photograph of the Sphinx and a pyramid" loading="lazy">
+    <figcaption>Golden-ratio overlay by Daniel Mayer, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, shown unaltered.</figcaption></figure>
+  <div class="card">
+    <p style="margin-top:0"><b>Which pyramid is that?</b> The pyramid behind the Sphinx with casing stones still near its tip is most likely Khafre's, not Khufu's Great Pyramid (Likely: Khafre's is the one that keeps its upper casing, and from the Sphinx it stands directly behind).</p>
+    <p><b>Why overlays always fit.</b> A golden spiral can be scaled and placed freely, and a photograph has perspective, so some fit can almost always be found. The test on this page uses surveyed lengths instead of a photograph.</p>
+    <p style="margin-bottom:0"><b>What the builders wrote down.</b> Egyptian mathematics set a slope by its <i>seked</i>, the run in palms for one cubit of rise (Rhind papyrus, problems 56 to 60). A seked of 5½ gives 14 : 11. That slope makes the perimeter over twice the height equal 22/7 = 3.1429, which is why π appears. φ appears too, because 4/π and √φ differ by only 0.1%.</p>
+  </div>
+</div>
+
+<footer>Great Pyramid Numbers v1 · <a href="assets/numbers.x3d">numbers.x3d</a> · <a href="receipts/claims.json">claims.json</a> · <a href="receipts/validation.json">validation.json</a> · generators in <a href="build/">build/</a> (verify_numbers.py, build_numbers.py) · Blender 5.3.0 (bpy), x3d-blender-io 8310e7b, X_ITE 16.7.1 · published on <a href="../../../">x3d.demo</a>.</footer>
+</div>
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const GROUPS={pi:['pi_circle','pi_square','pi_radius'],tau:['pi_circle','pi_square','pi_radius'],phi:['phi_section','phi_right_angle','seked_section'],
+  latitude:['lat_gallery','lat_passages','lat_point','lat_gallery_centre','lat_plane','lat_span']};
+const ALL=[...new Set(Object.values(GROUPS).flat())];
+const VP={pi:'CA_Pi',tau:'CA_Pi',phi:'CA_Phi',latitude:'CA_Latitude'};
+const LINES={pi:{lo:3.130,hi:3.152,marks:[['π',Math.PI,'--gold'],['22/7',22/7,'--cyan']]},tau:{lo:6.26,hi:6.304,marks:[['τ',2*Math.PI,'--gold'],['44/7',44/7,'--cyan']]},
+  phi:{lo:1.614,hi:1.624,marks:[['φ',(1+Math.sqrt(5))/2,'--gold'],['14/11 slope',Math.sqrt(1+(14/11)**2),'--cyan']]}};
+let D=null,S=null,act='pi',xray=false,timer=0;
+const fmtNum=(v,u)=>{if(Math.abs(v)>=1000)return Math.round(v).toLocaleString('en-US');const d=u?Math.max(2,Math.min(9,Math.ceil(-Math.log10(u))+1)):4;return v.toFixed(d);};
+function sigString(v){return String(v).replace(/^-/,'');}
+function show(name){
+  const c=D.claims.find(x=>x.key===name);act=name;
+  document.querySelectorAll('#acts button').forEach(b=>b.classList.toggle('on',b.dataset.act===name));
+  $('rvClaim').textContent='Act '+({pi:'I',tau:'II',phi:'III',latitude:'IV'})[name]+' · the claim';
+  $('rvTitle').textContent=c.title;
+  // digits: the true constant, coloured by how far the survey agrees
+  const target=name==='latitude'?'29.9792458':String(c.claimed).slice(0,12);
+  let n=c.digits_agree,seen=0,html='';
+  for(const ch of target){if(/[0-9]/.test(ch)){seen++;html+='<span class="'+(seen<=n?'hit':'miss')+'">'+ch+'</span>';}else html+='<span class="na">'+ch+'</span>';}
+  $('rvDigits').innerHTML=html;clearTimeout(timer);
+  const spans=[...$('rvDigits').children];spans.forEach((s,i)=>setTimeout(()=>s.classList.add('in'),90*i+60));
+  $('rvSub').textContent=name==='latitude'?'Grand Gallery midpoint: '+D.latitude.gallery_mid_lat.toFixed(7)+'° N (WGS84)':'surveyed: '+fmtNum(c.measured,c.u)+' ± '+fmtNum(c.u,c.u/10);
+  $('rvGrade').className='chip '+c.grade;$('rvGrade').textContent=c.grade;
+  $('rvDig').innerHTML='<b style="color:var(--gold)">'+c.digits_agree+'</b> significant digits agree · the survey supports <b>'+c.digits_supported+'</b>'+(c.sigma_off!=null?' · claim is '+c.sigma_off+' σ from the survey':'');
+  $('rvWhy').textContent=c.verdict;$('rvSrc').textContent=c.sources.map(k=>D.sources[k]).join(' · ');
+  numberLine(name,c);
+  if(S){ALL.forEach(n=>{const t=S.getNamedNode('OB_Overlay_'+n);if(t)t.visible=GROUPS[name].includes(n);});S.getNamedNode(VP[name]).set_bind=true;setX(name==='latitude');}
+  $('bAct').classList.add('on');$('bOver').classList.remove('on');}
+function numberLine(name,c){const svg=$('rvNL');const W=600;let lo,hi,marks,band;
+  if(name==='latitude'){const L=D.latitude;lo=29.97885;hi=29.97965;
+    const g0=L.wgs84_centre+L.gallery_m[0]/110852.4,g1=L.wgs84_centre+L.gallery_m[1]/110852.4;
+    marks=[['29.9792458',L.claim,'--no'],['centre',L.wgs84_centre,'--dim'],['old datum',L.disk_egypt1907,'--sus']];band=[[L.south_edge_lat,L.north_edge_lat,'--cyan','pyramid base'],[g0,g1,'--gold','Gallery']];}
+  else{const l=LINES[name];lo=l.lo;hi=l.hi;marks=l.marks;band=[[c.measured-c.u,c.measured+c.u,'--cyan','survey ±1σ']];}
+  const x=v=>12+(W-24)*(Math.min(hi,Math.max(lo,v))-lo)/(hi-lo);let h='<line x1="12" x2="'+(W-12)+'" y1="44" y2="44" stroke="'+css('--line')+'" stroke-width="2"/>';
+  band.forEach(([a,b,col,lab],i)=>{h+='<rect x="'+x(a)+'" y="'+(36-i*4)+'" width="'+Math.max(2,x(b)-x(a))+'" height="'+(16+i*8)+'" fill="'+css(col)+'" opacity="'+(i?0.45:0.3)+'"/><text x="'+(x(a)+3)+'" y="'+(70)+'" font-size="11" fill="'+css(col)+'" font-family="monospace">'+(i?'':lab)+'</text>';if(i)h+='<text x="'+(x(b)+3)+'" y="70" font-size="11" fill="'+css(col)+'" font-family="monospace">'+lab+'</text>';});
+  if(name!=='latitude')h+='<line x1="'+x(c.measured)+'" x2="'+x(c.measured)+'" y1="30" y2="58" stroke="'+css('--cyan')+'" stroke-width="2"/>';
+  marks.forEach(([lab,v,col],i)=>{h+='<line x1="'+x(v)+'" x2="'+x(v)+'" y1="30" y2="58" stroke="'+css(col)+'" stroke-width="2.5"/><text x="'+(x(v)+4)+'" y="'+(12+12*(i%3))+'" font-size="12" font-weight="700" fill="'+css(col)+'" font-family="monospace" '+(x(v)>W*0.7?'text-anchor="end" dx="-8"':'')+'>'+lab+'</text>';});
+  svg.innerHTML=h;}
+function setX(on){xray=on;$('bX').textContent='X-ray: '+(on?'on':'off');$('bX').classList.toggle('on',on);if(S)S.getNamedNode('MA_Casing_limestone').transparency=on?0.75:0;}
+function ledger(){let sec='',h='';for(const c of D.claims){if(c.section!==sec){sec=c.section;h+='<tr class="sec"><td colspan="7">'+sec+'</td></tr>';}
+  const num=c.claimed!==1||c.unit;const off=c.rel_error_pct==null||!num||c.key.startsWith('shafts')||['orion','greaves_foot'].includes(c.key)?'—':(c.rel_error_pct>0?'+':'')+c.rel_error_pct.toFixed(3)+'%';
+  const isNum=!['shafts_king','shafts_queen','orion','greaves_foot','blocks'].includes(c.key);
+  h+='<tr><td><b>'+c.title+'</b><br><span style="color:var(--dim);font-size:13px">'+c.verdict+'</span></td><td class="m">'+(isNum?fmtNum(c.claimed)+' '+c.unit:'—')+'</td><td class="m">'+(isNum?fmtNum(c.measured,c.u)+(c.u?' ± '+fmtNum(c.u,c.u/10):'')+' '+c.unit:'—')+'</td><td class="m">'+(isNum?off:'—')+'</td><td class="m">'+(isNum&&c.digits_agree<15?c.digits_agree:'—')+'</td><td class="m">'+(c.digits_supported??'—')+'</td><td><span class="chip '+c.grade+'">'+c.grade+'</span></td></tr>';}
+  $('ledger').innerHTML=h;}
+function latcard(){const L=D.latitude;$('latcard').innerHTML='<div class="scroll"><table>'+
+  [['One step of 0.0000001° of latitude',L['cm_per_1e-7_deg']+' cm'],['Latitude lines at that step crossing the 230.363 m base',L.lines_through_pyramid.toLocaleString('en-US')],
+   ['South and north edges of the base (WGS84)',L.south_edge_lat.toFixed(7)+'° to '+L.north_edge_lat.toFixed(7)+'°'],['Where 29.9792458° falls',L.claim_point_north_of_centre_m+' m north of the centre, inside the Grand Gallery'],
+   ['Midpoint of the Grand Gallery floor',L.gallery_mid_lat.toFixed(7)+'° (12.5 m further north)'],['Summit disk, old Egyptian datum (AERA)',L.disk_egypt1907.toFixed(7)+'°'],
+   ['Same disk moved to WGS84',L.disk_wgs84.toFixed(7)+'°: the datum alone moves the 4th decimal'],['The metre and the 299 792 458','1791 and 1983, about 4,300 years after the pyramid']]
+  .map(r=>'<tr><td>'+r[0]+'</td><td class="m">'+r[1]+'</td></tr>').join('')+'</table></div>';}
+(async()=>{
+  D=await (await fetch('receipts/claims.json')).json();ledger();latcard();show('pi');
+  document.querySelectorAll('#acts button').forEach(b=>b.onclick=()=>show(b.dataset.act));
+  const cv=document.createElement('x3d-canvas');cv.setAttribute('splashScreen','false');cv.setAttribute('notifications','false');cv.setAttribute('contextMenu','false');$('host').appendChild(cv);
+  const B=X3D.getBrowser(cv);
+  try{await B.loadURL(new X3D.MFString('assets/numbers.x3d'));}catch(e){$('tag').textContent='load failed: '+e;return;}
+  S=B.currentScene;$('tag').textContent='X_ITE '+B.version+' · live X3D';show(act);
+  $('bOver').onclick=()=>{S.getNamedNode('CA_Overview').set_bind=true;$('bOver').classList.add('on');$('bAct').classList.remove('on');};
+  $('bAct').onclick=()=>show(act);$('bX').onclick=()=>setX(!xray);
+  const T=[['29.9792458° N','the latitude, they say, of the speed of light'],['3.14159…','π, hidden in the perimeter'],['1.61803…','φ, hidden in the slope'],['6.28318…','τ, the perimeter over the height']];let k=0;setInterval(()=>{k=(k+1)%T.length;$('ticker').firstChild.textContent=T[k][0];$('ticker').querySelector('small').textContent=T[k][1];},2600);
+})();
+</script>
+</body>
+</html>

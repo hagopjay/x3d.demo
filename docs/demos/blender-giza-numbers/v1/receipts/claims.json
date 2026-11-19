@@ -1,0 +1,600 @@
+{
+ "generated_by": "verify_numbers.py",
+ "base_m": 230.363,
+ "base_u_m": 0.07,
+ "slope_deg": 51.86666666666667,
+ "slope_u_deg": 0.03333333333333333,
+ "height_m": 146.721,
+ "height_u_m": 0.181,
+ "slopes_deg": {
+  "measured": 51.867,
+  "pi": 51.854,
+  "phi": 51.827,
+  "seked_5_5": 51.843
+ },
+ "latitude": {
+  "claim": 29.9792458,
+  "wgs84_centre": 29.979175,
+  "gallery_m": [
+   -0.6,
+   41.3
+  ],
+  "gallery_mid_lat": 29.9793586,
+  "claim_point_north_of_centre_m": 7.85,
+  "south_edge_lat": 29.9781359,
+  "north_edge_lat": 29.9802141,
+  "cm_per_1e-7_deg": 1.11,
+  "lines_through_pyramid": 20781,
+  "disk_egypt1907": 29.9789953,
+  "disk_wgs84": 29.9791612,
+  "disk_lon_wgs84": 31.1341774
+ },
+ "sources": {
+  "dash": "Dash 2015 survey for AERA: mean base side 230.363 m; east 230.295-230.373 m, west 230.378-230.436 m (95%)",
+  "petrie": "Petrie 1883, The Pyramids and Temples of Gizeh: base 230.348 m, casing slope 51 deg 52 min +/- 2 min, casing joints mean 0.02 in",
+  "cole": "Cole 1925, Survey of Egypt Paper 39: sides 230.253 (N) to 230.454 m (S); mean skew about 3 min west of true north",
+  "lehner": "Lehner 1997, The Complete Pyramids: 280 x 440 royal cubits, seked 5 1/2 palms, platform level within about 2.1 cm (secondary report)",
+  "aera_gpmp": "AERA Giza Plateau Mapping Project: brass disk on the summit at N 29 58' 44.3830\", E 31 07' 57.0194\" (Helmert 1906 spheroid)",
+  "wgs84": "Common WGS84 position of the pyramid's centre: 29.979175 N, 31.134358 E (Wikipedia and mapping services)",
+  "si": "SI: speed of light 299 792 458 m/s exactly since the 1983 metre; metre first defined in 1791 as 1/10 000 000 of the pole-to-equator quadrant",
+  "iau": "IAU nominal solar radius 695 700 km; Moon radius 1737.4 km; mean distances 149 597 871 km and 384 400 km; Moon sidereal rotation 27.32 d",
+  "trimble": "Trimble 1964 and Badawy 1964: King's Chamber shafts at about 45 deg (south) and 32 deg 30 min (north); Gantenbrink 1993: Queen's south shaft about 39 deg 30 min",
+  "krupp": "Krupp 1997 and later critiques of the Orion correlation (Bauval and Gilbert 1994)",
+  "greaves": "Greaves, Pyramidographia (1646), from his 1638-39 survey; Newton, A Dissertation upon the Sacred Cubit (published 1737)"
+ },
+ "claims": [
+  {
+   "key": "base",
+   "section": "Dimensions",
+   "title": "Base side 756 ft",
+   "claim": "Base side 756 ft",
+   "claimed": 756.0,
+   "measured": 755.7841207349,
+   "u": 0.2296587927,
+   "unit": "ft",
+   "rel_error_pct": -0.0286,
+   "digits_agree": 3,
+   "digits_supported": 3,
+   "sigma_off": 0.94,
+   "grade": "Confirmed",
+   "verdict": "755.78 ft (230.363 m). 756 ft rounds it; the design is 440 royal cubits.",
+   "sources": [
+    "dash",
+    "petrie",
+    "lehner"
+   ],
+   "show": null
+  },
+  {
+   "key": "height",
+   "section": "Dimensions",
+   "title": "Height 480 ft without the capstone, 1/11 mile",
+   "claim": "Height 480 ft without the capstone, 1/11 mile",
+   "claimed": 480.0,
+   "measured": 481.3666025751,
+   "u": 0.5948437435,
+   "unit": "ft",
+   "rel_error_pct": 0.2847,
+   "digits_agree": 2,
+   "digits_supported": 2,
+   "sigma_off": 2.3,
+   "grade": "Suspected",
+   "verdict": "5280/11 = 480 is true arithmetic. The surveyed apex height is about 481.3 ft (146.7 m). 480 ft 'without the capstone' needs a cap only 0.4 m tall; the pyramidion is lost and its size unknown (Amenemhat III's surviving one is about 1.3 m).",
+   "sources": [
+    "petrie",
+    "dash",
+    "lehner"
+   ],
+   "show": null
+  },
+  {
+   "key": "ratio711",
+   "section": "Dimensions",
+   "title": "Height : base = 7 : 11",
+   "claim": "Height : base = 7 : 11",
+   "claimed": 0.6363636363636364,
+   "measured": 0.6369101829,
+   "u": 0.0007870551,
+   "unit": "",
+   "rel_error_pct": 0.0859,
+   "digits_agree": 2,
+   "digits_supported": 2,
+   "sigma_off": 0.69,
+   "grade": "Confirmed",
+   "verdict": "0.6368 against 0.6364: 280 : 440 royal cubits, the slope of a seked of 5 1/2 palms per cubit.",
+   "sources": [
+    "petrie",
+    "lehner"
+   ],
+   "show": null
+  },
+  {
+   "key": "acres",
+   "section": "Dimensions",
+   "title": "Base area about 13 acres",
+   "claim": "Base area about 13 acres",
+   "claimed": 13.0,
+   "measured": 13.113168897,
+   "u": 0.0079693512,
+   "unit": "acres",
+   "rel_error_pct": 0.8705,
+   "digits_agree": 2,
+   "digits_supported": 3,
+   "sigma_off": 14.2,
+   "grade": "Confirmed",
+   "verdict": "53 067 m2 = 13.11 acres.",
+   "sources": [
+    "dash"
+   ],
+   "show": null
+  },
+  {
+   "key": "blocks",
+   "section": "Dimensions",
+   "title": "2.3 million blocks",
+   "claim": "2.3 million blocks",
+   "claimed": 2300000.0,
+   "measured": 2300000.0,
+   "u": 0.0,
+   "unit": "blocks",
+   "rel_error_pct": 0.0,
+   "digits_agree": 15,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Likely",
+   "verdict": "An estimate (volume about 2.6 million m3 over an assumed mean block), never a count.",
+   "sources": [
+    "lehner"
+   ],
+   "show": null
+  },
+  {
+   "key": "level",
+   "section": "Precision",
+   "title": "Base level to within 15 mm",
+   "claim": "Base level to within 15 mm",
+   "claimed": 15.0,
+   "measured": 21.0,
+   "u": 0.0,
+   "unit": "mm",
+   "rel_error_pct": 40.0,
+   "digits_agree": 1,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Likely",
+   "verdict": "Reported deviation of the platform is about 2.1 cm (secondary report of the Cole/Lehner work); Petrie found a 40 ft stretch of the first course level to 0.02 in. Same order of magnitude, not the exact 15 mm.",
+   "sources": [
+    "lehner",
+    "petrie"
+   ],
+   "show": null
+  },
+  {
+   "key": "joints",
+   "section": "Precision",
+   "title": "Casing joints under 0.5 mm",
+   "claim": "Casing joints under 0.5 mm",
+   "claimed": 0.5,
+   "measured": 0.508,
+   "u": 0.0,
+   "unit": "mm",
+   "rel_error_pct": 1.6,
+   "digits_agree": 1,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Confirmed",
+   "verdict": "Petrie's mean joint thickness is 1/50 inch (0.51 mm), measured on the few casing stones left at the base.",
+   "sources": [
+    "petrie"
+   ],
+   "show": null
+  },
+  {
+   "key": "north",
+   "section": "Precision",
+   "title": "Aligned to true north within 0.1%",
+   "claim": "Aligned to true north within 0.1%",
+   "claimed": 0.1,
+   "measured": 0.0143518519,
+   "u": 0.0,
+   "unit": "% of a turn",
+   "rel_error_pct": -85.6481,
+   "digits_agree": 0,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Confirmed",
+   "verdict": "About 3 arcminutes west of north (0.052 deg). '0.1%' is a loose way to say it: as a fraction of a full turn the error is 0.014%.",
+   "sources": [
+    "cole",
+    "petrie"
+   ],
+   "show": null
+  },
+  {
+   "key": "pi",
+   "section": "Constants",
+   "title": "Perimeter / (2 x height) = pi",
+   "claim": "Perimeter / (2 x height) = pi",
+   "claimed": 3.141592653589793,
+   "measured": 3.1401330463,
+   "u": 0.0037408117,
+   "unit": "",
+   "rel_error_pct": -0.0465,
+   "digits_agree": 3,
+   "digits_supported": 2,
+   "sigma_off": 0.39,
+   "grade": "Confirmed",
+   "verdict": "3.1401 +/- 0.0037: pi to 3 significant digits. The seked of 5 1/2 palms makes it 22/7 = 3.1429 by design, so this pi is the builders' 22/7, not the transcendental number.",
+   "sources": [
+    "petrie",
+    "dash",
+    "lehner"
+   ],
+   "show": "pi"
+  },
+  {
+   "key": "tau",
+   "section": "Constants",
+   "title": "Perimeter / height = tau (2 pi)",
+   "claim": "Perimeter / height = tau (2 pi)",
+   "claimed": 6.283185307179586,
+   "measured": 6.2802660925,
+   "u": 0.0074816234,
+   "unit": "",
+   "rel_error_pct": -0.0465,
+   "digits_agree": 3,
+   "digits_supported": 2,
+   "sigma_off": 0.39,
+   "grade": "Confirmed",
+   "verdict": "The same ratio as pi, doubled: 6.280. One coincidence, not two.",
+   "sources": [
+    "petrie",
+    "dash"
+   ],
+   "show": "tau"
+  },
+  {
+   "key": "phi",
+   "section": "Constants",
+   "title": "Slant height / half-base = phi",
+   "claim": "Slant height / half-base = phi",
+   "claimed": 1.618033988749895,
+   "measured": 1.6194603603,
+   "u": 0.0011936479,
+   "unit": "",
+   "rel_error_pct": 0.0882,
+   "digits_agree": 3,
+   "digits_supported": 3,
+   "sigma_off": 1.19,
+   "grade": "Likely",
+   "verdict": "1.6195 +/- 0.0012 against 1.6180: phi to 3 significant digits. 14/11 gives 1.6186. pi and phi cannot both be meant exactly: the pi slope is 51.854 deg, the phi slope 51.827 deg, and the survey (51.867 +/- 0.033 deg) cannot tell them apart.",
+   "sources": [
+    "petrie",
+    "dash"
+   ],
+   "show": "phi"
+  },
+  {
+   "key": "latitude",
+   "section": "Latitude",
+   "title": "Latitude of the Grand Gallery's centre = 29.9792458 N",
+   "claim": "Latitude of the Grand Gallery's centre = 29.9792458 N",
+   "claimed": 29.9792458,
+   "measured": 29.9793585774,
+   "u": 4.5105e-05,
+   "unit": "deg N",
+   "rel_error_pct": 0.0004,
+   "digits_agree": 5,
+   "digits_supported": 5,
+   "sigma_off": 2.5,
+   "grade": "False",
+   "verdict": "A 1e-7 degree step is 1.1 cm, so the 230 m pyramid spans about 20800 such latitude lines; one of them must read 29.9792458, and it lies 7.8 m north of the centre, inside the Gallery but 12.5 m south of the Gallery's midpoint (29.979358 N). The building supports 4 to 5 significant digits (29.979). The summit disk on the old Egyptian datum reads 29.978995 N; moved to WGS84 it is 29.979161 N: the datum alone moves the 4th decimal place. The metre is from 1791 and the second's value for c was fixed in 1983.",
+   "sources": [
+    "aera_gpmp",
+    "wgs84",
+    "si"
+   ],
+   "show": "latitude"
+  },
+  {
+   "key": "day",
+   "section": "Numbers game",
+   "title": "86 400 seconds in a day",
+   "claim": "86 400 seconds in a day",
+   "claimed": 86400,
+   "measured": 86400,
+   "u": 0.0,
+   "unit": "s",
+   "rel_error_pct": 0.0,
+   "digits_agree": 15,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Confirmed",
+   "verdict": "True by definition: 24 x 60 x 60.",
+   "sources": [
+    "si"
+   ],
+   "show": null
+  },
+  {
+   "key": "sun",
+   "section": "Numbers game",
+   "title": "Sun's diameter 864 000 miles",
+   "claim": "Sun's diameter 864 000 miles",
+   "claimed": 864000,
+   "measured": 864575.8768790264,
+   "u": 0.0,
+   "unit": "mi",
+   "rel_error_pct": 0.0667,
+   "digits_agree": 2,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Confirmed",
+   "verdict": "864 576 miles from the IAU nominal solar radius: 864 000 is 0.07% low.",
+   "sources": [
+    "iau"
+   ],
+   "show": null
+  },
+  {
+   "key": "sun_r",
+   "section": "Numbers game",
+   "title": "Sun's radius 432 000 miles",
+   "claim": "Sun's radius 432 000 miles",
+   "claimed": 432000,
+   "measured": 432287.9384395132,
+   "u": 0.0,
+   "unit": "mi",
+   "rel_error_pct": 0.0667,
+   "digits_agree": 3,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Confirmed",
+   "verdict": "432 288 miles: 0.07% off. Only in miles: 695 700 km.",
+   "sources": [
+    "iau"
+   ],
+   "show": null
+  },
+  {
+   "key": "moon_r",
+   "section": "Numbers game",
+   "title": "Moon's radius 1 080 miles",
+   "claim": "Moon's radius 1 080 miles",
+   "claimed": 1080,
+   "measured": 1079.5703093931,
+   "u": 0.0,
+   "unit": "mi",
+   "rel_error_pct": -0.0398,
+   "digits_agree": 4,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Confirmed",
+   "verdict": "1 079.6 miles: 0.04% off. Only in miles: 1 737.4 km.",
+   "sources": [
+    "iau"
+   ],
+   "show": null
+  },
+  {
+   "key": "sun_earth",
+   "section": "Numbers game",
+   "title": "The Sun is 108 Earths wide",
+   "claim": "The Sun is 108 Earths wide",
+   "claimed": 108,
+   "measured": 109.1979281118,
+   "u": 0.0,
+   "unit": "x",
+   "rel_error_pct": 1.1092,
+   "digits_agree": 2,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Likely",
+   "verdict": "109.2 (mean Earth radius 6 371 km): 1% off.",
+   "sources": [
+    "iau"
+   ],
+   "show": null
+  },
+  {
+   "key": "sun_dist",
+   "section": "Numbers game",
+   "title": "The Sun is 108 of its own diameters away",
+   "claim": "The Sun is 108 of its own diameters away",
+   "claimed": 108,
+   "measured": 107.5160780509,
+   "u": 0.0,
+   "unit": "x",
+   "rel_error_pct": -0.4481,
+   "digits_agree": 3,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Likely",
+   "verdict": "107.5 on the mean distance; 105.7 to 109.3 over the year.",
+   "sources": [
+    "iau"
+   ],
+   "show": null
+  },
+  {
+   "key": "meridian",
+   "section": "Numbers game",
+   "title": "Meridian 40 000 km",
+   "claim": "Meridian 40 000 km",
+   "claimed": 40000.0,
+   "measured": 40007.86,
+   "u": 0.0,
+   "unit": "km",
+   "rel_error_pct": 0.0197,
+   "digits_agree": 3,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Confirmed",
+   "verdict": "40 007.86 km. True because the metre was defined from it in 1791: it says nothing about Giza.",
+   "sources": [
+    "si"
+   ],
+   "show": null
+  },
+  {
+   "key": "canon_size",
+   "section": "Numbers game",
+   "title": "Moon 400 times smaller than the Sun",
+   "claim": "Moon 400 times smaller than the Sun",
+   "claimed": 400.0,
+   "measured": 400.4259237942,
+   "u": 0.0,
+   "unit": "x",
+   "rel_error_pct": 0.1065,
+   "digits_agree": 3,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Confirmed",
+   "verdict": "400.4.",
+   "sources": [
+    "iau"
+   ],
+   "show": null
+  },
+  {
+   "key": "canon_dist",
+   "section": "Numbers game",
+   "title": "Moon 400 times closer than the Sun",
+   "claim": "Moon 400 times closer than the Sun",
+   "claimed": 400.0,
+   "measured": 389.1724011446,
+   "u": 0.0,
+   "unit": "x",
+   "rel_error_pct": -2.7069,
+   "digits_agree": 1,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Likely",
+   "verdict": "389 on mean distances; it swings from about 363 to 425 over the orbits.",
+   "sources": [
+    "iau"
+   ],
+   "show": null
+  },
+  {
+   "key": "canon_spin",
+   "section": "Numbers game",
+   "title": "Earth rotates 400 times faster than the Moon",
+   "claim": "Earth rotates 400 times faster than the Moon",
+   "claimed": 400.0,
+   "measured": 27.3964924243,
+   "u": 0.0,
+   "unit": "x",
+   "rel_error_pct": -93.1509,
+   "digits_agree": 0,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "False",
+   "verdict": "27.4 times faster (sidereal days). No reading gives 400.",
+   "sources": [
+    "iau"
+   ],
+   "show": null
+  },
+  {
+   "key": "greaves",
+   "section": "History and sky",
+   "title": "Greaves surveyed it in 1637",
+   "claim": "Greaves surveyed it in 1637",
+   "claimed": 1637,
+   "measured": 1638,
+   "u": 0.0,
+   "unit": "year",
+   "rel_error_pct": 0.0611,
+   "digits_agree": 3,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Likely",
+   "verdict": "He was at Giza in 1638-39 and published Pyramidographia in 1646; Newton used his figures for the sacred cubit.",
+   "sources": [
+    "greaves"
+   ],
+   "show": null
+  },
+  {
+   "key": "greaves_foot",
+   "section": "History and sky",
+   "title": "Greaves inscribed one English foot in the King's Chamber",
+   "claim": "Greaves inscribed one English foot in the King's Chamber",
+   "claimed": 1,
+   "measured": 1,
+   "u": 0.0,
+   "unit": "",
+   "rel_error_pct": 0.0,
+   "digits_agree": 15,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Suspected",
+   "verdict": "No source found for an inscription; his book prints an English foot so that readers could compare it.",
+   "sources": [
+    "greaves"
+   ],
+   "show": null
+  },
+  {
+   "key": "shafts_king",
+   "section": "History and sky",
+   "title": "King's Chamber shafts: Orion's Belt (south), the pole star Thuban (north)",
+   "claim": "King's Chamber shafts: Orion's Belt (south), the pole star Thuban (north)",
+   "claimed": 1,
+   "measured": 1,
+   "u": 0.0,
+   "unit": "",
+   "rel_error_pct": 0.0,
+   "digits_agree": 15,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Likely",
+   "verdict": "The shaft angles (about 45 deg and 32.5 deg) meet Alnitak and Thuban around 2500 BC, if the date is chosen to fit; within about 1 deg.",
+   "sources": [
+    "trimble"
+   ],
+   "show": null
+  },
+  {
+   "key": "shafts_queen",
+   "section": "History and sky",
+   "title": "Queen's Chamber shafts: Sirius (south), the pole star (north)",
+   "claim": "Queen's Chamber shafts: Sirius (south), the pole star (north)",
+   "claimed": 1,
+   "measured": 1,
+   "u": 0.0,
+   "unit": "",
+   "rel_error_pct": 0.0,
+   "digits_agree": 15,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Suspected",
+   "verdict": "The south shaft (about 39.5 deg) fits Sirius near 2400 BC, but both shafts are closed and bend: they never saw the sky.",
+   "sources": [
+    "trimble"
+   ],
+   "show": null
+  },
+  {
+   "key": "orion",
+   "section": "History and sky",
+   "title": "The three pyramids copy Orion's Belt and point to Heliopolis",
+   "claim": "The three pyramids copy Orion's Belt and point to Heliopolis",
+   "claimed": 1,
+   "measured": 1,
+   "u": 0.0,
+   "unit": "",
+   "rel_error_pct": 0.0,
+   "digits_agree": 15,
+   "digits_supported": null,
+   "sigma_off": null,
+   "grade": "Suspected",
+   "verdict": "Contested: the match needs the map turned and the sizes read loosely.",
+   "sources": [
+    "krupp"
+   ],
+   "show": null
+  }
+ ]
+}
