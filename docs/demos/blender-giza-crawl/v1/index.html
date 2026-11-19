@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giza Crawl</title>
+<meta name="description" content="An H-Anim 2.0 explorer walks, stoops, crawls and climbs through the Great Pyramid's passages, down to the Subterranean Chamber, down the Osiris Shaft, and into an imagined Hall of Records. Built in Blender, exported as X3D 4.0, played live in X_ITE.">
+<link rel="stylesheet" href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css">
+<style>
+:root{--bg:#0b0a08;--panel:#15130f;--line:#2b2720;--ink:#f2eee6;--dim:#a59d8f;--hi:#e8b04a;--doc:#4fd1e0;--auth:#e05ad6;--cut:#8a8f99;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f6f3ec;--panel:#fff;--line:#e0d9cb;--ink:#1a1712;--dim:#6b6355;--hi:#9a6a00;--doc:#0b8796;--auth:#a8239e;--cut:#5d6370}}
+:root[data-theme="dark"]{--bg:#0b0a08;--panel:#15130f;--line:#2b2720;--ink:#f2eee6;--dim:#a59d8f;--hi:#e8b04a;--doc:#4fd1e0;--auth:#e05ad6;--cut:#8a8f99}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:var(--hi)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 0;border-bottom:1px solid var(--line);font:11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.top b{color:var(--ink)}
+h1{font-size:clamp(32px,5vw,58px);line-height:1.03;letter-spacing:-.02em;margin:30px 0 8px}
+h1 em{font-style:normal;color:var(--hi)}
+.lede{color:var(--dim);font-size:18px;max-width:54em;margin:0 0 20px}
+.app{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px}
+.view{position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.view x3d-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hud{position:absolute;left:10px;top:10px;right:10px;display:flex;flex-direction:column;gap:6px;z-index:2;pointer-events:none}
+.hud span{font:11px var(--mono);background:rgba(0,0,0,.68);color:#fff;padding:4px 8px;border-radius:4px;align-self:flex-start}
+.cap{position:absolute;left:10px;right:10px;bottom:56px;z-index:2;pointer-events:none;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.cap .t{font:600 clamp(14px,1.8vw,19px)/1.3 Inter,system-ui,sans-serif;color:#fff;background:rgba(0,0,0,.68);padding:7px 11px;border-radius:6px;max-width:44em}
+.chip{display:inline-block;font:700 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:4px;color:#000}
+.chip.doc{background:var(--doc)}.chip.auth{background:var(--auth);color:#fff}.chip.cut{background:var(--cut);color:#fff}
+.prog{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.12);z-index:2}
+.prog i{display:block;height:100%;width:0;background:var(--hi)}
+.bar{position:absolute;left:10px;bottom:12px;right:10px;display:flex;flex-wrap:wrap;gap:6px;z-index:3}
+.bar button{font:600 12px var(--mono);padding:7px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.25);background:rgba(10,11,14,.8);color:#fff;cursor:pointer}
+.bar button.on{border-color:var(--hi);color:#ffd88a}
+.side{background:var(--panel);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;max-height:100%;min-height:0;overflow:hidden}
+.side h3{margin:0;padding:12px 14px;font:700 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border-bottom:1px solid var(--line)}
+.chs{overflow-y:auto;flex:1;min-height:0}
+.ch{display:grid;grid-template-columns:52px 1fr;gap:8px;padding:9px 14px;border:0;border-bottom:1px solid var(--line);cursor:pointer;font-size:14px;line-height:1.35;background:none;border-left:3px solid transparent;width:100%;text-align:left;color:inherit;font-family:inherit}
+.ch:hover{background:rgba(232,176,74,.06)}
+.ch.on{border-left-color:var(--hi);background:rgba(232,176,74,.1)}
+.ch .tm{font:12px var(--mono);color:var(--dim)}
+.ch .g{margin-top:4px}
+h2{font-size:26px;margin:46px 0 6px}
+.sub{color:var(--dim);margin:0 0 14px;max-width:60em}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.strip figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer}
+.strip img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.strip figcaption{padding:8px 10px;font-size:13px;line-height:1.35}
+.strip figcaption b{font:12px var(--mono);color:var(--hi);margin-right:6px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{padding:8px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+td.m{font-family:var(--mono);font-size:12.5px}
+td.r{text-align:right;font-family:var(--mono)}
+.scroll{overflow-x:auto}
+.mbar{display:grid;grid-template-columns:70px 1fr 64px;gap:10px;align-items:center;font-size:14px;margin:8px 0}
+.mbar div{height:14px;border-radius:3px;background:var(--hi)}
+.mbar span:last-child{font-family:var(--mono);text-align:right}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 14px;font-size:14px;color:var(--dim)}
+.legend span{display:flex;align-items:center;gap:6px}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 44px;color:var(--dim);font-size:13px}
+@media (max-width:980px){.app,.cols{grid-template-columns:1fr}.side{max-height:420px}.strip{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.view{aspect-ratio:4/5}.strip{grid-template-columns:1fr}.cap{bottom:96px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><span><b>Giza Crawl</b> · Blender pipelines</span><span>Blender → x3d-blender-io → X3D 4.0 + H-Anim 2.0 → X_ITE</span></div>
+<h1>Into the pyramid. <em>Down the shaft.</em> Into the legend.</h1>
+<p class="lede">An explorer built as an H-Anim 2.0 humanoid walks, stoops, crawls and climbs a 7.5 minute route: in at the Great Pyramid's north entrance, up through the Grand Gallery to the King's Chamber, down the well shaft to the Subterranean Chamber cut into bedrock, then 30 m down the three levels of the Osiris Shaft, and finally into a Hall of Records that nobody has ever found. Everything measured is drawn from published surveys. Everything imagined is coloured magenta and says so.</p>
+
+<div class="legend">
+  <span><i class="chip doc">Documented</i> from a published survey</span>
+  <span><i class="chip doc" style="opacity:.6">schematic</i> documented place, simplified path or plan</span>
+  <span><i class="chip auth">Authored</i> invented for this demo</span>
+  <span><i class="chip cut">Cut</i> no known tunnel joins these places</span>
+</div>
+
+<div class="app">
+  <div class="view" id="view">
+    <div id="host"></div>
+    <div class="hud"><span id="tag">loading X_ITE</span><span id="clock">0:00 / 7:32</span></div>
+    <div class="cap"><span id="chip" class="chip doc">Documented</span><span class="t" id="cap">The entrance</span></div>
+    <div class="bar">
+      <button id="bPlay">Pause</button>
+      <button class="vp on" data-vp="CA_Chase">Follow</button>
+      <button class="vp" data-vp="CA_Pyramid_cutaway">Pyramid cutaway</button>
+      <button class="vp" data-vp="CA_Osiris_section">Osiris section</button>
+      <button class="vp" data-vp="CA_Imagined_hall">Imagined hall</button>
+    </div>
+    <div class="prog"><i id="prog"></i></div>
+  </div>
+  <aside class="side">
+    <h3>28 chapters · click to jump</h3>
+    <div class="chs" id="chs"></div>
+  </aside>
+</div>
+
+<h2>The route in twelve frames</h2>
+<p class="sub">Frames from the live scene in X_ITE 16.7.1, taken in headless Chromium 157 with SwiftShader (no GPU), by setting every interpolator's fraction through SAI. Click a frame to jump there.</p>
+<div class="strip" id="strip"></div>
+
+<h2>How the explorer moves</h2>
+<div class="cols">
+  <div class="card">
+    <b>Seconds in each gait</b>
+    <div id="modes"></div>
+    <p class="sub" style="margin:12px 0 0;font-size:14px">One 16-joint H-Anim 2.0 figure with a headlamp. Six gaits share one parameter set (torso tilt, pelvis height, hip, knee and arm angles, swing amplitudes) and blend into each other over 0.7 s when the ceiling changes. The passage height chooses the gait: walk above 1.7 m, stoop in the 1.2 m passages, crawl in the 0.9 m passage to the Subterranean Chamber, climb in the shafts.</p>
+  </div>
+  <div class="scroll"><table>
+    <tr><th>What</th><th>Value</th></tr>
+    <tr><td>Humanoid</td><td class="m">HAnimHumanoid, 16 joints, H-Anim 2.0 names (talocrural, radiocarpal as per-bone overrides), one skinned mesh, rigid weights</td></tr>
+    <tr><td>Motion</td><td class="m">keyed every frame at 8 fps: 3,622 frames, 452.4 s, <span id="walked">372</span> m on foot; 27 interpolators on one TimeSensor</td></tr>
+    <tr><td>Camera</td><td class="m">a chase camera keyed every frame, 3 m behind on the walked path; in the shafts it steps outside the wall and looks in like a section drawing (walls face inward and are back-face culled)</td></tr>
+    <tr><td>Light</td><td class="m">a headlamp SpotLight on the explorer, chamber lamps, a sun and a sky fill; 7 lights, no shadows</td></tr>
+    <tr><td>File</td><td class="m"><a href="assets/crawl.x3d">crawl.x3d</a>, 4.6 MB (0.7 MB gzipped); x3d_mcp 39c6e94: XSD valid, 0 errors, 0 warnings (<a href="receipts/validation.json">receipt</a>)</td></tr>
+  </table></div>
+</div>
+
+<h2>Where the numbers come from</h2>
+<p class="sub">Dimensions are in the Giza study ledger reused from <a href="../../giza-osiris-hall/v2/">Demo 51's earlier study</a>. Positions on the plateau are in one frame with the Sphinx at the origin.</p>
+<div class="scroll"><table>
+  <thead><tr><th>Place</th><th>Measure used</th><th>Grade</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td>North entrance</td><td class="m">16.97 m above the base, 7.29 m east of the axis</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883</td></tr>
+    <tr><td>Descending passage</td><td class="m">26°31′, about 105 m, 1.05 × 1.20 m</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883</td></tr>
+    <tr><td>Ascending passage, Grand Gallery</td><td class="m">39.3 m at 26°; gallery 46.7 m long, 2.06 m wide, 8.6 m high</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883</td></tr>
+    <tr><td>King's Chamber</td><td class="m">10.47 × 5.23 × 5.85 m, granite coffer</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883</td></tr>
+    <tr><td>Well shaft</td><td class="m">about 0.7 m square; drawn as two straight legs</td><td><i class="chip doc">Documented</i>, path schematic</td><td>Petrie 1883, secondary summaries</td></tr>
+    <tr><td>Subterranean Chamber</td><td class="m">14.05 × 8.33 m, roof about 27 m below the base; floor left unfinished</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883</td></tr>
+    <tr><td>Big Void</td><td class="m">a block above the Grand Gallery; shape and size unknown</td><td><i class="chip doc">Documented</i> as a detection</td><td>ScanPyramids, Nature 2017</td></tr>
+    <tr><td>Osiris Shaft</td><td class="m">shafts 9.62, 13.25, about 7.5 m; chambers A 8.6 × 3.85 m, B 6.8 × 3.65 m; level 3 with water trench and basalt sarcophagus 2.28 × 1.08 m</td><td><i class="chip doc">Documented</i>, plan schematic</td><td>Hawass 2007, CASAE 36</td></tr>
+    <tr><td>Hall of Records, and the tunnel to it</td><td class="m">none: size, pillars and archive cases are invented</td><td><i class="chip auth">Authored</i></td><td>Edgar Cayce readings, 1930s to 1940s (a legend)</td></tr>
+  </tbody>
+</table></div>
+<p class="sub" style="margin-top:10px">The three cuts are honest: no passage is known from the King's Chamber route to the Osiris Shaft, or from there to the Sphinx. The explorer is moved, the screen says so, and the clock keeps running.</p>
+
+<footer>Giza Crawl v1 · original synthetic scene and figure · <a href="assets/crawl.x3d">crawl.x3d</a> · <a href="receipts/route.json">route.json</a> · <a href="receipts/validation.json">validation.json</a> · generators in <a href="build/">build/</a> (rig.py, build_crawl.py, pose_check.py) · Blender 5.3.0 (bpy), x3d-blender-io 8310e7b, X_ITE 16.7.1 · published on <a href="../../../">x3d.demo</a>.</footer>
+</div>
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const SHOTS=[0,2,3,5,6,9,12,13,16,18,22,26];
+const now=()=>Date.now()/1000;   // X_ITE scene time is epoch seconds; the SAI browser has no currentTime
+const $=id=>document.getElementById(id);
+const fmt=s=>{s=Math.max(0,Math.floor(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+const gradeChip=g=>g.startsWith('Authored')?['auth','Authored']:g.startsWith('Cut')?['cut','Cut']:['doc',g];
+let R=null,B=null,S=null,TS=null,cur=-1,paused=false,pauseAt=0;
+function setChapter(i){if(i===cur)return;cur=i;const c=R.chapters[i];const [k,l]=gradeChip(c.grade);
+  $('chip').className='chip '+k;$('chip').textContent=l;$('cap').textContent=c.caption;
+  document.querySelectorAll('.ch').forEach((e,j)=>e.classList.toggle('on',j===i));
+  const el=document.querySelectorAll('.ch')[i];if(el){const box=$('chs');box.scrollTop=el.offsetTop-box.offsetTop-box.clientHeight/3;}}
+function onTime(t){$('clock').textContent=fmt(t)+' / '+fmt(R.seconds);$('prog').style.width=(100*t/R.seconds)+'%';
+  let i=0;for(let j=0;j<R.chapters.length;j++)if(R.chapters[j].t<=t+0.01)i=j;setChapter(i);}
+function jump(t){if(!TS)return;TS.enabled=false;setTimeout(()=>{TS.enabled=true;TS.startTime=now()-t;if(paused){paused=false;$('bPlay').textContent='Pause';}},120);}
+(async()=>{
+  R=await (await fetch('receipts/route.json')).json();
+  $('walked').textContent=Math.round(R.metres_walked);
+  const chs=$('chs');R.chapters.forEach((c,i)=>{const [k,l]=gradeChip(c.grade);const b=document.createElement('button');b.className='ch';
+    b.innerHTML='<span class="tm">'+fmt(c.t)+'</span><span>'+c.caption.replace(/</g,'&lt;')+'<br><i class="chip g '+k+'">'+l.replace(/</g,'&lt;')+'</i></span>';
+    b.onclick=()=>jump(c.t+0.05);chs.appendChild(b);});
+  const strip=$('strip');SHOTS.forEach(i=>{const c=R.chapters[i];const f=document.createElement('figure');
+    f.innerHTML='<img loading="lazy" alt="" src="shots/ch'+String(i).padStart(2,'0')+'.webp"><figcaption><b>'+fmt(c.t)+'</b>'+c.caption.replace(/</g,'&lt;')+'</figcaption>';
+    f.querySelector('img').alt=c.caption;f.onclick=()=>{jump(c.t+0.05);$('view').scrollIntoView({behavior:'smooth',block:'center'});};strip.appendChild(f);});
+  const tot=Object.values(R.mode_seconds).reduce((a,b)=>a+b,0);const mx=Math.max(...Object.values(R.mode_seconds));
+  $('modes').innerHTML=Object.entries(R.mode_seconds).sort((a,b)=>b[1]-a[1]).map(([m,s])=>'<div class="mbar"><span>'+m+'</span><div style="width:'+(100*s/mx)+'%"></div><span>'+Math.round(s)+' s</span></div>').join('');
+  setChapter(0);
+  const cv=document.createElement('x3d-canvas');cv.setAttribute('splashScreen','false');cv.setAttribute('notifications','false');cv.setAttribute('contextMenu','false');$('host').appendChild(cv);
+  B=X3D.getBrowser(cv);
+  try{await B.loadURL(new X3D.MFString('assets/crawl.x3d'));}catch(e){$('tag').textContent='load failed: '+e;return;}
+  S=B.currentScene;TS=S.getNamedNode('SceneTimer');
+  S.getNamedNode('CA_Chase').set_bind=true;
+  $('tag').textContent='X_ITE '+B.version+' · live X3D';
+  TS.getField('fraction_changed').addFieldCallback('page',v=>{const f=Number(v);if(!paused&&isFinite(f))onTime(f*TS.cycleInterval);});
+  jump(0);
+  $('bPlay').onclick=()=>{if(!paused){paused=true;pauseAt=now();TS.pauseTime=now();$('bPlay').textContent='Play';}
+    else{paused=false;TS.resumeTime=now();$('bPlay').textContent='Pause';}};
+  document.querySelectorAll('.vp').forEach(b=>b.onclick=()=>{S.getNamedNode(b.dataset.vp).set_bind=true;document.querySelectorAll('.vp').forEach(x=>x.classList.toggle('on',x===b));});
+})();
+</script>
+</body>
+</html>
