@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giza Fall</title>
+<meta name="description" content="An H-Anim ragdoll is shoved off the summit of the Great Pyramid and tumbles 138.5 m down the stepped north face. Blender's rigid-body solver drives the fall, a tracking camera follows it, and every logged impact plays a thud or a smack.">
+<link rel="stylesheet" href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css">
+<style>
+:root{--bg:#0d0b08;--panel:#16130e;--line:#2c271e;--ink:#f4efe6;--dim:#a99f8e;--hi:#ff9a3c;--thud:#ff9a3c;--smack:#7fd3ff;--knock:#ff5f7a;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f7f3ec;--panel:#fff;--line:#e2dacb;--ink:#1b1711;--dim:#6c6456;--hi:#b85a00;--thud:#c46200;--smack:#1a7fb3;--knock:#c2264a}}
+:root[data-theme="dark"]{--bg:#0d0b08;--panel:#16130e;--line:#2c271e;--ink:#f4efe6;--dim:#a99f8e;--hi:#ff9a3c;--thud:#ff9a3c;--smack:#7fd3ff;--knock:#ff5f7a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:var(--hi)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 0;border-bottom:1px solid var(--line);font:11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.top b{color:var(--ink)}
+h1{font-size:clamp(32px,5vw,58px);line-height:1.03;letter-spacing:-.02em;margin:30px 0 8px}
+h1 em{font-style:normal;color:var(--hi)}
+.lede{color:var(--dim);font-size:18px;max-width:54em;margin:0 0 20px}
+.app{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px}
+.view{position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.view x3d-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hud{position:absolute;left:10px;top:10px;display:flex;flex-direction:column;gap:6px;z-index:2;pointer-events:none}
+.hud span{font:11px var(--mono);background:rgba(0,0,0,.66);color:#fff;padding:4px 8px;border-radius:4px;align-self:flex-start}
+.hit{position:absolute;right:14px;top:12px;z-index:2;pointer-events:none;font:900 clamp(22px,4vw,46px)/1 Inter,system-ui,sans-serif;letter-spacing:.02em;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.5),0 0 18px rgba(0,0,0,.4);opacity:0;transform:scale(.8);transition:opacity .35s,transform .35s}
+.hit.on{opacity:1;transform:scale(1);transition:none}
+.hit small{display:block;font:600 12px var(--mono);letter-spacing:0;text-align:right;margin-top:4px}
+.bar{position:absolute;left:10px;bottom:12px;right:10px;display:flex;flex-wrap:wrap;gap:6px;z-index:3}
+.bar button{font:600 12px var(--mono);padding:7px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.25);background:rgba(10,11,14,.8);color:#fff;cursor:pointer}
+.bar button.on{border-color:var(--hi);color:#ffd2a6}
+.bar button.go{background:var(--hi);color:#1b1006;border-color:var(--hi)}
+.prog{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.12);z-index:2}
+.prog i{display:block;height:100%;width:0;background:var(--hi)}
+.side{display:flex;flex-direction:column;gap:10px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.stat span{font:700 30px/1.15 var(--mono)}
+.stat small{font:13px var(--mono);color:var(--dim)}
+.tl{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:14px}
+.tl svg{display:block;width:100%;height:170px;cursor:pointer}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--dim);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+h2{font-size:26px;margin:46px 0 6px}
+.sub{color:var(--dim);margin:0 0 14px;max-width:60em}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.strip figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer}
+.strip img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.strip figcaption{padding:8px 10px;font-size:13px;line-height:1.35}
+.strip figcaption b{font:12px var(--mono);color:var(--hi);margin-right:6px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{padding:8px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+td.m{font-family:var(--mono);font-size:12.5px}
+.scroll{overflow-x:auto}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 44px;color:var(--dim);font-size:13px}
+@media (max-width:980px){.app,.cols{grid-template-columns:1fr}.side{display:grid;grid-template-columns:repeat(4,1fr)}.stat span{font-size:22px}.strip{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.view{aspect-ratio:4/5}.side{grid-template-columns:1fr 1fr}.strip{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><span><b>Giza Fall</b> · Blender pipelines</span><span>Blender rigid bodies → H-Anim 2.0 → X3D 4.0 → X_ITE + Web Audio</span></div>
+<h1>One shove. <em>203 courses.</em> Every hit, heard.</h1>
+<p class="lede">The explorer from <a href="../../blender-giza-crawl/v1/">Giza Crawl</a> stands at the edge of the Great Pyramid's summit platform, 138.5 m up, and a colleague shoves. From that instant Blender's rigid-body solver (Bullet) drives an 11-body, 80 kg ragdoll down the stepped north face. The motion is baked onto the H-Anim joints, a tracking camera follows it, and each contact that changed a body's velocity is logged with its time and impulse. This page plays each one as it happens: a thud for the trunk, a smack for a limb, a knock for the head.</p>
+
+<div class="app">
+  <div class="view" id="view">
+    <div id="host"></div>
+    <div class="hud"><span id="tag">loading X_ITE</span><span id="clock">0.0 s</span></div>
+    <div class="hit" id="hit">THUD<small>course 178 · 255 N·s</small></div>
+    <div class="bar">
+      <button id="bGo" class="go">▶ Shove (sound on)</button>
+      <button id="bMute">Sound: off</button>
+      <button class="vp on" data-vp="CA_Tracking_camera">Track</button>
+      <button class="vp" data-vp="CA_Summit">Summit</button>
+      <button class="vp" data-vp="CA_North_face">North face</button>
+      <button class="vp" data-vp="CA_From_the_base">From the base</button>
+    </div>
+    <div class="prog"><i id="prog"></i></div>
+  </div>
+  <div class="side">
+    <div class="stat"><b>Height</b><span id="sH">138.5</span> <small>m</small></div>
+    <div class="stat"><b>Speed</b><span id="sV">0.0</span> <small>m/s</small></div>
+    <div class="stat"><b>Hits</b><span id="sN">0</span> <small>/ <span id="sNt">197</span></small></div>
+    <div class="stat"><b>Hardest so far</b><span id="sJ">0</span> <small>N·s</small></div>
+  </div>
+</div>
+
+<div class="tl">
+  <svg id="chart" viewBox="0 0 1000 170" preserveAspectRatio="none" role="img" aria-label="Impulse of each impact over time, with height above the base"></svg>
+  <div class="legend"><span><i style="background:var(--thud)"></i>thud · pelvis, torso</span><span><i style="background:var(--smack)"></i>smack · arms, legs</span><span><i style="background:var(--knock)"></i>knock · head</span><span><i style="background:var(--dim)"></i>height above the base</span><span>click the chart to jump</span></div>
+</div>
+
+<h2>The fall in nine frames</h2>
+<p class="sub">From the live scene in X_ITE 16.7.1, taken in headless Chromium 157 with SwiftShader (no GPU), by setting every interpolator's fraction through SAI.</p>
+<div class="strip" id="strip"></div>
+
+<h2>How it was made</h2>
+<div class="cols">
+  <div class="scroll"><table>
+    <tr><th>Stage</th><th>What happens</th></tr>
+    <tr><td>Pyramid</td><td class="m">203 stepped courses as one mesh, base 230.33 m, slope 51.84°, summit 138.5 m (platform 12.7 m square). Course heights shrink from about 1.5 m to about 0.55 m; the individual heights are generated to that published trend.</td></tr>
+    <tr><td>Ragdoll</td><td class="m">11 rigid bodies (pelvis, torso, head, thighs, shins, upper arms, forearms), 80 kg, joined by 10 generic constraints with anatomical angle limits; friction 0.45, restitution 0.15, 20 substeps a frame at 24 fps</td></tr>
+    <tr><td>Shove</td><td class="m">bodies ride a keyed tip and push for 0.5 s as kinematic bodies, then the solver takes over at 1.29 s; the pusher is a second H-Anim figure with keyed arms</td></tr>
+    <tr><td>Bake</td><td class="m">each body's motion becomes its bone's pose, frame by frame; an Empty carries the travel, the root joint keeps the local offset</td></tr>
+    <tr><td>Impacts</td><td class="m">for each body and frame, impulse = mass × |Δv − g·Δt|; above 18 N·s it is a hit, at most one sound per 40 ms</td></tr>
+    <tr><td>File</td><td class="m"><a href="assets/fall.x3d">fall.x3d</a>, 1.0 MB, 2 HAnimHumanoids, 32 interpolators on one TimeSensor; x3d_mcp 39c6e94: XSD valid, 0 errors, 0 warnings (<a href="receipts/validation.json">receipt</a>)</td></tr>
+  </table></div>
+  <div class="scroll"><table>
+    <tr><th>Grade</th><th>Claim</th></tr>
+    <tr><td>Documented</td><td>Base, slope, summit height, course count and course-height trend; the 1874 summit mast (drawn schematic); Khafre and Menkaure positions.</td></tr>
+    <tr><td>Authored</td><td>The figures, the shove, the friction and restitution values, the individual course heights. Real limestone is rougher and broken: a real body would most likely stop on a ledge long before the base.</td></tr>
+    <tr><td>Simulated</td><td>The path, the 197 hits, the 22.1 m/s peak speed and where the body comes to rest (12.3 m out from the base) come from Bullet with the values above, not from any measurement. The run is deterministic: the same script gives the same fall.</td></tr>
+    <tr><td>Sound</td><td>Synthesised in the browser from each hit's kind and impulse. No samples, nothing recorded.</td></tr>
+  </table></div>
+</div>
+
+<h2>Found on the way</h2>
+<div class="scroll"><table>
+  <tr><th>Finding</th><th>Grade</th></tr>
+  <tr><td>x3d-blender-io 8310e7b does not export an armature object's own keyframes: the faller stayed on the summit while its joints tumbled. Parenting the armature to an animated Empty fixes it.</td><td>Confirmed (same scene, only the carrier changed)</td></tr>
+  <tr><td>With the travel on the root joint instead, the skinned mesh vanished in X_ITE 16.7.1 once the joint moved far from its rest position, which is consistent with culling by the rest bounds.</td><td>Likely</td></tr>
+  <tr><td>The add-on writes no Background for a scene it did not import, and X_ITE then clears to near-black. The generator inserts a sky gradient as a scripted step.</td><td>Confirmed</td></tr>
+</table></div>
+
+<footer>Giza Fall v1 · original synthetic scene and figures · <a href="assets/fall.x3d">fall.x3d</a> · <a href="receipts/fall.json">fall.json</a> (every impact) · <a href="receipts/validation.json">validation.json</a> · generators in <a href="build/">build/</a> (rig.py, build_fall.py) · Blender 5.3.0 (bpy, Bullet), x3d-blender-io 8310e7b, X_ITE 16.7.1 · published on <a href="../../../">x3d.demo</a>.</footer>
+</div>
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const now=()=>Date.now()/1000;   // X_ITE scene time is epoch seconds
+const SHOTS=[['s00_shove',0.6,'The summit edge, 138.5 m up'],['s01_release',1.2,'The shove: the solver takes over'],['s02_first',2.2,'Airborne before the first hit'],['s03_tumble',4,'Tumbling, about 110 m up'],
+  ['s04_mid',7,'Halfway, near top speed'],['s05_low',10,'Still bouncing, 40 m up'],['s06_base',13,'The last courses'],['s07_rest',21,'At rest on the sand'],['s08_northface',6,'The north face, from 330 m out']];
+let R=null,B=null,S=null,TS=null,AC=null,soundOn=false,lastT=-1,hits=0,maxJ=0,hitTimer=0;
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+// ---- sound: synthesised per hit -------------------------------------------------------------------------------------
+function noise(ac,dur){const b=ac.createBuffer(1,Math.ceil(ac.sampleRate*dur),ac.sampleRate);const d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;const s=ac.createBufferSource();s.buffer=b;return s;}
+function play(e){if(!soundOn||!AC)return;window._plays=(window._plays||0)+1;const t=AC.currentTime+0.005;const g0=Math.min(1,0.18+Math.sqrt(e.impulse)/14);
+  const out=AC.createGain();out.gain.value=g0;out.connect(AC.destination);
+  const env=(node,a,d)=>{const g=AC.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(a,t+0.004);g.gain.exponentialRampToValueAtTime(0.001,t+d);node.connect(g);g.connect(out);return g;};
+  if(e.kind==='thud'){const o=AC.createOscillator();o.type='sine';o.frequency.setValueAtTime(110+Math.random()*20,t);o.frequency.exponentialRampToValueAtTime(42,t+0.22);env(o,0.9,0.32);o.start(t);o.stop(t+0.35);
+    const n=noise(AC,0.2);const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=420;n.connect(f);env(f,0.5,0.16);n.start(t);}
+  else if(e.kind==='knock'){const o=AC.createOscillator();o.type='triangle';o.frequency.setValueAtTime(330,t);o.frequency.exponentialRampToValueAtTime(180,t+0.08);env(o,0.7,0.12);o.start(t);o.stop(t+0.15);
+    const n=noise(AC,0.06);const f=AC.createBiquadFilter();f.type='bandpass';f.frequency.value=2500;f.Q.value=1.2;n.connect(f);env(f,0.6,0.05);n.start(t);}
+  else{const n=noise(AC,0.09);const f=AC.createBiquadFilter();f.type='bandpass';f.frequency.value=1400+Math.random()*900;f.Q.value=0.9;n.connect(f);env(f,1.0,0.07+Math.random()*0.03);n.start(t);
+    const o=AC.createOscillator();o.type='sine';o.frequency.setValueAtTime(200,t);o.frequency.exponentialRampToValueAtTime(90,t+0.06);env(o,0.35,0.08);o.start(t);o.stop(t+0.1);}}
+
+// ---- chart ---------------------------------------------------------------------------------------------------------
+function chart(){const W=1000,H=170,pad=6,T=R.seconds,mx=Math.max(...R.events.map(e=>e.impulse));const x=t=>pad+(W-2*pad)*t/T;
+  let h='<polyline fill="none" stroke="'+css('--dim')+'" stroke-width="1.5" vector-effect="non-scaling-stroke" points="'+R.height_10hz.map((z,i)=>x(i/10).toFixed(1)+','+(H-8-(H-30)*z/R.height_m).toFixed(1)).join(' ')+'"/>';
+  const col={thud:css('--thud'),smack:css('--smack'),knock:css('--knock')};
+  for(const e of R.events){const y=(H-8)*Math.sqrt(e.impulse/mx);h+='<rect x="'+(x(e.t)-1.2).toFixed(1)+'" y="'+(H-8-y).toFixed(1)+'" width="2.4" height="'+y.toFixed(1)+'" fill="'+col[e.kind]+'"><title>'+e.kind+' · '+e.body+' · '+e.impulse+' N·s · '+e.t.toFixed(2)+' s</title></rect>';}
+  h+='<line id="ph" x1="'+pad+'" x2="'+pad+'" y1="0" y2="'+H+'" stroke="'+css('--ink')+'" stroke-width="1.5" vector-effect="non-scaling-stroke"/>';
+  $('chart').innerHTML=h;
+  $('chart').onclick=ev=>{const r=$('chart').getBoundingClientRect();jump(Math.max(0,(ev.clientX-r.left)/r.width*T-0.05));};}
+
+function onTime(t){if(t<lastT-0.2){hits=0;maxJ=0;lastT=-1;}
+  for(const e of R.events){if(e.t>lastT&&e.t<=t){hits++;maxJ=Math.max(maxJ,e.impulse);if(t-e.t<0.35){play(e);showHit(e);}}}
+  lastT=t;const i=Math.min(R.height_10hz.length-1,Math.round(t*10));
+  $('sH').textContent=R.height_10hz[i].toFixed(1);$('sV').textContent=(t<R.release_t?0:R.speed_10hz[i]).toFixed(1);$('sN').textContent=hits;$('sJ').textContent=Math.round(maxJ);
+  $('clock').textContent=t.toFixed(1)+' s of '+R.seconds.toFixed(1)+' s';$('prog').style.width=(100*t/R.seconds)+'%';
+  const ph=document.getElementById('ph');if(ph){const xx=6+988*t/R.seconds;ph.setAttribute('x1',xx);ph.setAttribute('x2',xx);}}
+function showHit(e){const el=$('hit');el.style.color=css('--'+e.kind);el.firstChild.textContent=e.kind.toUpperCase()+(e.impulse>120?'!':'');
+  el.querySelector('small').textContent='course '+e.course+' · '+Math.round(e.impulse)+' N·s';el.classList.add('on');clearTimeout(hitTimer);hitTimer=setTimeout(()=>el.classList.remove('on'),60);}
+function jump(t){if(!TS)return;TS.enabled=false;lastT=-1;hits=0;maxJ=0;
+  for(const e of R.events)if(e.t<=t){hits++;maxJ=Math.max(maxJ,e.impulse);}lastT=t;
+  setTimeout(()=>{TS.enabled=true;TS.startTime=now()-t;},120);}
+function unlock(){if(!AC){const C=window.AudioContext||window.webkitAudioContext;if(C)AC=new C();}if(AC&&AC.state==='suspended')AC.resume();}
+
+(async()=>{
+  R=await (await fetch('receipts/fall.json')).json();
+  $('sNt').textContent=R.events.length;chart();
+  const strip=$('strip');SHOTS.forEach(([f,t,c])=>{const fig=document.createElement('figure');fig.innerHTML='<img loading="lazy" src="shots/'+f+'.webp" alt=""><figcaption><b>'+t.toFixed(1)+' s</b>'+c+'</figcaption>';
+    fig.querySelector('img').alt=c;fig.onclick=()=>{jump(t);$('view').scrollIntoView({behavior:'smooth',block:'center'});};strip.appendChild(fig);});
+  const cv=document.createElement('x3d-canvas');cv.setAttribute('splashScreen','false');cv.setAttribute('notifications','false');cv.setAttribute('contextMenu','false');$('host').appendChild(cv);
+  B=X3D.getBrowser(cv);
+  try{await B.loadURL(new X3D.MFString('assets/fall.x3d'));}catch(e){$('tag').textContent='load failed: '+e;return;}
+  S=B.currentScene;TS=S.getNamedNode('SceneTimer');S.getNamedNode('CA_Tracking_camera').set_bind=true;
+  $('tag').textContent='X_ITE '+B.version+' · live X3D';
+  TS.getField('fraction_changed').addFieldCallback('page',v=>{const f=Number(v);if(isFinite(f))onTime(f*TS.cycleInterval);});
+  jump(0);
+  $('bGo').onclick=()=>{unlock();soundOn=true;$('bMute').textContent='Sound: on';$('bMute').classList.add('on');jump(0);};
+  $('bMute').onclick=()=>{unlock();soundOn=!soundOn;$('bMute').textContent='Sound: '+(soundOn?'on':'off');$('bMute').classList.toggle('on',soundOn);};
+  document.querySelectorAll('.vp').forEach(b=>b.onclick=()=>{S.getNamedNode(b.dataset.vp).set_bind=true;document.querySelectorAll('.vp').forEach(x=>x.classList.toggle('on',x===b));});
+})();
+</script>
+</body>
+</html>
