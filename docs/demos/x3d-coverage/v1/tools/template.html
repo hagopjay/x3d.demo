@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>X3D 4.0 coverage board</title>
+<meta name="description" content="Demo 57. How much of X3D 4.0 each engine covers, node by node, with real side-by-side renders and an honest grade on every number.">
+<style>
+:root{--bg:#080b11;--panel:#0f151f;--line:#1e2a3a;--ink:#eef2f8;--dim:#94a3b8;--cyan:#38d6e0;--amber:#e8a33c;--green:#4cc98c;--lime:#a6d65a;--blue:#6c8fc7;--red:#ef6a6a;--grey:#3a4658;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f6f9;--panel:#fff;--line:#d9e0ea;--ink:#0d1624;--dim:#4c5b6e;--cyan:#0a8f99;--amber:#a86512;--green:#1d8a55;--lime:#6b8f1c;--blue:#3d5f99;--red:#b83232;--grey:#b9c3d1}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--cyan)}.wrap{max-width:1180px;margin:0 auto}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--line);font:12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.hero{padding:44px 0 20px}.kicker{font:12px var(--mono);letter-spacing:.18em;color:var(--cyan);text-transform:uppercase}
+h1{font-size:clamp(34px,6vw,68px);line-height:1.02;margin:.2em 0 .3em;letter-spacing:-.025em;text-wrap:balance}h1 em{font-style:normal;color:var(--amber)}
+.lede{color:var(--dim);font-size:18px;max-width:40em}
+.strip{margin:26px 0 8px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}.strip img{display:block;width:100%;height:auto}
+.cap{font:11px var(--mono);color:var(--dim);margin:6px 0 0}
+h2{font-size:28px;margin:56px 0 6px;letter-spacing:-.01em}.sub{color:var(--dim);margin:0 0 18px;max-width:48em}
+.engs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:14px}
+.eng{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+.eng h3{margin:0;font-size:18px}.eng .sub{margin:0 0 6px;font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.big{font-size:44px;font-weight:700;letter-spacing:-.03em;line-height:1.1;margin:6px 0 10px}.big small{font-size:15px;font-weight:500;color:var(--dim);letter-spacing:0}
+.bar{display:flex;height:14px;border-radius:7px;overflow:hidden;gap:2px;background:var(--line)}.bar span{min-width:3px}
+.leg{display:flex;flex-wrap:wrap;gap:4px 12px;margin:8px 0;font-size:12px;color:var(--dim)}.leg i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}.leg b{color:var(--ink)}
+.how{font-size:13px;color:var(--dim);margin:8px 0 0}.g{font:700 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;border:1px solid currentColor;margin-right:4px}
+.g-confirmed{color:var(--green)}.g-likely{color:var(--amber)}.g-suspected{color:var(--red)}
+.t-drawn{background:var(--green)}.t-chk{background:var(--cyan)}.t-rdr{background:var(--blue)}.t-todo{background:var(--grey)}.t-up{background:var(--amber)}.b-ok{background:var(--green)}.b-gap{background:var(--lime)}.b-base{background:var(--blue)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:16px}
+.gal figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}.gal img{display:block;width:100%;height:auto;background:#000}
+.pr{position:relative}.pr b{position:absolute;top:8px;left:8px;font:700 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.6);color:#fff;padding:2px 7px;border-radius:4px}.pr b+b{left:calc(50% + 10px)}.gal figcaption{padding:10px 14px;font-size:13px;color:var(--dim);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.gal figcaption b{color:var(--ink);font-size:15px}.gal figcaption span{font-family:var(--mono)}.gal figcaption em{flex-basis:100%;font-style:normal;color:var(--amber)}
+.lab{display:flex;justify-content:space-between;font:11px var(--mono);color:var(--dim);letter-spacing:.1em;text-transform:uppercase;padding:0 4px 6px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:3}
+.tools button,.tools input{font:13px var(--mono);padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.tools button[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan)}.tools input{min-width:180px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13px}
+th,td{padding:4px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}thead th{position:sticky;top:0;background:var(--panel);font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+tbody th[scope=row]{font-weight:500}tbody th small{color:var(--dim);margin-left:6px;font:10px var(--mono)}
+tr.comp th{background:var(--bg);font:700 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:10px}tr.comp span{color:var(--dim);font-weight:400;margin-left:8px}
+td.c{font-family:var(--mono);font-size:12px}td.c i{font-style:normal;opacity:.7}
+td.t-drawn{background:color-mix(in srgb,var(--green) 22%,transparent)}td.t-chk{background:color-mix(in srgb,var(--cyan) 20%,transparent)}td.t-rdr{background:color-mix(in srgb,var(--blue) 22%,transparent)}td.t-todo{background:transparent;color:var(--dim)}td.t-up{background:color-mix(in srgb,var(--amber) 22%,transparent)}
+td.b-ok{background:color-mix(in srgb,var(--green) 22%,transparent)}td.b-gap{background:color-mix(in srgb,var(--lime) 22%,transparent)}td.b-base{background:color-mix(in srgb,var(--blue) 22%,transparent)}
+td.x-ok{color:var(--green)}td.x-no{color:var(--red)}td.bl-on{color:var(--cyan)}td.ca-on{color:var(--green)}td.ca b{color:var(--red)}
+tr.hide{display:none}
+.not{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:8px;padding:14px 18px;font-size:14px}.not ul{margin:6px 0 0;padding-left:20px}
+footer{margin:40px 0;padding-top:16px;border-top:1px solid var(--line);color:var(--dim);font-size:13px}code{font-family:var(--mono);font-size:.9em}
+</style>
+</head>
+<body><div class="wrap">
+<div class="top"><b>Demo 57</b><span>X3D 4.0 · five engines · 260 nodes</span><a href="../../../index.html">x3d.demo</a></div>
+<section class="hero">
+<div class="kicker">coverage board</div>
+<h1>How much of X3D 4.0 does each engine <em>actually draw</em>?</h1>
+<p class="lede">All 260 concrete nodes of X3D 4.0, five engines, one table. Every figure carries the tool that produced it and a grade: Confirmed (measured here), Likely, or Suspected. The pictures below are real: the same X3D file drawn by X_ITE and by the three.js bridge, re-rendered on this build.</p>
+<div class="strip"><img src="img/hero-strip.jpg" alt="Six scenes drawn by the three.js bridge: a lit sphere, a spotlight, fog, an extrusion, textured primitives and an elevation grid" width="1920" height="480"></div>
+<p class="cap">Six of the three.js bridge renders, 320 x 240 each as the test rig draws them, enlarged 2x. Software GL (SwiftShader); no GPU figure is claimed.</p>
+</section>
+
+<h2>The scoreboard</h2>
+<p class="sub">Five engines, five different kinds of evidence. Read the grade before the number: only X_ITE and three.js were measured here; the other three are read from trackers, scene counts and source.</p>
+<div class="engs">%%CARDS%%</div>
+
+<h2>Same file, two engines</h2>
+<p class="sub">Left: X_ITE 16.6.0. Right: the three.js bridge (r187). The numbers are the lowest picture overlap and PSNR over the fixture's steps, from this re-run. Two weak spots are shown on purpose.</p>
+<div class="gal">%%GALLERY%%</div>
+<p class="cap">Re-run: %%RERUNTXT%% Chromium 153 with SwiftShader, X_ITE 16.6.0, three r187.</p>
+
+<h2>All 260 nodes</h2>
+<p class="sub">Grouped by X3D component. The three.js column shows the status and, for drawn nodes, the lowest PSNR against X_ITE. The Blender column is W (exporter source names the node) and R (importer source names it): Suspected. The Castle column is scenes that drew pixels over scenes that use the node, out of the 70 scout scenes; ! marks a node named in the Castle gap table.</p>
+<div class="tools" role="group" aria-label="Filters">
+<button data-k="all" aria-pressed="true">all</button><button data-k="t-drawn">three.js drawn</button><button data-k="t-reader-checked">checked</button><button data-k="t-reader">reader only</button><button data-k="t-todo">three.js todo</button><button data-k="t-upstream">waits</button><button data-k="x0">X_ITE missing</button><input id="q" type="search" placeholder="find a node" aria-label="Find a node">
+</div>
+<div class="tw"><table><thead><tr><th>node</th><th>X_ITE</th><th>three.js</th><th>Babylon</th><th>Blender</th><th>Castle</th></tr></thead>%%TABLE%%</table></div>
+
+<h2>What this does not say</h2>
+<div class="not"><ul>
+<li>Registered, drawn or bridged is not the same as correct. The three.js picture numbers are against X_ITE, which is the reference, not the truth; a node X_ITE draws wrongly would match here.</li>
+<li>The Babylon, Castle and Blender columns were not re-measured. Babylon is the tracker's word, Castle is a scene count from one scout run, Blender is a word match in source (Suspected).</li>
+<li>Software GL only. No real GPU, no frame rates.</li>
+<li>Most fixtures cover a node's main path, not every field. The gaps are in each fixture's receipt in x3d.loom.</li>
+</ul></div>
+
+<footer>Generated by a script from the x3d.loom trackers and the fixtures re-run on this build: <code>tools/gen.py</code>, <code>tools/probe.js</code>, <code>tools/build.py</code> in this folder, inputs and counts in <a href="receipts-summary.json">receipts-summary.json</a>. Nothing here is third-party imagery.</footer>
+</div>
+<script>
+(function(){var rows=[].slice.call(document.querySelectorAll('tbody tr[data-f]')),btns=[].slice.call(document.querySelectorAll('.tools button')),q=document.getElementById('q'),k='all';
+function apply(){var s=q.value.trim().toLowerCase();rows.forEach(function(r){var ok=(k==='all'||(' '+r.dataset.f+' ').indexOf(' '+k+' ')>-1)&&(!s||r.dataset.n.indexOf(s)>-1);r.classList.toggle('hide',!ok)});
+[].forEach.call(document.querySelectorAll('tbody'),function(b){var any=b.querySelector('tr[data-f]:not(.hide)');b.querySelector('tr.comp').classList.toggle('hide',!any)})}
+btns.forEach(function(b){b.addEventListener('click',function(){k=b.dataset.k;btns.forEach(function(x){x.setAttribute('aria-pressed',x===b)});apply()})});q.addEventListener('input',apply)})();
+</script>
+</body></html>

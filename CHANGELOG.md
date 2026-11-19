@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v62 (2026-11-19)
+- Demo 57, the X3D 4.0 coverage board (`docs/demos/x3d-coverage/v1/`), and its front-page card with image `assets/x3d-coverage.jpg`. The page is generated: `tools/probe.js` asks X_ITE 16.6.0 for each of the 260 node names, `tools/gen.py` joins the x3d.loom three.js and Babylon trackers with a word match over the Blender add-on source and the Castle scout's 70 scenes, `tools/build.py` writes the page, the side-by-side pictures and `receipts-summary.json`. The pictures come from a re-run of the x3d.loom three.js fixture rig. Versions v1 to v61 are untouched.
+
 ## v61 (2026-11-19)
 - Front-page card for Demo 56, the NEXUS X3D Hub Observatory (`docs/demos/blenderizer-nexus/v1/`, merged as PR 114). Card image `assets/blender-nexus.jpg`. The card gives the build lane's own Confirmed checks, the one number I re-measured (the 7.03x instancing ratio), the figures I did not re-measure, and what nobody tested. Versions v1 to v60 are untouched.
 

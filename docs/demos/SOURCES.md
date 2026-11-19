@@ -363,3 +363,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-nexus.jpg | 021ee14afc376f44e859b2420299152d4f957080bc639c5315b7e88eceb8831f | 55415 |
+
+`x3d-coverage` is a composite of the board's own renders: `docs/demos/x3d-coverage/v1/img/hero-strip.jpg` scaled to 960 x 240 above `pair-Extrusion.jpg` scaled to 960 wide and cropped to 300 high, saved as 960 x 540 JPEG. Both come from the x3d.loom three.js bridge rig (three r187, X_ITE 16.6.0, headless Chromium 153, SwiftShader), 320 x 240 per picture, enlarged 2x. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/x3d-coverage.jpg | ad7531296a48e2c72105e3233046b5c24c7dc14876da7f5fa49844a4ee75c3f4 | 31673 |
