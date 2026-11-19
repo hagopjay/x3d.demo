@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v63 (2026-11-19)
+- Front-page card for Demo 62, x3d.wgpu in the browser (`docs/demos/wgpu-web/v1/`, merged as PR 117), with image `assets/wgpu-web.jpg` taken from my own headless WebGL2 run. The card states what I ran (WebGL2 path, two scenes, no errors, fallback from WebGPU), the wasm size I measured, and what nobody tested (WebGPU pixels, real GPU, frame rate). Versions v1 to v62 are untouched.
+
 ## Demo 62 (2026-11-19)
 - Demo 62, x3d.wgpu in the browser (`docs/demos/wgpu-web/v1/`): the Rust wgpu renderer from hagopjay/x3d.wgpu compiled to WebAssembly (5.5 MB), WebGPU first with a WebGL2 fallback, seven sample scenes and a paste-your-own-X3D box. Built from x3d.wgpu PR #6 with `web/build.sh` (rustc 1.97.0, wasm-bindgen 0.2.130). Checked in headless Chromium on SwiftShader: the WebGL2 path renders; WebGPU pixels were not seen (headless cannot present them). No front-page card yet.
 
