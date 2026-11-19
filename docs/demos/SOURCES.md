@@ -411,3 +411,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-giza-fall.jpg | 0b69f391618c75680f7e1a59ad8e576096a516aff29a9ba7d4348259ed1e5d0b | 40206 |
+
+`blender-giza-numbers` is a 2 x 2 grid of 480 x 270 tiles from `docs/demos/blender-giza-numbers/v1/shots/` (`overview`, `pi`, `phi`, `latitude`; X_ITE 16.7.1 frames of the page's own scene), saved as 960 x 540 JPEG. No Google or other third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-giza-numbers.jpg | 22432515d04c0d81eb3916a7271dbf3b379548167c96b87a51f6cae15368b85f | 40447 |
