@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giza VI.3 · The Five Witnesses</title>
+<meta name="description" content="One night at Giza in five acts: measured stone (v3 Evidence Atlas), reported depths and Hawara (Witness Atlas v4.1), a modelled chamber (Giza IV Horizon Engine), an imagined planetary coil (Giza V), and a computed precession sky. Every caption is graded Confirmed, Likely, Suspected or Authored. Babylon.js renderer, X3D 4.0 twin.">
+<link rel="stylesheet" href="../v6/giza6.css">
+<script src="../../../lib/gfx-guard-v2.js"></script>
+<script src="../v6/vendor/babylon/babylon.js"></script>
+<script src="../v6/vendor/babylon/babylon.skyMaterial.min.js"></script>
+<script src="../v3/sky-math.js"></script>
+</head>
+<body>
+<canvas id="scene" aria-label="Giza VI scene. Drag to look around; the tour pauses."></canvas>
+<div id="fade"></div>
+
+<header id="top">
+  <div class="brand"><b>GIZA <span>VI</span></b><small>THE FIVE WITNESSES · ONE NIGHT, ONE LEDGER</small></div>
+  <nav class="versions" aria-label="Versions">
+    <a href="../v1/index.html">v1</a><a href="../v2/index.html">v2</a><a href="../v3/index.html">v3 Atlas</a><a href="../v4/index.html">v4 Hawara</a><a href="../v4-horizon/index.html">IV Horizon</a><a href="../v5/index.html">V Coil</a><a class="cur" aria-current="page">VI</a>
+  </nav>
+  <div class="tools">
+    <button id="btn-visor" data-state="auto" title="V: VISOR look (edge and false colour of the model; not a sensor)">VISOR · auto</button>
+    <button id="btn-ledger" title="L: one ledger across all five editions">Ledger</button>
+    <a class="btn" href="twin.html" title="The same geometry as an X3D 4.0 file, drawn by X_ITE">X3D twin</a>
+    <select id="tier" aria-label="Render quality"><option value="cinematic">Cinematic</option><option value="balanced">Balanced</option><option value="lite">Lite</option></select>
+  </div>
+</header>
+
+<aside id="rail" aria-label="Acts"></aside>
+
+<section id="caption" aria-live="polite">
+  <h2 id="cap-title"></h2>
+  <div id="cap-lines"></div>
+</section>
+
+<aside id="instrument" aria-label="Instrument"></aside>
+
+<footer id="timeline">
+  <button id="play" aria-label="Pause">❚❚</button>
+  <div class="track"><input id="scrub" type="range" min="0" step="0.1" value="0" aria-label="Tour time"><div id="marks"></div></div>
+  <span id="clock">0:00</span>
+</footer>
+
+<div id="legend">
+  <span class="g g-C">Confirmed</span><span class="g g-L">Likely</span><span class="g g-S">Suspected</span><span class="g g-A">Authored</span>
+  <small>Authored marks invention; it is not a truth grade.</small>
+</div>
+<div id="hud" aria-live="off"></div>
+<pre id="log" aria-label="Verbose log"></pre>
+
+<section id="ledger" aria-label="Evidence ledger">
+  <h2>One ledger, five editions <small id="ledger-count"></small></h2>
+  <div id="ledger-filter"><button data-g="all">All</button><button data-g="C">Confirmed</button><button data-g="L">Likely</button><button data-g="S">Suspected</button><button data-g="A">Authored</button></div>
+  <ol id="ledger-list"></ol>
+  <p class="fine">Grades follow the v3 discipline: the subject's evidence, the geometry's modelling status and the source handling are separate. A dramatic rendering never upgrades a grade.</p>
+</section>
+
+<div id="boot"><div><b>GIZA VI</b><p>Baking stone textures, building 39 meshes, loading 978 + 40 catalogue stars…</p><small>Babylon.js 8.56.2 · WebGL 2</small></div></div>
+<noscript>Giza VI needs JavaScript and WebGL 2. The <a href="twin.html">X3D twin</a> and <a href="../v3/index.html">v3 Atlas</a> are alternatives.</noscript>
+<script type="module">
+// v6.2 (18 Nov 2026), second external review defects 7 and 10. v6.1 read LEDGER rows as arrays (r[0]..r[4]) but
+// story.mjs exports objects {id, g, claim, from, src, url}, so the no-graphics ledger showed 33 rows of "undefined"
+// (132 cells), and its guard check counted rows only. v6.2 renders the named fields with DOM text nodes (nothing from
+// the ledger is parsed as HTML), keeps only http(s) links, and uses gfx-guard-v2 (v1's slow note never appeared).
+const SAFE = u => { try { const x = new URL(u, location.href); return /^https?:$/.test(x.protocol) ? x.href : null; } catch (e) { return null; } };
+function ledgerTable(LEDGER, GRADES) {
+  const table = document.createElement('table');
+  table.className = 'gg-ledger'; table.style.cssText = 'font-size:13px;border-collapse:collapse';
+  const head = table.createTHead().insertRow();
+  for (const h of ['Id', 'Grade', 'Claim', 'From', 'Source']) { const th = document.createElement('th'); th.textContent = h; th.style.textAlign = 'left'; head.appendChild(th); }
+  const body = table.createTBody();
+  for (const r of LEDGER) {
+    const tr = body.insertRow(); tr.dataset.id = r.id;
+    const cell = txt => { const td = tr.insertCell(); td.textContent = txt == null ? '' : String(txt); return td; };
+    cell(r.id);
+    const g = GRADES[r.g] || { name: 'Ungraded', color: '#ccc' };
+    const gt = cell(''); const b = document.createElement('b'); b.textContent = r.g + ' · ' + g.name; b.style.color = g.color; gt.appendChild(b);
+    cell(r.claim); cell(r.from);
+    const src = tr.insertCell(), href = r.url && SAFE(r.url);
+    if (href) { const a = document.createElement('a'); a.href = href; a.rel = 'noopener'; a.textContent = r.src; src.appendChild(a); }
+    else src.textContent = r.src || '';
+  }
+  return table;
+}
+window.__gizaLedgerTable = ledgerTable;   // for the guard check
+const ok = window.GfxGuard.require({
+  api: 'webgl', bootId: 'boot', readyClass: 'done', timeoutMs: 60000, title: 'Giza VI',
+  still: '../v6/assets/vi-I1-dusk.jpg', stillAlt: 'Giza VI, act I: the plateau at dusk (a committed still, not this browser\'s render)',
+  fallbacks: [{ href: 'twin.html', label: 'X3D twin (X_ITE; also needs WebGL)' }, { href: '../v3/index.html', label: 'v3 Evidence Atlas' },
+              { href: '../v6/README.md', label: 'Giza VI readme' }, { href: '../v6/VALIDATION.md', label: 'Validation record' }],
+  onFail: async () => {
+    const { LEDGER, GRADES } = await import('../v6/story.mjs');
+    const box = document.querySelector('#boot .gfx-guard');
+    if (!box) return;
+    const p = document.createElement('p'); const b = document.createElement('b');
+    b.textContent = `The ledger (${LEDGER.length} rows), readable without graphics`; p.appendChild(b);
+    box.appendChild(p); box.appendChild(ledgerTable(LEDGER, GRADES));
+  }
+});
+if (ok) await import('../v6/app.mjs');
+</script>
+</body>
+</html>

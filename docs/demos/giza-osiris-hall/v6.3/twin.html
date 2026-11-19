@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giza VI · X3D Twin</title>
+<meta name="description" content="The same vertices as the Giza VI Babylon.js page, as a plain X3D 4.0 file (giza-vi.x3d) drawn by X_ITE 16.6.0. Each Shape carries its grade as metadata.">
+<link rel="stylesheet" href="../v3/vendor/x_ite/x_ite.css">
+<script src="../v3/vendor/x_ite/x_ite.min.js"></script>
+<style>
+:root{--ink:#e9e3d6;--dim:#9aa4ad;--line:rgba(233,227,214,.16);--gold:#e2b866}
+html,body{margin:0;height:100%;background:#05070b;color:var(--ink);font:13px/1.45 system-ui,sans-serif;overflow:hidden}
+x3d-canvas{position:fixed;inset:0;width:100%;height:100%}
+header{position:fixed;left:12px;right:12px;top:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:8px 12px;background:rgba(8,12,18,.78);border:1px solid var(--line);border-radius:10px}
+header b{font:600 18px Georgia,serif;letter-spacing:.2em}header b span{color:var(--gold)}a{color:#9fd3ff}
+select,button{font:inherit;color:var(--ink);background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+#info{position:fixed;left:12px;bottom:12px;max-width:640px;padding:8px 12px;background:rgba(8,12,18,.78);border:1px solid var(--line);border-radius:10px;color:var(--dim)}
+</style>
+</head>
+<body>
+<x3d-canvas id="world" src="giza-vi.x3d" splashScreen="false" contextMenu="false" aria-label="Giza VI X3D twin"></x3d-canvas>
+<header>
+  <b>GIZA <span>VI</span> · X3D TWIN</b>
+  <label>Viewpoint <select id="vp"></select></label>
+  <label title="Fly: drag to turn and move, release to stop; hold Shift to go four times faster. Examine: drag to orbit the viewpoint's centre (a fast release keeps it spinning).">Navigate <select id="nav"><option value="FLY">Fly</option><option value="EXAMINE">Examine (orbit)</option></select></label>
+  <label><input type="checkbox" id="auth"> show Authored layers (king, coil, arcs)</label>
+  <a href="index.html">Back to the Babylon.js page</a>
+  <a href="giza-vi.x3d" download>Download giza-vi.x3d</a>
+</header>
+<p id="info">Same vertices as the Babylon page, written by build/export_x3d.mjs from world.mjs. Drawn by X_ITE 16.6.0 (bundled with v3). No textures, bloom or shadows here: this view is the accountable file, not the showpiece. Validation receipt: validation-vi.json.</p>
+<script>
+const canvas = document.getElementById('world');
+canvas.browser.addBrowserCallback('vi', X3D.X3DConstants.INITIALIZED_EVENT, () => {
+  const scene = canvas.browser.currentScene, sel = document.getElementById('vp');
+  const vps = scene.rootNodes.filter(n => n && n.getNodeTypeName() === 'Viewpoint');
+  vps.forEach((v, i) => sel.add(new Option(v.description, i)));
+  sel.onchange = () => { vps[+sel.value].set_bind = true; };
+  // every NavigationInfo (the scene's and each Viewpoint's own) gets the chosen mode first, so it holds across viewpoints
+  const navs = [...scene.rootNodes.filter(n => n && n.getNodeTypeName() === 'NavigationInfo'), ...vps.map(v => v.navigationInfo).filter(Boolean)];
+  const order = { FLY: ['FLY', 'EXAMINE', 'ANY'], EXAMINE: ['EXAMINE', 'FLY', 'ANY'] };
+  document.getElementById('nav').onchange = e => navs.forEach(n => { n.type = new X3D.MFString(...order[e.target.value]); });
+  const sw = ['LAYER_horizon', 'LAYER_coil'].map(n => { try { return scene.getNamedNode(n); } catch (e) { return null; } }).filter(Boolean);
+  document.getElementById('auth').onchange = e => sw.forEach(n => { n.whichChoice = e.target.checked ? 0 : -1; });
+  window.__twin = { ready: true, switches: sw.length, viewpoints: vps.length, navigationInfos: navs.length, shapes: scene.rootNodes.length, browser: canvas.browser.name + ' ' + canvas.browser.version };
+});
+</script>
+</body>
+</html>
