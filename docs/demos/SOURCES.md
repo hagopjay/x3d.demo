@@ -375,3 +375,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/wgpu-web.jpg | fac4ab6f0406faa7ee23fbdbbb124b8efc5ae46eb7344658875b57d18deebd19 | 29733 |
+
+`blender-baked-light` is `docs/demos/blender-baked-light/v1/receipts/xite.png` (960 x 540, the page's own X_ITE 16.7.1 frame, headless Chromium with SwiftShader) saved as JPEG. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-baked-light.jpg | ce489379c7ede95f83485a93e1907cdc9644c396dd7443d68b4a0d172c34cd35 | 39957 |
