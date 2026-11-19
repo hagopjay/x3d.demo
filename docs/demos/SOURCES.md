@@ -405,3 +405,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-giza-crawl.jpg | 18f84ddaf16da35b4bb7c27aade1114ae2ad56cb398bd0508631f791fd5d9a52 | 34387 |
+
+`blender-giza-fall` is a 2 x 2 grid of 480 x 270 tiles from `docs/demos/blender-giza-fall/v1/shots/` (`s01_release`, `s03_tumble`, `s07_rest`, `s08_northface`; X_ITE 16.7.1 frames of the page's own scene, headless Chromium with SwiftShader), saved as 960 x 540 JPEG. No Google or other third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-giza-fall.jpg | 0b69f391618c75680f7e1a59ad8e576096a516aff29a9ba7d4348259ed1e5d0b | 40206 |
