@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "https://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D version="4.0" profile="Immersive" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.0.xsd">
+  <head>
+    <component name="Shape" level="2" />
+    <meta name="generator" content="X3D Blender I/O v2.6.4" />
+    <meta name="filename" content="blender.x3d" />
+    <meta name="title" content="Osiris Shaft as a living record" />
+    <meta name="identifier" content="https://example.org/scen/heritage/scene.x3d" />
+    <meta name="description" content="Schematic Giza study; every element is tagged documented, theorized or speculative in its CIDOC-CRM record." />
+    <meta name="creator" content="HagopJay and Claude" />
+    <meta name="license" content="CC0 geometry" />
+    <meta name="info" content="Light 'DirectLight' was scoped to its group in the imported file (global=false); it is written with global=&quot;true&quot; because a Blender light lights the whole scene, so it now lights geometry outside that scope too." />
+  </head>
+  <Scene>
+    <NavigationInfo headlight="true" type='"EXAMINE" "ANY"' />
+    <Background skyColor="0.010000 0.015000 0.030000" groundColor="0.050000 0.040000 0.030000" />
+    <Transform DEF="OB_V_Overview" translation="-15.000000 90.000000 260.000000" rotation="-1.000000 0.000000 0.000000 0.316000" scale="1.000000 1.000000 1.000000">
+      <Viewpoint DEF="CA_V_Overview" description="Overview: Khufu, the Osiris Shaft, the Sphinx" position="0.000000 0.000000 0.000000" orientation="0.000000 0.000000 1.000000 0.000000" fieldOfView="0.785398" />
+    </Transform>
+    <Transform DEF="OB_V_Osiris" translation="3.000000 -14.000000 42.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+      <Viewpoint DEF="CA_V_Osiris" description="Osiris Shaft, side section" position="0.000000 0.000000 0.000000" orientation="0.000000 0.000000 1.000000 0.000000" fieldOfView="0.785398" />
+    </Transform>
+    <Transform DEF="OB_V_Sphinx" translation="60.000000 5.000000 70.000000" rotation="-0.201681 0.978153 0.050420 0.300000" scale="1.000000 1.000000 1.000000">
+      <Viewpoint DEF="CA_V_Sphinx" description="Sphinx enclosure and the paw anomaly" position="0.000000 0.000000 0.000000" orientation="0.000000 0.000000 1.000000 0.000000" fieldOfView="0.785398" />
+    </Transform>
+    <Transform DEF="OB_DirectLight" translation="0.000000 0.000000 0.000000" rotation="0.103061 0.535152 0.838446 2.821416" scale="1.000000 1.000000 1.000000">
+      <DirectionalLight DEF="LA_DirectLight" color="1.000000 1.000000 1.000000" intensity="0.800000" ambientIntensity="0.000000" global="true" direction="0.000000 0.000000 -1.000000" />
+    </Transform>
+    <Transform DEF="OB_GV_Giza" translation="4733168.000000 2859084.000000 3168526.500000" rotation="0.478564 0.848175 0.227103 2.886706" scale="1.000000 1.000000 1.000000">
+      <Viewpoint DEF="CA_GV_Giza" description="Giza plateau, from 300 m" position="0.000000 0.000000 0.000000" orientation="0.000000 0.000000 1.000000 0.000000" fieldOfView="0.785398" nearDistance="3.000000" farDistance="12751267.239965" />
+    </Transform>
+    <Transform DEF="OB_GV_Angkor" translation="-1487285.750000 6024721.000000 1469903.625000" rotation="0.119903 -0.985993 -0.115937 3.113397" scale="1.000000 1.000000 1.000000">
+      <Viewpoint DEF="CA_GV_Angkor" description="Angkor Wat, the comparison site" position="0.000000 0.000000 0.000000" orientation="0.000000 0.000000 1.000000 0.000000" fieldOfView="0.785398" nearDistance="3.000000" farDistance="12755431.239717" />
+    </Transform>
+    <Transform DEF="OB_Root" translation="0.000000 0.000000 0.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+      <Transform DEF="OB_OsirisShaftA_Shape" translation="0.000000 -4.810000 0.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance DEF="APP_OsirisShaftA_Shape" alphaMode="BLEND">
+            <PhysicalMaterial DEF="MA_OsirisShaftA_Shape" baseColor="0.240000 0.900000 0.820000" metallic="0.000000" roughness="0.800000" emissiveColor="0.108000 0.405000 0.369000" transparency="0.350000" />
+          </Appearance>
+          <Box DEF="GE_OsirisShaftA_Shape_Box" size="1.200000 9.620000 1.200000" />
+        </Shape>
+      </Transform>
+      <Transform DEF="OB_OsirisChamberA_Shape" translation="0.000000 -8.270000 2.600000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance DEF="APP_Mat_ChamberA" alphaMode="BLEND">
+            <PhysicalMaterial DEF="MA_Mat_ChamberA" baseColor="0.240000 0.900000 0.820000" metallic="0.000000" roughness="0.800000" emissiveColor="0.108000 0.405000 0.369000" transparency="0.550000" />
+          </Appearance>
+          <Box DEF="GE_OsirisChamberA_Shape_Box" size="5.000000 2.700000 4.000000" />
+        </Shape>
+      </Transform>
+      <Transform DEF="OB_OsirisShaftB_Shape" translation="4.000000 -16.240000 0.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance USE="APP_OsirisShaftA_Shape" />
+          <Box DEF="GE_OsirisShaftB_Shape_Box" size="1.200000 13.250000 1.200000" />
+        </Shape>
+      </Transform>
+      <Transform DEF="OB_OsirisChamberB_Shape" translation="4.000000 -21.570000 0.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance DEF="APP_OsirisChamberB_Shape" alphaMode="BLEND">
+            <PhysicalMaterial DEF="MA_OsirisChamberB_Shape" baseColor="0.240000 0.900000 0.820000" metallic="0.000000" roughness="0.800000" emissiveColor="0.108000 0.405000 0.369000" transparency="0.550000" />
+          </Appearance>
+          <Box DEF="GE_OsirisChamberB_Shape_Box" size="6.800000 2.600000 3.650000" />
+        </Shape>
+      </Transform>
+      <Transform DEF="OB_OsirisShaftC_Shape" translation="6.000000 -26.620001 0.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance USE="APP_OsirisShaftA_Shape" />
+          <Box DEF="GE_OsirisShaftC_Shape_Box" size="1.200000 7.500000 1.200000" />
+        </Shape>
+      </Transform>
+      <Transform DEF="OB_OsirisLevel3Water_Shape" translation="6.000000 -29.370001 0.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance DEF="APP_OsirisLevel3Water_Shape" alphaMode="BLEND">
+            <PhysicalMaterial DEF="MA_OsirisLevel3Water_Shape" baseColor="0.200000 0.450000 0.850000" metallic="0.000000" roughness="0.800000" emissiveColor="0.020000 0.045000 0.085000" transparency="0.450000" />
+          </Appearance>
+          <Box DEF="GE_OsirisLevel3Water_Shape_Box" size="9.000000 2.800000 6.400000" />
+        </Shape>
+      </Transform>
+      <Transform DEF="OB_SphinxBody_Shape" translation="40.000000 10.000000 0.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance DEF="APP_SphinxBody_Shape">
+            <PhysicalMaterial DEF="MA_SphinxBody_Shape" baseColor="0.720000 0.620000 0.450000" metallic="0.000000" roughness="0.800000" emissiveColor="0.072000 0.062000 0.045000" />
+          </Appearance>
+          <Box DEF="GE_SphinxBody_Shape_Box" size="57.000000 20.000000 19.000000" />
+        </Shape>
+      </Transform>
+      <Transform DEF="OB_SphinxPawVoid_Shape" translation="75.000000 -5.000000 6.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance DEF="APP_SphinxPawVoid_Shape" alphaMode="BLEND">
+            <PhysicalMaterial DEF="MA_SphinxPawVoid_Shape" baseColor="1.000000 0.700000 0.280000" metallic="0.000000" roughness="0.800000" emissiveColor="0.450000 0.315000 0.126000" transparency="0.500000" />
+          </Appearance>
+          <Box DEF="GE_SphinxPawVoid_Shape_Box" size="12.000000 3.000000 9.000000" />
+        </Shape>
+      </Transform>
+      <Transform DEF="OB_HallOfRecords_Shape" translation="85.000000 -15.000000 14.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance DEF="APP_HallOfRecords_Shape" alphaMode="BLEND">
+            <PhysicalMaterial DEF="MA_HallOfRecords_Shape" baseColor="1.000000 0.310000 0.850000" metallic="0.000000" roughness="0.800000" emissiveColor="0.450000 0.139500 0.382500" transparency="0.550000" />
+          </Appearance>
+          <Box DEF="GE_HallOfRecords_Shape_Box" size="14.000000 6.000000 10.000000" />
+        </Shape>
+      </Transform>
+      <Transform DEF="OB_KhufuKingsChamber_Shape" translation="-120.000000 46.000000 -60.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance DEF="APP_KhufuKingsChamber_Shape" alphaMode="BLEND">
+            <PhysicalMaterial DEF="MA_KhufuKingsChamber_Shape" baseColor="0.240000 0.900000 0.820000" metallic="0.000000" roughness="0.800000" emissiveColor="0.108000 0.405000 0.369000" transparency="0.400000" />
+          </Appearance>
+          <Box DEF="GE_KhufuKingsChamber_Shape_Box" size="10.470000 5.970000 5.240000" />
+        </Shape>
+      </Transform>
+      <Transform DEF="OB_KhufuBigVoid_Shape" translation="-120.000000 62.000000 -60.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance DEF="APP_KhufuBigVoid_Shape" alphaMode="BLEND">
+            <PhysicalMaterial DEF="MA_KhufuBigVoid_Shape" baseColor="0.240000 0.900000 0.820000" metallic="0.000000" roughness="0.800000" emissiveColor="0.108000 0.405000 0.369000" transparency="0.600000" />
+          </Appearance>
+          <Box DEF="GE_KhufuBigVoid_Shape_Box" size="30.000000 8.000000 2.000000" />
+        </Shape>
+      </Transform>
+      <Transform DEF="OB_UndergroundLink_Shape" translation="40.000000 -20.000000 7.000000" rotation="0.000000 0.000000 1.000000 0.000000" scale="1.000000 1.000000 1.000000">
+        <Shape>
+          <Appearance DEF="APP_UndergroundLink_Shape" alphaMode="BLEND">
+            <PhysicalMaterial DEF="MA_UndergroundLink_Shape" baseColor="1.000000 0.310000 0.850000" metallic="0.000000" roughness="0.800000" emissiveColor="0.450000 0.139500 0.382500" transparency="0.300000" />
+          </Appearance>
+          <Box DEF="GE_UndergroundLink_Shape_Box" size="80.000000 0.600000 0.600000" />
+        </Shape>
+      </Transform>
+    </Transform>
+  </Scene>
+</X3D>

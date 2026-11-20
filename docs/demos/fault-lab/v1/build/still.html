@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8"><title>fault-lab still rig</title>
+<script src="../../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<style>body{margin:0;background:#000}x3d-canvas{width:640px;height:400px;display:block}</style>
+<x3d-canvas id="c" splashScreen="false" notifications="false" timings="false" contextMenu="false" update="auto"></x3d-canvas>
+<script>
+// ?case=<id>&view=<Viewpoint DEF>: the case file with the wanted Viewpoint moved first, so no bind animation runs
+window.STILL = (async () => {
+  const q = new URLSearchParams(location.search), view = q.get('view');
+  let text = await (await fetch('../cases/' + q.get('case') + '.x3d')).text();
+  const all = text.match(/<Viewpoint\b[^>]*\/>/g) || [];
+  const want = all.find(v => v.includes('DEF="' + view + '"'));
+  if (!want) throw new Error('no viewpoint ' + view);
+  for (const v of all) text = text.replace(v, '');
+  text = text.replace('<Scene>', '<Scene>' + want);
+  const browser = document.getElementById('c').browser;
+  const scene = await browser.createX3DFromString(text);
+  await browser.replaceWorld(scene);
+  await new Promise(r => setTimeout(r, 1500));
+  return { name: browser.name, version: browser.version, renderer: browser.getRenderingProperty ? browser.getRenderingProperty('ContentScale') : null };
+})();
+</script>

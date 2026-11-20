@@ -1,0 +1,832 @@
+#usda 1.0
+(
+    customLayerData = {
+        string "x3d:converter" = "fault-lab x3d_usd 0.1"
+        dictionary "x3d:head" = {
+            dictionary "0" = {
+                string content = "Osiris Shaft as a living record"
+                string name = "title"
+            }
+            dictionary "1" = {
+                string content = "https://example.org/scen/heritage/scene.x3d"
+                string name = "identifier"
+            }
+            dictionary "2" = {
+                string content = "Schematic Giza study; every element is tagged documented, theorized or speculative in its CIDOC-CRM record."
+                string name = "description"
+            }
+            dictionary "3" = {
+                string content = "HagopJay and Claude"
+                string name = "creator"
+            }
+            dictionary "4" = {
+                string content = "CC0 geometry"
+                string name = "license"
+            }
+        }
+        string "x3d:source_sha256" = "8e23fc4d0cf4790cc9c7ee5f5a5793279d15d47b24d434888c737ac60e8f691e"
+    }
+    defaultPrim = "World"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "World"
+{
+    def Scope "Info" (
+        customData = {
+            dictionary x3d = {
+                string DEF = "Info"
+                dictionary metadata = {
+                    int count = 1
+                    string name = "survey"
+                    string type = "MetadataString"
+                    string[] value = ["Hawass 2007, ASAE 36"]
+                }
+                string nodeType = "WorldInfo"
+            }
+        }
+    )
+    {
+    }
+
+    def Xform "Root" (
+        customData = {
+            dictionary x3d = {
+                string DEF = "Root"
+                string nodeType = "Transform"
+            }
+        }
+    )
+    {
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Xform "OsirisShaftA" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "OsirisShaftA"
+                    dictionary metadata = {
+                        string DEF = "M_ShaftA"
+                        int count = 3
+                        string name = "CidocCrm"
+                        string reference = "http://www.cidoc-crm.org/cidoc-crm/E25_Human-Made_Feature"
+                        string type = "MetadataSet"
+                        dictionary value = {
+                            dictionary "0" = {
+                                int count = 1
+                                string name = "label"
+                                string type = "MetadataString"
+                                string[] value = ["Osiris Shaft, Shaft A"]
+                            }
+                            dictionary "1" = {
+                                int count = 1
+                                string name = "depth_m"
+                                string type = "MetadataDouble"
+                                double[] value = [9.62]
+                            }
+                            dictionary "2" = {
+                                int count = 1
+                                string name = "tier"
+                                string type = "MetadataString"
+                                string[] value = ["documented"]
+                            }
+                        }
+                    }
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (0, -4.81, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "OsirisShaftA_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "OsirisShaftA_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "PhysicalMaterial" (
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/OsirisShaftA/OsirisShaftA_Shape/PhysicalMaterial/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                        color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.65
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/OsirisShaftA/OsirisShaftA_Shape/PhysicalMaterial>
+                    double size = 1
+                    float3 xformOp:scale = (1.2, 9.62, 1.2)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+
+        def Xform "OsirisChamberA" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "OsirisChamberA"
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (0, -8.27, 2.6)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "OsirisChamberA_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "OsirisChamberA_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "Mat_ChamberA" (
+                    customData = {
+                        dictionary x3d = {
+                            string DEF = "Mat_ChamberA"
+                            dictionary metadata = {
+                                int count = 1
+                                string name = "colour_key"
+                                string type = "MetadataString"
+                                string[] value = ["teal = documented"]
+                            }
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/OsirisChamberA/OsirisChamberA_Shape/Mat_ChamberA/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                        color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.45
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/OsirisChamberA/OsirisChamberA_Shape/Mat_ChamberA>
+                    double size = 1
+                    float3 xformOp:scale = (5, 2.7, 4)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+
+        def Xform "OsirisShaftB" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "OsirisShaftB"
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (4, -16.24, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "OsirisShaftB_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "OsirisShaftB_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "PhysicalMaterial" (
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/OsirisShaftB/OsirisShaftB_Shape/PhysicalMaterial/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                        color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.65
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/OsirisShaftB/OsirisShaftB_Shape/PhysicalMaterial>
+                    double size = 1
+                    float3 xformOp:scale = (1.2, 13.25, 1.2)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+
+        def Xform "OsirisChamberB" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "OsirisChamberB"
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (4, -21.57, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "OsirisChamberB_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "OsirisChamberB_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "PhysicalMaterial" (
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/OsirisChamberB/OsirisChamberB_Shape/PhysicalMaterial/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                        color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.45
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/OsirisChamberB/OsirisChamberB_Shape/PhysicalMaterial>
+                    double size = 1
+                    float3 xformOp:scale = (6.8, 2.6, 3.65)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+
+        def Xform "OsirisShaftC" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "OsirisShaftC"
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (6, -26.62, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "OsirisShaftC_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "OsirisShaftC_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "PhysicalMaterial" (
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/OsirisShaftC/OsirisShaftC_Shape/PhysicalMaterial/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                        color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.65
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/OsirisShaftC/OsirisShaftC_Shape/PhysicalMaterial>
+                    double size = 1
+                    float3 xformOp:scale = (1.2, 7.5, 1.2)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+
+        def Xform "OsirisLevel3Water" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "OsirisLevel3Water"
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (6, -29.37, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "OsirisLevel3Water_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "OsirisLevel3Water_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "PhysicalMaterial" (
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/OsirisLevel3Water/OsirisLevel3Water_Shape/PhysicalMaterial/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.2, 0.45, 0.85)
+                        color3f inputs:emissiveColor = (0.02, 0.045, 0.085)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.55
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/OsirisLevel3Water/OsirisLevel3Water_Shape/PhysicalMaterial>
+                    double size = 1
+                    float3 xformOp:scale = (9, 2.8, 6.4)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+
+        def Xform "SphinxBody" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "SphinxBody"
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (40, 10, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "SphinxBody_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "SphinxBody_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "PhysicalMaterial" (
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/SphinxBody/SphinxBody_Shape/PhysicalMaterial/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.72, 0.62, 0.45)
+                        color3f inputs:emissiveColor = (0.072, 0.062, 0.045)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 1
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/SphinxBody/SphinxBody_Shape/PhysicalMaterial>
+                    double size = 1
+                    float3 xformOp:scale = (57, 20, 19)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+
+        def Xform "SphinxPawVoid" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "SphinxPawVoid"
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (75, -5, 6)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "SphinxPawVoid_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "SphinxPawVoid_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "PhysicalMaterial" (
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/SphinxPawVoid/SphinxPawVoid_Shape/PhysicalMaterial/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 0.7, 0.28)
+                        color3f inputs:emissiveColor = (0.45, 0.315, 0.126)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.5
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/SphinxPawVoid/SphinxPawVoid_Shape/PhysicalMaterial>
+                    double size = 1
+                    float3 xformOp:scale = (12, 3, 9)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+
+        def Xform "HallOfRecords" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "HallOfRecords"
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (85, -15, 14)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "HallOfRecords_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "HallOfRecords_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "PhysicalMaterial" (
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/HallOfRecords/HallOfRecords_Shape/PhysicalMaterial/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 0.31, 0.85)
+                        color3f inputs:emissiveColor = (0.45, 0.1395, 0.3825)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.45
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/HallOfRecords/HallOfRecords_Shape/PhysicalMaterial>
+                    double size = 1
+                    float3 xformOp:scale = (14, 6, 10)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+
+        def Xform "KhufuKingsChamber" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "KhufuKingsChamber"
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (-120, 46, -60)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "KhufuKingsChamber_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "KhufuKingsChamber_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "PhysicalMaterial" (
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/KhufuKingsChamber/KhufuKingsChamber_Shape/PhysicalMaterial/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                        color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.6
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/KhufuKingsChamber/KhufuKingsChamber_Shape/PhysicalMaterial>
+                    double size = 1
+                    float3 xformOp:scale = (10.47, 5.97, 5.24)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+
+        def Xform "KhufuBigVoid" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "KhufuBigVoid"
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (-120, 62, -60)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "KhufuBigVoid_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "KhufuBigVoid_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "PhysicalMaterial" (
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/KhufuBigVoid/KhufuBigVoid_Shape/PhysicalMaterial/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                        color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.4
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/KhufuBigVoid/KhufuBigVoid_Shape/PhysicalMaterial>
+                    double size = 1
+                    float3 xformOp:scale = (30, 8, 2)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+
+        def Xform "UndergroundLink" (
+            customData = {
+                dictionary x3d = {
+                    string DEF = "UndergroundLink"
+                    string nodeType = "Transform"
+                }
+            }
+        )
+        {
+            double3 xformOp:translate = (40, -20, 7)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "UndergroundLink_Shape" (
+                customData = {
+                    dictionary x3d = {
+                        string DEF = "UndergroundLink_Shape"
+                        string nodeType = "Shape"
+                    }
+                }
+            )
+            {
+                def Material "PhysicalMaterial" (
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "PhysicalMaterial"
+                        }
+                    }
+                )
+                {
+                    token outputs:surface.connect = </World/Root/UndergroundLink/UndergroundLink_Shape/PhysicalMaterial/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 0.31, 0.85)
+                        color3f inputs:emissiveColor = (0.45, 0.1395, 0.3825)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.7
+                        float inputs:roughness = 0.8
+                        token outputs:surface
+                    }
+                }
+
+                def Cube "Box" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    customData = {
+                        dictionary x3d = {
+                            string nodeType = "Box"
+                        }
+                    }
+                )
+                {
+                    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                    rel material:binding = </World/Root/UndergroundLink/UndergroundLink_Shape/PhysicalMaterial>
+                    double size = 1
+                    float3 xformOp:scale = (80, 0.6, 0.6)
+                    uniform token[] xformOpOrder = ["xformOp:scale"]
+                }
+            }
+        }
+    }
+}
+
