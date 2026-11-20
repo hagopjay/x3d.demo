@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v73 (2026-11-20)
+- Front-page card for Demo 66, The Fault Lab (`docs/demos/fault-lab/v1/`, merged as PR 138), with image `assets/fault-lab.jpg` (four of the page's own stills; no Google imagery). I recounted the shipped before and after check files (1 of 10 caught before, 9 of 10 after, clean twin 0 findings), ran the page's own test (22 of 22) and loaded the page headless without errors. I did not rerun the checkers, the glTF and USD validators or the Blender leg. Versions v1 to v72 are untouched.
+
 ## v72 (2026-11-20)
 - The Demo 65 card now points to Giza: The Sky Machine (`docs/demos/blender-giza-numbers/v6/`, merged with v5 as PR 136; v4 was PR 135) and links v5, v4, v3, v2 and v1. Image `assets/blender-giza-sky-machine.jpg` is a frame of the page itself (crop of `v6/shots/frames.webp`); the stars are HYG v4.1 (David Nash, CC BY-SA 4.0) and the card credits them. I counted the 63 claims and their grades in the atlas receipt, read the star count from the v4 sky file, ran 49 unit tests (4 more skip without a DOM library) and loaded the page headless without errors. I did not check the astronomy or the grades. The reviewer's front-page edit and "catalog v72" line were not applied. Page versions v1 to v71 are untouched.
 
