@@ -1,0 +1,169 @@
+{
+ "base": {
+  "scene": "examples/semantic_twins/scenes/heritage.x3d",
+  "domain": "examples/semantic_twins/data/heritage/domain.ttl"
+ },
+ "cases": [
+  {
+   "id": "clean",
+   "family": "clean",
+   "finding": null,
+   "title": "The clean twin",
+   "story": "Nothing planted.",
+   "harm": "",
+   "scene": "cases/clean.x3d",
+   "domain": "cases/clean.domain.ttl",
+   "changed": null
+  },
+  {
+   "id": "two-materials",
+   "family": "structure",
+   "finding": "F1",
+   "title": "Two materials on one surface",
+   "story": "A second PhysicalMaterial was pasted into the same Appearance.",
+   "harm": "A browser keeps one material and silently drops the other. Which one depends on the browser.",
+   "scene": "cases/two-materials.x3d",
+   "domain": "cases/clean.domain.ttl",
+   "changed": {
+    "file": "scene",
+    "was": "<PhysicalMaterial baseColor='0.24 0.9 0.82' emissiveColor='0.108 0.405 0.369' roughness='0.8' metallic='0' transparency='0.55'/></Appearance><Box size='6.8 2.6 3.65'/>",
+    "now": "<PhysicalMaterial baseColor='0.24 0.9 0.82' emissiveColor='0.108 0.405 0.369' roughness='0.8' metallic='0' transparency='0.55'/><PhysicalMaterial baseColor='0.9 0.1 0.1' roughness='0.4' metallic='0'/></Appearance><Box size='6.8 2.6 3.65'/>"
+   }
+  },
+  {
+   "id": "two-geometries",
+   "family": "structure",
+   "finding": "F1",
+   "title": "Two geometries in one Shape",
+   "story": "A Sphere was added beside the Box inside one Shape.",
+   "harm": "Shape.geometry holds one node. One of the two is never drawn.",
+   "scene": "cases/two-geometries.x3d",
+   "domain": "cases/clean.domain.ttl",
+   "changed": {
+    "file": "scene",
+    "was": "<Box size='5 2.7 4'/>",
+    "now": "<Box size='5 2.7 4'/><Sphere radius='3'/>"
+   }
+  },
+  {
+   "id": "angkor-swapped",
+   "family": "geo",
+   "finding": "F23",
+   "title": "Longitude written first (Angkor)",
+   "story": "The comparison viewpoint was typed longitude, latitude.",
+   "harm": "Latitude 103.867 does not exist. A viewer puts the camera somewhere undefined.",
+   "scene": "cases/angkor-swapped.x3d",
+   "domain": "cases/clean.domain.ttl",
+   "changed": {
+    "file": "scene",
+    "was": "position='13.4125 103.867 300'",
+    "now": "position='103.867 13.4125 300'"
+   }
+  },
+  {
+   "id": "giza-swapped",
+   "family": "geo",
+   "finding": "F23",
+   "title": "Longitude written first (Giza)",
+   "story": "The same slip, at a site where both numbers are under 90.",
+   "harm": "The camera lands about 230 km away, in the Sinai. No range test can see this one.",
+   "scene": "cases/giza-swapped.x3d",
+   "domain": "cases/clean.domain.ttl",
+   "changed": {
+    "file": "scene",
+    "was": "position='29.9792 31.1342 300'",
+    "now": "position='31.1342 29.9792 300'"
+   }
+  },
+  {
+   "id": "scaled-shaft",
+   "family": "record",
+   "finding": "F2",
+   "title": "Shaft stretched by a scale",
+   "story": "Someone scaled Shaft A to 'look right'. The Box still says 9.62 m.",
+   "harm": "The drawing shows 12.5 m; the excavation report says 9.62 m.",
+   "scene": "cases/scaled-shaft.x3d",
+   "domain": "cases/clean.domain.ttl",
+   "changed": {
+    "file": "scene",
+    "was": "<Transform DEF='OsirisShaftA' translation='0 -4.81 0'>",
+    "now": "<Transform DEF='OsirisShaftA' scale='1 1.3 1' translation='0 -4.81 0'>"
+   }
+  },
+  {
+   "id": "cylinder-shaft",
+   "family": "record",
+   "finding": "F2",
+   "title": "Shaft redrawn as a Cylinder",
+   "story": "The Box was swapped for a Cylinder 12 m tall.",
+   "harm": "The record's measurement no longer has anything it can be compared with.",
+   "scene": "cases/cylinder-shaft.x3d",
+   "domain": "cases/clean.domain.ttl",
+   "changed": {
+    "file": "scene",
+    "was": "<Box size='1.2 9.62 1.2'/>",
+    "now": "<Cylinder height='12' radius='0.6'/>"
+   }
+  },
+  {
+   "id": "secret-tunnel",
+   "family": "record",
+   "finding": "F2",
+   "title": "A tunnel nobody recorded",
+   "story": "A 90 m tunnel was drawn under the plateau with no record behind it.",
+   "harm": "A reader takes a drawn object for a documented one.",
+   "scene": "cases/secret-tunnel.x3d",
+   "domain": "cases/clean.domain.ttl",
+   "changed": {
+    "file": "scene",
+    "was": "<Transform DEF='OsirisShaftB' ",
+    "now": "<Transform DEF='SecretTunnel' translation='0 -50 0'><Shape><Appearance><PhysicalMaterial baseColor='0.9 0.3 0.9'/></Appearance><Box size='90 3 3'/></Shape></Transform><Transform DEF='OsirisShaftB' "
+   }
+  },
+  {
+   "id": "feet-not-metres",
+   "family": "record",
+   "finding": "F2",
+   "title": "Depth recorded in feet",
+   "story": "The record's unit for Shaft A was changed to feet; the number stayed 9.62.",
+   "harm": "9.62 ft is 2.93 m. The scene and the record now disagree by a factor of 3.28 and both look fine alone.",
+   "scene": "cases/clean.x3d",
+   "domain": "cases/feet-not-metres.domain.ttl",
+   "changed": {
+    "file": "domain",
+    "was": "crm:P90_has_value 9.62 ; crm:P91_has_unit unit:M",
+    "now": "crm:P90_has_value 9.62 ; crm:P91_has_unit unit:FT"
+   }
+  },
+  {
+   "id": "no-tier",
+   "family": "record",
+   "finding": "F2",
+   "title": "A speculative claim loses its label",
+   "story": "The Hall of Records attribution no longer assigns a tier.",
+   "harm": "The one speculative element in the scene is drawn like the documented ones.",
+   "scene": "cases/clean.x3d",
+   "domain": "cases/no-tier.domain.ttl",
+   "changed": {
+    "file": "domain",
+    "was": "crm:P140_assigned_attribute_to h:HallOfRecords ; crm:P141_assigned h:tierSpeculative",
+    "now": "crm:P140_assigned_attribute_to h:HallOfRecords ; crm:P141_assigned unit:M"
+   }
+  },
+  {
+   "id": "ghost-def",
+   "family": "record",
+   "finding": "F2",
+   "title": "The record points at nothing",
+   "story": "The record names a scene node that does not exist.",
+   "harm": "A measurement exists on paper and can never be checked against the drawing.",
+   "scene": "cases/clean.x3d",
+   "domain": "cases/ghost-def.domain.ttl",
+   "changed": {
+    "file": "domain",
+    "was": "sc:OsirisShaftA",
+    "now": "sc:NoSuchDEF"
+   }
+  }
+ ]
+}

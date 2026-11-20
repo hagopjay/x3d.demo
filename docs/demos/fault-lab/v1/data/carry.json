@@ -1,0 +1,419 @@
+{
+ "schema": "fault-lab.carry/1",
+ "instruments": {
+  "gltf_converter": "loom-gltf x3dsem 0.1.0",
+  "gltf_validator": "Khronos glTF-Validator 2.0.0-dev.3.10",
+  "usd_converter": "fault-lab x3d_usd 0.1 (this demo's own)",
+  "usd_validator": "pxr.UsdValidation (every registered validator)"
+ },
+ "meaning": {
+  "erased": "converted file identical to the clean twin's (provenance hashes aside): the mistake can no longer be found downstream",
+  "carried": "converted file differs from the clean twin's: the mistake travelled",
+  "refused": "the converter stopped"
+ },
+ "cases": {
+  "clean": {
+   "gltf": {
+    "converted": true,
+    "nodes": 25,
+    "meshes": 12,
+    "materials": 12,
+    "skipped": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "WorldInfo": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "Khronos glTF-Validator 2.0.0-dev.3.10",
+     "errors": 0,
+     "warnings": 0,
+     "infos": 1,
+     "messages": []
+    },
+    "body_sha256": "61a1316ca6f83dd6",
+    "fate": "clean"
+   },
+   "usd": {
+    "converted": true,
+    "prims": 63,
+    "prim_types": {
+     "Xform": 26,
+     "Scope": 1,
+     "Material": 12,
+     "Shader": 12,
+     "Cube": 12
+    },
+    "not_converted": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "pxr.UsdValidation (every registered validator)",
+     "validators_run": 30,
+     "errors": 0
+    },
+    "body_sha256": "6c10ac8cdd9eaad9",
+    "fate": "clean"
+   }
+  },
+  "two-materials": {
+   "gltf": {
+    "converted": true,
+    "nodes": 25,
+    "meshes": 12,
+    "materials": 12,
+    "skipped": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "WorldInfo": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "Khronos glTF-Validator 2.0.0-dev.3.10",
+     "errors": 0,
+     "warnings": 0,
+     "infos": 1,
+     "messages": []
+    },
+    "body_sha256": "61a1316ca6f83dd6",
+    "fate": "erased"
+   },
+   "usd": {
+    "converted": true,
+    "prims": 63,
+    "prim_types": {
+     "Xform": 26,
+     "Scope": 1,
+     "Material": 12,
+     "Shader": 12,
+     "Cube": 12
+    },
+    "not_converted": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "pxr.UsdValidation (every registered validator)",
+     "validators_run": 30,
+     "errors": 0
+    },
+    "body_sha256": "6c10ac8cdd9eaad9",
+    "fate": "erased"
+   }
+  },
+  "two-geometries": {
+   "gltf": {
+    "converted": true,
+    "nodes": 25,
+    "meshes": 12,
+    "materials": 12,
+    "skipped": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "WorldInfo": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "Khronos glTF-Validator 2.0.0-dev.3.10",
+     "errors": 0,
+     "warnings": 0,
+     "infos": 1,
+     "messages": []
+    },
+    "body_sha256": "61a1316ca6f83dd6",
+    "fate": "erased"
+   },
+   "usd": {
+    "converted": true,
+    "prims": 64,
+    "prim_types": {
+     "Xform": 26,
+     "Scope": 1,
+     "Material": 12,
+     "Shader": 12,
+     "Cube": 12,
+     "Sphere": 1
+    },
+    "not_converted": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "pxr.UsdValidation (every registered validator)",
+     "validators_run": 30,
+     "errors": 0
+    },
+    "body_sha256": "542572c55f2b6733",
+    "fate": "carried"
+   }
+  },
+  "angkor-swapped": {
+   "gltf": {
+    "converted": true,
+    "nodes": 25,
+    "meshes": 12,
+    "materials": 12,
+    "skipped": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "WorldInfo": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "Khronos glTF-Validator 2.0.0-dev.3.10",
+     "errors": 0,
+     "warnings": 0,
+     "infos": 1,
+     "messages": []
+    },
+    "body_sha256": "61a1316ca6f83dd6",
+    "fate": "erased"
+   },
+   "usd": {
+    "converted": true,
+    "prims": 63,
+    "prim_types": {
+     "Xform": 26,
+     "Scope": 1,
+     "Material": 12,
+     "Shader": 12,
+     "Cube": 12
+    },
+    "not_converted": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "pxr.UsdValidation (every registered validator)",
+     "validators_run": 30,
+     "errors": 0
+    },
+    "body_sha256": "6c10ac8cdd9eaad9",
+    "fate": "erased"
+   }
+  },
+  "giza-swapped": {
+   "gltf": {
+    "converted": true,
+    "nodes": 25,
+    "meshes": 12,
+    "materials": 12,
+    "skipped": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "WorldInfo": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "Khronos glTF-Validator 2.0.0-dev.3.10",
+     "errors": 0,
+     "warnings": 0,
+     "infos": 1,
+     "messages": []
+    },
+    "body_sha256": "61a1316ca6f83dd6",
+    "fate": "erased"
+   },
+   "usd": {
+    "converted": true,
+    "prims": 63,
+    "prim_types": {
+     "Xform": 26,
+     "Scope": 1,
+     "Material": 12,
+     "Shader": 12,
+     "Cube": 12
+    },
+    "not_converted": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "pxr.UsdValidation (every registered validator)",
+     "validators_run": 30,
+     "errors": 0
+    },
+    "body_sha256": "6c10ac8cdd9eaad9",
+    "fate": "erased"
+   }
+  },
+  "scaled-shaft": {
+   "gltf": {
+    "converted": true,
+    "nodes": 25,
+    "meshes": 12,
+    "materials": 12,
+    "skipped": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "WorldInfo": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "Khronos glTF-Validator 2.0.0-dev.3.10",
+     "errors": 0,
+     "warnings": 0,
+     "infos": 1,
+     "messages": []
+    },
+    "body_sha256": "5ce4f8b0c5e8c9ef",
+    "fate": "carried"
+   },
+   "usd": {
+    "converted": true,
+    "prims": 63,
+    "prim_types": {
+     "Xform": 26,
+     "Scope": 1,
+     "Material": 12,
+     "Shader": 12,
+     "Cube": 12
+    },
+    "not_converted": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "pxr.UsdValidation (every registered validator)",
+     "validators_run": 30,
+     "errors": 0
+    },
+    "body_sha256": "4dc4256f97b7524a",
+    "fate": "carried"
+   }
+  },
+  "cylinder-shaft": {
+   "gltf": {
+    "converted": true,
+    "nodes": 25,
+    "meshes": 11,
+    "materials": 11,
+    "skipped": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "WorldInfo": 1,
+     "GeoViewpoint": 2,
+     "Cylinder": 1
+    },
+    "validator": {
+     "tool": "Khronos glTF-Validator 2.0.0-dev.3.10",
+     "errors": 0,
+     "warnings": 0,
+     "infos": 1,
+     "messages": []
+    },
+    "body_sha256": "956b216bb4ee16b2",
+    "fate": "carried"
+   },
+   "usd": {
+    "converted": true,
+    "prims": 63,
+    "prim_types": {
+     "Xform": 26,
+     "Scope": 1,
+     "Material": 12,
+     "Shader": 12,
+     "Cylinder": 1,
+     "Cube": 11
+    },
+    "not_converted": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "pxr.UsdValidation (every registered validator)",
+     "validators_run": 30,
+     "errors": 0
+    },
+    "body_sha256": "62cde01bfd9e2fe9",
+    "fate": "carried"
+   }
+  },
+  "secret-tunnel": {
+   "gltf": {
+    "converted": true,
+    "nodes": 27,
+    "meshes": 13,
+    "materials": 13,
+    "skipped": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "WorldInfo": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "Khronos glTF-Validator 2.0.0-dev.3.10",
+     "errors": 0,
+     "warnings": 0,
+     "infos": 1,
+     "messages": []
+    },
+    "body_sha256": "aeecc7a85b5188dd",
+    "fate": "carried"
+   },
+   "usd": {
+    "converted": true,
+    "prims": 68,
+    "prim_types": {
+     "Xform": 28,
+     "Scope": 1,
+     "Material": 13,
+     "Shader": 13,
+     "Cube": 13
+    },
+    "not_converted": {
+     "NavigationInfo": 1,
+     "Background": 1,
+     "Viewpoint": 3,
+     "DirectionalLight": 1,
+     "GeoViewpoint": 2
+    },
+    "validator": {
+     "tool": "pxr.UsdValidation (every registered validator)",
+     "validators_run": 30,
+     "errors": 0
+    },
+    "body_sha256": "8d08a5cf79eaf4be",
+    "fate": "carried"
+   }
+  }
+ }
+}

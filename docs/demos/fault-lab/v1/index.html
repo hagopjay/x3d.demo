@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Fault Lab: ten planted mistakes, and who notices</title>
+<meta name="description" content="Ten mistakes planted in one heritage twin. Before the ontology fixes the checkers caught 1. After, 9. glTF and USD validators flag none. Every number names its instrument.">
+<style>
+:root{--bg:#06080e;--p1:#0c111c;--p2:#121a2a;--line:#1f2a40;--ink:#e8eefb;--dim:#8d9bb8;--ok:#3fe0c5;--bad:#ff5d73;--warn:#ffb547;--vio:#b78bff;--blue:#6fb1ff;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+ background-image:radial-gradient(1200px 500px at 15% -10%,rgba(63,224,197,.13),transparent 60%),radial-gradient(900px 500px at 95% 0%,rgba(183,139,255,.12),transparent 60%)}
+a{color:var(--blue)}
+code,.mono{font-family:var(--mono);font-size:.86em}
+.wrap{max-width:1500px;margin:0 auto;padding:0 20px}
+header.hero{padding:38px 0 18px}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--ok)}
+h1{font-size:clamp(30px,5vw,60px);line-height:1.02;margin:.15em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--ok),var(--vio));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:860px;color:#c4cfe6;font-size:17px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:24px 0 8px}
+.stat{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden}
+.stat b{display:block;font-size:40px;line-height:1;font-weight:800;letter-spacing:-.02em}
+.stat span{color:var(--dim);font-size:13px;display:block;margin-top:6px}
+.stat i{font-style:normal;font-size:11px;color:#6d7a96;display:block;margin-top:6px;font-family:var(--mono)}
+.stat.ok b{color:var(--ok)}.stat.bad b{color:var(--bad)}.stat.warn b{color:var(--warn)}.stat.vio b{color:var(--vio)}
+.meter{height:10px;border-radius:6px;background:#1a2235;overflow:hidden;margin-top:10px;display:flex;gap:2px}
+.meter u{flex:1;background:#27324b;border-radius:2px;transition:background .5s}
+.meter u.on{background:var(--ok)}.meter u.was{background:var(--warn)}
+h2{font-size:24px;margin:44px 0 6px;letter-spacing:-.01em}
+h2 small{font-size:13px;color:var(--dim);font-weight:400;margin-left:8px}
+p.sub{color:var(--dim);margin:0 0 14px;max-width:900px}
+.lab{display:grid;grid-template-columns:270px minmax(0,1fr) 430px;gap:14px;align-items:start}
+@media(max-width:1180px){.lab{grid-template-columns:230px minmax(0,1fr)}.insp{grid-column:1/-1}}
+@media(max-width:720px){.lab{grid-template-columns:1fr}}
+.rail{display:flex;flex-direction:column;gap:6px}
+.case{all:unset;cursor:pointer;display:block;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--p1);transition:.15s}
+.case:hover{border-color:#3a4a6b}.case:focus-visible{outline:2px solid var(--blue)}
+.case[aria-pressed=true]{border-color:var(--ok);background:linear-gradient(90deg,rgba(63,224,197,.14),var(--p1))}
+.case .t{font-weight:600;font-size:14px;display:block}
+.case .m{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
+.chip{font:600 10.5px/1 var(--mono);padding:4px 6px;border-radius:5px;border:1px solid var(--line);color:var(--dim);white-space:nowrap}
+.chip.ok{color:#06251f;background:var(--ok);border-color:var(--ok)}.chip.bad{color:#fff;background:#8e2536;border-color:var(--bad)}
+.chip.warn{color:#2b1c00;background:var(--warn);border-color:var(--warn)}.chip.vio{color:var(--vio);border-color:#49397a}
+.stage{background:var(--p1);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.tabs{display:flex;gap:4px;padding:8px;border-bottom:1px solid var(--line);flex-wrap:wrap;align-items:center}
+.tab{all:unset;cursor:pointer;padding:6px 12px;border-radius:8px;font-size:13px;color:var(--dim);border:1px solid transparent}
+.tab[aria-selected=true]{color:var(--ink);background:var(--p2);border-color:var(--line)}.tab:focus-visible{outline:2px solid var(--blue)}
+.tabs .sp{flex:1}.tabs .rig{font:11px var(--mono);color:#6d7a96}
+.view{position:relative;aspect-ratio:16/10;background:#000}
+.view>*{position:absolute;inset:0;width:100%;height:100%}
+.view [hidden]{display:none!important}
+x3d-canvas{display:block}
+#bab{outline:none;touch-action:none}
+#boot{display:grid;place-items:center;color:var(--dim);background:#03050a;z-index:3;font-size:14px;text-align:center;padding:16px;overflow:auto}
+#boot.done{display:none}
+.hud{position:absolute;inset:auto 10px 10px 10px;height:auto;width:auto;z-index:2;display:flex;gap:8px;align-items:flex-end;pointer-events:none}
+.hud .card{pointer-events:auto;background:rgba(6,8,14,.86);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12.5px;max-width:min(100%,560px);max-height:150px;overflow:auto}
+.hud pre{margin:4px 0 0;font:11px/1.35 var(--mono);color:#bfe9ff;white-space:pre-wrap}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.compare figure{margin:0;position:relative}
+.compare img{width:100%;display:block;border-radius:8px;border:1px solid var(--line)}
+.compare figcaption{font-size:12px;color:var(--dim);margin-top:4px}
+.compare .box{position:absolute;border:2px solid var(--bad);border-radius:4px;box-shadow:0 0 0 2000px rgba(0,0,0,.18);pointer-events:none}
+.compare .fr{position:relative;overflow:hidden;border-radius:8px}
+.insp{background:var(--p1);border:1px solid var(--line);border-radius:14px;padding:16px}
+.insp h3{margin:0 0 4px;font-size:20px}
+.insp .harm{border-left:3px solid var(--warn);padding:6px 10px;background:rgba(255,181,71,.07);border-radius:0 8px 8px 0;margin:10px 0;font-size:14px}
+.diff{font:12px/1.45 var(--mono);background:#070b14;border:1px solid var(--line);border-radius:8px;padding:8px;overflow:auto;max-height:150px;margin:8px 0}
+.diff .was{color:#ff9aa8}.diff .now{color:#8ff0dc}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+td.c{text-align:center;white-space:nowrap}
+.yes{color:var(--ok);font-weight:700}.no{color:#5c6984}.miss{color:var(--bad);font-weight:700}
+.msg{color:#b9c6e0;font-size:12px;margin-top:3px}
+.board{overflow:auto;background:var(--p1);border:1px solid var(--line);border-radius:14px}
+.board td.cell{text-align:center;font:600 12px var(--mono)}
+.board tr.sel td{background:rgba(63,224,197,.07)}
+.board tbody tr{cursor:pointer}
+.dot{display:inline-block;width:22px;height:22px;border-radius:6px;line-height:22px;font-size:12px}
+.dot.y{background:var(--ok);color:#06251f}.dot.n{background:#182033;color:#4b5873}.dot.new{box-shadow:0 0 0 2px var(--vio)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-left:10px;vertical-align:middle}
+.seg button{all:unset;cursor:pointer;padding:5px 12px;font-size:13px;color:var(--dim)}
+.seg button[aria-pressed=true]{background:var(--ok);color:#06251f;font-weight:700}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}
+.panel{background:var(--p1);border:1px solid var(--line);border-radius:14px;padding:16px}
+.panel h3{margin:0 0 8px;font-size:16px}
+.bar{height:8px;background:#1a2235;border-radius:5px;overflow:hidden;min-width:80px}
+.bar u{display:block;height:100%;background:linear-gradient(90deg,var(--ok),var(--vio))}
+.bar.zero u{background:var(--bad);width:3px!important}
+.fate{font:700 11px var(--mono);padding:3px 7px;border-radius:5px}
+.fate.erased{background:#4a1522;color:#ff9aa8}.fate.carried{background:#3a2c08;color:var(--warn)}.fate.none{background:#182033;color:var(--dim)}
+footer{color:var(--dim);font-size:13px;padding:40px 0 60px}
+ul.tight{margin:6px 0;padding-left:18px}ul.tight li{margin:3px 0}
+pre.cmd{background:#070b14;border:1px solid var(--line);border-radius:8px;padding:10px;overflow:auto;font:12px/1.5 var(--mono);color:#bfe9ff}
+</style>
+<script src="../../../lib/gfx-guard-v3.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="kick">x3d.io · ontology error correction · Fault Lab v1</div>
+  <h1>Ten planted mistakes.<br><em>Who notices?</em></h1>
+  <p class="lede">One small heritage twin of the Giza plateau: an X3D scene joined to a CIDOC-CRM record. We broke it ten ways, one edit each, the way real files get broken. Then we asked every checker, before and after the ontology review fixes, and carried each broken file into glTF and USD to see what the downstream tools say.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<h2>The lab <small>pick a fault, see it, see who caught it</small></h2>
+<div class="lab">
+  <nav class="rail" id="rail" aria-label="Fault cases"></nav>
+  <section class="stage">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="xite" aria-selected="true">X3D in X_ITE</button>
+      <button class="tab" role="tab" data-tab="bab" aria-selected="false">glTF in Babylon.js</button>
+      <span class="sp"></span><span class="rig" id="rigline"></span>
+    </div>
+    <div class="view" id="view">
+      <div id="boot">Starting the 3D view…</div>
+      <x3d-canvas id="xite" splashScreen="false" notifications="false" timings="false" update="auto"></x3d-canvas>
+      <canvas id="bab" hidden tabindex="0" aria-label="glTF scene in Babylon.js"></canvas>
+      <div class="hud"><div class="card" id="hud"></div></div>
+    </div>
+    <div class="compare" id="compare"></div>
+  </section>
+  <aside class="insp" id="insp" aria-live="polite"></aside>
+</div>
+
+<h2>The board <small>every fault against every checker</small>
+  <span class="seg" role="group" aria-label="Which validators"><button id="bBefore" aria-pressed="false">Before the fixes</button><button id="bAfter" aria-pressed="true">After</button></span></h2>
+<p class="sub" id="boardsub"></p>
+<div class="board"><table id="board"></table></div>
+
+<h2>Downstream <small>the same broken files, converted</small></h2>
+<p class="sub">Each of the seven faults that live in the X3D file was converted to glTF and to USD, then handed to that format's own validator. A fault is <b>erased</b> when the converted file is identical to the clean twin's: the mistake is gone from the file and so is every chance of finding it. It is <b>carried</b> when it travels.</p>
+<div class="board"><table id="down"></table></div>
+
+<h2>Meaning in transit <small>how much of the metadata arrives</small></h2>
+<p class="sub" id="fmtq"></p>
+<div class="board"><table id="fmt"></table></div>
+
+<h2>What was fixed <small>the change behind each new catch</small></h2>
+<div class="grid2" id="fixes"></div>
+
+<h2>Receipts and limits</h2>
+<div class="grid2">
+  <div class="panel"><h3>Instruments</h3><table id="inst"></table></div>
+  <div class="panel"><h3>What this does not show</h3>
+    <ul class="tight">
+      <li><b>One fault is still missed.</b> Giza's latitude and longitude are both under 90, so swapping them gives a legal coordinate about 230 km away. A range check cannot see it. It needs a second source for where the site is.</li>
+      <li><b>Planted, not found.</b> We wrote these ten faults ourselves. The catch rate says the checks work on these kinds of mistake, not that 90% of real mistakes are caught.</li>
+      <li><b>The strict record shapes are hand-written</b> for this twin's case (x3d_mcp <code>shapes-strict.ttl</code>). The cardinality and coordinate checks are general.</li>
+      <li><b>The USD converter is this demo's own</b>, built to measure what USD can hold. It is not a general exporter.</li>
+      <li><b>Pixel counts are from software rendering</b> (SwiftShader). A GPU will differ by a few pixels at edges.</li>
+      <li><b>Blender keeps none of the three metadata trees.</b> That is a measured gap in the add-on's importer, recorded here and not yet fixed.</li>
+    </ul>
+  </div>
+  <div class="panel"><h3>Run it yourself</h3>
+<pre class="cmd">python build/cases.py        PATH/x3d_mcp
+python build/run_checks.py   PATH/x3d_mcp after --strict
+python build/carry.py        PATH/x3d.loom WORK
+python build/blender_leg.py  PATH/x3d-blender-io/source cases/clean.x3d OUT
+node   build/render.mjs</pre>
+    <p class="sub">Data: <a href="data/cases.json">cases</a> · <a href="data/checks-before.json">checks before</a> · <a href="data/checks-after.json">checks after</a> · <a href="data/carry.json">carry</a> · <a href="data/render.json">render</a> · <a href="data/formats.json">formats</a> · <a href="data/gltf-semantic.json">glTF rules</a> · <a href="data/usd-semantic.json">USD report</a> · <a href="data/blender-leg.json">Blender leg</a></p>
+    <p class="sub">Files: <span id="dl"></span></p>
+  </div>
+</div>
+<footer>Fault Lab v1 · 20 Nov 2026 · part of <a href="../../../">x3d.demo</a> · review and fixes: <a href="https://hagopjay.github.io/x3d.docs/docs/ontology-review-fixes.html">ontology review fix pass</a>. Scene geometry is schematic and CC0. X_ITE and Babylon.js are vendored under their own licences.</footer>
+</div>
+
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script>
+'use strict';
+const $ = s => document.querySelector(s), esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const J = f => fetch('data/' + f + '.json').then(r => { if (!r.ok) throw new Error(f + ' ' + r.status); return r.json(); });
+const CHECKERS = [
+  { key: 'xsd', name: 'XSD', long: 'X3D 4.0 schema', n: c => c.xsd.valid ? 0 : c.xsd.errors.length, msgs: c => c.xsd.errors },
+  { key: 'semantic', name: 'Semantic', long: 'x3d_mcp semantic checks', n: c => c.semantic.errors.length, msgs: c => c.semantic.errors.map(e => `[${e.check}] ${e.message}`) },
+  { key: 'shacl_core', name: 'SHACL core', long: 'X3D core shapes', n: c => c.shacl_core.length, msgs: c => c.shacl_core.map(e => `[${e.shape}] ${e.message}`) },
+  { key: 'twin', name: 'Twin shapes', long: 'scene joined to the CIDOC-CRM record', n: c => c.twin.length, msgs: c => c.twin.map(e => `[${e.shape}] ${e.message}`) },
+];
+const FIXES = [
+  { id: 'F1', title: 'One node per single-node field', pr: 'x3d_mcp #28', what: 'X3D says Appearance.material and Shape.geometry hold one node. Nothing checked it: two materials passed the schema, the semantic checks and the core shapes. Now a semantic check (sfnode-multiple) and generated cardinality shapes read the limit from X3DUOM for every such field.', cases: ['two-materials', 'two-geometries'] },
+  { id: 'F2', title: 'Record shapes that can fail', pr: 'x3d_mcp #28', what: 'The heritage twin\'s shapes caught the 2 faults they were written beside and passed 8 of 8 new ones. Strict shapes now compare drawn size with the documented measurement, require a unit of metres, a tier on every attribution, a record behind every drawn element, and a scene node behind every record.', cases: ['scaled-shaft', 'cylinder-shaft', 'secret-tunnel', 'feet-not-metres', 'no-tier', 'ghost-def'] },
+  { id: 'F23', title: 'Coordinates that exist', pr: 'x3d_mcp #29', what: 'A geographic position with latitude beyond 90 degrees is not a place. The new geo-coordinate-range check names the field and suggests the likely swap. It cannot catch a swap where both numbers are legal, and says so.', cases: ['angkor-swapped', 'giza-swapped'] },
+];
+const S = { sel: 'clean', tab: 'xite', board: 'after', ready: false };
+let D, xb, bab = null, guardX = null, guardB = null;
+
+const caught = (which, id) => CHECKERS.some(k => k.n(D[which].cases[id]) > 0);
+const faults = () => D.cases.cases.filter(c => c.id !== 'clean');
+const isScene = c => c.id === 'clean' || (c.changed && c.changed.file === 'scene');
+function eye(c) { // best view by changed pixels; record faults are not drawn at all
+  if (!isScene(c)) return { px: 0, why: 'the record is not drawn', view: 'V_Osiris' };
+  if (c.id === 'clean') return { px: 0, view: 'V_Overview' };
+  const r = D.render.cases[c.id]; let best = null;
+  for (const v of D.render.views) if (!best || r[v].pixels > best.pixels) best = { ...r[v], view: v };
+  return { px: best.pixels, view: best.view, bbox: best.bbox, size: best.size, total: best.size[0] * best.size[1] };
+}
+
+function stats() {
+  const f = faults(), nb = f.filter(c => caught('before', c.id)).length, na = f.filter(c => caught('after', c.id)).length;
+  const sc = f.filter(isScene), dv = sc.filter(c => D.carry.cases[c.id].gltf.validator?.errors || D.carry.cases[c.id].usd.validator?.errors).length;
+  const er = sc.filter(c => D.carry.cases[c.id].gltf.fate === 'erased').length, inv = f.filter(c => eye(c).px === 0).length;
+  const meter = (n, w) => '<div class="meter">' + f.map((_, i) => `<u class="${i < n ? (w ? 'was' : 'on') : ''}"></u>`).join('') + '</div>';
+  $('#stats').innerHTML = `
+   <div class="stat warn"><b>${nb} of ${f.length}</b><span>faults caught before the fixes</span>${meter(nb, 1)}<i>x3d_mcp ${D.before.x3d_mcp_commit}</i></div>
+   <div class="stat ok"><b>${na} of ${f.length}</b><span>caught after the fixes, clean twin still 0 findings</span>${meter(na)}<i>x3d_mcp ${D.after.x3d_mcp_commit} · pyshacl ${D.after.instruments.pyshacl}</i></div>
+   <div class="stat bad"><b>${dv} of ${sc.length}</b><span>flagged by the glTF or USD validator after conversion</span><i>${esc(D.carry.instruments.gltf_validator)} · pxr.UsdValidation</i></div>
+   <div class="stat vio"><b>${er} of ${sc.length}</b><span>erased by the glTF conversion: the output is identical to the clean file</span><i>${esc(D.carry.instruments.gltf_converter)}</i></div>
+   <div class="stat"><b>${inv} of ${f.length}</b><span>change no pixel at all, so no reviewer looking at the render can catch them</span><i>${esc(D.render.rig.engine)} · ${esc(D.render.rig.browser)}</i></div>`;
+}
+
+function rail() {
+  $('#rail').innerHTML = D.cases.cases.map(c => {
+    const b = c.id === 'clean' ? '' : `<span class="chip ${caught('before', c.id) ? 'ok' : ''}">before ${caught('before', c.id) ? '✓' : '·'}</span><span class="chip ${caught('after', c.id) ? 'ok' : 'bad'}">after ${caught('after', c.id) ? '✓' : '✗'}</span>`;
+    return `<button class="case" data-id="${c.id}" aria-pressed="${c.id === S.sel}"><span class="t">${esc(c.title)}</span><span class="m">${c.finding ? `<span class="chip vio">${c.finding}</span>` : '<span class="chip ok">reference</span>'}<span class="chip">${isScene(c) ? 'scene' : 'record'}</span>${b}</span></button>`;
+  }).join('');
+}
+
+function inspector() {
+  const c = D.cases.cases.find(x => x.id === S.sel), e = eye(c), cr = D.carry.cases[c.id];
+  let h = `<h3>${esc(c.title)}</h3><div>${esc(c.story)}</div>`;
+  if (c.harm) h += `<div class="harm"><b>Why it matters.</b> ${esc(c.harm)}</div>`;
+  if (c.changed) h += `<div class="diff"><div class="was">- ${esc(c.changed.was.slice(0, 400))}</div><div class="now">+ ${esc(c.changed.now.slice(0, 500))}</div></div><div class="msg">One edit in the ${c.changed.file === 'scene' ? 'X3D scene' : 'CIDOC-CRM record (Turtle)'}.</div>`;
+  h += `<table style="margin-top:12px"><tr><th>Who notices</th><th class="c">Before</th><th class="c">After</th></tr>`;
+  if (c.id !== 'clean') h += `<tr><td>The eye<div class="msg">${e.why ? esc(e.why) : `${e.px.toLocaleString()} of ${e.total.toLocaleString()} pixels differ from the clean render (${esc(e.view)})`}</div></td><td class="c" colspan="2">${e.px ? '<span class="yes">if you look closely</span>' : '<span class="no">nothing to see</span>'}</td></tr>`;
+  for (const k of CHECKERS) {
+    const nb = k.n(D.before.cases[c.id]), na = k.n(D.after.cases[c.id]), m = k.msgs(D.after.cases[c.id]);
+    h += `<tr><td>${k.name}<div class="msg">${esc(k.long)}</div>${m.map(x => `<div class="msg mono">${esc(x)}</div>`).join('')}</td><td class="c">${nb ? `<span class="yes">${nb}</span>` : '<span class="no">silent</span>'}</td><td class="c">${na ? `<span class="yes">${na}</span>` : '<span class="no">silent</span>'}</td></tr>`;
+  }
+  h += '</table>';
+  if (c.id === 'clean') h += `<p class="msg">The control. Every checker returns 0 findings on both versions, so nothing below is a false alarm on this file.</p>`;
+  else {
+    const v = caught('after', c.id) ? (caught('before', c.id) ? 'Caught before and after.' : '<span class="yes">New catch.</span> Silent before the fixes.') : '<span class="miss">Still missed.</span> Both numbers are legal coordinates, so no range check can object. This is the stated limit of the check.';
+    h += `<p style="margin:10px 0 0">${v}</p>`;
+    if (cr) h += `<table style="margin-top:10px"><tr><th>Downstream</th><th>Fault</th><th>Validator</th></tr>
+      <tr><td>glTF</td><td><span class="fate ${cr.gltf.fate}">${cr.gltf.fate}</span></td><td>${cr.gltf.validator.errors} errors, ${cr.gltf.validator.warnings} warnings</td></tr>
+      <tr><td>USD</td><td><span class="fate ${cr.usd.fate}">${cr.usd.fate}</span></td><td>${cr.usd.validator.errors} errors of ${cr.usd.validator.validators_run} validators</td></tr></table>`;
+    else h += `<p class="msg">The record file does not travel in either converter, so this fault has no downstream form at all. It can only be caught where the scene and the record are joined.</p>`;
+  }
+  $('#insp').innerHTML = h;
+  // stills
+  if (isScene(c) && c.id !== 'clean') {
+    const fig = (id, cap, box) => `<figure><div class="fr"><img src="stills/${id}.${e.view}.jpg" alt="${esc(cap)}" loading="lazy">${box && e.bbox ? `<span class="box" style="left:${e.bbox[0] / e.size[0] * 100}%;top:${e.bbox[1] / e.size[1] * 100}%;width:${(e.bbox[2] - e.bbox[0] + 1) / e.size[0] * 100}%;height:${(e.bbox[3] - e.bbox[1] + 1) / e.size[1] * 100}%"></span>` : ''}</div><figcaption>${esc(cap)}</figcaption></figure>`;
+    $('#compare').innerHTML = fig('clean', 'Clean twin, ' + e.view) + fig(c.id, e.px ? `This fault: ${e.px.toLocaleString()} pixels differ (boxed)` : 'This fault: 0 pixels differ', true);
+  } else $('#compare').innerHTML = `<figure style="grid-column:1/-1"><figcaption>${c.id === 'clean' ? 'The reference render. Pick a fault to compare it against.' : 'This fault lives in the record, not the drawing. The 3D view shows the unchanged scene, which is the point: it looks perfect.'}</figcaption></figure>`;
+  document.querySelectorAll('#board tbody tr').forEach(r => r.classList.toggle('sel', r.dataset.id === S.sel));
+}
+
+function board() {
+  const which = S.board, f = faults();
+  $('#bBefore').setAttribute('aria-pressed', which === 'before'); $('#bAfter').setAttribute('aria-pressed', which === 'after');
+  const n = f.filter(c => caught(which, c.id)).length;
+  $('#boardsub').innerHTML = `Showing x3d_mcp <code>${D[which].x3d_mcp_commit}</code> (${which} the fixes): <b>${n} of ${f.length}</b> faults caught. A violet ring marks a catch that did not exist before. Twin shapes: <code>${esc(D[which].instruments.twin_shapes)}</code>.`;
+  $('#board').innerHTML = `<thead><tr><th>Fault</th><th>Lives in</th><th class="c">Pixels changed</th>${CHECKERS.map(k => `<th class="c">${k.name}</th>`).join('')}<th class="c">Verdict</th></tr></thead><tbody>` +
+    D.cases.cases.map(c => {
+      const e = eye(c), cells = CHECKERS.map(k => { const v = k.n(D[which].cases[c.id]), nw = which === 'after' && v && !k.n(D.before.cases[c.id]); return `<td class="cell"><span class="dot ${v ? 'y' : 'n'} ${nw ? 'new' : ''}">${v || '·'}</span></td>`; }).join('');
+      const ver = c.id === 'clean' ? '<span class="no">clean, 0 findings</span>' : caught(which, c.id) ? '<span class="yes">caught</span>' : '<span class="miss">missed</span>';
+      return `<tr data-id="${c.id}" class="${c.id === S.sel ? 'sel' : ''}"><td><b>${esc(c.title)}</b>${c.finding ? ` <span class="chip vio">${c.finding}</span>` : ''}</td><td>${isScene(c) ? 'scene' : 'record'}</td><td class="c mono">${c.id === 'clean' ? '·' : e.why ? 'not drawn' : e.px.toLocaleString()}</td>${cells}<td class="c">${ver}</td></tr>`;
+    }).join('') + '</tbody>';
+}
+
+function downstream() {
+  const rows = faults().filter(isScene).map(c => { const r = D.carry.cases[c.id];
+    const cell = (x, t) => `<td><span class="fate ${x.fate}">${x.fate}</span></td><td class="mono">${t}</td>`;
+    return `<tr><td><b>${esc(c.title)}</b></td><td class="c">${caught('after', c.id) ? '<span class="yes">caught</span>' : '<span class="miss">missed</span>'}</td>${cell(r.gltf, r.gltf.validator.errors + ' errors')}${cell(r.usd, r.usd.validator.errors + ' errors')}</tr>`; }).join('');
+  $('#down').innerHTML = `<thead><tr><th>Fault in the X3D file</th><th class="c">At the X3D source (after)</th><th>In glTF</th><th>${esc(D.carry.instruments.gltf_validator)}</th><th>In USD</th><th>pxr.UsdValidation, ${D.carry.cases.clean.usd.validator.validators_run} validators</th></tr></thead><tbody>${rows}</tbody>`;
+}
+
+function formats() {
+  $('#fmtq').textContent = D.formats.question;
+  $('#fmt').innerHTML = `<thead><tr><th>Format</th><th>Tool</th><th>Trees</th><th>Metadata nodes</th><th>DEF names</th><th>What happened</th></tr></thead><tbody>` + D.formats.rows.map(r => {
+    const bar = ([a, b]) => `<div class="mono">${a} of ${b}</div><div class="bar ${a ? '' : 'zero'}"><u style="width:${a / b * 100}%"></u></div>`;
+    return `<tr><td><b>${esc(r.format)}</b></td><td class="msg">${esc(r.tool)}</td><td>${bar(r.trees)}</td><td>${bar(r.nodes)}</td><td class="msg">${esc(r.defs)}</td><td class="msg">${esc(r.note)}</td></tr>`; }).join('') + '</tbody>';
+}
+
+function fixes() {
+  const title = id => D.cases.cases.find(c => c.id === id).title;
+  $('#fixes').innerHTML = FIXES.map(f => `<div class="panel"><h3><span class="chip vio">${f.id}</span> ${esc(f.title)} <span class="chip">${f.pr}</span></h3><div class="msg" style="font-size:13.5px">${esc(f.what)}</div><ul class="tight">${f.cases.map(id => `<li><a href="?case=${id}" data-go="${id}">${esc(title(id))}</a>: ${caught('after', id) ? (caught('before', id) ? 'caught before and after' : '<span class="yes">new catch</span>') : '<span class="miss">still missed</span>'}</li>`).join('')}</ul></div>`).join('');
+  const i = D.after.instruments, r = D.render.rig, ci = D.carry.instruments;
+  $('#inst').innerHTML = [['Validators before', 'x3d_mcp ' + D.before.x3d_mcp_commit + ', ' + D.before.instruments.twin_shapes], ['Validators after', 'x3d_mcp ' + D.after.x3d_mcp_commit + ', ' + i.twin_shapes], ['SHACL engine', 'pyshacl ' + i.pyshacl + ', rdflib ' + i.rdflib + ', Python ' + D.after.python], ['Schema', i.xsd], ['glTF', ci.gltf_converter + '; ' + ci.gltf_validator], ['USD', ci.usd_converter + '; usd-core ' + D.usd.usd.version], ['Blender', D.bleg.blender + ' (bpy wheel), x3d-blender-io 1040830'], ['Renders', r.engine + ', ' + r.browser + ', ' + r.gl], ['Pixel rule', D.render.threshold + '; clean rendered twice differs by ' + Math.max(...D.render.views.map(v => D.render.control[v].pixels)) + ' pixels']]
+    .map(([a, b]) => `<tr><td>${a}</td><td class="msg">${esc(b)}</td></tr>`).join('');
+  $('#dl').innerHTML = ['cases/clean.x3d', 'cases/clean.domain.ttl', 'assets/gltf/clean.gltf', 'assets/usd/clean.usda', 'assets/blender/blender.glb', 'assets/blender/blender.usda', 'assets/blender/blender.x3d'].map(f => `<a href="${f}" download>${f.split('/').pop()}</a>`).join(' · ');
+}
+
+// ---------- X_ITE ----------
+async function showXite() {
+  const c = D.cases.cases.find(x => x.id === S.sel), view = eye(c).view;
+  let text = await (await fetch(c.scene)).text();
+  const all = text.match(/<Viewpoint\b[^>]*\/>/g) || [], want = all.find(v => v.includes('DEF="' + view + '"'));
+  if (want) { for (const v of all) text = text.replace(v, ''); text = text.replace('<Scene>', '<Scene>' + want + all.filter(v => v !== want).join('')); }
+  await xb.replaceWorld(await xb.createX3DFromString(text));
+  S.xite = c.id;
+  hud();
+}
+// ---------- Babylon ----------
+function loadScript(src) { return new Promise((ok, no) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = () => no(new Error('could not load ' + src)); document.head.appendChild(s); }); }
+async function showBab() {
+  const c = D.cases.cases.find(x => x.id === S.sel), id = isScene(c) ? c.id : 'clean';
+  if (!bab) {
+    guardB = GfxGuard.pane('babylon', { host: 'view', timeoutMs: 25000, title: 'The Babylon.js view', onRetry: () => showBab() });
+    await loadScript('vendor/babylon/babylon.js'); await loadScript('vendor/babylon/babylon.glTF2FileLoader.min.js');
+    const engine = new BABYLON.Engine($('#bab'), true, { preserveDrawingBuffer: true }), scene = new BABYLON.Scene(engine);
+    scene.clearColor = new BABYLON.Color4(.01, .015, .03, 1);
+    const cam = new BABYLON.ArcRotateCamera('cam', Math.PI / 2, Math.PI / 2.15, 46, new BABYLON.Vector3(3, -14, 0), scene);
+    cam.attachControl($('#bab'), true); cam.wheelPrecision = 8; cam.minZ = .5; cam.maxZ = 4000;
+    new BABYLON.HemisphericLight('h', new BABYLON.Vector3(.2, 1, .4), scene).intensity = 1.25;
+    const hl = new BABYLON.HighlightLayer('hl', scene);
+    bab = { engine, scene, cam, hl, root: null, json: null, picked: null };
+    scene.onPointerObservable.add(pi => { if (pi.type === BABYLON.PointerEventTypes.POINTERTAP && pi.pickInfo.hit) pick(pi.pickInfo.pickedMesh); });
+    engine.runRenderLoop(() => scene.render()); addEventListener('resize', () => engine.resize());
+  }
+  if (bab.root) { bab.root.forEach(m => m.dispose(false, true)); bab.root = null; }
+  bab.hl.removeAllMeshes(); bab.picked = null;
+  const url = 'assets/gltf/' + id + '.gltf';
+  bab.json = await (await fetch(url)).json();
+  const res = await BABYLON.SceneLoader.ImportMeshAsync('', 'assets/gltf/', id + '.gltf', bab.scene);
+  bab.root = res.meshes.filter(m => !m.parent); bab.engine.resize();
+  for (const m of res.meshes) if (m.material) { m.material.backFaceCulling = false; if (m.material.alpha < 1) m.material.transparencyMode = 2; }
+  S.bab = id;
+  const shaft = res.transformNodes.concat(res.meshes).find(n => n.name === 'OsirisShaftA');
+  const mesh = shaft && shaft.getChildMeshes()[0]; if (mesh) pick(mesh, true); else hud();
+  await bab.scene.whenReadyAsync(); guardB.ready();
+}
+function pick(mesh, auto) {
+  const P = bab.json.extensions.KHR_xmp_json_ld.packets; let n = mesh, chain = [], hit = null;
+  while (n) { chain.push(n.name); const g = bab.json.nodes.find(x => x.name === n.name); if (!hit && g && g.extensions && g.extensions.KHR_xmp_json_ld) hit = { name: n.name, packet: P[g.extensions.KHR_xmp_json_ld.packet] }; n = n.parent; }
+  bab.hl.removeAllMeshes(); try { bab.hl.addMesh(mesh, BABYLON.Color3.FromHexString('#3fe0c5')); } catch (e) { /* highlight is decoration */ }
+  bab.picked = { mesh: mesh.name, host: hit && hit.name, auto: !!auto }; hud(hit, chain);
+}
+function hud(hit, chain) {
+  const c = D.cases.cases.find(x => x.id === S.sel);
+  if (S.tab === 'xite') { $('#hud').innerHTML = `<b>${esc(c.title)}</b> · the X3D file as X_ITE draws it${isScene(c) ? '' : ' (scene unchanged: the fault is in the record)'}. Drag to orbit.`; return; }
+  const fate = c.id !== 'clean' && isScene(c) ? D.carry.cases[c.id].gltf.fate : null;
+  let h = `<b>glTF of ${esc(isScene(c) ? c.title : 'the clean twin')}</b>${fate ? ` · fault <span class="fate ${fate}">${fate}</span>` : ''} · click a block to read what it carries.`;
+  if (hit) { const p = { ...hit.packet }; delete p['@context']; h += `<div class="msg">Meaning carried on <code>${esc(hit.name)}</code> (KHR_xmp_json_ld):</div><pre>${esc(JSON.stringify(p, null, 1).slice(0, 1400))}</pre>`; }
+  else if (chain) h += `<div class="msg"><code>${esc(chain[0])}</code>: no semantic packet on this block or its parents.</div>`;
+  $('#hud').innerHTML = h;
+}
+
+async function show() {
+  try { if (S.tab === 'xite') { if (xb && S.xite !== S.sel) await showXite(); else hud(); } else await showBab(); }
+  catch (e) { console.error(e); (S.tab === 'xite' ? guardX : guardB)?.fail(e.message || String(e)); }
+}
+function select(id, push) {
+  if (!D.cases.cases.some(c => c.id === id)) id = 'clean';
+  S.sel = id; rail(); inspector();
+  if (push) history.replaceState(null, '', '?case=' + id + (S.tab === 'bab' ? '&view=gltf' : ''));
+  return show();
+}
+function setTab(t) {
+  S.tab = t; document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === t));
+  $('#xite').hidden = t !== 'xite'; $('#bab').hidden = t !== 'bab';
+  $('#rigline').textContent = t === 'xite' ? 'X_ITE ' + (xb ? xb.version : '') : (window.BABYLON ? 'Babylon.js ' + BABYLON.Engine.Version : 'Babylon.js');
+  return show().then(() => { $('#rigline').textContent = t === 'xite' ? 'X_ITE ' + (xb ? xb.version : '') : 'Babylon.js ' + BABYLON.Engine.Version; });
+}
+
+(async () => {
+  const [cases, before, after, carry, render, fmts, usd, bleg] = await Promise.all(['cases', 'checks-before', 'checks-after', 'carry', 'render', 'formats', 'usd-semantic', 'blender-leg'].map(J));
+  D = { cases, before, after, carry, render, formats: fmts, usd, bleg };
+  const q = new URLSearchParams(location.search); S.sel = cases.cases.some(c => c.id === q.get('case')) ? q.get('case') : 'clean';
+  stats(); rail(); board(); downstream(); formats(); fixes(); inspector();
+  $('#rail').addEventListener('click', e => { const b = e.target.closest('.case'); if (b) select(b.dataset.id, true); });
+  $('#board').addEventListener('click', e => { const r = e.target.closest('tr[data-id]'); if (r) { select(r.dataset.id, true); $('.lab').scrollIntoView(); } });
+  $('#fixes').addEventListener('click', e => { const a = e.target.closest('[data-go]'); if (a) { e.preventDefault(); select(a.dataset.go, true); $('.lab').scrollIntoView(); } });
+  document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
+  $('#bBefore').onclick = () => { S.board = 'before'; board(); }; $('#bAfter').onclick = () => { S.board = 'after'; board(); };
+  window.FAULT_LAB = { state: S, select, setTab, get babylon() { return bab; } };
+  // 3D: the boards above work without it, so a graphics failure is confined to the viewer
+  // "ResizeObserver loop completed with undelivered notifications" is a browser notice, not a fault: X_ITE's canvas resizing inside a
+  // fluid grid raises it. gfx-guard-v3 treats every window error before ready as fatal, so this listener (registered first) stops that one.
+  addEventListener('error', e => { if (/^ResizeObserver loop/.test(e.message || '')) e.stopImmediatePropagation(); });
+  if (!GfxGuard.require({ api: 'webgl2', bootId: 'boot', timeoutMs: 25000, title: 'The Fault Lab 3D view', still: 'stills/clean.V_Osiris.jpg', stillAlt: 'The clean twin, side section of the Osiris Shaft' })) { S.ready = true; return; }
+  guardX = GfxGuard.pane('x_ite', { host: 'view', timeoutMs: 25000, title: 'The X_ITE view', onRetry: () => showXite().then(() => guardX.ready(), e => guardX.fail(e.message)) });
+  try {
+    xb = $('#xite').browser; if (!xb) throw new Error('X_ITE did not start');
+    await showXite(); guardX.ready(); GfxGuard.ready(); $('#boot').classList.add('done');
+    if (q.get('view') === 'gltf') await setTab('bab'); else $('#rigline').textContent = 'X_ITE ' + xb.version;
+  } catch (e) { console.error(e); guardX.fail(e.message || String(e)); GfxGuard.fail && GfxGuard.fail(e.message || String(e)); }
+  S.ready = true;
+})().catch(e => { console.error(e); document.getElementById('insp').textContent = 'The page could not load its data: ' + e.message; });
+</script>
+</body>
+</html>
