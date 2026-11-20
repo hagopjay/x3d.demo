@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v74 (2026-11-20)
+- The Demo 66 card now points to The Fault Lab v2 (`docs/demos/fault-lab/v2/`, merged as PR 140) and keeps v1 linked; image `assets/fault-lab-v2.jpg` is v2's own page screenshot cropped to 16:9 (not v1's, whose X_ITE panel is black from a test-server fault). I recounted the check files (1 of 10 before, 9 of 10 after), read the Blender carry rows from the data, ran the page test (24 of 24) and loaded the page headless without errors. I did not rerun the checkers, validators or the Blender run. The earlier v1 card text is replaced on the front page only; page versions v1 to v73 are untouched.
+
 ## v73 (2026-11-20)
 - Front-page card for Demo 66, The Fault Lab (`docs/demos/fault-lab/v1/`, merged as PR 138), with image `assets/fault-lab.jpg` (four of the page's own stills; no Google imagery). I recounted the shipped before and after check files (1 of 10 caught before, 9 of 10 after, clean twin 0 findings), ran the page's own test (22 of 22) and loaded the page headless without errors. I did not rerun the checkers, the glTF and USD validators or the Blender leg. Versions v1 to v72 are untouched.
 
