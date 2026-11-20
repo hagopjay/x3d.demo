@@ -1,0 +1,1036 @@
+{
+ "schema": "x3d.io/giza-sacred-claims/1",
+ "generated_by": "verify_sacred.py",
+ "tools": {
+  "erfa": "2.0.1.5",
+  "numpy": "2.5.5",
+  "catalogue": "HYG v4.1 (David Nash, CC BY-SA 4.0)"
+ },
+ "latitude": 29.979175,
+ "claims": [
+  {
+   "key": "cubit_pi6",
+   "title": "The royal cubit is π/6 of a metre",
+   "wonder": "Divide π by six and you get 0.5236. That is the royal cubit in metres, a unit defined in France in 1791.",
+   "measured": 0.523748,
+   "target": 0.5235987755982988,
+   "unit": "m",
+   "literal_digits": 3,
+   "rel_error": 0.000284997613928073,
+   "grade": "Confirmed (3 digits) / False as design",
+   "verdict": "Petrie's cubit is 20.620 ± 0.005 in = 0.52375 ± 0.00013 m; π/6 = 0.52360 m sits 1.17 Petrie errors below it. Three literal digits agree. The metre was defined 4,300 years later from a survey of the Paris meridian, so the match cannot have been designed; and a 0.52 m cubit is simply forearm-sized.",
+   "source": "Petrie 1883 s.136 (20.620 ± .005), s.52 (20.632 ± .004 in the King's Chamber)",
+   "rounding_digits": 3,
+   "sigma": 1.1749952889856352,
+   "also": {
+    "base_over_440_m": 0.5235522727272727,
+    "phi2_over_5": 0.523606797749979,
+    "pi_minus_phi2": 0.5235586648398982,
+    "kings_chamber_cubit_m": 0.5240528
+   }
+  },
+  {
+   "key": "khafre_345",
+   "title": "Khafre's pyramid is a 3-4-5 triangle",
+   "wonder": "Half the base, the height and the sloping face of the second pyramid stand as 3 : 4 : 5, the first Pythagorean triple.",
+   "measured": 1.3366529398576974,
+   "target": 1.3333333333333333,
+   "unit": "rise ÷ run",
+   "literal_digits": 3,
+   "rel_error": 0.0024897048932731036,
+   "grade": "Confirmed",
+   "verdict": "Petrie's casing angle is 53°10′ ± 4′; a 3-4-5 face is 53.1301° (53°07′48″), inside his error. The height a 3-4-5 needs is 5649.9 in against his 5,664 ± 13 in (1.08 errors). In Egyptian terms this is a seked of 5¼ palms, the slope the Rhind papyrus uses in its pyramid problems. Designed, most likely, but as a builder's ratio: no evidence they knew 3²+4²=5² as a theorem.",
+   "source": "Petrie 1883 s.66 (base mean 8474.9 in), s.67 (53°10′ ± 4′; height 5,664 ± 13 in)",
+   "rounding_digits": 2,
+   "angle_deg": 53.166666666666664,
+   "angle_pm_deg": 0.06666666666666667,
+   "triple_angle_deg": 53.13010235415598,
+   "sigma_angle": 0.5484646876602639,
+   "base_m": 215.26245999999998,
+   "height_m": 143.8656
+  },
+  {
+   "key": "menkaure_slope",
+   "title": "Menkaure repeats the Great Pyramid's slope",
+   "wonder": "The third pyramid rises at the same 51° and a fraction as the first: the π slope, a third of the size.",
+   "measured": 50.993067183845845,
+   "target": 51.84277341263094,
+   "unit": "degrees",
+   "literal_digits": 1,
+   "rel_error": -0.016390061195647246,
+   "grade": "Likely",
+   "verdict": "Petrie: 51°0′ ± 10′ (or 51°10′30″ from the granite courses); seked 5½ gives 51°50′34″, five of his errors away, and a 5:4 rise-to-run gives 51°20′25″, two errors away. A steep-fifties family slope, yes; the same π slope, not shown.",
+   "source": "Petrie 1883 s.80 (base mean 4153.6 in), s.81 (51°0′ ± 10′; height 2564 ± 15 in)",
+   "rounding_digits": 1,
+   "base_m": 105.50144,
+   "height_m": 65.12559999999999,
+   "seked_5_5": 51.84277341263094,
+   "ratio_5_4": 51.34019174590991
+  },
+  {
+   "key": "kings_chamber",
+   "title": "The King's Chamber hides a 3-4-5 triangle in three dimensions",
+   "wonder": "The room is 10 by 20 cubits. Its height is 5√5 cubits, so the end-wall diagonal is 15, the floor is 20 long, and the diagonal through the room is 25: a 3-4-5 triangle scaled by five.",
+   "measured": 230.09,
+   "target": 230.4491657611283,
+   "unit": "in",
+   "literal_digits": 3,
+   "rel_error": -0.0015585465885374578,
+   "grade": "Confirmed (2:1) / Likely (15-20-25)",
+   "verdict": "Length ÷ width is 2.0000: the 10 × 20 cubit plan is real. The height that closes the triangle is 230.45 in; Petrie measured 230.09 ± 0.15 in from the floor, 2.4 of his errors short (0.16 %). This is Petrie's own theory (squares of 100, 400 and 125 square cubits) and he judged it to agree 'within little more than the small range of the probable errors'. One free choice remains: the walls run 5.11 in below the floor, and from the wall base the triangle fails.",
+   "source": "Petrie 1883 s.155 (206.12, 412.24, 230.09 ± .15 in; floor raised 5.11 ± .12 in above the wall base), s.55 and s.64 (levels)",
+   "rounding_digits": 3,
+   "width_in": 206.12,
+   "length_in": 412.24,
+   "height_in": 230.09,
+   "height_needed_in": 230.4491657611283,
+   "sigma": 2.3944384075220646,
+   "ratio": 2.0,
+   "height_from_floor_levels_in": [
+    227.89999999999986,
+    232.29999999999995
+   ],
+   "height_from_wall_base_levels_in": [
+    233.0999999999999,
+    237.4000000000001
+   ],
+   "end_diagonal_cubits": 14.987016613932848,
+   "space_diagonal_cubits": 24.992212126706576
+  },
+  {
+   "key": "scale_43200_perimeter",
+   "title": "The pyramid is the northern hemisphere at 1 : 43,200",
+   "wonder": "43,200 is half the seconds in a day. Multiply the perimeter by it and you get the Earth's equator.",
+   "measured": 39806.7264,
+   "target": 40075.017,
+   "unit": "km",
+   "literal_digits": 0,
+   "rel_error": -0.006694709574296631,
+   "grade": "Likely (2 digits) / Suspected as design",
+   "verdict": "Perimeter × 43,200 = 39806.7 km against 40,075.0 km: 0.67 % short. The scale that fits the equator is 1 : 43,491, a number nobody has a story for.",
+   "source": "Dash 2015 base; WGS84 equator",
+   "rounding_digits": 2,
+   "best_integer": 43491
+  },
+  {
+   "key": "scale_43200_height",
+   "title": "… and its height is the polar radius",
+   "wonder": "Multiply the height by the same 43,200 and you get the distance from the Earth's centre to the pole.",
+   "measured": 6338.327348083074,
+   "target": 6356.752,
+   "unit": "km",
+   "literal_digits": 2,
+   "rel_error": -0.0028984380571912276,
+   "grade": "Likely (2 digits) / Suspected as design",
+   "verdict": "Height × 43,200 = 6338.3 km against 6,356.8 km: 0.29 % short. Both matches are one fact, not two: the pyramid's perimeter ÷ height is 2π to 3 digits (the seked), and so is equator ÷ radius. Once the scale fits one, the other is free.",
+   "source": "Petrie slope 51°52′; WGS84 polar radius",
+   "rounding_digits": 1,
+   "best_integer": 43326
+  },
+  {
+   "key": "height_au",
+   "title": "The height times a billion is the distance to the Sun",
+   "wonder": "Stack a thousand million Great Pyramids and you reach the Sun.",
+   "measured": 146720540.46488598,
+   "target": 149597870.7,
+   "unit": "km",
+   "literal_digits": 2,
+   "rel_error": -0.01923376463615674,
+   "grade": "Confirmed (2 digits) / False as design",
+   "verdict": "Height × 10⁹ = 146.7 million km against 149.6 million: 1.9 % short, and the Earth's own distance swings between 147.1 and 152.1 million km each year, so it lands below even the closest approach. Powers of ten are free in the metric system the builders did not have.",
+   "source": "IAU 2012 astronomical unit",
+   "rounding_digits": 2
+  },
+  {
+   "key": "orion_belt",
+   "title": "The three pyramids are Orion's belt laid on the ground",
+   "wonder": "Three stars in a slightly bent row, the third one fainter and off the line. Three pyramids in a slightly bent row, the third one smaller and off the line.",
+   "measured": 1.0724729952621883,
+   "target": 0.979078831975545,
+   "unit": "spacing ratio",
+   "literal_digits": 0,
+   "rel_error": 0.09538982994678416,
+   "grade": "Likely (shape) / Suspected as design",
+   "verdict": "Shape: the pyramids' spacing ratio is 1.072 against the belt's 0.979, and the bend is 11.5° against 7.2°. That is a fair likeness, 4 degrees apart in the bend. Against it: the brightest belt star is the middle one (Alnilam, 1.69 mag) while the biggest pyramid is the end one; to lay the belt on the plan you must put south at the top; and three points always make a bent row, so only two numbers (ratio and bend) are tested. Pin the two end stars on Khufu and Menkaure and the middle star lands 28 m from Khafre's centre (its base is 215 m wide); and the pinned map sits 36° away from south-up in 2560 BC, 13° in 10,500 BC. Bauval's wider map (Dahshur, Abu Roash as other Orion stars) is not tested here.",
+   "source": "Petrie 1883 s.92 centre offsets (13931.6, 13165.8; 15170.4, 9450.2 in; the transcription flags the derived distances of this table as needing correction); HYG v4.1 with space motion; ERFA ltp",
+   "rounding_digits": 1,
+   "ground": {
+    "ratio": 1.0724729952621883,
+    "kink_deg": 11.460897705677208,
+    "pa_deg": -142.14819480352398,
+    "turn": "left"
+   },
+   "belt_2560BC": {
+    "ratio": 0.979078831975545,
+    "kink_deg": 7.212563897241073,
+    "pa_deg": -73.50200022702408,
+    "turn": "right",
+    "sep1_deg": 1.3557321124581263,
+    "sep2_deg": 1.3847016891608062
+   },
+   "belt_2000AD": {
+    "ratio": 0.978367190020775,
+    "kink_deg": 7.517238779321369,
+    "pa_deg": -53.07922802013771,
+    "turn": "right",
+    "sep1_deg": 1.3558858760184889,
+    "sep2_deg": 1.3858660529996898
+   },
+   "belt_10500BC": {
+    "ratio": 0.9803553613558305,
+    "kink_deg": 6.681004515064163,
+    "pa_deg": -50.39642166955443,
+    "turn": "right",
+    "sep1_deg": 1.3555163232465792,
+    "sep2_deg": 1.3826785435965807
+   },
+   "magnitudes": {
+    "Alnitak": 1.74,
+    "Alnilam": 1.69,
+    "Mintaka": 2.25
+   },
+   "fit_2560BC": {
+    "alnilam_lands_m": [
+     -307.46589875029997,
+     -347.5726913344626
+    ],
+    "khafre_m": [
+     -334.41132,
+     -353.86264
+    ],
+    "miss_m": 27.66982436769126,
+    "metres_per_degree": 342.2871088940653,
+    "map_rotation_deg": 35.650195030548076,
+    "points": {
+     "Alnitak": [
+      0.0,
+      0.0
+     ],
+     "Alnilam": [
+      -307.46589875029997,
+      -347.5726913344626
+     ],
+     "Mintaka": [
+      -574.4464,
+      -739.1908
+     ]
+    }
+   },
+   "fit_10500BC": {
+    "alnilam_lands_m": [
+     -305.93506255313656,
+     -349.15336386124545
+    ],
+    "khafre_m": [
+     -334.41132,
+     -353.86264
+    ],
+    "miss_m": 28.863030331742504,
+    "metres_per_degree": 342.4705668200953,
+    "map_rotation_deg": 12.544616473078413,
+    "points": {
+     "Alnitak": [
+      0.0,
+      0.0
+     ],
+     "Alnilam": [
+      -305.93506255313656,
+      -349.15336386124545
+     ],
+     "Mintaka": [
+      -574.4464,
+      -739.1908000000001
+     ]
+    }
+   }
+  },
+  {
+   "key": "shaft_stars",
+   "title": "Four shafts aim at four stars",
+   "wonder": "From the King's Chamber one shaft points at Orion's belt and one at the pole star of the age. From the Queen's Chamber, one at Sirius and one at the Little Dipper. All four, in the century the pyramid was built.",
+   "measured": 44.66585574954967,
+   "target": 45.0,
+   "unit": "degrees",
+   "literal_digits": 1,
+   "rel_error": -0.007425427787785092,
+   "grade": "Likely (within about 1°) / Suspected as dating",
+   "verdict": "In 2560 BC the four stars crossed the meridian -0.33°, -1.14°, -0.62° and 0.62° from the shaft angles. Each shaft matches its star exactly in a different year: KS 2492 BC, KN 2357 BC, QS 2359 BC, QN 2383 BC. The spread is 135 years, and all four dates fall after Khufu's reign, so the shafts cannot date the pyramid to better than about a century (Thuban also fits a second time, in 3237 BC, on its way in to the pole); and the shafts bend on their way out, so 'the' angle is itself a choice (Petrie and Gantenbrink differ by up to 2°).",
+   "source": "Shaft angles: Gantenbrink 1993 as commonly cited (not re-read in this session: Likely); Petrie 1883 s.56 (31°33′, 45°13′40″), s.44 (37°28′, 38°28′). Sky: HYG v4.1 space motion + ERFA ltp; geometric altitudes, no refraction",
+   "rounding_digits": 2,
+   "shafts": [
+    {
+     "key": "KS",
+     "name": "King's Chamber, south",
+     "star": "Alnitak",
+     "lore": "Orion's belt (Osiris)",
+     "gantenbrink_deg": 45.0,
+     "petrie_deg": 45.22777777777778,
+     "altitude_2560BC": 44.66585574954967,
+     "miss_2560BC_deg": -0.33414425045032914,
+     "match_years": [
+      -2491
+     ],
+     "match_labels": [
+      "2492 BC"
+     ],
+     "petrie_match_labels": [
+      "2445 BC"
+     ],
+     "side": "south",
+     "track": [
+      [
+       -3600,
+       39.26562691648445
+      ],
+      [
+       -3550,
+       39.536079728575146
+      ],
+      [
+       -3500,
+       39.805586769608034
+      ],
+      [
+       -3450,
+       40.0741201219906
+      ],
+      [
+       -3400,
+       40.34165199236563
+      ],
+      [
+       -3350,
+       40.60815470903614
+      ],
+      [
+       -3300,
+       40.87360071953462
+      ],
+      [
+       -3250,
+       41.13796258833722
+      ],
+      [
+       -3200,
+       41.401212994722954
+      ],
+      [
+       -3150,
+       41.66332473077857
+      ],
+      [
+       -3100,
+       41.924270699549055
+      ],
+      [
+       -3050,
+       42.184023913334386
+      ],
+      [
+       -3000,
+       42.442557492132366
+      ],
+      [
+       -2950,
+       42.699844662228045
+      ],
+      [
+       -2900,
+       42.95585875492976
+      ],
+      [
+       -2850,
+       43.210573205451745
+      ],
+      [
+       -2800,
+       43.46396155194374
+      ],
+      [
+       -2750,
+       43.71599743466723
+      ],
+      [
+       -2700,
+       43.96665459531869
+      ],
+      [
+       -2650,
+       44.215906876499474
+      ],
+      [
+       -2600,
+       44.463728221332474
+      ],
+      [
+       -2550,
+       44.710092673225404
+      ],
+      [
+       -2500,
+       44.95497437578042
+      ],
+      [
+       -2450,
+       45.19834757285
+      ],
+      [
+       -2400,
+       45.440186608738806
+      ],
+      [
+       -2350,
+       45.68046592855113
+      ],
+      [
+       -2300,
+       45.91916007868369
+      ],
+      [
+       -2250,
+       46.156243707463254
+      ],
+      [
+       -2200,
+       46.39169156592876
+      ],
+      [
+       -2150,
+       46.62547850875719
+      ],
+      [
+       -2100,
+       46.85757949533295
+      ],
+      [
+       -2050,
+       47.087969590959645
+      ],
+      [
+       -2000,
+       47.316623968214074
+      ],
+      [
+       -1950,
+       47.54351790844112
+      ],
+      [
+       -1900,
+       47.768626803389076
+      ],
+      [
+       -1850,
+       47.99192615698431
+      ],
+      [
+       -1800,
+       48.21339158724422
+      ],
+      [
+       -1750,
+       48.43299882832744
+      ],
+      [
+       -1700,
+       48.65072373272013
+      ],
+      [
+       -1650,
+       48.86654227355707
+      ],
+      [
+       -1600,
+       49.08043054707613
+      ]
+     ],
+     "nearest_year": -2491,
+     "nearest_label": "2492 BC"
+    },
+    {
+     "key": "KN",
+     "name": "King's Chamber, north",
+     "star": "Thuban",
+     "lore": "the old pole star",
+     "gantenbrink_deg": 32.46666666666667,
+     "petrie_deg": 31.55,
+     "altitude_2560BC": 31.322613615357923,
+     "miss_2560BC_deg": -1.1440530513087452,
+     "match_years": [
+      -3236,
+      -2356
+     ],
+     "match_labels": [
+      "3237 BC",
+      "2357 BC"
+     ],
+     "petrie_match_labels": [
+      "3075 BC",
+      "2520 BC"
+     ],
+     "side": "north",
+     "track": [
+      [
+       -3600,
+       34.51711732083018
+      ],
+      [
+       -3550,
+       34.23531715859366
+      ],
+      [
+       -3500,
+       33.95343251067884
+      ],
+      [
+       -3450,
+       33.67147430544635
+      ],
+      [
+       -3400,
+       33.38945422121813
+      ],
+      [
+       -3350,
+       33.107385024875114
+      ],
+      [
+       -3300,
+       32.82528111170973
+      ],
+      [
+       -3250,
+       32.54315940147002
+      ],
+      [
+       -3200,
+       32.261040898638896
+      ],
+      [
+       -3150,
+       31.978953572162865
+      ],
+      [
+       -3100,
+       31.696938068941293
+      ],
+      [
+       -3050,
+       31.415060148389827
+      ],
+      [
+       -3000,
+       31.133441291469765
+      ],
+      [
+       -2950,
+       30.852348327847523
+      ],
+      [
+       -2900,
+       30.572536363807046
+      ],
+      [
+       -2850,
+       30.297385327682377
+      ],
+      [
+       -2800,
+       30.078881499007522
+      ],
+      [
+       -2750,
+       30.258599858329077
+      ],
+      [
+       -2700,
+       30.53198477159829
+      ],
+      [
+       -2650,
+       30.811288698744818
+      ],
+      [
+       -2600,
+       31.092015060738532
+      ],
+      [
+       -2550,
+       31.3732587470262
+      ],
+      [
+       -2500,
+       31.65471508408949
+      ],
+      [
+       -2450,
+       31.93624948670154
+      ],
+      [
+       -2400,
+       32.217790675808544
+      ],
+      [
+       -2350,
+       32.499295339653855
+      ],
+      [
+       -2300,
+       32.78073408200383
+      ],
+      [
+       -2250,
+       33.062085065878335
+      ],
+      [
+       -2200,
+       33.34333084805833
+      ],
+      [
+       -2150,
+       33.62445668022342
+      ],
+      [
+       -2100,
+       33.905449540854406
+      ],
+      [
+       -2050,
+       34.18629755572246
+      ],
+      [
+       -2000,
+       34.46698963639686
+      ],
+      [
+       -1950,
+       34.74751524671325
+      ],
+      [
+       -1900,
+       35.02786424728413
+      ],
+      [
+       -1850,
+       35.308026789217465
+      ],
+      [
+       -1800,
+       35.587993239769986
+      ],
+      [
+       -1750,
+       35.86775412926066
+      ],
+      [
+       -1700,
+       36.14730011246348
+      ],
+      [
+       -1650,
+       36.42662194006232
+      ],
+      [
+       -1600,
+       36.705710437225235
+      ]
+     ],
+     "nearest_year": -2356,
+     "nearest_label": "2357 BC"
+    },
+    {
+     "key": "QS",
+     "name": "Queen's Chamber, south",
+     "star": "Sirius",
+     "lore": "Sirius (Isis)",
+     "gantenbrink_deg": 39.60777777777778,
+     "petrie_deg": 38.46666666666667,
+     "altitude_2560BC": 38.98624960211886,
+     "miss_2560BC_deg": -0.6215281756589164,
+     "match_years": [
+      -2358
+     ],
+     "match_labels": [
+      "2359 BC"
+     ],
+     "petrie_match_labels": [
+      "2720 BC"
+     ],
+     "side": "south",
+     "track": [
+      [
+       -3600,
+       35.24110341165322
+      ],
+      [
+       -3550,
+       35.439761639256645
+      ],
+      [
+       -3500,
+       35.63663671140658
+      ],
+      [
+       -3450,
+       35.83171022644618
+      ],
+      [
+       -3400,
+       36.02496391980485
+      ],
+      [
+       -3350,
+       36.21637966488059
+      ],
+      [
+       -3300,
+       36.405939474009415
+      ],
+      [
+       -3250,
+       36.593625499519646
+      ],
+      [
+       -3200,
+       36.77942003486918
+      ],
+      [
+       -3150,
+       36.96330551586321
+      ],
+      [
+       -3100,
+       37.14526452195035
+      ],
+      [
+       -3050,
+       37.325279777595135
+      ],
+      [
+       -3000,
+       37.503334153724225
+      ],
+      [
+       -2950,
+       37.679410669244675
+      ],
+      [
+       -2900,
+       37.85349249263129
+      ],
+      [
+       -2850,
+       38.02556294358142
+      ],
+      [
+       -2800,
+       38.195605494734494
+      ],
+      [
+       -2750,
+       38.3636037734541
+      ],
+      [
+       -2700,
+       38.52954156367025
+      ],
+      [
+       -2650,
+       38.69340280777938
+      ],
+      [
+       -2600,
+       38.85517160859979
+      ],
+      [
+       -2550,
+       39.014832231380055
+      ],
+      [
+       -2500,
+       39.17236910585786
+      ],
+      [
+       -2450,
+       39.327766828367
+      ],
+      [
+       -2400,
+       39.481010163989865
+      ],
+      [
+       -2350,
+       39.632084048752915
+      ],
+      [
+       -2300,
+       39.780973591862704
+      ],
+      [
+       -2250,
+       39.92766407797984
+      ],
+      [
+       -2200,
+       40.07214096952818
+      ],
+      [
+       -2150,
+       40.21438990903685
+      ],
+      [
+       -2100,
+       40.3543967215124
+      ],
+      [
+       -2050,
+       40.49214741683824
+      ],
+      [
+       -2000,
+       40.62762819219907
+      ],
+      [
+       -1950,
+       40.76082543452729
+      ],
+      [
+       -1900,
+       40.89172572296886
+      ],
+      [
+       -1850,
+       41.02031583136588
+      ],
+      [
+       -1800,
+       41.14658273075308
+      ],
+      [
+       -1750,
+       41.27051359186559
+      ],
+      [
+       -1700,
+       41.39209578765518
+      ],
+      [
+       -1650,
+       41.5113168958122
+      ],
+      [
+       -1600,
+       41.62816470129056
+      ]
+     ],
+     "nearest_year": -2358,
+     "nearest_label": "2359 BC"
+    },
+    {
+     "key": "QN",
+     "name": "Queen's Chamber, north",
+     "star": "Kochab",
+     "lore": "Kochab, Little Dipper",
+     "gantenbrink_deg": 39.12444444444444,
+     "petrie_deg": 37.46666666666667,
+     "altitude_2560BC": 39.74215898139842,
+     "miss_2560BC_deg": 0.6177145369539758,
+     "match_years": [
+      -2382
+     ],
+     "match_labels": [
+      "2383 BC"
+     ],
+     "petrie_match_labels": [
+      "1817 BC"
+     ],
+     "side": "north",
+     "track": [
+      [
+       -3600,
+       43.82887022561266
+      ],
+      [
+       -3550,
+       43.62196971802378
+      ],
+      [
+       -3500,
+       43.41569861269406
+      ],
+      [
+       -3450,
+       43.210111413368054
+      ],
+      [
+       -3400,
+       43.00526541839015
+      ],
+      [
+       -3350,
+       42.8012209108111
+      ],
+      [
+       -3300,
+       42.59804136171381
+      ],
+      [
+       -3250,
+       42.39579364749156
+      ],
+      [
+       -3200,
+       42.19454828179806
+      ],
+      [
+       -3150,
+       41.994379662850136
+      ],
+      [
+       -3100,
+       41.79536633671043
+      ],
+      [
+       -3050,
+       41.59759127708644
+      ],
+      [
+       -3000,
+       41.4011421820629
+      ],
+      [
+       -2950,
+       41.20611178801353
+      ],
+      [
+       -2900,
+       41.012598200718884
+      ],
+      [
+       -2850,
+       40.82070524342733
+      ],
+      [
+       -2800,
+       40.6305428212287
+      ],
+      [
+       -2750,
+       40.44222730064811
+      ],
+      [
+       -2700,
+       40.25588190279366
+      ],
+      [
+       -2650,
+       40.071637107684666
+      ],
+      [
+       -2600,
+       39.889631066532274
+      ],
+      [
+       -2550,
+       39.71001001771285
+      ],
+      [
+       -2500,
+       39.532928700950734
+      ],
+      [
+       -2450,
+       39.35855076278661
+      ],
+      [
+       -2400,
+       39.18704914473646
+      ],
+      [
+       -2350,
+       39.01860644362945
+      ],
+      [
+       -2300,
+       38.85341523145385
+      ],
+      [
+       -2250,
+       38.69167831964411
+      ],
+      [
+       -2200,
+       38.53360895015045
+      ],
+      [
+       -2150,
+       38.3794308928948
+      ],
+      [
+       -2100,
+       38.229378426433385
+      ],
+      [
+       -2050,
+       38.0836961759515
+      ],
+      [
+       -2000,
+       37.942638780294956
+      ],
+      [
+       -1950,
+       37.806470357843125
+      ],
+      [
+       -1900,
+       37.675463739947844
+      ],
+      [
+       -1850,
+       37.54989944077232
+      ],
+      [
+       -1800,
+       37.430064334057434
+      ],
+      [
+       -1750,
+       37.31625001106333
+      ],
+      [
+       -1700,
+       37.20875080008669
+      ],
+      [
+       -1650,
+       37.107861436891724
+      ],
+      [
+       -1600,
+       37.01387438733046
+      ]
+     ],
+     "nearest_year": -2382,
+     "nearest_label": "2383 BC"
+    }
+   ],
+   "spread_years": 135
+  },
+  {
+   "key": "thuban_pole",
+   "title": "Thuban stood still over the pyramid",
+   "wonder": "When the pyramid was built the sky turned around Thuban, in the Dragon, not around Polaris.",
+   "measured": 1.3434386153579254,
+   "target": 0.0001,
+   "unit": "degrees from the pole",
+   "literal_digits": null,
+   "rel_error": null,
+   "grade": "Confirmed",
+   "verdict": "Thuban was 1.34° from the pole in 2560 BC and closest, 0.10°, in 2796 BC. Polaris was then 25.3° away. Today Polaris is 0.63° off.",
+   "source": "HYG v4.1 + ERFA ltp",
+   "rounding_digits": 0,
+   "closest_year": -2795,
+   "polaris_2560BC": 25.251124713368156
+  }
+ ]
+}
