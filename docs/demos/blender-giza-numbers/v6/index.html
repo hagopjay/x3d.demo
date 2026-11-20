@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Giza · The Sky Machine (Sacred Geometry Atlas v6)</title>
+    <meta
+      name="description"
+      content="Sixty-three sacred-geometry claims about the Giza pyramids, staged and then tested: a Blender Cycles baked plateau under 52,602 Gaussian-splat stars, now with the frames of the sky drawn in X3D (horizon, meridian, equator, ecliptic), the 25,800-year path of the pole, long-exposure star trails and a count of how many separate facts the claims rest on."
+    />
+    <link
+      rel="stylesheet"
+      href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css"
+    />
+    <link rel="stylesheet" href="atlas.css" />
+    <link rel="stylesheet" href="instruments.css" />
+    <link rel="stylesheet" href="machine.css" />
+    <script
+      defer
+      src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"
+    ></script>
+    <script type="module" src="atlas.mjs"></script>
+  </head>
+  <body>
+    <a class="skip" href="#atlas">Skip to the atlas</a>
+    <header class="mast">
+      <a class="brand" href="../../../"
+        ><span class="mark">△</span
+        ><span
+          >GIZA <b>SACRED GEOMETRY ATLAS</b
+          ><small>X3D · BLENDER · 52,602 STARS · v6</small></span
+        ></a
+      >
+      <nav aria-label="Page">
+        <a href="#stage">Stage</a><a href="#machine">Sky machine</a
+        ><a href="#instruments">Instruments</a><a href="#atlas">Atlas</a
+        ><a href="#shafts">Shaft clock</a><a href="#made">How it was made</a>
+        <a href="../v5/">v5 ↗</a><a href="../v4/">v4 ↗</a
+        ><a href="../v1/">v1 ↗</a>
+      </nav>
+    </header>
+
+    <main>
+      <section
+        id="stage"
+        class="stage"
+        data-state="poster"
+        data-light="day"
+        data-world="plateau"
+        aria-label="The plateau: a live 3D stage"
+      >
+        <div class="stage-frame" id="frame">
+          <button
+            id="unpinStage"
+            class="pin-close"
+            aria-label="Return pinned stage to the page"
+          >
+            ↙ Return stage
+          </button>
+          <img
+            class="poster"
+            id="poster"
+            src="../v4/shots/hero-cycles.webp"
+            alt="The three pyramids of Giza at golden hour, path-traced in Blender Cycles"
+          />
+          <x3d-canvas
+            id="scene"
+            aria-label="Interactive 3D model of the Giza plateau and its sky"
+            splashScreen="false"
+            notifications="false"
+            contextMenu="false"
+            antialiased="true"
+            multisampling="4"
+            update="auto"
+            maximumFrameRate="60"
+          ></x3d-canvas>
+          <canvas id="trails" aria-hidden="true"></canvas>
+          <canvas id="labels" aria-hidden="true"></canvas>
+          <div class="fade" id="fade" aria-hidden="true"></div>
+          <div
+            id="stageNotice"
+            class="stage-notice"
+            role="status"
+            aria-live="polite"
+            hidden
+          ></div>
+
+          <div class="title-card" id="titlecard">
+            <p class="kicker">Demo 65 · version 6 · Giza, 29.979° N</p>
+            <h1>As above,<br />so below?</h1>
+            <p class="lede">
+              Sixty-three claims of sacred geometry. Each one staged in full,
+              then measured against Petrie's survey and a catalogue model of the
+              sky in
+              <b>2560 BC</b>. New here: the frames of the sky drawn over the
+              plateau, the path of the pole, and a ten-hour exposure of the
+              stars.
+            </p>
+            <div class="cta">
+              <button id="enter" class="primary">Enter the plateau</button>
+              <button id="playtour" class="ghost">
+                ▶ Play the grand tour
+              </button>
+            </div>
+            <p class="status" id="status" role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="hud hud-top" id="hud" hidden>
+            <div class="now">
+              <span class="now-k" id="nowkicker">Golden hour</span>
+              <strong id="nowtitle">The plateau from the south-east</strong>
+              <span class="now-chips" id="nowchips"></span>
+            </div>
+            <p class="caption" id="caption"></p>
+          </div>
+
+          <div class="readout" id="readout" hidden></div>
+
+          <div class="hud hud-bottom" id="chips" hidden>
+            <div class="chiprow" role="toolbar" aria-label="Stops">
+              <button data-go="hero" data-light="day">Golden hour</button>
+              <button data-go="night" class="moon">Night of 2560 BC</button>
+              <button data-go="shafts">The four shafts</button>
+              <button data-go="thuban">Pole star</button>
+              <button data-go="machine" class="star">Sky machine ✦</button>
+              <button data-go="polepath" class="star">Pole's path</button>
+              <button data-go="exposure" class="star">Long exposure</button>
+              <button data-go="belt">Orion's belt</button>
+              <button data-go="plan">Belt on the ground</button>
+              <button data-go="xray">X-ray</button>
+              <button data-go="fly" class="star">Fly to Orion ✦</button>
+              <button data-go="home" id="homebtn" hidden>← Back to Giza</button>
+              <button id="tourbtn" class="tour">▶ Grand tour</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="sky" id="skypanel" aria-label="Sky controls">
+          <div class="sky-head">
+            <h2>The sky clock</h2>
+            <div class="seg" role="group" aria-label="Light">
+              <button data-light-set="day" aria-pressed="true">Day</button
+              ><button data-light-set="night" aria-pressed="false">
+                Night
+              </button>
+            </div>
+          </div>
+          <label class="yr">
+            <span>Year <output id="yearout">2,560 BC</output></span>
+            <input
+              id="year"
+              type="range"
+              min="-13000"
+              max="2100"
+              step="10"
+              value="-2560"
+              aria-label="Year"
+            />
+          </label>
+          <div class="ticks" id="yearticks">
+            <button data-year="-10499">10,500 BC</button
+            ><button data-year="-2559" class="on">2560 BC</button
+            ><button data-year="-2465">2466 BC</button
+            ><button data-year="2026">Today</button>
+          </div>
+          <label class="sel">
+            <span>On the meridian</span>
+            <select id="culminate" aria-label="Star crossing the meridian">
+              <option>Alnitak</option>
+              <option>Sirius</option>
+              <option>Thuban</option>
+              <option>Kochab</option>
+              <option>Betelgeuse</option>
+              <option>Regulus</option>
+              <option>Vega</option>
+              <option>Polaris</option>
+            </select>
+          </label>
+          <label class="yr">
+            <span>Star labels <output id="labelout">60</output> of 3,547</span>
+            <input
+              id="labelcount"
+              type="range"
+              min="0"
+              max="800"
+              step="10"
+              value="60"
+              aria-label="Number of star labels"
+            />
+          </label>
+          <div class="toggles">
+            <label
+              ><input type="checkbox" id="faint" checked /> 43,888 faint
+              stars</label
+            >
+            <label
+              ><input type="checkbox" id="figures" checked /> Constellation
+              lines</label
+            >
+          </div>
+          <table
+            class="stars"
+            id="startable"
+            aria-label="Where the key stars stand"
+          >
+            <thead>
+              <tr>
+                <th>Star</th>
+                <th>Altitude</th>
+                <th>Azimuth</th>
+                <th>Light-years</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <p class="fine">
+            52,602 stars from the HYG catalogue as X3D 4.1 Gaussian splats: the
+            nearest 50,000 (out to 579 light-years), every naked-eye star and
+            every named star. Precession by ERFA; 1,619 named and fast stars
+            also move by their own measured motion.
+          </p>
+        </aside>
+      </section>
+
+      <section class="strip" aria-label="What is on this page">
+        <div><b id="k-claims">63</b><span>claims, each graded twice</span></div>
+        <div><b>52,602</b><span>catalogue positions in 3D</span></div>
+        <div><b>3,547</b><span>star labels</span></div>
+        <div>
+          <b>2 bakes</b><span>Cycles light: golden hour, moonlit night</span>
+        </div>
+        <div><b>11 + 4 + 5</b><span>proof rigs, overlays, sky frames</span></div>
+        <div>
+          <b id="k-facts">19</b><span>separate facts behind the 63 claims</span>
+        </div>
+      </section>
+
+      <section
+        id="machine"
+        class="instruments machine"
+        aria-label="The sky machine: frames of the sky, long exposure and linked charts"
+      >
+        <header class="instrument-header">
+          <div>
+            <p class="kicker">Version 6 / The sky machine</p>
+            <h2>Turn the night.<br /><em>Then draw what it turns on.</em></h2>
+            <p class="sub">
+              Every sky claim about Giza names a line you cannot see: a
+              meridian, a pole, an equinox. Here they are drawn in the star
+              layer of the X3D scene, in three colours for three frames, and
+              they move when the year does.
+            </p>
+          </div>
+          <div class="instrument-actions">
+            <button id="machineAll">✦ All three frames</button
+            ><button id="machineNone">Clear the sky</button>
+            <button id="machineStop">■ Stop motion</button>
+          </div>
+        </header>
+        <div class="instrument-toolbar machine-toolbar">
+          <div role="group" aria-label="Frames of the sky in the 3D stage">
+            <button data-machine="local" aria-pressed="false">
+              <span class="sw sw-local"></span> Horizon + meridian</button
+            ><button data-machine="equator" aria-pressed="false">
+              <span class="sw sw-equator"></span> Equator + pole</button
+            ><button data-machine="ecliptic" aria-pressed="false">
+              <span class="sw sw-ecliptic"></span> Ecliptic + equinox</button
+            ><button data-machine="trail" aria-pressed="false">
+              <span class="sw sw-trail"></span> The pole's path
+            </button>
+          </div>
+          <div role="group" aria-label="Long exposure">
+            <button data-expose="north" aria-pressed="false">
+              ◉ Expose north, 2560 BC</button
+            ><button data-expose="today" aria-pressed="false">
+              ◉ North, today</button
+            ><button data-expose="south" aria-pressed="false">
+              ◉ South, 2560 BC
+            </button>
+          </div>
+        </div>
+        <p class="instrument-status" id="machineStatus" role="status">
+          CHARTS READY / switch a frame on to draw it in the 3D sky
+        </p>
+        <div class="laboratory-grid">
+          <div class="lab-col">
+            <article class="lab-panel pole-panel">
+              <div class="lab-heading">
+                <span class="kicker">01 / The pole's path</span
+                ><span class="lab-tag">ERFA LONG-TERM MODEL</span>
+              </div>
+              <h3>The still point of the sky moves.</h3>
+              <p class="fine">
+                The Earth's axis sweeps this loop once in about 25,800 years. Drag
+                the white ring along the path: the stage, the clock and every
+                chart follow. Star dots carry their own measured motion.
+              </p>
+              <svg
+                id="poleChart"
+                viewBox="0 0 500 470"
+                role="img"
+                aria-label="The path of the celestial pole among the stars from 13,000 BC to AD 12,800, with Thuban, Polaris, Vega and four more stars"
+              ></svg>
+              <div class="fit-values">
+                <div>
+                  <span>NEAREST OF THE SEVEN</span><b id="poleNear">—</b>
+                </div>
+                <div><span>THUBAN FROM THE POLE</span><b id="poleThuban">—</b></div>
+                <div>
+                  <span>POLARIS FROM THE POLE</span><b id="polePolaris">—</b>
+                </div>
+              </div>
+              <svg
+                id="poleCurves"
+                viewBox="0 0 640 224"
+                role="img"
+                aria-label="Distance of seven stars from the celestial pole, 13,000 BC to AD 12,800"
+              ></svg>
+              <p id="poleNote" class="fine"></p>
+            </article>
+            <article class="lab-panel">
+              <div class="lab-heading">
+                <span class="kicker">02 / Angular ruler</span
+                ><span class="lab-tag">GREAT-CIRCLE ARC</span>
+              </div>
+              <h3>Measure the sky in degrees.</h3>
+              <p class="fine">
+                Pick two stars. The readout works without the 3D stage; “Show in
+                the sky” stretches a coral arc between them in the star layer.
+              </p>
+              <div class="ruler-row">
+                <label>From <select id="rulerA"></select></label>
+                <label>to <select id="rulerB"></select></label>
+                <button id="rulerShow" class="primary-lite">Show in the sky ▶</button>
+              </div>
+              <p id="rulerOut" class="ruler-out">—</p>
+              <div class="lab-presets" role="group" aria-label="Ruler presets">
+                <button data-ruler="Alnitak,Mintaka">Orion's belt</button
+                ><button data-ruler="Kochab,Mizar">Spence's two stars</button
+                ><button data-ruler="Thuban,Polaris">Two pole stars</button
+                ><button data-ruler="Regulus,Denebola">Leo, head to tail</button>
+              </div>
+              <div class="geometry-art-note">
+                <span>◉</span>
+                <p>
+                  <b>The long exposure</b> holds the camera still for ten sidereal
+                  hours while the sky turns, and keeps every step on a canvas of
+                  its own. In 2560 BC the tightest arc is Thuban's; today it is
+                  Polaris's. The Sun is not simulated: it is one unbroken night.
+                </p>
+              </div>
+              <p class="fine">
+                Frames, ribbons and halos are drawn at a fixed angular width so
+                that they can be seen. They are not error bars.
+              </p>
+            </article>
+          </div>
+          <div class="lab-col">
+            <article class="lab-panel">
+              <div class="lab-heading">
+                <span class="kicker">03 / Shaft consensus</span
+                ><span class="lab-tag">FOUR SHAFTS, ONE YEAR</span>
+              </div>
+              <h3>Ask all four shafts for one date.</h3>
+              <p class="fine">
+                The shaft clock below finds a different best year for each shaft.
+                This asks the stricter question: in any single year, how far are
+                the four stars from the four shaft angles, taken together?
+              </p>
+              <svg
+                id="consensusChart"
+                viewBox="0 0 640 226"
+                role="img"
+                aria-label="Root-mean-square miss of the four shafts against their four stars, 3600 BC to 1600 BC"
+              ></svg>
+              <div class="fit-values">
+                <div><span>BEST SINGLE YEAR</span><b id="consensusBest">—</b></div>
+                <div><span>MISS IN THAT YEAR</span><b id="consensusRms">—</b></div>
+                <div><span>MISS IN 2560 BC</span><b id="consensusKhufu">—</b></div>
+              </div>
+              <svg
+                id="consensusBars"
+                viewBox="0 0 640 160"
+                role="img"
+                aria-label="How far each of the four stars stands from its shaft angle in the selected year"
+              ></svg>
+              <p id="consensusNote" class="fine"></p>
+              <p class="fine">
+                Meridian altitudes only: geometric, no refraction, no shaft bends,
+                no azimuth. Angles are Gantenbrink's 1993 values as commonly
+                cited. Click the chart to set the year.
+              </p>
+            </article>
+            <article class="lab-panel">
+              <div class="lab-heading">
+                <span class="kicker">04 / Survey microscope</span
+                ><span class="lab-tag">PETRIE 1883, §20–21</span>
+              </div>
+              <h3>How square is square?</h3>
+              <p class="fine">
+                Three squares of the same base, each drawn against a perfect
+                square with its errors magnified. At true scale all three are one
+                line.
+              </p>
+              <label class="lab-range"
+                >Magnify the errors <output id="surveyZoomOut">1,500×</output
+                ><input
+                  id="surveyZoom"
+                  type="range"
+                  min="0"
+                  max="3.7"
+                  step="0.01"
+                  value="3.176"
+              /></label>
+              <div class="lab-presets" role="group" aria-label="Surveyed squares">
+                <button data-square="casing" aria-pressed="true">Casing</button
+                ><button data-square="core" aria-pressed="true">Core masonry</button
+                ><button data-square="sockets" aria-pressed="false">
+                  Corner sockets
+                </button>
+              </div>
+              <svg
+                id="surveyScope"
+                viewBox="0 0 640 476"
+                role="img"
+                aria-label="Petrie's casing, core and socket squares with their corner errors magnified"
+              ></svg>
+              <table class="fit-table survey-table">
+                <thead>
+                  <tr>
+                    <th>Square</th>
+                    <th>Side spread</th>
+                    <th>Worst corner</th>
+                    <th>From north</th>
+                    <th>Closure</th>
+                  </tr>
+                </thead>
+                <tbody id="surveyRows"></tbody>
+              </table>
+              <p id="surveyNote" class="fine"></p>
+            </article>
+          </div>
+          <article class="lab-panel witness-panel">
+            <div class="lab-heading">
+              <span class="kicker">05 / How many witnesses?</span
+              ><span class="lab-tag">EDITORIAL TABLE</span>
+            </div>
+            <h3>Sixty-three claims. How many facts?</h3>
+            <p class="fine">
+              Each row is one measured fact about the monuments. Each dot is a
+              claim that rests on it, coloured by its number grade; a ring marks
+              a claim that needs a modern unit. Two dots in one row are one
+              witness, not two. Click a row to filter the atlas, a dot to stage
+              the claim.
+            </p>
+            <div class="fit-values w-values">
+              <div><span>CLAIMS</span><b id="wClaims">—</b></div>
+              <div><span>SEPARATE FACTS</span><b id="wFacts">—</b></div>
+              <div><span>ON ONE SLOPE</span><b id="wSlope">—</b></div>
+              <div><span>NO MEASUREMENT OF GIZA</span><b id="wNone">—</b></div>
+              <div><span>NEED A MODERN UNIT</span><b id="wUnit">—</b></div>
+            </div>
+            <div id="witnessGraph" class="witness-graph"></div>
+            <p id="witnessNote" class="fine"></p>
+            <p class="fine">
+              This table was made by reading each claim's test, not by a
+              computation: see <code>build/build_witness.py</code>. It sorts
+              claims; it does not grade them.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="instruments"
+        class="instruments"
+        aria-label="Linked geometric and celestial instruments"
+      >
+        <header class="instrument-header">
+          <div>
+            <p class="kicker">From version 5 / The living geometry laboratory</p>
+            <h2>Enter the pattern.<br /><em>Then move its assumptions.</em></h2>
+            <p class="sub">
+              The baked plateau remains the reference. Four native X3D layers
+              turn it into a measuring instrument; linked diagrams reveal
+              differences too small to see at monument scale.
+            </p>
+          </div>
+          <div class="instrument-actions">
+            <button id="cinemaMode" aria-pressed="false">Cinema view</button
+            ><button id="pinStage" aria-pressed="false">Pin live stage</button>
+            <button id="stopMotion">■ Stop motion</button
+            ><button id="exportInstrument">↓ Export experiment</button>
+          </div>
+        </header>
+        <div class="instrument-toolbar">
+          <div role="group" aria-label="Native X3D overlays">
+            <button data-instrument="geometry" aria-pressed="false">
+              <span>01</span> Ghost geometry</button
+            ><button data-instrument="section" aria-pressed="false">
+              <span>02</span> Section scanner</button
+            ><button data-instrument="survey" aria-pressed="false">
+              <span>03</span> Survey cages</button
+            ><button data-instrument="harmonics" aria-pressed="false">
+              <span>04</span> Geometric garden
+            </button>
+          </div>
+          <label
+            >Rendering<select id="instrumentQuality">
+              <option value="study">Study / 30 fps cap</option>
+              <option value="balanced" selected>Balanced / 45 fps cap</option>
+              <option value="exhibit">Exhibit / 60 fps cap</option>
+            </select></label
+          ><label
+            >Display gain <output id="exposureOut">1.00×</output
+            ><input
+              type="range"
+              id="stageExposure"
+              min="0.65"
+              max="1.5"
+              value="1"
+              step="0.01"
+          /></label>
+        </div>
+        <p class="instrument-status" id="instrumentStatus" role="status">
+          ANALYTICAL INSTRUMENTS READY / load a native overlay to link the stage
+        </p>
+        <div class="laboratory-grid">
+          <article class="lab-panel">
+            <div class="lab-heading">
+              <span class="kicker">01 / Ratio microscope</span
+              ><span class="lab-tag">IDEAL COUNTERFACTUAL</span>
+            </div>
+            <h3>One slope. Three famous numbers.</h3>
+            <p class="fine">
+              The wireframe ghost changes; the baked monument remains fixed. π,
+              τ and φ share one slope dependency. A second matching ratio does
+              not supply an independent historical witness.
+            </p>
+            <label class="lab-range"
+              >Face slope <output id="probeSlopeOut">51.86667°</output
+              ><input
+                id="probeSlope"
+                type="range"
+                min="50"
+                max="54"
+                step="any"
+                value="51.8666666666667"
+            /></label>
+            <div class="lab-presets" role="group" aria-label="Slope hypotheses">
+              <button data-ideal="measured" aria-pressed="true">
+                Reference</button
+              ><button data-ideal="seked" aria-pressed="false">Seked 5½</button
+              ><button data-ideal="pi" aria-pressed="false">Exact π</button
+              ><button data-ideal="phi" aria-pressed="false">Exact φ</button>
+            </div>
+            <div class="lab-values">
+              <div><span>HEIGHT</span><b id="probeHeight">146.721 m</b></div>
+              <div><span>2b / h</span><b id="probePi">3.1401602</b></div>
+              <div>
+                <span>SLANT / HALF-BASE</span><b id="probePhi">1.6194500</b>
+              </div>
+              <div>
+                <span>SEKED / PALMS</span><b id="probeSeked">5.49528</b>
+              </div>
+            </div>
+            <svg
+              id="ratioMicroscope"
+              viewBox="0 0 640 240"
+              role="img"
+              aria-label="Pi and phi relative deviations as functions of face slope"
+            ></svg
+            ><svg
+              id="heightMicroscope"
+              viewBox="0 0 640 190"
+              role="img"
+              aria-label="Magnified height residuals of four slope hypotheses"
+            ></svg>
+            <div class="lab-foot">
+              <span id="ghostDelta">+0.000 m apex change</span
+              ><span>4b − 2πh <b id="probeResidual">−0.420 m</b></span>
+            </div>
+            <p class="fine">
+              Gray band: historical ±2′ slope range, not a calibrated confidence
+              distribution. Exact π and φ slopes are 0.02668° apart. Line
+              thickness is for visibility.
+            </p>
+          </article>
+          <article class="lab-panel">
+            <div class="lab-heading">
+              <span class="kicker">02 / Stereotomy scanner</span
+              ><span class="lab-tag">FIXED REFERENCE</span>
+            </div>
+            <h3>The section is a second monument.</h3>
+            <p class="fine">
+              Sweep a level plane through Khufu’s ideal reconstructed casing.
+              Remaining width falls linearly; area quadratically; volume
+              cubically. Chamber locations remain a schematic reference.
+            </p>
+            <label class="lab-range"
+              >Section height <output id="sectionOut">29.30% of h</output
+              ><input
+                id="sectionHeight"
+                type="range"
+                min="0.01"
+                max="0.99"
+                step="0.001"
+                value="0.293"
+            /></label>
+            <div class="lab-presets">
+              <button id="sliceSweep" aria-pressed="false">
+                ▷ Sweep section</button
+              ><span class="fine">User-started animation · stop any time</span>
+            </div>
+            <svg
+              id="sectionDiagram"
+              viewBox="0 0 640 285"
+              role="img"
+              aria-label="Level section through an ideal square pyramid"
+            ></svg>
+            <div class="lab-values">
+              <div>
+                <span>ABOVE PAVEMENT</span><b id="sliceHeight">42.99 m</b>
+              </div>
+              <div><span>SECTION SIDE</span><b id="sliceSide">162.87 m</b></div>
+              <div>
+                <span>BASE AREA RETAINED</span><b id="sliceArea">49.98%</b>
+              </div>
+              <div><span>VOLUME BELOW</span><b id="sliceVolume">64.66%</b></div>
+            </div>
+            <div class="geometry-art-note">
+              <span>✧</span>
+              <p>
+                <b>The geometric garden</b> adds a 19-circle flower of life and
+                a logarithmic spiral whose radius grows by φ per quarter-turn.
+                These are contemporary mathematical constructions, offered as
+                art and geometry; no ancient construction evidence is implied.
+              </p>
+            </div>
+            <p class="fine">
+              At half height, 87.5% of an ideal full pyramid’s volume is below
+              the plane. The solid model excludes bedrock, chambers, voids and
+              missing casing. Section heights are independent of the
+              counterfactual slope experiment.
+            </p>
+          </article>
+          <article class="lab-panel orion-panel">
+            <div class="lab-heading">
+              <span class="kicker">03 / Orion correspondence bench</span
+              ><span class="lab-tag">THREE FIXED PAIRS</span>
+            </div>
+            <h3>How many choices made the match?</h3>
+            <p class="fine">
+              Compare a proper similarity with a fit that explicitly permits
+              reflection. Both optimize one scale, rotation and translation
+              against all three pyramid centres. Neither is the v4
+              endpoint-pinned construction.
+            </p>
+            <label class="lab-range"
+              >Catalogue-motion epoch <output id="fitYearOut">2,560 BC</output
+              ><input
+                id="fitYear"
+                type="range"
+                min="-13000"
+                max="2100"
+                step="1"
+                value="-2559"
+            /></label>
+            <div class="lab-presets">
+              <button data-fit="proper" aria-pressed="true">
+                Preserve handedness</button
+              ><button data-fit="reflected" aria-pressed="false">
+                Allow reflection
+              </button>
+            </div>
+            <div class="fit-values">
+              <div><span>PROPER RMS</span><b id="properRms">—</b></div>
+              <div><span>REFLECTED RMS</span><b id="mirrorRms">—</b></div>
+              <div><span>ROTATION</span><b id="fitRotation">—</b></div>
+            </div>
+            <svg
+              id="orionFit"
+              viewBox="0 0 640 430"
+              role="img"
+              aria-label="Pyramid centres and fitted Orion star directions with residual vectors"
+            ></svg>
+            <p id="fitClass" class="instrument-status">
+              PROPER / orientation preserved
+            </p>
+            <table class="fit-table">
+              <thead>
+                <tr>
+                  <th>Star</th>
+                  <th>Fixed counterpart</th>
+                  <th>Residual</th>
+                </tr>
+              </thead>
+              <tbody id="fitResiduals"></tbody>
+            </table>
+            <p id="fitNote" class="fine">
+              Loading the compact catalogue-derived comparison…
+            </p>
+            <p class="fine">
+              Cyan circles: fitted apparent directions. Gold squares: pyramid
+              footprints. Coral segments: residuals. Sky directions use an
+              orthographic tangent plane; distances are not projected onto the
+              ground. Linear space motion over millennia carries catalogue/model
+              uncertainty. A small residual is not a probability of intention.
+            </p>
+          </article>
+          <article class="lab-panel celestial-panel">
+            <div id="celestialLens"></div>
+          </article>
+        </div>
+        <aside class="evidence-rule">
+          <strong>Wonder with the assumptions attached.</strong>
+          <p>
+            The geometry, the observing frame, and the historical interpretation
+            are separate questions. Display gain and baked day/night lighting
+            change presentation; they do not re-simulate the ancient Sun or
+            Moon.
+            <a href="../v5/REVIEW.md">Read the outside review of v4 ↗</a>
+          </p>
+        </aside>
+      </section>
+
+      <section id="atlas" class="atlas">
+        <div class="atlas-head">
+          <div>
+            <p class="kicker">The atlas</p>
+            <h2>Every claim, told in full, then tested</h2>
+            <p class="sub">
+              Two grades on every card. <b>The number</b>: does the arithmetic
+              hold against the survey? <b>The design</b>: did the builders mean
+              it? A claim can be exactly true and still be an accident; that is
+              where most of the magic lives.
+            </p>
+          </div>
+          <div class="lens" role="group" aria-label="Voice">
+            <button data-lens="both" aria-pressed="true">Wonder + test</button
+            ><button data-lens="wonder" aria-pressed="false">Wonder</button
+            ><button data-lens="test" aria-pressed="false">Test</button>
+          </div>
+        </div>
+        <div class="tally" id="tally"></div>
+        <div class="filters">
+          <div
+            class="chipset"
+            id="f-family"
+            role="group"
+            aria-label="Family"
+          ></div>
+          <div
+            class="chipset"
+            id="f-number"
+            role="group"
+            aria-label="Number grade"
+          ></div>
+          <div
+            class="chipset"
+            id="f-design"
+            role="group"
+            aria-label="Design grade"
+          ></div>
+          <input
+            id="search"
+            type="search"
+            placeholder="Search 63 claims…"
+            aria-label="Search claims"
+          />
+        </div>
+        <p class="count" id="count" aria-live="polite"></p>
+        <div class="cards" id="cards"></div>
+      </section>
+
+      <section id="shafts" class="shaftclock">
+        <div class="sc-text">
+          <p class="kicker">The shaft clock</p>
+          <h2>Four shafts, four stars, four different years</h2>
+          <p>
+            Each curve is the height at which a star crossed the meridian over
+            Giza, year by year, as the Earth's axis wobbles. Each level line is
+            a shaft's angle. An intersection is an altitude match within this
+            model; azimuth, bends, horizon and uncertainty still matter.
+          </p>
+          <p id="sc-verdict" class="verdict"></p>
+          <p class="fine">
+            Solid lines: Gantenbrink's 1993 angles as commonly cited. Dashed:
+            Petrie's 1883 angles. Geometric altitudes, no refraction. Drag the
+            year: the stage follows.
+          </p>
+        </div>
+        <div class="sc-chart">
+          <svg
+            id="shaftchart"
+            viewBox="0 0 760 420"
+            role="img"
+            aria-label="Culmination altitude of four stars against the four shaft angles, 3600 BC to 1600 BC"
+          ></svg>
+        </div>
+      </section>
+
+      <section id="made" class="made">
+        <p class="kicker">How it was made</p>
+        <h2>One chain, every link named</h2>
+        <ol class="chain">
+          <li>
+            <b>Survey</b
+            ><span
+              >Petrie 1883, read section by section from the Birdsall
+              transcription; Dash 2015 for the base.</span
+            >
+          </li>
+          <li>
+            <b>Verify</b
+            ><span
+              ><code>verify_sacred.py</code> and
+              <code>build_atlas.py</code> compute every number on the cards.
+              ERFA long-term precession, HYG space motion.</span
+            >
+          </li>
+          <li>
+            <b>Model + light</b
+            ><span
+              >Blender 5.3 builds the plateau and bakes Cycles light twice: 256
+              samples per vertex, 96 per lightmap texel.</span
+            >
+          </li>
+          <li>
+            <b>Export</b
+            ><span
+              ><code>x3d-blender-io</code> writes X3D 4.0;
+              <code>build_stage.py</code> welds it, adds the proof rigs and the
+              two layers.</span
+            >
+          </li>
+          <li>
+            <b>Gate</b
+            ><span
+              >x3d_mcp XSD and semantic checks, Loom witnesses, then X_ITE
+              16.7.1 with the console open.</span
+            >
+          </li>
+          <li>
+            <b>Review</b
+            ><span
+              >An outside review of v4 built v5. v6 ran that build in a browser
+              for the first time, fixed what the frames showed, and added the
+              sky machine.</span
+            >
+          </li>
+        </ol>
+        <div class="made-grid">
+          <article>
+            <h3>What is illustrative, not surveyed</h3>
+            <ul id="illustrative">
+              <li>
+                Course heights and counts, and how much of each top is missing.
+              </li>
+              <li>
+                The queens' pyramids, the ground relief and the base levels
+                (Khafre and Menkaure stand 10 m higher here).
+              </li>
+              <li>
+                The passage run and the chambers' east offset. The angles on the
+                labels are Petrie's.
+              </li>
+              <li>
+                The Sun and Moon positions are stage lights, not an ephemeris.
+                Stars use catalogue positions and a geometric sky model;
+                ancient-epoch motion is an extrapolation.
+              </li>
+            </ul>
+          </article>
+          <article>
+            <h3>Editorial assessments</h3>
+            <p class="fine">
+              Number and design labels are judgments about different kinds of
+              claims. “Designed” is a plausibility assessment, not proof of a
+              particular ancient intention.
+            </p>
+            <ul class="legend">
+              <li>
+                <i class="g g-Confirmed"></i><b>Confirmed</b> the atlas author’s
+                numerical assessment; read each tolerance.
+              </li>
+              <li>
+                <i class="g g-Likely"></i><b>Likely</b> close, or the source was
+                not re-read here.
+              </li>
+              <li>
+                <i class="g g-Suspected"></i><b>Suspected</b> depends on a free
+                choice.
+              </li>
+              <li>
+                <i class="g g-False"></i><b>False</b> contradicted as stated by
+                the cited comparison.
+              </li>
+              <li>
+                <i class="g g-Untested"></i><b>Untested</b> not measured in this
+                session.
+              </li>
+            </ul>
+          </article>
+          <article>
+            <h3>Witnesses</h3>
+            <table class="witness" id="witness">
+              <tbody></tbody>
+            </table>
+          </article>
+          <article>
+            <h3>Credits and licences</h3>
+            <ul>
+              <li>
+                Stars:
+                <a href="https://github.com/astronexus/HYG-Database"
+                  >HYG Database v4.1</a
+                >
+                by David Nash, CC BY-SA 4.0. The star files here are derived
+                from it and carry the same licence.
+              </li>
+              <li>
+                Survey: W. M. Flinders Petrie,
+                <i>The Pyramids and Temples of Gizeh</i> (1883), public domain,
+                via Ronald Birdsall's transcription.
+              </li>
+              <li>
+                Renderer: X_ITE 16.7.1 (MIT). Modelling and light: Blender 5.3
+                (GPL). Exporter: x3d-blender-io.
+              </li>
+              <li>
+                Page code and scene generators: GPL-3.0-or-later.
+                <a href="README.md">README</a> ·
+                <a href="receipts/atlas.json">atlas.json</a> ·
+                <a href="../v4/receipts/bake-receipt.json">bake receipt</a>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="foot">
+      <span
+        >Demo 65 v6 · x3d.io · X3D is the 3D format an AI can be held
+        accountable to.</span
+      >
+      <span
+        ><a href="../v5/">v5 Living Geometry</a> ·
+        <a href="../v4/">v4 Sacred Geometry Atlas</a> ·
+        <a href="../v5/REVIEW.md">v4 review</a> ·
+        <a href="../v3/">v3 The Reveal</a> ·
+        <a href="../v2/">v2 Observatory</a> · <a href="../v1/">v1</a></span
+      >
+    </footer>
+  </body>
+</html>

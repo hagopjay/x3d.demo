@@ -1,0 +1,87 @@
+{
+  "schema": "giza-atlas-upgrade-witness/v1",
+  "review_date": "2026-11-19",
+  "baseline_commit": "8beeb09e7bf768841c0bad3e4079b52c5fbc748b",
+  "tests": {
+    "tests": 47,
+    "pass": 47,
+    "fail": 0,
+    "skipped": 0
+  },
+  "test_scope": "Pure math, catalogue/halo identity, stage lifecycle, real controller with imports mocked, and linkedom UI integration. SAI and canvas rendering are mocked.",
+  "tools": {
+    "node": "v24.22.3",
+    "python": "3.12.14",
+    "linkedom": "0.18.12"
+  },
+  "scene_validation": {
+    "status": "pass",
+    "files": 3,
+    "errors": 0,
+    "semantic_warnings": 0,
+    "receipt": "validation-v5.json"
+  },
+  "visual_scope": "Live v4 poster/atlas inspected. The cloud browser could not create its WebGL browser. V5 WebGL pixels, responsive layout and real GPU performance are unverified. Copied v4 frames/receipts remain inherited evidence.",
+  "deployment": "Patch prepared; no remote PR or deployment created. GitHub CLI has no authenticated account in this session.",
+  "rows": [
+    [
+      "Baseline",
+      "v4 retained at 8beeb09e7bf7; v1\u2013v4 untouched."
+    ],
+    [
+      "Automated tests",
+      "47/47 pass; zero failures/skips. Rendering mocked in DOM/SAI tests."
+    ],
+    [
+      "X3D grammar + semantics",
+      "All 3 scenes pass: 4.0 plateau/instruments, 4.1 sky. Zero errors or warnings; exact hashes in validation-v5.json."
+    ],
+    [
+      "Source integrity",
+      "Local references, SAI names, six frozen v4 assets and three deterministic generated files pass."
+    ],
+    [
+      "Catalogue motion",
+      "All 179 halo copies match cores; requested epochs update cores, halos, lines and labels together."
+    ],
+    [
+      "Atlas review",
+      "63 claims retained; two grades corrected and four further comparisons annotated; originals preserved."
+    ],
+    [
+      "Inherited provenance",
+      "Blender/Cycles bakes, stellar catalogue, original receipts and old frames are retained v4 evidence, not newly run v5 exports/renders."
+    ],
+    [
+      "Visual checks still open",
+      "V5 pixels, native browser layout, mobile, Firefox/Safari, hardware MSAA and GPU frame times. The live review browser could not create WebGL."
+    ]
+  ],
+  "structural_integrity": {
+    "status": "pass",
+    "output": "PASS: 3 parsed X3D scenes; 103 unique per-scene DEFs; 10 instrument SAI nodes\nPASS: 83 HTML IDs; 27 local file references; 6 byte-identical v4 assets; 3 deterministic generated files\nScope: source/structural integrity only; no WebGL pixels, browser layout or XSD result implied."
+  },
+  "sha256": {
+    "assets/belt-instrument.json": "646dbe5529e9e0278c63209f8670bd4dc2c082cf9f206397180daa15fdad9742",
+    "assets/giza.x3d": "43a2be7590ecbd704bfa2eae33fee69a40b07ab0c7f1a5100ecbd897a8397a51",
+    "assets/instruments.x3d": "2df0f2f29f910008d89b1b0eddf456d338fb04ba4f1f93f4d3e07f4a8ca75735",
+    "assets/sky.x3d": "bddce51568e92bedeb20f59dfd6dbdc0f56eb814060c78bcf393b565abcaf4e2",
+    "atlas-math.mjs": "d11f296bec5bfaec030aea78a53ab62e46ccbd2787afa32a095efc1769bd1ab3",
+    "atlas.css": "a33e34b61f8578a3a88b8dd1ed8f6f1952d9eea83a56123ab7b9d1201054dbdb",
+    "atlas.mjs": "06fe42a1806dae82e16227df65f2afbdccedd4fbedf810ff213309d744dda3ef",
+    "celestial-lens.mjs": "86ffe250dff35cf5d597d8e4849fc1d528f32a812bb858d95c9d9cae1055d2eb",
+    "index.html": "5615afa119355c98e921c7795ee80f6e96710430994069e4fd05088d00ef5d9c",
+    "instrument-math.mjs": "9addeaff80466cba5a758ab9418588fe23af383b23c52e1767e275962c9575e6",
+    "instruments.css": "9cb60724ec6b1c4a2b80f545cdf2f7ffccafe212b0bbd27109e6361a49c5920d",
+    "instruments.mjs": "7497fae8ea444fcefdeb60798d3d5b9be7b03544bf8b865676762bb82ea3df1a",
+    "receipts/atlas.json": "b5d0923aec01f210719bb1ea5d21888c7a0de652b9fab1048f61e11b460ed78c",
+    "sky-math.mjs": "045e2031f7db680a767767d276de7269a77e028b447e303a78e157e21b6a3ddd",
+    "stage-lifecycle.mjs": "ef99cf5cfe6d0df7126cbcee8dfa1cba072a54c3bd2a67fdf9f74b7aff1b6d5f",
+    "stage.mjs": "40da90650ca58959264f6eb75ebae62ba35b92a18c7774472c86ed8e7bf938fa",
+    "tests/atlas.test.mjs": "8d47de24b3d92c4eb3b8eea19e8d5243fee6622c3f6d3576b850e50105748033",
+    "tests/controller.test.mjs": "c8a93529b8f66a80ba7ac303da50cd67e2c97bb02ec90aea3357b23e9910ccfc",
+    "tests/instrument-math.test.mjs": "1813f092c9579b7752ea6c851d8615ecdf380a7400cdc04bd663021b5c7e4c70",
+    "tests/instruments-ui.test.mjs": "b59a7e67b20680092d6d99f6261829def877d20720f149fbbc1febe5df31a458",
+    "tests/stage.test.mjs": "771428ac05ae64553046b877def43573a4fbfb99deb6aeb0c7961bd07c95b654"
+  }
+}
