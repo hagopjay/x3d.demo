@@ -429,3 +429,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-giza-sky-machine.jpg | a8fb08387b7b9fa6db871cd212359b00eaf0bdfb2685dafa117c52f34db73a31 | 88509 |
+
+`fault-lab` is a 2 x 2 grid of 480 x 270 tiles (16:9 crop of 640 x 400 stills) from `docs/demos/fault-lab/v1/stills/` (`clean`, `two-materials`, `scaled-shaft`, `secret-tunnel`, all `.V_Osiris.jpg`; X_ITE 16.7.1, headless Chromium with SwiftShader), with a small text label on each tile, saved as 960 x 540 JPEG. No Google or other third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/fault-lab.jpg | f6bff55bf3b484b94706b35eb7be52925aa23afca0de4c2a8686ff6bc6c6e985 | 24375 |
