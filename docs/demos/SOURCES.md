@@ -423,3 +423,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-giza-numbers-v3.jpg | 84776d815324836dbbe4f1f67b9c042471d6c9c4e86fbf4a969c39ebfd01ae79 | 30859 |
+
+`blender-giza-sky-machine` is the top 1569 x 882 region of `docs/demos/blender-giza-numbers/v6/shots/frames.webp` (X_ITE 16.7.1 frame of the page's own scene, headless Chromium with SwiftShader) resized to 960 x 540 JPEG. The stars are derived from HYG v4.1 by David Nash, CC BY-SA 4.0 (credited on the page). No Google imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-giza-sky-machine.jpg | a8fb08387b7b9fa6db871cd212359b00eaf0bdfb2685dafa117c52f34db73a31 | 88509 |

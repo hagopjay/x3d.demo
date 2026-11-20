@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v72 (2026-11-20)
+- The Demo 65 card now points to Giza: The Sky Machine (`docs/demos/blender-giza-numbers/v6/`, merged with v5 as PR 136; v4 was PR 135) and links v5, v4, v3, v2 and v1. Image `assets/blender-giza-sky-machine.jpg` is a frame of the page itself (crop of `v6/shots/frames.webp`); the stars are HYG v4.1 (David Nash, CC BY-SA 4.0) and the card credits them. I counted the 63 claims and their grades in the atlas receipt, read the star count from the v4 sky file, ran 49 unit tests (4 more skip without a DOM library) and loaded the page headless without errors. I did not check the astronomy or the grades. The reviewer's front-page edit and "catalog v72" line were not applied. Page versions v1 to v71 are untouched.
+
 ## v71 (2026-11-19)
 - The Demo 65 card now points to The Reveal (`docs/demos/blender-giza-numbers/v3/`, merged as PR 133) and keeps links to v2 and v1; image `assets/blender-giza-numbers-v3.jpg` is the page's own Cycles still (synthetic, no CC BY-SA content). I checked the round-trip receipt's input hash and size, ran the math, runtime and wonder test suites (27 of 27), ran the integrity script, and loaded the page headless without errors. I did not run the UI suite and did not check the Blender round trip. The earlier v1 card text is replaced on the front page only; older page versions v1 to v70 are untouched.
 
