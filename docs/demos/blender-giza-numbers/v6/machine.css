@@ -1,0 +1,289 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+/* Demo 65 v6: the sky machine. Builds on atlas.css and the v5 instruments.css. */
+#trails {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.stage-frame #trails {
+  z-index: 1;
+}
+.machine {
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(1200px 520px at 78% -8%, #1b2a4a55, transparent 70%),
+    radial-gradient(900px 480px at 8% 4%, #3a2a1433, transparent 70%);
+}
+.machine .instrument-header h2 em {
+  color: #9fe7ff;
+}
+.machine-toolbar {
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+.machine-toolbar > div {
+  flex-wrap: wrap;
+}
+.machine-toolbar .sw {
+  display: inline-block;
+  width: 18px;
+  height: 4px;
+  border-radius: 2px;
+  margin: 0 6px 3px 0;
+  vertical-align: middle;
+  opacity: 1;
+  box-shadow: 0 0 8px currentColor;
+}
+.sw-local {
+  background: #8feaff;
+  color: #8feaff;
+}
+.sw-equator {
+  background: #ffd27a;
+  color: #ffd27a;
+}
+.sw-ecliptic {
+  background: #d3bcff;
+  color: #d3bcff;
+}
+.sw-trail {
+  background: linear-gradient(90deg, #ff806b, #f2f7ff, #c79eff);
+  color: #f2f7ff;
+}
+.machine-toolbar button[aria-pressed="true"] {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: #e9bf7614;
+}
+.machine-toolbar [data-expose] {
+  border-color: #6a5a9a;
+}
+.machine-toolbar [data-expose][aria-pressed="true"] {
+  border-color: #c9b6ff;
+  color: #e3d8ff;
+  background: #b9a3f51f;
+}
+.machine svg .tiny,
+.machine svg text.tiny {
+  font-size: 10.5px;
+}
+.machine .lab-panel > svg {
+  touch-action: none;
+}
+#poleChart {
+  cursor: grab;
+  max-width: 560px;
+  margin-inline: auto;
+  display: block;
+}
+#consensusChart {
+  cursor: crosshair;
+}
+.pole-panel .fit-values > div:nth-child(2) b {
+  color: #4dffd9;
+}
+.pole-panel .fit-values > div:nth-child(3) b {
+  color: #bfd9ff;
+}
+.survey-table td i,
+.w-key i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 7px;
+  vertical-align: baseline;
+}
+.survey-table tr.off td {
+  opacity: 0.45;
+}
+.survey-table td,
+.survey-table th {
+  white-space: nowrap;
+}
+.survey-table td:first-child {
+  white-space: normal;
+}
+.ruler-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: end;
+  margin: 14px 0 6px;
+}
+.ruler-row label {
+  display: grid;
+  gap: 4px;
+  font: 500 11px var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.ruler-row select {
+  background: #0a121b;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font: 500 14px var(--sans);
+  min-width: 132px;
+}
+.primary-lite {
+  background: #f39b8c1f;
+  color: #ffc2b6;
+  border: 1px solid #f39b8c88;
+  border-radius: 6px;
+  padding: 9px 14px;
+  font: 600 13px var(--sans);
+  cursor: pointer;
+}
+.primary-lite:hover {
+  background: #f39b8c33;
+}
+.ruler-out {
+  font: 500 15px var(--mono);
+  color: var(--ink);
+  margin: 12px 0 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-left: 3px solid #f39b8c;
+  background: #0a121b;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+.ruler-out b {
+  color: #ff9d8c;
+  font-size: 19px;
+}
+.witness-panel {
+  grid-column: 1 / -1;
+}
+.w-values {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.w-values > div:nth-child(2) b {
+  color: var(--cyan);
+}
+.w-values > div:nth-child(3) b,
+.w-values > div:nth-child(4) b,
+.w-values > div:nth-child(5) b {
+  color: var(--gold);
+}
+.witness-graph {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 34px;
+  margin: 18px 0 12px;
+}
+.w-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 8px;
+  border-bottom: 1px solid #1a2836;
+  border-radius: 4px;
+}
+.w-row.on {
+  background: #74d3d914;
+  outline: 1px solid #74d3d966;
+}
+.w-row.w-off .w-label {
+  color: var(--muted);
+  font-style: italic;
+}
+.w-label {
+  background: none;
+  border: 0;
+  color: var(--ink);
+  font: 500 13px var(--sans);
+  text-align: left;
+  cursor: pointer;
+  padding: 3px 0;
+  line-height: 1.35;
+}
+.w-label:hover {
+  color: var(--cyan);
+}
+.w-label b {
+  display: inline-block;
+  min-width: 22px;
+  font: 700 14px var(--mono);
+  color: var(--gold);
+}
+.w-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: flex-end;
+  max-width: 270px;
+}
+.w-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: var(--g);
+  cursor: pointer;
+  box-shadow: 0 0 0 0 transparent;
+}
+.w-dot.unit {
+  box-shadow:
+    0 0 0 2px #0e1721,
+    0 0 0 3.5px var(--g);
+  margin: 0 2px;
+}
+.w-dot:hover,
+.w-dot:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.card .rests {
+  font: 500 11.5px var(--mono);
+  color: var(--muted);
+  margin: 6px 0 0;
+  line-height: 1.5;
+}
+.card .rests b {
+  color: var(--cyan);
+  font-weight: 600;
+}
+.clear-root {
+  margin-left: 8px;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--cyan);
+  border-radius: 12px;
+  padding: 2px 10px;
+  font: 500 12px var(--sans);
+  cursor: pointer;
+}
+.chiprow button.star {
+  border-color: #6a8fd0;
+}
+@media (max-width: 900px) {
+  .witness-graph {
+    grid-template-columns: 1fr;
+  }
+  .w-values {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .w-dots {
+    max-width: 150px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #poleChart {
+    cursor: pointer;
+  }
+}
+.lab-col {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  min-width: 0;
+}
