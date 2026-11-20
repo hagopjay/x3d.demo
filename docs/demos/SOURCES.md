@@ -435,3 +435,9 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/fault-lab.jpg | f6bff55bf3b484b94706b35eb7be52925aa23afca0de4c2a8686ff6bc6c6e985 | 24375 |
+
+`fault-lab-v2` is the top 2920 x 1643 region of `docs/demos/fault-lab/v2/shots/02-two-materials.png` (the v2 page, headless Chromium 157 with SwiftShader, X_ITE 16.7.1) resized to 960 x 540 JPEG. No Google or other third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/fault-lab-v2.jpg | d52f7c3e8b68d65eaa202ba76f88852fc29ac6e1eccf7bc4a7ce735f1c56e181 | 87702 |
