@@ -1,5 +1,8 @@
 # futures-3d: ES and BTC futures as a 3D market profile (X3D 4.0 + X_ITE)
 
+> **Notice, 2026-11-22.** The raw Yahoo Finance files named below (`downloads/yahoo/`) were removed from this repository because no licence permitting redistribution was found. The page and the built scene (`out/`) use only the derived numbers and are unaffected. `build.py` needs those two files, so to rebuild, fetch them again as described under Files and run. They remain in the git history of earlier commits. See [NOTICE.md](NOTICE.md) and [../../DATA-ATTRIBUTION.md](../../DATA-ATTRIBUTION.md).
+
+
 **Real data, delayed. A visual study tool, not financial advice.**
 
 ![ES last RTH and overnight](shots/04-es-last-rth-overnight-bracketG.png)
@@ -28,7 +31,7 @@ At the time of the data (Fri 20 Nov 08:45 ET), for example:
 
 | item | rule |
 |---|---|
-| data | `downloads/yahoo/ES=F.1m.5d.json` (sha256 `61af22e8...`), `BTC=F.1m.5d.json` (sha256 `779afc92...`), from Yahoo Finance's chart endpoint (`query1.finance.yahoo.com/v8/finance/chart/<sym>?interval=1m&range=5d`, unofficial, no key, delayed). Fetched 2026-11-20 at about 275–283 KB each. These are continuous front-month contracts. Kept local only; not redistributed. |
+| data | `downloads/yahoo/ES=F.1m.5d.json` (sha256 `61af22e8...`), `BTC=F.1m.5d.json` (sha256 `779afc92...`), from Yahoo Finance's chart endpoint (`query1.finance.yahoo.com/v8/finance/chart/<sym>?interval=1m&range=5d`, unofficial, no key, delayed). Fetched 2026-11-20 at about 275–283 KB each. These are continuous front-month contracts. Not redistributed here (removed 2026-11-22; see the notice at the top). |
 | sessions | RTH 09:30–16:00 ET for complete weekdays. BTC uses the same window so the two markets line up (CME BTC trades almost 23 h). Overnight = 18:00 ET previous day → last bar. |
 | bins | ES 2.00 points, BTC 100 USD |
 | volume at price | **estimated**: each 1-min bar's volume spread evenly over the bins between its low and high (not tick data) |

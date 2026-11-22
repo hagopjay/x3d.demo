@@ -1,5 +1,8 @@
 # orderbook-3d: BTC/USD order-book depth in 3D (X3D 4.0 + X_ITE)
 
+> **Notice, 2026-11-22.** The raw Kraken files named below (`downloads/kraken/`) were removed from this repository because Kraken's terms appear to restrict passing its content to third parties. The page and the built scene (`out/`) use only the derived numbers and are unaffected. `build.py` needs those files, so to rebuild, record a fresh window with `tools/poll_kraken.py`. They remain in the git history of earlier commits. The hashes below describe the files that were used. See [NOTICE.md](NOTICE.md) and [../../DATA-ATTRIBUTION.md](../../DATA-ATTRIBUTION.md).
+
+
 **Real data, Kraken spot XBT/USD, 6 minutes on Fri 20 Nov 2026 (14:41:50–14:47:49 UTC). A visual study tool, not financial advice.**
 
 ![Terrain, oblique from the bid side](shots/01-terrain-oblique.png)
@@ -122,4 +125,4 @@ cd docs/demos/orderbook-3d/v1 && python3 -I tools/poll_kraken.py 360 2.0
 - **Snapshot time is the local receive time.** Network latency (tens of ms) is not removed.
 - **One venue.** Kraken is a fraction of global BTC spot volume, and perpetual-swap venues carry far more.
 - **Six minutes.** Percentile thresholds are relative to this record; a different window gives different absolute thresholds.
-- **Raw data stays local** for study and is not redistributed.
+- **Raw data is not redistributed here** (removed 2026-11-22; see the notice at the top).

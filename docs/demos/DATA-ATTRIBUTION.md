@@ -25,7 +25,7 @@ If you own or control any data listed here and want it removed, or want the cred
 
 File names, byte sizes and sha256 values for every file are in each demo's `README.md`. Each demo folder also has a `NOTICE.md` that points here.
 
-**Correction.** The READMEs of `futures-profile-3d` and `orderbook-3d` say the raw market data is "kept local only" or "not redistributed". That is not accurate: the raw files are present in this repository under each demo's `downloads/` folder. This page is the current statement.
+**Update 2026-11-22.** The raw Yahoo Finance files (`futures-profile-3d`), the raw Kraken files (`orderbook-3d`) and the raw PX4 flight log (`drone-flight-3d`) were removed from the repository tree at the project owner's decision. The derived scenes and pages stay, and they run without those files. The removed files remain in the git history of earlier commits until that history is purged, which has not been done. Between PR 143 and this change the raw files were public in this repository, so the READMEs' earlier statement that they were kept local was wrong.
 
 ## Details and required notices
 
