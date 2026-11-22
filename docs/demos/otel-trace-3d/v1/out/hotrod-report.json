@@ -1,0 +1,44 @@
+{
+ "name": "hotrod",
+ "source": "downloads/jaeger-skills/n_plus_one_full_serial.json",
+ "sha256": "c1d9bd9a2bdd0aa188a695ecded8c4cff8295a30226d0be2279873e13abf8872",
+ "format": "OTLP JSON (ExportTraceServiceRequest)",
+ "spans": 40,
+ "services": [
+  "frontend",
+  "customer",
+  "mysql",
+  "driver",
+  "redis-manual",
+  "route"
+ ],
+ "edges": {
+  "rpc": 12,
+  "message": 0,
+  "call": 15,
+  "link": 0
+ },
+ "critical_path_ms": 1116.967,
+ "errors": 3,
+ "reruns": 3,
+ "retry_events": 3,
+ "findings": [
+  "Critical path: 1117.0 ms, 50% of it in route",
+  "Slowest service by self-time: route, 554.5 ms (50% of all self-time)",
+  "Errors: 3 spans with status ERROR, 3 exception events",
+  "Retries: 3 re-runs after an error, 3 retry events",
+  "Fan-out: 13 x redis-manual / GetDriver, serial",
+  "Gaps: none over 0.5 ms",
+  "Check against the fixture's manifest: agrees"
+ ],
+ "interpolators": 95,
+ "routes": 190,
+ "touch_sensors": 47,
+ "views": 7,
+ "scene_bytes": 179694,
+ "replay": {
+  "cycle_s": 16.0,
+  "play_s": 13.0,
+  "slow_factor": 11.6387
+ }
+}

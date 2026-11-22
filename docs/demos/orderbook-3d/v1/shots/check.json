@@ -1,0 +1,47 @@
+{
+ "console": [
+  "warning: [.WebGL-0x13c001ca200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "warning: [.WebGL-0x13c001ca200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "warning: [.WebGL-0x13c001ca200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "warning: [.WebGL-0x13c001ca200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+ ],
+ "shots": [
+  "01-terrain-oblique.png",
+  "02-front-heatmap.png",
+  "03-terrain-from-asks.png",
+  "04-spread-canyon.png",
+  "05-side-depth-ladder.png",
+  "06-last-minute-trade-clicked.png",
+  "07-wall-clicked.png",
+  "08-replay-45pct.png"
+ ],
+ "clicks": [
+  {
+   "label": "trade cluster",
+   "found": false,
+   "reason": "scan budget 120 s"
+  },
+  {
+   "label": "wall",
+   "at": [
+    86,
+    289
+   ],
+   "hover": "bid wall $61,460-$61,465, peak 12.014 BTC",
+   "panel": "Bid wall at $61,460 to $61,465"
+  }
+ ],
+ "state": {
+  "ready": true,
+  "errors": [],
+  "missing": 0,
+  "status": "169 clickable items, 0 missing · 46 animated nodes · 1021 trades, 14 walls, 179 pulled flags · sources: downloads/kraken/depth.ndjson (c0bb515273), downloads/kraken/trades.ndjson (b729dec133)"
+ },
+ "replay45": {
+  "clock": "replay: 14:44:33 UTC · 162 s of 358 s",
+  "card": "14:44:33 UTC",
+  "hiddenChunks": 25,
+  "totalChunks": 45
+ },
+ "play": "replay: 14:44:51 UTC · 180 s of 358 s"
+}
