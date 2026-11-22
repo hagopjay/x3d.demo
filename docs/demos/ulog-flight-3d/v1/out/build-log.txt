@@ -1,0 +1,10 @@
+wrote out/flight-scene.x3d (321160 bytes), 116 clickable, 31 glyphs, 8 events, 9 findings
+- info Max altitude 30.1 m above home at t = 79.2 s (Return (RTL)).
+- warn The EKF local origin is 67.1 m above home, so -z alone would show a 67 m climb that never happened. All heights here are home-relative.
+- info Flew 304 m (251 m horizontal) between take-off and touch-down; farthest point 118.9 m from home at t = 44.9 s.
+- info Max speed 5.21 m/s (horizontal max 5.20 m/s) at t = 23.0 s in Mission.
+- ok Tracking error in auto modes: RMS 0.20 m, worst 0.46 m (0.46 m horizontal, 0.01 m vertical) at t = 58.8 s in Return (RTL).
+- warn Battery sagged 1.33 V under load: 24.89 V at the start, 23.56 V minimum at t = 98.5 s, 24.33 V at the end after disarm (rebound). Remaining estimate 92 % to 79 %. Current reads 0 A throughout, so the estimate is voltage-only and discharged mAh is not meaningful.
+- warn 122 'gps_inject_data lost' warnings from 1.4 s to 131.6 s (about one a second): the RTK correction stream to the GPS was dropping packets for the whole flight.
+- warn Kill switch engaged at t = 126.3 s with the vehicle already on the ground (0.01 m above home, 0.04 m/s) after the pilot took over in Position mode: motors were stopped by the kill switch, not a normal disarm; landed was detected 5.4 s later.
+- warn 5 logger dropouts, 1810 ms in total; the largest (878 ms) after t = 128.3 s.

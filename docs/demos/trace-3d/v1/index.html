@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trace in 3D · support-agent (synthetic)</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../x3d-mujoco-bridge/v1/vendor/x_ite/x_ite.css">
+<script src="../../x3d-mujoco-bridge/v1/vendor/x_ite/x_ite.min.js"></script>
+<style>
+  :root { --bg:#0b0f16; --panel:#111827; --line:#1f2937; --ink:#e8edf3; --ink2:#94a3b8; --ink3:#475569; --amber:#fbbf24;
+          --verified:#2dd4bf; --check:#f87171; --reworded:#f2b84b; --unchecked:#6b7280; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--ink); font:13px/1.45 ui-sans-serif, -apple-system, "Segoe UI", Inter, sans-serif; }
+  body { display:grid; grid-template-columns: 1fr 380px; grid-template-rows: 52px 1fr 132px; height:100vh; }
+  header { grid-column:1 / 3; display:flex; align-items:center; gap:18px; padding:0 18px; border-bottom:1px solid var(--line); }
+  header h1 { font-size:15px; margin:0; font-weight:650; letter-spacing:.2px; }
+  header .meta { color:var(--ink2); font-variant-numeric: tabular-nums; }
+  .synthetic { color:#111; background:var(--amber); font-weight:700; font-size:11px; padding:3px 8px; border-radius:3px; letter-spacing:.4px; }
+  #views { margin-left:auto; display:flex; gap:6px; flex-wrap:wrap; }
+  button { background:#172033; color:var(--ink); border:1px solid #263247; border-radius:4px; padding:5px 9px; font:inherit; font-size:12px; cursor:pointer; }
+  button:hover { border-color:#3b4a66; } button.on { border-color:var(--amber); color:var(--amber); }
+  #stage { position:relative; min-height:0; }
+  x3d-canvas { width:100%; height:100%; display:block; }
+  #hover { position:absolute; left:14px; bottom:10px; color:var(--ink2); font-size:12px; pointer-events:none; background:#0b0f16cc; padding:3px 8px; border-radius:3px; }
+  #legend { margin-top:18px; border-top:1px solid var(--line); padding-top:12px; font-size:11.5px; display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
+  #legend p { grid-column:1 / 3; }
+  #legend h3 { margin:0 0 6px; font-size:10.5px; letter-spacing:.8px; color:var(--ink2); font-weight:650; }
+  #legend .row { display:flex; align-items:center; gap:8px; margin:2px 0; }
+  #legend .sw { width:14px; height:9px; border-radius:2px; flex:none; }
+  #legend p { margin:7px 0 0; color:var(--ink2); }
+  aside { grid-row:2 / 4; grid-column:2; border-left:1px solid var(--line); background:var(--panel); overflow:auto; padding:16px 18px 30px; }
+  aside .kind { color:var(--ink2); text-transform:uppercase; font-size:10.5px; letter-spacing:.8px; }
+  aside h2 { margin:4px 0 12px; font-size:17px; font-weight:650; word-break:break-word; }
+  dl { margin:0; display:grid; grid-template-columns: 112px 1fr; gap:6px 10px; }
+  dt { color:var(--ink2); font-size:11.5px; padding-top:1px; }
+  dd { margin:0; word-break:break-word; font-variant-numeric: tabular-nums; }
+  pre { margin:0; white-space:pre-wrap; font:11.5px/1.4 ui-monospace, Menlo, monospace; color:#cbd5e1; background:#0b1220; padding:6px 8px; border-radius:4px; max-height:220px; overflow:auto; }
+  .verdict { font-weight:700; text-transform:uppercase; font-size:11px; letter-spacing:.6px; }
+  .src { font:12px/1.55 ui-serif, Georgia, serif; color:#cbd5e1; background:#0b1220; padding:8px 10px; border-radius:4px; }
+  mark { background:#2dd4bf33; color:var(--ink); border-bottom:2px solid var(--verified); padding:0 1px; }
+  mark.check { background:#f8717133; border-color:var(--check); } mark.reworded { background:#f2b84b33; border-color:var(--reworded); }
+  footer { grid-column:1; border-top:1px solid var(--line); padding:10px 18px; display:grid; grid-template-columns:auto 1fr; gap:6px 14px; align-items:center; }
+  #clock { font-variant-numeric: tabular-nums; color:var(--ink2); min-width:210px; }
+  #lanes { position:relative; height:72px; grid-column:1 / 3; background:#0b1220; border-radius:4px; cursor:pointer; overflow:hidden; }
+  #lanes .bar { position:absolute; height:9px; border-radius:2px; opacity:.9; }
+  #lanes .bar.err { outline:1.5px solid var(--check); }
+  #lanes .tick { position:absolute; bottom:1px; font-size:9.5px; color:var(--ink3); transform:translateX(-50%); }
+  #ph { position:absolute; top:0; bottom:0; width:2px; background:var(--amber); pointer-events:none; }
+  input[type=range] { width:100%; accent-color: var(--amber); }
+  #status { color:var(--ink3); font-size:11px; }
+  .note { color:var(--ink2); font-size:11.5px; margin-top:14px; border-top:1px solid var(--line); padding-top:10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="title">support-agent</h1>
+  <span class="synthetic">SYNTHETIC DATA</span>
+  <span class="meta" id="tmeta"></span>
+  <div id="views"></div>
+</header>
+<div id="stage">
+  <x3d-canvas id="world" contentScale="auto" splashScreen="false" notifications="false" contextMenu="false"></x3d-canvas>
+  <div id="hover"></div>
+</div>
+<aside id="side"><div id="panel"><div class="kind">loading</div></div>
+  <div id="legend">
+    <div><h3>OBSERVATION TYPE · bar colour</h3><div id="types"></div></div>
+    <div><h3>CITED VALUE · thread colour</h3><div id="verdicts"></div></div>
+    <p>Bar length = latency (2.4 m per trace second) · bar depth = tokens (square-root scale) · white tick = first token · red bar and dot = ERROR level · amber line = replay playhead · threads run from the source a quote was found in to the value it supports.</p>
+  </div>
+</aside>
+<footer>
+  <div style="display:flex;gap:8px;align-items:center"><button id="play">Pause</button><span id="clock">t = 0.000 s</span></div>
+  <input id="scrub" type="range" min="0" max="1000" value="0" aria-label="replay position (trace time)">
+  <div id="lanes"><div id="ph"></div></div>
+  <div id="status" style="grid-column:1 / 3"></div>
+</footer>
+<script type="module">
+const $ = s => document.querySelector(s);
+const cap = (p, text) => { const d = el("div", text, "kind"); d.style.margin = "14px 0 4px"; p.append(d); };
+const el = (tag, text, cls) => { const e = document.createElement(tag); if (text != null) e.textContent = text; if (cls) e.className = cls; return e; };
+const TYPE = { AGENT:"#64748b", GENERATION:"#818cf8", RETRIEVER:"#2dd4bf", EMBEDDING:"#99f6e4", TOOL:"#f2b84b", GUARDRAIL:"#a3c585", EVALUATOR:"#c4a1d6", SPAN:"#94a3b8", EVENT:"#e2e8f0" };
+const VERD = { verified:"#2dd4bf", check:"#f87171", reworded:"#f2b84b", unchecked:"#6b7280" };
+const state = window.trace3d = { errors: [], watched: 0, missing: [], ready: false };
+
+function marked(text, spans, cls) {           // source text with the quoted spans marked (spans: [[s,e],...])
+  const box = el("div", null, "src"); let at = 0;
+  for (const [s, e, c] of [...spans].sort((a, b) => a[0] - b[0])) {
+    if (s < at) continue;
+    box.append(document.createTextNode(text.slice(at, s)));
+    box.append(el("mark", text.slice(s, e), c || cls || "")); at = e;
+  }
+  box.append(document.createTextNode(text.slice(at))); return box;
+}
+function value(v, k) {
+  if (v === null || v === undefined) return el("span", "n/a");
+  if (k === "verdict") { const s = el("span", v, "verdict"); s.style.color = VERD[v] || ""; return s; }
+  if (typeof v === "object") return el("pre", JSON.stringify(v, null, 1));
+  if (typeof v === "string" && v.length > 140) return el("pre", v);
+  return el("span", String(v));
+}
+function select(name) {
+  const it = state.data.items[name]; if (!it) return false;
+  const p = $("#panel"); p.replaceChildren(el("div", it.kind, "kind"), el("h2", it.title));
+  const dl = el("dl");
+  for (const [k, v] of Object.entries(it.body)) {
+    if (k === "source text" || k === "text" || k === "answer") continue;
+    dl.append(el("dt", k)); const dd = el("dd"); dd.append(value(v, k)); dl.append(dd);
+  }
+  p.append(dl);
+  const txt = it.body["source text"] ?? it.body.text;
+  if (txt) { cap(p, "source text, quote marked (locate)"); p.append(marked(txt, it.highlight || [], it.body.verdict)); }
+  if (it.body.answer) {
+    cap(p, "answer, cited values marked by verdict");
+    p.append(marked(it.body.answer, (it.answer_marks || []).map(([sp, v]) => [sp[0], sp[1], v])));
+  }
+  if (it.answer_span) {
+    const ans = state.data.items.T_answer.body.answer;
+    cap(p, "where the value sits in the answer");
+    p.append(marked(ans, [[...it.answer_span, it.body.verdict]]));
+  }
+  p.append(el("div", "Click any bar, source card, cited value, score or the answer card. Every number shown comes from the trace file (synthetic) or from the x3dtrace check run at build time.", "note"));
+  $("#side").scrollTop = 0; state.selected = name; return true;
+}
+function watch(node, field, fn) {            // one failing callback must not stop the others
+  const g = v => { try { fn(v); } catch (e) { state.errors.push(String(e)); console.error("trace3d callback", e); } };
+  node.addFieldCallback("trace3d-" + field, field, g); state.watched++;
+}
+
+try {
+  const data = state.data = await (await fetch("out/trace-panel.json")).json();
+  for (const [k, c] of Object.entries(TYPE)) if (data.timeline.some(o => o.type === k)) { const r = el("div", null, "row"); const s = el("span", null, "sw"); s.style.background = c; r.append(s, el("span", k.toLowerCase())); $("#types").append(r); }
+  for (const [k, c] of Object.entries(VERD)) { const r = el("div", null, "row"); const s = el("span", null, "sw"); s.style.background = c; r.append(s, el("span", k)); $("#verdicts").append(r); }
+  const tr = data.trace;
+  $("#title").textContent = tr.name;
+  $("#tmeta").textContent = `trace ${tr.id.slice(0, 8)} · ${tr.observations} observations · ${data.t_end.toFixed(2)} s · ${tr.tokens.toLocaleString()} tokens · $${tr.cost_usd.toFixed(5)} (synthetic price table)`;
+
+  const browser = X3D.getBrowser($("#world"));
+  await browser.loadURL(new X3D.MFString("out/trace-scene.x3d"));
+  const scene = browser.currentScene;
+  for (const name of Object.keys(data.items)) {
+    let node; try { node = scene.getNamedNode(name); } catch (e) { state.missing.push(name); continue; }
+    const d = node.description;
+    watch(node, "isOver", over => { $("#hover").textContent = over ? d : ""; });
+    watch(node, "touchTime", () => select(name));
+  }
+  for (const [name, text] of data.views) {
+    const b = el("button", text.split(":")[0]); b.title = text;
+    b.onclick = () => { scene.getNamedNode(name).set_bind = true; document.querySelectorAll("#views button").forEach(x => x.classList.remove("on")); b.classList.add("on"); };
+    $("#views").append(b);
+  }
+
+  // timeline lanes (HTML mirror of the waterfall) + scrubber
+  const R = data.replay, T = data.t_end, pad = 0.02;
+  const xOf = t => (pad + (1 - 2 * pad) * t / T) * 100;
+  const lanes = $("#lanes"); const depthMax = Math.max(...data.timeline.map(o => o.depth));
+  for (const o of data.timeline) {
+    const b = el("div", null, "bar" + (o.level === "ERROR" ? " err" : ""));
+    b.style.left = xOf(o.s) + "%"; b.style.width = o.e == null ? "4px" : Math.max(0.35, xOf(o.e) - xOf(o.s)) + "%";
+    b.style.top = (6 + o.depth * 16) + "px"; b.style.background = TYPE[o.type] || "#94a3b8"; b.title = `${o.name} (${o.type})`;
+    b.onclick = ev => { ev.stopPropagation(); select(o.sensor); };
+    lanes.append(b);
+  }
+  for (let t = 0; t <= T + 1e-9; t += 1) { const k = el("div", t.toFixed(0) + " s", "tick"); k.style.left = xOf(t) + "%"; lanes.append(k); }
+  const sensor = scene.getNamedNode("Replay");
+  const interps = data.interps.map(n => scene.getNamedNode(n));
+  const fracOf = t => (R.lead + t * R.slow) / R.cycle;
+  const tOf = f => Math.min(T, Math.max(0, (f * R.cycle - R.lead) / R.slow));
+  let playing = true, dragging = false;
+  $("#scrub").onpointerdown = () => { dragging = true; }; $("#scrub").onpointerup = () => { dragging = false; };
+  const show = f => {
+    const t = tOf(f);
+    $("#clock").textContent = `t = ${t.toFixed(3)} s of ${T.toFixed(3)} s · replay ${R.slow}x slower`;
+    $("#ph").style.left = xOf(t) + "%"; if (playing || !dragging) $("#scrub").value = Math.round(t / T * 1000);
+  };
+  watch(sensor, "fraction_changed", f => { if (playing) show(f); });
+  const seek = t => { const f = fracOf(t); for (const n of interps) n.set_fraction = f; show(f); };
+  const pause = () => { playing = false; sensor.enabled = false; $("#play").textContent = "Play"; };
+  $("#scrub").oninput = e => { pause(); seek(e.target.value / 1000 * T); };
+  lanes.onclick = e => { const r = lanes.getBoundingClientRect(); const t = Math.min(T, Math.max(0, ((e.clientX - r.left) / r.width * 100 / 100 - pad) / (1 - 2 * pad) * T)); pause(); $("#scrub").value = Math.round(t / T * 1000); seek(t); };
+  $("#play").onclick = () => {
+    if (playing) { pause(); return; }
+    const f = fracOf($("#scrub").value / 1000 * T);
+    playing = true; sensor.enabled = true; sensor.startTime = Date.now() / 1000 - f * R.cycle;   // X_ITE time is wall-clock seconds
+    $("#play").textContent = "Pause";
+  };
+  state.seek = seek; state.pause = pause; state.select = select; state.ready = true;
+  $("#status").textContent = `${Object.keys(data.items).length - state.missing.length} clickable items, ${state.missing.length} missing · ${interps.length} interpolators · scene out/trace-scene.x3d`;
+  select("T_answer");
+} catch (e) {
+  state.errors.push(String(e)); $("#status").textContent = "failed: " + e; console.error(e);
+}
+</script>
+</body>
+</html>

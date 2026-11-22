@@ -1,0 +1,43 @@
+{
+ "name": "otel-demo",
+ "source": "downloads/jaeger-skills/error_timeout_masked.json",
+ "sha256": "1667cc2be323fe90eeb825bba6627673611d9d6c46acae99ef5ba67d36b45852",
+ "format": "OTLP JSON (ExportTraceServiceRequest)",
+ "spans": 26,
+ "services": [
+  "load-generator",
+  "frontend-proxy",
+  "frontend",
+  "product-catalog",
+  "cart"
+ ],
+ "edges": {
+  "rpc": 9,
+  "message": 0,
+  "call": 0,
+  "link": 0
+ },
+ "critical_path_ms": 15080.82,
+ "errors": 1,
+ "reruns": 0,
+ "retry_events": 0,
+ "findings": [
+  "Critical path: 15.08 s, 100% of it in frontend",
+  "Slowest service by self-time: frontend, 15.03 s (100% of all self-time)",
+  "Errors: 1 span with status ERROR, 0 exception events",
+  "Retries: none found",
+  "Fan-out: 3 x cart / valkey-cart:6379, serial",
+  "Gaps: 5 between child calls, 33.8 ms in all; largest 32.9 ms in load-generator / user_checkout_multi",
+  "Check against the fixture's manifest: agrees"
+ ],
+ "interpolators": 45,
+ "routes": 90,
+ "touch_sensors": 32,
+ "views": 7,
+ "scene_bytes": 101524,
+ "replay": {
+  "cycle_s": 16.0,
+  "play_s": 13.0,
+  "slow_factor": 0.862
+ }
+}

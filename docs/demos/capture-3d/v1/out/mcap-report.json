@@ -1,0 +1,91 @@
+{
+ "scene_bytes": 77755,
+ "file": {
+  "file": "downloads/foxglove-mcap/uncompressed.mcap",
+  "sha256": "29da7e4d5dcb32ff72edf77999fa3941fc0b08bec7f3ca9d3087274291a12d18",
+  "bytes": 2057946,
+  "profile": "ros1",
+  "library": "mcap go #(devel); golang-mcap-v0",
+  "messages": 826,
+  "channels": 2,
+  "schemas": 2,
+  "chunks": 413,
+  "chunk_compression": {
+   "none": 413
+  },
+  "skipped_chunks": 0,
+  "record_counts": {
+   "Header": 1,
+   "Schema": 828,
+   "Channel": 828,
+   "Message": 826,
+   "Chunk": 413,
+   "MessageIndex": 826,
+   "DataEnd": 1,
+   "Statistics": 1,
+   "ChunkIndex": 413,
+   "SummaryOffset": 4,
+   "Footer": 1
+  },
+  "problems": [],
+  "duration_s": 7.781,
+  "first_message_utc": "2017-03-22T02:26:20.103843+00:00",
+  "payload_bytes": 106628,
+  "statistics": {
+   "message_count": 826,
+   "schema_count": 2,
+   "channel_count": 2,
+   "attachment_count": 0,
+   "metadata_count": 0,
+   "chunk_count": 413,
+   "start": 1490149580103843113,
+   "end": 1490149587884601617
+  }
+ },
+ "findings": [
+  {
+   "level": "warn",
+   "text": "Static transform base_link -> radar published 774 times on /tf with identical values (99.3 Hz). A static transform belongs on /tf_static (latched, sent once).",
+   "evidence": "1 distinct translation+rotation over 774 messages"
+  },
+  {
+   "level": "warn",
+   "text": "/diagnostics carries 2 publishers with independent header.seq counters (B from seq 3422, C from seq 8614) and the same diagnostic names and hardware ids; their GPS RTK fixes are 22 m apart at the start. Treated as separate receivers; the log does not say which rig each belongs to.",
+   "evidence": "header.seq of each DiagnosticArray; GPS RTK meters north/east"
+  },
+  {
+   "level": "warn",
+   "text": "Receiver B: 8 fixes over 7.01 s, 17.5 m travelled, speed 0.89 to 3.11 m/s, 6/7 satellites, accuracy 0.04 m; no RTK fix (status 3) in its first 3 fixes, fixed from 3.06 s.",
+   "evidence": "GPS RTK keys in /diagnostics, publisher B"
+  },
+  {
+   "level": "ok",
+   "text": "Receiver C: 7 fixes over 6.00 s, 4.9 m travelled, speed 0.00 to 1.92 m/s, 9 satellites, accuracy 0.04 m; stopped by the end (speed 0.004 m/s).",
+   "evidence": "GPS RTK keys in /diagnostics, publisher C"
+  },
+  {
+   "level": "warn",
+   "text": "3 WARN from 'piksi_rtk_diag: Piksi Status': No GPS RTK fix",
+   "evidence": "/diagnostics status level >= 1"
+  },
+  {
+   "level": "info",
+   "text": "File overhead: 828 Schema and 828 Channel records for 2 schemas / 2 channels (repeated in each of 413 chunks); message payload is 5.2 % of the 2,057,946-byte file.",
+   "evidence": "record opcode counts from the reader"
+  }
+ ],
+ "fixes": 15,
+ "lanes": [
+  "/tf",
+  "/diagnostics",
+  "velodyne_nodelet_manager: velodyne_packets topic status [A]",
+  "piksi_llh_diag: Frequency Status [B]",
+  "piksi_rtk_diag: Frequency Status [B]",
+  "piksi_rtk_diag: Piksi Status [B]",
+  "piksi_time_diag: Frequency Status [B]",
+  "piksi_llh_diag: Frequency Status [C]",
+  "piksi_rtk_diag: Frequency Status [C]",
+  "piksi_rtk_diag: Piksi Status [C]",
+  "piksi_time_diag: Frequency Status [C]"
+ ]
+}

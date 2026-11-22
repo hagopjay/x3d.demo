@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTC/USD order book · 3D depth (Kraken spot)</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../x3d-mujoco-bridge/v1/vendor/x_ite/x_ite.css">
+<script src="../../x3d-mujoco-bridge/v1/vendor/x_ite/x_ite.min.js"></script>
+<style>
+  :root { --bg:#090c12; --panel:#0f141d; --line:#1d2533; --ink:#e8edf3; --ink2:#94a3b8; --ink3:#475569; --amber:#fbbf24;
+          --bid:#3b82c4; --ask:#c2652f; --buy:#34d399; --sell:#f87171; --pull:#c084fc; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--ink); font:13px/1.45 ui-sans-serif, -apple-system, "Segoe UI", Inter, sans-serif; }
+  body { display:grid; grid-template-columns:1fr 400px; grid-template-rows:52px 1fr 92px; height:100vh; }
+  header { grid-column:1 / 3; display:flex; align-items:center; gap:14px; padding:0 18px; border-bottom:1px solid var(--line); }
+  h1 { font-size:15px; margin:0; font-weight:650; white-space:nowrap; }
+  .tag { font-size:10.5px; font-weight:700; letter-spacing:.5px; padding:3px 8px; border-radius:3px; white-space:nowrap; }
+  .real { background:#0e3a35; color:#5eead4; } .warn { background:#3a2a0e; color:var(--amber); }
+  #views { margin-left:auto; display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+  button { background:#151d2b; color:var(--ink); border:1px solid #243047; border-radius:4px; padding:5px 9px; font:inherit; font-size:12px; cursor:pointer; }
+  button:hover { border-color:#3b4a66; } button.on { border-color:var(--amber); color:var(--amber); }
+  #stage { position:relative; min-height:0; }
+  x3d-canvas { width:100%; height:100%; display:block; }
+  #hover { position:absolute; left:14px; bottom:10px; color:var(--ink2); font-size:12px; pointer-events:none; background:#090c12cc; padding:3px 8px; border-radius:3px; }
+  aside { grid-row:2 / 4; grid-column:2; border-left:1px solid var(--line); background:var(--panel); overflow:auto; padding:14px 16px 30px; }
+  .kind { color:var(--ink2); text-transform:uppercase; font-size:10.5px; letter-spacing:.8px; }
+  h2 { margin:3px 0 10px; font-size:16px; font-weight:650; }
+  h3 { margin:16px 0 6px; font-size:10.5px; letter-spacing:.8px; color:var(--ink2); font-weight:650; }
+  .card { background:#0b1018; border:1px solid var(--line); border-radius:6px; padding:10px 12px; }
+  .card .top { display:flex; justify-content:space-between; align-items:baseline; }
+  .card .t { color:var(--ink2); font-variant-numeric:tabular-nums; font-size:12px; }
+  .bbo { display:grid; grid-template-columns:1fr auto 1fr; gap:6px; align-items:baseline; margin:6px 0 8px; font-variant-numeric:tabular-nums; }
+  .bbo .b { color:#93c5fd; font-size:17px; font-weight:650; } .bbo .a { color:#fdba74; font-size:17px; font-weight:650; text-align:right; }
+  .bbo .s { color:var(--ink2); font-size:11.5px; text-align:center; }
+  table.lv { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; font-size:12.5px; }
+  table.lv td { padding:3px 4px; border-bottom:1px solid #182030; } table.lv td:first-child { color:var(--ink2); } table.lv td.n { text-align:right; }
+  .pos { color:var(--buy); } .neg { color:var(--sell); }
+  .imb { display:flex; height:8px; border-radius:2px; overflow:hidden; margin:6px 0 2px; background:#1a2130; }
+  .imb .bi { background:var(--bid); } .imb .ai { background:var(--ask); }
+  dl { margin:0; display:grid; grid-template-columns:130px 1fr; gap:5px 10px; }
+  dt { color:var(--ink2); font-size:11.5px; } dd { margin:0; font-variant-numeric:tabular-nums; word-break:break-word; }
+  #legend .row { display:flex; align-items:center; gap:8px; margin:3px 0; font-size:12px; }
+  .sw { width:16px; height:9px; border-radius:2px; flex:none; } .dot { width:10px; height:10px; border-radius:50%; flex:none; }
+  .rampb { width:60px; height:9px; border-radius:2px; background:linear-gradient(90deg,#0d1626,#1f4f80,#3b82c4,#93c5fd); }
+  .rampa { width:60px; height:9px; border-radius:2px; background:linear-gradient(90deg,#1a110c,#83391b,#c2652f,#fdba74); }
+  footer { grid-column:1; border-top:1px solid var(--line); padding:10px 18px; display:grid; grid-template-columns:auto 1fr; gap:8px 14px; align-items:center; }
+  #clock { font-variant-numeric:tabular-nums; color:var(--ink2); min-width:250px; }
+  input[type=range] { width:100%; accent-color:var(--amber); }
+  #status { grid-column:1 / 3; color:var(--ink3); font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .note { color:var(--ink2); font-size:11.5px; margin-top:10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>BTC/USD order book · 3D depth</h1>
+  <span class="tag real">REAL DATA · Kraken spot</span>
+  <span class="tag warn">NOT FINANCIAL ADVICE</span>
+  <div id="views"></div>
+</header>
+<div id="stage">
+  <x3d-canvas id="world" contentScale="auto" splashScreen="false" notifications="false" contextMenu="false"></x3d-canvas>
+  <div id="hover"></div>
+</div>
+<aside>
+  <h3 style="margin-top:0">NOW · AT THE REPLAY CURSOR</h3>
+  <div id="now" class="card"></div>
+  <h3>DETAILS (CLICK ANYTHING IN THE SCENE)</h3>
+  <div id="panel"><div class="kind">loading</div></div>
+  <div id="legend">
+    <h3>LEGEND</h3>
+    <div class="row"><span class="rampb"></span><span>resting bids</span><span class="rampa" style="margin-left:8px"></span><span>resting asks</span></div>
+    <div class="row"><span class="sw" style="background:#bfdbfe;height:3px"></span><span>best bid</span><span class="sw" style="background:#fed7aa;height:3px;margin-left:8px"></span><span>best ask</span></div>
+    <div class="row"><span class="dot" style="background:var(--buy)"></span><span>trades, buy aggressor</span><span class="dot" style="background:var(--sell);margin-left:8px"></span><span>sell aggressor</span></div>
+    <div class="row"><span class="sw" style="background:var(--amber)"></span><span>liquidity wall (fence + top line)</span></div>
+    <div class="row"><span class="sw" style="background:var(--pull)"></span><span>pulled: size gone without matching trades</span></div>
+    <div class="row"><span class="sw" style="background:#e2e8f0;width:3px"></span><span>replay cursor ("now")</span></div>
+    <p class="note" id="method"></p>
+  </div>
+</aside>
+<footer>
+  <div style="display:flex;gap:8px;align-items:center"><button id="play">Play</button><span id="clock"></span></div>
+  <input id="scrub" type="range" min="0" max="1000" value="1000" aria-label="replay clock">
+  <div id="status"></div>
+</footer>
+<script type="module">
+const $ = s => document.querySelector(s);
+const el = (t, x, c) => { const e = document.createElement(t); if (x != null) e.textContent = x; if (c) e.className = c; return e; };
+const state = window.ob = { errors: [], missing: [], ready: false };
+const usd = (v, d = 1) => "$" + v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+const btc = v => v.toFixed(3) + " BTC";
+const sgn = (v, d = 3) => (v >= 0 ? "+" : "") + v.toFixed(d);
+
+function select(name) {
+  const it = state.data.items[name]; if (!it) return false;
+  const p = $("#panel"); p.replaceChildren(el("div", it.kind, "kind"), el("h2", it.title));
+  const dl = el("dl"); for (const [k, v] of Object.entries(it.body)) { dl.append(el("dt", k), el("dd", String(v))); } p.append(dl);
+  return true;
+}
+function now(k) {                                  // the practical card: the book and tape at snapshot k (nothing later)
+  const c = state.data.cards[k], P = state.data.params, box = $("#now");
+  const top = el("div", null, "top"); top.append(el("b", "Snapshot " + (k + 1) + " / " + state.data.cards.length), el("span", c.time, "t"));
+  const bbo = el("div", null, "bbo"); bbo.append(el("span", usd(c.bid), "b"), el("span", "spread " + usd(c.spread, 2), "s"), el("span", usd(c.ask), "a"));
+  const t = el("table", null, "lv");
+  const row = (k_, v, cls) => { const r = el("tr"); const td = el("td", v, "n" + (cls ? " " + cls : "")); r.append(el("td", k_), td); t.append(r); };
+  row(`largest bid wall ±$${P.near_usd}`, `${usd(c.wall_bid[0], 0)}–${usd(c.wall_bid[1], 0)} · ${btc(c.wall_bid[2])} · ${usd(c.wall_bid[3], 0)} below`);
+  row(`largest ask wall ±$${P.near_usd}`, `${usd(c.wall_ask[0], 0)}–${usd(c.wall_ask[1], 0)} · ${btc(c.wall_ask[2])} · ${usd(c.wall_ask[3], 0)} above`);
+  row(`book imbalance ±$${P.imb_usd}`, `${sgn(c.imb, 2)} (bid ${c.B.toFixed(1)} / ask ${c.A.toFixed(1)} BTC)`, c.imb >= 0 ? "pos" : "neg");
+  row("aggressor delta 30 s", sgn(c.d30) + " BTC", c.d30 >= 0 ? "pos" : "neg");
+  row("aggressor delta 60 s", sgn(c.d60) + " BTC", c.d60 >= 0 ? "pos" : "neg");
+  row("cumulative delta (CVD)", sgn(c.cvd) + " BTC", c.cvd >= 0 ? "pos" : "neg");
+  row("trades in last 60 s", String(c.n60));
+  const bar = el("div", null, "imb"); const bi = el("div", null, "bi"), ai = el("div", null, "ai");
+  bi.style.width = (100 * c.B / (c.B + c.A)).toFixed(1) + "%"; ai.style.width = (100 * c.A / (c.B + c.A)).toFixed(1) + "%"; bar.append(bi, ai);
+  box.replaceChildren(top, bbo, bar, t, el("p", `Computed by build.py from Kraken spot XBT/USD REST snapshots (${P.date}, ${P.span.join(" to ")}). Imbalance = (bid − ask) / (bid + ask) of resting size; delta = buy − sell taker volume. A study aid, not a signal.`, "note"));
+}
+function watch(node, field, fn) {
+  const g = v => { try { fn(v); } catch (e) { state.errors.push(String(e)); console.error("ob callback", e); } };
+  node.addFieldCallback("ob-" + field, field, g);
+}
+try {
+  const data = state.data = await (await fetch("out/orderbook-panel.json")).json();
+  const P = data.params, N = data.cards.length;
+  $("#method").textContent = `Bins ${usd(P.bin_usd, 0)}. Height = resting size, sqrt scale against ${P.q_ref_btc} BTC (99th pct). Wall = bin ≥ ${P.wall_threshold_btc} BTC (93rd pct near price) for ≥ ${P.wall_min_snaps} snapshots. Pulled = size lost between two ~2 s snapshots minus volume traded there, flagged ≥ ${P.pull_threshold_btc} BTC: a lower bound that also counts market-maker re-quotes, not proof of spoofing. Spot venue: no perpetual or CME book here.`;
+  now(N - 1);
+  const browser = X3D.getBrowser($("#world"));
+  await browser.loadURL(new X3D.MFString("out/orderbook-scene.x3d"));
+  const scene = browser.currentScene;
+  for (const name of Object.keys(data.items)) {
+    let node; try { node = scene.getNamedNode(name); } catch (e) { state.missing.push(name); continue; }
+    const d = node.description;
+    watch(node, "isOver", o => { $("#hover").textContent = o ? d : ""; });
+    watch(node, "touchTime", () => select(name));
+  }
+  for (const [name, text] of data.views) {
+    const b = el("button", text.split(/[:(,]/)[0].trim()); b.title = text;
+    b.onclick = () => { scene.getNamedNode(name).set_bind = true; document.querySelectorAll("#views button").forEach(x => x.classList.remove("on")); b.classList.add("on"); };
+    b.dataset.vp = name; $("#views").append(b);
+  }
+  const R = data.replay, sensor = scene.getNamedNode("Replay"), interps = data.interps.map(n => scene.getNamedNode(n));
+  const fracOf = p => (R.lead + p * (R.cycle - R.lead - R.hold)) / R.cycle;
+  const progOf = f => Math.min(1, Math.max(0, (f * R.cycle - R.lead) / (R.cycle - R.lead - R.hold)));
+  let playing = false, dragging = false, lastK = -1;
+  const show = f => {
+    const p = progOf(f), k = Math.round(p * (N - 1));
+    $("#clock").textContent = `replay: ${data.cards[k].time} · ${Math.round(data.cards[k].t - data.cards[0].t)} s of ${Math.round(data.cards[N - 1].t - data.cards[0].t)} s`;
+    if (k !== lastK) { now(k); lastK = k; }
+    if (!dragging) $("#scrub").value = Math.round(p * 1000);
+  };
+  watch(sensor, "fraction_changed", f => { if (playing) show(f); });
+  const seek = p => { const f = fracOf(p); for (const n of interps) n.set_fraction = f; show(f); };
+  const pause = () => { playing = false; sensor.enabled = false; $("#play").textContent = "Play"; };
+  $("#scrub").onpointerdown = () => { dragging = true; }; $("#scrub").onpointerup = () => { dragging = false; };
+  $("#scrub").oninput = e => { pause(); seek(e.target.value / 1000); };
+  $("#play").onclick = () => {
+    if (playing) { pause(); return; }
+    const p = $("#scrub").value / 1000 >= 0.999 ? 0 : $("#scrub").value / 1000;
+    playing = true; sensor.enabled = true; sensor.startTime = Date.now() / 1000 - fracOf(p) * R.cycle; $("#play").textContent = "Pause";
+  };
+  pause(); seek(1);                                 // open on the full record; Play replays it at ~9x
+  state.seek = seek; state.pause = pause; state.select = select; state.ready = true;
+  $("#status").textContent = `${Object.keys(data.items).length - state.missing.length} clickable items, ${state.missing.length} missing · ${interps.length} animated nodes · ${data.summary.trades} trades, ${data.summary.walls} walls, ${data.summary.pulls} pulled flags · sources: ` + data.sources.map(s => `${s.file} (${s.sha256.slice(0, 10)})`).join(", ");
+  scene.getNamedNode("VP_terrain").set_bind = true; document.querySelector('[data-vp="VP_terrain"]').classList.add("on");
+  select(Object.keys(data.items).find(k => k.startsWith("T_W")) || "T_S0");
+} catch (e) { state.errors.push(String(e)); $("#status").textContent = "failed: " + e; console.error(e); }
+</script>
+</body>
+</html>

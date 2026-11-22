@@ -1,0 +1,1180 @@
+{
+ "items": {
+  "T_obs_01": {
+   "kind": "AGENT observation",
+   "title": "support-agent",
+   "body": {
+    "type": "AGENT",
+    "name": "support-agent",
+    "id": "obs-01",
+    "level": "DEFAULT",
+    "startTime": "2026-11-19T14:02:11.000Z",
+    "endTime": "2026-11-19T14:02:18.420Z",
+    "latency": 7.42,
+    "metadata": {
+     "agent": "halden-support",
+     "max_steps": 6
+    },
+    "input": {
+     "question": "My Halden e-bike battery barely lasts 20 km now. I bought it about 18 months ago. Is it still under warranty, and how long would a replacement take?"
+    },
+    "output": {
+     "answer": "Yes, your battery is still under warranty. Halden e-bike batteries are covered for 24 months from the date of delivery, and order HB-20391 was delivered on 2025-05-12. If a service centre measures less than 70 percent of rated capacity, the battery is replaced free of charge. After approval, a replacement ships within 5 business days. To start, open a claim from the Orders page with your order number and the frame serial number."
+    },
+    "scores": [
+     "user-feedback = True (ANNOTATION; thumbs up)",
+     "resolution = resolved (EVAL)"
+    ]
+   }
+  },
+  "T_obs_02": {
+   "kind": "GUARDRAIL observation",
+   "title": "input-moderation",
+   "body": {
+    "type": "GUARDRAIL",
+    "name": "input-moderation",
+    "id": "obs-02",
+    "parentObservationId": "support-agent (obs-01)",
+    "level": "DEFAULT",
+    "startTime": "2026-11-19T14:02:11.018Z",
+    "endTime": "2026-11-19T14:02:11.164Z",
+    "latency": 0.146,
+    "metadata": {
+     "policy": "pii+abuse v4"
+    },
+    "input": {
+     "text": "My Halden e-bike battery barely lasts 20 km now. I bought it about 18 months ago. Is it still under warranty, and how long would a replacement take?"
+    },
+    "output": {
+     "flagged": false,
+     "categories": []
+    },
+    "scores": [
+     "pii-detected = False (API)"
+    ]
+   }
+  },
+  "T_obs_03": {
+   "kind": "GENERATION observation",
+   "title": "plan-steps",
+   "body": {
+    "type": "GENERATION",
+    "name": "plan-steps",
+    "id": "obs-03",
+    "parentObservationId": "support-agent (obs-01)",
+    "level": "DEFAULT",
+    "startTime": "2026-11-19T14:02:11.180Z",
+    "endTime": "2026-11-19T14:02:12.010Z",
+    "completionStartTime": "2026-11-19T14:02:11.470Z",
+    "latency": 0.83,
+    "timeToFirstToken": 0.29,
+    "model": "provider-x/chat-small",
+    "modelParameters": {
+     "temperature": 0,
+     "max_tokens": 200
+    },
+    "usageDetails": {
+     "input": 612,
+     "output": 74,
+     "total": 686
+    },
+    "costDetails": {
+     "input": 9.18e-05,
+     "output": 4.44e-05,
+     "total": 0.0001362
+    },
+    "totalCost": 0.0001362,
+    "promptName": "agent-planner",
+    "promptVersion": 7,
+    "input": [
+     {
+      "role": "system",
+      "content": "Plan the tool calls needed to answer."
+     },
+     {
+      "role": "user",
+      "content": "My Halden e-bike battery barely lasts 20 km now. I bought it about 18 months ago. Is it still under warranty, and how long would a replacement take?"
+     }
+    ],
+    "output": {
+     "plan": [
+      "search_kb('battery warranty replacement time')",
+      "lookup_order(user)"
+     ]
+    }
+   }
+  },
+  "T_obs_04": {
+   "kind": "RETRIEVER observation",
+   "title": "retrieve-docs",
+   "body": {
+    "type": "RETRIEVER",
+    "name": "retrieve-docs",
+    "id": "obs-04",
+    "parentObservationId": "support-agent (obs-01)",
+    "level": "DEFAULT",
+    "startTime": "2026-11-19T14:02:12.030Z",
+    "endTime": "2026-11-19T14:02:12.640Z",
+    "latency": 0.61,
+    "metadata": {
+     "index": "kb-v12",
+     "k": 4
+    },
+    "input": {
+     "query": "battery warranty replacement time"
+    },
+    "output": {
+     "documents": [
+      "kb-warranty-0412",
+      "kb-service-0137",
+      "kb-claims-0098",
+      "kb-accessories-0551"
+     ]
+    }
+   }
+  },
+  "T_obs_05": {
+   "kind": "EMBEDDING observation",
+   "title": "embed-query",
+   "body": {
+    "type": "EMBEDDING",
+    "name": "embed-query",
+    "id": "obs-05",
+    "parentObservationId": "retrieve-docs (obs-04)",
+    "level": "DEFAULT",
+    "startTime": "2026-11-19T14:02:12.036Z",
+    "endTime": "2026-11-19T14:02:12.188Z",
+    "latency": 0.152,
+    "model": "provider-x/embed-small",
+    "usageDetails": {
+     "input": 9,
+     "output": 0,
+     "total": 9
+    },
+    "costDetails": {
+     "input": 1.8e-07,
+     "output": 0.0,
+     "total": 1.8e-07
+    },
+    "totalCost": 1.8e-07,
+    "input": "battery warranty replacement time",
+    "output": {
+     "dims": 1536
+    }
+   }
+  },
+  "T_obs_06": {
+   "kind": "RETRIEVER observation",
+   "title": "vector-search",
+   "body": {
+    "type": "RETRIEVER",
+    "name": "vector-search",
+    "id": "obs-06",
+    "parentObservationId": "retrieve-docs (obs-04)",
+    "level": "DEFAULT",
+    "startTime": "2026-11-19T14:02:12.196Z",
+    "endTime": "2026-11-19T14:02:12.472Z",
+    "latency": 0.276,
+    "input": {
+     "top_k": 4,
+     "index": "kb-v12"
+    },
+    "output": {
+     "documents": [
+      {
+       "id": "kb-warranty-0412",
+       "title": "Battery warranty (e-bikes)",
+       "text": "Halden e-bike batteries are covered for 24 months from the date of delivery. A battery that holds less than 70 percent of its rated capacity within the warranty period is replaced free of charge. Capacity is measured by an authorised service centre with the Halden Diagnostic Tool.",
+       "similarity": 0.884
+      },
+      {
+       "id": "kb-service-0137",
+       "title": "Replacement turnaround",
+       "text": "Once a claim is approved, a replacement battery ships within 7 to 10 business days. Customers in remote postcodes should allow 3 additional business days.",
+       "similarity": 0.861
+      },
+      {
+       "id": "kb-claims-0098",
+       "title": "How to open a warranty claim",
+       "text": "Open a claim from the Orders page or by calling support. You will need the order number and the frame serial number printed under the bottom bracket.",
+       "similarity": 0.812
+      },
+      {
+       "id": "kb-accessories-0551",
+       "title": "Accessory warranty",
+       "text": "Lights, locks and racks sold by Halden carry a 12 month limited warranty against manufacturing defects.",
+       "similarity": 0.774
+      }
+     ]
+    },
+    "scores": [
+     "retrieval-relevance = 0.92 (EVAL; mean rerank score of the 3 kept documents)"
+    ]
+   }
+  },
+  "T_obs_07": {
+   "kind": "SPAN observation",
+   "title": "rerank",
+   "body": {
+    "type": "SPAN",
+    "name": "rerank",
+    "id": "obs-07",
+    "parentObservationId": "retrieve-docs (obs-04)",
+    "level": "DEFAULT",
+    "startTime": "2026-11-19T14:02:12.480Z",
+    "endTime": "2026-11-19T14:02:12.632Z",
+    "latency": 0.152,
+    "metadata": {
+     "cutoff": 0.5
+    },
+    "input": {
+     "n": 4
+    },
+    "output": {
+     "ranked": [
+      {
+       "id": "kb-warranty-0412",
+       "score": 0.97
+      },
+      {
+       "id": "kb-service-0137",
+       "score": 0.91
+      },
+      {
+       "id": "kb-claims-0098",
+       "score": 0.88
+      },
+      {
+       "id": "kb-accessories-0551",
+       "score": 0.21
+      }
+     ],
+     "kept": 3
+    }
+   }
+  },
+  "T_obs_08": {
+   "kind": "TOOL observation",
+   "title": "order-api",
+   "body": {
+    "type": "TOOL",
+    "name": "order-api",
+    "id": "obs-08",
+    "parentObservationId": "support-agent (obs-01)",
+    "level": "ERROR",
+    "statusMessage": "upstream timeout after 1.2 s (attempt 1 of 3)",
+    "startTime": "2026-11-19T14:02:12.650Z",
+    "endTime": "2026-11-19T14:02:13.870Z",
+    "latency": 1.22,
+    "metadata": {
+     "http_status": 504,
+     "attempt": 1
+    },
+    "input": {
+     "user_id": "user-7f3a"
+    }
+   }
+  },
+  "T_obs_09": {
+   "kind": "TOOL observation",
+   "title": "order-api",
+   "body": {
+    "type": "TOOL",
+    "name": "order-api",
+    "id": "obs-09",
+    "parentObservationId": "support-agent (obs-01)",
+    "level": "WARNING",
+    "statusMessage": "succeeded on retry (attempt 2 of 3)",
+    "startTime": "2026-11-19T14:02:13.900Z",
+    "endTime": "2026-11-19T14:02:14.180Z",
+    "latency": 0.28,
+    "metadata": {
+     "http_status": 200,
+     "attempt": 2
+    },
+    "input": {
+     "user_id": "user-7f3a"
+    },
+    "output": {
+     "order_id": "HB-20391",
+     "sku": "HB-EB-500-BAT",
+     "delivered_at": "2025-05-12",
+     "customer_tier": "standard"
+    }
+   }
+  },
+  "T_obs_10": {
+   "kind": "GENERATION observation",
+   "title": "compose-answer",
+   "body": {
+    "type": "GENERATION",
+    "name": "compose-answer",
+    "id": "obs-10",
+    "parentObservationId": "support-agent (obs-01)",
+    "level": "DEFAULT",
+    "startTime": "2026-11-19T14:02:14.210Z",
+    "endTime": "2026-11-19T14:02:17.240Z",
+    "completionStartTime": "2026-11-19T14:02:14.665Z",
+    "latency": 3.03,
+    "timeToFirstToken": 0.455,
+    "model": "provider-x/chat-large",
+    "modelParameters": {
+     "temperature": 0.2,
+     "max_tokens": 400,
+     "response_format": "json_schema:cited_answer"
+    },
+    "usageDetails": {
+     "input": 2184,
+     "output": 231,
+     "total": 2415
+    },
+    "costDetails": {
+     "input": 0.00546,
+     "output": 0.00231,
+     "total": 0.00777
+    },
+    "totalCost": 0.00777,
+    "promptName": "support-answer",
+    "promptVersion": 12,
+    "input": [
+     {
+      "role": "system",
+      "content": "Answer only from the context. For every value, copy the exact quote and its source id."
+     },
+     {
+      "role": "user",
+      "content": "My Halden e-bike battery barely lasts 20 km now. I bought it about 18 months ago. Is it still under warranty, and how long would a replacement take?"
+     },
+     {
+      "role": "tool",
+      "content": "{\"order_id\": \"HB-20391\", \"sku\": \"HB-EB-500-BAT\", \"delivered_at\": \"2025-05-12\", \"customer_tier\": \"standard\"}"
+     },
+     {
+      "role": "context",
+      "id": "kb-warranty-0412",
+      "content": "Halden e-bike batteries are covered for 24 months from the date of delivery. A battery that holds less than 70 percent of its rated capacity within the warranty period is replaced free of charge. Capacity is measured by an authorised service centre with the Halden Diagnostic Tool."
+     },
+     {
+      "role": "context",
+      "id": "kb-service-0137",
+      "content": "Once a claim is approved, a replacement battery ships within 7 to 10 business days. Customers in remote postcodes should allow 3 additional business days."
+     },
+     {
+      "role": "context",
+      "id": "kb-claims-0098",
+      "content": "Open a claim from the Orders page or by calling support. You will need the order number and the frame serial number printed under the bottom bracket."
+     }
+    ],
+    "output": {
+     "answer": "Yes, your battery is still under warranty. Halden e-bike batteries are covered for 24 months from the date of delivery, and order HB-20391 was delivered on 2025-05-12. If a service centre measures less than 70 percent of rated capacity, the battery is replaced free of charge. After approval, a replacement ships within 5 business days. To start, open a claim from the Orders page with your order number and the frame serial number.",
+     "citations": [
+      {
+       "field": "warranty_months",
+       "value": 24,
+       "quote": "covered for 24 months from the date of delivery",
+       "source": "kb-warranty-0412"
+      },
+      {
+       "field": "delivered_at",
+       "value": "2025-05-12",
+       "quote": "\"delivered_at\": \"2025-05-12\"",
+       "source": "tool:order-api"
+      },
+      {
+       "field": "capacity_threshold_percent",
+       "value": 70,
+       "quote": "less than 70 percent of its rated capacity",
+       "source": "kb-warranty-0412"
+      },
+      {
+       "field": "replacement_cost",
+       "value": "free of charge",
+       "quote": "is replaced free of charge",
+       "source": "kb-warranty-0412"
+      },
+      {
+       "field": "replacement_ship_business_days",
+       "value": 5,
+       "quote": "ships within 7 to 10 business days",
+       "source": "kb-service-0137"
+      },
+      {
+       "field": "claim_channel",
+       "value": "Orders page",
+       "quote": "Open a claim from the Orders page",
+       "source": "kb-claims-0098"
+      },
+      {
+       "field": "required_identifier",
+       "value": "frame serial number",
+       "quote": "the order number and the frame serial number",
+       "source": "kb-claims-0098"
+      }
+     ]
+    },
+    "scores": [
+     "faithfulness = 0.83 (EVAL; 1 of 7 cited values not supported: shipping time (source says 7 to 10 business days))"
+    ]
+   }
+  },
+  "T_obs_11": {
+   "kind": "EVENT observation",
+   "title": "citations-emitted",
+   "body": {
+    "type": "EVENT",
+    "name": "citations-emitted",
+    "id": "obs-11",
+    "parentObservationId": "support-agent (obs-01)",
+    "level": "DEFAULT",
+    "startTime": "2026-11-19T14:02:17.252Z",
+    "output": {
+     "count": 7
+    }
+   }
+  },
+  "T_obs_12": {
+   "kind": "EVALUATOR observation",
+   "title": "faithfulness-judge",
+   "body": {
+    "type": "EVALUATOR",
+    "name": "faithfulness-judge",
+    "id": "obs-12",
+    "parentObservationId": "support-agent (obs-01)",
+    "level": "DEFAULT",
+    "startTime": "2026-11-19T14:02:17.270Z",
+    "endTime": "2026-11-19T14:02:18.380Z",
+    "completionStartTime": "2026-11-19T14:02:17.650Z",
+    "latency": 1.11,
+    "timeToFirstToken": 0.38,
+    "model": "provider-x/judge-small",
+    "modelParameters": {
+     "temperature": 0
+    },
+    "usageDetails": {
+     "input": 1420,
+     "output": 96,
+     "total": 1516
+    },
+    "costDetails": {
+     "input": 0.000213,
+     "output": 5.76e-05,
+     "total": 0.0002706
+    },
+    "totalCost": 0.0002706,
+    "promptName": "judge-faithfulness",
+    "promptVersion": 3,
+    "input": {
+     "answer": "Yes, your battery is still under warranty. Halden e-bike batteries are covered for 24 months from the date of delivery, and order HB-20391 was delivered on 2025-05-12. If a service centre measures less than 70 percent of rated capacity, the battery is replaced free of charge. After approval, a replacement ships within 5 business days. To start, open a claim from the Orders page with your order number and the frame serial number.",
+     "context_ids": [
+      "kb-warranty-0412",
+      "kb-service-0137",
+      "kb-claims-0098"
+     ]
+    },
+    "output": {
+     "score": 0.83,
+     "unsupported": [
+      "ships within 5 business days"
+     ]
+    }
+   }
+  },
+  "T_score_sc_1": {
+   "kind": "score (NUMERIC, EVAL)",
+   "title": "faithfulness",
+   "body": {
+    "id": "sc-1",
+    "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+    "observationId": "obs-10",
+    "name": "faithfulness",
+    "source": "EVAL",
+    "timestamp": "2026-11-19T14:02:18.400Z",
+    "createdAt": "2026-11-19T14:02:18.400Z",
+    "updatedAt": "2026-11-19T14:02:18.400Z",
+    "comment": "1 of 7 cited values not supported: shipping time (source says 7 to 10 business days)",
+    "environment": "synthetic-demo",
+    "value": 0.83,
+    "dataType": "NUMERIC"
+   }
+  },
+  "T_score_sc_2": {
+   "kind": "score (NUMERIC, EVAL)",
+   "title": "retrieval-relevance",
+   "body": {
+    "id": "sc-2",
+    "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+    "observationId": "obs-06",
+    "name": "retrieval-relevance",
+    "source": "EVAL",
+    "timestamp": "2026-11-19T14:02:18.400Z",
+    "createdAt": "2026-11-19T14:02:18.400Z",
+    "updatedAt": "2026-11-19T14:02:18.400Z",
+    "comment": "mean rerank score of the 3 kept documents",
+    "environment": "synthetic-demo",
+    "value": 0.92,
+    "dataType": "NUMERIC"
+   }
+  },
+  "T_score_sc_3": {
+   "kind": "score (BOOLEAN, API)",
+   "title": "pii-detected",
+   "body": {
+    "id": "sc-3",
+    "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+    "observationId": "obs-02",
+    "name": "pii-detected",
+    "source": "API",
+    "timestamp": "2026-11-19T14:02:18.400Z",
+    "createdAt": "2026-11-19T14:02:18.400Z",
+    "updatedAt": "2026-11-19T14:02:18.400Z",
+    "environment": "synthetic-demo",
+    "value": 0,
+    "dataType": "BOOLEAN",
+    "stringValue": "False"
+   }
+  },
+  "T_score_sc_4": {
+   "kind": "score (BOOLEAN, ANNOTATION)",
+   "title": "user-feedback",
+   "body": {
+    "id": "sc-4",
+    "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+    "name": "user-feedback",
+    "source": "ANNOTATION",
+    "timestamp": "2026-11-19T14:02:18.400Z",
+    "createdAt": "2026-11-19T14:02:18.400Z",
+    "updatedAt": "2026-11-19T14:02:18.400Z",
+    "comment": "thumbs up",
+    "environment": "synthetic-demo",
+    "value": 1,
+    "dataType": "BOOLEAN",
+    "stringValue": "True"
+   }
+  },
+  "T_score_sc_5": {
+   "kind": "score (CATEGORICAL, EVAL)",
+   "title": "resolution",
+   "body": {
+    "id": "sc-5",
+    "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+    "name": "resolution",
+    "source": "EVAL",
+    "timestamp": "2026-11-19T14:02:18.400Z",
+    "createdAt": "2026-11-19T14:02:18.400Z",
+    "updatedAt": "2026-11-19T14:02:18.400Z",
+    "environment": "synthetic-demo",
+    "value": 1,
+    "dataType": "CATEGORICAL",
+    "stringValue": "resolved"
+   }
+  },
+  "T_src_kb_warranty_0412": {
+   "kind": "document",
+   "title": "Battery warranty (e-bikes)",
+   "body": {
+    "source id": "kb-warranty-0412",
+    "from observation": "obs-06",
+    "similarity": 0.884,
+    "rerank": 0.97,
+    "kept after rerank": true,
+    "cited by": [
+     "warranty_months",
+     "capacity_threshold_percent",
+     "replacement_cost"
+    ],
+    "text": "Halden e-bike batteries are covered for 24 months from the date of delivery. A battery that holds less than 70 percent of its rated capacity within the warranty period is replaced free of charge. Capacity is measured by an authorised service centre with the Halden Diagnostic Tool."
+   },
+   "highlight": [
+    [
+     28,
+     75
+    ],
+    [
+     98,
+     140
+    ],
+    [
+     168,
+     194
+    ]
+   ]
+  },
+  "T_src_kb_service_0137": {
+   "kind": "document",
+   "title": "Replacement turnaround",
+   "body": {
+    "source id": "kb-service-0137",
+    "from observation": "obs-06",
+    "similarity": 0.861,
+    "rerank": 0.91,
+    "kept after rerank": true,
+    "cited by": [
+     "replacement_ship_business_days"
+    ],
+    "text": "Once a claim is approved, a replacement battery ships within 7 to 10 business days. Customers in remote postcodes should allow 3 additional business days."
+   },
+   "highlight": [
+    [
+     48,
+     82
+    ]
+   ]
+  },
+  "T_src_kb_claims_0098": {
+   "kind": "document",
+   "title": "How to open a warranty claim",
+   "body": {
+    "source id": "kb-claims-0098",
+    "from observation": "obs-06",
+    "similarity": 0.812,
+    "rerank": 0.88,
+    "kept after rerank": true,
+    "cited by": [
+     "claim_channel",
+     "required_identifier"
+    ],
+    "text": "Open a claim from the Orders page or by calling support. You will need the order number and the frame serial number printed under the bottom bracket."
+   },
+   "highlight": [
+    [
+     0,
+     33
+    ],
+    [
+     71,
+     115
+    ]
+   ]
+  },
+  "T_src_kb_accessories_0551": {
+   "kind": "document",
+   "title": "Accessory warranty",
+   "body": {
+    "source id": "kb-accessories-0551",
+    "from observation": "obs-06",
+    "similarity": 0.774,
+    "rerank": 0.21,
+    "kept after rerank": false,
+    "cited by": "nothing (no answer value quotes it)",
+    "text": "Lights, locks and racks sold by Halden carry a 12 month limited warranty against manufacturing defects."
+   },
+   "highlight": []
+  },
+  "T_src_tool_order_api": {
+   "kind": "tool output",
+   "title": "order-api (attempt 2)",
+   "body": {
+    "source id": "tool:order-api",
+    "from observation": "obs-09",
+    "similarity": null,
+    "rerank": null,
+    "kept after rerank": null,
+    "cited by": [
+     "delivered_at"
+    ],
+    "text": "{\"order_id\": \"HB-20391\", \"sku\": \"HB-EB-500-BAT\", \"delivered_at\": \"2025-05-12\", \"customer_tier\": \"standard\"}"
+   },
+   "highlight": [
+    [
+     50,
+     76
+    ]
+   ]
+  },
+  "T_claim_1": {
+   "kind": "cited value (x3dtrace x3dtrace/0.1)",
+   "title": "warranty_months = 24",
+   "body": {
+    "verdict": "verified",
+    "find (quote in source)": "found",
+    "compare (value in quote)": "match",
+    "quote": "covered for 24 months from the date of delivery",
+    "source": "kb-warranty-0412",
+    "locate (char span in source)": [
+     28,
+     75
+    ],
+    "occurrences": 1,
+    "note": null,
+    "answer span": [
+     83,
+     85
+    ],
+    "answer candidates (whole-token)": 1,
+    "written by": "compose-answer (obs-10)",
+    "source text": "Halden e-bike batteries are covered for 24 months from the date of delivery. A battery that holds less than 70 percent of its rated capacity within the warranty period is replaced free of charge. Capacity is measured by an authorised service centre with the Halden Diagnostic Tool."
+   },
+   "highlight": [
+    [
+     28,
+     75
+    ]
+   ],
+   "answer_span": [
+    83,
+    85
+   ],
+   "id": "claim 1"
+  },
+  "T_claim_2": {
+   "kind": "cited value (x3dtrace x3dtrace/0.1)",
+   "title": "delivered_at = 2025-05-12",
+   "body": {
+    "verdict": "verified",
+    "find (quote in source)": "found",
+    "compare (value in quote)": "match",
+    "quote": "\"delivered_at\": \"2025-05-12\"",
+    "source": "tool:order-api",
+    "locate (char span in source)": [
+     50,
+     76
+    ],
+    "occurrences": 1,
+    "note": null,
+    "answer span": [
+     156,
+     166
+    ],
+    "answer candidates (whole-token)": 1,
+    "written by": "compose-answer (obs-10)",
+    "source text": "{\"order_id\": \"HB-20391\", \"sku\": \"HB-EB-500-BAT\", \"delivered_at\": \"2025-05-12\", \"customer_tier\": \"standard\"}"
+   },
+   "highlight": [
+    [
+     50,
+     76
+    ]
+   ],
+   "answer_span": [
+    156,
+    166
+   ],
+   "id": "claim 2"
+  },
+  "T_claim_3": {
+   "kind": "cited value (x3dtrace x3dtrace/0.1)",
+   "title": "capacity_threshold_percent = 70",
+   "body": {
+    "verdict": "verified",
+    "find (quote in source)": "found",
+    "compare (value in quote)": "match",
+    "quote": "less than 70 percent of its rated capacity",
+    "source": "kb-warranty-0412",
+    "locate (char span in source)": [
+     98,
+     140
+    ],
+    "occurrences": 1,
+    "note": null,
+    "answer span": [
+     207,
+     209
+    ],
+    "answer candidates (whole-token)": 1,
+    "written by": "compose-answer (obs-10)",
+    "source text": "Halden e-bike batteries are covered for 24 months from the date of delivery. A battery that holds less than 70 percent of its rated capacity within the warranty period is replaced free of charge. Capacity is measured by an authorised service centre with the Halden Diagnostic Tool."
+   },
+   "highlight": [
+    [
+     98,
+     140
+    ]
+   ],
+   "answer_span": [
+    207,
+    209
+   ],
+   "id": "claim 3"
+  },
+  "T_claim_4": {
+   "kind": "cited value (x3dtrace x3dtrace/0.1)",
+   "title": "replacement_cost = free of charge",
+   "body": {
+    "verdict": "verified",
+    "find (quote in source)": "found",
+    "compare (value in quote)": "match",
+    "quote": "is replaced free of charge",
+    "source": "kb-warranty-0412",
+    "locate (char span in source)": [
+     168,
+     194
+    ],
+    "occurrences": 1,
+    "note": null,
+    "answer span": [
+     261,
+     275
+    ],
+    "answer candidates (whole-token)": 1,
+    "written by": "compose-answer (obs-10)",
+    "source text": "Halden e-bike batteries are covered for 24 months from the date of delivery. A battery that holds less than 70 percent of its rated capacity within the warranty period is replaced free of charge. Capacity is measured by an authorised service centre with the Halden Diagnostic Tool."
+   },
+   "highlight": [
+    [
+     168,
+     194
+    ]
+   ],
+   "answer_span": [
+    261,
+    275
+   ],
+   "id": "claim 4"
+  },
+  "T_claim_5": {
+   "kind": "cited value (x3dtrace x3dtrace/0.1)",
+   "title": "replacement_ship_business_days = 5",
+   "body": {
+    "verdict": "check",
+    "find (quote in source)": "found",
+    "compare (value in quote)": "mismatch",
+    "quote": "ships within 7 to 10 business days",
+    "source": "kb-service-0137",
+    "locate (char span in source)": [
+     48,
+     82
+    ],
+    "occurrences": 1,
+    "note": null,
+    "answer span": [
+     320,
+     321
+    ],
+    "answer candidates (whole-token)": 1,
+    "written by": "compose-answer (obs-10)",
+    "source text": "Once a claim is approved, a replacement battery ships within 7 to 10 business days. Customers in remote postcodes should allow 3 additional business days."
+   },
+   "highlight": [
+    [
+     48,
+     82
+    ]
+   ],
+   "answer_span": [
+    320,
+    321
+   ],
+   "id": "claim 5"
+  },
+  "T_claim_6": {
+   "kind": "cited value (x3dtrace x3dtrace/0.1)",
+   "title": "claim_channel = Orders page",
+   "body": {
+    "verdict": "verified",
+    "find (quote in source)": "found",
+    "compare (value in quote)": "match",
+    "quote": "Open a claim from the Orders page",
+    "source": "kb-claims-0098",
+    "locate (char span in source)": [
+     0,
+     33
+    ],
+    "occurrences": 1,
+    "note": null,
+    "answer span": [
+     369,
+     380
+    ],
+    "answer candidates (whole-token)": 1,
+    "written by": "compose-answer (obs-10)",
+    "source text": "Open a claim from the Orders page or by calling support. You will need the order number and the frame serial number printed under the bottom bracket."
+   },
+   "highlight": [
+    [
+     0,
+     33
+    ]
+   ],
+   "answer_span": [
+    369,
+    380
+   ],
+   "id": "claim 6"
+  },
+  "T_claim_7": {
+   "kind": "cited value (x3dtrace x3dtrace/0.1)",
+   "title": "required_identifier = frame serial number",
+   "body": {
+    "verdict": "verified",
+    "find (quote in source)": "found",
+    "compare (value in quote)": "match",
+    "quote": "the order number and the frame serial number",
+    "source": "kb-claims-0098",
+    "locate (char span in source)": [
+     71,
+     115
+    ],
+    "occurrences": 1,
+    "note": null,
+    "answer span": [
+     412,
+     431
+    ],
+    "answer candidates (whole-token)": 1,
+    "written by": "compose-answer (obs-10)",
+    "source text": "Open a claim from the Orders page or by calling support. You will need the order number and the frame serial number printed under the bottom bracket."
+   },
+   "highlight": [
+    [
+     71,
+     115
+    ]
+   ],
+   "answer_span": [
+    412,
+    431
+   ],
+   "id": "claim 7"
+  },
+  "T_answer": {
+   "kind": "trace output",
+   "title": "Answer",
+   "body": {
+    "answer": "Yes, your battery is still under warranty. Halden e-bike batteries are covered for 24 months from the date of delivery, and order HB-20391 was delivered on 2025-05-12. If a service centre measures less than 70 percent of rated capacity, the battery is replaced free of charge. After approval, a replacement ships within 5 business days. To start, open a claim from the Orders page with your order number and the frame serial number.",
+    "cited values": 7,
+    "verdicts": {
+     "verified": 6,
+     "check": 1,
+     "reworded": 0,
+     "unchecked": 0
+    }
+   },
+   "answer_marks": [
+    [
+     [
+      83,
+      85
+     ],
+     "verified"
+    ],
+    [
+     [
+      156,
+      166
+     ],
+     "verified"
+    ],
+    [
+     [
+      207,
+      209
+     ],
+     "verified"
+    ],
+    [
+     [
+      261,
+      275
+     ],
+     "verified"
+    ],
+    [
+     [
+      320,
+      321
+     ],
+     "check"
+    ],
+    [
+     [
+      369,
+      380
+     ],
+     "verified"
+    ],
+    [
+     [
+      412,
+      431
+     ],
+     "verified"
+    ]
+   ]
+  }
+ },
+ "views": [
+  [
+   "VP_overview",
+   "Overview"
+  ],
+  [
+   "VP_waterfall",
+   "Waterfall (front)"
+  ],
+  [
+   "VP_lineage",
+   "Lineage: sources to cited values"
+  ],
+  [
+   "VP_failure",
+   "Failure and retry"
+  ],
+  [
+   "VP_side",
+   "Side: tokens as thickness"
+  ],
+  [
+   "VP_top",
+   "High oblique: time and token depth"
+  ]
+ ],
+ "interps": [
+  "I_O_obs_01",
+  "I_O_obs_02",
+  "I_O_obs_03",
+  "I_O_obs_04",
+  "I_O_obs_05",
+  "I_O_obs_06",
+  "I_O_obs_07",
+  "I_O_obs_08",
+  "I_O_obs_09",
+  "I_O_obs_10",
+  "I_O_obs_11",
+  "I_O_obs_12",
+  "I_P_0_pos",
+  "I_P_0_scale",
+  "I_P_3_pos",
+  "I_P_3_scale",
+  "I_P_4_pos",
+  "I_P_4_scale",
+  "I_playhead"
+ ],
+ "timeline": [
+  {
+   "id": "obs-01",
+   "name": "support-agent",
+   "type": "AGENT",
+   "s": 0.0,
+   "e": 7.42,
+   "level": "DEFAULT",
+   "sensor": "T_obs_01",
+   "depth": 0
+  },
+  {
+   "id": "obs-02",
+   "name": "input-moderation",
+   "type": "GUARDRAIL",
+   "s": 0.018,
+   "e": 0.164,
+   "level": "DEFAULT",
+   "sensor": "T_obs_02",
+   "depth": 1
+  },
+  {
+   "id": "obs-03",
+   "name": "plan-steps",
+   "type": "GENERATION",
+   "s": 0.18,
+   "e": 1.01,
+   "level": "DEFAULT",
+   "sensor": "T_obs_03",
+   "depth": 1
+  },
+  {
+   "id": "obs-04",
+   "name": "retrieve-docs",
+   "type": "RETRIEVER",
+   "s": 1.03,
+   "e": 1.64,
+   "level": "DEFAULT",
+   "sensor": "T_obs_04",
+   "depth": 1
+  },
+  {
+   "id": "obs-05",
+   "name": "embed-query",
+   "type": "EMBEDDING",
+   "s": 1.036,
+   "e": 1.188,
+   "level": "DEFAULT",
+   "sensor": "T_obs_05",
+   "depth": 2
+  },
+  {
+   "id": "obs-06",
+   "name": "vector-search",
+   "type": "RETRIEVER",
+   "s": 1.196,
+   "e": 1.472,
+   "level": "DEFAULT",
+   "sensor": "T_obs_06",
+   "depth": 2
+  },
+  {
+   "id": "obs-07",
+   "name": "rerank",
+   "type": "SPAN",
+   "s": 1.48,
+   "e": 1.632,
+   "level": "DEFAULT",
+   "sensor": "T_obs_07",
+   "depth": 2
+  },
+  {
+   "id": "obs-08",
+   "name": "order-api",
+   "type": "TOOL",
+   "s": 1.65,
+   "e": 2.87,
+   "level": "ERROR",
+   "sensor": "T_obs_08",
+   "depth": 1
+  },
+  {
+   "id": "obs-09",
+   "name": "order-api",
+   "type": "TOOL",
+   "s": 2.9,
+   "e": 3.18,
+   "level": "WARNING",
+   "sensor": "T_obs_09",
+   "depth": 1
+  },
+  {
+   "id": "obs-10",
+   "name": "compose-answer",
+   "type": "GENERATION",
+   "s": 3.21,
+   "e": 6.24,
+   "level": "DEFAULT",
+   "sensor": "T_obs_10",
+   "depth": 1
+  },
+  {
+   "id": "obs-11",
+   "name": "citations-emitted",
+   "type": "EVENT",
+   "s": 6.252,
+   "e": null,
+   "level": "DEFAULT",
+   "sensor": "T_obs_11",
+   "depth": 1
+  },
+  {
+   "id": "obs-12",
+   "name": "faithfulness-judge",
+   "type": "EVALUATOR",
+   "s": 6.27,
+   "e": 7.38,
+   "level": "DEFAULT",
+   "sensor": "T_obs_12",
+   "depth": 1
+  }
+ ],
+ "replay": {
+  "lead": 0.8,
+  "slow": 1.6,
+  "cycle": 16.0
+ },
+ "t_end": 7.42,
+ "trace": {
+  "id": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+  "name": "support-agent",
+  "timestamp": "2026-11-19T14:02:11.000Z",
+  "observations": 12,
+  "tokens": 4626,
+  "cost_usd": 0.00817698,
+  "synthetic": "SYNTHETIC: invented for the X3D trace demo; no live system, model or customer behind any value.",
+  "question": "My Halden e-bike battery barely lasts 20 km now. I bought it about 18 months ago. Is it still under warranty, and how long would a replacement take?"
+ }
+}

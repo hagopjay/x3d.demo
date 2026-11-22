@@ -1,0 +1,827 @@
+{
+ "items": {
+  "S_0": {
+   "kind": "service (rail)",
+   "title": "api-gateway",
+   "body": {
+    "self-time": "2.0 ms",
+    "share of all self-time": "51.5%",
+    "on the critical path": "2.0 ms",
+    "spans": 2,
+    "errors": 0,
+    "span kinds": {
+     "CLIENT": 1,
+     "SERVER": 1
+    },
+    "operations": {
+     "GET /owners": 1,
+     "GET /api/customer/owners": 1
+    },
+    "resource attributes": {
+     "service.name": "api-gateway"
+    }
+   }
+  },
+  "S_1": {
+   "kind": "service (rail)",
+   "title": "customers-service",
+   "body": {
+    "self-time": "1.9 ms",
+    "share of all self-time": "48.5%",
+    "on the critical path": "1.7 ms",
+    "spans": 15,
+    "errors": 0,
+    "span kinds": {
+     "UNSPECIFIED": 14,
+     "SERVER": 1
+    },
+    "operations": {
+     "HikariProxyPreparedStatement.executeQuery": 14,
+     "GET /owners": 1
+    },
+    "resource attributes": {
+     "service.name": "customers-service"
+    }
+   }
+  },
+  "T_9afcdf2e24e8d70a": {
+   "kind": "server span",
+   "title": "api-gateway / GET /api/customer/owners",
+   "body": {
+    "service": "api-gateway",
+    "operation": "GET /api/customer/owners",
+    "kind": "SERVER",
+    "span id": "9afcdf2e24e8d70a",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "start": "+0.00 ms",
+    "duration": "3.7 ms",
+    "self-time": "0.74 ms (duration minus children)",
+    "on critical path": "0.74 ms",
+    "status": "UNSET",
+    "children": 1
+   }
+  },
+  "T_6962df17f54c3741": {
+   "kind": "client span",
+   "title": "api-gateway / GET /owners",
+   "body": {
+    "service": "api-gateway",
+    "operation": "GET /owners",
+    "kind": "CLIENT",
+    "span id": "6962df17f54c3741",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "api-gateway / GET /api/customer/owners (9afcdf2e24e8d70a)",
+    "start": "+0.38 ms",
+    "duration": "3.0 ms",
+    "self-time": "1.3 ms (duration minus children)",
+    "on critical path": "1.3 ms",
+    "status": "UNSET",
+    "children": 1
+   }
+  },
+  "T_6f9bbe751e5fd944": {
+   "kind": "server span",
+   "title": "customers-service / GET /owners",
+   "body": {
+    "service": "customers-service",
+    "operation": "GET /owners",
+    "kind": "SERVER",
+    "span id": "6f9bbe751e5fd944",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "api-gateway / GET /owners (6962df17f54c3741)",
+    "start": "+1.0 ms",
+    "duration": "1.7 ms",
+    "self-time": "1.6 ms (duration minus children)",
+    "on critical path": "1.6 ms",
+    "status": "UNSET",
+    "children": 14
+   }
+  },
+  "T_d293d7d80690ce74": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "d293d7d80690ce74",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.8 ms",
+    "duration": "0.03 ms",
+    "self-time": "0.03 ms (duration minus children)",
+    "on critical path": "0.03 ms",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_b33418a95acab83f": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "b33418a95acab83f",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.9 ms",
+    "duration": "0.02 ms",
+    "self-time": "0.02 ms (duration minus children)",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_6baf1cebdf376ba77cd5ad": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "6baf1cebdf376ba77cd5ad",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.9 ms",
+    "duration": "0.02 ms",
+    "self-time": "0.02 ms (duration minus children)",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_22a6dbf5f149e280": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "22a6dbf5f149e280",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.9 ms",
+    "duration": "0.02 ms",
+    "self-time": "0.02 ms (duration minus children)",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_cbcdc46290379f7a": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "cbcdc46290379f7a",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.9 ms",
+    "duration": "0.01 ms",
+    "self-time": "0.01 ms (duration minus children)",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_4308efcfd216cbb0": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "4308efcfd216cbb0",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.9 ms",
+    "duration": "0.02 ms",
+    "self-time": "0.02 ms (duration minus children)",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_d0ae415b55555eb0": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "d0ae415b55555eb0",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.9 ms",
+    "duration": "0.02 ms",
+    "self-time": "0.02 ms (duration minus children)",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_38b37689f26c5b9e": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "38b37689f26c5b9e",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.9 ms",
+    "duration": "0.02 ms",
+    "self-time": "0.02 ms (duration minus children)",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_427f5b436c6ef2cb": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "427f5b436c6ef2cb",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.9 ms",
+    "duration": "0.01 ms",
+    "self-time": "0.01 ms (duration minus children)",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_0000000000000001": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "0000000000000001",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.9 ms",
+    "duration": "0.04 ms",
+    "self-time": "0.04 ms (duration minus children)",
+    "on critical path": "0.04 ms",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_0000000000000002": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "0000000000000002",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.9 ms",
+    "duration": "0.04 ms",
+    "self-time": "0.04 ms (duration minus children)",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_0000000000000003": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "0000000000000003",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+1.9 ms",
+    "duration": "0.04 ms",
+    "self-time": "0.04 ms (duration minus children)",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_9f0a544e33b693c2": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "9f0a544e33b693c2",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+2.5 ms",
+    "duration": "0.05 ms",
+    "self-time": "0.05 ms (duration minus children)",
+    "on critical path": "0.05 ms",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test2"
+    },
+    "children": 0
+   }
+  },
+  "T_c045fb92504eb97f": {
+   "kind": "unspecified span",
+   "title": "customers-service / HikariProxyPreparedStatement.executeQuery",
+   "body": {
+    "service": "customers-service",
+    "operation": "HikariProxyPreparedStatement.executeQuery",
+    "kind": "UNSPECIFIED",
+    "span id": "c045fb92504eb97f",
+    "trace id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+    "parent": "customers-service / GET /owners (6f9bbe751e5fd944)",
+    "start": "+2.7 ms",
+    "duration": "0.02 ms",
+    "self-time": "0.02 ms (duration minus children)",
+    "on critical path": "0.02 ms",
+    "status": "UNSET",
+    "attributes: other": {
+     "database": "jdbc:hsqldb:mem:testdb",
+     "sql": "select * from test"
+    },
+    "children": 0
+   }
+  },
+  "T_findings": {
+   "kind": "findings",
+   "title": "Findings",
+   "body": {},
+   "findings": true
+  }
+ },
+ "views": [
+  [
+   "VP_overview",
+   "Overview"
+  ],
+  [
+   "VP_lanes",
+   "Rails from above: services by time"
+  ],
+  [
+   "VP_front",
+   "Critical path: high front"
+  ],
+  [
+   "VP_side",
+   "Side: rails in depth"
+  ],
+  [
+   "VP_fanout",
+   "Fan-out: 14 x HikariProxyPreparedStatement.executeQuery"
+  ],
+  [
+   "VP_findings",
+   "Findings card"
+  ]
+ ],
+ "timeline": [
+  {
+   "id": "9afcdf2e24e8d70a",
+   "name": "GET /api/customer/owners",
+   "service": "api-gateway",
+   "lane": 0,
+   "row": 0,
+   "s": 0.0,
+   "e": 0.00372,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_9afcdf2e24e8d70a"
+  },
+  {
+   "id": "6962df17f54c3741",
+   "name": "GET /owners",
+   "service": "api-gateway",
+   "lane": 0,
+   "row": 1,
+   "s": 0.000376,
+   "e": 0.003353,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_6962df17f54c3741"
+  },
+  {
+   "id": "6f9bbe751e5fd944",
+   "name": "GET /owners",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 0,
+   "s": 0.001016,
+   "e": 0.002712,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_6f9bbe751e5fd944"
+  },
+  {
+   "id": "d293d7d80690ce74",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 1,
+   "s": 0.001849,
+   "e": 0.00188,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": true,
+   "sensor": "T_d293d7d80690ce74"
+  },
+  {
+   "id": "b33418a95acab83f",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 2,
+   "s": 0.001854,
+   "e": 0.001874,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": false,
+   "sensor": "T_b33418a95acab83f"
+  },
+  {
+   "id": "6baf1cebdf376ba77cd5ad",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 3,
+   "s": 0.001855,
+   "e": 0.001874,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": false,
+   "sensor": "T_6baf1cebdf376ba77cd5ad"
+  },
+  {
+   "id": "22a6dbf5f149e280",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 4,
+   "s": 0.001856,
+   "e": 0.001873,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": false,
+   "sensor": "T_22a6dbf5f149e280"
+  },
+  {
+   "id": "cbcdc46290379f7a",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 5,
+   "s": 0.001857,
+   "e": 0.001871,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": false,
+   "sensor": "T_cbcdc46290379f7a"
+  },
+  {
+   "id": "4308efcfd216cbb0",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 6,
+   "s": 0.001857,
+   "e": 0.001872,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": false,
+   "sensor": "T_4308efcfd216cbb0"
+  },
+  {
+   "id": "d0ae415b55555eb0",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 7,
+   "s": 0.001857,
+   "e": 0.001872,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": false,
+   "sensor": "T_d0ae415b55555eb0"
+  },
+  {
+   "id": "38b37689f26c5b9e",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 8,
+   "s": 0.001857,
+   "e": 0.001872,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": false,
+   "sensor": "T_38b37689f26c5b9e"
+  },
+  {
+   "id": "427f5b436c6ef2cb",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 9,
+   "s": 0.001857,
+   "e": 0.001871,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": false,
+   "sensor": "T_427f5b436c6ef2cb"
+  },
+  {
+   "id": "0000000000000001",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 1,
+   "s": 0.001897,
+   "e": 0.001937,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": true,
+   "sensor": "T_0000000000000001"
+  },
+  {
+   "id": "0000000000000002",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 2,
+   "s": 0.001897,
+   "e": 0.001937,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": false,
+   "sensor": "T_0000000000000002"
+  },
+  {
+   "id": "0000000000000003",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 3,
+   "s": 0.001897,
+   "e": 0.001937,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": false,
+   "sensor": "T_0000000000000003"
+  },
+  {
+   "id": "9f0a544e33b693c2",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 1,
+   "s": 0.002522,
+   "e": 0.002568,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": true,
+   "sensor": "T_9f0a544e33b693c2"
+  },
+  {
+   "id": "c045fb92504eb97f",
+   "name": "HikariProxyPreparedStatement.executeQuery",
+   "service": "customers-service",
+   "lane": 1,
+   "row": 1,
+   "s": 0.002658,
+   "e": 0.002677,
+   "kind": "UNSPECIFIED",
+   "error": false,
+   "cp": true,
+   "sensor": "T_c045fb92504eb97f"
+  }
+ ],
+ "findings": [
+  {
+   "key": "critical",
+   "title": "Critical path: 3.7 ms, 54% of it in api-gateway",
+   "text": "api-gateway 2.0 ms (54%); customers-service 1.7 ms (46%)",
+   "evidence": "Jaeger's rule from the root api-gateway / GET /api/customer/owners (3.7 ms): walk back from its end through the last-finishing child; 13 segments over 7 spans. Longest span shares: customers-service / GET /owners 1.6 ms; api-gateway / GET /owners 1.3 ms; api-gateway / GET /api/customer/owners 0.74 ms.",
+   "spans": [
+    "6f9bbe751e5fd944",
+    "6962df17f54c3741",
+    "9afcdf2e24e8d70a"
+   ]
+  },
+  {
+   "key": "self",
+   "title": "Slowest service by self-time: api-gateway, 2.0 ms (52% of all self-time)",
+   "text": "api-gateway 2.0 ms; customers-service 1.9 ms",
+   "evidence": "self-time = span duration minus the union of its children's intervals, summed per service (2 spans in api-gateway; largest single: GET /owners, 1.3 ms of 3.0 ms). Sums can exceed wall time when spans run in parallel.",
+   "spans": [
+    "6962df17f54c3741"
+   ]
+  },
+  {
+   "key": "errors",
+   "title": "Errors: none",
+   "text": "No span has status ERROR and no span has an exception event.",
+   "evidence": "status.code and events of all 17 spans",
+   "spans": []
+  },
+  {
+   "key": "retries",
+   "title": "Retries: none found",
+   "text": "No errored span was re-run by its parent and no event is named like a retry.",
+   "evidence": "sibling and event scan of all 17 spans",
+   "spans": []
+  },
+  {
+   "key": "fanout",
+   "title": "Fan-out: 14 x customers-service / HikariProxyPreparedStatement.executeQuery, up to 9 parallel",
+   "text": "14 x customers-service / HikariProxyPreparedStatement.executeQuery under customers-service / GET /owners (6f9bbe75): parallel, up to 9 at once; wall 0.83 ms, sum of durations 0.35 ms",
+   "evidence": "siblings grouped by (service, name) under one parent, groups of 3 or more; overlap = largest number of the group's intervals open at one instant. Widest parent overall: 14 children.",
+   "spans": [
+    "d293d7d80690ce74",
+    "b33418a95acab83f",
+    "6baf1cebdf376ba77cd5ad",
+    "22a6dbf5f149e280",
+    "cbcdc46290379f7a",
+    "4308efcfd216cbb0",
+    "d0ae415b55555eb0",
+    "38b37689f26c5b9e",
+    "427f5b436c6ef2cb",
+    "0000000000000001",
+    "0000000000000002",
+    "0000000000000003",
+    "9f0a544e33b693c2",
+    "c045fb92504eb97f"
+   ],
+   "groups": [
+    {
+     "parent": "6f9bbe751e5fd944",
+     "n": 14,
+     "conc": 9,
+     "wall": 0.0008280000000000002,
+     "sum": 0.00034500000000000004,
+     "service": "customers-service",
+     "name": "HikariProxyPreparedStatement.executeQuery"
+    }
+   ]
+  },
+  {
+   "key": "gaps",
+   "title": "Gaps: 3 between child calls, 0.69 ms in all; largest 0.58 ms in customers-service / GET /owners",
+   "text": "0.58 ms idle in customers-service / GET /owners from +1.9 ms (after HikariProxyPreparedStatement.executeQuery) to +2.5 ms (before HikariProxyPreparedStatement.executeQuery); 0.09 ms idle in customers-service / GET /owners from +2.6 ms (after HikariProxyPreparedStatement.executeQuery) to +2.7 ms (before HikariProxyPreparedStatement.executeQuery); 0.02 ms idle in customers-service / GET /owners from +1.9 ms (after HikariProxyPreparedStatement.executeQuery) to +1.9 ms (before HikariProxyPreparedStatement.executeQuery)",
+   "evidence": "inside each parent with 2 or more children, the intervals between its first child's start and its last child's end that no child covers (time the parent spent on its own between calls, or unrecorded work).",
+   "spans": [
+    "6f9bbe751e5fd944",
+    "0000000000000001",
+    "9f0a544e33b693c2",
+    "c045fb92504eb97f",
+    "d293d7d80690ce74"
+   ],
+   "list": [
+    {
+     "parent": "6f9bbe751e5fd944",
+     "s": 0.001937,
+     "e": 0.002522
+    },
+    {
+     "parent": "6f9bbe751e5fd944",
+     "s": 0.002568,
+     "e": 0.002658
+    },
+    {
+     "parent": "6f9bbe751e5fd944",
+     "s": 0.00188,
+     "e": 0.001897
+    }
+   ]
+  }
+ ],
+ "services": [
+  {
+   "name": "api-gateway",
+   "lane": 0,
+   "self": 0.002024,
+   "spans": 2,
+   "errors": 0,
+   "cp": 0.002024,
+   "sensor": "S_0"
+  },
+  {
+   "name": "customers-service",
+   "lane": 1,
+   "self": 0.0019050000000000002,
+   "spans": 15,
+   "errors": 0,
+   "cp": 0.001696,
+   "sensor": "S_1"
+  }
+ ],
+ "replay": {
+  "lead": 0.8,
+  "slow": 3494.6236559139784,
+  "cycle": 16.0
+ },
+ "t_end": 0.00372,
+ "interps": [
+  "I_B_9afcdf2e24e8d70a",
+  "I_B_6962df17f54c3741",
+  "I_B_6f9bbe751e5fd944",
+  "I_B_d293d7d80690ce74",
+  "I_B_b33418a95acab83f",
+  "I_B_6baf1cebdf376ba77cd5ad",
+  "I_B_22a6dbf5f149e280",
+  "I_B_cbcdc46290379f7a",
+  "I_B_4308efcfd216cbb0",
+  "I_B_d0ae415b55555eb0",
+  "I_B_38b37689f26c5b9e",
+  "I_B_427f5b436c6ef2cb",
+  "I_B_0000000000000001",
+  "I_B_0000000000000002",
+  "I_B_0000000000000003",
+  "I_B_9f0a544e33b693c2",
+  "I_B_c045fb92504eb97f",
+  "I_P_0_pos",
+  "I_P_0_scale",
+  "I_playhead"
+ ],
+ "trace": {
+  "id": "75ff387b7e9bf5ed9e7b7f35e5dd3b7f4f3aedae5b7b57",
+  "title": "Spring PetClinic: GET /api/customer/owners",
+  "label": "TEST FIXTURE: jaeger-ui (Apache-2.0), Jaeger JSON; the repo does not say how it was captured",
+  "format": "Jaeger JSON (query API)",
+  "spans": 17,
+  "services": 2,
+  "errors": 0,
+  "source": "downloads/jaeger-ui/spanAmongEachOtherGroupedAndSpans.json",
+  "sha256": "182ed2832b13fd9513cb2777a5192f34d892aa08149e432375a4a1e237f10992",
+  "manifest": null,
+  "traces_in_file": 1
+ },
+ "kinds": {
+  "SERVER": "#818cf8",
+  "CLIENT": "#2dd4bf",
+  "PRODUCER": "#f2b84b",
+  "CONSUMER": "#c4a1d6",
+  "INTERNAL": "#94a3b8",
+  "UNSPECIFIED": "#64748b"
+ },
+ "present_kinds": [
+  "SERVER",
+  "CLIENT",
+  "UNSPECIFIED"
+ ]
+}

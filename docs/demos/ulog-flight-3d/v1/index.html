@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PX4 flight log (ULog) in 3D</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../x3d-mujoco-bridge/v1/vendor/x_ite/x_ite.css">
+<script src="../../x3d-mujoco-bridge/v1/vendor/x_ite/x_ite.min.js"></script>
+<style>
+  :root { --bg:#090c12; --panel:#0f141d; --line:#1d2533; --ink:#e8edf3; --ink2:#94a3b8; --ink3:#475569; --amber:#fbbf24; --ok:#2dd4bf; --warn:#f2b84b; --bad:#f87171; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--ink); font:13px/1.45 ui-sans-serif, -apple-system, "Segoe UI", Inter, sans-serif; }
+  body { display:grid; grid-template-columns:1fr 410px; grid-template-rows:52px 1fr 138px; height:100vh; }
+  header { grid-column:1 / 3; display:flex; align-items:center; gap:14px; padding:0 18px; border-bottom:1px solid var(--line); }
+  h1 { font-size:15px; margin:0; font-weight:650; white-space:nowrap; } .meta { color:var(--ink2); font-variant-numeric:tabular-nums; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .tag { font-size:10.5px; font-weight:700; letter-spacing:.5px; padding:3px 8px; border-radius:3px; background:#0e3a35; color:#5eead4; }
+  #views { margin-left:auto; display:flex; gap:6px; flex-wrap:nowrap; }
+  button { background:#151d2b; color:var(--ink); border:1px solid #243047; border-radius:4px; padding:5px 9px; font:inherit; font-size:12px; cursor:pointer; white-space:nowrap; }
+  button:hover { border-color:#3b4a66; } button.on { border-color:var(--amber); color:var(--amber); }
+  #stage { position:relative; min-height:0; } x3d-canvas { width:100%; height:100%; display:block; }
+  #hover { position:absolute; left:14px; bottom:10px; color:var(--ink2); font-size:12px; pointer-events:none; background:#090c12cc; padding:3px 8px; border-radius:3px; }
+  #colour { position:absolute; left:14px; top:12px; display:flex; gap:6px; align-items:center; background:#090c12cc; padding:5px 8px; border-radius:4px; color:var(--ink2); font-size:12px; }
+  aside { grid-row:2 / 4; grid-column:2; border-left:1px solid var(--line); background:var(--panel); overflow:auto; padding:14px 16px 30px; }
+  .kind { color:var(--ink2); text-transform:uppercase; font-size:10.5px; letter-spacing:.8px; }
+  h2 { margin:3px 0 10px; font-size:16px; font-weight:650; word-break:break-word; }
+  h3 { margin:16px 0 6px; font-size:10.5px; letter-spacing:.8px; color:var(--ink2); font-weight:650; }
+  dl { margin:0; display:grid; grid-template-columns:122px 1fr; gap:5px 10px; } dt { color:var(--ink2); font-size:11.5px; } dd { margin:0; word-break:break-word; font-variant-numeric:tabular-nums; }
+  .finding { border-left:3px solid var(--ink3); padding:4px 8px; margin:6px 0; background:#0b111a; border-radius:0 4px 4px 0; cursor:pointer; }
+  .finding:hover { background:#101826; }
+  .finding.warn { border-color:var(--warn); } .finding.ok { border-color:var(--ok); } .finding.info { border-color:#818cf8; }
+  .finding small { display:block; color:var(--ink3); margin-top:2px; }
+  #legend .row { display:flex; align-items:center; gap:8px; margin:3px 0; font-size:12px; flex-wrap:wrap; } .sw { width:16px; height:9px; border-radius:2px; flex:none; display:inline-block; }
+  #legend p { color:var(--ink2); font-size:11.5px; margin:6px 0; }
+  footer { grid-column:1; border-top:1px solid var(--line); padding:8px 18px; display:grid; grid-template-columns:auto 1fr; gap:6px 14px; align-items:center; }
+  #clock { font-variant-numeric:tabular-nums; color:var(--ink2); min-width:250px; }
+  input[type=range] { width:100%; accent-color:var(--amber); }
+  #lanes { grid-column:1 / 3; position:relative; height:64px; background:#0b1220; border-radius:4px; cursor:pointer; overflow:hidden; }
+  #lanes .b { position:absolute; top:4px; height:12px; opacity:.85; } #lanes .m { position:absolute; width:3px; border-radius:1px; }
+  #lanes .lbl { position:absolute; right:6px; font-size:9.5px; line-height:10px; color:var(--ink2); pointer-events:none; background:#0b1220; padding:0 3px; }
+  #ph { position:absolute; top:0; bottom:0; width:2px; background:var(--amber); pointer-events:none; }
+  #status { grid-column:1 / 3; color:var(--ink3); font-size:11px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>PX4 flight log (ULog) in 3D</h1><span class="tag">REAL LOG</span><span class="meta" id="cmeta"></span>
+  <div id="views"></div>
+</header>
+<div id="stage"><x3d-canvas id="world" contentScale="auto" splashScreen="false" notifications="false" contextMenu="false"></x3d-canvas>
+  <div id="colour">path colour <button id="c_mode" class="on">flight mode</button><button id="c_speed">speed</button></div>
+  <div id="hover"></div></div>
+<aside>
+  <div id="panel"><div class="kind">loading</div></div>
+  <h3>FINDINGS (rules in build.py; click one to fly the replay there)</h3><div id="findings"></div>
+  <div id="legend"><h3>LEGEND</h3>
+    <div class="row" id="lg_modes"></div>
+    <div class="row" id="lg_speed"></div>
+    <div class="row"><span class="sw" style="background:#cbd5e1;opacity:.55"></span>position setpoint (ghost) · <span class="sw" style="background:#f87171;height:2px"></span>setpoint error whisker (1 s)</div>
+    <div class="row"><span class="sw" style="background:#e2e8f0"></span>attitude glyph every 4 s (red nose cone = forward, teal mast = body up)</div>
+    <div class="row"><span class="sw" style="background:#c4b5fd"></span>logged message flag · <span class="sw" style="background:#f2b84b"></span>warning · <span class="sw" style="background:#fbbf24;border-radius:50%"></span>replay vehicle</div>
+    <div class="row"><span class="sw" style="background:#a3e635"></span>battery voltage · <span class="sw" style="background:#e8edf3"></span>altitude (north wall, X = log time)</div>
+    <p>Ground is 1:1 metres from home (the take-off point): east to the right, north into the scene, up is altitude above home. Small spheres on the path every 2 s and every glyph, flag and finding are clickable. Glyphs are drawn about 3x the size of the airframe so they read from 100 m.</p>
+  </div>
+</aside>
+<footer>
+  <div style="display:flex;gap:8px;align-items:center"><button id="play">Pause</button><span id="clock"></span></div>
+  <input id="scrub" type="range" min="0" max="1000" value="0" aria-label="log time">
+  <div id="lanes"><div id="ph"></div></div>
+  <div id="status"></div>
+</footer>
+<script type="module">
+const $ = s => document.querySelector(s);
+const el = (t, x, c) => { const e = document.createElement(t); if (x != null) e.textContent = x; if (c) e.className = c; return e; };
+const state = window.ul = { errors: [], missing: [], ready: false };
+const LVL = { ERR: "#f87171", CRIT: "#f87171", ALERT: "#f87171", EMERG: "#f87171", WARNING: "#f2b84b" };
+function select(name) {
+  const it = state.data.items[name]; if (!it) return false;
+  const p = $("#panel"); p.replaceChildren(el("div", it.kind, "kind"), el("h2", it.title));
+  const dl = el("dl"); for (const [k, v] of Object.entries(it.body)) dl.append(el("dt", k), el("dd", typeof v === "object" ? JSON.stringify(v) : String(v))); p.append(dl);
+  document.querySelector("aside").scrollTop = 0; return true;
+}
+function watch(node, field, fn) { const g = v => { try { fn(v); } catch (e) { state.errors.push(String(e)); console.error("ulog callback", e); } }; node.addFieldCallback("ul-" + field, field, g); }
+try {
+  const data = state.data = await (await fetch("out/flight-panel.json")).json();
+  const C = data.file, T = data.replay.duration;
+  $("#cmeta").textContent = `${C.file.split("/").pop().slice(0, 8)}….ulg · ${C.hw} · PX4 ${parseInt(C.sw_release.slice(0, 2), 16)}.${parseInt(C.sw_release.slice(2, 4), 16)}.${parseInt(C.sw_release.slice(4, 6), 16)} · ${C.duration_s.toFixed(1)} s · ${C.data_messages.toLocaleString()} messages · ${C.topics} topics`;
+  $("#cmeta").title = `${C.file}\nsha256 ${C.sha256}\n${C.bytes.toLocaleString()} bytes, ULog v${C.ulog_version}, ${C.bad_messages} undecodable messages`;
+  for (const [n, c] of data.legend.modes) { const s = el("span", null, "sw"); s.style.background = c; $("#lg_modes").append(s, el("span", n + " ")); }
+  $("#lg_modes").prepend(el("span", "mode: "));
+  $("#lg_speed").append(el("span", "speed: "));
+  for (const [v, c] of data.legend.speed) { const s = el("span", null, "sw"); s.style.background = c; $("#lg_speed").append(s, el("span", v + (v === data.legend.speed.at(-1)[0] ? "+ m/s" : ""))); }
+  const browser = X3D.getBrowser($("#world"));
+  await browser.loadURL(new X3D.MFString("out/flight-scene.x3d"));
+  const scene = browser.currentScene;
+  for (const name of Object.keys(data.items)) {
+    let node; try { node = scene.getNamedNode(name); } catch (e) { state.missing.push(name); continue; }
+    const d = node.description; watch(node, "isOver", o => { $("#hover").textContent = o ? d : ""; }); watch(node, "touchTime", () => select(name));
+  }
+  const bind = (name, b) => { scene.getNamedNode(name).set_bind = true; document.querySelectorAll("#views button").forEach(x => x.classList.remove("on")); if (b) b.classList.add("on"); };
+  for (const [name, text] of data.views) { const b = el("button", text); b.dataset.vp = name; b.onclick = () => bind(name, b); $("#views").append(b); }
+  const sw = scene.getNamedNode("PathColour");
+  const colour = k => { sw.whichChoice = k; $("#c_mode").classList.toggle("on", k === 0); $("#c_speed").classList.toggle("on", k === 1); };
+  $("#c_mode").onclick = () => colour(0); $("#c_speed").onclick = () => colour(1);
+  // timeline: mode band, logged messages, gps warnings, dropouts
+  const lanes = $("#lanes"), pad = 0.012, xOf = t => (pad + (1 - 2 * pad) * Math.min(T, Math.max(0, t)) / T) * 100;
+  for (const m of data.modes) { const b = el("div", null, "b"); b.style.left = xOf(m.t0) + "%"; b.style.width = (xOf(m.t1) - xOf(m.t0)) + "%"; b.style.background = m.col; b.title = `${m.name} ${m.t0.toFixed(1)}–${m.t1.toFixed(1)} s`; lanes.append(b); }
+  for (const e of data.events) { const b = el("div", null, "m"); b.style.left = xOf(e.t) + "%"; b.style.top = "19px"; b.style.height = "13px"; b.style.background = LVL[e.level] || "#c4b5fd"; b.title = `${e.t.toFixed(2)} s ${e.text}`; b.onclick = ev => { ev.stopPropagation(); select(e.name); pause(); seek(e.t); }; lanes.append(b); }
+  for (const t of data.gps) { const b = el("div", null, "m"); b.style.left = xOf(t) + "%"; b.style.top = "37px"; b.style.height = "8px"; b.style.width = "1px"; b.style.background = "#f2b84b"; lanes.append(b); }
+  for (const d of data.drops) { const b = el("div", null, "m"); b.style.left = xOf(d.t) + "%"; b.style.top = "50px"; b.style.height = "8px"; b.style.width = Math.max(0.25, (xOf(d.t + d.ms / 1000) - xOf(d.t))) + "%"; b.style.background = "#f87171"; b.title = `dropout ${d.ms} ms after ${d.t.toFixed(2)} s`; lanes.append(b); }
+  for (const [y, s] of [[20, "messages"], [36, "gps inject lost"], [49, "dropouts"]]) { const l = el("div", s, "lbl"); l.style.top = y + "px"; lanes.append(l); }
+  const R = data.replay, sensor = scene.getNamedNode("Replay"), interps = data.interps.map(n => scene.getNamedNode(n));
+  const play = R.cycle - R.lead - R.hold;
+  const fracOf = t => (R.lead + (t / T) * play) / R.cycle;
+  const tOf = f => Math.min(T, Math.max(0, (f * R.cycle - R.lead) / play * T));
+  const modeAt = t => (data.modes.findLast(m => m.t0 <= t) || data.modes[0]).name;
+  let playing = true, dragging = false;
+  const show = f => { const t = tOf(f); $("#clock").textContent = `t = ${t.toFixed(2)} s of ${T.toFixed(1)} s · ${modeAt(t)} · ${R.speedup}x`; $("#ph").style.left = xOf(t) + "%"; if (!dragging) $("#scrub").value = Math.round(t / T * 1000); state.t = t; };
+  watch(sensor, "fraction_changed", f => { if (playing) show(f); });
+  const seek = t => { const f = fracOf(t); for (const n of interps) n.set_fraction = f; show(f); };
+  const pause = () => { playing = false; sensor.enabled = false; $("#play").textContent = "Play"; };
+  $("#scrub").onpointerdown = () => { dragging = true; }; $("#scrub").onpointerup = () => { dragging = false; };
+  $("#scrub").oninput = e => { pause(); seek(e.target.value / 1000 * T); };
+  lanes.onclick = e => { const r = lanes.getBoundingClientRect(); const t = Math.min(T, Math.max(0, ((e.clientX - r.left) / r.width - pad) / (1 - 2 * pad) * T)); pause(); seek(t); };
+  $("#play").onclick = () => { if (playing) { pause(); return; } const t = $("#scrub").value / 1000 * T; playing = true; sensor.enabled = true; sensor.startTime = Date.now() / 1000 - fracOf(t >= T - 1e-3 ? 0 : t) * R.cycle; $("#play").textContent = "Pause"; };
+  for (const f of data.findings) {
+    const d = el("div", f.text, "finding " + f.level); d.append(el("small", f.evidence));
+    d.onclick = () => { pause(); seek(f.at); if (data.items[f.id]) select(f.id); };
+    $("#findings").append(d);
+  }
+  pause(); seek(T);
+  state.seek = seek; state.pause = pause; state.select = select; state.bind = bind; state.colour = colour; state.ready = true;
+  $("#status").textContent = `${Object.keys(data.items).length - state.missing.length} clickable items, ${state.missing.length} missing · ${interps.length} interpolators · sha256 ${C.sha256.slice(0, 16)}… · every number on this page is computed by build.py from the log; nothing is synthetic`;
+  bind("VP_overview", document.querySelector('#views button[data-vp="VP_overview"]'));
+  select("F_kill") || select("T_home");
+} catch (e) { state.errors.push(String(e)); $("#status").textContent = "failed: " + e; console.error(e); }
+</script>
+</body>
+</html>

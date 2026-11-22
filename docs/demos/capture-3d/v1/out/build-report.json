@@ -1,0 +1,176 @@
+{
+ "scene_bytes": 78570,
+ "packets": 562,
+ "hosts": [
+  "200.57.7.205",
+  "200.57.7.195",
+  "200.57.7.204",
+  "200.57.7.196"
+ ],
+ "sip_messages": 14,
+ "calls": [
+  {
+   "call_id": "12013223@200.57.7.195",
+   "kind": "call",
+   "messages": 5,
+   "start": 0.0,
+   "end": 8.524137020111084,
+   "from": "<sip:200.57.7.195:55061;user=phone>;tag=GR52RWG346-34",
+   "to": "\"francisco@bestel.com\" <sip:francisco@bestel.com:55060>",
+   "ladder": [
+    "INVITE",
+    100,
+    180,
+    200,
+    "ACK"
+   ],
+   "post_dial_delay_ms": 47.5,
+   "answer_after_s": 8.478,
+   "state_at_capture_end": "answered"
+  },
+  {
+   "call_id": "46E1C3CB36304F84A020CF6DD3F96461@Verso.com",
+   "kind": "registration",
+   "messages": 4,
+   "start": 4.056632995605469,
+   "end": 24.32479190826416,
+   "from": "Ivan <sip:Ivan@Verso.com>;tag=1516659370",
+   "to": "Ivan <sip:Ivan@Verso.com>",
+   "ladder": [
+    "REGISTER",
+    200,
+    "REGISTER",
+    200
+   ]
+  },
+  {
+   "call_id": "D3A26FC3974B44ECB5A96E07282903E3@bestel.com",
+   "kind": "registration",
+   "messages": 2,
+   "start": 17.45702886581421,
+   "end": 17.47341299057007,
+   "from": "america <sip:francisco@bestel.com>;tag=3848902025",
+   "to": "america <sip:francisco@bestel.com>",
+   "ladder": [
+    "REGISTER",
+    200
+   ]
+  },
+  {
+   "call_id": "12015624@200.57.7.195",
+   "kind": "call",
+   "messages": 3,
+   "start": 24.665952920913696,
+   "end": 24.69275188446045,
+   "from": "\"Ivan Alizade\" <sip:5514540002@200.57.7.195:55061;user=phone>;tag=GR52RWG346-34",
+   "to": "\"francisco@bestel.com\" <sip:francisco@bestel.com:55060>",
+   "ladder": [
+    "INVITE",
+    100,
+    180
+   ],
+   "post_dial_delay_ms": 26.8,
+   "answer_after_s": null,
+   "state_at_capture_end": "ringing"
+  }
+ ],
+ "streams": [
+  {
+   "ssrc": "0xD2BD4E3E",
+   "src": "200.57.7.204",
+   "sport": 8000,
+   "dst": "200.57.7.196",
+   "dport": 40376,
+   "pt": 8,
+   "codec": "PCMA",
+   "clock_hz": 8000,
+   "packets": 548,
+   "first_t": 8.479370832443237,
+   "last_t": 32.60342597961426,
+   "duration_s": 24.124,
+   "rate_pps": 22.7,
+   "lost": 0,
+   "loss_pct": 0.0,
+   "gaps": [],
+   "duplicates": 0,
+   "jitter_mean_ms": 2.51,
+   "jitter_max_ms": 7.41,
+   "max_delta_ms": 5843.7,
+   "payload_bytes": 160,
+   "frame_bytes": 214,
+   "pauses": [
+    {
+     "t": 8.577584028244019,
+     "dur_s": 1.043,
+     "rtp_clock_advance_s": 1.06,
+     "seq_continuous": true,
+     "marker_after": false
+    },
+    {
+     "t": 10.908236980438232,
+     "dur_s": 2.008,
+     "rtp_clock_advance_s": 2.04,
+     "seq_continuous": true,
+     "marker_after": false
+    },
+    {
+     "t": 14.581755876541138,
+     "dur_s": 5.844,
+     "rtp_clock_advance_s": 5.9,
+     "seq_continuous": true,
+     "marker_after": false
+    },
+    {
+     "t": 24.004921913146973,
+     "dur_s": 3.543,
+     "rtp_clock_advance_s": 3.6,
+     "seq_continuous": true,
+     "marker_after": false
+    },
+    {
+     "t": 29.18081784248352,
+     "dur_s": 1.008,
+     "rtp_clock_advance_s": 1.0,
+     "seq_continuous": true,
+     "marker_after": false
+    }
+   ],
+   "markers": 1
+  }
+ ],
+ "findings": [
+  {
+   "level": "warn",
+   "text": "One-way media: RTP 200.57.7.204:8000 -> 200.57.7.196:40376 (548 packets) has no reverse stream in this capture. Either one-way audio or the capture point saw only one direction.",
+   "evidence": "RTP streams found: 1"
+  },
+  {
+   "level": "ok",
+   "text": "RTP 0xD2BD4E3E PCMA: 548 packets, 0 lost (0.00 %), jitter mean 2.51 ms / max 7.41 ms, largest gap 5843.7 ms.",
+   "evidence": "RFC 3550 interarrival jitter, clock 8000 Hz"
+  },
+  {
+   "level": "ok",
+   "text": "Call 12013223@200.57.7.: answered; 180 Ringing after 47.5 ms; answered after 8.478 s.",
+   "evidence": "INVITE -> 100 -> 180 -> 200 -> ACK"
+  },
+  {
+   "level": "info",
+   "text": "Call 12015624@200.57.7.: ringing; 180 Ringing after 26.8 ms; no 200 OK before the capture ends.",
+   "evidence": "INVITE -> 100 -> 180"
+  },
+  {
+   "level": "info",
+   "text": "3 REGISTER requests from 2 user agents, 3 answered 200 OK.",
+   "evidence": "Ivan <sip:Ivan@Verso.com> at 4.057 s, america <sip:francisco@bestel.com> at 17.457 s, Ivan <sip:Ivan@Verso.com> at 24.309 s"
+  },
+  {
+   "level": "info",
+   "text": "RTP 0xD2BD4E3E pauses: 5 gaps over 200 ms (longest 5.84 s at 14.582 s). Sequence numbers stay continuous across 5 of them, so packets were not lost: the sender stopped sending (silence suppression or hold); the RTP clock advanced 5.90 s over the longest gap.",
+   "evidence": "inter-arrival > 200 ms; RTP seq and timestamp of the packets either side"
+  }
+ ],
+ "routes": 90,
+ "interps": 45,
+ "z_end": -43.40345937757568
+}

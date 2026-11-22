@@ -1,0 +1,2228 @@
+{
+ "items": {
+  "S_0": {
+   "kind": "service (rail)",
+   "title": "frontend",
+   "body": {
+    "self-time": "7.1 ms",
+    "share of all self-time": "0.6%",
+    "on the critical path": "7.1 ms",
+    "spans": 13,
+    "errors": 0,
+    "span kinds": {
+     "SERVER": 1,
+     "CLIENT": 12
+    },
+    "operations": {
+     "GET /dispatch": 1,
+     "HTTP GET": 11,
+     "driver.DriverService/FindNearest": 1
+    },
+    "resource attributes": {
+     "host.name": "SoumyaRaikwar",
+     "os.type": "linux",
+     "service.name": "frontend",
+     "telemetry.sdk.language": "go",
+     "telemetry.sdk.name": "opentelemetry",
+     "telemetry.sdk.version": "1.44.0"
+    }
+   }
+  },
+  "S_1": {
+   "kind": "service (rail)",
+   "title": "customer",
+   "body": {
+    "self-time": "0.19 ms",
+    "share of all self-time": "0.0%",
+    "on the critical path": "0.19 ms",
+    "spans": 1,
+    "errors": 0,
+    "span kinds": {
+     "SERVER": 1
+    },
+    "operations": {
+     "GET /customer": 1
+    },
+    "resource attributes": {
+     "host.name": "SoumyaRaikwar",
+     "os.type": "linux",
+     "service.name": "customer",
+     "telemetry.sdk.language": "go",
+     "telemetry.sdk.name": "opentelemetry",
+     "telemetry.sdk.version": "1.44.0"
+    }
+   }
+  },
+  "S_2": {
+   "kind": "service (rail)",
+   "title": "mysql",
+   "body": {
+    "self-time": "311.7 ms",
+    "share of all self-time": "27.9%",
+    "on the critical path": "311.7 ms",
+    "spans": 1,
+    "errors": 0,
+    "span kinds": {
+     "CLIENT": 1
+    },
+    "operations": {
+     "SQL SELECT": 1
+    },
+    "resource attributes": {
+     "host.name": "SoumyaRaikwar",
+     "os.type": "linux",
+     "service.name": "mysql",
+     "telemetry.sdk.language": "go",
+     "telemetry.sdk.name": "opentelemetry",
+     "telemetry.sdk.version": "1.44.0"
+    }
+   }
+  },
+  "S_3": {
+   "kind": "service (rail)",
+   "title": "driver",
+   "body": {
+    "self-time": "0.52 ms",
+    "share of all self-time": "0.0%",
+    "on the critical path": "0.52 ms",
+    "spans": 1,
+    "errors": 0,
+    "span kinds": {
+     "SERVER": 1
+    },
+    "operations": {
+     "driver.DriverService/FindNearest": 1
+    },
+    "resource attributes": {
+     "host.name": "SoumyaRaikwar",
+     "os.type": "linux",
+     "service.name": "driver",
+     "telemetry.sdk.language": "go",
+     "telemetry.sdk.name": "opentelemetry",
+     "telemetry.sdk.version": "1.44.0"
+    }
+   }
+  },
+  "S_4": {
+   "kind": "service (rail)",
+   "title": "redis-manual",
+   "body": {
+    "self-time": "243.0 ms",
+    "share of all self-time": "21.8%",
+    "on the critical path": "243.0 ms",
+    "spans": 14,
+    "errors": 3,
+    "span kinds": {
+     "CLIENT": 14
+    },
+    "operations": {
+     "FindDriverIDs": 1,
+     "GetDriver": 13
+    },
+    "resource attributes": {
+     "host.name": "SoumyaRaikwar",
+     "os.type": "linux",
+     "service.name": "redis-manual",
+     "telemetry.sdk.language": "go",
+     "telemetry.sdk.name": "opentelemetry",
+     "telemetry.sdk.version": "1.44.0"
+    }
+   }
+  },
+  "S_5": {
+   "kind": "service (rail)",
+   "title": "route",
+   "body": {
+    "self-time": "554.5 ms",
+    "share of all self-time": "49.6%",
+    "on the critical path": "554.5 ms",
+    "spans": 10,
+    "errors": 0,
+    "span kinds": {
+     "SERVER": 10
+    },
+    "operations": {
+     "GET /route": 10
+    },
+    "resource attributes": {
+     "host.name": "SoumyaRaikwar",
+     "os.type": "linux",
+     "service.name": "route",
+     "telemetry.sdk.language": "go",
+     "telemetry.sdk.name": "opentelemetry",
+     "telemetry.sdk.version": "1.44.0"
+    }
+   }
+  },
+  "T_9c3834fb5a6fea99": {
+   "kind": "server span",
+   "title": "frontend / GET /dispatch",
+   "body": {
+    "service": "frontend",
+    "operation": "GET /dispatch",
+    "kind": "SERVER",
+    "span id": "9c3834fb5a6fea99",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "start": "+0.00 ms",
+    "duration": "1117.0 ms",
+    "self-time": "1.7 ms (duration minus children)",
+    "on critical path": "1.7 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "::1",
+     "http.request.method": "GET",
+     "http.response.body.size": 40,
+     "http.response.status_code": 200,
+     "http.route": "/dispatch",
+     "network.peer.address": "::1",
+     "network.peer.port": 49748,
+     "network.protocol.version": "1.1",
+     "server.address": "localhost",
+     "server.port": 8080,
+     "url.path": "/dispatch",
+     "url.scheme": "http",
+     "user_agent.original": "curl/8.5.0"
+    },
+    "events": [
+     "+1116.9 ms  Dispatch successful  {\"driver\": \"T749707C\", \"eta\": \"2m0s\", \"level\": \"info\"}",
+     "+312.6 ms  Finding nearest drivers  {\"level\": \"info\", \"location\": \"211,653\"}",
+     "+556.8 ms  Finding route  {\"dropoff\": \"211,653\", \"level\": \"info\", \"pickup\": \"549,75\"}",
+     "+618.8 ms  Finding route  {\"dropoff\": \"211,653\", \"level\": \"info\", \"pickup\": \"556,280\"}",
+     "+682.5 ms  Finding route  {\"dropoff\": \"211,653\", \"level\": \"info\", \"pickup\": \"840,626\"}",
+     "+721.4 ms  Finding route  {\"dropoff\": \"211,653\", \"level\": \"info\", \"pickup\": \"97,443\"}",
+     "+797.2 ms  Finding route  {\"dropoff\": \"211,653\", \"level\": \"info\", \"pickup\": \"522,858\"}",
+     "+843.0 ms  Finding route  {\"dropoff\": \"211,653\", \"level\": \"info\", \"pickup\": \"856,370\"}",
+     "+888.8 ms  Finding route  {\"dropoff\": \"211,653\", \"level\": \"info\", \"pickup\": \"107,23\"}",
+     "+957.6 ms  Finding route  {\"dropoff\": \"211,653\", \"level\": \"info\", \"pickup\": \"132,607\"}",
+     "+1010.6 ms  Finding route  {\"dropoff\": \"211,653\", \"level\": \"info\", \"pickup\": \"494,672\"}",
+     "+1071.7 ms  Finding route  {\"dropoff\": \"211,653\", \"level\": \"info\", \"pickup\": \"872,866\"}",
+     "+312.5 ms  Found customer  {\"level\": \"info\"}",
+     "+556.7 ms  Found drivers  {\"level\": \"info\"}",
+     "+1116.8 ms  Found routes  {\"level\": \"info\"}",
+     "+0.10 ms  Getting customer  {\"customer_id\": 567, \"level\": \"info\"}",
+     "+0.03 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/dispatch?customer=567&nonse=31876\"}"
+    ],
+    "children": 12
+   }
+  },
+  "T_ec4c8608bc2e4149": {
+   "kind": "client span",
+   "title": "frontend / HTTP GET",
+   "body": {
+    "service": "frontend",
+    "operation": "HTTP GET",
+    "kind": "CLIENT",
+    "span id": "ec4c8608bc2e4149",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+0.14 ms",
+    "duration": "312.3 ms",
+    "self-time": "0.45 ms (duration minus children)",
+    "on critical path": "0.45 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "http.request.method": "GET",
+     "http.response.status_code": 200,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8081,
+     "url.full": "http://0.0.0.0:8081/customer?customer=567"
+    },
+    "children": 1
+   }
+  },
+  "T_f9f5cf258dc1859f": {
+   "kind": "server span",
+   "title": "customer / GET /customer",
+   "body": {
+    "service": "customer",
+    "operation": "GET /customer",
+    "kind": "SERVER",
+    "span id": "f9f5cf258dc1859f",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / HTTP GET (ec4c8608bc2e4149)",
+    "start": "+0.31 ms",
+    "duration": "311.9 ms",
+    "self-time": "0.19 ms (duration minus children)",
+    "on critical path": "0.19 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "127.0.0.1",
+     "http.request.method": "GET",
+     "http.response.body.size": 66,
+     "http.response.status_code": 200,
+     "http.route": "/customer",
+     "network.peer.address": "127.0.0.1",
+     "network.peer.port": 46338,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8081,
+     "url.path": "/customer",
+     "url.scheme": "http",
+     "user_agent.original": "Go-http-client/1.1"
+    },
+    "events": [
+     "+0.34 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/customer?customer=567\"}",
+     "+0.37 ms  Loading customer  {\"customer_id\": 567, \"level\": \"info\"}"
+    ],
+    "children": 1
+   }
+  },
+  "T_f6be9f5edca51cf6": {
+   "kind": "client span",
+   "title": "mysql / SQL SELECT",
+   "body": {
+    "service": "mysql",
+    "operation": "SQL SELECT",
+    "kind": "CLIENT",
+    "span id": "f6be9f5edca51cf6",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "customer / GET /customer (f9f5cf258dc1859f)",
+    "start": "+0.38 ms",
+    "duration": "311.7 ms",
+    "self-time": "311.7 ms (duration minus children)",
+    "on critical path": "311.7 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "SELECT",
+     "db.query.text": "SELECT * FROM customer WHERE customer_id=567",
+     "db.system.name": "mysql"
+    },
+    "attributes: other": {
+     "request": "",
+     "service.peer.name": "mysql"
+    },
+    "events": [
+     "+0.39 ms  Acquired lock; 0 transactions waiting behind  {\"level\": \"info\", \"waiters\": \"[]\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_f7cf0c8385e66ace": {
+   "kind": "client span",
+   "title": "frontend / driver.DriverService/FindNearest",
+   "body": {
+    "service": "frontend",
+    "operation": "driver.DriverService/FindNearest",
+    "kind": "CLIENT",
+    "span id": "f7cf0c8385e66ace",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+312.6 ms",
+    "duration": "244.1 ms",
+    "self-time": "0.60 ms (duration minus children)",
+    "on critical path": "0.60 ms",
+    "status": "UNSET",
+    "attributes: rpc": {
+     "rpc.method": "driver.DriverService/FindNearest",
+     "rpc.response.status_code": "OK",
+     "rpc.system.name": "grpc"
+    },
+    "attributes: http": {
+     "server.address": "127.0.0.1",
+     "server.port": 8082
+    },
+    "children": 1
+   }
+  },
+  "T_f6e63a82f4597e0e": {
+   "kind": "server span",
+   "title": "driver / driver.DriverService/FindNearest",
+   "body": {
+    "service": "driver",
+    "operation": "driver.DriverService/FindNearest",
+    "kind": "SERVER",
+    "span id": "f6e63a82f4597e0e",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / driver.DriverService/FindNearest (f7cf0c8385e66ace)",
+    "start": "+313.0 ms",
+    "duration": "243.5 ms",
+    "self-time": "0.52 ms (duration minus children)",
+    "on critical path": "0.52 ms",
+    "status": "UNSET",
+    "attributes: rpc": {
+     "rpc.method": "driver.DriverService/FindNearest",
+     "rpc.response.status_code": "OK",
+     "rpc.system.name": "grpc"
+    },
+    "attributes: http": {
+     "server.address": "127.0.0.1",
+     "server.port": 8082
+    },
+    "events": [
+     "+379.8 ms  Retrying GetDriver after error  {\"error\": \"redis timeout\", \"level\": \"error\", \"retry_no\": 1}",
+     "+463.8 ms  Retrying GetDriver after error  {\"error\": \"redis timeout\", \"level\": \"error\", \"retry_no\": 1}",
+     "+539.7 ms  Retrying GetDriver after error  {\"error\": \"redis timeout\", \"level\": \"error\", \"retry_no\": 1}",
+     "+556.4 ms  Search successful  {\"driver_count\": 10, \"level\": \"info\", \"locations\": \"[{\\\"driverID\\\":\\\"T713723C\\\",\\\"location\\\":\\\"549,75\\\"},{\\\"driverID\\\":\\\"T795512C\\\",\\\"location\\\":\\\"556,280\\\"},{\\\"driverID\\\":\\\"T764015C\\\",\\\"location\\\":\\\"840,626\\\"},{\\\"driverID\\\":\\\"T749707C\\\",\\\"location\\\":\\\"97,443\\\"},{\\\"driverID\\\":\\\"T775101C\\\",\\\"location\\\":\\\"522,858\\\"},{\\\"driverID\\\":\\\"T753910C\\\",\\\"location\\\":\\\"856,370\\\"},{\\\"driverID\\\":\\\"T719173C\\\",\\\"location\\\":\\\"107,23\\\"},{\\\"driverID\\\":\\\"T708545C\\\",\\\"location\\\":\\\"132,607\\\"},{\\\"driverID\\\":\\\"T737227C\\\",\\\"location\\\":\\\"494,672\\\"},{\\\"driverID\\\":\\\"T725718C\\\",\\\"location\\\":\\\"872,866\\\"}]\"}",
+     "+313.0 ms  Searching for nearby drivers  {\"level\": \"info\", \"location\": \"211,653\"}"
+    ],
+    "children": 14
+   }
+  },
+  "T_695357c7a51150f2": {
+   "kind": "client span",
+   "title": "redis-manual / FindDriverIDs",
+   "body": {
+    "service": "redis-manual",
+    "operation": "FindDriverIDs",
+    "kind": "CLIENT",
+    "span id": "695357c7a51150f2",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+313.1 ms",
+    "duration": "37.3 ms",
+    "self-time": "37.3 ms (duration minus children)",
+    "on critical path": "37.3 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driver.location": "211,653"
+    },
+    "events": [
+     "+349.8 ms  Found drivers  {\"drivers\": \"[T713723C T795512C T764015C T749707C T775101C T753910C T719173C T708545C T737227C T725718C]\", \"level\": \"info\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_0efad7b97a83e062": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "0efad7b97a83e062",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+350.4 ms",
+    "duration": "29.4 ms",
+    "self-time": "29.4 ms (duration minus children)",
+    "on critical path": "29.4 ms",
+    "status": "ERROR: An error occurred",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T713723C"
+    },
+    "events": [
+     "+379.7 ms  exception  {\"exception.message\": \"redis timeout\", \"exception.type\": \"*errors.errorString\"}",
+     "+379.7 ms  redis timeout  {\"driver_id\": \"T713723C\", \"error\": \"redis timeout\", \"level\": \"error\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_cb2535ed4001a42a": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "cb2535ed4001a42a",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+379.8 ms",
+    "duration": "13.4 ms",
+    "self-time": "13.4 ms (duration minus children)",
+    "on critical path": "13.4 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T713723C"
+    },
+    "events": [
+     "+393.1 ms  Got driver's ID  {\"driverID\": \"T713723C\", \"level\": \"info\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_a40fec59e10c7ddc": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "a40fec59e10c7ddc",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+393.2 ms",
+    "duration": "13.3 ms",
+    "self-time": "13.3 ms (duration minus children)",
+    "on critical path": "13.3 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T795512C"
+    },
+    "events": [
+     "+406.5 ms  Got driver's ID  {\"driverID\": \"T795512C\", \"level\": \"info\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_248dc05026417afe": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "248dc05026417afe",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+406.5 ms",
+    "duration": "13.3 ms",
+    "self-time": "13.3 ms (duration minus children)",
+    "on critical path": "13.3 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T764015C"
+    },
+    "events": [
+     "+419.8 ms  Got driver's ID  {\"driverID\": \"T764015C\", \"level\": \"info\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_58e15b3e1b467a6f": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "58e15b3e1b467a6f",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+419.9 ms",
+    "duration": "10.3 ms",
+    "self-time": "10.3 ms (duration minus children)",
+    "on critical path": "10.3 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T749707C"
+    },
+    "events": [
+     "+430.2 ms  Got driver's ID  {\"driverID\": \"T749707C\", \"level\": \"info\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_2d2ba26e271b1dae": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "2d2ba26e271b1dae",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+430.3 ms",
+    "duration": "33.5 ms",
+    "self-time": "33.5 ms (duration minus children)",
+    "on critical path": "33.5 ms",
+    "status": "ERROR: An error occurred",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T775101C"
+    },
+    "events": [
+     "+463.7 ms  exception  {\"exception.message\": \"redis timeout\", \"exception.type\": \"*errors.errorString\"}",
+     "+463.7 ms  redis timeout  {\"driver_id\": \"T775101C\", \"error\": \"redis timeout\", \"level\": \"error\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_a7683e9ec7010a8f": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "a7683e9ec7010a8f",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+463.9 ms",
+    "duration": "12.3 ms",
+    "self-time": "12.3 ms (duration minus children)",
+    "on critical path": "12.3 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T775101C"
+    },
+    "events": [
+     "+476.1 ms  Got driver's ID  {\"driverID\": \"T775101C\", \"level\": \"info\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_3590bed61d46f227": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "3590bed61d46f227",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+476.1 ms",
+    "duration": "15.3 ms",
+    "self-time": "15.3 ms (duration minus children)",
+    "on critical path": "15.3 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T753910C"
+    },
+    "events": [
+     "+491.3 ms  Got driver's ID  {\"driverID\": \"T753910C\", \"level\": \"info\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_873f12b0f360d5b2": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "873f12b0f360d5b2",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+491.4 ms",
+    "duration": "11.3 ms",
+    "self-time": "11.3 ms (duration minus children)",
+    "on critical path": "11.3 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T719173C"
+    },
+    "events": [
+     "+502.7 ms  Got driver's ID  {\"driverID\": \"T719173C\", \"level\": \"info\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_c9a3ef045e879ea3": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "c9a3ef045e879ea3",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+502.8 ms",
+    "duration": "6.3 ms",
+    "self-time": "6.3 ms (duration minus children)",
+    "on critical path": "6.3 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T708545C"
+    },
+    "events": [
+     "+509.0 ms  Got driver's ID  {\"driverID\": \"T708545C\", \"level\": \"info\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_4460a3067fc42610": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "4460a3067fc42610",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+509.1 ms",
+    "duration": "30.6 ms",
+    "self-time": "30.6 ms (duration minus children)",
+    "on critical path": "30.6 ms",
+    "status": "ERROR: An error occurred",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T737227C"
+    },
+    "events": [
+     "+539.6 ms  exception  {\"exception.message\": \"redis timeout\", \"exception.type\": \"*errors.errorString\"}",
+     "+539.6 ms  redis timeout  {\"driver_id\": \"T737227C\", \"error\": \"redis timeout\", \"level\": \"error\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_9405217133e633aa": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "9405217133e633aa",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+539.7 ms",
+    "duration": "9.3 ms",
+    "self-time": "9.3 ms (duration minus children)",
+    "on critical path": "9.3 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T737227C"
+    },
+    "events": [
+     "+549.0 ms  Got driver's ID  {\"driverID\": \"T737227C\", \"level\": \"info\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_e4269b2250b7242d": {
+   "kind": "client span",
+   "title": "redis-manual / GetDriver",
+   "body": {
+    "service": "redis-manual",
+    "operation": "GetDriver",
+    "kind": "CLIENT",
+    "span id": "e4269b2250b7242d",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "driver / driver.DriverService/FindNearest (f6e63a82f4597e0e)",
+    "start": "+549.1 ms",
+    "duration": "7.3 ms",
+    "self-time": "7.3 ms (duration minus children)",
+    "on critical path": "7.3 ms",
+    "status": "UNSET",
+    "attributes: db": {
+     "db.operation.name": "GET",
+     "db.system.name": "redis"
+    },
+    "attributes: other": {
+     "param.driverID": "T725718C"
+    },
+    "events": [
+     "+556.3 ms  Got driver's ID  {\"driverID\": \"T725718C\", \"level\": \"info\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_58640208f5e53678": {
+   "kind": "client span",
+   "title": "frontend / HTTP GET",
+   "body": {
+    "service": "frontend",
+    "operation": "HTTP GET",
+    "kind": "CLIENT",
+    "span id": "58640208f5e53678",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+556.9 ms",
+    "duration": "61.9 ms",
+    "self-time": "0.48 ms (duration minus children)",
+    "on critical path": "0.48 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "http.request.method": "GET",
+     "http.response.status_code": 200,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.full": "http://0.0.0.0:8083/route?dropoff=211%2C653&pickup=549%2C75"
+    },
+    "children": 1
+   }
+  },
+  "T_16e581c022aeadb3": {
+   "kind": "server span",
+   "title": "route / GET /route",
+   "body": {
+    "service": "route",
+    "operation": "GET /route",
+    "kind": "SERVER",
+    "span id": "16e581c022aeadb3",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / HTTP GET (58640208f5e53678)",
+    "start": "+557.1 ms",
+    "duration": "61.4 ms",
+    "self-time": "61.4 ms (duration minus children)",
+    "on critical path": "61.4 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "127.0.0.1",
+     "http.request.method": "GET",
+     "http.response.body.size": 58,
+     "http.response.status_code": 200,
+     "http.route": "/route",
+     "network.peer.address": "127.0.0.1",
+     "network.peer.port": 54612,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.path": "/route",
+     "url.scheme": "http",
+     "user_agent.original": "Go-http-client/1.1"
+    },
+    "events": [
+     "+557.1 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/route?dropoff=211%2C653&pickup=549%2C75\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_b4de4f036370131c": {
+   "kind": "client span",
+   "title": "frontend / HTTP GET",
+   "body": {
+    "service": "frontend",
+    "operation": "HTTP GET",
+    "kind": "CLIENT",
+    "span id": "b4de4f036370131c",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+618.8 ms",
+    "duration": "63.7 ms",
+    "self-time": "0.43 ms (duration minus children)",
+    "on critical path": "0.43 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "http.request.method": "GET",
+     "http.response.status_code": 200,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.full": "http://0.0.0.0:8083/route?dropoff=211%2C653&pickup=556%2C280"
+    },
+    "children": 1
+   }
+  },
+  "T_221c8be16826fc01": {
+   "kind": "server span",
+   "title": "route / GET /route",
+   "body": {
+    "service": "route",
+    "operation": "GET /route",
+    "kind": "SERVER",
+    "span id": "221c8be16826fc01",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / HTTP GET (b4de4f036370131c)",
+    "start": "+619.0 ms",
+    "duration": "63.2 ms",
+    "self-time": "63.2 ms (duration minus children)",
+    "on critical path": "63.2 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "127.0.0.1",
+     "http.request.method": "GET",
+     "http.response.body.size": 59,
+     "http.response.status_code": 200,
+     "http.route": "/route",
+     "network.peer.address": "127.0.0.1",
+     "network.peer.port": 54612,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.path": "/route",
+     "url.scheme": "http",
+     "user_agent.original": "Go-http-client/1.1"
+    },
+    "events": [
+     "+619.0 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/route?dropoff=211%2C653&pickup=556%2C280\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_533cc51302aaaf51": {
+   "kind": "client span",
+   "title": "frontend / HTTP GET",
+   "body": {
+    "service": "frontend",
+    "operation": "HTTP GET",
+    "kind": "CLIENT",
+    "span id": "533cc51302aaaf51",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+682.6 ms",
+    "duration": "38.7 ms",
+    "self-time": "0.38 ms (duration minus children)",
+    "on critical path": "0.38 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "http.request.method": "GET",
+     "http.response.status_code": 200,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.full": "http://0.0.0.0:8083/route?dropoff=211%2C653&pickup=840%2C626"
+    },
+    "children": 1
+   }
+  },
+  "T_68771eaeeaf39a0d": {
+   "kind": "server span",
+   "title": "route / GET /route",
+   "body": {
+    "service": "route",
+    "operation": "GET /route",
+    "kind": "SERVER",
+    "span id": "68771eaeeaf39a0d",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / HTTP GET (533cc51302aaaf51)",
+    "start": "+682.8 ms",
+    "duration": "38.4 ms",
+    "self-time": "38.4 ms (duration minus children)",
+    "on critical path": "38.4 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "127.0.0.1",
+     "http.request.method": "GET",
+     "http.response.body.size": 59,
+     "http.response.status_code": 200,
+     "http.route": "/route",
+     "network.peer.address": "127.0.0.1",
+     "network.peer.port": 54612,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.path": "/route",
+     "url.scheme": "http",
+     "user_agent.original": "Go-http-client/1.1"
+    },
+    "events": [
+     "+682.8 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/route?dropoff=211%2C653&pickup=840%2C626\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_7151761522c70619": {
+   "kind": "client span",
+   "title": "frontend / HTTP GET",
+   "body": {
+    "service": "frontend",
+    "operation": "HTTP GET",
+    "kind": "CLIENT",
+    "span id": "7151761522c70619",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+721.4 ms",
+    "duration": "75.7 ms",
+    "self-time": "0.40 ms (duration minus children)",
+    "on critical path": "0.40 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "http.request.method": "GET",
+     "http.response.status_code": 200,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.full": "http://0.0.0.0:8083/route?dropoff=211%2C653&pickup=97%2C443"
+    },
+    "children": 1
+   }
+  },
+  "T_eae600f1dcc8f2f2": {
+   "kind": "server span",
+   "title": "route / GET /route",
+   "body": {
+    "service": "route",
+    "operation": "GET /route",
+    "kind": "SERVER",
+    "span id": "eae600f1dcc8f2f2",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / HTTP GET (7151761522c70619)",
+    "start": "+721.6 ms",
+    "duration": "75.3 ms",
+    "self-time": "75.3 ms (duration minus children)",
+    "on critical path": "75.3 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "127.0.0.1",
+     "http.request.method": "GET",
+     "http.response.body.size": 58,
+     "http.response.status_code": 200,
+     "http.route": "/route",
+     "network.peer.address": "127.0.0.1",
+     "network.peer.port": 54612,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.path": "/route",
+     "url.scheme": "http",
+     "user_agent.original": "Go-http-client/1.1"
+    },
+    "events": [
+     "+721.6 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/route?dropoff=211%2C653&pickup=97%2C443\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_2df18d9a08f59556": {
+   "kind": "client span",
+   "title": "frontend / HTTP GET",
+   "body": {
+    "service": "frontend",
+    "operation": "HTTP GET",
+    "kind": "CLIENT",
+    "span id": "2df18d9a08f59556",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+797.3 ms",
+    "duration": "45.7 ms",
+    "self-time": "0.40 ms (duration minus children)",
+    "on critical path": "0.40 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "http.request.method": "GET",
+     "http.response.status_code": 200,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.full": "http://0.0.0.0:8083/route?dropoff=211%2C653&pickup=522%2C858"
+    },
+    "children": 1
+   }
+  },
+  "T_12881af283814146": {
+   "kind": "server span",
+   "title": "route / GET /route",
+   "body": {
+    "service": "route",
+    "operation": "GET /route",
+    "kind": "SERVER",
+    "span id": "12881af283814146",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / HTTP GET (2df18d9a08f59556)",
+    "start": "+797.4 ms",
+    "duration": "45.3 ms",
+    "self-time": "45.3 ms (duration minus children)",
+    "on critical path": "45.3 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "127.0.0.1",
+     "http.request.method": "GET",
+     "http.response.body.size": 59,
+     "http.response.status_code": 200,
+     "http.route": "/route",
+     "network.peer.address": "127.0.0.1",
+     "network.peer.port": 54612,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.path": "/route",
+     "url.scheme": "http",
+     "user_agent.original": "Go-http-client/1.1"
+    },
+    "events": [
+     "+797.5 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/route?dropoff=211%2C653&pickup=522%2C858\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_7b634fb7da9885b9": {
+   "kind": "client span",
+   "title": "frontend / HTTP GET",
+   "body": {
+    "service": "frontend",
+    "operation": "HTTP GET",
+    "kind": "CLIENT",
+    "span id": "7b634fb7da9885b9",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+843.1 ms",
+    "duration": "45.7 ms",
+    "self-time": "0.37 ms (duration minus children)",
+    "on critical path": "0.37 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "http.request.method": "GET",
+     "http.response.status_code": 200,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.full": "http://0.0.0.0:8083/route?dropoff=211%2C653&pickup=856%2C370"
+    },
+    "children": 1
+   }
+  },
+  "T_9c6eed57b391747e": {
+   "kind": "server span",
+   "title": "route / GET /route",
+   "body": {
+    "service": "route",
+    "operation": "GET /route",
+    "kind": "SERVER",
+    "span id": "9c6eed57b391747e",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / HTTP GET (7b634fb7da9885b9)",
+    "start": "+843.2 ms",
+    "duration": "45.4 ms",
+    "self-time": "45.4 ms (duration minus children)",
+    "on critical path": "45.4 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "127.0.0.1",
+     "http.request.method": "GET",
+     "http.response.body.size": 59,
+     "http.response.status_code": 200,
+     "http.route": "/route",
+     "network.peer.address": "127.0.0.1",
+     "network.peer.port": 54612,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.path": "/route",
+     "url.scheme": "http",
+     "user_agent.original": "Go-http-client/1.1"
+    },
+    "events": [
+     "+843.2 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/route?dropoff=211%2C653&pickup=856%2C370\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_653ecbaa3844a841": {
+   "kind": "client span",
+   "title": "frontend / HTTP GET",
+   "body": {
+    "service": "frontend",
+    "operation": "HTTP GET",
+    "kind": "CLIENT",
+    "span id": "653ecbaa3844a841",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+888.9 ms",
+    "duration": "68.6 ms",
+    "self-time": "0.41 ms (duration minus children)",
+    "on critical path": "0.41 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "http.request.method": "GET",
+     "http.response.status_code": 200,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.full": "http://0.0.0.0:8083/route?dropoff=211%2C653&pickup=107%2C23"
+    },
+    "children": 1
+   }
+  },
+  "T_a506b5672c60ccac": {
+   "kind": "server span",
+   "title": "route / GET /route",
+   "body": {
+    "service": "route",
+    "operation": "GET /route",
+    "kind": "SERVER",
+    "span id": "a506b5672c60ccac",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / HTTP GET (653ecbaa3844a841)",
+    "start": "+889.1 ms",
+    "duration": "68.2 ms",
+    "self-time": "68.2 ms (duration minus children)",
+    "on critical path": "68.2 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "127.0.0.1",
+     "http.request.method": "GET",
+     "http.response.body.size": 58,
+     "http.response.status_code": 200,
+     "http.route": "/route",
+     "network.peer.address": "127.0.0.1",
+     "network.peer.port": 54612,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.path": "/route",
+     "url.scheme": "http",
+     "user_agent.original": "Go-http-client/1.1"
+    },
+    "events": [
+     "+889.1 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/route?dropoff=211%2C653&pickup=107%2C23\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_48026bdc93d53bee": {
+   "kind": "client span",
+   "title": "frontend / HTTP GET",
+   "body": {
+    "service": "frontend",
+    "operation": "HTTP GET",
+    "kind": "CLIENT",
+    "span id": "48026bdc93d53bee",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+957.7 ms",
+    "duration": "52.9 ms",
+    "self-time": "0.51 ms (duration minus children)",
+    "on critical path": "0.51 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "http.request.method": "GET",
+     "http.response.status_code": 200,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.full": "http://0.0.0.0:8083/route?dropoff=211%2C653&pickup=132%2C607"
+    },
+    "children": 1
+   }
+  },
+  "T_5b0f86ed8e5ec820": {
+   "kind": "server span",
+   "title": "route / GET /route",
+   "body": {
+    "service": "route",
+    "operation": "GET /route",
+    "kind": "SERVER",
+    "span id": "5b0f86ed8e5ec820",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / HTTP GET (48026bdc93d53bee)",
+    "start": "+957.9 ms",
+    "duration": "52.4 ms",
+    "self-time": "52.4 ms (duration minus children)",
+    "on critical path": "52.4 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "127.0.0.1",
+     "http.request.method": "GET",
+     "http.response.body.size": 59,
+     "http.response.status_code": 200,
+     "http.route": "/route",
+     "network.peer.address": "127.0.0.1",
+     "network.peer.port": 54612,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.path": "/route",
+     "url.scheme": "http",
+     "user_agent.original": "Go-http-client/1.1"
+    },
+    "events": [
+     "+957.9 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/route?dropoff=211%2C653&pickup=132%2C607\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_4b9f86ec9d805976": {
+   "kind": "client span",
+   "title": "frontend / HTTP GET",
+   "body": {
+    "service": "frontend",
+    "operation": "HTTP GET",
+    "kind": "CLIENT",
+    "span id": "4b9f86ec9d805976",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+1010.8 ms",
+    "duration": "60.9 ms",
+    "self-time": "0.52 ms (duration minus children)",
+    "on critical path": "0.52 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "http.request.method": "GET",
+     "http.response.status_code": 200,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.full": "http://0.0.0.0:8083/route?dropoff=211%2C653&pickup=494%2C672"
+    },
+    "children": 1
+   }
+  },
+  "T_4065b00d1d8c00ee": {
+   "kind": "server span",
+   "title": "route / GET /route",
+   "body": {
+    "service": "route",
+    "operation": "GET /route",
+    "kind": "SERVER",
+    "span id": "4065b00d1d8c00ee",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / HTTP GET (4b9f86ec9d805976)",
+    "start": "+1011.0 ms",
+    "duration": "60.4 ms",
+    "self-time": "60.4 ms (duration minus children)",
+    "on critical path": "60.4 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "127.0.0.1",
+     "http.request.method": "GET",
+     "http.response.body.size": 59,
+     "http.response.status_code": 200,
+     "http.route": "/route",
+     "network.peer.address": "127.0.0.1",
+     "network.peer.port": 54612,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.path": "/route",
+     "url.scheme": "http",
+     "user_agent.original": "Go-http-client/1.1"
+    },
+    "events": [
+     "+1011.0 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/route?dropoff=211%2C653&pickup=494%2C672\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_8a8352238f0c9539": {
+   "kind": "client span",
+   "title": "frontend / HTTP GET",
+   "body": {
+    "service": "frontend",
+    "operation": "HTTP GET",
+    "kind": "CLIENT",
+    "span id": "8a8352238f0c9539",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / GET /dispatch (9c3834fb5a6fea99)",
+    "start": "+1071.8 ms",
+    "duration": "45.0 ms",
+    "self-time": "0.54 ms (duration minus children)",
+    "on critical path": "0.54 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "http.request.method": "GET",
+     "http.response.status_code": 200,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.full": "http://0.0.0.0:8083/route?dropoff=211%2C653&pickup=872%2C866"
+    },
+    "children": 1
+   }
+  },
+  "T_a004396360764c59": {
+   "kind": "server span",
+   "title": "route / GET /route",
+   "body": {
+    "service": "route",
+    "operation": "GET /route",
+    "kind": "SERVER",
+    "span id": "a004396360764c59",
+    "trace id": "fe65c5beefbe4e96119efbba3da07e99",
+    "parent": "frontend / HTTP GET (8a8352238f0c9539)",
+    "start": "+1072.1 ms",
+    "duration": "44.5 ms",
+    "self-time": "44.5 ms (duration minus children)",
+    "on critical path": "44.5 ms",
+    "status": "UNSET",
+    "attributes: http": {
+     "client.address": "127.0.0.1",
+     "http.request.method": "GET",
+     "http.response.body.size": 59,
+     "http.response.status_code": 200,
+     "http.route": "/route",
+     "network.peer.address": "127.0.0.1",
+     "network.peer.port": 54612,
+     "network.protocol.version": "1.1",
+     "server.address": "0.0.0.0",
+     "server.port": 8083,
+     "url.path": "/route",
+     "url.scheme": "http",
+     "user_agent.original": "Go-http-client/1.1"
+    },
+    "events": [
+     "+1072.1 ms  HTTP request received  {\"level\": \"info\", \"method\": \"GET\", \"url\": \"/route?dropoff=211%2C653&pickup=872%2C866\"}"
+    ],
+    "children": 0
+   }
+  },
+  "T_findings": {
+   "kind": "findings",
+   "title": "Findings",
+   "body": {},
+   "findings": true
+  }
+ },
+ "views": [
+  [
+   "VP_overview",
+   "Overview"
+  ],
+  [
+   "VP_lanes",
+   "Rails from above: services by time"
+  ],
+  [
+   "VP_front",
+   "Critical path: high front"
+  ],
+  [
+   "VP_side",
+   "Side: rails in depth"
+  ],
+  [
+   "VP_error",
+   "Errors: GetDriver"
+  ],
+  [
+   "VP_fanout",
+   "Fan-out: 13 x GetDriver"
+  ],
+  [
+   "VP_findings",
+   "Findings card"
+  ]
+ ],
+ "timeline": [
+  {
+   "id": "9c3834fb5a6fea99",
+   "name": "GET /dispatch",
+   "service": "frontend",
+   "lane": 0,
+   "row": 0,
+   "s": 0.0,
+   "e": 1.116967287,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_9c3834fb5a6fea99"
+  },
+  {
+   "id": "ec4c8608bc2e4149",
+   "name": "HTTP GET",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 0.000139892,
+   "e": 0.312463975,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_ec4c8608bc2e4149"
+  },
+  {
+   "id": "f9f5cf258dc1859f",
+   "name": "GET /customer",
+   "service": "customer",
+   "lane": 1,
+   "row": 0,
+   "s": 0.000308923,
+   "e": 0.31218195,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_f9f5cf258dc1859f"
+  },
+  {
+   "id": "f6be9f5edca51cf6",
+   "name": "SQL SELECT",
+   "service": "mysql",
+   "lane": 2,
+   "row": 0,
+   "s": 0.000384749,
+   "e": 0.312066077,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_f6be9f5edca51cf6"
+  },
+  {
+   "id": "f7cf0c8385e66ace",
+   "name": "driver.DriverService/FindNearest",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 0.312638025,
+   "e": 0.556722441,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_f7cf0c8385e66ace"
+  },
+  {
+   "id": "f6e63a82f4597e0e",
+   "name": "driver.DriverService/FindNearest",
+   "service": "driver",
+   "lane": 3,
+   "row": 0,
+   "s": 0.313014674,
+   "e": 0.556498782,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_f6e63a82f4597e0e"
+  },
+  {
+   "id": "695357c7a51150f2",
+   "name": "FindDriverIDs",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.31309245,
+   "e": 0.350348587,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_695357c7a51150f2"
+  },
+  {
+   "id": "0efad7b97a83e062",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.350365537,
+   "e": 0.379759892,
+   "kind": "CLIENT",
+   "error": true,
+   "cp": true,
+   "sensor": "T_0efad7b97a83e062"
+  },
+  {
+   "id": "cb2535ed4001a42a",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.379784011,
+   "e": 0.393173158,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_cb2535ed4001a42a"
+  },
+  {
+   "id": "a40fec59e10c7ddc",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.393195528,
+   "e": 0.406528245,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_a40fec59e10c7ddc"
+  },
+  {
+   "id": "248dc05026417afe",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.406546215,
+   "e": 0.419895802,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_248dc05026417afe"
+  },
+  {
+   "id": "58e15b3e1b467a6f",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.419914122,
+   "e": 0.430239866,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_58e15b3e1b467a6f"
+  },
+  {
+   "id": "2d2ba26e271b1dae",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.430253476,
+   "e": 0.463783842,
+   "kind": "CLIENT",
+   "error": true,
+   "cp": true,
+   "sensor": "T_2d2ba26e271b1dae"
+  },
+  {
+   "id": "a7683e9ec7010a8f",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.463854002,
+   "e": 0.476124402,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_a7683e9ec7010a8f"
+  },
+  {
+   "id": "3590bed61d46f227",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.476144802,
+   "e": 0.491409574,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_3590bed61d46f227"
+  },
+  {
+   "id": "873f12b0f360d5b2",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.491425324,
+   "e": 0.502751155,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_873f12b0f360d5b2"
+  },
+  {
+   "id": "c9a3ef045e879ea3",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.502770335,
+   "e": 0.50907115,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_c9a3ef045e879ea3"
+  },
+  {
+   "id": "4460a3067fc42610",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.50908814,
+   "e": 0.539696083,
+   "kind": "CLIENT",
+   "error": true,
+   "cp": true,
+   "sensor": "T_4460a3067fc42610"
+  },
+  {
+   "id": "9405217133e633aa",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.539747203,
+   "e": 0.54907272,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_9405217133e633aa"
+  },
+  {
+   "id": "e4269b2250b7242d",
+   "name": "GetDriver",
+   "service": "redis-manual",
+   "lane": 4,
+   "row": 0,
+   "s": 0.54908788,
+   "e": 0.556383122,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_e4269b2250b7242d"
+  },
+  {
+   "id": "58640208f5e53678",
+   "name": "HTTP GET",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 0.556852971,
+   "e": 0.618720957,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_58640208f5e53678"
+  },
+  {
+   "id": "16e581c022aeadb3",
+   "name": "GET /route",
+   "service": "route",
+   "lane": 5,
+   "row": 0,
+   "s": 0.55705124,
+   "e": 0.618438217,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_16e581c022aeadb3"
+  },
+  {
+   "id": "b4de4f036370131c",
+   "name": "HTTP GET",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 0.618836926,
+   "e": 0.682509608,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_b4de4f036370131c"
+  },
+  {
+   "id": "221c8be16826fc01",
+   "name": "GET /route",
+   "service": "route",
+   "lane": 5,
+   "row": 0,
+   "s": 0.619024406,
+   "e": 0.682269529,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_221c8be16826fc01"
+  },
+  {
+   "id": "533cc51302aaaf51",
+   "name": "HTTP GET",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 0.682602318,
+   "e": 0.721337491,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_533cc51302aaaf51"
+  },
+  {
+   "id": "68771eaeeaf39a0d",
+   "name": "GET /route",
+   "service": "route",
+   "lane": 5,
+   "row": 0,
+   "s": 0.682802697,
+   "e": 0.721162622,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_68771eaeeaf39a0d"
+  },
+  {
+   "id": "7151761522c70619",
+   "name": "HTTP GET",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 0.721436231,
+   "e": 0.797173623,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_7151761522c70619"
+  },
+  {
+   "id": "eae600f1dcc8f2f2",
+   "name": "GET /route",
+   "service": "route",
+   "lane": 5,
+   "row": 0,
+   "s": 0.721595621,
+   "e": 0.796931703,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_eae600f1dcc8f2f2"
+  },
+  {
+   "id": "2df18d9a08f59556",
+   "name": "HTTP GET",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 0.797259522,
+   "e": 0.842979979,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_2df18d9a08f59556"
+  },
+  {
+   "id": "12881af283814146",
+   "name": "GET /route",
+   "service": "route",
+   "lane": 5,
+   "row": 0,
+   "s": 0.797443872,
+   "e": 0.842769009,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_12881af283814146"
+  },
+  {
+   "id": "7b634fb7da9885b9",
+   "name": "HTTP GET",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 0.843064198,
+   "e": 0.888789365,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_7b634fb7da9885b9"
+  },
+  {
+   "id": "9c6eed57b391747e",
+   "name": "GET /route",
+   "service": "route",
+   "lane": 5,
+   "row": 0,
+   "s": 0.843204418,
+   "e": 0.888563245,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_9c6eed57b391747e"
+  },
+  {
+   "id": "653ecbaa3844a841",
+   "name": "HTTP GET",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 0.888875034,
+   "e": 0.957524303,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_653ecbaa3844a841"
+  },
+  {
+   "id": "a506b5672c60ccac",
+   "name": "GET /route",
+   "service": "route",
+   "lane": 5,
+   "row": 0,
+   "s": 0.889059684,
+   "e": 0.957296294,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_a506b5672c60ccac"
+  },
+  {
+   "id": "48026bdc93d53bee",
+   "name": "HTTP GET",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 0.957653213,
+   "e": 1.010557741,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_48026bdc93d53bee"
+  },
+  {
+   "id": "5b0f86ed8e5ec820",
+   "name": "GET /route",
+   "service": "route",
+   "lane": 5,
+   "row": 0,
+   "s": 0.957868383,
+   "e": 1.010267372,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_5b0f86ed8e5ec820"
+  },
+  {
+   "id": "4b9f86ec9d805976",
+   "name": "HTTP GET",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 1.010760691,
+   "e": 1.071636279,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_4b9f86ec9d805976"
+  },
+  {
+   "id": "4065b00d1d8c00ee",
+   "name": "GET /route",
+   "service": "route",
+   "lane": 5,
+   "row": 0,
+   "s": 1.01101635,
+   "e": 1.07137311,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_4065b00d1d8c00ee"
+  },
+  {
+   "id": "8a8352238f0c9539",
+   "name": "HTTP GET",
+   "service": "frontend",
+   "lane": 0,
+   "row": 1,
+   "s": 1.071781689,
+   "e": 1.116784087,
+   "kind": "CLIENT",
+   "error": false,
+   "cp": true,
+   "sensor": "T_8a8352238f0c9539"
+  },
+  {
+   "id": "a004396360764c59",
+   "name": "GET /route",
+   "service": "route",
+   "lane": 5,
+   "row": 0,
+   "s": 1.072057178,
+   "e": 1.116518228,
+   "kind": "SERVER",
+   "error": false,
+   "cp": true,
+   "sensor": "T_a004396360764c59"
+  }
+ ],
+ "findings": [
+  {
+   "key": "critical",
+   "title": "Critical path: 1117.0 ms, 50% of it in route",
+   "text": "route 554.5 ms (50%); mysql 311.7 ms (28%); redis-manual 243.0 ms (22%); frontend 7.1 ms (1%); driver 0.52 ms (0%); customer 0.19 ms (0%)",
+   "evidence": "Jaeger's rule from the root frontend / GET /dispatch (1117.0 ms): walk back from its end through the last-finishing child; 79 segments over 40 spans. Longest span shares: mysql / SQL SELECT 311.7 ms; route / GET /route 75.3 ms; route / GET /route 68.2 ms.",
+   "spans": [
+    "f6be9f5edca51cf6",
+    "eae600f1dcc8f2f2",
+    "a506b5672c60ccac"
+   ]
+  },
+  {
+   "key": "self",
+   "title": "Slowest service by self-time: route, 554.5 ms (50% of all self-time)",
+   "text": "route 554.5 ms; mysql 311.7 ms; redis-manual 243.0 ms; frontend 7.1 ms; driver 0.52 ms; customer 0.19 ms",
+   "evidence": "self-time = span duration minus the union of its children's intervals, summed per service (10 spans in route; largest single: GET /route, 75.3 ms of 75.3 ms). Sums can exceed wall time when spans run in parallel.",
+   "spans": [
+    "eae600f1dcc8f2f2"
+   ]
+  },
+  {
+   "key": "errors",
+   "title": "Errors: 3 spans with status ERROR, 3 exception events",
+   "text": "redis-manual / GetDriver at +350.4 ms (An error occurred); redis-manual / GetDriver at +430.3 ms (An error occurred); redis-manual / GetDriver at +509.1 ms (An error occurred)",
+   "evidence": "status.code = ERROR on the span; exception = span events named 'exception' (*errors.errorString). Where an errored span has children, the deepest span on its critical path is named as the place its time went (a locus, not a cause).",
+   "spans": [
+    "0efad7b97a83e062",
+    "2d2ba26e271b1dae",
+    "4460a3067fc42610"
+   ]
+  },
+  {
+   "key": "retries",
+   "title": "Retries: 3 re-runs after an error, 3 retry events",
+   "text": "redis-manual / GetDriver failed at +350.4 ms, re-run at +379.8 ms with the same param.driverID=T713723C; redis-manual / GetDriver failed at +430.3 ms, re-run at +463.9 ms with the same param.driverID=T775101C; redis-manual / GetDriver failed at +509.1 ms, re-run at +539.7 ms with the same param.driverID=T737227C",
+   "evidence": "re-run = the next sibling with the same service, name and identifying attributes (param., db.query.text, db.statement, url.full, http.url, rpc.method, messaging.destination.name) starting after the errored span ended; retry events = events whose name matches 'retry' (Retrying GetDriver after error on driver / driver.DriverService/FindNearest).",
+   "spans": [
+    "0efad7b97a83e062",
+    "cb2535ed4001a42a",
+    "2d2ba26e271b1dae",
+    "a7683e9ec7010a8f",
+    "4460a3067fc42610",
+    "9405217133e633aa",
+    "f6e63a82f4597e0e",
+    "f6e63a82f4597e0e",
+    "f6e63a82f4597e0e"
+   ]
+  },
+  {
+   "key": "fanout",
+   "title": "Fan-out: 13 x redis-manual / GetDriver, serial",
+   "text": "13 x redis-manual / GetDriver under driver / driver.DriverService/FindNearest (f6e63a82): serial: no two overlap, so each call waits for the last (N+1 shape); wall 206.0 ms, sum of durations 205.7 ms; 11 x frontend / HTTP GET under frontend / GET /dispatch (9c3834fb): serial: no two overlap, so each call waits for the last (N+1 shape); wall 1116.6 ms, sum of durations 871.2 ms",
+   "evidence": "siblings grouped by (service, name) under one parent, groups of 3 or more; overlap = largest number of the group's intervals open at one instant. Widest parent overall: 14 children.",
+   "spans": [
+    "0efad7b97a83e062",
+    "cb2535ed4001a42a",
+    "a40fec59e10c7ddc",
+    "248dc05026417afe",
+    "58e15b3e1b467a6f",
+    "2d2ba26e271b1dae",
+    "a7683e9ec7010a8f",
+    "3590bed61d46f227",
+    "873f12b0f360d5b2",
+    "c9a3ef045e879ea3",
+    "4460a3067fc42610",
+    "9405217133e633aa",
+    "e4269b2250b7242d"
+   ],
+   "groups": [
+    {
+     "parent": "f6e63a82f4597e0e",
+     "n": 13,
+     "conc": 1,
+     "wall": 0.20601758499999995,
+     "sum": 0.20571243600000005,
+     "service": "redis-manual",
+     "name": "GetDriver"
+    },
+    {
+     "parent": "9c3834fb5a6fea99",
+     "n": 11,
+     "conc": 1,
+     "wall": 1.1166441950000001,
+     "sum": 0.8712147230000002,
+     "service": "frontend",
+     "name": "HTTP GET"
+    }
+   ]
+  },
+  {
+   "key": "gaps",
+   "title": "Gaps: none over 0.5 ms",
+   "text": "",
+   "evidence": "child coverage of every parent",
+   "spans": [],
+   "list": []
+  },
+  {
+   "key": "manifest",
+   "title": "Check against the fixture's manifest: agrees",
+   "text": "manifest: 11 x HTTP GET under 9c3834fb, 0 overlapping pairs, wall 1116.6 ms, sum 871.2 ms; ours: 11, max overlap 1, wall 1116.6 ms, sum 871.2 ms",
+   "evidence": "n-plus-one-full-serial.manifest.json from the Jaeger repo (label derived from capture; source HotROD, captured 2026-08-19)",
+   "spans": [
+    "9c3834fb5a6fea99"
+   ]
+  }
+ ],
+ "services": [
+  {
+   "name": "frontend",
+   "lane": 0,
+   "self": 0.007144672000000241,
+   "spans": 13,
+   "errors": 0,
+   "cp": 0.007144672000000169,
+   "sensor": "S_0"
+  },
+  {
+   "name": "customer",
+   "lane": 1,
+   "self": 0.00019169899999998963,
+   "spans": 1,
+   "errors": 0,
+   "cp": 0.00019169899999998854,
+   "sensor": "S_1"
+  },
+  {
+   "name": "mysql",
+   "lane": 2,
+   "self": 0.311681328,
+   "spans": 1,
+   "errors": 0,
+   "cp": 0.311681328,
+   "sensor": "S_2"
+  },
+  {
+   "name": "driver",
+   "lane": 3,
+   "self": 0.0005155350000000114,
+   "spans": 1,
+   "errors": 0,
+   "cp": 0.0005155350000000114,
+   "sensor": "S_3"
+  },
+  {
+   "name": "redis-manual",
+   "lane": 4,
+   "self": 0.24296857300000002,
+   "spans": 14,
+   "errors": 3,
+   "cp": 0.24296857300000002,
+   "sensor": "S_4"
+  },
+  {
+   "name": "route",
+   "lane": 5,
+   "self": 0.5544654799999998,
+   "spans": 10,
+   "errors": 0,
+   "cp": 0.5544654799999998,
+   "sensor": "S_5"
+  }
+ ],
+ "replay": {
+  "lead": 0.8,
+  "slow": 11.638657775659638,
+  "cycle": 16.0
+ },
+ "t_end": 1.116967287,
+ "interps": [
+  "I_B_9c3834fb5a6fea99",
+  "I_B_ec4c8608bc2e4149",
+  "I_B_f9f5cf258dc1859f",
+  "I_B_f6be9f5edca51cf6",
+  "I_B_f7cf0c8385e66ace",
+  "I_B_f6e63a82f4597e0e",
+  "I_B_695357c7a51150f2",
+  "I_B_0efad7b97a83e062",
+  "I_B_cb2535ed4001a42a",
+  "I_B_a40fec59e10c7ddc",
+  "I_B_248dc05026417afe",
+  "I_B_58e15b3e1b467a6f",
+  "I_B_2d2ba26e271b1dae",
+  "I_B_a7683e9ec7010a8f",
+  "I_B_3590bed61d46f227",
+  "I_B_873f12b0f360d5b2",
+  "I_B_c9a3ef045e879ea3",
+  "I_B_4460a3067fc42610",
+  "I_B_9405217133e633aa",
+  "I_B_e4269b2250b7242d",
+  "I_B_58640208f5e53678",
+  "I_B_16e581c022aeadb3",
+  "I_B_b4de4f036370131c",
+  "I_B_221c8be16826fc01",
+  "I_B_533cc51302aaaf51",
+  "I_B_68771eaeeaf39a0d",
+  "I_B_7151761522c70619",
+  "I_B_eae600f1dcc8f2f2",
+  "I_B_2df18d9a08f59556",
+  "I_B_12881af283814146",
+  "I_B_7b634fb7da9885b9",
+  "I_B_9c6eed57b391747e",
+  "I_B_653ecbaa3844a841",
+  "I_B_a506b5672c60ccac",
+  "I_B_48026bdc93d53bee",
+  "I_B_5b0f86ed8e5ec820",
+  "I_B_4b9f86ec9d805976",
+  "I_B_4065b00d1d8c00ee",
+  "I_B_8a8352238f0c9539",
+  "I_B_a004396360764c59",
+  "I_P_0_pos",
+  "I_P_0_scale",
+  "I_P_1_pos",
+  "I_P_1_scale",
+  "I_P_2_pos",
+  "I_P_2_scale",
+  "I_P_3_pos",
+  "I_P_3_scale",
+  "I_P_4_pos",
+  "I_P_4_scale",
+  "I_P_5_pos",
+  "I_P_5_scale",
+  "I_P_6_pos",
+  "I_P_6_scale",
+  "I_P_7_pos",
+  "I_P_7_scale",
+  "I_P_8_pos",
+  "I_P_8_scale",
+  "I_P_9_pos",
+  "I_P_9_scale",
+  "I_P_10_pos",
+  "I_P_10_scale",
+  "I_P_11_pos",
+  "I_P_11_scale",
+  "I_P_12_pos",
+  "I_P_12_scale",
+  "I_P_13_pos",
+  "I_P_13_scale",
+  "I_P_14_pos",
+  "I_P_14_scale",
+  "I_P_15_pos",
+  "I_P_15_scale",
+  "I_P_16_pos",
+  "I_P_16_scale",
+  "I_P_17_pos",
+  "I_P_17_scale",
+  "I_P_18_pos",
+  "I_P_18_scale",
+  "I_P_19_pos",
+  "I_P_19_scale",
+  "I_P_20_pos",
+  "I_P_20_scale",
+  "I_P_21_pos",
+  "I_P_21_scale",
+  "I_P_22_pos",
+  "I_P_22_scale",
+  "I_P_23_pos",
+  "I_P_23_scale",
+  "I_P_24_pos",
+  "I_P_24_scale",
+  "I_P_25_pos",
+  "I_P_25_scale",
+  "I_P_26_pos",
+  "I_P_26_scale",
+  "I_playhead"
+ ],
+ "trace": {
+  "id": "fe65c5beefbe4e96119efbba3da07e99",
+  "title": "HotROD: GET /dispatch?customer=123",
+  "label": "REAL CAPTURE: Jaeger HotROD demo (-W 1), captured 2026-08-19; whole trace, nothing removed. Jaeger repo testdata, Apache-2.0",
+  "format": "OTLP JSON (ExportTraceServiceRequest)",
+  "spans": 40,
+  "services": 6,
+  "errors": 3,
+  "source": "downloads/jaeger-skills/n_plus_one_full_serial.json",
+  "sha256": "c1d9bd9a2bdd0aa188a695ecded8c4cff8295a30226d0be2279873e13abf8872",
+  "manifest": "downloads/jaeger-skills/n_plus_one_full_serial.manifest.json",
+  "traces_in_file": 1
+ },
+ "kinds": {
+  "SERVER": "#818cf8",
+  "CLIENT": "#2dd4bf",
+  "PRODUCER": "#f2b84b",
+  "CONSUMER": "#c4a1d6",
+  "INTERNAL": "#94a3b8",
+  "UNSPECIFIED": "#64748b"
+ },
+ "present_kinds": [
+  "SERVER",
+  "CLIENT"
+ ]
+}
