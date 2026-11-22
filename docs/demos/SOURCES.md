@@ -452,3 +452,9 @@ Demos 67 to 72 card images are each a 2 x 2 grid of 480 x 270 tiles, cropped to 
 | assets/drone-flight-3d.jpg | 527dbee634700f40ddf057a30526b6cc2e79321177c8c816c10d4548b521a82b | 60421 |
 | assets/orderbook-3d.jpg | 8953c0f7be8ab9001f24e416f64929e3aa0e8b1cc8a393cbcb7bbf1d654a95d9 | 108536 |
 | assets/futures-profile-3d.jpg | 9cb72e298d6ffdc81083fb9cac5df23d78f6c14ded1de29b9600a60af352d0c4 | 62188 |
+
+`wire-lab` is a 2 x 2 grid of 480 x 270 tiles, each the top 1500 x 844 pixels of a shipped page-test screenshot in `docs/demos/wire-lab/v1/shots/` (`02-door-opening`, `03-door-dragging-a-wire`, `06-counter-eleven`, `09-follower-four-beads`; headless Chromium with SwiftShader, X_ITE 16.7.1), saved as 960 x 540 JPEG. No Google or third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/wire-lab.jpg | b675fadee33c9447b98bbd8a714b0ef9be754682412b7aedd4288cbd53b6031d | 88578 |

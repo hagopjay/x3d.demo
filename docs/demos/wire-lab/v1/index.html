@@ -237,7 +237,7 @@ const curve = (a, b) => { const d = Math.max(50, Math.abs(b.x - a.x) * .5); retu
 function fit() {
   const box = $('graph').getBoundingClientRect(); let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
   for (const n of graph.nodes.values()) { const [x, y] = [n.position?.[0] || 0, -(n.position?.[1] || 0)]; x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x + W); y1 = Math.max(y1, y + HEAD + shown(n).length * ROW + 20); }
-  view.k = Math.max(0.5, Math.min(1.15, (box.width - 60) / (x1 - x0), (box.height - 50) / (y1 - y0)));
+  view.k = Math.min(1.15, (box.width - 60) / (x1 - x0), (box.height - 50) / (y1 - y0));
   view.x = 30 - x0 * view.k + Math.max(0, (box.width - 60 - (x1 - x0) * view.k) / 2); view.y = 25 - y0 * view.k;
   draw();
 }
@@ -352,18 +352,10 @@ const dropPoint = () => { const b = svg.getBoundingClientRect(); return [(b.widt
 $('addNode').addEventListener('change', e => { if (!e.target.value) return; const n = graph.add(e.target.value, null, { position: dropPoint() }); if (cat.isPlaced(n.type)) { const first = world.scene.match(/<Transform DEF="([^"]+)"/); if (first) n.parent = first[1]; } selected = n.id; e.target.value = ''; changed(); });
 $('addTarget').addEventListener('change', e => { const p = sceneParts.find(s => s.id === e.target.value); if (!p) return; graph.nodes.set(p.id, { id: p.id, type: p.type, role: 'target', fields: {}, binding: ['def', p.id], position: dropPoint() }); selected = p.id; changed(); });
 function arrange() {
-  // wired nodes in columns left to right, at most 5 columns to a band, then the next band below; unwired scene parts last
-  const wired = new Set(graph.routes.flatMap(r => [r[0], r[2]])), pos = layout(graph, 1, 1), PER = 5;
-  const height = n => HEAD + shown(n).length * ROW + 46, bands = {};
-  for (const n of graph.nodes.values()) if (wired.has(n.id)) { const c = pos[n.id][0], band = Math.floor(c / PER); ((bands[band] ||= {})[c % PER] ||= []).push(n); }
-  let top = 0;
-  for (const band of Object.keys(bands).map(Number).sort((a, b) => a - b)) {
-    let tall = 0;
-    for (const [c, nodes] of Object.entries(bands[band])) { let y = top; for (const n of nodes) { n.position = [c * 290, -y]; y += height(n); } tall = Math.max(tall, y - top); }
-    top += tall + 40;
-  }
-  let i = 0;
-  for (const n of graph.nodes.values()) if (!wired.has(n.id)) { n.position = [(i % PER) * 290, -(top + 20 + Math.floor(i / PER) * 190)]; i++; }
+  const wired = new Set(graph.routes.flatMap(r => [r[0], r[2]])), pos = layout(graph, 290, 150);
+  let low = 0, col = {}, i = 0;
+  for (const n of graph.nodes.values()) if (wired.has(n.id)) { const c = pos[n.id][0]; col[c] = (col[c] || 0); n.position = [c, -col[c]]; col[c] += HEAD + shown(n).length * ROW + 46; low = Math.max(low, col[c]); }
+  for (const n of graph.nodes.values()) if (!wired.has(n.id)) { n.position = [(i % 4) * 250, -(low + 30 + Math.floor(i / 4) * 190)]; i++; }
 }
 $('tidy').addEventListener('click', () => { arrange(); save(); fit(); });
 $('fit').addEventListener('click', fit);
