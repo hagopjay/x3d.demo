@@ -441,3 +441,14 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/fault-lab-v2.jpg | d52f7c3e8b68d65eaa202ba76f88852fc29ac6e1eccf7bc4a7ce735f1c56e181 | 87702 |
+
+The six `data-*` images are each a 16:9 crop, resized to 960 x 540 JPEG, of one screenshot already in that demo's `shots/` folder (headless Chromium with SwiftShader, X_ITE 16.7.0): `llm-trace-3d` `02-lineage`, `otel-trace-3d` `hotrod-01-overview`, `capture-3d` `04-rtp-jitter-pauses`, `drone-flight-3d` `01-overview-by-mode`, `orderbook-3d` `01-terrain-oblique`, `futures-profile-3d` `04-es-last-rth-overnight-bracketG`. They show the pages' own scenes and the third-party data credited in `docs/demos/DATA-ATTRIBUTION.md`; no Google imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/data-llm-trace.jpg | 5cb979848a55da4bb60e24d610cbc0a7555e63747ee5988cc55fd63f594c799b | 74203 |
+| assets/data-otel-trace.jpg | c9f5af73c4144f3259911835353d031b887bc0d14f90ba4e15f2ebd42a257cd2 | 80049 |
+| assets/data-capture.jpg | c1c9ab9da08650c67964d4d1e01293bfa37c34d186091c96e89f1db8eff3da0b | 53904 |
+| assets/data-drone-flight.jpg | daf6845cad3a7a4af8d50e28c104e493a11cf8e1c8fa0ce2e2ea637d47ea9682 | 83389 |
+| assets/data-orderbook.jpg | 020eeb1c21b35801ed8e1b62e1d000c8165a66b9df03159eb209b1ea83f4fea5 | 87349 |
+| assets/data-futures-profile.jpg | 06a21bddb2cd8a788f03643c1131bc4a92195d915d3bea3254e46ebcf02e3ecd | 66683 |

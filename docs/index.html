@@ -1139,6 +1139,91 @@ code{font-family:var(--mono);font-size:.88em}
   </div>
 </section>
 
+<section class="demo">
+  <img src="assets/data-llm-trace.jpg" alt="Screenshot of the LLM trace page: a 3D waterfall of one support-agent trace, with a panel showing a cited value and the source sentence it came from" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 67</div>
+    <h2>An LLM trace in 3D, with every cited value checked against its source</h2>
+    <p>A <strong>synthetic</strong> support-agent trace in Langfuse’s export shape (labelled so on screen): a waterfall by time and depth, plus value-level lineage. The x3dtrace checker looks for each cited value in the documents the trace retrieved. Six of the seven citations verify, and the one planted wrong value reads <em>check</em>. Nothing here is a real company’s trace.</p>
+    <div class="chips">
+      <a href="demos/llm-trace-3d/v1/index.html">Open the trace</a>
+      <a href="demos/llm-trace-3d/v1/README.md">README</a>
+    </div>
+    <p class="facts"><strong>What I checked.</strong> I loaded the live page in headless Chromium (software GPU, X_ITE 16.7.0) and saw one X_ITE canvas, no console errors and no failed requests. <strong>Not tested by me:</strong> the lane’s own validator and click checks, a real GPU, mobile and other browsers. The image is a screenshot of the page itself. Data credits and the takedown route are in <a href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a>.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/data-otel-trace.jpg" alt="Screenshot of the OpenTelemetry trace page: services as rails, spans as bars, a pink critical path and a findings panel" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 68</div>
+    <h2>A multi-service trace as a 3D scene: rails, spans and the critical path</h2>
+    <p>Real traces from the Jaeger project’s test data: the HotROD demo, the OpenTelemetry demo and a Jaeger UI fixture. Services are rails, spans are bars, and the critical path is drawn by Jaeger’s own rule. For HotROD the page reports a 1,117 ms critical path, three timed-out calls that were retried and a serial run of 11 HTTP calls, and it checks the last against the manifest that ships with the trace. Apache-2.0 data, credited.</p>
+    <div class="chips">
+      <a href="demos/otel-trace-3d/v1/index.html">Open the trace</a>
+      <a href="demos/otel-trace-3d/v1/README.md">README</a>
+    </div>
+    <p class="facts"><strong>What I checked.</strong> I loaded the live page in headless Chromium (software GPU, X_ITE 16.7.0) and saw one X_ITE canvas, no console errors and no failed requests. <strong>Not tested by me:</strong> the lane’s own validator and click checks, a real GPU, mobile and other browsers. The image is a screenshot of the page itself. Data credits and the takedown route are in <a href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a>.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/data-capture.jpg" alt="Screenshot of the VoIP capture page: SIP messages as arcs between hosts in 3D and a teal RTP jitter ribbon with gaps for pauses" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 69</div>
+    <h2>A packet capture in 3D: a VoIP call as a ladder diagram</h2>
+    <p>Wireshark’s public SIP and RTP sample capture, 562 packets over 32.6 s, read by a small standard-library reader. SIP messages are arcs between hosts, and the RTP stream is a band with its jitter drawn above it. The page counts 0 lost packets and five pauses where the sender went quiet. The same demo has a second page for a Foxglove MCAP robotics log. Credits for both files are on the data page.</p>
+    <div class="chips">
+      <a href="demos/capture-3d/v1/index.html">Open the capture</a>
+      <a href="demos/capture-3d/v1/mcap.html">Open the MCAP log</a>
+      <a href="demos/capture-3d/v1/README.md">README</a>
+    </div>
+    <p class="facts"><strong>What I checked.</strong> I loaded the live page in headless Chromium (software GPU, X_ITE 16.7.0) and saw one X_ITE canvas, no console errors and no failed requests. <strong>Not tested by me:</strong> the lane’s own validator and click checks, a real GPU, mobile and other browsers. The image is a screenshot of the page itself. Data credits and the takedown route are in <a href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a>.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/data-drone-flight.jpg" alt="Screenshot of the drone flight page: the flight path coloured by flight mode over a time-series wall with altitude and battery" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 70</div>
+    <h2>A real drone flight log in 3D</h2>
+    <p>A public PX4 quadrotor flight (2 m 12 s) from the PX4 Flight Review site, shared by its uploader under CC BY 4.0. The scene shows the path coloured by flight mode, the controller’s setpoint ghost and a wall of altitude and battery. The page says the pilot killed the motors at 126.3 s, already on the ground. Only metres from home are shown; the raw log, which contains GPS, is not published here.</p>
+    <div class="chips">
+      <a href="demos/drone-flight-3d/v1/index.html">Open the flight</a>
+      <a href="demos/drone-flight-3d/v1/README.md">README</a>
+    </div>
+    <p class="facts"><strong>What I checked.</strong> I loaded the live page in headless Chromium (software GPU, X_ITE 16.7.0) and saw one X_ITE canvas, no console errors and no failed requests. <strong>Not tested by me:</strong> the lane’s own validator and click checks, a real GPU, mobile and other browsers. The image is a screenshot of the page itself. Data credits and the takedown route are in <a href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a>.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/data-orderbook.jpg" alt="Screenshot of the order-book page: bid and ask depth as coloured terrain over time and price, with trade spheres and a side panel of numbers" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 71</div>
+    <h2>Six minutes of a BTC/USD order book as 3D terrain</h2>
+    <p>Kraken spot XBT/USD depth and trades recorded on 20 Nov 2026, 14:41 to 14:47 UTC: 180 snapshots about two seconds apart and 1,021 trades. Turned side-on it is a heatmap; tilted it is terrain, with walls, pulled liquidity and aggressor trades marked. The page says plainly that most vanished size is re-quoting, not evidence of spoofing. A visual study tool, not financial advice. The raw data is not redistributed.</p>
+    <div class="chips">
+      <a href="demos/orderbook-3d/v1/index.html">Open the order book</a>
+      <a href="demos/orderbook-3d/v1/README.md">README</a>
+    </div>
+    <p class="facts"><strong>What I checked.</strong> I loaded the live page in headless Chromium (software GPU, X_ITE 16.7.0) and saw one X_ITE canvas, no console errors and no failed requests. <strong>Not tested by me:</strong> the lane’s own validator and click checks, a real GPU, mobile and other browsers. The image is a screenshot of the page itself. Data credits and the takedown route are in <a href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a>.</p>
+  </div>
+</section>
+
+<section class="demo">
+  <img src="assets/data-futures-profile.jpg" alt="Screenshot of the futures page: ES and BTC futures as 3D market-profile charts with value areas and price levels in a side panel" width="960" height="540" loading="lazy">
+  <div>
+    <div class="no">DEMO 72</div>
+    <h2>ES and BTC futures as a 3D market profile</h2>
+    <p>One-minute bars for the E-mini S&amp;P 500 and CME Bitcoin futures, 16 to 20 Nov 2026, drawn as a time-price-opportunity chart with volume as depth, plus value areas, points of control, VWAP and RSI, and a replay. The volume at each price is an estimate spread across each bar’s range. Delayed data, a visual study tool, not financial advice. The raw data is not redistributed.</p>
+    <div class="chips">
+      <a href="demos/futures-profile-3d/v1/index.html">Open the profile</a>
+      <a href="demos/futures-profile-3d/v1/README.md">README</a>
+    </div>
+    <p class="facts"><strong>What I checked.</strong> I loaded the live page in headless Chromium (software GPU, X_ITE 16.7.0) and saw one X_ITE canvas, no console errors and no failed requests. <strong>Not tested by me:</strong> the lane’s own validator and click checks, a real GPU, mobile and other browsers. The image is a screenshot of the page itself. Data credits and the takedown route are in <a href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a>.</p>
+  </div>
+</section>
+
 <section class="memes" aria-label="Meme wall">
   <h2>The meme wall</h2>
   <p class="facts">Made from frames of the demos above. No stock templates, no real people.</p>
@@ -1155,7 +1240,7 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <footer>
-  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a>, <a href="versions/v17/index.html">v17</a>, <a href="versions/v18/index.html">v18</a>, <a href="versions/v19/index.html">v19</a>, <a href="versions/v21/index.html">v21</a>, <a href="versions/v22/index.html">v22</a>, <a href="versions/v23/index.html">v23</a>, <a href="versions/v24/index.html">v24</a>, <a href="versions/v25/index.html">v25</a>, <a href="versions/v26/index.html">v26</a>, <a href="versions/v27/index.html">v27</a>, <a href="versions/v28/index.html">v28</a>, <a href="versions/v29/index.html">v29</a>, <a href="versions/v30/index.html">v30</a>, <a href="versions/v31/index.html">v31</a>, <a href="versions/v32/index.html">v32</a>, <a href="versions/v33/index.html">v33</a>, <a href="versions/v34/index.html">v34</a>, <a href="versions/v35/index.html">v35</a>, <a href="versions/v36/index.html">v36</a>, <a href="versions/v37/index.html">v37</a>, <a href="versions/v38/index.html">v38</a>, <a href="versions/v39/index.html">v39</a>, <a href="versions/v40/index.html">v40</a>, <a href="versions/v41/index.html">v41</a>, <a href="versions/v42/index.html">v42</a>, <a href="versions/v43/index.html">v43</a>, <a href="versions/v44/index.html">v44</a>, <a href="versions/v45/index.html">v45</a>, <a href="versions/v46/index.html">v46</a>, <a href="versions/v47/index.html">v47</a>, <a href="versions/v48/index.html">v48</a>, <a href="versions/v49/index.html">v49</a>, <a href="versions/v50/index.html">v50</a>, <a href="versions/v51/index.html">v51</a>, <a href="versions/v52/index.html">v52</a>, <a href="versions/v53/index.html">v53</a>, <a href="versions/v54/index.html">v54</a>, <a href="versions/v55/index.html">v55</a>, <a href="versions/v56/index.html">v56</a>, <a href="versions/v57/index.html">v57</a>, <a href="versions/v58/index.html">v58</a>, <a href="versions/v59/index.html">v59</a>, <a href="versions/v60/index.html">v60</a>, <a href="versions/v61/index.html">v61</a>, <a href="versions/v62/index.html">v62</a>, <a href="versions/v63/index.html">v63</a>, <a href="versions/v64/index.html">v64</a>, <a href="versions/v65/index.html">v65</a>, <a href="versions/v66/index.html">v66</a>, <a href="versions/v67/index.html">v67</a>, <a href="versions/v68/index.html">v68</a>, <a href="versions/v69/index.html">v69</a>, <a href="versions/v70/index.html">v70</a>, <a href="versions/v71/index.html">v71</a>, <a href="versions/v72/index.html">v72</a>, <a href="versions/v73/index.html">v73</a>, <a href="versions/v74/index.html">v74</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
+  <p><b>Versions of this page.</b> <a href="versions/v1/index.html">v1</a>, <a href="versions/v2/index.html">v2</a>, <a href="versions/v3/index.html">v3</a>, <a href="versions/v4/index.html">v4</a>, <a href="versions/v5/index.html">v5</a>, <a href="versions/v6/index.html">v6</a>, <a href="versions/v7/index.html">v7</a>, <a href="versions/v8/index.html">v8</a>, <a href="versions/v9/index.html">v9</a>, <a href="versions/v10/index.html">v10</a>, <a href="versions/v11/index.html">v11</a>, <a href="versions/v12/index.html">v12</a>, <a href="versions/v13/index.html">v13</a>, <a href="versions/v14/index.html">v14</a>, <a href="versions/v15/index.html">v15</a>, <a href="versions/v16/index.html">v16</a>, <a href="versions/v17/index.html">v17</a>, <a href="versions/v18/index.html">v18</a>, <a href="versions/v19/index.html">v19</a>, <a href="versions/v21/index.html">v21</a>, <a href="versions/v22/index.html">v22</a>, <a href="versions/v23/index.html">v23</a>, <a href="versions/v24/index.html">v24</a>, <a href="versions/v25/index.html">v25</a>, <a href="versions/v26/index.html">v26</a>, <a href="versions/v27/index.html">v27</a>, <a href="versions/v28/index.html">v28</a>, <a href="versions/v29/index.html">v29</a>, <a href="versions/v30/index.html">v30</a>, <a href="versions/v31/index.html">v31</a>, <a href="versions/v32/index.html">v32</a>, <a href="versions/v33/index.html">v33</a>, <a href="versions/v34/index.html">v34</a>, <a href="versions/v35/index.html">v35</a>, <a href="versions/v36/index.html">v36</a>, <a href="versions/v37/index.html">v37</a>, <a href="versions/v38/index.html">v38</a>, <a href="versions/v39/index.html">v39</a>, <a href="versions/v40/index.html">v40</a>, <a href="versions/v41/index.html">v41</a>, <a href="versions/v42/index.html">v42</a>, <a href="versions/v43/index.html">v43</a>, <a href="versions/v44/index.html">v44</a>, <a href="versions/v45/index.html">v45</a>, <a href="versions/v46/index.html">v46</a>, <a href="versions/v47/index.html">v47</a>, <a href="versions/v48/index.html">v48</a>, <a href="versions/v49/index.html">v49</a>, <a href="versions/v50/index.html">v50</a>, <a href="versions/v51/index.html">v51</a>, <a href="versions/v52/index.html">v52</a>, <a href="versions/v53/index.html">v53</a>, <a href="versions/v54/index.html">v54</a>, <a href="versions/v55/index.html">v55</a>, <a href="versions/v56/index.html">v56</a>, <a href="versions/v57/index.html">v57</a>, <a href="versions/v58/index.html">v58</a>, <a href="versions/v59/index.html">v59</a>, <a href="versions/v60/index.html">v60</a>, <a href="versions/v61/index.html">v61</a>, <a href="versions/v62/index.html">v62</a>, <a href="versions/v63/index.html">v63</a>, <a href="versions/v64/index.html">v64</a>, <a href="versions/v65/index.html">v65</a>, <a href="versions/v66/index.html">v66</a>, <a href="versions/v67/index.html">v67</a>, <a href="versions/v68/index.html">v68</a>, <a href="versions/v69/index.html">v69</a>, <a href="versions/v70/index.html">v70</a>, <a href="versions/v71/index.html">v71</a>, <a href="versions/v72/index.html">v72</a>, <a href="versions/v73/index.html">v73</a>, <a href="versions/v74/index.html">v74</a>, <a href="versions/v75/index.html">v75</a> (this one). Every version stays in the repository and none is overwritten; the newest copy is also the front page. See <a href="https://github.com/hagopjay/x3d.demo/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>
   <p>No frame rates or timings are published here. Preview frames were drawn on a software GPU and show correctness only.</p>
 </footer>
 </main>

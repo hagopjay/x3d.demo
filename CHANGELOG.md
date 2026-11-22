@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v75 (2026-11-22)
+- Six new cards for the data-in-3D demos merged in PR 143: Demo 67 LLM trace, 68 OpenTelemetry trace, 69 packet capture, 70 drone flight log, 71 order book, 72 ES and BTC futures profile (numbers proposed by the merge lane and sent to the numbering thread). Images `assets/data-*.jpg` are the pages' own screenshots cropped to 16:9. I loaded each live page in headless Chromium and saw one X_ITE canvas and no console errors; I did not rerun the lane's checks. Data credits and the takedown route: `docs/demos/DATA-ATTRIBUTION.md`. Versions v1 to v74 are untouched.
+
 ## v74 (2026-11-20)
 - The Demo 66 card now points to The Fault Lab v2 (`docs/demos/fault-lab/v2/`, merged as PR 140) and keeps v1 linked; image `assets/fault-lab-v2.jpg` is v2's own page screenshot cropped to 16:9 (not v1's, whose X_ITE panel is black from a test-server fault). I recounted the check files (1 of 10 before, 9 of 10 after), read the Blender carry rows from the data, ran the page test (24 of 24) and loaded the page headless without errors. I did not rerun the checkers, validators or the Blender run. The earlier v1 card text is replaced on the front page only; page versions v1 to v73 are untouched.
 
