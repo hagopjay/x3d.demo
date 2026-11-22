@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v78 (2026-11-22)
+- Front-page card for Demo 73, Wire Lab (`docs/demos/wire-lab/v1/`, merged as PR 150), with image `assets/wire-lab.jpg` (four of the demo's own screenshots, cropped to the top 16:9 of each; no third-party imagery). I ran the lane's own `test_core.mjs` (73 of 73) and `test_page.cjs` (30 of 30, 0 page errors), counted 45 node types, 32 target types and 55 route cases in the shipped files, and loaded the follower world headless without errors. I did not check the JavaScript rule against the add-on's Python, the Blender round trip or the XSD result, which are the lane's own. Versions v1 to v77 are untouched.
+
 ## v77 (2026-11-22)
 - The "Data sources and takedown" links on the cards for Demos 67 to 72 now open the rendered GitHub page (`https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/DATA-ATTRIBUTION.md`) instead of the raw `.md` file, which the site showed as unrendered text. Nothing else changes. Versions v1 to v76 are untouched.
 
