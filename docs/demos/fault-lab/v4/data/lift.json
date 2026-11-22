@@ -1,0 +1,229 @@
+{
+ "schema": "fault-lab.lift/1",
+ "lifter": "loom-gltf blender_extras 0.1.0",
+ "loom_commit_base": "65281c0",
+ "report": {
+  "schema": "loom.extras-lift/1",
+  "lifter": "loom-gltf blender_extras 0.1.0",
+  "input": {
+   "file": "blender.glb",
+   "sha256": "c0942d30086f69e8cb9be0f90ea1ca9f80aa7fffaf3fc575f6a5a349fc3492e9",
+   "generator": "Khronos glTF Blender I/O v5.3.43"
+  },
+  "trees_found": 3,
+  "trees_lifted": 3,
+  "metadata_nodes": 6,
+  "packets": 4,
+  "lifted": [
+   {
+    "collection": "nodes",
+    "index": 6,
+    "key": "x3d_transform_metadata",
+    "hostKind": "node:Transform",
+    "DEF": "OsirisShaftA",
+    "packet": 1,
+    "metadata_nodes": 4
+   },
+   {
+    "collection": "materials",
+    "index": 3,
+    "key": "x3d_metadata",
+    "hostKind": "material",
+    "DEF": "Mat_ChamberA",
+    "packet": 2,
+    "metadata_nodes": 1
+   },
+   {
+    "collection": "scenes",
+    "index": 0,
+    "key": "x3d_scene_metadata",
+    "hostKind": "WorldInfo",
+    "DEF": "Info",
+    "packet": 3,
+    "metadata_nodes": 1
+   }
+  ],
+  "errors": [],
+  "output": {
+   "file": "blender.lifted.glb",
+   "sha256": "d091133df8bc747d139d426403b74da60ed10374af68d7a91e640d442f0b49cc",
+   "bin_chunk_unchanged": true
+  },
+  "source": {
+   "file": "clean.x3d",
+   "sha256": "a01d1c0434e3e2d07bd39e8aaf11d62c38033d38bb90ba3f1ce6443b7873414c"
+  },
+  "rules": [
+   {
+    "id": "L0",
+    "rule": "KHR_xmp_json_ld structure: declared in extensionsUsed, every packet has @context, every reference is in range",
+    "packets": 4,
+    "references": 4,
+    "bad": 0,
+    "pass": true
+   },
+   {
+    "id": "L1",
+    "rule": "every Metadata tree of the source X3D is a packet on the same kind of host with the same DEF, value for value",
+    "expected": 3,
+    "got": 3,
+    "missing": 0,
+    "extra": 0,
+    "pass": true
+   },
+   {
+    "id": "L2",
+    "rule": "Metadata node count equals the source's (none dropped, none invented)",
+    "expected": 6,
+    "got": 6,
+    "pass": true
+   },
+   {
+    "id": "L3",
+    "rule": "every CIDOC-CRM class reference of the source is typed in JSON-LD (@type crm:E..)",
+    "expected": 1,
+    "typed_in_gltf": 1,
+    "pass": true
+   },
+   {
+    "id": "L4",
+    "rule": "every number in a numeric Metadata packet is a JSON number and every boolean a JSON boolean (extras carry them as text)",
+    "untyped": 0,
+    "pass": true
+   },
+   {
+    "id": "L5",
+    "rule": "additive: the output without the extension equals the input (extras, nodes, meshes, buffers unchanged)",
+    "pass": true
+   },
+   {
+    "id": "L6",
+    "rule": "asset packet carries PROV-O: prov:wasDerivedFrom = sha256 of the input glTF, prov:wasGeneratedBy = the lifter",
+    "pass": true
+   }
+  ],
+  "verdict": "pass"
+ },
+ "validator": {
+  "validator": "Khronos glTF-Validator 2.0.0-dev.3.10",
+  "files": {
+   "blender.glb": {
+    "errors": 0,
+    "warnings": 0,
+    "infos": 12,
+    "hints": 0,
+    "codes": [
+     "UNUSED_OBJECT"
+    ]
+   },
+   "blender.lifted.glb": {
+    "errors": 0,
+    "warnings": 0,
+    "infos": 13,
+    "hints": 0,
+    "codes": [
+     "UNSUPPORTED_EXTENSION",
+     "UNUSED_OBJECT"
+    ]
+   }
+  }
+ },
+ "sizes": {
+  "before": 25180,
+  "after": 28156
+ },
+ "example": {
+  "host": "Transform OsirisShaftA",
+  "extras": {
+   "node": "MetadataSet",
+   "def": "M_ShaftA",
+   "name": "CidocCrm",
+   "reference": "http://www.cidoc-crm.org/cidoc-crm/E25_Human-Made_Feature",
+   "value": [
+    {
+     "node": "MetadataString",
+     "name": "label",
+     "value": "\"Osiris Shaft, Shaft A\""
+    },
+    {
+     "node": "MetadataDouble",
+     "name": "depth_m",
+     "value": "9.62"
+    },
+    {
+     "node": "MetadataString",
+     "name": "tier",
+     "value": "\"documented\""
+    }
+   ]
+  },
+  "depth_extras_type": "str",
+  "packet": {
+   "@id": "loom:nodes/6",
+   "x3d:hostKind": "node:Transform",
+   "loom:fromExtras": "x3d_transform_metadata",
+   "x3d:metadata": {
+    "@type": [
+     "x3d:MetadataSet",
+     "crm:E25_Human-Made_Feature"
+    ],
+    "x3d:name": "CidocCrm",
+    "x3d:reference": "http://www.cidoc-crm.org/cidoc-crm/E25_Human-Made_Feature",
+    "x3d:value": {
+     "@list": [
+      {
+       "@type": "x3d:MetadataString",
+       "x3d:name": "label",
+       "x3d:value": {
+        "@list": [
+         "Osiris Shaft, Shaft A"
+        ]
+       }
+      },
+      {
+       "@type": "x3d:MetadataDouble",
+       "x3d:name": "depth_m",
+       "x3d:value": {
+        "@list": [
+         9.62
+        ]
+       }
+      },
+      {
+       "@type": "x3d:MetadataString",
+       "x3d:name": "tier",
+       "x3d:value": {
+        "@list": [
+         "documented"
+        ]
+       }
+      }
+     ]
+    },
+    "x3d:DEF": "M_ShaftA"
+   },
+   "x3d:hostDEF": "OsirisShaftA"
+  },
+  "context": {
+   "x3d": "https://www.web3d.org/specifications/X3dOntology4.0#",
+   "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+   "ifc": "https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#",
+   "prov": "http://www.w3.org/ns/prov#",
+   "dc": "http://purl.org/dc/elements/1.1/",
+   "loom": "https://hagopjay.github.io/x3d.loom/ns#"
+  }
+ },
+ "query": {
+  "text": "Which human-made features (crm:E25) are deeper than 9 m?",
+  "on_extras": [],
+  "on_packets": [
+   {
+    "host": "OsirisShaftA",
+    "label": "Osiris Shaft, Shaft A",
+    "depth_m": 9.62,
+    "tier": "documented"
+   }
+  ],
+  "note": "The same JSON-LD question on both files. The extras file has no packets and no @type, and holds the depth as the text \"9.62\"."
+ }
+}

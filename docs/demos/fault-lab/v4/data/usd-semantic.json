@@ -1,0 +1,65 @@
+{
+ "schema": "fault-lab.usd-semantic/1",
+ "converter": "fault-lab x3d_usd 0.1 (this demo's own; not a general exporter)",
+ "usd": {
+  "version": "0.26.11",
+  "file": "clean.usda",
+  "sha256": "3f5bdeea515c2bc3b67965b5c0937a7791830c4ce55780790cf581e88248a976",
+  "bytes": 31302,
+  "prims": 63,
+  "prim_types": {
+   "Xform": 26,
+   "Scope": 1,
+   "Material": 12,
+   "Shader": 12,
+   "Cube": 12
+  }
+ },
+ "source": {
+  "file": "clean.x3d",
+  "sha256": "a01d1c0434e3e2d07bd39e8aaf11d62c38033d38bb90ba3f1ce6443b7873414c"
+ },
+ "trees": {
+  "expected": 3,
+  "got": 3,
+  "missing": [],
+  "invented": 0
+ },
+ "metadata_nodes": {
+  "expected": 6,
+  "got": 6
+ },
+ "hosts": [
+  {
+   "hostType": "WorldInfo",
+   "DEF": "Info",
+   "prim": "/World/Info",
+   "primType": "Scope"
+  },
+  {
+   "hostType": "Transform",
+   "DEF": "OsirisShaftA",
+   "prim": "/World/Root/OsirisShaftA",
+   "primType": "Xform"
+  },
+  {
+   "hostType": "PhysicalMaterial",
+   "DEF": "Mat_ChamberA",
+   "prim": "/World/Root/OsirisChamberA/OsirisChamberA_Shape/Mat_ChamberA",
+   "primType": "Material"
+  }
+ ],
+ "not_converted": {
+  "NavigationInfo": 1,
+  "Background": 1,
+  "Viewpoint": 3,
+  "DirectionalLight": 1,
+  "GeoViewpoint": 2
+ },
+ "compliance": {
+  "tool": "pxr.UsdValidation (every registered validator)",
+  "validators_run": 30,
+  "errors": []
+ },
+ "verdict": "pass"
+}
