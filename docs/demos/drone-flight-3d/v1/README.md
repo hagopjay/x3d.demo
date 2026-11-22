@@ -1,5 +1,8 @@
 # PX4 flight log (ULog) in 3D
 
+> **Notice, 2026-11-22.** The raw flight log `downloads/px4-flight-review/4b7bf5df-…ulg` was removed from this repository because it contains GPS latitude and longitude. The page and the built scene (`out/`) show only metres relative to home and are unaffected. `build.py` needs the log, so to rebuild, download it again from Flight Review (CC BY 4.0, see the Sources table). It remains in the git history of earlier commits. See [NOTICE.md](NOTICE.md) and [../../DATA-ATTRIBUTION.md](../../DATA-ATTRIBUTION.md).
+
+
 A real PX4 quadrotor flight, read from its `.ulg` log with a standard-library reader, turned into an X3D 4.0 scene and an X_ITE page. The page has a replay, a scrubber, click-for-details, a legend, named viewpoints and a findings card.
 
 ![overview](shots/01-overview-by-mode.png)
