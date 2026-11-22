@@ -464,3 +464,10 @@ Demos 67 to 72 card images are each a 2 x 2 grid of 480 x 270 tiles, cropped to 
 | file | sha256 | bytes |
 |---|---|---|
 | assets/wire-lab-v2.jpg | 9791f6b55eea1c1fdb4960c5668085b9f5646de001b5c2920e552e3653f20308 | 99503 |
+
+## fault-lab-v3 (v80)
+`fault-lab-v3` is `docs/demos/fault-lab/v3/shots/07-lift.png` (the v3 page, headless Chromium 157 with SwiftShader) resized to 960 px wide (500 px tall) and letterboxed on the page background to 960 x 540 JPEG. No Google or other third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/fault-lab-v3.jpg | 248aeb3dc8835299884909942198690aa82ebcc04dff96df23cc7dfc6aadec67 | 78910 |

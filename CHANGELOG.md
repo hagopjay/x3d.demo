@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v80 (2026-11-22)
+- The Demo 66 card now points to The Fault Lab v3 (`docs/demos/fault-lab/v3/`, merged as PR 154) and keeps v1 and v2 linked; image `assets/fault-lab-v3.jpg` is the page's own lift screenshot letterboxed to 16:9. I ran the page test (29 of 29), parsed both glb files (0 versus 5 `KHR_xmp_json_ld` holders, 25,180 and 28,156 bytes) and read the lift report (3 of 3 trees, 6 nodes, no errors). I did not rerun the lifter, rules L0 to L6, the Khronos validator or Blender. The earlier v2 card text is replaced on the front page only; page versions v1 to v79 are untouched.
+
 ## v79 (2026-11-22)
 - The Demo 73 card now points to Wire Lab v2 (`docs/demos/wire-lab/v2/`, merged as PR 152) and keeps v1 linked; image `assets/wire-lab-v2.jpg` is four of v2's own screenshots cropped to 16:9 (no third-party imagery). v2 changes one thing: long chains wrap into rows of five. I ran v2's own tests (73 of 73 and 30 of 30, 0 page errors) and compared the two folders: `wirelab.js` is identical and the only code change is the layout in `index.html`. I did not check the wrapped layout by eye on a phone, the JavaScript rule against the add-on's Python, or the Blender round trip. The earlier v1 card text is replaced on the front page only; versions v1 to v78 are untouched.
 
