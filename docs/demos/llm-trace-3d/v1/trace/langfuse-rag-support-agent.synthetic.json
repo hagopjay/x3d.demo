@@ -1,0 +1,976 @@
+{
+  "_synthetic": "SYNTHETIC: invented for the X3D trace demo; no live system, model or customer behind any value.",
+  "_schema": {
+    "source": "Langfuse public API openapi.yml (main, fetched 2026-11-20)",
+    "sha256": "cdaac03b07396353ffb7e5870285014f7aa3c35d342295987ebd7d81a2e36b19",
+    "observations": "#/components/schemas/ObservationsV2Response",
+    "scores": "#/components/schemas/Score (v1)"
+  },
+  "trace": {
+    "id": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+    "timestamp": "2026-11-19T14:02:11.000Z",
+    "name": "support-agent",
+    "input": {
+      "question": "My Halden e-bike battery barely lasts 20 km now. I bought it about 18 months ago. Is it still under warranty, and how long would a replacement take?"
+    },
+    "output": {
+      "answer": "Yes, your battery is still under warranty. Halden e-bike batteries are covered for 24 months from the date of delivery, and order HB-20391 was delivered on 2025-05-12. If a service centre measures less than 70 percent of rated capacity, the battery is replaced free of charge. After approval, a replacement ships within 5 business days. To start, open a claim from the Orders page with your order number and the frame serial number."
+    },
+    "userId": "user-7f3a",
+    "sessionId": "sess-2026-11-19-0042",
+    "tags": [
+      "rag",
+      "warranty",
+      "synthetic"
+    ],
+    "release": "agent-2026.11.3",
+    "version": "2026.11.3",
+    "environment": "synthetic-demo",
+    "metadata": {
+      "synthetic_price_table_usd_per_1M_tokens": {
+        "provider-x/chat-large": [
+          2.5,
+          10.0
+        ],
+        "provider-x/chat-small": [
+          0.15,
+          0.6
+        ],
+        "provider-x/embed-small": [
+          0.02,
+          0.0
+        ],
+        "provider-x/judge-small": [
+          0.15,
+          0.6
+        ]
+      }
+    }
+  },
+  "observations": {
+    "data": [
+      {
+        "id": "obs-01",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:11.000Z",
+        "endTime": "2026-11-19T14:02:18.420Z",
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": null,
+        "type": "AGENT",
+        "isRootObservation": true,
+        "name": "support-agent",
+        "level": "DEFAULT",
+        "statusMessage": null,
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": null,
+        "createdAt": "2026-11-19T14:02:11.000Z",
+        "updatedAt": "2026-11-19T14:02:18.420Z",
+        "input": {
+          "question": "My Halden e-bike battery barely lasts 20 km now. I bought it about 18 months ago. Is it still under warranty, and how long would a replacement take?"
+        },
+        "output": {
+          "answer": "Yes, your battery is still under warranty. Halden e-bike batteries are covered for 24 months from the date of delivery, and order HB-20391 was delivered on 2025-05-12. If a service centre measures less than 70 percent of rated capacity, the battery is replaced free of charge. After approval, a replacement ships within 5 business days. To start, open a claim from the Orders page with your order number and the frame serial number."
+        },
+        "metadata": {
+          "agent": "halden-support",
+          "max_steps": 6
+        },
+        "model": null,
+        "internalModelId": null,
+        "modelParameters": null,
+        "usageDetails": null,
+        "costDetails": null,
+        "totalCost": null,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": null,
+        "promptVersion": null,
+        "latency": 7.42,
+        "timeToFirstToken": null,
+        "modelId": null,
+        "inputPrice": null,
+        "outputPrice": null,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      },
+      {
+        "id": "obs-02",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:11.018Z",
+        "endTime": "2026-11-19T14:02:11.164Z",
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": "obs-01",
+        "type": "GUARDRAIL",
+        "isRootObservation": false,
+        "name": "input-moderation",
+        "level": "DEFAULT",
+        "statusMessage": null,
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": null,
+        "createdAt": "2026-11-19T14:02:11.018Z",
+        "updatedAt": "2026-11-19T14:02:11.164Z",
+        "input": {
+          "text": "My Halden e-bike battery barely lasts 20 km now. I bought it about 18 months ago. Is it still under warranty, and how long would a replacement take?"
+        },
+        "output": {
+          "flagged": false,
+          "categories": []
+        },
+        "metadata": {
+          "policy": "pii+abuse v4"
+        },
+        "model": null,
+        "internalModelId": null,
+        "modelParameters": null,
+        "usageDetails": null,
+        "costDetails": null,
+        "totalCost": null,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": null,
+        "promptVersion": null,
+        "latency": 0.146,
+        "timeToFirstToken": null,
+        "modelId": null,
+        "inputPrice": null,
+        "outputPrice": null,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      },
+      {
+        "id": "obs-03",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:11.180Z",
+        "endTime": "2026-11-19T14:02:12.010Z",
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": "obs-01",
+        "type": "GENERATION",
+        "isRootObservation": false,
+        "name": "plan-steps",
+        "level": "DEFAULT",
+        "statusMessage": null,
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": "2026-11-19T14:02:11.470Z",
+        "createdAt": "2026-11-19T14:02:11.180Z",
+        "updatedAt": "2026-11-19T14:02:12.010Z",
+        "input": [
+          {
+            "role": "system",
+            "content": "Plan the tool calls needed to answer."
+          },
+          {
+            "role": "user",
+            "content": "My Halden e-bike battery barely lasts 20 km now. I bought it about 18 months ago. Is it still under warranty, and how long would a replacement take?"
+          }
+        ],
+        "output": {
+          "plan": [
+            "search_kb('battery warranty replacement time')",
+            "lookup_order(user)"
+          ]
+        },
+        "metadata": {},
+        "model": "provider-x/chat-small",
+        "internalModelId": null,
+        "modelParameters": {
+          "temperature": 0,
+          "max_tokens": 200
+        },
+        "usageDetails": {
+          "input": 612,
+          "output": 74,
+          "total": 686
+        },
+        "costDetails": {
+          "input": 9.18e-05,
+          "output": 4.44e-05,
+          "total": 0.0001362
+        },
+        "totalCost": 0.0001362,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": "agent-planner",
+        "promptVersion": 7,
+        "latency": 0.83,
+        "timeToFirstToken": 0.29,
+        "modelId": null,
+        "inputPrice": 1.5e-07,
+        "outputPrice": 6e-07,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      },
+      {
+        "id": "obs-04",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:12.030Z",
+        "endTime": "2026-11-19T14:02:12.640Z",
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": "obs-01",
+        "type": "RETRIEVER",
+        "isRootObservation": false,
+        "name": "retrieve-docs",
+        "level": "DEFAULT",
+        "statusMessage": null,
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": null,
+        "createdAt": "2026-11-19T14:02:12.030Z",
+        "updatedAt": "2026-11-19T14:02:12.640Z",
+        "input": {
+          "query": "battery warranty replacement time"
+        },
+        "output": {
+          "documents": [
+            "kb-warranty-0412",
+            "kb-service-0137",
+            "kb-claims-0098",
+            "kb-accessories-0551"
+          ]
+        },
+        "metadata": {
+          "index": "kb-v12",
+          "k": 4
+        },
+        "model": null,
+        "internalModelId": null,
+        "modelParameters": null,
+        "usageDetails": null,
+        "costDetails": null,
+        "totalCost": null,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": null,
+        "promptVersion": null,
+        "latency": 0.61,
+        "timeToFirstToken": null,
+        "modelId": null,
+        "inputPrice": null,
+        "outputPrice": null,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      },
+      {
+        "id": "obs-05",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:12.036Z",
+        "endTime": "2026-11-19T14:02:12.188Z",
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": "obs-04",
+        "type": "EMBEDDING",
+        "isRootObservation": false,
+        "name": "embed-query",
+        "level": "DEFAULT",
+        "statusMessage": null,
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": null,
+        "createdAt": "2026-11-19T14:02:12.036Z",
+        "updatedAt": "2026-11-19T14:02:12.188Z",
+        "input": "battery warranty replacement time",
+        "output": {
+          "dims": 1536
+        },
+        "metadata": {},
+        "model": "provider-x/embed-small",
+        "internalModelId": null,
+        "modelParameters": null,
+        "usageDetails": {
+          "input": 9,
+          "output": 0,
+          "total": 9
+        },
+        "costDetails": {
+          "input": 1.8e-07,
+          "output": 0.0,
+          "total": 1.8e-07
+        },
+        "totalCost": 1.8e-07,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": null,
+        "promptVersion": null,
+        "latency": 0.152,
+        "timeToFirstToken": null,
+        "modelId": null,
+        "inputPrice": 2e-08,
+        "outputPrice": 0.0,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      },
+      {
+        "id": "obs-06",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:12.196Z",
+        "endTime": "2026-11-19T14:02:12.472Z",
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": "obs-04",
+        "type": "RETRIEVER",
+        "isRootObservation": false,
+        "name": "vector-search",
+        "level": "DEFAULT",
+        "statusMessage": null,
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": null,
+        "createdAt": "2026-11-19T14:02:12.196Z",
+        "updatedAt": "2026-11-19T14:02:12.472Z",
+        "input": {
+          "top_k": 4,
+          "index": "kb-v12"
+        },
+        "output": {
+          "documents": [
+            {
+              "id": "kb-warranty-0412",
+              "title": "Battery warranty (e-bikes)",
+              "text": "Halden e-bike batteries are covered for 24 months from the date of delivery. A battery that holds less than 70 percent of its rated capacity within the warranty period is replaced free of charge. Capacity is measured by an authorised service centre with the Halden Diagnostic Tool.",
+              "similarity": 0.884
+            },
+            {
+              "id": "kb-service-0137",
+              "title": "Replacement turnaround",
+              "text": "Once a claim is approved, a replacement battery ships within 7 to 10 business days. Customers in remote postcodes should allow 3 additional business days.",
+              "similarity": 0.861
+            },
+            {
+              "id": "kb-claims-0098",
+              "title": "How to open a warranty claim",
+              "text": "Open a claim from the Orders page or by calling support. You will need the order number and the frame serial number printed under the bottom bracket.",
+              "similarity": 0.812
+            },
+            {
+              "id": "kb-accessories-0551",
+              "title": "Accessory warranty",
+              "text": "Lights, locks and racks sold by Halden carry a 12 month limited warranty against manufacturing defects.",
+              "similarity": 0.774
+            }
+          ]
+        },
+        "metadata": {},
+        "model": null,
+        "internalModelId": null,
+        "modelParameters": null,
+        "usageDetails": null,
+        "costDetails": null,
+        "totalCost": null,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": null,
+        "promptVersion": null,
+        "latency": 0.276,
+        "timeToFirstToken": null,
+        "modelId": null,
+        "inputPrice": null,
+        "outputPrice": null,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      },
+      {
+        "id": "obs-07",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:12.480Z",
+        "endTime": "2026-11-19T14:02:12.632Z",
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": "obs-04",
+        "type": "SPAN",
+        "isRootObservation": false,
+        "name": "rerank",
+        "level": "DEFAULT",
+        "statusMessage": null,
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": null,
+        "createdAt": "2026-11-19T14:02:12.480Z",
+        "updatedAt": "2026-11-19T14:02:12.632Z",
+        "input": {
+          "n": 4
+        },
+        "output": {
+          "ranked": [
+            {
+              "id": "kb-warranty-0412",
+              "score": 0.97
+            },
+            {
+              "id": "kb-service-0137",
+              "score": 0.91
+            },
+            {
+              "id": "kb-claims-0098",
+              "score": 0.88
+            },
+            {
+              "id": "kb-accessories-0551",
+              "score": 0.21
+            }
+          ],
+          "kept": 3
+        },
+        "metadata": {
+          "cutoff": 0.5
+        },
+        "model": null,
+        "internalModelId": null,
+        "modelParameters": null,
+        "usageDetails": null,
+        "costDetails": null,
+        "totalCost": null,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": null,
+        "promptVersion": null,
+        "latency": 0.152,
+        "timeToFirstToken": null,
+        "modelId": null,
+        "inputPrice": null,
+        "outputPrice": null,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      },
+      {
+        "id": "obs-08",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:12.650Z",
+        "endTime": "2026-11-19T14:02:13.870Z",
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": "obs-01",
+        "type": "TOOL",
+        "isRootObservation": false,
+        "name": "order-api",
+        "level": "ERROR",
+        "statusMessage": "upstream timeout after 1.2 s (attempt 1 of 3)",
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": null,
+        "createdAt": "2026-11-19T14:02:12.650Z",
+        "updatedAt": "2026-11-19T14:02:13.870Z",
+        "input": {
+          "user_id": "user-7f3a"
+        },
+        "output": null,
+        "metadata": {
+          "http_status": 504,
+          "attempt": 1
+        },
+        "model": null,
+        "internalModelId": null,
+        "modelParameters": null,
+        "usageDetails": null,
+        "costDetails": null,
+        "totalCost": null,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": null,
+        "promptVersion": null,
+        "latency": 1.22,
+        "timeToFirstToken": null,
+        "modelId": null,
+        "inputPrice": null,
+        "outputPrice": null,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      },
+      {
+        "id": "obs-09",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:13.900Z",
+        "endTime": "2026-11-19T14:02:14.180Z",
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": "obs-01",
+        "type": "TOOL",
+        "isRootObservation": false,
+        "name": "order-api",
+        "level": "WARNING",
+        "statusMessage": "succeeded on retry (attempt 2 of 3)",
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": null,
+        "createdAt": "2026-11-19T14:02:13.900Z",
+        "updatedAt": "2026-11-19T14:02:14.180Z",
+        "input": {
+          "user_id": "user-7f3a"
+        },
+        "output": {
+          "order_id": "HB-20391",
+          "sku": "HB-EB-500-BAT",
+          "delivered_at": "2025-05-12",
+          "customer_tier": "standard"
+        },
+        "metadata": {
+          "http_status": 200,
+          "attempt": 2
+        },
+        "model": null,
+        "internalModelId": null,
+        "modelParameters": null,
+        "usageDetails": null,
+        "costDetails": null,
+        "totalCost": null,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": null,
+        "promptVersion": null,
+        "latency": 0.28,
+        "timeToFirstToken": null,
+        "modelId": null,
+        "inputPrice": null,
+        "outputPrice": null,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      },
+      {
+        "id": "obs-10",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:14.210Z",
+        "endTime": "2026-11-19T14:02:17.240Z",
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": "obs-01",
+        "type": "GENERATION",
+        "isRootObservation": false,
+        "name": "compose-answer",
+        "level": "DEFAULT",
+        "statusMessage": null,
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": "2026-11-19T14:02:14.665Z",
+        "createdAt": "2026-11-19T14:02:14.210Z",
+        "updatedAt": "2026-11-19T14:02:17.240Z",
+        "input": [
+          {
+            "role": "system",
+            "content": "Answer only from the context. For every value, copy the exact quote and its source id."
+          },
+          {
+            "role": "user",
+            "content": "My Halden e-bike battery barely lasts 20 km now. I bought it about 18 months ago. Is it still under warranty, and how long would a replacement take?"
+          },
+          {
+            "role": "tool",
+            "content": "{\"order_id\": \"HB-20391\", \"sku\": \"HB-EB-500-BAT\", \"delivered_at\": \"2025-05-12\", \"customer_tier\": \"standard\"}"
+          },
+          {
+            "role": "context",
+            "id": "kb-warranty-0412",
+            "content": "Halden e-bike batteries are covered for 24 months from the date of delivery. A battery that holds less than 70 percent of its rated capacity within the warranty period is replaced free of charge. Capacity is measured by an authorised service centre with the Halden Diagnostic Tool."
+          },
+          {
+            "role": "context",
+            "id": "kb-service-0137",
+            "content": "Once a claim is approved, a replacement battery ships within 7 to 10 business days. Customers in remote postcodes should allow 3 additional business days."
+          },
+          {
+            "role": "context",
+            "id": "kb-claims-0098",
+            "content": "Open a claim from the Orders page or by calling support. You will need the order number and the frame serial number printed under the bottom bracket."
+          }
+        ],
+        "output": {
+          "answer": "Yes, your battery is still under warranty. Halden e-bike batteries are covered for 24 months from the date of delivery, and order HB-20391 was delivered on 2025-05-12. If a service centre measures less than 70 percent of rated capacity, the battery is replaced free of charge. After approval, a replacement ships within 5 business days. To start, open a claim from the Orders page with your order number and the frame serial number.",
+          "citations": [
+            {
+              "field": "warranty_months",
+              "value": 24,
+              "quote": "covered for 24 months from the date of delivery",
+              "source": "kb-warranty-0412"
+            },
+            {
+              "field": "delivered_at",
+              "value": "2025-05-12",
+              "quote": "\"delivered_at\": \"2025-05-12\"",
+              "source": "tool:order-api"
+            },
+            {
+              "field": "capacity_threshold_percent",
+              "value": 70,
+              "quote": "less than 70 percent of its rated capacity",
+              "source": "kb-warranty-0412"
+            },
+            {
+              "field": "replacement_cost",
+              "value": "free of charge",
+              "quote": "is replaced free of charge",
+              "source": "kb-warranty-0412"
+            },
+            {
+              "field": "replacement_ship_business_days",
+              "value": 5,
+              "quote": "ships within 7 to 10 business days",
+              "source": "kb-service-0137"
+            },
+            {
+              "field": "claim_channel",
+              "value": "Orders page",
+              "quote": "Open a claim from the Orders page",
+              "source": "kb-claims-0098"
+            },
+            {
+              "field": "required_identifier",
+              "value": "frame serial number",
+              "quote": "the order number and the frame serial number",
+              "source": "kb-claims-0098"
+            }
+          ]
+        },
+        "metadata": {},
+        "model": "provider-x/chat-large",
+        "internalModelId": null,
+        "modelParameters": {
+          "temperature": 0.2,
+          "max_tokens": 400,
+          "response_format": "json_schema:cited_answer"
+        },
+        "usageDetails": {
+          "input": 2184,
+          "output": 231,
+          "total": 2415
+        },
+        "costDetails": {
+          "input": 0.00546,
+          "output": 0.00231,
+          "total": 0.00777
+        },
+        "totalCost": 0.00777,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": "support-answer",
+        "promptVersion": 12,
+        "latency": 3.03,
+        "timeToFirstToken": 0.455,
+        "modelId": null,
+        "inputPrice": 2.5e-06,
+        "outputPrice": 1e-05,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      },
+      {
+        "id": "obs-11",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:17.252Z",
+        "endTime": null,
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": "obs-01",
+        "type": "EVENT",
+        "isRootObservation": false,
+        "name": "citations-emitted",
+        "level": "DEFAULT",
+        "statusMessage": null,
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": null,
+        "createdAt": "2026-11-19T14:02:17.252Z",
+        "updatedAt": "2026-11-19T14:02:17.252Z",
+        "input": null,
+        "output": {
+          "count": 7
+        },
+        "metadata": {},
+        "model": null,
+        "internalModelId": null,
+        "modelParameters": null,
+        "usageDetails": null,
+        "costDetails": null,
+        "totalCost": null,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": null,
+        "promptVersion": null,
+        "latency": null,
+        "timeToFirstToken": null,
+        "modelId": null,
+        "inputPrice": null,
+        "outputPrice": null,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      },
+      {
+        "id": "obs-12",
+        "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+        "startTime": "2026-11-19T14:02:17.270Z",
+        "endTime": "2026-11-19T14:02:18.380Z",
+        "projectId": "proj-synthetic-demo",
+        "parentObservationId": "obs-01",
+        "type": "EVALUATOR",
+        "isRootObservation": false,
+        "name": "faithfulness-judge",
+        "level": "DEFAULT",
+        "statusMessage": null,
+        "version": "2026.11.3",
+        "environment": "synthetic-demo",
+        "bookmarked": false,
+        "public": false,
+        "userId": "user-7f3a",
+        "sessionId": "sess-2026-11-19-0042",
+        "completionStartTime": "2026-11-19T14:02:17.650Z",
+        "createdAt": "2026-11-19T14:02:17.270Z",
+        "updatedAt": "2026-11-19T14:02:18.380Z",
+        "input": {
+          "answer": "Yes, your battery is still under warranty. Halden e-bike batteries are covered for 24 months from the date of delivery, and order HB-20391 was delivered on 2025-05-12. If a service centre measures less than 70 percent of rated capacity, the battery is replaced free of charge. After approval, a replacement ships within 5 business days. To start, open a claim from the Orders page with your order number and the frame serial number.",
+          "context_ids": [
+            "kb-warranty-0412",
+            "kb-service-0137",
+            "kb-claims-0098"
+          ]
+        },
+        "output": {
+          "score": 0.83,
+          "unsupported": [
+            "ships within 5 business days"
+          ]
+        },
+        "metadata": {},
+        "model": "provider-x/judge-small",
+        "internalModelId": null,
+        "modelParameters": {
+          "temperature": 0
+        },
+        "usageDetails": {
+          "input": 1420,
+          "output": 96,
+          "total": 1516
+        },
+        "costDetails": {
+          "input": 0.000213,
+          "output": 5.76e-05,
+          "total": 0.0002706
+        },
+        "totalCost": 0.0002706,
+        "usagePricingTierName": null,
+        "promptId": null,
+        "promptName": "judge-faithfulness",
+        "promptVersion": 3,
+        "latency": 1.11,
+        "timeToFirstToken": 0.38,
+        "modelId": null,
+        "inputPrice": 1.5e-07,
+        "outputPrice": 6e-07,
+        "totalPrice": null,
+        "traceName": "support-agent",
+        "tags": [
+          "rag",
+          "warranty",
+          "synthetic"
+        ],
+        "release": "agent-2026.11.3"
+      }
+    ],
+    "meta": {}
+  },
+  "scores": [
+    {
+      "id": "sc-1",
+      "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+      "sessionId": null,
+      "observationId": "obs-10",
+      "datasetRunId": null,
+      "name": "faithfulness",
+      "source": "EVAL",
+      "timestamp": "2026-11-19T14:02:18.400Z",
+      "createdAt": "2026-11-19T14:02:18.400Z",
+      "updatedAt": "2026-11-19T14:02:18.400Z",
+      "authorUserId": null,
+      "comment": "1 of 7 cited values not supported: shipping time (source says 7 to 10 business days)",
+      "metadata": null,
+      "configId": null,
+      "queueId": null,
+      "environment": "synthetic-demo",
+      "value": 0.83,
+      "dataType": "NUMERIC"
+    },
+    {
+      "id": "sc-2",
+      "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+      "sessionId": null,
+      "observationId": "obs-06",
+      "datasetRunId": null,
+      "name": "retrieval-relevance",
+      "source": "EVAL",
+      "timestamp": "2026-11-19T14:02:18.400Z",
+      "createdAt": "2026-11-19T14:02:18.400Z",
+      "updatedAt": "2026-11-19T14:02:18.400Z",
+      "authorUserId": null,
+      "comment": "mean rerank score of the 3 kept documents",
+      "metadata": null,
+      "configId": null,
+      "queueId": null,
+      "environment": "synthetic-demo",
+      "value": 0.92,
+      "dataType": "NUMERIC"
+    },
+    {
+      "id": "sc-3",
+      "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+      "sessionId": null,
+      "observationId": "obs-02",
+      "datasetRunId": null,
+      "name": "pii-detected",
+      "source": "API",
+      "timestamp": "2026-11-19T14:02:18.400Z",
+      "createdAt": "2026-11-19T14:02:18.400Z",
+      "updatedAt": "2026-11-19T14:02:18.400Z",
+      "authorUserId": null,
+      "comment": null,
+      "metadata": null,
+      "configId": null,
+      "queueId": null,
+      "environment": "synthetic-demo",
+      "value": 0,
+      "dataType": "BOOLEAN",
+      "stringValue": "False"
+    },
+    {
+      "id": "sc-4",
+      "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+      "sessionId": null,
+      "observationId": null,
+      "datasetRunId": null,
+      "name": "user-feedback",
+      "source": "ANNOTATION",
+      "timestamp": "2026-11-19T14:02:18.400Z",
+      "createdAt": "2026-11-19T14:02:18.400Z",
+      "updatedAt": "2026-11-19T14:02:18.400Z",
+      "authorUserId": null,
+      "comment": "thumbs up",
+      "metadata": null,
+      "configId": null,
+      "queueId": null,
+      "environment": "synthetic-demo",
+      "value": 1,
+      "dataType": "BOOLEAN",
+      "stringValue": "True"
+    },
+    {
+      "id": "sc-5",
+      "traceId": "c0ffee5a-71e2-4b0d-9d3a-5e1f00d3a001",
+      "sessionId": null,
+      "observationId": null,
+      "datasetRunId": null,
+      "name": "resolution",
+      "source": "EVAL",
+      "timestamp": "2026-11-19T14:02:18.400Z",
+      "createdAt": "2026-11-19T14:02:18.400Z",
+      "updatedAt": "2026-11-19T14:02:18.400Z",
+      "authorUserId": null,
+      "comment": null,
+      "metadata": null,
+      "configId": null,
+      "queueId": null,
+      "environment": "synthetic-demo",
+      "value": 1,
+      "dataType": "CATEGORICAL",
+      "stringValue": "resolved"
+    }
+  ]
+}

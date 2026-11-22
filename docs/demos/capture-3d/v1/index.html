@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VoIP capture in 3D · sip-rtp.pcapng</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../x3d-mujoco-bridge/v1/vendor/x_ite/x_ite.css">
+<script src="../../x3d-mujoco-bridge/v1/vendor/x_ite/x_ite.min.js"></script>
+<style>
+  :root { --bg:#090c12; --panel:#0f141d; --line:#1d2533; --ink:#e8edf3; --ink2:#94a3b8; --ink3:#475569; --amber:#fbbf24; --ok:#2dd4bf; --warn:#f2b84b; --bad:#f87171; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--ink); font:13px/1.45 ui-sans-serif, -apple-system, "Segoe UI", Inter, sans-serif; }
+  body { display:grid; grid-template-columns:1fr 400px; grid-template-rows:52px 1fr 128px; height:100vh; }
+  header { grid-column:1 / 3; display:flex; align-items:center; gap:14px; padding:0 18px; border-bottom:1px solid var(--line); }
+  h1 { font-size:15px; margin:0; font-weight:650; } .meta { color:var(--ink2); font-variant-numeric:tabular-nums; }
+  .tag { font-size:10.5px; font-weight:700; letter-spacing:.5px; padding:3px 8px; border-radius:3px; background:#0e3a35; color:#5eead4; }
+  #views { margin-left:auto; display:flex; gap:6px; flex-wrap:wrap; }
+  button { background:#151d2b; color:var(--ink); border:1px solid #243047; border-radius:4px; padding:5px 9px; font:inherit; font-size:12px; cursor:pointer; }
+  button:hover { border-color:#3b4a66; } button.on { border-color:var(--amber); color:var(--amber); }
+  #stage { position:relative; min-height:0; } x3d-canvas { width:100%; height:100%; display:block; }
+  #hover { position:absolute; left:14px; bottom:10px; color:var(--ink2); font-size:12px; pointer-events:none; background:#090c12cc; padding:3px 8px; border-radius:3px; }
+  aside { grid-row:2 / 4; grid-column:2; border-left:1px solid var(--line); background:var(--panel); overflow:auto; padding:14px 16px 30px; }
+  .kind { color:var(--ink2); text-transform:uppercase; font-size:10.5px; letter-spacing:.8px; }
+  h2 { margin:3px 0 10px; font-size:16px; font-weight:650; word-break:break-word; }
+  h3 { margin:16px 0 6px; font-size:10.5px; letter-spacing:.8px; color:var(--ink2); font-weight:650; }
+  dl { margin:0; display:grid; grid-template-columns:118px 1fr; gap:5px 10px; } dt { color:var(--ink2); font-size:11.5px; } dd { margin:0; word-break:break-word; font-variant-numeric:tabular-nums; }
+  .finding { border-left:3px solid var(--ink3); padding:4px 8px; margin:6px 0; background:#0b111a; border-radius:0 4px 4px 0; }
+  .finding.warn { border-color:var(--warn); } .finding.ok { border-color:var(--ok); } .finding.info { border-color:#818cf8; }
+  .finding small { display:block; color:var(--ink3); margin-top:2px; }
+  #legend .row { display:flex; align-items:center; gap:8px; margin:2px 0; font-size:12px; } .sw { width:16px; height:9px; border-radius:2px; flex:none; }
+  footer { grid-column:1; border-top:1px solid var(--line); padding:8px 18px; display:grid; grid-template-columns:auto 1fr; gap:6px 14px; align-items:center; }
+  #clock { font-variant-numeric:tabular-nums; color:var(--ink2); min-width:220px; }
+  input[type=range] { width:100%; accent-color:var(--amber); }
+  #lanes { grid-column:1 / 3; position:relative; height:56px; background:#0b1220; border-radius:4px; cursor:pointer; overflow:hidden; }
+  #lanes .m { position:absolute; top:6px; width:3px; height:22px; border-radius:1px; } #lanes .r { position:absolute; top:34px; height:9px; border-radius:2px; background:var(--ok); opacity:.75; }
+  #lanes .p { position:absolute; top:34px; height:9px; background:var(--warn); }
+  #ph { position:absolute; top:0; bottom:0; width:2px; background:var(--amber); pointer-events:none; }
+  #status { grid-column:1 / 3; color:var(--ink3); font-size:11px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>VoIP capture in 3D</h1><span class="tag">REAL CAPTURE</span><span class="meta" id="cmeta"></span>
+  <div id="views"></div>
+</header>
+<div id="stage"><x3d-canvas id="world" contentScale="auto" splashScreen="false" notifications="false" contextMenu="false"></x3d-canvas><div id="hover"></div></div>
+<aside>
+  <div id="panel"><div class="kind">loading</div></div>
+  <h3>FINDINGS (rules in build.py; evidence under each)</h3><div id="findings"></div>
+  <div id="legend"><h3>LEGEND</h3>
+    <div class="row"><span class="sw" style="background:#818cf8"></span>SIP request (INVITE, ACK, BYE …)</div>
+    <div class="row"><span class="sw" style="background:#c4a1d6"></span>SIP REGISTER</div>
+    <div class="row"><span class="sw" style="background:#94a3b8"></span>1xx provisional · <span class="sw" style="background:#2dd4bf"></span>2xx success · <span class="sw" style="background:#f87171"></span>4xx–6xx</div>
+    <div class="row"><span class="sw" style="background:#2dd4bf;opacity:.6"></span>RTP stream: band between sender and receiver, curve height = RFC 3550 jitter</div>
+    <div class="row"><span class="sw" style="background:#f2b84b"></span>RTP pause &gt; 200 ms · <span class="sw" style="background:#f87171"></span>sequence gap (loss)</div>
+    <div class="row"><span class="sw" style="background:#fbbf24"></span>replay playhead · white sphere = message in flight (visual only)</div>
+    <p style="color:var(--ink2);font-size:11.5px">Rails = hosts. Time recedes into the scene. Bursts of signalling are spread out (at least 0.9 m between events), so the time ruler on the left is not linear. Its labels are real capture time.</p>
+  </div>
+</aside>
+<footer>
+  <div style="display:flex;gap:8px;align-items:center"><button id="play">Pause</button><span id="clock"></span></div>
+  <input id="scrub" type="range" min="0" max="1000" value="0" aria-label="capture time">
+  <div id="lanes"><div id="ph"></div></div>
+  <div id="status"></div>
+</footer>
+<script type="module">
+const $ = s => document.querySelector(s);
+const el = (t, x, c) => { const e = document.createElement(t); if (x != null) e.textContent = x; if (c) e.className = c; return e; };
+const state = window.cap = { errors: [], missing: [], ready: false };
+const COL = m => /^\d/.test(m.label) ? (+m.label >= 400 ? "#f87171" : +m.label >= 200 ? "#2dd4bf" : "#94a3b8") : (m.label === "REGISTER" ? "#c4a1d6" : "#818cf8");
+function select(name) {
+  const it = state.data.items[name]; if (!it) return false;
+  const p = $("#panel"); p.replaceChildren(el("div", it.kind, "kind"), el("h2", it.title));
+  const dl = el("dl"); for (const [k, v] of Object.entries(it.body)) dl.append(el("dt", k), el("dd", typeof v === "object" ? JSON.stringify(v) : String(v))); p.append(dl);
+  document.querySelector("aside").scrollTop = 0; return true;
+}
+function watch(node, field, fn) { const g = v => { try { fn(v); } catch (e) { state.errors.push(String(e)); console.error("cap callback", e); } }; node.addFieldCallback("cap-" + field, field, g); }
+try {
+  const data = state.data = await (await fetch("out/capture-panel.json")).json();
+  const C = data.capture, T = data.replay.duration;
+  $("#cmeta").textContent = `${C.file.split("/").pop()} · ${C.packets} packets · ${C.duration_s} s · ${C.hosts.length} hosts · ${C.first_packet_utc.slice(0, 10)}`; $("#cmeta").title = `${C.format} written by ${C.writer}; first packet ${C.first_packet_utc} UTC`;
+  for (const f of data.findings) { const d = el("div", f.text, "finding " + f.level); d.append(el("small", f.evidence)); $("#findings").append(d); }
+  const browser = X3D.getBrowser($("#world"));
+  await browser.loadURL(new X3D.MFString("out/capture-scene.x3d"));
+  const scene = browser.currentScene;
+  for (const name of Object.keys(data.items)) {
+    let node; try { node = scene.getNamedNode(name); } catch (e) { state.missing.push(name); continue; }
+    const d = node.description; watch(node, "isOver", o => { $("#hover").textContent = o ? d : ""; }); watch(node, "touchTime", () => select(name));
+  }
+  for (const [name, text] of data.views) { const b = el("button", text); b.onclick = () => { scene.getNamedNode(name).set_bind = true; document.querySelectorAll("#views button").forEach(x => x.classList.remove("on")); b.classList.add("on"); }; $("#views").append(b); }
+  const lanes = $("#lanes"), pad = 0.015, xOf = t => (pad + (1 - 2 * pad) * t / T) * 100;
+  for (const m of data.timeline) { const b = el("div", null, "m"); b.style.left = xOf(m.t) + "%"; b.style.background = COL(m); b.title = `${m.t.toFixed(3)} s ${m.label} ${m.src} → ${m.dst}`; b.onclick = e => { e.stopPropagation(); select(m.sensor); }; lanes.append(b); }
+  for (const s of data.streams) { const b = el("div", null, "r"); b.style.left = xOf(s.first_t) + "%"; b.style.width = (xOf(s.last_t) - xOf(s.first_t)) + "%"; b.title = s.label; b.onclick = e => { e.stopPropagation(); select(s.sensor); }; lanes.append(b); }
+  for (const it of Object.values(data.items)) { const ps = it.kind === "RTP stream" && it.body["pauses (> 200 ms)"]; if (ps && ps !== "none") for (const g of ps.split("; ")) { const [t, , d] = g.match(/[\d.]+/g).map(Number); const b = el("div", null, "p"); b.style.left = xOf(t) + "%"; b.style.width = (xOf(t + d) - xOf(t)) + "%"; lanes.append(b); } }
+  const R = data.replay, sensor = scene.getNamedNode("Replay"), interps = data.interps.map(n => scene.getNamedNode(n));
+  const fracOf = t => (R.lead + (t / T) * (R.cycle - R.lead - R.hold)) / R.cycle;
+  const tOf = f => Math.min(T, Math.max(0, (f * R.cycle - R.lead) / (R.cycle - R.lead - R.hold) * T));
+  let playing = true, dragging = false;
+  const show = f => { const t = tOf(f); $("#clock").textContent = `t = ${t.toFixed(3)} s of ${T.toFixed(3)} s`; $("#ph").style.left = xOf(t) + "%"; if (!dragging) $("#scrub").value = Math.round(t / T * 1000); };
+  watch(sensor, "fraction_changed", f => { if (playing) show(f); });
+  const seek = t => { const f = fracOf(t); for (const n of interps) n.set_fraction = f; show(f); };
+  const pause = () => { playing = false; sensor.enabled = false; $("#play").textContent = "Play"; };
+  $("#scrub").onpointerdown = () => { dragging = true; }; $("#scrub").onpointerup = () => { dragging = false; };
+  $("#scrub").oninput = e => { pause(); seek(e.target.value / 1000 * T); };
+  lanes.onclick = e => { const r = lanes.getBoundingClientRect(); const t = Math.min(T, Math.max(0, ((e.clientX - r.left) / r.width - pad) / (1 - 2 * pad) * T)); pause(); seek(t); };
+  $("#play").onclick = () => { if (playing) { pause(); return; } const t = $("#scrub").value / 1000 * T; playing = true; sensor.enabled = true; sensor.startTime = Date.now() / 1000 - fracOf(t >= T - 1e-3 ? 0 : t) * R.cycle; $("#play").textContent = "Pause"; };
+  pause(); seek(T);
+  state.seek = seek; state.pause = pause; state.select = select; state.ready = true;
+  $("#status").textContent = `${Object.keys(data.items).length - state.missing.length} clickable items, ${state.missing.length} missing · ${interps.length} animated nodes · sha256 ${C.sha256.slice(0, 16)}… · ${Object.entries(C.layers).map(([k, v]) => k + " " + v).join(", ")}`;
+  scene.getNamedNode("VP_overview").set_bind = true;
+  select("T_R_0");
+} catch (e) { state.errors.push(String(e)); $("#status").textContent = "failed: " + e; console.error(e); }
+</script>
+</body>
+</html>

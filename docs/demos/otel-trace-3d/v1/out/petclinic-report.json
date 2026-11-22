@@ -1,0 +1,39 @@
+{
+ "name": "petclinic",
+ "source": "downloads/jaeger-ui/spanAmongEachOtherGroupedAndSpans.json",
+ "sha256": "182ed2832b13fd9513cb2777a5192f34d892aa08149e432375a4a1e237f10992",
+ "format": "Jaeger JSON (query API)",
+ "spans": 17,
+ "services": [
+  "api-gateway",
+  "customers-service"
+ ],
+ "edges": {
+  "rpc": 1,
+  "message": 0,
+  "call": 0,
+  "link": 0
+ },
+ "critical_path_ms": 3.72,
+ "errors": 0,
+ "reruns": 0,
+ "retry_events": 0,
+ "findings": [
+  "Critical path: 3.7 ms, 54% of it in api-gateway",
+  "Slowest service by self-time: api-gateway, 2.0 ms (52% of all self-time)",
+  "Errors: none",
+  "Retries: none found",
+  "Fan-out: 14 x customers-service / HikariProxyPreparedStatement.executeQuery, up to 9 parallel",
+  "Gaps: 3 between child calls, 0.69 ms in all; largest 0.58 ms in customers-service / GET /owners"
+ ],
+ "interpolators": 20,
+ "routes": 40,
+ "touch_sensors": 20,
+ "views": 6,
+ "scene_bytes": 53986,
+ "replay": {
+  "cycle_s": 16.0,
+  "play_s": 13.0,
+  "slow_factor": 3494.6237
+ }
+}
