@@ -1,0 +1,222 @@
+{
+ "id": "counter",
+ "title": "The Ripple Counter",
+ "tagline": "Two kinds of node, no code, and the lamps count in binary.",
+ "idea": "Events can compute. A BooleanToggle is one bit of memory. A BooleanFilter's inputNegate says yes when its input says no, which is the moment a bit rolls over from 1 to 0. Chain them and you have built the counter inside every computer.",
+ "extras": [
+  "Bit2",
+  "Bit3",
+  "View"
+ ],
+ "readout": {
+  "bits": [
+   "Bit0",
+   "Bit1",
+   "Bit2",
+   "Bit3"
+  ]
+ },
+ "challenges": [
+  {
+   "title": "Count to fifteen",
+   "ask": "Lamps 3 and 4 are dark. Wire them in so the counter reaches 15.",
+   "hint": "Copy the pattern: Flip1.toggle goes to a new BooleanFilter, its inputNegate goes to a new BooleanToggle, and that toggle goes to Bit2's visible. Once more for Bit3.",
+   "needs": [
+    [
+     "BooleanToggle",
+     "toggle",
+     "Bit2",
+     "visible"
+    ],
+    [
+     "BooleanToggle",
+     "toggle",
+     "Bit3",
+     "visible"
+    ]
+   ]
+  },
+  {
+   "title": "Let a clock press the button",
+   "ask": "Make it count by itself, once a second.",
+   "hint": "A TimeSensor with loop on sends cycleTime (a time) every cycle. A BooleanTrigger turns a time into a yes. Send that yes to Flip0's set_boolean.",
+   "needs": [
+    [
+     "TimeSensor",
+     "cycleTime",
+     "BooleanTrigger",
+     "set_triggerTime"
+    ],
+    [
+     "BooleanTrigger",
+     "triggerTrue",
+     "Flip0",
+     "set_boolean"
+    ]
+   ]
+  },
+  {
+   "title": "Count down",
+   "ask": "Make the counter run backwards: 0, 15, 14, 13 ...",
+   "hint": "Counting down borrows when a bit goes from 0 to 1. BooleanFilter has an output for that moment too: inputTrue. Use it in place of inputNegate.",
+   "needs": [
+    [
+     "BooleanFilter",
+     "inputTrue",
+     "BooleanToggle",
+     "set_boolean"
+    ]
+   ]
+  }
+ ],
+ "scene": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE X3D PUBLIC \"ISO//Web3D//DTD X3D 4.0//EN\" \"https://www.web3d.org/specifications/x3d-4.0.dtd\">\n<X3D profile=\"Immersive\" version=\"4.0\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema-instance\" xsd:noNamespaceSchemaLocation=\"https://www.web3d.org/specifications/x3d-4.0.xsd\">\n  <head>\n    <component name=\"EventUtilities\" level=\"1\"/>\n    <component name=\"Followers\" level=\"1\"/>\n    <meta name=\"title\" content=\"Wire Lab: The Ripple Counter\"/>\n    <meta name=\"creator\" content=\"x3d.demo Wire Lab\"/>\n    <meta name=\"generator\" content=\"x3d-blender-io behaviour_graph scripting methods\"/>\n    <meta name=\"license\" content=\"GPL-3.0-or-later\"/>\n  </head>\n  <Scene>\n    <NavigationInfo type='\"NONE\"' headlight=\"true\"/>\n    <Background skyColor=\"0.02 0.03 0.07 0.07 0.09 0.18\" skyAngle=\"1.6\" groundColor=\"0.05 0.06 0.11\"/>\n    <Viewpoint DEF=\"View\" description=\"Front\" position=\"0 1.9 9.5\" orientation=\"1 0 0 -0.03\"/>\n    <DirectionalLight direction=\"-0.4 -1 -0.6\" intensity=\"2.2\"/>\n    <Transform translation=\"0 -0.05 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.10 0.12 0.18\" emissiveColor=\"0 0 0\" roughness=\"0.9\" metallic=\"0.0\"/></Appearance><Box size=\"14 0.1 8\"/></Shape></Transform>\n    <Transform translation=\"3 0.8 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.3 0.32 0.4\" emissiveColor=\"0 0 0\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Cylinder radius=\"0.07\" height=\"1.6\"/></Shape></Transform>\n    <Transform translation=\"3 2 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.12 0.13 0.18\" emissiveColor=\"0 0 0\" roughness=\"0.3\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.42\"/></Shape><Transform DEF=\"Bit0\" visible=\"false\"><Shape><Appearance><PhysicalMaterial baseColor=\"1 0.75 0.2\" emissiveColor=\"1 0.7 0.15\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.5\"/></Shape></Transform></Transform>\n    <Transform translation=\"1 0.8 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.3 0.32 0.4\" emissiveColor=\"0 0 0\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Cylinder radius=\"0.07\" height=\"1.6\"/></Shape></Transform>\n    <Transform translation=\"1 2 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.12 0.13 0.18\" emissiveColor=\"0 0 0\" roughness=\"0.3\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.42\"/></Shape><Transform DEF=\"Bit1\" visible=\"false\"><Shape><Appearance><PhysicalMaterial baseColor=\"1 0.75 0.2\" emissiveColor=\"1 0.7 0.15\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.5\"/></Shape></Transform></Transform>\n    <Transform translation=\"-1 0.8 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.3 0.32 0.4\" emissiveColor=\"0 0 0\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Cylinder radius=\"0.07\" height=\"1.6\"/></Shape></Transform>\n    <Transform translation=\"-1 2 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.12 0.13 0.18\" emissiveColor=\"0 0 0\" roughness=\"0.3\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.42\"/></Shape><Transform DEF=\"Bit2\" visible=\"false\"><Shape><Appearance><PhysicalMaterial baseColor=\"1 0.75 0.2\" emissiveColor=\"1 0.7 0.15\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.5\"/></Shape></Transform></Transform>\n    <Transform translation=\"-3 0.8 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.3 0.32 0.4\" emissiveColor=\"0 0 0\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Cylinder radius=\"0.07\" height=\"1.6\"/></Shape></Transform>\n    <Transform translation=\"-3 2 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.12 0.13 0.18\" emissiveColor=\"0 0 0\" roughness=\"0.3\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.42\"/></Shape><Transform DEF=\"Bit3\" visible=\"false\"><Shape><Appearance><PhysicalMaterial baseColor=\"1 0.75 0.2\" emissiveColor=\"1 0.7 0.15\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.5\"/></Shape></Transform></Transform>\n    <Transform DEF=\"Button\" translation=\"0 0.45 2.2\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.9 0.15 0.2\" emissiveColor=\"0.25 0 0\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Cylinder radius=\"0.55\" height=\"0.3\"/></Shape></Transform>\n  </Scene>\n</X3D>\n",
+ "graph": {
+  "schema": "x3d-blender-io.behaviour-graph/v0",
+  "nodes": [
+   {
+    "id": "Press",
+    "type": "TouchSensor",
+    "role": "behaviour",
+    "fields": {
+     "description": "add one"
+    },
+    "parent": "Button",
+    "position": [
+     0,
+     0
+    ]
+   },
+   {
+    "id": "Flip0",
+    "type": "BooleanToggle",
+    "role": "behaviour",
+    "position": [
+     300,
+     0
+    ]
+   },
+   {
+    "id": "Carry0",
+    "type": "BooleanFilter",
+    "role": "behaviour",
+    "position": [
+     600,
+     0
+    ]
+   },
+   {
+    "id": "Flip1",
+    "type": "BooleanToggle",
+    "role": "behaviour",
+    "position": [
+     900,
+     0
+    ]
+   },
+   {
+    "id": "Bit0",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Bit0"
+    ],
+    "position": [
+     1200,
+     0
+    ]
+   },
+   {
+    "id": "Bit1",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Bit1"
+    ],
+    "position": [
+     1200,
+     -170
+    ]
+   },
+   {
+    "id": "Bit2",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Bit2"
+    ],
+    "position": [
+     1200,
+     -340
+    ]
+   },
+   {
+    "id": "Bit3",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Bit3"
+    ],
+    "position": [
+     1200,
+     -510
+    ]
+   },
+   {
+    "id": "View",
+    "type": "Viewpoint",
+    "role": "target",
+    "binding": [
+     "viewpoint",
+     "View"
+    ],
+    "position": [
+     1200,
+     -680
+    ]
+   }
+  ],
+  "routes": [
+   [
+    "Press",
+    "isActive",
+    "Flip0",
+    "set_boolean"
+   ],
+   [
+    "Flip0",
+    "toggle",
+    "Bit0",
+    "visible"
+   ],
+   [
+    "Flip0",
+    "toggle",
+    "Carry0",
+    "set_boolean"
+   ],
+   [
+    "Carry0",
+    "inputNegate",
+    "Flip1",
+    "set_boolean"
+   ],
+   [
+    "Flip1",
+    "toggle",
+    "Bit1",
+    "visible"
+   ]
+  ]
+ },
+ "script": "def counter():\n    b = bg.Behaviour()\n    press = b.add(\"TouchSensor\", \"Press\", parent=\"Button\", description=\"add one\")\n    flip0 = b.add(\"BooleanToggle\", \"Flip0\")\n    carry0 = b.add(\"BooleanFilter\", \"Carry0\")\n    flip1 = b.add(\"BooleanToggle\", \"Flip1\")\n    bit0 = b.target(\"Transform\", \"Bit0\")\n    bit1 = b.target(\"Transform\", \"Bit1\")\n    press.isActive >> flip0.set_boolean     # pressing sends yes; a BooleanToggle flips every time it hears yes\n    flip0.toggle >> bit0.visible            # the flip shows or hides the first lamp\n    flip0.toggle >> carry0.set_boolean      # the same flip also goes to a filter ...\n    carry0.inputNegate >> flip1.set_boolean  # ... which says yes exactly when the lamp went OFF: that is the carry\n    flip1.toggle >> bit1.visible\n    return b\n",
+ "sentences": "TouchSensor Press.isActive --SFBool--> BooleanToggle Flip0.set_boolean\nBooleanToggle Flip0.toggle --SFBool--> Transform Bit0.visible\nBooleanToggle Flip0.toggle --SFBool--> BooleanFilter Carry0.set_boolean\nBooleanFilter Carry0.inputNegate --SFBool--> BooleanToggle Flip1.set_boolean\nBooleanToggle Flip1.toggle --SFBool--> Transform Bit1.visible",
+ "x3d_sha256": "79a183b9ade038e21e99933f03c2d129820becb7004dad3135b3f200a9f037a1",
+ "counts": {
+  "nodes": 4,
+  "routes": 5
+ }
+}

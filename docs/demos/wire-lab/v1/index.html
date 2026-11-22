@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wire Lab: rewire a living X3D scene</title>
+<meta name="description" content="Three tinkerable X3D scenes whose behaviour is a graph you can rewire: a door, a binary counter made of two node types, and a tail that follows with no physics engine.">
+<link rel="stylesheet" href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css">
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<style>
+:root{--bg:#0b0e17;--panel:#131826;--panel2:#1a2133;--line:#28324a;--ink:#e8ecf5;--dim:#93a0bd;--amber:#f2b333;--good:#5fd38a;--bad:#ff6b6b;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--amber)}
+header{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#141a2b,#0e1220)}
+header h1{font-size:19px;margin:0;letter-spacing:.3px}
+header h1 b{color:var(--amber)}
+header .sub{color:var(--dim);font-size:13px}
+nav{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+nav a{padding:7px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-size:13.5px;background:var(--panel)}
+nav a.on{background:var(--amber);color:#1a1300;border-color:var(--amber);font-weight:600}
+main{display:grid;grid-template-columns:minmax(300px,34%) 1fr;gap:12px;padding:12px 16px;max-width:1800px;margin:0 auto}
+@media (max-width:980px){main{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.card h2{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--dim);margin:0;padding:9px 12px;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:center}
+.card h2 span.r{margin-left:auto;text-transform:none;letter-spacing:0;font-size:12px}
+.pad{padding:10px 12px}
+#stage{position:relative;aspect-ratio:16/10;background:#05070c}
+x3d-canvas{width:100%;height:100%;display:block}
+#readout{position:absolute;right:10px;top:8px;font:600 26px var(--mono);color:var(--amber);text-shadow:0 0 12px #000;pointer-events:none}
+#status{position:absolute;left:10px;bottom:8px;font:12px var(--mono);color:var(--dim);background:#000a;padding:2px 7px;border-radius:6px;pointer-events:none;max-width:92%}
+#status.bad{color:var(--bad)}
+#idea{color:#cfd7ea;font-size:14px}
+#tagline{font-size:16px;font-weight:600;margin:0 0 6px}
+.ch{border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin-bottom:8px;background:var(--panel2)}
+.ch.done{border-color:var(--good);background:#12281c}
+.ch b{display:flex;gap:8px;align-items:center}
+.ch .tick{width:18px;height:18px;border-radius:50%;border:2px solid var(--dim);flex:none;display:grid;place-items:center;font-size:12px}
+.ch.done .tick{border-color:var(--good);background:var(--good);color:#04200f}
+.ch p{margin:4px 0 0 26px;color:#cfd7ea;font-size:13.5px}
+.ch button{margin:6px 0 0 26px}
+.ch .hint{display:none;margin:6px 0 0 26px;color:var(--amber);font-size:13px}
+.ch.open .hint{display:block}
+button,select,input{font:inherit;color:var(--ink);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:5px 9px}
+button{cursor:pointer}
+button:hover{border-color:var(--amber)}
+button.small{font-size:12px;padding:3px 8px}
+#tape{font:12px/1.5 var(--mono);height:150px;overflow:auto;padding:8px 12px;color:#b9c4dd}
+#tape i{font-style:normal;display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+#tape .v{color:var(--dim)}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line)}
+#graph{width:100%;height:min(62vh,640px);min-height:380px;display:block;background:
+  radial-gradient(circle at 1px 1px,#222b40 1px,transparent 1.5px) 0 0/22px 22px,#0d111c;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+#graph.wiring{cursor:crosshair}
+.node rect.body{fill:#182033;stroke:#33405f;stroke-width:1.2}
+.node.target rect.body{fill:#14262c;stroke:#2f5560}
+.node.sel rect.body{stroke:var(--amber);stroke-width:2}
+.node rect.head{fill:#243152;cursor:move}
+.node.target rect.head{fill:#1f4450}
+.node text{fill:var(--ink);font:12px system-ui,sans-serif;pointer-events:none}
+.node text.t{font-weight:600;font-size:12.5px}
+.node text.d{fill:#aeb9d3;font-size:11px}
+.node text.f{font:11.5px var(--mono);fill:#cdd5e8}
+.node text.more{fill:var(--dim);font-size:11px;pointer-events:auto;cursor:pointer}
+.sock{stroke:#0b0e17;stroke-width:1.5;cursor:crosshair}
+.sock.can{stroke:#fff;stroke-width:2.5}
+.sock.cannot{opacity:.18}
+.wire{fill:none;stroke-width:3;stroke-linecap:round;cursor:pointer;opacity:.9}
+.wire:hover{stroke:var(--bad)!important;stroke-width:5}
+.wire.pulse{stroke-width:7;filter:drop-shadow(0 0 6px currentColor)}
+#rubber{fill:none;stroke:#fff;stroke-width:2.5;stroke-dasharray:6 5;pointer-events:none}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);max-width:min(680px,92vw);background:#2a1216;border:1px solid var(--bad);color:#ffd9d9;padding:11px 15px;border-radius:12px;font-size:14px;display:none;z-index:20;box-shadow:0 10px 40px #000a}
+#toast.good{background:#12281c;border-color:var(--good);color:#d5ffe6}
+#toast b{color:#fff}
+.tabs{display:flex;gap:4px;padding:8px 12px 0}
+.tabs button{border-radius:8px 8px 0 0;border-bottom:none;font-size:13px}
+.tabs button.on{background:#0d111c;border-color:var(--amber);color:var(--amber)}
+pre{margin:0;padding:12px;background:#0d111c;font:12.5px/1.5 var(--mono);overflow:auto;max-height:300px;white-space:pre;border-top:1px solid var(--line);color:#d6ddee}
+pre .k{color:var(--amber)} pre .c{color:#7f8cab} pre .s{color:#8fd6a8}
+#inspector label{display:grid;grid-template-columns:150px 1fr;gap:8px;align-items:center;margin:5px 0;font:12.5px var(--mono)}
+#inspector label small{display:block;color:var(--dim);font:11px system-ui}
+#inspector input,#inspector select{width:100%;font:12.5px var(--mono)}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:12px}
+@media (max-width:1250px){.grid2{grid-template-columns:1fr}}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--dim);padding:8px 12px;border-top:1px solid var(--line)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+footer{color:var(--dim);font-size:12.5px;padding:6px 18px 30px;max-width:1800px;margin:0 auto}
+footer code,p code{font-family:var(--mono);color:#cfd7ea}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1><b>Wire Lab</b> · rewire a living X3D scene</h1>
+    <div class="sub">Drag from a dot on the right of a node to a dot of the same colour on the left of another. Click a wire to cut it.</div>
+  </div>
+  <nav id="nav"></nav>
+</header>
+<main>
+  <section>
+    <div class="card">
+      <div id="stage">
+        <x3d-canvas id="x3d" contextMenu="false" notifications="false" splashScreen="false" timings="false"></x3d-canvas>
+        <div id="readout"></div>
+        <div id="status">loading</div>
+      </div>
+      <div class="pad"><p id="tagline"></p><div id="idea"></div></div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h2>Challenges <span class="r" id="score"></span></h2>
+      <div class="pad" id="challenges"></div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h2>Events flowing right now <span class="r"><button class="small" id="clearTape">clear</button></span></h2>
+      <div id="tape"></div>
+    </div>
+  </section>
+  <section>
+    <div class="card">
+      <h2>The behaviour graph <span class="r" id="counts"></span></h2>
+      <div class="tools">
+        <select id="addNode" aria-label="Add a node"><option value="">+ Add a node…</option></select>
+        <select id="addTarget" aria-label="Add a scene part"><option value="">+ Add a scene part…</option></select>
+        <button id="tidy">Tidy</button>
+        <button id="fit">Fit</button>
+        <button id="reset">Start over</button>
+        <button id="download">Download .x3d</button>
+      </div>
+      <svg id="graph" role="application" aria-label="Behaviour graph editor"><g id="view"><g id="wires"></g><g id="nodes"></g><path id="rubber" d=""/></g></svg>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="card">
+        <div class="tabs" id="tabs">
+          <button data-tab="script" class="on">Script</button>
+          <button data-tab="x3d">X3D</button>
+          <button data-tab="sentences">Sentences</button>
+          <button data-tab="builder">The script that built this world</button>
+        </div>
+        <pre id="code"></pre>
+      </div>
+      <div class="card">
+        <h2>Selected node</h2>
+        <div class="pad" id="inspector"><span style="color:var(--dim)">Click a node to see and change its fields.</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>The picture is drawn by <a href="https://create3000.github.io/x_ite/">X_ITE</a> 16.7.1 from an X3D 4.0 file. The graph, the script and the X3D text are three views of the same thing: change one and the others follow. The node list comes from the X3D Unified Object Model (45 behaviour node types), through the same catalogue the Blender add-on <code>x3d-blender-io</code> uses, and the wiring rule here gives the same verdict as the add-on's Python on 55 shared cases (<code>build/test_core.mjs</code>). Download the file and import it into Blender with "Behaviour as node graph" ticked to see the same graph in Blender's node editor. Proof of concept. Checked in headless Chromium with software rendering only; no real GPU, phone or other browser was tried.</p>
+</footer>
+<div id="toast"></div>
+
+<script type="module">
+import { Catalogue, Graph, COLOURS, PLAIN, WireError, weave, toPython, layout } from './wirelab.js';
+
+const WORLDS = [['door', 'The Door'], ['counter', 'The Ripple Counter'], ['snake', 'The Follower']];
+const worldId = (new URLSearchParams(location.search).get('world') || 'door').replace(/[^a-z]/g, '');
+const $ = id => document.getElementById(id);
+const NS = 'http://www.w3.org/2000/svg';
+const el = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); if (parent) parent.appendChild(e); return e; };
+const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }, del(k) { try { localStorage.removeItem(k); } catch {} } };
+
+$('nav').innerHTML = WORLDS.map(([id, title], i) => `<a href="?world=${id}" class="${id === worldId ? 'on' : ''}">${i + 1}. ${title}</a>`).join('');
+
+const cat = new Catalogue(await (await fetch('catalogue.json')).json());
+const world = await (await fetch(`worlds/${worldId}.json`)).json();
+const KEY = `wirelab.v1.${worldId}`;
+let graph = new Graph(cat, store.get(KEY) || world.graph);
+let selected = null, expanded = new Set(), tab = 'script';
+const view = { x: 40, y: 60, k: 1 };
+
+$('tagline').textContent = world.tagline;
+$('idea').textContent = world.idea;
+document.title = `Wire Lab: ${world.title}`;
+
+// ---- which fields a node shows ---------------------------------------------------------------------------------
+const QUIET = new Set(['metadata', 'description', 'enabled', 'pauseTime', 'resumeTime', 'elapsedTime', 'isPaused', 'closed', 'bboxCenter', 'bboxSize', 'bboxDisplay',
+  'center', 'scaleOrientation', 'addChildren', 'removeChildren', 'children', 'key', 'keyValue', 'autoOffset', 'offset', 'maxPosition', 'minPosition', 'axisRotation',
+  'hitNormal_changed', 'hitPoint_changed', 'hitTexCoord_changed', 'trackPoint_changed', 'set_value', 'tolerance', 'order', 'tau', 'duration', 'initialValue', 'initialDestination',
+  'stopTime', 'cycleInterval', 'loop', 'time', 'centerOfRotation', 'fieldOfView', 'jump', 'retainUserOffsets', 'nearDistance', 'farDistance', 'viewAll', 'navigationInfo',
+  'position', 'orientation', 'occlusionStrength', 'normalScale', 'emissiveTextureMapping', 'baseTextureMapping', 'metallicRoughnessTextureMapping', 'normalTextureMapping', 'occlusionTextureMapping',
+  'baseTexture', 'emissiveTexture', 'metallicRoughnessTexture', 'normalTexture', 'occlusionTexture', 'global', 'shadows', 'shadowIntensity', 'ambientIntensity', 'attenuation', 'location', 'radius',
+  'orientation_changed', 'centerOfRotation_changed', 'exitTime', 'size', 'next', 'previous', 'set_boolean_', 'inputFalse']);
+const routable = n => (cat.rows(n.type) || []).filter(r => r[2] !== 'initializeOnly' && !r[1].endsWith('Node'));
+function shown(n) {
+  const all = routable(n);
+  if (expanded.has(n.id)) return all;
+  const wired = new Set();
+  for (const r of graph.routes) {
+    if (r[0] === n.id) { try { wired.add(cat.resolve(n.type, r[1], 'out')[0]); } catch {} }
+    if (r[2] === n.id) { try { wired.add(cat.resolve(n.type, r[3], 'in')[0]); } catch {} }
+  }
+  const keep = all.filter(r => wired.has(r[0]) || !QUIET.has(r[0]));
+  return keep.length ? keep : all.slice(0, 4);
+}
+
+// ---- drawing ---------------------------------------------------------------------------------------------------
+const W = 216, HEAD = 40, ROW = 20;
+const sockets = new Map();   // "id|field|in|out" -> {x, y, type}
+function draw() {
+  $('view').setAttribute('transform', `translate(${view.x} ${view.y}) scale(${view.k})`);
+  const gn = $('nodes'), gw = $('wires');
+  gn.replaceChildren(); gw.replaceChildren(); sockets.clear();
+  const rank = n => (expanded.has(n.id) ? 1 : 0) + (selected === n.id ? 2 : 0);
+  for (const n of [...graph.nodes.values()].sort((p, q) => rank(p) - rank(q))) {   // expanded and selected nodes on top
+    const [x, y] = n.position ? [n.position[0], -n.position[1]] : [0, 0];
+    const rows = shown(n), hidden = routable(n).length - rows.length;
+    const h = HEAD + rows.length * ROW + 20;
+    const g = el('g', { class: `node ${n.role === 'target' ? 'target' : ''} ${selected === n.id ? 'sel' : ''}`, transform: `translate(${x} ${y})`, 'data-id': n.id }, gn);
+    el('rect', { class: 'body', width: W, height: h, rx: 9 }, g);
+    el('rect', { class: 'head', width: W, height: HEAD, rx: 9, 'data-drag': n.id }, g);
+    el('text', { class: 't', x: 10, y: 17 }, g).textContent = n.id;
+    el('text', { class: 'd', x: 10, y: 32 }, g).textContent = n.role === 'target' ? `${n.type} · in the scene` : n.type + (n.parent ? ` · sits in ${n.parent}` : '');
+    rows.forEach((r, i) => {
+      const cy = HEAD + 14 + i * ROW, colour = COLOURS[r[1]] || '#888';
+      const canIn = r[2] !== 'outputOnly', canOut = r[2] !== 'inputOnly';
+      el('text', { class: 'f', x: canIn ? 16 : W - 16, y: cy + 4, 'text-anchor': canIn ? 'start' : 'end' }, g).textContent = r[0];
+      if (canIn) { const c = el('circle', { class: 'sock in', cx: 0, cy, r: 6.5, fill: colour, 'data-node': n.id, 'data-field': r[0], 'data-dir': 'in', 'data-type': r[1] }, g); el('title', {}, c).textContent = `${r[0]} takes ${PLAIN[r[1]] || r[1]} (${r[1]})`; sockets.set(`${n.id}|${r[0]}|in`, { x, y: y + cy, type: r[1] }); }
+      if (canOut) { const c = el('circle', { class: 'sock out', cx: W, cy, r: 6.5, fill: colour, 'data-node': n.id, 'data-field': r[0], 'data-dir': 'out', 'data-type': r[1] }, g); el('title', {}, c).textContent = `${r[0]} sends ${PLAIN[r[1]] || r[1]} (${r[1]})`; sockets.set(`${n.id}|${r[0]}|out`, { x: x + W, y: y + cy, type: r[1] }); }
+    });
+    const more = el('text', { class: 'more', x: W / 2, y: h - 7, 'text-anchor': 'middle', 'data-more': n.id }, g);
+    more.textContent = expanded.has(n.id) ? 'show fewer fields' : hidden > 0 ? `+ ${hidden} more fields` : '';
+  }
+  graph.routes.forEach((r, index) => {
+    let a, b;
+    try { a = sockets.get(`${r[0]}|${cat.resolve(graph.nodes.get(r[0]).type, r[1], 'out')[0]}|out`); b = sockets.get(`${r[2]}|${cat.resolve(graph.nodes.get(r[2]).type, r[3], 'in')[0]}|in`); } catch {}
+    if (!a || !b) return;
+    const colour = COLOURS[a.type] || '#888';
+    const p = el('path', { class: 'wire', d: curve(a, b), stroke: colour, style: `color:${colour}`, 'data-route': index }, gw);
+    el('title', {}, p).textContent = `${r[0]}.${r[1]} → ${r[2]}.${r[3]}  (${a.type}: ${PLAIN[a.type] || ''})  click to cut`;
+  });
+  $('counts').textContent = `${[...graph.nodes.values()].filter(n => n.role === 'behaviour').length} nodes · ${graph.routes.length} ROUTEs`;
+}
+const curve = (a, b) => { const d = Math.max(50, Math.abs(b.x - a.x) * .5); return `M${a.x} ${a.y} C${a.x + d} ${a.y} ${b.x - d} ${b.y} ${b.x} ${b.y}`; };
+
+function fit() {
+  const box = $('graph').getBoundingClientRect(); let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+  for (const n of graph.nodes.values()) { const [x, y] = [n.position?.[0] || 0, -(n.position?.[1] || 0)]; x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x + W); y1 = Math.max(y1, y + HEAD + shown(n).length * ROW + 20); }
+  view.k = Math.min(1.15, (box.width - 60) / (x1 - x0), (box.height - 50) / (y1 - y0));
+  view.x = 30 - x0 * view.k + Math.max(0, (box.width - 60 - (x1 - x0) * view.k) / 2); view.y = 25 - y0 * view.k;
+  draw();
+}
+
+// ---- code views ------------------------------------------------------------------------------------------------
+const html = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+function showCode() {
+  let text = '';
+  if (tab === 'script') text = html('from behaviour_graph import Behaviour\n\n' + toPython(graph) + '\nopen("' + worldId + '.x3d", "w").write(b.weave(scene))\n').replace(/(&gt;&gt;|>>)/g, '<span class="k">$1</span>').replace(/("[^"\n]*")/g, '<span class="s">$1</span>');
+  if (tab === 'x3d') { try { text = html(weave(world.scene, graph)).replace(/(&lt;ROUTE[^\n]*)/g, '<span class="k">$1</span>'); } catch (e) { text = html(e.message); } }
+  if (tab === 'sentences') text = html(graph.explain() || '(no ROUTEs yet)');
+  if (tab === 'builder') text = html(world.script).replace(/(#[^\n]*)/g, '<span class="c">$1</span>');
+  $('code').innerHTML = text;
+}
+$('tabs').addEventListener('click', e => { const t = e.target.dataset.tab; if (!t) return; tab = t; [...$('tabs').children].forEach(b => b.classList.toggle('on', b.dataset.tab === t)); showCode(); });
+
+// ---- challenges ------------------------------------------------------------------------------------------------
+const openHints = new Set(); let lastSolved = new Set();
+function showChallenges() {
+  const solved = world.challenges.map(c => graph.solved(c));
+  $('challenges').innerHTML = world.challenges.map((c, i) => `<div class="ch ${solved[i] ? 'done' : ''} ${openHints.has(i) ? 'open' : ''}"><b><span class="tick">${solved[i] ? '✓' : ''}</span>${html(c.title)}</b><p>${html(c.ask)}</p><button class="small" data-hint="${i}">${openHints.has(i) ? 'hide hint' : 'hint'}</button><div class="hint">${html(c.hint)}</div></div>`).join('');
+  $('score').textContent = `${solved.filter(Boolean).length} of ${solved.length} solved`;
+  solved.forEach((s, i) => { if (s && !lastSolved.has(i)) toast(`<b>Solved:</b> ${html(world.challenges[i].title)}. Now try it in the picture.`, true); });
+  lastSolved = new Set(solved.map((s, i) => s ? i : -1).filter(i => i >= 0));
+}
+$('challenges').addEventListener('click', e => { const i = e.target.dataset.hint; if (i === undefined) return; openHints.has(+i) ? openHints.delete(+i) : openHints.add(+i); showChallenges(); });
+
+// ---- inspector -------------------------------------------------------------------------------------------------
+function showInspector() {
+  const n = graph.nodes.get(selected), box = $('inspector');
+  if (!n) { box.innerHTML = '<span style="color:var(--dim)">Click a node to see and change its fields.</span>'; return; }
+  if (n.role === 'target') { box.innerHTML = `<p style="margin:0 0 8px"><b>${n.id}</b> is a ${n.type} in the scene. The graph can wire to it, but its shape and place belong to the scene (in Blender: to the object).</p><button id="del">Take it off the bench</button>`; }
+  else {
+    const transforms = [...world.scene.matchAll(/<Transform DEF="([^"]+)"/g)].map(m => m[1]);
+    box.innerHTML = `<p style="margin:0 0 8px"><b>${n.id}</b> · ${n.type} <span style="color:var(--dim)">(${cat.data.nodes[n.type].group})</span></p>` +
+      (cat.isPlaced(n.type) ? `<label><span>sits in<small>it senses that part's shapes</small></span><select data-parent><option value="">(the whole scene)</option>${transforms.map(t => `<option ${n.parent === t ? 'selected' : ''}>${t}</option>`).join('')}</select></label>` : '') +
+      cat.settable(n.type).filter(r => !r[1].endsWith('Node') && r[0] !== 'description').map(r => `<label><span>${r[0]}<small>${PLAIN[r[1]] || r[1]}</small></span><input data-field="${r[0]}" value="${html(n.fields[r[0]] ?? '').replace(/"/g, '&quot;')}" placeholder="${html(r[3] ?? '').replace(/"/g, '&quot;')}"></label>`).join('') +
+      '<button id="del" style="margin-top:8px">Delete this node</button>';
+  }
+}
+$('inspector').addEventListener('change', e => {
+  const n = graph.nodes.get(selected); if (!n) return;
+  if (e.target.dataset.field) { const v = e.target.value.trim(); if (v === '') delete n.fields[e.target.dataset.field]; else n.fields[e.target.dataset.field] = v; }
+  if ('parent' in e.target.dataset) { if (e.target.value) n.parent = e.target.value; else delete n.parent; }
+  changed();
+});
+$('inspector').addEventListener('click', e => { if (e.target.id === 'del') { graph.remove(selected); selected = null; changed(); } });
+
+// ---- toast -----------------------------------------------------------------------------------------------------
+let toastTimer;
+function toast(message, good = false) { const t = $('toast'); t.innerHTML = message; t.className = good ? 'good' : ''; t.style.display = 'block'; clearTimeout(toastTimer); toastTimer = setTimeout(() => t.style.display = 'none', good ? 3500 : 7000); }
+const CONVERT = { 'SFBool>SFTime': 'a TimeTrigger turns a yes into a time', 'SFTime>SFBool': 'a BooleanTrigger turns a time into a yes', 'SFFloat>SFVec3f': 'a PositionInterpolator turns a number into a place',
+  'SFFloat>SFColor': 'a ColorInterpolator turns a number into a colour', 'SFFloat>SFRotation': 'an OrientationInterpolator turns a number into a turn', 'SFTime>SFFloat': 'a TimeSensor turns a start time into a number that runs from 0 to 1',
+  'SFBool>SFInt32': 'an IntegerTrigger turns a yes into a whole number', 'SFBool>SFFloat': 'a TimeTrigger then a TimeSensor turn a yes into a running number', 'SFVec3f>SFRotation': 'these do not convert directly; drive both from one timer with two interpolators' };
+function refuse(from, to) {
+  const a = `${from.node}.${from.field}`, b = `${to.node}.${to.field}`;
+  if (from.type !== to.type) { const tip = CONVERT[`${from.type}>${to.type}`]; toast(`<b>X3D refuses this wire.</b> ${a} sends ${PLAIN[from.type] || from.type} (${from.type}) but ${b} takes ${PLAIN[to.type] || to.type} (${to.type}). A ROUTE joins two fields of one type.${tip ? ` Try this: ${tip}.` : ''}`); }
+}
+
+// ---- pointer work on the graph ---------------------------------------------------------------------------------
+const svg = $('graph'); let drag = null;
+const toGraph = e => { const b = svg.getBoundingClientRect(); return { x: (e.clientX - b.left - view.x) / view.k, y: (e.clientY - b.top - view.y) / view.k }; };
+const sockOf = t => t?.classList?.contains('sock') ? { node: t.dataset.node, field: t.dataset.field, dir: t.dataset.dir, type: t.dataset.type } : null;
+function markSockets(from) {
+  svg.classList.toggle('wiring', !!from);
+  svg.querySelectorAll('.sock').forEach(s => { s.classList.remove('can', 'cannot'); if (!from) return; const ok = s.dataset.dir !== from.dir && s.dataset.type === from.type && s.dataset.node !== from.node; s.classList.add(ok ? 'can' : 'cannot'); });
+  svg.querySelectorAll(`.sock[data-node="${from?.node}"][data-field="${from?.field}"][data-dir="${from?.dir}"]`).forEach(s => s.classList.remove('cannot'));
+}
+function connect(a, b) {
+  if (!a || !b || a.dir === b.dir) return;
+  const [from, to] = a.dir === 'out' ? [a, b] : [b, a];
+  try { graph.route(from.node, from.field, to.node, to.field); changed(); }
+  catch (e) { if (e instanceof WireError && e.code === 'type-mismatch') refuse(from, to); else toast(`<b>X3D refuses this wire.</b> ${html(e.message)}`); }
+}
+svg.addEventListener('pointerdown', e => {
+  const s = sockOf(e.target), p = toGraph(e);
+  svg.setPointerCapture(e.pointerId);
+  if (s) { if (drag?.kind === 'wire' && drag.sticky) { connect(drag.from, s); drag = null; markSockets(null); $('rubber').setAttribute('d', ''); return; } drag = { kind: 'wire', from: s, start: sockets.get(`${s.node}|${s.field}|${s.dir}`), moved: false }; markSockets(s); return; }
+  if (drag?.kind === 'wire') { drag = null; markSockets(null); $('rubber').setAttribute('d', ''); }
+  if (e.target.dataset.drag) { const n = graph.nodes.get(e.target.dataset.drag); n.position ||= [0, 0]; drag = { kind: 'node', n, dx: p.x - n.position[0], dy: p.y + n.position[1], moved: false }; return; }
+  if (e.target.dataset.more) { const id = e.target.dataset.more; expanded.has(id) ? expanded.delete(id) : expanded.add(id); draw(); return; }
+  if (e.target.dataset.route !== undefined) { graph.unroute(+e.target.dataset.route); changed(); return; }
+  const nodeEl = e.target.closest?.('.node'); if (nodeEl) { selected = nodeEl.dataset.id; draw(); showInspector(); return; }
+  drag = { kind: 'pan', x: e.clientX - view.x, y: e.clientY - view.y };
+});
+svg.addEventListener('pointermove', e => {
+  if (!drag) return; const p = toGraph(e);
+  if (drag.kind === 'wire') { drag.moved = true; const a = drag.start, b = { x: p.x, y: p.y }; $('rubber').setAttribute('d', drag.from.dir === 'out' ? curve(a, b) : curve(b, a)); }
+  if (drag.kind === 'node') { drag.moved = true; drag.n.position = [p.x - drag.dx, -(p.y - drag.dy)]; draw(); }
+  if (drag.kind === 'pan') { view.x = e.clientX - drag.x; view.y = e.clientY - drag.y; draw(); }
+});
+svg.addEventListener('pointerup', e => {
+  if (!drag) return;
+  if (drag.kind === 'wire') {
+    const target = sockOf(document.elementFromPoint(e.clientX, e.clientY));
+    if (target && !(target.node === drag.from.node && target.field === drag.from.field && target.dir === drag.from.dir)) { connect(drag.from, target); drag = null; }
+    else if (!drag.sticky && target) { drag.sticky = true; return; }      // a click on a dot: click the other end next
+    else drag = null;
+    if (!drag) { markSockets(null); $('rubber').setAttribute('d', ''); }
+    return;
+  }
+  if (drag.kind === 'node') { if (!drag.moved) { selected = drag.n.id; showInspector(); } save(); draw(); }
+  drag = null;
+});
+svg.addEventListener('wheel', e => { e.preventDefault(); const b = svg.getBoundingClientRect(), f = e.deltaY < 0 ? 1.1 : 1 / 1.1, mx = e.clientX - b.left, my = e.clientY - b.top; view.x = mx - (mx - view.x) * f; view.y = my - (my - view.y) * f; view.k *= f; draw(); }, { passive: false });
+
+// ---- toolbar ---------------------------------------------------------------------------------------------------
+$('addNode').innerHTML += Object.entries(cat.groups()).map(([g, names]) => `<optgroup label="${g}">${names.map(n => `<option>${n}</option>`).join('')}</optgroup>`).join('');
+const sceneParts = [...world.scene.matchAll(/<(\w+) DEF="([^"]+)"/g)].map(m => ({ type: m[1], id: m[2] })).filter(p => cat.data.targets[p.type]);
+function fillTargets() { $('addTarget').innerHTML = '<option value="">+ Add a scene part…</option>' + sceneParts.filter(p => !graph.nodes.has(p.id)).map(p => `<option value="${p.id}">${p.id} (${p.type})</option>`).join(''); }
+const dropPoint = () => { const b = svg.getBoundingClientRect(); return [(b.width * .45 - view.x) / view.k + Math.random() * 40, -((b.height * .3 - view.y) / view.k + Math.random() * 40)]; };
+$('addNode').addEventListener('change', e => { if (!e.target.value) return; const n = graph.add(e.target.value, null, { position: dropPoint() }); if (cat.isPlaced(n.type)) { const first = world.scene.match(/<Transform DEF="([^"]+)"/); if (first) n.parent = first[1]; } selected = n.id; e.target.value = ''; changed(); });
+$('addTarget').addEventListener('change', e => { const p = sceneParts.find(s => s.id === e.target.value); if (!p) return; graph.nodes.set(p.id, { id: p.id, type: p.type, role: 'target', fields: {}, binding: ['def', p.id], position: dropPoint() }); selected = p.id; changed(); });
+function arrange() {
+  const wired = new Set(graph.routes.flatMap(r => [r[0], r[2]])), pos = layout(graph, 290, 150);
+  let low = 0, col = {}, i = 0;
+  for (const n of graph.nodes.values()) if (wired.has(n.id)) { const c = pos[n.id][0]; col[c] = (col[c] || 0); n.position = [c, -col[c]]; col[c] += HEAD + shown(n).length * ROW + 46; low = Math.max(low, col[c]); }
+  for (const n of graph.nodes.values()) if (!wired.has(n.id)) { n.position = [(i % 4) * 250, -(low + 30 + Math.floor(i / 4) * 190)]; i++; }
+}
+$('tidy').addEventListener('click', () => { arrange(); save(); fit(); });
+$('fit').addEventListener('click', fit);
+$('reset').addEventListener('click', () => { store.del(KEY); graph = new Graph(cat, world.graph); selected = null; expanded.clear(); lastSolved = new Set(); arrange(); changed(); fit(); });
+$('download').addEventListener('click', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([weave(world.scene, graph)], { type: 'model/x3d+xml' })); a.download = `wire-lab-${worldId}.x3d`; a.click(); });
+$('clearTape').addEventListener('click', () => $('tape').replaceChildren());
+$('legend').innerHTML = ['SFBool', 'SFTime', 'SFFloat', 'SFVec3f', 'SFRotation', 'SFColor', 'SFInt32'].map(t => `<span><i style="background:${COLOURS[t]}"></i>${PLAIN[t]} <span style="opacity:.6">${t}</span></span>`).join('') + '<span>A wire only joins two dots of one colour.</span>';
+
+// ---- the live scene --------------------------------------------------------------------------------------------
+const browser = X3D.getBrowser($('x3d'));
+let loadTimer, generation = 0;
+const short = v => { const s = String(v).replace(/\s+/g, ' ').trim(); const n = s.split(' ').map(Number); return (n.every(x => !Number.isNaN(x)) ? n.map(x => Math.abs(x) > 1e6 ? x.toFixed(0) : +x.toFixed(2)).join(' ') : s).slice(0, 34); };
+const lastPulse = new Map();
+function onEvent(index, r, type, value) {
+  const now = performance.now(), key = r.join('|');
+  if (now - (lastPulse.get(key) || 0) < 180) return;
+  lastPulse.set(key, now);
+  const wire = svg.querySelector(`.wire[data-route="${index}"]`);
+  if (wire) { wire.classList.add('pulse'); setTimeout(() => wire.classList.remove('pulse'), 260); }
+  const line = document.createElement('div');
+  line.innerHTML = `<i style="background:${COLOURS[type] || '#888'}"></i>${r[0]}.${r[1]} → ${r[2]}.${r[3]} <span class="v">${html(short(value))}</span>`;
+  const tape = $('tape'); tape.prepend(line); while (tape.children.length > 60) tape.lastChild.remove();
+}
+async function load() {
+  const mine = ++generation, status = $('status');
+  let text; try { text = weave(world.scene, graph); } catch (e) { status.textContent = e.message; status.className = 'bad'; return; }
+  try {
+    const scene = await browser.createX3DFromString(text);
+    if (mine !== generation) return;
+    await browser.replaceWorld(scene);
+    graph.routes.forEach((r, index) => {
+      try {
+        const node = scene.getNamedNode(r[0]), [field, type] = cat.resolve(graph.nodes.get(r[0]).type, r[1], 'out');
+        node.getField(field).addFieldCallback(`wirelab${index}`, value => onEvent(index, r, type, value));
+      } catch (e) { console.warn('no callback for', r, e.message); }
+    });
+    window.__wirelab = { scene, graph, world, loaded: mine, changed };
+    status.textContent = `X_ITE ${browser.version} · ${graph.routes.length} ROUTEs live`; status.className = '';
+  } catch (e) { status.textContent = `X_ITE could not load the scene: ${e.message}`; status.className = 'bad'; }
+}
+if (world.readout) setInterval(() => { try { const s = window.__wirelab.scene; $('readout').textContent = '= ' + world.readout.bits.reduce((sum, b, i) => sum + (s.getNamedNode(b).visible ? 1 << i : 0), 0); } catch {} }, 150);
+
+function save() { store.set(KEY, graph.toJSON()); }
+function changed() { save(); fillTargets(); draw(); showCode(); showChallenges(); showInspector(); clearTimeout(loadTimer); loadTimer = setTimeout(load, 200); }
+lastSolved = new Set(world.challenges.map((c, i) => graph.solved(c) ? i : -1).filter(i => i >= 0));
+if (!store.get(KEY)) arrange();
+changed(); fit();
+window.addEventListener('resize', draw);
+</script>
+</body>
+</html>

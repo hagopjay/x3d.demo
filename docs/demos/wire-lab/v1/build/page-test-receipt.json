@@ -1,0 +1,228 @@
+{
+ "pass": 30,
+ "fail": 0,
+ "errors": [],
+ "results": [
+  {
+   "ok": true,
+   "label": "door: graph drawn"
+  },
+  {
+   "ok": true,
+   "label": "door: red button found under the pointer",
+   "got": {
+    "fx": 0.28,
+    "fy": 0.5
+   }
+  },
+  {
+   "ok": true,
+   "label": "door: a real click moved the door up",
+   "got": {
+    "before": "1.2",
+    "during": "3.7"
+   }
+  },
+  {
+   "ok": true,
+   "label": "door: Timer is running after the click"
+  },
+  {
+   "ok": true,
+   "label": "door: the event tape shows the click and the slide",
+   "got": 19
+  },
+  {
+   "ok": true,
+   "label": "door: door is back down after the cycle"
+  },
+  {
+   "ok": true,
+   "label": "door: isOver to startTime is refused",
+   "got": "type-mismatch"
+  },
+  {
+   "ok": true,
+   "label": "door: while dragging, only same-type inputs light up",
+   "got": {
+    "can": 5,
+    "cannot": 70
+   }
+  },
+  {
+   "ok": true,
+   "label": "door: a dragged wire became a ROUTE"
+  },
+  {
+   "ok": true,
+   "label": "door: a wrong wire is refused with the reason and a way forward",
+   "got": "X3D refuses this wire. Click.isOver sends yes / no (SFBool) but Timer.startTime takes a ti"
+  },
+  {
+   "ok": true,
+   "label": "door: challenge 1 ticks itself when the graph satisfies it"
+  },
+  {
+   "ok": true,
+   "label": "door: after the rewire, hovering alone opens the door",
+   "got": "0 3.7 0"
+  },
+  {
+   "ok": true,
+   "label": "counter: button found under the pointer",
+   "got": {
+    "fx": 0.5,
+    "fy": 0.72
+   }
+  },
+  {
+   "ok": true,
+   "label": "counter: five real clicks count 0 1 2 3 0 1 on two wired bits",
+   "got": [
+    0,
+    1,
+    2,
+    3,
+    0,
+    1
+   ]
+  },
+  {
+   "ok": true,
+   "label": "counter: challenge 1 solved by copying the pattern"
+  },
+  {
+   "ok": true,
+   "label": "counter: with four bits, seventeen clicks count 0 to 15 and wrap",
+   "got": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    0,
+    1
+   ]
+  },
+  {
+   "ok": true,
+   "label": "counter: the readout shows the number"
+  },
+  {
+   "ok": true,
+   "label": "counter: inputTrue in place of inputNegate counts down",
+   "got": [
+    0,
+    15,
+    14,
+    13,
+    12
+   ]
+  },
+  {
+   "ok": true,
+   "label": "counter: with a TimeSensor and a BooleanTrigger it counts by itself",
+   "got": {
+    "v0": 12,
+    "v1": 6
+   }
+  },
+  {
+   "ok": true,
+   "label": "counter: all three challenges tick"
+  },
+  {
+   "ok": true,
+   "label": "follower: head and first bead are moving",
+   "got": {
+    "head": "1.94",
+    "bead": "2.50"
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: each bead lags the one in front",
+   "got": {
+    "headToBead1": "1.42",
+    "bead1ToBead2": "1.34"
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: unwired bead 3 rests on the floor",
+   "got": [
+    -3,
+    0.5,
+    0
+   ]
+  },
+  {
+   "ok": true,
+   "label": "follower: after wiring, beads 3 and 4 leave the floor and follow",
+   "got": {
+    "seg3": [
+     2.77,
+     2.31,
+     0
+    ],
+    "seg4": [
+     1.69,
+     2.52,
+     0
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: the beacon is on while the last damper is still moving"
+  },
+  {
+   "ok": true,
+   "label": "follower: the head can be found under the pointer after adding a PlaneSensor",
+   "got": {
+    "fx": 0.5,
+    "fy": 0.46
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: a real mouse drag moves the head right and up",
+   "got": {
+    "before": [
+     0,
+     2.2,
+     0
+    ],
+    "after": [
+     4.08,
+     3.73,
+     0
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: the beacon goes out once the tail has arrived"
+  },
+  {
+   "ok": true,
+   "label": "follower: the last bead ends where the head was dropped",
+   "got": "0.000"
+  },
+  {
+   "ok": true,
+   "label": "follower: all three challenges tick"
+  }
+ ]
+}
