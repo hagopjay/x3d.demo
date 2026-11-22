@@ -441,3 +441,14 @@ Page built by hand from the review's receipts (`probes/precision/precision-contr
 | file | sha256 | bytes |
 |---|---|---|
 | assets/fault-lab-v2.jpg | d52f7c3e8b68d65eaa202ba76f88852fc29ac6e1eccf7bc4a7ce735f1c56e181 | 87702 |
+
+Demos 67 to 72 card images are each a 2 x 2 grid of 480 x 270 tiles, cropped to the 3D view (the left 1300 x 731 pixels from y = 48) of four 1680 x 1000 screenshots in that demo's `shots/` folder (headless Chromium with SwiftShader, X_ITE 16.7), saved as 960 x 540 JPEG. `trace-3d-llm`: 01-overview, 02-lineage, 03-failure, 05-high-oblique. `trace-3d-otel`: hotrod-01-overview, hotrod-04-error, hotrod-05-fanout, otel-demo-02-error. `capture-3d`: 01-overview, 03-call-setup-at-8.53s, 04-rtp-jitter-pauses, mcap-01-overview. `drone-flight-3d`: 01-overview-by-mode, 03-side-ghost-and-glyphs, 04-chase-at-30s-mission, 06-home-kill-at-126s. `orderbook-3d`: 01-terrain-oblique, 02-front-heatmap, 03-terrain-from-asks, 04-spread-canyon. `futures-profile-3d`: 01-both-markets, 04-es-last-rth-overnight-bracketG, 05-es-landscape-replay-1305, 06-es-side-volume-depth. The data in the images is each demo's own (see `docs/demos/DATA-ATTRIBUTION.md`); no Google imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/trace-3d-llm.jpg | f7e21a7f1147cbd034a89da3fb8684d621500a976f1d4673cfffcf1ba1a7b6e3 | 70048 |
+| assets/trace-3d-otel.jpg | 4f8c96c566d7fc01ab30542052f79c15976e185f9edff568a14e00675299daa4 | 85041 |
+| assets/capture-3d.jpg | f8b6cda58e500c601a1f84a4ae3586711d4dfdaa13672322b9abbec5084559d8 | 56861 |
+| assets/drone-flight-3d.jpg | 527dbee634700f40ddf057a30526b6cc2e79321177c8c816c10d4548b521a82b | 60421 |
+| assets/orderbook-3d.jpg | 8953c0f7be8ab9001f24e416f64929e3aa0e8b1cc8a393cbcb7bbf1d654a95d9 | 108536 |
+| assets/futures-profile-3d.jpg | 9cb72e298d6ffdc81083fb9cac5df23d78f6c14ded1de29b9600a60af352d0c4 | 62188 |
