@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v79 (2026-11-22)
+- The Demo 73 card now points to Wire Lab v2 (`docs/demos/wire-lab/v2/`, merged as PR 152) and keeps v1 linked; image `assets/wire-lab-v2.jpg` is four of v2's own screenshots cropped to 16:9 (no third-party imagery). v2 changes one thing: long chains wrap into rows of five. I ran v2's own tests (73 of 73 and 30 of 30, 0 page errors) and compared the two folders: `wirelab.js` is identical and the only code change is the layout in `index.html`. I did not check the wrapped layout by eye on a phone, the JavaScript rule against the add-on's Python, or the Blender round trip. The earlier v1 card text is replaced on the front page only; versions v1 to v78 are untouched.
+
 ## v78 (2026-11-22)
 - Front-page card for Demo 73, Wire Lab (`docs/demos/wire-lab/v1/`, merged as PR 150), with image `assets/wire-lab.jpg` (four of the demo's own screenshots, cropped to the top 16:9 of each; no third-party imagery). I ran the lane's own `test_core.mjs` (73 of 73) and `test_page.cjs` (30 of 30, 0 page errors), counted 45 node types, 32 target types and 55 route cases in the shipped files, and loaded the follower world headless without errors. I did not check the JavaScript rule against the add-on's Python, the Blender round trip or the XSD result, which are the lane's own. Versions v1 to v77 are untouched.
 

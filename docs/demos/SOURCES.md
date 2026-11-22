@@ -458,3 +458,9 @@ Demos 67 to 72 card images are each a 2 x 2 grid of 480 x 270 tiles, cropped to 
 | file | sha256 | bytes |
 |---|---|---|
 | assets/wire-lab.jpg | b675fadee33c9447b98bbd8a714b0ef9be754682412b7aedd4288cbd53b6031d | 88578 |
+
+`wire-lab-v2` is a 2 x 2 grid of 480 x 270 tiles, each the top 1500 x 844 pixels of a shipped page-test screenshot in `docs/demos/wire-lab/v2/shots/` (`02-door-opening`, `06-counter-eleven`, `07-counter-self-running`, `09-follower-four-beads`; headless Chromium with SwiftShader, X_ITE 16.7.1), saved as 960 x 540 JPEG. No Google or third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/wire-lab-v2.jpg | 9791f6b55eea1c1fdb4960c5668085b9f5646de001b5c2920e552e3653f20308 | 99503 |
