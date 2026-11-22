@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v77 (2026-11-22)
+- The "Data sources and takedown" links on the cards for Demos 67 to 72 now open the rendered GitHub page (`https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/DATA-ATTRIBUTION.md`) instead of the raw `.md` file, which the site showed as unrendered text. Nothing else changes. Versions v1 to v76 are untouched.
+
 ## v76 (2026-11-22)
 - The Demo 68 card now opens `docs/demos/otel-trace-3d/v2/` (new folder with one changed file, `index.html`) and keeps v1 linked. v2 fixes the sideways scroll the v75 notes reported: at a 1,280 px window the v1 pages were 1,356 px (HotROD), 1,393 px (OTel Demo) and 1,331 px (PetClinic) wide because the header's view buttons did not shrink; in v2 the title line shrinks and the buttons scroll inside the header, and the page is 1,280 px wide. v2 reads its scenes and panel data from `../v1/out/`. I loaded all three traces headless with no console or HTTP errors and the same item counts (47, 32 and 20 clickable, 0 missing). Phone width not tested. Versions v1 to v75 of the page and `otel-trace-3d/v1` are untouched.
 
