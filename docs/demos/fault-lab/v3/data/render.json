@@ -1,0 +1,241 @@
+{
+ "schema": "fault-lab.render/1",
+ "rig": {
+  "engine": "X_ITE 16.7.1",
+  "browser": "headless Chromium 157.0.8103.78",
+  "gl": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "canvas": [
+   640,
+   400
+  ]
+ },
+ "threshold": "a pixel counts when its largest channel difference is over 8 of 255",
+ "views": [
+  "V_Overview",
+  "V_Osiris"
+ ],
+ "control": {
+  "V_Overview": {
+   "pixels": 0,
+   "share": 0,
+   "max_channel_diff": 0,
+   "bbox": null,
+   "size": [
+    640,
+    400
+   ]
+  },
+  "V_Osiris": {
+   "pixels": 0,
+   "share": 0,
+   "max_channel_diff": 0,
+   "bbox": null,
+   "size": [
+    640,
+    400
+   ]
+  }
+ },
+ "cases": {
+  "clean": {},
+  "two-materials": {
+   "V_Overview": {
+    "pixels": 89,
+    "share": 0.00035,
+    "max_channel_diff": 127,
+    "bbox": [
+     346,
+     240,
+     358,
+     246
+    ],
+    "size": [
+     640,
+     400
+    ]
+   },
+   "V_Osiris": {
+    "pixels": 3098,
+    "share": 0.0121,
+    "max_channel_diff": 130,
+    "bbox": [
+     291,
+     269,
+     372,
+     306
+    ],
+    "size": [
+     640,
+     400
+    ]
+   }
+  },
+  "two-geometries": {
+   "V_Overview": {
+    "pixels": 52,
+    "share": 0.0002,
+    "max_channel_diff": 97,
+    "bbox": [
+     341,
+     218,
+     351,
+     228
+    ],
+    "size": [
+     640,
+     400
+    ]
+   },
+   "V_Osiris": {
+    "pixels": 2522,
+    "share": 0.00985,
+    "max_channel_diff": 104,
+    "bbox": [
+     246,
+     92,
+     319,
+     166
+    ],
+    "size": [
+     640,
+     400
+    ]
+   }
+  },
+  "angkor-swapped": {
+   "V_Overview": {
+    "pixels": 0,
+    "share": 0,
+    "max_channel_diff": 0,
+    "bbox": null,
+    "size": [
+     640,
+     400
+    ]
+   },
+   "V_Osiris": {
+    "pixels": 0,
+    "share": 0,
+    "max_channel_diff": 0,
+    "bbox": null,
+    "size": [
+     640,
+     400
+    ]
+   }
+  },
+  "giza-swapped": {
+   "V_Overview": {
+    "pixels": 0,
+    "share": 0,
+    "max_channel_diff": 0,
+    "bbox": null,
+    "size": [
+     640,
+     400
+    ]
+   },
+   "V_Osiris": {
+    "pixels": 0,
+    "share": 0,
+    "max_channel_diff": 0,
+    "bbox": null,
+    "size": [
+     640,
+     400
+    ]
+   }
+  },
+  "scaled-shaft": {
+   "V_Overview": {
+    "pixels": 19,
+    "share": 0.00007,
+    "max_channel_diff": 140,
+    "bbox": [
+     345,
+     205,
+     347,
+     226
+    ],
+    "size": [
+     640,
+     400
+    ]
+   },
+   "V_Osiris": {
+    "pixels": 527,
+    "share": 0.00206,
+    "max_channel_diff": 146,
+    "bbox": [
+     278,
+     20,
+     292,
+     166
+    ],
+    "size": [
+     640,
+     400
+    ]
+   }
+  },
+  "cylinder-shaft": {
+   "V_Overview": {
+    "pixels": 27,
+    "share": 0.00011,
+    "max_channel_diff": 141,
+    "bbox": [
+     345,
+     206,
+     347,
+     226
+    ],
+    "size": [
+     640,
+     400
+    ]
+   },
+   "V_Osiris": {
+    "pixels": 978,
+    "share": 0.00382,
+    "max_channel_diff": 146,
+    "bbox": [
+     278,
+     22,
+     292,
+     163
+    ],
+    "size": [
+     640,
+     400
+    ]
+   }
+  },
+  "secret-tunnel": {
+   "V_Overview": {
+    "pixels": 1206,
+    "share": 0.00471,
+    "max_channel_diff": 93,
+    "bbox": [
+     269,
+     283,
+     420,
+     290
+    ],
+    "size": [
+     640,
+     400
+    ]
+   },
+   "V_Osiris": {
+    "pixels": 0,
+    "share": 0,
+    "max_channel_diff": 0,
+    "bbox": null,
+    "size": [
+     640,
+     400
+    ]
+   }
+  }
+ }
+}

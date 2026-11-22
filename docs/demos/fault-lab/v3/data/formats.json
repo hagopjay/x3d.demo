@@ -1,0 +1,204 @@
+{
+ "schema": "fault-lab.formats/3",
+ "question": "The clean twin carries 3 Metadata trees (6 Metadata nodes) on three kinds of host: WorldInfo, Transform, PhysicalMaterial. How many arrive?",
+ "hosts": [
+  "WorldInfo",
+  "Transform OsirisShaftA (CIDOC-CRM set)",
+  "PhysicalMaterial Mat_ChamberA"
+ ],
+ "rows": [
+  {
+   "format": "X3D 4.0",
+   "tool": "the source file",
+   "trees": [
+    3,
+    3
+   ],
+   "nodes": [
+    6,
+    6
+   ],
+   "defs": "all",
+   "verdict": "reference",
+   "note": "The yardstick. Every checker on this page reads this file."
+  },
+  {
+   "format": "glTF 2.0 + KHR_xmp_json_ld",
+   "tool": "loom-gltf x3dsem 0.1.0 (x3d.loom 10d045e)",
+   "trees": [
+    1,
+    3
+   ],
+   "nodes": [
+    4,
+    6
+   ],
+   "defs": "node names",
+   "verdict": "partial, and it says so",
+   "note": "Only hosts that become glTF nodes can carry a packet. The WorldInfo and material trees are lost, and rules S1 and S2 fail out loud. The CIDOC-CRM class reference arrives typed (S4 1 of 1). Khronos validator: 0 errors.",
+   "rules": {
+    "S0": true,
+    "S1": false,
+    "S2": false,
+    "S3": true,
+    "S4": true,
+    "S5": true,
+    "S6": true
+   }
+  },
+  {
+   "format": "USD (usda)",
+   "tool": "fault-lab x3d_usd 0.1 (this demo's own; not a general exporter), usd-core 0.26.11",
+   "trees": [
+    3,
+    3
+   ],
+   "nodes": [
+    6,
+    6
+   ],
+   "defs": "prim names",
+   "verdict": "complete",
+   "note": "Every prim, including a Material and a Scope, takes customData, so all three hosts keep their tree. 30 pxr validators: 0 errors. This converter is the demo's own, built to measure the ceiling."
+  },
+  {
+   "format": "Blender 5.3.0",
+   "tool": "x3d-blender-io f68adbd (PR #70), default Import",
+   "trees": [
+    3,
+    3
+   ],
+   "nodes": [
+    6,
+    6
+   ],
+   "was": {
+    "trees": [
+     0,
+     3
+    ],
+    "nodes": [
+     0,
+     6
+    ],
+    "tool": "add-on 1040830"
+   },
+   "defs": "custom property x3d_def",
+   "verdict": "fixed",
+   "note": "Fixed in the add-on. The Transform's tree rides on the object that stands for it, the material's on the Blender material, the WorldInfo's on the scene. Any other host is kept on the scene, never dropped."
+  },
+  {
+   "format": "Blender to X3D",
+   "tool": "x3d-blender-io f68adbd (PR #70), X3D 4.0 export",
+   "trees": [
+    3,
+    3
+   ],
+   "nodes": [
+    6,
+    6
+   ],
+   "was": {
+    "trees": [
+     0,
+     3
+    ],
+    "nodes": [
+     0,
+     6
+    ],
+    "tool": "add-on 1040830"
+   },
+   "defs": "renamed with OB_ / MA_ prefixes",
+   "verdict": "fixed",
+   "note": "Every tree returns value for value on the same kind of host (compared by x3dsem). The file is valid against the X3D 4.0 XSD with 0 semantic errors (x3d_mcp 8205047)."
+  },
+  {
+   "format": "Blender to glTF",
+   "tool": "Blender glTF exporter, extras on",
+   "trees": [
+    3,
+    3
+   ],
+   "nodes": [
+    6,
+    6
+   ],
+   "was": {
+    "trees": [
+     0,
+     3
+    ],
+    "nodes": [
+     0,
+     6
+    ],
+    "tool": "add-on 1040830"
+   },
+   "defs": "extras.x3d_def",
+   "verdict": "carried as extras",
+   "note": "The trees travel as plain extras on the node, the material and the scene. Values are X3D text and nothing is typed, so a JSON-LD tool finds nothing. The next row lifts them."
+  },
+  {
+   "format": "Blender to glTF, lifted",
+   "tool": "loom-gltf blender_extras 0.1.0 (x3d.loom), on the file from the row above",
+   "trees": [
+    3,
+    3
+   ],
+   "nodes": [
+    6,
+    6
+   ],
+   "was": {
+    "trees": [
+     0,
+     3
+    ],
+    "nodes": [
+     0,
+     6
+    ],
+    "tool": "typed packets before the lift"
+   },
+   "defs": "x3d:hostDEF in each packet",
+   "verdict": "lifted",
+   "note": "All 3 trees become KHR_xmp_json_ld packets on the node, the material and the scene, the two hosts the Loom's own converter cannot carry included. Numbers are JSON numbers, the CIDOC-CRM class is a JSON-LD type. Rules L0 to L6 pass against the source X3D, the binary chunk is byte-identical, and the Khronos validator reports 0 errors.",
+   "rules": {
+    "L0": true,
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "L4": true,
+    "L5": true,
+    "L6": true
+   }
+  },
+  {
+   "format": "Blender to USD",
+   "tool": "Blender USD exporter, custom properties on",
+   "trees": [
+    0,
+    3
+   ],
+   "nodes": [
+    0,
+    6
+   ],
+   "was": {
+    "trees": [
+     0,
+     3
+    ],
+    "nodes": [
+     0,
+     6
+    ],
+    "tool": "add-on 1040830"
+   },
+   "defs": "userProperties:x3d_def",
+   "verdict": "gap",
+   "note": "Still nothing. Blender's USD exporter writes simple custom properties only and skips nested ones. Closing this needs the trees flattened to strings or a USD export hook."
+  }
+ ]
+}
