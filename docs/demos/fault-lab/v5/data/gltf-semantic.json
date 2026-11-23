@@ -1,0 +1,91 @@
+{
+  "schema": "loom.semantic/1",
+  "converter": "loom-gltf x3dsem 0.1.0",
+  "source": {
+    "file": "clean.x3d",
+    "sha256": "a01d1c0434e3e2d07bd39e8aaf11d62c38033d38bb90ba3f1ce6443b7873414c"
+  },
+  "gltf": {
+    "file": "clean.gltf",
+    "sha256": "661cf28636e8d34e7426d1ebc30fa09e4bef2b30bd2542c3c2cb8a38d200d084",
+    "packets": 2,
+    "nodes": 25,
+    "meshes": 12
+  },
+  "back": {
+    "file": "clean.back.x3d",
+    "sha256": "b1577df49dc7508debbfcd202538dbe5f0290214cef6bec67f1c2029d6f946eb"
+  },
+  "hosts": 3,
+  "metadata_nodes": 6,
+  "conversion": {
+    "converted": {
+      "Transform": 13,
+      "Box": 12,
+      "Shape": 12
+    },
+    "skipped": {
+      "NavigationInfo": 1,
+      "Background": 1,
+      "Viewpoint": 3,
+      "DirectionalLight": 1,
+      "WorldInfo": 1,
+      "GeoViewpoint": 2
+    },
+    "use_copies": 0
+  },
+  "rules": [
+    {
+      "id": "S0",
+      "rule": "KHR_xmp_json_ld structure: declared in extensionsUsed, every packet has @context, every reference is in range (the Khronos validator 2.0.0-dev.3.10 does not check this extension)",
+      "packets": 2,
+      "references": 2,
+      "bad": 0,
+      "pass": true
+    },
+    {
+      "id": "S1",
+      "rule": "every Metadata tree returns X3D -> glTF -> X3D on the same host type and DEF, in document order, value for value",
+      "expected": 3,
+      "got": 1,
+      "missing": 2,
+      "pass": false
+    },
+    {
+      "id": "S2",
+      "rule": "Metadata node count is unchanged (no node dropped, none invented)",
+      "expected": 6,
+      "got": 4,
+      "pass": false
+    },
+    {
+      "id": "S3",
+      "rule": "every IFC GlobalId survives once per element, is queryable in the glTF JSON-LD (loom:ifcGlobalId), and its host Shape keeps the same triangle count",
+      "expected": 0,
+      "got": 0,
+      "queryable_in_gltf": 0,
+      "pass": true
+    },
+    {
+      "id": "S4",
+      "rule": "every CIDOC-CRM class reference survives and is typed in JSON-LD (@type crm:E..)",
+      "expected": 1,
+      "got": 1,
+      "typed_in_gltf": 1,
+      "pass": true
+    },
+    {
+      "id": "S5",
+      "rule": "<head> meta list survives in order",
+      "expected": 5,
+      "got": 5,
+      "pass": true
+    },
+    {
+      "id": "S6",
+      "rule": "glTF asset packet carries PROV-O: prov:wasDerivedFrom = sha256 of the source X3D, prov:wasGeneratedBy = the converter",
+      "pass": true
+    }
+  ],
+  "verdict": "fail"
+}

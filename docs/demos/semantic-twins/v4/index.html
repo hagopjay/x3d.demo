@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
+<title>Semantic Twin Cases v3</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Nine cases where an X3D scene and an open ontology answer questions neither can answer alone, live in the page, with an evidence state on every answer: recomputed, recorded, or an explained difference.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;650&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a sticky 3D stage on the left (the place), a scrolling case file on the right (the meaning); one accent per case. */
+:root{
+  --night:#04070f; --deck:#0a1120; --raise:#101a2e; --edge:rgba(170,200,255,.13); --edge2:rgba(170,200,255,.26);
+  --ink:#e8eef6; --ink2:#aebbcc; --dim:#7d8ea4;
+  --ok:#5fd18a; --bad:#ff5f66; --warn:#ffb84d; --gold:#ffd166; --teal:#45e0cf;
+  --accent:#5aa8ff; --accent2:#9cc8ff;
+  --display:"Sora", "Segoe UI", system-ui, sans-serif;
+  --sans:"IBM Plex Sans", Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+/* One deliberate night look in both themes: the 3D stage needs a dark ground. */
+body[data-scen="heritage"]{--accent:#e2b46a;--accent2:#f3d7a4}
+body[data-scen="factory"]{--accent:#ffcc33;--accent2:#ffe48a}
+body[data-scen="hospital"]{--accent:#4fd6c3;--accent2:#a6f0e5}
+body[data-scen="building"]{--accent:#ff9a5a;--accent2:#ffc9a3}
+body[data-scen="warehouse"]{--accent:#7fb2ff;--accent2:#bcd6ff}
+body[data-scen="city"]{--accent:#9fd36a;--accent2:#cde9ad}
+body[data-scen="concert"]{--accent:#ff6fb5;--accent2:#ffb3d8}
+body[data-scen="firecode"]{--accent:#ff7a4f;--accent2:#ffbfa8}
+body[data-scen="farm"]{--accent:#7fd18b;--accent2:#bdebc3}
+*{box-sizing:border-box}
+html,body{background:var(--night);color:var(--ink)}
+body{margin:0;font:400 15px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
+a{color:var(--accent2)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.mono{font-family:var(--mono)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(4,7,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--edge);
+  padding-block:12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.hrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;max-width:1500px;margin:0 auto}
+.brand{font:650 17px/1.2 var(--display);letter-spacing:.01em}
+.brand small{display:block;font:500 11px/1.3 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:3px}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+nav a{display:flex;flex-direction:column;padding:6px 11px;border-radius:9px;border:1px solid var(--edge);text-decoration:none;color:var(--ink2);min-width:0}
+nav a b{font:600 14px/1.2 var(--sans);color:var(--ink)}
+nav a span{font-size:11.5px;color:var(--dim)}
+nav a[aria-current="page"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+nav a[aria-current="page"] b{color:var(--accent2)}
+main{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:24px;max-width:1500px;margin:0 auto;
+  padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#stageCol{position:sticky;top:calc(env(safe-area-inset-top,0px) + 92px);align-self:start;display:flex;flex-direction:column;gap:10px;min-width:0}
+#stage{position:relative;height:min(62vh,640px);border-radius:14px;overflow:hidden;border:1px solid var(--edge);background:radial-gradient(120% 90% at 50% 20%,#0d1730,#03060d)}
+x3d-canvas{display:block;width:100%;height:100%}
+#stageMsg{position:absolute;left:12px;bottom:12px;right:12px;font:500 12.5px/1.4 var(--mono);color:var(--ink2);background:rgba(4,7,15,.78);border:1px solid var(--edge);border-radius:8px;padding:7px 10px;pointer-events:none}
+#stageMsg b{color:var(--accent2);font-weight:500}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--edge2);border-radius:9px;overflow:hidden}
+.seg button{border:0;background:transparent;padding:7px 13px;cursor:pointer;color:var(--ink2);font-size:13.5px}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#11131a;font-weight:600}
+#faultSeg button[data-v="fault"][aria-pressed="true"]{background:var(--bad);color:#140507}
+.btn{border:1px solid var(--edge2);background:transparent;border-radius:9px;padding:7px 13px;cursor:pointer;font-size:13.5px;color:var(--ink2)}
+.btn:hover{border-color:var(--accent);color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--dim)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+#case{display:flex;flex-direction:column;gap:22px;min-width:0}
+.eyebrow{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+h1{font:650 clamp(24px,3vw,34px)/1.15 var(--display);margin:8px 0 10px;text-wrap:balance}
+h2{font:650 19px/1.25 var(--display);margin:0 0 4px;text-wrap:balance}
+h3{font:600 15.5px/1.35 var(--sans);margin:0;text-wrap:balance}
+.lede{color:var(--ink2);max-width:66ch;margin:0}
+.ont{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font:500 12px/1 var(--mono);padding:5px 8px;border-radius:6px;border:1px solid var(--edge2);color:var(--ink2)}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--edge);border:1px solid var(--edge);border-radius:12px;overflow:hidden}
+.three>div{background:var(--deck);padding:14px 15px;min-width:0}
+.three h4{margin:0 0 6px;font:600 11px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.three .both h4{color:var(--accent)}
+.three ul{margin:0;padding-left:18px;color:var(--ink2);font-size:14px}
+.three li+li{margin-top:3px}
+section.block{display:flex;flex-direction:column;gap:12px}
+.sub{color:var(--dim);font-size:13.5px;margin:0;max-width:70ch}
+.q{border:1px solid var(--edge);border-radius:12px;background:var(--deck);padding:14px 15px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.q.on{border-color:color-mix(in srgb,var(--accent) 60%,transparent)}
+.qhead{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.qid{font:500 12px/1 var(--mono);color:var(--accent);margin-right:8px}
+.why{margin:0;color:var(--ink2);font-size:14px;max-width:70ch}
+details>summary{cursor:pointer;color:var(--dim);font-size:13px}
+textarea{width:100%;min-height:150px;resize:vertical;background:#050a15;color:#cfe0f5;border:1px solid var(--edge);border-radius:8px;padding:10px;font:400 12.5px/1.5 var(--mono);tab-size:2}
+.out{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--edge);vertical-align:top;white-space:nowrap}
+th{font:600 11px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+td.mono{font-size:12.5px}
+.pill{display:inline-block;font:600 11.5px/1 var(--sans);padding:4px 8px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.pill.ok{color:var(--ok)}.pill.bad{color:var(--bad)}.pill.warn{color:var(--warn)}.pill.dim{color:var(--dim)}
+.meta{font:400 12px/1.4 var(--mono);color:var(--dim)}
+.viol{border-left:3px solid var(--bad);background:color-mix(in srgb,var(--bad) 8%,var(--deck));border-radius:8px;padding:10px 12px}
+.viol p{margin:2px 0 0;color:var(--ink2);font-size:14px}
+.okbox{border-left:3px solid var(--ok);background:color-mix(in srgb,var(--ok) 7%,var(--deck));border-radius:8px;padding:10px 12px;color:var(--ink2);font-size:14px}
+.insight{border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);border-radius:12px;padding:14px 16px;background:color-mix(in srgb,var(--accent) 6%,var(--deck))}
+.insight p{margin:6px 0 0;color:var(--ink);max-width:70ch}
+.calls{display:flex;flex-direction:column;gap:6px}
+.call{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px;align-items:baseline;font-size:13px;border-bottom:1px solid var(--edge);padding:6px 0}
+.call code{font:500 12.5px var(--mono);color:var(--accent2)}
+.call .a{font:400 12px/1.4 var(--mono);color:var(--dim);overflow-wrap:anywhere}
+.src{font-size:13.5px;color:var(--ink2)}
+.src li+li{margin-top:4px}
+footer{max-width:1500px;margin:0 auto;padding-block:0 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));color:var(--dim);font-size:13px}
+@media (max-width:980px){
+  main{grid-template-columns:minmax(0,1fr)}
+  #stageCol{position:relative;top:0}
+  #stage{height:52vh}
+  nav{margin-left:0}
+}
+@media (max-width:640px){ .three{grid-template-columns:minmax(0,1fr)} .call{grid-template-columns:minmax(0,1fr)} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.ev{display:inline-flex;align-items:center;gap:6px;font:500 11.5px/1 var(--sans);padding:4px 8px 4px 4px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.ev em{font-style:normal;font-weight:600;padding:2px 6px;border-radius:99px;background:color-mix(in srgb,currentColor 16%,transparent)}
+.ev.ok{color:var(--ok)}.ev.warn{color:var(--warn)}.ev.bad{color:var(--bad)}.ev.dim{color:var(--dim)}
+.evrow,.strip{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.strip{margin-top:14px}
+.evk{font:600 10.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-right:4px}
+</style>
+
+<header>
+  <div class="hrow">
+    <div class="brand">Semantic Twin Cases<small>v3 · every answer carries its evidence state · Blender context</small></div>
+    <nav aria-label="Cases">
+      <a href="#heritage" data-s="heritage"><b>Heritage</b><span>CIDOC-CRM</span></a>
+      <a href="#factory" data-s="factory"><b>Factory</b><span>AAS &middot; SOSA &middot; QUDT</span></a>
+      <a href="#hospital" data-s="hospital"><b>Hospital</b><span>FHIR &middot; BOT</span></a>
+      <a href="#building" data-s="building"><b>Building</b><span>Brick</span></a>
+      <a href="#warehouse" data-s="warehouse"><b>Warehouse</b><span>GS1</span></a>
+      <a href="#city" data-s="city"><b>City</b><span>GeoSPARQL</span></a>
+      <a href="#concert" data-s="concert"><b>Concert</b><span>Music Ontology</span></a>
+      <a href="#firecode" data-s="firecode"><b>Fire code</b><span>BOT &middot; IBC clauses</span></a>
+      <a href="#farm" data-s="farm"><b>Farm</b><span>AGROVOC &middot; SOSA</span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div id="stageCol">
+    <div id="stage">
+      <x3d-canvas id="x3d" splashScreen="false" contextMenu="false" notifications="false" aria-label="3D scene of the current case"></x3d-canvas>
+      <div id="stageMsg" aria-live="polite">Loading the scene&hellip;</div>
+    </div>
+    <div class="controls">
+      <div class="seg" id="faultSeg" role="group" aria-label="Which version of the scene and record">
+        <button id="vClean" data-v="clean" aria-pressed="true">As recorded</button>
+        <button id="vFault" data-v="fault" aria-pressed="false">With planted faults</button>
+      </div>
+      <button class="btn" id="viewBtn">Next view</button>
+      <button class="btn" id="clearBtn">Clear highlights</button>
+      <button class="btn" id="ctxBtn" hidden>Hide Blender context</button>
+      <button class="btn" id="checkBtn">Run both checks</button>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+  <div id="case"></div>
+</main>
+<footer id="foot"></footer>
+
+<script src="../v1/vendor/x_ite/x_ite.min.js"></script>
+<script src="../v1/vendor/lab-stack.js"></script>
+<script src="app.js"></script>
+
+</html>

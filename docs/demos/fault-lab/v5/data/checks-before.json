@@ -1,0 +1,167 @@
+{
+ "label": "before",
+ "x3d_mcp_commit": "39c6e94",
+ "python": "3.13.18",
+ "cases": {
+  "clean": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 6.36
+  },
+  "two-materials": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 4.01
+  },
+  "two-geometries": {
+   "xsd": {
+    "valid": false,
+    "errors": [
+     "Line 5: Element 'Sphere': This element is not expected."
+    ]
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [
+    {
+     "shape": "ShapeGeometry",
+     "check": "shape-no-geometry",
+     "node": "OsirisChamberA_Shape",
+     "message": "Shape has no geometry (and is not a USE copy): valid X3D that draws nothing"
+    }
+   ],
+   "twin": [],
+   "seconds": 3.94
+  },
+  "angkor-swapped": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 3.89
+  },
+  "giza-swapped": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 3.94
+  },
+  "scaled-shaft": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 4.02
+  },
+  "cylinder-shaft": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 4.03
+  },
+  "secret-tunnel": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 4.15
+  },
+  "feet-not-metres": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 3.75
+  },
+  "no-tier": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 4.04
+  },
+  "ghost-def": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 4.0
+  }
+ },
+ "instruments": {
+  "rdflib": "7.6.0",
+  "pyshacl": "0.40.2",
+  "xsd": "X3D 4.0 XSD as bundled in x3d_mcp (the scene declares version 4.0)",
+  "x3duom": "X3DUOM 4.1 as bundled",
+  "shapes_core": "x3d-core",
+  "twin_shapes": "shapes.ttl (generated)"
+ }
+}
