@@ -1,0 +1,29 @@
+{
+ "schema": "giza-summit-duel/loom-pagetraps/1",
+ "loom_commit": "7548014",
+ "command": "kit/loom pagetraps v4 --files 'src/*.js'",
+ "clean": {
+  "status": "pass",
+  "errors": 0,
+  "warnings": 0,
+  "seen": {
+   "field_callbacks": 0,
+   "inline_scripts": 0,
+   "sim_units": 5,
+   "world_loads": 0
+  }
+ },
+ "wrong_twin": {
+  "what": "the same sources with one Math.sin call added to src/pmath.js",
+  "status": "fail",
+  "errors": 1,
+  "hits": [
+   {
+    "detail": "Math.sin in sim code: use a portable polynomial (dsin/dcos) or the tick counter",
+    "rule": "sim-nonportable-math",
+    "severity": "error",
+    "where": "src/pmath.js:13"
+   }
+  ]
+ }
+}

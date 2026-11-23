@@ -1,0 +1,14 @@
+{
+ "schema": "giza-summit-duel/loom-physics/1",
+ "loom_commit": "7548014",
+ "command": "kit/loom physics v4 --runs 'receipts/*.physics.json' --hosts chromium",
+ "clean": {
+  "status": "pass",
+  "reason": ""
+ },
+ "wrong_twin": {
+  "what": "the same record with the Chromium replay reporting 1 mismatch at step 1800",
+  "status": "fail",
+  "reason": "PHYS_HASH_DRIFT: giza-summit-duel/seed-11/recorded-in-node: chromium differs from the recording at 1 steps, first at step 1800"
+ }
+}
