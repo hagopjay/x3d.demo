@@ -1,0 +1,14 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Atlas camera test harness</title>
+<style>html,body{margin:0;background:#000}x3d-canvas{display:block;width:1280px;height:720px}</style>
+<script src="../../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script></head>
+<body><x3d-canvas id="c" splashScreen="false" notifications="false" contextMenu="false" antialiased="false" timings="false"></x3d-canvas>
+<script>
+// build/camtest.mjs drives this page: ?world=../worlds/labels-correct.x3d, then window.bindCam(i)
+const B = X3D.getBrowser('#c');
+window.READY = false;
+const world = new URLSearchParams(location.search).get('world');
+B.loadURL(new X3D.MFString(world)).then(() => { window.READY = true; });
+window.bindCam = name => { B.currentScene.getNamedNode(name).set_bind = true; };
+window.setSwitch = (def, v) => { B.currentScene.getNamedNode(def).whichChoice = v; };
+</script></body></html>
