@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.1//EN" "https://www.web3d.org/specifications/x3d-4.1.dtd">
+<X3D version="4.1" profile="Immersive" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.1.xsd">
+  <head>
+    <meta name="title" content="Reading room: X3D blockout for Atlas"/>
+    <meta name="generator" content="x3d.demo atlas-bridge kit/scenes.py"/>
+    <meta name="source" content="invented for this demo; no outside source"/>
+    <meta name="license" content="CC0 1.0 (this blockout: geometry and cameras)"/>
+    <meta name="atlas.prompt" content="A grand old library reading room in late afternoon: floor-to-ceiling dark walnut bookcases packed with leather-bound books along both long walls, two rows of pale limestone columns, long oak reading tables with benches and brass lamps with green glass shades, a large antique terrestrial globe on a turned wooden pedestal in the centre, three tall windows in the far wall with warm sun coming through, panelled double doors at the other end, herringbone parquet floor, dark timber ceiling beams, architectural interior photograph, sharp focus"/>
+    <meta name="atlas.grid" content="1280 720; fx = fy = 762.7223 px; cx 640, cy 360; pose camera-to-world, rub"/>
+  </head>
+  <Scene>
+    <WorldInfo DEF="Provenance" title="Reading room: X3D blockout for Atlas">
+      <MetadataSet name="blockout" containerField="metadata">
+        <MetadataString name="room" value='"14.0 x 9.0 x 6.2 m (east-west, north-south, height)" "invented"' containerField="value"/>
+        <MetadataString name="windows" value='"three openings in the east wall with no surface behind them: depth 0, which Atlas reads as empty space" "design"' containerField="value"/>
+      </MetadataSet>
+    </WorldInfo>
+    <NavigationInfo type='"EXAMINE" "FLY" "ANY"' headlight="true" speed="2"/>
+    <Background skyColor="0.02 0.02 0.03"/>
+    <Viewpoint DEF="Cam00" description="west doors, down the hall to the windows" position="-6.1000 1.6000 0.2500" orientation="0.023662 -0.999459 0.022863 1.537000" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam01" description="east end, back down the hall to the doors" position="6.1000 1.6000 -0.3000" orientation="0.014678 0.999776 -0.015249 1.609170" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam02" description="west end, across the west table to the north cases" position="-5.6000 1.6000 1.2000" orientation="-0.030250 -0.999403 -0.016673 1.007985" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam03" description="west end, across the west table to the south cases" position="-5.6000 1.6000 -1.2000" orientation="-0.009193 -0.999819 -0.016680 2.134266" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam04" description="east end, across the east table to the north cases" position="5.6000 1.6000 1.2000" orientation="-0.030250 0.999403 0.016673 1.007985" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam05" description="east end, across the east table to the south cases" position="5.6000 1.6000 -1.2000" orientation="-0.009193 0.999819 0.016680 2.134266" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam06" description="the globe from the south" position="0.5000 1.7500 2.3000" orientation="-0.697118 0.713033 0.074899 0.299113" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam07" description="the globe from the north-west" position="-1.2000 1.7500 -2.0000" orientation="-0.029180 -0.994007 -0.105348 2.604258" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam08" description="north bookcases and ladder, square on" position="-1.9000 1.6000 1.2000" orientation="0.578710 0.814764 -0.035402 0.149882" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam09" description="south bookcases, square on" position="1.9000 1.6000 -1.2000" orientation="0.002656 -0.999054 0.043409 3.019513" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam10" description="centre aisle, up to the beams and column capitals" position="-1.6000 1.4000 -0.9000" orientation="0.209894 -0.916845 0.339616 2.110532" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam11" description="east table, low, the floor and the windows" position="1.2000 1.9000 1.6000" orientation="-0.284945 -0.948145 -0.140812 0.960926" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam12" description="north aisle from the west end" position="-6.2000 1.6000 -3.4500" orientation="-0.006283 -0.999962 -0.006094 1.540356" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam13" description="north aisle from the east end" position="6.2000 1.6000 -3.4500" orientation="-0.006283 0.999962 0.006094 1.540356" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam14" description="south aisle from the west end" position="-6.2000 1.6000 3.4500" orientation="-0.005911 -0.999964 -0.006094 1.601311" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam15" description="south aisle from the east end" position="6.2000 1.6000 3.4500" orientation="-0.005911 0.999964 0.006094 1.601311" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam16" description="the globe from the east" position="2.1000 1.7000 -0.5000" orientation="-0.089336 0.989559 0.113104 1.814738" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam17" description="the globe from the west" position="-2.1000 1.7000 0.5000" orientation="-0.142307 -0.983420 -0.112402 1.353348" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam18" description="west table from the north side, to the doors" position="-1.6000 1.7500 -1.7000" orientation="-0.049484 0.994666 0.090499 2.145333" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam19" description="east table from the south side, to the lectern and windows" position="1.6000 1.7500 1.7000" orientation="-0.137786 -0.987249 -0.079713 1.060122" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam20" description="the ladder, close" position="-1.2000 1.5000 -1.9000" orientation="0.285707 0.953933 -0.091559 0.648191" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam21" description="the doors, square on" position="-3.4000 1.7000 1.7500" orientation="-0.019952 0.999723 0.012486 1.118571" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam22" description="the windows, square on, from the centre" position="2.2000 1.7000 -1.7500" orientation="0.073861 -0.991668 0.105546 1.928253" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam23" description="high in the centre, down the hall floor" position="0.9000 3.4000 1.9000" orientation="-0.356981 0.905830 0.228113 1.228730" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Group DEF="G_Shell">
+      <Transform DEF="Floor" translation="0.0000 -0.2000 0.0000"><Shape><Appearance><Material diffuseColor="0.450 0.320 0.200"/></Appearance><Box size="14.8000 0.4000 9.8000"/></Shape></Transform>
+      <Transform DEF="Ceiling" translation="0.0000 6.4000 0.0000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="14.8000 0.4000 9.8000"/></Shape></Transform>
+      <Transform DEF="WallN_0" translation="0.0000 3.1000 -4.7000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="14.0000 6.2000 0.4000"/></Shape></Transform>
+      <Transform DEF="WallS_0" translation="0.0000 3.1000 4.7000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="14.0000 6.2000 0.4000"/></Shape></Transform>
+      <Transform DEF="WallE_0" translation="7.2000 3.1000 -4.1750"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 6.2000 1.4500"/></Shape></Transform>
+      <Transform DEF="WallE_1" translation="7.2000 0.5500 -2.7000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 1.1000 1.5000"/></Shape></Transform>
+      <Transform DEF="WallE_2" translation="7.2000 5.6000 -2.7000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 1.2000 1.5000"/></Shape></Transform>
+      <Transform DEF="WallE_3" translation="7.2000 3.1000 -1.3500"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 6.2000 1.2000"/></Shape></Transform>
+      <Transform DEF="WallE_4" translation="7.2000 0.5500 0.0000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 1.1000 1.5000"/></Shape></Transform>
+      <Transform DEF="WallE_5" translation="7.2000 5.6000 0.0000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 1.2000 1.5000"/></Shape></Transform>
+      <Transform DEF="WallE_6" translation="7.2000 3.1000 1.3500"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 6.2000 1.2000"/></Shape></Transform>
+      <Transform DEF="WallE_7" translation="7.2000 0.5500 2.7000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 1.1000 1.5000"/></Shape></Transform>
+      <Transform DEF="WallE_8" translation="7.2000 5.6000 2.7000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 1.2000 1.5000"/></Shape></Transform>
+      <Transform DEF="WallE_9" translation="7.2000 3.1000 4.1750"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 6.2000 1.4500"/></Shape></Transform>
+      <Transform DEF="WallW_0" translation="-7.2000 3.1000 -3.0000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 6.2000 3.8000"/></Shape></Transform>
+      <Transform DEF="WallW_1" translation="-7.2000 4.6500 0.0000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 3.1000 2.2000"/></Shape></Transform>
+      <Transform DEF="WallW_2" translation="-7.2000 3.1000 3.0000"><Shape><Appearance><Material diffuseColor="0.780 0.740 0.660"/></Appearance><Box size="0.4000 6.2000 3.8000"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Windows">
+      <Transform DEF="Sill0" translation="6.9900 1.0600 -2.7000"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.2200 0.0800 1.7000"/></Shape></Transform>
+      <Transform DEF="MullionV0" translation="7.2000 3.0500 -2.7000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.0800 3.9000 0.0800"/></Shape></Transform>
+      <Transform DEF="MullionH0" translation="7.2000 3.3400 -2.7000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.0800 0.0800 1.5000"/></Shape></Transform>
+      <Transform DEF="Sill1" translation="6.9900 1.0600 0.0000"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.2200 0.0800 1.7000"/></Shape></Transform>
+      <Transform DEF="MullionV1" translation="7.2000 3.0500 0.0000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.0800 3.9000 0.0800"/></Shape></Transform>
+      <Transform DEF="MullionH1" translation="7.2000 3.3400 0.0000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.0800 0.0800 1.5000"/></Shape></Transform>
+      <Transform DEF="Sill2" translation="6.9900 1.0600 2.7000"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.2200 0.0800 1.7000"/></Shape></Transform>
+      <Transform DEF="MullionV2" translation="7.2000 3.0500 2.7000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.0800 3.9000 0.0800"/></Shape></Transform>
+      <Transform DEF="MullionH2" translation="7.2000 3.3400 2.7000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.0800 0.0800 1.5000"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Doors">
+      <Transform DEF="DoorLeft" translation="-7.1800 1.5500 -0.5550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0800 3.1000 1.0900"/></Shape></Transform>
+      <Transform DEF="DoorRight" translation="-7.1800 1.5500 0.5550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0800 3.1000 1.0900"/></Shape></Transform>
+      <Transform DEF="DoorFrameTop" translation="-6.9700 3.2100 0.0000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.0600 0.2200 2.6000"/></Shape></Transform>
+      <Transform DEF="DoorFrame0" translation="-6.9700 1.5500 -1.2000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.0600 3.1000 0.2000"/></Shape></Transform>
+      <Transform DEF="DoorFrame1" translation="-6.9700 1.5500 1.2000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.0600 3.1000 0.2000"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Beams">
+      <Transform DEF="Beam0" translation="-5.6000 5.9900 0.0000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.3200 0.4200 9.0000"/></Shape></Transform>
+      <Transform DEF="Beam1" translation="-2.8000 5.9900 0.0000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.3200 0.4200 9.0000"/></Shape></Transform>
+      <Transform DEF="Beam2" translation="0.0000 5.9900 0.0000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.3200 0.4200 9.0000"/></Shape></Transform>
+      <Transform DEF="Beam3" translation="2.8000 5.9900 0.0000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.3200 0.4200 9.0000"/></Shape></Transform>
+      <Transform DEF="Beam4" translation="5.6000 5.9900 0.0000"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="0.3200 0.4200 9.0000"/></Shape></Transform>
+      <Transform DEF="RidgeN" translation="0.0000 6.0800 -0.1800"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="14.0000 0.2400 0.2000"/></Shape></Transform>
+      <Transform DEF="RidgeS" translation="0.0000 6.0800 0.1800"><Shape><Appearance><Material diffuseColor="0.180 0.110 0.070"/></Appearance><Box size="14.0000 0.2400 0.2000"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Bookcases">
+      <Transform DEF="CaseN0_SideL" translation="-6.5750 2.1500 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN0_SideR" translation="-4.3250 2.1500 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN0_Plinth" translation="-5.4500 0.0700 -4.2750"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.3000 0.1400 0.4500"/></Shape></Transform>
+      <Transform DEF="CaseN0_Cornice" translation="-5.4500 4.3800 -4.2550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.4000 0.1600 0.4900"/></Shape></Transform>
+      <Transform DEF="CaseN0_Shelf0" translation="-5.4500 0.1575 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN0_Shelf1" translation="-5.4500 0.8508 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN0_Shelf2" translation="-5.4500 1.5442 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN0_Shelf3" translation="-5.4500 2.2375 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN0_Shelf4" translation="-5.4500 2.9308 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN0_Shelf5" translation="-5.4500 3.6242 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN1_SideL" translation="-3.8500 2.1500 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN1_SideR" translation="-1.6000 2.1500 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN1_Plinth" translation="-2.7250 0.0700 -4.2750"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.3000 0.1400 0.4500"/></Shape></Transform>
+      <Transform DEF="CaseN1_Cornice" translation="-2.7250 4.3800 -4.2550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.4000 0.1600 0.4900"/></Shape></Transform>
+      <Transform DEF="CaseN1_Shelf0" translation="-2.7250 0.1575 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN1_Shelf1" translation="-2.7250 0.8508 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN1_Shelf2" translation="-2.7250 1.5442 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN1_Shelf3" translation="-2.7250 2.2375 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN1_Shelf4" translation="-2.7250 2.9308 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN1_Shelf5" translation="-2.7250 3.6242 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN2_SideL" translation="-1.1250 2.1500 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN2_SideR" translation="1.1250 2.1500 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN2_Plinth" translation="0.0000 0.0700 -4.2750"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.3000 0.1400 0.4500"/></Shape></Transform>
+      <Transform DEF="CaseN2_Cornice" translation="0.0000 4.3800 -4.2550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.4000 0.1600 0.4900"/></Shape></Transform>
+      <Transform DEF="CaseN2_Shelf0" translation="0.0000 0.1575 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN2_Shelf1" translation="0.0000 0.8508 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN2_Shelf2" translation="0.0000 1.5442 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN2_Shelf3" translation="0.0000 2.2375 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN2_Shelf4" translation="0.0000 2.9308 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN2_Shelf5" translation="0.0000 3.6242 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN3_SideL" translation="1.6000 2.1500 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN3_SideR" translation="3.8500 2.1500 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN3_Plinth" translation="2.7250 0.0700 -4.2750"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.3000 0.1400 0.4500"/></Shape></Transform>
+      <Transform DEF="CaseN3_Cornice" translation="2.7250 4.3800 -4.2550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.4000 0.1600 0.4900"/></Shape></Transform>
+      <Transform DEF="CaseN3_Shelf0" translation="2.7250 0.1575 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN3_Shelf1" translation="2.7250 0.8508 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN3_Shelf2" translation="2.7250 1.5442 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN3_Shelf3" translation="2.7250 2.2375 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN3_Shelf4" translation="2.7250 2.9308 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN3_Shelf5" translation="2.7250 3.6242 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN4_SideL" translation="4.3250 2.1500 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN4_SideR" translation="6.5750 2.1500 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN4_Plinth" translation="5.4500 0.0700 -4.2750"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.3000 0.1400 0.4500"/></Shape></Transform>
+      <Transform DEF="CaseN4_Cornice" translation="5.4500 4.3800 -4.2550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.4000 0.1600 0.4900"/></Shape></Transform>
+      <Transform DEF="CaseN4_Shelf0" translation="5.4500 0.1575 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN4_Shelf1" translation="5.4500 0.8508 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN4_Shelf2" translation="5.4500 1.5442 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN4_Shelf3" translation="5.4500 2.2375 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN4_Shelf4" translation="5.4500 2.9308 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseN4_Shelf5" translation="5.4500 3.6242 -4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS0_SideL" translation="-6.5750 2.1500 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS0_SideR" translation="-4.3250 2.1500 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS0_Plinth" translation="-5.4500 0.0700 4.2750"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.3000 0.1400 0.4500"/></Shape></Transform>
+      <Transform DEF="CaseS0_Cornice" translation="-5.4500 4.3800 4.2550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.4000 0.1600 0.4900"/></Shape></Transform>
+      <Transform DEF="CaseS0_Shelf0" translation="-5.4500 0.1575 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS0_Shelf1" translation="-5.4500 0.8508 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS0_Shelf2" translation="-5.4500 1.5442 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS0_Shelf3" translation="-5.4500 2.2375 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS0_Shelf4" translation="-5.4500 2.9308 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS0_Shelf5" translation="-5.4500 3.6242 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS1_SideL" translation="-3.8500 2.1500 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS1_SideR" translation="-1.6000 2.1500 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS1_Plinth" translation="-2.7250 0.0700 4.2750"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.3000 0.1400 0.4500"/></Shape></Transform>
+      <Transform DEF="CaseS1_Cornice" translation="-2.7250 4.3800 4.2550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.4000 0.1600 0.4900"/></Shape></Transform>
+      <Transform DEF="CaseS1_Shelf0" translation="-2.7250 0.1575 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS1_Shelf1" translation="-2.7250 0.8508 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS1_Shelf2" translation="-2.7250 1.5442 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS1_Shelf3" translation="-2.7250 2.2375 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS1_Shelf4" translation="-2.7250 2.9308 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS1_Shelf5" translation="-2.7250 3.6242 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS2_SideL" translation="-1.1250 2.1500 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS2_SideR" translation="1.1250 2.1500 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS2_Plinth" translation="0.0000 0.0700 4.2750"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.3000 0.1400 0.4500"/></Shape></Transform>
+      <Transform DEF="CaseS2_Cornice" translation="0.0000 4.3800 4.2550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.4000 0.1600 0.4900"/></Shape></Transform>
+      <Transform DEF="CaseS2_Shelf0" translation="0.0000 0.1575 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS2_Shelf1" translation="0.0000 0.8508 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS2_Shelf2" translation="0.0000 1.5442 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS2_Shelf3" translation="0.0000 2.2375 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS2_Shelf4" translation="0.0000 2.9308 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS2_Shelf5" translation="0.0000 3.6242 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS3_SideL" translation="1.6000 2.1500 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS3_SideR" translation="3.8500 2.1500 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS3_Plinth" translation="2.7250 0.0700 4.2750"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.3000 0.1400 0.4500"/></Shape></Transform>
+      <Transform DEF="CaseS3_Cornice" translation="2.7250 4.3800 4.2550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.4000 0.1600 0.4900"/></Shape></Transform>
+      <Transform DEF="CaseS3_Shelf0" translation="2.7250 0.1575 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS3_Shelf1" translation="2.7250 0.8508 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS3_Shelf2" translation="2.7250 1.5442 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS3_Shelf3" translation="2.7250 2.2375 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS3_Shelf4" translation="2.7250 2.9308 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS3_Shelf5" translation="2.7250 3.6242 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS4_SideL" translation="4.3250 2.1500 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS4_SideR" translation="6.5750 2.1500 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.0500 4.3000 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS4_Plinth" translation="5.4500 0.0700 4.2750"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.3000 0.1400 0.4500"/></Shape></Transform>
+      <Transform DEF="CaseS4_Cornice" translation="5.4500 4.3800 4.2550"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.4000 0.1600 0.4900"/></Shape></Transform>
+      <Transform DEF="CaseS4_Shelf0" translation="5.4500 0.1575 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS4_Shelf1" translation="5.4500 0.8508 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS4_Shelf2" translation="5.4500 1.5442 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS4_Shelf3" translation="5.4500 2.2375 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS4_Shelf4" translation="5.4500 2.9308 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+      <Transform DEF="CaseS4_Shelf5" translation="5.4500 3.6242 4.2900"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="2.2000 0.0350 0.4200"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Books">
+      <Transform DEF="CaseN0_B0_0" translation="-6.2682 0.4038 -4.2996"><Shape><Appearance><Material diffuseColor="0.538 0.141 0.137"/></Appearance><Box size="0.5237 0.4576 0.3608"/></Shape></Transform>
+      <Transform DEF="CaseN0_B0_1" translation="-5.8687 0.4312 -4.3100"><Shape><Appearance><Material diffuseColor="0.548 0.125 0.195"/></Appearance><Box size="0.2753 0.5125 0.3400"/></Shape></Transform>
+      <Transform DEF="CaseN0_B0_2" translation="-5.4705 0.3917 -4.3299"><Shape><Appearance><Material diffuseColor="0.386 0.180 0.094"/></Appearance><Box size="0.5211 0.4333 0.3002"/></Shape></Transform>
+      <Transform DEF="CaseN0_B0_3" translation="-4.9785 0.3929 -4.2977"><Shape><Appearance><Material diffuseColor="0.278 0.156 0.147"/></Appearance><Box size="0.4229 0.4358 0.3647"/></Shape></Transform>
+      <Transform DEF="CaseN0_B0_4" translation="-4.5235 0.4230 -4.2940"><Shape><Appearance><Material diffuseColor="0.530 0.247 0.105"/></Appearance><Box size="0.3070 0.4959 0.3720"/></Shape></Transform>
+      <Transform DEF="CaseN0_B1_0" translation="-6.2585 1.0763 -4.3084"><Shape><Appearance><Material diffuseColor="0.278 0.261 0.145"/></Appearance><Box size="0.5429 0.4160 0.3431"/></Shape></Transform>
+      <Transform DEF="CaseN0_B1_1" translation="-5.8254 1.1242 -4.3268"><Shape><Appearance><Material diffuseColor="0.591 0.183 0.144"/></Appearance><Box size="0.3233 0.5118 0.3064"/></Shape></Transform>
+      <Transform DEF="CaseN0_B1_2" translation="-5.3211 1.1530 -4.3112"><Shape><Appearance><Material diffuseColor="0.327 0.205 0.169"/></Appearance><Box size="0.5054 0.5692 0.3375"/></Shape></Transform>
+      <Transform DEF="CaseN0_B1_3" translation="-4.8659 1.1565 -4.2921"><Shape><Appearance><Material diffuseColor="0.471 0.254 0.171"/></Appearance><Box size="0.2249 0.5763 0.3758"/></Shape></Transform>
+      <Transform DEF="CaseN0_B1_4" translation="-4.5311 1.1565 -4.3262"><Shape><Appearance><Material diffuseColor="0.491 0.130 0.137"/></Appearance><Box size="0.2648 0.5764 0.3076"/></Shape></Transform>
+      <Transform DEF="CaseN0_B2_0" translation="-6.3920 1.8089 -4.2907"><Shape><Appearance><Material diffuseColor="0.420 0.184 0.178"/></Appearance><Box size="0.2760 0.4945 0.3786"/></Shape></Transform>
+      <Transform DEF="CaseN0_B2_1" translation="-5.9446 1.7667 -4.3093"><Shape><Appearance><Material diffuseColor="0.516 0.256 0.083"/></Appearance><Box size="0.4387 0.4101 0.3415"/></Shape></Transform>
+      <Transform DEF="CaseN0_B2_2" translation="-5.5697 1.8211 -4.3087"><Shape><Appearance><Material diffuseColor="0.552 0.295 0.092"/></Appearance><Box size="0.3112 0.5189 0.3427"/></Shape></Transform>
+      <Transform DEF="CaseN0_B2_3" translation="-5.2586 1.7800 -4.3235"><Shape><Appearance><Material diffuseColor="0.307 0.147 0.086"/></Appearance><Box size="0.3110 0.4367 0.3130"/></Shape></Transform>
+      <Transform DEF="CaseN0_B2_4" translation="-4.8658 1.8304 -4.3287"><Shape><Appearance><Material diffuseColor="0.452 0.252 0.130"/></Appearance><Box size="0.4748 0.5375 0.3026"/></Shape></Transform>
+      <Transform DEF="CaseN0_B2_5" translation="-4.4892 1.8408 -4.3089"><Shape><Appearance><Material diffuseColor="0.395 0.217 0.115"/></Appearance><Box size="0.2384 0.5584 0.3423"/></Shape></Transform>
+      <Transform DEF="CaseN0_B3_0" translation="-6.4165 2.4983 -4.2914"><Shape><Appearance><Material diffuseColor="0.507 0.122 0.159"/></Appearance><Box size="0.2270 0.4865 0.3771"/></Shape></Transform>
+      <Transform DEF="CaseN0_B3_1" translation="-6.0961 2.5156 -4.3212"><Shape><Appearance><Material diffuseColor="0.308 0.291 0.126"/></Appearance><Box size="0.4140 0.5211 0.3177"/></Shape></Transform>
+      <Transform DEF="CaseN0_B3_2" translation="-5.5224 2.5024 -4.3227"><Shape><Appearance><Material diffuseColor="0.391 0.278 0.158"/></Appearance><Box size="0.5533 0.4948 0.3146"/></Shape></Transform>
+      <Transform DEF="CaseN0_B3_3" translation="-5.0619 2.5354 -4.2934"><Shape><Appearance><Material diffuseColor="0.433 0.177 0.103"/></Appearance><Box size="0.3277 0.5609 0.3731"/></Shape></Transform>
+      <Transform DEF="CaseN0_B3_4" translation="-4.6240 2.5224 -4.3300"><Shape><Appearance><Material diffuseColor="0.417 0.255 0.174"/></Appearance><Box size="0.5080 0.5348 0.3000"/></Shape></Transform>
+      <Transform DEF="CaseN0_B4_0" translation="-6.3242 3.1838 -4.3247"><Shape><Appearance><Material diffuseColor="0.382 0.254 0.147"/></Appearance><Box size="0.4116 0.4710 0.3105"/></Shape></Transform>
+      <Transform DEF="CaseN0_B4_1" translation="-5.8126 3.1725 -4.2941"><Shape><Appearance><Material diffuseColor="0.298 0.287 0.164"/></Appearance><Box size="0.5715 0.4483 0.3718"/></Shape></Transform>
+      <Transform DEF="CaseN0_B4_2" translation="-5.2438 3.2008 -4.3124"><Shape><Appearance><Material diffuseColor="0.487 0.130 0.083"/></Appearance><Box size="0.5662 0.5049 0.3351"/></Shape></Transform>
+      <Transform DEF="CaseN0_B4_3" translation="-4.7292 3.2219 -4.3008"><Shape><Appearance><Material diffuseColor="0.306 0.294 0.087"/></Appearance><Box size="0.4630 0.5471 0.3583"/></Shape></Transform>
+      <Transform DEF="CaseN0_B5_0" translation="-6.4035 3.9044 -4.2932"><Shape><Appearance><Material diffuseColor="0.409 0.232 0.182"/></Appearance><Box size="0.2529 0.5254 0.3737"/></Shape></Transform>
+      <Transform DEF="CaseN0_B5_1" translation="-6.0816 3.9171 -4.3098"><Shape><Appearance><Material diffuseColor="0.526 0.216 0.178"/></Appearance><Box size="0.3909 0.5508 0.3404"/></Shape></Transform>
+      <Transform DEF="CaseN0_B5_2" translation="-5.6853 3.8439 -4.3212"><Shape><Appearance><Material diffuseColor="0.263 0.261 0.177"/></Appearance><Box size="0.2217 0.4045 0.3175"/></Shape></Transform>
+      <Transform DEF="CaseN0_B5_3" translation="-5.3241 3.9154 -4.3117"><Shape><Appearance><Material diffuseColor="0.484 0.133 0.146"/></Appearance><Box size="0.4606 0.5475 0.3366"/></Shape></Transform>
+      <Transform DEF="CaseN0_B5_4" translation="-4.7966 3.8475 -4.3195"><Shape><Appearance><Material diffuseColor="0.321 0.222 0.168"/></Appearance><Box size="0.4144 0.4118 0.3210"/></Shape></Transform>
+      <Transform DEF="CaseN0_B5_5" translation="-4.4697 3.8582 -4.3131"><Shape><Appearance><Material diffuseColor="0.579 0.190 0.159"/></Appearance><Box size="0.1994 0.4331 0.3338"/></Shape></Transform>
+      <Transform DEF="CaseN1_B0_0" translation="-3.6186 0.3831 -4.3214"><Shape><Appearance><Material diffuseColor="0.480 0.237 0.157"/></Appearance><Box size="0.3727 0.4162 0.3171"/></Shape></Transform>
+      <Transform DEF="CaseN1_B0_1" translation="-3.2378 0.4325 -4.2977"><Shape><Appearance><Material diffuseColor="0.425 0.261 0.106"/></Appearance><Box size="0.3490 0.5149 0.3647"/></Shape></Transform>
+      <Transform DEF="CaseN1_B0_2" translation="-2.7819 0.4590 -4.3038"><Shape><Appearance><Material diffuseColor="0.301 0.168 0.195"/></Appearance><Box size="0.5226 0.5679 0.3524"/></Shape></Transform>
+      <Transform DEF="CaseN1_B0_3" translation="-2.3331 0.3960 -4.3277"><Shape><Appearance><Material diffuseColor="0.418 0.243 0.113"/></Appearance><Box size="0.3349 0.4420 0.3046"/></Shape></Transform>
+      <Transform DEF="CaseN1_B0_4" translation="-1.9053 0.4564 -4.3133"><Shape><Appearance><Material diffuseColor="0.401 0.214 0.131"/></Appearance><Box size="0.5207 0.5627 0.3334"/></Shape></Transform>
+      <Transform DEF="CaseN1_B1_0" translation="-3.5285 1.1400 -4.3175"><Shape><Appearance><Material diffuseColor="0.532 0.218 0.137"/></Appearance><Box size="0.5531 0.5433 0.3250"/></Shape></Transform>
+      <Transform DEF="CaseN1_B1_1" translation="-2.8821 1.1025 -4.3247"><Shape><Appearance><Material diffuseColor="0.400 0.255 0.083"/></Appearance><Box size="0.5596 0.4684 0.3106"/></Shape></Transform>
+      <Transform DEF="CaseN1_B1_2" translation="-2.2924 1.1073 -4.3248"><Shape><Appearance><Material diffuseColor="0.488 0.124 0.089"/></Appearance><Box size="0.5798 0.4779 0.3103"/></Shape></Transform>
+      <Transform DEF="CaseN1_B1_3" translation="-1.8138 1.1014 -4.3006"><Shape><Appearance><Material diffuseColor="0.599 0.140 0.123"/></Appearance><Box size="0.3375 0.4661 0.3587"/></Shape></Transform>
+      <Transform DEF="CaseN1_B2_0" translation="-3.6103 1.8429 -4.2966"><Shape><Appearance><Material diffuseColor="0.422 0.173 0.123"/></Appearance><Box size="0.3894 0.5624 0.3668"/></Shape></Transform>
+      <Transform DEF="CaseN1_B2_1" translation="-3.1379 1.8208 -4.3209"><Shape><Appearance><Material diffuseColor="0.298 0.179 0.164"/></Appearance><Box size="0.5555 0.5183 0.3182"/></Shape></Transform>
+      <Transform DEF="CaseN1_B2_2" translation="-2.5483 1.8070 -4.3073"><Shape><Appearance><Material diffuseColor="0.320 0.235 0.084"/></Appearance><Box size="0.4436 0.4907 0.3455"/></Shape></Transform>
+      <Transform DEF="CaseN1_B2_3" translation="-2.1062 1.8509 -4.3263"><Shape><Appearance><Material diffuseColor="0.282 0.130 0.123"/></Appearance><Box size="0.2607 0.5785 0.3074"/></Shape></Transform>
+      <Transform DEF="CaseN1_B2_4" translation="-1.7654 1.8095 -4.3248"><Shape><Appearance><Material diffuseColor="0.428 0.213 0.150"/></Appearance><Box size="0.2408 0.4957 0.3103"/></Shape></Transform>
+      <Transform DEF="CaseN1_B3_0" translation="-3.5691 2.5259 -4.3281"><Shape><Appearance><Material diffuseColor="0.502 0.152 0.147"/></Appearance><Box size="0.4719 0.5418 0.3038"/></Shape></Transform>
+      <Transform DEF="CaseN1_B3_1" translation="-3.1704 2.5398 -4.2921"><Shape><Appearance><Material diffuseColor="0.441 0.136 0.103"/></Appearance><Box size="0.3254 0.5696 0.3758"/></Shape></Transform>
+      <Transform DEF="CaseN1_B3_2" translation="-2.6737 2.4976 -4.2998"><Shape><Appearance><Material diffuseColor="0.441 0.201 0.126"/></Appearance><Box size="0.4881 0.4852 0.3604"/></Shape></Transform>
+      <Transform DEF="CaseN1_B3_3" translation="-2.1174 2.4631 -4.2967"><Shape><Appearance><Material diffuseColor="0.474 0.162 0.177"/></Appearance><Box size="0.4445 0.4162 0.3666"/></Shape></Transform>
+      <Transform DEF="CaseN1_B3_4" translation="-1.7601 2.4841 -4.3091"><Shape><Appearance><Material diffuseColor="0.509 0.161 0.176"/></Appearance><Box size="0.2302 0.4583 0.3419"/></Shape></Transform>
+      <Transform DEF="CaseN1_B4_0" translation="-3.6899 3.2337 -4.3000"><Shape><Appearance><Material diffuseColor="0.588 0.269 0.083"/></Appearance><Box size="0.2302 0.5707 0.3600"/></Shape></Transform>
+      <Transform DEF="CaseN1_B4_1" translation="-3.2845 3.2135 -4.3170"><Shape><Appearance><Material diffuseColor="0.399 0.228 0.166"/></Appearance><Box size="0.5806 0.5304 0.3260"/></Shape></Transform>
+      <Transform DEF="CaseN1_B4_2" translation="-2.8263 3.1690 -4.3206"><Shape><Appearance><Material diffuseColor="0.291 0.180 0.151"/></Appearance><Box size="0.3358 0.4413 0.3189"/></Shape></Transform>
+      <Transform DEF="CaseN1_B4_3" translation="-2.4240 3.1838 -4.3280"><Shape><Appearance><Material diffuseColor="0.303 0.125 0.084"/></Appearance><Box size="0.2887 0.4709 0.3041"/></Shape></Transform>
+      <Transform DEF="CaseN1_B4_4" translation="-2.1667 3.1807 -4.3222"><Shape><Appearance><Material diffuseColor="0.339 0.204 0.091"/></Appearance><Box size="0.2261 0.4647 0.3156"/></Shape></Transform>
+      <Transform DEF="CaseN1_B4_5" translation="-1.8433 3.2290 -4.3118"><Shape><Appearance><Material diffuseColor="0.464 0.283 0.084"/></Appearance><Box size="0.3807 0.5614 0.3364"/></Shape></Transform>
+      <Transform DEF="CaseN1_B5_0" translation="-3.6073 3.9199 -4.2942"><Shape><Appearance><Material diffuseColor="0.307 0.221 0.112"/></Appearance><Box size="0.3954 0.5564 0.3716"/></Shape></Transform>
+      <Transform DEF="CaseN1_B5_1" translation="-3.1042 3.8514 -4.3178"><Shape><Appearance><Material diffuseColor="0.587 0.214 0.082"/></Appearance><Box size="0.5709 0.4195 0.3244"/></Shape></Transform>
+      <Transform DEF="CaseN1_B5_2" translation="-2.6375 3.8612 -4.3001"><Shape><Appearance><Material diffuseColor="0.369 0.237 0.147"/></Appearance><Box size="0.3224 0.4390 0.3597"/></Shape></Transform>
+      <Transform DEF="CaseN1_B5_3" translation="-2.1131 3.8579 -4.3223"><Shape><Appearance><Material diffuseColor="0.261 0.247 0.175"/></Appearance><Box size="0.5464 0.4324 0.3155"/></Shape></Transform>
+      <Transform DEF="CaseN2_B0_0" translation="-0.8479 0.3935 -4.3058"><Shape><Appearance><Material diffuseColor="0.293 0.176 0.093"/></Appearance><Box size="0.4641 0.4369 0.3483"/></Shape></Transform>
+      <Transform DEF="CaseN2_B0_1" translation="-0.3112 0.3941 -4.3137"><Shape><Appearance><Material diffuseColor="0.567 0.218 0.162"/></Appearance><Box size="0.5693 0.4382 0.3325"/></Shape></Transform>
+      <Transform DEF="CaseN2_B0_2" translation="0.1077 0.4443 -4.2947"><Shape><Appearance><Material diffuseColor="0.455 0.145 0.130"/></Appearance><Box size="0.2686 0.5385 0.3706"/></Shape></Transform>
+      <Transform DEF="CaseN2_B0_3" translation="0.4943 0.3860 -4.3173"><Shape><Appearance><Material diffuseColor="0.434 0.259 0.177"/></Appearance><Box size="0.3245 0.4221 0.3254"/></Shape></Transform>
+      <Transform DEF="CaseN2_B0_4" translation="0.8783 0.4214 -4.3208"><Shape><Appearance><Material diffuseColor="0.401 0.188 0.128"/></Appearance><Box size="0.4034 0.4929 0.3184"/></Shape></Transform>
+      <Transform DEF="CaseN2_B1_0" translation="-0.9320 1.0711 -4.2982"><Shape><Appearance><Material diffuseColor="0.565 0.140 0.146"/></Appearance><Box size="0.2959 0.4056 0.3635"/></Shape></Transform>
+      <Transform DEF="CaseN2_B1_1" translation="-0.5393 1.1132 -4.3107"><Shape><Appearance><Material diffuseColor="0.593 0.150 0.116"/></Appearance><Box size="0.4496 0.4897 0.3385"/></Shape></Transform>
+      <Transform DEF="CaseN2_B1_2" translation="-0.0338 1.1157 -4.2929"><Shape><Appearance><Material diffuseColor="0.395 0.264 0.191"/></Appearance><Box size="0.5613 0.4948 0.3743"/></Shape></Transform>
+      <Transform DEF="CaseN2_B1_3" translation="0.5029 1.1499 -4.2993"><Shape><Appearance><Material diffuseColor="0.565 0.268 0.129"/></Appearance><Box size="0.3321 0.5632 0.3614"/></Shape></Transform>
+      <Transform DEF="CaseN2_B1_4" translation="0.9195 1.0907 -4.3243"><Shape><Appearance><Material diffuseColor="0.559 0.127 0.180"/></Appearance><Box size="0.3211 0.4447 0.3115"/></Shape></Transform>
+      <Transform DEF="CaseN2_B2_0" translation="-0.9113 1.8087 -4.3216"><Shape><Appearance><Material diffuseColor="0.597 0.268 0.091"/></Appearance><Box size="0.3374 0.4941 0.3167"/></Shape></Transform>
+      <Transform DEF="CaseN2_B2_1" translation="-0.5013 1.7999 -4.2930"><Shape><Appearance><Material diffuseColor="0.260 0.197 0.185"/></Appearance><Box size="0.3028 0.4765 0.3740"/></Shape></Transform>
+      <Transform DEF="CaseN2_B2_2" translation="-0.1633 1.7885 -4.3162"><Shape><Appearance><Material diffuseColor="0.375 0.296 0.192"/></Appearance><Box size="0.3331 0.4538 0.3276"/></Shape></Transform>
+      <Transform DEF="CaseN2_B2_3" translation="0.2078 1.8040 -4.3176"><Shape><Appearance><Material diffuseColor="0.370 0.189 0.174"/></Appearance><Box size="0.4090 0.4846 0.3247"/></Shape></Transform>
+      <Transform DEF="CaseN2_B2_4" translation="0.6910 1.8124 -4.3231"><Shape><Appearance><Material diffuseColor="0.542 0.163 0.157"/></Appearance><Box size="0.5573 0.5016 0.3139"/></Shape></Transform>
+      <Transform DEF="CaseN2_B3_0" translation="-0.8597 2.4556 -4.3251"><Shape><Appearance><Material diffuseColor="0.420 0.198 0.159"/></Appearance><Box size="0.4407 0.4012 0.3098"/></Shape></Transform>
+      <Transform DEF="CaseN2_B3_1" translation="-0.3683 2.5229 -4.2933"><Shape><Appearance><Material diffuseColor="0.600 0.216 0.185"/></Appearance><Box size="0.3621 0.5359 0.3734"/></Shape></Transform>
+      <Transform DEF="CaseN2_B3_2" translation="0.1095 2.4802 -4.2904"><Shape><Appearance><Material diffuseColor="0.387 0.203 0.195"/></Appearance><Box size="0.4133 0.4504 0.3792"/></Shape></Transform>
+      <Transform DEF="CaseN2_B3_3" translation="0.6306 2.4905 -4.3237"><Shape><Appearance><Material diffuseColor="0.431 0.124 0.190"/></Appearance><Box size="0.5890 0.4711 0.3125"/></Shape></Transform>
+      <Transform DEF="CaseN2_B4_0" translation="-0.8870 3.1485 -4.3249"><Shape><Appearance><Material diffuseColor="0.269 0.139 0.173"/></Appearance><Box size="0.3859 0.4004 0.3102"/></Shape></Transform>
+      <Transform DEF="CaseN2_B4_1" translation="-0.5257 3.1785 -4.2988"><Shape><Appearance><Material diffuseColor="0.442 0.152 0.197"/></Appearance><Box size="0.2969 0.4604 0.3625"/></Shape></Transform>
+      <Transform DEF="CaseN2_B4_2" translation="-0.1801 3.2284 -4.2925"><Shape><Appearance><Material diffuseColor="0.397 0.196 0.177"/></Appearance><Box size="0.3542 0.5600 0.3750"/></Shape></Transform>
+      <Transform DEF="CaseN2_B4_3" translation="0.1147 3.2004 -4.2939"><Shape><Appearance><Material diffuseColor="0.518 0.287 0.151"/></Appearance><Box size="0.2353 0.5042 0.3722"/></Shape></Transform>
+      <Transform DEF="CaseN2_B4_4" translation="0.4580 3.2157 -4.2985"><Shape><Appearance><Material diffuseColor="0.446 0.150 0.194"/></Appearance><Box size="0.2713 0.5347 0.3630"/></Shape></Transform>
+      <Transform DEF="CaseN2_B4_5" translation="0.8167 3.1618 -4.2907"><Shape><Appearance><Material diffuseColor="0.372 0.235 0.108"/></Appearance><Box size="0.2661 0.4268 0.3786"/></Shape></Transform>
+      <Transform DEF="CaseN2_B4_6" translation="1.0149 3.2318 -4.3163"><Shape><Appearance><Material diffuseColor="0.514 0.208 0.137"/></Appearance><Box size="0.1303 0.5668 0.3274"/></Shape></Transform>
+      <Transform DEF="CaseN2_B5_0" translation="-0.8805 3.8446 -4.3025"><Shape><Appearance><Material diffuseColor="0.417 0.123 0.092"/></Appearance><Box size="0.3991 0.4058 0.3550"/></Shape></Transform>
+      <Transform DEF="CaseN2_B5_1" translation="-0.4802 3.9280 -4.3046"><Shape><Appearance><Material diffuseColor="0.587 0.249 0.191"/></Appearance><Box size="0.4013 0.5727 0.3508"/></Shape></Transform>
+      <Transform DEF="CaseN2_B5_2" translation="-0.1433 3.8511 -4.3041"><Shape><Appearance><Material diffuseColor="0.290 0.165 0.193"/></Appearance><Box size="0.2725 0.4188 0.3518"/></Shape></Transform>
+      <Transform DEF="CaseN2_B5_3" translation="0.1817 3.8515 -4.3198"><Shape><Appearance><Material diffuseColor="0.556 0.300 0.196"/></Appearance><Box size="0.3376 0.4196 0.3203"/></Shape></Transform>
+      <Transform DEF="CaseN2_B5_4" translation="0.4879 3.8451 -4.2942"><Shape><Appearance><Material diffuseColor="0.259 0.204 0.091"/></Appearance><Box size="0.2748 0.4070 0.3715"/></Shape></Transform>
+      <Transform DEF="CaseN2_B5_5" translation="0.8704 3.9299 -4.3019"><Shape><Appearance><Material diffuseColor="0.404 0.198 0.093"/></Appearance><Box size="0.3102 0.5766 0.3561"/></Shape></Transform>
+      <Transform DEF="CaseN3_B0_0" translation="1.8966 0.3881 -4.2974"><Shape><Appearance><Material diffuseColor="0.297 0.210 0.161"/></Appearance><Box size="0.5032 0.4261 0.3652"/></Shape></Transform>
+      <Transform DEF="CaseN3_B0_1" translation="2.4407 0.4530 -4.2980"><Shape><Appearance><Material diffuseColor="0.365 0.228 0.087"/></Appearance><Box size="0.5850 0.5560 0.3641"/></Shape></Transform>
+      <Transform DEF="CaseN3_B0_2" translation="2.9159 0.4076 -4.2971"><Shape><Appearance><Material diffuseColor="0.489 0.270 0.148"/></Appearance><Box size="0.3655 0.4652 0.3657"/></Shape></Transform>
+      <Transform DEF="CaseN3_B0_3" translation="3.3565 0.4311 -4.3275"><Shape><Appearance><Material diffuseColor="0.381 0.262 0.177"/></Appearance><Box size="0.5155 0.5122 0.3051"/></Shape></Transform>
+      <Transform DEF="CaseN3_B0_4" translation="3.7196 0.4033 -4.3164"><Shape><Appearance><Material diffuseColor="0.266 0.257 0.080"/></Appearance><Box size="0.1708 0.4566 0.3272"/></Shape></Transform>
+      <Transform DEF="CaseN3_B1_0" translation="1.8592 1.0997 -4.2922"><Shape><Appearance><Material diffuseColor="0.421 0.296 0.157"/></Appearance><Box size="0.4284 0.4627 0.3756"/></Shape></Transform>
+      <Transform DEF="CaseN3_B1_1" translation="2.2030 1.1330 -4.2927"><Shape><Appearance><Material diffuseColor="0.340 0.298 0.147"/></Appearance><Box size="0.2594 0.5293 0.3747"/></Shape></Transform>
+      <Transform DEF="CaseN3_B1_2" translation="2.5715 1.1444 -4.3052"><Shape><Appearance><Material diffuseColor="0.506 0.138 0.105"/></Appearance><Box size="0.4775 0.5521 0.3495"/></Shape></Transform>
+      <Transform DEF="CaseN3_B1_3" translation="3.0931 1.1093 -4.3253"><Shape><Appearance><Material diffuseColor="0.573 0.217 0.124"/></Appearance><Box size="0.5657 0.4819 0.3094"/></Shape></Transform>
+      <Transform DEF="CaseN3_B1_4" translation="3.6355 1.1570 -4.3076"><Shape><Appearance><Material diffuseColor="0.484 0.280 0.143"/></Appearance><Box size="0.3391 0.5773 0.3447"/></Shape></Transform>
+      <Transform DEF="CaseN3_B2_0" translation="1.8380 1.8164 -4.3262"><Shape><Appearance><Material diffuseColor="0.477 0.223 0.119"/></Appearance><Box size="0.3860 0.5094 0.3076"/></Shape></Transform>
+      <Transform DEF="CaseN3_B2_1" translation="2.3305 1.7768 -4.3130"><Shape><Appearance><Material diffuseColor="0.361 0.228 0.083"/></Appearance><Box size="0.5591 0.4303 0.3340"/></Shape></Transform>
+      <Transform DEF="CaseN3_B2_2" translation="2.8394 1.7821 -4.2999"><Shape><Appearance><Material diffuseColor="0.400 0.234 0.154"/></Appearance><Box size="0.4187 0.4408 0.3602"/></Shape></Transform>
+      <Transform DEF="CaseN3_B2_3" translation="3.2799 1.7772 -4.3242"><Shape><Appearance><Material diffuseColor="0.257 0.266 0.120"/></Appearance><Box size="0.2823 0.4311 0.3115"/></Shape></Transform>
+      <Transform DEF="CaseN3_B2_4" translation="3.6580 1.7994 -4.3032"><Shape><Appearance><Material diffuseColor="0.467 0.282 0.175"/></Appearance><Box size="0.2939 0.4754 0.3535"/></Shape></Transform>
+      <Transform DEF="CaseN3_B3_0" translation="1.8768 2.5301 -4.2902"><Shape><Appearance><Material diffuseColor="0.593 0.181 0.150"/></Appearance><Box size="0.4636 0.5501 0.3796"/></Shape></Transform>
+      <Transform DEF="CaseN3_B3_1" translation="2.4874 2.5209 -4.3257"><Shape><Appearance><Material diffuseColor="0.520 0.212 0.108"/></Appearance><Box size="0.5778 0.5318 0.3087"/></Shape></Transform>
+      <Transform DEF="CaseN3_B3_2" translation="3.1349 2.4594 -4.3222"><Shape><Appearance><Material diffuseColor="0.395 0.158 0.092"/></Appearance><Box size="0.5372 0.4089 0.3156"/></Shape></Transform>
+      <Transform DEF="CaseN3_B3_3" translation="3.6493 2.5351 -4.2957"><Shape><Appearance><Material diffuseColor="0.598 0.202 0.089"/></Appearance><Box size="0.3114 0.5603 0.3685"/></Shape></Transform>
+      <Transform DEF="CaseN3_B4_0" translation="1.8343 3.1642 -4.3143"><Shape><Appearance><Material diffuseColor="0.347 0.183 0.119"/></Appearance><Box size="0.3787 0.4318 0.3315"/></Shape></Transform>
+      <Transform DEF="CaseN3_B4_1" translation="2.3126 3.2331 -4.3054"><Shape><Appearance><Material diffuseColor="0.433 0.229 0.199"/></Appearance><Box size="0.5379 0.5696 0.3492"/></Shape></Transform>
+      <Transform DEF="CaseN3_B4_2" translation="2.8847 3.1871 -4.3175"><Shape><Appearance><Material diffuseColor="0.422 0.167 0.130"/></Appearance><Box size="0.5663 0.4775 0.3251"/></Shape></Transform>
+      <Transform DEF="CaseN3_B4_3" translation="3.4827 3.1731 -4.3101"><Shape><Appearance><Material diffuseColor="0.287 0.247 0.196"/></Appearance><Box size="0.5896 0.4495 0.3399"/></Shape></Transform>
+      <Transform DEF="CaseN3_B5_0" translation="1.7578 3.8523 -4.3298"><Shape><Appearance><Material diffuseColor="0.576 0.253 0.172"/></Appearance><Box size="0.2255 0.4212 0.3005"/></Shape></Transform>
+      <Transform DEF="CaseN3_B5_1" translation="2.1751 3.8895 -4.3017"><Shape><Appearance><Material diffuseColor="0.411 0.137 0.187"/></Appearance><Box size="0.4291 0.4957 0.3566"/></Shape></Transform>
+      <Transform DEF="CaseN3_B5_2" translation="2.6310 3.8615 -4.2958"><Shape><Appearance><Material diffuseColor="0.328 0.142 0.098"/></Appearance><Box size="0.4427 0.4397 0.3685"/></Shape></Transform>
+      <Transform DEF="CaseN3_B5_3" translation="3.0741 3.8727 -4.3297"><Shape><Appearance><Material diffuseColor="0.588 0.160 0.129"/></Appearance><Box size="0.2635 0.4620 0.3007"/></Shape></Transform>
+      <Transform DEF="CaseN3_B5_4" translation="3.4175 3.9158 -4.3141"><Shape><Appearance><Material diffuseColor="0.279 0.180 0.154"/></Appearance><Box size="0.4235 0.5482 0.3318"/></Shape></Transform>
+      <Transform DEF="CaseN3_B5_5" translation="3.7271 3.8451 -4.3127"><Shape><Appearance><Material diffuseColor="0.321 0.250 0.089"/></Appearance><Box size="0.1557 0.4068 0.3345"/></Shape></Transform>
+      <Transform DEF="CaseN4_B0_0" translation="4.6467 0.4326 -4.3185"><Shape><Appearance><Material diffuseColor="0.352 0.274 0.121"/></Appearance><Box size="0.5534 0.5152 0.3231"/></Shape></Transform>
+      <Transform DEF="CaseN4_B0_1" translation="5.2009 0.3769 -4.2998"><Shape><Appearance><Material diffuseColor="0.285 0.178 0.107"/></Appearance><Box size="0.5550 0.4038 0.3605"/></Shape></Transform>
+      <Transform DEF="CaseN4_B0_2" translation="5.7207 0.3761 -4.2970"><Shape><Appearance><Material diffuseColor="0.296 0.130 0.099"/></Appearance><Box size="0.4848 0.4023 0.3660"/></Shape></Transform>
+      <Transform DEF="CaseN4_B0_3" translation="6.2916 0.4565 -4.3187"><Shape><Appearance><Material diffuseColor="0.317 0.165 0.190"/></Appearance><Box size="0.4769 0.5630 0.3227"/></Shape></Transform>
+      <Transform DEF="CaseN4_B1_0" translation="4.6302 1.1095 -4.3279"><Shape><Appearance><Material diffuseColor="0.448 0.257 0.091"/></Appearance><Box size="0.5205 0.4824 0.3043"/></Shape></Transform>
+      <Transform DEF="CaseN4_B1_1" translation="5.2769 1.1535 -4.3004"><Shape><Appearance><Material diffuseColor="0.537 0.193 0.195"/></Appearance><Box size="0.5929 0.5704 0.3592"/></Shape></Transform>
+      <Transform DEF="CaseN4_B1_2" translation="5.8977 1.1436 -4.3063"><Shape><Appearance><Material diffuseColor="0.493 0.125 0.160"/></Appearance><Box size="0.4686 0.5506 0.3475"/></Shape></Transform>
+      <Transform DEF="CaseN4_B1_3" translation="6.3310 1.1455 -4.3086"><Shape><Appearance><Material diffuseColor="0.261 0.260 0.182"/></Appearance><Box size="0.3980 0.5544 0.3427"/></Shape></Transform>
+      <Transform DEF="CaseN4_B2_0" translation="4.5792 1.8407 -4.2963"><Shape><Appearance><Material diffuseColor="0.323 0.125 0.087"/></Appearance><Box size="0.4183 0.5581 0.3674"/></Shape></Transform>
+      <Transform DEF="CaseN4_B2_1" translation="4.9474 1.7950 -4.3075"><Shape><Appearance><Material diffuseColor="0.494 0.268 0.091"/></Appearance><Box size="0.3181 0.4666 0.3449"/></Shape></Transform>
+      <Transform DEF="CaseN4_B2_2" translation="5.3613 1.7915 -4.3035"><Shape><Appearance><Material diffuseColor="0.278 0.211 0.096"/></Appearance><Box size="0.5096 0.4597 0.3530"/></Shape></Transform>
+      <Transform DEF="CaseN4_B2_3" translation="5.7427 1.7805 -4.2910"><Shape><Appearance><Material diffuseColor="0.413 0.291 0.113"/></Appearance><Box size="0.2532 0.4376 0.3780"/></Shape></Transform>
+      <Transform DEF="CaseN4_B2_4" translation="6.1568 1.8358 -4.3141"><Shape><Appearance><Material diffuseColor="0.498 0.225 0.085"/></Appearance><Box size="0.5349 0.5483 0.3318"/></Shape></Transform>
+      <Transform DEF="CaseN4_B3_0" translation="4.5041 2.5229 -4.3101"><Shape><Appearance><Material diffuseColor="0.551 0.163 0.170"/></Appearance><Box size="0.2683 0.5357 0.3397"/></Shape></Transform>
+      <Transform DEF="CaseN4_B3_1" translation="4.9413 2.4844 -4.3117"><Shape><Appearance><Material diffuseColor="0.393 0.165 0.128"/></Appearance><Box size="0.5661 0.4589 0.3365"/></Shape></Transform>
+      <Transform DEF="CaseN4_B3_2" translation="5.5068 2.4794 -4.3261"><Shape><Appearance><Material diffuseColor="0.277 0.156 0.112"/></Appearance><Box size="0.5649 0.4489 0.3079"/></Shape></Transform>
+      <Transform DEF="CaseN4_B3_3" translation="5.9698 2.5380 -4.3133"><Shape><Appearance><Material diffuseColor="0.564 0.260 0.131"/></Appearance><Box size="0.3612 0.5660 0.3333"/></Shape></Transform>
+      <Transform DEF="CaseN4_B3_4" translation="6.3402 2.5105 -4.3041"><Shape><Appearance><Material diffuseColor="0.299 0.227 0.132"/></Appearance><Box size="0.3796 0.5110 0.3518"/></Shape></Transform>
+      <Transform DEF="CaseN4_B4_0" translation="4.5543 3.1705 -4.2913"><Shape><Appearance><Material diffuseColor="0.445 0.270 0.177"/></Appearance><Box size="0.3686 0.4444 0.3774"/></Shape></Transform>
+      <Transform DEF="CaseN4_B4_1" translation="4.9037 3.1586 -4.3002"><Shape><Appearance><Material diffuseColor="0.515 0.168 0.181"/></Appearance><Box size="0.3303 0.4206 0.3596"/></Shape></Transform>
+      <Transform DEF="CaseN4_B4_2" translation="5.2319 3.1480 -4.3117"><Shape><Appearance><Material diffuseColor="0.292 0.275 0.123"/></Appearance><Box size="0.2861 0.3993 0.3366"/></Shape></Transform>
+      <Transform DEF="CaseN4_B4_3" translation="5.5553 3.2267 -4.3001"><Shape><Appearance><Material diffuseColor="0.391 0.142 0.165"/></Appearance><Box size="0.3608 0.5568 0.3597"/></Shape></Transform>
+      <Transform DEF="CaseN4_B4_4" translation="5.9340 3.2068 -4.3149"><Shape><Appearance><Material diffuseColor="0.556 0.287 0.155"/></Appearance><Box size="0.3565 0.5169 0.3302"/></Shape></Transform>
+      <Transform DEF="CaseN4_B4_5" translation="6.3358 3.1479 -4.2960"><Shape><Appearance><Material diffuseColor="0.445 0.269 0.162"/></Appearance><Box size="0.2670 0.3990 0.3681"/></Shape></Transform>
+      <Transform DEF="CaseN4_B5_0" translation="4.6468 3.9040 -4.3018"><Shape><Appearance><Material diffuseColor="0.413 0.240 0.107"/></Appearance><Box size="0.5537 0.5247 0.3565"/></Shape></Transform>
+      <Transform DEF="CaseN4_B5_1" translation="5.1520 3.8813 -4.2951"><Shape><Appearance><Material diffuseColor="0.592 0.202 0.173"/></Appearance><Box size="0.4568 0.4794 0.3699"/></Shape></Transform>
+      <Transform DEF="CaseN4_B5_2" translation="5.5889 3.8702 -4.3008"><Shape><Appearance><Material diffuseColor="0.479 0.265 0.199"/></Appearance><Box size="0.4170 0.4571 0.3584"/></Shape></Transform>
+      <Transform DEF="CaseN4_B5_3" translation="6.0105 3.9074 -4.3198"><Shape><Appearance><Material diffuseColor="0.463 0.213 0.175"/></Appearance><Box size="0.4260 0.5314 0.3204"/></Shape></Transform>
+      <Transform DEF="CaseN4_B5_4" translation="6.4217 3.8551 -4.3207"><Shape><Appearance><Material diffuseColor="0.347 0.282 0.130"/></Appearance><Box size="0.2165 0.4269 0.3185"/></Shape></Transform>
+      <Transform DEF="CaseS0_B0_0" translation="-6.3844 0.4114 4.2988"><Shape><Appearance><Material diffuseColor="0.313 0.176 0.160"/></Appearance><Box size="0.2912 0.4729 0.3624"/></Shape></Transform>
+      <Transform DEF="CaseS0_B0_1" translation="-5.9751 0.4386 4.3102"><Shape><Appearance><Material diffuseColor="0.425 0.173 0.130"/></Appearance><Box size="0.4874 0.5272 0.3397"/></Shape></Transform>
+      <Transform DEF="CaseS0_B0_2" translation="-5.5287 0.4137 4.2981"><Shape><Appearance><Material diffuseColor="0.592 0.243 0.145"/></Appearance><Box size="0.3655 0.4774 0.3638"/></Shape></Transform>
+      <Transform DEF="CaseS0_B0_3" translation="-5.1677 0.4534 4.3004"><Shape><Appearance><Material diffuseColor="0.430 0.148 0.081"/></Appearance><Box size="0.3565 0.5569 0.3591"/></Shape></Transform>
+      <Transform DEF="CaseS0_B0_4" translation="-4.8186 0.3995 4.3254"><Shape><Appearance><Material diffuseColor="0.287 0.152 0.087"/></Appearance><Box size="0.3417 0.4489 0.3092"/></Shape></Transform>
+      <Transform DEF="CaseS0_B0_5" translation="-4.4639 0.3920 4.3300"><Shape><Appearance><Material diffuseColor="0.537 0.199 0.157"/></Appearance><Box size="0.1878 0.4340 0.3000"/></Shape></Transform>
+      <Transform DEF="CaseS0_B1_0" translation="-6.4037 1.0886 4.3231"><Shape><Appearance><Material diffuseColor="0.486 0.279 0.190"/></Appearance><Box size="0.2526 0.4406 0.3137"/></Shape></Transform>
+      <Transform DEF="CaseS0_B1_1" translation="-6.0355 1.1134 4.3232"><Shape><Appearance><Material diffuseColor="0.396 0.191 0.096"/></Appearance><Box size="0.4438 0.4902 0.3135"/></Shape></Transform>
+      <Transform DEF="CaseS0_B1_2" translation="-5.5471 1.0786 4.3268"><Shape><Appearance><Material diffuseColor="0.384 0.252 0.198"/></Appearance><Box size="0.5331 0.4206 0.3063"/></Shape></Transform>
+      <Transform DEF="CaseS0_B1_3" translation="-5.0267 1.0927 4.2930"><Shape><Appearance><Material diffuseColor="0.454 0.140 0.081"/></Appearance><Box size="0.4676 0.4488 0.3740"/></Shape></Transform>
+      <Transform DEF="CaseS0_B1_4" translation="-4.6607 1.0830 4.2990"><Shape><Appearance><Material diffuseColor="0.555 0.180 0.177"/></Appearance><Box size="0.2644 0.4293 0.3621"/></Shape></Transform>
+      <Transform DEF="CaseS0_B1_5" translation="-4.4493 1.0759 4.3043"><Shape><Appearance><Material diffuseColor="0.352 0.286 0.135"/></Appearance><Box size="0.1585 0.4150 0.3514"/></Shape></Transform>
+      <Transform DEF="CaseS0_B2_0" translation="-6.2870 1.7850 4.2970"><Shape><Appearance><Material diffuseColor="0.305 0.267 0.117"/></Appearance><Box size="0.4860 0.4466 0.3659"/></Shape></Transform>
+      <Transform DEF="CaseS0_B2_1" translation="-5.8672 1.8491 4.3170"><Shape><Appearance><Material diffuseColor="0.330 0.133 0.134"/></Appearance><Box size="0.3137 0.5748 0.3260"/></Shape></Transform>
+      <Transform DEF="CaseS0_B2_2" translation="-5.4430 1.7698 4.3242"><Shape><Appearance><Material diffuseColor="0.321 0.222 0.198"/></Appearance><Box size="0.5346 0.4162 0.3116"/></Shape></Transform>
+      <Transform DEF="CaseS0_B2_3" translation="-4.7958 1.7915 4.3146"><Shape><Appearance><Material diffuseColor="0.559 0.299 0.176"/></Appearance><Box size="0.5798 0.4596 0.3308"/></Shape></Transform>
+      <Transform DEF="CaseS0_B3_0" translation="-6.3946 2.4739 4.3063"><Shape><Appearance><Material diffuseColor="0.507 0.126 0.165"/></Appearance><Box size="0.2708 0.4377 0.3474"/></Shape></Transform>
+      <Transform DEF="CaseS0_B3_1" translation="-6.0213 2.4713 4.3018"><Shape><Appearance><Material diffuseColor="0.543 0.273 0.142"/></Appearance><Box size="0.4759 0.4327 0.3564"/></Shape></Transform>
+      <Transform DEF="CaseS0_B3_2" translation="-5.5426 2.4821 4.3048"><Shape><Appearance><Material diffuseColor="0.419 0.173 0.199"/></Appearance><Box size="0.4815 0.4541 0.3504"/></Shape></Transform>
+      <Transform DEF="CaseS0_B3_3" translation="-5.1155 2.4900 4.3229"><Shape><Appearance><Material diffuseColor="0.386 0.141 0.115"/></Appearance><Box size="0.3326 0.4700 0.3142"/></Shape></Transform>
+      <Transform DEF="CaseS0_B3_4" translation="-4.7768 2.5282 4.2915"><Shape><Appearance><Material diffuseColor="0.592 0.240 0.111"/></Appearance><Box size="0.3449 0.5464 0.3770"/></Shape></Transform>
+      <Transform DEF="CaseS0_B3_5" translation="-4.4872 2.5354 4.3120"><Shape><Appearance><Material diffuseColor="0.420 0.250 0.195"/></Appearance><Box size="0.2343 0.5608 0.3360"/></Shape></Transform>
+      <Transform DEF="CaseS0_B4_0" translation="-6.3017 3.1570 4.3249"><Shape><Appearance><Material diffuseColor="0.430 0.228 0.180"/></Appearance><Box size="0.4566 0.4174 0.3102"/></Shape></Transform>
+      <Transform DEF="CaseS0_B4_1" translation="-5.9447 3.1831 4.3015"><Shape><Appearance><Material diffuseColor="0.453 0.274 0.155"/></Appearance><Box size="0.2573 0.4695 0.3570"/></Shape></Transform>
+      <Transform DEF="CaseS0_B4_2" translation="-5.5742 3.1929 4.3270"><Shape><Appearance><Material diffuseColor="0.454 0.197 0.104"/></Appearance><Box size="0.4838 0.4891 0.3060"/></Shape></Transform>
+      <Transform DEF="CaseS0_B4_3" translation="-5.1001 3.2127 4.3291"><Shape><Appearance><Material diffuseColor="0.472 0.157 0.099"/></Appearance><Box size="0.2844 0.5287 0.3018"/></Shape></Transform>
+      <Transform DEF="CaseS0_B4_4" translation="-4.6858 3.1919 4.3172"><Shape><Appearance><Material diffuseColor="0.586 0.247 0.154"/></Appearance><Box size="0.5443 0.4872 0.3257"/></Shape></Transform>
+      <Transform DEF="CaseS0_B5_0" translation="-6.3531 3.8809 4.3070"><Shape><Appearance><Material diffuseColor="0.476 0.242 0.084"/></Appearance><Box size="0.3538 0.4785 0.3460"/></Shape></Transform>
+      <Transform DEF="CaseS0_B5_1" translation="-5.9416 3.8904 4.3274"><Shape><Appearance><Material diffuseColor="0.411 0.174 0.105"/></Appearance><Box size="0.4691 0.4974 0.3052"/></Shape></Transform>
+      <Transform DEF="CaseS0_B5_2" translation="-5.5194 3.8458 4.2920"><Shape><Appearance><Material diffuseColor="0.490 0.211 0.169"/></Appearance><Box size="0.3354 0.4083 0.3760"/></Shape></Transform>
+      <Transform DEF="CaseS0_B5_3" translation="-5.1923 3.9196 4.3008"><Shape><Appearance><Material diffuseColor="0.417 0.133 0.162"/></Appearance><Box size="0.3187 0.5559 0.3583"/></Shape></Transform>
+      <Transform DEF="CaseS0_B5_4" translation="-4.8161 3.8458 4.3264"><Shape><Appearance><Material diffuseColor="0.472 0.273 0.179"/></Appearance><Box size="0.4337 0.4083 0.3072"/></Shape></Transform>
+      <Transform DEF="CaseS0_B5_5" translation="-4.4396 3.8657 4.3147"><Shape><Appearance><Material diffuseColor="0.344 0.286 0.198"/></Appearance><Box size="0.1392 0.4480 0.3306"/></Shape></Transform>
+      <Transform DEF="CaseS1_B0_0" translation="-3.6613 0.4302 4.3268"><Shape><Appearance><Material diffuseColor="0.453 0.205 0.103"/></Appearance><Box size="0.2874 0.5104 0.3064"/></Shape></Transform>
+      <Transform DEF="CaseS1_B0_1" translation="-3.3460 0.4564 4.2916"><Shape><Appearance><Material diffuseColor="0.391 0.178 0.180"/></Appearance><Box size="0.3031 0.5628 0.3768"/></Shape></Transform>
+      <Transform DEF="CaseS1_B0_2" translation="-2.8878 0.3931 4.3191"><Shape><Appearance><Material diffuseColor="0.398 0.296 0.086"/></Appearance><Box size="0.5733 0.4362 0.3218"/></Shape></Transform>
+      <Transform DEF="CaseS1_B0_3" translation="-2.4275 0.4336 4.3283"><Shape><Appearance><Material diffuseColor="0.340 0.156 0.182"/></Appearance><Box size="0.3073 0.5173 0.3034"/></Shape></Transform>
+      <Transform DEF="CaseS1_B0_4" translation="-2.1626 0.4167 4.3184"><Shape><Appearance><Material diffuseColor="0.497 0.246 0.190"/></Appearance><Box size="0.2224 0.4834 0.3231"/></Shape></Transform>
+      <Transform DEF="CaseS1_B0_5" translation="-1.8817 0.3799 4.3186"><Shape><Appearance><Material diffuseColor="0.435 0.205 0.181"/></Appearance><Box size="0.2995 0.4097 0.3227"/></Shape></Transform>
+      <Transform DEF="CaseS1_B1_0" translation="-3.6648 1.0922 4.3095"><Shape><Appearance><Material diffuseColor="0.350 0.288 0.172"/></Appearance><Box size="0.2804 0.4477 0.3409"/></Shape></Transform>
+      <Transform DEF="CaseS1_B1_1" translation="-3.2150 1.1000 4.3255"><Shape><Appearance><Material diffuseColor="0.348 0.288 0.155"/></Appearance><Box size="0.5792 0.4633 0.3090"/></Shape></Transform>
+      <Transform DEF="CaseS1_B1_2" translation="-2.7481 1.1439 4.2966"><Shape><Appearance><Material diffuseColor="0.440 0.127 0.081"/></Appearance><Box size="0.3545 0.5511 0.3668"/></Shape></Transform>
+      <Transform DEF="CaseS1_B1_3" translation="-2.2674 1.1116 4.3039"><Shape><Appearance><Material diffuseColor="0.476 0.289 0.162"/></Appearance><Box size="0.5668 0.4865 0.3522"/></Shape></Transform>
+      <Transform DEF="CaseS1_B1_4" translation="-1.8045 1.0718 4.2932"><Shape><Appearance><Material diffuseColor="0.295 0.285 0.103"/></Appearance><Box size="0.3190 0.4068 0.3736"/></Shape></Transform>
+      <Transform DEF="CaseS1_B2_0" translation="-3.5684 1.8390 4.3125"><Shape><Appearance><Material diffuseColor="0.438 0.208 0.121"/></Appearance><Box size="0.4732 0.5547 0.3349"/></Shape></Transform>
+      <Transform DEF="CaseS1_B2_1" translation="-3.0675 1.8308 4.3092"><Shape><Appearance><Material diffuseColor="0.356 0.142 0.083"/></Appearance><Box size="0.3486 0.5382 0.3415"/></Shape></Transform>
+      <Transform DEF="CaseS1_B2_2" translation="-2.6141 1.8085 4.3095"><Shape><Appearance><Material diffuseColor="0.587 0.187 0.145"/></Appearance><Box size="0.3782 0.4936 0.3411"/></Shape></Transform>
+      <Transform DEF="CaseS1_B2_3" translation="-2.0454 1.7877 4.3087"><Shape><Appearance><Material diffuseColor="0.448 0.209 0.137"/></Appearance><Box size="0.5793 0.4522 0.3426"/></Shape></Transform>
+      <Transform DEF="CaseS1_B3_0" translation="-3.6552 2.4879 4.3117"><Shape><Appearance><Material diffuseColor="0.379 0.271 0.193"/></Appearance><Box size="0.2996 0.4657 0.3366"/></Shape></Transform>
+      <Transform DEF="CaseS1_B3_1" translation="-3.2236 2.5130 4.2992"><Shape><Appearance><Material diffuseColor="0.435 0.121 0.113"/></Appearance><Box size="0.5635 0.5161 0.3616"/></Shape></Transform>
+      <Transform DEF="CaseS1_B3_2" translation="-2.6993 2.5423 4.2915"><Shape><Appearance><Material diffuseColor="0.325 0.251 0.115"/></Appearance><Box size="0.4452 0.5746 0.3770"/></Shape></Transform>
+      <Transform DEF="CaseS1_B3_3" translation="-2.2796 2.4594 4.3053"><Shape><Appearance><Material diffuseColor="0.417 0.199 0.084"/></Appearance><Box size="0.3942 0.4088 0.3494"/></Shape></Transform>
+      <Transform DEF="CaseS1_B3_4" translation="-1.9020 2.5388 4.3118"><Shape><Appearance><Material diffuseColor="0.569 0.139 0.142"/></Appearance><Box size="0.3610 0.5676 0.3365"/></Shape></Transform>
+      <Transform DEF="CaseS1_B4_0" translation="-3.5749 3.2302 4.3004"><Shape><Appearance><Material diffuseColor="0.334 0.230 0.184"/></Appearance><Box size="0.4603 0.5637 0.3591"/></Shape></Transform>
+      <Transform DEF="CaseS1_B4_1" translation="-3.0575 3.2105 4.3291"><Shape><Appearance><Material diffuseColor="0.497 0.157 0.197"/></Appearance><Box size="0.3944 0.5243 0.3017"/></Shape></Transform>
+      <Transform DEF="CaseS1_B4_2" translation="-2.5922 3.2036 4.3033"><Shape><Appearance><Material diffuseColor="0.340 0.224 0.147"/></Appearance><Box size="0.4963 0.5105 0.3535"/></Shape></Transform>
+      <Transform DEF="CaseS1_B4_3" translation="-2.1123 3.1586 4.3225"><Shape><Appearance><Material diffuseColor="0.370 0.254 0.141"/></Appearance><Box size="0.4635 0.4205 0.3151"/></Shape></Transform>
+      <Transform DEF="CaseS1_B4_4" translation="-1.7178 3.2168 4.3286"><Shape><Appearance><Material diffuseColor="0.307 0.221 0.154"/></Appearance><Box size="0.1456 0.5370 0.3029"/></Shape></Transform>
+      <Transform DEF="CaseS1_B5_0" translation="-3.5188 3.9093 4.3249"><Shape><Appearance><Material diffuseColor="0.295 0.142 0.192"/></Appearance><Box size="0.5724 0.5353 0.3102"/></Shape></Transform>
+      <Transform DEF="CaseS1_B5_1" translation="-3.0183 3.8923 4.2955"><Shape><Appearance><Material diffuseColor="0.409 0.189 0.101"/></Appearance><Box size="0.4287 0.5012 0.3689"/></Shape></Transform>
+      <Transform DEF="CaseS1_B5_2" translation="-2.5639 3.9178 4.3081"><Shape><Appearance><Material diffuseColor="0.283 0.163 0.124"/></Appearance><Box size="0.4800 0.5523 0.3438"/></Shape></Transform>
+      <Transform DEF="CaseS1_B5_3" translation="-2.1064 3.8788 4.2901"><Shape><Appearance><Material diffuseColor="0.340 0.178 0.131"/></Appearance><Box size="0.2550 0.4742 0.3799"/></Shape></Transform>
+      <Transform DEF="CaseS1_B5_4" translation="-1.7670 3.9052 4.3063"><Shape><Appearance><Material diffuseColor="0.550 0.178 0.157"/></Appearance><Box size="0.2440 0.5271 0.3474"/></Shape></Transform>
+      <Transform DEF="CaseS2_B0_0" translation="-0.7961 0.3765 4.3061"><Shape><Appearance><Material diffuseColor="0.287 0.203 0.145"/></Appearance><Box size="0.5678 0.4029 0.3479"/></Shape></Transform>
+      <Transform DEF="CaseS2_B0_1" translation="-0.3452 0.3859 4.3159"><Shape><Appearance><Material diffuseColor="0.444 0.182 0.092"/></Appearance><Box size="0.2940 0.4218 0.3282"/></Shape></Transform>
+      <Transform DEF="CaseS2_B0_2" translation="-0.0279 0.4505 4.3262"><Shape><Appearance><Material diffuseColor="0.598 0.272 0.127"/></Appearance><Box size="0.3408 0.5510 0.3076"/></Shape></Transform>
+      <Transform DEF="CaseS2_B0_3" translation="0.3143 0.4613 4.3104"><Shape><Appearance><Material diffuseColor="0.314 0.283 0.094"/></Appearance><Box size="0.3435 0.5726 0.3391"/></Shape></Transform>
+      <Transform DEF="CaseS2_B0_4" translation="0.7923 0.4181 4.2979"><Shape><Appearance><Material diffuseColor="0.455 0.167 0.140"/></Appearance><Box size="0.5725 0.4861 0.3643"/></Shape></Transform>
+      <Transform DEF="CaseS2_B1_0" translation="-0.8032 1.1023 4.3215"><Shape><Appearance><Material diffuseColor="0.325 0.188 0.184"/></Appearance><Box size="0.5536 0.4680 0.3170"/></Shape></Transform>
+      <Transform DEF="CaseS2_B1_1" translation="-0.2083 1.1234 4.2913"><Shape><Appearance><Material diffuseColor="0.473 0.174 0.121"/></Appearance><Box size="0.5961 0.5101 0.3775"/></Shape></Transform>
+      <Transform DEF="CaseS2_B1_2" translation="0.2263 1.1021 4.3218"><Shape><Appearance><Material diffuseColor="0.317 0.262 0.171"/></Appearance><Box size="0.2732 0.4675 0.3164"/></Shape></Transform>
+      <Transform DEF="CaseS2_B1_3" translation="0.4977 1.0702 4.3066"><Shape><Appearance><Material diffuseColor="0.561 0.284 0.128"/></Appearance><Box size="0.2297 0.4037 0.3468"/></Shape></Transform>
+      <Transform DEF="CaseS2_B1_4" translation="0.8050 1.0982 4.3287"><Shape><Appearance><Material diffuseColor="0.510 0.242 0.167"/></Appearance><Box size="0.3849 0.4597 0.3026"/></Shape></Transform>
+      <Transform DEF="CaseS2_B2_0" translation="-0.7959 1.8421 4.3119"><Shape><Appearance><Material diffuseColor="0.306 0.248 0.101"/></Appearance><Box size="0.5682 0.5608 0.3363"/></Shape></Transform>
+      <Transform DEF="CaseS2_B2_1" translation="-0.2212 1.8455 4.3142"><Shape><Appearance><Material diffuseColor="0.571 0.231 0.193"/></Appearance><Box size="0.5811 0.5677 0.3315"/></Shape></Transform>
+      <Transform DEF="CaseS2_B2_2" translation="0.2264 1.7852 4.2954"><Shape><Appearance><Material diffuseColor="0.335 0.129 0.119"/></Appearance><Box size="0.3140 0.4471 0.3691"/></Shape></Transform>
+      <Transform DEF="CaseS2_B2_3" translation="0.6316 1.7910 4.3105"><Shape><Appearance><Material diffuseColor="0.415 0.208 0.190"/></Appearance><Box size="0.4564 0.4586 0.3389"/></Shape></Transform>
+      <Transform DEF="CaseS2_B2_4" translation="1.0149 1.7964 4.2916"><Shape><Appearance><Material diffuseColor="0.437 0.231 0.128"/></Appearance><Box size="0.1302 0.4695 0.3768"/></Shape></Transform>
+      <Transform DEF="CaseS2_B3_0" translation="-0.9150 2.5274 4.3055"><Shape><Appearance><Material diffuseColor="0.366 0.244 0.139"/></Appearance><Box size="0.3299 0.5447 0.3490"/></Shape></Transform>
+      <Transform DEF="CaseS2_B3_1" translation="-0.5210 2.5218 4.3037"><Shape><Appearance><Material diffuseColor="0.253 0.283 0.097"/></Appearance><Box size="0.2782 0.5337 0.3526"/></Shape></Transform>
+      <Transform DEF="CaseS2_B3_2" translation="-0.1336 2.4884 4.3172"><Shape><Appearance><Material diffuseColor="0.401 0.287 0.171"/></Appearance><Box size="0.4965 0.4668 0.3255"/></Shape></Transform>
+      <Transform DEF="CaseS2_B3_3" translation="0.2315 2.5265 4.3173"><Shape><Appearance><Material diffuseColor="0.560 0.186 0.115"/></Appearance><Box size="0.2338 0.5429 0.3254"/></Shape></Transform>
+      <Transform DEF="CaseS2_B3_4" translation="0.4642 2.5073 4.2908"><Shape><Appearance><Material diffuseColor="0.335 0.231 0.141"/></Appearance><Box size="0.2315 0.5046 0.3783"/></Shape></Transform>
+      <Transform DEF="CaseS2_B3_5" translation="0.7791 2.4690 4.3220"><Shape><Appearance><Material diffuseColor="0.377 0.168 0.088"/></Appearance><Box size="0.3985 0.4281 0.3160"/></Shape></Transform>
+      <Transform DEF="CaseS2_B4_0" translation="-0.9552 3.1891 4.3142"><Shape><Appearance><Material diffuseColor="0.335 0.293 0.127"/></Appearance><Box size="0.2495 0.4816 0.3315"/></Shape></Transform>
+      <Transform DEF="CaseS2_B4_1" translation="-0.6950 3.1947 4.2974"><Shape><Appearance><Material diffuseColor="0.345 0.185 0.169"/></Appearance><Box size="0.2308 0.4927 0.3652"/></Shape></Transform>
+      <Transform DEF="CaseS2_B4_2" translation="-0.3927 3.2239 4.3123"><Shape><Appearance><Material diffuseColor="0.378 0.282 0.139"/></Appearance><Box size="0.3738 0.5511 0.3353"/></Shape></Transform>
+      <Transform DEF="CaseS2_B4_3" translation="0.0216 3.2233 4.3146"><Shape><Appearance><Material diffuseColor="0.491 0.155 0.107"/></Appearance><Box size="0.2749 0.5499 0.3309"/></Shape></Transform>
+      <Transform DEF="CaseS2_B4_4" translation="0.3758 3.1699 4.2908"><Shape><Appearance><Material diffuseColor="0.400 0.182 0.192"/></Appearance><Box size="0.2534 0.4431 0.3784"/></Shape></Transform>
+      <Transform DEF="CaseS2_B4_5" translation="0.7274 3.1750 4.3249"><Shape><Appearance><Material diffuseColor="0.331 0.129 0.102"/></Appearance><Box size="0.4498 0.4533 0.3101"/></Shape></Transform>
+      <Transform DEF="CaseS2_B5_0" translation="-0.9372 3.8776 4.3239"><Shape><Appearance><Material diffuseColor="0.532 0.207 0.155"/></Appearance><Box size="0.2856 0.4719 0.3123"/></Shape></Transform>
+      <Transform DEF="CaseS2_B5_1" translation="-0.6568 3.8899 4.3149"><Shape><Appearance><Material diffuseColor="0.524 0.245 0.135"/></Appearance><Box size="0.2351 0.4965 0.3302"/></Shape></Transform>
+      <Transform DEF="CaseS2_B5_2" translation="-0.3120 3.8534 4.2913"><Shape><Appearance><Material diffuseColor="0.438 0.274 0.168"/></Appearance><Box size="0.4544 0.4235 0.3773"/></Shape></Transform>
+      <Transform DEF="CaseS2_B5_3" translation="0.2102 3.8942 4.3148"><Shape><Appearance><Material diffuseColor="0.358 0.173 0.089"/></Appearance><Box size="0.5501 0.5050 0.3305"/></Shape></Transform>
+      <Transform DEF="CaseS2_B5_4" translation="0.6508 3.8926 4.3068"><Shape><Appearance><Material diffuseColor="0.282 0.168 0.134"/></Appearance><Box size="0.3310 0.5019 0.3463"/></Shape></Transform>
+      <Transform DEF="CaseS2_B5_5" translation="0.9931 3.9193 4.2930"><Shape><Appearance><Material diffuseColor="0.363 0.140 0.082"/></Appearance><Box size="0.1738 0.5552 0.3741"/></Shape></Transform>
+      <Transform DEF="CaseS3_B0_0" translation="1.8615 0.4187 4.2922"><Shape><Appearance><Material diffuseColor="0.556 0.233 0.196"/></Appearance><Box size="0.4330 0.4874 0.3756"/></Shape></Transform>
+      <Transform DEF="CaseS3_B0_1" translation="2.2951 0.4248 4.3236"><Shape><Appearance><Material diffuseColor="0.510 0.218 0.082"/></Appearance><Box size="0.2542 0.4997 0.3129"/></Shape></Transform>
+      <Transform DEF="CaseS3_B0_2" translation="2.7364 0.4354 4.3155"><Shape><Appearance><Material diffuseColor="0.480 0.295 0.101"/></Appearance><Box size="0.4483 0.5207 0.3290"/></Shape></Transform>
+      <Transform DEF="CaseS3_B0_3" translation="3.2760 0.3829 4.3225"><Shape><Appearance><Material diffuseColor="0.522 0.234 0.193"/></Appearance><Box size="0.4510 0.4157 0.3149"/></Shape></Transform>
+      <Transform DEF="CaseS3_B0_4" translation="3.6187 0.4600 4.3277"><Shape><Appearance><Material diffuseColor="0.254 0.121 0.124"/></Appearance><Box size="0.2344 0.5701 0.3046"/></Shape></Transform>
+      <Transform DEF="CaseS3_B1_0" translation="1.8757 1.1204 4.3153"><Shape><Appearance><Material diffuseColor="0.482 0.123 0.166"/></Appearance><Box size="0.4614 0.5042 0.3295"/></Shape></Transform>
+      <Transform DEF="CaseS3_B1_1" translation="2.2692 1.1007 4.3192"><Shape><Appearance><Material diffuseColor="0.434 0.180 0.193"/></Appearance><Box size="0.3256 0.4647 0.3215"/></Shape></Transform>
+      <Transform DEF="CaseS3_B1_2" translation="2.6631 1.1410 4.3087"><Shape><Appearance><Material diffuseColor="0.403 0.222 0.117"/></Appearance><Box size="0.4622 0.5453 0.3427"/></Shape></Transform>
+      <Transform DEF="CaseS3_B1_3" translation="3.1800 1.0773 4.2937"><Shape><Appearance><Material diffuseColor="0.437 0.164 0.182"/></Appearance><Box size="0.5716 0.4179 0.3725"/></Shape></Transform>
+      <Transform DEF="CaseS3_B1_4" translation="3.6804 1.0972 4.3096"><Shape><Appearance><Material diffuseColor="0.381 0.196 0.084"/></Appearance><Box size="0.2492 0.4577 0.3407"/></Shape></Transform>
+      <Transform DEF="CaseS3_B2_0" translation="1.8585 1.8228 4.2964"><Shape><Appearance><Material diffuseColor="0.317 0.288 0.144"/></Appearance><Box size="0.4271 0.5223 0.3671"/></Shape></Transform>
+      <Transform DEF="CaseS3_B2_1" translation="2.1963 1.8219 4.3128"><Shape><Appearance><Material diffuseColor="0.363 0.168 0.122"/></Appearance><Box size="0.2484 0.5204 0.3345"/></Shape></Transform>
+      <Transform DEF="CaseS3_B2_2" translation="2.5166 1.7750 4.3007"><Shape><Appearance><Material diffuseColor="0.433 0.144 0.126"/></Appearance><Box size="0.3921 0.4266 0.3586"/></Shape></Transform>
+      <Transform DEF="CaseS3_B2_3" translation="2.8925 1.8227 4.3134"><Shape><Appearance><Material diffuseColor="0.503 0.296 0.126"/></Appearance><Box size="0.3599 0.5222 0.3333"/></Shape></Transform>
+      <Transform DEF="CaseS3_B2_4" translation="3.2968 1.8190 4.3097"><Shape><Appearance><Material diffuseColor="0.585 0.283 0.142"/></Appearance><Box size="0.4487 0.5146 0.3407"/></Shape></Transform>
+      <Transform DEF="CaseS3_B2_5" translation="3.6631 1.8503 4.3150"><Shape><Appearance><Material diffuseColor="0.499 0.259 0.190"/></Appearance><Box size="0.2839 0.5773 0.3301"/></Shape></Transform>
+      <Transform DEF="CaseS3_B3_0" translation="1.7567 2.4945 4.2990"><Shape><Appearance><Material diffuseColor="0.444 0.218 0.180"/></Appearance><Box size="0.2234 0.4790 0.3619"/></Shape></Transform>
+      <Transform DEF="CaseS3_B3_1" translation="2.0712 2.4979 4.2957"><Shape><Appearance><Material diffuseColor="0.580 0.194 0.185"/></Appearance><Box size="0.4057 0.4857 0.3685"/></Shape></Transform>
+      <Transform DEF="CaseS3_B3_2" translation="2.4590 2.4600 4.2915"><Shape><Appearance><Material diffuseColor="0.381 0.178 0.136"/></Appearance><Box size="0.3698 0.4100 0.3770"/></Shape></Transform>
+      <Transform DEF="CaseS3_B3_3" translation="2.9003 2.5012 4.2955"><Shape><Appearance><Material diffuseColor="0.305 0.141 0.178"/></Appearance><Box size="0.5127 0.4923 0.3690"/></Shape></Transform>
+      <Transform DEF="CaseS3_B3_4" translation="3.4200 2.4933 4.3232"><Shape><Appearance><Material diffuseColor="0.262 0.136 0.117"/></Appearance><Box size="0.3467 0.4766 0.3135"/></Shape></Transform>
+      <Transform DEF="CaseS3_B3_5" translation="3.6992 2.4700 4.3128"><Shape><Appearance><Material diffuseColor="0.382 0.195 0.131"/></Appearance><Box size="0.2116 0.4300 0.3345"/></Shape></Transform>
+      <Transform DEF="CaseS3_B4_0" translation="1.8324 3.2349 4.3153"><Shape><Appearance><Material diffuseColor="0.439 0.154 0.107"/></Appearance><Box size="0.3748 0.5731 0.3295"/></Shape></Transform>
+      <Transform DEF="CaseS3_B4_1" translation="2.1663 3.1563 4.2964"><Shape><Appearance><Material diffuseColor="0.489 0.222 0.097"/></Appearance><Box size="0.2931 0.4160 0.3672"/></Shape></Transform>
+      <Transform DEF="CaseS3_B4_2" translation="2.4542 3.1644 4.3133"><Shape><Appearance><Material diffuseColor="0.454 0.154 0.119"/></Appearance><Box size="0.2825 0.4322 0.3334"/></Shape></Transform>
+      <Transform DEF="CaseS3_B4_3" translation="2.8796 3.1628 4.3156"><Shape><Appearance><Material diffuseColor="0.299 0.224 0.143"/></Appearance><Box size="0.5683 0.4289 0.3288"/></Shape></Transform>
+      <Transform DEF="CaseS3_B4_4" translation="3.3577 3.1857 4.3049"><Shape><Appearance><Material diffuseColor="0.359 0.157 0.095"/></Appearance><Box size="0.3479 0.4748 0.3502"/></Shape></Transform>
+      <Transform DEF="CaseS3_B4_5" translation="3.7133 3.1549 4.2999"><Shape><Appearance><Material diffuseColor="0.465 0.164 0.136"/></Appearance><Box size="0.1834 0.4131 0.3601"/></Shape></Transform>
+      <Transform DEF="CaseS3_B5_0" translation="1.8343 3.8647 4.3185"><Shape><Appearance><Material diffuseColor="0.556 0.185 0.183"/></Appearance><Box size="0.3787 0.4461 0.3229"/></Shape></Transform>
+      <Transform DEF="CaseS3_B5_1" translation="2.2351 3.9074 4.2969"><Shape><Appearance><Material diffuseColor="0.279 0.141 0.088"/></Appearance><Box size="0.4230 0.5315 0.3662"/></Shape></Transform>
+      <Transform DEF="CaseS3_B5_2" translation="2.6881 3.8641 4.3087"><Shape><Appearance><Material diffuseColor="0.457 0.157 0.145"/></Appearance><Box size="0.3030 0.4448 0.3427"/></Shape></Transform>
+      <Transform DEF="CaseS3_B5_3" translation="3.0570 3.8931 4.3019"><Shape><Appearance><Material diffuseColor="0.292 0.159 0.093"/></Appearance><Box size="0.3949 0.5029 0.3563"/></Shape></Transform>
+      <Transform DEF="CaseS3_B5_4" translation="3.5006 3.8819 4.3026"><Shape><Appearance><Material diffuseColor="0.318 0.207 0.134"/></Appearance><Box size="0.3123 0.4804 0.3547"/></Shape></Transform>
+      <Transform DEF="CaseS3_B5_5" translation="3.7309 3.8999 4.2949"><Shape><Appearance><Material diffuseColor="0.289 0.237 0.193"/></Appearance><Box size="0.1482 0.5165 0.3702"/></Shape></Transform>
+      <Transform DEF="CaseS4_B0_0" translation="4.4881 0.4147 4.3223"><Shape><Appearance><Material diffuseColor="0.530 0.262 0.102"/></Appearance><Box size="0.2362 0.4795 0.3154"/></Shape></Transform>
+      <Transform DEF="CaseS4_B0_1" translation="4.7856 0.4289 4.3194"><Shape><Appearance><Material diffuseColor="0.298 0.209 0.125"/></Appearance><Box size="0.3588 0.5078 0.3213"/></Shape></Transform>
+      <Transform DEF="CaseS4_B0_2" translation="5.1825 0.3782 4.3011"><Shape><Appearance><Material diffuseColor="0.410 0.144 0.102"/></Appearance><Box size="0.4349 0.4064 0.3578"/></Shape></Transform>
+      <Transform DEF="CaseS4_B0_3" translation="5.6889 0.4197 4.3168"><Shape><Appearance><Material diffuseColor="0.545 0.295 0.180"/></Appearance><Box size="0.3979 0.4895 0.3265"/></Shape></Transform>
+      <Transform DEF="CaseS4_B0_4" translation="6.1660 0.3892 4.3268"><Shape><Appearance><Material diffuseColor="0.363 0.241 0.190"/></Appearance><Box size="0.3762 0.4283 0.3064"/></Shape></Transform>
+      <Transform DEF="CaseS4_B1_0" translation="4.5629 1.0912 4.3250"><Shape><Appearance><Material diffuseColor="0.569 0.185 0.182"/></Appearance><Box size="0.3858 0.4457 0.3100"/></Shape></Transform>
+      <Transform DEF="CaseS4_B1_1" translation="5.0436 1.1444 4.3147"><Shape><Appearance><Material diffuseColor="0.299 0.293 0.190"/></Appearance><Box size="0.5756 0.5522 0.3306"/></Shape></Transform>
+      <Transform DEF="CaseS4_B1_2" translation="5.4663 1.0830 4.2960"><Shape><Appearance><Material diffuseColor="0.357 0.179 0.132"/></Appearance><Box size="0.2698 0.4293 0.3679"/></Shape></Transform>
+      <Transform DEF="CaseS4_B1_3" translation="5.7315 1.1261 4.2946"><Shape><Appearance><Material diffuseColor="0.357 0.233 0.087"/></Appearance><Box size="0.2205 0.5155 0.3707"/></Shape></Transform>
+      <Transform DEF="CaseS4_B1_4" translation="6.1156 1.1347 4.2974"><Shape><Appearance><Material diffuseColor="0.418 0.300 0.156"/></Appearance><Box size="0.5477 0.5328 0.3653"/></Shape></Transform>
+      <Transform DEF="CaseS4_B2_0" translation="4.5000 1.8138 4.2984"><Shape><Appearance><Material diffuseColor="0.256 0.240 0.170"/></Appearance><Box size="0.2600 0.5043 0.3632"/></Shape></Transform>
+      <Transform DEF="CaseS4_B2_1" translation="4.9257 1.8393 4.3158"><Shape><Appearance><Material diffuseColor="0.260 0.151 0.192"/></Appearance><Box size="0.5912 0.5552 0.3284"/></Shape></Transform>
+      <Transform DEF="CaseS4_B2_2" translation="5.3761 1.8490 4.3119"><Shape><Appearance><Material diffuseColor="0.503 0.205 0.172"/></Appearance><Box size="0.3097 0.5747 0.3361"/></Shape></Transform>
+      <Transform DEF="CaseS4_B2_3" translation="5.7556 1.8093 4.3017"><Shape><Appearance><Material diffuseColor="0.328 0.258 0.128"/></Appearance><Box size="0.4493 0.4953 0.3567"/></Shape></Transform>
+      <Transform DEF="CaseS4_B2_4" translation="6.3001 1.7712 4.3078"><Shape><Appearance><Material diffuseColor="0.417 0.208 0.125"/></Appearance><Box size="0.4597 0.4190 0.3443"/></Shape></Transform>
+      <Transform DEF="CaseS4_B3_0" translation="4.6578 2.5154 4.3240"><Shape><Appearance><Material diffuseColor="0.425 0.231 0.184"/></Appearance><Box size="0.5755 0.5208 0.3119"/></Shape></Transform>
+      <Transform DEF="CaseS4_B3_1" translation="5.2370 2.4589 4.3038"><Shape><Appearance><Material diffuseColor="0.572 0.296 0.198"/></Appearance><Box size="0.4029 0.4079 0.3524"/></Shape></Transform>
+      <Transform DEF="CaseS4_B3_2" translation="5.6643 2.4826 4.2965"><Shape><Appearance><Material diffuseColor="0.597 0.190 0.096"/></Appearance><Box size="0.2716 0.4551 0.3670"/></Shape></Transform>
+      <Transform DEF="CaseS4_B3_3" translation="6.0702 2.5326 4.3214"><Shape><Appearance><Material diffuseColor="0.255 0.195 0.170"/></Appearance><Box size="0.5402 0.5553 0.3172"/></Shape></Transform>
+      <Transform DEF="CaseS4_B3_4" translation="6.4451 2.4872 4.3248"><Shape><Appearance><Material diffuseColor="0.410 0.282 0.093"/></Appearance><Box size="0.1697 0.4644 0.3104"/></Shape></Transform>
+      <Transform DEF="CaseS4_B4_0" translation="4.6546 3.1706 4.2924"><Shape><Appearance><Material diffuseColor="0.337 0.294 0.130"/></Appearance><Box size="0.5691 0.4445 0.3751"/></Shape></Transform>
+      <Transform DEF="CaseS4_B4_1" translation="5.1778 3.1694 4.3180"><Shape><Appearance><Material diffuseColor="0.460 0.125 0.113"/></Appearance><Box size="0.4774 0.4422 0.3239"/></Shape></Transform>
+      <Transform DEF="CaseS4_B4_2" translation="5.6795 3.1789 4.3296"><Shape><Appearance><Material diffuseColor="0.512 0.216 0.086"/></Appearance><Box size="0.4858 0.4611 0.3008"/></Shape></Transform>
+      <Transform DEF="CaseS4_B4_3" translation="6.2712 3.1962 4.2938"><Shape><Appearance><Material diffuseColor="0.389 0.162 0.186"/></Appearance><Box size="0.5176 0.4958 0.3723"/></Shape></Transform>
+      <Transform DEF="CaseS4_B5_0" translation="4.6074 3.8867 4.3173"><Shape><Appearance><Material diffuseColor="0.312 0.275 0.119"/></Appearance><Box size="0.4747 0.4901 0.3255"/></Shape></Transform>
+      <Transform DEF="CaseS4_B5_1" translation="5.1509 3.9039 4.3214"><Shape><Appearance><Material diffuseColor="0.460 0.170 0.123"/></Appearance><Box size="0.4323 0.5244 0.3172"/></Shape></Transform>
+      <Transform DEF="CaseS4_B5_2" translation="5.6514 3.8601 4.3126"><Shape><Appearance><Material diffuseColor="0.562 0.274 0.162"/></Appearance><Box size="0.5287 0.4368 0.3347"/></Shape></Transform>
+      <Transform DEF="CaseS4_B5_3" translation="6.1107 3.8541 4.3133"><Shape><Appearance><Material diffuseColor="0.561 0.220 0.125"/></Appearance><Box size="0.3898 0.4248 0.3335"/></Shape></Transform>
+      <Transform DEF="CaseS4_B5_4" translation="6.4628 3.8852 4.3034"><Shape><Appearance><Material diffuseColor="0.341 0.249 0.148"/></Appearance><Box size="0.1344 0.4871 0.3533"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Columns">
+      <Transform DEF="ColBase00" translation="-4.6000 0.1500 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.6800 0.3000 0.6800"/></Shape></Transform>
+      <Transform DEF="Col00" translation="-4.6000 2.9000 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Cylinder radius="0.2400" height="5.2000"/></Shape></Transform>
+      <Transform DEF="ColCap00" translation="-4.6000 5.6400 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.7200 0.2800 0.7200"/></Shape></Transform>
+      <Transform DEF="ColBase01" translation="-1.5500 0.1500 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.6800 0.3000 0.6800"/></Shape></Transform>
+      <Transform DEF="Col01" translation="-1.5500 2.9000 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Cylinder radius="0.2400" height="5.2000"/></Shape></Transform>
+      <Transform DEF="ColCap01" translation="-1.5500 5.6400 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.7200 0.2800 0.7200"/></Shape></Transform>
+      <Transform DEF="ColBase02" translation="1.5500 0.1500 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.6800 0.3000 0.6800"/></Shape></Transform>
+      <Transform DEF="Col02" translation="1.5500 2.9000 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Cylinder radius="0.2400" height="5.2000"/></Shape></Transform>
+      <Transform DEF="ColCap02" translation="1.5500 5.6400 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.7200 0.2800 0.7200"/></Shape></Transform>
+      <Transform DEF="ColBase03" translation="4.6000 0.1500 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.6800 0.3000 0.6800"/></Shape></Transform>
+      <Transform DEF="Col03" translation="4.6000 2.9000 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Cylinder radius="0.2400" height="5.2000"/></Shape></Transform>
+      <Transform DEF="ColCap03" translation="4.6000 5.6400 -2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.7200 0.2800 0.7200"/></Shape></Transform>
+      <Transform DEF="ColBase10" translation="-4.6000 0.1500 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.6800 0.3000 0.6800"/></Shape></Transform>
+      <Transform DEF="Col10" translation="-4.6000 2.9000 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Cylinder radius="0.2400" height="5.2000"/></Shape></Transform>
+      <Transform DEF="ColCap10" translation="-4.6000 5.6400 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.7200 0.2800 0.7200"/></Shape></Transform>
+      <Transform DEF="ColBase11" translation="-1.5500 0.1500 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.6800 0.3000 0.6800"/></Shape></Transform>
+      <Transform DEF="Col11" translation="-1.5500 2.9000 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Cylinder radius="0.2400" height="5.2000"/></Shape></Transform>
+      <Transform DEF="ColCap11" translation="-1.5500 5.6400 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.7200 0.2800 0.7200"/></Shape></Transform>
+      <Transform DEF="ColBase12" translation="1.5500 0.1500 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.6800 0.3000 0.6800"/></Shape></Transform>
+      <Transform DEF="Col12" translation="1.5500 2.9000 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Cylinder radius="0.2400" height="5.2000"/></Shape></Transform>
+      <Transform DEF="ColCap12" translation="1.5500 5.6400 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.7200 0.2800 0.7200"/></Shape></Transform>
+      <Transform DEF="ColBase13" translation="4.6000 0.1500 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.6800 0.3000 0.6800"/></Shape></Transform>
+      <Transform DEF="Col13" translation="4.6000 2.9000 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Cylinder radius="0.2400" height="5.2000"/></Shape></Transform>
+      <Transform DEF="ColCap13" translation="4.6000 5.6400 2.5500"><Shape><Appearance><Material diffuseColor="0.820 0.800 0.740"/></Appearance><Box size="0.7200 0.2800 0.7200"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Tables">
+      <Transform DEF="Table0_Top" translation="-3.3000 0.7250 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="3.0000 0.0700 1.1500"/></Shape></Transform>
+      <Transform DEF="Table0_Leg0" translation="-4.6400 0.3450 -0.4350"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1200 0.6900 0.1200"/></Shape></Transform>
+      <Transform DEF="Table0_Leg1" translation="-4.6400 0.3450 0.4350"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1200 0.6900 0.1200"/></Shape></Transform>
+      <Transform DEF="Table0_Leg2" translation="-1.9600 0.3450 -0.4350"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1200 0.6900 0.1200"/></Shape></Transform>
+      <Transform DEF="Table0_Leg3" translation="-1.9600 0.3450 0.4350"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1200 0.6900 0.1200"/></Shape></Transform>
+      <Transform DEF="Bench00_Seat" translation="-3.3000 0.4300 -0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="2.6000 0.0600 0.3600"/></Shape></Transform>
+      <Transform DEF="Bench00_Leg0" translation="-4.4500 0.2000 -0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1000 0.4000 0.3200"/></Shape></Transform>
+      <Transform DEF="Bench00_Leg1" translation="-2.1500 0.2000 -0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1000 0.4000 0.3200"/></Shape></Transform>
+      <Transform DEF="Bench01_Seat" translation="-3.3000 0.4300 0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="2.6000 0.0600 0.3600"/></Shape></Transform>
+      <Transform DEF="Bench01_Leg0" translation="-4.4500 0.2000 0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1000 0.4000 0.3200"/></Shape></Transform>
+      <Transform DEF="Bench01_Leg1" translation="-2.1500 0.2000 0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1000 0.4000 0.3200"/></Shape></Transform>
+      <Transform DEF="Table0_BookOpen" translation="-3.3000 0.7850 -0.1900"><Shape><Appearance><Material diffuseColor="0.850 0.820 0.720"/></Appearance><Box size="0.5000 0.0500 0.3400"/></Shape></Transform>
+      <Transform DEF="Table0_BookStack" translation="-2.1900 0.8450 0.2600"><Shape><Appearance><Material diffuseColor="0.400 0.150 0.120"/></Appearance><Box size="0.3200 0.1700 0.2400"/></Shape></Transform>
+      <Transform DEF="Table1_Top" translation="3.3000 0.7250 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="3.0000 0.0700 1.1500"/></Shape></Transform>
+      <Transform DEF="Table1_Leg0" translation="1.9600 0.3450 -0.4350"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1200 0.6900 0.1200"/></Shape></Transform>
+      <Transform DEF="Table1_Leg1" translation="1.9600 0.3450 0.4350"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1200 0.6900 0.1200"/></Shape></Transform>
+      <Transform DEF="Table1_Leg2" translation="4.6400 0.3450 -0.4350"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1200 0.6900 0.1200"/></Shape></Transform>
+      <Transform DEF="Table1_Leg3" translation="4.6400 0.3450 0.4350"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1200 0.6900 0.1200"/></Shape></Transform>
+      <Transform DEF="Bench10_Seat" translation="3.3000 0.4300 -0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="2.6000 0.0600 0.3600"/></Shape></Transform>
+      <Transform DEF="Bench10_Leg0" translation="2.1500 0.2000 -0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1000 0.4000 0.3200"/></Shape></Transform>
+      <Transform DEF="Bench10_Leg1" translation="4.4500 0.2000 -0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1000 0.4000 0.3200"/></Shape></Transform>
+      <Transform DEF="Bench11_Seat" translation="3.3000 0.4300 0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="2.6000 0.0600 0.3600"/></Shape></Transform>
+      <Transform DEF="Bench11_Leg0" translation="2.1500 0.2000 0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1000 0.4000 0.3200"/></Shape></Transform>
+      <Transform DEF="Bench11_Leg1" translation="4.4500 0.2000 0.9950"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.1000 0.4000 0.3200"/></Shape></Transform>
+      <Transform DEF="Table1_BookOpen" translation="3.3000 0.7850 -0.1900"><Shape><Appearance><Material diffuseColor="0.850 0.820 0.720"/></Appearance><Box size="0.5000 0.0500 0.3400"/></Shape></Transform>
+      <Transform DEF="Table1_BookStack" translation="4.4100 0.8450 0.2600"><Shape><Appearance><Material diffuseColor="0.400 0.150 0.120"/></Appearance><Box size="0.3200 0.1700 0.2400"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Lamps">
+      <Transform DEF="Lamp00_Base" translation="-4.1000 0.7750 0.0000"><Shape><Appearance><Material diffuseColor="0.750 0.600 0.250"/></Appearance><Cylinder radius="0.0900" height="0.0300"/></Shape></Transform>
+      <Transform DEF="Lamp00_Stem" translation="-4.1000 0.9400 0.0000"><Shape><Appearance><Material diffuseColor="0.750 0.600 0.250"/></Appearance><Cylinder radius="0.0200" height="0.3000"/></Shape></Transform>
+      <Transform DEF="Lamp00_Shade" translation="-4.1000 1.1450 0.0000"><Shape><Appearance><Material diffuseColor="0.100 0.400 0.250"/></Appearance><Cylinder radius="0.1700" height="0.1100"/></Shape></Transform>
+      <Transform DEF="Lamp01_Base" translation="-2.5000 0.7750 0.0000"><Shape><Appearance><Material diffuseColor="0.750 0.600 0.250"/></Appearance><Cylinder radius="0.0900" height="0.0300"/></Shape></Transform>
+      <Transform DEF="Lamp01_Stem" translation="-2.5000 0.9400 0.0000"><Shape><Appearance><Material diffuseColor="0.750 0.600 0.250"/></Appearance><Cylinder radius="0.0200" height="0.3000"/></Shape></Transform>
+      <Transform DEF="Lamp01_Shade" translation="-2.5000 1.1450 0.0000"><Shape><Appearance><Material diffuseColor="0.100 0.400 0.250"/></Appearance><Cylinder radius="0.1700" height="0.1100"/></Shape></Transform>
+      <Transform DEF="Lamp10_Base" translation="2.5000 0.7750 0.0000"><Shape><Appearance><Material diffuseColor="0.750 0.600 0.250"/></Appearance><Cylinder radius="0.0900" height="0.0300"/></Shape></Transform>
+      <Transform DEF="Lamp10_Stem" translation="2.5000 0.9400 0.0000"><Shape><Appearance><Material diffuseColor="0.750 0.600 0.250"/></Appearance><Cylinder radius="0.0200" height="0.3000"/></Shape></Transform>
+      <Transform DEF="Lamp10_Shade" translation="2.5000 1.1450 0.0000"><Shape><Appearance><Material diffuseColor="0.100 0.400 0.250"/></Appearance><Cylinder radius="0.1700" height="0.1100"/></Shape></Transform>
+      <Transform DEF="Lamp11_Base" translation="4.1000 0.7750 0.0000"><Shape><Appearance><Material diffuseColor="0.750 0.600 0.250"/></Appearance><Cylinder radius="0.0900" height="0.0300"/></Shape></Transform>
+      <Transform DEF="Lamp11_Stem" translation="4.1000 0.9400 0.0000"><Shape><Appearance><Material diffuseColor="0.750 0.600 0.250"/></Appearance><Cylinder radius="0.0200" height="0.3000"/></Shape></Transform>
+      <Transform DEF="Lamp11_Shade" translation="4.1000 1.1450 0.0000"><Shape><Appearance><Material diffuseColor="0.100 0.400 0.250"/></Appearance><Cylinder radius="0.1700" height="0.1100"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Globe">
+      <Transform DEF="GlobePlinth" translation="0.0000 0.0500 0.0000"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Cylinder radius="0.4200" height="0.1000"/></Shape></Transform>
+      <Transform DEF="GlobePedestal" translation="0.0000 0.4600 0.0000"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Cylinder radius="0.1300" height="0.7200"/></Shape></Transform>
+      <Transform DEF="GlobeRing" translation="0.0000 1.3575 0.0000"><Shape><Appearance><Material diffuseColor="0.750 0.600 0.250"/></Appearance><Cylinder radius="0.6600" height="0.0350"/></Shape></Transform>
+      <Transform DEF="GlobeSphere" translation="0.0000 1.3600 0.0000"><Shape><Appearance><Material diffuseColor="0.250 0.420 0.500"/></Appearance><Sphere radius="0.5600"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Lectern">
+      <Transform DEF="LecternPost" translation="5.4000 0.5250 0.0000"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.3000 1.0500 0.2800"/></Shape></Transform>
+      <Transform DEF="LecternDesk" translation="5.3800 1.1200 0.0000" rotation="0.000000 0.000000 1.000000 -0.418879"><Shape><Appearance><Material diffuseColor="0.320 0.200 0.120"/></Appearance><Box size="0.5000 0.0500 0.6200"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Ladder">
+      <Transform DEF="LadderRailA" translation="-2.9000 1.8500 -3.5600" rotation="1.000000 0.000000 0.000000 -0.270526"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.0700 3.9000 0.0500"/></Shape></Transform>
+      <Transform DEF="LadderRailB" translation="-2.4000 1.8500 -3.5600" rotation="1.000000 0.000000 0.000000 -0.270526"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.0700 3.9000 0.0500"/></Shape></Transform>
+      <Transform DEF="LadderRung0" translation="-2.6500 0.3500 -3.1440"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.5000 0.0400 0.0600"/></Shape></Transform>
+      <Transform DEF="LadderRung1" translation="-2.6500 0.7500 -3.2549"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.5000 0.0400 0.0600"/></Shape></Transform>
+      <Transform DEF="LadderRung2" translation="-2.6500 1.1500 -3.3659"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.5000 0.0400 0.0600"/></Shape></Transform>
+      <Transform DEF="LadderRung3" translation="-2.6500 1.5500 -3.4768"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.5000 0.0400 0.0600"/></Shape></Transform>
+      <Transform DEF="LadderRung4" translation="-2.6500 1.9500 -3.5877"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.5000 0.0400 0.0600"/></Shape></Transform>
+      <Transform DEF="LadderRung5" translation="-2.6500 2.3500 -3.6987"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.5000 0.0400 0.0600"/></Shape></Transform>
+      <Transform DEF="LadderRung6" translation="-2.6500 2.7500 -3.8096"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.5000 0.0400 0.0600"/></Shape></Transform>
+      <Transform DEF="LadderRung7" translation="-2.6500 3.1500 -3.9205"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.5000 0.0400 0.0600"/></Shape></Transform>
+      <Transform DEF="LadderRung8" translation="-2.6500 3.5500 -4.0315"><Shape><Appearance><Material diffuseColor="0.550 0.400 0.240"/></Appearance><Box size="0.5000 0.0400 0.0600"/></Shape></Transform>
+    </Group>
+  </Scene>
+</X3D>

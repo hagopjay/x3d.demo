@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo 77 · Atlas Bridge: X3D to World Labs Atlas and back</title>
+<meta name="description" content="An X3D blockout goes to World Labs Atlas as cameras and exact depth, comes back as pictures, Gaussian splats, a mesh and collider boxes, and is drawn again as X3D by the X3D to three.js bridge.">
+<style>
+:root{--bg:#14110d;--bg2:#1c1812;--panel:#231e16;--line:#3a3124;--line2:#57482f;--fg:#efe6d2;--dim:#b3a88f;--brass:#c9a24b;--ox:#b0513f;--sage:#8fa37a;--blue:#7fa6b8;--serif:Georgia,"Iowan Old Style","Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 var(--sans)}
+a{color:var(--brass)}main{max-width:1240px;margin:0 auto;padding:0 16px 70px}
+header{padding:34px 0 10px}h1{font:400 clamp(30px,5vw,54px)/1.05 var(--serif);margin:0 0 10px;letter-spacing:-.01em}h1 em{color:var(--brass);font-style:italic}
+.kick{font:600 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+.lede{max-width:820px;color:var(--dim);font-size:17px}
+h2{font:400 28px/1.15 var(--serif);margin:46px 0 6px}h2 small{font:600 12px var(--mono);color:var(--brass);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:6px}
+p.note{color:var(--dim);max-width:900px;margin:6px 0 14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:22px 0 6px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}.stat b{display:block;font:400 30px/1.1 var(--serif);color:var(--fg)}.stat span{font-size:12.5px;color:var(--dim)}.stat i{display:block;font:11px var(--mono);color:var(--line2);font-style:normal;margin-top:4px;color:#8a7c60}
+.viewer{background:#000;border:1px solid var(--line2);border-radius:12px;overflow:hidden;position:relative}
+.viewer canvas{display:block;width:100%;height:auto;aspect-ratio:16/9}
+#pad{position:absolute;inset:0;cursor:grab;touch-action:none}#pad:active{cursor:grabbing}
+#busy{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,8,5,.72);font:15px var(--mono);color:var(--brass);text-align:center;padding:20px;pointer-events:none}
+#hud{position:absolute;left:10px;bottom:10px;font:11.5px/1.4 var(--mono);background:rgba(15,12,8,.78);border:1px solid var(--line2);border-radius:8px;padding:6px 9px;color:var(--dim);pointer-events:none;max-width:calc(100% - 20px)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.bar .lab{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-right:2px}
+button{font:600 13px var(--sans);background:var(--panel);color:var(--fg);border:1px solid var(--line2);border-radius:8px;padding:7px 11px;cursor:pointer;min-height:36px}
+button:hover{border-color:var(--brass)}button.on{background:var(--brass);color:#1a1408;border-color:var(--brass)}
+button.vp{font:12px var(--mono);padding:4px 8px;min-height:30px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:8px 0 4px}th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}th{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+td.n,th.n{text-align:right;font-family:var(--mono);white-space:nowrap}td .g{font:600 10.5px var(--mono);border:1px solid var(--line2);border-radius:4px;padding:0 4px;color:var(--sage);margin-left:4px}
+.tw{overflow-x:auto;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:4px 8px}
+figure{margin:14px 0}figure img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}figcaption{font-size:12.5px;color:var(--dim);margin-top:6px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}.card h3{font:400 19px var(--serif);margin:0 0 6px;color:var(--brass)}.card p{margin:6px 0;color:var(--dim);font-size:14px}
+code{font:12.5px var(--mono);background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:16px;color:var(--dim);font-size:13px}
+.rights{border:1px solid var(--ox);border-radius:10px;padding:12px 14px;background:rgba(176,81,63,.08);color:var(--fg);font-size:13.5px;margin:18px 0}
+@media (max-width:640px){h2{font-size:23px}.stat b{font-size:24px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="kick">Demo 77 · atlas-bridge/v1 · 23 Nov 2026</div>
+  <h1>Atlas Bridge: an X3D world goes to <em>World Labs Atlas</em> and comes back as X3D</h1>
+  <p class="lede">A scene graph of plain boxes, cylinders and one sphere is sent to Atlas as cameras and exact depth. Atlas paints it. The pictures, the Gaussian splats, the mesh and the collider boxes come home into one X3D 4.1 file, and the X3D to three.js bridge draws it. Every step is measured against the X3D it started from.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<section>
+  <h2><small>Live · the return world, drawn by the X3D to three.js bridge</small>Walk the room Atlas painted on the X3D blockout</h2>
+  <div class="bar" id="worlds"><span class="lab">World</span></div>
+  <div class="viewer"><canvas id="c" width="1280" height="720"></canvas><div id="pad"></div><div id="hud">loading</div><div id="busy">Loading the bridge</div></div>
+  <div class="bar" id="layers"><span class="lab">Layers</span></div>
+  <div class="bar" id="vps"><span class="lab">Viewpoints</span></div>
+  <p class="note">Drag to look, <code>W A S D</code> or the arrow keys to move, <code>Q E</code> down and up, wheel to step forward. With <b>Collide</b> on, the boxes Atlas fitted (the X3D <code>Collision</code> proxy) stop you. The splats are a <code>GaussianSplats</code> node; its <code>MetadataString splatFile</code> names the dense SPZ, drawn by Spark 2.4.0 inside the bridge. Everything on screen is read from the X3D file.</p>
+</section>
+
+<section>
+  <h2><small>Out · X3D to Atlas</small>Cameras and depth out, pictures and depth back</h2>
+  <p class="note">Each X3D <code>Viewpoint</code> becomes an Atlas pinhole camera (same axes, <code>rub</code>). The bridge renders planar depth of its own meshes into a float target, and that goes up as a linear EXR. Atlas Chisel returns a picture per camera and its own depth, which is held against the depth that was sent.</p>
+  <div class="tw"><table id="t-out"></table></div>
+  <figure><img src="shots/reading-room-x3d-to-atlas.jpg" alt="Reading room: X3D bridge render, Atlas picture and depth error, per camera" loading="lazy"><figcaption>Reading room, first ring. Left: the X3D bridge render. Middle: Atlas Chisel, same camera. Right: Atlas depth against X3D depth (dark red is close, yellow and white are far off, blue is no depth returned).</figcaption></figure>
+  <figure><img src="shots/kings-chamber-x3d-to-atlas.jpg" alt="King's Chamber: X3D, Atlas picture, depth error" loading="lazy"><figcaption>King's Chamber, dimensions after Petrie (1883). The first prompt asked for red granite and got yellow limestone; a granite-first prompt on the same depth fixed it (below).</figcaption></figure>
+  <figure><img src="shots/kings-chamber-granite.jpg" alt="King's Chamber second prompt" loading="lazy"><figcaption>Same X3D depth, second prompt. The geometry does not move; only the paint does.</figcaption></figure>
+</section>
+
+<section>
+  <h2><small>Control · the scene graph is the handle</small>One geometry, many looks; one node, one edit</h2>
+  <div class="cols">
+    <div><figure><img src="shots/reading-room-style-sweep.jpg" alt="Style sweep" loading="lazy"><figcaption>Rows: X3D bridge, photograph, ink wash, ruin, handmade miniature. Four cameras each. The layout holds in every row. Finding: with depth on every frame the model stays close to a photograph; the ink-wash prompt came back as a pale photo, not a painting.</figcaption></figure></div>
+    <div><figure><img src="shots/reading-room-edit-globe.jpg" alt="Globe edit by node name" loading="lazy"><figcaption>Top: Atlas views. Middle: the mask, made from the X3D ray cast of the four nodes whose DEF starts with <code>Globe</code>. Bottom: Chisel repaints only there (a brass armillary sphere).</figcaption></figure>
+    <div class="tw"><table id="t-edit"></table></div></div>
+  </div>
+</section>
+
+<section>
+  <h2><small>Back · Atlas to X3D</small>Splats, mesh and colliders, held against the X3D solids</h2>
+  <p class="note">The splats are built from Atlas pictures plus the <b>X3D</b> depth and cameras, so the geometry stays the X3D's. The return file holds Atlas cameras as <code>Viewpoint</code>, splats as <code>GaussianSplats</code>, the mesh as <code>IndexedTriangleSet</code> with its texture, and the collider boxes as a <code>Collision</code> proxy.</p>
+  <div class="tw"><table id="t-back"></table></div>
+  <figure><img src="shots/return-layers.jpg" alt="Return world layers" loading="lazy"><figcaption id="cap-layers">The same X3D file, four layers, same Viewpoint, drawn by the bridge.</figcaption></figure>
+  <figure><img src="shots/torii-generate-sheet.jpg" alt="Torii: one photo to eight views" loading="lazy"><figcaption>The other direction with no X3D to start from: one photograph (Pexels, see attribution) is posed by Atlas, eight new cameras are written first as X3D Viewpoints, and Atlas generates the views. Finding: the views disagree in places (a paddler appears in some).</figcaption></figure>
+</section>
+
+<section>
+  <h2><small>Ledger · every paid call</small>What the credits bought</h2>
+  <p class="note" id="ledger-note"></p>
+  <div class="tw"><table id="t-ledger"></table></div>
+</section>
+
+<section>
+  <h2><small>Findings · the tether</small>What broke, what was measured, what is still a guess</h2>
+  <div class="cols" id="findings"></div>
+</section>
+
+<div class="rights"><b>Rights and credit.</b> Pictures, splats, meshes and collider boxes on this page were generated by <a href="https://www.worldlabs.ai/">World Labs</a> Atlas on Developer signup credits. Under the World Labs terms for that tier, World Labs owns those outputs and licenses them for personal, non-commercial use; they are shown here on that basis and are not offered under this repository's licence. The X3D worlds, the kit and the measurements are the author's. Takedown: open an issue on <a href="https://github.com/hagopjay/x3d.demo/issues">hagopjay/x3d.demo</a> and the material comes down at once. Full list in <a href="DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a>.</div>
+
+<footer>
+  <div id="rig"></div>
+  <p>Libraries: three r187 and Spark 2.4.0 (MIT, World Labs), pinned, from jsDelivr. Bridge: x3d.loom <code>x3d.threejs/bridge</code> with the new <code>GaussianSplats</code> node. Files: <a href="README.md">README</a> · <a href="receipts/">receipts</a> · <a href="kit/">kit</a> · <a href="build/">build</a> · <a href="worlds/">worlds</a> · <a href="data.json">data.json</a>. Fidelity numbers are bridge round-trip measurements, not a benchmark of Atlas.</p>
+</footer>
+</main>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/","@sparkjsdev/spark":"https://cdn.jsdelivr.net/npm/@sparkjsdev/spark@2.4.0/dist/spark.module.min.js"}}</script>
+<script type="module">
+const $ = (id) => document.getElementById(id), el = (t, a = {}, h = '') => { const e = document.createElement(t); Object.assign(e, a); if (h) e.innerHTML = h; return e; };
+const D = await (await fetch('data.json')).json();
+const fmt = (v, d = 1) => v == null ? 'n/a' : Number(v).toLocaleString('en-US', { maximumFractionDigits: d, minimumFractionDigits: d });
+const G = (g) => `<span class="g" title="C confirmed by measurement, L likely, S suspected">${g}</span>`;
+
+// ---------------------------------------------------------------- tables and cards, all from data.json
+$('stats').append(...D.stats.map((s) => el('div', { className: 'stat' }, `<b>${s.value}</b><span>${s.label}</span><i>${s.source}</i>`)));
+const table = (id, head, rows) => { $(id).innerHTML = '<thead><tr>' + head.map((h) => `<th class="${h.n ? 'n' : ''}">${h.t}</th>`).join('') + '</tr></thead><tbody>' + rows.map((r) => '<tr>' + r.map((c, i) => `<td class="${head[i].n ? 'n' : ''}">${c}</td>`).join('') + '</tr>').join('') + '</tbody>'; };
+table('t-out', [{ t: 'World' }, { t: 'Run' }, { t: 'Views', n: 1 }, { t: 'Camera returned vs sent' }, { t: 'Atlas depth scale', n: 1 }, { t: 'Median depth error', n: 1 }, { t: 'Pixels within 5%', n: 1 }, { t: 'Pixels compared', n: 1 }, { t: 'Source' }],
+  D.out.map((r) => [r.world, r.run, r.views, r.camera, fmt(r.scale, 4), fmt(r.median_pct, 2) + '%', fmt(r.within5, 1) + '%', fmt(r.pixels, 0), `<code>${r.receipt}</code>` + G('C')]));
+table('t-edit', [{ t: 'View', n: 1 }, { t: 'Repainted area', n: 1 }, { t: 'Kept pixels within 8/255', n: 1 }, { t: 'Mean change, kept', n: 1 }, { t: 'Mean change, repainted', n: 1 }], D.edit.views.map((v) => [v.view, fmt(v.repaint_pct, 1) + '%', fmt(v.kept_within8_pct, 1) + '%', fmt(v.kept_mean, 2), fmt(v.repaint_mean, 1)]));
+table('t-back', [{ t: 'World' }, { t: 'What came back' }, { t: 'Number' }, { t: 'Witness' }], D.back.map((r) => [r.world, r.what, r.number + G(r.grade), r.witness]));
+table('t-ledger', [{ t: '#', n: 1 }, { t: 'Call' }, { t: 'Atlas task' }, { t: 'Credits', n: 1 }, { t: 'State' }, { t: 'Seconds', n: 1 }, { t: 'Operation' }], D.ledger.entries.map((e, i) => [i + 1, e.label, e.task, e.state === 'succeeded' ? fmt(e.price, 0) : '0', e.state, e.seconds == null ? '' : fmt(e.seconds, 1), `<code>${(e.operation || '').slice(0, 12)}</code>`]));
+$('ledger-note').innerHTML = D.ledger.note;
+$('findings').append(...D.findings.map((f) => el('div', { className: 'card' }, `<h3>${f.title}${G(f.grade)}</h3><p>${f.text}</p><p><code>${f.source}</code></p>`)));
+$('rig').textContent = D.rig;
+if (D.captions && D.captions.layers) $('cap-layers').textContent = D.captions.layers;
+
+// ---------------------------------------------------------------- the live viewer
+const busy = $('busy'), hud = $('hud'), say = (t) => { busy.style.display = t ? 'flex' : 'none'; busy.textContent = t || ''; };
+let body = null, world = null, boxes = [], collide = false, notes = [], yaw = 0, pitch = 0;
+const keys = new Set();
+try {
+  const THREE = await import('three'); window.THREE = THREE;
+  try { window.SPARK = await import('@sparkjsdev/spark'); } catch (e) { notes.push('Spark did not load: splats draw as points'); }
+  await new Promise((ok, no) => { const s = document.createElement('script'); s.src = 'bridge-three.js'; s.onload = ok; s.onerror = () => no(new Error('bridge-three.js did not load')); document.head.appendChild(s); });
+  body = new Body($('c'), { tone: 'none', fontBase: '', onNote: (m) => notes.push(m), onFrame: () => step() });
+  await body.init(); X3DSAI.setBody(body);
+  const rec = (def) => { const n = body.world.nodes.find((x) => x.def === def); return n ? body.rec.get(n.id) : null; };
+  const euler = new THREE.Euler(0, 0, 0, 'YXZ'), qq = new THREE.Quaternion();
+  const fromPose = () => { qq.set(...body.pose.q); euler.setFromQuaternion(qq, 'YXZ'); yaw = euler.y; pitch = euler.x; };
+  const setLook = () => { euler.set(pitch, yaw, 0, 'YXZ'); qq.setFromEuler(euler); body.tr = null; body.pose = { ...body.pose, q: [qq.x, qq.y, qq.z, qq.w] }; body.applyCamera(); };
+  const blocked = (p) => { for (const b of boxes) { const dx = p[0] - b.t[0], dz = p[2] - b.t[2], x = b.c * dx - b.s * dz, z = b.s * dx + b.c * dz; if (Math.abs(x) <= b.h[0] + 0.12 && Math.abs(p[1] - b.t[1]) <= b.h[1] && Math.abs(z) <= b.h[2] + 0.12) return true; } return false; };
+  let last = performance.now();
+  var step = () => { const now = performance.now(), dt = Math.min(0.1, (now - last) / 1000); last = now; if (!world || !keys.size || body.tr) return;
+    const f = [-Math.sin(yaw), 0, -Math.cos(yaw)], r = [Math.cos(yaw), 0, -Math.sin(yaw)], v = [0, 0, 0], k = (a, b) => (keys.has(a) || keys.has(b) ? 1 : 0);
+    const fw = k('w', 'arrowup') - k('s', 'arrowdown'), rt = k('d', 'arrowright') - k('a', 'arrowleft'), up = k('e', 'e') - k('q', 'q'), sp = (keys.has('shift') ? 4.5 : 1.8) * dt;
+    for (let i = 0; i < 3; i++) v[i] = (f[i] * fw + r[i] * rt) * sp; v[1] = up * sp;
+    const p = body.pose.pos, tryMove = (d) => { const q = [p[0] + d[0], p[1] + d[1], p[2] + d[2]]; if (collide && blocked(q) && !blocked(p)) return false; body.pose = { ...body.pose, pos: q }; return true; };
+    if (!tryMove(v)) { if (!tryMove([v[0], 0, 0])) tryMove([0, 0, v[2]]); } body.applyCamera(); };
+  const pad = $('pad'); let drag = null;
+  pad.addEventListener('pointerdown', (e) => { drag = [e.clientX, e.clientY]; pad.setPointerCapture(e.pointerId); pad.focus && pad.focus(); });
+  pad.addEventListener('pointermove', (e) => { if (!drag || !world) return; yaw -= (e.clientX - drag[0]) * 0.004; pitch = Math.max(-1.45, Math.min(1.45, pitch - (e.clientY - drag[1]) * 0.004)); drag = [e.clientX, e.clientY]; setLook(); });
+  pad.addEventListener('pointerup', () => { drag = null; });
+  pad.addEventListener('wheel', (e) => { e.preventDefault(); if (!world) return; const d = -Math.sign(e.deltaY) * 0.35, p = body.pose.pos, q = [p[0] - Math.sin(yaw) * d, p[1], p[2] - Math.cos(yaw) * d]; if (!(collide && blocked(q) && !blocked(p))) { body.pose = { ...body.pose, pos: q }; body.applyCamera(); } }, { passive: false });
+  addEventListener('keydown', (e) => { if (e.target.tagName === 'INPUT') return; const k = e.key.toLowerCase(); if (['w', 'a', 's', 'd', 'q', 'e', 'shift', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(k)) { keys.add(k); if (k.startsWith('arrow')) e.preventDefault(); } });
+  addEventListener('keyup', (e) => keys.delete(e.key.toLowerCase())); addEventListener('blur', () => keys.clear());
+
+  const LAYERS = [['AtlasSplats', 'Atlas splats'], ['AtlasMesh', 'Atlas mesh', 'AtlasMeshFile'], ['X3DBlockout', 'X3D blockout', 'BlockoutFile'], ['AtlasCollidersShapes', 'Collider boxes']];   // [Group DEF, label, Inline DEF that is loaded on first use]
+  const drawLayers = () => { const bar = $('layers'); bar.querySelectorAll('button').forEach((b) => b.remove());
+    for (const [def, label, inl] of LAYERS) { const r = rec(def); if (!r || !r.tn) continue; const b = el('button', { textContent: label, className: r.tn.visible ? 'on' : '' }); b.onclick = () => { r.tn.visible = !r.tn.visible; if (r.tn.visible && inl) { try { const n = X3DSAI.B.currentScene.getNamedNode(inl); if (n.load === false) n.load = true; } catch (e) { notes.push(String(e.message || e)); } } b.classList.toggle('on', r.tn.visible); status(); }; bar.append(b); }
+    if (boxes.length) { const b = el('button', { textContent: 'Collide', className: collide ? 'on' : '' }); b.onclick = () => { collide = !collide; b.classList.toggle('on', collide); status(); }; bar.append(b); } };
+  const status = () => { const s = (body.splats || [])[0]; hud.innerHTML = `${world.label} · ${s ? (s.drawer === 'spark-file' ? fmt(s.fileCount, 0) + ' splats from ' + s.file.split('/').pop() + ' (Spark)' : s.drawer === 'spark-inline' ? fmt(s.count, 0) + ' inline splats (Spark)' : fmt(s.count, 0) + ' inline splats as points') : 'no splats'} · ${boxes.length} collider boxes${collide ? ', collide on' : ''}${notes.length ? '<br>' + notes.slice(-2).join('<br>') : ''}`; };
+  const load = async (w) => { say('Loading ' + w.label + ' (' + w.size + ')'); world = null; notes = [];
+    const url = new URL(w.file, location.href).href, xml = await (await fetch(url)).text();
+    const sc = await X3DSAI.B.createX3DFromString(xml, url); await X3DSAI.B.replaceWorld(sc); await X3DSAI.B.nextFrame();
+    for (const r of (body.splats || [])) await r.ready;
+    // the Collision proxy boxes, read back from the X3D scene graph
+    boxes = body.world.nodes.filter((n) => n.type === 'Transform' && /^AtlasColliders_\d+$/.test(n.def || '')).map((n) => { const sh = (n.f.children || [])[0], g = sh && sh.f.geometry, sz = (g && g.f.size) || [0, 0, 0], ro = n.f.rotation || [0, 1, 0, 0], th = ro[3] * (ro[1] >= 0 ? 1 : -1); return { t: n.f.translation, h: [sz[0] / 2, sz[1] / 2, sz[2] / 2], c: Math.cos(th), s: Math.sin(th) }; });
+    world = w; const vb = $('vps'); vb.querySelectorAll('button').forEach((b) => b.remove());
+    const vps = body.viewpoints.filter((n) => /^AtlasCam/.test(n.def || ''));
+    vps.forEach((vp, i) => { const b = el('button', { className: 'vp', textContent: String(i).padStart(2, '0'), title: vp.f.description || '' }); b.onclick = () => { body.bindViewpoint(vp, true); if (body.tr) { body.pose = body.tr.to; body.tr = null; body.applyCamera(); } fromPose(); }; vb.append(b); });
+    if (vps[w.start || 0]) { body.bindViewpoint(vps[w.start || 0], true); if (body.tr) { body.pose = body.tr.to; body.tr = null; body.applyCamera(); } } fromPose();
+    drawLayers(); status(); say(''); window.__ready = true; };
+  const wb = $('worlds');
+  for (const w of D.worlds) { const b = el('button', { textContent: w.label + ' · ' + w.size }); b.onclick = async () => { wb.querySelectorAll('button').forEach((x) => x.classList.remove('on')); b.classList.add('on'); try { await load(w); } catch (e) { say('Could not load: ' + e.message); } }; wb.append(b); }
+  window.__load = (i) => wb.querySelectorAll('button')[i].click(); window.__body = () => body;
+  const first = Math.max(0, D.worlds.findIndex((w) => w.default)); wb.querySelectorAll('button')[first].click();
+} catch (e) { say('The viewer could not start: ' + e.message + '. The measurements and pictures below do not need it.'); }
+</script>
+</body>
+</html>

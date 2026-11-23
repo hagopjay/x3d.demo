@@ -1,0 +1,79 @@
+{
+ "slug": "kings-chamber",
+ "world": "kings-chamber-atlas.x3d",
+ "operations": {
+  "chisel-kings-chamber": "f462e61f6a3841c6837a422c55fc4303"
+ },
+ "cameras": {
+  "count": 12,
+  "compared_with_sent": true,
+  "worst_position_diff_m": 0.0,
+  "worst_rotation_diff_deg": 0.0,
+  "worst_fieldOfView_diff_rad": 0.0
+ },
+ "splats": {
+  "file": "kings-chamber-draft.spz",
+  "sha256": "ae633dff9060b41b45747c2e6fbc38bcb23c82c89e04bbfcb5eb501a2eed9a19",
+  "bytes": 8226065,
+  "spz_version": 2,
+  "count": 524288,
+  "sh_degree": 0,
+  "bbox_min": [
+   -47.093,
+   -16.584,
+   -38.5
+  ],
+  "bbox_max": [
+   50.25,
+   38.181,
+   31.1
+  ],
+  "vs_x3d_surfaces": {
+   "sample": 120000,
+   "median_mm": 50.51289062499986,
+   "p90_mm": 174.53632812499987,
+   "within_20mm_pct": 22.4575,
+   "within_50mm_pct": 49.572500000000005,
+   "within_100mm_pct": 73.35000000000001,
+   "opacity_weighted_median_mm": 54.90742187499986,
+   "method": "exact distance from splat centre to the nearest X3D Box, Cylinder or Sphere surface"
+  },
+  "preview": {
+   "count": 30000,
+   "pick": "uniform random, seed 7",
+   "scale_factor": 2.5951
+  }
+ },
+ "mesh": {
+  "file": "mesh.glb",
+  "sha256": "d933b21428fecffd8c19747e0b083e7faf9d6ec63076c4bd102219f599c1e36e",
+  "bytes": 5949352,
+  "meshes": 1,
+  "nodes": 2,
+  "vertices": 104588,
+  "images": 2,
+  "as_x3d": {
+   "x3d": "kings-chamber-atlas-mesh.x3d",
+   "texture": "kings-chamber-atlas-mesh.png",
+   "vertices": 104588,
+   "faces": 200000,
+   "bytes": 7769946,
+   "valid": true
+  }
+ },
+ "colliders": {
+  "file": "colliders.glb",
+  "sha256": "a310efbe925af16365ffad028081d771d1f3674fc60807b64c187f49e15d111a",
+  "boxes": 120,
+  "all_upright": true
+ },
+ "x3d": {
+  "file": "kings-chamber-atlas.x3d",
+  "bytes": 3373056,
+  "sha256": "01e064af7d808a97a2acc9aa0b8cad13a87aa09377814d869b2fce3a23486680",
+  "viewpoints": 12,
+  "valid": true,
+  "validator": "hagopjay/x3d_mcp 4d433af validate_xml, bundled X3D 4.1 XSD",
+  "errors": []
+ }
+}

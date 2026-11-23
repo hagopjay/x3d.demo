@@ -1,0 +1,1609 @@
+{
+ "cap": 10000,
+ "opening_spent": 2,
+ "price_source": "account Developer Platform rate card, 23 Nov 2026",
+ "entries": [
+  {
+   "label": "chisel:kings-chamber",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "request_sha256": "11464906d9f2f6be321496353c3b6ccff180b454054d3557b220e4b5d73a3788",
+   "submitted_at": "2026-11-23T20:54:49Z",
+   "operation": "f462e61f6a3841c6837a422c55fc4303",
+   "finished_at": "2026-11-23T20:55:16Z",
+   "seconds": 26.4
+  },
+  {
+   "label": "chisel:reading-room",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "request_sha256": "fa316e74731b977d0462a61b9b4c8abf7d5595749ef270bbb195de7f68df8038",
+   "submitted_at": "2026-11-23T20:55:58Z",
+   "operation": "06574a4d586b4bf8aa2c8bb307d72f5b",
+   "finished_at": "2026-11-23T20:56:22Z",
+   "seconds": 24.1
+  },
+  {
+   "label": "generate:torii",
+   "task": "atlasGenerate",
+   "price": 120,
+   "state": "succeeded",
+   "request_sha256": "5ef539978458acdf360512cb46033b1a3a7255b50c51f9cde6a8fdb82108880b",
+   "submitted_at": "2026-11-23T20:56:32Z",
+   "operation": "3d01f968553a4f02b9337b0f74d63394",
+   "finished_at": "2026-11-23T20:56:48Z",
+   "seconds": 16.4
+  },
+  {
+   "label": "splats-draft:reading-room:x3d",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "refused",
+   "request_sha256": "f0e66ed1ae91b60ac19733eb8a5ef116a10f7e0c8ff0f5e55321347ce5ef920a",
+   "submitted_at": "2026-11-23T20:57:03Z",
+   "http": 422,
+   "error": {
+    "detail": [
+     {
+      "type": "value_error",
+      "loc": [
+       "body"
+      ],
+      "msg": "Value error, enhancePrompt=false requires a non-empty prompt",
+      "input": {
+       "posedFrames": [
+        {
+         "imageAsset": {
+          "assetId": "asset_26fe2417514ca8cee7da53127b2eb33c"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_9667ed4e75a84b95bec7231c7dedf2a8"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -6.1,
+            1.6,
+            0.25
+           ],
+           "quaternion": [
+            0.016446445293234357,
+            -0.6946812512184396,
+            0.01589109452874724,
+            0.7189540644279565
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_38cc416555f76b8452d5a7aefcb5148b"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_1d482ba4926a4bcd970f6c1b834c475b"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            6.1,
+            1.6,
+            -0.3
+           ],
+           "quaternion": [
+            0.01057612913322308,
+            0.7203815288388907,
+            -0.010987559146513063,
+            0.6934103200445618
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_11d63826167b19667392934bd8181ecd"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_c6f61054c0ad41ca932cb161c55e6518"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -5.6,
+            1.6,
+            1.2
+           ],
+           "quaternion": [
+            -0.014608499388789291,
+            -0.48263729304641934,
+            -0.008051818522620954,
+            0.8756614661642428
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_8e091bab985a15f7c613d29519683031"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_0988f6afd47b4e6ebd525acb9a3e35a1"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -5.6,
+            1.6,
+            -1.2
+           ],
+           "quaternion": [
+            -0.00805141371249836,
+            -0.8756615257931466,
+            -0.014608678421023891,
+            0.4826371861943916
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_c7d26dc1e9e015dcc891dd4440c509c1"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_a11ce741bcd34aa1a50e2e8e0cb7dccc"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            5.6,
+            1.6,
+            1.2
+           ],
+           "quaternion": [
+            -0.014608499388789291,
+            0.48263729304641934,
+            0.008051818522620954,
+            0.8756614661642428
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_6d3087d21b18b26ca53408355ead0d25"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_ea1c34631dbf4c1f8c4dc1bc5c96c026"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            5.6,
+            1.6,
+            -1.2
+           ],
+           "quaternion": [
+            -0.00805141371249836,
+            0.8756615257931466,
+            0.014608678421023891,
+            0.4826371861943916
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_e930467618f3db5214ad8cd97efb144a"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_20bf05b5b65f490a84ca3b876d8673b1"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            0.5,
+            1.75,
+            2.3
+           ],
+           "quaternion": [
+            -0.1038703314834727,
+            0.10624166076425366,
+            0.011159924084273567,
+            0.9888372565038193
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_491a47b1bc86b4b36aa70968b872901e"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_a56651a826b1457ab20048b23acea4af"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.2,
+            1.75,
+            -2.0
+           ],
+           "quaternion": [
+            -0.02813318804632478,
+            -0.9583476987787236,
+            -0.10156871467800627,
+            0.2654468085597053
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_76b78553a4bb2f0a89e63c38caf16123"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_5f978cc6b8884e25a5aa51e0cd8638dd"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.9,
+            1.6,
+            1.2
+           ],
+           "quaternion": [
+            0.04332854584884645,
+            0.06100212425910997,
+            -0.002650580048972477,
+            0.9971932372293268
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_ad0628af3b843cbff66424ad9c6883a1"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_da3b166f04ec4446a52d538c64630619"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            1.9,
+            1.6,
+            -1.2
+           ],
+           "quaternion": [
+            0.002651053208294246,
+            -0.9971932650448795,
+            0.04332815087305909,
+            0.0610019295427719
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_67b17c9cf316bf1fb5b4cb318f6d16a8"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_15803f4ba091439b9a6d927e2532b0f9"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.6,
+            1.4,
+            -0.9
+           ],
+           "quaternion": [
+            0.18261443613307776,
+            -0.7976842248774699,
+            0.29547668986141257,
+            0.4929963193026605
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_b52a277aaa81dbbbfd1e09d3d11bbe6d"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_5af4d2865302448ba8a7dac638ab1d20"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            1.2,
+            1.9,
+            1.6
+           ],
+           "quaternion": [
+            -0.13169863350311198,
+            -0.43822281795717805,
+            -0.0650818508162635,
+            0.8867810239565417
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        }
+       ],
+       "refine": false,
+       "enhancePrompt": false
+      },
+      "ctx": {
+       "error": {}
+      }
+     }
+    ]
+   },
+   "retry_after": null
+  },
+  {
+   "label": "splats-draft:kings-chamber:x3d",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "refused",
+   "request_sha256": "915bc8b6e738c9ea3977a697655c8b0ed0e389e0db0bfe84409a0153b873a146",
+   "submitted_at": "2026-11-23T20:57:03Z",
+   "http": 422,
+   "error": {
+    "detail": [
+     {
+      "type": "value_error",
+      "loc": [
+       "body"
+      ],
+      "msg": "Value error, enhancePrompt=false requires a non-empty prompt",
+      "input": {
+       "posedFrames": [
+        {
+         "imageAsset": {
+          "assetId": "asset_0ea9a318d733b46adc7db891ac357589"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_f407eb1f0d4e4028962f4294df4db9f5"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            4.3354,
+            1.6,
+            1.8177
+           ],
+           "quaternion": [
+            -0.02770043315259213,
+            0.5788135239770346,
+            0.019678758790140805,
+            0.8147517026167697
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_b4afcda0a335849bc8042aaefed8c2ff"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_409168d333634f12923cd6091c78eac3"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            3.6354,
+            1.6,
+            -1.7177
+           ],
+           "quaternion": [
+            -0.015316699997844612,
+            0.8401773186413739,
+            0.023761901324866948,
+            0.5415744122345466
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_377ebeefb51f7dc1e88e8e59952c333e"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_e0fb44430f084dd8a2244e8a14cf8674"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -4.4354,
+            1.6,
+            1.9177
+           ],
+           "quaternion": [
+            -0.034025630134297644,
+            -0.5340432787157495,
+            -0.021517128766242365,
+            0.8444981030897306
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_d78116393838b807ac173da17c098c1e"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_634f4acfad6c4b8fbbfcce4b9adfe89d"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -4.4354,
+            1.6,
+            -1.9177
+           ],
+           "quaternion": [
+            -0.012818178615565053,
+            -0.8419131993216413,
+            -0.020017718060065356,
+            0.5390891856350353
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_405e7079b0226de518683ccba950a872"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_4c0210c6c71c4bfbbe9bd2d427a01bda"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -0.9965,
+            1.75,
+            0.3
+           ],
+           "quaternion": [
+            -0.14959881318852644,
+            0.6617202812887988,
+            0.1371547401318843,
+            0.7217582986589159
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_c3f29ae8cfd009f17fcfdd6b15472bd5"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_9178b30b621842efa652f7d771dfb76f"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.7965,
+            1.7,
+            2.0677
+           ],
+           "quaternion": [
+            -0.16787697454286374,
+            0.2835924153790666,
+            0.05049785377162496,
+            0.9427845088472028
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_0f7382a29138f3b50852ac3641b88a0d"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_dae5eaa8273644ac9e7399380a4b90e3"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.7965,
+            1.7,
+            -2.0677
+           ],
+           "quaternion": [
+            -0.04474616317967548,
+            0.9495984517365755,
+            0.15975897564395833,
+            0.26596546964106
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_cb10d53e3892344554c30a08f0ab6f61"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_7c840dcea0a044d19c670e3f40485ecb"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -2.7465,
+            2.35,
+            -1.8677
+           ],
+           "quaternion": [
+            -0.044212732940072566,
+            0.9269854228893809,
+            0.3540365977720364,
+            0.11576418891249109
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_8cde79ba8e72c77f2fc695225820b67b"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_05ef01d71c144139922d8c0d492219e1"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -0.6,
+            1.6,
+            0.15
+           ],
+           "quaternion": [
+            -0.006308023286197308,
+            -0.6730891734430063,
+            -0.0057412368592441405,
+            0.7395121443460935
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_9826198c99af133d9bd617137edf8919"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_f1e0816635cd49ae83b700451ed77154"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            0.9,
+            1.45,
+            0.35
+           ],
+           "quaternion": [
+            0.36815412661991115,
+            0.5012585172730015,
+            -0.24850751812332278,
+            0.7425944056819908
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_a5c496fe1694c3c45473f5f19d7b2491"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_ac30231ff58a4cd7931e759415724375"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            2.6354,
+            1.85,
+            1.6177
+           ],
+           "quaternion": [
+            -0.15060343309190435,
+            -0.21617628069555583,
+            -0.03377014799785082,
+            0.9640777970214706
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_0bf32704ef061d5ea161d7f9674f0d93"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_1f8be888623b4e7fb2efb7d043f873b7"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            1.3,
+            1.6,
+            2.0177
+           ],
+           "quaternion": [
+            -0.031225236980721275,
+            -0.1161754051070077,
+            -0.0036541873815593264,
+            0.9927310344389869
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        }
+       ],
+       "refine": false,
+       "enhancePrompt": false
+      },
+      "ctx": {
+       "error": {}
+      }
+     }
+    ]
+   },
+   "retry_after": null
+  },
+  {
+   "label": "splats-draft:torii:atlas",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "refused",
+   "request_sha256": "f7cc8b5653c85f26f5171c3c9b78a569a13f67a591cf98cdd8e0ae71fe98f414",
+   "submitted_at": "2026-11-23T20:57:04Z",
+   "http": 422,
+   "error": {
+    "detail": [
+     {
+      "type": "value_error",
+      "loc": [
+       "body"
+      ],
+      "msg": "Value error, enhancePrompt=false requires a non-empty prompt",
+      "input": {
+       "posedFrames": [
+        {
+         "imageAsset": {
+          "assetId": "asset_1c7a46546c0fa7d3bfc9c744d43016b0"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_4c97b8a97af648be3d0123da17b1081b"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            0.0,
+            4.035522937774658,
+            0.0
+           ],
+           "quaternion": [
+            0.012254577762588205,
+            8.441646391861674e-05,
+            -0.006887884866359407,
+            0.9999011827374689
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.5,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_7ddfb07518449a1d270872d23d703b89"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_937b55c573b96cbd5287173c31625509"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.9745677962729005,
+            4.035522937774658,
+            -0.20753543820190146
+           ],
+           "quaternion": [
+            -0.03136849068013866,
+            -0.10447645514416773,
+            -0.0032969612243300534,
+            0.9940270711402401
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_fe3fbf9aa8dbe008f6b8a16c4d6e428e"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_8627f088259bd4cbed52f709fc68d267"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            1.9745677962717378,
+            4.035522937774658,
+            -0.2075354382129646
+           ],
+           "quaternion": [
+            -0.031368490680129486,
+            0.10447645514695239,
+            0.003296961224417929,
+            0.9940270711399475
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_e01c2c50a637e6d1716cf2b53f50a171"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_1ba3d2605bc442240abad6bb79363cdc"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -3.8628375048223136,
+            4.035522937774658,
+            -0.8210714583037309
+           ],
+           "quaternion": [
+            -0.03085202451582122,
+            -0.2078082443840718,
+            -0.006557800251597026,
+            0.9776609235338933
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_779d43aa130d5f02871d9fadbafc99d1"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_85f00691c1c0222033f8afabf3d64c7c"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            3.8628375048177137,
+            4.035522937774658,
+            -0.8210714583253704
+           ],
+           "quaternion": [
+            -0.030852024515802854,
+            0.20780824438681042,
+            0.0065578002516834474,
+            0.9776609235333112
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_4af2014f5a34130e85d3c4b69fc547c7"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_cecea0f96a7e7275ab30f0278210c58a"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -5.582282678461276,
+            4.035522937774658,
+            -1.813793592154564
+           ],
+           "quaternion": [
+            -0.02999753711470723,
+            -0.30886324301183277,
+            -0.00974679064699956,
+            0.9505833182606083
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_256ae8ffb6746392038d0ea4201c0979"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_f1a5445fb06b558cad6b0f74d5d99341"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            5.582282678451113,
+            4.035522937774658,
+            -1.8137935921858386
+           ],
+           "quaternion": [
+            -0.02999753711467995,
+            0.30886324301449564,
+            0.009746790647083592,
+            0.9505833182597431
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_59083ebcc52330b9fc0a5b7d0790db36"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_fb1ad8ba1ccec5b0756636a8e6d07560"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -8.77915320274909e-12,
+            3.8375229377746582,
+            -3.1340583600997123
+           ],
+           "quaternion": [
+            -0.03154127709628608,
+            1.3999077439064403e-12,
+            4.417685824935412e-14,
+            0.9995024501416369
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_06951616e681145ca440b5c21028abff"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_5eefb9d61e374f4396f87b28f80f488b"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            0.992722133855506,
+            5.535522937774658,
+            -0.052026362483276856
+           ],
+           "quaternion": [
+            -0.1084453187922353,
+            0.05202645026088695,
+            0.005683378331694815,
+            0.9927238087786757
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        }
+       ],
+       "refine": false,
+       "enhancePrompt": false
+      },
+      "ctx": {
+       "error": {}
+      }
+     }
+    ]
+   },
+   "retry_after": null
+  },
+  {
+   "label": "splats-draft:reading-room:x3d",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "request_sha256": "56b2abc7518286a4818bc843a564d1db3af9dde8da6627d48eb7d26deb67ce2a",
+   "submitted_at": "2026-11-23T20:57:15Z",
+   "operation": "63e11ab6670640438fe26bd8ea4660d7",
+   "finished_at": "2026-11-23T20:57:46Z",
+   "seconds": 30.0
+  },
+  {
+   "label": "splats-draft:kings-chamber:x3d",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "request_sha256": "e4b1b881737889e2502cb1525ae1c2b9b44588b2710f2fb8e29cbf05a51fc939",
+   "submitted_at": "2026-11-23T20:57:47Z",
+   "operation": "a7eed5313f5b45bba3e03761986a47d6",
+   "finished_at": "2026-11-23T20:58:17Z",
+   "seconds": 30.0
+  },
+  {
+   "label": "splats-draft:torii:atlas",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "request_sha256": "b0a19f283267bb75a5672be6f0827696a7520ab9035a5d5049eab16d43f92d34",
+   "submitted_at": "2026-11-23T20:58:18Z",
+   "operation": "5eca4103e22e45dc81be0e6b80286bf6",
+   "finished_at": "2026-11-23T20:58:47Z",
+   "seconds": 28.8
+  },
+  {
+   "label": "chisel:reading-room:ring2",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "request_sha256": "b6280196b58fed52ce8e9bbe7c65d08a941e91fc29edbb9a273fdb5c5596d5ae",
+   "submitted_at": "2026-11-23T21:03:02Z",
+   "operation": "2dc02a9aae454edd9937c238ff5423e2",
+   "finished_at": "2026-11-23T21:03:32Z",
+   "seconds": 28.9
+  },
+  {
+   "label": "splats-refined:reading-room:x3d",
+   "task": "posedImages2Splats",
+   "price": 5000,
+   "state": "succeeded",
+   "request_sha256": "2d390c287c51b5e643fd1a8caa6708f637a4fdf1e547f5bddc22e37194d8e815",
+   "submitted_at": "2026-11-23T21:04:10Z",
+   "operation": "15fbb02d1e444cef8983fa27c7a31ba0",
+   "finished_at": "2026-11-23T21:21:17Z",
+   "seconds": 1026.3
+  },
+  {
+   "label": "style:reading-room:sumi",
+   "task": "atlasChisel",
+   "price": 64,
+   "state": "succeeded",
+   "request_sha256": "771387cca11000f177176ae304e884dd21f334df19959666bb40fc7aff244976",
+   "submitted_at": "2026-11-23T21:04:49Z",
+   "operation": "bfea6fbede8e411bb8fb7d6540e6a83a",
+   "finished_at": "2026-11-23T21:05:03Z",
+   "seconds": 14.2
+  },
+  {
+   "label": "style:reading-room:ruin",
+   "task": "atlasChisel",
+   "price": 64,
+   "state": "succeeded",
+   "request_sha256": "1afb9374be3277648a2863b6b3d31e9274fa930d4f88e3d4037bf65e02aa6ac7",
+   "submitted_at": "2026-11-23T21:05:05Z",
+   "operation": "a83e5480e6224d52af12fc952d8fb25f",
+   "finished_at": "2026-11-23T21:05:14Z",
+   "seconds": 8.6
+  },
+  {
+   "label": "style:reading-room:clay",
+   "task": "atlasChisel",
+   "price": 64,
+   "state": "succeeded",
+   "request_sha256": "12bc2fa8d0c0f3eaa336bd551d4a3ff49371d39bcc1e5a1e53e76ae6cd4ebdae",
+   "submitted_at": "2026-11-23T21:05:16Z",
+   "operation": "8d18c72b833b434db770e4ecd971b60c",
+   "finished_at": "2026-11-23T21:05:24Z",
+   "seconds": 8.1
+  },
+  {
+   "label": "edit:reading-room:globe",
+   "task": "atlasChisel",
+   "price": 64,
+   "state": "succeeded",
+   "request_sha256": "9de947a632ad7b9edae03578a028a6f7d4f75235af6d3ce8f4802dfcea560cf4",
+   "submitted_at": "2026-11-23T21:05:47Z",
+   "operation": "42335f81783f4436a8f847d150177672",
+   "finished_at": "2026-11-23T21:05:57Z",
+   "seconds": 9.7
+  },
+  {
+   "label": "chisel:kings-chamber:granite",
+   "task": "atlasChisel",
+   "price": 128,
+   "state": "succeeded",
+   "request_sha256": "2253c19c33bd770d1fb28b0ccf14b5da8f670bda15f8d4010be1298661240d42",
+   "submitted_at": "2026-11-23T21:07:20Z",
+   "operation": "28a2bcf7c3e844eeb5cf8b445bc9417d",
+   "finished_at": "2026-11-23T21:07:35Z",
+   "seconds": 14.7
+  },
+  {
+   "label": "mesh:kings-chamber:draft",
+   "task": "splats2Mesh",
+   "price": 500,
+   "state": "succeeded",
+   "request_sha256": "4f01ee9c545c3b497ecd0e476d93218b28bb2894ccbba1ce92d19af35687d87d",
+   "submitted_at": "2026-11-23T21:13:34Z",
+   "operation": "d2ba7a3aa5c24b689251ff506d02eb2f",
+   "finished_at": "2026-11-23T21:14:40Z",
+   "seconds": 65.1
+  },
+  {
+   "label": "mesh:reading-room:refined",
+   "task": "splats2Mesh",
+   "price": 500,
+   "state": "succeeded",
+   "request_sha256": "c77717bb549d7201e2b76f982346de5d32c4726995ec36b03277c19651ec8a4e",
+   "submitted_at": "2026-11-23T21:22:35Z",
+   "operation": "c696e672e18741a18eeb87a0a6f70b83",
+   "finished_at": "2026-11-23T21:23:33Z",
+   "seconds": 57.6
+  },
+  {
+   "label": "splats-draft:reading-room:atlas",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "request_sha256": "a6accc087c9280e8019eacb589e8d254069455554113c1514515afafa739e256",
+   "submitted_at": "2026-11-23T21:27:39Z",
+   "operation": "ad0a719c6d894fc99175c77dfd16f057",
+   "finished_at": "2026-11-23T21:29:21Z",
+   "seconds": 101.3
+  }
+ ],
+ "assets": {
+  "24b0676bcf1e69a3ac825d0d942b44cc10e695a5c898125c9610af6a3c31f4bc": {
+   "file": "depth-00.exr",
+   "bytes": 2537498
+  },
+  "4838d8b6dbb698e4710406cc501dec51c333f42b7ae75a56ab2e0231544eeb8c": {
+   "file": "depth-01.exr",
+   "bytes": 2495303
+  },
+  "a584349d536b309989fd124257955a31a43de5e0d4e18ca889d4f7680b479017": {
+   "file": "depth-02.exr",
+   "bytes": 2741416
+  },
+  "92bb8b5aec81e51aa5b7cfdb1f83e8889a730612e10e9457b701eb117daa81ef": {
+   "file": "depth-03.exr",
+   "bytes": 2700459
+  },
+  "b9ebc9c1436370c26773b03429db62dea62ba083bb7983689ad5523572fcbd49": {
+   "file": "depth-04.exr",
+   "bytes": 1834805
+  },
+  "c9c6b25f509d71b088477a00290a85b76d5ea9e2a25db8e76c1d8910c916879e": {
+   "file": "depth-05.exr",
+   "bytes": 2465281
+  },
+  "1c77853eb6e888c9f377263c0a4cba05e6daf932acd573e584a5c09a8d42a983": {
+   "file": "depth-06.exr",
+   "bytes": 2422485
+  },
+  "e4bad6a7427c275dbcf825478c6cae76f09530c4f3126e7fa14c5b6e190dfc62": {
+   "file": "depth-07.exr",
+   "bytes": 1760371
+  },
+  "c3b52bbe4ce13f8e51dd62796ca48542ecadd44e64a62418588d9e0d3f17c6f9": {
+   "file": "depth-08.exr",
+   "bytes": 1964093
+  },
+  "851f8963b6da85989cd6b23fb1db6e5bb9a90324203ca1f016bbe4521801b5e2": {
+   "file": "depth-09.exr",
+   "bytes": 1908756
+  },
+  "6295fee868aaaa4b33464a916e0337ef1eb2219727430be68f695b6b9284b64d": {
+   "file": "depth-10.exr",
+   "bytes": 2200662
+  },
+  "a3454241daf2612897919c24f87b0d23e9b07b2884d53032f21e0429a36c2ef5": {
+   "file": "depth-11.exr",
+   "bytes": 2125926
+  },
+  "df866c7d86eb3fbe96d773a7e8d3f908d6626d0376b76d0f7e03b51ed0443d04": {
+   "file": "depth-00.exr",
+   "bytes": 2184223
+  },
+  "02fa70f2f0bea5a5e3c52ec02c58f028e80daa8ef5f36250884c62efddc35d9a": {
+   "file": "depth-01.exr",
+   "bytes": 2202780
+  },
+  "e754ed4d94e518fc9fb2af8be9ada1779345d801d1a5afd1b729c4edf4eeef59": {
+   "file": "depth-02.exr",
+   "bytes": 2390861
+  },
+  "2f417ce039091136e7fd26016340d69ba7c94e798dacfd56ca92d27489ba74ee": {
+   "file": "depth-03.exr",
+   "bytes": 2343246
+  },
+  "584452efbd4781b30d4be35f067dafb48d917733901dd96e20d2c97100cd0de2": {
+   "file": "depth-04.exr",
+   "bytes": 2538360
+  },
+  "ffa704839a6ab09d8be9512b5ae3f22034af99bfc48bbf1b3ebc115947ee1f95": {
+   "file": "depth-05.exr",
+   "bytes": 2622755
+  },
+  "a2d2e4777672cebc184e65465a1dc5214724398a3bc8c574997e31519319945c": {
+   "file": "depth-06.exr",
+   "bytes": 2139680
+  },
+  "3ab38fcc70226ad0901e1eb965892178fae74cdb95db2aaef3fd5c2d54bc4578": {
+   "file": "depth-07.exr",
+   "bytes": 2085840
+  },
+  "eab57ce723f708ba40378ffefd7babf611ea575c6adf07221ff9419ce1bc48fd": {
+   "file": "depth-08.exr",
+   "bytes": 2529203
+  },
+  "e43ae1da5ebcd88b370f2888cc89c17fba604ca57a22aa065ba936938f891dc0": {
+   "file": "depth-09.exr",
+   "bytes": 2499890
+  },
+  "72fb6edba00041b0c7911bff0eca70938f3bee0025c13259a934661579f9a732": {
+   "file": "depth-10.exr",
+   "bytes": 1912941
+  },
+  "ae3fa889b958d7862f99c8ad171274adbdc627d4e149a894f4225dfbb81f80ab": {
+   "file": "depth-11.exr",
+   "bytes": 1861768
+  },
+  "642927fb86eaecb9ec8b4e63909c983316a5a094a20b339b00a8f5829d7b1dc3": {
+   "file": "depth-12.exr",
+   "bytes": 2196595
+  },
+  "771732288a8c628b823ca60d08271e49e98378318864d00b17f2cbd279eaa9b2": {
+   "file": "depth-13.exr",
+   "bytes": 2216377
+  },
+  "8b327e3e149afecfebd1207ab2cb9e6688a5fde2df1e92273d4ac9160e743aae": {
+   "file": "depth-14.exr",
+   "bytes": 2144972
+  },
+  "8d5ad0aa2faf5f5ba3c39905b0ca03186a144a593ac5a6116c7f6bea7511b131": {
+   "file": "depth-15.exr",
+   "bytes": 2215289
+  },
+  "e01e3c2f928df4fff85aaee4492570da7f7125b0d96c3b36894139c5bf63f4b2": {
+   "file": "depth-16.exr",
+   "bytes": 2054337
+  },
+  "9730ffee034326ec32f9b9a1a5409772dc36731d885cc6a5eb577bb345031219": {
+   "file": "depth-17.exr",
+   "bytes": 1948628
+  },
+  "722c1d3b82d3119784f22b7ae80da0e74dba17d40ee925aa84ed9e08e9e7be53": {
+   "file": "depth-18.exr",
+   "bytes": 2416527
+  },
+  "5878e5e1c7a3ee52a8e742374fd381d96a662210a56e3421adc8190a93005474": {
+   "file": "depth-19.exr",
+   "bytes": 2056554
+  },
+  "429df4449217f106998abec04baa1c9e42adf98c280e155568cffb1ddf4a43cc": {
+   "file": "depth-20.exr",
+   "bytes": 3088254
+  },
+  "8aa2a1139a13ecd367ec070184e46297fa6842109aa99f18b5686beb8b9366eb": {
+   "file": "depth-21.exr",
+   "bytes": 2588974
+  },
+  "b9fec9a2a2b90830cedfa73dd562fbec976db9d36cb3c8dcf3ceadad1507c121": {
+   "file": "depth-22.exr",
+   "bytes": 2328122
+  },
+  "e14640041b925715fae5bf1d04cca770ecd7afa27d1808afb42c17a57ef5c036": {
+   "file": "depth-23.exr",
+   "bytes": 2366744
+  },
+  "08126d3f1c48aebf51499aec96dc5e723c8befc07f90f9edb052fad9f8a1bdeb": {
+   "file": "view-00.jpg",
+   "bytes": 461973
+  },
+  "522ff90d658dac7291442c35d922af65e89675c2dfd690d26fe87fb7cb1b7d96": {
+   "file": "view-01.jpg",
+   "bytes": 381199
+  },
+  "daf4aeaf88000425f2e5bd42ff4314fb6745a05badc097f6be76d5a48923c3f7": {
+   "file": "view-02.jpg",
+   "bytes": 464574
+  },
+  "ca448f3ca1968a40cbf97a79d00b15c709fbb1d1781e8a29c10d72de26d711e2": {
+   "file": "view-03.jpg",
+   "bytes": 446742
+  },
+  "8c3ef5e7cf3939e399fe2a2a4ebf767f9c9aebe9ca82b1aea494ce2ab2d05162": {
+   "file": "view-04.jpg",
+   "bytes": 443790
+  },
+  "970b187252568d3d153326d69476580047bf3d20d4d14c3f44be412fe389b7b1": {
+   "file": "view-05.jpg",
+   "bytes": 453187
+  },
+  "6a86a995a149587147c90cbf22f17c33a671518e8732219ea961d63a6f3cfc4f": {
+   "file": "view-06.jpg",
+   "bytes": 494695
+  },
+  "390839559779bc7c1704c0a9e4f05e0d7934b5bbe73ef6304d877746ef096585": {
+   "file": "view-07.jpg",
+   "bytes": 505078
+  },
+  "6e013b99c4a3bcd468743255be54deaa272830c8cb3b17b272c2035fd2a253d1": {
+   "file": "view-08.jpg",
+   "bytes": 440317
+  },
+  "feeb2554d63ebd685abbc25fe770b8d0d57df1c0b8db77d56937368e9b996d61": {
+   "file": "view-09.jpg",
+   "bytes": 468634
+  },
+  "77327c34909e802daf5be9fb9e82f3f80f904b4afdb7374ffaf4e750c2a97916": {
+   "file": "view-10.jpg",
+   "bytes": 431351
+  },
+  "7bc34a745c905e00157dea368e2aa301fb323d804cacf1387507492e7e144b0d": {
+   "file": "view-11.jpg",
+   "bytes": 457048
+  },
+  "5e6f9ea54aa890333a758ecfd941460e6dead3e5744c2ff1229389c7cf86d049": {
+   "file": "mask-06.png",
+   "bytes": 4472
+  },
+  "815ab5215513f176cf54f214e109a7a324edc3965ed47af77700e6baa785ec54": {
+   "file": "mask-07.png",
+   "bytes": 4476
+  },
+  "666df323164727369a2315f60b17d9ff0546950b484b046fe3a90cdb7e2356c1": {
+   "file": "view-16.jpg",
+   "bytes": 411936
+  },
+  "3b636ccb99d5e93f20091b31a6fc85c69ed13bdb4e3ff557311ab3468543523d": {
+   "file": "mask-16.png",
+   "bytes": 4626
+  },
+  "8676dd49639cc60387ae1b2f2603be431bedea0f2e9ad8dc7a8e048d2014b9b6": {
+   "file": "view-17.jpg",
+   "bytes": 453566
+  }
+ }
+}
