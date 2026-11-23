@@ -1,0 +1,60 @@
+[
+ {
+  "missing": [],
+  "slots": {
+   "passage": "callgraph.passage_points",
+   "target": "callgraph.passage_target"
+  },
+  "speaker": "the graph says",
+  "template": "Every path from program entry to the serial check {target} crosses one function: {passage}. It carries the highest betweenness in the call graph, which is why the constellation draws it gold.",
+  "text": "Every path from program entry to the serial check derive crosses one function: main. It carries the highest betweenness in the call graph, which is why the constellation draws it gold.",
+  "view": "gatekeeper"
+ },
+ {
+  "missing": [],
+  "slots": {
+   "anti_count": "binary.anti_debug_count",
+   "brk": "pattern.int3_byte"
+  },
+  "speaker": "disasm says",
+  "template": "{anti_count} functions touch anti-analysis machinery: the constructor calls ptrace(TRACEME) and the checker compares its own bytes against {brk}, the software-breakpoint marker. Both wear a hot roof in the city.",
+  "text": "2 functions touch anti-analysis machinery: the constructor calls ptrace(TRACEME) and the checker compares its own bytes against 0xcc, the software-breakpoint marker. Both wear a hot roof in the city.",
+  "view": "anti-debug"
+ },
+ {
+  "missing": [],
+  "slots": {
+   "anti_extent": "capability.anti_debug_extent",
+   "concepts": "capability.concept_count"
+  },
+  "speaker": "the lattice says",
+  "template": "Formal concept analysis over functions x imported capabilities finds {concepts} concepts without running the binary, among them an anti-debug concept shared by {anti_extent}.",
+  "text": "Formal concept analysis over functions x imported capabilities finds 5 concepts without running the binary, among them an anti-debug concept shared by guard and main.",
+  "view": "capability"
+ },
+ {
+  "missing": [],
+  "slots": {
+   "accepted": "ledger.H5.accepted",
+   "confirmed": "ledger.confirmed",
+   "mutants": "ledger.H5.mutants_rejected",
+   "total": "ledger.total"
+  },
+  "speaker": "the experiments say",
+  "template": "{confirmed} of {total} hypotheses were re-run here and confirmed; the reconstructed keygen was accepted by the binary for {accepted} random names and every one of {mutants} mutated serials was rejected.",
+  "text": "6 of 6 hypotheses were re-run here and confirmed; the reconstructed keygen was accepted by the binary for 2000 random names and every one of 200 mutated serials was rejected.",
+  "view": "ledger"
+ },
+ {
+  "missing": [],
+  "slots": {
+   "poisoned": "ledger.H3.poisoned_serial",
+   "salt_gdb": "ledger.H2.gdb-salt-at-main",
+   "true": "ledger.H5.alice"
+  },
+  "speaker": "gdb and the native run disagree",
+  "template": "Under gdb the program reads salt {salt_gdb} and accepts {poisoned} for alice; run natively it rejects that serial and accepts {true} instead.",
+  "text": "Under gdb the program reads salt 0xa5a5a5a5 and accepts F104-7CB6 for alice; run natively it rejects that serial and accepts 5470-E4D2 instead.",
+  "view": "the debugger lies"
+ }
+]

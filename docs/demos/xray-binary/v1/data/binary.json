@@ -1,0 +1,486 @@
+{
+ "functions": [
+  {
+   "addr": 4096,
+   "anti_debug": false,
+   "blocks": 10,
+   "calls": [
+    "_init"
+   ],
+   "insns": 35,
+   "name": "_init",
+   "section": ".init"
+  },
+  {
+   "addr": 4240,
+   "anti_debug": false,
+   "blocks": 1,
+   "calls": [],
+   "insns": 3,
+   "name": "__cxa_finalize@plt",
+   "section": ".plt.got"
+  },
+  {
+   "addr": 4256,
+   "anti_debug": false,
+   "blocks": 1,
+   "calls": [],
+   "insns": 3,
+   "name": "puts@plt",
+   "section": ".plt.sec"
+  },
+  {
+   "addr": 4272,
+   "anti_debug": false,
+   "blocks": 1,
+   "calls": [],
+   "insns": 3,
+   "name": "strlen@plt",
+   "section": ".plt.sec"
+  },
+  {
+   "addr": 4288,
+   "anti_debug": false,
+   "blocks": 1,
+   "calls": [],
+   "insns": 3,
+   "name": "__stack_chk_fail@plt",
+   "section": ".plt.sec"
+  },
+  {
+   "addr": 4304,
+   "anti_debug": false,
+   "blocks": 1,
+   "calls": [],
+   "insns": 3,
+   "name": "ptrace@plt",
+   "section": ".plt.sec"
+  },
+  {
+   "addr": 4320,
+   "anti_debug": false,
+   "blocks": 1,
+   "calls": [],
+   "insns": 3,
+   "name": "__printf_chk@plt",
+   "section": ".plt.sec"
+  },
+  {
+   "addr": 4336,
+   "anti_debug": false,
+   "blocks": 1,
+   "calls": [],
+   "insns": 3,
+   "name": "strtoul@plt",
+   "section": ".plt.sec"
+  },
+  {
+   "addr": 4352,
+   "anti_debug": true,
+   "blocks": 3,
+   "calls": [
+    "ptrace"
+   ],
+   "insns": 17,
+   "name": "guard",
+   "section": ".text"
+  },
+  {
+   "addr": 4416,
+   "anti_debug": true,
+   "blocks": 25,
+   "calls": [
+    "__printf_chk",
+    "__stack_chk_fail",
+    "derive",
+    "main",
+    "puts",
+    "reveal",
+    "strlen",
+    "strtoul"
+   ],
+   "insns": 98,
+   "name": "main",
+   "section": ".text"
+  },
+  {
+   "addr": 4832,
+   "anti_debug": false,
+   "blocks": 1,
+   "calls": [],
+   "insns": 14,
+   "name": "_start",
+   "section": ".text"
+  },
+  {
+   "addr": 4880,
+   "anti_debug": false,
+   "blocks": 4,
+   "calls": [],
+   "insns": 11,
+   "name": "deregister_tm_clones",
+   "section": ".text"
+  },
+  {
+   "addr": 4928,
+   "anti_debug": false,
+   "blocks": 4,
+   "calls": [],
+   "insns": 16,
+   "name": "register_tm_clones",
+   "section": ".text"
+  },
+  {
+   "addr": 4992,
+   "anti_debug": false,
+   "blocks": 6,
+   "calls": [
+    "__cxa_finalize",
+    "deregister_tm_clones"
+   ],
+   "insns": 16,
+   "name": "__do_global_dtors_aux",
+   "section": ".text"
+  },
+  {
+   "addr": 5056,
+   "anti_debug": false,
+   "blocks": 1,
+   "calls": [
+    "register_tm_clones"
+   ],
+   "insns": 3,
+   "name": "frame_dummy",
+   "section": ".text"
+  },
+  {
+   "addr": 5072,
+   "anti_debug": false,
+   "blocks": 2,
+   "calls": [],
+   "insns": 13,
+   "name": "reveal",
+   "section": ".text"
+  },
+  {
+   "addr": 5120,
+   "anti_debug": false,
+   "blocks": 4,
+   "calls": [
+    "strlen"
+   ],
+   "insns": 26,
+   "name": "derive",
+   "section": ".text"
+  },
+  {
+   "addr": 5204,
+   "anti_debug": false,
+   "blocks": 1,
+   "calls": [],
+   "insns": 4,
+   "name": "_fini",
+   "section": ".fini"
+  }
+ ],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__",
+  "__libc_start_main",
+  "__printf_chk",
+  "__stack_chk_fail",
+  "ptrace",
+  "puts",
+  "strlen",
+  "strtoul"
+ ],
+ "schema_version": 1,
+ "sections": [
+  {
+   "name": ".interp",
+   "size": 28,
+   "vma": 792
+  },
+  {
+   "name": ".note.gnu.property",
+   "size": 48,
+   "vma": 824
+  },
+  {
+   "name": ".note.gnu.build-id",
+   "size": 36,
+   "vma": 872
+  },
+  {
+   "name": ".note.ABI-tag",
+   "size": 32,
+   "vma": 908
+  },
+  {
+   "name": ".gnu.hash",
+   "size": 36,
+   "vma": 944
+  },
+  {
+   "name": ".dynsym",
+   "size": 288,
+   "vma": 984
+  },
+  {
+   "name": ".dynstr",
+   "size": 215,
+   "vma": 1272
+  },
+  {
+   "name": ".gnu.version",
+   "size": 24,
+   "vma": 1488
+  },
+  {
+   "name": ".gnu.version_r",
+   "size": 80,
+   "vma": 1512
+  },
+  {
+   "name": ".rela.dyn",
+   "size": 216,
+   "vma": 1592
+  },
+  {
+   "name": ".rela.plt",
+   "size": 144,
+   "vma": 1808
+  },
+  {
+   "name": ".init",
+   "size": 27,
+   "vma": 4096
+  },
+  {
+   "name": ".plt",
+   "size": 112,
+   "vma": 4128
+  },
+  {
+   "name": ".plt.got",
+   "size": 16,
+   "vma": 4240
+  },
+  {
+   "name": ".plt.sec",
+   "size": 96,
+   "vma": 4256
+  },
+  {
+   "name": ".text",
+   "size": 851,
+   "vma": 4352
+  },
+  {
+   "name": ".fini",
+   "size": 13,
+   "vma": 5204
+  },
+  {
+   "name": ".rodata",
+   "size": 137,
+   "vma": 8192
+  },
+  {
+   "name": ".eh_frame_hdr",
+   "size": 76,
+   "vma": 8332
+  },
+  {
+   "name": ".eh_frame",
+   "size": 276,
+   "vma": 8408
+  },
+  {
+   "name": ".init_array",
+   "size": 16,
+   "vma": 15752
+  },
+  {
+   "name": ".fini_array",
+   "size": 8,
+   "vma": 15768
+  },
+  {
+   "name": ".dynamic",
+   "size": 496,
+   "vma": 15776
+  },
+  {
+   "name": ".got",
+   "size": 112,
+   "vma": 16272
+  },
+  {
+   "name": ".data",
+   "size": 16,
+   "vma": 16384
+  },
+  {
+   "name": ".bss",
+   "size": 8,
+   "vma": 16400
+  },
+  {
+   "name": ".comment",
+   "size": 45,
+   "vma": 0
+  },
+  {
+   "name": ".debug_aranges",
+   "size": 80,
+   "vma": 0
+  },
+  {
+   "name": ".debug_info",
+   "size": 2147,
+   "vma": 0
+  },
+  {
+   "name": ".debug_abbrev",
+   "size": 611,
+   "vma": 0
+  },
+  {
+   "name": ".debug_line",
+   "size": 865,
+   "vma": 0
+  },
+  {
+   "name": ".debug_str",
+   "size": 1258,
+   "vma": 0
+  },
+  {
+   "name": ".debug_line_str",
+   "size": 314,
+   "vma": 0
+  },
+  {
+   "name": ".debug_loclists",
+   "size": 618,
+   "vma": 0
+  },
+  {
+   "name": ".debug_rnglists",
+   "size": 115,
+   "vma": 0
+  }
+ ],
+ "strings_sample": [
+  "/lib64/ld-linux-x86-64.so.2",
+  "__stack_chk_fail",
+  "__printf_chk",
+  "strlen",
+  "ptrace",
+  "__libc_start_main",
+  "__cxa_finalize",
+  "strtoul",
+  "libc.so.6",
+  "GLIBC_2.3.4",
+  "GLIBC_2.4",
+  "GLIBC_2.2.5",
+  "GLIBC_2.34",
+  "_ITM_deregisterTMCloneTable",
+  "__gmon_start__",
+  "_ITM_registerTMCloneTable",
+  "ATUSH",
+  "T$hdH+",
+  "p[]A\\",
+  "zT7)#?9D",
+  "`_3!.:}",
+  "FI /*l}",
+  "%TKBy",
+  "9*3$\"",
+  "GCC: (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "PTRACE_CONT",
+  "__printf_chk",
+  "PTRACE_POKEDATA",
+  "PTRACE_GET_SYSCALL_USER_DISPATCH_CONFIG",
+  "PTRACE_PEEKTEXT",
+  "guard",
+  "short int",
+  "size_t",
+  "PTRACE_GET_SYSCALL_INFO",
+  "PTRACE_SECCOMP_GET_METADATA",
+  "__ptrace_request",
+  "__uint32_t",
+  "PTRACE_DETACH",
+  "memcpy",
+  "PTRACE_GET_RSEQ_CONFIGURATION"
+ ],
+ "strings_total": 189,
+ "target": "./crackme1",
+ "triage": {
+  "arch": "x86-64",
+  "description": "ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=fd554120ebb5fd4371778aa583761950ce397dda, for GNU/Linux 3.2.0, with debug_info, not stripped",
+  "pie": true,
+  "stripped": false
+ },
+ "witnesses": {
+  "disasm": {
+   "argv": [
+    "objdump",
+    "-d",
+    "--no-show-raw-insn",
+    "./crackme1"
+   ],
+   "bytes": 9798,
+   "output_sha256": "42aa6147ca705657228234870fb70dadcfe76bc259cf683b65e47bb5967bc924",
+   "returncode": 0,
+   "tool": "objdump"
+  },
+  "imports": {
+   "argv": [
+    "nm",
+    "-D",
+    "./crackme1"
+   ],
+   "bytes": 461,
+   "output_sha256": "293133ed1ae7e997583cec49227650cc10c239de05e50b8a989d84981d8cc061",
+   "returncode": 0,
+   "tool": "nm"
+  },
+  "sections": {
+   "argv": [
+    "objdump",
+    "-h",
+    "./crackme1"
+   ],
+   "bytes": 4774,
+   "output_sha256": "2fd15f19ae4fa2592ba3a785e144af3aec75dfc5a39ee200e2c7d811ead2d846",
+   "returncode": 0,
+   "tool": "objdump"
+  },
+  "strings": {
+   "argv": [
+    "strings",
+    "-n",
+    "5",
+    "./crackme1"
+   ],
+   "bytes": 2886,
+   "output_sha256": "da2134c46a2c02be4a711d7c21ebcd263610de83b5c0fe01e0af4ee62d6e7fcf",
+   "returncode": 0,
+   "tool": "strings"
+  },
+  "triage": {
+   "argv": [
+    "file",
+    "-b",
+    "./crackme1"
+   ],
+   "bytes": 225,
+   "output_sha256": "e26374d1a35db9dfce1a1f996d41c9e52431a76f4cc0292881ca82b04bf4e7e5",
+   "returncode": 0,
+   "tool": "file"
+  }
+ }
+}

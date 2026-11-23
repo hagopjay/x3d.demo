@@ -1,0 +1,442 @@
+{
+ "binary_sha256": "59c2f7b8e4a86cde3404e4495a7917b104bf90f2e4e779d4d3790f4c02198fca",
+ "method": "hypothesis-debugging loop (one hypothesis, one definitive experiment, one recorded verdict), after ioma8, 'LLM assisted reverse engineering', Slow Chronicle, 18 Nov 2026, https://www.slowchronicle.com/posts/llm-assisted-reverse-engineering",
+ "rows": [
+  {
+   "agrees_with_import": true,
+   "experiment": {
+    "kind": "static-decode",
+    "min_run": 8,
+    "section": ".rodata"
+   },
+   "grade": "Confirmed",
+   "hypothesis": "strings are rolling-XOR encrypted, key = 0x33 + 7*i, decoded only when printed",
+   "id": "H1",
+   "imported_verdict": "CONFIRMED",
+   "observed": {
+    "decoded": [
+     "Invalid serial.",
+     "Serial accepted. Welcome, %s!\n",
+     "usage: crackme1 <name> <serial XXXX-XXXX>"
+    ],
+    "visible_to_strings": []
+   },
+   "phase": "static",
+   "prediction": {
+    "decoded_contains": [
+     "Invalid serial.",
+     "Serial accepted. Welcome, %s!"
+    ]
+   },
+   "static_support": [],
+   "title": "rolling-XOR strings",
+   "verdict": "CONFIRMED",
+   "witnesses": [
+    {
+     "argv": [
+      "objdump",
+      "-s",
+      "-j",
+      ".rodata",
+      "./crackme1"
+     ],
+     "bytes": 612,
+     "decoded_sha256": "939427a36a4dd6d6317d7d64e244a4c964279062f49d2ab018777793a0957ece",
+     "kind": "static-decode",
+     "output_sha256": "a6fba614ecad8af128f5e7975774094a117ff7051acd2839a7ce1fdb63f082d9",
+     "returncode": 0,
+     "tool": "objdump"
+    }
+   ]
+  },
+  {
+   "agrees_with_import": true,
+   "experiment": {
+    "kind": "trace",
+    "probes": [
+     "strace-ptrace",
+     "gdb-salt-at-main"
+    ]
+   },
+   "grade": "Confirmed",
+   "hypothesis": "a constructor calls ptrace(TRACEME); under a tracer it fails and g_salt is poisoned by 0xA5A5A5A5",
+   "id": "H2",
+   "imported_verdict": "CONFIRMED",
+   "observed": {
+    "gdb-salt-at-main": "0xa5a5a5a5",
+    "strace-ptrace": "PTRACE_TRACEME) = -1 EPERM"
+   },
+   "phase": "dynamic",
+   "prediction": {
+    "g_salt": "0xa5a5a5a5",
+    "strace": "PTRACE_TRACEME) = -1 EPERM"
+   },
+   "static_support": [
+    {
+     "addr": "0x1123",
+     "constant": "poison_ctor",
+     "insn": "xor $0xa5a5a5a5,%eax",
+     "value": "0xa5a5a5a5"
+    }
+   ],
+   "title": "ptrace poisons the salt",
+   "verdict": "CONFIRMED",
+   "witnesses": [
+    {
+     "argv": [
+      "strace",
+      "-e",
+      "trace=ptrace",
+      "./crackme1",
+      "alice",
+      "0000-0000"
+     ],
+     "binary_sha256": "59c2f7b8e4a86cde3404e4495a7917b104bf90f2e4e779d4d3790f4c02198fca",
+     "env": {},
+     "extract": "(PTRACE_TRACEME\\)\\s*= -?\\d+(?: E[A-Z]+)?)",
+     "kind": "trace",
+     "observed": "PTRACE_TRACEME) = -1 EPERM",
+     "probe": "strace-ptrace",
+     "status": "ok"
+    },
+    {
+     "argv": [
+      "gdb",
+      "-q",
+      "-batch",
+      "-nx",
+      "-ex",
+      "set startup-with-shell off",
+      "-ex",
+      "break main",
+      "-ex",
+      "run",
+      "-ex",
+      "printf \"g_salt=0x%08x\\n\", g_salt",
+      "-ex",
+      "kill",
+      "--args",
+      "./crackme1",
+      "alice",
+      "0000-0000"
+     ],
+     "binary_sha256": "59c2f7b8e4a86cde3404e4495a7917b104bf90f2e4e779d4d3790f4c02198fca",
+     "env": {},
+     "extract": "g_salt=(0x[0-9a-f]{8})",
+     "kind": "trace",
+     "observed": "0xa5a5a5a5",
+     "probe": "gdb-salt-at-main",
+     "status": "ok"
+    }
+   ]
+  },
+  {
+   "agrees_with_import": true,
+   "experiment": {
+    "kind": "negative-control",
+    "name": "alice",
+    "salt": "0xA5A5A5A5"
+   },
+   "grade": "Confirmed",
+   "hypothesis": "the debugger lies: the serial the program computes under gdb is accepted under gdb and rejected natively",
+   "id": "H3",
+   "imported_verdict": "CONFIRMED",
+   "observed": {
+    "native": "rejected",
+    "poisoned_serial": "F104-7CB6",
+    "under_gdb": "accepted"
+   },
+   "phase": "dynamic",
+   "prediction": {
+    "native": "rejected",
+    "under_gdb": "accepted"
+   },
+   "static_support": [
+    {
+     "addr": "0x1123",
+     "constant": "poison_ctor",
+     "insn": "xor $0xa5a5a5a5,%eax",
+     "value": "0xa5a5a5a5"
+    }
+   ],
+   "title": "the debugger lies",
+   "verdict": "CONFIRMED",
+   "witnesses": [
+    {
+     "argv": [
+      "gdb",
+      "-q",
+      "-batch",
+      "-nx",
+      "-ex",
+      "set startup-with-shell off",
+      "-ex",
+      "run",
+      "--args",
+      "./crackme1",
+      "alice",
+      "F104-7CB6"
+     ],
+     "binary_sha256": "59c2f7b8e4a86cde3404e4495a7917b104bf90f2e4e779d4d3790f4c02198fca",
+     "env": {},
+     "extract": "(Serial accepted|Invalid serial)",
+     "kind": "trace",
+     "observed": "Serial accepted",
+     "probe": "gdb-run-poisoned-serial",
+     "status": "ok"
+    },
+    {
+     "argv": [
+      "./crackme1",
+      "alice",
+      "F104-7CB6"
+     ],
+     "binary_sha256": "59c2f7b8e4a86cde3404e4495a7917b104bf90f2e4e779d4d3790f4c02198fca",
+     "kind": "oracle",
+     "observed": "Invalid serial.",
+     "probe": "native-run-poisoned-serial",
+     "returncode": 1,
+     "status": "ok"
+    }
+   ]
+  },
+  {
+   "agrees_with_import": true,
+   "experiment": {
+    "kind": "trace",
+    "probes": [
+     "gdb-salt-at-main-with-shim"
+    ]
+   },
+   "grade": "Confirmed",
+   "hypothesis": "defeating both poisons (LD_PRELOAD ptrace shim + no software breakpoint inside derive's first 48 bytes) leaves g_salt = 0",
+   "id": "H4",
+   "imported_verdict": "CONFIRMED",
+   "observed": {
+    "gdb-salt-at-main-with-shim": "0x00000000"
+   },
+   "phase": "dynamic",
+   "prediction": {
+    "g_salt": "0x00000000"
+   },
+   "static_support": [
+    {
+     "addr": "0x1123",
+     "constant": "poison_ctor",
+     "insn": "xor $0xa5a5a5a5,%eax",
+     "value": "0xa5a5a5a5"
+    },
+    {
+     "addr": "0x1186",
+     "constant": "poison_int3",
+     "insn": "xor $0x5a5a0000,%edx",
+     "value": "0x5a5a0000"
+    },
+    {
+     "addr": "0x117b",
+     "constant": "int3_byte",
+     "insn": "cmp $0xcc,%dl",
+     "value": "0xcc"
+    }
+   ],
+   "title": "defeat both poisons",
+   "verdict": "CONFIRMED",
+   "witnesses": [
+    {
+     "argv": [
+      "gdb",
+      "-q",
+      "-batch",
+      "-nx",
+      "-ex",
+      "set startup-with-shell off",
+      "-ex",
+      "set environment LD_PRELOAD=./out/ptrace_shim.so",
+      "-ex",
+      "break main",
+      "-ex",
+      "run",
+      "-ex",
+      "printf \"g_salt=0x%08x\\n\", g_salt",
+      "-ex",
+      "kill",
+      "--args",
+      "./crackme1",
+      "alice",
+      "0000-0000"
+     ],
+     "binary_sha256": "59c2f7b8e4a86cde3404e4495a7917b104bf90f2e4e779d4d3790f4c02198fca",
+     "env": {},
+     "extract": "g_salt=(0x[0-9a-f]{8})",
+     "kind": "trace",
+     "observed": "0x00000000",
+     "probe": "gdb-salt-at-main-with-shim",
+     "status": "ok"
+    }
+   ]
+  },
+  {
+   "agrees_with_import": true,
+   "experiment": {
+    "kind": "oracle",
+    "mutate_control": true,
+    "n": 2000,
+    "seed": 20261123
+   },
+   "grade": "Confirmed",
+   "hypothesis": "derive is name -> serial: h = 0x1337C0DE ^ salt; per byte h ^= c, rol 5, h *= 0x9E3779B1; return h ^ (len << 24); keygen-able with salt = 0",
+   "id": "H5",
+   "imported_verdict": "CONFIRMED",
+   "observed": {
+    "accepted": "2000/2000",
+    "alice": "5470-E4D2",
+    "mutants_rejected": "200/200"
+   },
+   "phase": "oracle",
+   "prediction": {
+    "accepted_fraction": 1.0,
+    "mutants_rejected_fraction": 1.0
+   },
+   "static_support": [
+    {
+     "addr": "0x1413",
+     "constant": "seed",
+     "insn": "xor $0x1337c0de,%ebp",
+     "value": "0x1337c0de"
+    },
+    {
+     "addr": "0x143c",
+     "constant": "mul",
+     "insn": "imul $0x9e3779b1,%edx,%ebp",
+     "value": "0x9e3779b1"
+    }
+   ],
+   "title": "keygen vs the binary",
+   "verdict": "CONFIRMED",
+   "witnesses": [
+    {
+     "accepted": 2000,
+     "binary_sha256": "59c2f7b8e4a86cde3404e4495a7917b104bf90f2e4e779d4d3790f4c02198fca",
+     "first_mismatch": null,
+     "kind": "oracle",
+     "mutants": 200,
+     "mutants_rejected": 200,
+     "n": 2000,
+     "rejected": 0,
+     "seed": 20261123,
+     "status": "ok",
+     "transcript_sha256": "05c178d3d10c9857941a8e209c26b45bfcf482750921c092f47c43a7a9799fe2"
+    }
+   ]
+  },
+  {
+   "agrees_with_import": true,
+   "experiment": {
+    "kind": "trace",
+    "probes": [
+     "gdb-salt-at-derive-with-shim"
+    ]
+   },
+   "grade": "Confirmed",
+   "hypothesis": "NEW in this pass: a software breakpoint ON derive trips the int3 self-scan, so with the shim g_salt becomes exactly 0x5A5A0000",
+   "id": "H6",
+   "imported_verdict": null,
+   "observed": {
+    "gdb-salt-at-derive-with-shim": "0x5a5a0000"
+   },
+   "phase": "dynamic",
+   "prediction": {
+    "g_salt": "0x5a5a0000"
+   },
+   "static_support": [
+    {
+     "addr": "0x1186",
+     "constant": "poison_int3",
+     "insn": "xor $0x5a5a0000,%edx",
+     "value": "0x5a5a0000"
+    },
+    {
+     "addr": "0x117b",
+     "constant": "int3_byte",
+     "insn": "cmp $0xcc,%dl",
+     "value": "0xcc"
+    }
+   ],
+   "title": "a breakpoint on derive",
+   "verdict": "CONFIRMED",
+   "witnesses": [
+    {
+     "argv": [
+      "gdb",
+      "-q",
+      "-batch",
+      "-nx",
+      "-ex",
+      "set startup-with-shell off",
+      "-ex",
+      "set environment LD_PRELOAD=./out/ptrace_shim.so",
+      "-ex",
+      "break derive",
+      "-ex",
+      "run",
+      "-ex",
+      "printf \"g_salt=0x%08x\\n\", g_salt",
+      "-ex",
+      "kill",
+      "--args",
+      "./crackme1",
+      "alice",
+      "0000-0000"
+     ],
+     "binary_sha256": "59c2f7b8e4a86cde3404e4495a7917b104bf90f2e4e779d4d3790f4c02198fca",
+     "env": {},
+     "extract": "g_salt=(0x[0-9a-f]{8})",
+     "kind": "trace",
+     "observed": "0x5a5a0000",
+     "probe": "gdb-salt-at-derive-with-shim",
+     "status": "ok"
+    }
+   ]
+  }
+ ],
+ "schema_version": 1,
+ "shim": true,
+ "static_patterns": [
+  {
+   "addr": "0x1413",
+   "constant": "seed",
+   "insn": "xor $0x1337c0de,%ebp",
+   "value": "0x1337c0de"
+  },
+  {
+   "addr": "0x143c",
+   "constant": "mul",
+   "insn": "imul $0x9e3779b1,%edx,%ebp",
+   "value": "0x9e3779b1"
+  },
+  {
+   "addr": "0x1123",
+   "constant": "poison_ctor",
+   "insn": "xor $0xa5a5a5a5,%eax",
+   "value": "0xa5a5a5a5"
+  },
+  {
+   "addr": "0x1186",
+   "constant": "poison_int3",
+   "insn": "xor $0x5a5a0000,%edx",
+   "value": "0x5a5a0000"
+  },
+  {
+   "addr": "0x117b",
+   "constant": "int3_byte",
+   "insn": "cmp $0xcc,%dl",
+   "value": "0xcc"
+  }
+ ],
+ "subject": "crackme1",
+ "tally": {
+  "CONFIRMED": 6,
+  "REFUTED": 0,
+  "UNTESTED": 0
+ }
+}
