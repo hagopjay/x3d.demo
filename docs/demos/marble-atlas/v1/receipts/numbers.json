@@ -1,0 +1,334 @@
+{
+ "unproject_correct": {
+  "value": {
+   "points": 573375,
+   "mean_mm": 0.00011574545361314348,
+   "p99_mm": 0.0003296080783149221,
+   "max_mm": 0.0005243386049030571
+  },
+  "source": "build/run_all.py: atlas2x3d.unproject (stride 4) vs raycast hit points, 10 frames, float32 EXR via OpenEXR 3.5.5"
+ },
+ "traps": {
+  "value": {
+   "rows_bottom_up": {
+    "mean_mm": 2121.1428796959244,
+    "p99_mm": 5326.664088815875
+   },
+   "pixel_corner_not_centre": {
+    "mean_mm": 2.854995817447733,
+    "p99_mm": 5.945077003851381
+   },
+   "depth_along_ray": {
+    "mean_mm": 411.6200665546771,
+    "p99_mm": 1300.184804770049
+   },
+   "pose_read_as_world_to_camera": {
+    "mean_mm": 3341.7011060625223,
+    "p99_mm": 8360.525105334804
+   },
+   "rub_read_as_rdf": {
+    "mean_mm": 6369.66906644799,
+    "p99_mm": 13327.548764887862
+   }
+  },
+  "source": "same run, each trap applied alone"
+ },
+ "nan_pixels": {
+  "value": 41169,
+  "source": "count of NaN depth pixels (window) across 10 frames; skipped by valid_depth()"
+ },
+ "viewpoints": {
+  "value": [
+   {
+    "i": 0,
+    "position": [
+     0.0,
+     0.9668,
+     0.0
+    ],
+    "orientation": [
+     -0.99712,
+     0.00452,
+     0.07571,
+     0.11947
+    ],
+    "fieldOfView_rad": 0.882402,
+    "fov_deg": 50.558,
+    "hfov_deg": 80.031,
+    "principal_offset_px": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "i": 1,
+    "position": [
+     -1.15,
+     0.97,
+     -1.75
+    ],
+    "orientation": [
+     -0.10515,
+     -0.9926,
+     -0.0607,
+     1.05365
+    ],
+    "fieldOfView_rad": 0.882402,
+    "fov_deg": 50.558,
+    "hfov_deg": 80.031,
+    "principal_offset_px": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "i": 2,
+    "position": [
+     1.05,
+     0.97,
+     -1.75
+    ],
+    "orientation": [
+     -0.10515,
+     0.9926,
+     0.0607,
+     1.05365
+    ],
+    "fieldOfView_rad": 0.882402,
+    "fov_deg": 50.558,
+    "hfov_deg": 80.031,
+    "principal_offset_px": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "i": 3,
+    "position": [
+     -0.9,
+     0.97,
+     -2.9
+    ],
+    "orientation": [
+     -0.19008,
+     -0.97994,
+     -0.05994,
+     0.6226
+    ],
+    "fieldOfView_rad": 0.882402,
+    "fov_deg": 50.558,
+    "hfov_deg": 80.031,
+    "principal_offset_px": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "i": 4,
+    "position": [
+     0.0,
+     0.97,
+     -4.2
+    ],
+    "orientation": [
+     0.0,
+     0.99813,
+     0.06105,
+     3.14159
+    ],
+    "fieldOfView_rad": 0.882402,
+    "fov_deg": 50.558,
+    "hfov_deg": 80.031,
+    "principal_offset_px": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "i": 5,
+    "position": [
+     -1.4,
+     0.97,
+     -3.8
+    ],
+    "orientation": [
+     -0.02846,
+     -0.99773,
+     -0.06102,
+     2.27067
+    ],
+    "fieldOfView_rad": 0.882402,
+    "fov_deg": 50.558,
+    "hfov_deg": 80.031,
+    "principal_offset_px": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "i": 6,
+    "position": [
+     -1.5,
+     0.97,
+     -2.4
+    ],
+    "orientation": [
+     -0.04271,
+     -0.99722,
+     -0.061,
+     1.92246
+    ],
+    "fieldOfView_rad": 0.882402,
+    "fov_deg": 50.558,
+    "hfov_deg": 80.031,
+    "principal_offset_px": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "i": 7,
+    "position": [
+     0.4,
+     0.97,
+     -3.5
+    ],
+    "orientation": [
+     -0.01076,
+     0.99808,
+     0.06104,
+     2.79319
+    ],
+    "fieldOfView_rad": 0.882402,
+    "fov_deg": 50.558,
+    "hfov_deg": 80.031,
+    "principal_offset_px": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "i": 8,
+    "position": [
+     -0.5,
+     0.97,
+     -0.3
+    ],
+    "orientation": [
+     -0.32717,
+     -0.9432,
+     -0.05768,
+     0.36961
+    ],
+    "fieldOfView_rad": 0.882402,
+    "fov_deg": 50.558,
+    "hfov_deg": 80.031,
+    "principal_offset_px": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "i": 9,
+    "position": [
+     1.2,
+     0.97,
+     -2.3
+    ],
+    "orientation": [
+     -0.05116,
+     0.99683,
+     0.06097,
+     1.74846
+    ],
+    "fieldOfView_rad": 0.882402,
+    "fov_deg": 50.558,
+    "hfov_deg": 80.031,
+    "principal_offset_px": [
+     0.0,
+     0.0
+    ]
+   }
+  ],
+  "source": "atlas2x3d.camera_to_viewpoint on data/atlas-skills-rig.json"
+ },
+ "rdf_roundtrip_max_abs": {
+  "value": 4.440892098500626e-16,
+  "source": "rub -> rdf -> parse_camera -> rotation matrix, max |delta| over 10 cameras"
+ },
+ "docs_30deg_right_turn_forward": {
+  "value": [
+   0.5,
+   0.0,
+   -0.866
+  ],
+  "source": "cameras-and-posed-images.md example quaternion -> forward vector (expect x = +0.5, z = -0.866: turned right)"
+ },
+ "points_fused": {
+  "value": 63684,
+  "source": "stride 12, confidence > 60, 10 frames"
+ },
+ "spz": {
+  "value": {
+   "header": {
+    "version": 2,
+    "splats": 49478,
+    "sh_degree": 0,
+    "fractional_bits": 12,
+    "flags": 0
+   },
+   "bytes": 319931,
+   "splats": 49478,
+   "pos_max_err_mm": 0.12206659957136878,
+   "rgb_max_err_255": 0.9403159725795857
+  },
+  "source": "atlas2x3d.write_spz -> read_spz round trip (SPZ v2, 12 fractional bits)"
+ },
+ "collider_boxes": {
+  "value": {
+   "count": 19,
+   "all_yaw_only": true,
+   "max_abs_err_m": 0.0
+  },
+  "source": "atlas2x3d.collider_boxes on colliderBoxes.glb vs scene truth"
+ },
+ "validation": {
+  "value": {
+   "atlas-studio.x3d": {
+    "valid": true,
+    "errors": 0,
+    "first": null,
+    "bytes": 8018684
+   },
+   "labels-correct.x3d": {
+    "valid": true,
+    "errors": 0,
+    "first": null,
+    "bytes": 7658
+   },
+   "labels-fov-horizontal.x3d": {
+    "valid": true,
+    "errors": 0,
+    "first": null,
+    "bytes": 7665
+   },
+   "labels-pose-inverted.x3d": {
+    "valid": true,
+    "errors": 0,
+    "first": null,
+    "bytes": 7656
+   },
+   "labels-rdf-unconverted.x3d": {
+    "valid": true,
+    "errors": 0,
+    "first": null,
+    "bytes": 7657
+   }
+  },
+  "source": "hagopjay/x3d_mcp 4d433af src/validation/validate.py validate_xml, bundled X3D 4.1 XSD"
+ },
+ "build_seconds": {
+  "value": 4.2,
+  "source": "wall clock, x86_64, Python 3.13.18"
+ }
+}

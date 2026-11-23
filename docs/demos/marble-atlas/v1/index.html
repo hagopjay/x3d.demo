@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo 76 · Marble → Atlas → X3D</title>
+<meta name="description" content="World Labs' new Atlas world model (12 Nov 2026) bridged into X3D 4.1: posed camera rigs as Viewpoints, posed RGBD as points and Gaussian splats, splats2Mesh collider boxes as X3D Collision. Zero API spend.">
+<link rel="stylesheet" href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css">
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<style>
+:root{--bg:#07090d;--panel:#0f141c;--line:#223044;--ink:#e6edf5;--dim:#8ea0b5;--hot:#ff8c1a;--cool:#33d1ff;--ok:#38d98a;--bad:#ff5b6e;--warn:#ffc94d}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--cool)}code{font:12.5px ui-monospace,SFMono-Regular,Menlo,monospace;color:#cfe3ff}
+header{padding:22px 20px 8px;max-width:1500px;margin:auto}
+h1{margin:0;font-size:26px;letter-spacing:.2px}h1 small{color:var(--dim);font-weight:400;font-size:15px}
+.lede{color:var(--dim);max-width:1100px;margin:6px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}.chip{border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:12px;color:var(--dim)}
+.chip b{color:var(--ink)}
+main{max-width:1500px;margin:auto;padding:8px 20px 40px}
+.stage{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:12px}
+@media(max-width:980px){.stage{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+#view{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#000}
+x3d-canvas{width:100%;height:100%;display:block}
+.hud{position:absolute;left:8px;top:8px;display:flex;flex-wrap:wrap;gap:4px;max-width:calc(100% - 16px)}
+.hud button,.bar button{background:#0b1018d9;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:3px 8px;font-size:12px;cursor:pointer}
+.hud button.on,.bar button.on{border-color:var(--cool);color:var(--cool)}
+.bar{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 0}
+#tag{position:absolute;right:8px;bottom:8px;background:#0b1018d9;border:1px solid var(--line);border-radius:6px;padding:4px 8px;font-size:12px;color:var(--dim)}
+.saw img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.saw .cap{color:var(--dim);font-size:12px;margin:4px 0 8px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.trio img{width:100%;border-radius:4px;border:1px solid var(--line)}
+.trio div{font-size:11px;color:var(--dim);text-align:center}
+h2{font-size:17px;margin:26px 0 8px;border-bottom:1px solid var(--line);padding-bottom:4px}
+h2 .n{color:var(--hot);margin-right:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:980px){.grid2{grid-template-columns:1fr}}
+table{border-collapse:collapse;width:100%;font-size:12.5px}th,td{border-bottom:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;background:#0c1118}td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.scroll{overflow-x:auto}
+.g{font-weight:700;border-radius:4px;padding:0 5px;font-size:11px}.gC{background:#123a28;color:var(--ok)}.gL{background:#3a3212;color:var(--warn)}.gS{background:#3a1820;color:var(--bad)}
+.barcell{position:relative;min-width:150px}.barcell i{position:absolute;left:0;top:4px;bottom:4px;background:linear-gradient(90deg,#1b6d4a,var(--ok));border-radius:3px;opacity:.55}
+.barcell.bad i{background:linear-gradient(90deg,#6d1b2a,var(--bad))}.barcell span{position:relative}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:6px 0}
+.flow .s{flex:1 1 150px;border:1px solid var(--line);border-radius:8px;padding:8px;background:#0c1118}.flow .s b{display:block;color:var(--cool);font-size:12px}
+.flow .s small{color:var(--dim)}.flow .a{align-self:center;color:var(--hot)}
+.note{color:var(--dim);font-size:12.5px}
+.warnbox{border-left:3px solid var(--warn);padding:6px 10px;background:#1a170b;border-radius:4px;margin:8px 0;font-size:13px}
+footer{max-width:1500px;margin:auto;padding:16px 20px 40px;color:var(--dim);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Demo 76 · Marble → Atlas → X3D <small>World Labs' new world model, brought into a format you can validate</small></h1>
+  <p class="lede">On 12 Nov 2026 World Labs opened <b>Atlas</b>, the model it says will power future versions of Marble, with a new Developer API.
+  Atlas hands back <b>posed images</b> (a pinhole camera, an RGB image, a linear-depth EXR and a confidence map), <b>SPZ splats</b> and
+  <b>splats2Mesh GLB meshes with collider boxes</b>. This page bridges each of those into X3D 4.1. It uses the real 10-camera rig from World Labs'
+  own open-source splat skill (Apache-2.0) and a procedural room of our own, so <b>no World Labs output and no API credits</b> were used. Every number names its tool.</p>
+  <div class="chips" id="chips"></div>
+</header>
+<main>
+<section class="stage">
+  <div class="card">
+    <div id="view">
+      <x3d-canvas id="xite" src="worlds/atlas-studio.x3d" splashScreen="false" notifications="false" contextMenu="false"></x3d-canvas>
+      <div class="hud" id="hud"></div>
+      <div id="tag">X_ITE · loading 8 MB of X3D…</div>
+    </div>
+    <div class="bar" id="bodybar"></div>
+    <div class="bar" id="cambar"></div>
+    <p class="note">Orange frustum = the posed source photo (camera 0). Blue = the 9 target cameras Atlas would generate. Pick a camera to look through its X3D
+      <code>Viewpoint</code>: position, XYZW quaternion → <code>orientation</code>, intrinsics → <code>fieldOfView</code>. Body: fused RGBD points (63,684, PointSet),
+      the same as 2.5 cm Gaussian splats (X3D 4.1 <code>GaussianSplats</code>, via an SPZ v2 round trip), or the mesh GLB in an <code>Inline</code>. Colliders = splats2Mesh
+      <code>colliderBoxes</code> read into X3D <code>Collision</code>.</p>
+  </div>
+  <div class="card saw">
+    <div><b id="sawTitle">What camera 0 saw</b></div>
+    <img id="sawImg" src="data/bundle/frames_0_image.jpg" alt="RGB frame of the selected Atlas camera">
+    <div class="cap" id="sawCap">RGB on the Atlas 1280×720 grid (raycast of our CC0 room through the real rig camera).</div>
+    <div><b>Confidence and X_ITE label render</b></div>
+    <div class="trio">
+      <div><img id="confImg" src="data/bundle/frames_0_depth_confidence.png" alt="confidence map">confidence (0 = no surface)</div>
+      <div><img id="labImg" src="shots/xite-labels-cam0.webp" alt="X_ITE label render">X_ITE label frame</div>
+      <div><img src="shots/fused-points-overview.webp" alt="fused point cloud">fused points</div>
+    </div>
+    <div class="cap" id="labCap"></div>
+  </div>
+</section>
+
+<h2><span class="n">1</span>What is new: Marble 1.0 → 1.1 → Atlas</h2>
+<div class="scroll"><table id="news"></table></div>
+
+<h2><span class="n">2</span>The bridge: every Atlas output → an X3D node</h2>
+<div class="flow">
+  <div class="s"><b>images2PosedRGBD / atlasGenerate</b>camera + RGB + depth EXR + confidence<br><small>pose camera-to-world, XYZW, rub/rdf</small></div><div class="a">→</div>
+  <div class="s"><b>atlas2x3d.parse_camera</b>rdf → rub = q·Rx(π)<br><small>rejects distortion fields like the API (422)</small></div><div class="a">→</div>
+  <div class="s"><b>Viewpoint + frustum</b>fieldOfView = smaller-side angle<br><small>principal-point shift reported</small></div><div class="a">→</div>
+  <div class="s"><b>unproject → PointSet / GaussianSplats</b>NaN, 0, ±∞ = no surface<br><small>rows top to bottom</small></div><div class="a">→</div>
+  <div class="s"><b>posedImages2Splats SPZ · splats2Mesh GLB</b>identity wrapper (Three.js = X3D frame)<br><small>Inline glb · Collision proxy Boxes</small></div>
+</div>
+<div class="scroll"><table id="mapping"></table></div>
+
+<h2><span class="n">3</span>Witnesses: does the bridge put things where Atlas says they are?</h2>
+<div class="grid2">
+  <div class="card"><b>Camera test (Eyes witness).</b> X_ITE renders each camera's Viewpoint over the room drawn with flat label colours; each pixel is compared with the object the raycaster hit through that pixel.
+    <div class="scroll"><table id="camtab"></table></div><p class="note" id="camrig"></p></div>
+  <div class="card"><b>Depth test (Traps witness).</b> Unproject every 4th pixel of all 10 depth EXRs and measure the distance to the true hit point. Then apply one known mistake at a time.
+    <div class="scroll"><table id="traptab"></table></div><p class="note" id="trapsrc"></p></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+  <div class="card"><b>Format checks.</b><div class="scroll"><table id="fmt"></table></div></div>
+  <div class="card"><b>X3D validation.</b><div class="scroll"><table id="valid"></table></div><p class="note" id="validsrc"></p></div>
+</div>
+
+<h2><span class="n">4</span>What a live run would cost, and who owns the result</h2>
+<div class="grid2">
+  <div class="card"><div class="scroll"><table id="cost"></table></div>
+    <p class="note">Prices from docs.atlas.worldlabs.ai (billing.md, posed-images-to-splats.md), fetched 23 Nov 2026; 1,000 credits = US$1. The docs give no price for
+    images2PosedRGBD, atlasGenerate or splats2Mesh and point to the live rate card. Atlas's MCP server (<code>api.atlas.worldlabs.ai/mcp</code>) bills the same credits after an OAuth sign-in, with no API key, so it is a spend path too.</p></div>
+  <div class="card"><div class="scroll"><table id="rights"></table></div>
+    <div class="warnbox">Free/Standard ("Low-Tier") output: World Labs owns it and licenses it to you for personal, non-commercial use only, and may train on it with no opt-out (Atlas ToS §2.3(a), §2.6). Publish only worlds made on paid access, and never send private images.</div></div>
+</div>
+
+<h2><span class="n">5</span>Tested / not tested</h2>
+<div class="grid2">
+  <div class="card"><b style="color:var(--ok)">Tested here</b><ul id="tested"></ul></div>
+  <div class="card"><b style="color:var(--warn)">Not tested (needs a live call, his GPU, or Blender)</b><ul id="untested"></ul></div>
+</div>
+
+<h2><span class="n">6</span>Run it yourself</h2>
+<pre class="card" style="white-space:pre-wrap;font:12.5px ui-monospace,monospace">pip install numpy pillow OpenEXR lxml jsonschema
+python3 kit/make_fixture.py --rig data/atlas-skills-rig.json --out data/bundle   # 10 RGBD frames, 36 s
+python3 build/run_all.py                                                          # worlds/*.x3d + receipts/numbers.json
+python3 -m http.server 8776 --directory ../../..   &&   node build/camtest.mjs http://127.0.0.1:8776/demos/marble-atlas/v1/ /tmp/cam
+python3 build/compare.py /tmp/cam                                                 # receipts/camtest.json
+# a real Atlas bundle (after a paid call): point build/run_all.py at its operation download folder instead of data/bundle</pre>
+</main>
+<footer>Demo 76 · x3d.demo <code>demos/marble-atlas/v1</code> · data and licences in <a href="DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a> (takedown notice inside) ·
+numbers in <a href="receipts/numbers.json">receipts/numbers.json</a>, <a href="receipts/camtest.json">receipts/camtest.json</a>, <a href="receipts/loom-receipt.json">receipts/loom-receipt.json</a> ·
+Atlas, Marble, World Labs and Spark are names of World Labs Technologies (joining AMD); this page is independent and not endorsed by them.</footer>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const G = g => `<span class="g g${g}">${g}</span>`;
+function table(el, head, rows){ el.innerHTML = '<tr>' + head.map(h => `<th>${h}</th>`).join('') + '</tr>' + rows.map(r => '<tr>' + r.map(c => `<td${typeof c === 'number' ? ' class="num"' : ''}>${c}</td>`).join('') + '</tr>').join(''); }
+
+table($('#news'), ['Date', 'Release', 'What changed for an X3D pipeline', 'Source'], [
+  ['11 Dec 2025', 'Marble exports', 'Studio exports switch to OpenGL frame; SPZ v2 default (v3 opt-in)', '<a href="https://docs.worldlabs.ai/marble/release-notes">Marble release notes</a>'],
+  ['1 Jan 2026', 'Marble exports', 'Rough metric scale and grounding; OpenGL or OpenCV choice; vertex-coloured or textured HQ mesh', 'same'],
+  ['2 Apr 2026', 'Marble 1.1 / 1.1 Plus', '1.1: better lighting, fewer artefacts, 1,500 credits. 1.1 Plus: auto-expands to larger worlds, 1,500 + 0 to 1,500 credits. API model ids marble-1.1, marble-1.1-plus (default marble-1.1)', 'Marble docs models.md; openapi.yaml sha 4a3ed614 (unchanged 13 → 23 Nov)'],
+  ['14 Apr 2026', 'Spark 2.0', 'Open-source three.js splat renderer, the reference viewer for SPZ', '<a href="https://worldlabs.ai/blog/spark-2.0">blog</a>'],
+  ['1 Sep 2026', 'Atlas (research)', 'Autoregressive world model, frames with camera control; "will power future versions of Marble"', '<a href="https://worldlabs.ai/blog/atlas">blog</a>'],
+  ['28 Sep 2026', 'World Labs → AMD', 'Definitive agreement to join AMD, close expected by end of 2026', '<a href="https://worldlabs.ai/blog/amd-announcement">blog</a>'],
+  ['5 Nov 2026', 'Frameboy', 'Real-time Atlas streaming (up to 15 fps from cloud GPUs), 500 credits a session; frames, not geometry: no X3D path', '<a href="https://worldlabs.ai/blog/atlas-realtime">blog</a>'],
+  ['<b>12 Nov 2026</b>', '<b>Atlas open to all developers</b>', '<b>New API</b> (api.atlas.worldlabs.ai/api/v2): images2PosedRGBD, atlasGenerate, atlasChisel, atlasTextToImage, posedImages2Splats, <b>splats2Mesh</b> (GLB + collider boxes). Blender extension, Spark/React guide, MCP server, CLI, open agent skills. World frame = Three.js (Y up)', '<a href="https://docs.atlas.worldlabs.ai/llms.txt">Atlas docs</a> (61 pages, llms.txt sha af08fdd9); <a href="https://github.com/worldlabsai/skills">worldlabsai/skills</a> 6cdb6b9'],
+]);
+table($('#mapping'), ['Atlas output (doc)', 'Fields', 'X3D 4.1', 'Rule in atlas2x3d.py', 'Grade'], [
+  ['camera <small>(cameras-and-posed-images)</small>', 'position, quaternion XYZW, coordinateSystem rub|rdf', '<code>Viewpoint position orientation</code>', 'rub is X3D\'s own camera axes; rdf → q·Rx(π). Camera-to-world, used as is', G('C')],
+  ['intrinsics', 'fx fy cx cy width height (px, top-left origin)', '<code>Viewpoint fieldOfView</code>', 'angle across the SMALLER side (landscape = vertical 2·atan(h/2fy)); cx,cy off-centre is reported (X3D has no lens shift)', G('C')],
+  ['depth.depthAsset', 'one-channel float EXR, planar z, rows top to bottom, NaN = none', '<code>PointSet</code> / <code>GaussianSplats</code>', '((u+½−cx)/fx·z, −(v+½−cy)/fy·z, −z), then pose; skip NaN, 0, &lt;0, ±∞', G('C')],
+  ['depth.confidenceAsset', '8-bit on the same grid, 0 where NaN', 'filter only', 'keep conf > 60 for the fused cloud', G('C')],
+  ['centroidWorld', 'mean visible point on y = 0', '<code>Viewpoint centerOfRotation</code>', 'used as the examine pivot', G('L')],
+  ['posedImages2Splats → SPZ', 'refinedSplats{count: asset} or draftSplat', '<code>GaussianSplats</code> (orientations x y z w)', 'identity wrapper: Atlas says poses, anchors and regions are in Three.js coordinates. Marble raw API needed Rx(π)', G('L') + ' no Atlas SPZ measured'],
+  ['splats2Mesh mesh', 'GLB; image_texture / vertex_color / none', '<code>Inline url="mesh.glb"</code>', 'X_ITE reads glb natively', G('C') + ' on our GLB'],
+  ['splats2Mesh colliderBoxes', 'GLB, one node per box sharing one cube, yaw-only', '<code>Collision</code> proxy of <code>Transform</code> + <code>Box</code>', 'box size = cube accessor min/max × node scale, so a ±0.5 or ±1 cube both work', G('C') + ' on our GLB'],
+  ['region (splats2Mesh)', 'oriented box, Three.js coords', 'a <code>Transform</code> + <code>Box</code> overlay', 'not built yet', G('S')],
+]);
+
+Promise.all([fetch('receipts/numbers.json').then(r => r.json()), fetch('receipts/camtest.json').then(r => r.json())]).then(([N, C]) => {
+  const v = k => N[k].value;
+  const u = v('unproject_correct'), t = v('traps'), sp = v('spz'), cb = v('collider_boxes');
+  $('#chips').innerHTML = [
+    ['camera agreement', C.worlds.correct.mean_pct.toFixed(2) + '%'], ['depth error max', u.max_mm.toFixed(4) + ' mm'],
+    ['points tested', u.points.toLocaleString()], ['X3D valid', Object.values(v('validation')).filter(x => x.valid).length + '/' + Object.keys(v('validation')).length],
+    ['API spend', '$0.00'], ['World Labs output used', 'none']].map(([a, b]) => `<span class="chip">${a} <b>${b}</b></span>`).join('');
+  const bar = (p, bad) => `<div class="barcell${bad ? ' bad' : ''}"><i style="width:${Math.max(1, p)}%"></i><span>${p.toFixed(2)}%</span></div>`;
+  const names = {correct: 'atlas2x3d mapping', 'fov-horizontal': 'fieldOfView = horizontal angle', 'pose-inverted': 'quaternion read as world-to-camera', 'rdf-unconverted': 'rdf pose without Rx(π)'};
+  table($('#camtab'), ['Viewpoint rule', 'mean', 'worst camera'], Object.entries(C.worlds).map(([k, w]) => [names[k] || k, bar(w.mean_pct, k !== 'correct'), w.min_pct.toFixed(2) + '%']));
+  $('#camrig').textContent = 'Rig: ' + C.rig + '. Default viewpoint transitions animate, so the test uses NavigationInfo transitionType TELEPORT (without it, 63.0%).';
+  const tn = {rows_bottom_up: 'EXR rows taken bottom-up (three.js EXRLoader order) and not flipped', pixel_corner_not_centre: 'pixel corner u instead of centre u+½',
+    depth_along_ray: 'depth read as distance along the ray', pose_read_as_world_to_camera: 'pose read as world-to-camera', rub_read_as_rdf: 'rub pose read as rdf (string changed only)'};
+  table($('#traptab'), ['Case', 'mean error', 'p99'], [['<b>atlas2x3d.unproject</b>', u.mean_mm.toExponential(2) + ' mm', u.p99_mm.toExponential(2) + ' mm'],
+    ...Object.entries(t).map(([k, x]) => [tn[k], x.mean_mm >= 1000 ? (x.mean_mm / 1000).toFixed(2) + ' m' : x.mean_mm.toFixed(1) + ' mm', x.p99_mm >= 1000 ? (x.p99_mm / 1000).toFixed(2) + ' m' : x.p99_mm.toFixed(1) + ' mm'])]);
+  $('#trapsrc').textContent = N.unproject_correct.source + '. ' + v('nan_pixels').toLocaleString() + ' NaN window pixels skipped.';
+  table($('#fmt'), ['Check', 'Result', 'Tool'], [
+    ['Docs example: 30° right turn [0, −0.2588, 0, 0.9659]', 'forward = (' + v('docs_30deg_right_turn_forward').join(', ') + ')', 'parse_camera'],
+    ['rub → rdf → rub round trip, 10 cameras', 'max |ΔR| ' + v('rdf_roundtrip_max_abs').toExponential(1), 'parse_camera'],
+    ['SPZ v2 write → read, ' + sp.splats.toLocaleString() + ' splats, ' + (sp.bytes / 1024).toFixed(0) + ' KB', 'position ≤ ' + sp.pos_max_err_mm.toFixed(3) + ' mm, colour ≤ ' + sp.rgb_max_err_255.toFixed(2) + '/255', 'write_spz / read_spz'],
+    ['Collider GLB → X3D Boxes', cb.count + ' boxes, yaw-only ' + cb.all_yaw_only + ', max error ' + cb.max_abs_err_m + ' m', 'collider_boxes'],
+    ['Fused cloud', v('points_fused').toLocaleString() + ' points (stride 12, conf > 60)', 'unproject']]);
+  table($('#valid'), ['World', 'KB', 'XSD 4.1'], Object.entries(v('validation')).map(([f, x]) => [`<a href="worlds/${f}">${f}</a>`, (x.bytes / 1024).toFixed(0), x.valid ? '<b style="color:var(--ok)">valid</b>' : '<b style="color:var(--bad)">' + esc(x.first) + '</b>']));
+  $('#validsrc').textContent = N.validation.source;
+  $('#labCap').textContent = 'Camera 0: ' + C.worlds.correct.per_camera_pct[0].toFixed(2) + '% of 921,600 pixels name the same object as the raycast.';
+  window.CAMPCT = C.worlds.correct.per_camera_pct;
+});
+table($('#cost'), ['Atlas action', 'Credits', 'US$'], [
+  ['posedImages2Splats draft (refine: false), 2 to 32 views', 500, '0.50'], ['posedImages2Splats refined (default)', '5,000', '5.00'],
+  ['Frameboy session (≤ 1 min, free under 5 s)', 500, '0.50'], ['Prompt enhancement / Chisel caption', 20, '0.02'], ['Image edit', 125, '0.125'],
+  ['images2PosedRGBD (the quickstart call)', 'rate card', 'not in docs'], ['Failed runs', 0, '0']]);
+table($('#rights'), ['Access', 'Who owns output', 'Use', 'Training'], [
+  ['Free / Standard (Low-Tier)', 'World Labs', 'personal, non-commercial only', 'yes, no opt-out'],
+  ['Eligible paid access', 'per ToS §2.3 (paid terms)', 'may be published', 'opt-out available'],
+  ['This demo', 'us (CC0 scene) + Apache-2.0 rig', 'public', 'nothing sent']]);
+const tested = ['Atlas camera JSON (real rig, 10 cameras) → X3D Viewpoints, checked in X_ITE 16.7.1 pixel by pixel',
+  'Depth EXR (float32, NaN, rows top-down) → world points, against ground truth, 5 trap mutants', 'rdf ↔ rub conversion; the docs\' own 30° example',
+  'SPZ v2 encode/decode; X3D 4.1 GaussianSplats arrays; PointSet', 'splats2Mesh-shaped collider GLB → X3D Collision', 'XSD 4.1 validity of all 5 worlds (x3d_mcp)'];
+const untested = ['Any real Atlas output: no call made (needs his key in the environment and his OK per call)',
+  'Frame of a real Atlas SPZ (docs say Three.js; Marble raw was y-down)', 'Real splats2Mesh textures (image_texture), mesh sizes and polycounts',
+  'Atlas Blender extension and Blender 5.3 SPZ import on these files', 'Real GPUs (all renders: SwiftShader)', 'Principal point off-centre (all rig cameras are centred)'];
+$('#tested').innerHTML = tested.map(x => `<li>${x}</li>`).join(''); $('#untested').innerHTML = untested.map(x => `<li>${x}</li>`).join('');
+
+// ---- viewer controls
+const cams = [['Overview', 'Overview'], ['Plan', 'Plan (top)'], ...Array.from({length: 10}, (_, i) => ['Cam' + i, 'Cam ' + i + (i === 0 ? ' (source)' : '')])];
+$('#cambar').innerHTML = cams.map(([d, l]) => `<button data-vp="${d}">${l}</button>`).join('');
+$('#bodybar').innerHTML = [['0', 'Points'], ['1', 'Splats'], ['2', 'Mesh (GLB)'], ['-1', 'No body']].map(([v, l]) => `<button data-body="${v}" class="${v === '0' ? 'on' : ''}">${l}</button>`).join('') +
+  '<button data-coll="1">Colliders</button><button data-fr="1" class="on">Frustums</button>';
+let B; const X = () => B && B.currentScene;
+function pickCam(def) {
+  if (!X()) return; X().getNamedNode(def).set_bind = true;
+  document.querySelectorAll('[data-vp]').forEach(b => b.classList.toggle('on', b.dataset.vp === def));
+  const m = def.match(/^Cam(\d)$/);
+  if (m) { const i = +m[1];
+    $('#sawTitle').textContent = 'What camera ' + i + ' saw'; $('#sawImg').src = `data/bundle/frames_${i}_image.jpg`;
+    $('#confImg').src = `data/bundle/frames_${i}_depth_confidence.png`;
+    if (window.CAMPCT) $('#labCap').textContent = 'Camera ' + i + ': ' + window.CAMPCT[i].toFixed(2) + '% label agreement in X_ITE.'; }
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b || !X()) return;
+  if (b.dataset.vp) pickCam(b.dataset.vp);
+  if (b.dataset.body) { X().getNamedNode('Body').whichChoice = +b.dataset.body; document.querySelectorAll('[data-body]').forEach(x => x.classList.toggle('on', x === b)); }
+  if (b.dataset.coll) { const n = X().getNamedNode('Colliders'); n.whichChoice = n.whichChoice === 0 ? -1 : 0; b.classList.toggle('on'); }
+  if (b.dataset.fr) { const g = X().getNamedNode('Frustums'); b.classList.toggle('on'); g.visible = b.classList.contains('on'); }
+});
+const t0 = performance.now();
+B = X3D.getBrowser('#xite');
+B.addBrowserCallback('page', X3D.X3DConstants.INITIALIZED_EVENT, () => {
+  window.ATLAS_READY = true;
+  $('#tag').textContent = `X_ITE ${B.version} · loaded in ${((performance.now() - t0) / 1000).toFixed(1)} s · ${navigator.userAgent.match(/Chrom\w+\/[\d.]+|Firefox\/[\d.]+|Version\/[\d.]+ Safari/)?.[0] || ''}`;
+  pickCam('Overview');
+});
+</script>
+</body>
+</html>

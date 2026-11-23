@@ -1,0 +1,142 @@
+{
+  "budget": {
+    "api_calls": 0,
+    "usd_spent": 0.0
+  },
+  "candidate_files": 8,
+  "candidate_sha256": "b35cd6d6de814a82c73146046f1187272638f13aee410c92203baeb4a37f35ee",
+  "grade": "C",
+  "inputs": {
+    "atlas_docs": "docs.atlas.worldlabs.ai llms.txt sha256 af08fdd9eb0affece65005004e4db9dbb16ccd9c59c5f1220a328c0e12c43f38, fetched 2026-11-23",
+    "depth_exr_sha256": {
+      "frames_0_depth.exr": "7fcb986d282710f83f129cf8aab007ce740ab8b80d3b840720531062b1cf3f98",
+      "frames_1_depth.exr": "036343d0dc05d4b2d83a0694db546ec49ffb65135715ec4df03428ba296ad95d",
+      "frames_2_depth.exr": "48573d0fd9fbe8e1a7388eca253b25f3bc50ea1af62b75325baf3263ce05a45a",
+      "frames_3_depth.exr": "f3ebe79c5985ba91bd88357d4e1b73df9c817645f2191da372e178ea05759016",
+      "frames_4_depth.exr": "6db33ce6ebd2ef8777181e1562d3b6cfe3bb6000d3f02438964a925160325b63",
+      "frames_5_depth.exr": "5c979a43c17c878e596c651db8524b2af02554ded8e5a0f0966830dcc7229330",
+      "frames_6_depth.exr": "6e586bc7a1da0322041c012b518176a4db288e5fb86b44e475fb5f5b8ebdf25d",
+      "frames_7_depth.exr": "6b9f7a0f72b197914365c4326774aa32248569fd117e0882e8969b9da53f5761",
+      "frames_8_depth.exr": "b27e27979c6187dab6f5550dfecb32e10a84e6362bdceb14ed2a712b74321075",
+      "frames_9_depth.exr": "11281f2f7de7c398d3015b9251c7ac234fa105dcd2d152acc241e786c2798f92"
+    },
+    "rig": {
+      "file": "data/atlas-skills-rig.json",
+      "licence": "Apache-2.0",
+      "origin": "github.com/worldlabsai/skills 6cdb6b9 skills/atlas-splats/assets/example/splats-request.json",
+      "sha256": "0997cfd7949c876f73eae86c7457ab55594dab935f35886ca5eaed7ef8a0427e"
+    }
+  },
+  "kind": "artifact",
+  "limitations": [
+    "Scene is procedural; Atlas SPZ frame graded L (docs) not C",
+    "EXR depth files are not committed (20 MB); regenerate with kit/make_fixture.py, hashes above"
+  ],
+  "model_calls": [],
+  "not_run": [
+    {
+      "why": "no API call: key not in environment, spend needs his OK per call",
+      "witness": "Truth (real Atlas output)"
+    },
+    {
+      "why": "SwiftShader only",
+      "witness": "Host (real GPU)"
+    },
+    {
+      "why": "Atlas extension / Blender 5.3 not run here",
+      "witness": "Blender"
+    }
+  ],
+  "outputs": {
+    "atlas-studio.x3d": {
+      "bytes": 8018684,
+      "sha256": "0824e8937566912090a1e8d8def693c27bfbc32ddc7e8b5415d3f08636b2d407"
+    },
+    "colliderBoxes.glb": {
+      "bytes": 3292,
+      "sha256": "c451bd058ffc2eab4bc7f45b8ae81db2a84cf6d50ff5a9cbc3f439b08498e2fa"
+    },
+    "fused.spz": {
+      "bytes": 319931,
+      "sha256": "671531a3b1c557a028303489d54a3834c65bafabc8f49725c3ad911768b0ba8a"
+    },
+    "labels-correct.x3d": {
+      "bytes": 7658,
+      "sha256": "aea06c571eb48447dfc0c9260accae7682454dd14704c0ec88648d0db4029421"
+    },
+    "labels-fov-horizontal.x3d": {
+      "bytes": 7665,
+      "sha256": "2b2727299ec5f17091e7eae71ac0917251cfd04e18d66e893976982a589d5e84"
+    },
+    "labels-pose-inverted.x3d": {
+      "bytes": 7656,
+      "sha256": "15699eb232ae973c799891c4288a449a1ecb84d1542145b112454f3b378c1671"
+    },
+    "labels-rdf-unconverted.x3d": {
+      "bytes": 7657,
+      "sha256": "fce666bc9ef595ca9670f41b1415fe9ab6815227aa9443e99bbf0dfc72504ec4"
+    },
+    "mesh.glb": {
+      "bytes": 33236,
+      "sha256": "1754282e69f901e37a5da0994ba965aef7f0168a15ef578b5525d12efa191005"
+    }
+  },
+  "prev": null,
+  "profile": "Immersive + GaussianSplats:1 (X3D 4.1 draft)",
+  "schema": "loom.receipt/1",
+  "sha256": "7bc522822487a7c2dfe67ad6da5206ad89cd748464aea28c49bc232726328120",
+  "signed": false,
+  "subject": "x3d.demo demos/marble-atlas/v1 (Demo 76): Atlas outputs -> X3D 4.1",
+  "tools": {
+    "atlas2x3d": "1.0.0",
+    "chromium": "X_ITE 16.7.1, Chromium 157.0.8103.78 headless, ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver), 1280x720 CSS px at DPR 1, antialiased=false",
+    "x3d.loom": "384cf51",
+    "x3d_mcp": "4d433af",
+    "x_ite": "16.7.1"
+  },
+  "witnesses": {
+    "Eyes": {
+      "detail": {
+        "label_agreement_mean_pct": 99.942,
+        "min_pct": 99.686,
+        "mutants": {
+          "fov-horizontal": 48.977,
+          "pose-inverted": 15.675,
+          "rdf-unconverted": 0.0
+        }
+      },
+      "result": "pass",
+      "tool": "build/camtest.mjs + build/compare.py"
+    },
+    "Grammar": {
+      "detail": {
+        "atlas-studio.x3d": true,
+        "labels-correct.x3d": true,
+        "labels-fov-horizontal.x3d": true,
+        "labels-pose-inverted.x3d": true,
+        "labels-rdf-unconverted.x3d": true
+      },
+      "result": "pass",
+      "tool": "hagopjay/x3d_mcp 4d433af src/validation/validate.py validate_xml, bundled X3D 4.1 XSD"
+    },
+    "Meaning": {
+      "detail": "frame: Atlas Three.js = X3D; docs 30-degree example reproduced; rdf round trip 4.440892098500626e-16",
+      "result": "pass"
+    },
+    "Traps": {
+      "detail": {
+        "trap_mean_mm": {
+          "depth_along_ray": 411.6200665546771,
+          "pixel_corner_not_centre": 2.854995817447733,
+          "pose_read_as_world_to_camera": 3341.7011060625223,
+          "rows_bottom_up": 2121.1428796959244,
+          "rub_read_as_rdf": 6369.66906644799
+        },
+        "unproject_max_mm": 0.0005243386049030571
+      },
+      "result": "pass",
+      "tool": "build/run_all.py: atlas2x3d.unproject (stride 4) vs raycast hit points, 10 frames, float32 EXR via OpenEXR 3.5.5"
+    }
+  },
+  "written_at": "2026-11-23T19:46:33+00:00"
+}
