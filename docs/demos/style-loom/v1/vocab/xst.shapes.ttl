@@ -1,0 +1,91 @@
+@prefix xst: <https://hagopjay.github.io/x3d.loom/ns/style#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+xst:StyleShape a sh:NodeShape ; sh:targetClass xst:Style ;
+  sh:property [ sh:path rdfs:label ; sh:minCount 1 ] ;
+  sh:property [ sh:path ( xst:intent xst:intent_key ) ; sh:minCount 1 ; sh:in ( "low" "mid" "high" ) ] ;
+  sh:property [ sh:path xst:palette ; sh:minCount 1 ; sh:maxCount 1 ; sh:node xst:PaletteShape ; sh:message "G1: a style needs exactly one palette" ] ;
+  sh:property [ sh:path xst:surface ; sh:minCount 1 ; sh:maxCount 1 ; sh:node xst:SurfaceShape ; sh:message "G1: a style needs exactly one surface" ] ;
+  sh:property [ sh:path xst:light ; sh:minCount 1 ; sh:maxCount 1 ; sh:node xst:LightShape ; sh:message "G1: a style needs exactly one light" ] ;
+  sh:property [ sh:path xst:air ; sh:minCount 1 ; sh:maxCount 1 ; sh:node xst:AirShape ; sh:message "G1: a style needs exactly one air" ] ;
+  sh:property [ sh:path xst:line ; sh:minCount 1 ; sh:maxCount 1 ; sh:node xst:LineShape ; sh:message "G1: a style needs exactly one line" ] ;
+  sh:property [ sh:path xst:form ; sh:minCount 1 ; sh:maxCount 1 ; sh:node xst:FormShape ; sh:message "G1: a style needs exactly one form" ] ;
+  sh:property [ sh:path xst:type ; sh:minCount 1 ; sh:maxCount 1 ; sh:node xst:TypeShape ; sh:message "G1: a style needs exactly one type" ] ;
+  sh:property [ sh:path xst:motion ; sh:minCount 1 ; sh:maxCount 1 ; sh:node xst:MotionShape ; sh:message "G1: a style needs exactly one motion" ] ;
+  sh:property [ sh:path xst:encode ; sh:minCount 1 ; sh:maxCount 1 ; sh:node xst:EncodeShape ; sh:message "G1: a style needs exactly one encode" ] ;
+  sh:property [ sh:path xst:view ; sh:minCount 1 ; sh:maxCount 1 ; sh:node xst:ViewShape ; sh:message "G1: a style needs exactly one view" ] .
+
+xst:PaletteShape a sh:NodeShape ;
+  sh:property [ sh:path xst:palette_ground ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^#[0-9a-fA-F]{6}$" ] ;
+  sh:property [ sh:path xst:palette_plate ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^#[0-9a-fA-F]{6}$" ] ;
+  sh:property [ sh:path xst:palette_mass ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^#[0-9a-fA-F]{6}$" ] ;
+  sh:property [ sh:path xst:palette_ink ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^#[0-9a-fA-F]{6}$" ] ;
+  sh:property [ sh:path xst:palette_accent ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^#[0-9a-fA-F]{6}$" ] ;
+  sh:property [ sh:path xst:palette_alert ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^#[0-9a-fA-F]{6}$" ] ;
+  sh:property [ sh:path xst:palette_haze ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^#[0-9a-fA-F]{6}$" ] ;
+  sh:property [ sh:path xst:palette_sky ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path ( xst:palette_sky [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ; sh:minCount 2 ; sh:pattern "^#[0-9a-fA-F]{6}$" ] ;
+  sh:property [ sh:path xst:palette_categorical ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path ( xst:palette_categorical [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ; sh:minCount 2 ; sh:pattern "^#[0-9a-fA-F]{6}$" ] ;
+  sh:property [ sh:path xst:palette_sequential ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path ( xst:palette_sequential [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ; sh:minCount 2 ; sh:pattern "^#[0-9a-fA-F]{6}$" ] .
+
+xst:SurfaceShape a sh:NodeShape ;
+  sh:property [ sh:path xst:surface_model ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "unlit" "phong" "physical" ) ] ;
+  sh:property [ sh:path xst:surface_tint ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+  sh:property [ sh:path xst:surface_capTone ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive -1 ; sh:maxInclusive 1 ] ;
+  sh:property [ sh:path xst:surface_roughness ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+  sh:property [ sh:path xst:surface_metallic ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+  sh:property [ sh:path xst:surface_opacity ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+  sh:property [ sh:path xst:surface_glow ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] .
+
+xst:LightShape a sh:NodeShape ;
+  sh:property [ sh:path xst:light_azimuth ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ] ;
+  sh:property [ sh:path xst:light_elevation ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ] ;
+  sh:property [ sh:path xst:light_intensity ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ] ;
+  sh:property [ sh:path xst:light_ambient ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+  sh:property [ sh:path xst:light_shadow ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+  sh:property [ sh:path xst:light_contact ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+  sh:property [ sh:path xst:light_relief ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] .
+
+xst:AirShape a sh:NodeShape ;
+  sh:property [ sh:path xst:air_fog ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "none" "linear" "exp" ) ] ;
+  sh:property [ sh:path xst:air_range ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ] .
+
+xst:LineShape a sh:NodeShape ;
+  sh:property [ sh:path xst:line_edges ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "none" "ink" "data" ) ] ;
+  sh:property [ sh:path xst:line_weight ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ] ;
+  sh:property [ sh:path xst:line_links ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "line" "tube" ) ] ;
+  sh:property [ sh:path xst:line_linkInk ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "ink" "accent" ) ] ;
+  sh:property [ sh:path xst:line_grid ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "none" "lines" "rings" ) ] .
+
+xst:FormShape a sh:NodeShape ;
+  sh:property [ sh:path xst:form_sides ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ] ;
+  sh:property [ sh:path xst:form_taper ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+  sh:property [ sh:path xst:form_tiers ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ] ;
+  sh:property [ sh:path xst:form_inset ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+  sh:property [ sh:path xst:form_cap ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "flat" "spike" ) ] ;
+  sh:property [ sh:path xst:form_fill ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+  sh:property [ sh:path xst:form_lift ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ] .
+
+xst:TypeShape a sh:NodeShape ;
+  sh:property [ sh:path xst:type_family ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "SANS" "SERIF" "TYPEWRITER" ) ] ;
+  sh:property [ sh:path xst:type_size ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ] ;
+  sh:property [ sh:path xst:type_case ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "asis" "upper" ) ] ;
+  sh:property [ sh:path xst:type_density ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ; sh:minInclusive 0 ; sh:maxInclusive 1 ] .
+
+xst:MotionShape a sh:NodeShape ;
+  sh:property [ sh:path xst:motion_pulse ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ] ;
+  sh:property [ sh:path xst:motion_flow ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ] .
+
+xst:EncodeShape a sh:NodeShape ;
+  sh:property [ sh:path xst:encode_hue ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "category" "value" "mono" ) ] ;
+  sh:property [ sh:path xst:encode_alert ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "color" "glow" ) ] .
+
+xst:ViewShape a sh:NodeShape ;
+  sh:property [ sh:path xst:view_projection ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "perspective" "ortho" ) ] ;
+  sh:property [ sh:path xst:view_start ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "hero" "plan" "street" ) ] .
+

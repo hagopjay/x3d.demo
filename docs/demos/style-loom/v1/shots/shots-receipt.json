@@ -1,0 +1,299 @@
+{
+ "x_ite": "16.7.1",
+ "chromium": "157.0.8103.78",
+ "webgl_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+ "scale": 2,
+ "rig": "Playwright headless Chromium, 1500x1000 viewport, #view element, page live compile",
+ "key": {
+  "checked": 12,
+  "agree": 12,
+  "bands": "mean sRGB luma of the frame: low < 0.30, mid 0.20..0.75, high > 0.55"
+ },
+ "frames": [
+  {
+   "name": "neon-noir",
+   "style": "neon-noir",
+   "ops": {},
+   "mean_luminance": 0.1058,
+   "black": false,
+   "declared_key": "low",
+   "key_agrees": true,
+   "lint": "13/13",
+   "compile_ms": 73
+  },
+  {
+   "name": "blueprint",
+   "style": "blueprint",
+   "ops": {},
+   "mean_luminance": 0.2394,
+   "black": false,
+   "declared_key": "low",
+   "key_agrees": true,
+   "lint": "9/9",
+   "compile_ms": 59
+  },
+  {
+   "name": "maquette",
+   "style": "maquette",
+   "ops": {},
+   "mean_luminance": 0.8589,
+   "black": false,
+   "declared_key": "high",
+   "key_agrees": true,
+   "lint": "10/10",
+   "compile_ms": 47
+  },
+  {
+   "name": "ink-wash",
+   "style": "ink-wash",
+   "ops": {},
+   "mean_luminance": 0.8524,
+   "black": false,
+   "declared_key": "high",
+   "key_agrees": true,
+   "lint": "11/11",
+   "compile_ms": 42
+  },
+  {
+   "name": "bauhaus",
+   "style": "bauhaus",
+   "ops": {},
+   "mean_luminance": 0.7719,
+   "black": false,
+   "declared_key": "high",
+   "key_agrees": true,
+   "lint": "10/10",
+   "compile_ms": 128
+  },
+  {
+   "name": "terracotta",
+   "style": "terracotta",
+   "ops": {},
+   "mean_luminance": 0.7041,
+   "black": false,
+   "declared_key": "mid",
+   "key_agrees": true,
+   "lint": "11/11",
+   "compile_ms": 55
+  },
+  {
+   "name": "brass",
+   "style": "brass",
+   "ops": {},
+   "mean_luminance": 0.0956,
+   "black": false,
+   "declared_key": "low",
+   "key_agrees": true,
+   "lint": "12/12",
+   "compile_ms": 217
+  },
+  {
+   "name": "atlas",
+   "style": "atlas",
+   "ops": {},
+   "mean_luminance": 0.7553,
+   "black": false,
+   "declared_key": "high",
+   "key_agrees": true,
+   "lint": "10/10",
+   "compile_ms": 93
+  },
+  {
+   "name": "viridis-lab",
+   "style": "viridis-lab",
+   "ops": {},
+   "mean_luminance": 0.731,
+   "black": false,
+   "declared_key": "high",
+   "key_agrees": true,
+   "lint": "10/10",
+   "compile_ms": 33
+  },
+  {
+   "name": "manuscript",
+   "style": "manuscript",
+   "ops": {},
+   "mean_luminance": 0.7464,
+   "black": false,
+   "declared_key": "high",
+   "key_agrees": true,
+   "lint": "10/10",
+   "compile_ms": 129
+  },
+  {
+   "name": "thermal",
+   "style": "thermal",
+   "ops": {},
+   "mean_luminance": 0.0622,
+   "black": false,
+   "declared_key": "low",
+   "key_agrees": true,
+   "lint": "13/13",
+   "compile_ms": 45
+  },
+  {
+   "name": "risograph",
+   "style": "risograph",
+   "ops": {},
+   "mean_luminance": 0.8038,
+   "black": false,
+   "declared_key": "high",
+   "key_agrees": true,
+   "lint": "10/10",
+   "compile_ms": 80
+  },
+  {
+   "name": "op-transpose-neon-in-manuscript",
+   "style": "neon-noir",
+   "ops": {
+    "palette": "manuscript"
+   },
+   "mean_luminance": 0.8537,
+   "black": false,
+   "declared_key": null,
+   "key_agrees": null,
+   "lint": "12/13",
+   "compile_ms": 61
+  },
+  {
+   "name": "op-transpose-maquette-in-thermal",
+   "style": "maquette",
+   "ops": {
+    "palette": "thermal"
+   },
+   "mean_luminance": 0.0478,
+   "black": false,
+   "declared_key": null,
+   "key_agrees": null,
+   "lint": "10/10",
+   "compile_ms": 56
+  },
+  {
+   "name": "op-invert-maquette",
+   "style": "maquette",
+   "ops": {
+    "inverted": true
+   },
+   "mean_luminance": 0.0113,
+   "black": true,
+   "declared_key": null,
+   "key_agrees": null,
+   "lint": "9/10",
+   "compile_ms": 59
+  },
+  {
+   "name": "op-invert-neon-repaired",
+   "style": "neon-noir",
+   "ops": {
+    "inverted": true,
+    "repair": true
+   },
+   "mean_luminance": 0.7059,
+   "black": false,
+   "declared_key": null,
+   "key_agrees": null,
+   "lint": "12/13",
+   "compile_ms": 64
+  },
+  {
+   "name": "op-mix-terracotta-brass-50",
+   "style": "terracotta",
+   "ops": {
+    "mixWith": "brass",
+    "t": 0.5
+   },
+   "mean_luminance": 0.3171,
+   "black": false,
+   "declared_key": null,
+   "key_agrees": null,
+   "lint": "6/12",
+   "compile_ms": 136
+  },
+  {
+   "name": "op-mix-ink-atlas-50",
+   "style": "ink-wash",
+   "ops": {
+    "mixWith": "atlas",
+    "t": 0.5
+   },
+   "mean_luminance": 0.7554,
+   "black": false,
+   "declared_key": null,
+   "key_agrees": null,
+   "lint": "9/10",
+   "compile_ms": 72
+  },
+  {
+   "name": "view-plan-blueprint",
+   "style": "blueprint",
+   "ops": {
+    "vp": "VP_Plan"
+   },
+   "mean_luminance": 0.2394,
+   "black": false,
+   "declared_key": null,
+   "key_agrees": null,
+   "lint": "9/9",
+   "compile_ms": 45
+  },
+  {
+   "name": "view-street-terracotta",
+   "style": "terracotta",
+   "ops": {
+    "vp": "VP_Street"
+   },
+   "mean_luminance": 0.7044,
+   "black": false,
+   "declared_key": null,
+   "key_agrees": null,
+   "lint": "11/11",
+   "compile_ms": 78
+  },
+  {
+   "name": "view-street-neon",
+   "style": "neon-noir",
+   "ops": {
+    "vp": "VP_Street"
+   },
+   "mean_luminance": 0.1167,
+   "black": false,
+   "declared_key": null,
+   "key_agrees": null,
+   "lint": "13/13",
+   "compile_ms": 56
+  },
+  {
+   "name": "view-plan-atlas",
+   "style": "atlas",
+   "ops": {
+    "vp": "VP_Plan"
+   },
+   "mean_luminance": 0.7556,
+   "black": false,
+   "declared_key": null,
+   "key_agrees": null,
+   "lint": "10/10",
+   "compile_ms": 78
+  }
+ ],
+ "console": [
+  "[warning] [.WebGL-0xa74001bd400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "[warning] [.WebGL-0xa74001bd400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "[warning] [.WebGL-0xa74001bd400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "[warning] [.WebGL-0xa74001bd400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)",
+  "[error] Failed to load resource: the server responded with a status of 404 (File not found)"
+ ],
+ "console_note": "13 of the 17 console lines are 404s for shots/*.webp, which did not exist yet while the frames were being taken; the rest are SwiftShader ReadPixels performance notes. With shots/ in place the page loads with 0 console errors, 0 HTTP errors and 0 broken images (data/page-check.json)."
+}

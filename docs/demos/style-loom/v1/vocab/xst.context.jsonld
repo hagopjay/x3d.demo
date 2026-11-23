@@ -1,0 +1,213 @@
+{
+ "@context": {
+  "@version": 1.1,
+  "xst": "https://hagopjay.github.io/x3d.loom/ns/style#",
+  "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+  "xsd": "http://www.w3.org/2001/XMLSchema#",
+  "prov": "http://www.w3.org/ns/prov#",
+  "dct": "http://purl.org/dc/terms/",
+  "Style": "xst:Style",
+  "Catalogue": "xst:Catalogue",
+  "label": "rdfs:label",
+  "lineage": "dct:description",
+  "operator": "xst:operator",
+  "authoredScore": {
+   "@id": "xst:authoredScore",
+   "@type": "xsd:double"
+  },
+  "derivedFrom": {
+   "@id": "prov:wasDerivedFrom",
+   "@type": "@id"
+  },
+  "intent": {
+   "@id": "xst:intent",
+   "@context": {
+    "key": "xst:intent_key",
+    "mood": "xst:intent_mood",
+    "use": "xst:intent_use"
+   }
+  },
+  "palette": {
+   "@id": "xst:palette",
+   "@context": {
+    "ground": "xst:palette_ground",
+    "plate": "xst:palette_plate",
+    "mass": "xst:palette_mass",
+    "ink": "xst:palette_ink",
+    "accent": "xst:palette_accent",
+    "alert": "xst:palette_alert",
+    "haze": "xst:palette_haze",
+    "sky": {
+     "@id": "xst:palette_sky",
+     "@container": "@list"
+    },
+    "categorical": {
+     "@id": "xst:palette_categorical",
+     "@container": "@list"
+    },
+    "sequential": {
+     "@id": "xst:palette_sequential",
+     "@container": "@list"
+    }
+   }
+  },
+  "surface": {
+   "@id": "xst:surface",
+   "@context": {
+    "model": "xst:surface_model",
+    "tint": {
+     "@id": "xst:surface_tint",
+     "@type": "xsd:double"
+    },
+    "capTone": {
+     "@id": "xst:surface_capTone",
+     "@type": "xsd:double"
+    },
+    "roughness": {
+     "@id": "xst:surface_roughness",
+     "@type": "xsd:double"
+    },
+    "metallic": {
+     "@id": "xst:surface_metallic",
+     "@type": "xsd:double"
+    },
+    "opacity": {
+     "@id": "xst:surface_opacity",
+     "@type": "xsd:double"
+    },
+    "glow": {
+     "@id": "xst:surface_glow",
+     "@type": "xsd:double"
+    }
+   }
+  },
+  "light": {
+   "@id": "xst:light",
+   "@context": {
+    "azimuth": {
+     "@id": "xst:light_azimuth",
+     "@type": "xsd:double"
+    },
+    "elevation": {
+     "@id": "xst:light_elevation",
+     "@type": "xsd:double"
+    },
+    "intensity": {
+     "@id": "xst:light_intensity",
+     "@type": "xsd:double"
+    },
+    "ambient": {
+     "@id": "xst:light_ambient",
+     "@type": "xsd:double"
+    },
+    "shadow": {
+     "@id": "xst:light_shadow",
+     "@type": "xsd:double"
+    },
+    "contact": {
+     "@id": "xst:light_contact",
+     "@type": "xsd:double"
+    },
+    "relief": {
+     "@id": "xst:light_relief",
+     "@type": "xsd:double"
+    }
+   }
+  },
+  "air": {
+   "@id": "xst:air",
+   "@context": {
+    "fog": "xst:air_fog",
+    "range": {
+     "@id": "xst:air_range",
+     "@type": "xsd:double"
+    }
+   }
+  },
+  "line": {
+   "@id": "xst:line",
+   "@context": {
+    "edges": "xst:line_edges",
+    "weight": {
+     "@id": "xst:line_weight",
+     "@type": "xsd:double"
+    },
+    "links": "xst:line_links",
+    "linkInk": "xst:line_linkInk",
+    "grid": "xst:line_grid"
+   }
+  },
+  "form": {
+   "@id": "xst:form",
+   "@context": {
+    "sides": {
+     "@id": "xst:form_sides",
+     "@type": "xsd:double"
+    },
+    "taper": {
+     "@id": "xst:form_taper",
+     "@type": "xsd:double"
+    },
+    "tiers": {
+     "@id": "xst:form_tiers",
+     "@type": "xsd:double"
+    },
+    "inset": {
+     "@id": "xst:form_inset",
+     "@type": "xsd:double"
+    },
+    "cap": "xst:form_cap",
+    "fill": {
+     "@id": "xst:form_fill",
+     "@type": "xsd:double"
+    },
+    "lift": {
+     "@id": "xst:form_lift",
+     "@type": "xsd:double"
+    }
+   }
+  },
+  "type": {
+   "@id": "xst:type",
+   "@context": {
+    "family": "xst:type_family",
+    "size": {
+     "@id": "xst:type_size",
+     "@type": "xsd:double"
+    },
+    "case": "xst:type_case",
+    "density": {
+     "@id": "xst:type_density",
+     "@type": "xsd:double"
+    }
+   }
+  },
+  "motion": {
+   "@id": "xst:motion",
+   "@context": {
+    "pulse": {
+     "@id": "xst:motion_pulse",
+     "@type": "xsd:double"
+    },
+    "flow": {
+     "@id": "xst:motion_flow",
+     "@type": "xsd:double"
+    }
+   }
+  },
+  "encode": {
+   "@id": "xst:encode",
+   "@context": {
+    "hue": "xst:encode_hue",
+    "alert": "xst:encode_alert"
+   }
+  },
+  "view": {
+   "@id": "xst:view",
+   "@context": {
+    "projection": "xst:view_projection",
+    "start": "xst:view_start"
+   }
+  }
+ }
+}
