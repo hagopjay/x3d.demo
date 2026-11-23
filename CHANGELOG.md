@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v85 (2026-11-23)
+- New card for Demo 76, Marble to Atlas to X3D (`docs/demos/marble-atlas/v1/`, merged as PR 170), in numeric order after Demo 75. Image `assets/marble-atlas.jpg` is a 2 x 2 of the lane's own shots (fused points, splats, mesh with colliders, a label-render frame). I loaded the page headless without errors and read the receipts: per-camera render match (mean 99.942 %, minimum 99.686 %), 573,375 points at 0.0005 mm maximum, 19 collider boxes, 5 of 5 worlds valid. The trap errors and the validator result are the lane's own (Likely). I did not rerun the bridge, make an Atlas call, or test a real GPU. No World Labs output appears on the card. Page versions v1 to v84 are untouched.
+
 ## v84 (2026-11-23)
 - New card for Demo 75, Style Loom: one scene, twelve looks, one grammar (`docs/demos/style-loom/v1/`, merged as PR 168), in numeric order after Demo 74. Image `assets/style-loom.jpg` is the lane's own 4 x 3 contact sheet letterboxed to 16:9. I loaded the page headless without errors and read the validation receipt (12 of 12 valid), the matrix (288 cells, 104 plus 158) and the frame receipt (22 frames, 1 black); the 4 of 12 failing styles, the colour-distance figure, the ontology round trips and the evals are the lane's own (Likely). I did not rerun the grammar, test a hardware GPU or other engines. Page versions v1 to v83 are untouched.
 
