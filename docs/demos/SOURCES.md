@@ -471,3 +471,10 @@ Demos 67 to 72 card images are each a 2 x 2 grid of 480 x 270 tiles, cropped to 
 | file | sha256 | bytes |
 |---|---|---|
 | assets/fault-lab-v3.jpg | 248aeb3dc8835299884909942198690aa82ebcc04dff96df23cc7dfc6aadec67 | 78910 |
+
+## xray-binary (v82)
+`xray-binary` is a 2 x 2 of 480 x 270 tiles cut from `docs/demos/xray-binary/v1/shots/` (`00-hero`, `02-gdb-world`, `04-helix`, `05-lattice`, WebP, X_ITE 16.7.1 under SwiftShader) saved as 960 x 540 JPEG. No Google or other third-party imagery; the target is self-authored (see the demo's DATA-ATTRIBUTION.md).
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/xray-binary.jpg | 7874262a5a5e9eefa6654a91f5b06750b474aec64e619124d1ec3e77ebecf930 | 75965 |
