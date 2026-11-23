@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v84 (2026-11-23)
+- New card for Demo 75, Style Loom: one scene, twelve looks, one grammar (`docs/demos/style-loom/v1/`, merged as PR 168), in numeric order after Demo 74. Image `assets/style-loom.jpg` is the lane's own 4 x 3 contact sheet letterboxed to 16:9. I loaded the page headless without errors and read the validation receipt (12 of 12 valid), the matrix (288 cells, 104 plus 158) and the frame receipt (22 frames, 1 black); the 4 of 12 failing styles, the colour-distance figure, the ontology round trips and the evals are the lane's own (Likely). I did not rerun the grammar, test a hardware GPU or other engines. Page versions v1 to v83 are untouched.
+
 ## v83 (2026-11-23)
 - The Demo 64 card now opens Giza Fall v4, the live Summit Duel (`docs/demos/blender-giza-fall/v4/`, merged as PR 166), and keeps v3, v2 and v1 linked. Image `assets/blender-giza-fall-v4.jpg` is a 2 x 2 of the lane's own shots (`03-fall`, `01-duel`, `02-omens`, `05-review`). I re-ran the lane's test file (10 of 10 pass, Node 22.23.4) and loaded the page headless without errors. The cross-host hashes, the 16-seed balance run and the Loom checks are the lane's own (Likely); I did not test a real GPU, other browsers, sound or play. The earlier card text for v1 to v3 is replaced on the front page only (its v1 to v3 claims are carried into the new card); page versions v1 to v82 are untouched.
 
