@@ -1,0 +1,883 @@
+{
+ "blender": "5.3.0",
+ "quick": false,
+ "profile": "g4",
+ "device": "GPU",
+ "device_backend": "OPTIX",
+ "light_div": 2,
+ "density_texels_per_m": {
+  "plateau": 4.5,
+  "passages": 60.0,
+  "gallery": 90.0,
+  "chambers": 84.0,
+  "kings": 165.0,
+  "subterranean": 84.0,
+  "osiris": 96.0,
+  "hall": 84.0
+ },
+ "samples": {
+  "plateau": 96,
+  "hall": 128,
+  "osiris": 160
+ },
+ "build_seconds": 1031.9,
+ "objects": [
+  {
+   "object": "Descending passage (built)",
+   "image": "tex/descending-passage-built.jpg",
+   "px": [
+    256,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 171.0,
+   "texels_per_m": 156.6,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.007,
+   "linear_p99": 0.4493,
+   "seconds": 5.6,
+   "jpeg_bytes": 47943,
+   "zone": "passages"
+  },
+  {
+   "object": "Descending passage (rock-cut)",
+   "image": "tex/descending-passage-rock-cut.jpg",
+   "px": [
+    256,
+    4096
+   ],
+   "light_px": 2048,
+   "mode": "split",
+   "area_m2": 302.4,
+   "texels_per_m": 235.6,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0051,
+   "linear_p99": 0.2438,
+   "seconds": 9.3,
+   "jpeg_bytes": 67286,
+   "zone": "passages"
+  },
+  {
+   "object": "Ascending passage",
+   "image": "tex/ascending-passage.jpg",
+   "px": [
+    256,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 176.8,
+   "texels_per_m": 154.0,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0161,
+   "linear_p99": 0.4032,
+   "seconds": 6.3,
+   "jpeg_bytes": 63714,
+   "zone": "passages"
+  },
+  {
+   "object": "Grand Gallery",
+   "image": "tex/grand-gallery.jpg",
+   "px": [
+    2048,
+    4096
+   ],
+   "light_px": 2048,
+   "mode": "split",
+   "area_m2": 914.2,
+   "texels_per_m": 135.5,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": null,
+   "linear_p99": null,
+   "seconds": 90.3,
+   "jpeg_bytes": 1478996,
+   "zone": "gallery",
+   "note": "linear_p50/p99 were NaN: the OptiX bake left NaN texels in this surface, which also stopped the gutter fill for part of the atlas. The shipped JPEG was repaired in display space (black texels filled from their neighbours, 23 Nov 2026). Proper fix: nan_to_num in retone.py and a regrade from the cache.",
+   "repaired_from_sha256": "490aad47e28690c771a9cfaed05784047f625c48d54f4845654670ab81ed9815"
+  },
+  {
+   "object": "Antechamber passage",
+   "image": "tex/antechamber-passage.jpg",
+   "px": [
+    512,
+    512
+   ],
+   "light_px": 256,
+   "mode": "split",
+   "area_m2": 31.8,
+   "texels_per_m": 90.8,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 0.0049,
+   "seconds": 2.5,
+   "jpeg_bytes": 6770,
+   "zone": "chambers"
+  },
+  {
+   "object": "Antechamber",
+   "image": "tex/antechamber.jpg",
+   "px": [
+    512,
+    512
+   ],
+   "light_px": 256,
+   "mode": "split",
+   "area_m2": 39.1,
+   "texels_per_m": 81.9,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0217,
+   "linear_p99": 0.2254,
+   "seconds": 3.1,
+   "jpeg_bytes": 55585,
+   "zone": "chambers"
+  },
+  {
+   "object": "King's Chamber",
+   "image": "tex/king-s-chamber.jpg",
+   "px": [
+    4096,
+    4096
+   ],
+   "light_px": 2048,
+   "mode": "split",
+   "area_m2": 293.2,
+   "texels_per_m": 239.2,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0078,
+   "linear_p99": 0.3133,
+   "seconds": 109.8,
+   "jpeg_bytes": 1874995,
+   "zone": "kings"
+  },
+  {
+   "object": "Coffer",
+   "image": "tex/coffer.jpg",
+   "px": [
+    512,
+    512
+   ],
+   "light_px": 512,
+   "mode": "combined",
+   "area_m2": 11.3,
+   "texels_per_m": 152.2,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0017,
+   "linear_p99": 0.2062,
+   "seconds": 2.8,
+   "jpeg_bytes": 30378,
+   "zone": "kings"
+  },
+  {
+   "object": "King's Chamber north shaft mouth",
+   "image": "tex/king-s-chamber-north-shaft-mouth.jpg",
+   "px": [
+    256,
+    512
+   ],
+   "light_px": 256,
+   "mode": "split",
+   "area_m2": 2.4,
+   "texels_per_m": 331.7,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 0.0028,
+   "seconds": 2.4,
+   "jpeg_bytes": 3378,
+   "zone": "kings"
+  },
+  {
+   "object": "King's Chamber south shaft mouth",
+   "image": "tex/king-s-chamber-south-shaft-mouth.jpg",
+   "px": [
+    256,
+    512
+   ],
+   "light_px": 256,
+   "mode": "split",
+   "area_m2": 2.4,
+   "texels_per_m": 331.7,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 0.0017,
+   "seconds": 2.4,
+   "jpeg_bytes": 3283,
+   "zone": "kings"
+  },
+  {
+   "object": "Queen's Chamber passage",
+   "image": "tex/queen-s-chamber-passage.jpg",
+   "px": [
+    256,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 170.1,
+   "texels_per_m": 157.1,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0079,
+   "linear_p99": 0.3503,
+   "seconds": 7.0,
+   "jpeg_bytes": 44688,
+   "zone": "passages"
+  },
+  {
+   "object": "Queen's Chamber",
+   "image": "tex/queen-s-chamber.jpg",
+   "px": [
+    2048,
+    1024
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 175.9,
+   "texels_per_m": 154.4,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0887,
+   "linear_p99": 0.4444,
+   "seconds": 22.7,
+   "jpeg_bytes": 252118,
+   "zone": "chambers"
+  },
+  {
+   "object": "Well shaft upper",
+   "image": "tex/well-shaft-upper.jpg",
+   "px": [
+    256,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 55.4,
+   "texels_per_m": 137.6,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0001,
+   "linear_p99": 0.1555,
+   "seconds": 3.2,
+   "jpeg_bytes": 9077,
+   "zone": "passages"
+  },
+  {
+   "object": "Well shaft lower",
+   "image": "tex/well-shaft-lower.jpg",
+   "px": [
+    256,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 84.3,
+   "texels_per_m": 223.0,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 0.0141,
+   "seconds": 3.7,
+   "jpeg_bytes": 10362,
+   "zone": "passages"
+  },
+  {
+   "object": "Lower horizontal passage",
+   "image": "tex/lower-horizontal-passage.jpg",
+   "px": [
+    256,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 30.8,
+   "texels_per_m": 184.5,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0045,
+   "linear_p99": 0.21,
+   "seconds": 4.2,
+   "jpeg_bytes": 17040,
+   "zone": "chambers"
+  },
+  {
+   "object": "Subterranean Chamber",
+   "image": "tex/subterranean-chamber.jpg",
+   "px": [
+    2048,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 323.1,
+   "texels_per_m": 113.9,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0087,
+   "linear_p99": 0.0781,
+   "seconds": 30.3,
+   "jpeg_bytes": 264875,
+   "zone": "subterranean"
+  },
+  {
+   "object": "Subterranean Chamber floor",
+   "image": "tex/subterranean-chamber-floor.jpg",
+   "px": [
+    1024,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 134.6,
+   "texels_per_m": 88.3,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0007,
+   "linear_p99": 0.2067,
+   "seconds": 4.6,
+   "jpeg_bytes": 40446,
+   "zone": "subterranean"
+  },
+  {
+   "object": "Osiris Shaft A",
+   "image": "tex/osiris-shaft-a.jpg",
+   "px": [
+    1024,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 77.0,
+   "texels_per_m": 116.7,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.0001,
+   "linear_p99": 0.0237,
+   "seconds": 4.9,
+   "jpeg_bytes": 20583,
+   "zone": "osiris"
+  },
+  {
+   "object": "Osiris Level 1 Chamber A",
+   "image": "tex/osiris-level-1-chamber-a.jpg",
+   "px": [
+    1024,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 133.5,
+   "texels_per_m": 88.6,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.0125,
+   "linear_p99": 0.2385,
+   "seconds": 9.8,
+   "jpeg_bytes": 62474,
+   "zone": "osiris"
+  },
+  {
+   "object": "Osiris Shaft B",
+   "image": "tex/osiris-shaft-b.jpg",
+   "px": [
+    1024,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 106.0,
+   "texels_per_m": 198.9,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 0.0008,
+   "seconds": 7.9,
+   "jpeg_bytes": 33982,
+   "zone": "osiris"
+  },
+  {
+   "object": "Osiris Level 2 Chamber B",
+   "image": "tex/osiris-level-2-chamber-b.jpg",
+   "px": [
+    1024,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 104.0,
+   "texels_per_m": 100.4,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 0.0,
+   "seconds": 4.3,
+   "jpeg_bytes": 17524,
+   "zone": "osiris"
+  },
+  {
+   "object": "Osiris Level 2 niches",
+   "image": "tex/osiris-level-2-niches.jpg",
+   "px": [
+    1024,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 127.1,
+   "texels_per_m": 90.8,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 0.1218,
+   "seconds": 6.2,
+   "jpeg_bytes": 32536,
+   "zone": "osiris"
+  },
+  {
+   "object": "Osiris Level 2 sarcophagi",
+   "image": "tex/osiris-level-2-sarcophagi.jpg",
+   "px": [
+    512,
+    512
+   ],
+   "light_px": 512,
+   "mode": "combined",
+   "area_m2": 19.8,
+   "texels_per_m": 115.2,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.0007,
+   "linear_p99": 0.3064,
+   "seconds": 2.6,
+   "jpeg_bytes": 21080,
+   "zone": "osiris"
+  },
+  {
+   "object": "Osiris Shaft C",
+   "image": "tex/osiris-shaft-c.jpg",
+   "px": [
+    1024,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 53.2,
+   "texels_per_m": 140.3,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 0.0,
+   "seconds": 4.9,
+   "jpeg_bytes": 17524,
+   "zone": "osiris"
+  },
+  {
+   "object": "Osiris Level 3 Chamber I",
+   "image": "tex/osiris-level-3-chamber-i.jpg",
+   "px": [
+    2048,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 324.0,
+   "texels_per_m": 113.8,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.0265,
+   "linear_p99": 0.3133,
+   "seconds": 41.8,
+   "jpeg_bytes": 349697,
+   "zone": "osiris"
+  },
+  {
+   "object": "Osiris emplacement",
+   "image": "tex/osiris-emplacement.jpg",
+   "px": [
+    1024,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 90.5,
+   "texels_per_m": 107.7,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.0016,
+   "linear_p99": 0.1825,
+   "seconds": 5.4,
+   "jpeg_bytes": 42341,
+   "zone": "osiris"
+  },
+  {
+   "object": "Osiris sarcophagus",
+   "image": "tex/osiris-sarcophagus.jpg",
+   "px": [
+    512,
+    256
+   ],
+   "light_px": 512,
+   "mode": "combined",
+   "area_m2": 11.6,
+   "texels_per_m": 150.0,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.0004,
+   "linear_p99": 0.8239,
+   "seconds": 1.7,
+   "jpeg_bytes": 6014,
+   "zone": "osiris"
+  },
+  {
+   "object": "Osiris pillar stumps",
+   "image": "tex/osiris-pillar-stumps.jpg",
+   "px": [
+    512,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 45.0,
+   "texels_per_m": 152.6,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.014,
+   "linear_p99": 0.0711,
+   "seconds": 4.3,
+   "jpeg_bytes": 37371,
+   "zone": "osiris"
+  },
+  {
+   "object": "Osiris ladders",
+   "image": "tex/osiris-ladders.jpg",
+   "px": [
+    256,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 17.9,
+   "texels_per_m": 241.8,
+   "samples": 640,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 0.0042,
+   "seconds": 2.7,
+   "jpeg_bytes": 5559,
+   "zone": "osiris"
+  },
+  {
+   "object": "Hall floor",
+   "image": "tex/hall-floor.jpg",
+   "px": [
+    4096,
+    4096
+   ],
+   "light_px": 2048,
+   "mode": "split",
+   "area_m2": 1680.0,
+   "texels_per_m": 99.9,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0086,
+   "linear_p99": 0.1965,
+   "seconds": 110.9,
+   "jpeg_bytes": 958021,
+   "zone": "hall"
+  },
+  {
+   "object": "Hall ceiling",
+   "image": "tex/hall-ceiling.jpg",
+   "px": [
+    4096,
+    4096
+   ],
+   "light_px": 2048,
+   "mode": "split",
+   "area_m2": 1674.2,
+   "texels_per_m": 100.1,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0093,
+   "linear_p99": 0.31,
+   "seconds": 95.2,
+   "jpeg_bytes": 1165430,
+   "zone": "hall"
+  },
+  {
+   "object": "Hall light well",
+   "image": "tex/hall-light-well.jpg",
+   "px": [
+    1024,
+    512
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 57.6,
+   "texels_per_m": 134.9,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0589,
+   "linear_p99": 0.4761,
+   "seconds": 7.4,
+   "jpeg_bytes": 65490,
+   "zone": "hall"
+  },
+  {
+   "object": "Hall long walls",
+   "image": "tex/hall-long-walls.jpg",
+   "px": [
+    2048,
+    4096
+   ],
+   "light_px": 2048,
+   "mode": "split",
+   "area_m2": 1232.0,
+   "texels_per_m": 116.7,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0489,
+   "linear_p99": 0.1805,
+   "seconds": 62.0,
+   "jpeg_bytes": 1479946,
+   "zone": "hall"
+  },
+  {
+   "object": "Hall end walls",
+   "image": "tex/hall-end-walls.jpg",
+   "px": [
+    2048,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 654.3,
+   "texels_per_m": 80.1,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0264,
+   "linear_p99": 0.1398,
+   "seconds": 26.6,
+   "jpeg_bytes": 642562,
+   "zone": "hall"
+  },
+  {
+   "object": "Hall columns",
+   "image": "tex/hall-columns.jpg",
+   "px": [
+    4096,
+    4096
+   ],
+   "light_px": 2048,
+   "mode": "split",
+   "area_m2": 1345.1,
+   "texels_per_m": 111.7,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0159,
+   "linear_p99": 0.2505,
+   "seconds": 74.3,
+   "jpeg_bytes": 1909963,
+   "zone": "hall"
+  },
+  {
+   "object": "Hall architraves",
+   "image": "tex/hall-architraves.jpg",
+   "px": [
+    1024,
+    4096
+   ],
+   "light_px": 2048,
+   "mode": "split",
+   "area_m2": 409.6,
+   "texels_per_m": 202.4,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0439,
+   "linear_p99": 0.2228,
+   "seconds": 21.1,
+   "jpeg_bytes": 290818,
+   "zone": "hall"
+  },
+  {
+   "object": "Hall archive shrines",
+   "image": "tex/hall-archive-shrines.jpg",
+   "px": [
+    2048,
+    2048
+   ],
+   "light_px": 2048,
+   "mode": "combined",
+   "area_m2": 593.4,
+   "texels_per_m": 84.1,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.004,
+   "linear_p99": 0.3609,
+   "seconds": 45.8,
+   "jpeg_bytes": 654725,
+   "zone": "hall"
+  },
+  {
+   "object": "Hall dais",
+   "image": "tex/hall-dais.jpg",
+   "px": [
+    2048,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 328.3,
+   "texels_per_m": 113.0,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 0.3806,
+   "seconds": 17.6,
+   "jpeg_bytes": 213198,
+   "zone": "hall"
+  },
+  {
+   "object": "Hall great shrine and obelisks",
+   "image": "tex/hall-great-shrine-and-obelisks.jpg",
+   "px": [
+    1024,
+    1024
+   ],
+   "light_px": 1024,
+   "mode": "combined",
+   "area_m2": 136.9,
+   "texels_per_m": 87.5,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 5.6721,
+   "seconds": 11.3,
+   "jpeg_bytes": 94492,
+   "zone": "hall"
+  },
+  {
+   "object": "Hall braziers",
+   "image": "tex/hall-braziers.jpg",
+   "px": [
+    1024,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 68.5,
+   "texels_per_m": 123.7,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.025,
+   "linear_p99": 2.8873,
+   "seconds": 6.7,
+   "jpeg_bytes": 127568,
+   "zone": "hall"
+  },
+  {
+   "object": "Imagined tunnel to the Hall",
+   "image": "tex/imagined-tunnel-to-the-hall.jpg",
+   "px": [
+    1024,
+    4096
+   ],
+   "light_px": 2048,
+   "mode": "split",
+   "area_m2": 639.8,
+   "texels_per_m": 161.9,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0794,
+   "linear_p99": 0.7304,
+   "seconds": 49.4,
+   "jpeg_bytes": 667200,
+   "zone": "hall"
+  },
+  {
+   "object": "Giza plateau",
+   "image": "tex/giza-plateau.jpg",
+   "px": [
+    4096,
+    4096
+   ],
+   "light_px": 2048,
+   "mode": "split",
+   "area_m2": 1671406.4,
+   "texels_per_m": 3.2,
+   "samples": 384,
+   "exposure": 0.0,
+   "linear_p50": 0.0416,
+   "linear_p99": 0.0456,
+   "seconds": 34.7,
+   "jpeg_bytes": 380187,
+   "zone": "plateau"
+  },
+  {
+   "object": "Khafre pyramid",
+   "image": "tex/khafre-pyramid.jpg",
+   "px": [
+    1024,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 77295.7,
+   "texels_per_m": 7.4,
+   "samples": 384,
+   "exposure": 0.0,
+   "linear_p50": 0.0027,
+   "linear_p99": 0.076,
+   "seconds": 5.9,
+   "jpeg_bytes": 96287,
+   "zone": "plateau"
+  },
+  {
+   "object": "Menkaure pyramid",
+   "image": "tex/menkaure-pyramid.jpg",
+   "px": [
+    512,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 17684.0,
+   "texels_per_m": 7.7,
+   "samples": 384,
+   "exposure": 0.0,
+   "linear_p50": 0.0029,
+   "linear_p99": 0.0757,
+   "seconds": 3.4,
+   "jpeg_bytes": 28571,
+   "zone": "plateau"
+  },
+  {
+   "object": "Khafre causeway (schematic)",
+   "image": "tex/khafre-causeway-schematic.jpg",
+   "px": [
+    256,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 2802.3,
+   "texels_per_m": 38.7,
+   "samples": 384,
+   "exposure": 0.0,
+   "linear_p50": 0.0108,
+   "linear_p99": 0.0459,
+   "seconds": 3.5,
+   "jpeg_bytes": 34002,
+   "zone": "plateau"
+  }
+ ]
+}

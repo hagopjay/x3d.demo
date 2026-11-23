@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giza Crawl v2 · Blenderized</title>
+<meta name="description" content="Giza Crawl v2: the v1 H-Anim explorer and route, rebuilt with Blenderizer techniques. Procedural stone, granite, paint and gilt lit in Cycles and baked into image textures, the 2560 BC night sky from the Sky Machine's star data, one X3D 4.0 scene exported by x3d-blender-io and drawn live by X_ITE.">
+<link rel="stylesheet" href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css">
+<link rel="stylesheet" href="page.css">
+</head>
+<body>
+<div class="wrap">
+<div class="top"><span><b>Giza Crawl v2</b> · Blenderized · <a href="../v1/">v1</a></span><span>Blender Cycles bake → x3d-blender-io → X3D 4.0 + H-Anim 2.0 → X_ITE</span></div>
+<h1>Into the pyramid. <em>Down the shaft.</em> Into the legend.</h1>
+<p class="lede">The v1 route, unchanged where it is documented, rebuilt in Blender: procedural limestone, granite, bedrock, paint and gilt, lit with Cycles and baked into <span id="nTex">…</span> image textures, under the night sky of 2560 BC drawn from the Sky Machine's own star catalogue. Each place has its own look: moonlight on the plateau, visitor lamps raking up the Grand Gallery's corbels, a cold beam in the King's Chamber, a slow descent into the dark down the Osiris Shaft, and a torch-lit Hall of Records that nobody has ever found. Every caption carries its grade: the Hall is invented, and says so.</p>
+
+<div class="legend">
+  <span><i class="chip doc">Documented</i> from a published survey</span>
+  <span><i class="chip doc" style="opacity:.6">schematic</i> documented place, simplified path or plan</span>
+  <span><i class="chip auth">Authored</i> invented for this demo (v1 painted it magenta; v2 keeps the label and drops the paint)</span>
+  <span><i class="chip cut">Cut</i> no known tunnel joins these places</span>
+</div>
+
+<div class="app">
+  <div class="view" id="view">
+    <div id="host"></div>
+    <div class="hud"><span id="tag">loading X_ITE</span><span id="clock">0:00</span></div>
+    <div class="cap"><span id="chip" class="chip doc">Documented</span><span class="t" id="cap">The entrance</span></div>
+    <div class="bar">
+      <button id="bPlay">Pause</button>
+      <button class="vp on" data-vp="CA_Chase">Follow</button>
+      <button class="vp" data-vp="CA_Night_sky">Night sky</button>
+      <button class="vp" data-vp="CA_Pyramid_cutaway">Cutaway</button>
+      <button class="vp" data-vp="CA_Grand_Gallery">Grand Gallery</button>
+      <button class="vp" data-vp="CA_King_s_Chamber">King's Chamber</button>
+      <button class="vp" data-vp="CA_Osiris_descent">Osiris descent</button>
+      <button class="vp" data-vp="CA_Osiris_section">Osiris section</button>
+      <button class="vp" data-vp="CA_Imagined_hall">Imagined hall</button>
+      <button class="vp" data-vp="CA_Hall_dais">Hall dais</button>
+    </div>
+    <div class="prog"><i id="prog"></i></div>
+  </div>
+  <aside class="side">
+    <h3><span id="nCh">28</span> chapters · click to jump</h3>
+    <div class="chs" id="chs"></div>
+  </aside>
+</div>
+
+<h2>v1 and v2, same moment, same camera</h2>
+<p class="sub">Each pair is the same chapter of the same route, shot the same way: headless Chromium with SwiftShader (no GPU), X_ITE 16.7.1, every interpolator set to the chapter's fraction through SAI. Left v1 as published, right v2.</p>
+<div class="pairs" id="pairs"></div>
+
+<h2>What Blender did</h2>
+<p class="sub">Nothing here is lit by the browser except the explorer. Every surface is a texture that already holds its light: Cycles rendered each surface's albedo at full size and its light (direct and indirect, with soft shadows and colour bleeding) at a quarter of that, the two were multiplied and graded once per zone, and the result is drawn unlit. Figures are read from <a href="receipts/bake.json">bake.json</a> and <a href="receipts/grades-applied.json">grades-applied.json</a>.</p>
+<div class="scroll"><table id="zones"><thead><tr><th>Zone</th><th>Look</th><th>Blender technique</th><th class="r">Textures</th><th class="r">Texels / m</th><th class="r">JPEG</th><th class="r">Bake s</th><th class="r">Grade</th></tr></thead><tbody></tbody></table></div>
+
+<h2>What the exporter carried, and what it lost</h2>
+<div class="scroll"><table>
+  <thead><tr><th>In Blender</th><th>In the X3D 4.0 from x3d-blender-io</th><th></th></tr></thead>
+  <tbody>
+    <tr><td>Emission shader reading the baked image on UV map "Bake"</td><td class="m">Appearance { UnlitMaterial { emissiveTexture ImageTexture } } + TextureCoordinate per Shape</td><td class="ok">carried</td></tr>
+    <tr><td>H-Anim armature, skinned mesh, pose keyed at 8 fps</td><td class="m">HAnimHumanoid, HAnimJoint, interpolators on one TimeSensor</td><td class="ok">carried</td></tr>
+    <tr><td>Chase camera keyed every frame, fixed cameras</td><td class="m">Viewpoint + PositionInterpolator / OrientationInterpolator; <span id="nVp">…</span> Viewpoints</td><td class="ok">carried</td></tr>
+    <tr><td>Custom property <code>x3d_metadata</code> (grade, what, source)</td><td class="m">MetadataSet / MetadataString on every documented or authored mesh</td><td class="ok">carried</td></tr>
+    <tr><td>Flame sprite (Emission + Transparent by the image alpha)</td><td class="m">UnlitMaterial with an RGBA emissiveTexture; X_ITE takes the alpha</td><td class="ok">carried</td></tr>
+    <tr><td>Procedural node trees (brick, voronoi, wave, noise, bump)</td><td class="m">no X3D equivalent: baked to images before export</td><td class="lost">baked away</td></tr>
+    <tr><td>Every scene light, its soft shadows and bounce light</td><td class="m">deleted after the bake; two lights remain, for the explorer</td><td class="lost">baked away</td></tr>
+    <tr><td>World background, star sky</td><td class="m">the add-on writes the world colour; <code>postprocess.py</code> adds the six sky faces to Background</td><td class="lost">added after</td></tr>
+    <tr><td>Depth haze</td><td class="m">no exported equivalent; <code>postprocess.py</code> adds one Fog and the page sets its range per chapter</td><td class="lost">added after</td></tr>
+    <tr><td>View-dependent gloss (polished granite, water)</td><td class="m">a bake sees the surface from its normal only; reflections that move with the eye are gone</td><td class="lost">lost</td></tr>
+  </tbody>
+</table></div>
+
+<h2>The sky</h2>
+<p class="sub">The Background is the sky over Giza in 2560 BC with Alnitak on the meridian, made from the Sky Machine's own files (<a href="../../blender-giza-numbers/v4/">Demo 65 v4</a>: 52,602 HYG v4.1 stars and its ERFA long-term precession table) by <code>build/sky_cube.py</code>. It puts Alnitak <b id="alnAlt">…</b>° above the southern horizon; the King's Chamber's southern shaft rises at about 45°. The cold beam in that chamber is a stylised nod to that reading: an Authored light down a documented shaft, not a claim. Receipt: <a href="receipts/sky-receipt.json">sky-receipt.json</a>.</p>
+
+<h2>Where the numbers come from</h2>
+<p class="sub">Dimensions are those of v1, from the Giza study ledger of <a href="../../giza-osiris-hall/v2/">Demo 51</a>. Positions on the plateau are in one frame with the Sphinx at the origin.</p>
+<div class="scroll"><table>
+  <thead><tr><th>Place</th><th>Measure used</th><th>Grade</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td>North entrance</td><td class="m">16.97 m above the base, 7.29 m east of the axis</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883</td></tr>
+    <tr><td>Descending passage</td><td class="m">26°31′, about 105 m, 1.05 × 1.20 m; rock-cut below the base</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883</td></tr>
+    <tr><td>Ascending passage, Grand Gallery</td><td class="m">39.3 m at 26°; gallery 46.7 m long, 2.06 m wide, 8.6 m high, seven corbel courses over ramps 0.53 m high</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883</td></tr>
+    <tr><td>King's Chamber</td><td class="m">10.47 × 5.23 × 5.85 m, granite coffer; air-shaft mouths about 0.21 m square (positions schematic)</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883</td></tr>
+    <tr><td>Queen's Chamber</td><td class="m">5.75 × 5.23 m, gabled roof 6.23 m at the ridge</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883</td></tr>
+    <tr><td>Subterranean Chamber</td><td class="m">14.05 × 8.33 m, roof about 27 m below the base; floor left in rough steps (their shape illustrative)</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883</td></tr>
+    <tr><td>Khafre, Menkaure</td><td class="m">positions and bases from Petrie as used by the Sky Machine; courses and the complete apex illustrative</td><td><i class="chip doc">Documented</i></td><td>Petrie 1883, via Demo 65 v4</td></tr>
+    <tr><td>Osiris Shaft</td><td class="m">shafts 9.62, 13.25, about 7.5 m; chambers A 8.6 × 3.85 m, B 6.8 × 3.65 m with six side chambers; level 3 with water trench and basalt sarcophagus 2.28 × 1.08 m. Ladders and lamps are stage dressing</td><td><i class="chip doc">Documented</i>, plan schematic</td><td>Hawass 2007</td></tr>
+    <tr><td>Hall of Records, its tunnel and everything in them</td><td class="m">none: size, columns, the script on the walls (an invented one, not hieroglyphs), shrines, braziers and the light well are invented</td><td><i class="chip auth">Authored</i></td><td>Edgar Cayce readings, 1930s to 1940s (a legend)</td></tr>
+  </tbody>
+</table></div>
+<p class="sub" style="margin-top:10px">The three cuts are honest, as in v1: no passage is known from the King's Chamber route to the Osiris Shaft, or from there to the Sphinx. The explorer is moved, the screen says so, and the clock keeps running. The moon is a stage light from azimuth 300°, as in the Sky Machine, not an ephemeris position.</p>
+
+<footer>Giza Crawl v2 · original synthetic scene and figure · <a href="assets/crawl.x3d">crawl.x3d</a> · <a href="receipts/route.json">route.json</a> · <a href="receipts/bake.json">bake.json</a> · <a href="receipts/validation.json">validation.json</a> · <a href="receipts/check.json">check.json</a> · generators in <a href="build/">build/</a> · <span id="foot">…</span> · <a href="../v1/">v1</a> is unchanged · published on <a href="../../../">x3d.demo</a>.</footer>
+</div>
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script src="page.js"></script>
+</body>
+</html>
