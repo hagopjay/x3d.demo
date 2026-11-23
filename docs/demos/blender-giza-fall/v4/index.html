@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giza Fall v4 · Summit Duel</title>
+<meta name="description" content="Two active H-Anim ragdolls duel with paintball pistols on the summit of the Great Pyramid while a seeded deck of electrodynamic, supernatural, metaphysical and military forces arrives. One falls; the tumble down 203 courses plays under a different time curve each time, and any moment can be rewound or rewritten.">
+<style>
+  :root { --ink: #120d1f; --panel: rgba(18, 13, 31, 0.78); --gold: #ffd36b; --line: rgba(255, 211, 107, 0.25); --txt: #f3eadb; --orange: #ffb36b; --blue: #7fb0ff; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--ink); color: var(--txt); font: 14px/1.4 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; overflow: hidden; }
+  #cv { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+  [hidden] { display: none !important; }
+  button, select { font: inherit; color: var(--txt); background: rgba(255,255,255,0.08); border: 1px solid var(--line); border-radius: 8px; padding: 5px 9px; cursor: pointer; }
+  button:hover { background: rgba(255,211,107,0.15); } button.on { background: rgba(255,211,107,0.28); border-color: var(--gold); }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; backdrop-filter: blur(6px); }
+  #top { position: fixed; top: 10px; left: 12px; padding: 8px 12px; max-width: 46vw; }
+  #top h1 { margin: 0; font-size: 16px; letter-spacing: 0.02em; } #top h1 b { color: var(--gold); }
+  #top .meta { font-size: 12px; opacity: 0.8; display: flex; gap: 10px; flex-wrap: wrap; margin-top: 2px; }
+  #top .links { margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap; } #top a { color: var(--gold); font-size: 12px; }
+  .cards { position: fixed; top: 96px; left: 12px; display: flex; flex-direction: column; gap: 8px; width: 220px; }
+  .card { padding: 8px 10px; } .card h3 { margin: 0 0 4px; font-size: 13px; display: flex; justify-content: space-between; } .card.out { opacity: 0.55; }
+  .card .bar { height: 6px; background: rgba(255,255,255,0.12); border-radius: 4px; overflow: hidden; } .card .bar i { display: block; height: 100%; background: linear-gradient(90deg, #ff6a4a, #ffd36b, #7dffb2); }
+  .card .state { font-size: 11px; opacity: 0.8; margin-top: 3px; } .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .chip { font-size: 10px; padding: 1px 6px; border-radius: 99px; background: rgba(255,255,255,0.12); }
+  .chip.pink { background: #ff4fa355; } .chip.electro { background: #7fb8ff55; } .chip.super { background: #ffd36b55; } .chip.green { background: #6dff6a44; } .chip.blue { background: #3ec8ff55; }
+  #kmult { font-size: 12px; color: #ff9a7a; font-weight: 700; }
+  .banner { position: fixed; top: 12px; left: 50%; transform: translate(-50%, -140%); transition: transform 0.45s cubic-bezier(.2,1.4,.4,1); display: flex; gap: 12px; align-items: center; padding: 10px 16px; max-width: min(620px, 60vw); background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+  .banner.show { transform: translate(-50%, 0); } .banner .glyph { font-size: 34px; } .banner b { font-size: 17px; display: block; } .banner small { text-transform: uppercase; letter-spacing: 0.12em; font-size: 10px; opacity: 0.75; } .banner p { margin: 3px 0 0; font-size: 12.5px; opacity: 0.9; }
+  .banner.electro { border-color: #7fb8ff; } .banner.super { border-color: #ffd36b; } .banner.meta { border-color: #c48bff; } .banner.military { border-color: #ff8a5a; } .banner.paint { border-color: #ff6fbf; }
+  #feed { position: fixed; left: 12px; bottom: 92px; width: min(440px, 44vw); display: flex; flex-direction: column-reverse; gap: 4px; pointer-events: none; }
+  .fi { background: var(--panel); border-left: 3px solid var(--gold); padding: 4px 8px; border-radius: 6px; font-size: 12.5px; animation: in 0.3s ease-out; }
+  .fi.electro { border-color: #7fb8ff; } .fi.super { border-color: #ffd36b; } .fi.meta { border-color: #c48bff; } .fi.military { border-color: #ff8a5a; } .fi.paint, .fi.pink { border-color: #ff6fbf; } .fi.fall { border-color: #fff; font-weight: 600; }
+  @keyframes in { from { opacity: 0; transform: translateX(-12px); } }
+  #deck { position: fixed; top: 10px; right: 12px; width: 300px; max-height: calc(100vh - 110px); overflow: auto; padding: 10px 12px; }
+  body.nodeck #deck { display: none; } #drawer { position: fixed; top: 10px; right: 320px; } body.nodeck #drawer { right: 12px; }
+  #deck h2 { margin: 0 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); } #deck section { margin-bottom: 12px; }
+  .fam { margin-bottom: 6px; } .famhead { display: block; font-size: 12px; font-weight: 700; color: var(--c); margin: 4px 0 3px; }
+  .om { font-size: 12px; margin: 0 4px 4px 0; padding: 3px 7px; border-color: color-mix(in srgb, var(--c) 50%, transparent); }
+  .row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin: 4px 0; } .row label { font-size: 12px; }
+  input[type=range] { width: 130px; } small.note { display: block; font-size: 11px; opacity: 0.7; }
+  #bottom { position: fixed; left: 12px; right: 12px; bottom: 10px; padding: 8px 10px; display: flex; gap: 8px; align-items: center; }
+  body:not(.nodeck) #bottom { right: 324px; }
+  #tl { flex: 1; height: 34px; cursor: pointer; } #tlabel { font-size: 12px; min-width: 92px; text-align: right; font-variant-numeric: tabular-nums; }
+  #ts { position: fixed; top: 50%; right: 340px; transform: translateY(-50%); font-size: 13px; color: var(--gold); text-shadow: 0 1px 6px #000; pointer-events: none; }
+  body.nodeck #ts { right: 20px; }
+  #fallhud { position: fixed; left: 50%; bottom: 66px; transform: translateX(-50%); display: flex; gap: 18px; padding: 8px 16px; font-variant-numeric: tabular-nums; }
+  #fallhud div { text-align: center; } #fallhud b { display: block; font-size: 18px; } #fallhud span { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.75; }
+  #result { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(520px, 92vw); padding: 18px 20px; text-align: center; }
+  #result h2 { margin: 0 0 8px; color: var(--gold); } #result p { margin: 0 0 12px; }
+  #loader { position: fixed; inset: 0; display: grid; place-items: center; background: radial-gradient(ellipse at top, #3a2a5a, var(--ink) 70%); z-index: 9; }
+  #loader div { text-align: center; } #loader h1 { font-size: 34px; margin: 0; } #loader h1 b { color: var(--gold); }
+  #aboutp { position: fixed; inset: 6vh 8vw; overflow: auto; padding: 20px 26px; z-index: 8; line-height: 1.5; }
+  #aboutp h2 { color: var(--gold); margin-top: 0; } #aboutp h3 { margin-bottom: 4px; } #aboutp table { border-collapse: collapse; width: 100%; font-size: 13px; } #aboutp td, #aboutp th { border-top: 1px solid var(--line); padding: 5px 6px; text-align: left; vertical-align: top; }
+  #aboutp code { background: rgba(255,255,255,0.08); padding: 0 4px; border-radius: 4px; }
+  @media (max-width: 820px) { .cards { width: 160px; top: 110px; } #deck { width: 86vw; } #drawer { right: 12px; } body:not(.nodeck) #bottom { right: 12px; } #feed { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .banner { transition: none; } .fi { animation: none; } }
+</style>
+</head>
+<body class="">
+<canvas id="cv"></canvas>
+<div id="loader"><div><h1>Giza <b>Summit Duel</b></h1><p>Giza Fall v4 · live physics</p><p id="status">loading…</p></div></div>
+
+<div id="top" class="panel">
+  <h1>Giza Fall v4 · <b>Summit Duel</b></h1>
+  <div class="meta"><span id="round"></span><span id="seed"></span><span id="score"></span></div>
+  <div class="links"><button id="about">How it works</button><button id="copy">Copy link to this duel</button><a href="../v3/index.html">v3 (the baked fall)</a></div>
+</div>
+<div class="cards">
+  <div class="card panel" id="card0"><h3><span style="color:var(--orange)">Explorer</span><span class="state"></span></h3><div class="bar"><i></i></div><div class="chips"></div></div>
+  <div class="card panel" id="card1"><h3><span style="color:var(--blue)">Pusher</span><span class="state"></span></h3><div class="bar"><i></i></div><div class="chips"></div></div>
+  <div id="kmult"></div>
+</div>
+<div id="banner" class="banner"></div>
+<div id="feed"></div>
+<div id="ts"></div>
+<div id="fallhud" class="panel" hidden>
+  <div><b id="fh">–</b><span>height</span></div><div><b id="fs">–</b><span>speed</span></div><div><b id="fc">–</b><span>hits</span></div><div><b id="fj">–</b><span>hardest</span></div><div><b id="fx">–</b><span id="curve">time</span></div>
+</div>
+<div id="result" class="panel" hidden><h2 id="rtitle"></h2><p id="rbody"></p>
+  <div class="row" style="justify-content:center"><button id="next">Next duel (N)</button><button id="again">Watch it again</button><button onclick="document.getElementById('rew').click()">Rewind</button></div>
+  <small class="note">The next duel starts by itself in a few seconds while “Auto next duel” is on.</small></div>
+
+<button id="drawer" class="panel">Director ⇆</button>
+<aside id="deck" class="panel">
+  <section><h2>Call it</h2><div class="row"><button id="bet0">Explorer</button><button id="bet1">Pusher</button></div><small class="note" id="betnote"></small></section>
+  <section><h2>Omens</h2><small class="note">They arrive on their own from a seeded deck. Click one to send it now. Untick a family to leave it out of the deck.</small><div id="omens"></div>
+    <div class="row"><label>Chaos <input type="range" id="chaos" min="0.25" max="3" step="0.05" value="1"></label><span id="chaosv">1.00×</span></div></section>
+  <section><h2>Time</h2><div class="row"><button id="sp025">¼×</button><button id="sp05">½×</button><button id="sp1" class="on">1×</button><button id="sp2">2×</button></div>
+    <small class="note">The fall picks its own time curve on top of this.</small></section>
+  <section><h2>Camera</h2><div class="row"><select id="cam"><option value="auto">Director (auto)</option><option value="orbit">Orbit (drag, wheel)</option><option value="duel">Side-on duel</option><option value="chase0">Over the Explorer's shoulder</option><option value="chase1">Over the Pusher's shoulder</option><option value="base">From the base</option></select></div></section>
+  <section><h2>Show</h2><div class="row"><button id="sound">Sound: off</button><label><input type="checkbox" id="attract" checked> Auto next duel</label></div>
+    <div class="row"><button id="newduel">New random duel</button><button id="verify" title="Re-simulates this duel from its seed and your clicks and compares a hash every second">Verify replay</button></div></section>
+</aside>
+<div id="bottom" class="panel">
+  <button id="rew" title="Play backwards">⏪</button><button id="slow" title="Review at 0.15×">🐢</button><button id="pause" title="Pause or play (Space)">⏯</button><button id="live" class="on" title="Back to live (L)">LIVE</button>
+  <button id="ankh" title="Branch from the moment on screen: same past, a new fate (A)">☥ Ankh</button>
+  <canvas id="tl"></canvas><span id="tlabel"></span>
+</div>
+
+<div id="aboutp" class="panel" hidden>
+  <button id="aboutx" style="float:right">Close</button>
+  <h2>How Summit Duel works</h2>
+  <p>v1 to v3 replay one fall that Blender's Bullet solver computed in advance. v4 simulates every duel live in your browser, so each one is new. It reads v3's own files: the 203 course heights come from v1's seeded generator, the H-Anim joint centres from v3's <code>fall.x3d</code>, and the pyramid you see is v3's baked geometry and textures, read from that X3D by a small loader on this page.</p>
+  <h3>What is simulated</h3>
+  <table>
+    <tr><th>Part</th><th>How</th></tr>
+    <tr><td>Bodies and contacts</td><td>Rapier 0.21, deterministic build, 120 steps per second, 8 solver iterations. 202 courses are static boxes. The capstone course is a kinematic slab of 12 × 12 tiles, which can tilt and be painted.</td></tr>
+    <tr><td>Duellists</td><td>11 rigid bodies each, placed at v3's H-Anim joint centres, with v1's masses (80 kg), friction 0.45 and restitution 0.15. Hand-written joint motors (PD torques on quaternion error) hold a pose. "Puppet strings", an upright torque and a support force under the pelvis, keep the figure on its feet while its balance lasts. Hits lower balance; at 0.12 the figure goes limp, and it gets up again unless it is below the summit.</td></tr>
+    <tr><td>Paintball pistols</td><td>Pellets leave the real forearm, so a wobbling arm shoots wide. They fly at 45 m/s under gravity, and in a Magnetic Storm under the Lorentz force q v × B, with a curve radius of v / (6 B). A hit pushes with 13 N·s. Pink paint adds 35 % to every later push. On the floor, blue paint lowers a tile's friction to 0.035, yellow raises it to 2.2, and green makes it bouncy.</td></tr>
+    <tr><td>Omens</td><td>Lightning, a magnetic storm, the Scales of Anubis (g × 0.35 and × 1.75), the Eye of Ra, the Khamsin, a time eddy (velocity × ¼ inside, gravity × 1/16), the Duat gates, the Benben tilt, the Ascension (gravity points up for 1.8 s), the Khafre battery, the orbital slug and a paint monsoon. Their strengths are game constants, not measurements.</td></tr>
+    <tr><td>Shells</td><td>Drag-free arcs from Khafre's summit, solved for the flight time when they are fired, so the shadow marker shows exactly where each one will land. Each blast is an impulse that falls off with the square of distance.</td></tr>
+    <tr><td>The fall</td><td>A figure counts as fallen when its pelvis is 1.6 m below the summit. From then on it is a limp ragdoll on the stepped face, and hits are counted the way v1 counted them: m |Δv − g Δt| per body, above 18 N·s, at most once per body every 40 ms.</td></tr>
+  </table>
+  <h3>Rewind and the Ankh</h3>
+  <p>Every step is recorded, so the timeline can be reviewed forwards, backwards and slowly. That review shows the recorded poses; it does not run the simulation. Every 2 s the page also keeps a complete checkpoint: Rapier's snapshot, every controller, the omen state and the random number generator. <b>☥ Ankh</b> restores the checkpoint before the moment on screen, re-simulates to that exact step with your clicks, and then reseeds fate, so the past is the same and the future is new.</p>
+  <h3>What I checked, and what I did not</h3>
+  <p>See <code>README.md</code> and <code>receipts/</code> in this folder. Briefly: the same seed and the same clicks give the same per-step hash in Node and in headless Chromium, and a restored checkpoint continues to the identical hash. Controls that should fail do fail: restoring a checkpoint without the controllers or without the random numbers gives a different hash. Every simulation file is free of <code>Math.sin</code>, <code>cos</code>, <code>atan2</code>, <code>exp</code> and <code>pow</code>. I did not measure on a real GPU or a phone, and I did not test Firefox or Safari. No person has played this yet.</p>
+  <p id="x3dinfo" style="opacity:0.7;font-size:12px"></p>
+  <p style="opacity:0.7;font-size:12px">Original synthetic scene and figures. No blood: these are crash-test-style explorers. Rapier (Apache-2.0) and three.js (MIT) are vendored in <code>vendor/</code> with their licences.</p>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
