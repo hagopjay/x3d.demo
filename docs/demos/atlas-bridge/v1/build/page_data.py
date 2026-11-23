@@ -43,7 +43,7 @@ stats = [{"value": f'{spent:,}', "label": f'Atlas credits spent of the 10,000 ca
          {"value": f'{o["median_pct"]:.2f}%', "label": "median gap, Atlas depth vs the X3D depth it was given (reading room)", "source": o["receipt"]},
          {"value": "0 m · 0°", "label": "camera error, X3D Viewpoint to Atlas and back, 36 cameras", "source": "receipts/*-atlas-return.json"},
          {"value": f'{rr["splats"]["count"]/1e6:.0f} M', "label": f'refined splats, a median {v["median_mm"]:.0f} mm from the X3D surfaces', "source": "receipts/reading-room-atlas-return.json"},
-         {"value": f'{P.get("psnr_refined_db", 0):.1f} dB' if P.get("psnr_refined_db") else "22.2 dB", "label": "bridge render of the splats vs the Atlas picture at the same X3D Viewpoint" + ("" if P.get("psnr_refined_db") else " (draft)"), "source": "receipts/page.json" if P else "receipts/findings.json"},
+         {"value": f'{P["psnr_refined_db"]:.1f} to {P["psnr_kings_chamber_draft_db"]:.1f} dB', "label": "live page splat render vs the Atlas picture, same X3D Viewpoint (lowest: the 24-view hero, whose two rings differ in exposure)", "source": "receipts/page.json"},
          {"value": "3 / 3", "label": "return worlds valid X3D (4.1 worlds, 4.0 mesh files)", "source": "x3d_mcp 4d433af"}]
 findings = json.loads((HERE / "receipts" / "findings.json").read_text())
 size = lambda fs: f'{sum((HERE / "worlds" / f).stat().st_size for f in fs)/1e6:.0f} MB'

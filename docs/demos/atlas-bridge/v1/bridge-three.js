@@ -1,4 +1,4 @@
-/* X3D to three.js bridge bundle (reader + SAI + three.js body + GaussianSplats node). Built from hagopjay/x3d.loom x3d.threejs/bridge by tools/bundle.js('body') on 23 Nov 2026; do not edit here. */
+/* X3D to three.js bridge bundle (reader + SAI + three.js body + GaussianSplats node). Built from hagopjay/x3d.loom x3d.threejs/bridge by tools/bundle.js('body') on 23 Nov 2026; needs the global THREE (r187); do not edit here. */
 (function () {
 "use strict";
 /* One WebGPU adapter request that does not give up early. Babylon asks navigator.gpu.requestAdapter() with its own options (the high-performance
@@ -9967,7 +9967,8 @@ R.bridge.three = R.bridge.three || { build: {}, geometry: {}, changed: {} };
     for (const [name, arr, w] of [['scales', S, 3], ['orientations', Q, 4], ['opacities', O, 1], ['sphericalHarmonicsDegree0Coef0', C, 3]]) if (arr.length && arr.length / w !== count) body.note('three.js body: GaussianSplats ' + (n.def || '') + ': ' + name + ' has ' + (arr.length / w) + ' entries for ' + count + ' positions');
     if (Object.keys(f).some((k) => /^sphericalHarmonicsDegree[123]/.test(k) && f[k] && f[k].length)) body.note('three.js body: GaussianSplats ' + (n.def || '') + ': harmonics above degree 0 are not drawn');
     const SP = spark(body), file = metaString(n, 'splatFile');
-    (body.splats ||= []).push(r);
+    const live = (x) => { let o = x.tn; while (o && o.parent) o = o.parent; return o === body.scene; };   // records of a world that was replaced hang off a root that left the scene
+    body.splats = (body.splats || []).filter((x) => { if (live(x)) return true; if (x.mesh && x.mesh.dispose) { try { x.mesh.dispose(); } catch (e) { /* already gone */ } } return false; }); body.splats.push(r);
     if (SP && file) {
       let url = file; try { url = new URL(file, n.base || document.baseURI).href; } catch (e) { /* keep as written */ }
       ensureRenderer(body, SP); const mesh = new SP.SplatMesh({ url }); r.mesh = mesh; r.drawer = 'spark-file'; r.file = url; tn.add(mesh);

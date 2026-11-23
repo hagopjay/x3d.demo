@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="icon" href="data:,">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Demo 77 · Atlas Bridge: X3D to World Labs Atlas and back</title>
 <meta name="description" content="An X3D blockout goes to World Labs Atlas as cameras and exact depth, comes back as pictures, Gaussian splats, a mesh and collider boxes, and is drawn again as X3D by the X3D to three.js bridge.">
@@ -129,7 +130,7 @@ try {
   const THREE = await import('three'); window.THREE = THREE;
   try { window.SPARK = await import('@sparkjsdev/spark'); } catch (e) { notes.push('Spark did not load: splats draw as points'); }
   await new Promise((ok, no) => { const s = document.createElement('script'); s.src = 'bridge-three.js'; s.onload = ok; s.onerror = () => no(new Error('bridge-three.js did not load')); document.head.appendChild(s); });
-  body = new Body($('c'), { tone: 'none', fontBase: '', onNote: (m) => notes.push(m), onFrame: () => step() });
+  body = new Body($('c'), { tone: 'none', fontBase: '', onNote: (m) => notes.push(m), onFrame: () => { if (typeof step === 'function') step(); } });
   await body.init(); X3DSAI.setBody(body);
   const rec = (def) => { const n = body.world.nodes.find((x) => x.def === def); return n ? body.rec.get(n.id) : null; };
   const euler = new THREE.Euler(0, 0, 0, 'YXZ'), qq = new THREE.Quaternion();
