@@ -478,3 +478,10 @@ Demos 67 to 72 card images are each a 2 x 2 grid of 480 x 270 tiles, cropped to 
 | file | sha256 | bytes |
 |---|---|---|
 | assets/xray-binary.jpg | 7874262a5a5e9eefa6654a91f5b06750b474aec64e619124d1ec3e77ebecf930 | 75965 |
+
+## blender-giza-fall-v4 (v83)
+`blender-giza-fall-v4` is a 2 x 2 of 480 x 270 tiles cut from `docs/demos/blender-giza-fall/v4/shots/` (`03-fall.jpg`, `01-duel.jpg`, `02-omens.jpg`, `05-review.jpg`, headless Chromium with SwiftShader) saved as 960 x 540 JPEG. No Google or other third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/blender-giza-fall-v4.jpg | 6738c10ef10543971ff7243643923203cd530f40a89529881ff81fe503e49c1a | 126936 |
