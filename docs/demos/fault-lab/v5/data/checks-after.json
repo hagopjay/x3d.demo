@@ -1,0 +1,261 @@
+{
+ "label": "after",
+ "x3d_mcp_commit": "8205047",
+ "python": "3.13.18",
+ "cases": {
+  "clean": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 8.83
+  },
+  "two-materials": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [
+     {
+      "check": "sfnode-multiple",
+      "level": "error",
+      "node": "PhysicalMaterial",
+      "message": "Appearance.material is an SFNode field and holds one node, but this PhysicalMaterial is a second child filed there (after ). A browser keeps only one. Remove one, or give it the containerField of the field it is meant for."
+     }
+    ],
+    "warnings": []
+   },
+   "shacl_core": [
+    {
+     "shape": "one_material",
+     "check": "sfnode-multiple",
+     "node": ":Appearance_2_10_4_1_1",
+     "message": "material is an SFNode field: it holds one node, and this node has more than one child filed there"
+    }
+   ],
+   "twin": [],
+   "seconds": 6.77
+  },
+  "two-geometries": {
+   "xsd": {
+    "valid": false,
+    "errors": [
+     "Line 5: Element 'Sphere': This element is not expected."
+    ]
+   },
+   "semantic": {
+    "errors": [
+     {
+      "check": "sfnode-multiple",
+      "level": "error",
+      "node": "Sphere",
+      "message": "Shape.geometry is an SFNode field and holds one node, but this Sphere is a second child filed there (after ). A browser keeps only one. Remove one, or give it the containerField of the field it is meant for."
+     }
+    ],
+    "warnings": []
+   },
+   "shacl_core": [
+    {
+     "shape": "one_geometry",
+     "check": "sfnode-multiple",
+     "node": "OsirisChamberA_Shape",
+     "message": "geometry is an SFNode field: it holds one node, and this node has more than one child filed there"
+    },
+    {
+     "shape": "ShapeGeometry",
+     "check": "shape-no-geometry",
+     "node": "OsirisChamberA_Shape",
+     "message": "Shape has no geometry (and is not a USE copy): valid X3D that draws nothing"
+    }
+   ],
+   "twin": [],
+   "seconds": 7.01
+  },
+  "angkor-swapped": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [
+     {
+      "check": "geo-coordinate-range",
+      "level": "error",
+      "node": "GV_Angkor",
+      "message": "GeoViewpoint.position has 1 latitude value(s) outside -90..90 (first: latitude 103.867, longitude 13.4125). Geodetic order here is latitude longitude elevation. The two look swapped: the other number would be a legal latitude."
+     }
+    ],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 6.59
+  },
+  "giza-swapped": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [],
+   "seconds": 6.96
+  },
+  "scaled-shaft": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [
+    {
+     "shape": "S_H2s",
+     "check": "//example.org/scen/twin#S_H2s",
+     "node": "https://example.org/scen/heritage/record#dimShaftA",
+     "message": "The drawn size (Box size times the representation's scale) differs from the documented measurement by more than 5 %."
+    }
+   ],
+   "seconds": 6.59
+  },
+  "cylinder-shaft": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [
+    {
+     "shape": "S_H6",
+     "check": "//example.org/scen/twin#S_H6",
+     "node": "https://example.org/scen/heritage/record#dimShaftA",
+     "message": "The measurement cannot be checked against the scene: its representation needs exactly one Box below it and no other geometry, with no rotation and no scale between or above (other than the representation's own scale)."
+    },
+    {
+     "shape": "S_H6",
+     "check": "//example.org/scen/twin#S_H6",
+     "node": "https://example.org/scen/heritage/record#dimShaftA",
+     "message": "The measurement cannot be checked against the scene: its representation needs exactly one Box below it and no other geometry, with no rotation and no scale between or above (other than the representation's own scale)."
+    }
+   ],
+   "seconds": 6.69
+  },
+  "secret-tunnel": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [
+    {
+     "shape": "S_H4",
+     "check": "//example.org/scen/twin#S_H4",
+     "node": ":Shape_2_10_3_1",
+     "message": "A Shape is drawn under no node the record vouches for: an element with no record at all."
+    }
+   ],
+   "seconds": 7.27
+  },
+  "feet-not-metres": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [
+    {
+     "shape": "S_H5",
+     "check": "//example.org/scen/twin#S_H5",
+     "node": "https://example.org/scen/heritage/record#dimShaftA",
+     "message": "A measurement compared with the scene is not in metres (the scene's unit); convert it before comparing."
+    }
+   ],
+   "seconds": 6.6
+  },
+  "no-tier": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [
+    {
+     "shape": "S_H1s",
+     "check": "//example.org/scen/twin#S_H1s",
+     "node": "HallOfRecords",
+     "message": "Drawn element has no attribution that assigns a tier (a crm:E55_Type): the picture shows something the record does not vouch for."
+    }
+   ],
+   "seconds": 6.53
+  },
+  "ghost-def": {
+   "xsd": {
+    "valid": true,
+    "errors": []
+   },
+   "semantic": {
+    "errors": [],
+    "warnings": []
+   },
+   "shacl_core": [],
+   "twin": [
+    {
+     "shape": "S_H3",
+     "check": "//example.org/scen/twin#S_H3",
+     "node": ":NoSuchDEF",
+     "message": "The record names a visual item that is not a node of this scene (no such DEF)."
+    },
+    {
+     "shape": "S_H4",
+     "check": "//example.org/scen/twin#S_H4",
+     "node": "OsirisShaftA_Shape",
+     "message": "A Shape is drawn under no node the record vouches for: an element with no record at all."
+    },
+    {
+     "shape": "S_H6",
+     "check": "//example.org/scen/twin#S_H6",
+     "node": "https://example.org/scen/heritage/record#dimShaftA",
+     "message": "The measurement cannot be checked against the scene: its representation needs exactly one Box below it and no other geometry, with no rotation and no scale between or above (other than the representation's own scale)."
+    }
+   ],
+   "seconds": 6.61
+  }
+ },
+ "instruments": {
+  "rdflib": "7.6.0",
+  "pyshacl": "0.40.2",
+  "xsd": "X3D 4.0 XSD as bundled in x3d_mcp (the scene declares version 4.0)",
+  "x3duom": "X3DUOM 4.1 as bundled",
+  "shapes_core": "x3d-core + x3d-cardinality",
+  "twin_shapes": "shapes-strict.ttl (hand-written)"
+ }
+}

@@ -1,0 +1,59 @@
+{
+ "rig": "Playwright headless Chromium 145.0.7632.6, SwiftShader (no GPU)",
+ "pages": {
+  "before": {
+   "url": "demos/blender-giza-fall/v1/",
+   "x_ite": "16.7.1",
+   "load_s": 7.852,
+   "frame_time_running": {
+    "frames": 22,
+    "median_ms": 174.1,
+    "p95_ms": 207.4
+   },
+   "console": [
+    "warning: [.WebGL-0x12400197e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x12400197e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x12400197e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x12400197e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+    "warning: The use of sfnode.getField(name) is deprecated. Future versions of X_ITE may remove this feature. Instead, use the sfnode.{fieldName} property syntax or sfnode.addFieldCallback(key, fieldName, callback). Error\n    at http://127.0.0.1:8873/d"
+   ],
+   "console_errors": 0,
+   "shots": [
+    "before-s00_shove.png",
+    "before-s01_release.png",
+    "before-s02_first.png",
+    "before-s03_tumble.png",
+    "before-s04_mid.png",
+    "before-s05_low.png",
+    "before-s06_base.png",
+    "before-s07_rest.png",
+    "before-s08_northface.png"
+   ]
+  },
+  "after": {
+   "url": "demos/blender-giza-fall/v2/",
+   "x_ite": "16.7.1",
+   "load_s": 6.011,
+   "frame_time_running": {
+    "frames": 25,
+    "median_ms": 149.9,
+    "p95_ms": 175.7
+   },
+   "console": [
+    "warning: The use of sfnode.getField(name) is deprecated. Future versions of X_ITE may remove this feature. Instead, use the sfnode.{fieldName} property syntax or sfnode.addFieldCallback(key, fieldName, callback). Error\n    at http://127.0.0.1:8873/d"
+   ],
+   "console_errors": 0,
+   "shots": [
+    "after-s00_shove.png",
+    "after-s01_release.png",
+    "after-s02_first.png",
+    "after-s03_tumble.png",
+    "after-s04_mid.png",
+    "after-s05_low.png",
+    "after-s06_base.png",
+    "after-s07_rest.png",
+    "after-s08_northface.png"
+   ]
+  }
+ }
+}

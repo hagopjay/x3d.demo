@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Masonic Lodge XR v3: Giza in section, over every lodge</title>
+<meta name="description" content="Phone AR (AR.js, location-based) overlays a cutaway X3D Giza on Masonic buildings found in OpenStreetMap near you.">
+<style>
+:root{--bg:#0d0f14;--fg:#e9e4d6;--mut:#9a9486;--gold:#d9b25a;--card:#171a22;--ln:#2b3040}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.35rem;margin:.2em 0;color:var(--gold)}h2{font-size:1.05rem;color:var(--gold);margin:1.2em 0 .3em}
+button{background:var(--gold);color:#1a1405;border:0;border-radius:8px;padding:12px 16px;font-weight:700;font-size:1rem;margin:4px 6px 4px 0}
+button.alt{background:var(--card);color:var(--fg);border:1px solid var(--ln)}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:10px 12px;margin:8px 0}
+.mut{color:var(--mut);font-size:.85rem}table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--ln);padding:4px 6px;text-align:left;font-size:.85rem}
+#x3dview{width:100%;height:min(62vh,520px);position:relative;border:1px solid var(--ln);border-radius:10px;overflow:hidden}
+#hud{position:fixed;left:0;right:0;bottom:0;z-index:10;background:#000b;padding:8px 12px;font-size:.8rem;display:none}
+#hud input{width:120px}
+#cards{display:none}
+a{color:var(--gold)}
+x3d-canvas{display:block;width:100%;height:100%}
+.vps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.vps button{padding:7px 10px;font-size:.8rem;margin:0}
+main{max-width:980px}
+</style></head><body>
+<main id="ui">
+<h1>Masonic Lodge XR <span class="mut">v3 · Blenderized</span></h1>
+<p class="mut">The Great Pyramid in section, standing over each Masonic building OpenStreetMap lists near you. v3 is built in Blender course by course and cut on the plane of its passages, so the chambers open as real voids, lit from inside; the morning sun is baked into the stone. A gilt capstone hovers at the original apex height: a symbol, not Giza data. Public data only: building name and position. No member data, no meeting times, no rituals. <a href="README.md">What changed</a> · <a href="../v2/">v2</a></p>
+<button id="goAR">Start AR (camera + location)</button>
+<button id="goPrev" class="alt">Preview without camera</button>
+<button id="goFix" class="alt">Test points (no network)</button>
+<div class="card mut" id="status">Idle. AR needs HTTPS, camera and location permission. GPS drift is typically 5 to 20 m outdoors, so the overlay is anchored to the lodge coordinate, not to the facade.</div>
+<div id="x3dview"><x3d-canvas id="xc" src="giza-lodge.x3d" contentScale="auto" splashScreen="false" notifications="false"></x3d-canvas></div>
+<div class="vps" id="vps"><button class="alt" data-vp="CA_Section">Section</button><button class="alt" data-vp="CA_Into_the_section">Into the section</button><button class="alt" data-vp="CA_King_s_Chamber_and_relieving_chambers">King's Chamber</button><button class="alt" data-vp="CA_The_three_pyramids">Three pyramids</button><button class="alt" data-vp="CA_Capstone">Capstone</button></div>
+<h2>Near you</h2><div id="list" class="mut">No search yet.</div>
+<h2>Sources and terms</h2>
+<ul class="mut">
+<li>Model: Khufu 230.33 m base, 146.6 m original height, interior from Petrie 1883 (as in <a href="../../blender-giza-crawl/">Giza Crawl</a>); Khafre and Menkaure at Petrie's offsets (v1 and v2 had them north-west; they lie south-west). Course heights, the pit and the capstone are illustrative or Authored.</li>
+<li>Lodges: OpenStreetMap contributors, ODbL 1.0, via Overpass API (read-only, cached 24 h per ~1 km cell, one query per cell). No national list is stored or published here; lodges load live for your position only.</li>
+<li>Nearby articles: Wikipedia GeoSearch API (free, CORS). Giza dimensions: Wikipedia (Great Pyramid 146.6 m, base 230.34 m). Interior positions are schematic.</li>
+<li>Sun azimuth and altitude: local low-precision solar formula (no network).</li>
+<li>COGSNA and LodgeLocator are not used; their terms are unchecked.</li>
+</ul>
+</main>
+<div id="hud">Scale 1:<span id="sv">8</span> <input id="scale" type="range" min="2" max="40" value="8"> <span id="hudtxt"></span></div>
+<div id="cards"></div>
+<script src="../v1/vendor/x_ite/x_ite.min.js"></script>
+<script src="../v1/vendor/aframe-1.4.2.min.js"></script>
+<script src="../v1/vendor/aframe-ar-3.4.7.js"></script>
+<script src="x3d2three.js"></script>
+<script src="lodges.js"></script>
+<script>
+const $ = s => document.querySelector(s), q = new URLSearchParams(location.search);
+let X3DTEXT = null, scale = 8, placed = [];
+const log = m => { $('#status').textContent = m; console.log('[lodge-xr]', m); window.__log = (window.__log || []).concat(m); };
+async function x3d() { return X3DTEXT || (X3DTEXT = await (await fetch('giza-lodge.x3d')).text()); }
+function getPos() {
+  if (q.get('lat')) return Promise.resolve({ lat: +q.get('lat'), lon: +q.get('lon') });
+  return new Promise((ok, no) => navigator.geolocation.getCurrentPosition(p => ok({ lat: p.coords.latitude, lon: p.coords.longitude, acc: p.coords.accuracy }), no, { enableHighAccuracy: true, timeout: 20000 }));
+}
+function render(pos, lodges) {
+  const sd = Lodges.sun(new Date(), pos.lat, pos.lon), gb = Lodges.bearing(pos, Lodges.GIZA), gd = Lodges.distance(pos, Lodges.GIZA) / 1000;
+  const rows = lodges.map(l => ({ ...l, d: Lodges.distance(pos, l) })).sort((a, b) => a.d - b.d);
+  $('#list').innerHTML = `<div class="card">You: ${pos.lat.toFixed(5)}, ${pos.lon.toFixed(5)}${pos.acc ? ' (+/- ' + Math.round(pos.acc) + ' m)' : ''}<br>
+  Giza is ${Math.round(gd).toLocaleString()} km away at bearing ${gb.toFixed(1)} deg (great circle, haversine R=6371.0088 km). Sun now: azimuth ${sd.az.toFixed(1)} deg, altitude ${sd.alt.toFixed(1)} deg.</div>` +
+    (rows.length ? '<table><tr><th>Lodge</th><th>m</th><th>Source</th></tr>' + rows.map(r => `<tr><td>${r.name.replace(/</g, '&lt;')}</td><td>${Math.round(r.d)}</td><td>${r.src}</td></tr>`).join('') + '</table>' : 'No Masonic buildings found within the search radius in OpenStreetMap.');
+  return rows;
+}
+async function findLodges(pos, fixture) {
+  if (fixture) return Lodges.fixture(pos.lat, pos.lon);
+  log('Querying OpenStreetMap (Overpass) within 2 km...');
+  return Lodges.overpass(pos.lat, pos.lon, +q.get('r') || 2000);
+}
+async function start(mode) {
+  try {
+    const fixture = mode === 'fixture';
+    log('Getting position...');
+    const pos = fixture && !navigator.geolocation ? { lat: 38.8977, lon: -77.0365 } : await getPos().catch(e => { if (fixture) return { lat: 38.8977, lon: -77.0365 }; throw e; });
+    const lodges = await findLodges(pos, fixture), rows = render(pos, lodges);
+    log(`${rows.length} Masonic building(s) from ${fixture ? 'test fixture' : 'OpenStreetMap'}.`);
+    if (mode === 'preview') return;
+    await startAR(pos, rows);
+  } catch (e) { log('Error: ' + (e.message || e) + (e.code === 1 ? ' (location permission denied)' : '')); }
+}
+async function startAR(pos, rows) {
+  const model = X3D2THREE.load(await x3d(), AFRAME.THREE, new URL('giza-lodge.x3d', location.href).href);
+  $('#ui').style.display = 'none'; $('#hud').style.display = 'block';
+  const sc = document.createElement('a-scene');
+  sc.setAttribute('vr-mode-ui', 'enabled: false'); sc.setAttribute('renderer', 'antialias: true; alpha: true; logarithmicDepthBuffer: true');
+  sc.setAttribute('arjs', 'sourceType: webcam; videoTexture: true; debugUIEnabled: false');
+  sc.innerHTML = '<a-camera gps-new-camera="gpsMinDistance: 3; positionMinAccuracy: 60" far="20000" near="0.1"></a-camera><a-light type="ambient" intensity="0.8"></a-light><a-light type="directional" position="1 2 1" intensity="0.9"></a-light>';
+  document.body.appendChild(sc);
+  const near = (rows.length ? rows : []).slice(0, 12);
+  near.forEach(r => {
+    const e = document.createElement('a-entity');
+    e.setAttribute('gps-new-entity-place', `latitude: ${r.lat}; longitude: ${r.lon}`);
+    e.addEventListener('loaded', () => { const g = model.clone(true); g.scale.setScalar(1 / scale); e.object3D.add(g); placed.push(g); });
+    e.setAttribute('data-lodge', r.id); sc.appendChild(e);
+  });
+  $('#scale').oninput = ev => { scale = +ev.target.value; $('#sv').textContent = scale; placed.forEach(g => g.scale.setScalar(1 / scale)); };
+  $('#hudtxt').textContent = near.length + ' lodge overlay(s)';
+  window.__ar = { placed, n: near.length };
+}
+document.querySelectorAll('#vps button').forEach(b => b.onclick = () => { try { X3D.getBrowser('#xc').currentScene.getNamedNode(b.dataset.vp).set_bind = true; } catch (e) { log('Viewpoint: ' + e.message); } });
+$('#goAR').onclick = () => start('ar'); $('#goPrev').onclick = () => start('preview'); $('#goFix').onclick = () => start('fixture');
+if (q.get('auto')) start(q.get('auto'));
+</script></body></html>

@@ -1,0 +1,117 @@
+{
+ "blender": "5.3.0",
+ "profile": "g4",
+ "device": "GPU",
+ "device_backend": "OPTIX",
+ "samples": 512,
+ "light_div": 2,
+ "record_boxes_carved": [
+  "OsirisShaftA",
+  "OsirisChamberA",
+  "OsirisShaftB",
+  "OsirisChamberB",
+  "OsirisShaftC",
+  "OsirisLevel3Water",
+  "SphinxPawVoid",
+  "HallOfRecords",
+  "UndergroundLink"
+ ],
+ "build_seconds": 40.3,
+ "objects": [
+  {
+   "object": "Bedrock block",
+   "image": "tex/bedrock-block.jpg",
+   "px": [
+    2048,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 28901.9,
+   "texels_per_m": 12.0,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0712,
+   "linear_p99": 0.3316,
+   "seconds": 9.3,
+   "jpeg_bytes": 397414,
+   "zone": "rock"
+  },
+  {
+   "object": "Carved hollows",
+   "image": "tex/carved-hollows.jpg",
+   "px": [
+    1024,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 292.7,
+   "texels_per_m": 59.9,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.1024,
+   "linear_p99": 0.4809,
+   "seconds": 6.9,
+   "jpeg_bytes": 116092,
+   "zone": "hollows"
+  },
+  {
+   "object": "Plateau",
+   "image": "tex/plateau.jpg",
+   "px": [
+    1024,
+    1024
+   ],
+   "light_px": 512,
+   "mode": "split",
+   "area_m2": 170924.2,
+   "texels_per_m": 2.5,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.4707,
+   "linear_p99": 0.5463,
+   "seconds": 3.3,
+   "jpeg_bytes": 45195,
+   "zone": "ground"
+  },
+  {
+   "object": "Sphinx",
+   "image": "tex/sphinx.jpg",
+   "px": [
+    2048,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 2066.6,
+   "texels_per_m": 45.1,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.077,
+   "linear_p99": 0.6494,
+   "seconds": 10.8,
+   "jpeg_bytes": 355370,
+   "zone": "sphinx"
+  },
+  {
+   "object": "Khufu",
+   "image": "tex/khufu.jpg",
+   "px": [
+    2048,
+    2048
+   ],
+   "light_px": 1024,
+   "mode": "split",
+   "area_m2": 119060.0,
+   "texels_per_m": 5.9,
+   "samples": 512,
+   "exposure": 0.0,
+   "linear_p50": 0.0,
+   "linear_p99": 0.5932,
+   "seconds": 8.2,
+   "jpeg_bytes": 296367,
+   "zone": "khufu"
+  }
+ ]
+}

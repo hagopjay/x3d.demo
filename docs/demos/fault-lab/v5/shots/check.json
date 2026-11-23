@@ -1,0 +1,40 @@
+{
+ "rig": "Playwright headless Chromium 145.0.7632.6, SwiftShader (no GPU)",
+ "pages": {
+  "before": {
+   "url": "demos/fault-lab/v3/?case=scaled-shaft",
+   "x_ite": "16.7.1",
+   "load_s": 11.372,
+   "frame_time_running": {
+    "frames": 360,
+    "median_ms": 8.3,
+    "p95_ms": 9.3
+   },
+   "console": [
+    "warning: [.WebGL-0x1140019c000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x1140019c000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x1140019c000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x1140019c000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+   ],
+   "console_errors": 0,
+   "shots": [
+    "before-scaled-shaft-default.png"
+   ]
+  },
+  "after": {
+   "url": "demos/fault-lab/v4/?case=scaled-shaft",
+   "x_ite": "16.7.1",
+   "load_s": 9.53,
+   "frame_time_running": {
+    "frames": 360,
+    "median_ms": 8.3,
+    "p95_ms": 9.3
+   },
+   "console": [],
+   "console_errors": 0,
+   "shots": [
+    "after-scaled-shaft-default.png"
+   ]
+  }
+ }
+}
