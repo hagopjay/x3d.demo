@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v86 (2026-11-23)
+- New card for Demo 77, Atlas Bridge: an X3D blockout goes to World Labs Atlas and comes back as X3D (`docs/demos/atlas-bridge/v1/`, merged as PR 172), in numeric order after Demo 76. Image `assets/atlas-bridge.jpg` is the lane's own four-layer view of one camera (it contains World Labs Atlas outputs: the card carries the credit "Atlas outputs: World Labs, non-commercial" and links the demo's DATA-ATTRIBUTION.md with the takedown notice). I loaded the page headless without errors, summed the call ledger (8,986 of the 10,000 cap) and read the splat and depth receipts. The API calls, camera equality, ray cast witness and schema validation are the lane's own; I did not re-run them. The lane says the owner approved public display with this credit; I did not see that approval. Page versions v1 to v85 are untouched.
+
 ## v85 (2026-11-23)
 - New card for Demo 76, Marble to Atlas to X3D (`docs/demos/marble-atlas/v1/`, merged as PR 170), in numeric order after Demo 75. Image `assets/marble-atlas.jpg` is a 2 x 2 of the lane's own shots (fused points, splats, mesh with colliders, a label-render frame). I loaded the page headless without errors and read the receipts: per-camera render match (mean 99.942 %, minimum 99.686 %), 573,375 points at 0.0005 mm maximum, 19 collider boxes, 5 of 5 worlds valid. The trap errors and the validator result are the lane's own (Likely). I did not rerun the bridge, make an Atlas call, or test a real GPU. No World Labs output appears on the card. Page versions v1 to v84 are untouched.
 

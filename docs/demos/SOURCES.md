@@ -499,3 +499,10 @@ Demos 67 to 72 card images are each a 2 x 2 grid of 480 x 270 tiles, cropped to 
 | file | sha256 | bytes |
 |---|---|---|
 | assets/marble-atlas.jpg | 599b4a2f616b4f5508f6dafa83ef85b8d83f54e4e892b6ef7383d5fecf071fef | 48684 |
+
+## atlas-bridge (v86)
+`atlas-bridge` is `docs/demos/atlas-bridge/v1/shots/return-layers.jpg` (2412 x 1356; four layers of one camera on the live page: Atlas splats, Atlas mesh, the X3D blockout, the blockout with Atlas collider boxes; Chromium 157, SwiftShader, three r187, Spark 2.4.0) cropped to 16:9 and resized to 960 x 540 JPEG. The upper two quadrants are World Labs Atlas outputs, owned by World Labs and used for personal, non-commercial display with credit under World Labs' Terms of Service (see the demo's DATA-ATTRIBUTION.md and its takedown notice). No Google imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/atlas-bridge.jpg | 23a02cfc76c7d1b7ee928fdaabbd998072ae83ef62cd9a2eaea2c9edae8882cf | 147691 |
