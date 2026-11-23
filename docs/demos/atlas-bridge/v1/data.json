@@ -1,0 +1,435 @@
+{
+ "stats": [
+  {
+   "value": "8,986",
+   "label": "Atlas credits spent of the 10,000 cap (16 paid calls)",
+   "source": "ledger.json"
+  },
+  {
+   "value": "1.03%",
+   "label": "median gap, Atlas depth vs the X3D depth it was given (reading room)",
+   "source": "receipts/reading-room-chisel-reading-room.json"
+  },
+  {
+   "value": "0 m \u00b7 0\u00b0",
+   "label": "camera error, X3D Viewpoint to Atlas and back, 36 cameras",
+   "source": "receipts/*-atlas-return.json"
+  },
+  {
+   "value": "2 M",
+   "label": "refined splats, a median 38 mm from the X3D surfaces",
+   "source": "receipts/reading-room-atlas-return.json"
+  },
+  {
+   "value": "16.5 to 26.3 dB",
+   "label": "live page splat render vs the Atlas picture, same X3D Viewpoint (lowest: the 24-view hero, whose two rings differ in exposure)",
+   "source": "receipts/page.json"
+  },
+  {
+   "value": "3 / 3",
+   "label": "return worlds valid X3D (4.1 worlds, 4.0 mesh files)",
+   "source": "x3d_mcp 4d433af"
+  }
+ ],
+ "out": [
+  {
+   "world": "Reading room",
+   "run": "Chisel, ring 1",
+   "views": 12,
+   "camera": "0 m, 0 deg",
+   "scale": 1.0079346893437007,
+   "median_pct": 1.0260506743061755,
+   "within5": 90.57209611240074,
+   "pixels": 8508413,
+   "receipt": "receipts/reading-room-chisel-reading-room.json"
+  },
+  {
+   "world": "Reading room",
+   "run": "Chisel, ring 2 (ring 1 as context)",
+   "views": 12,
+   "camera": "0 m, 0 deg",
+   "scale": 1.0063258502532684,
+   "median_pct": 1.977737658123337,
+   "within5": 85.7381654556614,
+   "pixels": 8337013,
+   "receipt": "receipts/reading-room-chisel-reading-room-ring2.json"
+  },
+  {
+   "world": "King's Chamber",
+   "run": "Chisel",
+   "views": 12,
+   "camera": "0 m, 0 deg",
+   "scale": 1.0053758233718655,
+   "median_pct": 0.8785070211857605,
+   "within5": 95.52357257638991,
+   "pixels": 8835394,
+   "receipt": "receipts/kings-chamber-chisel-kings-chamber.json"
+  }
+ ],
+ "edit": {
+  "operation": "42335f81783f4436a8f847d150177672",
+  "match": "Globe",
+  "nodes": [
+   "GlobePlinth",
+   "GlobePedestal",
+   "GlobeRing",
+   "GlobeSphere"
+  ],
+  "grow_px": 10,
+  "method": "mean absolute RGB difference per pixel (0..255) between the Atlas view sent and the edited view returned (both JPEG), split by the X3D-derived mask",
+  "views": [
+   {
+    "view": 6,
+    "repaint_pct": 16.770833333333332,
+    "kept_within8_pct": 96.85270650813517,
+    "kept_mean": 2.556314751077736,
+    "repaint_mean": 47.46002631124913
+   },
+   {
+    "view": 7,
+    "repaint_pct": 16.991102430555554,
+    "kept_within8_pct": 95.05169867060562,
+    "kept_mean": 2.9729785667289748,
+    "repaint_mean": 46.5161632288141
+   },
+   {
+    "view": 16,
+    "repaint_pct": 19.629340277777775,
+    "kept_within8_pct": 98.19561601520732,
+    "kept_mean": 2.1657675123577462,
+    "repaint_mean": 53.011659959610256
+   },
+   {
+    "view": 17,
+    "repaint_pct": 19.629340277777775,
+    "kept_within8_pct": 96.18682968451294,
+    "kept_mean": 2.4885099059983227,
+    "repaint_mean": 45.312176624065806
+   }
+  ]
+ },
+ "back": [
+  {
+   "world": "Reading room",
+   "what": "Refined splats, 2,000,000 (SPZ v2, 31.6 MB)",
+   "number": "centres a median 37.8 mm from an X3D surface; 62.1% within 50 mm, 92.2% within 100 mm",
+   "grade": "C",
+   "witness": "exact point-to-solid distance, 120,000 splats \u00b7 receipts/reading-room-atlas-return.json"
+  },
+  {
+   "world": "Reading room",
+   "what": "24 cameras as Viewpoint",
+   "number": "0 m and 0 deg from the Viewpoints sent",
+   "grade": "C",
+   "witness": "returned camera vs sent Viewpoint, worst of all"
+  },
+  {
+   "world": "King's Chamber",
+   "what": "Draft splats, 524,288 (SPZ v2, 8.2 MB)",
+   "number": "centres a median 50.5 mm from an X3D surface; 49.6% within 50 mm, 73.4% within 100 mm",
+   "grade": "C",
+   "witness": "exact point-to-solid distance, 120,000 splats \u00b7 receipts/kings-chamber-atlas-return.json"
+  },
+  {
+   "world": "King's Chamber",
+   "what": "12 cameras as Viewpoint",
+   "number": "0 m and 0 deg from the Viewpoints sent",
+   "grade": "C",
+   "witness": "returned camera vs sent Viewpoint, worst of all"
+  },
+  {
+   "world": "Reading room",
+   "what": "Mesh as IndexedTriangleSet, 172,127 vertices, 300,000 triangles",
+   "number": "vertices a median 29.2 mm from an X3D surface; 93.6% within 100 mm",
+   "grade": "C",
+   "witness": "exact point-to-solid distance, 80,000 vertices \u00b7 receipts/reading-room-mesh-reading-room-refined.json"
+  },
+  {
+   "world": "Reading room",
+   "what": "400 collider boxes as a Collision proxy (all upright: yes)",
+   "number": "99.5% of the X3D surface points the cameras see lie within 50 mm of a box; 3.26% of open-air points are wrongly inside one",
+   "grade": "C",
+   "witness": "150,000 surface points, 45,188 open-air points \u00b7 receipts/reading-room-mesh-reading-room-refined.json"
+  },
+  {
+   "world": "King's Chamber",
+   "what": "Mesh as IndexedTriangleSet, 104,588 vertices, 200,000 triangles",
+   "number": "vertices a median 43.4 mm from an X3D surface; 80.3% within 100 mm",
+   "grade": "C",
+   "witness": "exact point-to-solid distance, 80,000 vertices \u00b7 receipts/kings-chamber-mesh-kings-chamber-draft.json"
+  },
+  {
+   "world": "King's Chamber",
+   "what": "120 collider boxes as a Collision proxy (all upright: yes)",
+   "number": "89.6% of the X3D surface points the cameras see lie within 50 mm of a box; 0.93% of open-air points are wrongly inside one",
+   "grade": "C",
+   "witness": "150,000 surface points, 47,793 open-air points \u00b7 receipts/kings-chamber-mesh-kings-chamber-draft.json"
+  },
+  {
+   "world": "Reading room",
+   "what": "The return file",
+   "number": "reading-room-atlas.x3d, 3.5 MB, valid X3D 4.1",
+   "grade": "C",
+   "witness": "hagopjay/x3d_mcp 4d433af validate_xml, bundled X3D 4.1 XSD"
+  },
+  {
+   "world": "King's Chamber",
+   "what": "The return file",
+   "number": "kings-chamber-atlas.x3d, 3.4 MB, valid X3D 4.1",
+   "grade": "C",
+   "witness": "hagopjay/x3d_mcp 4d433af validate_xml, bundled X3D 4.1 XSD"
+  },
+  {
+   "world": "Reading room",
+   "what": "A/B, same 12 pictures: splats built on X3D depth vs on the depth Atlas returned",
+   "number": "X3D depth: median 39.8 mm, 86.1% within 100 mm. Atlas depth: median 44.4 mm, 82.2% within 100 mm",
+   "grade": "C",
+   "witness": "receipts/reading-room-depth-ab.json"
+  }
+ ],
+ "worlds": [
+  {
+   "label": "Reading room",
+   "file": "worlds/reading-room-atlas.x3d",
+   "size": "35 MB",
+   "default": false,
+   "start": 0
+  },
+  {
+   "label": "King's Chamber",
+   "file": "worlds/kings-chamber-atlas.x3d",
+   "size": "12 MB",
+   "default": true,
+   "start": 0
+  }
+ ],
+ "findings": [
+  {
+   "title": "Atlas keeps the camera it is given",
+   "grade": "C",
+   "text": "36 X3D Viewpoints went out as Atlas pinhole cameras and came back unchanged: 0 m, 0 degrees. X3D and Atlas share the camera frame (+X right, +Y up, looking down -Z), so the splats sit in the X3D world with no wrapper transform.",
+   "source": "receipts/*-atlas-return.json"
+  },
+  {
+   "title": "Depth in, depth out: about 1 to 2%",
+   "grade": "C",
+   "text": "The depth Atlas returns for its own pictures is within a median 0.88 to 1.98% of the X3D depth it was conditioned on, after one global scale of 1.005 to 1.008. The gap grows on thin things (lamp stems, ladder rails) and at silhouettes.",
+   "source": "receipts/*-chisel-*.json"
+  },
+  {
+   "title": "Spark draws dark under the bridge until told otherwise",
+   "grade": "C",
+   "text": "The bridge writes display values with colour management off, as X3D browsers do. Spark reads that as a linear target and applies pow(2.2) to every splat colour. Pinning its encodeLinear flag took the match with the Atlas picture from 13.3 dB to 22.2 dB at the same Viewpoint (draft splat).",
+   "source": "x3d.loom x3d.threejs/bridge/src/nodes/GaussianSplats.js"
+  },
+  {
+   "title": "Real collider files are not what the schema note suggests",
+   "grade": "C",
+   "text": "The collider GLB carries one 4x4 matrix per node (generator trimesh), a 2 m cube, and boxes whose own vertical axis is not always y. Read as translation, rotation, scale they come out wrong. The importer composes the matrices and relabels axes; every box is then upright with a pure yaw, corner sets identical to 0.0 mm.",
+   "source": "kit/atlas2x3d.py collider_boxes"
+  },
+  {
+   "title": "A Collision proxy is never drawn",
+   "grade": "C",
+   "text": "X3D does not render the proxy of a Collision node. The boxes live in a hidden Group and the Collision node takes that Group by USE, so one set of boxes is both the thing you can switch on and the thing you bump into.",
+   "source": "kit/atlas2x3d.py collision_xml"
+  },
+  {
+   "title": "X3D depth beats returned depth, by a little",
+   "grade": "C",
+   "text": "Same 12 pictures, two draft splats. Built on the X3D depth: centres a median 39.8 mm from the X3D surfaces. Built on the depth Atlas returned: 44.4 mm. The picture, not the depth, is where most of the departure comes from: Atlas paints books, mouldings and capitals that the boxes do not have.",
+   "source": "receipts/reading-room-depth-ab.json"
+  },
+  {
+   "title": "Two calls, two exposures",
+   "grade": "C",
+   "text": "The second ring of 12 views was generated with the first ring as context and shows the same room, but brighter: mean pixel level 147 against 118. The refined splat blends all 24, so its render at a first-ring camera scores 16.5 dB against that camera's picture, where the 12-view draft scores 22.2 dB and the single-call King's Chamber 26.3 dB. The geometry is not the cause: the splat-to-solid distance improved (39.8 to 37.8 mm).",
+   "source": "receipts/page.json, receipts/reading-room-atlas-return.json"
+  },
+  {
+   "title": "The prompt can lose to the model's habit",
+   "grade": "C",
+   "text": "The first King's Chamber prompt said red Aswan granite and came back yellow limestone. Putting the stone first and naming what it is not fixed it on the same depth. An ink-wash prompt on depth-conditioned frames came back as a pale photograph: with depth on every frame the model stays photographic.",
+   "source": "prompts/, shots/kings-chamber-granite.jpg, shots/reading-room-style-sweep.jpg"
+  },
+  {
+   "title": "An edit can be addressed by node name",
+   "grade": "C",
+   "text": "The mask for 'repaint the globe' is the set of pixels the X3D ray cast assigns to the four Globe nodes, grown by 10 px. Outside the mask 95.1 to 98.2% of pixels stay within 8/255 of the source (JPEG in, JPEG out).",
+   "source": "receipts/reading-room-edit-globe.json"
+  },
+  {
+   "title": "API traps met on the way",
+   "grade": "C",
+   "text": "A draft splat call with enhancePrompt false and no prompt is refused (HTTP 422, free). Output URLs in an operation point at a host this network blocks; the read prefix route works. Asset upload answers 201, not 200. Signed URLs are credentials and are stripped from every stored file.",
+   "source": "kit/atlas_client.py, ledger.json (3 refused calls)"
+  },
+  {
+   "title": "Not tested",
+   "grade": "S",
+   "text": "No real GPU: every frame here is software GL, so frame rate on real hardware is unmeasured. Harmonics above degree 0 are not drawn (Atlas sent degree 0 only). The bridge's Inline does not read glTF, which is why the mesh is converted to X3D triangles. One photograph to eight views (torii) disagrees between views and was not carried to a mesh.",
+   "source": "README.md"
+  }
+ ],
+ "ledger": {
+  "entries": [
+   {
+    "label": "chisel:kings-chamber",
+    "task": "atlasChisel",
+    "price": 160,
+    "state": "succeeded",
+    "seconds": 26.4,
+    "operation": "f462e61f6a3841c6837a422c55fc4303"
+   },
+   {
+    "label": "chisel:reading-room",
+    "task": "atlasChisel",
+    "price": 160,
+    "state": "succeeded",
+    "seconds": 24.1,
+    "operation": "06574a4d586b4bf8aa2c8bb307d72f5b"
+   },
+   {
+    "label": "generate:torii",
+    "task": "atlasGenerate",
+    "price": 120,
+    "state": "succeeded",
+    "seconds": 16.4,
+    "operation": "3d01f968553a4f02b9337b0f74d63394"
+   },
+   {
+    "label": "splats-draft:reading-room:x3d",
+    "task": "posedImages2Splats",
+    "price": 500,
+    "state": "refused",
+    "seconds": null,
+    "operation": null
+   },
+   {
+    "label": "splats-draft:kings-chamber:x3d",
+    "task": "posedImages2Splats",
+    "price": 500,
+    "state": "refused",
+    "seconds": null,
+    "operation": null
+   },
+   {
+    "label": "splats-draft:torii:atlas",
+    "task": "posedImages2Splats",
+    "price": 500,
+    "state": "refused",
+    "seconds": null,
+    "operation": null
+   },
+   {
+    "label": "splats-draft:reading-room:x3d",
+    "task": "posedImages2Splats",
+    "price": 500,
+    "state": "succeeded",
+    "seconds": 30.0,
+    "operation": "63e11ab6670640438fe26bd8ea4660d7"
+   },
+   {
+    "label": "splats-draft:kings-chamber:x3d",
+    "task": "posedImages2Splats",
+    "price": 500,
+    "state": "succeeded",
+    "seconds": 30.0,
+    "operation": "a7eed5313f5b45bba3e03761986a47d6"
+   },
+   {
+    "label": "splats-draft:torii:atlas",
+    "task": "posedImages2Splats",
+    "price": 500,
+    "state": "succeeded",
+    "seconds": 28.8,
+    "operation": "5eca4103e22e45dc81be0e6b80286bf6"
+   },
+   {
+    "label": "chisel:reading-room:ring2",
+    "task": "atlasChisel",
+    "price": 160,
+    "state": "succeeded",
+    "seconds": 28.9,
+    "operation": "2dc02a9aae454edd9937c238ff5423e2"
+   },
+   {
+    "label": "splats-refined:reading-room:x3d",
+    "task": "posedImages2Splats",
+    "price": 5000,
+    "state": "succeeded",
+    "seconds": 1026.3,
+    "operation": "15fbb02d1e444cef8983fa27c7a31ba0"
+   },
+   {
+    "label": "style:reading-room:sumi",
+    "task": "atlasChisel",
+    "price": 64,
+    "state": "succeeded",
+    "seconds": 14.2,
+    "operation": "bfea6fbede8e411bb8fb7d6540e6a83a"
+   },
+   {
+    "label": "style:reading-room:ruin",
+    "task": "atlasChisel",
+    "price": 64,
+    "state": "succeeded",
+    "seconds": 8.6,
+    "operation": "a83e5480e6224d52af12fc952d8fb25f"
+   },
+   {
+    "label": "style:reading-room:clay",
+    "task": "atlasChisel",
+    "price": 64,
+    "state": "succeeded",
+    "seconds": 8.1,
+    "operation": "8d18c72b833b434db770e4ecd971b60c"
+   },
+   {
+    "label": "edit:reading-room:globe",
+    "task": "atlasChisel",
+    "price": 64,
+    "state": "succeeded",
+    "seconds": 9.7,
+    "operation": "42335f81783f4436a8f847d150177672"
+   },
+   {
+    "label": "chisel:kings-chamber:granite",
+    "task": "atlasChisel",
+    "price": 128,
+    "state": "succeeded",
+    "seconds": 14.7,
+    "operation": "28a2bcf7c3e844eeb5cf8b445bc9417d"
+   },
+   {
+    "label": "mesh:kings-chamber:draft",
+    "task": "splats2Mesh",
+    "price": 500,
+    "state": "succeeded",
+    "seconds": 65.1,
+    "operation": "d2ba7a3aa5c24b689251ff506d02eb2f"
+   },
+   {
+    "label": "mesh:reading-room:refined",
+    "task": "splats2Mesh",
+    "price": 500,
+    "state": "succeeded",
+    "seconds": 57.6,
+    "operation": "c696e672e18741a18eeb87a0a6f70b83"
+   },
+   {
+    "label": "splats-draft:reading-room:atlas",
+    "task": "posedImages2Splats",
+    "price": 500,
+    "state": "succeeded",
+    "seconds": 101.3,
+    "operation": "ad0a719c6d894fc99175c77dfd16f057"
+   }
+  ],
+  "note": "8,986 credits spent of a 10,000 cap, 2 of them on the first call before this demo. Prices are the account rate card read on 23 Nov 2026 (1,000 credits = 1 USD). Every call was written to the ledger with its price before it left; calls the API refused cost nothing and are listed at 0. Prompt enhancement was off on every call."
+ },
+ "rig": "Rig for every render on this page and in the receipts: Playwright Chromium 157.0.8103.78 headless, ANGLE SwiftShader (software GL, no real GPU), three r187, Spark 2.4.0, the X3D to three.js bridge from x3d.loom. Validator: hagopjay/x3d_mcp 4d433af, bundled X3D 4.1 XSD.",
+ "captions": {
+  "layers": "Reading room, the same X3D file and Viewpoint drawn by the bridge on the live page: Atlas splats (2,000,000), Atlas mesh as X3D triangles, the X3D blockout it all started from, and the blockout with the Atlas collider boxes."
+ }
+}

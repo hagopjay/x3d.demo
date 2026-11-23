@@ -1,0 +1,80 @@
+{
+ "slug": "reading-room",
+ "world": "reading-room-atlas.x3d",
+ "operations": {
+  "chisel-reading-room": "06574a4d586b4bf8aa2c8bb307d72f5b",
+  "chisel-reading-room-ring2": "2dc02a9aae454edd9937c238ff5423e2"
+ },
+ "cameras": {
+  "count": 24,
+  "compared_with_sent": true,
+  "worst_position_diff_m": 0.0,
+  "worst_rotation_diff_deg": 0.0,
+  "worst_fieldOfView_diff_rad": 0.0
+ },
+ "splats": {
+  "file": "reading-room-refined.spz",
+  "sha256": "26abba314a6ac1f5ed2ecb9ccc2ff9b264463f9e078b99e7729489e3df439b09",
+  "bytes": 31608776,
+  "spz_version": 2,
+  "count": 2000000,
+  "sh_degree": 0,
+  "bbox_min": [
+   -8.035,
+   -0.667,
+   -5.225
+  ],
+  "bbox_max": [
+   7.982,
+   7.087,
+   5.282
+  ],
+  "vs_x3d_surfaces": {
+   "sample": 120000,
+   "median_mm": 37.841796875,
+   "p90_mm": 92.32925486755535,
+   "within_20mm_pct": 28.3625,
+   "within_50mm_pct": 62.064166666666665,
+   "within_100mm_pct": 92.19666666666667,
+   "opacity_weighted_median_mm": 37.79921875000003,
+   "method": "exact distance from splat centre to the nearest X3D Box, Cylinder or Sphere surface"
+  },
+  "preview": {
+   "count": 30000,
+   "pick": "uniform random, seed 7",
+   "scale_factor": 3.0
+  }
+ },
+ "mesh": {
+  "file": "mesh.glb",
+  "sha256": "555ef6f02651cfe64ebc26fadf9f6933b8a12855fc5a0320dbfa0db31407580b",
+  "bytes": 15889180,
+  "meshes": 1,
+  "nodes": 2,
+  "vertices": 172127,
+  "images": 2,
+  "as_x3d": {
+   "x3d": "reading-room-atlas-mesh.x3d",
+   "texture": "reading-room-atlas-mesh.png",
+   "vertices": 172127,
+   "faces": 300000,
+   "bytes": 12641642,
+   "valid": true
+  }
+ },
+ "colliders": {
+  "file": "colliders.glb",
+  "sha256": "0ea91b8ad94e5f48c305747dc18c75f2e6aefcf95349373d645319a0b72018b9",
+  "boxes": 400,
+  "all_upright": true
+ },
+ "x3d": {
+  "file": "reading-room-atlas.x3d",
+  "bytes": 3483075,
+  "sha256": "71ffa8013f087ab731c4f7a47ebeb41d78561de8ba3b024fdb974ad93d19ae52",
+  "viewpoints": 24,
+  "valid": true,
+  "validator": "hagopjay/x3d_mcp 4d433af validate_xml, bundled X3D 4.1 XSD",
+  "errors": []
+ }
+}

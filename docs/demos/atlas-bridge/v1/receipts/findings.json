@@ -1,0 +1,68 @@
+[
+ {
+  "title": "Atlas keeps the camera it is given",
+  "grade": "C",
+  "text": "36 X3D Viewpoints went out as Atlas pinhole cameras and came back unchanged: 0 m, 0 degrees. X3D and Atlas share the camera frame (+X right, +Y up, looking down -Z), so the splats sit in the X3D world with no wrapper transform.",
+  "source": "receipts/*-atlas-return.json"
+ },
+ {
+  "title": "Depth in, depth out: about 1 to 2%",
+  "grade": "C",
+  "text": "The depth Atlas returns for its own pictures is within a median 0.88 to 1.98% of the X3D depth it was conditioned on, after one global scale of 1.005 to 1.008. The gap grows on thin things (lamp stems, ladder rails) and at silhouettes.",
+  "source": "receipts/*-chisel-*.json"
+ },
+ {
+  "title": "Spark draws dark under the bridge until told otherwise",
+  "grade": "C",
+  "text": "The bridge writes display values with colour management off, as X3D browsers do. Spark reads that as a linear target and applies pow(2.2) to every splat colour. Pinning its encodeLinear flag took the match with the Atlas picture from 13.3 dB to 22.2 dB at the same Viewpoint (draft splat).",
+  "source": "x3d.loom x3d.threejs/bridge/src/nodes/GaussianSplats.js"
+ },
+ {
+  "title": "Real collider files are not what the schema note suggests",
+  "grade": "C",
+  "text": "The collider GLB carries one 4x4 matrix per node (generator trimesh), a 2 m cube, and boxes whose own vertical axis is not always y. Read as translation, rotation, scale they come out wrong. The importer composes the matrices and relabels axes; every box is then upright with a pure yaw, corner sets identical to 0.0 mm.",
+  "source": "kit/atlas2x3d.py collider_boxes"
+ },
+ {
+  "title": "A Collision proxy is never drawn",
+  "grade": "C",
+  "text": "X3D does not render the proxy of a Collision node. The boxes live in a hidden Group and the Collision node takes that Group by USE, so one set of boxes is both the thing you can switch on and the thing you bump into.",
+  "source": "kit/atlas2x3d.py collision_xml"
+ },
+ {
+  "title": "X3D depth beats returned depth, by a little",
+  "grade": "C",
+  "text": "Same 12 pictures, two draft splats. Built on the X3D depth: centres a median 39.8 mm from the X3D surfaces. Built on the depth Atlas returned: 44.4 mm. The picture, not the depth, is where most of the departure comes from: Atlas paints books, mouldings and capitals that the boxes do not have.",
+  "source": "receipts/reading-room-depth-ab.json"
+ },
+ {
+  "title": "Two calls, two exposures",
+  "grade": "C",
+  "text": "The second ring of 12 views was generated with the first ring as context and shows the same room, but brighter: mean pixel level 147 against 118. The refined splat blends all 24, so its render at a first-ring camera scores 16.5 dB against that camera's picture, where the 12-view draft scores 22.2 dB and the single-call King's Chamber 26.3 dB. The geometry is not the cause: the splat-to-solid distance improved (39.8 to 37.8 mm).",
+  "source": "receipts/page.json, receipts/reading-room-atlas-return.json"
+ },
+ {
+  "title": "The prompt can lose to the model's habit",
+  "grade": "C",
+  "text": "The first King's Chamber prompt said red Aswan granite and came back yellow limestone. Putting the stone first and naming what it is not fixed it on the same depth. An ink-wash prompt on depth-conditioned frames came back as a pale photograph: with depth on every frame the model stays photographic.",
+  "source": "prompts/, shots/kings-chamber-granite.jpg, shots/reading-room-style-sweep.jpg"
+ },
+ {
+  "title": "An edit can be addressed by node name",
+  "grade": "C",
+  "text": "The mask for 'repaint the globe' is the set of pixels the X3D ray cast assigns to the four Globe nodes, grown by 10 px. Outside the mask 95.1 to 98.2% of pixels stay within 8/255 of the source (JPEG in, JPEG out).",
+  "source": "receipts/reading-room-edit-globe.json"
+ },
+ {
+  "title": "API traps met on the way",
+  "grade": "C",
+  "text": "A draft splat call with enhancePrompt false and no prompt is refused (HTTP 422, free). Output URLs in an operation point at a host this network blocks; the read prefix route works. Asset upload answers 201, not 200. Signed URLs are credentials and are stripped from every stored file.",
+  "source": "kit/atlas_client.py, ledger.json (3 refused calls)"
+ },
+ {
+  "title": "Not tested",
+  "grade": "S",
+  "text": "No real GPU: every frame here is software GL, so frame rate on real hardware is unmeasured. Harmonics above degree 0 are not drawn (Atlas sent degree 0 only). The bridge's Inline does not read glTF, which is why the mesh is converted to X3D triangles. One photograph to eight views (torii) disagrees between views and was not carried to a mesh.",
+  "source": "README.md"
+ }
+]

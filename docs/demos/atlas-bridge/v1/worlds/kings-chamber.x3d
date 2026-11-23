@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.1//EN" "https://www.web3d.org/specifications/x3d-4.1.dtd">
+<X3D version="4.1" profile="Immersive" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.1.xsd">
+  <head>
+    <meta name="title" content="King's Chamber, Great Pyramid of Giza: X3D blockout for Atlas"/>
+    <meta name="generator" content="x3d.demo atlas-bridge kit/scenes.py"/>
+    <meta name="source" content="W. M. Flinders Petrie, The Pyramids and Temples of Gizeh (1883), sections 51-60; inches x 0.0254"/>
+    <meta name="license" content="CC0 1.0 (this blockout: geometry and cameras)"/>
+    <meta name="atlas.prompt" content="The King's Chamber inside the Great Pyramid of Giza: a bare rectangular room built of huge polished red Aswan granite blocks in five wall courses with hairline joints, nine massive granite beams across the flat ceiling, a worn granite floor, one lidless dark granite sarcophagus standing near the west wall, a low square doorway in the corner of the north wall, lit by a few warm work lamps on the floor, dust in the air, documentary photograph, sharp focus"/>
+    <meta name="atlas.grid" content="1280 720; fx = fy = 762.7223 px; cx 640, cy 360; pose camera-to-world, rub"/>
+  </head>
+  <Scene>
+    <WorldInfo DEF="Provenance" title="King's Chamber, Great Pyramid of Giza: X3D blockout for Atlas">
+      <MetadataSet name="blockout" containerField="metadata">
+        <MetadataString name="room length east-west" value='"10.4709 m (412.24 in)" "L"' containerField="value"/>
+        <MetadataString name="room width north-south" value='"5.2354 m (206.12 in)" "L"' containerField="value"/>
+        <MetadataString name="room height" value='"5.8443 m (230.09 in)" "L"' containerField="value"/>
+        <MetadataString name="coffer outside" value='"2.2763 x 0.9779 x 1.0493 m (89.62 x 38.50 x 41.31 in)" "L"' containerField="value"/>
+        <MetadataString name="coffer inside" value='"1.9827 x 0.6810 x 0.8743 m (78.06 x 26.81 x 34.42 in)" "L"' containerField="value"/>
+        <MetadataString name="doorway" value='"1.0465 m wide, 1.110 m high (41.2 x 43.7 in), east end of the north wall" "L"' containerField="value"/>
+        <MetadataString name="wall courses" value='"five, drawn equal at one fifth of the height; the real lowest course runs below the floor" "S"' containerField="value"/>
+        <MetadataString name="coffer placement, shaft mouths" value='"approximate" "S"' containerField="value"/>
+        <MetadataString name="joints" value='"15 mm grooves 20 mm deep between courses and beams so the depth map carries the block lines" "S"' containerField="value"/>
+      </MetadataSet>
+    </WorldInfo>
+    <NavigationInfo type='"EXAMINE" "FLY" "ANY"' headlight="true" speed="2"/>
+    <Background skyColor="0.02 0.02 0.03"/>
+    <Viewpoint DEF="Cam00" description="south-east corner to the coffer" position="4.3354 1.6000 1.8177" orientation="-0.047775 0.998281 0.033940 1.236991" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam01" description="north-east corner by the door, to the south-west" position="3.6354 1.6000 -1.7177" orientation="-0.018220 0.999434 0.028266 1.996975" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam02" description="south-west corner to the doorway" position="-4.4354 1.6000 1.9177" orientation="-0.063533 -0.997171 -0.040177 1.130338" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam03" description="north-west corner to the south-east" position="-4.4354 1.6000 -1.9177" orientation="-0.015219 -0.999602 -0.023767 2.002882" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam04" description="coffer from the east" position="-0.9965 1.7500 0.3000" orientation="-0.216138 0.956043 0.198159 1.528914" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam05" description="coffer from the south-east" position="-1.7965 1.7000 2.0677" orientation="-0.503526 0.850600 0.151462 0.679821" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam06" description="coffer from the north-east" position="-1.7965 1.7000 -2.0677" orientation="-0.046418 0.985078 0.165728 2.603182" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam07" description="into the coffer from above the north end" position="-2.7465 2.3500 -1.8677" orientation="-0.044512 0.933260 0.356433 2.909544" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam08" description="centre, along the room to the east wall" position="-0.6000 1.6000 0.1500" orientation="-0.009371 -0.999920 -0.008529 1.476902" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam09" description="centre, up to the nine beams" position="0.9000 1.4500 0.3500" orientation="0.549696 0.748436 -0.371050 1.467721" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam10" description="east end, low, the floor and the doorway" position="2.6354 1.8500 1.6177" orientation="-0.566988 -0.813855 -0.127137 0.537694" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Viewpoint DEF="Cam11" description="mid south wall to the north wall and shaft" position="1.3000 1.6000 2.0177" orientation="-0.259445 -0.965281 -0.030362 0.241293" fieldOfView="0.881985" centerOfRotation="0.000 1.400 0.000"/>
+    <Group DEF="G_Floor">
+      <Transform DEF="Floor" translation="0.0000 -0.2500 -1.3500"><Shape><Appearance><Material diffuseColor="0.420 0.300 0.260"/></Appearance><Box size="11.4709 0.5000 8.9354"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_WallNorth">
+      <Transform DEF="N1_0" translation="-1.3025 0.5807 -2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="7.8659 1.1614 0.5000"/></Shape></Transform>
+      <Transform DEF="N1_1" translation="2.7354 0.4650 -2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.2100 0.9300 0.5000"/></Shape></Transform>
+      <Transform DEF="N1_2" translation="2.7354 1.1157 -2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.2100 0.0914 0.5000"/></Shape></Transform>
+      <Transform DEF="N1_3" translation="3.5147 0.5807 -2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.3485 1.1614 0.5000"/></Shape></Transform>
+      <Transform DEF="N1_4" translation="4.7122 1.1357 -2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.0465 0.0514 0.5000"/></Shape></Transform>
+      <Transform DEF="N2_0" translation="0.0000 1.7533 -2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="10.4709 1.1539 0.5000"/></Shape></Transform>
+      <Transform DEF="N3_0" translation="0.0000 2.9221 -2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="10.4709 1.1539 0.5000"/></Shape></Transform>
+      <Transform DEF="N4_0" translation="0.0000 4.0910 -2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="10.4709 1.1539 0.5000"/></Shape></Transform>
+      <Transform DEF="N5_0" translation="0.0000 5.2636 -2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="10.4709 1.1614 0.5000"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_WallSouth">
+      <Transform DEF="S1_0" translation="-1.3025 0.5807 2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="7.8659 1.1614 0.5000"/></Shape></Transform>
+      <Transform DEF="S1_1" translation="2.7354 0.4650 2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.2100 0.9300 0.5000"/></Shape></Transform>
+      <Transform DEF="S1_2" translation="2.7354 1.1157 2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.2100 0.0914 0.5000"/></Shape></Transform>
+      <Transform DEF="S1_3" translation="4.0379 0.5807 2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="2.3950 1.1614 0.5000"/></Shape></Transform>
+      <Transform DEF="S2_0" translation="0.0000 1.7533 2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="10.4709 1.1539 0.5000"/></Shape></Transform>
+      <Transform DEF="S3_0" translation="0.0000 2.9221 2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="10.4709 1.1539 0.5000"/></Shape></Transform>
+      <Transform DEF="S4_0" translation="0.0000 4.0910 2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="10.4709 1.1539 0.5000"/></Shape></Transform>
+      <Transform DEF="S5_0" translation="0.0000 5.2636 2.8677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="10.4709 1.1614 0.5000"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_WallEast">
+      <Transform DEF="E1_0" translation="5.4854 0.5807 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.5000 1.1614 6.2354"/></Shape></Transform>
+      <Transform DEF="E2_0" translation="5.4854 1.7533 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.5000 1.1539 6.2354"/></Shape></Transform>
+      <Transform DEF="E3_0" translation="5.4854 2.9221 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.5000 1.1539 6.2354"/></Shape></Transform>
+      <Transform DEF="E4_0" translation="5.4854 4.0910 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.5000 1.1539 6.2354"/></Shape></Transform>
+      <Transform DEF="E5_0" translation="5.4854 5.2636 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.5000 1.1614 6.2354"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_WallWest">
+      <Transform DEF="W1_0" translation="-5.4854 0.5807 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.5000 1.1614 6.2354"/></Shape></Transform>
+      <Transform DEF="W2_0" translation="-5.4854 1.7533 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.5000 1.1539 6.2354"/></Shape></Transform>
+      <Transform DEF="W3_0" translation="-5.4854 2.9221 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.5000 1.1539 6.2354"/></Shape></Transform>
+      <Transform DEF="W4_0" translation="-5.4854 4.0910 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.5000 1.1539 6.2354"/></Shape></Transform>
+      <Transform DEF="W5_0" translation="-5.4854 5.2636 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.5000 1.1614 6.2354"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Joints">
+      <Transform DEF="JN1" translation="0.0000 1.1689 -2.8777"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="10.4709 0.0150 0.4800"/></Shape></Transform>
+      <Transform DEF="JS1" translation="0.0000 1.1689 2.8777"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="10.4709 0.0150 0.4800"/></Shape></Transform>
+      <Transform DEF="JE1" translation="5.4954 1.1689 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.4800 0.0150 6.2354"/></Shape></Transform>
+      <Transform DEF="JW1" translation="-5.4954 1.1689 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.4800 0.0150 6.2354"/></Shape></Transform>
+      <Transform DEF="JN2" translation="0.0000 2.3377 -2.8777"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="10.4709 0.0150 0.4800"/></Shape></Transform>
+      <Transform DEF="JS2" translation="0.0000 2.3377 2.8777"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="10.4709 0.0150 0.4800"/></Shape></Transform>
+      <Transform DEF="JE2" translation="5.4954 2.3377 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.4800 0.0150 6.2354"/></Shape></Transform>
+      <Transform DEF="JW2" translation="-5.4954 2.3377 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.4800 0.0150 6.2354"/></Shape></Transform>
+      <Transform DEF="JN3" translation="0.0000 3.5066 -2.8777"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="10.4709 0.0150 0.4800"/></Shape></Transform>
+      <Transform DEF="JS3" translation="0.0000 3.5066 2.8777"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="10.4709 0.0150 0.4800"/></Shape></Transform>
+      <Transform DEF="JE3" translation="5.4954 3.5066 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.4800 0.0150 6.2354"/></Shape></Transform>
+      <Transform DEF="JW3" translation="-5.4954 3.5066 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.4800 0.0150 6.2354"/></Shape></Transform>
+      <Transform DEF="JN4" translation="0.0000 4.6754 -2.8777"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="10.4709 0.0150 0.4800"/></Shape></Transform>
+      <Transform DEF="JS4" translation="0.0000 4.6754 2.8777"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="10.4709 0.0150 0.4800"/></Shape></Transform>
+      <Transform DEF="JE4" translation="5.4954 4.6754 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.4800 0.0150 6.2354"/></Shape></Transform>
+      <Transform DEF="JW4" translation="-5.4954 4.6754 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.4800 0.0150 6.2354"/></Shape></Transform>
+      <Transform DEF="JB1" translation="-4.0720 6.1543 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.0150 0.5800 6.2354"/></Shape></Transform>
+      <Transform DEF="JB2" translation="-2.9086 6.1543 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.0150 0.5800 6.2354"/></Shape></Transform>
+      <Transform DEF="JB3" translation="-1.7451 6.1543 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.0150 0.5800 6.2354"/></Shape></Transform>
+      <Transform DEF="JB4" translation="-0.5817 6.1543 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.0150 0.5800 6.2354"/></Shape></Transform>
+      <Transform DEF="JB5" translation="0.5817 6.1543 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.0150 0.5800 6.2354"/></Shape></Transform>
+      <Transform DEF="JB6" translation="1.7451 6.1543 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.0150 0.5800 6.2354"/></Shape></Transform>
+      <Transform DEF="JB7" translation="2.9086 6.1543 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.0150 0.5800 6.2354"/></Shape></Transform>
+      <Transform DEF="JB8" translation="4.0720 6.1543 0.0000"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.0150 0.5800 6.2354"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Ceiling">
+      <Transform DEF="Beam1" translation="-4.6575 6.1443 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.1559 0.6000 6.2354"/></Shape></Transform>
+      <Transform DEF="Beam2" translation="-3.4903 6.1443 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.1484 0.6000 6.2354"/></Shape></Transform>
+      <Transform DEF="Beam3" translation="-2.3269 6.1443 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.1484 0.6000 6.2354"/></Shape></Transform>
+      <Transform DEF="Beam4" translation="-1.1634 6.1443 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.1484 0.6000 6.2354"/></Shape></Transform>
+      <Transform DEF="Beam5" translation="0.0000 6.1443 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.1484 0.6000 6.2354"/></Shape></Transform>
+      <Transform DEF="Beam6" translation="1.1634 6.1443 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.1484 0.6000 6.2354"/></Shape></Transform>
+      <Transform DEF="Beam7" translation="2.3269 6.1443 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.1484 0.6000 6.2354"/></Shape></Transform>
+      <Transform DEF="Beam8" translation="3.4903 6.1443 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.1484 0.6000 6.2354"/></Shape></Transform>
+      <Transform DEF="Beam9" translation="4.6575 6.1443 0.0000"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.1559 0.6000 6.2354"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Passage">
+      <Transform DEF="PassageWest" translation="3.9890 0.5550 -4.4677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.4000 1.1100 2.7000"/></Shape></Transform>
+      <Transform DEF="PassageEast" translation="5.4354 0.5550 -4.4677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="0.4000 1.1100 2.7000"/></Shape></Transform>
+      <Transform DEF="PassageRoof" translation="4.7122 1.3100 -4.4677"><Shape><Appearance><Material diffuseColor="0.550 0.360 0.300"/></Appearance><Box size="1.8465 0.4000 2.7000"/></Shape></Transform>
+      <Transform DEF="PassageEnd" translation="4.7122 0.7550 -5.9677"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="1.8465 1.5100 0.3000"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Shafts">
+      <Transform DEF="ShaftNorth" translation="2.7354 1.0000 -3.2177"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.6000 0.5400 0.2000"/></Shape></Transform>
+      <Transform DEF="ShaftSouth" translation="2.7354 1.0000 3.2177"><Shape><Appearance><Material diffuseColor="0.200 0.140 0.120"/></Appearance><Box size="0.6000 0.5400 0.2000"/></Shape></Transform>
+    </Group>
+    <Group DEF="G_Coffer">
+      <Transform DEF="CofferBase" translation="-3.2965 0.0875 0.1000"><Shape><Appearance><Material diffuseColor="0.360 0.240 0.210"/></Appearance><Box size="0.9779 0.1750 2.2763"/></Shape></Transform>
+      <Transform DEF="CofferWest" translation="-3.7112 0.6121 0.1000"><Shape><Appearance><Material diffuseColor="0.360 0.240 0.210"/></Appearance><Box size="0.1485 0.8743 2.2763"/></Shape></Transform>
+      <Transform DEF="CofferEast" translation="-2.8818 0.6121 0.1000"><Shape><Appearance><Material diffuseColor="0.360 0.240 0.210"/></Appearance><Box size="0.1485 0.8743 2.2763"/></Shape></Transform>
+      <Transform DEF="CofferNorth" translation="-3.2965 0.6121 -0.9648"><Shape><Appearance><Material diffuseColor="0.360 0.240 0.210"/></Appearance><Box size="0.6810 0.8743 0.1468"/></Shape></Transform>
+      <Transform DEF="CofferSouth" translation="-3.2965 0.6121 1.1648"><Shape><Appearance><Material diffuseColor="0.360 0.240 0.210"/></Appearance><Box size="0.6810 0.8743 0.1468"/></Shape></Transform>
+    </Group>
+  </Scene>
+</X3D>
