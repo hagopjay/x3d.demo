@@ -1,0 +1,8 @@
+{
+  "what": "Integration re-run of the delivered v4 folder, before merge (23 Nov 2026)",
+  "node": "v22.23.5",
+  "node_test": {"command": "node --test test/sim.test.mjs", "tests": 10, "pass": 10, "fail": 0, "duration_ms": 70845},
+  "page": {"url": "demos/blender-giza-fall/v4/index.html#seed=11", "browser": "Chromium 157.0.8103.78, SwiftShader (no GPU), Playwright, 1280x720", "wait_s": 25, "console_errors": 0, "screenshot": "shots/07-integration-smoke.png"},
+  "grade": "Likely (one machine, run by the integrating thread)",
+  "not_rerun": "the 3,600-step Node vs Chrome hash comparison (original receipt: receipts/duel-seed11.physics.json)"
+}
