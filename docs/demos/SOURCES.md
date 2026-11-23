@@ -492,3 +492,10 @@ Demos 67 to 72 card images are each a 2 x 2 grid of 480 x 270 tiles, cropped to 
 | file | sha256 | bytes |
 |---|---|---|
 | assets/style-loom.jpg | 19976d85fc35d235ea5af108d5b319858fba83cdb1ae9c95eeb0be7a6d2b6a03 | 99007 |
+
+## marble-atlas (v85)
+`marble-atlas` is a 2 x 2 of 480 x 270 tiles cut from `docs/demos/marble-atlas/v1/shots/` (`fused-points-overview.webp`, `splats-overview.webp`, `mesh-colliders-overview.webp`, `xite-labels-cam3.webp`; X_ITE 16.7.1, Chromium 157, SwiftShader) saved as 960 x 540 JPEG. The scene is a CC0 procedural room made for the demo; no World Labs output and no third-party imagery (see the demo's DATA-ATTRIBUTION.md).
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/marble-atlas.jpg | 599b4a2f616b4f5508f6dafa83ef85b8d83f54e4e892b6ef7383d5fecf071fef | 48684 |
