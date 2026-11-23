@@ -1,0 +1,842 @@
+#usda 1.0
+(
+    defaultPrim = "root"
+    doc = "Blender v5.3.0"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "root" (
+    prepend apiSchemas = ["ColorSpaceAPI"]
+    customData = {
+        dictionary Blender = {
+            bool generated = 1
+        }
+    }
+)
+{
+    uniform token colorSpace:name = "lin_rec709_scene"
+
+    def Xform "GV_Giza"
+    {
+        custom string userProperties:blender:object_name = "GV_Giza"
+        custom string userProperties:x3d_def = "GV_Giza"
+        custom bool userProperties:x3d_imported = 1
+        custom string userProperties:x3d_viewpoint_description = "Giza plateau, from 300 m"
+        float3 xformOp:rotateXYZ = (-119.97919, -121.1342, 0.0000020406287)
+        float3 xformOp:scale = (1, 0.99999994, 1)
+        double3 xformOp:translate = (4733168, -3168526.5, 2859084)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Camera "GV_Giza"
+        {
+            float2 clippingRange = (3, 12751268)
+            float focalLength = 0.2444392
+            float horizontalAperture = 0.36
+            token projection = "perspective"
+            custom string userProperties:blender:data_name = "GV_Giza"
+            float verticalAperture = 0.2025
+        }
+    }
+
+    def Xform "GV_Angkor"
+    {
+        custom string userProperties:blender:object_name = "GV_Angkor"
+        custom string userProperties:x3d_def = "GV_Angkor"
+        custom bool userProperties:x3d_imported = 1
+        custom string userProperties:x3d_viewpoint_description = "Angkor Wat, the comparison site"
+        float3 xformOp:rotateXYZ = (-103.4125, 166.133, -8.287034e-7)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (-1487285.75, -1469903.625, 6024721)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Camera "GV_Angkor"
+        {
+            float2 clippingRange = (3, 12755432)
+            float focalLength = 0.2444392
+            float horizontalAperture = 0.36
+            token projection = "perspective"
+            custom string userProperties:blender:data_name = "GV_Angkor"
+            float verticalAperture = 0.2025
+        }
+    }
+
+    def Xform "V_Osiris"
+    {
+        custom string userProperties:blender:object_name = "V_Osiris"
+        custom string userProperties:x3d_def = "V_Osiris"
+        custom bool userProperties:x3d_imported = 1
+        custom string userProperties:x3d_viewpoint_description = "Osiris Shaft, side section"
+        float3 xformOp:rotateXYZ = (90, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (3, -42, -14)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Camera "V_Osiris"
+        {
+            float2 clippingRange = (0.1, 1000)
+            float focalLength = 0.2444392
+            float horizontalAperture = 0.36
+            token projection = "perspective"
+            custom string userProperties:blender:data_name = "V_Osiris"
+            float verticalAperture = 0.2025
+        }
+    }
+
+    def Xform "DirectLight"
+    {
+        custom string userProperties:blender:object_name = "DirectLight"
+        custom bool userProperties:x3d_imported = 1
+        float3 xformOp:rotateXYZ = (-24.902544, -21.801405, 180)
+        float3 xformOp:scale = (1.0000002, 1.0000001, 1.0000001)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def DistantLight "DirectLight" (
+            prepend apiSchemas = ["ColorSpaceAPI"]
+        )
+        {
+            uniform token colorSpace:name = "lin_rec709_scene"
+            float inputs:angle = 0.263
+            float inputs:intensity = 0.2
+            bool inputs:normalize = 1
+            custom string userProperties:blender:data_name = "DirectLight"
+            custom double userProperties:x3d_energy_per_intensity = 1
+            custom bool userProperties:x3d_global = 0
+            custom double userProperties:x3d_intensity = 0.8
+            custom bool userProperties:x3d_scope_lit = 1
+        }
+    }
+
+    def Xform "Root"
+    {
+        custom string userProperties:blender:object_name = "Root"
+        custom string userProperties:x3d_def = "Root"
+        custom bool userProperties:x3d_imported = 1
+        float3 xformOp:rotateXYZ = (90, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "OsirisShaftA_Shape"
+        {
+            custom string userProperties:blender:object_name = "OsirisShaftA_Shape"
+            custom string userProperties:x3d_def = "OsirisShaftA_Shape"
+            custom string userProperties:x3d_def_path = "Root/OsirisShaftA"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, -4.809999942779541, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "OsirisShaftA_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-0.6, -4.81, -0.6), (0.6, 4.81, 0.6)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/OsirisShaftA_Shape>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(0.6, 4.81, 0.6), (-0.6, 4.81, 0.6), (-0.6, 4.81, -0.6), (0.6, 4.81, -0.6), (0.6, -4.81, 0.6), (-0.6, -4.81, 0.6), (-0.6, -4.81, -0.6), (0.6, -4.81, -0.6)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "OsirisShaftA_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [1.2, 9.62, 1.2], "solid": true}, "signature": [8, 6, -34.86]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+
+        def Xform "UndergroundLink_Shape"
+        {
+            custom string userProperties:blender:object_name = "UndergroundLink_Shape"
+            custom string userProperties:x3d_def = "UndergroundLink_Shape"
+            custom string userProperties:x3d_def_path = "Root/UndergroundLink"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (40, -20, 7)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "UndergroundLink_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-40, -0.3, -0.3), (40, 0.3, 0.3)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/UndergroundLink_Shape>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(40, 0.3, 0.3), (-40, 0.3, 0.3), (-40, 0.3, -0.3), (40, 0.3, -0.3), (40, -0.3, 0.3), (-40, -0.3, 0.3), (-40, -0.3, -0.3), (40, -0.3, -0.3)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "UndergroundLink_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [80.0, 0.6, 0.6], "solid": true}, "signature": [8, 6, -282.7]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+
+        def Xform "KhufuBigVoid_Shape"
+        {
+            custom string userProperties:blender:object_name = "KhufuBigVoid_Shape"
+            custom string userProperties:x3d_def = "KhufuBigVoid_Shape"
+            custom string userProperties:x3d_def_path = "Root/KhufuBigVoid"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (-120, 62, -60)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "KhufuBigVoid_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-15, -4, -1), (15, 4, 1)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/KhufuBigVoid_Shape>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(15, 4, 1), (-15, 4, 1), (-15, 4, -1), (15, 4, -1), (15, -4, 1), (-15, -4, 1), (-15, -4, -1), (15, -4, -1)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "KhufuBigVoid_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [30.0, 8.0, 2.0], "solid": true}, "signature": [8, 6, -132.0]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+
+        def Xform "OsirisShaftC_Shape"
+        {
+            custom string userProperties:blender:object_name = "OsirisShaftC_Shape"
+            custom string userProperties:x3d_def = "OsirisShaftC_Shape"
+            custom string userProperties:x3d_def_path = "Root/OsirisShaftC"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (6, -26.6200008392334, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "OsirisShaftC_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-0.6, -3.75, -0.6), (0.6, 3.75, 0.6)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/OsirisShaftA_Shape>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(0.6, 3.75, 0.6), (-0.6, 3.75, 0.6), (-0.6, 3.75, -0.6), (0.6, 3.75, -0.6), (0.6, -3.75, 0.6), (-0.6, -3.75, 0.6), (-0.6, -3.75, -0.6), (0.6, -3.75, -0.6)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "OsirisShaftC_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [1.2, 7.5, 1.2], "solid": true}, "signature": [8, 6, -28.5]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+
+        def Xform "KhufuKingsChamber_Shape"
+        {
+            custom string userProperties:blender:object_name = "KhufuKingsChamber_Shape"
+            custom string userProperties:x3d_def = "KhufuKingsChamber_Shape"
+            custom string userProperties:x3d_def_path = "Root/KhufuKingsChamber"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (-120, 46, -60)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "KhufuKingsChamber_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-5.235, -2.985, -2.62), (5.235, 2.985, 2.62)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/KhufuKingsChamber_Shape>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(5.235, 2.985, 2.62), (-5.235, 2.985, 2.62), (-5.235, 2.985, -2.62), (5.235, 2.985, -2.62), (5.235, -2.985, 2.62), (-5.235, -2.985, 2.62), (-5.235, -2.985, -2.62), (5.235, -2.985, -2.62)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "KhufuKingsChamber_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [10.47, 5.97, 5.24], "solid": true}, "signature": [8, 6, -62.415]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+
+        def Xform "OsirisChamberB_Shape"
+        {
+            custom string userProperties:blender:object_name = "OsirisChamberB_Shape"
+            custom string userProperties:x3d_def = "OsirisChamberB_Shape"
+            custom string userProperties:x3d_def_path = "Root/OsirisChamberB"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (4, -21.56999969482422, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "OsirisChamberB_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-3.4, -1.3, -1.825), (3.4, 1.3, 1.825)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/OsirisChamberB_Shape>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(3.4, 1.3, 1.825), (-3.4, 1.3, 1.825), (-3.4, 1.3, -1.825), (3.4, 1.3, -1.825), (3.4, -1.3, 1.825), (-3.4, -1.3, 1.825), (-3.4, -1.3, -1.825), (3.4, -1.3, -1.825)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "OsirisChamberB_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [6.8, 2.6, 3.65], "solid": true}, "signature": [8, 6, -37.075]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+
+        def Xform "HallOfRecords_Shape"
+        {
+            custom string userProperties:blender:object_name = "HallOfRecords_Shape"
+            custom string userProperties:x3d_def = "HallOfRecords_Shape"
+            custom string userProperties:x3d_def_path = "Root/HallOfRecords"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (85, -15, 14)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "HallOfRecords_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-7, -3, -5), (7, 3, 5)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/HallOfRecords_Shape>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(7, 3, 5), (-7, 3, 5), (-7, 3, -5), (7, 3, -5), (7, -3, 5), (-7, -3, 5), (-7, -3, -5), (7, -3, -5)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "HallOfRecords_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [14.0, 6.0, 10.0], "solid": true}, "signature": [8, 6, -82.0]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+
+        def Xform "OsirisChamberA_Shape"
+        {
+            custom string userProperties:blender:object_name = "OsirisChamberA_Shape"
+            custom string userProperties:x3d_def = "OsirisChamberA_Shape"
+            custom string userProperties:x3d_def_path = "Root/OsirisChamberA"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, -8.270000457763672, 2.5999999046325684)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "OsirisChamberA_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-2.5, -1.35, -2), (2.5, 1.35, 2)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/Mat_ChamberA>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(2.5, 1.35, 2), (-2.5, 1.35, 2), (-2.5, 1.35, -2), (2.5, 1.35, -2), (2.5, -1.35, 2), (-2.5, -1.35, 2), (-2.5, -1.35, -2), (2.5, -1.35, -2)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "OsirisChamberA_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [5.0, 2.7, 4.0], "solid": true}, "signature": [8, 6, -31.6]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+
+        def Xform "OsirisShaftB_Shape"
+        {
+            custom string userProperties:blender:object_name = "OsirisShaftB_Shape"
+            custom string userProperties:x3d_def = "OsirisShaftB_Shape"
+            custom string userProperties:x3d_def_path = "Root/OsirisShaftB"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (4, -16.239999771118164, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "OsirisShaftB_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-0.6, -6.625, -0.6), (0.6, 6.625, 0.6)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/OsirisShaftA_Shape>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(0.6, 6.625, 0.6), (-0.6, 6.625, 0.6), (-0.6, 6.625, -0.6), (0.6, 6.625, -0.6), (0.6, -6.625, 0.6), (-0.6, -6.625, 0.6), (-0.6, -6.625, -0.6), (0.6, -6.625, -0.6)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "OsirisShaftB_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [1.2, 13.25, 1.2], "solid": true}, "signature": [8, 6, -45.75]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+
+        def Xform "SphinxPawVoid_Shape"
+        {
+            custom string userProperties:blender:object_name = "SphinxPawVoid_Shape"
+            custom string userProperties:x3d_def = "SphinxPawVoid_Shape"
+            custom string userProperties:x3d_def_path = "Root/SphinxPawVoid"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (75, -5, 6)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "SphinxPawVoid_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-6, -1.5, -4.5), (6, 1.5, 4.5)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/SphinxPawVoid_Shape>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(6, 1.5, 4.5), (-6, 1.5, 4.5), (-6, 1.5, -4.5), (6, 1.5, -4.5), (6, -1.5, 4.5), (-6, -1.5, 4.5), (-6, -1.5, -4.5), (6, -1.5, -4.5)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "SphinxPawVoid_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [12.0, 3.0, 9.0], "solid": true}, "signature": [8, 6, -64.5]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+
+        def Xform "OsirisLevel3Water_Shape"
+        {
+            custom string userProperties:blender:object_name = "OsirisLevel3Water_Shape"
+            custom string userProperties:x3d_def = "OsirisLevel3Water_Shape"
+            custom string userProperties:x3d_def_path = "Root/OsirisLevel3Water"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (6, -29.3700008392334, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "OsirisLevel3Water_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-4.5, -1.4, -3.2), (4.5, 1.4, 3.2)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/OsirisLevel3Water_Shape>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(4.5, 1.4, 3.2), (-4.5, 1.4, 3.2), (-4.5, 1.4, -3.2), (4.5, 1.4, -3.2), (4.5, -1.4, 3.2), (-4.5, -1.4, 3.2), (-4.5, -1.4, -3.2), (4.5, -1.4, -3.2)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "OsirisLevel3Water_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [9.0, 2.8, 6.4], "solid": true}, "signature": [8, 6, -49.5]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+
+        def Xform "SphinxBody_Shape"
+        {
+            custom string userProperties:blender:object_name = "SphinxBody_Shape"
+            custom string userProperties:x3d_def = "SphinxBody_Shape"
+            custom string userProperties:x3d_def_path = "Root/SphinxBody"
+            custom bool userProperties:x3d_imported = 1
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (40, 10, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+            def Mesh "SphinxBody_Shape_Box" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 0
+                float3[] extent = [(-28.5, -10, -9.5), (28.5, 10, 9.5)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 3, 2, 1, 4, 7, 3, 0, 7, 6, 2, 3, 6, 5, 1, 2, 5, 4, 0, 1, 7, 4, 5, 6]
+                rel material:binding = </root/_materials/SphinxBody_Shape>
+                normal3f[] normals = [(0, 1, 0), (1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1), (0, -1, 0)] (
+                    interpolation = "uniform"
+                )
+                point3f[] points = [(28.5, 10, 9.5), (-28.5, 10, 9.5), (-28.5, 10, -9.5), (28.5, 10, -9.5), (28.5, -10, 9.5), (-28.5, -10, 9.5), (-28.5, -10, -9.5), (28.5, -10, -9.5)]
+                texCoord2f[] primvars:st = [(1, 0), (0, 1), (1, 1), (0, 0), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (1, 0), (0, 0), (0, 1), (1, 0), (0, 0), (0, 0), (1, 0)] (
+                    interpolation = "faceVarying"
+                )
+                int[] primvars:st:indices = [0, 8, 7, 3, 10, 19, 8, 1, 18, 16, 6, 9, 17, 13, 4, 7, 14, 11, 2, 5, 19, 12, 15, 17]
+                uniform token subdivisionScheme = "none"
+                custom string userProperties:blender:data_name = "SphinxBody_Shape_Box"
+                custom string userProperties:x3d_primitive = '{"node": "Box", "fields": {"size": [57.0, 20.0, 19.0], "solid": true}, "signature": [8, 6, -288.0]}'
+                custom bool userProperties:x3d_solid = 1
+            }
+        }
+    }
+
+    def Scope "_materials"
+    {
+        def Material "OsirisShaftA_Shape" (
+            prepend apiSchemas = ["ColorSpaceAPI"]
+        )
+        {
+            uniform token colorSpace:name = "lin_rec709_scene"
+            token outputs:surface.connect = </root/_materials/OsirisShaftA_Shape/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "OsirisShaftA_Shape"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.8
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "UndergroundLink_Shape" (
+            prepend apiSchemas = ["ColorSpaceAPI"]
+        )
+        {
+            uniform token colorSpace:name = "lin_rec709_scene"
+            token outputs:surface.connect = </root/_materials/UndergroundLink_Shape/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "UndergroundLink_Shape"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (1, 0.31, 0.85)
+                color3f inputs:emissiveColor = (0.45, 0.1395, 0.3825)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.8
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "KhufuBigVoid_Shape" (
+            prepend apiSchemas = ["ColorSpaceAPI"]
+        )
+        {
+            uniform token colorSpace:name = "lin_rec709_scene"
+            token outputs:surface.connect = </root/_materials/KhufuBigVoid_Shape/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "KhufuBigVoid_Shape"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.8
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "KhufuKingsChamber_Shape" (
+            prepend apiSchemas = ["ColorSpaceAPI"]
+        )
+        {
+            uniform token colorSpace:name = "lin_rec709_scene"
+            token outputs:surface.connect = </root/_materials/KhufuKingsChamber_Shape/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "KhufuKingsChamber_Shape"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.8
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "OsirisChamberB_Shape" (
+            prepend apiSchemas = ["ColorSpaceAPI"]
+        )
+        {
+            uniform token colorSpace:name = "lin_rec709_scene"
+            token outputs:surface.connect = </root/_materials/OsirisChamberB_Shape/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "OsirisChamberB_Shape"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.8
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "HallOfRecords_Shape" (
+            prepend apiSchemas = ["ColorSpaceAPI"]
+        )
+        {
+            uniform token colorSpace:name = "lin_rec709_scene"
+            token outputs:surface.connect = </root/_materials/HallOfRecords_Shape/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "HallOfRecords_Shape"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (1, 0.31, 0.85)
+                color3f inputs:emissiveColor = (0.45, 0.1395, 0.3825)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.8
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "Mat_ChamberA" (
+            prepend apiSchemas = ["ColorSpaceAPI"]
+        )
+        {
+            uniform token colorSpace:name = "lin_rec709_scene"
+            token outputs:surface.connect = </root/_materials/Mat_ChamberA/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "Mat_ChamberA"
+            custom string userProperties:x3d_def = "Mat_ChamberA"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.24, 0.9, 0.82)
+                color3f inputs:emissiveColor = (0.108, 0.405, 0.369)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.8
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "SphinxPawVoid_Shape" (
+            prepend apiSchemas = ["ColorSpaceAPI"]
+        )
+        {
+            uniform token colorSpace:name = "lin_rec709_scene"
+            token outputs:surface.connect = </root/_materials/SphinxPawVoid_Shape/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "SphinxPawVoid_Shape"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (1, 0.7, 0.28)
+                color3f inputs:emissiveColor = (0.45, 0.315, 0.126)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.8
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "OsirisLevel3Water_Shape" (
+            prepend apiSchemas = ["ColorSpaceAPI"]
+        )
+        {
+            uniform token colorSpace:name = "lin_rec709_scene"
+            token outputs:surface.connect = </root/_materials/OsirisLevel3Water_Shape/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "OsirisLevel3Water_Shape"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.2, 0.45, 0.85)
+                color3f inputs:emissiveColor = (0.02, 0.045, 0.085)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.8
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "SphinxBody_Shape" (
+            prepend apiSchemas = ["ColorSpaceAPI"]
+        )
+        {
+            uniform token colorSpace:name = "lin_rec709_scene"
+            token outputs:surface.connect = </root/_materials/SphinxBody_Shape/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "SphinxBody_Shape"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.72, 0.62, 0.45)
+                color3f inputs:emissiveColor = (0.072, 0.062, 0.045)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.8
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "V_Sphinx"
+    {
+        custom string userProperties:blender:object_name = "V_Sphinx"
+        custom string userProperties:x3d_def = "V_Sphinx"
+        custom bool userProperties:x3d_imported = 1
+        custom string userProperties:x3d_viewpoint_description = "Sphinx enclosure and the paw anomaly"
+        float3 xformOp:rotateXYZ = (86.4566, -0.34888932, 16.829422)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (60, -70, 5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Camera "V_Sphinx"
+        {
+            float2 clippingRange = (0.1, 1000)
+            float focalLength = 0.2444392
+            float horizontalAperture = 0.36
+            token projection = "perspective"
+            custom string userProperties:blender:data_name = "V_Sphinx"
+            float verticalAperture = 0.2025
+        }
+    }
+
+    def Xform "V_Overview"
+    {
+        custom string userProperties:blender:object_name = "V_Overview"
+        custom string userProperties:x3d_def = "V_Overview"
+        custom bool userProperties:x3d_imported = 1
+        custom string userProperties:x3d_viewpoint_description = "Overview: Khufu, the Osiris Shaft, the Sphinx"
+        float3 xformOp:rotateXYZ = (71.89453, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (-15, -260, 90)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Camera "V_Overview"
+        {
+            float2 clippingRange = (0.1, 1000)
+            float focalLength = 0.2444392
+            float horizontalAperture = 0.36
+            token projection = "perspective"
+            custom string userProperties:blender:data_name = "V_Overview"
+            float verticalAperture = 0.2025
+        }
+    }
+}
+
