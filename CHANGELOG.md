@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v83 (2026-11-23)
+- The Demo 64 card now opens Giza Fall v4, the live Summit Duel (`docs/demos/blender-giza-fall/v4/`, merged as PR 166), and keeps v3, v2 and v1 linked. Image `assets/blender-giza-fall-v4.jpg` is a 2 x 2 of the lane's own shots (`03-fall`, `01-duel`, `02-omens`, `05-review`). I re-ran the lane's test file (10 of 10 pass, Node 22.23.4) and loaded the page headless without errors. The cross-host hashes, the 16-seed balance run and the Loom checks are the lane's own (Likely); I did not test a real GPU, other browsers, sound or play. The earlier card text for v1 to v3 is replaced on the front page only (its v1 to v3 claims are carried into the new card); page versions v1 to v82 are untouched.
+
 ## v82 (2026-11-23)
 - New card for Demo 74, Binary X-Ray: the debugger lies (`docs/demos/xray-binary/v1/`, merged as PR 164), in numeric order after Demo 73. Image `assets/xray-binary.jpg` is a 2 x 2 of the lane's own shots (hero, under gdb, helix, lattice). I loaded the page headless without errors, and read the ledger (6 confirmed), the call graph (16 nodes, 14 edges), the validate receipt and the frame receipt (8 of 8 non-black). I did not rerun gdb, strace, the keygen or the Blender bake. Page versions v1 to v81 are untouched.
 
