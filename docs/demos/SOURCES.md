@@ -485,3 +485,10 @@ Demos 67 to 72 card images are each a 2 x 2 grid of 480 x 270 tiles, cropped to 
 | file | sha256 | bytes |
 |---|---|---|
 | assets/blender-giza-fall-v4.jpg | 6738c10ef10543971ff7243643923203cd530f40a89529881ff81fe503e49c1a | 126936 |
+
+## style-loom (v84)
+`style-loom` is `docs/demos/style-loom/v1/shots/contact-sheet.webp` (2560 x 1200, X_ITE 16.7.1, Chromium 157, SwiftShader) resized to 960 x 450 and letterboxed on the page background to 960 x 540 JPEG. No Google or other third-party imagery; the scene is a count of X3D nodes (see the demo's DATA-ATTRIBUTION.md).
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/style-loom.jpg | 19976d85fc35d235ea5af108d5b319858fba83cdb1ae9c95eeb0be7a6d2b6a03 | 99007 |
