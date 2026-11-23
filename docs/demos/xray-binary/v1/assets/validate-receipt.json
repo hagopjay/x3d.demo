@@ -1,0 +1,32 @@
+{
+ "validator": "x3d_mcp fork 4d433af (validation.validate.validate_xml + validation.semantic)",
+ "ok": true,
+ "summary": "x3d_mcp 4d433af: xray-binary.x3d: XSD 4.0 valid, semantic 38 info; city-baked.x3d: XSD 4.0 valid, semantic 5 info",
+ "files": {
+  "xray-binary.x3d": {
+   "sha256": "ffde158e225953955aaf152c1b495d56246ea61376422b5d7d6513487a50f577",
+   "xsd_valid": true,
+   "schema": "4.0",
+   "xsd_errors": [],
+   "semantic_by_level": {
+    "info": 38
+   },
+   "semantic_by_check": {
+    "info:unused-def": 38
+   }
+  },
+  "city-baked.x3d": {
+   "sha256": "ec3a3cfd6e3b5dcf9ad87a715f20ed68ba62fc03b4f7f1ba12d98a2873a71f78",
+   "xsd_valid": true,
+   "schema": "4.0",
+   "xsd_errors": [],
+   "semantic_by_level": {
+    "info": 5
+   },
+   "semantic_by_check": {
+    "info:unused-def": 4,
+    "info:no-viewpoint": 1
+   }
+  }
+ }
+}

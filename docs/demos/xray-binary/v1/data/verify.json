@@ -1,0 +1,67 @@
+{
+ "ok": true,
+ "results": [
+  {
+   "argv": [
+    "objdump",
+    "-d",
+    "--no-show-raw-insn",
+    "./crackme1"
+   ],
+   "expected_sha256": "42aa6147ca705657228234870fb70dadcfe76bc259cf683b65e47bb5967bc924",
+   "name": "disasm",
+   "recomputed_sha256": "42aa6147ca705657228234870fb70dadcfe76bc259cf683b65e47bb5967bc924",
+   "status": "match",
+   "tool": "objdump"
+  },
+  {
+   "argv": [
+    "nm",
+    "-D",
+    "./crackme1"
+   ],
+   "expected_sha256": "293133ed1ae7e997583cec49227650cc10c239de05e50b8a989d84981d8cc061",
+   "name": "imports",
+   "recomputed_sha256": "293133ed1ae7e997583cec49227650cc10c239de05e50b8a989d84981d8cc061",
+   "status": "match",
+   "tool": "nm"
+  },
+  {
+   "argv": [
+    "objdump",
+    "-h",
+    "./crackme1"
+   ],
+   "expected_sha256": "2fd15f19ae4fa2592ba3a785e144af3aec75dfc5a39ee200e2c7d811ead2d846",
+   "name": "sections",
+   "recomputed_sha256": "2fd15f19ae4fa2592ba3a785e144af3aec75dfc5a39ee200e2c7d811ead2d846",
+   "status": "match",
+   "tool": "objdump"
+  },
+  {
+   "argv": [
+    "strings",
+    "-n",
+    "5",
+    "./crackme1"
+   ],
+   "expected_sha256": "da2134c46a2c02be4a711d7c21ebcd263610de83b5c0fe01e0af4ee62d6e7fcf",
+   "name": "strings",
+   "recomputed_sha256": "da2134c46a2c02be4a711d7c21ebcd263610de83b5c0fe01e0af4ee62d6e7fcf",
+   "status": "match",
+   "tool": "strings"
+  },
+  {
+   "argv": [
+    "file",
+    "-b",
+    "./crackme1"
+   ],
+   "expected_sha256": "e26374d1a35db9dfce1a1f996d41c9e52431a76f4cc0292881ca82b04bf4e7e5",
+   "name": "triage",
+   "recomputed_sha256": "e26374d1a35db9dfce1a1f996d41c9e52431a76f4cc0292881ca82b04bf4e7e5",
+   "status": "match",
+   "tool": "file"
+  }
+ ]
+}

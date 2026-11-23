@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Binary X-Ray: the debugger lies</title>
+<meta name="description" content="Demo 74. A small crackme reverse-engineered by x3d.xray's binary lens: six hypotheses re-run as experiments, a Blender-baked binary city, its call constellation, the int3 scan ring and an investigation helix in X3D 4.0.">
+<style>
+:root{--bg:#05080d;--p1:#0a1119;--p2:#0f1824;--line:#1c2938;--ink:#e6eef6;--dim:#8a9bb0;--ok:#5cf2a0;--bad:#ff5a52;--warn:#ff9a52;--gold:#ffd36b;--blue:#6fb7e0;--vio:#c58ce0;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+ background-image:radial-gradient(1100px 480px at 10% -8%,rgba(111,183,224,.14),transparent 60%),radial-gradient(900px 480px at 95% 0%,rgba(255,154,82,.11),transparent 60%)}
+a{color:var(--blue)}code,.mono{font-family:var(--mono);font-size:.86em}
+.wrap{max-width:1520px;margin:0 auto;padding:0 18px}
+header{padding:34px 0 12px}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--warn)}
+h1{font-size:clamp(30px,5vw,62px);line-height:1.02;margin:.15em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--ok),var(--gold),var(--bad));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:900px;color:#c3cfdd;font-size:17px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:22px 0 10px}
+.stat{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.stat b{display:block;font-size:30px;line-height:1;font-weight:800;white-space:nowrap}
+.stat span{color:var(--dim);font-size:13px;display:block;margin-top:6px}
+.stat i{font-style:normal;font-size:11px;color:#62748a;display:block;margin-top:4px;font-family:var(--mono)}
+.ok b{color:var(--ok)}.gold b{color:var(--gold)}.bad b{color:var(--bad)}.blue b{color:var(--blue)}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;margin:14px 0}
+#view{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#03060a;aspect-ratio:16/10;min-height:360px}
+x3d-canvas{width:100%;height:100%;display:block}
+#boot{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-family:var(--mono);background:#03060a;transition:opacity .6s}
+#boot.done{opacity:0;pointer-events:none}
+.hud{position:absolute;left:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 24px)}
+.btn{background:rgba(10,17,25,.82);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:6px 12px;font:13px system-ui;cursor:pointer;backdrop-filter:blur(4px)}
+.btn:hover{border-color:var(--blue)}.btn.on{border-color:var(--gold);color:var(--gold)}
+.worlds{position:absolute;right:12px;bottom:12px;display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(10,17,25,.85)}
+.worlds button{border:0;background:none;color:var(--dim);padding:9px 16px;font:600 13px system-ui;cursor:pointer}
+.worlds button.on.n{background:rgba(92,242,160,.16);color:var(--ok)}.worlds button.on.g{background:rgba(255,90,82,.18);color:var(--bad)}
+.side{display:flex;flex-direction:column;gap:12px}
+.panel{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:14px;padding:14px}
+.panel h3{margin:0 0 8px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.lies{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lies div{border:1px solid var(--line);border-radius:10px;padding:10px;font-family:var(--mono);font-size:12.5px}
+.lies .n{border-color:rgba(92,242,160,.45)}.lies .g{border-color:rgba(255,90,82,.5)}
+.lies b{display:block;font-size:15px;margin:4px 0}
+.ok-t{color:var(--ok)}.bad-t{color:var(--bad)}.gold-t{color:var(--gold)}.dim{color:var(--dim)}
+h2{font-size:22px;margin:34px 0 10px;letter-spacing:-.01em}
+h2 small{font-size:13px;color:var(--dim);font-weight:400;margin-left:8px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:12px}
+.card{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:12px;padding:12px 14px;cursor:pointer}
+.card:hover{border-color:var(--blue)}
+.card .top{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.pill{font:11.5px var(--mono);border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--dim)}
+.pill.v{color:var(--ok);border-color:rgba(92,242,160,.5)}.pill.static{color:var(--blue)}.pill.dynamic{color:var(--warn)}.pill.oracle{color:var(--gold)}
+.card p{margin:8px 0 6px;font-size:14px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font:12px var(--mono);color:#b9c7d6}
+.kv dt{color:var(--dim)}.kv dd{margin:0;word-break:break-word}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.tblwrap{overflow-x:auto;background:var(--p1);border:1px solid var(--line);border-radius:12px;padding:4px 8px}
+.pass{color:var(--ok);font-weight:700}.fail{color:var(--bad);font-weight:700}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.shots figure{margin:0;background:var(--p1);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.shots img{width:100%;display:block}.shots figcaption{padding:8px 10px;font-size:13px;color:var(--dim)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:12.5px var(--mono)}
+.flow span{border:1px solid var(--line);border-radius:8px;padding:6px 9px;background:var(--p2)}.flow i{color:var(--dim);font-style:normal}
+footer{margin:40px 0 60px;color:var(--dim);font-size:13px}
+@media (max-width:980px){.stage{grid-template-columns:1fr}#view{aspect-ratio:4/3}}
+@media (max-width:520px){.lies{grid-template-columns:1fr}.gallery{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<script src="../../../lib/gfx-guard-v3.js"></script>
+<div class="wrap">
+<header>
+  <div class="kick">Demo 74 · x3d.xray binary lens · Pass A + B</div>
+  <h1>Binary X-Ray: <em>the debugger lies</em></h1>
+  <p class="lede">A small name-to-serial crackme, reverse-engineered by <a href="https://github.com/hagopjay/x3d.xray/tree/main/x3dray/binary">x3dray.binary</a>.
+  Six hypotheses, each re-run here as an experiment with a witness you can re-run. Under a debugger the program quietly poisons its own seed and hands you a serial that only works under the debugger.
+  The city below is the binary: one building per function, baked in Blender, drawn in X3D 4.0.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="stage">
+  <div id="view">
+    <x3d-canvas id="xite" preserveDrawingBuffer="true" splashScreen="false" notifications="false" timings="false" update="auto" contextMenu="false"></x3d-canvas>
+    <div class="hud" id="vps"></div>
+    <div class="worlds" role="group" aria-label="Which world"><button class="n on" id="wN">Native run</button><button class="g" id="wG">Under gdb</button></div>
+    <div id="boot">loading the binary city…</div>
+  </div>
+  <div class="side">
+    <div class="panel"><h3>The debugger lies</h3><div class="lies" id="lies"></div>
+      <p class="dim" style="font-size:12.5px;margin:8px 0 0">Both columns were run on one machine: gdb 15.1 and a plain argv run. The poisoned serial is not read out of memory; it is recomputed from the H5 model with the H2 salt and then judged by the binary.</p></div>
+    <div class="panel"><h3>What the scene says</h3><div class="kv" style="font-size:12.5px">
+      <dt>building</dt><dd>one per function · height = instructions · tiers = basic blocks</dd>
+      <dt>hot roof</dt><dd>touches anti-analysis (ptrace, 0xCC self-scan)</dd>
+      <dt>gold spire</dt><dd>gatekeeper: highest betweenness (x3dray.centrality)</dd>
+      <dt>gates</dt><dd>PLT import stubs; ptrace's lintel glows</dd>
+      <dt>arcs</dt><dd><span style="color:var(--blue)">direct</span> · <span style="color:var(--vio)">PLT</span> · <span style="color:var(--gold)">runtime</span> calls, packets in flight</dd>
+      <dt>ring</dt><dd>the 48 bytes of derive that main scans for 0xCC</dd>
+      <dt>helix</dt><dd>one rung per hypothesis, colour = verdict</dd>
+      <dt>lattice</dt><dd>capability concepts (x3dray.fca)</dd></div></div>
+    <div class="panel"><h3>Claims <span class="dim" style="text-transform:none;letter-spacing:0">every number from a slot</span></h3><div id="claims" style="font-size:13px"></div></div>
+  </div>
+</div>
+
+<h2>Hypothesis gallery <small>click a card to fly to the helix</small></h2>
+<div class="gallery" id="gallery"></div>
+
+<h2>How it was done <small>describe → hypothesise → experiment → witness → gate → scene</small></h2>
+<div class="flow"><span>objdump / nm / file</span><i>→</i><span>harvest + witnesses</span><i>→</i><span>call graph · betweenness</span><i>→</i><span>FCA capability lattice</span><i>→</i><span>hypothesis ledger (H1-H6)</span><i>→</i><span>static-decode · strace · gdb · native oracle</span><i>→</i><span>RE gates</span><i>→</i><span>layout.json</span><i>→</i><span>Blender 5.3 Cycles bake</span><i>→</i><span>x3d-blender-io 2.7.4 export</span><i>→</i><span>X3D 4.0 + X_ITE 16.7.1</span></div>
+<div class="tblwrap" style="margin-top:12px"><table><thead><tr><th>Gate</th><th>Status</th><th>Summary</th><th>Scope</th></tr></thead><tbody id="gates"></tbody></table></div>
+
+<h2>Receipts <small>every number names its instrument</small></h2>
+<div class="tblwrap"><table><tbody id="inst"></tbody></table></div>
+
+<h2>Frames</h2>
+<div class="shots" id="shots"></div>
+
+<h2>What was and was not tested</h2>
+<div class="tblwrap"><table><tbody id="tested"></tbody></table></div>
+
+<footer>
+  Method: the hypothesis-debugging loop from ioma8, <a href="https://www.slowchronicle.com/posts/llm-assisted-reverse-engineering">“LLM assisted reverse engineering”</a>, Slow Chronicle, 18 Nov 2026: one hypothesis, one definitive experiment, one recorded verdict, kept on disk. The outside agent's original ledger (H1-H5) was imported and every row re-run; H6 is new here.
+  crackme1 is a self-authored, benign teaching target (source in <a href="https://github.com/hagopjay/x3d.xray/blob/main/targets/crackme1.c">x3d.xray/targets</a>). See <a href="DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a> and <a href="README.md">README.md</a>.
+  Scene and page CC BY 4.0. X_ITE 16.7.1 (GPL-3.0) vendored in Demo 56.
+</footer>
+</div>
+
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+const D = {};
+window.XRAY = { ready: false };
+async function j(p) { const r = await fetch(p); if (!r.ok) throw new Error(p + ' ' + r.status); return r.json(); }
+
+function fill() {
+  const L = D.ledger, rows = Object.fromEntries(L.rows.map(r => [r.id, r]));
+  const h2 = rows.H2.observed, h3 = rows.H3.observed, h5 = rows.H5.observed, g = D.gates.gates;
+  const passN = Object.values(g).filter(x => x.status === 'pass').length;
+  const stats = [
+    ['ok', `${L.tally.CONFIRMED}/${L.rows.length}`, 'hypotheses re-run and confirmed', 'x3dray.binary ledger'],
+    ['gold', h5.accepted, 'keygen serials accepted', 'native oracle, seed 20261123'],
+    ['ok', h5.mutants_rejected, 'mutated serials rejected', 'negative control'],
+    ['bad', h3.poisoned_serial, 'accepted under gdb only', 'gdb 15.1 vs argv run'],
+    ['blue', `${g.re_witness.results.length}/${g.re_witness.results.length}`, 'RE witnesses re-run, match', 'gate re_witness'],
+    ['ok', `${passN}/${Object.keys(g).length}`, 'RE gates pass', 'gates_bin.py'],
+    ['gold', D.receipt.gatekeeper, 'gatekeeper (betweenness)', 'x3dray.centrality']];
+  $('#stats').innerHTML = stats.map(([c, b, s, i]) => `<div class="stat ${c}"><b>${esc(b)}</b><span>${esc(s)}</span><i>${esc(i)}</i></div>`).join('');
+  $('#lies').innerHTML = `<div class="n"><span class="ok-t">NATIVE</span><b>salt 0x00000000</b>alice ${esc(h5.alice)} <span class="ok-t">accepted</span><br>alice ${esc(h3.poisoned_serial)} <span class="bad-t">${esc(h3.native)}</span></div>
+    <div class="g"><span class="bad-t">UNDER GDB</span><b>salt ${esc(h2['gdb-salt-at-main'])}</b>alice ${esc(h3.poisoned_serial)} <span class="bad-t">${esc(h3.under_gdb)}</span><br><span class="dim">strace: ${esc(h2['strace-ptrace'])}</span></div>`;
+  $('#claims').innerHTML = D.claims.map(c => `<p style="margin:0 0 8px"><span class="gold-t">${esc(c.view)}</span> · <span class="dim">${esc(c.speaker)}</span><br>${esc(c.text)}</p>`).join('');
+  $('#gallery').innerHTML = L.rows.map(r => {
+    const obs = Object.entries(r.observed).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(typeof v === 'string' ? v : JSON.stringify(v))}</dd>`).join('');
+    const sup = r.static_support.map(p => `${p.addr} ${p.insn}`).join(' · ');
+    const kinds = [...new Set(r.witnesses.map(w => w.kind))].join(', ');
+    return `<div class="card" data-h="${esc(r.id)}"><div class="top"><b>${esc(r.id)}</b><span class="pill v">${esc(r.verdict)}</span><span class="pill ${esc(r.phase)}">${esc(r.phase)}</span><span class="pill">imported: ${esc(r.imported_verdict || 'new here')}</span></div>
+      <p>${esc(r.hypothesis)}</p><dl class="kv"><dt>experiment</dt><dd>${esc(r.experiment.kind)}</dd><dt>witnesses</dt><dd>${esc(kinds)}</dd><dt>predicted</dt><dd>${esc(JSON.stringify(r.prediction))}</dd>${obs}${sup ? `<dt>disasm</dt><dd>${esc(sup)}</dd>` : ''}</dl></div>`;
+  }).join('');
+  document.querySelectorAll('.card').forEach(c => c.onclick = () => { bind('VP_Helix'); $('#view').scrollIntoView({ behavior: 'smooth' }); });
+  $('#gates').innerHTML = Object.entries(g).map(([k, x]) => `<tr><td class="mono">${esc(k)}</td><td class="${x.status === 'pass' ? 'pass' : 'fail'}">${esc(x.status)}</td><td>${esc(x.summary)}</td><td class="dim">${esc(x.scope || '')}</td></tr>`).join('');
+  const B = D.bake, V = D.validate || {};
+  const inst = [
+    ['Target', `crackme1, ${D.binary.triage.description.split(',').slice(0, 3).join(',')}; sha256 ${L.binary_sha256.slice(0, 16)}…`],
+    ['Build', 'gcc 13.3.0 (Ubuntu 24.04), -O2 -g, from x3d.xray targets/crackme1.c'],
+    ['Static tools', 'GNU objdump / nm 2.42, file, strings (witness = argv + sha256 of stdout)'],
+    ['Dynamic tools', 'GNU gdb 15.1, strace 6.8, LD_PRELOAD ptrace shim (targets/ptrace_shim.c)'],
+    ['Lens', 'x3dray.binary Pass A + B (x3d.xray main), Python 3.13.18; tests 18/18 on 3.13 and 3.10'],
+    ['Graph engines', 'x3dray.centrality (exact betweenness, passage points), x3dray.fca (concepts, covers)'],
+    ['Bake', `Blender ${B.blender} (bpy wheel), Cycles ${B.bake.device}, ${B.bake.samples} samples, seed ${B.bake.seed}, clamp ${B.bake.clamp_indirect}, denoise off; ${B.seconds} s`],
+    ['Bake meshes', Object.entries(B.meshes).map(([k, m]) => `${k}: ${m.faces} faces, ${m.corners} corners`).join('; ')],
+    ['Light (display p5/p50/p95)', Object.entries(B.finish.display_percentiles).map(([k, p]) => `${k} ${p.p5}/${p.p50}/${p.p95}`).join('; ')],
+    ['Exporter', `${B.exporter} (hagopjay/x3d-blender-io main 0eb4809), X3D 4.0; materials stripped, ColorRGBA welded to Color`],
+    ['Validator', V.summary || 'see README'],
+    ['Renderer', 'X_ITE 16.7.1 in Chromium (Playwright) with SwiftShader WebGL2 for the frames']];
+  $('#inst').innerHTML = inst.map(([a, b]) => `<tr><td style="white-space:nowrap" class="dim">${esc(a)}</td><td class="mono">${esc(b)}</td></tr>`).join('');
+  const tested = [
+    ['Tested', 'All 6 hypotheses re-run on one Linux x86-64 machine (Ubuntu 24.04 container); keygen against the native binary over 2000 seeded names + 200 mutants'],
+    ['Tested', 'Every RE witness re-run by gate re_witness (13/13 match); fact, verdict and scene gates'],
+    ['Tested', 'Scene: X3D 4.0 XSD + semantic checks (x3d_mcp validator), loaded in X_ITE 16.7.1, frames below'],
+    ['Not tested', 'The stripped build (the outside agent analysed it in radare2; trace probes here read the g_salt symbol)'],
+    ['Not tested', 'Windows, macOS, ARM; real GPUs (frames are SwiftShader); Castle, Babylon, three.js renderers'],
+    ['Not tested', 'Other binaries: the ledger spec and keygen model are specific to crackme1']];
+  $('#tested').innerHTML = tested.map(([a, b]) => `<tr><td class="${a === 'Tested' ? 'pass' : 'fail'}" style="white-space:nowrap">${a}</td><td>${esc(b)}</td></tr>`).join('');
+  const shots = [['00-hero', 'Hero: the gold gatekeeper main, its call arcs, the helix behind'], ['01-overview', 'The binary city from above: 18 functions, gold gatekeeper main, hot roofs on guard and main'],
+    ['02-gdb-world', 'Under gdb: the red observer ring, one 0xCC byte in the scan ring, the poisoned serial accepted'],
+    ['03-vault', 'derive in its vault, ringed by the 48 bytes main scans'],
+    ['04-helix', 'The investigation helix: six rungs, six re-run verdicts'],
+    ['05-lattice', 'The capability lattice over the city'],
+    ['06-imports', 'The PLT gates: imports as doorways, ptrace glowing']];
+  $('#shots').innerHTML = shots.map(([f, c]) => `<figure><img src="shots/${f}.webp" alt="${esc(c)}" loading="lazy"><figcaption>${esc(c)}</figcaption></figure>`).join('');
+}
+
+let browser, scene;
+function bind(d) { try { const n = scene.getNamedNode(d); n.set_bind = true; document.querySelectorAll('#vps .btn').forEach(b => b.classList.toggle('on', b.dataset.vp === d)); } catch (e) { console.warn(e); } }
+function world(i) { try { scene.getNamedNode('Worlds').whichChoice = i; } catch (e) { console.warn(e); } $('#wN').classList.toggle('on', i === 0); $('#wG').classList.toggle('on', i === 1); window.XRAY.worldIndex = i; }
+window.XRAY.bind = bind; window.XRAY.world = world;
+
+async function boot() {
+  const [ledger, claims, gates, receipt, binary, bake] = await Promise.all(['data/ledger.json', 'data/claims.json', 'data/gates.json', 'data/receipt.json', 'data/binary.json', 'assets/bake-receipt.json'].map(j));
+  Object.assign(D, { ledger, claims, gates, receipt, binary, bake });
+  try { D.validate = await j('assets/validate-receipt.json'); } catch (e) { /* optional */ }
+  fill();
+  if (!GfxGuard.require({ api: 'webgl2', bootId: 'boot', timeoutMs: 30000, title: 'The binary city', still: 'shots/01-overview.webp', stillAlt: 'The binary city from above' })) return;
+  const guard = GfxGuard.pane('x_ite', { host: 'view', timeoutMs: 30000, title: 'The X_ITE view', onRetry: () => location.reload() });
+  try {
+    browser = X3D.getBrowser('#xite');
+    await browser.loadURL(new X3D.MFString('assets/xray-binary.x3d'));
+    scene = browser.currentScene;
+    const vps = [['VP_Hero', 'Hero'], ['VP_Overview', 'Overview'], ['VP_Gatekeeper', 'Gatekeeper'], ['VP_Vault', 'Vault'], ['VP_Helix', 'Helix'], ['VP_Lattice', 'Lattice'], ['VP_Imports', 'Imports']];
+    $('#vps').innerHTML = vps.map(([d, t]) => `<button class="btn${d === 'VP_Hero' ? ' on' : ''}" data-vp="${d}">${t}</button>`).join('');
+    document.querySelectorAll('#vps .btn').forEach(b => b.onclick = () => bind(b.dataset.vp));
+    $('#wN').onclick = () => world(0); $('#wG').onclick = () => world(1);
+    guard.ready(); GfxGuard.ready(); $('#boot').classList.add('done');
+    window.XRAY.ready = true;
+  } catch (e) { console.error(e); guard.fail(e.message || String(e)); }
+}
+boot().catch(e => { console.error(e); $('#boot').textContent = 'could not load: ' + e.message; });
+</script>
+</body>
+</html>

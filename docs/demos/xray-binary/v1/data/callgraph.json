@@ -1,0 +1,118 @@
+{
+ "betweenness": {
+  "__cxa_finalize": "0.0",
+  "__do_global_dtors_aux": "0.01282051282051282",
+  "__printf_chk": "0.0",
+  "__stack_chk_fail": "0.0",
+  "_start": "0.0",
+  "deregister_tm_clones": "0.0",
+  "derive": "0.0",
+  "guard": "0.0",
+  "main": "0.34615384615384615",
+  "ptrace": "0.0",
+  "puts": "0.0",
+  "reveal": "0.0",
+  "strlen": "0.0",
+  "strtoul": "0.0"
+ },
+ "edges": [
+  {
+   "from": "main",
+   "kind": "direct",
+   "to": "reveal"
+  },
+  {
+   "from": "main",
+   "kind": "direct",
+   "to": "derive"
+  },
+  {
+   "from": "__do_global_dtors_aux",
+   "kind": "direct",
+   "to": "deregister_tm_clones"
+  },
+  {
+   "from": "guard",
+   "kind": "plt",
+   "to": "ptrace"
+  },
+  {
+   "from": "main",
+   "kind": "plt",
+   "to": "strlen"
+  },
+  {
+   "from": "main",
+   "kind": "plt",
+   "to": "puts"
+  },
+  {
+   "from": "main",
+   "kind": "plt",
+   "to": "strtoul"
+  },
+  {
+   "from": "main",
+   "kind": "plt",
+   "to": "__printf_chk"
+  },
+  {
+   "from": "main",
+   "kind": "plt",
+   "to": "__stack_chk_fail"
+  },
+  {
+   "from": "__do_global_dtors_aux",
+   "kind": "plt",
+   "to": "__cxa_finalize"
+  },
+  {
+   "from": "derive",
+   "kind": "plt",
+   "to": "strlen"
+  },
+  {
+   "from": "_init",
+   "kind": "indirect",
+   "to": "(indirect)"
+  },
+  {
+   "from": "_start",
+   "kind": "indirect",
+   "to": "(indirect)"
+  },
+  {
+   "from": "_start",
+   "kind": "runtime",
+   "to": "main"
+  }
+ ],
+ "entry": "_start",
+ "gatekeeper": "main",
+ "nodes": [
+  "(indirect)",
+  "__cxa_finalize",
+  "__do_global_dtors_aux",
+  "__printf_chk",
+  "__stack_chk_fail",
+  "_init",
+  "_start",
+  "deregister_tm_clones",
+  "derive",
+  "guard",
+  "main",
+  "ptrace",
+  "puts",
+  "reveal",
+  "strlen",
+  "strtoul"
+ ],
+ "passage": {
+  "entry": "_start",
+  "passage_points": [
+   "main"
+  ],
+  "target": "derive"
+ },
+ "schema_version": 1
+}

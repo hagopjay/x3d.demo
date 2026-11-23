@@ -1,0 +1,85 @@
+{
+ "asset": "city-baked.x3d",
+ "sha256": "ec3a3cfd6e3b5dcf9ad87a715f20ed68ba62fc03b4f7f1ba12d98a2873a71f78",
+ "bytes": 2763945,
+ "blender": "5.3.0",
+ "exporter": "x3d-blender-io 2.7.4",
+ "script_sha256": "79e71e49941af2685f0eb5bd594395386ff247c94b19b743b94241d100492345",
+ "layout_sha256": "32f09a85beaa3984e12d31bd305d6af5e3fce206349627352f8dea7f04527c5f",
+ "bake": {
+  "engine": "CYCLES",
+  "device": "CPU",
+  "samples": 384,
+  "denoise": false,
+  "clamp_indirect": 4.0,
+  "seed": 74,
+  "target": "VERTEX_COLORS",
+  "type": "DIFFUSE",
+  "direct": true,
+  "indirect": true,
+  "color_pass": false
+ },
+ "light": {
+  "sun_strength": 4.0,
+  "sun_color": [
+   1.0,
+   0.9,
+   0.78
+  ],
+  "sun_disc_deg": 6.0,
+  "sun_az_deg": 220.0,
+  "sun_el_deg": 42.0,
+  "sky_color": [
+   0.18,
+   0.26,
+   0.45
+  ],
+  "sky_strength": 0.55,
+  "exposure_target": 0.55,
+  "light_floor": [
+   0.05,
+   0.07,
+   0.12
+  ],
+  "seed": 74
+ },
+ "finish": {
+  "p70_ground_raw": 0.9183584072113036,
+  "exposure_k": 0.5988947187516207,
+  "display_percentiles": {
+   "Ground": {
+    "p5": 0.0199,
+    "p25": 0.0844,
+    "p50": 0.106,
+    "p75": 0.1104,
+    "p95": 0.2834
+   },
+   "City": {
+    "p5": 0.1122,
+    "p25": 0.1122,
+    "p50": 0.1894,
+    "p75": 0.3861,
+    "p95": 0.6909
+   }
+  }
+ },
+ "postprocess": {
+  "removed": {
+   "NavigationInfo": 1,
+   "Background": 1,
+   "PhysicalMaterial": 1
+  },
+  "shapes": 2
+ },
+ "meshes": {
+  "Ground": {
+   "faces": 17251,
+   "corners": 72736
+  },
+  "City": {
+   "faces": 2401,
+   "corners": 9664
+  }
+ },
+ "seconds": 8.4
+}

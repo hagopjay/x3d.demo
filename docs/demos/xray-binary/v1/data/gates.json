@@ -1,0 +1,150 @@
+{
+ "gates": {
+  "re_fact": {
+   "problems": [],
+   "scope": "Every number in claim prose comes from a witnessed record; entailment of the prose is not proved.",
+   "status": "pass",
+   "summary": "5 claims, 13 slots, 0 problems"
+  },
+  "re_scene": {
+   "problems": [],
+   "scope": "DEF-level correspondence between records and drawn shapes; geometry values are not re-measured.",
+   "status": "pass",
+   "summary": "18 buildings, 6 helix rungs; 0 problems"
+  },
+  "re_verdict": {
+   "disagreements": [],
+   "problems": [],
+   "scope": "A verdict is only as good as the experiment re-run here; imported verdicts are display-only.",
+   "status": "pass",
+   "summary": "6 verdicts; 0 unsupported; 0 disagree with the imported ledger"
+  },
+  "re_witness": {
+   "problems": [],
+   "results": [
+    {
+     "argv": [
+      "objdump",
+      "-d",
+      "--no-show-raw-insn",
+      "./crackme1"
+     ],
+     "expected_sha256": "42aa6147ca705657228234870fb70dadcfe76bc259cf683b65e47bb5967bc924",
+     "id": "harvest.disasm",
+     "kind": "static",
+     "recomputed_sha256": "42aa6147ca705657228234870fb70dadcfe76bc259cf683b65e47bb5967bc924",
+     "status": "match",
+     "tool": "objdump"
+    },
+    {
+     "argv": [
+      "nm",
+      "-D",
+      "./crackme1"
+     ],
+     "expected_sha256": "293133ed1ae7e997583cec49227650cc10c239de05e50b8a989d84981d8cc061",
+     "id": "harvest.imports",
+     "kind": "static",
+     "recomputed_sha256": "293133ed1ae7e997583cec49227650cc10c239de05e50b8a989d84981d8cc061",
+     "status": "match",
+     "tool": "nm"
+    },
+    {
+     "argv": [
+      "objdump",
+      "-h",
+      "./crackme1"
+     ],
+     "expected_sha256": "2fd15f19ae4fa2592ba3a785e144af3aec75dfc5a39ee200e2c7d811ead2d846",
+     "id": "harvest.sections",
+     "kind": "static",
+     "recomputed_sha256": "2fd15f19ae4fa2592ba3a785e144af3aec75dfc5a39ee200e2c7d811ead2d846",
+     "status": "match",
+     "tool": "objdump"
+    },
+    {
+     "argv": [
+      "strings",
+      "-n",
+      "5",
+      "./crackme1"
+     ],
+     "expected_sha256": "da2134c46a2c02be4a711d7c21ebcd263610de83b5c0fe01e0af4ee62d6e7fcf",
+     "id": "harvest.strings",
+     "kind": "static",
+     "recomputed_sha256": "da2134c46a2c02be4a711d7c21ebcd263610de83b5c0fe01e0af4ee62d6e7fcf",
+     "status": "match",
+     "tool": "strings"
+    },
+    {
+     "argv": [
+      "file",
+      "-b",
+      "./crackme1"
+     ],
+     "expected_sha256": "e26374d1a35db9dfce1a1f996d41c9e52431a76f4cc0292881ca82b04bf4e7e5",
+     "id": "harvest.triage",
+     "kind": "static",
+     "recomputed_sha256": "e26374d1a35db9dfce1a1f996d41c9e52431a76f4cc0292881ca82b04bf4e7e5",
+     "status": "match",
+     "tool": "file"
+    },
+    {
+     "id": "H1",
+     "kind": "static-decode",
+     "status": "match"
+    },
+    {
+     "id": "H2",
+     "kind": "trace",
+     "observed": "PTRACE_TRACEME) = -1 EPERM",
+     "probe": "strace-ptrace",
+     "status": "match"
+    },
+    {
+     "id": "H2",
+     "kind": "trace",
+     "observed": "0xa5a5a5a5",
+     "probe": "gdb-salt-at-main",
+     "status": "match"
+    },
+    {
+     "id": "H3",
+     "kind": "trace",
+     "observed": "Serial accepted",
+     "probe": "gdb-run-poisoned-serial",
+     "status": "match"
+    },
+    {
+     "id": "H3",
+     "kind": "oracle",
+     "probe": "native-run-poisoned-serial",
+     "status": "match"
+    },
+    {
+     "id": "H4",
+     "kind": "trace",
+     "observed": "0x00000000",
+     "probe": "gdb-salt-at-main-with-shim",
+     "status": "match"
+    },
+    {
+     "id": "H5",
+     "kind": "oracle",
+     "status": "match"
+    },
+    {
+     "id": "H6",
+     "kind": "trace",
+     "observed": "0x5a5a0000",
+     "probe": "gdb-salt-at-derive-with-shim",
+     "status": "match"
+    }
+   ],
+   "scope": "Static tool output hashes, strace/gdb extracted observations and the seeded native oracle transcript are reproduced on this machine.",
+   "status": "pass",
+   "summary": "13 witnesses re-run (oracle, static, static-decode, trace): 13 match, 0 mismatch, 0 unavailable"
+  }
+ },
+ "ok": true
+}

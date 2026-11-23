@@ -1,0 +1,124 @@
+{
+ "context": {
+  "__do_global_dtors_aux": [
+   "__cxa_finalize"
+  ],
+  "derive": [
+   "string"
+  ],
+  "guard": [
+   "anti-debug"
+  ],
+  "main": [
+   "anti-debug",
+   "hardening",
+   "io",
+   "parse",
+   "string"
+  ]
+ },
+ "lattice": {
+  "attribute_concept": {
+   "__cxa_finalize": 3,
+   "anti-debug": 1,
+   "hardening": 4,
+   "io": 4,
+   "parse": 4,
+   "string": 2
+  },
+  "concepts": [
+   {
+    "extent": [
+     "__do_global_dtors_aux",
+     "derive",
+     "guard",
+     "main"
+    ],
+    "intent": [],
+    "level": 0,
+    "support": 4,
+    "x": 0.5
+   },
+   {
+    "extent": [
+     "guard",
+     "main"
+    ],
+    "intent": [
+     "anti-debug"
+    ],
+    "level": 1,
+    "support": 2,
+    "x": 0.0
+   },
+   {
+    "extent": [
+     "derive",
+     "main"
+    ],
+    "intent": [
+     "string"
+    ],
+    "level": 1,
+    "support": 2,
+    "x": 0.5
+   },
+   {
+    "extent": [
+     "__do_global_dtors_aux"
+    ],
+    "intent": [
+     "__cxa_finalize"
+    ],
+    "level": 1,
+    "support": 1,
+    "x": 1.0
+   },
+   {
+    "extent": [
+     "main"
+    ],
+    "intent": [
+     "anti-debug",
+     "hardening",
+     "io",
+     "parse",
+     "string"
+    ],
+    "level": 2,
+    "support": 1,
+    "x": 0.5
+   }
+  ],
+  "covers": [
+   [
+    3,
+    0
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    1,
+    0
+   ],
+   [
+    2,
+    0
+   ]
+  ],
+  "equivalences": [],
+  "implications": [],
+  "object_concept": {
+   "__do_global_dtors_aux": 3,
+   "derive": 2,
+   "guard": 1,
+   "main": 4
+  }
+ }
+}
