@@ -1,0 +1,48 @@
+{
+ "rig": "Playwright headless Chromium 145.0.7632.6, SwiftShader (no GPU)",
+ "pages": {
+  "before": {
+   "url": "demos/masonic-lodge/v2/",
+   "x_ite": "16.6.0",
+   "load_s": 6.227,
+   "frame_time_running": {
+    "frames": 359,
+    "median_ms": 8.3,
+    "p95_ms": 9.9
+   },
+   "console": [
+    "warning: [.WebGL-0x12c0019e400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x12c0019e400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x12c0019e400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x12c0019e400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+   ],
+   "console_errors": 0,
+   "shots": [
+    "before-section.png",
+    "before-into-the-section.png",
+    "before-king-s-chamber-and-relieving-c.png",
+    "before-the-three-pyramids.png",
+    "before-capstone.png"
+   ]
+  },
+  "after": {
+   "url": "demos/masonic-lodge/v3/",
+   "x_ite": "16.6.0",
+   "load_s": 6.312,
+   "frame_time_running": {
+    "frames": 360,
+    "median_ms": 8.3,
+    "p95_ms": 9.8
+   },
+   "console": [],
+   "console_errors": 0,
+   "shots": [
+    "after-section.png",
+    "after-into-the-section.png",
+    "after-king-s-chamber-and-relieving-c.png",
+    "after-the-three-pyramids.png",
+    "after-capstone.png"
+   ]
+  }
+ }
+}
