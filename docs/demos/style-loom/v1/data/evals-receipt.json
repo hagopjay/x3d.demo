@@ -1,0 +1,101 @@
+{
+ "instrument": "x3d.style evals.mjs, Node v22.23.5; no model called",
+ "tasks": 196,
+ "split": "97 repair train, 87 repair dev, 12 author (no baseline run)",
+ "metric": "score = 0.5 x grammar if any rule fails; else 0.5 + 0.5 x fidelity x brief; fidelity = 1 - mean Delta E OK from the input palette / 0.12; brief = structure untouched",
+ "dspy": "socket built in evals/dspy_socket.py, switched off (XST_DSPY unset); nothing was optimized and nothing was spent",
+ "baselines": [
+  {
+   "name": "identity (dev, n=87)",
+   "split": "dev",
+   "n": 87,
+   "score": 0.4324,
+   "grammar": 0.8648,
+   "fidelity": 1,
+   "valid": 0,
+   "note": "return the failing style untouched: the floor"
+  },
+  {
+   "name": "home-palette (dev, n=87)",
+   "split": "dev",
+   "n": 87,
+   "score": 0.5009,
+   "grammar": 1,
+   "fidelity": 0.0017,
+   "valid": 87,
+   "note": "throw the palette away and use the structure style's own: valid but unfaithful"
+  },
+  {
+   "name": "repair (dev, n=87)",
+   "split": "dev",
+   "n": 87,
+   "score": 0.6457,
+   "grammar": 0.9212,
+   "fidelity": 0.9683,
+   "valid": 33,
+   "note": "deterministic lightness hill-climb (repair.mjs): the baseline to beat"
+  }
+ ],
+ "all": [
+  {
+   "name": "identity",
+   "split": "train",
+   "n": 97,
+   "score": 0.4273,
+   "grammar": 0.8546,
+   "fidelity": 1,
+   "valid": 0,
+   "note": "return the failing style untouched: the floor"
+  },
+  {
+   "name": "home-palette",
+   "split": "train",
+   "n": 97,
+   "score": 0.5008,
+   "grammar": 1,
+   "fidelity": 0.0016,
+   "valid": 97,
+   "note": "throw the palette away and use the structure style's own: valid but unfaithful"
+  },
+  {
+   "name": "repair",
+   "split": "train",
+   "n": 97,
+   "score": 0.5557,
+   "grammar": 0.9017,
+   "fidelity": 0.9511,
+   "valid": 21,
+   "note": "deterministic lightness hill-climb (repair.mjs): the baseline to beat"
+  },
+  {
+   "name": "identity",
+   "split": "dev",
+   "n": 87,
+   "score": 0.4324,
+   "grammar": 0.8648,
+   "fidelity": 1,
+   "valid": 0,
+   "note": "return the failing style untouched: the floor"
+  },
+  {
+   "name": "home-palette",
+   "split": "dev",
+   "n": 87,
+   "score": 0.5009,
+   "grammar": 1,
+   "fidelity": 0.0017,
+   "valid": 87,
+   "note": "throw the palette away and use the structure style's own: valid but unfaithful"
+  },
+  {
+   "name": "repair",
+   "split": "dev",
+   "n": 87,
+   "score": 0.6457,
+   "grammar": 0.9212,
+   "fidelity": 0.9683,
+   "valid": 33,
+   "note": "deterministic lightness hill-climb (repair.mjs): the baseline to beat"
+  }
+ ]
+}

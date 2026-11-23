@@ -1,0 +1,149 @@
+@prefix xst: <https://hagopjay.github.io/x3d.loom/ns/style#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix x3do: <https://www.web3d.org/specifications/X3dOntology4.0#> .
+
+<https://hagopjay.github.io/x3d.loom/ns/style> a owl:Ontology ; dct:title "X3D style vocabulary and grammar" ; owl:versionInfo "xst/1" ;
+  dct:description "Style tokens (10 parts of speech), scene roles, grammar rules and operators for styling X3D scenes. Generated from x3d.loom x3d.style/src/grammar.mjs by bin/vocab.mjs." .
+
+xst:Style a owl:Class ; rdfs:label "Style" ; rdfs:comment "A complete sentence: one of each part of speech. Carried in X3D as a MetadataSet named xst:Style." ; rdfs:subClassOf prov:Entity .
+xst:Catalogue a owl:Class ; rdfs:label "Catalogue" .
+xst:Part a owl:Class ; rdfs:label "Part of speech" .
+xst:Scene a owl:Class ; rdfs:label "Scene" ; rdfs:comment "Roles and data only: no colour, material or light." .
+xst:realizedBy a owl:ObjectProperty ; rdfs:label "realized by" ; rdfs:comment "The X3D 4.0 node types (X3D Ontology) a part of speech is compiled to." .
+xst:intent a owl:ObjectProperty ; rdfs:domain xst:Style .
+xst:intent_key a owl:DatatypeProperty ; rdfs:comment "Declared key: low, mid or high. Rule G14 holds the palette to it; the render receipt holds the frame to it." .
+xst:intent_mood a owl:DatatypeProperty .
+xst:intent_use a owl:DatatypeProperty .
+xst:operator a owl:DatatypeProperty ; rdfs:comment "The operator that derived this style; the sources are prov:wasDerivedFrom." .
+xst:authoredScore a owl:DatatypeProperty .
+
+xst:Palette a owl:Class ; rdfs:subClassOf xst:Part ; rdfs:label "Palette" ; rdfs:comment "Which colours exist, and which role each one serves." ;
+  xst:realizedBy x3do:Color, x3do:Background, x3do:Fog .
+xst:palette a owl:ObjectProperty, owl:FunctionalProperty ; rdfs:domain xst:Style ; rdfs:range xst:Palette .
+xst:palette_ground a owl:DatatypeProperty ; rdfs:domain xst:Palette ; rdfs:range xsd:string ; rdfs:label "palette.ground" ; skos:notation "xst:palette_ground" ; skos:scopeNote "sRGB hex colour" .
+xst:palette_plate a owl:DatatypeProperty ; rdfs:domain xst:Palette ; rdfs:range xsd:string ; rdfs:label "palette.plate" ; skos:notation "xst:palette_plate" ; skos:scopeNote "sRGB hex colour" .
+xst:palette_mass a owl:DatatypeProperty ; rdfs:domain xst:Palette ; rdfs:range xsd:string ; rdfs:label "palette.mass" ; skos:notation "xst:palette_mass" ; skos:scopeNote "sRGB hex colour" .
+xst:palette_ink a owl:DatatypeProperty ; rdfs:domain xst:Palette ; rdfs:range xsd:string ; rdfs:label "palette.ink" ; skos:notation "xst:palette_ink" ; skos:scopeNote "sRGB hex colour" .
+xst:palette_accent a owl:DatatypeProperty ; rdfs:domain xst:Palette ; rdfs:range xsd:string ; rdfs:label "palette.accent" ; skos:notation "xst:palette_accent" ; skos:scopeNote "sRGB hex colour" .
+xst:palette_alert a owl:DatatypeProperty ; rdfs:domain xst:Palette ; rdfs:range xsd:string ; rdfs:label "palette.alert" ; skos:notation "xst:palette_alert" ; skos:scopeNote "sRGB hex colour" .
+xst:palette_haze a owl:DatatypeProperty ; rdfs:domain xst:Palette ; rdfs:range xsd:string ; rdfs:label "palette.haze" ; skos:notation "xst:palette_haze" ; skos:scopeNote "sRGB hex colour" .
+xst:palette_sky a owl:DatatypeProperty ; rdfs:domain xst:Palette ; rdfs:range rdf:List ; rdfs:label "palette.sky" ; skos:notation "xst:palette_sky" ; skos:scopeNote "ordered list of sRGB hex colours" .
+xst:palette_categorical a owl:DatatypeProperty ; rdfs:domain xst:Palette ; rdfs:range rdf:List ; rdfs:label "palette.categorical" ; skos:notation "xst:palette_categorical" ; skos:scopeNote "ordered list of sRGB hex colours" .
+xst:palette_sequential a owl:DatatypeProperty ; rdfs:domain xst:Palette ; rdfs:range rdf:List ; rdfs:label "palette.sequential" ; skos:notation "xst:palette_sequential" ; skos:scopeNote "ordered list of sRGB hex colours" .
+
+xst:Surface a owl:Class ; rdfs:subClassOf xst:Part ; rdfs:label "Surface" ; rdfs:comment "How a body answers light: unlit, Phong or physical, and how much of the data colour it carries." ;
+  xst:realizedBy x3do:UnlitMaterial, x3do:Material, x3do:PhysicalMaterial .
+xst:surface a owl:ObjectProperty, owl:FunctionalProperty ; rdfs:domain xst:Style ; rdfs:range xst:Surface .
+xst:surface_model a owl:DatatypeProperty ; rdfs:domain xst:Surface ; rdfs:range xsd:string ; rdfs:label "surface.model" ; skos:notation "xst:surface_model" ; skos:scopeNote "one of: unlit, phong, physical" .
+xst:surface_tint a owl:DatatypeProperty ; rdfs:domain xst:Surface ; rdfs:range xsd:double ; rdfs:label "surface.tint" ; skos:notation "xst:surface_tint" ; skos:scopeNote "0..1" .
+xst:surface_capTone a owl:DatatypeProperty ; rdfs:domain xst:Surface ; rdfs:range xsd:double ; rdfs:label "surface.capTone" ; skos:notation "xst:surface_capTone" .
+xst:surface_roughness a owl:DatatypeProperty ; rdfs:domain xst:Surface ; rdfs:range xsd:double ; rdfs:label "surface.roughness" ; skos:notation "xst:surface_roughness" ; skos:scopeNote "0..1" .
+xst:surface_metallic a owl:DatatypeProperty ; rdfs:domain xst:Surface ; rdfs:range xsd:double ; rdfs:label "surface.metallic" ; skos:notation "xst:surface_metallic" ; skos:scopeNote "0..1" .
+xst:surface_opacity a owl:DatatypeProperty ; rdfs:domain xst:Surface ; rdfs:range xsd:double ; rdfs:label "surface.opacity" ; skos:notation "xst:surface_opacity" ; skos:scopeNote "0..1" .
+xst:surface_glow a owl:DatatypeProperty ; rdfs:domain xst:Surface ; rdfs:range xsd:double ; rdfs:label "surface.glow" ; skos:notation "xst:surface_glow" ; skos:scopeNote "0..1" .
+
+xst:Light a owl:Class ; rdfs:subClassOf xst:Part ; rdfs:label "Light" ; rdfs:comment "Where light comes from, how hard, and how much contact shade is baked in." ;
+  xst:realizedBy x3do:DirectionalLight .
+xst:light a owl:ObjectProperty, owl:FunctionalProperty ; rdfs:domain xst:Style ; rdfs:range xst:Light .
+xst:light_azimuth a owl:DatatypeProperty ; rdfs:domain xst:Light ; rdfs:range xsd:double ; rdfs:label "light.azimuth" ; skos:notation "xst:light_azimuth" .
+xst:light_elevation a owl:DatatypeProperty ; rdfs:domain xst:Light ; rdfs:range xsd:double ; rdfs:label "light.elevation" ; skos:notation "xst:light_elevation" .
+xst:light_intensity a owl:DatatypeProperty ; rdfs:domain xst:Light ; rdfs:range xsd:double ; rdfs:label "light.intensity" ; skos:notation "xst:light_intensity" .
+xst:light_ambient a owl:DatatypeProperty ; rdfs:domain xst:Light ; rdfs:range xsd:double ; rdfs:label "light.ambient" ; skos:notation "xst:light_ambient" ; skos:scopeNote "0..1" .
+xst:light_shadow a owl:DatatypeProperty ; rdfs:domain xst:Light ; rdfs:range xsd:double ; rdfs:label "light.shadow" ; skos:notation "xst:light_shadow" ; skos:scopeNote "0..1" .
+xst:light_contact a owl:DatatypeProperty ; rdfs:domain xst:Light ; rdfs:range xsd:double ; rdfs:label "light.contact" ; skos:notation "xst:light_contact" ; skos:scopeNote "0..1" .
+xst:light_relief a owl:DatatypeProperty ; rdfs:domain xst:Light ; rdfs:range xsd:double ; rdfs:label "light.relief" ; skos:notation "xst:light_relief" ; skos:scopeNote "0..1" .
+
+xst:Air a owl:Class ; rdfs:subClassOf xst:Part ; rdfs:label "Air" ; rdfs:comment "What lies between the eye and the far masses: fog and its reach." ;
+  xst:realizedBy x3do:Fog, x3do:Background .
+xst:air a owl:ObjectProperty, owl:FunctionalProperty ; rdfs:domain xst:Style ; rdfs:range xst:Air .
+xst:air_fog a owl:DatatypeProperty ; rdfs:domain xst:Air ; rdfs:range xsd:string ; rdfs:label "air.fog" ; skos:notation "xst:air_fog" ; skos:scopeNote "one of: none, linear, exp" .
+xst:air_range a owl:DatatypeProperty ; rdfs:domain xst:Air ; rdfs:range xsd:double ; rdfs:label "air.range" ; skos:notation "xst:air_range" .
+
+xst:Line a owl:Class ; rdfs:subClassOf xst:Part ; rdfs:label "Line" ; rdfs:comment "What is drawn as line: edges, links, ground ornament." ;
+  xst:realizedBy x3do:IndexedLineSet, x3do:LineProperties .
+xst:line a owl:ObjectProperty, owl:FunctionalProperty ; rdfs:domain xst:Style ; rdfs:range xst:Line .
+xst:line_edges a owl:DatatypeProperty ; rdfs:domain xst:Line ; rdfs:range xsd:string ; rdfs:label "line.edges" ; skos:notation "xst:line_edges" ; skos:scopeNote "one of: none, ink, data" .
+xst:line_weight a owl:DatatypeProperty ; rdfs:domain xst:Line ; rdfs:range xsd:double ; rdfs:label "line.weight" ; skos:notation "xst:line_weight" .
+xst:line_links a owl:DatatypeProperty ; rdfs:domain xst:Line ; rdfs:range xsd:string ; rdfs:label "line.links" ; skos:notation "xst:line_links" ; skos:scopeNote "one of: line, tube" .
+xst:line_linkInk a owl:DatatypeProperty ; rdfs:domain xst:Line ; rdfs:range xsd:string ; rdfs:label "line.linkInk" ; skos:notation "xst:line_linkInk" ; skos:scopeNote "one of: ink, accent" .
+xst:line_grid a owl:DatatypeProperty ; rdfs:domain xst:Line ; rdfs:range xsd:string ; rdfs:label "line.grid" ; skos:notation "xst:line_grid" ; skos:scopeNote "one of: none, lines, rings" .
+
+xst:Form a owl:Class ; rdfs:subClassOf xst:Part ; rdfs:label "Form" ; rdfs:comment "The shape of a mass: sides, taper, tiers, cap." ;
+  xst:realizedBy x3do:IndexedFaceSet .
+xst:form a owl:ObjectProperty, owl:FunctionalProperty ; rdfs:domain xst:Style ; rdfs:range xst:Form .
+xst:form_sides a owl:DatatypeProperty ; rdfs:domain xst:Form ; rdfs:range xsd:double ; rdfs:label "form.sides" ; skos:notation "xst:form_sides" .
+xst:form_taper a owl:DatatypeProperty ; rdfs:domain xst:Form ; rdfs:range xsd:double ; rdfs:label "form.taper" ; skos:notation "xst:form_taper" ; skos:scopeNote "0..1" .
+xst:form_tiers a owl:DatatypeProperty ; rdfs:domain xst:Form ; rdfs:range xsd:double ; rdfs:label "form.tiers" ; skos:notation "xst:form_tiers" .
+xst:form_inset a owl:DatatypeProperty ; rdfs:domain xst:Form ; rdfs:range xsd:double ; rdfs:label "form.inset" ; skos:notation "xst:form_inset" ; skos:scopeNote "0..1" .
+xst:form_cap a owl:DatatypeProperty ; rdfs:domain xst:Form ; rdfs:range xsd:string ; rdfs:label "form.cap" ; skos:notation "xst:form_cap" ; skos:scopeNote "one of: flat, spike" .
+xst:form_fill a owl:DatatypeProperty ; rdfs:domain xst:Form ; rdfs:range xsd:double ; rdfs:label "form.fill" ; skos:notation "xst:form_fill" ; skos:scopeNote "0..1" .
+xst:form_lift a owl:DatatypeProperty ; rdfs:domain xst:Form ; rdfs:range xsd:double ; rdfs:label "form.lift" ; skos:notation "xst:form_lift" .
+
+xst:Type a owl:Class ; rdfs:subClassOf xst:Part ; rdfs:label "Type" ; rdfs:comment "How labels are set." ;
+  xst:realizedBy x3do:Text, x3do:FontStyle .
+xst:type a owl:ObjectProperty, owl:FunctionalProperty ; rdfs:domain xst:Style ; rdfs:range xst:Type .
+xst:type_family a owl:DatatypeProperty ; rdfs:domain xst:Type ; rdfs:range xsd:string ; rdfs:label "type.family" ; skos:notation "xst:type_family" ; skos:scopeNote "one of: SANS, SERIF, TYPEWRITER" .
+xst:type_size a owl:DatatypeProperty ; rdfs:domain xst:Type ; rdfs:range xsd:double ; rdfs:label "type.size" ; skos:notation "xst:type_size" .
+xst:type_case a owl:DatatypeProperty ; rdfs:domain xst:Type ; rdfs:range xsd:string ; rdfs:label "type.case" ; skos:notation "xst:type_case" ; skos:scopeNote "one of: asis, upper" .
+xst:type_density a owl:DatatypeProperty ; rdfs:domain xst:Type ; rdfs:range xsd:double ; rdfs:label "type.density" ; skos:notation "xst:type_density" ; skos:scopeNote "0..1" .
+
+xst:Motion a owl:Class ; rdfs:subClassOf xst:Part ; rdfs:label "Motion" ; rdfs:comment "What moves, and how fast." ;
+  xst:realizedBy x3do:TimeSensor, x3do:ColorInterpolator, x3do:PositionInterpolator .
+xst:motion a owl:ObjectProperty, owl:FunctionalProperty ; rdfs:domain xst:Style ; rdfs:range xst:Motion .
+xst:motion_pulse a owl:DatatypeProperty ; rdfs:domain xst:Motion ; rdfs:range xsd:double ; rdfs:label "motion.pulse" ; skos:notation "xst:motion_pulse" .
+xst:motion_flow a owl:DatatypeProperty ; rdfs:domain xst:Motion ; rdfs:range xsd:double ; rdfs:label "motion.flow" ; skos:notation "xst:motion_flow" .
+
+xst:Encode a owl:Class ; rdfs:subClassOf xst:Part ; rdfs:label "Encode" ; rdfs:comment "Which data channel drives which visual channel." ;
+  xst:realizedBy x3do:MetadataSet .
+xst:encode a owl:ObjectProperty, owl:FunctionalProperty ; rdfs:domain xst:Style ; rdfs:range xst:Encode .
+xst:encode_hue a owl:DatatypeProperty ; rdfs:domain xst:Encode ; rdfs:range xsd:string ; rdfs:label "encode.hue" ; skos:notation "xst:encode_hue" ; skos:scopeNote "one of: category, value, mono" .
+xst:encode_alert a owl:DatatypeProperty ; rdfs:domain xst:Encode ; rdfs:range xsd:string ; rdfs:label "encode.alert" ; skos:notation "xst:encode_alert" ; skos:scopeNote "one of: color, glow" .
+
+xst:View a owl:Class ; rdfs:subClassOf xst:Part ; rdfs:label "View" ; rdfs:comment "How the scene is first looked at." ;
+  xst:realizedBy x3do:Viewpoint, x3do:OrthoViewpoint .
+xst:view a owl:ObjectProperty, owl:FunctionalProperty ; rdfs:domain xst:Style ; rdfs:range xst:View .
+xst:view_projection a owl:DatatypeProperty ; rdfs:domain xst:View ; rdfs:range xsd:string ; rdfs:label "view.projection" ; skos:notation "xst:view_projection" ; skos:scopeNote "one of: perspective, ortho" .
+xst:view_start a owl:DatatypeProperty ; rdfs:domain xst:View ; rdfs:range xsd:string ; rdfs:label "view.start" ; skos:notation "xst:view_start" ; skos:scopeNote "one of: hero, plan, street" .
+
+xst:Roles a skos:ConceptScheme ; rdfs:label "Scene roles" ; rdfs:comment "What a style may address. A scene group carries its role as MetadataString name='xst:role'." .
+xst:role a owl:DatatypeProperty ; rdfs:comment "The role of a scene group." .
+xst:role_ground a skos:Concept ; skos:inScheme xst:Roles ; skos:prefLabel "ground" ; skos:notation "ground" .
+xst:role_plate a skos:Concept ; skos:inScheme xst:Roles ; skos:prefLabel "plate" ; skos:notation "plate" .
+xst:role_mass a skos:Concept ; skos:inScheme xst:Roles ; skos:prefLabel "mass" ; skos:notation "mass" .
+xst:role_alert a skos:Concept ; skos:inScheme xst:Roles ; skos:prefLabel "alert" ; skos:notation "alert" .
+xst:role_hero a skos:Concept ; skos:inScheme xst:Roles ; skos:prefLabel "hero" ; skos:notation "hero" .
+xst:role_edge a skos:Concept ; skos:inScheme xst:Roles ; skos:prefLabel "edge" ; skos:notation "edge" .
+xst:role_link a skos:Concept ; skos:inScheme xst:Roles ; skos:prefLabel "link" ; skos:notation "link" .
+xst:role_packet a skos:Concept ; skos:inScheme xst:Roles ; skos:prefLabel "packet" ; skos:notation "packet" .
+xst:role_grid a skos:Concept ; skos:inScheme xst:Roles ; skos:prefLabel "grid" ; skos:notation "grid" .
+xst:role_label a skos:Concept ; skos:inScheme xst:Roles ; skos:prefLabel "label" ; skos:notation "label" .
+xst:role_sky a skos:Concept ; skos:inScheme xst:Roles ; skos:prefLabel "sky" ; skos:notation "sky" .
+
+xst:Rule a owl:Class ; rdfs:label "Grammar rule" .
+xst:Rules a skos:ConceptScheme ; rdfs:label "Grammar xst/1" .
+xst:G1 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G1" ; skos:prefLabel "Complete sentence" ; skos:definition "0 missing tokens" .
+xst:G2 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G2" ; skos:prefLabel "Labels are legible" ; skos:definition "contrast >= 4.5:1 (WCAG 2.x)" .
+xst:G3 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G3" ; skos:prefLabel "Figure separates from ground" ; skos:definition "Delta E OK >= 0.1, or an edge with contrast >= 1.6:1, or a lit surface with shadow + contact >= 0.8" .
+xst:G4 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G4" ; skos:prefLabel "Categories are distinct" ; skos:definition "min pair Delta E OK >= 0.08; >= 0.04 under deutan and protan" .
+xst:G5 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G5" ; skos:prefLabel "Order reads as order" ; skos:definition "monotone OKLab lightness, span >= 0.3" .
+xst:G6 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G6" ; skos:prefLabel "Alert pops out" ; skos:definition "Delta E OK >= 0.15 from every body and the plate" .
+xst:G7 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G7" ; skos:prefLabel "Accents are scarce" ; skos:definition "<= 0.15 of marks" .
+xst:G8 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G8" ; skos:prefLabel "Glow needs night" ; skos:definition "ground OKLab L <= 0.35" .
+xst:G9 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G9" ; skos:prefLabel "Light agrees with surface" ; skos:definition "unlit surface casts no shadow (shadow = 0)" .
+xst:G10 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G10" ; skos:prefLabel "Air agrees with sky" ; skos:definition "haze within Delta E OK 0.08 of the horizon" .
+xst:G11 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G11" ; skos:prefLabel "Motion is restrained" ; skos:definition "pulse period >= 0.5 s (under 3 flashes a second, WCAG 2.3.1)" .
+xst:G12 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G12" ; skos:prefLabel "Plate is a quiet step" ; skos:definition "Delta E OK from the ground in 0.02..0.2" .
+xst:G13 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G13" ; skos:prefLabel "Palette is portable" ; skos:definition ">= 4 categorical and >= 3 sequential stops" .
+xst:G14 a xst:Rule, skos:Concept ; skos:inScheme xst:Rules ; skos:notation "G14" ; skos:prefLabel "Declared key is honest" ; skos:definition "intent.key low: L <= 0.4, mid: 0.3..0.85, high: >= 0.75" .
+
+xst:Operator a owl:Class ; rdfs:label "Style operator" ; rdfs:subClassOf prov:Activity .
+xst:op_transpose a xst:Operator ; skos:prefLabel "transpose" ; skos:definition "Keep the structure of one style, take the palette and key of another." .
+xst:op_mix a xst:Operator ; skos:prefLabel "mix" ; skos:definition "Interpolate two styles: numbers and colours blend in OKLab, words switch at one half." .
+xst:op_invert a xst:Operator ; skos:prefLabel "invert" ; skos:definition "Flip the OKLab lightness of every palette colour and reverse the declared key." .
+xst:op_repair a xst:Operator ; skos:prefLabel "repair" ; skos:definition "Move palette lightness the smallest distance that makes the grammar pass." .

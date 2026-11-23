@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Style Loom: one X3D scene, twelve looks, one grammar</title>
+<meta name="description" content="Demo 75. The 260 nodes of X3D 4.0 as a data city, restyled live from a shared style vocabulary: 10 parts of speech, 14 checkable grammar rules, 4 operators, carried in X3D Metadata and JSON-LD.">
+<style>
+:root{--ground:#05080d;--plate:#0c1622;--ink:#bfe6ff;--accent:#ffd36b;--alert:#ff3b30;--mass:#0f1b29;--c0:#5cf2a0;--c1:#6fb7e0;--c2:#c58ce0;
+ --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--line:color-mix(in oklab,var(--ink) 22%,var(--ground));--dim:color-mix(in oklab,var(--ink) 62%,var(--ground));
+ --p1:color-mix(in oklab,var(--plate) 70%,var(--ground));--ok:#3fbf7f;--bad:#e5484d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;transition:background .5s,color .5s}
+a{color:var(--accent)}code,.mono{font-family:var(--mono);font-size:.86em}
+.wrap{max-width:1560px;margin:0 auto;padding:0 18px}
+header{padding:30px 0 8px}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent)}
+h1{font-size:clamp(30px,5vw,60px);line-height:1.02;margin:.15em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--c0),var(--c1),var(--c2),var(--alert));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:940px;color:var(--dim);font-size:17px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:20px 0 8px}
+.stat,.panel,.tblwrap,figure{background:var(--p1);border:1px solid var(--line);border-radius:14px}
+.stat{padding:12px 14px}.stat b{display:block;font-size:28px;line-height:1;font-weight:800;white-space:nowrap;color:var(--accent)}
+.stat span{color:var(--dim);font-size:13px;display:block;margin-top:6px}.stat i{font-style:normal;font-size:11px;color:var(--dim);opacity:.75;display:block;margin-top:4px;font-family:var(--mono)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.chip{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--p1);color:var(--ink);border-radius:999px;padding:6px 12px 6px 6px;font:600 13px system-ui;cursor:pointer}
+.chip .sw{display:flex;border-radius:999px;overflow:hidden;border:1px solid rgba(128,128,128,.5)}.chip .sw i{width:9px;height:18px;display:block}
+.chip.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.chip .bad{color:var(--bad);font-family:var(--mono);font-size:11px}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:14px;margin:8px 0 14px}
+#view{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/10;min-height:360px}
+x3d-canvas{width:100%;height:100%;display:block}
+#boot{position:absolute;inset:0;display:grid;place-items:center;color:#9ab;font-family:var(--mono);background:#03060a;transition:opacity .5s}#boot.done{opacity:0;pointer-events:none}
+.hud{position:absolute;left:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.btn{background:color-mix(in oklab,var(--ground) 82%,transparent);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:6px 12px;font:13px system-ui;cursor:pointer;backdrop-filter:blur(4px)}
+.btn.on{border-color:var(--accent);color:var(--accent)}
+#tag{position:absolute;left:12px;bottom:12px;font:12px var(--mono);background:color-mix(in oklab,var(--ground) 82%,transparent);border:1px solid var(--line);border-radius:8px;padding:5px 9px;max-width:calc(100% - 24px)}
+.side{display:flex;flex-direction:column;gap:12px}
+.panel{padding:12px 14px}.panel h3{margin:0 0 8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.row{display:grid;grid-template-columns:92px 1fr;gap:8px;align-items:center;margin:6px 0;font-size:13px}
+select,input[type=range]{width:100%;accent-color:var(--accent)}select{background:var(--ground);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px}
+.rules{display:grid;grid-template-columns:1fr;gap:3px;font-size:12.5px}
+.rule{display:grid;grid-template-columns:34px 1fr auto;gap:6px;align-items:baseline;border-bottom:1px dashed var(--line);padding:2px 0}
+.rule b{font-family:var(--mono)}.rule.p b{color:var(--ok)}.rule.f b{color:var(--bad)}.rule.na{opacity:.45}.rule span.m{font-family:var(--mono);color:var(--dim)}
+.score{font:800 26px system-ui}.score.ok{color:var(--ok)}.score.no{color:var(--bad)}
+h2{font-size:22px;margin:34px 0 10px;letter-spacing:-.01em}h2 small{font-size:13px;color:var(--dim);font-weight:400;margin-left:8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase}.tblwrap{overflow-x:auto;padding:4px 8px}
+.sws{display:inline-flex;gap:2px;vertical-align:middle}.sws i{width:14px;height:14px;border-radius:3px;border:1px solid rgba(128,128,128,.5);display:inline-block}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:10px}
+figure{margin:0;overflow:hidden;cursor:pointer}figure img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover}figcaption{padding:7px 10px;font-size:12.5px;color:var(--dim)}figcaption b{color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media (max-width:1100px){.stage,.two{grid-template-columns:1fr}}
+.mx{display:grid;gap:2px;font:10px var(--mono)}.mx div{aspect-ratio:1;border-radius:3px;display:grid;place-items:center;color:#000}.mx .h{background:none;color:var(--dim);aspect-ratio:auto;justify-content:end;padding-right:4px;white-space:nowrap}
+.mx .v{writing-mode:vertical-rl;transform:rotate(180deg);background:none;color:var(--dim);aspect-ratio:auto;justify-content:start}
+pre{background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:10px;overflow:auto;font:12px/1.45 var(--mono);max-height:340px;margin:0}
+.gram{font:13px/1.7 var(--mono);white-space:pre-wrap}
+.pill{font:11.5px var(--mono);border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--dim)}
+footer{margin:40px 0 60px;color:var(--dim);font-size:13px}
+</style>
+</head>
+<body>
+<script src="../../../lib/gfx-guard-v3.js"></script>
+<div class="wrap">
+<header>
+  <div class="kick">Demo 75 · x3d.loom x3d.style · grammar xst/1</div>
+  <h1>Style Loom: <em>one scene, twelve looks, one grammar</em></h1>
+  <p class="lede">The neon night city had become the house style of the data demos. This page takes one data scene, the 260 nodes of X3D 4.0 as a city, and re-dresses it from a shared
+  <b>style vocabulary</b>: ten parts of speech, fourteen rules a machine can check, four operators that make new styles from old ones. A style is a small JSON-LD document. The scene holds roles and data only.
+  The compiler in this page joins them into X3D 4.0, and writes the style back into the file as Metadata, so the look is something you can hold an AI to.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="chips" id="chips"></div>
+<div class="stage">
+  <div id="view">
+    <x3d-canvas id="xite" preserveDrawingBuffer="true" splashScreen="false" notifications="false" timings="false" update="auto" contextMenu="false"></x3d-canvas>
+    <div id="boot">weaving the city…</div>
+    <div class="hud" id="vps"></div>
+    <div id="tag"></div>
+  </div>
+  <div class="side">
+    <div class="panel">
+      <h3>Operators</h3>
+      <div class="row"><label for="pal">transpose</label><select id="pal"></select></div>
+      <div class="row"><label for="mixWith">mix with</label><select id="mixWith"></select></div>
+      <div class="row"><label for="mixT">mix amount</label><input id="mixT" type="range" min="0" max="100" value="0" step="5"></div>
+      <div class="row"><span>day / night</span><span><button class="btn" id="inv">invert</button> <button class="btn" id="fix">repair</button> <button class="btn" id="reset">reset</button></span></div>
+    </div>
+    <div class="panel">
+      <h3>Grammar check <span id="score" class="score"></span></h3>
+      <div class="rules" id="rules"></div>
+    </div>
+  </div>
+</div>
+
+<div class="two">
+  <div><h2>The sentence this style speaks <small>10 parts of speech, live</small></h2><div class="tblwrap"><table id="tokens"></table></div></div>
+  <div><h2>The same style as data <small>JSON-LD, and what lands in the X3D file</small></h2>
+    <pre id="jsonld"></pre><p style="margin:8px 0 4px;color:var(--dim);font-size:13px">In the X3D 4.0 world (metadata on the root group, and one role tag per group):</p><pre id="x3dmeta"></pre></div>
+</div>
+
+<h2>Twelve styles, one scene <small>frames from the X3D files in <code>worlds/</code>; click one to load it above</small></h2>
+<div class="shots" id="shots"></div>
+
+<h2>The grammar <small>what a style must say, and the rules it must obey</small></h2>
+<div class="two">
+  <div class="panel"><h3>Sentence</h3><div class="gram">Style    ::= Palette Surface Light Air Line Form Type Motion Encode View
+Scene    ::= Role* , each Role carrying data (value, category, flags)
+World    ::= compile(Scene, Style)            <span style="color:var(--dim)">X3D 4.0 + Metadata</span>
+
+Style'   ::= transpose(Style, Style)          <span style="color:var(--dim)">structure of one, palette of another</span>
+           | mix(Style, Style, t)             <span style="color:var(--dim)">numbers and colours blend in OKLab</span>
+           | invert(Style)                    <span style="color:var(--dim)">flip lightness: day becomes night</span>
+           | repair(Style)                    <span style="color:var(--dim)">smallest lightness moves that satisfy the rules</span>
+
+valid(Style) ::= G1 ∧ G2 ∧ … ∧ G14            <span style="color:var(--dim)">each rule measures, none guesses</span></div></div>
+  <div class="tblwrap"><table id="parts"></table></div>
+</div>
+<div class="tblwrap" style="margin-top:14px"><table id="ruletable"></table></div>
+
+<h2>Does it scale? <small>every structure × every palette, as is and inverted: 288 sentences checked</small></h2>
+<div class="two"><div><p class="pill" style="display:inline-block">as authored palettes</p><div class="mx" id="mxA"></div></div><div><p class="pill" style="display:inline-block">inverted (day ↔ night)</p><div class="mx" id="mxB"></div></div></div>
+<p style="color:var(--dim);font-size:13px">Rows are structures (everything but colour), columns are palettes. Green passes all applicable rules, amber passes after <code>repair</code>, red still fails and names its rule. Click a cell to load that combination above.</p>
+<div class="tblwrap"><table id="mxsum"></table></div>
+
+<h2>What the linter found in the authored styles <small>before repair</small></h2>
+<div class="tblwrap"><table id="repairs"></table></div>
+
+<h2>Evals socket <small>one number an optimizer can climb; switched off, no model calls made</small></h2>
+<div class="tblwrap"><table id="evals"></table></div>
+
+<h2>Receipts</h2>
+<div class="tblwrap"><table id="receipts"></table></div>
+
+<footer>
+<p><b>Data.</b> Nodes and components: x3d.loom <code>x3d.threejs/bridge/NODES.json</code>. Field counts: x3d.py 4.0.65.8 (Web3D Consortium, <a href="https://pypi.org/project/x3d/">pypi.org/project/x3d</a>). See <a href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/style-loom/v1/DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a>.
+<b>Colour science.</b> OKLab (Ottosson 2020), WCAG 2.x contrast, colour-vision simulation after Machado, Oliveira and Fernandes 2009 at severity 1.0: a simulation, not a test with readers.
+<b>Not tested.</b> A hardware GPU, any engine besides X_ITE, readers with colour-vision deficiency, the glTF route for these files, a learned optimizer. <a href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/style-loom/v1/README.md">README</a> · <a href="https://github.com/hagopjay/x3d.loom/tree/main/x3d.style">x3d.loom/x3d.style</a> · <a href="../../../index.html">all demos</a></p>
+</footer>
+</div>
+
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script type="module">
+import * as C from './kit/color.mjs';
+import { lint, transpose, invert, mixStyles, resolve, flatten, idOf, PARTS, NS } from './kit/grammar.mjs';
+import { repair } from './kit/repair.mjs';
+import { compile } from './kit/compile.mjs';
+
+const $ = s => document.querySelector(s);
+const j = u => fetch(u).then(r => { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); });
+const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+const sw = list => `<span class="sws">${list.map(h => `<i style="background:${h}" title="${h}"></i>`).join('')}</span>`;
+const S = { base: null, pal: null, mixWith: null, t: 0, inv: false, fixed: false, vp: null };
+let cat, scene, browser, D = {};
+window.STYLELOOM = { ready: false, busy: false, compileMs: 0 };
+
+function current() {
+  let s = S.base;
+  if (S.pal && idOf(S.pal) !== idOf(S.base)) s = transpose(s, S.pal);
+  if (S.mixWith && S.t > 0) s = mixStyles(s, S.mixWith, S.t);
+  if (S.inv) s = invert(s);
+  if (S.fixed) { const r = repair(s, scene); s = r.style; s.label = (s.label || '') + ', repaired'; S.drift = r; } else S.drift = null;
+  return s;
+}
+function chrome(s) {
+  const p = s.palette, r = document.documentElement.style;
+  for (const k of ['ground', 'plate', 'ink', 'accent', 'alert', 'mass']) r.setProperty('--' + k, p[k]);
+  // the page chrome obeys the same legibility rule as the scene: if the accent cannot be read on the ground, fall back to the ink
+  if (C.contrast(p.accent, p.ground) < 3) r.setProperty('--accent', p.ink);
+  p.categorical.slice(0, 3).forEach((c, i) => r.setProperty('--c' + i, c));
+}
+function panels(s, L) {
+  $('#score').textContent = `${L.passed}/${L.applicable}`; $('#score').className = 'score ' + (L.ok ? 'ok' : 'no');
+  $('#rules').innerHTML = L.rules.map(r => `<div class="rule ${r.applies ? (r.pass ? 'p' : 'f') : 'na'}" title="${esc(r.need)}"><b>${r.id}</b><span>${esc(r.name)}${r.note ? ` <span class="m">· ${esc(r.note)}</span>` : ''}</span><span class="m">${r.applies ? esc(r.measured) : 'n/a'}</span></div>`).join('')
+    + (S.drift ? `<div class="rule"><b>Δ</b><span>repair moved ${S.drift.changed}/${S.drift.colours} colours</span><span class="m">mean ${S.drift.meanDrift}, max ${S.drift.maxDrift}</span></div>` : '');
+  const R = resolve(s);
+  $('#tokens').innerHTML = '<tr><th>part</th><th>tokens</th></tr>' + Object.entries(PARTS).map(([part, toks]) => `<tr><td><b>${part}</b></td><td>${Object.keys(toks).map(t => { const v = R[part][t]; return `<span class="pill" style="display:inline-block;margin:1px">${t} ${Array.isArray(v) ? sw(v) : /^#/.test(v) ? sw([v]) + ' ' + v : `<b style="color:var(--ink)">${v}</b>`}</span>`; }).join(' ')}</td></tr>`).join('');
+  const doc = { '@context': NS.replace('#', '') + '/context.jsonld', '@id': s['@id'], '@type': 'Style', label: s.label, ...(s.operator ? { operator: s.operator, derivedFrom: s.derivedFrom } : {}), intent: s.intent };
+  for (const part of Object.keys(PARTS)) doc[part] = R[part];
+  $('#jsonld').textContent = JSON.stringify(doc, null, 1).replace(/\[\n\s+("#[^\]]+?)\n\s+\]/gs, (m, a) => '[' + a.replace(/\n\s+/g, ' ') + ']');
+  const fl = flatten(s);
+  $('#x3dmeta').textContent = `<Group DEF='XST_World'>\n <MetadataSet containerField='metadata' name='xst:Style' reference='${NS}${idOf(s)}'>\n`
+    + fl.slice(0, 6).map(([k, v]) => `  <MetadataString containerField='value' name='xst:${k.replace('.', '_')}' value='"${v}"'/>`).join('\n') + `\n  … ${fl.length - 6} more tokens\n </MetadataSet>\n <Group DEF='Role_alert'>\n  <MetadataString containerField='metadata' name='xst:role' reference='${NS}' value='"alert"'/>\n  …\n </Group>\n</Group>`;
+}
+async function render() {
+  if (!browser) return;
+  window.STYLELOOM.busy = true;
+  const s = current(), L = lint(s, scene);
+  chrome(s); panels(s, L);
+  const t0 = performance.now();
+  const x = compile(scene, s, { lint: L });
+  const ms = performance.now() - t0;
+  try {
+    const sc = await browser.createX3DFromString(x);
+    await browser.replaceWorld(sc);
+    if (S.vp) { try { browser.currentScene.getNamedNode(S.vp).set_bind = true; } catch (e) { /* view not in this world */ } }
+  } catch (e) { console.error(e); }
+  $('#tag').textContent = `${s.label} · ${idOf(s)} · ${(x.length / 1e6).toFixed(2)} MB of X3D compiled here in ${ms.toFixed(0)} ms · grammar ${L.passed}/${L.applicable}`;
+  document.querySelectorAll('#chips .chip').forEach(c => c.classList.toggle('on', c.dataset.id === idOf(S.base)));
+  $('#inv').classList.toggle('on', S.inv); $('#fix').classList.toggle('on', S.fixed);
+  Object.assign(window.STYLELOOM, { busy: false, compileMs: ms, style: idOf(s), lint: `${L.passed}/${L.applicable}`, bytes: x.length });
+}
+function pick(id, o = {}) {
+  S.base = cat.find(s => idOf(s) === id) || S.base;
+  S.pal = o.palette ? cat.find(s => idOf(s) === o.palette) : null; S.inv = !!o.inverted; S.fixed = !!o.repair; S.t = o.t || 0; S.mixWith = o.mixWith ? cat.find(s => idOf(s) === o.mixWith) : S.mixWith; S.vp = o.vp || null;
+  $('#pal').value = S.pal ? idOf(S.pal) : ''; $('#mixT').value = S.t * 100; if (o.mixWith) $('#mixWith').value = o.mixWith;
+  document.querySelectorAll('#vps .btn').forEach(b => b.classList.toggle('on', b.dataset.vp === S.vp));
+  return render();
+}
+window.STYLELOOM.pick = pick;
+window.STYLELOOM.bind = vp => { S.vp = vp; try { browser.currentScene.getNamedNode(vp).set_bind = true; } catch (e) { console.warn(e); } };
+
+function matrix(el, inv) {
+  const ids = cat.map(idOf), n = ids.length;
+  el.style.gridTemplateColumns = `90px repeat(${n},1fr)`;
+  let h = '<div class="h"></div>' + ids.map(i => `<div class="v">${i}</div>`).join('');
+  for (const st of ids) { h += `<div class="h">${st}</div>`; for (const pl of ids) { const c = D.matrix.cells.find(x => x.structure === st && x.palette === pl && x.inverted === inv);
+    const col = c.ok ? '#3fbf7f' : c.repair && c.repair.ok ? '#e0a93a' : '#e5484d';
+    h += `<div style="background:${col};cursor:pointer;${st === pl ? 'outline:2px solid var(--ink)' : ''}" data-s="${st}" data-p="${pl}" data-fix="${c.ok ? '' : '1'}" title="${st} + ${pl}${inv ? ' inverted' : ''}: ${c.passed}/${c.applicable}${c.fails.length ? ' fails ' + c.fails.join(' ') : ''}">${c.ok ? '' : c.fails.map(f => f.slice(1)).join(' ')}</div>`; } }
+  el.innerHTML = h;
+  el.querySelectorAll('div[data-s]').forEach(d => d.onclick = () => { pick(d.dataset.s, { palette: d.dataset.p, inverted: inv }); $('#view').scrollIntoView({ block: 'center' }); });
+}
+function fill() {
+  const B = D.build, V = D.validate, F = D.shots, M = D.matrix, EV = D.evals;
+  const st = [['12', 'authored styles', `${B.repairs.filter(r => r.failed.length).length} failed the grammar as written`], ['10', 'parts of speech', `${Object.values(PARTS).reduce((a, p) => a + Object.keys(p).length, 0)} tokens`],
+    ['14', 'grammar rules', 'each one a measurement'], [`${M.all.pass}/${M.all.cells}`, 'combinations valid', `${M.all.passAfterRepair} after repair`],
+    [V ? `${V.valid}/${V.files_checked}` : '…', 'worlds XSD 4.0 valid', V ? V.validator.split(' (')[0] : ''], [F ? `${F.frames.filter(f => !f.black).length}/${F.frames.length}` : '…', 'frames drawn', F ? `X_ITE ${F.x_ite}, ${F.webgl_renderer.includes('SwiftShader') ? 'SwiftShader' : 'GPU'}` : ''],
+    [String(scene.counts.marks), 'X3D nodes in the city', `${scene.counts.districts} components, ${scene.counts.alerts} alerts`]];
+  $('#stats').innerHTML = st.map(([b, s, i]) => `<div class="stat"><b>${b}</b><span>${s}</span><i>${i}</i></div>`).join('');
+  $('#chips').innerHTML = cat.map(s => { const p = s.palette, r = B.repairs.find(x => x.id === idOf(s)); return `<button class="chip" data-id="${idOf(s)}" title="${esc(s.lineage)}"><span class="sw">${[p.ground, p.plate, ...(resolve(s).encode.hue === 'value' ? [0, .5, 1].map(t => C.ramp(p.sequential, t)) : p.categorical.slice(0, 3)), p.alert].map(h => `<i style="background:${h}"></i>`).join('')}</span>${esc(s.label)}</button>`; }).join('');
+  document.querySelectorAll('#chips .chip').forEach(c => c.onclick = () => pick(c.dataset.id));
+  const opt = '<option value="">its own palette</option>' + cat.map(s => `<option value="${idOf(s)}">${esc(s.label)}</option>`).join('');
+  $('#pal').innerHTML = opt; $('#mixWith').innerHTML = cat.map(s => `<option value="${idOf(s)}">${esc(s.label)}</option>`).join(''); $('#mixWith').value = 'maquette'; S.mixWith = cat.find(s => idOf(s) === 'maquette');
+  $('#pal').onchange = e => { S.pal = cat.find(s => idOf(s) === e.target.value) || null; render(); };
+  $('#mixWith').onchange = e => { S.mixWith = cat.find(s => idOf(s) === e.target.value); render(); };
+  $('#mixT').onchange = e => { S.t = e.target.value / 100; render(); };
+  $('#inv').onclick = () => { S.inv = !S.inv; render(); }; $('#fix').onclick = () => { S.fixed = !S.fixed; render(); };
+  $('#reset').onclick = () => pick(idOf(S.base));
+  $('#vps').innerHTML = [['VP_Hero', 'Hero'], ['VP_Plan', 'Plan'], ['VP_Street', 'Street']].map(([d, t]) => `<button class="btn" data-vp="${d}">${t}</button>`).join('');
+  document.querySelectorAll('#vps .btn').forEach(b => b.onclick = () => { window.STYLELOOM.bind(b.dataset.vp); document.querySelectorAll('#vps .btn').forEach(x => x.classList.toggle('on', x === b)); });
+  $('#shots').innerHTML = cat.map(s => { const f = F && F.frames.find(x => x.name === idOf(s)); return `<figure data-id="${idOf(s)}"><img loading="lazy" src="shots/${idOf(s)}.webp" alt="${esc(s.label)}: the X3D node city"><figcaption><b>${esc(s.label)}</b> · ${esc(s.lineage)}<br><span class="mono">${resolve(s).surface.model} · ${resolve(s).encode.hue} · key ${s.intent.key}${f ? ` · mean luminance ${f.mean_luminance}` : ''}</span></figcaption></figure>`; }).join('');
+  document.querySelectorAll('#shots figure').forEach(f => f.onclick = () => { pick(f.dataset.id); $('#view').scrollIntoView({ block: 'center' }); });
+  const X3D_OF = { palette: 'Color, Background.skyColor, Fog.color, Material colours', surface: 'UnlitMaterial | Material | PhysicalMaterial', light: 'DirectionalLight (shadows, shadowIntensity); baked vertex colour', air: 'Fog, Background', line: 'IndexedLineSet, LineProperties, swept IndexedFaceSet', form: 'IndexedFaceSet (one prism generator)', type: 'Text, FontStyle', motion: 'TimeSensor, ColorInterpolator, PositionInterpolator, ROUTE', encode: 'which data channel drives which token', view: 'Viewpoint | OrthoViewpoint' };
+  $('#parts').innerHTML = '<tr><th>part of speech</th><th>tokens</th><th>X3D 4.0 it becomes</th></tr>' + Object.entries(PARTS).map(([p, t]) => `<tr><td><b>${p}</b></td><td class="mono">${Object.entries(t).map(([k, v]) => Array.isArray(v) ? `${k}: ${v.join(' | ')}` : k).join(', ')}</td><td>${X3D_OF[p]}</td></tr>`).join('');
+  const L0 = lint(cat[0], scene);
+  $('#ruletable').innerHTML = '<tr><th>rule</th><th>says</th><th>measured as</th><th>fails in the 288</th></tr>' + L0.rules.map(r => `<tr><td class="mono"><b>${r.id}</b></td><td>${esc(r.name)}</td><td>${esc(r.need)}</td><td class="mono">${M.failsByRule[r.id] || 0}</td></tr>`).join('');
+  matrix($('#mxA'), false); matrix($('#mxB'), true);
+  $('#mxsum').innerHTML = '<tr><th>set</th><th>sentences</th><th>valid as is</th><th>valid after repair</th><th>instrument</th></tr>' + [['home (each style in its own palette)', M.home], ['transposed, as is', M.plain], ['inverted', M.inverted], ['all', M.all]].map(([n, t]) => `<tr><td>${n}</td><td>${t.cells}</td><td>${t.pass} (${Math.round(100 * t.pass / t.cells)}%)</td><td>${t.passAfterRepair} (${Math.round(100 * t.passAfterRepair / t.cells)}%)</td><td class="mono">${esc(M.instrument)}</td></tr>`).join('');
+  $('#repairs').innerHTML = '<tr><th>style</th><th>authored</th><th>what failed</th><th>repair</th><th>colours moved</th><th>drift (Delta E OK) mean / max</th></tr>' + B.repairs.map(r => `<tr><td><b>${r.id}</b></td><td class="mono">${r.authored}</td><td>${r.failed.map(f => `<b>${f.id}</b> ${esc(f.name)}: ${f.measured} (${esc(f.note)})`).join('<br>') || '<span style="color:var(--ok)">clean</span>'}</td><td>${r.failed.length ? (r.repaired ? 'pass' : 'still failing') : ''}</td><td class="mono">${r.failed.length ? r.coloursMoved : ''}</td><td class="mono">${r.failed.length ? r.meanDrift + ' / ' + r.maxDrift : ''}</td></tr>`).join('');
+  if (EV) $('#evals').innerHTML = '<tr><th>candidate</th><th>score (0..1)</th><th>grammar</th><th>fidelity</th><th>note</th></tr>' + EV.baselines.map(b => `<tr><td><b>${esc(b.name)}</b></td><td class="mono">${b.score}</td><td class="mono">${b.grammar}</td><td class="mono">${b.fidelity}</td><td>${esc(b.note)}</td></tr>`).join('')
+    + `<tr><td colspan="5" style="color:var(--dim)">${EV.tasks} tasks (${esc(EV.split)}). Metric: ${esc(EV.metric)}. DSPy: ${esc(EV.dspy)}.</td></tr>`;
+  const rows = [['Scene', `${scene.counts.marks} marks, ${scene.counts.districts} districts, ${scene.counts.links} links, ${scene.counts.alerts} alerts`, Object.values(scene.sources).join('; ')],
+    ['Validation', V ? `${V.valid}/${V.files_checked} files XSD 4.0 valid, 0 errors, 0 warnings` : 'not run', V ? V.validator : ''],
+    ['Frames', F ? `${F.frames.length} frames, ${F.frames.filter(f => f.black).length} black; mean luminance ${Math.min(...F.frames.map(f => f.mean_luminance))} to ${Math.max(...F.frames.map(f => f.mean_luminance))}` : 'not run', F ? `X_ITE ${F.x_ite}, Chromium ${F.chromium} (Playwright), ${F.webgl_renderer}` : ''],
+    ['Declared key vs frame', F && F.key ? `${F.key.agree}/${F.key.checked} styles land in the luminance band their intent.key declares` : 'not run', F && F.key ? F.key.bands : ''],
+    ['Compile', `${Math.min(...B.files.map(f => f.compile_ms))} to ${Math.max(...B.files.map(f => f.compile_ms))} ms per world, ${(B.files.reduce((a, f) => a + f.bytes, 0) / 1e6).toFixed(1)} MB for 12`, `compile.mjs, Node ${B.node} (build machine, not a benchmark)`],
+    ['Ontology', D.rdf ? `${D.rdf.vocab_triples} triples of vocabulary, ${D.rdf.triples} from the catalogue; SHACL conforms: ${D.rdf.shacl_conforms}; ${D.rdf.negative_caught}/${D.rdf.negative_total} broken styles rejected` : 'not run', D.rdf ? D.rdf.instrument : ''],
+    ['X3D round trip', D.rdf ? `${D.rdf.x3d_round_trip.identical}/${D.rdf.x3d_round_trip.worlds} worlds give back all ${D.rdf.x3d_round_trip.tokens_each} tokens exactly as the catalogue states them` : 'not run', 'tools/check_rdf.py reading MetadataSet xst:Style'],
+    ['glTF lane', D.gltf ? `${D.gltf.pass}/${D.gltf.worlds} worlds pass S0..S6: ${D.gltf.metadata_nodes} Metadata nodes out to KHR_xmp_json_ld and back, none lost. ${D.gltf.note}` : 'not run', D.gltf ? D.gltf.instrument : '']];
+  $('#receipts').innerHTML = '<tr><th>what</th><th>result</th><th>instrument</th></tr>' + rows.map(r => `<tr><td><b>${r[0]}</b></td><td>${esc(r[1])}</td><td class="mono">${esc(r[2])}</td></tr>`).join('');
+}
+async function boot() {
+  const [c, sc, build, mx] = await Promise.all(['data/catalogue.jsonld', 'data/node-city.scene.json', 'data/build-receipt.json', 'data/matrix.json'].map(j));
+  cat = c['@graph']; scene = sc; D.build = build; D.matrix = mx;
+  for (const [k, u] of [['validate', 'data/validate-receipt.json'], ['shots', 'shots/shots-receipt.json'], ['evals', 'data/evals-receipt.json'], ['rdf', 'data/rdf-receipt.json'], ['gltf', 'data/gltf-receipt.json']]) { try { D[k] = await j(u); } catch (e) { /* optional receipt */ } }
+  S.base = cat[0]; fill(); chrome(S.base); panels(S.base, lint(S.base, scene));
+  if (!GfxGuard.require({ api: 'webgl2', bootId: 'boot', timeoutMs: 30000, title: 'The style loom', still: 'shots/neon-noir.webp', stillAlt: 'The X3D node city in Neon Noir' })) return;
+  const guard = GfxGuard.pane('x_ite', { host: 'view', timeoutMs: 30000, title: 'The X_ITE view', onRetry: () => location.reload() });
+  try {
+    browser = X3D.getBrowser('#xite');
+    const q = new URLSearchParams(location.search);
+    await pick(q.get('style') || 'neon-noir', { palette: q.get('palette'), inverted: q.get('inv') === '1' });
+    guard.ready(); GfxGuard.ready(); $('#boot').classList.add('done');
+    window.STYLELOOM.ready = true;
+  } catch (e) { console.error(e); guard.fail(e.message || String(e)); }
+}
+boot().catch(e => { console.error(e); $('#boot').textContent = 'could not load: ' + e.message; });
+</script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+{
+ "grammar": "xst/1",
+ "node": "v22.23.5",
+ "scene": {
+  "id": "node-city",
+  "counts": {
+   "marks": 260,
+   "districts": 36,
+   "links": 35,
+   "alerts": 32,
+   "noFieldData": []
+  },
+  "sources": {
+   "nodes": "x3d.loom x3d.threejs/bridge/NODES.json (260 nodes, component, three.js bridge status)",
+   "fields": "x3d.py 4.0.65.8 FIELD_DECLARATIONS() length per node class",
+   "links": "ISO/IEC 19775-1 clause 7: every component builds on Core"
+  }
+ },
+ "repairs": [
+  {
+   "id": "neon-noir",
+   "authored": "12/13",
+   "failed": [
+    {
+     "id": "G4",
+     "name": "Categories are distinct",
+     "measured": 0.09,
+     "need": "min pair Delta E OK >= 0.08; >= 0.04 under deutan and protan",
+     "note": "colour-blind min 0.02 (Machado 2009)"
+    }
+   ],
+   "repaired": true,
+   "coloursMoved": "2/22",
+   "meanDrift": 0.0011,
+   "maxDrift": 0.0126,
+   "log": [
+    "G4 categories pushed apart in 1 steps"
+   ]
+  },
+  {
+   "id": "blueprint",
+   "authored": "9/9",
+   "failed": [],
+   "repaired": true,
+   "coloursMoved": "0/20",
+   "meanDrift": 0,
+   "maxDrift": 0,
+   "log": []
+  },
+  {
+   "id": "maquette",
+   "authored": "10/10",
+   "failed": [],
+   "repaired": true,
+   "coloursMoved": "0/20",
+   "meanDrift": 0,
+   "maxDrift": 0,
+   "log": []
+  },
+  {
+   "id": "ink-wash",
+   "authored": "10/11",
+   "failed": [
+    {
+     "id": "G3",
+     "name": "Figure separates from ground",
+     "measured": 0.059,
+     "need": "Delta E OK >= 0.1, or an edge with contrast >= 1.6:1, or a light (L >= 0.5) lit surface with shadow + contact >= 0.8",
+     "note": "nothing separates it"
+    }
+   ],
+   "repaired": true,
+   "coloursMoved": "1/20",
+   "meanDrift": 0.0025,
+   "maxDrift": 0.0502,
+   "log": [
+    "G3 bodies moved off the plate in 4 steps"
+   ]
+  },
+  {
+   "id": "bauhaus",
+   "authored": "8/10",
+   "failed": [
+    {
+     "id": "G3",
+     "name": "Figure separates from ground",
+     "measured": 0.074,
+     "need": "Delta E OK >= 0.1, or an edge with contrast >= 1.6:1, or a light (L >= 0.5) lit surface with shadow + contact >= 0.8",
+     "note": "nothing separates it"
+    },
+    {
+     "id": "G4",
+     "name": "Categories are distinct",
+     "measured": 0.11,
+     "need": "min pair Delta E OK >= 0.08; >= 0.04 under deutan and protan",
+     "note": "colour-blind min 0.021 (Machado 2009)"
+    }
+   ],
+   "repaired": true,
+   "coloursMoved": "3/20",
+   "meanDrift": 0.0099,
+   "maxDrift": 0.1723,
+   "log": [
+    "G4 categories pushed apart in 1 steps",
+    "G3 bodies moved off the plate in 14 steps"
+   ]
+  },
+  {
+   "id": "terracotta",
+   "authored": "11/11",
+   "failed": [],
+   "repaired": true,
+   "coloursMoved": "0/20",
+   "meanDrift": 0,
+   "maxDrift": 0,
+   "log": []
+  },
+  {
+   "id": "brass",
+   "authored": "12/12",
+   "failed": [],
+   "repaired": true,
+   "coloursMoved": "0/20",
+   "meanDrift": 0,
+   "maxDrift": 0,
+   "log": []
+  },
+  {
+   "id": "atlas",
+   "authored": "10/10",
+   "failed": [],
+   "repaired": true,
+   "coloursMoved": "0/20",
+   "meanDrift": 0,
+   "maxDrift": 0,
+   "log": []
+  },
+  {
+   "id": "viridis-lab",
+   "authored": "10/10",
+   "failed": [],
+   "repaired": true,
+   "coloursMoved": "0/22",
+   "meanDrift": 0,
+   "maxDrift": 0,
+   "log": []
+  },
+  {
+   "id": "manuscript",
+   "authored": "10/10",
+   "failed": [],
+   "repaired": true,
+   "coloursMoved": "0/20",
+   "meanDrift": 0,
+   "maxDrift": 0,
+   "log": []
+  },
+  {
+   "id": "thermal",
+   "authored": "13/13",
+   "failed": [],
+   "repaired": true,
+   "coloursMoved": "0/20",
+   "meanDrift": 0,
+   "maxDrift": 0,
+   "log": []
+  },
+  {
+   "id": "risograph",
+   "authored": "9/10",
+   "failed": [
+    {
+     "id": "G4",
+     "name": "Categories are distinct",
+     "measured": 0.167,
+     "need": "min pair Delta E OK >= 0.08; >= 0.04 under deutan and protan",
+     "note": "colour-blind min 0.024 (Machado 2009)"
+    }
+   ],
+   "repaired": true,
+   "coloursMoved": "4/20",
+   "meanDrift": 0.0043,
+   "maxDrift": 0.0376,
+   "log": [
+    "G4 categories pushed apart in 4 steps"
+   ]
+  }
+ ],
+ "files": [
+  {
+   "style": "neon-noir",
+   "file": "neon-noir.x3d",
+   "bytes": 970908,
+   "sha256": "35a47fa94a310885688bf69bbc1fab7d2a5af9de44cc46aff02f1434f1ae0f72",
+   "compile_ms": 92.1,
+   "lint": "13/13",
+   "ok": true
+  },
+  {
+   "style": "blueprint",
+   "file": "blueprint.x3d",
+   "bytes": 635786,
+   "sha256": "89aeda430952c4c2ac98058d26eb13fb51d17caa8e566417f828536c9e654450",
+   "compile_ms": 56.7,
+   "lint": "9/9",
+   "ok": true
+  },
+  {
+   "style": "maquette",
+   "file": "maquette.x3d",
+   "bytes": 745666,
+   "sha256": "06863155333aeb33adfe71e81d09a1f82e6508bef40d71f74917747aaa3bc0f9",
+   "compile_ms": 74.3,
+   "lint": "10/10",
+   "ok": true
+  },
+  {
+   "style": "ink-wash",
+   "file": "ink-wash.x3d",
+   "bytes": 599846,
+   "sha256": "159375d7ebbcc5b5817e43db88b511a01fc81182c58232961275165f5ff57b53",
+   "compile_ms": 46.5,
+   "lint": "11/11",
+   "ok": true
+  },
+  {
+   "style": "bauhaus",
+   "file": "bauhaus.x3d",
+   "bytes": 1432652,
+   "sha256": "4096ad35d7a53862247d2b336aa08cf27bf6f5a8c21d4417cbb62ba27a6749f9",
+   "compile_ms": 101.3,
+   "lint": "10/10",
+   "ok": true
+  },
+  {
+   "style": "terracotta",
+   "file": "terracotta.x3d",
+   "bytes": 998035,
+   "sha256": "3e0d83941fa558a43bace4562ba5f3a87bc97cd320c06dab40f9e0096c086647",
+   "compile_ms": 67.8,
+   "lint": "11/11",
+   "ok": true
+  },
+  {
+   "style": "brass",
+   "file": "brass.x3d",
+   "bytes": 2789400,
+   "sha256": "b2c5c8ab6a97028a1909b83f786dd4cb7d3a275e56412360fe6461d1f26e1a5e",
+   "compile_ms": 231.2,
+   "lint": "12/12",
+   "ok": true
+  },
+  {
+   "style": "atlas",
+   "file": "atlas.x3d",
+   "bytes": 1359658,
+   "sha256": "6a4337213103d5fd1d452d34f6da8255ffec03f0a19f2dadbdf4ee4dc38b9b5c",
+   "compile_ms": 92.3,
+   "lint": "10/10",
+   "ok": true
+  },
+  {
+   "style": "viridis-lab",
+   "file": "viridis-lab.x3d",
+   "bytes": 553008,
+   "sha256": "b573bdba058bcbf1775990b2920d3d47c24eb65be9436053abbbee19e2c9fd32",
+   "compile_ms": 38.5,
+   "lint": "10/10",
+   "ok": true
+  },
+  {
+   "style": "manuscript",
+   "file": "manuscript.x3d",
+   "bytes": 2024617,
+   "sha256": "57177d456473ea76ebbc063bf6e7e74b03859a204fb8c47bed598801d15bb2ee",
+   "compile_ms": 118,
+   "lint": "10/10",
+   "ok": true
+  },
+  {
+   "style": "thermal",
+   "file": "thermal.x3d",
+   "bytes": 538358,
+   "sha256": "9685d6b9e53f4182262b9e19a3092a2a76c136e893f8fdc8eb46248e54a7c309",
+   "compile_ms": 48.9,
+   "lint": "13/13",
+   "ok": true
+  },
+  {
+   "style": "risograph",
+   "file": "risograph.x3d",
+   "bytes": 876034,
+   "sha256": "4f9ed51920cb635240f795d893aabbcf3f4977618e8bf84d85d64b085fc00fc6",
+   "compile_ms": 67.2,
+   "lint": "10/10",
+   "ok": true
+  }
+ ],
+ "matrix": {
+  "all": {
+   "cells": 288,
+   "pass": 104,
+   "passAfterRepair": 158
+  },
+  "plain": {
+   "cells": 144,
+   "pass": 71,
+   "passAfterRepair": 98
+  },
+  "inverted": {
+   "cells": 144,
+   "pass": 33,
+   "passAfterRepair": 60
+  },
+  "home": {
+   "cells": 12,
+   "pass": 12,
+   "passAfterRepair": 12
+  },
+  "failsByRule": {
+   "G4": 68,
+   "G8": 36,
+   "G14": 24,
+   "G3": 76,
+   "G6": 79
+  }
+ }
+}
