@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v81 (2026-11-23)
+- Five cards now open the final-quality bakes made on 23 Nov (merged as PR 161 and PR 162) and keep every older version linked: Demo 35 Semantic Twins opens v4 (v3, v2, v1 linked), Demo 44 Masonic Lodge XR opens v4 (v3, v2, v1), Demo 63 Giza Crawl opens v3 (v2, v1), Demo 64 Giza Fall opens v3 (v2, v1) and Demo 66 The Fault Lab opens v5 (v4, v3, v2, v1). Until now the Crawl and Fall cards still opened v1 and none of the Blender baked-texture versions was linked from the front page. Each card says what the new version changes: the same scene as the Blender version before it, with its baked surfaces redone at 384 to 640 samples in Blender 5.3 Cycles (OptiX) on one NVIDIA L4, and for Giza Crawl the hand-repaired Grand Gallery texture. The card pictures and the "What I checked" paragraphs are unchanged and still describe the version they were written for; each card now says which. I checked that every `demos/` link on the page resolves to a file (0 missing) and loaded the five new targets headless with SwiftShader. Versions v1 to v80 are untouched.
+
 ## v80 (2026-11-22)
 - The Demo 66 card now points to The Fault Lab v3 (`docs/demos/fault-lab/v3/`, merged as PR 154) and keeps v1 and v2 linked; image `assets/fault-lab-v3.jpg` is the page's own lift screenshot letterboxed to 16:9. I ran the page test (29 of 29), parsed both glb files (0 versus 5 `KHR_xmp_json_ld` holders, 25,180 and 28,156 bytes) and read the lift report (3 of 3 trees, 6 nodes, no errors). I did not rerun the lifter, rules L0 to L6, the Khronos validator or Blender. The earlier v2 card text is replaced on the front page only; page versions v1 to v79 are untouched.
 
