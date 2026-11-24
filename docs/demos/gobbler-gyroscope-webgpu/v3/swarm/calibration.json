@@ -1,0 +1,92 @@
+{
+ "source": [
+  {
+   "file": "runs/sim-2026-11-18-r2/tape.jsonl",
+   "rows": 525,
+   "sha256": "adff7e21a44a6ae45c9ed15b881eeecdc8bfeb89f2d2bb6bbd63c957c27ec1ac"
+  },
+  {
+   "file": "runs/sim-2026-11-18-r3/tape.jsonl",
+   "rows": 577,
+   "sha256": "8e804e0f93b56a007e457b881cb1bb377600af68540830ccb2a8619206acebf1"
+  },
+  {
+   "file": "runs/sim-2026-11-18-r4/tape.jsonl",
+   "rows": 661,
+   "sha256": "31ead02250fbe9534be41e35de4ba09a41fef005f52ecbc6c700e0951aa8d353"
+  },
+  {
+   "file": "runs/sim-2026-11-18-r5/tape.jsonl",
+   "rows": 674,
+   "sha256": "f52459c6288d409fd15585b0c48e7b0f66dd228046ad52cf305ac70fccc3c679"
+  },
+  {
+   "file": "runs/sim-2026-11-18/tape.jsonl",
+   "rows": 525,
+   "sha256": "b946c853159b4a0750a4e8bb266b6ceb7cc33063f1a0026ee2ebff57de503200"
+  }
+ ],
+ "mode": "sim (recorded; no live model calls)",
+ "counts": {
+  "cycles": 240,
+  "signal": 175,
+  "haiku_weaves": 260,
+  "procedural_weaves": 45,
+  "witness_refused": 130,
+  "witness_pass": 175,
+  "council_proceed": 135,
+  "keeper_commit": 175,
+  "council_ask": 40,
+  "no_signal": 65,
+  "assayer_rows": 181
+ },
+ "weave_attempts_hist": {
+  "1": 90,
+  "2": 40,
+  "3": 45
+ },
+ "refusal_codes": {
+  "GATE_CONTAINMENT": 45,
+  "MCP_SEMANTIC_PROFILE_COMPONENT": 45,
+  "GATE_NODE_FORBIDDEN": 40
+ },
+ "p": {
+  "signal": 0.7291666666666666,
+  "witness_pass_per_attempt": 0.5737704918032787,
+  "attempts": [
+   0.5142857142857142,
+   0.22857142857142856,
+   0.2571428571428571
+  ],
+  "council": [
+   0.7714285714285715,
+   0.22857142857142856,
+   0.0
+  ]
+ },
+ "spend_usd": {
+  "cycles_with_spend": 175,
+  "mean": 0.0008085142857142858,
+  "max": 0.001148
+ },
+ "node_kind_counts": {
+  "assayer.assay": 96,
+  "assayer.canary": 2,
+  "assayer.state_of_record": 83,
+  "gobbler.ask": 40,
+  "gobbler.budget": 260,
+  "gobbler.close": 240,
+  "gobbler.council": 175,
+  "gobbler.decision": 40,
+  "gobbler.open": 240,
+  "keeper.commit": 175,
+  "keeper.foldback": 175,
+  "scout.namesake": 80,
+  "scout.signal": 175,
+  "scout.sweep": 240,
+  "weaver.context": 156,
+  "weaver.proposal": 175,
+  "weaver.weave": 305,
+  "witness.verdict": 305
+ }
+}
