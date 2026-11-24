@@ -1,0 +1,79 @@
+{
+ "slug": "scriptorium",
+ "world": "scriptorium-atlas.x3d",
+ "operations": {
+  "chisel-scriptorium": "346794cfe39e476682a05bc85c40df98"
+ },
+ "cameras": {
+  "count": 12,
+  "compared_with_sent": true,
+  "worst_position_diff_m": 0.0,
+  "worst_rotation_diff_deg": 0.0,
+  "worst_fieldOfView_diff_rad": 1.1102230246251565e-16
+ },
+ "splats": {
+  "file": "draft.spz",
+  "sha256": "0178b38cbb19a252280efd430c9e957d66678c6fd1ce102333833892821266c0",
+  "bytes": 8330048,
+  "spz_version": 2,
+  "count": 524288,
+  "sh_degree": 0,
+  "bbox_min": [
+   -34.028,
+   -8.866,
+   -25.124
+  ],
+  "bbox_max": [
+   39.0,
+   27.189,
+   24.039
+  ],
+  "vs_x3d_surfaces": {
+   "sample": 120000,
+   "median_mm": 26.855459436774254,
+   "p90_mm": 95.45946419239044,
+   "within_20mm_pct": 38.51083333333333,
+   "within_50mm_pct": 74.34583333333333,
+   "within_100mm_pct": 90.7975,
+   "opacity_weighted_median_mm": 29.960930347442627,
+   "method": "exact distance from splat centre to the nearest triangle of the X3D file the Blender add-on wrote (BVH)"
+  },
+  "preview": {
+   "count": 30000,
+   "pick": "uniform random, seed 7",
+   "scale_factor": 2.5951
+  }
+ },
+ "mesh": {
+  "file": "mesh.glb",
+  "sha256": "e428d60dbfc5d43266fb08738bcfb8891f070ae81b71502cc3f4a3c5a76ab34e",
+  "bytes": 10506044,
+  "meshes": 1,
+  "nodes": 2,
+  "vertices": 163611,
+  "images": 2,
+  "as_x3d": {
+   "x3d": "scriptorium-atlas-mesh.x3d",
+   "texture": "scriptorium-atlas-mesh.png",
+   "vertices": 163611,
+   "faces": 300000,
+   "bytes": 12300646,
+   "valid": true
+  }
+ },
+ "colliders": {
+  "file": "colliders.glb",
+  "sha256": "a1ca9737fe393c31f37c5967358f84afcce6294e444be09aa2fc5ae56d696c54",
+  "boxes": 399,
+  "all_upright": true
+ },
+ "x3d": {
+  "file": "scriptorium-atlas.x3d",
+  "bytes": 3451726,
+  "sha256": "aeb31a6b8b76184890e2613a379558b84b78199e15da48c08f648cfa9d82812c",
+  "viewpoints": 12,
+  "valid": true,
+  "validator": "hagopjay/x3d_mcp 4d433af validate_xml, bundled X3D 4.1 XSD",
+  "errors": []
+ }
+}
