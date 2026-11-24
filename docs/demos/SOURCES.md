@@ -532,3 +532,12 @@ v1's page (`index.html`, `gobbler3.x3d`, `graph-v3.json` copied from `gobbler-gy
 | gobbler-gyroscope-webgpu/v2/swarm/swarm.js | 1878167ee9bdce279a5cf35215e737070c087c83b5c11002735ac23d1787ca8b | 17454 |
 | gobbler-gyroscope-webgpu/v2/tests/integration.html | b7e465384bb12cd018b24d5d114ccf8715f1ef5af58ce8b24d3b52dc3e2076a6 | 3612 |
 | gobbler-gyroscope-webgpu/v2/tests/parity.html | cc2295f1ea4ae7b6c20a2b17026a5bcc11ec44b45d2aa27cb95b37bb0f844233 | 2814 |
+
+
+## atlas-bridge-v2 and gobbler-gyroscope-swarm (v87)
+`atlas-bridge-v2` is a 2 x 2 of tiles cut from `docs/demos/atlas-bridge/v2/shots/` (`live-clean.png`, `live-clean-16.png`, `live-clean-21.png`, and the top four rows of `scriptorium-clean24-board.jpg`; Chromium 157, SwiftShader, three r187) saved as 960 x 540 JPEG. It contains World Labs Atlas outputs (owned by World Labs, shown for personal, non-commercial use with credit under World Labs' Terms of Service; see the demo's DATA-ATTRIBUTION.md and takedown notice). `gobbler-gyroscope-swarm` is a 2 x 2 of tiles cut from `docs/demos/gobbler-gyroscope-webgpu/v2/shots/` (`s1-solo-webgpu.jpg`, `s2-focus-loop.jpg`, `s3-chaos.jpg`, `s5-100k.jpg`; Chrome for Testing 158 with SwiftShader) saved as 960 x 540 JPEG. No Google imagery in either.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/atlas-bridge-v2.jpg | b60a76d7b8f3c5b94bbc0de780c47e61828d4469b4eca61fad0689ba2c237fb6 | 102603 |
+| assets/gobbler-gyroscope-swarm.jpg | 1d04cc0073bef9819c783f77f809a0a5560cc3d10381e1cf8010d15490d43753 | 111127 |
