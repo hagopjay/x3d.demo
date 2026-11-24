@@ -541,3 +541,31 @@ v1's page (`index.html`, `gobbler3.x3d`, `graph-v3.json` copied from `gobbler-gy
 |---|---|---|
 | assets/atlas-bridge-v2.jpg | b60a76d7b8f3c5b94bbc0de780c47e61828d4469b4eca61fad0689ba2c237fb6 | 102603 |
 | assets/gobbler-gyroscope-swarm.jpg | 1d04cc0073bef9819c783f77f809a0a5560cc3d10381e1cf8010d15490d43753 | 111127 |
+
+## gobbler-gyroscope-webgpu v3 (Demo 23, version 3: the Pipeline)
+v2's folder copied (see the v2 entry above for sources and calibration; x3d.gobbler tapes at cd95382) plus the pipeline layer written for this site (`swarm/pipe.js`, `swarm/pipe.css`) and small edits to `gpu.js`, `gl.js`, `swarm.js`, `index.html` and `solo.html` listed in v3's README. Icons are inline SVG paths drawn for this page. No external address beyond v1's pinned Babylon.js 9.32.0 script. Shots are this lane's own headless SwiftShader frames. No third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| gobbler-gyroscope-webgpu/v3/README.md | 80121762c87389c885b2b92cc25c60b3372b7ff98ddddc5de74aa016fe597b58 | 11692 |
+| gobbler-gyroscope-webgpu/v3/gobbler3.x3d | 0772caea04e80d03d43ce1543e86fee5854e13a6ad1d273dc65ea2e5aee47dc6 | 1985373 |
+| gobbler-gyroscope-webgpu/v3/graph-v3.json | fcbc4bc603632ba8479b96618c2591a9633cf4ea2751ccd84d8a628308800621 | 60630 |
+| gobbler-gyroscope-webgpu/v3/index.html | 15af5c0e7268e99584243541828bfec4fff64de69f286f707b37ab18e358dd5a | 4180270 |
+| gobbler-gyroscope-webgpu/v3/shots/s1-solo-pipeline.jpg | 908dd63d822964a4c7c1617a709ad0aca3aa4b38c2bf5e45f98e5434db92da69 | 308470 |
+| gobbler-gyroscope-webgpu/v3/shots/s2-chaos.jpg | abf324fe4d1844b959b22ba09db67e9cb1d2433d017631419983528b91f9c3e3 | 320152 |
+| gobbler-gyroscope-webgpu/v3/shots/s3-page-webgl2.jpg | 807b99155ff952af7d6b826b0806bc8daa661f2ca28706044fcee4784a8e90a3 | 287303 |
+| gobbler-gyroscope-webgpu/v3/shots/s4-rail.jpg | b93d55beeb212bb53a0359757960a3bced6050c4894caeeb385f6861cd1a1588 | 112537 |
+| gobbler-gyroscope-webgpu/v3/shots/s5-stream.jpg | 7492fb5c8c56b08406ee7eb4fb0bcf1025921852c54b33431b3dff6af1749605 | 195710 |
+| gobbler-gyroscope-webgpu/v3/solo.html | 90b4091eb046c8074a7a6b535c0bab3944c599f6300ba9aca0b0b4a92b2ba081 | 1067 |
+| gobbler-gyroscope-webgpu/v3/source/calibrate.py | e6a8348f0810a9a885a87c9b4e06b043a59d7149eef2879529f07aa0f1699bb9 | 3283 |
+| gobbler-gyroscope-webgpu/v3/swarm/calibration.json | 44844601f7f145e73f790007a3d2cd58ca24638049bfe3c633ccf7841699b05f | 2095 |
+| gobbler-gyroscope-webgpu/v3/swarm/gl.js | 96f705534610a6d3e368320c383b2e4caedacd4a7217ee543d8c64111a863dae | 19275 |
+| gobbler-gyroscope-webgpu/v3/swarm/gpu.js | ca63b9412f0717ae697cf36df2079e19c8ad2cc060859ca2673a69e02f805144 | 33374 |
+| gobbler-gyroscope-webgpu/v3/swarm/hud.js | ce9b729d34f488746eaa134c32eb2ae9981ce1ef3d31700bf65c053efc87f0f8 | 13154 |
+| gobbler-gyroscope-webgpu/v3/swarm/model.js | b9ddc225e6d6e94a1bf0a87c0dc11ba1ba9ab9d16c511c6584899128fc8668e9 | 10175 |
+| gobbler-gyroscope-webgpu/v3/swarm/pipe.css | 962ff2f2bdbeb31edd06a61846463b6982c3734306a305363d5016aa61008080 | 7005 |
+| gobbler-gyroscope-webgpu/v3/swarm/pipe.js | cf97600e559072b14084254ec5e531b99492b340a0db21a55d18b6d8c5b81b53 | 23201 |
+| gobbler-gyroscope-webgpu/v3/swarm/swarm.css | b14814d62f6f263a911f5897729f67933ba1db14e003903454ab1b2035df55fc | 5213 |
+| gobbler-gyroscope-webgpu/v3/swarm/swarm.js | 82f1712158fda59db9b2e595031b9dbbdc8b1ff93521ca44274b75b0db4e0f2b | 17568 |
+| gobbler-gyroscope-webgpu/v3/tests/integration.html | b7e465384bb12cd018b24d5d114ccf8715f1ef5af58ce8b24d3b52dc3e2076a6 | 3612 |
+| gobbler-gyroscope-webgpu/v3/tests/parity.html | cc2295f1ea4ae7b6c20a2b17026a5bcc11ec44b45d2aa27cb95b37bb0f844233 | 2814 |
