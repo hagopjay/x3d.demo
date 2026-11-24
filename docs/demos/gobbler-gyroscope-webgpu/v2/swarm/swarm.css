@@ -1,0 +1,53 @@
+/* Swarm panel, in the v1 gallery's ink and gold */
+#swarm-canvas.overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.swarm-lab { position: absolute; left: 22px; top: 94px; z-index: 30; width: 372px; max-height: calc(100% - 190px); overflow: auto;
+  background: rgba(8, 7, 12, .80); border: 1px solid #e9cf8a33; border-radius: 10px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  color: #efe9de; font: 12px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; box-shadow: 0 12px 40px #0009; scrollbar-width: thin; }
+.swarm-lab.full { top: 18px; max-height: calc(100% - 36px); }
+.swarm-lab header { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 9px 12px;
+  background: rgba(14, 11, 18, .96); border-bottom: 1px solid #e9cf8a26; font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 14px; }
+.swarm-lab header b { color: #e9cf8a; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-right: 4px; }
+.swarm-lab header button { background: none; border: 1px solid #e9cf8a44; color: #e9cf8a; border-radius: 6px; width: 24px; height: 22px; cursor: pointer; }
+.swarm-lab.folded .sw-body { display: none; }
+.sw-body { padding: 8px 12px 12px; }
+.sw-lede { margin: 0 0 8px; color: #b9b2a5; }
+.sw-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.sw-badges span { border: 1px solid #57dbf544; color: #a9e7f5; border-radius: 99px; padding: 1px 8px; font-size: 11px; }
+.sw-badges #sw-gpu { border-color: #e9cf8a33; color: #cdbf9a; }
+.sw-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.sw-kpis div { background: #ffffff08; border: 1px solid #ffffff10; border-radius: 7px; padding: 6px 8px; }
+.sw-kpis b { display: block; font: 600 18px/1.1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #fff2cc; }
+.sw-kpis span { display: block; color: #e9cf8a; font-size: 11px; }
+.sw-kpis i { display: block; color: #7d776c; font-style: normal; font-size: 10px; }
+.swarm-lab h4 { margin: 12px 0 5px; font: 500 13px/1.2 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; color: #e9cf8a; }
+.swarm-lab h4 small { font: 10px system-ui, sans-serif; color: #7d776c; margin-left: 4px; }
+.swarm-lab table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.swarm-lab th { text-align: right; font-weight: 500; color: #7d776c; font-size: 10px; padding: 1px 3px; }
+.swarm-lab th:first-child { text-align: left; }
+.swarm-lab td { text-align: right; padding: 2px 3px; border-top: 1px solid #ffffff0b; }
+.swarm-lab td:first-child { text-align: left; color: #d8d0c2; }
+.sw-rec td.ok { color: #9ef275; } .sw-rec td.warn { color: #ffb35c; } .sw-rec td.chaos { color: #ff6b8a; }
+.sw-loops tr[data-l] { cursor: pointer; } .sw-loops tr[data-l]:hover td { background: #ffffff0a; } .sw-loops tr.on td { background: #e9cf8a1f; }
+.sw-loops td:first-child { max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sw { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+.sw-funnel div { display: grid; grid-template-columns: 10px 64px 1fr 44px 38px; align-items: center; gap: 4px; height: 15px; }
+.sw-funnel em { font-style: normal; color: #b9b2a5; white-space: nowrap; }
+.sw-funnel i { display: block; height: 7px; border-radius: 4px; opacity: .85; min-width: 1px; }
+.sw-funnel b { font: 11px ui-monospace, monospace; text-align: right; color: #fff2cc; }
+.sw-funnel small { color: #7d776c; text-align: right; }
+#sw-spark { width: 100%; height: 45px; display: block; background: #ffffff06; border-radius: 6px; }
+.sw-ctl { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 8px; align-items: center; }
+.sw-ctl label { display: flex; gap: 6px; align-items: center; color: #b9b2a5; }
+.sw-ctl label.wide { grid-column: span 2; } .sw-ctl label.wide input { flex: 1; accent-color: #e9cf8a; }
+.sw-ctl select, .sw-ctl button { background: #15121b; color: #efe9de; border: 1px solid #e9cf8a44; border-radius: 6px; padding: 3px 6px; font: inherit; cursor: pointer; }
+.sw-layers { grid-column: span 2; display: flex; flex-wrap: wrap; gap: 4px 10px; color: #b9b2a5; }
+.sw-layers label { gap: 3px; }
+.swarm-lab.solo .sw-layers label:has(input[data-b="16"]), .swarm-lab.solo .sw-layers label:has(input[data-b="32"]) { display: flex; }
+.swarm-lab:not(.solo) .sw-layers label:has(input[data-b="16"]), .swarm-lab:not(.solo) .sw-layers label:has(input[data-b="32"]) { display: none; }
+.sw-follow { margin-top: 6px; color: #d8d0c2; min-height: 1em; }
+.sw-foot { margin: 10px 0 0; color: #7d776c; font-size: 10.5px; }
+.sw-foot code { color: #b9b2a5; }
+.swarm-labels { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
+.swarm-labels span { position: absolute; left: 0; top: 0; font: 600 11px/1 system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase;
+  text-shadow: 0 0 6px #000, 0 0 2px #000; white-space: nowrap; }
+@media (max-width: 760px) { .swarm-lab { left: 8px; right: 8px; width: auto; top: auto; bottom: 8px; max-height: 46%; } }

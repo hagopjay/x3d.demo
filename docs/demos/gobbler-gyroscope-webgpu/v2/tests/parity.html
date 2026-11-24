@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Swarm parity: JavaScript vs WGSL</title>
+<style>body{background:#08070a;color:#efe9de;font:14px/1.5 ui-monospace,Menlo,Consolas,monospace;padding:20px}td,th{padding:2px 10px;text-align:right}.ok{color:#9ef275}.bad{color:#ff6b6b}</style></head>
+<body><h1>Swarm parity</h1><p>Steps the same agents with model.js (CPU, JavaScript) and the WGSL compute twin in gpu.js, then compares every agent's four u32 words and the 128 event counters. Integer-only state machine, so the answer must be bit-identical.</p>
+<table id="t"><tr><th>agents</th><th>ticks</th><th>chaos</th><th>agents equal</th><th>events equal</th><th>JS fnv</th><th>GPU fnv</th><th>JS ms</th><th>GPU ms</th></tr></table>
+<pre id="log"></pre>
+<script src="../swarm/model.js"></script><script src="../swarm/gpu.js"></script>
+<script>
+(async () => {
+  const M = GobblerSwarmModel, out = [], log = (s) => { document.getElementById('log').textContent += s + '\n'; };
+  try {
+    const g = await GobblerSwarmGPU.create({ canvas: document.createElement('canvas'), solo: true, n: 1024, maxN: 131072 });
+    for (const [n, ticks, chaos] of [[4096, 600, 0], [30000, 400, 0], [131072, 200, 0], [30000, 300, 0.6]]) {
+      let t = performance.now();
+      const a = M.init(n), cnt = new Uint32Array(M.C.SIZE), p = M.params(n, 1, chaos);
+      for (let k = 0; k < ticks; k++) for (let i = 0; i < n; i++) M.stepAgent(a, i * 4, p, cnt);
+      const jsMs = performance.now() - t; t = performance.now();
+      const r = await g.runTicks(n, ticks, chaos);
+      const gpuMs = performance.now() - t;
+      let diff = 0, first = -1; for (let i = 0; i < a.length; i++) if (a[i] !== r.agents[i]) { diff++; if (first < 0) first = i; }
+      let ediff = 0; for (let k = 0; k < 128; k++) if (cnt[k] !== r.counters[k]) ediff++;
+      const row = { n, ticks, chaos, agentsEqual: diff === 0, wordsDiffer: diff, firstDiff: first, eventsEqual: ediff === 0, jsFnv: M.fnv(a).toString(16), gpuFnv: M.fnv(r.agents).toString(16), jsMs: +jsMs.toFixed(1), gpuMs: +gpuMs.toFixed(1), cycles: cnt[M.C.CYCLES], commits: cnt[M.C.COMMIT] };
+      out.push(row);
+      document.getElementById('t').insertAdjacentHTML('beforeend', `<tr><td>${n}</td><td>${ticks}</td><td>${chaos}</td><td class="${row.agentsEqual ? 'ok' : 'bad'}">${row.agentsEqual ? 'yes' : 'NO (' + diff + ')'}</td><td class="${row.eventsEqual ? 'ok' : 'bad'}">${row.eventsEqual ? 'yes' : 'NO (' + ediff + ')'}</td><td>${row.jsFnv}</td><td>${row.gpuFnv}</td><td>${row.jsMs}</td><td>${row.gpuMs}</td></tr>`);
+    }
+    log('adapter: ' + JSON.stringify(g.adapterInfo) + '\nua: ' + navigator.userAgent);
+  } catch (e) { log('ERROR ' + e.message); out.push({ error: e.message }); }
+  window.__parity = out; document.title = 'parity done';
+})();
+</script></body></html>
