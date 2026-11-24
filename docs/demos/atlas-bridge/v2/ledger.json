@@ -1,0 +1,1644 @@
+{
+ "cap": 14956,
+ "opening_spent": 2,
+ "price_source": "account Developer Platform rate card, 23 Nov 2026",
+ "entries": [
+  {
+   "label": "chisel:kings-chamber",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "idempotency_key": "1b883282-e53a-4d63-9acc-0428a1867473",
+   "request_sha256": "11464906d9f2f6be321496353c3b6ccff180b454054d3557b220e4b5d73a3788",
+   "submitted_at": "2026-11-23T20:54:49Z",
+   "operation": "f462e61f6a3841c6837a422c55fc4303",
+   "finished_at": "2026-11-23T20:55:16Z",
+   "seconds": 26.4
+  },
+  {
+   "label": "chisel:reading-room",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "idempotency_key": "88bd9e5c-0dab-49b3-a7d7-3169b942f51e",
+   "request_sha256": "fa316e74731b977d0462a61b9b4c8abf7d5595749ef270bbb195de7f68df8038",
+   "submitted_at": "2026-11-23T20:55:58Z",
+   "operation": "06574a4d586b4bf8aa2c8bb307d72f5b",
+   "finished_at": "2026-11-23T20:56:22Z",
+   "seconds": 24.1
+  },
+  {
+   "label": "generate:torii",
+   "task": "atlasGenerate",
+   "price": 120,
+   "state": "succeeded",
+   "idempotency_key": "6a9e8ad8-e7d4-49ad-99e1-db1ed8ab4da9",
+   "request_sha256": "5ef539978458acdf360512cb46033b1a3a7255b50c51f9cde6a8fdb82108880b",
+   "submitted_at": "2026-11-23T20:56:32Z",
+   "operation": "3d01f968553a4f02b9337b0f74d63394",
+   "finished_at": "2026-11-23T20:56:48Z",
+   "seconds": 16.4
+  },
+  {
+   "label": "splats-draft:reading-room:x3d",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "refused",
+   "idempotency_key": "528963fd-a185-4d20-a090-7507d13d244a",
+   "request_sha256": "f0e66ed1ae91b60ac19733eb8a5ef116a10f7e0c8ff0f5e55321347ce5ef920a",
+   "submitted_at": "2026-11-23T20:57:03Z",
+   "http": 422,
+   "error": {
+    "detail": [
+     {
+      "type": "value_error",
+      "loc": [
+       "body"
+      ],
+      "msg": "Value error, enhancePrompt=false requires a non-empty prompt",
+      "input": {
+       "posedFrames": [
+        {
+         "imageAsset": {
+          "assetId": "asset_26fe2417514ca8cee7da53127b2eb33c"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_9667ed4e75a84b95bec7231c7dedf2a8"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -6.1,
+            1.6,
+            0.25
+           ],
+           "quaternion": [
+            0.016446445293234357,
+            -0.6946812512184396,
+            0.01589109452874724,
+            0.7189540644279565
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_38cc416555f76b8452d5a7aefcb5148b"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_1d482ba4926a4bcd970f6c1b834c475b"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            6.1,
+            1.6,
+            -0.3
+           ],
+           "quaternion": [
+            0.01057612913322308,
+            0.7203815288388907,
+            -0.010987559146513063,
+            0.6934103200445618
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_11d63826167b19667392934bd8181ecd"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_c6f61054c0ad41ca932cb161c55e6518"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -5.6,
+            1.6,
+            1.2
+           ],
+           "quaternion": [
+            -0.014608499388789291,
+            -0.48263729304641934,
+            -0.008051818522620954,
+            0.8756614661642428
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_8e091bab985a15f7c613d29519683031"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_0988f6afd47b4e6ebd525acb9a3e35a1"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -5.6,
+            1.6,
+            -1.2
+           ],
+           "quaternion": [
+            -0.00805141371249836,
+            -0.8756615257931466,
+            -0.014608678421023891,
+            0.4826371861943916
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_c7d26dc1e9e015dcc891dd4440c509c1"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_a11ce741bcd34aa1a50e2e8e0cb7dccc"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            5.6,
+            1.6,
+            1.2
+           ],
+           "quaternion": [
+            -0.014608499388789291,
+            0.48263729304641934,
+            0.008051818522620954,
+            0.8756614661642428
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_6d3087d21b18b26ca53408355ead0d25"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_ea1c34631dbf4c1f8c4dc1bc5c96c026"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            5.6,
+            1.6,
+            -1.2
+           ],
+           "quaternion": [
+            -0.00805141371249836,
+            0.8756615257931466,
+            0.014608678421023891,
+            0.4826371861943916
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_e930467618f3db5214ad8cd97efb144a"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_20bf05b5b65f490a84ca3b876d8673b1"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            0.5,
+            1.75,
+            2.3
+           ],
+           "quaternion": [
+            -0.1038703314834727,
+            0.10624166076425366,
+            0.011159924084273567,
+            0.9888372565038193
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_491a47b1bc86b4b36aa70968b872901e"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_a56651a826b1457ab20048b23acea4af"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.2,
+            1.75,
+            -2.0
+           ],
+           "quaternion": [
+            -0.02813318804632478,
+            -0.9583476987787236,
+            -0.10156871467800627,
+            0.2654468085597053
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_76b78553a4bb2f0a89e63c38caf16123"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_5f978cc6b8884e25a5aa51e0cd8638dd"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.9,
+            1.6,
+            1.2
+           ],
+           "quaternion": [
+            0.04332854584884645,
+            0.06100212425910997,
+            -0.002650580048972477,
+            0.9971932372293268
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_ad0628af3b843cbff66424ad9c6883a1"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_da3b166f04ec4446a52d538c64630619"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            1.9,
+            1.6,
+            -1.2
+           ],
+           "quaternion": [
+            0.002651053208294246,
+            -0.9971932650448795,
+            0.04332815087305909,
+            0.0610019295427719
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_67b17c9cf316bf1fb5b4cb318f6d16a8"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_15803f4ba091439b9a6d927e2532b0f9"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.6,
+            1.4,
+            -0.9
+           ],
+           "quaternion": [
+            0.18261443613307776,
+            -0.7976842248774699,
+            0.29547668986141257,
+            0.4929963193026605
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_b52a277aaa81dbbbfd1e09d3d11bbe6d"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_5af4d2865302448ba8a7dac638ab1d20"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            1.2,
+            1.9,
+            1.6
+           ],
+           "quaternion": [
+            -0.13169863350311198,
+            -0.43822281795717805,
+            -0.0650818508162635,
+            0.8867810239565417
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        }
+       ],
+       "refine": false,
+       "enhancePrompt": false
+      },
+      "ctx": {
+       "error": {}
+      }
+     }
+    ]
+   },
+   "retry_after": null
+  },
+  {
+   "label": "splats-draft:kings-chamber:x3d",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "refused",
+   "idempotency_key": "b8582885-4717-4b34-9a9f-c5ff9ca8ad02",
+   "request_sha256": "915bc8b6e738c9ea3977a697655c8b0ed0e389e0db0bfe84409a0153b873a146",
+   "submitted_at": "2026-11-23T20:57:03Z",
+   "http": 422,
+   "error": {
+    "detail": [
+     {
+      "type": "value_error",
+      "loc": [
+       "body"
+      ],
+      "msg": "Value error, enhancePrompt=false requires a non-empty prompt",
+      "input": {
+       "posedFrames": [
+        {
+         "imageAsset": {
+          "assetId": "asset_0ea9a318d733b46adc7db891ac357589"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_f407eb1f0d4e4028962f4294df4db9f5"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            4.3354,
+            1.6,
+            1.8177
+           ],
+           "quaternion": [
+            -0.02770043315259213,
+            0.5788135239770346,
+            0.019678758790140805,
+            0.8147517026167697
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_b4afcda0a335849bc8042aaefed8c2ff"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_409168d333634f12923cd6091c78eac3"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            3.6354,
+            1.6,
+            -1.7177
+           ],
+           "quaternion": [
+            -0.015316699997844612,
+            0.8401773186413739,
+            0.023761901324866948,
+            0.5415744122345466
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_377ebeefb51f7dc1e88e8e59952c333e"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_e0fb44430f084dd8a2244e8a14cf8674"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -4.4354,
+            1.6,
+            1.9177
+           ],
+           "quaternion": [
+            -0.034025630134297644,
+            -0.5340432787157495,
+            -0.021517128766242365,
+            0.8444981030897306
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_d78116393838b807ac173da17c098c1e"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_634f4acfad6c4b8fbbfcce4b9adfe89d"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -4.4354,
+            1.6,
+            -1.9177
+           ],
+           "quaternion": [
+            -0.012818178615565053,
+            -0.8419131993216413,
+            -0.020017718060065356,
+            0.5390891856350353
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_405e7079b0226de518683ccba950a872"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_4c0210c6c71c4bfbbe9bd2d427a01bda"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -0.9965,
+            1.75,
+            0.3
+           ],
+           "quaternion": [
+            -0.14959881318852644,
+            0.6617202812887988,
+            0.1371547401318843,
+            0.7217582986589159
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_c3f29ae8cfd009f17fcfdd6b15472bd5"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_9178b30b621842efa652f7d771dfb76f"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.7965,
+            1.7,
+            2.0677
+           ],
+           "quaternion": [
+            -0.16787697454286374,
+            0.2835924153790666,
+            0.05049785377162496,
+            0.9427845088472028
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_0f7382a29138f3b50852ac3641b88a0d"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_dae5eaa8273644ac9e7399380a4b90e3"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.7965,
+            1.7,
+            -2.0677
+           ],
+           "quaternion": [
+            -0.04474616317967548,
+            0.9495984517365755,
+            0.15975897564395833,
+            0.26596546964106
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_cb10d53e3892344554c30a08f0ab6f61"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_7c840dcea0a044d19c670e3f40485ecb"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -2.7465,
+            2.35,
+            -1.8677
+           ],
+           "quaternion": [
+            -0.044212732940072566,
+            0.9269854228893809,
+            0.3540365977720364,
+            0.11576418891249109
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_8cde79ba8e72c77f2fc695225820b67b"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_05ef01d71c144139922d8c0d492219e1"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -0.6,
+            1.6,
+            0.15
+           ],
+           "quaternion": [
+            -0.006308023286197308,
+            -0.6730891734430063,
+            -0.0057412368592441405,
+            0.7395121443460935
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_9826198c99af133d9bd617137edf8919"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_f1e0816635cd49ae83b700451ed77154"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            0.9,
+            1.45,
+            0.35
+           ],
+           "quaternion": [
+            0.36815412661991115,
+            0.5012585172730015,
+            -0.24850751812332278,
+            0.7425944056819908
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_a5c496fe1694c3c45473f5f19d7b2491"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_ac30231ff58a4cd7931e759415724375"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            2.6354,
+            1.85,
+            1.6177
+           ],
+           "quaternion": [
+            -0.15060343309190435,
+            -0.21617628069555583,
+            -0.03377014799785082,
+            0.9640777970214706
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_0bf32704ef061d5ea161d7f9674f0d93"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_1f8be888623b4e7fb2efb7d043f873b7"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            1.3,
+            1.6,
+            2.0177
+           ],
+           "quaternion": [
+            -0.031225236980721275,
+            -0.1161754051070077,
+            -0.0036541873815593264,
+            0.9927310344389869
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 762.7222605120663,
+           "fy": 762.7222605120663,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        }
+       ],
+       "refine": false,
+       "enhancePrompt": false
+      },
+      "ctx": {
+       "error": {}
+      }
+     }
+    ]
+   },
+   "retry_after": null
+  },
+  {
+   "label": "splats-draft:torii:atlas",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "refused",
+   "idempotency_key": "1f73ddeb-e32b-4b91-b5d6-a9af4b74135d",
+   "request_sha256": "f7cc8b5653c85f26f5171c3c9b78a569a13f67a591cf98cdd8e0ae71fe98f414",
+   "submitted_at": "2026-11-23T20:57:04Z",
+   "http": 422,
+   "error": {
+    "detail": [
+     {
+      "type": "value_error",
+      "loc": [
+       "body"
+      ],
+      "msg": "Value error, enhancePrompt=false requires a non-empty prompt",
+      "input": {
+       "posedFrames": [
+        {
+         "imageAsset": {
+          "assetId": "asset_1c7a46546c0fa7d3bfc9c744d43016b0"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_4c97b8a97af648be3d0123da17b1081b"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            0.0,
+            4.035522937774658,
+            0.0
+           ],
+           "quaternion": [
+            0.012254577762588205,
+            8.441646391861674e-05,
+            -0.006887884866359407,
+            0.9999011827374689
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.5,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_7ddfb07518449a1d270872d23d703b89"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_937b55c573b96cbd5287173c31625509"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -1.9745677962729005,
+            4.035522937774658,
+            -0.20753543820190146
+           ],
+           "quaternion": [
+            -0.03136849068013866,
+            -0.10447645514416773,
+            -0.0032969612243300534,
+            0.9940270711402401
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_fe3fbf9aa8dbe008f6b8a16c4d6e428e"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_8627f088259bd4cbed52f709fc68d267"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            1.9745677962717378,
+            4.035522937774658,
+            -0.2075354382129646
+           ],
+           "quaternion": [
+            -0.031368490680129486,
+            0.10447645514695239,
+            0.003296961224417929,
+            0.9940270711399475
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_e01c2c50a637e6d1716cf2b53f50a171"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_1ba3d2605bc442240abad6bb79363cdc"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -3.8628375048223136,
+            4.035522937774658,
+            -0.8210714583037309
+           ],
+           "quaternion": [
+            -0.03085202451582122,
+            -0.2078082443840718,
+            -0.006557800251597026,
+            0.9776609235338933
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_779d43aa130d5f02871d9fadbafc99d1"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_85f00691c1c0222033f8afabf3d64c7c"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            3.8628375048177137,
+            4.035522937774658,
+            -0.8210714583253704
+           ],
+           "quaternion": [
+            -0.030852024515802854,
+            0.20780824438681042,
+            0.0065578002516834474,
+            0.9776609235333112
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_4af2014f5a34130e85d3c4b69fc547c7"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_cecea0f96a7e7275ab30f0278210c58a"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -5.582282678461276,
+            4.035522937774658,
+            -1.813793592154564
+           ],
+           "quaternion": [
+            -0.02999753711470723,
+            -0.30886324301183277,
+            -0.00974679064699956,
+            0.9505833182606083
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_256ae8ffb6746392038d0ea4201c0979"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_f1a5445fb06b558cad6b0f74d5d99341"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            5.582282678451113,
+            4.035522937774658,
+            -1.8137935921858386
+           ],
+           "quaternion": [
+            -0.02999753711467995,
+            0.30886324301449564,
+            0.009746790647083592,
+            0.9505833182597431
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_59083ebcc52330b9fc0a5b7d0790db36"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_fb1ad8ba1ccec5b0756636a8e6d07560"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            -8.77915320274909e-12,
+            3.8375229377746582,
+            -3.1340583600997123
+           ],
+           "quaternion": [
+            -0.03154127709628608,
+            1.3999077439064403e-12,
+            4.417685824935412e-14,
+            0.9995024501416369
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        },
+        {
+         "imageAsset": {
+          "assetId": "asset_06951616e681145ca440b5c21028abff"
+         },
+         "depth": {
+          "depthAsset": {
+           "assetId": "asset_5eefb9d61e374f4396f87b28f80f488b"
+          }
+         },
+         "camera": {
+          "extrinsics": {
+           "coordinateSystem": "rub",
+           "position": [
+            0.992722133855506,
+            5.535522937774658,
+            -0.052026362483276856
+           ],
+           "quaternion": [
+            -0.1084453187922353,
+            0.05202645026088695,
+            0.005683378331694815,
+            0.9927238087786757
+           ]
+          },
+          "intrinsics": {
+           "cx": 640.0,
+           "cy": 360.0,
+           "fx": 893.3741455078125,
+           "fy": 893.8981323242188,
+           "height": 720,
+           "width": 1280
+          }
+         }
+        }
+       ],
+       "refine": false,
+       "enhancePrompt": false
+      },
+      "ctx": {
+       "error": {}
+      }
+     }
+    ]
+   },
+   "retry_after": null
+  },
+  {
+   "label": "splats-draft:reading-room:x3d",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "d31567a3-7af8-484c-bb1b-a3a4ac67f353",
+   "request_sha256": "56b2abc7518286a4818bc843a564d1db3af9dde8da6627d48eb7d26deb67ce2a",
+   "submitted_at": "2026-11-23T20:57:15Z",
+   "operation": "63e11ab6670640438fe26bd8ea4660d7",
+   "finished_at": "2026-11-23T20:57:46Z",
+   "seconds": 30.0
+  },
+  {
+   "label": "splats-draft:kings-chamber:x3d",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "3cd6aa09-a827-48d3-8ac6-82e0d89f7c02",
+   "request_sha256": "e4b1b881737889e2502cb1525ae1c2b9b44588b2710f2fb8e29cbf05a51fc939",
+   "submitted_at": "2026-11-23T20:57:47Z",
+   "operation": "a7eed5313f5b45bba3e03761986a47d6",
+   "finished_at": "2026-11-23T20:58:17Z",
+   "seconds": 30.0
+  },
+  {
+   "label": "splats-draft:torii:atlas",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "489d5f2a-592c-4059-807e-afeb160c3b0f",
+   "request_sha256": "b0a19f283267bb75a5672be6f0827696a7520ab9035a5d5049eab16d43f92d34",
+   "submitted_at": "2026-11-23T20:58:18Z",
+   "operation": "5eca4103e22e45dc81be0e6b80286bf6",
+   "finished_at": "2026-11-23T20:58:47Z",
+   "seconds": 28.8
+  },
+  {
+   "label": "chisel:reading-room:ring2",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "idempotency_key": "3662bac3-9d89-454a-adda-582cb18baea9",
+   "request_sha256": "b6280196b58fed52ce8e9bbe7c65d08a941e91fc29edbb9a273fdb5c5596d5ae",
+   "submitted_at": "2026-11-23T21:03:02Z",
+   "operation": "2dc02a9aae454edd9937c238ff5423e2",
+   "finished_at": "2026-11-23T21:03:32Z",
+   "seconds": 28.9
+  },
+  {
+   "label": "splats-refined:reading-room:x3d",
+   "task": "posedImages2Splats",
+   "price": 5000,
+   "state": "succeeded",
+   "idempotency_key": "27918eae-684a-47c3-9d99-64c9b12a5b42",
+   "request_sha256": "2d390c287c51b5e643fd1a8caa6708f637a4fdf1e547f5bddc22e37194d8e815",
+   "submitted_at": "2026-11-23T21:04:10Z",
+   "operation": "15fbb02d1e444cef8983fa27c7a31ba0",
+   "finished_at": "2026-11-23T21:21:17Z",
+   "seconds": 1026.3
+  },
+  {
+   "label": "style:reading-room:sumi",
+   "task": "atlasChisel",
+   "price": 64,
+   "state": "succeeded",
+   "idempotency_key": "dd458e87-9c30-457d-b324-c84d01088819",
+   "request_sha256": "771387cca11000f177176ae304e884dd21f334df19959666bb40fc7aff244976",
+   "submitted_at": "2026-11-23T21:04:49Z",
+   "operation": "bfea6fbede8e411bb8fb7d6540e6a83a",
+   "finished_at": "2026-11-23T21:05:03Z",
+   "seconds": 14.2
+  },
+  {
+   "label": "style:reading-room:ruin",
+   "task": "atlasChisel",
+   "price": 64,
+   "state": "succeeded",
+   "idempotency_key": "a1e5bbf1-0786-4078-9c50-499a0fa4b063",
+   "request_sha256": "1afb9374be3277648a2863b6b3d31e9274fa930d4f88e3d4037bf65e02aa6ac7",
+   "submitted_at": "2026-11-23T21:05:05Z",
+   "operation": "a83e5480e6224d52af12fc952d8fb25f",
+   "finished_at": "2026-11-23T21:05:14Z",
+   "seconds": 8.6
+  },
+  {
+   "label": "style:reading-room:clay",
+   "task": "atlasChisel",
+   "price": 64,
+   "state": "succeeded",
+   "idempotency_key": "e713a606-5638-4737-8965-b108ed9cbbb6",
+   "request_sha256": "12bc2fa8d0c0f3eaa336bd551d4a3ff49371d39bcc1e5a1e53e76ae6cd4ebdae",
+   "submitted_at": "2026-11-23T21:05:16Z",
+   "operation": "8d18c72b833b434db770e4ecd971b60c",
+   "finished_at": "2026-11-23T21:05:24Z",
+   "seconds": 8.1
+  },
+  {
+   "label": "edit:reading-room:globe",
+   "task": "atlasChisel",
+   "price": 64,
+   "state": "succeeded",
+   "idempotency_key": "7bc16073-79aa-465f-9ffe-57243a920459",
+   "request_sha256": "9de947a632ad7b9edae03578a028a6f7d4f75235af6d3ce8f4802dfcea560cf4",
+   "submitted_at": "2026-11-23T21:05:47Z",
+   "operation": "42335f81783f4436a8f847d150177672",
+   "finished_at": "2026-11-23T21:05:57Z",
+   "seconds": 9.7
+  },
+  {
+   "label": "chisel:kings-chamber:granite",
+   "task": "atlasChisel",
+   "price": 128,
+   "state": "succeeded",
+   "idempotency_key": "a7374d70-de25-438b-98b6-255ee652b656",
+   "request_sha256": "2253c19c33bd770d1fb28b0ccf14b5da8f670bda15f8d4010be1298661240d42",
+   "submitted_at": "2026-11-23T21:07:20Z",
+   "operation": "28a2bcf7c3e844eeb5cf8b445bc9417d",
+   "finished_at": "2026-11-23T21:07:35Z",
+   "seconds": 14.7
+  },
+  {
+   "label": "mesh:kings-chamber:draft",
+   "task": "splats2Mesh",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "5e687a41-24ed-4281-a900-d2e4160eb5d4",
+   "request_sha256": "4f01ee9c545c3b497ecd0e476d93218b28bb2894ccbba1ce92d19af35687d87d",
+   "submitted_at": "2026-11-23T21:13:34Z",
+   "operation": "d2ba7a3aa5c24b689251ff506d02eb2f",
+   "finished_at": "2026-11-23T21:14:40Z",
+   "seconds": 65.1
+  },
+  {
+   "label": "mesh:reading-room:refined",
+   "task": "splats2Mesh",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "33a01643-ed5c-4324-8c9f-edd0dbc2a0e0",
+   "request_sha256": "c77717bb549d7201e2b76f982346de5d32c4726995ec36b03277c19651ec8a4e",
+   "submitted_at": "2026-11-23T21:22:35Z",
+   "operation": "c696e672e18741a18eeb87a0a6f70b83",
+   "finished_at": "2026-11-23T21:23:33Z",
+   "seconds": 57.6
+  },
+  {
+   "label": "splats-draft:reading-room:atlas",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "efbdfefd-0b7f-40f0-a30d-d5996c71a095",
+   "request_sha256": "a6accc087c9280e8019eacb589e8d254069455554113c1514515afafa739e256",
+   "submitted_at": "2026-11-23T21:27:39Z",
+   "operation": "ad0a719c6d894fc99175c77dfd16f057",
+   "finished_at": "2026-11-23T21:29:21Z",
+   "seconds": 101.3
+  },
+  {
+   "label": "chisel:scriptorium",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "idempotency_key": "a3f51ad2-4b1e-4273-a955-900993aac524",
+   "request_sha256": "47afc5f86ffbe27fda15e9fd51052edc079d4524829fdffa786c12720a130acf",
+   "submitted_at": "2026-11-24T00:27:18Z",
+   "operation": "346794cfe39e476682a05bc85c40df98",
+   "finished_at": "2026-11-24T00:27:45Z",
+   "seconds": 26.6
+  },
+  {
+   "label": "splats-draft:scriptorium",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "65f647df-1f57-49e5-b69a-73b1e7c7af40",
+   "request_sha256": "7621dcbf499cc4d64cf596abcb257edff46a1cf293ad08afcc6c08ecaf0c442e",
+   "submitted_at": "2026-11-24T00:28:18Z",
+   "operation": "b626da1c09a94ce4997c03e1fca9621a",
+   "finished_at": "2026-11-24T00:29:10Z",
+   "seconds": 50.7
+  },
+  {
+   "label": "mesh:scriptorium:draft",
+   "task": "splats2Mesh",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "ec1093f5-75bc-4a76-9fce-acb77ae80bd1",
+   "request_sha256": "7c9f59163b1cdfa4c879d0b557c530c0848af020f36c1054cbd0ad541fb09eb2",
+   "submitted_at": "2026-11-24T01:16:01Z",
+   "operation": "2c2505fe02484092a8a91c1f8ccb8ade",
+   "finished_at": "2026-11-24T01:16:57Z",
+   "seconds": 54.4
+  },
+  {
+   "label": "chisel:penrose-stairs",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "idempotency_key": "6b8dc304-b4aa-4f88-9d04-c2b57fca1189",
+   "request_sha256": "f90bf29d6254dc7f3c74dfb83748277800196abfd02de2d8ed0ebda30a00dced",
+   "submitted_at": "2026-11-24T01:16:55Z",
+   "operation": "54a48a5f3af5422990b8ee3c63d87986",
+   "finished_at": "2026-11-24T01:17:36Z",
+   "seconds": 41.1
+  },
+  {
+   "label": "chisel:penrose-courtyard",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "idempotency_key": "291b8899-490f-4fc9-82e0-daf141f01fe5",
+   "request_sha256": "51a3cbcff1537c0ad4c968b21aa439d543afe11619be1f0c3a2e4a5237b7889e",
+   "submitted_at": "2026-11-24T01:20:22Z",
+   "operation": "91fbee5aac3542dabc667117beb2f05f",
+   "finished_at": "2026-11-24T01:20:44Z",
+   "seconds": 21.9
+  },
+  {
+   "label": "probe:penrose-courtyard3",
+   "task": "atlasChisel",
+   "price": 40,
+   "state": "succeeded",
+   "idempotency_key": "7f50eaae-bbcb-417c-9646-59ca3d7a42f6",
+   "request_sha256": "6e6fc20592a349f8421f4712a875942d472ab00902074ccbbb822d7df907a84d",
+   "submitted_at": "2026-11-24T01:29:30Z",
+   "operation": "6f2893d6f757436ea7ade44cea9f7f61",
+   "finished_at": "2026-11-24T01:29:39Z",
+   "seconds": 8.4
+  },
+  {
+   "label": "chisel:penrose-courtyard3",
+   "task": "atlasChisel",
+   "price": 140,
+   "state": "succeeded",
+   "idempotency_key": "fa47b7cc-3d2c-46f0-a73d-7badf9614bcd",
+   "request_sha256": "b93a3a1db1d3cdef341facd08c2b91bc4555c4af3ccade26f1f5423a20552eaa",
+   "submitted_at": "2026-11-24T01:29:58Z",
+   "operation": "3318e1bd76b34eb6ac273716f1fc4f25",
+   "finished_at": "2026-11-24T01:30:18Z",
+   "seconds": 19.7
+  },
+  {
+   "label": "chisel:scriptorium:ring2",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "idempotency_key": "1626818a-7f4f-43b7-8d61-05472e916e5a",
+   "request_sha256": "4c0bc15eefd2e345b0a1977197be453befe45959d914431c966f40a2c68ef3bc",
+   "submitted_at": "2026-11-24T01:31:04Z",
+   "operation": "635789b1d1a24e989552ce99c26f65ea",
+   "finished_at": "2026-11-24T01:31:30Z",
+   "seconds": 25.5
+  },
+  {
+   "label": "grv:chisel:grv-cross-hall",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "idempotency_key": "a68fa933-3ea6-437a-926a-aeb844b9ab97",
+   "request_sha256": "b142d78e7a972da80a9f0f4299d8e144a3a0858e4a88171f194fa48679274c19",
+   "submitted_at": "2026-11-24T01:31:23Z",
+   "operation": "a9ee211f74fc4f1a9fee942cd81a3404",
+   "finished_at": "2026-11-24T01:32:19Z",
+   "seconds": 56.2
+  },
+  {
+   "label": "splats-draft:penrose-courtyard3",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "6385d6ab-dfc8-4c8e-9dac-f26bf4a2f4d1",
+   "request_sha256": "fb106d44570722dca894aafa1d77717383f7fc7e2657eb3ee13d24657ed3dad6",
+   "submitted_at": "2026-11-24T01:31:56Z",
+   "operation": "5e63989dd8f14fd9b0d273aa8b985021",
+   "finished_at": "2026-11-24T01:32:47Z",
+   "seconds": 50.8
+  },
+  {
+   "label": "grv:chisel:grv-stairwell",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "idempotency_key": "79d2f1b1-e0d0-42d1-8345-5a84e90fe908",
+   "request_sha256": "7bc382b952a08200f5d4f1049293a53316674c92ccd9a4d9b177ccd5836f1f96",
+   "submitted_at": "2026-11-24T01:32:40Z",
+   "operation": "07711e78cdd44267bffc1d98df94d224",
+   "finished_at": "2026-11-24T01:33:02Z",
+   "seconds": 21.4
+  },
+  {
+   "label": "grv:chisel:grv-courtyard",
+   "task": "atlasChisel",
+   "price": 160,
+   "state": "succeeded",
+   "idempotency_key": "f653faba-a1c9-49f8-ab70-58a3411f3c0f",
+   "request_sha256": "e55cddadf0a6475253ef3fb1d2301c7514d792831e304290bb20b2b244c33224",
+   "submitted_at": "2026-11-24T01:33:23Z",
+   "operation": "3d710c337545447e85cd5882cc8c5c33",
+   "finished_at": "2026-11-24T01:33:48Z",
+   "seconds": 24.9
+  },
+  {
+   "label": "grv:splats-draft-atlasdepth:grv-cross-hall",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "55573ac3-7671-4e83-a42f-418238af6ac1",
+   "request_sha256": "64e1f783cd501ca40d5bdc8a3457582c1228b654dd5aed81da5bb0db63138bcb",
+   "submitted_at": "2026-11-24T01:34:11Z",
+   "operation": "348f7ac98da74b8f99a2d73c1fb2c866",
+   "finished_at": "2026-11-24T01:34:41Z",
+   "seconds": 29.4
+  },
+  {
+   "label": "grv:splats-draft-atlasdepth:grv-stairwell",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "dac9ea76-00bc-4a1c-af9b-fb11235b88a1",
+   "request_sha256": "34159e97d48891bfb474bca2db0b44d1c9dc8d6b0e353e2f46de1e082bb9c996",
+   "submitted_at": "2026-11-24T01:34:43Z",
+   "operation": "6826af8e89174689bae068dbd2a4c10b",
+   "finished_at": "2026-11-24T01:35:34Z",
+   "seconds": 50.7
+  },
+  {
+   "label": "grv:splats-draft-atlasdepth:grv-courtyard",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "8b5c4a6e-1c65-4aad-8e6b-92eb3e4d7c0f",
+   "request_sha256": "4e2f0f83d2fb23eacedaab3f74b864201595ef5bd3e426e6d43605f2d6c8005c",
+   "submitted_at": "2026-11-24T01:35:35Z",
+   "operation": "2e215f21f7954554a96e3de1ec24d664",
+   "finished_at": "2026-11-24T01:36:05Z",
+   "seconds": 29.6
+  },
+  {
+   "label": "chisel:penrose-v4",
+   "task": "atlasChisel",
+   "price": 150,
+   "state": "succeeded",
+   "idempotency_key": "b8deb14a-3002-40a5-bfd9-bbe56902ab7b",
+   "request_sha256": "6378a99e12d0a04abecb3fbac0e8eda730cb0b5a238fc73370a5e87706522f0e",
+   "submitted_at": "2026-11-24T01:57:14Z",
+   "operation": "9b360df49acb482490e06c13679dbe0a",
+   "finished_at": "2026-11-24T01:57:58Z",
+   "seconds": 43.2
+  },
+  {
+   "label": "splats-draft:penrose-v4",
+   "task": "posedImages2Splats",
+   "price": 500,
+   "state": "succeeded",
+   "idempotency_key": "6cc8ed93-c672-46ee-8726-6a7747bbb7cb",
+   "request_sha256": "43bdd8e733f7335166d7e302cfb4041ccb53713763012adab82a58d57767c8b4",
+   "submitted_at": "2026-11-24T01:59:06Z",
+   "operation": "9a75f6f1b179413c92e9a2d7ec3cccc6",
+   "finished_at": "2026-11-24T01:59:36Z",
+   "seconds": 29.4
+  }
+ ],
+ "hard_stop": {
+  "ledger_total": 14956,
+  "basis": "owner reported 4,650 credits on the account, 23 Nov 2026 8:20 PM ET; committed then 10,306 (10,466 after the courtyard ring, assumed not yet charged at his reading)"
+ },
+ "reservations": [
+  {
+   "for": "paper ablation study",
+   "credits": 2000,
+   "used": 1980,
+   "basis": "owner, 23 Nov 2026 8:21 PM ET"
+  },
+  {
+   "for": "Penrose stairs",
+   "credits": 1650,
+   "used": 1650,
+   "basis": "coordinator split after owner top-up; raised from the bridge share"
+  }
+ ],
+ "bridge_thread_stop": 12456,
+ "committed": 13936,
+ "v2_labels": [
+  "chisel:scriptorium",
+  "splats-draft:scriptorium",
+  "mesh:scriptorium:draft",
+  "chisel:scriptorium:ring2"
+ ]
+}

@@ -1,0 +1,138 @@
+{
+ "method": "pairs = same surface point in a ring-2 and a ring-1 picture (unproject with the sent depth, reproject, depth test); fit on even ring-1 views, scored on odd ring-1 views",
+ "rings": {
+  "ring1": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "ring2": [
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23
+  ]
+ },
+ "stride": 4,
+ "depth_tolerance_mm": 25.0,
+ "cdl_scene_linear": {
+  "slope": [
+   0.46812,
+   0.45502,
+   0.50399
+  ],
+  "offset": [
+   -0.00078,
+   0.00067,
+   0.01076
+  ],
+  "power": [
+   0.63636,
+   0.68281,
+   0.85806
+  ]
+ },
+ "train": {
+  "before": {
+   "pairs": 784446,
+   "mean_level_ring2": 145.67574186113524,
+   "mean_level_ring1": 131.30763239279693,
+   "mean_abs_diff_255": 44.54132470558841,
+   "psnr_db": 12.227557321113185,
+   "channel_bias_255": [
+    13.58,
+    13.64,
+    15.88
+   ]
+  },
+  "after": {
+   "pairs": 784446,
+   "mean_level_ring2": 133.13321241780542,
+   "mean_level_ring1": 131.30763239279693,
+   "mean_abs_diff_255": 39.52837460695763,
+   "psnr_db": 13.601741379243803,
+   "channel_bias_255": [
+    2.19,
+    2.17,
+    1.12
+   ]
+  }
+ },
+ "held_out": {
+  "before": {
+   "pairs": 760108,
+   "mean_level_ring2": 149.88001091073014,
+   "mean_level_ring1": 146.06076592624555,
+   "mean_abs_diff_255": 38.95601326828994,
+   "psnr_db": 13.064192083485535,
+   "channel_bias_255": [
+    7.25,
+    3.36,
+    0.85
+   ]
+  },
+  "after_cdl": {
+   "pairs": 760108,
+   "mean_level_ring2": 135.94046962976088,
+   "mean_level_ring1": 146.06076592624555,
+   "mean_abs_diff_255": 37.84767356269321,
+   "psnr_db": 14.047569211417887,
+   "channel_bias_255": [
+    -5.31,
+    -9.67,
+    -15.38
+   ]
+  },
+  "after_one_gain_only": {
+   "pairs": 760108,
+   "mean_level_ring2": 134.96247220277766,
+   "mean_level_ring1": 146.06076592624555,
+   "mean_abs_diff_255": 38.55370818382826,
+   "psnr_db": 13.346373297665256,
+   "channel_bias_255": [
+    -9.48,
+    -11.64,
+    -12.17
+   ]
+  }
+ },
+ "note": "pictures are generated, so two views of one point never agree exactly; the floor of this number is the ring-1 to ring-1 disagreement below",
+ "ring1_vs_ring1_floor": {
+  "pairs": 128144,
+  "mean_level_ring2": 119.2821877471178,
+  "mean_level_ring1": 117.47455466766553,
+  "mean_abs_diff_255": 44.53798851292296,
+  "psnr_db": 12.392564201617581,
+  "channel_bias_255": [
+   5.54,
+   1.71,
+   -1.82
+  ]
+ },
+ "blender_node": {
+  "node": "CompositorNodeColorBalance",
+  "type": "Offset/Power/Slope (ASC-CDL)",
+  "blender": "5.3.0",
+  "view_transform": "Standard",
+  "max_abs_diff_vs_numpy_255": 26,
+  "mean_abs_diff_vs_numpy_255": 0.3396187487943673,
+  "blend": "ring2-to-ring1-compositor.blend"
+ }
+}

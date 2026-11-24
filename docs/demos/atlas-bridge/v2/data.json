@@ -1,0 +1,240 @@
+{
+ "stats": [
+  {
+   "value": "0.0007 mm",
+   "label": "largest camera position difference, Blender camera against the exported X3D Viewpoint (24 cameras)",
+   "source": "prepare-scriptorium24.json"
+  },
+  {
+   "value": "0.09 mm",
+   "label": "largest per-view median difference, Cycles depth against the X3D bridge depth",
+   "source": "prepare-scriptorium24.json"
+  },
+  {
+   "value": "0.73%",
+   "label": "median error of the depth Atlas returned against the Cycles depth it was sent",
+   "source": "scriptorium-chisel-scriptorium.json"
+  },
+  {
+   "value": "24 mm",
+   "label": "median distance, Atlas mesh vertex to the Blender surface",
+   "source": "scriptorium-mesh-scriptorium-draft.json"
+  },
+  {
+   "value": "22.9 dB",
+   "label": "clean baked X3D against the 24 Atlas pictures it was painted from",
+   "source": "scriptorium-clean24.json"
+  },
+  {
+   "value": "1,320",
+   "label": "Atlas credits spent on this page (4 paid calls)",
+   "source": "ledger.json"
+  }
+ ],
+ "roles": [
+  {
+   "n": 1,
+   "title": "Blender builds the input",
+   "grade": "C",
+   "text": "A scriptorium was modelled in Blender 5.3 (374 mesh objects) and exported by the Blenderizer add-on as X3D 4.0. Cameras agree to 0.0007 mm and 0.012 degrees. The Cycles Depth pass is planar z and agrees with the bridge's depth of the exported file to a median of 0.09 mm (worst view; 99th percentile 1.1 mm). Atlas Chisel took the Cycles depth and returned depth within 0.73% (median), scale 1.0059, 97.3% of pixels within 5%.",
+   "source": "prepare-scriptorium24.json, scriptorium-chisel-scriptorium.json"
+  },
+  {
+   "n": 2,
+   "title": "Blender cleans what comes back",
+   "grade": "C",
+   "text": "The 24 Atlas pictures were projected along their own cameras onto the exact Blender geometry and baked into one 4096 px texture (6.02 mm per texel). 2,345 of 4,086 faces are seen by a view (448 of 948 m2; the rest is the outside of the walls and hidden faces, which keep their flat Blender colour). The result is a valid X3D 4.0 file with straight shelves and a flat floor, and it scores 22.9 dB (SSIM 0.76) against the pictures it was painted from. With the first 12 views alone: 354 m2 seen, 22.1 dB. The Atlas mesh itself was not repaired; it sits a median 24 mm from the Blender surface (92.0% within 100 mm).",
+   "source": "scriptorium-clean24.json, scriptorium-clean.json, scriptorium-mesh-scriptorium-draft.json"
+  },
+  {
+   "n": 3,
+   "title": "Blender's compositor matches the rings",
+   "grade": "C",
+   "text": "One ASC CDL (slope, offset, power) was fitted between the two rings from pairs of pixels that show the same surface point, then applied with Blender's Color Balance node; Blender and the numpy fit agree to 1/255 on the scriptorium. The finding went against the v1 guess: on the same surface points the v1 rings sit at almost the same level (146 against 150), and the match moves held-out agreement only from 13.06 to 14.05 dB. Two first-ring pictures of one point already disagree at 12.39 dB. The v1 gap is the pictures disagreeing about content, not exposure. The scriptorium rings agree far better (19.01 dB before any match).",
+   "source": "reading-room-ring2-colour-match.json, scriptorium-ring2-colour-match.json"
+  },
+  {
+   "n": 4,
+   "title": "Cycles is the reference judge",
+   "grade": "C",
+   "text": "The Cycles object-index pass says where every object's outline is. Atlas keeps 84.1% of those outlines (183 of 252 objects above 90%); the Cycles picture itself keeps 96.6%. Median hue difference per object is 8.2 degrees, 73.9% of objects within 25. Atlas merged the vault into the walls and painted plaster where the prompt asked for tufa blocks. Picture against picture, Atlas and Cycles are 15.9 dB apart, as expected of a painter and a path tracer.",
+   "source": "scriptorium-cycles-judge.json"
+  },
+  {
+   "n": 5,
+   "title": "Blender physics tests the colliders",
+   "grade": "C",
+   "text": "Small balls were dropped on a grid in two Blender rigid-body worlds: the X3D room as mesh colliders, and the Atlas collider boxes. Scriptorium: 323 probes, median rest-height difference 47.5 mm, 79.6% within 100 mm, 61 rest more than 100 mm high (boxes where there is air), 5 low, none fell out. The v1 reading room behaves the same (58.3 mm, 78.2%).",
+   "source": "physics-scriptorium.json, physics-reading-room.json"
+  }
+ ],
+ "physics": [
+  [
+   "Scriptorium (draft splat mesh)",
+   399,
+   323,
+   "47.5 mm",
+   "256.9 mm",
+   "79.6%",
+   61,
+   5,
+   3,
+   "physics-scriptorium.json"
+  ],
+  [
+   "Reading room, v1 (refined splat mesh)",
+   400,
+   331,
+   "58.3 mm",
+   "373.1 mm",
+   "78.2%",
+   66,
+   6,
+   23,
+   "physics-reading-room.json"
+  ]
+ ],
+ "colour": [
+  [
+   "Scriptorium",
+   "1,006,297",
+   "122.4 / 123.4",
+   "19.01 dB",
+   "19.43 dB",
+   "19.11 dB",
+   "16.35 dB",
+   "1 / 255",
+   "scriptorium-ring2-colour-match.json"
+  ],
+  [
+   "Reading room, v1",
+   "760,108",
+   "146.1 / 149.9",
+   "13.06 dB",
+   "14.05 dB",
+   "13.35 dB",
+   "12.39 dB",
+   "26 / 255",
+   "reading-room-ring2-colour-match.json"
+  ]
+ ],
+ "cdl": {
+  "scriptorium": {
+   "slope": [
+    0.89129,
+    0.88659,
+    0.65496
+   ],
+   "offset": [
+    0.05418,
+    0.00702,
+    0.00111
+   ],
+   "power": [
+    1.14289,
+    0.98278,
+    0.85719
+   ]
+  },
+  "reading_room": {
+   "slope": [
+    0.46812,
+    0.45502,
+    0.50399
+   ],
+   "offset": [
+    -0.00078,
+    0.00067,
+    0.01076
+   ],
+   "power": [
+    0.63636,
+    0.68281,
+    0.85806
+   ]
+  }
+ },
+ "back": [
+  [
+   "Cameras returned against cameras sent",
+   "0.0 m, 0.0 degrees",
+   "scriptorium-atlas-return.json"
+  ],
+  [
+   "Draft splats",
+   "524,288 splats; centre to Blender surface median 26.9 mm, 90.8% within 100 mm",
+   "scriptorium-atlas-return.json"
+  ],
+  [
+   "Mesh",
+   "300,000 faces; vertex to Blender surface median 24.0 mm, 90th percentile 86.9 mm",
+   "scriptorium-mesh-scriptorium-draft.json"
+  ],
+  [
+   "Collider boxes",
+   "399 boxes, all upright; written as an X3D Collision proxy",
+   "scriptorium-atlas-return.json"
+  ],
+  [
+   "Return world",
+   "scriptorium-atlas.x3d, 3,451,726 bytes, valid X3D 4.1",
+   "scriptorium-atlas-return.json"
+  ]
+ ],
+ "worlds": [
+  {
+   "label": "Clean X3D (Atlas paint on Blender geometry)",
+   "file": "worlds/scriptorium-clean24.x3d",
+   "size": "1.5 MB + 3.1 MB texture",
+   "default": true
+  },
+  {
+   "label": "Atlas return world (splats, mesh, colliders)",
+   "file": "worlds/scriptorium-atlas.x3d",
+   "size": "3.5 MB + 8.3 MB splats"
+  },
+  {
+   "label": "Blender export, untouched",
+   "file": "worlds/scriptorium24.x3d",
+   "size": "1.4 MB"
+  }
+ ],
+ "ledger": {
+  "entries": [
+   {
+    "label": "chisel:scriptorium",
+    "task": "atlasChisel",
+    "price": 160,
+    "state": "succeeded",
+    "operation": "346794cfe39e476682a05bc85c40df98",
+    "seconds": 26.6
+   },
+   {
+    "label": "splats-draft:scriptorium",
+    "task": "posedImages2Splats",
+    "price": 500,
+    "state": "succeeded",
+    "operation": "b626da1c09a94ce4997c03e1fca9621a",
+    "seconds": 50.7
+   },
+   {
+    "label": "mesh:scriptorium:draft",
+    "task": "splats2Mesh",
+    "price": 500,
+    "state": "succeeded",
+    "operation": "2c2505fe02484092a8a91c1f8ccb8ade",
+    "seconds": 54.4
+   },
+   {
+    "label": "chisel:scriptorium:ring2",
+    "task": "atlasChisel",
+    "price": 160,
+    "state": "succeeded",
+    "operation": "635789b1d1a24e989552ce99c26f65ea",
+    "seconds": 25.5
+   }
+  ],
+  "note": "1,320 credits on this page's 4 calls. The account ledger stands at 13,936 committed against a hard stop of 14,956; the other calls since v1 belong to two other studies on the same account and are listed in ledger.json. Prices are the account rate card (1,000 credits = 1 USD)."
+ },
+ "rig": "Rig: Blender 5.3.0 (bpy wheel, Cycles CPU) with the X3D Blender I/O add-on v2.7.4; X3D to three.js bridge on three r187, Chromium 157 headless, SwiftShader; validator hagopjay/x3d_mcp 4d433af (X3D 4.0 and 4.1 XSD)."
+}

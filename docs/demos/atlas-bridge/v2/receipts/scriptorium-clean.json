@@ -1,0 +1,128 @@
+{
+ "slug": "scriptorium",
+ "views": 12,
+ "per_view": [
+  {
+   "view": 0,
+   "psnr_db": 22.224036803285692,
+   "ssim": 0.7690932849784364,
+   "mean_abs_diff": 10.272264128949699,
+   "px_within_16_pct": 77.91234703374548
+  },
+  {
+   "view": 1,
+   "psnr_db": 22.834251420124478,
+   "ssim": 0.8055697663446391,
+   "mean_abs_diff": 8.907019060437555,
+   "px_within_16_pct": 82.30129421065243
+  },
+  {
+   "view": 2,
+   "psnr_db": 20.86480632401534,
+   "ssim": 0.8015742378419399,
+   "mean_abs_diff": 10.479640175999892,
+   "px_within_16_pct": 77.87545556947026
+  },
+  {
+   "view": 3,
+   "psnr_db": 20.374193942264935,
+   "ssim": 0.8285162120268891,
+   "mean_abs_diff": 11.416072691743409,
+   "px_within_16_pct": 74.17195646783689
+  },
+  {
+   "view": 4,
+   "psnr_db": 22.323266738794153,
+   "ssim": 0.8285167087015564,
+   "mean_abs_diff": 10.551623276408757,
+   "px_within_16_pct": 77.25594733681652
+  },
+  {
+   "view": 5,
+   "psnr_db": 23.09087444903559,
+   "ssim": 0.7938994664623205,
+   "mean_abs_diff": 9.68331166955517,
+   "px_within_16_pct": 79.31299022673267
+  },
+  {
+   "view": 6,
+   "psnr_db": 22.718573432287926,
+   "ssim": 0.7638864724782446,
+   "mean_abs_diff": 9.885339988425926,
+   "px_within_16_pct": 77.72102864583333
+  },
+  {
+   "view": 7,
+   "psnr_db": 22.227388968769354,
+   "ssim": 0.7461444533495462,
+   "mean_abs_diff": 11.586377676504629,
+   "px_within_16_pct": 70.14691840277779
+  },
+  {
+   "view": 8,
+   "psnr_db": 22.21665322749198,
+   "ssim": 0.765913989055014,
+   "mean_abs_diff": 10.6054296875,
+   "px_within_16_pct": 74.06325954861111
+  },
+  {
+   "view": 9,
+   "psnr_db": 21.507245614279476,
+   "ssim": 0.7570635026716372,
+   "mean_abs_diff": 11.280680338541666,
+   "px_within_16_pct": 73.68630642361111
+  },
+  {
+   "view": 10,
+   "psnr_db": 22.16353494886384,
+   "ssim": 0.7484364789109843,
+   "mean_abs_diff": 11.03567165798611,
+   "px_within_16_pct": 74.00444878472221
+  },
+  {
+   "view": 11,
+   "psnr_db": 22.198475660311196,
+   "ssim": 0.7417494568656681,
+   "mean_abs_diff": 10.75969798900463,
+   "px_within_16_pct": 75.80132378472221
+  }
+ ],
+ "psnr_mean_db": 22.061941794126994,
+ "psnr_min_db": 20.374193942264935,
+ "ssim_mean": 0.7791970024739062,
+ "px_within_16_mean_pct": 76.18777303629432,
+ "bake": {
+  "blender": "5.3.0",
+  "texture_size": 4096,
+  "depth_tolerance_mm": 25.0,
+  "min_cos": 0.12,
+  "objects": 374,
+  "faces": 4086,
+  "faces_seen_by_a_view": 1856,
+  "surface_m2": 947.87,
+  "surface_seen_m2": 354.46,
+  "texels_used_pct": 77.52,
+  "mm_per_texel": 5.22,
+  "texels_painted_pct_of_used": 62.8,
+  "texels_seen_by_2_or_more_pct": 54.59,
+  "texture": {
+   "file": "scriptorium-clean.jpg",
+   "bytes": 2809479
+  },
+  "export": {
+   "result": [
+    "FINISHED"
+   ],
+   "file": "scriptorium-clean.x3d",
+   "bytes": 1446804
+  },
+  "seconds": 96.2
+ },
+ "note": "the pictures being compared are the same ones the texture was baked from, so this measures what the bake loses (blending between views, texel size, unpainted texels), not new views",
+ "x3d": {
+  "file": "scriptorium-clean.x3d",
+  "valid": true,
+  "errors": [],
+  "validator": "hagopjay/x3d_mcp 4d433af validate_xml"
+ }
+}
