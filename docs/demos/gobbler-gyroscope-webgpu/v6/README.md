@@ -24,7 +24,7 @@ Everything else, including what each lane's grade means and what is simulated, r
 
 ## Files changed against v5
 
-`swarm/swarm.js` (camera distance, one number), `ouro/v5.js` (ring turn, bird scale, lane radius, halo size, the H key), `ouro/v5.css` (the clean mode), `index.html` and `solo.html` (titles, build id, nav chips). Every other file is byte-identical to v5, including `ouro/data.json` and `ouro/gobbler.bin`.
+`swarm/swarm.js` (camera distance, one number), `ouro/v5.js` (ring turn, bird scale, lane radius, halo size, the H key), `ouro/v5.css` (the clean mode), `index.html` (title, build id, nav chips). Every other file is byte-identical to v5, including `ouro/data.json` and `ouro/gobbler.bin`.
 
 ## Tested, and on what
 

@@ -661,11 +661,11 @@ Written for this site on top of v4 (v1 to v4 untouched). Adds `ouro/v5.js` and `
 
 ## Gobbler Gyroscope v6, head and flywheels together (`gobbler-gyroscope-webgpu/v6`, Demo 23 version 6)
 
-Written for this site on top of v5 (v1 to v5 untouched). v5's content on v4's flywheel framing: the camera distance returns to 17, the serpent ring returns to v4's position, the bird is drawn smaller at the bite, the lane ring is pulled in, and an H key hides the panels. Changed against v5: `swarm/swarm.js`, `ouro/v5.js`, `ouro/v5.css`, `index.html`, `solo.html`, `README.md`, `shots/`. Every other file, including `ouro/data.json` and `ouro/gobbler.bin`, is byte-identical to v5 (sources as in the v5 section above). No model was called and nothing was billed. Shots: Chrome for Testing 158.0.8127.36 headless on SwiftShader.
+Written for this site on top of v5 (v1 to v5 untouched). v5's content on v4's flywheel framing: the camera distance returns to 17, the serpent ring returns to v4's position, the bird is drawn smaller at the bite, the lane ring is pulled in, and an H key hides the panels. Changed against v5: `swarm/swarm.js`, `ouro/v5.js`, `ouro/v5.css`, `index.html`, `README.md`, `shots/`. Every other file, including `ouro/data.json` and `ouro/gobbler.bin`, is byte-identical to v5 (sources as in the v5 section above). No model was called and nothing was billed. Shots: Chrome for Testing 158.0.8127.36 headless on SwiftShader.
 
 | file | sha256 | bytes |
 |---|---|---|
-| gobbler-gyroscope-webgpu/v6/README.md | 2a31f482ca91e4772ac0c00dbf1801fc737cd4d03673183bce700ffe8ed280ef | 3305 |
+| gobbler-gyroscope-webgpu/v6/README.md | 175b2e49980e31cbef8d504b8f42c5399d9c4ba012d8b21654c17d4ae99a4dc1 | 3288 |
 | gobbler-gyroscope-webgpu/v6/gobbler3.x3d | 0772caea04e80d03d43ce1543e86fee5854e13a6ad1d273dc65ea2e5aee47dc6 | 1985373 |
 | gobbler-gyroscope-webgpu/v6/graph-v3.json | fcbc4bc603632ba8479b96618c2591a9633cf4ea2751ccd84d8a628308800621 | 60630 |
 | gobbler-gyroscope-webgpu/v6/index.html | 46439a96b9aee62ca10270a2b5e31918235e9b7b6e959aaca73fb3bd5ac83381 | 4181599 |
