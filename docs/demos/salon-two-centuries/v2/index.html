@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Salon of Two Centuries v2: the Western epic wings</title>
+<meta name="description" content="Demo 79. Nine art movements from late Baroque to Art Nouveau as a walkable X3D time corridor (1 m = 1 year), with public-domain paintings at real size, walk-in paintings from depth estimation, a pigment tower and an atlas of 400 painters' lives from Wikidata.">
+<style>
+:root{--bg:#07060a;--p1:#100d0c;--p2:#17120f;--line:#2b231b;--ink:#f3ead8;--dim:#a8998a;--gold:#e6c87a;--ok:#8fd694;--bad:#e8806e;--warn:#e9b44c;--blue:#9cc3ff;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+ background-image:radial-gradient(1100px 520px at 6% -8%,rgba(230,200,122,.12),transparent 60%),radial-gradient(900px 520px at 96% -4%,rgba(120,60,140,.16),transparent 60%)}
+a{color:var(--blue)}code,.mono{font-family:var(--mono);font-size:.86em}.dim{color:var(--dim)}
+.wrap{max-width:1560px;margin:0 auto;padding:0 16px}
+header{padding:30px 0 8px}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--gold)}
+h1{font-family:var(--serif);font-size:clamp(32px,5.4vw,70px);line-height:1.02;margin:.15em 0 .2em;font-weight:700;letter-spacing:-.01em}
+h1 em{font-style:italic;background:linear-gradient(90deg,#e0503f,#f5a8c8,#f2f0ea,#5d8bf4,#d39a55,#7fd3ff,#ffd23f,#b77cff,#4fd1a5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:1000px;color:#d9cdb9;font-size:17px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:20px 0 8px}
+.stat{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.stat b{display:block;font-size:27px;line-height:1;font-weight:800;color:var(--gold);white-space:nowrap}
+.stat span{color:var(--dim);font-size:12.5px;display:block;margin-top:6px}
+.stat i{font-style:normal;font-size:10.5px;color:#7b6d60;display:block;margin-top:4px;font-family:var(--mono)}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:14px;margin:14px 0}
+#view{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#030203;aspect-ratio:16/10;min-height:380px}
+x3d-canvas{width:100%;height:100%;display:block}
+#boot{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-family:var(--mono);background:#030203;transition:opacity .6s}
+#boot.done{opacity:0;pointer-events:none}
+.hud{position:absolute;left:10px;top:10px;display:flex;gap:5px;flex-wrap:wrap;max-width:calc(100% - 20px)}
+.btn{background:rgba(16,13,12,.84);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:5px 11px;font:12.5px system-ui;cursor:pointer;backdrop-filter:blur(4px)}
+.btn:hover{border-color:var(--gold)}.btn.on{border-color:var(--gold);color:var(--gold)}
+.layers{position:absolute;right:10px;bottom:10px;display:flex;gap:5px;flex-wrap:wrap}
+.help{position:absolute;left:10px;bottom:10px;font:11.5px var(--mono);color:var(--dim);background:rgba(16,13,12,.82);border:1px solid var(--line);border-radius:9px;padding:5px 9px;max-width:50%}
+.side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:13px;padding:13px}
+.panel h3{margin:0 0 8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+#card img{width:100%;max-height:220px;object-fit:contain;background:#000;border-radius:8px;display:block}
+#card .nm{font-family:var(--serif);font-size:21px;font-weight:700;line-height:1.15;margin-top:8px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font:12px var(--mono);color:#d2c4b0;margin-top:6px}
+.kv dt{color:var(--dim)}.kv dd{margin:0;word-break:break-word}
+.rooms{display:grid;gap:3px;max-height:300px;overflow:auto}
+.room{display:grid;grid-template-columns:12px 1fr auto;gap:8px;align-items:center;font-size:13px;padding:3px 6px;border-radius:7px;cursor:pointer}
+.room:hover{background:rgba(255,255,255,.04)}.room i{width:12px;height:12px;border-radius:3px}.room b{font:11.5px var(--mono);color:var(--dim);font-weight:400}
+h2{font-family:var(--serif);font-size:25px;margin:36px 0 10px}
+h2 small{font-family:system-ui;font-size:13px;color:var(--dim);font-weight:400;margin-left:8px}
+table{border-collapse:collapse;width:100%;font-size:13.2px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;position:sticky;top:0;background:var(--p1)}
+tbody tr.click{cursor:pointer}tbody tr.click:hover{background:rgba(255,255,255,.03)}
+td img{width:64px;height:48px;object-fit:cover;border-radius:4px;display:block}
+.tblwrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--p1);max-height:640px}
+.g{font:11px var(--mono);border:1px solid var(--line);border-radius:999px;padding:0 7px;white-space:nowrap}
+.g-C{color:var(--ok);border-color:rgba(143,214,148,.5)}.g-L{color:var(--warn);border-color:rgba(233,180,76,.5)}.g-S{color:var(--bad);border-color:rgba(232,128,110,.5)}
+.two{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12px}
+svg text{font-family:system-ui,sans-serif}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.shots figure{margin:0;background:var(--p1);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.shots img{width:100%;display:block}.shots figcaption{padding:8px 10px;font-size:13px;color:var(--dim)}
+.pass{color:var(--ok);font-weight:700}.fail{color:var(--bad);font-weight:700}
+footer{margin:40px 0 60px;color:var(--dim);font-size:13px}
+@media (max-width:1060px){.stage,.two{grid-template-columns:1fr}#view{aspect-ratio:4/3}.help{display:none}}
+</style>
+</head>
+<body>
+<script src="../../../lib/gfx-guard-v3.js"></script>
+<div class="wrap">
+<header>
+  <div class="kick">Demo 79 · salon-two-centuries/v2 · X3D 4.0 · adds Western.Epic.md · WebGL2 (X_ITE), no WebGPU needed</div>
+  <h1>Salon of Two Centuries: <em>painting, letters, ideas, music and building, 1700–1899</em></h1>
+  <p class="lede">A walkable X3D museum where <b>one metre is one year</b>. The spine corridor runs 200 m from 1700 to 1899.
+  Each of the nine movements on the owner's art history chart is a gallery beside it, built in its own style and
+  running from its start year to its end year, so overlapping movements sit side by side. Public-domain paintings hang
+  at their real size on the wall, at their own year. Three of them open into rooms you can <b>walk into</b>.
+  New pigments stand in the corridor in the year they arrived, and above it all the <b>Atlas sky</b> traces where
+  405 painters lived and worked, with arcs for who influenced and who taught whom.
+  <b>Version 2</b> adds the owner's <a href="https://github.com/hagopjay/gcloud.map/blob/main/Western.Epic.md">Western.Epic.md</a>
+  branch for 1750–1900 as four more wings on the same time axis: <b>Letters</b>, <b>Ideas</b>, <b>Music</b> and <b>Building</b>.
+  190 more lives run as rails along their walls, 130 works stand at their year, twelve listening posts play passages
+  from public-domain scores, and the Eiffel Tower and the Crystal Palace stand at 1889 and 1851. Their lives join the
+  Atlas sky, where magenta arcs mark influence that crossed from one art to another.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="stage">
+  <div id="view">
+    <x3d-canvas id="xite" preserveDrawingBuffer="true" splashScreen="false" notifications="false" timings="false" contextMenu="false"></x3d-canvas>
+    <div class="hud" id="vps"></div>
+    <div class="layers"><button class="btn on" id="tAtlas">Atlas sky</button><button class="btn on" id="tPig">Pigment threads</button><button class="btn" id="tSound">Sound off</button><button class="btn" id="tTour">Tour ▶</button></div>
+    <div class="help">walk: arrow keys / drag · click a painting for its card</div>
+    <div id="boot">hanging 57 paintings…</div>
+  </div>
+  <div class="side">
+    <div class="panel" id="card"><h3>Painting</h3><img id="cImg" alt="" hidden><div class="nm" id="cName">Click a painting, a room or a table row</div><dl class="kv" id="cKV"></dl></div>
+    <div class="panel"><h3>Rooms <span class="dim" style="text-transform:none;letter-spacing:0">click to go there</span></h3><div class="rooms" id="rooms"></div></div>
+  </div>
+</div>
+
+<h2>The time corridor <small>movement spans from the source chart, pigments on the same axis, painting dots at their year</small></h2>
+<div class="panel"><svg id="tl" viewBox="0 0 1200 330" width="100%" role="img" aria-label="Timeline of movements 1700-1899"></svg></div>
+
+<div class="two">
+  <div>
+    <h2>The source chart, graded <small>ArtHistory.md nodes A20–A28; every note marked Confirmed, Likely or Suspected</small></h2>
+    <div class="tblwrap"><table><thead><tr><th>Movement</th><th>Span</th><th>Note (source)</th><th>Grade</th></tr></thead><tbody id="notes"></tbody></table></div>
+  </div>
+  <div>
+    <h2>Pigment tower <small>the new colours, in date order</small></h2>
+    <div class="tblwrap"><table><thead><tr><th></th><th>Year</th><th>Pigment</th><th>Where</th><th>Grade</th></tr></thead><tbody id="pig"></tbody></table></div>
+  </div>
+</div>
+
+<h2>Atlas sky <small>Wikidata (CC0), queried through QLever; colour = movement</small></h2>
+<div class="two">
+  <div class="panel"><svg id="atl" viewBox="0 0 760 360" width="100%" role="img" aria-label="Painters by city"></svg></div>
+  <div class="tblwrap" style="max-height:380px"><table><thead><tr><th>Hub painter</th><th>Links</th><th>Movement</th></tr></thead><tbody id="hubs"></tbody></table></div>
+</div>
+
+<h2>The hang <small>57 works; click a row to fly to it</small></h2>
+<div class="tblwrap"><table><thead><tr><th></th><th>Year</th><th>Title</th><th>Painter</th><th>Room</th><th>Size (cm)</th><th>Collection</th><th>Credit</th></tr></thead><tbody id="hang"></tbody></table></div>
+
+<h2>The Western epic wings <small>Western.Epic.md · Enlightenment &amp; Romantic 1750–1900 · lives from Wikidata via QLever</small></h2>
+<div class="panel"><svg id="lives" viewBox="0 0 1200 420" width="100%" role="img" aria-label="Lives by field"></svg></div>
+<div class="two">
+  <div><h2>Listening posts <small>passages synthesised from public-domain scores (music21 corpus)</small></h2><div class="tblwrap"><table><tbody id="aud"></tbody></table></div></div>
+  <div><h2>Named in the chart <small>32 of 33 found</small></h2><div class="tblwrap"><table><thead><tr><th>Name</th><th>Life</th><th>Wing</th></tr></thead><tbody id="epic"></tbody></table></div></div>
+</div>
+<h2>Works at their year <small>130 books, treatises, scores and buildings</small></h2>
+<div class="tblwrap"><table><thead><tr><th>Year</th><th>Work</th><th>By</th><th>Wing</th><th>Date from</th><th>Wikidata</th></tr></thead><tbody id="works"></tbody></table></div>
+
+<h2>Receipts <small>every number names its instrument</small></h2>
+<div class="tblwrap"><table><tbody id="inst"></tbody></table></div>
+
+<h2>Frames <small>X_ITE in headless Chromium, SwiftShader WebGL2</small></h2>
+<div class="shots" id="shots"></div>
+
+<h2>What was and was not tested</h2>
+<div class="tblwrap"><table><tbody id="tested"></tbody></table></div>
+
+<footer>
+  Paintings: public-domain works photographed and shared on <a href="https://commons.wikimedia.org/">Wikimedia Commons</a>; each credit links to its file page and its Wikidata item.
+  Painter, place and influence data: <a href="https://www.wikidata.org/">Wikidata</a> (CC0), read through <a href="https://qlever.dev/wikidata">QLever</a> (University of Freiburg).
+  Movement spans and notes: the owner's <a href="https://github.com/hagopjay/gcloud.map/blob/main/ArtHistory.md">ArtHistory.md</a>.
+  See <a href="DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a> for every source and the takedown route. Scene and page CC BY 4.0. X_ITE 16.7.1 (GPL-3.0) vendored in Demo 56.
+</footer>
+</div>
+
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+const MCOL = {baroque:'#e0503f',rococo:'#f5a8c8',neoclassicism:'#f2f0ea',romanticism:'#5d8bf4',realism:'#d39a55',impressionism:'#7fd3ff',postimpressionism:'#ffd23f',symbolism:'#b77cff',artnouveau:'#4fd1a5'};
+const D = {}; window.SALON = { ready: false };
+async function j(p) { const r = await fetch(p); if (!r.ok) throw new Error(p + ' ' + r.status); return r.json(); }
+const grade = g => { const k = (g || '').trim()[0]; return `<span class="g g-${k}">${esc(g)}</span>`; };
+const MV = id => D.mov.movements.find(m => m.id === id);
+
+function timeline() {
+  const W = 1200, x = y => 60 + (y - 1700) / 200 * (W - 90), M = D.mov.movements;
+  let s = '';
+  for (let y = 1700; y <= 1900; y += 10) s += `<line x1="${x(y)}" x2="${x(y)}" y1="18" y2="300" stroke="#2b231b"/><text x="${x(y)}" y="318" fill="#a8998a" font-size="11" text-anchor="middle">${y % 50 ? '' : y}</text>`;
+  M.forEach((m, i) => {
+    const a = Math.max(1700, m.start), b = Math.min(1899, m.end), yy = 24 + i * 22;
+    s += `<rect x="${x(a)}" y="${yy}" width="${x(b) - x(a)}" height="16" rx="4" fill="${MCOL[m.id]}" fill-opacity=".8"/>`;
+    if (m.start < 1700) s += `<text x="${x(a) + 4}" y="${yy + 12}" font-size="10" fill="#07060a">← from ${m.start}</text>`;
+    if (m.end > 1899) s += `<text x="${x(b) - 4}" y="${yy + 12}" font-size="10" fill="#07060a" text-anchor="end">to ${m.end} →</text>`;
+    s += `<text x="${x(a) - 6}" y="${yy + 12}" font-size="11.5" fill="#f3ead8" text-anchor="end">${esc(m.name.replace(/ \(late\)| \/.*$/g, ''))}</text>`;
+    D.pnt.paintings.filter(p => p.movement === m.id).forEach(p => s += `<circle cx="${x(p.year)}" cy="${yy + 8}" r="3.2" fill="#07060a" stroke="#fff" stroke-width="1"><title>${esc(p.title)} (${p.year})</title></circle>`);
+  });
+  D.pig.pigments.forEach((p, i) => { const yy = 232 + (i % 3) * 20; s += `<line x1="${x(p.year)}" x2="${x(p.year)}" y1="226" y2="${yy + 2}" stroke="${p.rgb}" stroke-width="2"/><circle cx="${x(p.year)}" cy="${yy + 6}" r="6" fill="${p.rgb}" stroke="#f3ead8" stroke-width=".6"><title>${esc(p.name)} ${p.year}</title></circle><text x="${x(p.year) + 9}" y="${yy + 10}" fill="#d9cdb9" font-size="10">${esc(p.name.split(' (')[0])}</text>`; });
+  s += `<text x="10" y="236" fill="#a8998a" font-size="11">pigments</text>`;
+  $('#tl').innerHTML = s;
+}
+
+function atlasSvg() {
+  const A = D.art, C = A.cities, use = {};
+  A.artists.forEach(a => a.path.forEach(([, c]) => use[c] = (use[c] || 0) + 1));
+  const lonx = lon => lon < -12 ? 380 + (-12 - 15) * 11 - (-12 - lon) * 2.2 : lon > 45 ? 380 + 30 * 11 + (lon - 45) * 2.2 : 380 + (lon - 15) * 11;
+  const laty = lat => 330 - (Math.max(-40, Math.min(70, lat)) - 30) * 7.6;
+  let s = '<rect width="760" height="360" fill="#0b0908"/>';
+  for (const lon of [-10, 0, 10, 20, 30, 40]) s += `<line x1="${lonx(lon)}" x2="${lonx(lon)}" y1="0" y2="360" stroke="#1f1812"/><text x="${lonx(lon) + 2}" y="352" fill="#6f6152" font-size="9">${lon}°</text>`;
+  A.artists.forEach(a => { const pts = a.path.map(([, c]) => `${lonx(C[c][1]).toFixed(1)},${laty(C[c][0]).toFixed(1)}`); if (pts.length > 1) s += `<polyline points="${pts.join(' ')}" fill="none" stroke="${MCOL[a.movement]}" stroke-opacity=".35" stroke-width=".8"/>`; });
+  Object.entries(use).sort((a, b) => b[1] - a[1]).forEach(([c, n], k) => { const [la, lo] = C[c]; s += `<circle cx="${lonx(lo)}" cy="${laty(la)}" r="${Math.min(14, 1.2 + Math.sqrt(n) * 1.3)}" fill="#e6c87a" fill-opacity=".22" stroke="#e6c87a" stroke-opacity=".6" stroke-width=".6"><title>${esc(c)}: ${n} painter-visits</title></circle>` + (k < 14 ? `<text x="${lonx(lo) + 6}" y="${laty(la) - 5}" fill="#f3ead8" font-size="10.5">${esc(c)} ${n}</text>` : ''); });
+  s += `<text x="10" y="18" fill="#a8998a" font-size="11">${A.artists.length} painters · ${Object.keys(use).length} places · Europe 11 px/deg, beyond it compressed</text>`;
+  $('#atl').innerHTML = s;
+  const deg = {}; A.influences.forEach(([a, b]) => { deg[a] = (deg[a] || 0) + 1; deg[b] = (deg[b] || 0) + 1; });
+  const byId = Object.fromEntries(A.artists.map(a => [a.id, a]));
+  $('#hubs').innerHTML = Object.entries(deg).sort((a, b) => b[1] - a[1]).slice(0, 25).map(([id, n]) => { const a = byId[id]; return `<tr><td><a href="https://www.wikidata.org/wiki/${id}">${esc(a.name)}</a> <span class="dim">${a.born}–${a.died}</span></td><td>${n}</td><td><span style="color:${MCOL[a.movement]}">■</span> ${esc(MV(a.movement).name)}</td></tr>`; }).join('');
+}
+
+function fill() {
+  const P = D.pnt.paintings, val = D.validate || {}, shots = D.shots || {}, A = D.art;
+  const walk = P.filter(p => ['Q212616', 'Q45585', 'Q1044742'].includes(p.id)).length;
+  const stats = [[D.mov.movements.length, 'movements → galleries', 'ArtHistory.md A20–A28'], ['200 m', 'corridor, 1 m = 1 year', '1700 → 1899'],
+    [P.length, 'public-domain paintings', 'Wikidata P6216 + Commons'], [walk, 'walk-in paintings', 'Depth Anything V2 Small, CPU'],
+    [D.pig.pigments.length, 'pigments in the tower', 'graded C/L/S'], [A.artists.length, 'painters in the Atlas sky', 'Wikidata via QLever'],
+    [A.influences.length + D.peo.counts.links, 'influence + teaching arcs', `P737 + P1066; ${D.peo.counts.links_cross_field} cross-field`],
+    [D.peo.people.length, 'more lives in 4 wings', 'Western.Epic.md 1750–1900'], [D.peo.works.length, 'works at their year', 'Wikidata P577 / P1619 / P571'], [D.aud.length, 'listening posts', 'music21 corpus, synthesised'], [val.ok ? 'valid' : '…', 'X3D 4.0 XSD + semantic', val.validator ? val.validator.split(' (')[0] : 'x3d_mcp']];
+  $('#stats').innerHTML = stats.map(([b, s, i]) => `<div class="stat"><b>${esc(b)}</b><span>${esc(s)}</span><i>${esc(i)}</i></div>`).join('');
+  $('#notes').innerHTML = D.mov.movements.map(m => m.notes.map(([t, g], k) => `<tr>${k ? '<td></td><td></td>' : `<td><span style="color:${MCOL[m.id]}">■</span> <b>${esc(m.name)}</b></td><td class="mono">${m.start}–${m.end}</td>`}<td>${esc(t)}</td><td>${grade(g)}</td></tr>`).join('')).join('');
+  $('#pig').innerHTML = D.pig.pigments.slice().sort((a, b) => a.year - b.year).map(p => `<tr><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:${p.rgb}"></span></td><td class="mono">${p.year}</td><td>${esc(p.name)}</td><td class="dim">${esc(p.where)}</td><td>${grade(p.grade)}</td></tr>`).join('');
+  $('#hang').innerHTML = P.slice().sort((a, b) => a.year - b.year).map(p => `<tr class="click" data-id="${p.id}"><td><img src="../v1/paintings/${p.file}" alt="" loading="lazy"></td><td class="mono">${p.year}</td><td><b>${esc(p.title)}</b></td><td>${esc(p.artist)}</td><td><span style="color:${MCOL[p.movement]}">■</span> ${esc(MV(p.movement).name)}</td><td class="mono">${p.h_cm ? `${p.h_cm} × ${p.w_cm}` : '<span class=dim>n/a</span>'}</td><td class="dim">${esc(p.collection || '')}</td><td style="white-space:nowrap"><a href="${p.commons_page}">Commons</a> · <a href="${p.wikidata}">${p.id}</a></td></tr>`).join('');
+  document.querySelectorAll('#hang tr').forEach(r => r.onclick = () => { card(r.dataset.id); fly(r.dataset.id); $('#view').scrollIntoView({ behavior: 'smooth' }); });
+  $('#rooms').innerHTML = [['VP_00', '#e6c87a', 'Entrance', '1700'], ...D.mov.movements.map((m, i) => ['VP_' + String(i + 1).padStart(2, '0'), MCOL[m.id], m.name, `${Math.max(1700, m.start)}–${Math.min(1899, m.end)}`]),
+    ['VP_W_Q212616', '#5d8bf4', 'Walk into: Raft of the Medusa', '1819'], ['VP_W_Q1044742', '#ffd23f', 'Walk into: La Grande Jatte (points)', '1884'], ['VP_W_Q45585', '#ffd23f', 'Walk into: The Starry Night', '1889'],
+    ['VP_10', '#ffffff', 'The Pigment Tower', '1704–1868'], ['VP_11', '#e8b86a', 'Letters wing', '60 lives'], ['VP_12', '#9fd3c7', 'Ideas wing', '45 lives'],
+    ['VP_13', '#ff6b8a', 'Music wing (sound)', '12 posts'], ['VP_14', '#7fb2ff', 'Building wing', '30 works'], ['VP_15', '#ffcf8a', 'Eiffel Tower', '1889'], ['VP_16', '#cfe8ff', 'Crystal Palace', '1851'],
+    ['VP_17', '#9cc3ff', 'Atlas sky', '595 lives']]
+    .map(([vp, c, t, y]) => `<div class="room" data-vp="${vp}"><i style="background:${c}"></i><span>${esc(t)}</span><b>${esc(y)}</b></div>`).join('');
+  document.querySelectorAll('.room').forEach(e => e.onclick = () => bind(e.dataset.vp));
+  const inst = [
+    ['Movements', 'hagopjay/gcloud.map ArtHistory.md nodes A20–A28 (raw.githubusercontent.com, 25 Nov 2026); spans clamped to 1700–1899 in the scene, full spans on the plaques'],
+    ['Painters', `${A.counts.artists_harvested} painters with a movement (P135) among 14 Wikidata movement items, born 1640–1880; ${A.artists.length} shown (top 45 per movement by sitelinks), QLever qlever.dev/api/wikidata`],
+    ['Places', `${A.counts.cities} places from birth (P19), work location (P937, start-time qualifier when present) and death (P20); undated work locations are spread after age 25 and graded Suspected`],
+    ['Paintings', `${P.length} works: Q3305213 paintings 1700–1899 with an image (P18), 8+ sitelinks, P6216 = public domain, max 2 per painter per room, 7 per room; Art Nouveau adds 5 posters and paintings by name (no painting had 8+ sitelinks)`],
+    ['Sizes', 'Wikidata P2048/P2049 with units read from the full statement (cm, mm, m, inch → cm); the first pass, without units, mixed metres and millimetres (FM in x3d.loom)'],
+    ['Depth', 'depth-anything/Depth-Anything-V2-Small-hf via transformers on CPU; relative inverse depth, estimated, not measured'],
+    ['Scene', `assets/salon.x3d, X3D 4.0 Interchange + Lighting 3, Text, Geometry2D, Navigation; ${val.files ? Math.round(val.files['salon.x3d'].bytes / 1024) : '?'} KB`],
+    ['Validator', val.summary || 'see README'],
+    ['Renderer', shots.x_ite ? `X_ITE ${shots.x_ite} in Chromium ${shots.chromium} (Playwright), ${shots.webgl_renderer}` : 'X_ITE 16.7.1, Chromium + SwiftShader WebGL2']];
+  $('#inst').innerHTML = inst.map(([a, b]) => `<tr><td style="white-space:nowrap" class="dim">${esc(a)}</td><td class="mono">${esc(b)}</td></tr>`).join('');
+  const tested = [
+    ['Tested', 'X3D 4.0 XSD + semantic checks (x3d_mcp validator); round trip of painting ids and years from the X3D metadata back to data/paintings.json'],
+    ['Tested', 'Loaded in X_ITE 16.7.1 with SwiftShader WebGL2; frames below; console errors counted in shots/shots-receipt.json'],
+    ['Not tested', 'A real GPU: all frames are software rendered. The page needs only WebGL2, so a laptop with WebGPU blocklisted still runs it'],
+    ['Not checked', 'Each Commons file page licence one by one: the Commons API was rate-limiting this session, so public-domain status is read from Wikidata P6216 (55 works) or the life + 70 rule (Mucha, graded Likely)'],
+    ['Estimated', 'Walk-in depth is a neural guess from one image. It is a way to look, not a measurement of the painted space']];
+  $('#tested').innerHTML = tested.map(([a, b]) => `<tr><td class="${a === 'Tested' ? 'pass' : 'fail'}" style="white-space:nowrap">${a}</td><td>${esc(b)}</td></tr>`).join('');
+  const sh = (shots.frames || []).map(f => [f.file, f.caption]);
+  $('#shots').innerHTML = sh.map(([f, c]) => `<figure><img src="shots/${f}" alt="${esc(c)}" loading="lazy"><figcaption>${esc(c)}</figcaption></figure>`).join('');
+  timeline(); atlasSvg(); epic();
+}
+
+const FCOL = {letters:'#e8b86a',ideas:'#9fd3c7',music:'#ff6b8a',building:'#7fb2ff'};
+function epic() {
+  const E = D.peo, x = y => 140 + (y - 1700) / 200 * 1040, F = ['letters', 'ideas', 'music', 'building'];
+  let s = '';
+  for (let y = 1700; y <= 1900; y += 25) s += `<line x1="${x(y)}" x2="${x(y)}" y1="8" y2="400" stroke="#2b231b"/><text x="${x(y)}" y="414" fill="#a8998a" font-size="11" text-anchor="middle">${y}</text>`;
+  F.forEach((fid, fi) => {
+    const ppl = E.people.filter(p => p.field === fid).sort((a, b) => a.born - b.born), y0 = 12 + fi * 98, rows = [];
+    s += `<text x="8" y="${y0 + 12}" fill="${FCOL[fid]}" font-size="13" font-weight="700">${fid[0].toUpperCase() + fid.slice(1)}</text><text x="8" y="${y0 + 28}" fill="#a8998a" font-size="11">${ppl.length} lives</text>`;
+    ppl.forEach(p => { let r = rows.findIndex(e => e + 3 <= p.born); if (r < 0) { rows.push(0); r = rows.length - 1; } rows[r] = p.died;
+      const yy = y0 + r * 5.5; s += `<rect x="${x(Math.max(1700, p.born))}" y="${yy}" width="${Math.max(2, x(Math.min(1899, p.died)) - x(Math.max(1700, p.born)))}" height="${p.in_epic ? 4.5 : 3.5}" rx="1.5" fill="${p.in_epic ? '#ffd36b' : FCOL[fid]}" fill-opacity="${p.in_epic ? 1 : .55}"><title>${esc(p.name)} ${p.born}–${p.died}</title></rect>`; });
+    E.works.filter(w => w.field === fid).forEach(w => s += `<circle cx="${x(w.year)}" cy="${y0 + 92}" r="2.6" fill="${FCOL[fid]}"><title>${esc(w.title)} (${w.year})</title></circle>`);
+  });
+  $('#lives').innerHTML = s;
+  $('#aud').innerHTML = D.aud.map(m => `<tr><td class="mono">${m.year}</td><td><b>${esc(m.title)}</b><br><span class="dim">${esc(m.composer)} · ${m.notes} notes · ${esc(m.timbre)}</span></td><td><audio controls preload="none" src="audio/${m.id}.mp3" style="width:190px"></audio></td></tr>`).join('');
+  $('#epic').innerHTML = E.people.filter(p => p.in_epic).sort((a, b) => a.born - b.born).map(p => `<tr><td><a href="https://www.wikidata.org/wiki/${p.id}">${esc(p.name)}</a></td><td class="mono">${p.born}–${p.died}</td><td><span style="color:${FCOL[p.field]}">■</span> ${p.field}</td></tr>`).join('') + '<tr><td>Montesquieu</td><td></td><td class="dim">not matched by the occupation filter</td></tr>';
+  $('#works').innerHTML = E.works.map(w => `<tr><td class="mono">${w.year}</td><td><b>${esc(w.title)}</b></td><td>${esc(w.by_name)}</td><td><span style="color:${FCOL[w.field]}">■</span> ${w.field}</td><td class="dim mono">${esc(w.date_property)}</td><td><a href="https://www.wikidata.org/wiki/${w.id}">${w.id}</a></td></tr>`).join('');
+}
+
+function card(id) {
+  const p = D.pnt.paintings.find(q => q.id === id); if (!p) return;
+  $('#cImg').src = '../v1/paintings/' + p.file; $('#cImg').hidden = false; $('#cImg').alt = p.title;
+  $('#cName').textContent = p.title;
+  const kv = [['painter', p.artist], ['year', p.year], ['room', MV(p.movement).name], ['size', p.h_cm ? `${p.h_cm} × ${p.w_cm} cm (Wikidata)` : 'not on Wikidata'],
+    ['where', p.collection || 'n/a'], ['status', p.copyright], ['credit', `<a href="${p.commons_page}">Wikimedia Commons file</a> · <a href="${p.wikidata}">Wikidata ${p.id}</a>`]];
+  $('#cKV').innerHTML = kv.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${a === 'credit' ? b : esc(b)}</dd>`).join('');
+  window.SALON.selected = id;
+}
+
+let browser, scene, tourT = null;
+function bind(d) { try { scene.getNamedNode(d).set_bind = true; window.SALON.vp = d; } catch (e) { console.warn(d, e); } }
+function fly(id) {
+  // a temporary viewpoint 3.2 m in front of the painting, built from the painting's own Transform
+  try {
+    const t = scene.getNamedNode('P_' + id), vp = scene.getNamedNode('VP_FLY');
+    const pos = t.translation, r = t.rotation, a = r.angle * r.y;     // rotation is about Y only
+    const nx = Math.sin(a), nz = Math.cos(a);
+    vp.position = new X3D.SFVec3f(pos.x + nx * 3.4, 1.75, pos.z + nz * 3.4);
+    vp.orientation = new X3D.SFRotation(0, 1, 0, a);
+    vp.set_bind = true;
+  } catch (e) { const p = D.pnt.paintings.find(q => q.id === id); if (p && ['Q212616', 'Q45585', 'Q1044742'].includes(id)) bind('VP_W_' + id); }
+}
+function layer(sw, btn) { const n = scene.getNamedNode(sw); const on = n.whichChoice < 0; n.whichChoice = on ? 0 : -1; btn.classList.toggle('on', on); }
+function tour(on) {
+  clearTimeout(tourT); $('#tTour').classList.toggle('on', on); if (!on) return;
+  const steps = ['VP_00', 'VP_01', 'VP_02', 'VP_03', 'VP_04', 'VP_W_Q212616', 'VP_05', 'VP_06', 'VP_W_Q1044742', 'VP_07', 'VP_W_Q45585', 'VP_08', 'VP_09', 'VP_10', 'VP_11', 'VP_12', 'VP_13', 'VP_14', 'VP_16', 'VP_15', 'VP_17'];
+  let k = 0; const go = () => { bind(steps[k++ % steps.length]); tourT = setTimeout(go, 7000); }; go();
+}
+Object.assign(window.SALON, { bind, fly, card, tour });
+
+async function boot() {
+  [D.mov, D.pig, D.art, D.pnt, D.peo, D.aud] = await Promise.all(['data/movements.json', 'data/pigments.json', 'data/artists.json', 'data/paintings.json', 'data/people.json', 'audio/manifest.json'].map(j));
+  try { D.validate = await j('assets/validate-receipt.json'); } catch (e) { /* optional */ }
+  try { D.shots = await j('shots/shots-receipt.json'); } catch (e) { /* optional */ }
+  fill();
+  if (!GfxGuard.require({ api: 'webgl2', bootId: 'boot', timeoutMs: 30000, title: 'Salon of Two Centuries', still: 'shots/00-hero.webp', stillAlt: 'The corridor' })) return;
+  const guard = GfxGuard.pane('x_ite', { host: 'view', timeoutMs: 60000, title: 'The X_ITE view', onRetry: () => location.reload() });
+  try {
+    browser = X3D.getBrowser('#xite');
+    await browser.loadURL(new X3D.MFString('assets/salon.x3d'));
+    scene = browser.currentScene;
+    const vpf = scene.createNode('Viewpoint'); vpf.description = 'painting'; vpf.fieldOfView = 0.9; scene.addNamedNode('VP_FLY', vpf); scene.rootNodes.push(vpf);
+    D.pnt.paintings.forEach(p => { try { scene.getNamedNode('TS_' + p.id).addFieldCallback('page', 'touchTime', () => card(p.id)); } catch (e) { /* walk-in works have no sensor */ } });
+    const quick = [['VP_00', '1700'], ['VP_04', 'Romanticism'], ['VP_W_Q212616', 'Into the Raft'], ['VP_06', 'Impressionism'], ['VP_W_Q45585', 'Into Starry Night'], ['VP_13', 'Music'], ['VP_15', 'Eiffel'], ['VP_17', 'Atlas']];
+    $('#vps').innerHTML = quick.map(([d, t]) => `<button class="btn" data-vp="${d}">${t}</button>`).join('');
+    document.querySelectorAll('#vps .btn').forEach(b => b.onclick = () => { tour(false); bind(b.dataset.vp); });
+    $('#tAtlas').onclick = () => layer('ATLAS_SW', $('#tAtlas'));
+    $('#tPig').onclick = () => layer('PIG_SW', $('#tPig'));
+    $('#tTour').onclick = () => tour(!$('#tTour').classList.contains('on'));
+    // browsers only start audio after a click; the X3D Sound nodes play when you walk up to a listening post
+    const mute = v => { try { browser.setBrowserOption('Mute', v); } catch (e) { console.warn('Mute option', e); } };
+    mute(true);
+    $('#tSound').onclick = () => { const on = !$('#tSound').classList.contains('on'); mute(!on); $('#tSound').classList.toggle('on', on); $('#tSound').textContent = on ? 'Sound on' : 'Sound off'; };
+    guard.ready(); GfxGuard.ready(); $('#boot').classList.add('done');
+    window.SALON.ready = true;
+  } catch (e) { console.error(e); guard.fail(e.message || String(e)); }
+}
+boot().catch(e => { console.error(e); $('#boot').textContent = 'could not load: ' + e.message; });
+</script>
+</body>
+</html>
