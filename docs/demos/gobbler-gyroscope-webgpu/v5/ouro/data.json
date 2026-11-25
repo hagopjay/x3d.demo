@@ -1,0 +1,1828 @@
+{
+ "activity": {
+  "commits": {
+   "x3d-blender-io": 53,
+   "x3d.demo": 58,
+   "x3d.docs": 59,
+   "x3d.gobbler": 11,
+   "x3d.loom": 77,
+   "x3d.wgpu": 10,
+   "x3d_mcp": 5
+  },
+  "commits_by_day": {
+   "x3d-blender-io": {
+    "2026-11-18": 39,
+    "2026-11-19": 3,
+    "2026-11-20": 1,
+    "2026-11-22": 8,
+    "2026-11-23": 2
+   },
+   "x3d.demo": {
+    "2026-11-19": 18,
+    "2026-11-20": 4,
+    "2026-11-22": 19,
+    "2026-11-23": 12,
+    "2026-11-24": 5
+   },
+   "x3d.docs": {
+    "2026-11-18": 9,
+    "2026-11-19": 12,
+    "2026-11-20": 2,
+    "2026-11-22": 14,
+    "2026-11-23": 18,
+    "2026-11-24": 4
+   },
+   "x3d.gobbler": {
+    "2026-11-18": 6,
+    "2026-11-19": 1,
+    "2026-11-23": 4
+   },
+   "x3d.loom": {
+    "2026-11-18": 1,
+    "2026-11-19": 7,
+    "2026-11-20": 7,
+    "2026-11-22": 15,
+    "2026-11-23": 26,
+    "2026-11-24": 21
+   },
+   "x3d.wgpu": {
+    "2026-11-19": 9,
+    "2026-11-24": 1
+   },
+   "x3d_mcp": {
+    "2026-11-18": 2,
+    "2026-11-19": 2,
+    "2026-11-22": 1
+   }
+  },
+  "note": "git log of each default branch, no merges",
+  "since": "2026-11-18"
+ },
+ "assayer": {
+  "atlas": "AI Engineering Atlas rev 28 (pinned in x3d.gobbler flyte/atlas)",
+  "checks": {
+   "T1 score_tuple": {
+    "pass": 35
+   },
+   "T10 provenance": {
+    "pass": 35
+   },
+   "T11 context_budget": {
+    "pass": 35
+   },
+   "T13 retry_cap": {
+    "pass": 35
+   },
+   "T2 canary": {
+    "pass": 1
+   },
+   "T3 state_of_record": {
+    "pass": 48
+   },
+   "T6 pin_age": {
+    "pass": 48
+   },
+   "T7 egress": {
+    "pass": 48
+   },
+   "T8 grader_opacity": {
+    "pass": 48
+   }
+  },
+  "checks_live": 9,
+  "first_attempt_admission_rate": 0.5143,
+  "not_tested": [
+   "T5 judge validity (no model judge yet)",
+   "T9 swarms (one demiurge)",
+   "T4 same-signal reliability (needs repeated trials)",
+   "T12 is the stop-the-line itself"
+  ],
+  "stops": 0,
+  "theses_total": 13
+ },
+ "board_counts": {
+  "by_family": {
+   "A": 11,
+   "D": 25,
+   "E": 15,
+   "G": 10,
+   "S": 3
+  },
+  "by_status": {
+   "deep": 4,
+   "explored": 15,
+   "touched": 23,
+   "unexplored": 22
+  },
+  "by_worst_check": {
+   "gate": 11,
+   "note": 2,
+   "pass": 30,
+   "stop": 3,
+   "warn": 18
+  },
+  "evidence_missing": 0,
+  "evidence_paths": 101,
+  "first_step_needs_no_model": 54,
+  "frontiers": 64
+ },
+ "cycle": {
+  "actions": {
+   "adjacent-watch": 3,
+   "atlas-reading-card": 1,
+   "blenderizer-roundtrip": 1,
+   "bridge-check": 1,
+   "community-signal": 7,
+   "foldback-docs": 11,
+   "rerun-xite-rig": 1,
+   "standards-note": 9,
+   "validator-diff": 1
+  },
+  "asks": 8,
+  "assays": 48,
+  "commits": 35,
+  "cycles": 48,
+  "foldback_targets": {
+   "x3d.docs": 27,
+   "x3d.gobbler": 1,
+   "x3d.loom": 7
+  },
+  "foldbacks": 35,
+  "namesakes_set_aside": 16,
+  "proposals": 35,
+  "raw_by_class": {
+   "adjacent": 309,
+   "amd-x3d": 118,
+   "noise": 327,
+   "x3d": 799,
+   "x3d-video-net": 271
+  },
+  "raw_by_source": {
+   "arxiv-x3d": 338,
+   "babylon-releases": 0,
+   "blender-x3d": 10,
+   "hn-webgpu": 338,
+   "hn-x3d": 235,
+   "loom-commits": 551,
+   "reddit-threejs": 0,
+   "reddit-webgl": 0,
+   "threejs-releases": 22,
+   "web3d-news": 265,
+   "x3d_mcp-upstream": 29,
+   "x_ite-releases": 36
+  },
+  "raw_items": 1824,
+  "refused": 26,
+  "signals": 35,
+  "verdicts": 61,
+  "weaves": 61
+ },
+ "families": {
+  "A": "Abstract and algorithmic",
+  "D": "Domain",
+  "E": "AI engineering",
+  "G": "Generative art",
+  "S": "Adversarial and security"
+ },
+ "fan": [
+  {
+   "family": "D",
+   "id": "xray",
+   "rank": 1,
+   "status": "explored",
+   "title": "x3d.xray: binaries, code and captures as cities"
+  },
+  {
+   "family": "A",
+   "id": "cross-render",
+   "rank": 2,
+   "status": "touched",
+   "title": "Cross-engine differential rendering as the oracle"
+  },
+  {
+   "family": "D",
+   "id": "bim-ifc",
+   "rank": 3,
+   "status": "unexplored",
+   "title": "BIM and construction through IfcOpenShell"
+  },
+  {
+   "family": "D",
+   "id": "openusd",
+   "rank": 4,
+   "status": "touched",
+   "title": "OpenUSD conformance bridge"
+  },
+  {
+   "family": "A",
+   "id": "qd-evolve",
+   "rank": 5,
+   "status": "unexplored",
+   "title": "Quality-diversity evolution of X3D scenes (MAP-Elites, novelty search)"
+  },
+  {
+   "family": "D",
+   "id": "stem-maths",
+   "rank": 6,
+   "status": "deep",
+   "title": "STEM, maths and PolyXandria"
+  },
+  {
+   "family": "S",
+   "id": "x3d-injection",
+   "rank": 7,
+   "status": "unexplored",
+   "title": "Prompt injection through 3D files: Metadata, WorldInfo, Script, Anchor"
+  },
+  {
+   "family": "E",
+   "id": "x3d-bench",
+   "rank": 8,
+   "status": "unexplored",
+   "title": "A public scoreboard of models on Loom tasks"
+  },
+  {
+   "family": "S",
+   "id": "hostile-all",
+   "rank": 9,
+   "status": "explored",
+   "title": "The hostile-file corpus against every reader, not only Blender"
+  },
+  {
+   "family": "D",
+   "id": "physics",
+   "rank": 10,
+   "status": "deep",
+   "title": "Physics engines (PhysX, MuJoCo, Rapier; next Jolt and Bullet)"
+  },
+  {
+   "family": "G",
+   "id": "shader-art",
+   "rank": 11,
+   "status": "explored",
+   "title": "Generative shader art behind a compile-and-render guard (GLSL, WGSL)"
+  },
+  {
+   "family": "D",
+   "id": "heritage",
+   "rank": 12,
+   "status": "explored",
+   "title": "Cultural heritage with CIDOC-CRM (Shroud, Giza)"
+  },
+  {
+   "family": "D",
+   "id": "molecules",
+   "rank": 13,
+   "status": "deep",
+   "title": "Molecules and proteins (zinc fingers reborn)"
+  },
+  {
+   "family": "D",
+   "id": "robotics",
+   "rank": 14,
+   "status": "touched",
+   "title": "Robotics: URDF, MJCF and ROS bags"
+  },
+  {
+   "family": "E",
+   "id": "rag-loom",
+   "rank": 15,
+   "status": "unexplored",
+   "title": "Retrieval over the Loom: the right law and failure mode on the page be"
+  },
+  {
+   "family": "G",
+   "id": "text2x3d-loop",
+   "rank": 16,
+   "status": "explored",
+   "title": "Text to X3D with the validator in the loop (repair from refusal codes)"
+  },
+  {
+   "family": "E",
+   "id": "mcp-loom",
+   "rank": 17,
+   "status": "touched",
+   "title": "The Loom as an MCP server: laws, failure modes and r2r check as tools "
+  },
+  {
+   "family": "S",
+   "id": "mutate-graders",
+   "rank": 18,
+   "status": "explored",
+   "title": "Red-team the Loom's own graders: mutation-test every witness"
+  },
+  {
+   "family": "D",
+   "id": "geospatial",
+   "rank": 19,
+   "status": "explored",
+   "title": "Terrain and geospatial (Giza, Accrete, 3D Tiles, CityGML)"
+  },
+  {
+   "family": "D",
+   "id": "mocap-hanim",
+   "rank": 20,
+   "status": "touched",
+   "title": "Motion capture to H-Anim (BVH, retargeting)"
+  },
+  {
+   "family": "G",
+   "id": "grammar-decode",
+   "rank": 21,
+   "status": "unexplored",
+   "title": "Grammar-constrained decoding: compile the X3D schema into a grammar so"
+  },
+  {
+   "family": "E",
+   "id": "token-economy",
+   "rank": 22,
+   "status": "unexplored",
+   "title": "The token economy of X3D: which encoding can a model afford"
+  },
+  {
+   "family": "G",
+   "id": "breed-judge",
+   "rank": 23,
+   "status": "unexplored",
+   "title": "Interactive evolution: you breed scenes by eye and your picks become t"
+  },
+  {
+   "family": "D",
+   "id": "sci-fields",
+   "rank": 24,
+   "status": "touched",
+   "title": "Fields and flows: VTK, NetCDF climate, CFD"
+  },
+  {
+   "family": "A",
+   "id": "coverage-fuzz",
+   "rank": 25,
+   "status": "explored",
+   "title": "Coverage-guided fuzzing of every X3D reader (Atheris, cargo-fuzz)"
+  },
+  {
+   "family": "A",
+   "id": "grammar-gen",
+   "rank": 26,
+   "status": "touched",
+   "title": "Shape grammars and L-systems as scene programs"
+  },
+  {
+   "family": "G",
+   "id": "image-to-3d",
+   "rank": 27,
+   "status": "unexplored",
+   "title": "Image and text to 3D models (TRELLIS, Hunyuan3D, TripoSR class) into X"
+  },
+  {
+   "family": "A",
+   "id": "active-design",
+   "rank": 28,
+   "status": "touched",
+   "title": "Active experiment design: the r2r needs list picks the next run (bandi"
+  },
+  {
+   "family": "E",
+   "id": "synth-vision",
+   "rank": 29,
+   "status": "unexplored",
+   "title": "X3D as a synthetic-data factory for vision models"
+  },
+  {
+   "family": "A",
+   "id": "canon-egraph",
+   "rank": 30,
+   "status": "unexplored",
+   "title": "Canonical form for X3D (equality saturation: one scene, one spelling)"
+  },
+  {
+   "family": "A",
+   "id": "geom-witness",
+   "rank": 31,
+   "status": "touched",
+   "title": "Geometry-processing witnesses (manifold, Euler characteristic, self-in"
+  },
+  {
+   "family": "D",
+   "id": "dicom-volume",
+   "rank": 32,
+   "status": "touched",
+   "title": "Medical volumes (DICOM, NIfTI) in X3D volume rendering"
+  },
+  {
+   "family": "G",
+   "id": "splat-x3d",
+   "rank": 33,
+   "status": "explored",
+   "title": "Gaussian splats and radiance fields into X3D 4.1"
+  },
+  {
+   "family": "D",
+   "id": "cad-step",
+   "rank": 34,
+   "status": "unexplored",
+   "title": "CAD: STEP and B-rep through OpenCascade"
+  },
+  {
+   "family": "D",
+   "id": "collider",
+   "rank": 35,
+   "status": "explored",
+   "title": "Particle collisions"
+  },
+  {
+   "family": "D",
+   "id": "sky",
+   "rank": 36,
+   "status": "explored",
+   "title": "Sky and ephemerides"
+  },
+  {
+   "family": "A",
+   "id": "implicit-ca",
+   "rank": 37,
+   "status": "touched",
+   "title": "Implicit fields and cellular automata to mesh (SDF, marching cubes, re"
+  },
+  {
+   "family": "E",
+   "id": "c2pa-3d",
+   "rank": 38,
+   "status": "touched",
+   "title": "Signed provenance for 3D: from hash chain to signature"
+  },
+  {
+   "family": "D",
+   "id": "point-clouds",
+   "rank": 39,
+   "status": "unexplored",
+   "title": "LiDAR and point clouds (LAS, E57, photogrammetry)"
+  },
+  {
+   "family": "D",
+   "id": "unreal",
+   "rank": 40,
+   "status": "touched",
+   "title": "Unreal 5 bridge"
+  },
+  {
+   "family": "A",
+   "id": "smt-laws",
+   "rank": 41,
+   "status": "touched",
+   "title": "Solver-checked laws: prove the 44 laws and the r2r rules do not contra"
+  },
+  {
+   "family": "D",
+   "id": "brain",
+   "rank": 42,
+   "status": "touched",
+   "title": "Brain and connectome"
+  },
+  {
+   "family": "D",
+   "id": "live-twins",
+   "rank": 43,
+   "status": "touched",
+   "title": "Live digital twins: sensor streams and time series into a scene"
+  },
+  {
+   "family": "D",
+   "id": "games",
+   "rank": 44,
+   "status": "deep",
+   "title": "Games as deterministic proofs (chess, platformer, drift)"
+  },
+  {
+   "family": "G",
+   "id": "proc-worlds",
+   "rank": 45,
+   "status": "touched",
+   "title": "Procedural worlds: wave function collapse, noise terrain, erosion, cit"
+  },
+  {
+   "family": "D",
+   "id": "graphs-3d",
+   "rank": 46,
+   "status": "explored",
+   "title": "Knowledge graphs and hypergraphs in 3D"
+  },
+  {
+   "family": "D",
+   "id": "music",
+   "rank": 47,
+   "status": "explored",
+   "title": "Music and time"
+  },
+  {
+   "family": "E",
+   "id": "onto-reason",
+   "rank": 48,
+   "status": "explored",
+   "title": "Ontology reasoning over scenes (OWL, SHACL)"
+  },
+  {
+   "family": "E",
+   "id": "finetune",
+   "rank": 49,
+   "status": "touched",
+   "title": "Fine-tune a small open model on validator-labelled Loom data"
+  },
+  {
+   "family": "E",
+   "id": "scene-embed",
+   "rank": 50,
+   "status": "unexplored",
+   "title": "Scene embeddings and graph networks: similarity, dedupe and a map of e"
+  },
+  {
+   "family": "G",
+   "id": "audio-reactive",
+   "rank": 51,
+   "status": "explored",
+   "title": "Audio-reactive generative scenes"
+  },
+  {
+   "family": "A",
+   "id": "stigmergy",
+   "rank": 52,
+   "status": "unexplored",
+   "title": "Stigmergic builders: simple agents weaving a scene by local rules"
+  },
+  {
+   "family": "E",
+   "id": "trace-receipts",
+   "rank": 53,
+   "status": "unexplored",
+   "title": "Receipts as traces: one span per witness, one trace per run"
+  },
+  {
+   "family": "D",
+   "id": "fabrication",
+   "rank": 54,
+   "status": "unexplored",
+   "title": "Fabrication: 3MF and STL printability"
+  },
+  {
+   "family": "E",
+   "id": "dspy-gepa",
+   "rank": 55,
+   "status": "touched",
+   "title": "DSPy and GEPA optimisation of the rule proposer"
+  },
+  {
+   "family": "E",
+   "id": "memory-trial",
+   "rank": 56,
+   "status": "touched",
+   "title": "Does agent memory help? The on/off trial with a real model"
+  },
+  {
+   "family": "E",
+   "id": "picture-judge",
+   "rank": 57,
+   "status": "unexplored",
+   "title": "A picture judge calibrated against your eye"
+  },
+  {
+   "family": "E",
+   "id": "rl-gym",
+   "rank": 58,
+   "status": "unexplored",
+   "title": "X3D worlds as reinforcement-learning environments"
+  },
+  {
+   "family": "D",
+   "id": "xr-headset",
+   "rank": 59,
+   "status": "touched",
+   "title": "WebXR and headsets"
+  },
+  {
+   "family": "G",
+   "id": "video-world",
+   "rank": 60,
+   "status": "touched",
+   "title": "Video and world models to X3D (the 8-second stage)"
+  },
+  {
+   "family": "A",
+   "id": "tda-corpus",
+   "rank": 61,
+   "status": "unexplored",
+   "title": "Topological data analysis of scene corpora (persistent homology)"
+  },
+  {
+   "family": "E",
+   "id": "agent-swarm",
+   "rank": 62,
+   "status": "unexplored",
+   "title": "Builder, breaker and referee: a small swarm arguing over one scene"
+  },
+  {
+   "family": "G",
+   "id": "material-gen",
+   "rank": 63,
+   "status": "unexplored",
+   "title": "Generated PBR materials and textures"
+  },
+  {
+   "family": "D",
+   "id": "language",
+   "rank": 64,
+   "status": "touched",
+   "title": "Script and language geometry (Mashtots)"
+  }
+ ],
+ "frontiers": [
+  {
+   "id": "xray",
+   "rank": 1,
+   "title": "x3d.xray: binaries, code and captures as cities"
+  },
+  {
+   "id": "cross-render",
+   "rank": 2,
+   "title": "Cross-engine differential rendering as the oracle"
+  },
+  {
+   "id": "bim-ifc",
+   "rank": 3,
+   "title": "BIM and construction through IfcOpenShell"
+  },
+  {
+   "id": "openusd",
+   "rank": 4,
+   "title": "OpenUSD conformance bridge"
+  },
+  {
+   "id": "qd-evolve",
+   "rank": 5,
+   "title": "Quality-diversity evolution of X3D scenes (MAP-Elites, novelty search)"
+  },
+  {
+   "id": "stem-maths",
+   "rank": 6,
+   "title": "STEM, maths and PolyXandria"
+  }
+ ],
+ "frontiers_note": "balanced ranking of the 23 Nov board; ranks are judged scores (Suspected), talk in tiers",
+ "lanes": [
+  {
+   "board": "robotics",
+   "board_status": "touched",
+   "evidence": [
+    "x3d.loom:x3d.physics/mujoco-bridge/PLAN.md"
+   ],
+   "fact": "MuJoCo bridge reads MJCF; URDF is a written plan",
+   "grade": "touched",
+   "group": "bridge",
+   "k": "URDF",
+   "name": "Robotics: URDF, MJCF, ROS bags",
+   "rank": 14,
+   "s": 0.045
+  },
+  {
+   "board": "physics",
+   "board_status": "deep",
+   "evidence": [
+    "x3d.loom:PHYSICS-PLAYBOOK.md",
+    "x3d.loom:x3d.physics/README.md"
+   ],
+   "fact": "PhysX and MuJoCo bridges, Rapier lab, a physics playbook",
+   "grade": "built",
+   "group": "bridge",
+   "k": "PHYS",
+   "name": "Physics engines",
+   "rank": 10,
+   "s": 0.075
+  },
+  {
+   "board": "bim-ifc",
+   "board_status": "unexplored",
+   "evidence": [
+    "x3d.gobbler:frontier/runs/frontier-2026-11-23/board.json"
+   ],
+   "fact": "first step written: one open building, 10 quantities against IfcOpenShell",
+   "grade": "planned",
+   "group": "bridge",
+   "k": "AEC",
+   "name": "AEC and BIM through IFC",
+   "rank": 3,
+   "s": 0.105
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [],
+   "fact": "named 25 Nov; nothing in the repos yet",
+   "grade": "envisioned",
+   "group": "bridge",
+   "k": "BONSAI",
+   "name": "Bonsai (Blender BIM)",
+   "rank": null,
+   "s": 0.135
+  },
+  {
+   "board": "openusd",
+   "board_status": "touched",
+   "evidence": [
+    "x3d.gobbler:mascot/glass/exports"
+   ],
+   "fact": "the glass Gobbler leaves Blender as usdc; no conformance run yet",
+   "grade": "touched",
+   "group": "bridge",
+   "k": "USD",
+   "name": "OpenUSD",
+   "rank": 4,
+   "s": 0.165
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [],
+   "fact": "named 25 Nov; nothing in the repos yet",
+   "grade": "envisioned",
+   "group": "bridge",
+   "k": "OMNI",
+   "name": "Omniverse",
+   "rank": null,
+   "s": 0.195
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [
+    "x3d.loom:LEARNINGS-loom-gltf.md",
+    "x3d.loom:formats/gltf/SPEC.md"
+   ],
+   "fact": "X3D semantics carried in KHR_xmp_json_ld packets",
+   "grade": "built",
+   "group": "bridge",
+   "k": "glTF",
+   "name": "Loom for glTF",
+   "rank": null,
+   "s": 0.222
+  },
+  {
+   "board": "xray",
+   "board_status": "explored",
+   "evidence": [
+    "x3d.loom:LEARNINGS-xray-binary.md"
+   ],
+   "fact": "binaries, code and captures as scenes, traceable to bytes",
+   "grade": "built",
+   "group": "bridge",
+   "k": "XRAY",
+   "name": "x3d.xray: binaries as cities",
+   "rank": 1,
+   "s": 0.248
+  },
+  {
+   "board": "onto-reason",
+   "board_status": "explored",
+   "evidence": [
+    "x3d_mcp:evaluation/cross_validate_ontology.py",
+    "x3d.loom:x3d.style/vocab/xst.shapes.ttl"
+   ],
+   "fact": "ontology cross-validation in the validator fork; SHACL shapes for style",
+   "grade": "built",
+   "group": "structure",
+   "k": "ONTO",
+   "name": "Ontology",
+   "rank": 48,
+   "s": 0.29
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [
+    "x3d-blender-io:source/blender_manifest.toml"
+   ],
+   "fact": "x3d-blender-io is at 2.7.4 today; 4.0 is the named target",
+   "grade": "built",
+   "group": "structure",
+   "k": "BLENDER",
+   "name": "Blenderizer IO",
+   "rank": null,
+   "s": 0.34
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [
+    "x3d_mcp:src/server.py"
+   ],
+   "fact": "the validator behind every number on this page",
+   "grade": "built",
+   "group": "structure",
+   "k": "VALID",
+   "name": "Validator (x3d_mcp fork)",
+   "rank": null,
+   "s": 0.392
+  },
+  {
+   "board": "x3d-injection",
+   "board_status": "unexplored",
+   "evidence": [
+    "x3d.gobbler:flyte/gobbler_flyte/loom/untrusted.py"
+   ],
+   "fact": "untrusted-text guard exists; the 40 hostile scenes are not built",
+   "grade": "planned",
+   "group": "gate",
+   "k": "INJECT",
+   "name": "Adversarial injection through 3D files",
+   "rank": 7,
+   "s": 0.436
+  },
+  {
+   "board": "hostile-all",
+   "board_status": "explored",
+   "evidence": [
+    "x3d-blender-io:tools/chaos/hostile.py",
+    "x3d.loom:LEARNINGS-chaos-round-3-20261123.md"
+   ],
+   "fact": "three chaos rounds against the Blender add-on; other readers not yet",
+   "grade": "built",
+   "group": "gate",
+   "k": "CHAOS",
+   "name": "Hostile files and chaos rounds",
+   "rank": 9,
+   "s": 0.462
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [
+    "x3d.gobbler:flyte/gobbler_flyte/organs/assayer.py"
+   ],
+   "fact": "9 of 13 thesis checks on every recorded cycle",
+   "grade": "live",
+   "group": "gate",
+   "k": "ASSAY",
+   "name": "The Assayer (AI Engineering Atlas)",
+   "rank": null,
+   "s": 0.492
+  },
+  {
+   "board": "dspy-gepa",
+   "board_status": "touched",
+   "evidence": [
+    "x3d.loom:DSPY-SWEEP-2026-11-18.md",
+    "x3d.loom:kit/dspy_pilots"
+   ],
+   "fact": "sweep and pilots done; the rule-proposer seam is built and switched off",
+   "grade": "touched",
+   "group": "gate",
+   "k": "DSPy",
+   "name": "DSPy and GEPA",
+   "rank": 55,
+   "s": 0.52
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [
+    "x3d.loom:LOOM-v1.md"
+   ],
+   "fact": "the Scout reads its commit log; every fold-back lands here",
+   "grade": "live",
+   "group": "memory",
+   "k": "LOOM",
+   "name": "x3d.loom, the memory",
+   "rank": null,
+   "s": 0.56
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [
+    "x3d.loom:kit/loomkit/r2r/cli.py",
+    "x3d.loom:R2R.md"
+   ],
+   "fact": "failure receipts become candidate rules, replayed against the add-on",
+   "grade": "built",
+   "group": "memory",
+   "k": "R2R",
+   "name": "Receipt-to-rule engine",
+   "rank": null,
+   "s": 0.6
+  },
+  {
+   "board": "rag-loom",
+   "board_status": "unexplored",
+   "evidence": [
+    "x3d.gobbler:flyte/gobbler_flyte/memory.py"
+   ],
+   "fact": "agent memory module exists; retrieval over the Loom is not built",
+   "grade": "planned",
+   "group": "memory",
+   "k": "RAG",
+   "name": "Graph RAG over the Loom",
+   "rank": 15,
+   "s": 0.64
+  },
+  {
+   "board": "mcp-loom",
+   "board_status": "touched",
+   "evidence": [
+    "x3d_mcp:src/server.py",
+    "x3d.loom:kit/loomkit/r2r/cli.py"
+   ],
+   "fact": "validator MCP server and an r2r command line exist; Loom tools not exposed",
+   "grade": "touched",
+   "group": "memory",
+   "k": "MCP",
+   "name": "The Loom as an MCP server",
+   "rank": 17,
+   "s": 0.68
+  },
+  {
+   "board": "picture-judge",
+   "board_status": "unexplored",
+   "evidence": [
+    "x3d.loom:grv-study/kit/atlas2x3d.py"
+   ],
+   "fact": "OpenCV used in one kit (posed depth to X3D); the picture judge is not calibrated",
+   "grade": "touched",
+   "group": "eyes",
+   "k": "VISION",
+   "name": "Vision, OpenCV, picture judge",
+   "rank": 57,
+   "s": 0.712
+  },
+  {
+   "board": "cross-render",
+   "board_status": "touched",
+   "evidence": [
+    "x3d.loom:LEARNINGS-wgpu-vvl.md",
+    "x3d.loom:LEARNINGS-render-oracle.md"
+   ],
+   "fact": "Vulkan validation layers in x3d.wgpu receipts; cross-engine oracle. Profiling: not yet",
+   "grade": "built",
+   "group": "eyes",
+   "k": "RENDER",
+   "name": "Engine debugging and the render oracle",
+   "rank": 2,
+   "s": 0.786
+  },
+  {
+   "board": "xr-headset",
+   "board_status": "touched",
+   "evidence": [
+    "x3d.loom:LEARNINGS-masonic-lodge-xr.md"
+   ],
+   "fact": "one XR scene (the lodge); no headset frame-time witness yet",
+   "grade": "touched",
+   "group": "eyes",
+   "k": "XR",
+   "name": "XR and headsets",
+   "rank": 59,
+   "s": 0.808
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [],
+   "fact": "headless Chrome rigs check every page today; the MCP is not wired",
+   "grade": "envisioned",
+   "group": "eyes",
+   "k": "DEVTOOLS",
+   "name": "Chrome DevTools MCP",
+   "rank": null,
+   "s": 0.83
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [],
+   "fact": "named 25 Nov; no skill files in the repos yet",
+   "grade": "envisioned",
+   "group": "hands",
+   "k": "SKILLS",
+   "name": "Agentic Skills",
+   "rank": null,
+   "s": 0.856
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [
+    "x3d.gobbler:flyte/gobbler_flyte/gobbler.py"
+   ],
+   "fact": "five organs, one graph; the recorded day is a sim day",
+   "grade": "live",
+   "group": "hands",
+   "k": "GRAPH",
+   "name": "LangGraph: the Gobbler graph",
+   "rank": null,
+   "s": 0.882
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [
+    "x3d.gobbler:flyte/gobbler_flyte/gobbler.py"
+   ],
+   "fact": "simulated in the record, zero model calls; live needs a typed spend OK",
+   "grade": "touched",
+   "group": "hands",
+   "k": "HAIKU",
+   "name": "Haiku weaver",
+   "rank": null,
+   "s": 0.906
+  },
+  {
+   "board": null,
+   "board_status": null,
+   "evidence": [],
+   "fact": "named 25 Nov; no call has been made",
+   "grade": "envisioned",
+   "group": "hands",
+   "k": "NVIDIA",
+   "name": "NVIDIA build APIs",
+   "rank": null,
+   "s": 0.93
+  }
+ ],
+ "loom": {
+  "counts": {
+   "failure_modes": 273,
+   "gaps": {
+    "failure_modes": [],
+    "laws": []
+   },
+   "highest": {
+    "failure_modes": 273,
+    "laws": 44
+   },
+   "laws": 44,
+   "schema": "gobbler.loom-counts/1",
+   "source": {
+    "atlas_rev": 28,
+    "loom_commit": "da11c60b26e005196f0403df0516c735b147c8d8",
+    "loom_file": "LOOM-v1.md",
+    "loom_file_sha256": "049b58008c657f98332d5ac572c73f9a865e2bb8bc2f2071b69249e3b4f0d157"
+   },
+   "theses": 13
+  },
+  "head": "da11c60",
+  "r2r": {
+   "audit_predictions_right": 265,
+   "audit_wrong": 0,
+   "candidate_rules": 28,
+   "closed_on_addon_2_7_4": 25,
+   "confirmed": 15,
+   "source": "x3d.loom LEARNINGS-r2r-engine.md and R2R.md (23 Nov 2026 runs)",
+   "still_live": 0
+  }
+ },
+ "pulse": [
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "da11c60",
+   "subject": "Loom foldback: Gobbler v4 Ouroboros, failure modes 270-273 (#191)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "ef79f14",
+   "subject": "Loom foldback: Gobbler swarm v3 pipeline layer, failure modes 266-269 (#190)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "a743a80",
+   "subject": "Loom foldback: the Gobbler swarm (Demo 23 v2), failure modes 260-265"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "c16d889",
+   "subject": "x3d.webgpu bridge: untextured UnlitMaterial drawn in its emissiveColor; oracle Babylon furnace 18/11/0, no outlier scenes"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "c189339",
+   "subject": "x3d.webgpu bridge: Babylon point and spot attenuation follow the X3D polynomial; oracle Babylon lit 12 8/4/0"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "04a23ec",
+   "subject": "x3d.webgpu bridge: a world with a Fog now fogs; PixelTexture is drawn; oracle Babylon lit 12 7/4/1"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "e44adc6",
+   "subject": "three.js bridge: per-material ambientIntensity and the full X3D attenuation polynomial; oracle lit 12 three 10/2/0, wgpu 11/1/0"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "e5b695d",
+   "subject": "x3d.webgpu bridge: PhysicalMaterial on Babylon primitives gets ClockWise side orientation; oracle Babylon furnace 17/11/1, lit_physical_dire"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "5581723",
+   "subject": "grv-study: exploratory v2 removes speckle but still carves the sky (FM 259)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "7fbadaa",
+   "subject": "render-oracle: Cycles as a seventh engine (lit 12 scored, furnace held back)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "022861f",
+   "subject": "Order failure modes 253-258 after 252"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "3a3e925",
+   "subject": "Renumber Atlas bridge v2 failure modes to 253-258"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "fda10d6",
+   "subject": "Fold back Atlas bridge v2 (Blender in the loop): learnings, failure modes 240-245, UnlitMaterial emissiveTexture in the three.js bridge"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.loom",
+   "sha": "ef4a5cf",
+   "subject": "grv-study: held-out renders show the gated worlds look worse (FM 252)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.demo",
+   "sha": "97cacb6",
+   "subject": "Front page v88: Demo 23 card opens Gobbler Gyroscope v4, the Ouroboros (#179)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.demo",
+   "sha": "c610fd4",
+   "subject": "Gobbler Gyroscope v4: the Ouroboros (Demo 23, version 4) (#178)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.demo",
+   "sha": "308c666",
+   "subject": "Gobbler Gyroscope v3: the Pipeline layer, the graph at fleet speed (Demo 23 v3) (#177)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.demo",
+   "sha": "aa5a976",
+   "subject": "Front page v87: Demo 77 opens Atlas Bridge v2, Demo 23 opens the Swarm v2 (#176)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.demo",
+   "sha": "815d430",
+   "subject": "Gobbler Gyroscope v2: the Swarm, 30,000 LangGraph replicas on the flywheels (Demo 23 v2) (#175)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.docs",
+   "sha": "9d8585c",
+   "subject": "Gobbler v4: the Ouroboros in plain words (#115)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.docs",
+   "sha": "c20a5ee",
+   "subject": "Gobbler swarm v3: the pipeline layer in plain words (#114)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.docs",
+   "sha": "4f52f9e",
+   "subject": "The Gobbler swarm in plain words (Demo 23 v2) (#113)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.docs",
+   "sha": "fe0f76c",
+   "subject": "render-oracle: steps 5 to 8, the engines caught up (#112)"
+  },
+  {
+   "date": "2026-11-24",
+   "repo": "x3d.wgpu",
+   "sha": "091b2be",
+   "subject": "Fog, PixelTexture and upright Box texture coordinates (#9)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.gobbler",
+   "sha": "cd95382",
+   "subject": "Glass Gobbler turntable: 120 Cycles frames, one turn, with its receipt"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.gobbler",
+   "sha": "c53c457",
+   "subject": "Gobbler 6.2: the Cycles light baked into the X3D, one colour per face, drawn unlit"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.gobbler",
+   "sha": "1b4ca8b",
+   "subject": "Gobbler 6.1, the Glass Demiurge: counts read from the Loom, through Blender, counted at every door"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.gobbler",
+   "sha": "9f2068d",
+   "subject": "Frontier board (64 frontiers through the Assayer's 13 theses) and Gobbler 5 and 6 mascot drafts (#6)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.demo",
+   "sha": "d13ef87",
+   "subject": "Atlas Bridge v2: Blender in the loop (atlas-bridge/v2)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.demo",
+   "sha": "c054345",
+   "subject": "Front page v86: card for Demo 77, Atlas Bridge"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.demo",
+   "sha": "447ad02",
+   "subject": "Demo 77: Atlas Bridge, X3D to World Labs Atlas and back (atlas-bridge/v1)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.demo",
+   "sha": "aaaa4a6",
+   "subject": "Front page v85: card for Demo 76, Marble to Atlas to X3D (#171)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.demo",
+   "sha": "93a3ba8",
+   "subject": "Demo 76 Marble \u2192 Atlas \u2192 X3D v1 (#170)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.demo",
+   "sha": "72f4bfe",
+   "subject": "Front page v84: card for Demo 75, Style Loom (#169)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.demo",
+   "sha": "7b48556",
+   "subject": "Demo 75 Style Loom v1: one scene, twelve looks, one grammar (#168)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.demo",
+   "sha": "6c0f767",
+   "subject": "Front page v83: Demo 64 card opens Giza Fall v4, the live Summit Duel (#167)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.demo",
+   "sha": "5663f35",
+   "subject": "Giza Fall v4: Summit Duel, a live duel and fall on Khufu's summit (Demo 64) (#166)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.docs",
+   "sha": "f08a631",
+   "subject": "Atlas bridge v2 in plain words (Blender in the loop)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.docs",
+   "sha": "d345728",
+   "subject": "generate-refine-verify: gated worlds look worse on held-out renders"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.docs",
+   "sha": "6ee7f86",
+   "subject": "docs: generate, refine, verify (method and pilot)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.docs",
+   "sha": "94ef910",
+   "subject": "render-oracle: step 4, three.js PhysicalMaterial second pass"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.docs",
+   "sha": "f1bd0b5",
+   "subject": "Glass Gobbler guide: bringing the Cycles light home to the browser"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.docs",
+   "sha": "9bbd5fd",
+   "subject": "Glass Gobbler guide: one X3D scene through Blender, counted at every door"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.docs",
+   "sha": "c4559b8",
+   "subject": "Render oracle guide: step 3, twelve lit scenes"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.docs",
+   "sha": "ae231b1",
+   "subject": "The Atlas bridge in plain words (Demo 77)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.docs",
+   "sha": "7c5beb3",
+   "subject": "Render oracle guide: the three.js fix and the six-engine matrix (#103)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d.docs",
+   "sha": "35da862",
+   "subject": "Render oracle guide: step 1, three engines on the conformance scenes (#102)"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d-blender-io",
+   "sha": "c6063cb",
+   "subject": "2.7.4: chaos round 3, the rules the receipt-to-rule engine found still live"
+  },
+  {
+   "date": "2026-11-23",
+   "repo": "x3d-blender-io",
+   "sha": "5a94785",
+   "subject": "Mapping table: regenerate (the importer now names ProtoInstance)"
+  },
+  {
+   "date": "2026-11-22",
+   "repo": "x3d-blender-io",
+   "sha": "1b36f94",
+   "subject": "2.7.3: second chaos round - export side, round-trip fixed point, hostile files"
+  },
+  {
+   "date": "2026-11-22",
+   "repo": "x3d-blender-io",
+   "sha": "903c1e5",
+   "subject": "Chaos round: differential mutants across six judges; eight crashes fixed (2.7.2) (#75)"
+  },
+  {
+   "date": "2026-11-22",
+   "repo": "x3d-blender-io",
+   "sha": "a1692be",
+   "subject": "Chaos round: differential mutants across six judges; eight crashes fixed (2.7.2)"
+  },
+  {
+   "date": "2026-11-22",
+   "repo": "x3d-blender-io",
+   "sha": "038d584",
+   "subject": "Behaviour graph version 2: play in the viewport, typed field editors, visible kept"
+  },
+  {
+   "date": "2026-11-22",
+   "repo": "x3d-blender-io",
+   "sha": "bd1d30d",
+   "subject": "Export 2.7.1: active camera first, OrthoViewpoint, light temperature"
+  },
+  {
+   "date": "2026-11-22",
+   "repo": "x3d-blender-io",
+   "sha": "32251fc",
+   "subject": "Robustness plan v3, Gates 1 and 2: mapping table, loss receipt, Schematron, oracles"
+  },
+  {
+   "date": "2026-11-22",
+   "repo": "x3d-blender-io",
+   "sha": "a133802",
+   "subject": "Behaviour nodes: registration survives a second copy of the add-on being disabled"
+  },
+  {
+   "date": "2026-11-22",
+   "repo": "x3d-blender-io",
+   "sha": "f8527c2",
+   "subject": "Behaviour graph proof of concept: X3D ROUTEs as a Blender node tree, scriptable"
+  },
+  {
+   "date": "2026-11-22",
+   "repo": "x3d_mcp",
+   "sha": "4d433af",
+   "subject": "Add stdlib capture readers: pcapng/pcap (SIP, SDP, RTP) and MCAP (ROS 1) (#30)"
+  },
+  {
+   "date": "2026-11-20",
+   "repo": "x3d-blender-io",
+   "sha": "f68adbd",
+   "subject": "Metadata survives on Transform, material and WorldInfo hosts; other hosts are kept on the scene"
+  },
+  {
+   "date": "2026-11-19",
+   "repo": "x3d.gobbler",
+   "sha": "226be70",
+   "subject": "Gobbler.flyte Assayer: the AI Engineering agent, built from the AI Engineering Atlas"
+  }
+ ],
+ "pulse_since": "2026-11-18",
+ "samples": {
+  "ask": [
+   {
+    "cycle": 3,
+    "node": "gobbler",
+    "text": "asked hagopjay: Cycle 3: adjacent-watch on x3d.loom bridges map (adjacent tech) for \"Show HN: Radix - A We (takes B at 2026-11-18T05:00:00Z if unanswe"
+   },
+   {
+    "cycle": 6,
+    "node": "gobbler",
+    "text": "asked hagopjay: Cycle 6: adjacent-watch on x3d.loom bridges map (adjacent tech) for \"Show HN: ManimGX \u2013 Ma (takes B at 2026-11-18T06:30:00Z if unanswe"
+   },
+   {
+    "cycle": 12,
+    "node": "gobbler",
+    "text": "asked hagopjay: Cycle 12: adjacent-watch on x3d.loom bridges map (adjacent tech) for \"WebGPU Engine Bench: (takes B at 2026-11-18T09:30:00Z if unanswe"
+   },
+   {
+    "cycle": 13,
+    "node": "gobbler",
+    "text": "asked hagopjay: Cycle 13: rerun-xite-rig on x3d.loom kit render rig + X_ITE pin for \"create3000/x_ite synt (takes B at 2026-11-18T10:00:00Z if unanswe"
+   },
+   {
+    "cycle": 19,
+    "node": "gobbler",
+    "text": "asked hagopjay: Cycle 19: community-signal on x3d.docs community log for \"NetBeans X3D Resources - DevLOG3 (takes B at 2026-11-18T13:00:00Z if unanswe"
+   },
+   {
+    "cycle": 20,
+    "node": "gobbler",
+    "text": "asked hagopjay: Cycle 20: validator-diff on x3d_mcp fork vs upstream for \"Web3DConsortium/x3d_mcp syntheti (waits for a typed answer, no timeout pick)"
+   },
+   {
+    "cycle": 31,
+    "node": "gobbler",
+    "text": "asked hagopjay: Cycle 31: bridge-check on x3d.loom x3d.threejs / Babylon bridge for \"mrdoob/three.js synth (takes B at 2026-11-18T19:00:00Z if unanswe"
+   },
+   {
+    "cycle": 39,
+    "node": "gobbler",
+    "text": "asked hagopjay: Cycle 39: blenderizer-roundtrip on x3d-blender-io roundtrip gate for \"hagopjay/x3d-blender (takes B at 2026-11-18T23:00:00Z if unanswe"
+   }
+  ],
+  "assay": [
+   {
+    "cycle": 1,
+    "node": "assayer",
+    "text": "9/9 thesis checks pass; cites aie:T1, aie:T10, aie:T11, aie:T13, aie:T2, aie:T3, aie:T6, aie:T7, aie:T8"
+   },
+   {
+    "cycle": 2,
+    "node": "assayer",
+    "text": "8/8 thesis checks pass; cites aie:T1, aie:T10, aie:T11, aie:T13, aie:T3, aie:T6, aie:T7, aie:T8"
+   },
+   {
+    "cycle": 4,
+    "node": "assayer",
+    "text": "8/8 thesis checks pass; cites aie:T1, aie:T10, aie:T11, aie:T13, aie:T3, aie:T6, aie:T7, aie:T8"
+   },
+   {
+    "cycle": 3,
+    "node": "assayer",
+    "text": "8/8 thesis checks pass; cites aie:T1, aie:T10, aie:T11, aie:T13, aie:T3, aie:T6, aie:T7, aie:T8"
+   },
+   {
+    "cycle": 5,
+    "node": "assayer",
+    "text": "8/8 thesis checks pass; cites aie:T1, aie:T10, aie:T11, aie:T13, aie:T3, aie:T6, aie:T7, aie:T8"
+   },
+   {
+    "cycle": 7,
+    "node": "assayer",
+    "text": "8/8 thesis checks pass; cites aie:T1, aie:T10, aie:T11, aie:T13, aie:T3, aie:T6, aie:T7, aie:T8"
+   },
+   {
+    "cycle": 8,
+    "node": "assayer",
+    "text": "8/8 thesis checks pass; cites aie:T1, aie:T10, aie:T11, aie:T13, aie:T3, aie:T6, aie:T7, aie:T8"
+   },
+   {
+    "cycle": 9,
+    "node": "assayer",
+    "text": "8/8 thesis checks pass; cites aie:T1, aie:T10, aie:T11, aie:T13, aie:T3, aie:T6, aie:T7, aie:T8"
+   },
+   {
+    "cycle": 10,
+    "node": "assayer",
+    "text": "8/8 thesis checks pass; cites aie:T1, aie:T10, aie:T11, aie:T13, aie:T3, aie:T6, aie:T7, aie:T8"
+   },
+   {
+    "cycle": 11,
+    "node": "assayer",
+    "text": "8/8 thesis checks pass; cites aie:T1, aie:T10, aie:T11, aie:T13, aie:T3, aie:T6, aie:T7, aie:T8"
+   }
+  ],
+  "commit": [
+   {
+    "cycle": 1,
+    "node": "keeper",
+    "text": "world entry #1 967f0a049593 committed (fragment:pass xsd:pass semantic:pass commit:pass)"
+   },
+   {
+    "cycle": 2,
+    "node": "keeper",
+    "text": "world entry #2 0e9b6a609023 committed (fragment:pass xsd:pass semantic:pass commit:pass)"
+   },
+   {
+    "cycle": 4,
+    "node": "keeper",
+    "text": "world entry #3 79552291bf7a committed (fragment:pass xsd:pass semantic:pass commit:pass)"
+   },
+   {
+    "cycle": 3,
+    "node": "keeper",
+    "text": "world entry #4 09385fc7ddde committed (fragment:pass xsd:pass semantic:pass commit:pass)"
+   },
+   {
+    "cycle": 5,
+    "node": "keeper",
+    "text": "world entry #5 4126cbdba1de committed (fragment:pass xsd:pass semantic:pass commit:pass)"
+   },
+   {
+    "cycle": 7,
+    "node": "keeper",
+    "text": "world entry #6 66541eb62174 committed (fragment:pass xsd:pass semantic:pass commit:pass)"
+   },
+   {
+    "cycle": 8,
+    "node": "keeper",
+    "text": "world entry #7 bc577493a70f committed (fragment:pass xsd:pass semantic:pass commit:pass)"
+   },
+   {
+    "cycle": 9,
+    "node": "keeper",
+    "text": "world entry #8 c144f39d5999 committed (fragment:pass xsd:pass semantic:pass commit:pass)"
+   },
+   {
+    "cycle": 10,
+    "node": "keeper",
+    "text": "world entry #9 05115c749d6f committed (fragment:pass xsd:pass semantic:pass commit:pass)"
+   },
+   {
+    "cycle": 11,
+    "node": "keeper",
+    "text": "world entry #10 955e5893b7fe committed (fragment:pass xsd:pass semantic:pass commit:pass)"
+   }
+  ],
+  "foldback": [
+   {
+    "cycle": 1,
+    "node": "keeper",
+    "text": "drafted 00001-standards-note.md for x3d.docs (PR); reuse pending"
+   },
+   {
+    "cycle": 2,
+    "node": "keeper",
+    "text": "drafted 00002-foldback-docs.md for x3d.docs (PR); reuse pending"
+   },
+   {
+    "cycle": 4,
+    "node": "keeper",
+    "text": "drafted 00004-community-signal.md for x3d.docs (PR); reuse pending"
+   },
+   {
+    "cycle": 3,
+    "node": "keeper",
+    "text": "drafted 00003-adjacent-watch.md for x3d.loom (PR); reuse pending"
+   },
+   {
+    "cycle": 5,
+    "node": "keeper",
+    "text": "drafted 00005-standards-note.md for x3d.docs (PR); reuse pending"
+   },
+   {
+    "cycle": 7,
+    "node": "keeper",
+    "text": "drafted 00007-foldback-docs.md for x3d.docs (PR); reuse pending"
+   },
+   {
+    "cycle": 8,
+    "node": "keeper",
+    "text": "drafted 00008-foldback-docs.md for x3d.docs (PR); reuse pending"
+   },
+   {
+    "cycle": 9,
+    "node": "keeper",
+    "text": "drafted 00009-standards-note.md for x3d.docs (PR); reuse pending"
+   },
+   {
+    "cycle": 10,
+    "node": "keeper",
+    "text": "drafted 00010-standards-note.md for x3d.docs (PR); reuse pending"
+   },
+   {
+    "cycle": 11,
+    "node": "keeper",
+    "text": "drafted 00011-foldback-docs.md for x3d.docs (PR); reuse pending"
+   }
+  ],
+  "namesake": [
+   {
+    "cycle": 2,
+    "node": "scout",
+    "text": "set aside 1 namesakes, e.g. \"Cache Goes on Top, or Cache Goes on Bottom? The X3D Dilemma\""
+   },
+   {
+    "cycle": 4,
+    "node": "scout",
+    "text": "set aside 1 namesakes, e.g. \"A Contextual Analysis of Driver-Facing and Dual-View Video Inputs for \""
+   },
+   {
+    "cycle": 10,
+    "node": "scout",
+    "text": "set aside 1 namesakes, e.g. \"PDNet: Exploring Pruning and Distillation for Real-Time Worker Activit\""
+   },
+   {
+    "cycle": 19,
+    "node": "scout",
+    "text": "set aside 1 namesakes, e.g. \"Efficient Frame Extraction: A Novel Approach Through Frame Similarity \""
+   },
+   {
+    "cycle": 20,
+    "node": "scout",
+    "text": "set aside 1 namesakes, e.g. \"Predicting Soccer Penalty Kick Direction Using Human Action Recognitio\""
+   },
+   {
+    "cycle": 22,
+    "node": "scout",
+    "text": "set aside 1 namesakes, e.g. \"Entity-Aware Sequence Transduction for Player-Centric Ball Action Spot\""
+   },
+   {
+    "cycle": 23,
+    "node": "scout",
+    "text": "set aside 1 namesakes, e.g. \"LINGO: Latent Initialization and Gradient Optimization for Sparse-view\""
+   },
+   {
+    "cycle": 24,
+    "node": "scout",
+    "text": "set aside 1 namesakes, e.g. \"Video-based Exercise Classification and Activated Muscle Group Predict\""
+   },
+   {
+    "cycle": 25,
+    "node": "scout",
+    "text": "set aside 1 namesakes, e.g. \"Intel's next-gen Nova Lake chips may skip X3D cache rival for mobile S\""
+   },
+   {
+    "cycle": 27,
+    "node": "scout",
+    "text": "set aside 1 namesakes, e.g. \"Zen 4 X3D is great \u2013 but has one Big Problem\""
+   }
+  ],
+  "signal": [
+   {
+    "cycle": 1,
+    "node": "scout",
+    "text": "picked: Web3D 2026 Conference Transitioning to Hybrid Format (web3d-news, score 0.9)"
+   },
+   {
+    "cycle": 2,
+    "node": "scout",
+    "text": "picked: x3d.mandala 2.0: the Chamber Harp (loom-commits, score 0.8)"
+   },
+   {
+    "cycle": 3,
+    "node": "scout",
+    "text": "picked: Show HN: Radix - A WebGPU-powered 3D Gaussian Splat renderer built on Three.js (hn-webgpu, score 0.5)"
+   },
+   {
+    "cycle": 4,
+    "node": "scout",
+    "text": "picked: Web3dsurvey.com 2.0: Adds WebGPU WGLS language features and vendors details (hn-webgpu, score 0.8)"
+   },
+   {
+    "cycle": 5,
+    "node": "scout",
+    "text": "picked: Unlocking the Power of the X3D Toolchain for Repositories and Model Management (web3d-news, score 0.9)"
+   },
+   {
+    "cycle": 6,
+    "node": "scout",
+    "text": "picked: Show HN: ManimGX \u2013 Manim's API on a Rust/wgpu engine, for 3D videos in Python (hn-webgpu, score 0.5)"
+   },
+   {
+    "cycle": 7,
+    "node": "scout",
+    "text": "picked: LEARNINGS-mathlab: second pass with 18 lessons verified (loom-commits, score 0.8)"
+   },
+   {
+    "cycle": 8,
+    "node": "scout",
+    "text": "picked: Add LEARNINGS-accretion.md: what the Accretion review and static view\u2026 (loom-commits, score 0.8)"
+   },
+   {
+    "cycle": 9,
+    "node": "scout",
+    "text": "picked: Welcoming Web3D Consortium\u2019s New Leadership (web3d-news, score 0.9)"
+   },
+   {
+    "cycle": 10,
+    "node": "scout",
+    "text": "picked: Web3D Consortium Summer 2026 Newsletter (web3d-news, score 0.9)"
+   }
+  ],
+  "verdict": [
+   {
+    "cycle": 1,
+    "node": "witness",
+    "text": "gate REFUSED attempt 1: GATE_CONTAINMENT"
+   },
+   {
+    "cycle": 1,
+    "node": "witness",
+    "text": "x3d_mcp REFUSED attempt 2: MCP_SEMANTIC_PROFILE_COMPONENT (PhysicalMaterial (component Shape level 2, not declared) is outside profile 'Immersive'. Br"
+   },
+   {
+    "cycle": 1,
+    "node": "witness",
+    "text": "gate 2.0.0 PASS + x3d_mcp b5c9956 XSD pass / semantic pass (56 nodes, 10 shapes) + loom traps 0 warning(s); grade Likely; loom target found"
+   },
+   {
+    "cycle": 2,
+    "node": "witness",
+    "text": "gate 2.0.0 PASS + x3d_mcp b5c9956 XSD pass / semantic pass (15 nodes, 3 shapes) + loom traps 0 warning(s); grade Likely; loom target found"
+   },
+   {
+    "cycle": 3,
+    "node": "witness",
+    "text": "gate 2.0.0 PASS + x3d_mcp b5c9956 XSD pass / semantic pass (14 nodes, 2 shapes) + loom traps 0 warning(s); grade Likely; loom target found"
+   },
+   {
+    "cycle": 4,
+    "node": "witness",
+    "text": "gate REFUSED attempt 1: GATE_NODE_FORBIDDEN"
+   },
+   {
+    "cycle": 4,
+    "node": "witness",
+    "text": "gate 2.0.0 PASS + x3d_mcp b5c9956 XSD pass / semantic pass (14 nodes, 2 shapes) + loom traps 0 warning(s); grade Likely; loom target found"
+   },
+   {
+    "cycle": 5,
+    "node": "witness",
+    "text": "gate REFUSED attempt 1: GATE_CONTAINMENT"
+   },
+   {
+    "cycle": 5,
+    "node": "witness",
+    "text": "x3d_mcp REFUSED attempt 2: MCP_SEMANTIC_PROFILE_COMPONENT (PhysicalMaterial (component Shape level 2, not declared) is outside profile 'Immersive'. Br"
+   },
+   {
+    "cycle": 5,
+    "node": "witness",
+    "text": "gate 2.0.0 PASS + x3d_mcp b5c9956 XSD pass / semantic pass (56 nodes, 10 shapes) + loom traps 0 warning(s); grade Likely; loom target found"
+   }
+  ]
+ },
+ "schema": "gobbler.ouroboros/2",
+ "sciviz": {
+  "addon": "x3d-blender-io 2.7.4",
+  "baked_faces": 11616,
+  "baked_note": "Gobbler 6.2: Cycles light baked to one colour per face (x3d.gobbler mascot/baked)",
+  "blender": "5.3.0",
+  "engine": "Cycles CPU",
+  "source": "x3d.gobbler mascot/glass (stills/blender-render.json, spin/blender-spin.json)",
+  "spin_frames": 120,
+  "spin_samples": 64,
+  "status": "staged: runs by hand today, not yet an organ of the graph",
+  "still_samples": 160,
+  "stills": 4
+ },
+ "sources": {
+  "heads": {
+   "x3d-blender-io": "0eb4809",
+   "x3d.demo": "97cacb6",
+   "x3d.docs": "9d8585c",
+   "x3d.gobbler": "cd95382",
+   "x3d.loom": "da11c60",
+   "x3d.wgpu": "091b2be",
+   "x3d_mcp": "4d433af"
+  },
+  "note": "recorded sim day: fixtures for feeds, simulated Haiku, zero model calls",
+  "tape": "x3d.gobbler flyte/runs/sim-2026-11-18-r5/tape.jsonl",
+  "tape_rows": 674,
+  "tape_sha256": "f52459c6288d409fd15585b0c48e7b0f66dd228046ad52cf305ac70fccc3c679"
+ }
+}
