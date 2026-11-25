@@ -1,0 +1,78 @@
+/* v4 Ouroboros: serpent canvas, labels on the serpent, and the panel */
+#ouro-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+body.swarm-solo #ouro-canvas { position: fixed; }
+.ouro-labels { position: absolute; inset: 0; pointer-events: none; z-index: 3; overflow: hidden; }
+.ol { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 6px; color: var(--c); transition: opacity .3s; white-space: nowrap;
+  font: 11px/1.15 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; text-shadow: 0 0 6px #000, 0 0 2px #000; }
+.ol.left { flex-direction: row-reverse; text-align: right; }
+.ol i { width: 26px; height: 26px; padding: 4px; box-sizing: border-box; border-radius: 50%; border: 1px solid var(--c); background: rgba(8, 7, 12, .78); box-shadow: 0 0 12px -2px var(--c); flex: none; }
+.ol svg { width: 100%; height: 100%; display: block; }
+.ol b { display: block; font-weight: 700; font-size: 10px; letter-spacing: .14em; }
+.ol span { display: block; color: #efe9de; font: 600 10.5px ui-monospace, "SF Mono", Menlo, Consolas, monospace; opacity: .92; }
+.ol img { border-radius: 5px; border: 1px solid var(--c); box-shadow: 0 0 10px -2px var(--c); }
+.ol-bite i { animation: ou-bite 2.4s ease-in-out infinite; }
+@keyframes ou-bite { 50% { transform: rotate(180deg); } }
+
+.ouro-lab { position: absolute; left: 22px; top: 94px; z-index: 31; width: 372px; max-height: calc(100% - 250px); overflow: auto; scrollbar-width: thin;
+  background: linear-gradient(180deg, rgba(10, 9, 15, .74), rgba(10, 9, 15, .56)); border: 1px solid #e9cf8a33; border-radius: 10px;
+  backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px); color: #efe9de; font: 12px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; box-shadow: 0 12px 40px #0009; }
+.ouro-lab.solo { top: 18px; max-height: calc(100% - 96px); }
+.ouro-lab header { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(14, 11, 18, .96); border-bottom: 1px solid #e9cf8a26;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 13.5px; }
+.ouro-lab header div { flex: 1; } .ouro-lab header span { color: #b9b2a5; }
+.ouro-lab header b { color: #e9cf8a; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-right: 4px; }
+.ouro-glyph { width: 18px; height: 18px; color: #9ef275 !important; animation: ou-spin 6s linear infinite; }
+.ouro-glyph svg { width: 100%; height: 100%; display: block; }
+@keyframes ou-spin { to { transform: rotate(-360deg); } }
+.ouro-lab header button { background: none; border: 1px solid #e9cf8a44; color: #e9cf8a; border-radius: 6px; width: 24px; height: 22px; cursor: pointer; }
+.ouro-lab.folded .ou-body { display: none; }
+.ou-body { padding: 8px 12px 12px; }
+.ou-lede { margin: 0 0 8px; color: #b9b2a5; }
+.ou-turn { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.ou-turn b { font: 600 24px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #c8ffa8; text-shadow: 0 0 12px #9ef27555; }
+.ou-turn span { color: #9c9588; font-size: 11px; } .ou-turn i { font-style: normal; color: #fff2cc; font-family: ui-monospace, Menlo, Consolas, monospace; }
+.ou-ladder { display: grid; gap: 2px; position: relative; }
+.lr { display: grid; grid-template-columns: 18px 1fr auto; grid-template-areas: "i n v" "i s s"; column-gap: 7px; align-items: center; padding: 3px 6px 3px 4px; border-left: 2px solid var(--c);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 9%, transparent), transparent 70%); border-radius: 0 6px 6px 0; }
+.lr i { grid-area: i; width: 18px; height: 18px; color: var(--c); } .lr svg, .ic svg { width: 100%; height: 100%; display: block; }
+.lr em { grid-area: n; font-style: normal; color: #e6dfd2; }
+.lr b { grid-area: v; font: 600 13px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #fff2cc; font-variant-numeric: tabular-nums; }
+.lr small { grid-area: s; color: #7d776c; font-size: 10px; line-height: 1.2; }
+.ou-proof { margin: 8px 0 0; padding: 6px 8px; border: 1px dashed #9ef27555; border-radius: 7px; color: #cfe9c2; font-size: 11px; background: #9ef2750a; }
+.ou-proof b { color: #fff; }
+.ouro-lab h4 { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 12px 0 5px; font: 500 13px/1.2 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; color: #e9cf8a; }
+.ouro-lab h4 small { font: 10px system-ui, sans-serif; color: #7d776c; }
+.ic { width: 16px; height: 16px; display: inline-block; }
+.ou-staged { color: #1a1420 !important; background: #c9a6ff; border-radius: 99px; padding: 1px 7px; font-weight: 700 !important; letter-spacing: .04em; }
+.ou-checks { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; }
+.ck { display: grid; grid-template-columns: 8px auto 1fr; grid-template-areas: "u t n" "c c c"; align-items: center; column-gap: 4px; border: 1px solid #ffffff12; border-radius: 6px; padding: 3px 5px; background: #ffffff06; }
+.ck u { grid-area: u; width: 7px; height: 7px; border-radius: 50%; background: #9ef275; box-shadow: 0 0 6px #9ef275; animation: ck-b 1.3s ease-in-out infinite; }
+.ck:nth-child(3n+1) u { animation-delay: .2s; } .ck:nth-child(3n+2) u { animation-delay: .6s; }
+@keyframes ck-b { 50% { opacity: .35; } }
+.ck b { grid-area: t; font: 700 10px ui-monospace, Menlo, Consolas, monospace; color: #fff4dc; }
+.ck em { grid-area: n; font-style: normal; color: #b9b2a5; font-size: 9.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ck span { grid-area: c; font: 10px ui-monospace, Menlo, Consolas, monospace; color: #c8ffa8; }
+.ou-note { margin: 5px 0 0; color: #8d877b; font-size: 10.5px; line-height: 1.35; }
+.ou-sciviz p { margin: 6px 0 0; color: #b9b2a5; font-size: 11px; } .ou-sciviz b { color: #efe9de; }
+.ou-thumbs { display: flex; gap: 5px; }
+.ou-thumbs img { border-radius: 6px; border: 1px solid #c9a6ff55; display: block; }
+.ou-loom { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.ou-loom div { border: 1px solid #ffffff12; border-radius: 6px; padding: 4px 6px; background: #ffffff06; }
+.ou-loom b { display: block; font: 600 16px/1.1 ui-monospace, Menlo, Consolas, monospace; color: #ffd98a; }
+.ou-loom span { color: #8d877b; font-size: 9.5px; }
+.ou-pulse { display: grid; gap: 1px; min-height: 84px; }
+.ou-pulse div { display: grid; grid-template-columns: 62px 34px 1fr; gap: 5px; font-size: 10.5px; white-space: nowrap; animation: pl-in .3s ease-out; }
+.ou-pulse u { text-decoration: none; color: #57dbf5; overflow: hidden; text-overflow: ellipsis; }
+.ou-pulse time { color: #7d776c; font: 9.5px ui-monospace, Menlo, Consolas, monospace; }
+.ou-pulse em { font-style: normal; color: #d8d0c2; overflow: hidden; text-overflow: ellipsis; }
+.ou-pulse div:nth-child(n+4) { opacity: .5; }
+.ou-front { margin: 0; padding-left: 18px; color: #d8d0c2; font-size: 11px; }
+.ou-foot { margin: 10px 0 0; color: #6f695f; font-size: 10px; line-height: 1.35; }
+
+/* v4 layout: the swarm panel starts folded and parks under the Ouroboros panel's corner */
+body.ouro .swarm-lab { top: auto; bottom: 96px; width: 300px; max-height: calc(100% - 200px); z-index: 32; }
+body.ouro .swarm-lab.full { bottom: 18px; }
+body.ouro-off .ouro-labels { display: none; }
+@media (max-width: 1180px) { .ouro-lab { width: 320px; } }
+@media (max-width: 900px) { .ouro-lab { display: none; } .ol span { display: none; } }
+@media (prefers-reduced-motion: reduce) { .ouro-glyph, .ol-bite i, .ck u { animation: none; } }
