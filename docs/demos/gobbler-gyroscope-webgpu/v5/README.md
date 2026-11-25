@@ -69,7 +69,7 @@ A grade is a claim about the public repos. Every lane above "envisioned" names a
 
 ## 3. The flywheel board, the spotlight and the fact strip
 
-- **Flywheel board** (left): every lane in one line (key, name, grade, rank among the 64 frontiers where the lane is on the board), then commits per day since 18 Nov for seven public repos (267 commits at build time). Ranks are judged scores: read them as a tier.
+- **Flywheel board** (left): every lane in one line (key, name, grade, rank among the 64 frontiers where the lane is on the board), then commits per day since 18 Nov for seven public repos (273 commits at build time, counted from 18 Nov 00:00 UTC; the shots show 267 from a build an hour earlier whose window still drifted with the time of day, since fixed). Ranks are judged scores: read them as a tier.
 - **Spotlight** (top centre): walks the lanes one by one every 2.6 s and shows the fact and the evidence paths behind the grade. Hover a board row to hold it. The matching label on the scene lights up.
 - **Fact strip** (top): the Loom at its current commit (44 laws, 273 failure modes, 13 theses, 28 rules from receipts at da11c60), and the frontier board by status (4 deep, 15 explored, 23 touched, 22 unexplored) and by family.
 - The Ouroboros panel moves to the right, under the pipeline column; both are shorter and scroll.

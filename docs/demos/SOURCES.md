@@ -621,11 +621,11 @@ Written for this site on top of v4 (v1 to v4 untouched). Adds `ouro/v5.js` and `
 
 | file | sha256 | bytes |
 |---|---|---|
-| gobbler-gyroscope-webgpu/v5/README.md | 275f3b2f7814b2ffb3808799021a01c0b45b42ec5cf2d59d83229a1ffe3e2a13 | 9428 |
+| gobbler-gyroscope-webgpu/v5/README.md | 50a007fc6fabe2b55524f15d948f649cced8ef31e6b1170cd7cf1cc4ea225fc0 | 9569 |
 | gobbler-gyroscope-webgpu/v5/gobbler3.x3d | 0772caea04e80d03d43ce1543e86fee5854e13a6ad1d273dc65ea2e5aee47dc6 | 1985373 |
 | gobbler-gyroscope-webgpu/v5/graph-v3.json | fcbc4bc603632ba8479b96618c2591a9633cf4ea2751ccd84d8a628308800621 | 60630 |
 | gobbler-gyroscope-webgpu/v5/index.html | c76389b5e702f2fb097d694d1fb92862c23aa089beff4f6753a7acab1dfbbd73 | 4181484 |
-| gobbler-gyroscope-webgpu/v5/ouro/data.json | 863c501e79998946033a690a66f4be28c82ed4a106f95e68c21c32a225225d28 | 46307 |
+| gobbler-gyroscope-webgpu/v5/ouro/data.json | ad0e4494bbac0946862ae8423cb67ef7788d3c9cb4e2053de4dc8f30f42679eb | 46308 |
 | gobbler-gyroscope-webgpu/v5/ouro/gobbler.bin | a1b657c7b864bd8c17a7eef30b46038e15bbab76ea32f91fc25d24ccc6f24c27 | 668224 |
 | gobbler-gyroscope-webgpu/v5/ouro/gobbler.json | 4b19ef6566b678abcff0eb2239ef94222df097a531e156db1c42be102e6ce33e | 809 |
 | gobbler-gyroscope-webgpu/v5/ouro/ouro-hud.js | 5c70237b4dcd0e7d4d6a0cb2c0fa52f75873e6ff9199392d9300849c24b75934 | 12007 |
@@ -646,7 +646,7 @@ Written for this site on top of v4 (v1 to v4 untouched). Adds `ouro/v5.js` and `
 | gobbler-gyroscope-webgpu/v5/solo.html | d4f5a0985fc60c1cab8bd57e64d8b0399a713c5dce13c5884d21cdfe337181d6 | 1630 |
 | gobbler-gyroscope-webgpu/v5/source/calibrate.py | e6a8348f0810a9a885a87c9b4e06b043a59d7149eef2879529f07aa0f1699bb9 | 3283 |
 | gobbler-gyroscope-webgpu/v5/source/gobbler_points.py | f361c6dbcb0f0e085c81513995ce9988630edcb9e143d48f671d43c4a8c29041 | 6641 |
-| gobbler-gyroscope-webgpu/v5/source/ouro_data.py | dd4694ece65136014f8534a411a142feb08eccc69c795d0b6aa4f38b769af0e2 | 15029 |
+| gobbler-gyroscope-webgpu/v5/source/ouro_data.py | 233801f4af3054e3851983f9fd5df1a8cf793fbd81f4f0038316ef9cb4978383 | 15059 |
 | gobbler-gyroscope-webgpu/v5/swarm/calibration.json | 44844601f7f145e73f790007a3d2cd58ca24638049bfe3c633ccf7841699b05f | 2095 |
 | gobbler-gyroscope-webgpu/v5/swarm/gl.js | 96f705534610a6d3e368320c383b2e4caedacd4a7217ee543d8c64111a863dae | 19275 |
 | gobbler-gyroscope-webgpu/v5/swarm/gpu.js | ca63b9412f0717ae697cf36df2079e19c8ad2cc060859ca2673a69e02f805144 | 33374 |

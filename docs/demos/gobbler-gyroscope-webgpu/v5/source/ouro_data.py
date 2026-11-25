@@ -80,7 +80,7 @@ def build_activity(root, since):
     days = {}; total = {}
     for name in REPOS:
         repo = root / name; b = head_branch(repo)
-        log = git(repo, 'log', f'origin/{b}', f'--since={since}', '--no-merges', '--format=%cs\t%s').splitlines()
+        log = git(repo, 'log', f'origin/{b}', f'--since={since}T00:00:00+00:00', '--no-merges', '--format=%cs\t%s').splitlines()
         c = collections.Counter(l.split('\t')[0] for l in log if l)
         days[name] = dict(sorted(c.items())); total[name] = sum(c.values())
     return {'since': since, 'commits_by_day': days, 'commits': total, 'note': 'git log of each default branch, no merges'}
@@ -138,7 +138,7 @@ def main():
     pulse = []
     for name in REPOS:
         repo = root / name; b = head_branch(repo)
-        log = git(repo, 'log', f'origin/{b}', f'--since={a.since}', '--no-merges', '--format=%cs\t%h\t%s')
+        log = git(repo, 'log', f'origin/{b}', f'--since={a.since}T00:00:00+00:00', '--no-merges', '--format=%cs\t%h\t%s')
         for l in log.splitlines()[:14]:
             d, h, s = l.split('\t', 2)
             if re.search(r'claude\.ai|session_', s): continue
