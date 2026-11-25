@@ -419,23 +419,6 @@ code{font-family:var(--mono);font-size:.88em}
 </section>
 
 <section class="demo">
-  <img src="assets/gobbler-gyroscope-swarm.jpg" alt="Four views of a glowing gyroscope of ten coloured hoops with a bright star at its core and thousands of small sparks riding the hoops, each beside a panel of live statistics about the swarm" width="960" height="540" loading="lazy">
-  <div>
-    <div class="no">DEMO 23</div>
-    <h2>Gobbler Gyroscope on WebGPU (v2 adds a swarm of 30,000 agents)</h2>
-    <p><strong>Version 2 (24 Nov)</strong> puts 30,000 replicas of the Gobbler.flyte LangGraph agent graph on the ten hoops, each spark one replica at its stage: scout, weave, witness, council, ask a human, keeper, assayer. The odds at every branch come from five recorded simulation days (240 cycles, 3,137 rows, no model called), and a live table checks the swarm&rsquo;s own rates against the recorded ones. A slider takes it from 3,000 to 262,144 replicas; a Chaos slider injects council holds and refusal surges. On WebGPU the swarm computes on the same device as the gyroscope and rides the hoops&rsquo; live matrices; without WebGPU it falls back to WebGL2. The JavaScript model and the WGSL compute twin agree bit for bit in the lane&rsquo;s four parity runs. The dollar tile (about $810 a day at 30,000 replicas) is a projection at the tapes&rsquo; simulated prices; <strong>nothing is called and nothing is billed</strong>. Version 1, the original gyroscope, is unchanged and still linked. The ten feedback loops become ten hoops on one centre, with the spiky atom at its core, as before, drawn by Babylon.js 9.32.0 through our own X3D reader.</p>
-    <div class="chips">
-      <a href="demos/gobbler-gyroscope-webgpu/v2/index.html">Open the Swarm (v2)</a>
-      <a href="demos/gobbler-gyroscope-webgpu/v2/solo.html">Swarm on its own</a>
-      <a href="demos/gobbler-gyroscope-webgpu/v1/index.html">Open the Gobbler Gyroscope (v1)</a>
-      <a href="demos/gobbler-gyroscope-webgpu/v1/gobbler3.x3d">Scene (.x3d)</a>
-      <a href="demos/gobbler3-webgpu/v1/index.html">Gobbler 3 on WebGPU (Demo 18)</a>
-    </div>
-    <p class="facts"><strong>What I checked (Confirmed).</strong> I loaded the v2 page in headless Chromium without WebGPU: it showed 3 canvases (the WebGL2 fallback) and logged two console errors, both &ldquo;WebGPU is not available in this browser, or the adapter was refused&rdquo;, which the page then handles by falling back; I saw no HTTP errors. I read the README: the five tapes, 175 of 240 cycles with a signal (0.729), and the parity runs. <strong>The lane&rsquo;s own, not re-run by me:</strong> the parity runs (4,096 x 600 ticks, 30,000 x 400, 131,072 x 200 and a Chaos run, all bit-identical), the steady-state rates and the CPU timings. <strong>Not tested by anyone:</strong> a real GPU. Every run used headless Chrome for Testing 158 with the SwiftShader software rasteriser, which cannot present a WebGPU swap chain, so the WebGPU screenshots were captured offscreen and the 61 fps badge in them is the software rasteriser&rsquo;s. <strong>The 30,000 is a replica count, not a frame-rate claim</strong>; the integrated view over the real Babylon scene has not been seen on a GPU. Version 1 notes still apply: Safari and Firefox unchecked and nothing timed on a real GPU. The card image is a 2 x 2 of the lane&rsquo;s own shots.</p>
-  </div>
-</section>
-
-<section class="demo">
   <img src="assets/gobbler-gyroscope-ouroboros.jpg" alt="Four views of a glowing gyroscope of ten coloured hoops encircled by a ring of sparkling particles shaped like a serpent biting its own tail, with panels of live counters on both sides and a rail of stage icons along the bottom; one view is a close crop of the bite" width="960" height="540" loading="lazy">
   <div>
     <div class="no">DEMO 23</div>
