@@ -1,0 +1,36 @@
+{
+ "validator": "x3d_mcp fork 4d433af (validation.validate + validation.semantic)",
+ "ok": true,
+ "summary": "x3d_mcp 4d433af: salon.x3d XSD 4.0 valid, semantic 185 info",
+ "xsd": {
+  "valid": true,
+  "schema_version": "4.0",
+  "errors": []
+ },
+ "semantic_levels": {
+  "info": 185
+ },
+ "semantic_checks": {
+  "info:unused-def": 185
+ },
+ "semantic_first": [],
+ "files": {
+  "salon.x3d": {
+   "bytes": 2156342,
+   "sha256": "a295ff90fdce9a8cf648eeb818a2ff8e2d62f6e54867981b22d1baf5f0a95dbf"
+  }
+ },
+ "roundtrip": {
+  "wall_paintings": 54,
+  "wall_equal": true,
+  "walk_in_rooms": [
+   "Q1044742",
+   "Q212616",
+   "Q45585"
+  ],
+  "walk_ok": true,
+  "image_textures": 56,
+  "missing_textures": [],
+  "summary": "wall paintings 54/54 equal (id + year); walk-in rooms 3/3; ImageTexture urls 56, missing 0 (lxml, vs data/paintings.json)"
+ }
+}
