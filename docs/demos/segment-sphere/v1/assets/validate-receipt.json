@@ -1,0 +1,28 @@
+{
+ "validator": "x3d_mcp fork 4d433af (validation.validate.validate_xml + validation.semantic)",
+ "ok": true,
+ "summary": "x3d_mcp 4d433af: segment-sphere.x3d XSD 4.0 valid, semantic 34 info",
+ "files": {
+  "segment-sphere.x3d": {
+   "sha256": "632e93ad78a2c75640fc8d992f7204549d02b15ed7b2125ed46a9a8386791e84",
+   "bytes": 1167122,
+   "xsd_valid": true,
+   "schema": "4.0",
+   "xsd_errors": [],
+   "semantic_by_level": {
+    "info": 34
+   },
+   "semantic_by_check": {
+    "info:unused-def": 34
+   }
+  }
+ },
+ "roundtrip": {
+  "metadata_services": 301,
+  "metadata_equal": true,
+  "watch_list": 38,
+  "watch_equal": true,
+  "script_fields_equal": true,
+  "summary": "MetadataSet round trip 301/301 services equal; watch list 38 equal; Script data fields equal (lxml, vs data/services.json)"
+ }
+}

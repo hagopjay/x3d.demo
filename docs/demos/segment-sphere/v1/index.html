@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Segment Sphere: the wheel, wrapped and lifted to S³</title>
+<meta name="description" content="Demo 78. The AWS Segment Wheel (301 services, 19 categories, Sept 2026) as an X3D 4.0 scene: the flat wheel, a segment sphere, and a Hopf-fibred 3-sphere where every service is a great circle and every two services link once.">
+<style>
+:root{--bg:#04060b;--p1:#0a0f18;--p2:#0f1622;--line:#1b2535;--ink:#eaf0f8;--dim:#8d99ad;--ok:#5cf2a0;--bad:#f2707a;--warn:#f0b64a;--pre:#5fc6e8;--gold:#ffd36b;--blue:#6fb7e0;--vio:#a98cff;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+ background-image:radial-gradient(1200px 520px at 8% -10%,rgba(43,217,166,.13),transparent 60%),radial-gradient(1000px 520px at 96% -4%,rgba(140,82,255,.14),transparent 60%)}
+a{color:var(--blue)}code,.mono{font-family:var(--mono);font-size:.86em}
+.wrap{max-width:1560px;margin:0 auto;padding:0 18px}
+header{padding:32px 0 10px}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:#2BD9A6}
+h1{font-size:clamp(30px,5vw,64px);line-height:1.02;margin:.15em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 em{font-style:normal;background:linear-gradient(90deg,#4B8DF8,#00B39F,#FF9900,#EC407A,#8C52FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:980px;color:#c6d0de;font-size:17px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:20px 0 8px}
+.stat{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.stat b{display:block;font-size:28px;line-height:1;font-weight:800;white-space:nowrap}
+.stat span{color:var(--dim);font-size:12.5px;display:block;margin-top:6px}
+.stat i{font-style:normal;font-size:10.5px;color:#63738a;display:block;margin-top:4px;font-family:var(--mono)}
+.c-ok b{color:var(--ok)}.c-gold b{color:var(--gold)}.c-bad b{color:var(--bad)}.c-pre b{color:var(--pre)}.c-warn b{color:var(--warn)}.c-vio b{color:var(--vio)}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:14px;margin:14px 0}
+#view{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#02040a;aspect-ratio:16/10;min-height:380px}
+x3d-canvas{width:100%;height:100%;display:block}
+#boot{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-family:var(--mono);background:#02040a;transition:opacity .6s}
+#boot.done{opacity:0;pointer-events:none}
+.hud{position:absolute;left:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 24px)}
+.btn{background:rgba(10,15,24,.82);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:6px 12px;font:13px system-ui;cursor:pointer;backdrop-filter:blur(4px)}
+.btn:hover{border-color:var(--blue)}.btn.on{border-color:var(--gold);color:var(--gold)}
+.modes{position:absolute;right:12px;bottom:12px;display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(10,15,24,.86)}
+.modes button{border:0;background:none;color:var(--dim);padding:9px 15px;font:600 13px system-ui;cursor:pointer}
+.modes button.on{background:rgba(43,217,166,.16);color:#2BD9A6}
+.modebar{position:absolute;left:12px;bottom:12px;font:11.5px var(--mono);color:var(--dim);background:rgba(10,15,24,.8);border:1px solid var(--line);border-radius:10px;padding:6px 9px;max-width:52%}
+.side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:14px;padding:13px}
+.panel h3{margin:0 0 8px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+#card .nm{font-size:21px;font-weight:800;line-height:1.15}
+#card .meta{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.pill{font:11.5px var(--mono);border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--dim);white-space:nowrap}
+.st-ga{color:var(--ok);border-color:rgba(92,242,160,.45)}.st-preview{color:var(--pre);border-color:rgba(95,198,232,.5)}
+.st-closed{color:var(--warn);border-color:rgba(240,182,74,.5)}.st-sunset{color:var(--bad);border-color:rgba(242,112,122,.5)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font:12px var(--mono);color:#b9c6d6}
+.kv dt{color:var(--dim)}.kv dd{margin:0;word-break:break-word}
+.cats{display:grid;grid-template-columns:1fr;gap:3px;max-height:330px;overflow:auto}
+.cat{display:grid;grid-template-columns:12px 1fr auto 92px;gap:8px;align-items:center;font-size:12.5px;padding:3px 5px;border-radius:7px;cursor:pointer}
+.cat:hover{background:rgba(255,255,255,.04)}.cat i{width:12px;height:12px;border-radius:3px}
+.cat b{font:12px var(--mono);color:var(--dim)}
+.bar{display:flex;height:7px;border-radius:4px;overflow:hidden;background:#141b27}
+.bar s{display:block;height:100%}
+h2{font-size:22px;margin:34px 0 10px;letter-spacing:-.01em}
+h2 small{font-size:13px;color:var(--dim);font-weight:400;margin-left:8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+tbody tr.click{cursor:pointer}tbody tr.click:hover{background:rgba(255,255,255,.03)}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--p1)}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.three .panel p{margin:6px 0 0;font-size:13.5px;color:#c6d0de}
+.three .panel .f{font:12.5px var(--mono);color:var(--gold);margin-top:6px;display:block}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.shots figure{margin:0;background:var(--p1);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.shots img{width:100%;display:block}.shots figcaption{padding:8px 10px;font-size:13px;color:var(--dim)}
+.pass{color:var(--ok);font-weight:700}.fail{color:var(--bad);font-weight:700}
+svg text{font-family:system-ui,sans-serif}
+footer{margin:40px 0 60px;color:var(--dim);font-size:13px}
+@media (max-width:1060px){.stage{grid-template-columns:1fr}#view{aspect-ratio:4/3}.three{grid-template-columns:1fr}.modebar{display:none}}
+</style>
+</head>
+<body>
+<script src="../../../lib/gfx-guard-v3.js"></script>
+<div class="wrap">
+<header>
+  <div class="kick">Demo 78 · segment-sphere/v1 · X3D 4.0 · from the AWS Segment Wheel (Sept 2026)</div>
+  <h1>Segment Sphere: <em>the wheel, wrapped and lifted to S³</em></h1>
+  <p class="lede">The <a href="https://hagopjay.github.io/aws_SegmentWheel/">AWS Segment Wheel</a> lays 301 services on a flat disc.
+  Here the same 301 dots, with the same categories, rings, angles and lifecycle flags, become a ball you can turn, and then a
+  <b>3-sphere</b>: through the Hopf fibration every service becomes a great circle in four dimensions, projected into 3D.
+  Any two of those circles link exactly once, so the catalogue turns into one interlocked chain mail of 45,150 links.
+  One X3D Script morphs all three shapes; nothing is drawn by the page.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="stage">
+  <div id="view">
+    <x3d-canvas id="xite" preserveDrawingBuffer="true" splashScreen="false" notifications="false" timings="false" update="auto" contextMenu="false"></x3d-canvas>
+    <div class="hud" id="vps"></div>
+    <div class="modebar" id="modebar">m = 0.00</div>
+    <div class="modes" role="group" aria-label="Shape"><button data-m="0">Wheel</button><button data-m="1" class="on">Sphere</button><button data-m="2">Hypersphere</button><button id="tour">Tour ▶</button></div>
+    <div id="boot">building 301 services…</div>
+  </div>
+  <div class="side">
+    <div class="panel" id="card"><h3>Service <span class="dim" style="text-transform:none;letter-spacing:0">click a gem, a row, or a lifecycle entry</span></h3>
+      <div class="nm" id="cName">Pick a service</div><div class="meta" id="cMeta"></div><dl class="kv" id="cKV"></dl></div>
+    <div class="panel"><h3>19 categories <span class="dim" style="text-transform:none;letter-spacing:0">bar = GA · preview · closed · sunset; click to fly</span></h3><div class="cats" id="cats"></div></div>
+    <div class="panel"><h3>Reading the shapes</h3><dl class="kv">
+      <dt>wheel</dt><dd>the source page's own geometry: rings at 204/444/684 of 1000, exact angles; lifecycle as depth</dd>
+      <dt>sphere</dt><dd>wedge angle → longitude, so lune area ∝ service count; ring → colatitude 40/90/140°</dd>
+      <dt>radius</dt><dd><span style="color:var(--pre)">preview 1.14R</span> · GA 1.02R · <span style="color:var(--warn)">closed 0.88R</span> · <span style="color:var(--bad)">sunset falls into the core</span></dd>
+      <dt>S³</dt><dd>each service's sphere point (rings re-spaced to θ 35/70/105° so no fiber runs off to infinity at rest) → its Hopf fiber, a great circle in 4D → stereographic projection, soft horizon at 24</dd>
+      <dt>tori</dt><dd>the three rings become three nested tori (fibers over a latitude circle)</dd>
+      <dt>bands</dt><dd>each category lune becomes a twisted band of fibers; gems ride their own circle</dd></dl></div>
+  </div>
+</div>
+
+<h2>One dataset, three shapes <small>the same 301 rows, morphed by one ecmascript Script in the X3D file</small></h2>
+<div class="three">
+  <div class="panel"><h3>m = 0 · Wheel</h3><svg viewBox="0 0 300 120" role="img" aria-label="wheel diagram"><g transform="translate(150 60)" fill="none" stroke-width="1.2"><circle r="14" stroke="#5b667a"/><circle r="30" stroke="#5b667a"/><circle r="46" stroke="#5b667a"/><path d="M0-56A56 56 0 0 1 48-29L39-24A46 46 0 0 0 0-46Z" fill="#4B8DF8" fill-opacity=".5"/><path d="M48-29A56 56 0 0 1 48 29L39 24A46 46 0 0 0 39-24Z" fill="#00B39F" fill-opacity=".5"/><path d="M48 29A56 56 0 0 1-30 47L-25 39A46 46 0 0 0 39 24Z" fill="#FF9900" fill-opacity=".5"/><path d="M-30 47A56 56 0 0 1 0-56L0-46A46 46 0 0 0-25 39Z" fill="#8C52FF" fill-opacity=".5"/></g><text x="8" y="114" fill="#8d99ad" font-size="10">x = r·sin a, y = r·cos a, z = lifecycle depth</text></svg>
+    <p>Faithful to the source SVG: 3 rings, exact angles, wedge widths proportional to counts. Preview floats up 0.6, closed sinks 0.4, sunset sinks 2.6 below the plane.</p></div>
+  <div class="panel"><h3>m = 1 · Segment sphere</h3><svg viewBox="0 0 300 120" role="img" aria-label="sphere diagram"><g transform="translate(150 60)" fill="none" stroke-width="1.2"><circle r="50" stroke="#5b667a"/><ellipse rx="50" ry="14" stroke="#5b667a"/><ellipse rx="50" ry="14" transform="translate(0 -26) scale(.77)" stroke="#5b667a"/><ellipse rx="50" ry="14" transform="translate(0 26) scale(.77)" stroke="#5b667a"/><path d="M0-50C22-40 22 40 0 50" stroke="#4B8DF8" stroke-width="3"/><path d="M0-50C-22-40-22 40 0 50" stroke="#00B39F" stroke-width="3"/><circle r="12" fill="#f2707a" fill-opacity=".35"/></g><text x="8" y="114" fill="#8d99ad" font-size="10">(θ, φ) = (40|90|140°, wheel angle), r = lifecycle</text></svg>
+    <p>A lune's area is 2R²·Δφ, so it is proportional to its wedge angle and to its service count, exactly as on the wheel. The 29 sunset services fall to a red core, with a line from their old slot.</p></div>
+  <div class="panel"><h3>m = 2 · Hopf 3-sphere</h3><svg viewBox="0 0 300 120" role="img" aria-label="Hopf diagram"><g transform="translate(150 60)" fill="none" stroke-width="1.6"><ellipse rx="40" ry="16" stroke="#4B8DF8" transform="rotate(25)"/><ellipse rx="40" ry="16" stroke="#00B39F" transform="translate(18 0) rotate(-35)"/><ellipse rx="40" ry="16" stroke="#FF9900" transform="translate(-16 4) rotate(80)"/><ellipse rx="40" ry="16" stroke="#8C52FF" transform="translate(4 -6) rotate(-80)"/></g><text x="8" y="114" fill="#8d99ad" font-size="10">q(ψ) = (cos½θ·e^{iψ}, sin½θ·e^{i(ψ+φ)}) → x/(1−w)</text></svg>
+    <p>Every point of the sphere has a circle above it in S³ (its fiber). Two fibers always link once: 301 services make C(301,2) = 45,150 linked pairs. An isoclinic 4D rotation tumbles the whole fibration while gems flow along their circles.</p></div>
+</div>
+
+<h2>Lifecycle watch list <small>38 services, from the source page's table; click a row to find it</small></h2>
+<div class="tblwrap"><table><thead><tr><th>Service</th><th>Category</th><th>Status</th><th>Where it lives in 3D</th><th>Note (source page)</th></tr></thead><tbody id="watch"></tbody></table></div>
+
+<h2>Receipts <small>every number names its instrument</small></h2>
+<div class="tblwrap"><table><tbody id="inst"></tbody></table></div>
+
+<h2>Frames <small>X_ITE in headless Chromium, SwiftShader WebGL2</small></h2>
+<div class="shots" id="shots"></div>
+
+<h2>What was and was not tested</h2>
+<div class="tblwrap"><table><tbody id="tested"></tbody></table></div>
+
+<footer>
+  Data: the AWS Segment Wheel by HagopJay (<a href="https://github.com/hagopjay/aws_SegmentWheel">hagopjay/aws_SegmentWheel</a>, compiled September 2026), which follows the AWS product taxonomy.
+  AWS, Amazon and the service names are trademarks of Amazon.com, Inc. or its affiliates; this demo is not affiliated with or endorsed by AWS.
+  See <a href="DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a> for sources and the takedown route. Scene and page CC BY 4.0. X_ITE 16.7.1 (GPL-3.0) vendored in Demo 56.
+</footer>
+</div>
+
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+const D = {};
+window.SEG = { ready: false };
+async function j(p) { const r = await fetch(p); if (!r.ok) throw new Error(p + ' ' + r.status); return r.json(); }
+const ST = { ga: 'generally available', preview: 'preview ◇', closed: 'closed to new customers ◦', sunset: 'end of support / retired †' };
+const WHERE = { preview: 'floats 1.14R above its slot; cyan halo', closed: 'sinks to 0.88R, amber', sunset: 'fallen into the red core; line from its old slot', ga: 'on the surface, 1.02R' };
+const RINGT = [40, 90, 140], RINGH = [35, 70, 105];
+
+function fill() {
+  const S = D.svc, C = S.categories, V = S.services, n = S.counts;
+  const val = D.validate || {}, shots = D.shots || {};
+  const stats = [
+    ['c-ok', n.services, 'services', 'parsed from source index.html'],
+    ['c-vio', n.categories, 'categories → lunes', 'chips + wedges, cross-checked'],
+    ['c-gold', '3', 'rings → 3 nested tori', 'radius 204/444/684 of 1000'],
+    ['c-pre', n.by_status.preview, 'preview ◇', 'source table'],
+    ['c-warn', n.by_status.closed, 'closed ◦', 'source table'],
+    ['c-bad', n.by_status.sunset, 'sunset †', 'source table'],
+    ['c-gold', '45,150', 'linked fiber pairs', 'C(301,2), Hopf linking number 1'],
+    ['c-ok', val.ok ? 'valid' : '…', 'X3D 4.0 XSD + semantic', val.validator ? val.validator.split(' (')[0] : 'x3d_mcp']];
+  $('#stats').innerHTML = stats.map(([c, b, s, i]) => `<div class="stat ${c}"><b>${esc(b)}</b><span>${esc(s)}</span><i>${esc(i)}</i></div>`).join('');
+  $('#cats').innerHTML = C.map((c, ci) => {
+    const mine = V.filter(v => v.cat === ci), k = s => mine.filter(v => v.status === s).length;
+    const seg = [['ga', 'var(--ok)'], ['preview', 'var(--pre)'], ['closed', 'var(--warn)'], ['sunset', 'var(--bad)']].map(([s, col]) => k(s) ? `<s style="width:${100 * k(s) / mine.length}%;background:${col}" title="${s} ${k(s)}"></s>` : '').join('');
+    return `<div class="cat" data-ci="${ci}"><i style="background:${c.color}"></i><span>${esc(c.name)}</span><b>${c.count}</b><span class="bar">${seg}</span></div>`;
+  }).join('');
+  document.querySelectorAll('.cat').forEach(e => e.onclick = () => { const ci = +e.dataset.ci; mode(1); bind('VP_C' + String(ci).padStart(2, '0')); });
+  const watch = V.map((v, i) => [v, i]).filter(([v]) => v.status !== 'ga');
+  $('#watch').innerHTML = watch.map(([v, i]) => `<tr class="click" data-i="${i}"><td><b>${esc(v.full)}</b></td><td><span style="color:${C[v.cat].color}">■</span> ${esc(C[v.cat].name)}</td><td><span class="pill st-${v.status}">${esc(v.status_label)}</span></td><td class="dim">${esc(WHERE[v.status])}</td><td>${esc(v.note)}</td></tr>`).join('');
+  document.querySelectorAll('#watch tr').forEach(r => r.onclick = () => { select(+r.dataset.i); $('#view').scrollIntoView({ behavior: 'smooth' }); });
+  const src = S.source;
+  const inst = [
+    ['Source', `${src.repo} @ ${src.commit.slice(0, 7)}, ${src.file} sha256 ${src.sha256.slice(0, 16)}… (“${src.title}”, compiled ${src.compiled})`],
+    ['Extractor', 'build/extract.py: SVG wedges + rotate() groups + chips + table; asserts 19 wedge colours = chip colours, per-category counts = chips, GA dot colour = wedge colour, 38 flags = 38 table rows'],
+    ['Counts', `${n.services} services · ${n.categories} categories · ring 0/1/2 = ${n.by_ring[0]}/${n.by_ring[1]}/${n.by_ring[2]} · GA ${n.by_status.ga}, preview ${n.by_status.preview}, closed ${n.by_status.closed}, sunset ${n.by_status.sunset}`],
+    ['Duplicate kept', 'Audit Manager appears twice in the source (Management & Governance and Security, Identity & Compliance); both dots are kept'],
+    ['Scene', `assets/segment-sphere.x3d, X3D 4.0 Immersive + Geometry2D 2, Shape 5, Scripting 1; ${(D.validate && D.validate.files ? Math.round(D.validate.files['segment-sphere.x3d'].bytes / 1024) : '?')} KB; full dataset as MetadataSet in WorldInfo`],
+    ['Round trip', D.validate && D.validate.roundtrip ? D.validate.roundtrip.summary : 'see validate-receipt.json'],
+    ['Validator', val.summary || 'see README'],
+    ['Script cost', shots.script_ms ? `${shots.script_ms} (ms per rebuild, Script's own stats_changed, SwiftShader)` : 'measured in shots-receipt.json'],
+    ['Renderer', shots.x_ite ? `X_ITE ${shots.x_ite} in Chromium ${shots.chromium} (Playwright), ${shots.webgl_renderer}` : 'X_ITE 16.7.1, Chromium + SwiftShader WebGL2']];
+  $('#inst').innerHTML = inst.map(([a, b]) => `<tr><td style="white-space:nowrap" class="dim">${esc(a)}</td><td class="mono">${esc(b)}</td></tr>`).join('');
+  const tested = [
+    ['Tested', 'Extraction asserts against the source page (counts, colours, table join); round trip: the X3D MetadataSet parsed back equals data/services.json'],
+    ['Tested', 'X3D 4.0 XSD + semantic checks (x3d_mcp validator); loaded in X_ITE 16.7.1, all three shapes and the tour, 0 console errors expected (see shots receipt)'],
+    ['Tested', 'Picking: a gem click selects the nearest service by the Script (shots receipt logs the selection round trip)'],
+    ['Not tested', 'Real GPUs: every frame here is SwiftShader. On a blocklisted Intel UHD 620 Chrome still offers WebGL2, which is all X_ITE needs (no WebGPU path)'],
+    ['Not tested', 'Castle, Babylon, three.js or any X3D browser without ecmascript: they get the static sphere state written in the file, without the morph'],
+    ['Not checked', 'Whether each lifecycle status is still current at AWS: this demo shows the source page as compiled in September 2026, it does not re-verify AWS announcements']];
+  $('#tested').innerHTML = tested.map(([a, b]) => `<tr><td class="${a === 'Tested' ? 'pass' : 'fail'}" style="white-space:nowrap">${a}</td><td>${esc(b)}</td></tr>`).join('');
+  const sh = [['00-hero', 'Hero: the segment sphere, 19 lunes, 272 names on the surface, the red core of sunset services'], ['01-wheel', 'm = 0: the source wheel in 3D, lifecycle as depth'],
+    ['02-morph', 'Half way: the wheel closing into the sphere'], ['03-hopf', 'm = 2: 301 Hopf fibers, three nested tori, gems flowing'], ['04-hopf-tumble', 'The isoclinic 4D tumble'],
+    ['05-core', 'Inside: the graveyard core of 29 sunset services'], ['06-category', 'A category close-up: AI & Machine Learning'], ['07-select', 'A picked service with its card']];
+  $('#shots').innerHTML = sh.map(([f, c]) => `<figure><img src="shots/${f}.webp" alt="${esc(c)}" loading="lazy" onerror="this.parentNode.style.display='none'"><figcaption>${esc(c)}</figcaption></figure>`).join('');
+}
+
+function card(i) {
+  const S = D.svc, v = S.services[i];
+  if (!v) { $('#cName').textContent = 'Pick a service'; $('#cMeta').innerHTML = ''; $('#cKV').innerHTML = ''; return; }
+  const c = S.categories[v.cat];
+  $('#cName').innerHTML = `<span style="color:${c.color}">●</span> ${esc(v.full || v.name)}`;
+  $('#cMeta').innerHTML = `<span class="pill st-${v.status}">${esc(ST[v.status])}</span><span class="pill">${esc(c.name)}</span><span class="pill">ring ${v.ring}</span>`;
+  const kv = [['wheel', `angle ${v.angle.toFixed(2)}°, radius ${[204, 444, 684][v.ring]}/1000`], ['sphere', `θ ${RINGT[v.ring]}°, φ ${v.angle.toFixed(2)}°`],
+    ['S³ fiber', `over (θ, φ) = (${RINGH[v.ring]}°, ${v.angle.toFixed(1)}°); links all 300 others once`], ['3D', WHERE[v.status]]];
+  if (v.note) kv.push(['note', v.note]);
+  $('#cKV').innerHTML = kv.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('');
+}
+
+let browser, scene, morph, tourT = null;
+function bind(d) { try { scene.getNamedNode(d).set_bind = true; document.querySelectorAll('#vps .btn').forEach(b => b.classList.toggle('on', b.dataset.vp === d)); } catch (e) { console.warn(e); } }
+function mode(m, jump) { try { if (jump) morph.set_jump = m; else morph.set_mode = m; } catch (e) { console.warn(e); } document.querySelectorAll('.modes [data-m]').forEach(b => b.classList.toggle('on', +b.dataset.m === m)); window.SEG.target = m; }
+function select(i) { try { morph.set_select = i; } catch (e) { console.warn(e); } card(i); }
+function tour(on) {
+  clearTimeout(tourT); $('#tour').classList.toggle('on', on); if (!on) return;
+  const steps = [[0, 'VP_Wheel', 7000], [1, 'VP_Sphere', 9000], [1, 'VP_Core', 6000], [1, 'VP_C02', 6000], [2, 'VP_Hopf', 14000], [1, 'VP_Sphere', 6000]];
+  let k = 0; const go = () => { const [m, vp, t] = steps[k++ % steps.length]; mode(m); bind(vp); tourT = setTimeout(go, t); }; go();
+}
+Object.assign(window.SEG, { bind, mode, select, tour });
+
+async function boot() {
+  D.svc = await j('data/services.json');
+  try { D.validate = await j('assets/validate-receipt.json'); } catch (e) { /* optional */ }
+  try { D.shots = await j('shots/shots-receipt.json'); } catch (e) { /* optional */ }
+  fill(); card(-1);
+  if (!GfxGuard.require({ api: 'webgl2', bootId: 'boot', timeoutMs: 30000, title: 'Segment Sphere', still: 'shots/00-hero.webp', stillAlt: 'The segment sphere' })) return;
+  const guard = GfxGuard.pane('x_ite', { host: 'view', timeoutMs: 40000, title: 'The X_ITE view', onRetry: () => location.reload() });
+  try {
+    browser = X3D.getBrowser('#xite');
+    await browser.loadURL(new X3D.MFString('assets/segment-sphere.x3d'));
+    scene = browser.currentScene; morph = scene.getNamedNode('Morph');
+    morph.addFieldCallback('page', 'selected_changed', v => { card(v); window.SEG.selected = v; });
+    morph.addFieldCallback('page', 'mode_changed', v => { $('#modebar').textContent = `m = ${v.toFixed(2)}  ·  ${v < 0.5 ? 'wheel' : v < 1.5 ? 'segment sphere' : 'Hopf 3-sphere, stereographic'}`; window.SEG.m = v; });
+    morph.addFieldCallback('page', 'stats_changed', v => { window.SEG.scriptMs = v; });
+    const vps = [['VP_Sphere', 'Sphere'], ['VP_Wheel', 'Wheel face-on'], ['VP_Pole', 'Pole'], ['VP_Core', 'Core'], ['VP_Hopf', 'S³ wide']];
+    $('#vps').innerHTML = vps.map(([d, t]) => `<button class="btn${d === 'VP_Sphere' ? ' on' : ''}" data-vp="${d}">${t}</button>`).join('');
+    document.querySelectorAll('#vps .btn').forEach(b => b.onclick = () => bind(b.dataset.vp));
+    document.querySelectorAll('.modes [data-m]').forEach(b => b.onclick = () => { tour(false); const m = +b.dataset.m; mode(m); bind(m === 0 ? 'VP_Wheel' : m === 2 ? 'VP_Hopf' : 'VP_Sphere'); });
+    $('#tour').onclick = () => tour(!$('#tour').classList.contains('on'));
+    guard.ready(); GfxGuard.ready(); $('#boot').classList.add('done');
+    window.SEG.ready = true;
+  } catch (e) { console.error(e); guard.fail(e.message || String(e)); }
+}
+boot().catch(e => { console.error(e); $('#boot').textContent = 'could not load: ' + e.message; });
+</script>
+</body>
+</html>

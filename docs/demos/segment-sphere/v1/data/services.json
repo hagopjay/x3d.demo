@@ -1,0 +1,2405 @@
+{
+ "source": {
+  "repo": "https://github.com/hagopjay/aws_SegmentWheel",
+  "live": "https://hagopjay.github.io/aws_SegmentWheel/",
+  "commit": "cd8860450d4ad05cdfdefa1876b6d3d24ee3a851",
+  "file": "index.html",
+  "sha256": "28865e098ca8fb90d6e5b1d5644a367d76ec6e087e77637b65b5b9d7757ace2b",
+  "title": "AWS Cloud Services Cheat Sheet",
+  "compiled": "September 2026",
+  "footer": "Categories follow the AWS product taxonomy (aws.amazon.com/products). Lifecycle status reflects AWS service-availability announcements through the 2024–2026 maintenance and sunset waves; \"closed to new customers\" means existing customers keep running the service. Layout is an original rendering, not affiliated with AWS or ByteByteGo."
+ },
+ "counts": {
+  "services": 301,
+  "categories": 19,
+  "watch": 38,
+  "by_status": {
+   "ga": 263,
+   "closed": 5,
+   "sunset": 29,
+   "preview": 4
+  },
+  "by_ring": {
+   "0": 59,
+   "1": 99,
+   "2": 143
+  }
+ },
+ "categories": [
+  {
+   "name": "Analytics",
+   "color": "#4B8DF8",
+   "count": 22,
+   "a0": 349.1762,
+   "a1": 10.8238,
+   "span": 21.6477
+  },
+  {
+   "name": "Application Integration",
+   "color": "#8C52FF",
+   "count": 10,
+   "a0": 10.8238,
+   "a1": 27.2092,
+   "span": 16.3854
+  },
+  {
+   "name": "AI & Machine Learning",
+   "color": "#00B39F",
+   "count": 30,
+   "a0": 27.2092,
+   "a1": 52.3655,
+   "span": 25.1563
+  },
+  {
+   "name": "Business Applications",
+   "color": "#FF6B9D",
+   "count": 10,
+   "a0": 52.3655,
+   "a1": 68.751,
+   "span": 16.3855
+  },
+  {
+   "name": "Cloud Financial Management",
+   "color": "#FF9900",
+   "count": 12,
+   "a0": 68.751,
+   "a1": 86.013,
+   "span": 17.262
+  },
+  {
+   "name": "Compute",
+   "color": "#EC407A",
+   "count": 17,
+   "a0": 86.013,
+   "a1": 105.4685,
+   "span": 19.4555
+  },
+  {
+   "name": "Containers",
+   "color": "#F2506E",
+   "count": 11,
+   "a0": 105.4685,
+   "a1": 122.2925,
+   "span": 16.8239
+  },
+  {
+   "name": "Database",
+   "color": "#C154C1",
+   "count": 15,
+   "a0": 122.2925,
+   "a1": 140.8702,
+   "span": 18.5778
+  },
+  {
+   "name": "Developer Tools",
+   "color": "#2E86FF",
+   "count": 20,
+   "a0": 140.8702,
+   "a1": 161.641,
+   "span": 20.7707
+  },
+  {
+   "name": "End User Computing",
+   "color": "#6C5CE7",
+   "count": 7,
+   "a0": 161.641,
+   "a1": 176.7111,
+   "span": 15.0702
+  },
+  {
+   "name": "Front-End Web & Mobile",
+   "color": "#00C2A8",
+   "count": 4,
+   "a0": 176.7111,
+   "a1": 190.4652,
+   "span": 13.7541
+  },
+  {
+   "name": "Internet of Things",
+   "color": "#00A88F",
+   "count": 14,
+   "a0": 190.4652,
+   "a1": 208.6046,
+   "span": 18.1394
+  },
+  {
+   "name": "Management & Governance",
+   "color": "#00A3E0",
+   "count": 25,
+   "a0": 208.6046,
+   "a1": 231.5684,
+   "span": 22.9638
+  },
+  {
+   "name": "Media Services",
+   "color": "#F76B15",
+   "count": 12,
+   "a0": 231.5684,
+   "a1": 248.8305,
+   "span": 17.2621
+  },
+  {
+   "name": "Migration & Modernization",
+   "color": "#F58536",
+   "count": 14,
+   "a0": 248.8305,
+   "a1": 266.9699,
+   "span": 18.1394
+  },
+  {
+   "name": "Networking & Content Delivery",
+   "color": "#7B61FF",
+   "count": 22,
+   "a0": 266.9699,
+   "a1": 288.6181,
+   "span": 21.6482
+  },
+  {
+   "name": "Security, Identity & Compliance",
+   "color": "#5A4FE0",
+   "count": 31,
+   "a0": 288.6181,
+   "a1": 314.2124,
+   "span": 25.5943
+  },
+  {
+   "name": "Storage",
+   "color": "#F5A623",
+   "count": 15,
+   "a0": 314.2124,
+   "a1": 332.7908,
+   "span": 18.5784
+  },
+  {
+   "name": "Emerging & Specialized",
+   "color": "#00BFA6",
+   "count": 10,
+   "a0": 332.7908,
+   "a1": 349.1762,
+   "span": 16.3854
+  }
+ ],
+ "services": [
+  {
+   "name": "Athena",
+   "cat": 0,
+   "ring": 0,
+   "angle": 352.557,
+   "status": "ga"
+  },
+  {
+   "name": "Redshift",
+   "cat": 0,
+   "ring": 0,
+   "angle": 357.519,
+   "status": "ga"
+  },
+  {
+   "name": "EMR",
+   "cat": 0,
+   "ring": 0,
+   "angle": 2.481,
+   "status": "ga"
+  },
+  {
+   "name": "OpenSearch",
+   "cat": 0,
+   "ring": 0,
+   "angle": 7.443,
+   "status": "ga"
+  },
+  {
+   "name": "Kinesis",
+   "cat": 0,
+   "ring": 1,
+   "angle": 351.494,
+   "status": "ga"
+  },
+  {
+   "name": "Data Firehose",
+   "cat": 0,
+   "ring": 1,
+   "angle": 354.329,
+   "status": "ga"
+  },
+  {
+   "name": "Apache Flink",
+   "cat": 0,
+   "ring": 1,
+   "angle": 357.165,
+   "status": "ga"
+  },
+  {
+   "name": "MSK",
+   "cat": 0,
+   "ring": 1,
+   "angle": 0.0,
+   "status": "ga"
+  },
+  {
+   "name": "Glue",
+   "cat": 0,
+   "ring": 1,
+   "angle": 2.835,
+   "status": "ga"
+  },
+  {
+   "name": "DataBrew",
+   "cat": 0,
+   "ring": 1,
+   "angle": 5.671,
+   "status": "ga"
+  },
+  {
+   "name": "Lake Formation",
+   "cat": 0,
+   "ring": 1,
+   "angle": 8.506,
+   "status": "ga"
+  },
+  {
+   "name": "Quick Suite",
+   "cat": 0,
+   "ring": 2,
+   "angle": 350.978,
+   "status": "ga"
+  },
+  {
+   "name": "QuickSight",
+   "cat": 0,
+   "ring": 2,
+   "angle": 352.783,
+   "status": "ga"
+  },
+  {
+   "name": "MWAA",
+   "cat": 0,
+   "ring": 2,
+   "angle": 354.587,
+   "status": "ga"
+  },
+  {
+   "name": "DataZone",
+   "cat": 0,
+   "ring": 2,
+   "angle": 356.391,
+   "status": "ga"
+  },
+  {
+   "name": "SageMaker Lakehouse",
+   "cat": 0,
+   "ring": 2,
+   "angle": 358.196,
+   "status": "ga"
+  },
+  {
+   "name": "Data Exchange",
+   "cat": 0,
+   "ring": 2,
+   "angle": 0.0,
+   "status": "ga"
+  },
+  {
+   "name": "Clean Rooms",
+   "cat": 0,
+   "ring": 2,
+   "angle": 1.804,
+   "status": "ga"
+  },
+  {
+   "name": "Entity Resolution",
+   "cat": 0,
+   "ring": 2,
+   "angle": 3.609,
+   "status": "ga"
+  },
+  {
+   "name": "CloudSearch",
+   "cat": 0,
+   "ring": 2,
+   "angle": 5.413,
+   "status": "closed",
+   "full": "Amazon CloudSearch",
+   "note": "Managed search service; migrate to OpenSearch Service.",
+   "status_label": "Closed to new customers"
+  },
+  {
+   "name": "Data Pipeline",
+   "cat": 0,
+   "ring": 2,
+   "angle": 7.217,
+   "status": "closed",
+   "full": "AWS Data Pipeline",
+   "note": "Legacy data workflow orchestration; use Glue, Step Functions or MWAA.",
+   "status_label": "Closed to new customers"
+  },
+  {
+   "name": "FinSpace",
+   "cat": 0,
+   "ring": 2,
+   "angle": 9.022,
+   "status": "sunset",
+   "full": "Amazon FinSpace",
+   "note": "Analytics data management for financial services.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "EventBridge",
+   "cat": 1,
+   "ring": 0,
+   "angle": 15.37,
+   "status": "ga"
+  },
+  {
+   "name": "SQS",
+   "cat": 1,
+   "ring": 0,
+   "angle": 22.663,
+   "status": "ga"
+  },
+  {
+   "name": "SNS",
+   "cat": 1,
+   "ring": 1,
+   "angle": 14.155,
+   "status": "ga"
+  },
+  {
+   "name": "Step Functions",
+   "cat": 1,
+   "ring": 1,
+   "angle": 19.017,
+   "status": "ga"
+  },
+  {
+   "name": "MQ",
+   "cat": 1,
+   "ring": 1,
+   "angle": 23.878,
+   "status": "ga"
+  },
+  {
+   "name": "AppSync",
+   "cat": 1,
+   "ring": 2,
+   "angle": 13.182,
+   "status": "ga"
+  },
+  {
+   "name": "AppFlow",
+   "cat": 1,
+   "ring": 2,
+   "angle": 16.1,
+   "status": "ga"
+  },
+  {
+   "name": "SWF",
+   "cat": 1,
+   "ring": 2,
+   "angle": 19.017,
+   "status": "ga"
+  },
+  {
+   "name": "B2B Data Interchange",
+   "cat": 1,
+   "ring": 2,
+   "angle": 21.934,
+   "status": "ga"
+  },
+  {
+   "name": "Infrastructure Composer",
+   "cat": 1,
+   "ring": 2,
+   "angle": 24.851,
+   "status": "ga"
+  },
+  {
+   "name": "Bedrock",
+   "cat": 2,
+   "ring": 0,
+   "angle": 30.056,
+   "status": "ga"
+  },
+  {
+   "name": "Bedrock AgentCore",
+   "cat": 2,
+   "ring": 0,
+   "angle": 33.948,
+   "status": "ga"
+  },
+  {
+   "name": "SageMaker AI",
+   "cat": 2,
+   "ring": 0,
+   "angle": 37.841,
+   "status": "ga"
+  },
+  {
+   "name": "SageMaker Unified Studio",
+   "cat": 2,
+   "ring": 0,
+   "angle": 41.734,
+   "status": "ga"
+  },
+  {
+   "name": "SageMaker HyperPod",
+   "cat": 2,
+   "ring": 0,
+   "angle": 45.626,
+   "status": "ga"
+  },
+  {
+   "name": "Nova",
+   "cat": 2,
+   "ring": 0,
+   "angle": 49.519,
+   "status": "ga"
+  },
+  {
+   "name": "Nova Act",
+   "cat": 2,
+   "ring": 1,
+   "angle": 29.277,
+   "status": "ga"
+  },
+  {
+   "name": "Nova Forge",
+   "cat": 2,
+   "ring": 1,
+   "angle": 31.613,
+   "status": "ga"
+  },
+  {
+   "name": "Q Developer",
+   "cat": 2,
+   "ring": 1,
+   "angle": 33.948,
+   "status": "ga"
+  },
+  {
+   "name": "Q Business",
+   "cat": 2,
+   "ring": 1,
+   "angle": 36.284,
+   "status": "sunset",
+   "full": "Amazon Q Business",
+   "note": "Enterprise generative-AI assistant grounded in your company data.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Kiro",
+   "cat": 2,
+   "ring": 1,
+   "angle": 38.62,
+   "status": "ga"
+  },
+  {
+   "name": "Comprehend",
+   "cat": 2,
+   "ring": 1,
+   "angle": 40.955,
+   "status": "ga"
+  },
+  {
+   "name": "Textract",
+   "cat": 2,
+   "ring": 1,
+   "angle": 43.291,
+   "status": "ga"
+  },
+  {
+   "name": "Rekognition",
+   "cat": 2,
+   "ring": 1,
+   "angle": 45.626,
+   "status": "ga"
+  },
+  {
+   "name": "Transcribe",
+   "cat": 2,
+   "ring": 1,
+   "angle": 47.962,
+   "status": "ga"
+  },
+  {
+   "name": "Polly",
+   "cat": 2,
+   "ring": 1,
+   "angle": 50.298,
+   "status": "ga"
+  },
+  {
+   "name": "Translate",
+   "cat": 2,
+   "ring": 2,
+   "angle": 28.943,
+   "status": "ga"
+  },
+  {
+   "name": "Lex",
+   "cat": 2,
+   "ring": 2,
+   "angle": 30.612,
+   "status": "ga"
+  },
+  {
+   "name": "Personalize",
+   "cat": 2,
+   "ring": 2,
+   "angle": 32.28,
+   "status": "ga"
+  },
+  {
+   "name": "Fraud Detector",
+   "cat": 2,
+   "ring": 2,
+   "angle": 33.948,
+   "status": "ga"
+  },
+  {
+   "name": "Augmented AI",
+   "cat": 2,
+   "ring": 2,
+   "angle": 35.617,
+   "status": "ga"
+  },
+  {
+   "name": "Kendra",
+   "cat": 2,
+   "ring": 2,
+   "angle": 37.285,
+   "status": "sunset",
+   "full": "Amazon Kendra",
+   "note": "ML-powered enterprise search across connected content sources.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "HealthLake",
+   "cat": 2,
+   "ring": 2,
+   "angle": 38.953,
+   "status": "ga"
+  },
+  {
+   "name": "HealthOmics",
+   "cat": 2,
+   "ring": 2,
+   "angle": 40.622,
+   "status": "ga"
+  },
+  {
+   "name": "Trainium",
+   "cat": 2,
+   "ring": 2,
+   "angle": 42.29,
+   "status": "ga"
+  },
+  {
+   "name": "Inferentia",
+   "cat": 2,
+   "ring": 2,
+   "angle": 43.958,
+   "status": "ga"
+  },
+  {
+   "name": "Bedrock Marketplace",
+   "cat": 2,
+   "ring": 2,
+   "angle": 45.626,
+   "status": "ga"
+  },
+  {
+   "name": "Forecast",
+   "cat": 2,
+   "ring": 2,
+   "angle": 47.295,
+   "status": "closed",
+   "full": "Amazon Forecast",
+   "note": "Time-series forecasting; use SageMaker Canvas instead.",
+   "status_label": "Closed to new customers"
+  },
+  {
+   "name": "Lookout for Equipment",
+   "cat": 2,
+   "ring": 2,
+   "angle": 48.963,
+   "status": "sunset",
+   "full": "Amazon Lookout for Equipment",
+   "note": "Industrial equipment anomaly detection.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Lookout for Metrics",
+   "cat": 2,
+   "ring": 2,
+   "angle": 50.631,
+   "status": "sunset",
+   "full": "Amazon Lookout for Metrics",
+   "note": "Automated anomaly detection in business metrics.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Connect",
+   "cat": 3,
+   "ring": 0,
+   "angle": 56.912,
+   "status": "ga"
+  },
+  {
+   "name": "SES",
+   "cat": 3,
+   "ring": 0,
+   "angle": 64.204,
+   "status": "ga"
+  },
+  {
+   "name": "End User Messaging",
+   "cat": 3,
+   "ring": 1,
+   "angle": 55.696,
+   "status": "ga"
+  },
+  {
+   "name": "Chime SDK",
+   "cat": 3,
+   "ring": 1,
+   "angle": 60.558,
+   "status": "ga"
+  },
+  {
+   "name": "Wickr",
+   "cat": 3,
+   "ring": 1,
+   "angle": 65.42,
+   "status": "ga"
+  },
+  {
+   "name": "Supply Chain",
+   "cat": 3,
+   "ring": 2,
+   "angle": 54.724,
+   "status": "ga"
+  },
+  {
+   "name": "AppFabric",
+   "cat": 3,
+   "ring": 2,
+   "angle": 57.641,
+   "status": "ga"
+  },
+  {
+   "name": "App Studio",
+   "cat": 3,
+   "ring": 2,
+   "angle": 60.558,
+   "status": "ga"
+  },
+  {
+   "name": "Pinpoint",
+   "cat": 3,
+   "ring": 2,
+   "angle": 63.475,
+   "status": "sunset",
+   "full": "Amazon Pinpoint",
+   "note": "Customer engagement campaigns; moving to Connect and SES.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "WorkMail",
+   "cat": 3,
+   "ring": 2,
+   "angle": 66.392,
+   "status": "sunset",
+   "full": "Amazon WorkMail",
+   "note": "Managed business email and calendaring.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Billing & Cost Mgmt",
+   "cat": 4,
+   "ring": 0,
+   "angle": 73.516,
+   "status": "ga"
+  },
+  {
+   "name": "Cost Explorer",
+   "cat": 4,
+   "ring": 0,
+   "angle": 81.248,
+   "status": "ga"
+  },
+  {
+   "name": "Budgets",
+   "cat": 4,
+   "ring": 1,
+   "angle": 71.584,
+   "status": "ga"
+  },
+  {
+   "name": "Cost & Usage Report",
+   "cat": 4,
+   "ring": 1,
+   "angle": 75.449,
+   "status": "ga"
+  },
+  {
+   "name": "Cost Anomaly Detection",
+   "cat": 4,
+   "ring": 1,
+   "angle": 79.315,
+   "status": "ga"
+  },
+  {
+   "name": "Cost Optimization Hub",
+   "cat": 4,
+   "ring": 1,
+   "angle": 83.18,
+   "status": "ga"
+  },
+  {
+   "name": "Compute Optimizer",
+   "cat": 4,
+   "ring": 2,
+   "angle": 70.939,
+   "status": "ga"
+  },
+  {
+   "name": "Savings Plans",
+   "cat": 4,
+   "ring": 2,
+   "angle": 73.516,
+   "status": "ga"
+  },
+  {
+   "name": "RI Reporting",
+   "cat": 4,
+   "ring": 2,
+   "angle": 76.094,
+   "status": "ga"
+  },
+  {
+   "name": "Billing Conductor",
+   "cat": 4,
+   "ring": 2,
+   "angle": 78.671,
+   "status": "ga"
+  },
+  {
+   "name": "Pricing Calculator",
+   "cat": 4,
+   "ring": 2,
+   "angle": 81.248,
+   "status": "ga"
+  },
+  {
+   "name": "Marketplace",
+   "cat": 4,
+   "ring": 2,
+   "angle": 83.825,
+   "status": "ga"
+  },
+  {
+   "name": "EC2",
+   "cat": 5,
+   "ring": 0,
+   "angle": 89.856,
+   "status": "ga"
+  },
+  {
+   "name": "EC2 Auto Scaling",
+   "cat": 5,
+   "ring": 0,
+   "angle": 95.741,
+   "status": "ga"
+  },
+  {
+   "name": "Spot Instances",
+   "cat": 5,
+   "ring": 0,
+   "angle": 101.626,
+   "status": "ga"
+  },
+  {
+   "name": "Image Builder",
+   "cat": 5,
+   "ring": 1,
+   "angle": 88.385,
+   "status": "ga"
+  },
+  {
+   "name": "Lambda",
+   "cat": 5,
+   "ring": 1,
+   "angle": 91.327,
+   "status": "ga"
+  },
+  {
+   "name": "Batch",
+   "cat": 5,
+   "ring": 1,
+   "angle": 94.27,
+   "status": "ga"
+  },
+  {
+   "name": "Lightsail",
+   "cat": 5,
+   "ring": 1,
+   "angle": 97.212,
+   "status": "ga"
+  },
+  {
+   "name": "Elastic Beanstalk",
+   "cat": 5,
+   "ring": 1,
+   "angle": 100.155,
+   "status": "ga"
+  },
+  {
+   "name": "App Runner",
+   "cat": 5,
+   "ring": 1,
+   "angle": 103.097,
+   "status": "sunset",
+   "full": "AWS App Runner",
+   "note": "Run containerized web apps and APIs with no infrastructure work.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Outposts",
+   "cat": 5,
+   "ring": 2,
+   "angle": 88.017,
+   "status": "ga"
+  },
+  {
+   "name": "Local Zones",
+   "cat": 5,
+   "ring": 2,
+   "angle": 90.224,
+   "status": "ga"
+  },
+  {
+   "name": "Wavelength",
+   "cat": 5,
+   "ring": 2,
+   "angle": 92.431,
+   "status": "ga"
+  },
+  {
+   "name": "Nitro Enclaves",
+   "cat": 5,
+   "ring": 2,
+   "angle": 94.637,
+   "status": "ga"
+  },
+  {
+   "name": "Graviton",
+   "cat": 5,
+   "ring": 2,
+   "angle": 96.844,
+   "status": "ga"
+  },
+  {
+   "name": "ParallelCluster",
+   "cat": 5,
+   "ring": 2,
+   "angle": 99.051,
+   "status": "ga"
+  },
+  {
+   "name": "Parallel Computing",
+   "cat": 5,
+   "ring": 2,
+   "angle": 101.258,
+   "status": "ga"
+  },
+  {
+   "name": "AI Factories",
+   "cat": 5,
+   "ring": 2,
+   "angle": 103.465,
+   "status": "ga"
+  },
+  {
+   "name": "ECS",
+   "cat": 6,
+   "ring": 0,
+   "angle": 110.124,
+   "status": "ga"
+  },
+  {
+   "name": "EKS",
+   "cat": 6,
+   "ring": 0,
+   "angle": 117.636,
+   "status": "ga"
+  },
+  {
+   "name": "ECR",
+   "cat": 6,
+   "ring": 1,
+   "angle": 108.246,
+   "status": "ga"
+  },
+  {
+   "name": "Fargate",
+   "cat": 6,
+   "ring": 1,
+   "angle": 112.002,
+   "status": "ga"
+  },
+  {
+   "name": "EKS Anywhere",
+   "cat": 6,
+   "ring": 1,
+   "angle": 115.758,
+   "status": "ga"
+  },
+  {
+   "name": "ECS Anywhere",
+   "cat": 6,
+   "ring": 1,
+   "angle": 119.514,
+   "status": "ga"
+  },
+  {
+   "name": "ROSA",
+   "cat": 6,
+   "ring": 2,
+   "angle": 107.871,
+   "status": "ga"
+  },
+  {
+   "name": "EKS Distro",
+   "cat": 6,
+   "ring": 2,
+   "angle": 110.876,
+   "status": "ga"
+  },
+  {
+   "name": "Copilot CLI",
+   "cat": 6,
+   "ring": 2,
+   "angle": 113.88,
+   "status": "ga"
+  },
+  {
+   "name": "App2Container",
+   "cat": 6,
+   "ring": 2,
+   "angle": 116.885,
+   "status": "ga"
+  },
+  {
+   "name": "App Mesh",
+   "cat": 6,
+   "ring": 2,
+   "angle": 119.89,
+   "status": "sunset",
+   "full": "AWS App Mesh",
+   "note": "Service mesh; migrate to ECS Service Connect or VPC Lattice.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "RDS",
+   "cat": 7,
+   "ring": 0,
+   "angle": 125.989,
+   "status": "ga"
+  },
+  {
+   "name": "Aurora",
+   "cat": 7,
+   "ring": 0,
+   "angle": 131.581,
+   "status": "ga"
+  },
+  {
+   "name": "Aurora DSQL",
+   "cat": 7,
+   "ring": 0,
+   "angle": 137.174,
+   "status": "ga"
+  },
+  {
+   "name": "DynamoDB",
+   "cat": 7,
+   "ring": 1,
+   "angle": 124.87,
+   "status": "ga"
+  },
+  {
+   "name": "ElastiCache",
+   "cat": 7,
+   "ring": 1,
+   "angle": 128.226,
+   "status": "ga"
+  },
+  {
+   "name": "MemoryDB",
+   "cat": 7,
+   "ring": 1,
+   "angle": 131.581,
+   "status": "ga"
+  },
+  {
+   "name": "DocumentDB",
+   "cat": 7,
+   "ring": 1,
+   "angle": 134.937,
+   "status": "ga"
+  },
+  {
+   "name": "Keyspaces",
+   "cat": 7,
+   "ring": 1,
+   "angle": 138.293,
+   "status": "ga"
+  },
+  {
+   "name": "Neptune",
+   "cat": 7,
+   "ring": 2,
+   "angle": 124.391,
+   "status": "ga"
+  },
+  {
+   "name": "Neptune Analytics",
+   "cat": 7,
+   "ring": 2,
+   "angle": 126.788,
+   "status": "ga"
+  },
+  {
+   "name": "Timestream",
+   "cat": 7,
+   "ring": 2,
+   "angle": 129.185,
+   "status": "ga"
+  },
+  {
+   "name": "Oracle Database@AWS",
+   "cat": 7,
+   "ring": 2,
+   "angle": 131.581,
+   "status": "ga"
+  },
+  {
+   "name": "RDS Proxy",
+   "cat": 7,
+   "ring": 2,
+   "angle": 133.978,
+   "status": "ga"
+  },
+  {
+   "name": "SimpleDB",
+   "cat": 7,
+   "ring": 2,
+   "angle": 136.375,
+   "status": "closed",
+   "full": "Amazon SimpleDB",
+   "note": "Original AWS NoSQL store; use DynamoDB instead.",
+   "status_label": "Closed to new customers"
+  },
+  {
+   "name": "QLDB",
+   "cat": 7,
+   "ring": 2,
+   "angle": 138.772,
+   "status": "sunset",
+   "full": "Amazon Quantum Ledger Database",
+   "note": "Immutable ledger database; migrate to Aurora PostgreSQL.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "CLI",
+   "cat": 8,
+   "ring": 0,
+   "angle": 144.142,
+   "status": "ga"
+  },
+  {
+   "name": "CloudShell",
+   "cat": 8,
+   "ring": 0,
+   "angle": 148.884,
+   "status": "ga"
+  },
+  {
+   "name": "SDKs",
+   "cat": 8,
+   "ring": 0,
+   "angle": 153.627,
+   "status": "ga"
+  },
+  {
+   "name": "CDK",
+   "cat": 8,
+   "ring": 0,
+   "angle": 158.37,
+   "status": "ga"
+  },
+  {
+   "name": "SAM",
+   "cat": 8,
+   "ring": 1,
+   "angle": 143.125,
+   "status": "ga"
+  },
+  {
+   "name": "CodeBuild",
+   "cat": 8,
+   "ring": 1,
+   "angle": 145.836,
+   "status": "ga"
+  },
+  {
+   "name": "CodeDeploy",
+   "cat": 8,
+   "ring": 1,
+   "angle": 148.546,
+   "status": "ga"
+  },
+  {
+   "name": "CodePipeline",
+   "cat": 8,
+   "ring": 1,
+   "angle": 151.256,
+   "status": "ga"
+  },
+  {
+   "name": "CodeArtifact",
+   "cat": 8,
+   "ring": 1,
+   "angle": 153.966,
+   "status": "ga"
+  },
+  {
+   "name": "CodeCommit",
+   "cat": 8,
+   "ring": 1,
+   "angle": 156.676,
+   "status": "ga"
+  },
+  {
+   "name": "CodeCatalyst",
+   "cat": 8,
+   "ring": 1,
+   "angle": 159.386,
+   "status": "ga"
+  },
+  {
+   "name": "CodeGuru",
+   "cat": 8,
+   "ring": 2,
+   "angle": 142.824,
+   "status": "ga"
+  },
+  {
+   "name": "X-Ray",
+   "cat": 8,
+   "ring": 2,
+   "angle": 144.932,
+   "status": "ga"
+  },
+  {
+   "name": "Fault Injection",
+   "cat": 8,
+   "ring": 2,
+   "angle": 147.04,
+   "status": "ga"
+  },
+  {
+   "name": "Device Farm",
+   "cat": 8,
+   "ring": 2,
+   "angle": 149.148,
+   "status": "ga"
+  },
+  {
+   "name": "Cloud Control API",
+   "cat": 8,
+   "ring": 2,
+   "angle": 151.256,
+   "status": "ga"
+  },
+  {
+   "name": "Serverless App Repo",
+   "cat": 8,
+   "ring": 2,
+   "angle": 153.364,
+   "status": "ga"
+  },
+  {
+   "name": "DevOps Agent",
+   "cat": 8,
+   "ring": 2,
+   "angle": 155.472,
+   "status": "preview",
+   "full": "AWS DevOps Agent",
+   "note": "Autonomous agent for incident response and reliability work.",
+   "status_label": "Preview"
+  },
+  {
+   "name": "Cloud9",
+   "cat": 8,
+   "ring": 2,
+   "angle": 157.579,
+   "status": "closed",
+   "full": "AWS Cloud9",
+   "note": "Browser IDE; use AWS IDE Toolkits, Kiro or CloudShell.",
+   "status_label": "Closed to new customers"
+  },
+  {
+   "name": "Proton",
+   "cat": 8,
+   "ring": 2,
+   "angle": 159.687,
+   "status": "sunset",
+   "full": "AWS Proton",
+   "note": "Platform-team templates; use CloudFormation Git sync.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "WorkSpaces",
+   "cat": 9,
+   "ring": 0,
+   "angle": 165.859,
+   "status": "ga"
+  },
+  {
+   "name": "WorkSpaces Core",
+   "cat": 9,
+   "ring": 0,
+   "angle": 172.494,
+   "status": "ga"
+  },
+  {
+   "name": "Secure Browser",
+   "cat": 9,
+   "ring": 1,
+   "angle": 165.859,
+   "status": "ga"
+  },
+  {
+   "name": "AppStream 2.0",
+   "cat": 9,
+   "ring": 1,
+   "angle": 172.494,
+   "status": "ga"
+  },
+  {
+   "name": "DCV",
+   "cat": 9,
+   "ring": 2,
+   "angle": 164.753,
+   "status": "ga"
+  },
+  {
+   "name": "Thin Client",
+   "cat": 9,
+   "ring": 2,
+   "angle": 169.176,
+   "status": "sunset",
+   "full": "Amazon WorkSpaces Thin Client",
+   "note": "Low-cost purpose-built endpoint for virtual desktops.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "WorkDocs",
+   "cat": 9,
+   "ring": 2,
+   "angle": 173.599,
+   "status": "sunset",
+   "full": "Amazon WorkDocs",
+   "note": "Document storage and collaboration; retired in 2025.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Amplify",
+   "cat": 10,
+   "ring": 0,
+   "angle": 183.588,
+   "status": "ga"
+  },
+  {
+   "name": "Location Service",
+   "cat": 10,
+   "ring": 1,
+   "angle": 183.588,
+   "status": "ga"
+  },
+  {
+   "name": "API Gateway",
+   "cat": 10,
+   "ring": 2,
+   "angle": 180.6,
+   "status": "ga"
+  },
+  {
+   "name": "Cognito",
+   "cat": 10,
+   "ring": 2,
+   "angle": 186.577,
+   "status": "ga"
+  },
+  {
+   "name": "IoT Core",
+   "cat": 11,
+   "ring": 0,
+   "angle": 194.088,
+   "status": "ga"
+  },
+  {
+   "name": "Device Management",
+   "cat": 11,
+   "ring": 0,
+   "angle": 199.535,
+   "status": "ga"
+  },
+  {
+   "name": "Device Defender",
+   "cat": 11,
+   "ring": 0,
+   "angle": 204.981,
+   "status": "ga"
+  },
+  {
+   "name": "Greengrass",
+   "cat": 11,
+   "ring": 1,
+   "angle": 192.999,
+   "status": "ga"
+  },
+  {
+   "name": "SiteWise",
+   "cat": 11,
+   "ring": 1,
+   "angle": 196.267,
+   "status": "ga"
+  },
+  {
+   "name": "TwinMaker",
+   "cat": 11,
+   "ring": 1,
+   "angle": 199.535,
+   "status": "ga"
+  },
+  {
+   "name": "FleetWise",
+   "cat": 11,
+   "ring": 1,
+   "angle": 202.803,
+   "status": "sunset",
+   "full": "AWS IoT FleetWise",
+   "note": "Collect, transform and transfer vehicle data to the cloud.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "ExpressLink",
+   "cat": 11,
+   "ring": 1,
+   "angle": 206.071,
+   "status": "ga"
+  },
+  {
+   "name": "IoT Core for LoRaWAN",
+   "cat": 11,
+   "ring": 2,
+   "angle": 192.727,
+   "status": "ga"
+  },
+  {
+   "name": "FreeRTOS",
+   "cat": 11,
+   "ring": 2,
+   "angle": 195.45,
+   "status": "ga"
+  },
+  {
+   "name": "Private 5G",
+   "cat": 11,
+   "ring": 2,
+   "angle": 198.173,
+   "status": "ga"
+  },
+  {
+   "name": "IoT Analytics",
+   "cat": 11,
+   "ring": 2,
+   "angle": 200.897,
+   "status": "sunset",
+   "full": "AWS IoT Analytics",
+   "note": "IoT data preparation and analysis; end of support announced.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "IoT Events",
+   "cat": 11,
+   "ring": 2,
+   "angle": 203.62,
+   "status": "sunset",
+   "full": "AWS IoT Events",
+   "note": "Detect and respond to events from IoT sensors; end of support.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Monitron",
+   "cat": 11,
+   "ring": 2,
+   "angle": 206.343,
+   "status": "sunset",
+   "full": "Amazon Monitron",
+   "note": "End-to-end equipment monitoring; closed to new customers.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "CloudWatch",
+   "cat": 12,
+   "ring": 0,
+   "angle": 211.621,
+   "status": "ga"
+  },
+  {
+   "name": "CloudTrail",
+   "cat": 12,
+   "ring": 0,
+   "angle": 215.854,
+   "status": "ga"
+  },
+  {
+   "name": "Config",
+   "cat": 12,
+   "ring": 0,
+   "angle": 220.086,
+   "status": "ga"
+  },
+  {
+   "name": "CloudFormation",
+   "cat": 12,
+   "ring": 0,
+   "angle": 224.319,
+   "status": "ga"
+  },
+  {
+   "name": "Systems Manager",
+   "cat": 12,
+   "ring": 0,
+   "angle": 228.552,
+   "status": "ga"
+  },
+  {
+   "name": "Organizations",
+   "cat": 12,
+   "ring": 1,
+   "angle": 210.827,
+   "status": "ga"
+  },
+  {
+   "name": "Control Tower",
+   "cat": 12,
+   "ring": 1,
+   "angle": 213.473,
+   "status": "ga"
+  },
+  {
+   "name": "Service Catalog",
+   "cat": 12,
+   "ring": 1,
+   "angle": 216.118,
+   "status": "ga"
+  },
+  {
+   "name": "Trusted Advisor",
+   "cat": 12,
+   "ring": 1,
+   "angle": 218.764,
+   "status": "ga"
+  },
+  {
+   "name": "Health Dashboard",
+   "cat": 12,
+   "ring": 1,
+   "angle": 221.409,
+   "status": "ga"
+  },
+  {
+   "name": "Well-Architected Tool",
+   "cat": 12,
+   "ring": 1,
+   "angle": 224.055,
+   "status": "ga"
+  },
+  {
+   "name": "License Manager",
+   "cat": 12,
+   "ring": 1,
+   "angle": 226.7,
+   "status": "ga"
+  },
+  {
+   "name": "Resource Explorer",
+   "cat": 12,
+   "ring": 1,
+   "angle": 229.345,
+   "status": "ga"
+  },
+  {
+   "name": "Resource Groups",
+   "cat": 12,
+   "ring": 2,
+   "angle": 210.386,
+   "status": "ga"
+  },
+  {
+   "name": "AppConfig",
+   "cat": 12,
+   "ring": 2,
+   "angle": 212.15,
+   "status": "ga"
+  },
+  {
+   "name": "Chatbot",
+   "cat": 12,
+   "ring": 2,
+   "angle": 213.914,
+   "status": "ga"
+  },
+  {
+   "name": "Launch Wizard",
+   "cat": 12,
+   "ring": 2,
+   "angle": 215.677,
+   "status": "ga"
+  },
+  {
+   "name": "Resilience Hub",
+   "cat": 12,
+   "ring": 2,
+   "angle": 217.441,
+   "status": "ga"
+  },
+  {
+   "name": "Managed Grafana",
+   "cat": 12,
+   "ring": 2,
+   "angle": 219.205,
+   "status": "ga"
+  },
+  {
+   "name": "Managed Prometheus",
+   "cat": 12,
+   "ring": 2,
+   "angle": 220.968,
+   "status": "ga"
+  },
+  {
+   "name": "Distro for OpenTelemetry",
+   "cat": 12,
+   "ring": 2,
+   "angle": 222.732,
+   "status": "ga"
+  },
+  {
+   "name": "User Notifications",
+   "cat": 12,
+   "ring": 2,
+   "angle": 224.495,
+   "status": "ga"
+  },
+  {
+   "name": "Incident Detection",
+   "cat": 12,
+   "ring": 2,
+   "angle": 226.259,
+   "status": "ga"
+  },
+  {
+   "name": "Audit Manager",
+   "cat": 12,
+   "ring": 2,
+   "angle": 228.023,
+   "status": "sunset",
+   "full": "AWS Audit Manager",
+   "note": "Continuously collect evidence for compliance audits.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "OpsWorks",
+   "cat": 12,
+   "ring": 2,
+   "angle": 229.786,
+   "status": "sunset",
+   "full": "AWS OpsWorks",
+   "note": "Managed Chef and Puppet; retired in 2024.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "MediaConvert",
+   "cat": 13,
+   "ring": 0,
+   "angle": 236.334,
+   "status": "ga"
+  },
+  {
+   "name": "MediaLive",
+   "cat": 13,
+   "ring": 0,
+   "angle": 244.065,
+   "status": "ga"
+  },
+  {
+   "name": "MediaPackage",
+   "cat": 13,
+   "ring": 1,
+   "angle": 234.401,
+   "status": "ga"
+  },
+  {
+   "name": "MediaTailor",
+   "cat": 13,
+   "ring": 1,
+   "angle": 238.267,
+   "status": "ga"
+  },
+  {
+   "name": "MediaConnect",
+   "cat": 13,
+   "ring": 1,
+   "angle": 242.132,
+   "status": "ga"
+  },
+  {
+   "name": "Elemental Link",
+   "cat": 13,
+   "ring": 1,
+   "angle": 245.998,
+   "status": "ga"
+  },
+  {
+   "name": "IVS",
+   "cat": 13,
+   "ring": 2,
+   "angle": 233.757,
+   "status": "ga"
+  },
+  {
+   "name": "Kinesis Video Streams",
+   "cat": 13,
+   "ring": 2,
+   "angle": 236.334,
+   "status": "ga"
+  },
+  {
+   "name": "Deadline Cloud",
+   "cat": 13,
+   "ring": 2,
+   "angle": 238.911,
+   "status": "ga"
+  },
+  {
+   "name": "MediaStore",
+   "cat": 13,
+   "ring": 2,
+   "angle": 241.488,
+   "status": "sunset",
+   "full": "AWS Elemental MediaStore",
+   "note": "Media-optimized object origin; migrate to S3.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Elastic Transcoder",
+   "cat": 13,
+   "ring": 2,
+   "angle": 244.065,
+   "status": "sunset",
+   "full": "Amazon Elastic Transcoder",
+   "note": "Legacy transcoder retired in 2025; use MediaConvert.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Nimble Studio",
+   "cat": 13,
+   "ring": 2,
+   "angle": 246.642,
+   "status": "sunset",
+   "full": "Amazon Nimble Studio",
+   "note": "Cloud content-production studio; discontinued.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Migration Hub",
+   "cat": 14,
+   "ring": 0,
+   "angle": 252.454,
+   "status": "ga"
+  },
+  {
+   "name": "Application Migration",
+   "cat": 14,
+   "ring": 0,
+   "angle": 257.9,
+   "status": "ga"
+  },
+  {
+   "name": "Application Discovery",
+   "cat": 14,
+   "ring": 0,
+   "angle": 263.347,
+   "status": "ga"
+  },
+  {
+   "name": "DMS",
+   "cat": 14,
+   "ring": 1,
+   "angle": 251.365,
+   "status": "ga"
+  },
+  {
+   "name": "Schema Conversion Tool",
+   "cat": 14,
+   "ring": 1,
+   "angle": 254.632,
+   "status": "ga"
+  },
+  {
+   "name": "DataSync",
+   "cat": 14,
+   "ring": 1,
+   "angle": 257.9,
+   "status": "ga"
+  },
+  {
+   "name": "Transfer Family",
+   "cat": 14,
+   "ring": 1,
+   "angle": 261.168,
+   "status": "ga"
+  },
+  {
+   "name": "Snow Family",
+   "cat": 14,
+   "ring": 1,
+   "angle": 264.436,
+   "status": "ga"
+  },
+  {
+   "name": "Data Transfer Terminal",
+   "cat": 14,
+   "ring": 2,
+   "angle": 251.092,
+   "status": "ga"
+  },
+  {
+   "name": "Transform",
+   "cat": 14,
+   "ring": 2,
+   "angle": 253.815,
+   "status": "ga"
+  },
+  {
+   "name": "Mainframe Modernization",
+   "cat": 14,
+   "ring": 2,
+   "angle": 256.539,
+   "status": "ga"
+  },
+  {
+   "name": "Elastic Disaster Recovery",
+   "cat": 14,
+   "ring": 2,
+   "angle": 259.262,
+   "status": "ga"
+  },
+  {
+   "name": "Migration Evaluator",
+   "cat": 14,
+   "ring": 2,
+   "angle": 261.985,
+   "status": "ga"
+  },
+  {
+   "name": "Transit Gateway",
+   "cat": 14,
+   "ring": 2,
+   "angle": 264.708,
+   "status": "ga"
+  },
+  {
+   "name": "VPC",
+   "cat": 15,
+   "ring": 0,
+   "angle": 270.351,
+   "status": "ga"
+  },
+  {
+   "name": "VPC Lattice",
+   "cat": 15,
+   "ring": 0,
+   "angle": 275.313,
+   "status": "ga"
+  },
+  {
+   "name": "IPAM",
+   "cat": 15,
+   "ring": 0,
+   "angle": 280.275,
+   "status": "ga"
+  },
+  {
+   "name": "Route 53",
+   "cat": 15,
+   "ring": 0,
+   "angle": 285.237,
+   "status": "ga"
+  },
+  {
+   "name": "Route 53 Resolver",
+   "cat": 15,
+   "ring": 1,
+   "angle": 269.288,
+   "status": "ga"
+  },
+  {
+   "name": "App Recovery Controller",
+   "cat": 15,
+   "ring": 1,
+   "angle": 272.123,
+   "status": "ga"
+  },
+  {
+   "name": "CloudFront",
+   "cat": 15,
+   "ring": 1,
+   "angle": 274.959,
+   "status": "ga"
+  },
+  {
+   "name": "Global Accelerator",
+   "cat": 15,
+   "ring": 1,
+   "angle": 277.794,
+   "status": "ga"
+  },
+  {
+   "name": "Elastic Load Balancing",
+   "cat": 15,
+   "ring": 1,
+   "angle": 280.629,
+   "status": "ga"
+  },
+  {
+   "name": "Direct Connect",
+   "cat": 15,
+   "ring": 1,
+   "angle": 283.465,
+   "status": "ga"
+  },
+  {
+   "name": "Site-to-Site VPN",
+   "cat": 15,
+   "ring": 1,
+   "angle": 286.3,
+   "status": "ga"
+  },
+  {
+   "name": "Client VPN",
+   "cat": 15,
+   "ring": 2,
+   "angle": 268.772,
+   "status": "ga"
+  },
+  {
+   "name": "Cloud WAN",
+   "cat": 15,
+   "ring": 2,
+   "angle": 270.577,
+   "status": "ga"
+  },
+  {
+   "name": "PrivateLink",
+   "cat": 15,
+   "ring": 2,
+   "angle": 272.381,
+   "status": "ga"
+  },
+  {
+   "name": "Cloud Map",
+   "cat": 15,
+   "ring": 2,
+   "angle": 274.185,
+   "status": "ga"
+  },
+  {
+   "name": "Network Firewall",
+   "cat": 15,
+   "ring": 2,
+   "angle": 275.99,
+   "status": "ga"
+  },
+  {
+   "name": "Verified Access",
+   "cat": 15,
+   "ring": 2,
+   "angle": 277.794,
+   "status": "ga"
+  },
+  {
+   "name": "Lambda@Edge",
+   "cat": 15,
+   "ring": 2,
+   "angle": 279.598,
+   "status": "ga"
+  },
+  {
+   "name": "Interconnect",
+   "cat": 15,
+   "ring": 2,
+   "angle": 281.403,
+   "status": "preview",
+   "full": "AWS Interconnect - multicloud",
+   "note": "Managed private links between AWS VPCs and other clouds.",
+   "status_label": "Preview"
+  },
+  {
+   "name": "Global Resolver",
+   "cat": 15,
+   "ring": 2,
+   "angle": 283.207,
+   "status": "preview",
+   "full": "Amazon Route 53 Global Resolver",
+   "note": "Secure anycast DNS resolution for hybrid estates.",
+   "status_label": "Preview"
+  },
+  {
+   "name": "Telco Network Builder",
+   "cat": 15,
+   "ring": 2,
+   "angle": 285.011,
+   "status": "ga"
+  },
+  {
+   "name": "Network Load Balancer",
+   "cat": 15,
+   "ring": 2,
+   "angle": 286.816,
+   "status": "ga"
+  },
+  {
+   "name": "IAM",
+   "cat": 16,
+   "ring": 0,
+   "angle": 291.501,
+   "status": "ga"
+  },
+  {
+   "name": "IAM Identity Center",
+   "cat": 16,
+   "ring": 0,
+   "angle": 295.467,
+   "status": "ga"
+  },
+  {
+   "name": "Access Analyzer",
+   "cat": 16,
+   "ring": 0,
+   "angle": 299.432,
+   "status": "ga"
+  },
+  {
+   "name": "Cognito",
+   "cat": 16,
+   "ring": 0,
+   "angle": 303.398,
+   "status": "ga"
+  },
+  {
+   "name": "Verified Permissions",
+   "cat": 16,
+   "ring": 0,
+   "angle": 307.364,
+   "status": "ga"
+  },
+  {
+   "name": "Directory Service",
+   "cat": 16,
+   "ring": 0,
+   "angle": 311.33,
+   "status": "ga"
+  },
+  {
+   "name": "RAM",
+   "cat": 16,
+   "ring": 1,
+   "angle": 290.708,
+   "status": "ga"
+  },
+  {
+   "name": "KMS",
+   "cat": 16,
+   "ring": 1,
+   "angle": 293.087,
+   "status": "ga"
+  },
+  {
+   "name": "CloudHSM",
+   "cat": 16,
+   "ring": 1,
+   "angle": 295.467,
+   "status": "ga"
+  },
+  {
+   "name": "Secrets Manager",
+   "cat": 16,
+   "ring": 1,
+   "angle": 297.846,
+   "status": "ga"
+  },
+  {
+   "name": "ACM",
+   "cat": 16,
+   "ring": 1,
+   "angle": 300.226,
+   "status": "ga"
+  },
+  {
+   "name": "Private CA",
+   "cat": 16,
+   "ring": 1,
+   "angle": 302.605,
+   "status": "ga"
+  },
+  {
+   "name": "Payment Cryptography",
+   "cat": 16,
+   "ring": 1,
+   "angle": 304.984,
+   "status": "ga"
+  },
+  {
+   "name": "WAF",
+   "cat": 16,
+   "ring": 1,
+   "angle": 307.364,
+   "status": "ga"
+  },
+  {
+   "name": "Shield",
+   "cat": 16,
+   "ring": 1,
+   "angle": 309.743,
+   "status": "ga"
+  },
+  {
+   "name": "Firewall Manager",
+   "cat": 16,
+   "ring": 1,
+   "angle": 312.123,
+   "status": "ga"
+  },
+  {
+   "name": "Network Firewall",
+   "cat": 16,
+   "ring": 2,
+   "angle": 290.311,
+   "status": "ga"
+  },
+  {
+   "name": "GuardDuty",
+   "cat": 16,
+   "ring": 2,
+   "angle": 291.897,
+   "status": "ga"
+  },
+  {
+   "name": "Inspector",
+   "cat": 16,
+   "ring": 2,
+   "angle": 293.484,
+   "status": "ga"
+  },
+  {
+   "name": "Macie",
+   "cat": 16,
+   "ring": 2,
+   "angle": 295.07,
+   "status": "ga"
+  },
+  {
+   "name": "Detective",
+   "cat": 16,
+   "ring": 2,
+   "angle": 296.656,
+   "status": "ga"
+  },
+  {
+   "name": "Security Hub",
+   "cat": 16,
+   "ring": 2,
+   "angle": 298.243,
+   "status": "ga"
+  },
+  {
+   "name": "Security Hub CSPM",
+   "cat": 16,
+   "ring": 2,
+   "angle": 299.829,
+   "status": "ga"
+  },
+  {
+   "name": "Security Lake",
+   "cat": 16,
+   "ring": 2,
+   "angle": 301.415,
+   "status": "ga"
+  },
+  {
+   "name": "Artifact",
+   "cat": 16,
+   "ring": 2,
+   "angle": 303.002,
+   "status": "ga"
+  },
+  {
+   "name": "Signer",
+   "cat": 16,
+   "ring": 2,
+   "angle": 304.588,
+   "status": "ga"
+  },
+  {
+   "name": "Verified Access",
+   "cat": 16,
+   "ring": 2,
+   "angle": 306.174,
+   "status": "ga"
+  },
+  {
+   "name": "One Enterprise",
+   "cat": 16,
+   "ring": 2,
+   "angle": 307.761,
+   "status": "ga"
+  },
+  {
+   "name": "Security Agent",
+   "cat": 16,
+   "ring": 2,
+   "angle": 309.347,
+   "status": "preview",
+   "full": "AWS Security Agent",
+   "note": "Agentic security review of applications from design to deploy.",
+   "status_label": "Preview"
+  },
+  {
+   "name": "Audit Manager",
+   "cat": 16,
+   "ring": 2,
+   "angle": 310.933,
+   "status": "sunset",
+   "full": "AWS Audit Manager",
+   "note": "Automate evidence collection for audits and frameworks.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Inspector Classic",
+   "cat": 16,
+   "ring": 2,
+   "angle": 312.519,
+   "status": "sunset",
+   "full": "Amazon Inspector Classic",
+   "note": "Original Inspector; migrate to Amazon Inspector.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "S3",
+   "cat": 17,
+   "ring": 0,
+   "angle": 317.909,
+   "status": "ga"
+  },
+  {
+   "name": "S3 Glacier",
+   "cat": 17,
+   "ring": 0,
+   "angle": 323.502,
+   "status": "ga"
+  },
+  {
+   "name": "S3 Express One Zone",
+   "cat": 17,
+   "ring": 0,
+   "angle": 329.094,
+   "status": "ga"
+  },
+  {
+   "name": "S3 Tables",
+   "cat": 17,
+   "ring": 1,
+   "angle": 316.79,
+   "status": "ga"
+  },
+  {
+   "name": "S3 Vectors",
+   "cat": 17,
+   "ring": 1,
+   "angle": 320.146,
+   "status": "ga"
+  },
+  {
+   "name": "EBS",
+   "cat": 17,
+   "ring": 1,
+   "angle": 323.502,
+   "status": "ga"
+  },
+  {
+   "name": "EFS",
+   "cat": 17,
+   "ring": 1,
+   "angle": 326.857,
+   "status": "ga"
+  },
+  {
+   "name": "FSx for Windows",
+   "cat": 17,
+   "ring": 1,
+   "angle": 330.213,
+   "status": "ga"
+  },
+  {
+   "name": "FSx for Lustre",
+   "cat": 17,
+   "ring": 2,
+   "angle": 316.311,
+   "status": "ga"
+  },
+  {
+   "name": "FSx for NetApp ONTAP",
+   "cat": 17,
+   "ring": 2,
+   "angle": 318.708,
+   "status": "ga"
+  },
+  {
+   "name": "FSx for OpenZFS",
+   "cat": 17,
+   "ring": 2,
+   "angle": 321.105,
+   "status": "ga"
+  },
+  {
+   "name": "File Cache",
+   "cat": 17,
+   "ring": 2,
+   "angle": 323.502,
+   "status": "ga"
+  },
+  {
+   "name": "Storage Gateway",
+   "cat": 17,
+   "ring": 2,
+   "angle": 325.899,
+   "status": "ga"
+  },
+  {
+   "name": "Backup",
+   "cat": 17,
+   "ring": 2,
+   "angle": 328.295,
+   "status": "ga"
+  },
+  {
+   "name": "Storage Lens",
+   "cat": 17,
+   "ring": 2,
+   "angle": 330.692,
+   "status": "ga"
+  },
+  {
+   "name": "Braket",
+   "cat": 18,
+   "ring": 0,
+   "angle": 337.337,
+   "status": "ga"
+  },
+  {
+   "name": "Ground Station",
+   "cat": 18,
+   "ring": 0,
+   "angle": 344.63,
+   "status": "ga"
+  },
+  {
+   "name": "Managed Blockchain",
+   "cat": 18,
+   "ring": 1,
+   "angle": 336.122,
+   "status": "ga"
+  },
+  {
+   "name": "GameLift Servers",
+   "cat": 18,
+   "ring": 1,
+   "angle": 340.983,
+   "status": "ga"
+  },
+  {
+   "name": "GameLift Streams",
+   "cat": 18,
+   "ring": 1,
+   "angle": 345.845,
+   "status": "ga"
+  },
+  {
+   "name": "RoboMaker",
+   "cat": 18,
+   "ring": 2,
+   "angle": 335.149,
+   "status": "sunset",
+   "full": "AWS RoboMaker",
+   "note": "Cloud robotics simulation; discontinued, migrate to AWS Batch.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "SimSpace Weaver",
+   "cat": 18,
+   "ring": 2,
+   "angle": 338.066,
+   "status": "sunset",
+   "full": "AWS SimSpace Weaver",
+   "note": "Large-scale spatial simulation; end of support.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Panorama",
+   "cat": 18,
+   "ring": 2,
+   "angle": 340.983,
+   "status": "sunset",
+   "full": "AWS Panorama",
+   "note": "Computer vision at the edge appliance; end of support.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "Sumerian",
+   "cat": 18,
+   "ring": 2,
+   "angle": 343.9,
+   "status": "sunset",
+   "full": "Amazon Sumerian",
+   "note": "AR/VR scene builder; retired in 2023.",
+   "status_label": "End of support / retired"
+  },
+  {
+   "name": "DeepRacer",
+   "cat": 18,
+   "ring": 2,
+   "angle": 346.818,
+   "status": "sunset",
+   "full": "AWS DeepRacer",
+   "note": "Reinforcement-learning race cars; now open source only.",
+   "status_label": "End of support / retired"
+  }
+ ]
+}
