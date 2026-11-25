@@ -658,3 +658,44 @@ Written for this site on top of v4 (v1 to v4 untouched). Adds `ouro/v5.js` and `
 | gobbler-gyroscope-webgpu/v5/swarm/swarm.js | a244cb1bffcfc839bb4a1ef852ace56d573a46392024f91eedb0930b3a164622 | 17742 |
 | gobbler-gyroscope-webgpu/v5/tests/integration.html | b7e465384bb12cd018b24d5d114ccf8715f1ef5af58ce8b24d3b52dc3e2076a6 | 3612 |
 | gobbler-gyroscope-webgpu/v5/tests/parity.html | cc2295f1ea4ae7b6c20a2b17026a5bcc11ec44b45d2aa27cb95b37bb0f844233 | 2814 |
+
+## Gobbler Gyroscope v6, head and flywheels together (`gobbler-gyroscope-webgpu/v6`, Demo 23 version 6)
+
+Written for this site on top of v5 (v1 to v5 untouched). v5's content on v4's flywheel framing: the camera distance returns to 17, the serpent ring returns to v4's position, the bird is drawn smaller at the bite, the lane ring is pulled in, and an H key hides the panels. Changed against v5: `swarm/swarm.js`, `ouro/v5.js`, `ouro/v5.css`, `index.html`, `README.md`, `shots/`. Every other file, including `ouro/data.json` and `ouro/gobbler.bin`, is byte-identical to v5 (sources as in the v5 section above). No model was called and nothing was billed. Shots: Chrome for Testing 158.0.8127.36 headless on SwiftShader.
+
+| file | sha256 | bytes |
+|---|---|---|
+| gobbler-gyroscope-webgpu/v6/README.md | 175b2e49980e31cbef8d504b8f42c5399d9c4ba012d8b21654c17d4ae99a4dc1 | 3288 |
+| gobbler-gyroscope-webgpu/v6/gobbler3.x3d | 0772caea04e80d03d43ce1543e86fee5854e13a6ad1d273dc65ea2e5aee47dc6 | 1985373 |
+| gobbler-gyroscope-webgpu/v6/graph-v3.json | fcbc4bc603632ba8479b96618c2591a9633cf4ea2751ccd84d8a628308800621 | 60630 |
+| gobbler-gyroscope-webgpu/v6/index.html | 46439a96b9aee62ca10270a2b5e31918235e9b7b6e959aaca73fb3bd5ac83381 | 4181599 |
+| gobbler-gyroscope-webgpu/v6/ouro/data.json | ad0e4494bbac0946862ae8423cb67ef7788d3c9cb4e2053de4dc8f30f42679eb | 46308 |
+| gobbler-gyroscope-webgpu/v6/ouro/gobbler.bin | a1b657c7b864bd8c17a7eef30b46038e15bbab76ea32f91fc25d24ccc6f24c27 | 668224 |
+| gobbler-gyroscope-webgpu/v6/ouro/gobbler.json | 4b19ef6566b678abcff0eb2239ef94222df097a531e156db1c42be102e6ce33e | 809 |
+| gobbler-gyroscope-webgpu/v6/ouro/ouro-hud.js | 5c70237b4dcd0e7d4d6a0cb2c0fa52f75873e6ff9199392d9300849c24b75934 | 12007 |
+| gobbler-gyroscope-webgpu/v6/ouro/ouro.css | 71a7f89abeb42ad051ff3c4a48b1beca056a3af7cf227a88787b29efda3dc6b8 | 7560 |
+| gobbler-gyroscope-webgpu/v6/ouro/ouro.js | 82b30175f05e5000ed62c1ef7dcb8be86248176d4a9078f5990630b878474a74 | 15531 |
+| gobbler-gyroscope-webgpu/v6/ouro/thumbs/glass-heart.webp | cc00ab26145d9bb901e0d4d180d9b5a75624f11b392437474c0a6b1b45af0041 | 7906 |
+| gobbler-gyroscope-webgpu/v6/ouro/thumbs/glass-hero.webp | 311daa81c80998b88122321a9800382dfb9bab9b7fd15b167aaaa48463a046c0 | 5902 |
+| gobbler-gyroscope-webgpu/v6/ouro/thumbs/glass-low.webp | a5c0389463ab21cdaaf16debfa6d901f85feda30588cfba168fe25e5ad9a2dd3 | 6090 |
+| gobbler-gyroscope-webgpu/v6/ouro/thumbs/glass-wide.webp | ecdd876424adbfa58f40b5f53d6d2a523985de1e5999cbb7f221b0114d5986b0 | 6014 |
+| gobbler-gyroscope-webgpu/v6/ouro/v5.css | 771a2b93f0c5072d4d8642249e46fb86da107c5e88bbc76949a0812391f41630 | 8119 |
+| gobbler-gyroscope-webgpu/v6/ouro/v5.js | 9cf80157923d6d8e3d5e0b84998a2b2343a3f8bd2fcc778cd117c1d7dc6e8088 | 20635 |
+| gobbler-gyroscope-webgpu/v6/shots/h1-together.jpg | 6e847b27b65112d14208695e52c71fe2f8d625b2b7ba23f5520a80a38be31401 | 419125 |
+| gobbler-gyroscope-webgpu/v6/shots/h2-clean.jpg | 290c869210f28d3388a6644cc278c646b0c67b567430971ce3ca37cac132a32e | 237472 |
+| gobbler-gyroscope-webgpu/v6/shots/h3-page-webgl2.jpg | ff3c6a0f8beada9fa85daf5369ebff573d023ce74412a855f66cc5bf3e672eda | 359434 |
+| gobbler-gyroscope-webgpu/v6/solo.html | d4f5a0985fc60c1cab8bd57e64d8b0399a713c5dce13c5884d21cdfe337181d6 | 1630 |
+| gobbler-gyroscope-webgpu/v6/source/calibrate.py | e6a8348f0810a9a885a87c9b4e06b043a59d7149eef2879529f07aa0f1699bb9 | 3283 |
+| gobbler-gyroscope-webgpu/v6/source/gobbler_points.py | f361c6dbcb0f0e085c81513995ce9988630edcb9e143d48f671d43c4a8c29041 | 6641 |
+| gobbler-gyroscope-webgpu/v6/source/ouro_data.py | 233801f4af3054e3851983f9fd5df1a8cf793fbd81f4f0038316ef9cb4978383 | 15059 |
+| gobbler-gyroscope-webgpu/v6/swarm/calibration.json | 44844601f7f145e73f790007a3d2cd58ca24638049bfe3c633ccf7841699b05f | 2095 |
+| gobbler-gyroscope-webgpu/v6/swarm/gl.js | 96f705534610a6d3e368320c383b2e4caedacd4a7217ee543d8c64111a863dae | 19275 |
+| gobbler-gyroscope-webgpu/v6/swarm/gpu.js | ca63b9412f0717ae697cf36df2079e19c8ad2cc060859ca2673a69e02f805144 | 33374 |
+| gobbler-gyroscope-webgpu/v6/swarm/hud.js | ce9b729d34f488746eaa134c32eb2ae9981ce1ef3d31700bf65c053efc87f0f8 | 13154 |
+| gobbler-gyroscope-webgpu/v6/swarm/model.js | b9ddc225e6d6e94a1bf0a87c0dc11ba1ba9ab9d16c511c6584899128fc8668e9 | 10175 |
+| gobbler-gyroscope-webgpu/v6/swarm/pipe.css | 962ff2f2bdbeb31edd06a61846463b6982c3734306a305363d5016aa61008080 | 7005 |
+| gobbler-gyroscope-webgpu/v6/swarm/pipe.js | cf97600e559072b14084254ec5e531b99492b340a0db21a55d18b6d8c5b81b53 | 23201 |
+| gobbler-gyroscope-webgpu/v6/swarm/swarm.css | b14814d62f6f263a911f5897729f67933ba1db14e003903454ab1b2035df55fc | 5213 |
+| gobbler-gyroscope-webgpu/v6/swarm/swarm.js | 5aef5c91a98d4a7f5b685495e32b7e952d5c9bcbb9fbd0c45b4ef1d7a9694012 | 17749 |
+| gobbler-gyroscope-webgpu/v6/tests/integration.html | b7e465384bb12cd018b24d5d114ccf8715f1ef5af58ce8b24d3b52dc3e2076a6 | 3612 |
+| gobbler-gyroscope-webgpu/v6/tests/parity.html | cc2295f1ea4ae7b6c20a2b17026a5bcc11ec44b45d2aa27cb95b37bb0f844233 | 2814 |
