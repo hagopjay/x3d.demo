@@ -607,3 +607,10 @@ Written for this site on top of v3 (v1, v2 and v3 untouched). Adds `ouro/` (a We
 | gobbler-gyroscope-webgpu/v4/swarm/swarm.js | e8090909b58120818ce7b9f36a121eb44f0457cb175aa2ae61edafc9414b47ad | 17725 |
 | gobbler-gyroscope-webgpu/v4/tests/integration.html | b7e465384bb12cd018b24d5d114ccf8715f1ef5af58ce8b24d3b52dc3e2076a6 | 3612 |
 | gobbler-gyroscope-webgpu/v4/tests/parity.html | cc2295f1ea4ae7b6c20a2b17026a5bcc11ec44b45d2aa27cb95b37bb0f844233 | 2814 |
+
+## gobbler-gyroscope-ouroboros (v88)
+`gobbler-gyroscope-ouroboros` is a 2 x 2 of 480 x 270 tiles cut from `docs/demos/gobbler-gyroscope-webgpu/v4/shots/` (`o1-ouroboros.jpg`, `o4-bite-nested.jpg`, `o3-chaos.jpg`, `o2-page-webgl2.jpg`; Chrome for Testing 158 with SwiftShader) saved as 960 x 540 JPEG. The Blender sci-viz thumbnails inside the shots are the project's own renders of the glass Gobbler. No Google or other third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/gobbler-gyroscope-ouroboros.jpg | 05dfda7bea94abd4a033af634d504e8757fd5ef63bfee0d3bab0913e423c7df6 | 141605 |
