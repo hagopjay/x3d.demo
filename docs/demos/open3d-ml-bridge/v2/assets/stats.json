@@ -1,0 +1,700 @@
+{
+ "schema": "open3d-ml-bridge/v2",
+ "dataset": {
+  "name": "Rohbau3D",
+  "site": "site_02",
+  "doi": "10.60776/ZWJFI4",
+  "licence": "CC BY 4.0",
+  "authors": "Lukas Rauch et al., Universitat der Bundeswehr Munchen",
+  "licence_checked": "Dataverse API latestVersion.license, 26 Nov 2026"
+ },
+ "model": {
+  "ckpt": "randlanet_s3dis_202201071330utc.pth",
+  "ckpt_sha256": "b0c5c8148d363c10b7fd33105df5e8b7efeecaa0674650c4761466a94e4d4c87"
+ },
+ "env": {
+  "open3d": "0.20.0",
+  "torch": "2.13.0+cu130",
+  "python": "3.13.18",
+  "device": "cpu"
+ },
+ "mapping": {
+  "Ceiling": "ceiling",
+  "Slanted Ceiling": "ceiling",
+  "Ceiling Cutout": "ceiling",
+  "Floor": "floor",
+  "Wall": "wall",
+  "Drywall": "wall",
+  "Beam": "beam",
+  "Column": "column",
+  "Window": "window"
+ },
+ "scenes": {
+  "scene_02009": {
+   "file_points": 10974824,
+   "points_used": 400000,
+   "seconds_per_run": [
+    10.9,
+    9.1,
+    7.3
+   ],
+   "gt_counts": {
+    "None": 14528,
+    "Ceiling": 110067,
+    "Slanted Ceiling": 279,
+    "Ceiling Cutout": 90,
+    "Floor": 55032,
+    "Wall": 179463,
+    "Wall Cutout": 182,
+    "Staircase": 4739,
+    "Door Rough Opening": 16589,
+    "Elevator Doors": 17206,
+    "TGA": 1825
+   },
+   "pred_counts": {
+    "ceiling": 111053,
+    "floor": 55772,
+    "wall": 76386,
+    "beam": 11064,
+    "column": 10322,
+    "window": 63505,
+    "door": 26872,
+    "table": 643,
+    "chair": 5,
+    "bookcase": 305,
+    "board": 2,
+    "clutter": 44071
+   },
+   "accuracy_mean": 0.6912,
+   "accuracy_sd": 0.0205,
+   "miou_mean": 0.7926,
+   "miou_sd": 0.0131,
+   "first_run": {
+    "scored_points": 344931,
+    "accuracy": 0.6741435243570453,
+    "classes": {
+     "ceiling": {
+      "gt_points": 110436,
+      "recall": 0.9945669890253178,
+      "iou": 0.9868108962840509
+     },
+     "floor": {
+      "gt_points": 55032,
+      "recall": 0.9841001599069632,
+      "iou": 0.9772985653703871
+     },
+     "wall": {
+      "gt_points": 179463,
+      "recall": 0.3819171639836624,
+      "iou": 0.3816577108333101
+     }
+    },
+    "miou": 0.7819223908292493,
+    "confusion_rows_gt_ceiling_floor_wall_beam_column_window": [
+     [
+      109836,
+      0,
+      74,
+      0,
+      0,
+      184,
+      6,
+      0,
+      0,
+      0,
+      103,
+      0,
+      233
+     ],
+     [
+      0,
+      54157,
+      48,
+      0,
+      0,
+      18,
+      7,
+      609,
+      0,
+      0,
+      0,
+      0,
+      193
+     ],
+     [
+      868,
+      383,
+      68540,
+      9112,
+      10321,
+      56200,
+      12410,
+      9,
+      0,
+      0,
+      12,
+      2,
+      21606
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   },
+   "bbox_min": [
+    -3.97,
+    -8.28,
+    -1.59
+   ],
+   "bbox_max": [
+    7.57,
+    11.33,
+    1.93
+   ]
+  },
+  "scene_02010": {
+   "file_points": 10854721,
+   "points_used": 400000,
+   "seconds_per_run": [
+    10.8,
+    10.7,
+    12.9
+   ],
+   "gt_counts": {
+    "None": 16202,
+    "Ceiling": 110586,
+    "Ceiling Cutout": 760,
+    "Floor": 92339,
+    "Wall": 86195,
+    "Wall Cutout": 703,
+    "Beam": 6588,
+    "Window Cutout": 48,
+    "Door Rough Opening": 72074,
+    "Elevator Doors": 2833,
+    "TGA": 11672
+   },
+   "pred_counts": {
+    "ceiling": 122487,
+    "floor": 93435,
+    "wall": 6104,
+    "beam": 5825,
+    "column": 1177,
+    "window": 80805,
+    "door": 36941,
+    "table": 267,
+    "chair": 21,
+    "bookcase": 806,
+    "clutter": 52132
+   },
+   "accuracy_mean": 0.7084,
+   "accuracy_sd": 0.002,
+   "miou_mean": 0.6978,
+   "miou_sd": 0.0117,
+   "first_run": {
+    "scored_points": 296468,
+    "accuracy": 0.7102183034931258,
+    "classes": {
+     "ceiling": {
+      "gt_points": 111346,
+      "recall": 0.9760296732707058,
+      "iou": 0.9746816143497757
+     },
+     "floor": {
+      "gt_points": 92339,
+      "recall": 0.9982997433370515,
+      "iou": 0.9976083027607329
+     },
+     "wall": {
+      "gt_points": 86195,
+      "recall": 0.04812344103486281,
+      "iou": 0.04804262219133658
+     },
+     "beam": {
+      "gt_points": 6588,
+      "recall": 0.8424408014571949,
+      "iou": 0.8155767817781043
+     }
+    },
+    "miou": 0.7089773302699873,
+    "confusion_rows_gt_ceiling_floor_wall_beam_column_window": [
+     [
+      108677,
+      3,
+      13,
+      217,
+      1,
+      250,
+      250,
+      120,
+      0,
+      0,
+      0,
+      0,
+      1815
+     ],
+     [
+      0,
+      92182,
+      37,
+      0,
+      17,
+      70,
+      25,
+      6,
+      0,
+      0,
+      0,
+      0,
+      2
+     ],
+     [
+      88,
+      61,
+      4148,
+      0,
+      1056,
+      44145,
+      27024,
+      0,
+      0,
+      0,
+      7,
+      0,
+      9666
+     ],
+     [
+      66,
+      0,
+      95,
+      5550,
+      0,
+      615,
+      6,
+      0,
+      0,
+      0,
+      0,
+      0,
+      256
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   },
+   "bbox_min": [
+    -5.38,
+    -4.09,
+    -1.75
+   ],
+   "bbox_max": [
+    19.21,
+    9.62,
+    1.87
+   ]
+  },
+  "scene_02000": {
+   "file_points": 10949275,
+   "points_used": 400000,
+   "seconds_per_run": [
+    19.2,
+    19.8,
+    20.3
+   ],
+   "gt_counts": {
+    "None": 22334,
+    "Ceiling": 163000,
+    "Slanted Ceiling": 1659,
+    "Ceiling Cutout": 345,
+    "Floor": 106979,
+    "Wall": 88934,
+    "Wall Cutout": 414,
+    "Beam": 11063,
+    "Column": 4893,
+    "Staircase": 92,
+    "Window Cutout": 78,
+    "Door Rough Opening": 209
+   },
+   "pred_counts": {
+    "ceiling": 197837,
+    "floor": 41612,
+    "wall": 5072,
+    "beam": 10722,
+    "column": 2456,
+    "window": 88919,
+    "door": 434,
+    "table": 25630,
+    "chair": 225,
+    "bookcase": 6,
+    "board": 47,
+    "clutter": 27040
+   },
+   "accuracy_mean": 0.5725,
+   "accuracy_sd": 0.0028,
+   "miou_mean": 0.393,
+   "miou_sd": 0.0068,
+   "first_run": {
+    "scored_points": 376873,
+    "accuracy": 0.5692448119127663,
+    "classes": {
+     "ceiling": {
+      "gt_points": 165004,
+      "recall": 0.9696492206249545,
+      "iou": 0.7903456860866043
+     },
+     "floor": {
+      "gt_points": 106979,
+      "recall": 0.38803877396498376,
+      "iou": 0.38803877396498376
+     },
+     "wall": {
+      "gt_points": 88934,
+      "recall": 0.04550565587964108,
+      "iou": 0.04524264681222122
+     },
+     "beam": {
+      "gt_points": 11063,
+      "recall": 0.8011389315737142,
+      "iou": 0.6874806081290723
+     },
+     "column": {
+      "gt_points": 4893,
+      "recall": 0.02350296341712651,
+      "iou": 0.01641684511063526
+     }
+    },
+    "miou": 0.38550491202070336,
+    "confusion_rows_gt_ceiling_floor_wall_beam_column_window": [
+     [
+      159996,
+      0,
+      26,
+      1530,
+      34,
+      294,
+      0,
+      33,
+      0,
+      0,
+      0,
+      0,
+      3091
+     ],
+     [
+      36917,
+      41512,
+      106,
+      0,
+      20,
+      470,
+      103,
+      21566,
+      161,
+      0,
+      0,
+      0,
+      6124
+     ],
+     [
+      379,
+      0,
+      4047,
+      278,
+      1163,
+      80526,
+      130,
+      13,
+      0,
+      0,
+      0,
+      6,
+      2392
+     ],
+     [
+      135,
+      0,
+      36,
+      8863,
+      895,
+      1005,
+      0,
+      0,
+      0,
+      0,
+      0,
+      40,
+      89
+     ],
+     [
+      3,
+      0,
+      349,
+      21,
+      115,
+      4377,
+      22,
+      6,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   },
+   "bbox_min": [
+    -24.89,
+    -9.18,
+    -2.56
+   ],
+   "bbox_max": [
+    6.59,
+    20.87,
+    3.69
+   ]
+  }
+ },
+ "shown_scene": "scene_02009",
+ "classes": {
+  "ceiling": {
+   "id": 0,
+   "count": 14076,
+   "share": 0.28152,
+   "mean_score": 0.9860476387174728,
+   "box_extent": [
+    1.117,
+    9.917,
+    10.686
+   ]
+  },
+  "floor": {
+   "id": 1,
+   "count": 6843,
+   "share": 0.13686,
+   "mean_score": 0.9832595777421017,
+   "box_extent": [
+    0.683,
+    7.554,
+    11.323
+   ]
+  },
+  "wall": {
+   "id": 2,
+   "count": 9502,
+   "share": 0.19004,
+   "mean_score": 0.5496997704752121,
+   "box_extent": [
+    3.54,
+    10.02,
+    12.498
+   ]
+  },
+  "beam": {
+   "id": 3,
+   "count": 1335,
+   "share": 0.0267,
+   "mean_score": 0.7800912832590665,
+   "box_extent": [
+    1.358,
+    2.511,
+    6.18
+   ]
+  },
+  "column": {
+   "id": 4,
+   "count": 1289,
+   "share": 0.02578,
+   "mean_score": 0.39638404255268067,
+   "box_extent": [
+    0.376,
+    0.915,
+    1.248
+   ]
+  },
+  "window": {
+   "id": 5,
+   "count": 8025,
+   "share": 0.1605,
+   "mean_score": 0.6140446844936819,
+   "box_extent": [
+    3.836,
+    6.909,
+    12.209
+   ]
+  },
+  "door": {
+   "id": 6,
+   "count": 3230,
+   "share": 0.0646,
+   "mean_score": 0.568659190116895,
+   "box_extent": [
+    3.629,
+    7.674,
+    10.221
+   ]
+  },
+  "table": {
+   "id": 7,
+   "count": 84,
+   "share": 0.00168,
+   "mean_score": 0.7696702678313392,
+   "box_extent": [
+    0.16,
+    1.166,
+    6.478
+   ]
+  },
+  "chair": {
+   "id": 8,
+   "count": 1,
+   "share": 2e-05,
+   "mean_score": 0.229888946276344
+  },
+  "sofa": {
+   "id": 9,
+   "count": 0,
+   "share": 0.0,
+   "mean_score": null
+  },
+  "bookcase": {
+   "id": 10,
+   "count": 39,
+   "share": 0.00078,
+   "mean_score": 0.5414859583183586,
+   "box_extent": [
+    0.274,
+    0.714,
+    1.052
+   ]
+  },
+  "board": {
+   "id": 11,
+   "count": 1,
+   "share": 2e-05,
+   "mean_score": 0.5027203999473077
+  },
+  "clutter": {
+   "id": 12,
+   "count": 5575,
+   "share": 0.1115,
+   "mean_score": 0.5512644023723675,
+   "box_extent": [
+    3.613,
+    6.85,
+    9.23
+   ]
+  }
+ },
+ "x3d": {
+  "bytes": 5104655,
+  "sha256": "6b05219df7b5dd6d3225f2dae656a06a0d97606aaa8552925baac0d05e589d05",
+  "classes_read_back": {
+   "ceiling": 14076,
+   "floor": 6843,
+   "wall": 9502,
+   "beam": 1335,
+   "column": 1289,
+   "window": 8025,
+   "door": 3230,
+   "table": 84,
+   "chair": 1,
+   "bookcase": 39,
+   "board": 1,
+   "clutter": 5575
+  },
+  "xsd_valid": true,
+  "xsd_errors": [],
+  "validator": "x3d_mcp fork 4d433af",
+  "x3dprov": {
+   "ok": true,
+   "status": "verified",
+   "steps": 1,
+   "problems": []
+  },
+  "lenses": "class,rgb,confidence,correct,groundtruth"
+ }
+}
