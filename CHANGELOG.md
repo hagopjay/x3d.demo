@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v95 (2026-11-26)
+- The Demo 73 card now opens Wire Lab v3, the event flywheel (`docs/demos/wire-lab/v3/`, PR 190), and keeps v2 and v1 linked. The card says that none of the three starter worlds contains a ROUTE cycle (a hoop appears only when a visitor closes a loop), that the Blender lane and the search are recordings and not live runs, and that recorded and live counts of continuous streams differ by frame rate. I ran the lane's core test (91 passed, 0 failed) and loaded the Door and Ripple Counter pages headless: 5 canvases each, 0 console errors, 0 HTTP errors. The page test with real mouse events, the Blender recording (add-on 2.7.6, commit 3e3c1e8) and the development-flywheel numbers are the lane's own. No real GPU was available to anyone. The v2 card text is replaced on the front page only; page versions v1 to v94 are untouched.
+
 ## v94 (2026-11-26)
 - New card for Demo 82, Fault Court v1 (`docs/demos/fault-court/v1/`, PR 189): X3D 4.0, glTF 2.0 and USD judged by their own checkers on 60 planted mistakes, pre-registered. The card leads with the result that goes against X3D (glTF's validator caught 41 of 43 shared faults to X3D's 29; the pre-registered X3D-beats-glTF hypothesis failed) next to the ones in X3D's favour (states most, 53 of 60; beats USD 26 to 5; no false alarms), names the validator and version behind every number, and repeats the lane's stated limits (one author, one scene, kinds of mistake). I read the page's scorecards against its README; I did not re-run any validator. The page is static and loads headless with 0 console and 0 HTTP errors. Image `assets/fault-court.jpg` is the lane's shot letterboxed to 960 x 540.
 
