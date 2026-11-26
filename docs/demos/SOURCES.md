@@ -727,3 +727,17 @@ Written for this site on top of v5 (v1 to v5 untouched). v5's content on v4's fl
 | file | sha256 | bytes |
 |---|---|---|
 | assets/open3d-ml-bridge.jpg | be0fec16cddbc066a0be7fe605ff6e3a0445180c53111585190082a6c229a036 | 75194 |
+
+## open3d-ml-bridge-v2 (v93)
+`open3d-ml-bridge-v2` is a 2 x 2 of 480 x 270 tiles from `docs/demos/open3d-ml-bridge/v2/shots/` (`00-correct.jpg`, `01-groundtruth.jpg`, `02-class.jpg`, `05-wall.jpg`; X_ITE 16.7.1, Chromium, SwiftShader) saved as 960 x 540 JPEG. The frames show a subsample of Rohbau3D scene_02009 (CC BY 4.0, Lukas Rauch et al., Universitat der Bundeswehr Munchen, doi:10.60776/ZWJFI4; modified: subsampled, labels mapped and coloured). Credit line and takedown: `docs/demos/open3d-ml-bridge/v2/DATA-ATTRIBUTION.md`.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/open3d-ml-bridge-v2.jpg | bf421d5b17c108af42b8b7dbf3a35b7fc8d9a0f7da48d4fcf7a52b2ec1764f09 | 71649 |
+
+## fault-court (v94)
+`fault-court` is `docs/demos/fault-court/v1/shots/top.jpg` (2800 x 1800, headless Chromium) resized to fit 960 x 540 and centred on the page background colour. It is the project's own results page; no third-party imagery. Validators and their versions are credited on the page and in the card.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/fault-court.jpg | c2d48e49710dabb9926608cda7e9f927538536da4fbf1f59c3a9c4348585863f | 85037 |
