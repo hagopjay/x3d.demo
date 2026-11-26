@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Landscape of Consciousness in X3D</title>
+<meta name="description" content="Demo 83. Kuhn's Landscape of Consciousness taxonomy (figure by Alex Gomez-Marin): 10 families, 209 entries (97 of them in 10 Materialism sub-branches) as one X3D 4.0 world, with labels drawn as glyph geometry, a Script-driven tesseract with a page-side twin, two GLSL shaders, a ParticleSystem and a Penrose tribar that closes from one standpoint.">
+<style>
+:root{--bg:#05060c;--p1:#0b0f19;--p2:#111827;--line:#1d2638;--ink:#ecf0f8;--dim:#8f9ab0;--ok:#5cf2a0;--bad:#f2707a;--warn:#f0b64a;--blue:#6fb7e0;--gold:#ffd36b;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background-image:radial-gradient(1100px 500px at 6% -10%,rgba(111,183,224,.14),transparent 60%),radial-gradient(900px 500px at 98% -4%,rgba(255,211,107,.09),transparent 60%)}
+a{color:var(--blue)}code{font-family:var(--mono);font-size:.86em}
+.wrap{max-width:1560px;margin:0 auto;padding:0 18px 40px}
+header{padding:28px 0 8px}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--blue)}
+h1{font-size:clamp(28px,4.4vw,54px);line-height:1.04;margin:.15em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 em{font-style:normal;background:linear-gradient(90deg,#d7191c,#fdae61,#a6d96a,#2b83ba,#b2abd2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:1000px;color:#c6d0de;font-size:17px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0 8px}
+.stat{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:14px;padding:11px 13px}
+.stat b{display:block;font-size:26px;line-height:1;font-weight:800;white-space:nowrap;color:var(--gold)}
+.stat span{color:var(--dim);font-size:12.5px;display:block;margin-top:6px}
+.stat i{font-style:normal;font-size:10.5px;color:#63738a;display:block;margin-top:4px;font-family:var(--mono)}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px;margin:14px 0}
+@media(max-width:1000px){.stage{grid-template-columns:1fr}}
+#view{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#02030a;aspect-ratio:16/10;min-height:380px}
+x3d-canvas{width:100%;height:100%;display:block}
+#boot{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-family:var(--mono);background:#02030a;transition:opacity .6s;text-align:center;padding:20px}
+#boot.done{opacity:0;pointer-events:none}
+.hud{position:absolute;left:10px;top:10px;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 20px)}
+.btn{background:rgba(10,15,24,.84);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:6px 12px;font:13px system-ui;cursor:pointer}
+.btn:hover{border-color:var(--blue)}.btn.on{border-color:var(--gold);color:var(--gold)}
+#status{position:absolute;left:10px;bottom:10px;font:11.5px var(--mono);color:var(--dim);background:rgba(10,15,24,.82);border:1px solid var(--line);border-radius:10px;padding:6px 9px;max-width:70%}
+.side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:14px;padding:13px}
+.panel h3{margin:0 0 8px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+#q{width:100%;background:#070a12;border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:8px 10px;font:14px system-ui}
+#list{margin-top:8px;max-height:330px;overflow:auto;display:flex;flex-direction:column;gap:2px}
+#list button{display:flex;gap:8px;align-items:center;text-align:left;background:none;border:0;border-radius:8px;color:var(--ink);padding:4px 6px;font:13px system-ui;cursor:pointer}
+#list button:hover{background:rgba(111,183,224,.12)}
+#list i{width:9px;height:9px;border-radius:50%;flex:none}
+#list small{color:var(--dim);margin-left:auto;white-space:nowrap}
+.views{display:flex;flex-wrap:wrap;gap:6px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600}
+td.c{font-family:var(--mono);font-size:12px}
+.g-C{color:var(--ok)}.g-L{color:var(--warn)}.g-S{color:var(--bad)}
+section{margin-top:22px}
+h2{font-size:20px;margin:0 0 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:12px}
+.note{color:var(--dim);font-size:13px}
+img.shot{width:100%;border-radius:10px;border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kick">Demo 83 · version 2 · a taxonomy as a place · <a href="../v1/index.html" style="color:inherit">version 1</a> is kept</div>
+  <h1>A Landscape of <em>Consciousness</em>, in X3D</h1>
+  <p class="lede">Robert Lawrence Kuhn's taxonomy (figure by Alex Gomez-Marin) rebuilt as one navigable X3D 4.0 world: ten families as ten stations, 209 entries as beads you can fly to, and a river of thought to ride. Every label is geometry, so the text draws even where no font can be fetched.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="stage">
+  <div id="view">
+    <x3d-canvas id="canvas" update="auto" splashScreen="false" contextMenu="false" notifications="false"></x3d-canvas>
+    <div id="boot">loading the world (4.25 MB)…</div>
+    <div class="hud">
+      <button class="btn" id="b-ride">Ride the river</button>
+      <button class="btn" id="b-pause">Pause motion</button>
+      <button class="btn" id="b-over">Overview</button>
+    </div>
+    <div id="status">starting</div>
+  </div>
+  <div class="side">
+    <div class="panel"><h3>Entries</h3>
+      <input id="q" placeholder="search 209 entries (Seth, panpsychism, quantum…)" aria-label="search entries">
+      <div id="list"></div></div>
+    <div class="panel"><h3>Stations</h3><div class="views" id="views"></div>
+      <p class="note" style="margin:8px 0 0">Station 10 (Challenge) is an <code>OrthoViewpoint</code>: the Penrose tribar closes only from there.</p></div>
+  </div>
+</div>
+
+<section>
+  <h2>What was checked, and by what</h2>
+  <div class="panel"><table id="ev"></table></div>
+</section>
+
+<section class="grid">
+  <div class="panel"><h2>What is in the world</h2><table id="inv"></table></div>
+  <div class="panel"><h2>What USD and GLB keep (Blender 5.3 export)</h2>
+    <table id="fmt"></table>
+    <p class="note">The before-and-after comparison (X3D against USD and GLB from Blender 5.3, with rulebook results) is in <a href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/landscape-of-consciousness/v2/FORMATS.md">FORMATS.md</a> in this folder (v2 adds a section on what changed since v1).</p></div>
+</section>
+
+<section>
+  <h2>Sources, credit and takedown</h2>
+  <div class="panel">
+    <p style="margin:0 0 8px">The taxonomy is Robert Lawrence Kuhn's <em>Landscape of Consciousness</em>; the source figure is by Alex Gomez-Marin. This page is an independent re-transcription (209 entries, 2 spellings corrected, counts checked per column against the figure). It is <b>not endorsed by, or affiliated with</b>, either of them or the publisher of the figure. The figure image is not reproduced here. Code, world and page are this project's own work (MIT for code, CC BY 4.0 for the page and scene).</p>
+    <p style="margin:0"><a href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/landscape-of-consciousness/v2/DATA-ATTRIBUTION.md">Sources, licences and rapid-takedown notice</a>: if you own anything listed there and want it removed or the credit changed, open an issue titled <code>Takedown: landscape-of-consciousness</code>; it will be removed promptly, without argument.</p>
+  </div>
+</section>
+</div>
+
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var status = function (t) { var e = $("status"); if (e) e.textContent = t; };
+  var BUDGET_MS = 90000;                       // the world load gets a time budget (loadurl-unbudgeted)
+  var B, scene, DATA, ENTRIES = [], CLOCKS = [], paused = false, twin = null;
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]; }); }
+
+  // ---- catalogue from landscape.json: DEF names follow the generator (T_<family>_<branch>_<n>, or T_<family>_<n>)
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function buildEntries(d) {
+    d.families.forEach(function (f) {
+      if (f.branches) f.branches.forEach(function (b) {
+        b.items.forEach(function (name, i) { ENTRIES.push({def: "T_" + f.n + "_" + pad(b.n) + "_" + pad(i + 1), name: name, fam: f.name, br: b.name, color: f.color}); });
+      });
+      else (f.items || []).forEach(function (name, i) { ENTRIES.push({def: "T_" + f.n + "_" + pad(i + 1), name: name, fam: f.name, br: "", color: f.color}); });
+    });
+  }
+  function renderList(q) {
+    q = (q || "").trim().toLowerCase();
+    var out = [], n = 0;
+    ENTRIES.forEach(function (e, i) {
+      if (q && (e.name + " " + e.fam + " " + e.br).toLowerCase().indexOf(q) < 0) return;
+      n++; if (n > 80) return;
+      out.push('<button data-i="' + i + '"><i style="background:' + esc(e.color) + '"></i>' + esc(e.name) + "<small>" + esc(e.fam) + "</small></button>");
+    });
+    $("list").innerHTML = out.join("") || '<span class="note">no entry matches</span>';
+  }
+
+  // ---- camera: look at a point from a point, no roll (yaw about Y, then pitch about X)
+  function lookRotation(from, to) {
+    var dx = to[0] - from[0], dy = to[1] - from[1], dz = to[2] - from[2];
+    var yaw = Math.atan2(-dx, -dz), pitch = Math.atan2(dy, Math.hypot(dx, dz));
+    var cy = Math.cos(yaw / 2), sy = Math.sin(yaw / 2), cp = Math.cos(pitch / 2), sp = Math.sin(pitch / 2);
+    // q = qy * qx
+    var w = cy * cp, x = cy * sp, y = sy * cp, z = -sy * sp;
+    var a = 2 * Math.acos(Math.max(-1, Math.min(1, w))), s = Math.sqrt(1 - w * w);
+    return s < 1e-6 ? [0, 1, 0, 0] : [x / s, y / s, z / s, a];
+  }
+  function flyTo(i) {
+    try {
+      var e = ENTRIES[i], node = scene.getNamedNode(e.def), p = node.getField("translation").getValue();
+      var P = [p.x, p.y, p.z], r = Math.hypot(P[0], P[2]) || 1;
+      var cam = [P[0] + P[0] / r * 15, P[1] + 3.5, P[2] + P[2] / r * 15];
+      var vp = scene.getNamedNode("Focus");
+      vp.getField("position").setValue(new X3D.SFVec3f(cam[0], cam[1], cam[2]));
+      var o = lookRotation(cam, P);
+      vp.getField("orientation").setValue(new X3D.SFRotation(o[0], o[1], o[2], o[3]));
+      vp.getField("centerOfRotation").setValue(new X3D.SFVec3f(P[0], P[1], P[2]));
+      vp.getField("set_bind").setValue(true);
+      status(e.name + " · " + e.fam + (e.br ? " / " + e.br : ""));
+    } catch (err) { status("fly-to failed: " + err.message); }
+  }
+  function bind(def) {
+    try { scene.getNamedNode(def).getField("set_bind").setValue(true); status("viewpoint " + def); }
+    catch (err) { status("viewpoint " + def + " missing: " + err.message); }
+  }
+
+  // ---- motion
+  function setMotion(on) {
+    CLOCKS.forEach(function (n) { try { n.getField("enabled").setValue(on); } catch (e) { /* node gone */ } });
+    paused = !on; $("b-pause").classList.toggle("on", paused); $("b-pause").textContent = paused ? "Resume motion" : "Pause motion";
+  }
+
+  // ---- SAI twin: a Script needs eval; if the host refuses it, run the same maths through the SAI (failure mode 409 of the Loom)
+  function tesseractPoints(f) {
+    var V = [], i, out = [], a = f * 2 * Math.PI, b = f * 4 * Math.PI, c = f * 2 * Math.PI;
+    for (i = 0; i < 16; i++) V.push([i & 1 ? 1 : -1, i & 2 ? 1 : -1, i & 4 ? 1 : -1, i & 8 ? 1 : -1]);
+    V.forEach(function (v) {
+      var x = v[0], y = v[1], z = v[2], w = v[3];
+      var x1 = x * Math.cos(a) - w * Math.sin(a), w1 = x * Math.sin(a) + w * Math.cos(a);
+      var y1 = y * Math.cos(b) - z * Math.sin(b), z1 = y * Math.sin(b) + z * Math.cos(b);
+      var z2 = z1 * Math.cos(c) - w1 * Math.sin(c), w2 = z1 * Math.sin(c) + w1 * Math.cos(c);
+      var q = 3.0 / (3.0 - w2) * 1.9;
+      out.push(new X3D.SFVec3f(x1 * q, y1 * q, z2 * q));
+    });
+    return out;
+  }
+  function motionWitness() {
+    var coord = scene.getNamedNode("TessCoord"), pts = coord.getField("point");
+    // X_ITE hands an MFVec3f back as a flat Float32Array (4 floats per element); older builds as SFVec3f objects
+    function sample() { var v = pts.getValue(); if (!v || !v.length) return null; return typeof v[0] === "number" ? [v[0], v[1], v[2]] : [v[0].x, v[0].y, v[0].z]; }
+    function differ(a, b) { return !!b && (!a || Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]) + Math.abs(a[2] - b[2]) > 1e-4); }
+    function fmt(a) { return a ? a.map(function (x) { return x.toFixed(3); }).join(" ") : "none yet"; }
+    function show(t, cls) { var e = $("tw"); if (e) { e.textContent = t; e.className = "c " + cls; } }
+    var s1 = sample(), force = /[?&]twin=1/.test(location.search);
+    setTimeout(function () {
+      try {
+        var s2 = sample();
+        if (!force && differ(s1, s2)) { show("Script ran: point[0] " + fmt(s1) + " → " + fmt(s2), "g-C"); return; }
+        show("Script silent (host policy or engine): SAI twin on", "g-L");
+        twin = setInterval(function () {
+          try { if (!paused) pts.setValue(new X3D.MFVec3f(...tesseractPoints((performance.now() / 1000 / 12) % 1))); } catch (e) { clearInterval(twin); console.error(e); }
+        }, 100);
+        var t1 = null;
+        setTimeout(function () { t1 = sample(); }, 1000);
+        setTimeout(function () { try { var t2 = sample(); show("Script silent: SAI twin on; twin moved point[0] " + fmt(t1) + " → " + fmt(t2) + " (" + (differ(t1, t2) ? "motion confirmed" : "no motion") + ")", differ(t1, t2) ? "g-C" : "g-S"); } catch (e) { show("twin check failed: " + e.message, "g-S"); } }, 3500);
+      } catch (err) { show("motion witness failed: " + err.message, "g-S"); }
+    }, 2500);
+  }
+
+  // ---- page tables (numbers come from assets/stats.json, written by build/measure.mjs)
+  function renderTables(S) {
+    $("stats").innerHTML = [
+      [S.entries, "entries", "assets/landscape.json"], [S.families, "families · " + S.branches + " sub-branches", "assets/landscape.json"],
+      [S.routes, "ROUTEs", "count in landscape.x3d"], [S.viewpoints, "viewpoints", "count in landscape.x3d"],
+      [S.protoInstances, "PROTO instances", "count in landscape.x3d"], [S.mb + " MB", "world file", "stat, landscape.x3d"]
+    ].map(function (r) { return '<div class="stat"><b>' + r[0] + "</b><span>" + r[1] + "</span><i>" + esc(r[2]) + "</i></div>"; }).join("");
+    $("ev").innerHTML = '<tr><th>check</th><th>result</th><th>instrument</th><th>grade</th></tr>' + S.evidence.map(function (r) {
+      return "<tr><td>" + esc(r[0]) + '</td><td class="c">' + esc(r[1]) + "</td><td>" + esc(r[2]) + '</td><td class="g-' + r[3] + '">' + r[3] + "</td></tr>";
+    }).join("") + '<tr><td>tesseract Script (live, this page)</td><td id="tw" class="c">waiting for the world…</td><td>read twice 2.5 s apart through the SAI, in your browser</td><td class="g-C">C</td></tr>';
+    $("fmt").innerHTML = "<tr><th>X3D feature</th><th>USD</th><th>GLB</th></tr>" + (S.formats || []).map(function (r) { return "<tr><td>" + esc(r[0]) + "</td><td>" + esc(r[1]) + "</td><td>" + esc(r[2]) + "</td></tr>"; }).join("");
+    $("inv").innerHTML = S.inventory.map(function (r) { return "<tr><td>" + esc(r[0]) + '</td><td class="c">' + esc(r[1]) + "</td></tr>"; }).join("");
+  }
+
+  async function main() {
+    var S = {};
+    try {
+      S = await (await fetch("assets/stats.json")).json();
+      DATA = await (await fetch("assets/landscape.json")).json();
+      buildEntries(DATA); renderTables(S); renderList("");
+    } catch (err) { status("data failed: " + err.message); }
+
+    $("list").addEventListener("click", function (ev) { var b = ev.target.closest("button"); if (b) flyTo(+b.getAttribute("data-i")); });
+    $("q").addEventListener("input", function (ev) { renderList(ev.target.value); });
+    $("b-pause").addEventListener("click", function () { setMotion(paused); });
+    $("b-over").addEventListener("click", function () { bind("Overview"); });
+    $("b-ride").addEventListener("click", function () { bind("Pilgrim"); });
+
+    var canvas = $("canvas");
+    B = canvas.browser;
+    try {
+      // the world load has a time budget; if it never settles the overlay says so instead of hanging
+      await Promise.race([B.loadURL(new X3D.MFString("assets/landscape.x3d")), new Promise(function (_, rej) { setTimeout(function () { rej(new Error("world load exceeded " + BUDGET_MS / 1000 + " s")); }, BUDGET_MS); })]);
+    } catch (err) { $("boot").textContent = "The world did not load: " + err.message; status("load failed"); return; }
+    scene = B.currentScene;
+    $("boot").className = "done";
+
+    // viewpoint buttons from the scene's own list
+    var names = [["Overview", "Overview"]].concat(S_VIEWS());
+    $("views").innerHTML = names.map(function (n) { return '<button class="btn" data-vp="' + n[0] + '">' + esc(n[1]) + "</button>"; }).join("");
+    $("views").addEventListener("click", function (ev) { var b = ev.target.closest("button"); if (b) bind(b.getAttribute("data-vp")); });
+
+    CLOCKS = (S.clocks || []).map(function (n) { try { return scene.getNamedNode(n); } catch (e) { return null; } }).filter(Boolean);
+    try { // progress of the river ride: the one field callback on the page, guarded (xite-callback-unguarded)
+      scene.getNamedNode("PilgrimClock").getField("fraction_changed").addFieldCallback("ride", function (f) {
+        try { if (Math.round(f * 100) % 5 === 0) $("status").setAttribute("data-ride", (f * 100).toFixed(0)); } catch (e) { console.error(e); }
+      });
+    } catch (e) { console.error(e); }
+    var r = canvas.getBoundingClientRect();
+    status(r.width > 0 && r.height > 0 ? "world loaded · canvas " + Math.round(r.width) + " × " + Math.round(r.height) : "canvas is 0 × 0: the view is hidden");
+    motionWitness();
+  }
+  function S_VIEWS() {
+    var out = [], v = (DATA && DATA.families || []).map(function (f) { return ["VP" + f.n, f.n + " " + f.name]; });
+    v[9] = ["VP10", "10 Challenge (ortho)"];
+    v.push(["Pilgrim", "River ride"]);
+    return out.concat(v);
+  }
+  main().catch(function (e) { console.error(e); status("error: " + e.message); });
+})();
+</script>
+</body>
+</html>

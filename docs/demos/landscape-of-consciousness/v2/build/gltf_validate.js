@@ -1,0 +1,3 @@
+const v=require('gltf-validator'),fs=require('fs');
+const b=fs.readFileSync(process.argv[2]);
+v.validateBytes(new Uint8Array(b),{uri:'landscape.glb',maxIssues:0}).then(r=>{fs.writeFileSync(process.argv[3],JSON.stringify(r,null,1));console.log(JSON.stringify({version:r.validatorVersion,issues:r.issues.numErrors+' errors, '+r.issues.numWarnings+' warnings, '+r.issues.numInfos+' infos, '+r.issues.numHints+' hints',codes:Object.fromEntries(Object.entries(r.issues.messages.reduce((a,m)=>(a[m.code+':'+['E','W','I','H'][m.severity]]=(a[m.code+':'+['E','W','I','H'][m.severity]]||0)+1,a),{})))},null,1))});
