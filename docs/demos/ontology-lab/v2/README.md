@@ -132,3 +132,9 @@ Primary W3C sources were checked on 14 November 2026; the cited SHACL draft was 
 | `serve.py` | Loopback-only read-only local server |
 
 Third-party assets retain their licences. No new licence for the original study or application is implied by this enhancement.
+
+## Known: the Spinner turns backwards
+
+Noted 26 Nov 2026. The base cabinet scene animates `Spinner` with an OrientationInterpolator whose angles are 0, 3.1416 and 6.2832. Interpolation takes the shortest path and 3.1416 is slightly more than pi, so each half plays the other way round: the Spinner makes a full turn in the opposite direction to the one written. The same keys are in every scene derived from the cabinet, in v1 and v2, and in `companion/examples/fault-F1-repaired.x3d`.
+
+It is left as published on purpose. Only the direction of a decorative spin is affected, and changing the base scene would change every scene and evidence hash this study cites. The safe spelling is three steps or more per turn (0, 2.0944, 4.18879, 6.28319). Found by the x3d_mcp check `orientation-step-long-way`; background in x3d.loom `flywheel/rules-from-findings/` (failure mode 453).
