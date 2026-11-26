@@ -1,0 +1,2170 @@
+{
+ "summary": {
+  "x3d": {
+   "stateable": 53,
+   "base_all": [
+    39,
+    53
+   ],
+   "decoy_flags_base": 0,
+   "decoy_flags_loom": 0,
+   "clean_flag": false,
+   "held_base": [
+    17,
+    25
+   ],
+   "held_loom": [
+    20,
+    25
+   ],
+   "learn_base": [
+    22,
+    28
+   ],
+   "learn_loom": [
+    27,
+    28
+   ]
+  },
+  "gltf": {
+   "stateable": 48,
+   "base_all": [
+    46,
+    48
+   ],
+   "decoy_flags_base": 0,
+   "decoy_flags_loom": 0,
+   "clean_flag": false,
+   "held_base": [
+    23,
+    24
+   ],
+   "held_loom": [
+    23,
+    24
+   ],
+   "learn_base": [
+    23,
+    24
+   ],
+   "learn_loom": [
+    24,
+    24
+   ]
+  },
+  "usd": {
+   "stateable": 44,
+   "base_all": [
+    5,
+    44
+   ],
+   "decoy_flags_base": 0,
+   "decoy_flags_loom": 0,
+   "clean_flag": false,
+   "held_base": [
+    1,
+    20
+   ],
+   "held_loom": [
+    10,
+    20
+   ],
+   "learn_base": [
+    4,
+    24
+   ],
+   "learn_loom": [
+    19,
+    24
+   ]
+  }
+ },
+ "H1": {
+  "gltf": {
+   "paired_n": 43,
+   "x3d_caught": 29,
+   "other_caught": 41,
+   "diff_points": -27.9,
+   "x3d_only": 0,
+   "other_only": 12,
+   "mcnemar_p": 0.0005,
+   "pass": false
+  },
+  "usd": {
+   "paired_n": 39,
+   "x3d_caught": 26,
+   "other_caught": 5,
+   "diff_points": 53.8,
+   "x3d_only": 23,
+   "other_only": 2,
+   "mcnemar_p": 0.0,
+   "pass": true
+  }
+ },
+ "H2_pass": true,
+ "H3_gain_points": {
+  "x3d": 12.0,
+  "gltf": 0.0,
+  "usd": 45.0
+ },
+ "H3_pass": true,
+ "families": {
+  "A": {
+   "x3d": [
+    6,
+    10
+   ],
+   "gltf": [
+    9,
+    9
+   ],
+   "usd": [
+    3,
+    6
+   ]
+  },
+  "B": {
+   "x3d": [
+    4,
+    10
+   ],
+   "gltf": [
+    8,
+    9
+   ],
+   "usd": [
+    0,
+    10
+   ]
+  },
+  "C": {
+   "x3d": [
+    6,
+    8
+   ],
+   "gltf": [
+    6,
+    7
+   ],
+   "usd": [
+    0,
+    10
+   ]
+  },
+  "D": {
+   "x3d": [
+    10,
+    10
+   ],
+   "gltf": [
+    9,
+    9
+   ],
+   "usd": [
+    0,
+    7
+   ]
+  },
+  "E": {
+   "x3d": [
+    7,
+    7
+   ],
+   "gltf": [
+    6,
+    6
+   ],
+   "usd": [
+    1,
+    4
+   ]
+  },
+  "F": {
+   "x3d": [
+    6,
+    8
+   ],
+   "gltf": [
+    8,
+    8
+   ],
+   "usd": [
+    1,
+    7
+   ]
+  }
+ },
+ "cases": {
+  "clean": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "A01": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic",
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "UsdValidation"
+    ],
+    "rules": []
+   }
+  },
+  "A02": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic",
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "A03": {
+   "x3d": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "R1 USE type: <Shape USE='Mat'> names a PhysicalMaterial"
+    ]
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "UsdValidation"
+    ],
+    "rules": []
+   }
+  },
+  "A04": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "A05": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U2 indices: /World/Body/Cube indexes past 0 points"
+    ]
+   }
+  },
+  "A06": {
+   "x3d": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "R3 texture: none of ['missing.png'] is a readable image"
+    ]
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "UsdValidation",
+     "usd-runtime"
+    ],
+    "rules": []
+   }
+  },
+  "A07": {
+   "x3d": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "R3 texture: none of ['notes.png'] is a readable image"
+    ]
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "A08": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "A09": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "A10": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "B01": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U2 indices: /World/Body/Cube indexes past 8 points"
+    ]
+   }
+  },
+  "B02": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "B03": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U1 non-finite: /World/Body/Cube.points"
+    ]
+   }
+  },
+  "B04": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U1 non-finite: /World/Body/Cube.points"
+    ]
+   }
+  },
+  "B05": {
+   "x3d": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "R2 count: Normal has 7 entries for 8 coordinates"
+    ]
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U3 count: /World/Body/Cube.normals has 7 for 8 points"
+    ]
+   }
+  },
+  "B06": {
+   "x3d": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "R2 count: TextureCoordinate has 7 entries for 8 coordinates"
+    ]
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U3 count: /World/Body/Cube.primvars:st has 7 for 8 points"
+    ]
+   }
+  },
+  "B07": {
+   "x3d": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "R2 count: Color has 7 entries for 8 coordinates"
+    ]
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U3 count: /World/Body/Cube.primvars:displayColor has 7 for 8 points"
+    ]
+   }
+  },
+  "B08": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "B09": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U5 positive: /World/Side/Box.size = -1.0"
+    ]
+   }
+  },
+  "B10": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "C01": {
+   "x3d": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "R4 scale: Body scale 0 0 0"
+    ]
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "G1 scale: /nodes/0/scale [0, 0, 0]"
+    ]
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U5 positive: /World/Body.xformOp:scale = (0, 0, 0)"
+    ]
+   }
+  },
+  "C02": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U1 non-finite: /World/Body.xformOp:orient"
+    ]
+   }
+  },
+  "C03": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "C04": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "C05": {
+   "x3d": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "C06": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U5 positive: metersPerUnit 0.0"
+    ]
+   }
+  },
+  "C07": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U5 positive: metersPerUnit -1.0"
+    ]
+   }
+  },
+  "C08": {
+   "x3d": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "C09": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": [
+     "R4 scale: Body scale 1 NaN 1"
+    ]
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": [
+     "G1 scale: /nodes/0/scale [1, nan, 1]"
+    ]
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U1 non-finite: /World/Body.xformOp:scale"
+    ]
+   }
+  },
+  "C10": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U1 non-finite: /World/Body.xformOp:translate"
+    ]
+   }
+  },
+  "D01": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic",
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U4 range: /World/Looks/Mat/Tex.inputs:fallback = (2, 0.8, 0.8, 1)"
+    ]
+   }
+  },
+  "D02": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic",
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U4 range: /World/Looks/Mat/Tex.inputs:fallback = (-0.5, 0.8, 0.8, 1)"
+    ]
+   }
+  },
+  "D03": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U4 range: /World/Looks/Mat/Surf.inputs:opacity = -0.5"
+    ]
+   }
+  },
+  "D04": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U4 range: /World/Looks/Mat/Surf.inputs:roughness = 2.0"
+    ]
+   }
+  },
+  "D05": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U4 range: /World/Looks/Mat/Surf.inputs:metallic = 2.0"
+    ]
+   }
+  },
+  "D06": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic",
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "NA",
+    "loom": "NA"
+   }
+  },
+  "D07": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "D08": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "D09": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic",
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "D10": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic",
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "NA",
+    "loom": "NA"
+   }
+  },
+  "E01": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "E02": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "E03": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "E04": {
+   "x3d": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "E05": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "caught",
+    "loom": "caught",
+    "where": "load",
+    "rules": []
+   }
+  },
+  "E06": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "E07": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic",
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "E08": {
+   "x3d": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "E09": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "E10": {
+   "x3d": {
+    "base": "NA",
+    "loom": "NA"
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "F01": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U5 positive: /World/Cam.focalLength = 0.0"
+    ]
+   }
+  },
+  "F02": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U5 positive: /World/Cam.focalLength = -8.237835884094238"
+    ]
+   }
+  },
+  "F03": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U5 positive: /World/Cam.clippingRange = (-1, 100)"
+    ]
+   }
+  },
+  "F04": {
+   "x3d": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "R5 clip: near 10.0, far 1.0"
+    ]
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U5 positive: /World/Cam.clippingRange = (10, 1)"
+    ]
+   }
+  },
+  "F05": {
+   "x3d": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "caught",
+    "where": [],
+    "rules": [
+     "U5 positive: /World/Cam.horizontalAperture = 0.0"
+    ]
+   }
+  },
+  "F06": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "F07": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "semantic"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "F08": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "NE",
+    "loom": "NE"
+   }
+  },
+  "F09": {
+   "x3d": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "xsd"
+    ],
+    "rules": []
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "caught",
+    "loom": "caught",
+    "where": "load",
+    "rules": []
+   }
+  },
+  "F10": {
+   "x3d": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "gltf": {
+    "base": "caught",
+    "loom": "caught",
+    "where": [
+     "gltf-validator"
+    ],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "Z01": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "Z02": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "NE",
+    "loom": "NE"
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "Z03": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "Z04": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "Z05": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "Z06": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "Z07": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "Z08": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "Z09": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  },
+  "Z10": {
+   "x3d": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "gltf": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   },
+   "usd": {
+    "base": "miss",
+    "loom": "miss",
+    "where": [],
+    "rules": []
+   }
+  }
+ },
+ "manifest": {
+  "clean": {
+   "family": "-",
+   "title": "clean control",
+   "decoy": false
+  },
+  "A01": {
+   "family": "A",
+   "title": "Reference to an object that does not exist",
+   "decoy": false
+  },
+  "A02": {
+   "family": "A",
+   "title": "Two objects share one identifier",
+   "decoy": false
+  },
+  "A03": {
+   "family": "A",
+   "title": "Reference to an object of the wrong kind",
+   "decoy": false
+  },
+  "A04": {
+   "family": "A",
+   "title": "An object is its own ancestor (a cycle)",
+   "decoy": false
+  },
+  "A05": {
+   "family": "A",
+   "title": "A shape with no geometry",
+   "decoy": false
+  },
+  "A06": {
+   "family": "A",
+   "title": "Texture file is missing",
+   "decoy": false
+  },
+  "A07": {
+   "family": "A",
+   "title": "Texture file is not an image",
+   "decoy": false
+  },
+  "A08": {
+   "family": "A",
+   "title": "Animation drives an object that does not exist",
+   "decoy": false
+  },
+  "A09": {
+   "family": "A",
+   "title": "Animation drives a property that does not exist",
+   "decoy": false
+  },
+  "A10": {
+   "family": "A",
+   "title": "Unknown object type",
+   "decoy": false
+  },
+  "B01": {
+   "family": "B",
+   "title": "Vertex index out of range",
+   "decoy": false
+  },
+  "B02": {
+   "family": "B",
+   "title": "Face with fewer than three vertices",
+   "decoy": false
+  },
+  "B03": {
+   "family": "B",
+   "title": "NaN in a vertex position",
+   "decoy": false
+  },
+  "B04": {
+   "family": "B",
+   "title": "Infinity in a vertex position",
+   "decoy": false
+  },
+  "B05": {
+   "family": "B",
+   "title": "Fewer normals than vertices",
+   "decoy": false
+  },
+  "B06": {
+   "family": "B",
+   "title": "Fewer texture coordinates than vertices",
+   "decoy": false
+  },
+  "B07": {
+   "family": "B",
+   "title": "Fewer colours than vertices",
+   "decoy": false
+  },
+  "B08": {
+   "family": "B",
+   "title": "Degenerate triangle (a vertex repeated)",
+   "decoy": false
+  },
+  "B09": {
+   "family": "B",
+   "title": "Negative box size",
+   "decoy": false
+  },
+  "B10": {
+   "family": "B",
+   "title": "Declared bounds do not contain the geometry",
+   "decoy": false
+  },
+  "C01": {
+   "family": "C",
+   "title": "Zero scale",
+   "decoy": false
+  },
+  "C02": {
+   "family": "C",
+   "title": "NaN in a rotation",
+   "decoy": false
+  },
+  "C03": {
+   "family": "C",
+   "title": "Rotation with no axis (zero vector or zero quaternion)",
+   "decoy": false
+  },
+  "C04": {
+   "family": "C",
+   "title": "Rotation axis or quaternion not unit length",
+   "decoy": false
+  },
+  "C05": {
+   "family": "C",
+   "title": "Transform given two contradictory ways",
+   "decoy": false
+  },
+  "C06": {
+   "family": "C",
+   "title": "Length unit declared as zero",
+   "decoy": false
+  },
+  "C07": {
+   "family": "C",
+   "title": "Length unit declared negative",
+   "decoy": false
+  },
+  "C08": {
+   "family": "C",
+   "title": "Up axis declared as something that is not an axis",
+   "decoy": false
+  },
+  "C09": {
+   "family": "C",
+   "title": "NaN in a scale",
+   "decoy": false
+  },
+  "C10": {
+   "family": "C",
+   "title": "Infinity in a translation",
+   "decoy": false
+  },
+  "D01": {
+   "family": "D",
+   "title": "Base colour above 1",
+   "decoy": false
+  },
+  "D02": {
+   "family": "D",
+   "title": "Negative base colour",
+   "decoy": false
+  },
+  "D03": {
+   "family": "D",
+   "title": "Opacity or transparency above 1",
+   "decoy": false
+  },
+  "D04": {
+   "family": "D",
+   "title": "Roughness above 1",
+   "decoy": false
+  },
+  "D05": {
+   "family": "D",
+   "title": "Metallic above 1",
+   "decoy": false
+  },
+  "D06": {
+   "family": "D",
+   "title": "Emissive colour above 1 without an intensity extension",
+   "decoy": false
+  },
+  "D07": {
+   "family": "D",
+   "title": "Two materials on one surface",
+   "decoy": false
+  },
+  "D08": {
+   "family": "D",
+   "title": "Transparency mode is not one of the allowed words",
+   "decoy": false
+  },
+  "D09": {
+   "family": "D",
+   "title": "Texture wrap mode is not one of the allowed words",
+   "decoy": false
+  },
+  "D10": {
+   "family": "D",
+   "title": "Per-vertex colour above 1",
+   "decoy": false
+  },
+  "E01": {
+   "family": "E",
+   "title": "Key count and value count differ",
+   "decoy": false
+  },
+  "E02": {
+   "family": "E",
+   "title": "Key times not increasing",
+   "decoy": false
+  },
+  "E03": {
+   "family": "E",
+   "title": "NaN key time",
+   "decoy": false
+  },
+  "E04": {
+   "family": "E",
+   "title": "Interpolation mode is not one of the allowed words",
+   "decoy": false
+  },
+  "E05": {
+   "family": "E",
+   "title": "Animation value type does not match the property it drives",
+   "decoy": false
+  },
+  "E06": {
+   "family": "E",
+   "title": "Clock period of zero",
+   "decoy": false
+  },
+  "E07": {
+   "family": "E",
+   "title": "Animation values not a whole number of vectors",
+   "decoy": false
+  },
+  "E08": {
+   "family": "E",
+   "title": "Animation range ends before it starts",
+   "decoy": false
+  },
+  "E09": {
+   "family": "E",
+   "title": "Event wired from a property that cannot send",
+   "decoy": false
+  },
+  "E10": {
+   "family": "E",
+   "title": "Two animations write the same property at once",
+   "decoy": false
+  },
+  "F01": {
+   "family": "F",
+   "title": "Field of view of zero",
+   "decoy": false
+  },
+  "F02": {
+   "family": "F",
+   "title": "Field of view of 4 radians (more than half a turn)",
+   "decoy": false
+  },
+  "F03": {
+   "family": "F",
+   "title": "Near clip distance is negative",
+   "decoy": false
+  },
+  "F04": {
+   "family": "F",
+   "title": "Far clip nearer than near clip",
+   "decoy": false
+  },
+  "F05": {
+   "family": "F",
+   "title": "Aspect ratio of zero",
+   "decoy": false
+  },
+  "F06": {
+   "family": "F",
+   "title": "Declared metadata number is not a number",
+   "decoy": false
+  },
+  "F07": {
+   "family": "F",
+   "title": "Humanoid joint name not in the standard list",
+   "decoy": false
+  },
+  "F08": {
+   "family": "F",
+   "title": "Format version missing",
+   "decoy": false
+  },
+  "F09": {
+   "family": "F",
+   "title": "Format version that does not exist",
+   "decoy": false
+  },
+  "F10": {
+   "family": "F",
+   "title": "Camera projection is not one of the allowed words",
+   "decoy": false
+  },
+  "Z01": {
+   "family": "Z",
+   "title": "Very large but finite coordinates",
+   "decoy": true
+  },
+  "Z02": {
+   "family": "Z",
+   "title": "Millimetre units declared",
+   "decoy": true
+  },
+  "Z03": {
+   "family": "Z",
+   "title": "Colour exactly 1 and exactly 0",
+   "decoy": true
+  },
+  "Z04": {
+   "family": "Z",
+   "title": "Key times beyond 1 (seconds, not fractions)",
+   "decoy": true
+  },
+  "Z05": {
+   "family": "Z",
+   "title": "Wide but legal field of view (3 radians)",
+   "decoy": true
+  },
+  "Z06": {
+   "family": "Z",
+   "title": "Long thin but valid triangle",
+   "decoy": true
+  },
+  "Z07": {
+   "family": "Z",
+   "title": "Fully transparent material",
+   "decoy": true
+  },
+  "Z08": {
+   "family": "Z",
+   "title": "Non-ASCII text in metadata",
+   "decoy": true
+  },
+  "Z09": {
+   "family": "Z",
+   "title": "Animation with a single key",
+   "decoy": true
+  },
+  "Z10": {
+   "family": "Z",
+   "title": "Near clip very small but positive",
+   "decoy": true
+  }
+ },
+ "instruments": {
+  "x3d": "x3d_mcp fork 4d433af: XSD 4.0 + semantic_diagnostics",
+  "gltf": "Khronos glTF-Validator (npm gltf-validator) 2.0.0-dev.3.10",
+  "usd": "usd-core 26.11: Usd.Stage.Open + 30 UsdValidation validators",
+  "python": "3.13.18"
+ },
+ "held_out_sha256": "9deab24aff8e322962464ca03ec88c963a843b8aca7890a8e48f96ddfb2bc3de",
+ "commits": {
+  "prereg": "697bf5d",
+  "rules": "cf0b6b4"
+ }
+}
