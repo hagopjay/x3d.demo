@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open3D-ML Bridge v2: scored against ground truth</title>
+<meta name="description" content="Demo 81 v2. Open3D-ML RandLA-Net (S3DIS) runs on three Rohbau3D construction-shell scans (CC BY 4.0), is scored against the dataset's own labels, and the X3D scene carries a correctness lens.">
+<style>
+:root{--bg:#04060b;--p1:#0a0f18;--p2:#0f1622;--line:#1b2535;--ink:#eaf0f8;--dim:#8d99ad;--ok:#5cf2a0;--bad:#f2707a;--warn:#f0b64a;--pre:#5fc6e8;--gold:#ffd36b;--blue:#6fb7e0;--vio:#a98cff;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+ background-image:radial-gradient(1200px 520px at 8% -10%,rgba(95,198,232,.13),transparent 60%),radial-gradient(1000px 520px at 96% -4%,rgba(255,211,107,.10),transparent 60%)}
+a{color:var(--blue)}code,.mono{font-family:var(--mono);font-size:.86em}
+.wrap{max-width:1560px;margin:0 auto;padding:0 18px}
+header{padding:30px 0 10px}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--pre)}
+h1{font-size:clamp(28px,4.6vw,58px);line-height:1.03;margin:.15em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 em{font-style:normal;background:linear-gradient(90deg,#5fc6e8,#5cf2a0,#ffd36b,#f2707a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:1000px;color:#c6d0de;font-size:17px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:20px 0 8px}
+.stat{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.stat b{display:block;font-size:27px;line-height:1;font-weight:800;white-space:nowrap}
+.stat span{color:var(--dim);font-size:12.5px;display:block;margin-top:6px}
+.stat i{font-style:normal;font-size:10.5px;color:#63738a;display:block;margin-top:4px;font-family:var(--mono)}
+.c-ok b{color:var(--ok)}.c-gold b{color:var(--gold)}.c-bad b{color:var(--bad)}.c-pre b{color:var(--pre)}.c-vio b{color:var(--vio)}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;margin:14px 0}
+@media(max-width:1000px){.stage{grid-template-columns:1fr}}
+#view{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#02040a;aspect-ratio:16/10;min-height:380px}
+x3d-canvas{width:100%;height:100%;display:block}
+#boot{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-family:var(--mono);background:#02040a;transition:opacity .6s;text-align:center;padding:20px}
+#boot.done{opacity:0;pointer-events:none}
+.hud{position:absolute;left:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 24px)}
+.btn{background:rgba(10,15,24,.82);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:6px 12px;font:13px system-ui;cursor:pointer;backdrop-filter:blur(4px)}
+.btn:hover{border-color:var(--blue)}.btn.on{border-color:var(--gold);color:var(--gold)}
+.modes{position:absolute;right:12px;bottom:12px;display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(10,15,24,.86)}
+.modes button{border:0;background:none;color:var(--dim);padding:9px 15px;font:600 13px system-ui;cursor:pointer}
+.modes button.on{background:rgba(95,198,232,.18);color:var(--pre)}
+.modebar{position:absolute;left:12px;bottom:12px;font:11.5px var(--mono);color:var(--dim);background:rgba(10,15,24,.8);border:1px solid var(--line);border-radius:10px;padding:6px 9px;max-width:50%}
+.side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:14px;padding:13px}
+.panel h3{margin:0 0 8px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.cats{display:grid;gap:2px;max-height:420px;overflow:auto}
+.cat{display:grid;grid-template-columns:14px 1fr auto 88px;gap:8px;align-items:center;font-size:12.5px;padding:3px 5px;border-radius:7px;cursor:pointer}
+.cat:hover{background:rgba(255,255,255,.04)}.cat.off{opacity:.35}.cat i{width:13px;height:13px;border-radius:3px}
+.cat b{font:12px var(--mono);color:var(--dim)}
+.bar{height:7px;border-radius:4px;background:#141b27;overflow:hidden}.bar s{display:block;height:100%}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font:12px var(--mono);color:#b9c6d6}
+.kv dt{color:var(--dim)}.kv dd{margin:0;word-break:break-word}
+h2{font-size:22px;margin:34px 0 10px;letter-spacing:-.01em}
+h2 small{font-size:13px;color:var(--dim);font-weight:400;margin-left:8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--p1)}
+.g{font:700 11px var(--mono);padding:1px 7px;border-radius:999px;border:1px solid}
+.g-C{color:var(--ok);border-color:rgba(92,242,160,.5)}.g-L{color:var(--warn);border-color:rgba(240,182,74,.5)}.g-S{color:var(--bad);border-color:rgba(242,112,122,.5)}
+.frames{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.frames figure{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--p1)}
+.frames img{width:100%;display:block}.frames figcaption{padding:8px 10px;font-size:12.5px;color:var(--dim)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:12px}
+pre{background:#060a11;border:1px solid var(--line);border-radius:10px;padding:10px;overflow:auto;font:12px/1.45 var(--mono);color:#b9c6d6;margin:0}
+footer{margin:40px 0;color:var(--dim);font-size:12.5px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+<script src="../../../lib/gfx-guard-v3.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div class="kick">Demo 81 · open3d-ml-bridge/v2 · scored against ground truth · <a href="../v1/">v1</a> kept</div>
+ <h1>Where the model is right, and where it <em>confidently isn't</em></h1>
+ <p class="lede">v1 had no ground truth. v2 runs the same Open3D-ML RandLA-Net (trained on finished offices) on three real construction shells from Rohbau3D (CC BY 4.0), maps the dataset's 18 classes to the model's 13 only where the meaning matches, and scores every point. The X3D scene carries two extra lenses: <b>correct</b> (green right, red wrong, grey not scored) and <b>ground truth</b>.</p>
+ <div class="stats" id="stats"></div>
+</header>
+<div class="stage">
+ <div id="view">
+  <x3d-canvas id="xite" preserveDrawingBuffer="true" splashScreen="false" notifications="false" timings="false" update="auto" contextMenu="false"></x3d-canvas>
+  <div id="boot">loading 50,000 scored points…<br>(X_ITE, WebGL2: no WebGPU needed)</div>
+  <div class="hud" id="vps"></div>
+  <div class="modebar" id="modebar">lens: correct vs ground truth</div>
+  <div class="modes" id="lenses"></div>
+ </div>
+ <div class="side">
+  <div class="panel"><h3>Predicted classes (shown scene)</h3><div class="cats" id="cats"></div></div>
+  <div class="panel"><h3>Carried in the file</h3><dl class="kv" id="prov"></dl></div>
+ </div>
+</div>
+
+<h2>Scores <small>3 scenes, 400,000 random points each, 3 runs each (mean ± sd); only mapped classes are scored</small></h2>
+<div class="tblwrap"><table id="scores"></table></div>
+
+<h2>Claims <small>grade = Confirmed / Likely / Suspected</small></h2>
+<div class="tblwrap"><table id="claims"><thead><tr><th>grade</th><th>claim</th><th>instrument</th></tr></thead><tbody></tbody></table></div>
+
+<h2>The class mapping <small>score only where the meaning is the same</small></h2>
+<div class="tblwrap"><table id="map"></table></div>
+
+<h2>What the scores say <small>for the Loom</small></h2>
+<div class="cols" id="findings"></div>
+
+<h2>Frames <small>X_ITE in headless Chromium, SwiftShader WebGL2 (software), not a GPU</small></h2>
+<div class="frames" id="frames"></div>
+
+<h2>Holes left</h2>
+<div class="tblwrap"><table><thead><tr><th>hole</th><th>why</th><th>next</th></tr></thead><tbody>
+<tr><td>Detection on a real LiDAR frame</td><td>still none: Rohbau3D has semantic and instance labels, not 3D boxes</td><td>a KITTI frame, or a CC BY LiDAR set with boxes</td></tr>
+<tr><td>Only one site, three scenes</td><td>site_02 of 14 sites; scores are a sample, not a benchmark</td><td>more sites (each ~4-11 GB)</td></tr>
+<tr><td>Scenes are subsampled</td><td>400,000 of ~11 million points, random, seed 0</td><td>tile the full scene</td></tr>
+<tr><td>Fine-tuning</td><td>the model was not trained on shells; walls called windows is a domain gap, not a bridge fault</td><td>fine-tune on a few sites, then re-score</td></tr>
+</tbody></table></div>
+<footer>Data: Rohbau3D, Lukas Rauch et al., Universität der Bundeswehr München, <a href="https://doi.org/10.60776/ZWJFI4">doi:10.60776/ZWJFI4</a>, CC BY 4.0, files modified (subsampled, scored, recoloured). Sources and takedown: <a href="DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a>. Receipts: <a href="assets/stats.json">stats.json</a>, <a href="assets/validate-receipt.json">validate-receipt.json</a>, <a href="assets/open3d-rohbau.x3d">the scene</a>. Code: <a href="https://github.com/hagopjay/x3d.ml/tree/main/o3d_bridge">x3d.ml/o3d_bridge</a>. <a href="../v1/">v1</a> (Redwood scan, unscored) is unchanged.</footer>
+</div>
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+window.SEG = { ready: false };
+let S, scene;
+const COL = { ceiling: '#4e79a7', floor: '#9c755f', wall: '#f28e2b', beam: '#b07aa1', column: '#edc948', window: '#76b7b2', door: '#e15759', table: '#59a14f', chair: '#ff9da7', sofa: '#af7aa1', bookcase: '#8cd17d', board: '#bab0ac', clutter: '#7f7f7f' };
+const LENSES = ['Class', 'Source RGB', 'Confidence', 'Correct', 'Ground truth'];
+const LN = ['predicted class colour', 'source RGB', 'model confidence', 'correct (green) / wrong (red) / not scored (grey)', 'ground truth, mapped to the model\'s classes'];
+const pm = (m, s) => `${(m * 100).toFixed(1)} ± ${(s * 100).toFixed(1)}%`;
+const fmt = n => n.toLocaleString('en-US');
+const nn = d => { try { return scene.getNamedNode(d); } catch (e) { return null; } };
+const names = () => Object.entries(S.classes).filter(([, c]) => c.count > 0).map(([n]) => n);
+const off = new Set();
+function setVis(n) { const v = nn('vis_' + n); if (v) v.whichChoice = off.has(n) ? -1 : 0; document.querySelector(`.cat[data-n="${n}"]`)?.classList.toggle('off', off.has(n)); }
+window.SEG.lens = l => { for (const n of names()) { const x = nn('lens_' + n); if (x) x.whichChoice = l; } document.querySelectorAll('#lenses button').forEach(b => b.classList.toggle('on', +b.dataset.l === l)); $('#modebar').textContent = 'lens: ' + LN[l]; };
+window.SEG.only = n => { off.clear(); for (const m of names()) if (m !== n) off.add(m); names().forEach(setVis); };
+window.SEG.all = () => { off.clear(); names().forEach(setVis); };
+window.SEG.bind = d => { const v = nn(d); if (v) v.set_bind = true; };
+
+function render() {
+  const sc = S.scenes, ids = Object.keys(sc), sh = sc[S.shown_scene];
+  const mean = k => ids.reduce((a, i) => a + sc[i][k], 0) / ids.length;
+  const best = ids.map(i => [i, sc[i].first_run.classes]);
+  $('#stats').innerHTML = [
+   ['c-ok', pm(sh.first_run.classes.ceiling.recall, 0).split(' ')[0], 'ceiling recall (shown scene)', `${S.shown_scene}, iou ${(sh.first_run.classes.ceiling.iou * 100).toFixed(1)}%`],
+   ['c-ok', pm(sh.first_run.classes.floor.recall, 0).split(' ')[0], 'floor recall (shown scene)', `floor in scene_02000: ${(sc.scene_02000.first_run.classes.floor.recall * 100).toFixed(0)}%`],
+   ['c-bad', (sh.first_run.classes.wall.recall * 100).toFixed(0) + '%', 'wall recall (shown scene)', `scene_02010: ${(sc.scene_02010.first_run.classes.wall.recall * 100).toFixed(0)}%, scene_02000: ${(sc.scene_02000.first_run.classes.wall.recall * 100).toFixed(0)}%`],
+   ['c-gold', (mean('accuracy_mean') * 100).toFixed(1) + '%', 'point accuracy on scored classes', `mean of 3 scenes, 3 runs each`],
+   ['c-pre', 'XSD 4.0 ✓', 'scene validates', `${S.x3d.validator}; x3dprov ${S.x3d.x3dprov.status}`],
+   ['c-vio', 'CC BY 4.0', 'dataset licence', 'read from the Dataverse record'],
+  ].map(([c, b, s, i]) => `<div class="stat ${c}"><b>${b}</b><span>${s}</span><i>${i}</i></div>`).join('');
+  $('#lenses').innerHTML = LENSES.map((t, i) => `<button data-l="${i}" class="${i === 3 ? 'on' : ''}">${t}</button>`).join('');
+  const cls = Object.entries(S.classes).filter(([, c]) => c.count > 0).sort((a, b) => b[1].count - a[1].count);
+  $('#cats').innerHTML = cls.map(([n, c]) => `<div class="cat" data-n="${n}"><i style="background:${COL[n]}"></i><span>${n}</span><b>${fmt(c.count)}</b><div class="bar"><s style="width:${Math.max(2, c.count * 100 / cls[0][1].count)}%;background:${COL[n]}"></s></div></div>`).join('');
+  $('#prov').innerHTML = [['model', 'RandLANet S3DIS ' + S.model.ckpt.slice(0, 24) + '…'], ['ckpt sha256', S.model.ckpt_sha256.slice(0, 16) + '…'], ['source', `Rohbau3D ${S.dataset.site}/${S.shown_scene}, ${fmt(sh.file_points)} pts`], ['shown', '50,000 random points, ' + (S.x3d.bytes / 1e6).toFixed(2) + ' MB'], ['env', `Open3D ${S.env.open3d}, torch ${S.env.torch}, ${S.env.device}`]].map(([k, x]) => `<dt>${k}</dt><dd>${x}</dd>`).join('');
+  const cl = ['ceiling', 'floor', 'wall', 'beam', 'column', 'window'];
+  $('#scores').innerHTML = '<thead><tr><th>scene</th><th>points (file)</th><th>accuracy</th><th>mIoU</th>' + cl.map(c => `<th>${c} recall</th>`).join('') + '<th>s / run</th></tr></thead><tbody>' + ids.map(i => { const v = sc[i], c = v.first_run.classes; return `<tr><td class="mono">${i}</td><td>${fmt(v.file_points)}</td><td>${pm(v.accuracy_mean, v.accuracy_sd)}</td><td>${pm(v.miou_mean, v.miou_sd)}</td>` + cl.map(n => `<td>${c[n] ? (c[n].recall * 100).toFixed(0) + '%' : '–'}</td>`).join('') + `<td>${v.seconds_per_run[0]}</td></tr>`; }).join('') + '</tbody>';
+  $('#map').innerHTML = '<thead><tr><th>Rohbau3D class</th><th>scored as (S3DIS)</th></tr></thead><tbody>' + Object.entries(S.mapping).map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join('') + '<tr><td>None, Wall Cutout, Parapet, Staircase, Window Cutout, Door Rough Opening, Facade Element, Elevator Doors, TGA</td><td>not scored (no matching class)</td></tr></tbody>';
+  const wallTo = i => { const r = sc[i].first_run.confusion_rows_gt_ceiling_floor_wall_beam_column_window[2], t = r.reduce((a, b) => a + b, 0); return (r[5] / t * 100).toFixed(0); };
+  const fl = sc.scene_02000.first_run.confusion_rows_gt_ceiling_floor_wall_beam_column_window[1], ft = fl.reduce((a, b) => a + b, 0);
+  const C = [
+   ['Confirmed', `Ceiling and floor are recognised in a real building shell: ceiling recall ${(sc.scene_02009.first_run.classes.ceiling.recall * 100).toFixed(1)}% and floor ${(sc.scene_02009.first_run.classes.floor.recall * 100).toFixed(1)}% in scene_02009, ${(sc.scene_02010.first_run.classes.ceiling.recall * 100).toFixed(1)}% and ${(sc.scene_02010.first_run.classes.floor.recall * 100).toFixed(1)}% in scene_02010`, 'point-wise equality with Rohbau3D labels under the stated mapping, first of 3 runs; 400,000 random points per scene'],
+   ['Confirmed', `Walls are mostly missed: recall ${(sc.scene_02009.first_run.classes.wall.recall * 100).toFixed(0)}% / ${(sc.scene_02010.first_run.classes.wall.recall * 100).toFixed(0)}% / ${(sc.scene_02000.first_run.classes.wall.recall * 100).toFixed(0)}%; ${wallTo('scene_02010')}% of scene_02010's wall points and ${wallTo('scene_02000')}% of scene_02000's are called "window"`, 'confusion matrix rows in <code>stats.json</code>'],
+   ['Likely', 'The wall failure is a domain gap (bare concrete shells vs finished offices), not a bridge fault', 'the bridge adds no measurable loss (v1: 84.1 ± 1.3 vs 82.8 ± 3.2%); the model never saw unpainted shells; not tested by fine-tuning'],
+   ['Likely', `Putting the floor at z = 0 by the minimum z breaks on multi-level scans: scene_02000 spans ${sc.scene_02000.bbox_min[2]} to ${sc.scene_02000.bbox_max[2]} m in z and only ${(fl[1] / ft * 100).toFixed(0)}% of its floor points are called floor (${(fl[0] / ft * 100).toFixed(0)}% ceiling)`, 'v1 rule applied unchanged; the cause is inferred from the extent, not isolated'],
+   ['Confirmed', `The scene validates: XSD 4.0 ${S.x3d.xsd_valid ? 'valid' : 'INVALID'}, provenance ${S.x3d.x3dprov.status}; ${Object.keys(S.x3d.classes_read_back).length} class groups read back`, `${S.x3d.validator}; x3do3d.read_segmentation`],
+   ['Suspected', 'These three scenes represent Rohbau3D or construction scans generally', 'one site of 14; random subsample of ~4% of each scene'],
+  ];
+  $('#claims tbody').innerHTML = C.map(([g, c, i]) => `<tr><td><span class="g g-${g[0]}">${g}</span></td><td>${c}</td><td>${i}</td></tr>`).join('');
+  $('#findings').innerHTML = [
+   ['Confirmed', 'A score needs a stated class mapping', 'The model has 13 office classes and the dataset has 18 construction classes. Only 9 of the 18 map to a model class with the same meaning; the rest (cutouts, openings, stairs, facade, TGA) are not scored rather than forced into "clutter".'],
+   ['Likely', 'Confidently wrong is a pattern worth a lens', 'The correct lens shows the errors as one red slab on the walls, not as scattered noise: a systematic domain gap that a global accuracy figure (about two-thirds here) would hide.'],
+   ['Likely', 'Normalise the floor by the floor, not by min z', 'Take the floor level from the lowest large horizontal plane in the room, or tile multi-level scans by storey before inference.'],
+   ['Confirmed', 'Licence checked from the record, not assumed', 'CC BY 4.0 was read from the Dataverse API <code>latestVersion.license</code>; the page keeps the attribution and says the files were modified.'],
+  ].map(([g, h, t]) => `<div class="panel"><h3>${g}</h3><b>${h}</b><p style="margin:.4em 0 0;color:#b9c6d6;font-size:13.5px">${t}</p></div>`).join('');
+}
+const FR = [['00-correct', 'Correct lens: green right, red wrong, grey not scored'], ['01-groundtruth', 'Ground truth, mapped to the model\'s classes'], ['02-class', 'Model prediction'], ['03-rgb', 'Source RGB'], ['04-confidence', 'Confidence'], ['05-wall', 'Wall only (predicted)']];
+async function boot() {
+  S = await (await fetch('assets/stats.json')).json();
+  render();
+  $('#frames').innerHTML = FR.map(([f, c]) => `<figure><img loading="lazy" src="shots/${f}.jpg" alt="${c}"><figcaption>${c}</figcaption></figure>`).join('');
+  if (!GfxGuard.require({ api: 'webgl2', bootId: 'boot', timeoutMs: 40000, title: 'Open3D-ML Bridge v2', still: 'shots/00-correct.jpg', stillAlt: 'Correctness lens' })) return;
+  const guard = GfxGuard.pane('x_ite', { host: 'view', timeoutMs: 60000, title: 'The X_ITE view', onRetry: () => location.reload() });
+  try {
+    const browser = X3D.getBrowser('#xite');
+    await browser.loadURL(new X3D.MFString('assets/open3d-rohbau.x3d'));
+    scene = browser.currentScene;
+    $('#vps').innerHTML = '<button class="btn on">Overview</button>';
+    document.querySelectorAll('.cat').forEach(el => el.onclick = e => { const n = el.dataset.n; if (e.shiftKey) { window.SEG.only(n); return; } off.has(n) ? off.delete(n) : off.add(n); setVis(n); });
+    document.querySelectorAll('#lenses button').forEach(b => b.onclick = () => window.SEG.lens(+b.dataset.l));
+    window.SEG.lens(3);
+    guard.ready(); GfxGuard.ready(); $('#boot').classList.add('done');
+    window.SEG.ready = true;
+  } catch (e) { console.error(e); guard.fail(e.message || String(e)); }
+}
+boot().catch(e => { console.error(e); $('#boot').textContent = 'could not load: ' + e.message; });
+</script>
+</body>
+</html>
