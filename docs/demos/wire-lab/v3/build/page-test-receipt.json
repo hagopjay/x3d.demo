@@ -1,0 +1,858 @@
+{
+ "pass": 92,
+ "fail": 0,
+ "errors": [],
+ "results": [
+  {
+   "ok": true,
+   "label": "door: graph drawn"
+  },
+  {
+   "ok": true,
+   "label": "door: before any click the event count is 0 and no packet, glow, badge or stream line is drawn",
+   "got": {
+    "total": 0,
+    "packets": 0,
+    "launched": 0,
+    "ghost": 0,
+    "fxAlpha": 0,
+    "odo": "0",
+    "stream": 0,
+    "badges": 0
+   }
+  },
+  {
+   "ok": true,
+   "label": "door: a still scene stays still (still 0 events, 0 packets after 1.5 s more)"
+  },
+  {
+   "ok": true,
+   "label": "door: three ROUTEs, three independent test callbacks installed",
+   "got": 3
+  },
+  {
+   "ok": true,
+   "label": "door: red button found under the pointer",
+   "got": {
+    "fx": 0.28,
+    "fy": 0.5
+   }
+  },
+  {
+   "ok": true,
+   "label": "door: a real click moved the door up",
+   "got": {
+    "before": "1.2",
+    "during": "3.7"
+   }
+  },
+  {
+   "ok": true,
+   "label": "door: Timer is running after the click"
+  },
+  {
+   "ok": true,
+   "label": "door: after the click the event count is greater than 0 and packets were launched",
+   "got": {
+    "launched": 19,
+    "packets": 8,
+    "total": 21,
+    "odo": "19",
+    "glow": [
+     "live|Click",
+     "live|Timer",
+     "live|Slide",
+     "live|Door"
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "door: the stream lists Click.touchTime → Timer.startTime",
+   "got": [
+    "Slide.value_changed → Door.translation ×17",
+    "Timer.fraction_changed → Slide.set_fraction ×17",
+    "Click.touchTime → Timer.startTime"
+   ]
+  },
+  {
+   "ok": true,
+   "label": "door: the stream lists the slide"
+  },
+  {
+   "ok": true,
+   "label": "door: door is back down after the cycle"
+  },
+  {
+   "ok": true,
+   "label": "door: each wire's count equals the callbacks the test heard on its own",
+   "got": {
+    "page": [
+     1,
+     17,
+     17
+    ],
+    "probe": [
+     1,
+     17,
+     17
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "door: each wire's count equals the entries in the page's own event log",
+   "got": {
+    "page": [
+     1,
+     17,
+     17
+    ],
+    "log": [
+     1,
+     17,
+     17
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "door: one click = one touchTime, and the same number of fractions and slides",
+   "got": [
+    1,
+    17,
+    17
+   ]
+  },
+  {
+   "ok": true,
+   "label": "door: the per-wire panel shows those counts",
+   "got": [
+    1,
+    17,
+    17
+   ]
+  },
+  {
+   "ok": true,
+   "label": "door: the odometer equals the callbacks received",
+   "got": 35
+  },
+  {
+   "ok": true,
+   "label": "door: cascade numbers are computed from real timestamps",
+   "got": {
+    "deepest": 3,
+    "sharing": 3
+   }
+  },
+  {
+   "ok": true,
+   "label": "door: isOver to startTime is refused",
+   "got": "type-mismatch"
+  },
+  {
+   "ok": true,
+   "label": "door: while dragging, only same-type inputs light up",
+   "got": {
+    "can": 5,
+    "cannot": 70
+   }
+  },
+  {
+   "ok": true,
+   "label": "door: a dragged wire became a ROUTE"
+  },
+  {
+   "ok": true,
+   "label": "door: a wrong wire is refused with the reason and a way forward",
+   "got": "X3D refuses this wire. Click.isOver sends yes / no (SFBool) but Timer.startTime takes a ti"
+  },
+  {
+   "ok": true,
+   "label": "door: challenge 1 ticks itself when the graph satisfies it"
+  },
+  {
+   "ok": true,
+   "label": "door: after the rewire, hovering alone opens the door",
+   "got": "0 3.189583 0"
+  },
+  {
+   "ok": true,
+   "label": "door edit: after adding a wire the page re-tapped all 4 ROUTEs and the counts started again from 0",
+   "got": {
+    "taps": 4,
+    "routes": 4,
+    "total": 0
+   }
+  },
+  {
+   "ok": true,
+   "label": "door edit: after one click every wire's count equals the callbacks the test heard and the page's log (nothing double counted)",
+   "got": {
+    "page": [
+     1,
+     14,
+     14,
+     2
+    ],
+    "probe": [
+     1,
+     14,
+     14,
+     2
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "door edit: the old touchTime wire counted exactly 1; the new Timer.isActive → Lamp.visible wire counted 2 (on, off)",
+   "got": [
+    1,
+    14,
+    14,
+    2
+   ]
+  },
+  {
+   "ok": true,
+   "label": "door edit: the lamp (hidden by the last event, Timer.isActive false) is off after the timer ended"
+  },
+  {
+   "ok": true,
+   "label": "views: editor shows 4 wires",
+   "got": {
+    "editor": 4,
+    "wheel": 4,
+    "view": "editor"
+   }
+  },
+  {
+   "ok": true,
+   "label": "views: key F switches to the flywheel view, which holds the same 4 wires",
+   "got": {
+    "view": "wheel",
+    "wires": 4,
+    "mode": "pipeline",
+    "editorHidden": true,
+    "wheelShown": true
+   }
+  },
+  {
+   "ok": true,
+   "label": "views: a wire cut from the flywheel view's panel leaves 3 wires in the graph and in the wheel",
+   "got": {
+    "routes": 3,
+    "wheel": 3
+   }
+  },
+  {
+   "ok": true,
+   "label": "views: back in the editor, the cut shows as 3 wires"
+  },
+  {
+   "ok": true,
+   "label": "HUD: visible at the start"
+  },
+  {
+   "ok": true,
+   "label": "HUD: key H hides every HUD panel",
+   "got": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  {
+   "ok": true,
+   "label": "HUD: key H shows them again"
+  },
+  {
+   "ok": true,
+   "label": "counter: button found under the pointer",
+   "got": {
+    "fx": 0.5,
+    "fy": 0.72
+   }
+  },
+  {
+   "ok": true,
+   "label": "counter: five real clicks count 0 1 2 3 0 1 on two wired bits",
+   "got": [
+    0,
+    1,
+    2,
+    3,
+    0,
+    1
+   ]
+  },
+  {
+   "ok": true,
+   "label": "counter: challenge 1 solved by copying the pattern"
+  },
+  {
+   "ok": true,
+   "label": "counter: with four bits, seventeen clicks count 0 to 15 and wrap",
+   "got": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    0,
+    1
+   ]
+  },
+  {
+   "ok": true,
+   "label": "counter: the readout shows the number"
+  },
+  {
+   "ok": true,
+   "label": "counter: inputTrue in place of inputNegate counts down",
+   "got": [
+    0,
+    15,
+    14,
+    13,
+    12
+   ]
+  },
+  {
+   "ok": true,
+   "label": "counter: with a TimeSensor and a BooleanTrigger it counts by itself",
+   "got": {
+    "v0": 10,
+    "v1": 4
+   }
+  },
+  {
+   "ok": true,
+   "label": "counter: all three challenges tick"
+  },
+  {
+   "ok": true,
+   "label": "counter, clocked: no ROUTE cycle in the graph (computed independently), so no hoop: \"a pipeline, not yet a wheel\"",
+   "got": {
+    "cycles": 0,
+    "hoops": 0
+   }
+  },
+  {
+   "ok": true,
+   "label": "counter + feedback: the flywheel shows exactly the hoops the independent search finds, with the same stations",
+   "got": {
+    "independent": [
+     [
+      "Flip0",
+      "Carry0",
+      "Flip1"
+     ]
+    ],
+    "hoops": [
+     [
+      "Carry0",
+      "Flip0",
+      "Flip1"
+     ]
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "counter + feedback, clocked: every wire's count equals the callbacks the test heard on its own",
+   "got": {
+    "total": 52,
+    "page": [
+     0,
+     8,
+     8,
+     4,
+     4,
+     4,
+     2,
+     2,
+     2,
+     1,
+     1,
+     6,
+     6,
+     4
+    ],
+    "probe": [
+     0,
+     8,
+     8,
+     4,
+     4,
+     4,
+     2,
+     2,
+     2,
+     1,
+     1,
+     6,
+     6,
+     4
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "counter + feedback: the flywheel canvas is lit (non-dark pixels)",
+   "got": 0.483
+  },
+  {
+   "ok": true,
+   "label": "counter, starter graph: no cycle, no hoop",
+   "got": {
+    "cycles": 0,
+    "hoops": 0
+   }
+  },
+  {
+   "ok": true,
+   "label": "door, starter graph: no cycle, no hoop",
+   "got": {
+    "hoops": 0
+   }
+  },
+  {
+   "ok": true,
+   "label": "door + timer loop: one hoop of three stations (Timer, Rewind, Again), as the independent search says",
+   "got": {
+    "cycle": [
+     [
+      "Timer",
+      "Rewind",
+      "Again"
+     ]
+    ],
+    "hoop": [
+     [
+      "Again",
+      "Rewind",
+      "Timer"
+     ]
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "door + timer loop: the timer restarts itself (Timer.isActive fired 3 or more times after one click) and every count equals the callbacks heard",
+   "got": [
+    1,
+    20,
+    20,
+    3,
+    3,
+    1
+   ]
+  },
+  {
+   "ok": true,
+   "label": "blender lane: the recording file is consistent (events = count = sum of per-ROUTE counts) and names the add-on commit",
+   "got": {
+    "count": 365,
+    "commit": "3e3c1e8",
+    "version": "2.7.6"
+   }
+  },
+  {
+   "ok": true,
+   "label": "blender lane: nothing is replayed until the button is pressed"
+  },
+  {
+   "ok": true,
+   "label": "blender lane: the lane says it replayed exactly the recording's event count, per ROUTE as well",
+   "got": {
+    "shown": "365",
+    "total": 365,
+    "traceCount": 365,
+    "perRoute": [
+     1,
+     182,
+     182
+    ],
+    "expect": [
+     1,
+     182,
+     182
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "blender lane: the comparison table's X_ITE column equals the page's own callback log (and its counters)",
+   "got": {
+    "table": [
+     1,
+     15,
+     15
+    ],
+    "log": [
+     1,
+     15,
+     15
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "blender lane: the table's Blender column equals the recording's per-ROUTE counts",
+   "got": [
+    1,
+    182,
+    182
+   ]
+  },
+  {
+   "ok": true,
+   "label": "blender lane: the caption states the order verdict and that these are different clocks",
+   "got": "Order of first events per ROUTE: the same on both sides (3 ROUTEs). Stimulus: 1 click sent to the canvas as mouse events; the sensor then sent 1 event. This is "
+  },
+  {
+   "ok": true,
+   "label": "blender lane: the red button is found again for the manual comparison"
+  },
+  {
+   "ok": true,
+   "label": "blender lane: after a real click and \"Compare now\", the X_ITE column equals the test's own callbacks",
+   "got": {
+    "probe": [
+     1,
+     15,
+     15
+    ],
+    "col": [
+     1,
+     15,
+     15
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: head and first bead are moving",
+   "got": {
+    "head": "2.08",
+    "bead": "2.54"
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: each bead lags the one in front",
+   "got": {
+    "headToBead1": "0.83",
+    "bead1ToBead2": "0.83"
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: unwired bead 3 rests on the floor",
+   "got": [
+    -3,
+    0.5,
+    0
+   ]
+  },
+  {
+   "ok": true,
+   "label": "follower: a running clock becomes a steady flow (continuous stream lines with a rate, many packets), all counted from real callbacks",
+   "got": {
+    "total": 177,
+    "rate": "24",
+    "cont": 6,
+    "launched": 168
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: after wiring, beads 3 and 4 leave the floor and follow",
+   "got": {
+    "seg3": [
+     -1.44,
+     2.76,
+     0
+    ],
+    "seg4": [
+     -0.17,
+     2.31,
+     0
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: the beacon is on while the last damper is still moving"
+  },
+  {
+   "ok": true,
+   "label": "follower: the head can be found under the pointer after adding a PlaneSensor",
+   "got": {
+    "fx": 0.5,
+    "fy": 0.46
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: a real mouse drag moves the head right and up",
+   "got": {
+    "before": [
+     0,
+     2.2,
+     0
+    ],
+    "after": [
+     3.66,
+     3.57,
+     0
+    ]
+   }
+  },
+  {
+   "ok": true,
+   "label": "follower: the beacon goes out once the tail has arrived"
+  },
+  {
+   "ok": true,
+   "label": "follower: the last bead ends where the head was dropped",
+   "got": "0.000"
+  },
+  {
+   "ok": true,
+   "label": "follower: all three challenges tick"
+  },
+  {
+   "ok": true,
+   "label": "follower: the follower chain is a pipeline (no ROUTE cycle)",
+   "got": {
+    "cyc": 0
+   }
+  },
+  {
+   "ok": true,
+   "label": "search door: before Watch, nothing is shown and the page says 62 candidates (the file's count)",
+   "got": {
+    "k": 0,
+    "kTxt": "0",
+    "nTxt": "62"
+   }
+  },
+  {
+   "ok": true,
+   "label": "search door: the replay showed exactly candidates.length = 62 steps, in order",
+   "got": {
+    "shown": 62
+   }
+  },
+  {
+   "ok": true,
+   "label": "search door: it ends on candidate 62 with 65 simulator runs, as in the file",
+   "got": "65"
+  },
+  {
+   "ok": true,
+   "label": "search door: the last step is the match and draws exactly the winner's nodes",
+   "got": [
+    "Touch_Button",
+    "TimeSensor63",
+    "PositionInterpolator64",
+    "Door"
+   ]
+  },
+  {
+   "ok": true,
+   "label": "search door: the caption says recorded, no language model, names the simulator commit; the winner can be loaded",
+   "got": "A recorded search, not a live one. No language model took part: this is the log of a search that another lane ran, and e"
+  },
+  {
+   "ok": true,
+   "label": "search door: the scrubber at 20 shows that candidate's runs-so-far and verdict from the file",
+   "got": {
+    "k": "20",
+    "runs": "23",
+    "v": "ran",
+    "hidden": true
+   }
+  },
+  {
+   "ok": true,
+   "label": "search door: loading the winner gives exactly the winner's ROUTEs, all tapped",
+   "got": {
+    "routes": 3,
+    "taps": 3
+   }
+  },
+  {
+   "ok": true,
+   "label": "search door: the loaded winner's sensor Click is found under the pointer"
+  },
+  {
+   "ok": true,
+   "label": "search door: after a real click the loaded winner's counts equal the independent callbacks",
+   "got": {
+    "page": [
+     1,
+     6,
+     0
+    ],
+    "probe": [
+     1,
+     6,
+     0
+    ],
+    "log": [
+     1,
+     6,
+     0
+    ],
+    "total": 7,
+    "taps": 3,
+    "routes": 3
+   }
+  },
+  {
+   "ok": true,
+   "label": "search counter: before Watch, nothing is shown and the page says 40 candidates (the file's count)",
+   "got": {
+    "k": 0,
+    "kTxt": "0",
+    "nTxt": "40"
+   }
+  },
+  {
+   "ok": true,
+   "label": "search counter: the replay showed exactly candidates.length = 40 steps, in order",
+   "got": {
+    "shown": 40
+   }
+  },
+  {
+   "ok": true,
+   "label": "search counter: it ends on candidate 40 with 44 simulator runs, as in the file",
+   "got": "44"
+  },
+  {
+   "ok": true,
+   "label": "search counter: the last step is the match and draws exactly the winner's nodes",
+   "got": [
+    "Touch_Button",
+    "BooleanToggle4",
+    "BooleanFilter7",
+    "BooleanFilter24",
+    "BooleanToggle42",
+    "Bit0",
+    "Bit1"
+   ]
+  },
+  {
+   "ok": true,
+   "label": "search counter: the caption says recorded, no language model, names the simulator commit; the winner can be loaded",
+   "got": "A recorded search, not a live one. No language model took part: this is the log of a search that another lane ran, and e"
+  },
+  {
+   "ok": true,
+   "label": "search counter: the scrubber at 13 shows that candidate's runs-so-far and verdict from the file",
+   "got": {
+    "k": "13",
+    "runs": "18",
+    "v": "ran",
+    "hidden": true
+   }
+  },
+  {
+   "ok": true,
+   "label": "search counter: loading the winner gives exactly the winner's ROUTEs, all tapped",
+   "got": {
+    "routes": 6,
+    "taps": 6
+   }
+  },
+  {
+   "ok": true,
+   "label": "search counter: the loaded winner's sensor Press is found under the pointer"
+  },
+  {
+   "ok": true,
+   "label": "search counter: after a real click the loaded winner's counts equal the independent callbacks",
+   "got": {
+    "page": [
+     2,
+     1,
+     1,
+     0,
+     0,
+     0
+    ],
+    "probe": [
+     2,
+     1,
+     1,
+     0,
+     0,
+     0
+    ],
+    "log": [
+     2,
+     1,
+     1,
+     0,
+     0,
+     0
+    ],
+    "total": 4,
+    "taps": 6,
+    "routes": 6
+   }
+  },
+  {
+   "ok": true,
+   "label": "phone: no horizontal page scroll at 390 px wide",
+   "got": {
+    "sw": 390,
+    "iw": 390
+   }
+  },
+  {
+   "ok": true,
+   "label": "wide: nothing clipped at 1920 x 1080",
+   "got": {
+    "bad": [],
+    "small": [],
+    "sw": 1920
+   }
+  },
+  {
+   "ok": true,
+   "label": "type: no HTML text under 11 px",
+   "got": []
+  },
+  {
+   "ok": true,
+   "label": "development flywheel: 7 stages from flywheel.json, 8 source links to hagopjay pull requests, \"turns ... without a person: 0\"",
+   "got": {
+    "rows": 7,
+    "links": 8
+   }
+  }
+ ],
+ "browser": "headless Chromium 157.0.8103.78",
+ "x_ite": "16.7.1",
+ "date": "2026-11-26"
+}

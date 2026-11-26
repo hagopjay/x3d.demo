@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wire Lab v3: the event flywheel</title>
+<meta name="description" content="Rewire a living X3D scene and watch the events X_ITE really sends ride the wires: a dense HUD, a flywheel view of the graph's feedback cycles, a recording of the Blender add-on's own simulator, and the measured numbers of the lane that built it.">
+<link rel="stylesheet" href="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.css">
+<script src="../../blenderizer-nexus/v1/observatory/vendor/x_ite/x_ite.min.js"></script>
+<style>
+:root{--bg:#09080e;--ink:#efe9de;--dim:#b9b2a5;--mute:#8d877b;--gold:#e9cf8a;--amber:#ffc752;--green:#9ef275;--cyan:#57dbf5;--lilac:#c9a6ff;--bad:#ff7a7a;--line:rgba(233,207,138,.2);
+  --glass:linear-gradient(180deg,rgba(24,21,34,.74),rgba(12,11,18,.62));--num:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"DejaVu Sans Mono",monospace;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 var(--sans)}
+body{background:radial-gradient(1200px 700px at 78% -8%,rgba(87,219,245,.07),transparent 60%),radial-gradient(900px 600px at 8% 4%,rgba(233,207,138,.07),transparent 60%),var(--bg);min-height:100vh}
+a{color:var(--gold)}
+[hidden]{display:none!important}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 36px rgba(0,0,0,.45);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);overflow:hidden}
+.top{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;padding:8px 16px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(22,19,32,.92),rgba(9,8,14,.7))}
+.top h1{font:500 19px/1.1 var(--serif);margin:0;letter-spacing:.02em}
+.top h1 b{color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-size:15px;margin-right:6px}
+.top .sub{color:var(--dim);font-size:12px;max-width:560px}
+.top .right{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav a{padding:5px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-size:12px;background:rgba(20,18,30,.7)}
+nav a.on{background:var(--gold);color:#1a1300;border-color:var(--gold);font-weight:600;box-shadow:0 0 18px -4px var(--gold)}
+button,select,input{font:inherit;color:var(--ink);background:rgba(28,25,40,.85);border:1px solid var(--line);border-radius:8px;padding:4px 10px}
+button{cursor:pointer;transition:border-color .15s,box-shadow .15s,background .15s}
+button:hover{border-color:var(--gold);box-shadow:0 0 14px -5px var(--gold)}
+button.small{font-size:12px;padding:3px 8px}
+button.tog[aria-pressed="true"]{background:rgba(233,207,138,.16);border-color:var(--gold);color:var(--gold)}
+kbd{font:600 11px var(--num);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;margin-left:5px;color:var(--dim)}
+/* HUD strip */
+#hud{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr)) minmax(220px,1.5fr) minmax(250px,1.7fr);gap:0;margin:12px 16px 0;max-width:1868px}
+@media(min-width:1900px){#hud{margin-left:auto;margin-right:auto}}
+.odo{padding:8px 14px 7px;border-right:1px solid rgba(233,207,138,.12);min-width:0}
+.odo:last-child{border-right:0}
+.odo .k{font:600 11px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.odo .v{font:600 28px/1.15 var(--num);font-variant-numeric:tabular-nums;color:#c8ffa8;text-shadow:0 0 14px rgba(158,242,117,.35);white-space:nowrap}
+.odo .v small{font-size:15px;color:var(--dim);text-shadow:none}
+.odo .s{font:11px/1.25 var(--sans);color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.odo.spark canvas{width:100%;height:46px;display:block}
+.chips{display:flex;flex-wrap:wrap;gap:3px 8px;margin-top:3px}
+.chips span{font:11px var(--num);color:var(--dim);white-space:nowrap;font-variant-numeric:tabular-nums}
+.chips i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:-0.5px;box-shadow:0 0 8px currentColor}
+body.nohud #hud,body.nohud .hudonly{display:none!important}
+/* layout */
+main{display:grid;grid-template-columns:minmax(400px,38%) 1fr;gap:12px;padding:12px 16px;max-width:1900px;margin:0 auto}
+@media(max-width:1000px){main{grid-template-columns:1fr}#hud{grid-template-columns:repeat(2,1fr)}.odo{border-bottom:1px solid rgba(233,207,138,.12)}.odo.spark,.odo:last-child{grid-column:1/-1}.odo .s{white-space:normal}}
+.col{display:flex;flex-direction:column;gap:12px;min-width:0}
+.card h2{font:600 11px/1.2 var(--sans);text-transform:uppercase;letter-spacing:.14em;color:var(--gold);margin:0;padding:9px 12px;border-bottom:1px solid rgba(233,207,138,.14);display:flex;gap:8px;align-items:center}
+.card h2 .r{margin-left:auto;text-transform:none;letter-spacing:0;font:12px var(--sans);color:var(--dim);display:flex;gap:6px;align-items:center}
+.pad{padding:10px 12px}
+#stage{position:relative;aspect-ratio:16/10;background:#05040a}
+x3d-canvas{width:100%;height:100%;display:block}
+#readout{position:absolute;right:12px;top:8px;font:600 28px var(--num);color:var(--amber);text-shadow:0 0 16px rgba(255,199,82,.6);pointer-events:none}
+#status{position:absolute;left:10px;bottom:8px;font:11px var(--num);color:var(--dim);background:rgba(0,0,0,.62);padding:2px 8px;border-radius:6px;pointer-events:none;max-width:92%}
+#status.bad{color:var(--bad)}
+#tagline{font:500 16px/1.3 var(--serif);margin:0 0 4px;color:var(--gold)}
+#idea{color:#d8d1c4;font-size:13px}
+.ch{border:1px solid rgba(233,207,138,.16);border-radius:10px;padding:8px 10px;margin-bottom:8px;background:rgba(26,23,36,.6)}
+.ch:last-child{margin-bottom:0}
+.ch.done{border-color:rgba(158,242,117,.55);background:rgba(20,40,26,.55)}
+.ch b{display:flex;gap:8px;align-items:center;font-size:13px}
+.ch .tick{width:18px;height:18px;border-radius:50%;border:2px solid var(--mute);flex:none;display:grid;place-items:center;font-size:12px}
+.ch.done .tick{border-color:var(--green);background:var(--green);color:#04200f}
+.ch p{margin:4px 0 0 26px;color:#d8d1c4;font-size:12.5px}
+.ch button{margin:6px 0 0 26px}
+.ch .hint{display:none;margin:6px 0 0 26px;color:var(--amber);font-size:12.5px}
+.ch.open .hint{display:block}
+/* event stream */
+#stream{height:268px;overflow:hidden;padding:4px 0}
+.ln{display:grid;grid-template-columns:84px 12px minmax(0,1fr) 62px 48px;gap:0 8px;align-items:center;height:21px;padding:0 12px;font:12px/21px var(--num);font-variant-numeric:tabular-nums;color:#d8d1c4;border-left:2px solid transparent;white-space:nowrap}
+.ln .tm{color:var(--mute)}
+.ln i{width:9px;height:9px;border-radius:50%;box-shadow:0 0 9px currentColor}
+.ln .rt{overflow:hidden;text-overflow:ellipsis}
+.ln .rt b{font-weight:600;color:var(--ink)}
+.ln .vl{color:var(--dim);overflow:hidden;text-overflow:ellipsis;text-align:right}
+.ln .rate{color:var(--amber);text-align:right}
+.ln.cont{background:linear-gradient(90deg,rgba(255,199,82,.09),transparent)}
+.ln.fresh{background:linear-gradient(90deg,rgba(158,242,117,.12),transparent);border-left-color:var(--green)}
+.ln.ghost{color:#cdbbea}
+.ln.ghost.fresh{background:linear-gradient(90deg,rgba(201,166,255,.13),transparent);border-left-color:var(--lilac)}
+.empty{color:var(--mute);padding:10px 12px;font-size:12.5px}
+/* graph */
+.tools{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:8px 12px;border-bottom:1px solid rgba(233,207,138,.14)}
+.tools .grow{margin-left:auto}
+.gwrap{position:relative;height:clamp(380px,47vh,540px);background:radial-gradient(circle at 1px 1px,rgba(233,207,138,.1) 1px,transparent 1.5px) 0 0/22px 22px,#0a090f}
+#graph,#wheel,#fx{position:absolute;inset:0;width:100%;height:100%;display:block}
+#graph,#fx{bottom:auto;height:calc(100% - 40px)}   /* the strip under the graph is the caption's: nodes never run under it */
+#graph{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+#graph.wiring{cursor:crosshair}
+#fx{pointer-events:none}
+#wheel{cursor:pointer}
+.gwrap[data-view="editor"] #wheel,.gwrap[data-view="wheel"] #graph,.gwrap[data-view="wheel"] #fx{display:none}
+#caption{position:absolute;left:10px;bottom:8px;max-width:calc(100% - 20px);font:12px/1.4 var(--sans);color:var(--dim);pointer-events:none;background:rgba(9,8,14,.86);border:1px solid rgba(233,207,138,.2);border-radius:8px;padding:5px 10px}#caption:empty{display:none}
+#caption b{color:var(--gold)}
+.node rect.body{fill:#15131d;stroke:#3a3450;stroke-width:1.2}
+.node.target rect.body{fill:#0f1f28;stroke:#285061}
+.node.sel rect.body{stroke:var(--amber);stroke-width:2}
+.node rect.head{fill:#262136;cursor:move}
+.node.target rect.head{fill:#18384a}
+.node text{fill:var(--ink);font:12px var(--sans);pointer-events:none}
+.node text.t{font-weight:600;font-size:12.5px}
+.node text.d{fill:#b9b2a5;font-size:11px}
+.node text.f{font:11.5px var(--num);fill:#d8d1c4}
+.node text.more{fill:var(--mute);font-size:11px;pointer-events:auto;cursor:pointer}
+.sock{stroke:#09080e;stroke-width:1.5;cursor:crosshair}
+.sock.can{stroke:#fff;stroke-width:2.5}
+.sock.cannot{opacity:.18}
+.wire{fill:none;stroke-linecap:round;cursor:pointer}
+.whalo{fill:none;stroke-linecap:round;cursor:pointer;opacity:.22;stroke-width:9}
+.whalo:hover,.wire:hover{stroke:var(--bad)!important;opacity:1}
+.badge rect{fill:rgba(10,9,15,.85);stroke-width:1}
+.badge text{fill:var(--ink);font:600 11px var(--num);text-anchor:middle;pointer-events:none}
+#rubber{fill:none;stroke:#fff;stroke-width:2.5;stroke-dasharray:6 5;pointer-events:none}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);max-width:min(680px,92vw);background:#2a1216;border:1px solid var(--bad);color:#ffd9d9;padding:11px 15px;border-radius:12px;font-size:14px;display:none;z-index:20;box-shadow:0 10px 40px #000a}
+#toast.good{background:#12281c;border-color:var(--green);color:#d5ffe6}
+#toast b{color:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font:11px var(--sans);color:var(--dim);padding:8px 12px;border-top:1px solid rgba(233,207,138,.14)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px;box-shadow:0 0 8px currentColor}
+.legend .tt{font-family:var(--num);opacity:.65}
+/* lower row */
+.row3{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:12px}
+@media(max-width:760px){.row3{grid-template-columns:1fr}}
+.tabs{display:flex;gap:4px;padding:8px 12px 0;flex-wrap:wrap}
+.tabs button{border-radius:8px 8px 0 0;border-bottom:none;font-size:12px;padding:3px 8px}
+.tabs button.on{background:#0d0c13;border-color:var(--gold);color:var(--gold)}
+pre{margin:0;padding:10px 12px;background:#0b0a10;font:12px/1.5 var(--num);overflow:auto;height:250px;white-space:pre;border-top:1px solid rgba(233,207,138,.14);color:#d8d1c4}
+pre .k{color:var(--amber)} pre .c{color:#847e72} pre .s{color:#9ef275}
+#wireTable{height:276px;overflow:auto;padding:4px 0}
+.wr{display:grid;grid-template-columns:12px minmax(0,1fr) 44px 72px 22px;gap:0 8px;align-items:center;height:26px;padding:0 10px;font:12px var(--num);font-variant-numeric:tabular-nums;white-space:nowrap}
+.wr:hover{background:rgba(233,207,138,.06)}
+.wr i{width:9px;height:9px;border-radius:50%;box-shadow:0 0 8px currentColor}
+.wr .rt{overflow:hidden;text-overflow:ellipsis}.wr .n{text-align:right;color:var(--ink)}
+.wr svg{width:72px;height:20px;display:block}
+.wr button{padding:0;width:20px;height:20px;line-height:1;font-size:13px;border-radius:5px;color:var(--mute)}
+#live{padding:8px 12px;height:276px;overflow:auto}
+#live .nm{font:600 14px var(--serif);color:var(--gold)}
+#live .ty{color:var(--dim);font-size:12px}
+.io{display:flex;gap:14px;margin:4px 0 6px;font:12px var(--num)}
+.io b{color:var(--green);font-size:15px;font-variant-numeric:tabular-nums}
+.fv{display:grid;grid-template-columns:10px minmax(0,1fr) minmax(0,1.2fr);gap:0 7px;font:12px/1.65 var(--num)}
+.fv i{width:8px;height:8px;border-radius:50%;align-self:center}
+.fv span:nth-child(3n+2){color:var(--dim);overflow:hidden;text-overflow:ellipsis}
+.fv span:nth-child(3n){color:var(--ink);text-align:right;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+#inspector label{display:grid;grid-template-columns:130px 1fr;gap:8px;align-items:center;margin:5px 0;font:12px var(--num)}
+#inspector label small{display:block;color:var(--mute);font:11px var(--sans)}
+#inspector input,#inspector select{width:100%;font:12px var(--num)}
+/* blender lane */
+.bl{border-color:rgba(201,166,255,.28)}
+.bl h2{color:var(--lilac)}
+.bl .body{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.05fr);gap:16px;padding:10px 12px}
+@media(max-width:1100px){.bl .body{grid-template-columns:1fr}}
+.bl table{width:100%;table-layout:fixed;border-collapse:collapse;font:12px var(--num);font-variant-numeric:tabular-nums}
+.bl th{font:600 11px var(--sans);text-transform:uppercase;letter-spacing:.1em;color:var(--lilac);text-align:right;padding:2px 6px;border-bottom:1px solid rgba(201,166,255,.25);white-space:nowrap}
+.bl th:first-child,.bl td:first-child{text-align:left}
+.bl td{padding:3px 6px;text-align:right;border-bottom:1px solid rgba(255,255,255,.04);white-space:nowrap}
+.bl td:first-child{white-space:normal;overflow-wrap:anywhere;line-height:1.3;font-size:11.5px}
+.bl th:nth-child(n+2),.bl td:nth-child(n+2){width:64px}.bl th:last-child,.bl td:last-child{width:86px}
+.bl td.eq{color:var(--green)}.bl td.ne{color:var(--amber)}
+.sc{border-color:rgba(201,166,255,.28)}.sc h2{color:var(--lilac)}
+.sc .body{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;padding:10px 12px}
+@media(max-width:1100px){.sc .body{grid-template-columns:1fr}}
+.sc .acts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;align-items:center}
+.sc .odo2{display:flex;gap:18px;flex-wrap:wrap;font:12px var(--num);color:var(--dim);margin:6px 0}
+.sc .odo2 b{font-size:20px;color:#e4d4ff;text-shadow:0 0 12px rgba(201,166,255,.4);font-variant-numeric:tabular-nums}
+.sc input[type=range]{width:100%;accent-color:var(--lilac)}
+.sc canvas{display:block;width:100%;border-radius:10px;background:rgba(9,8,14,.55);border:1px solid rgba(201,166,255,.14)}
+.sc .cap{color:var(--dim);font-size:12px;margin:8px 0 0;line-height:1.45}
+#scRoutes{font:12px var(--num);line-height:1.55;color:#d9cff5}#scRoutes div{overflow-wrap:anywhere}
+#scVerdict{font:600 12px var(--sans);letter-spacing:.08em;text-transform:uppercase}#scVerdict.match{color:var(--green)}#scVerdict.ran{color:var(--lilac)}
+.bl .cap{color:var(--dim);font-size:12px;margin:8px 0 0;line-height:1.45}
+.bl .acts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;align-items:center}
+.bl .odo2{display:flex;gap:18px;font:12px var(--num);color:var(--dim);margin-bottom:6px}
+.bl .odo2 b{font-size:20px;color:#e4d4ff;text-shadow:0 0 12px rgba(201,166,255,.4);font-variant-numeric:tabular-nums}
+#blstream{height:150px;overflow:hidden}
+/* development flywheel */
+#dev{margin:0 16px 12px;max-width:1868px}
+@media(min-width:1900px){#dev{margin-left:auto;margin-right:auto}}
+#dev .loop{display:flex;flex-wrap:wrap;gap:6px 0;align-items:center;padding:10px 12px 2px;font:12px var(--sans)}
+#dev .loop span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(233,207,138,.06);color:var(--ink)}
+#dev .loop em{font-style:normal;color:var(--gold);padding:0 6px}
+#dev .rail{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;padding:10px 12px 8px;position:relative}
+@media(max-width:1699px){#dev .rail{grid-template-columns:repeat(4,minmax(0,1fr))}#dev .st:nth-child(4n)::after{display:none}}
+@media(max-width:760px){#dev .rail{grid-template-columns:1fr 1fr}}
+.st{border:1px solid rgba(233,207,138,.2);border-radius:10px;padding:8px 10px;background:linear-gradient(180deg,rgba(233,207,138,.06),rgba(233,207,138,.015));position:relative;min-width:0}
+.st .nm{font:600 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.st .big{font:600 22px/1.2 var(--num);color:#c8ffa8;text-shadow:0 0 12px rgba(158,242,117,.3);margin:2px 0;font-variant-numeric:tabular-nums;white-space:nowrap}
+.st p{margin:0 0 4px;font-size:11.5px;line-height:1.4;color:#d8d1c4}
+.st .in{font:11px/1.35 var(--num);color:var(--mute)}
+.st .src{font:11px var(--num);margin-top:4px}
+.st .g{display:inline-block;font:600 11px var(--sans);padding:1px 7px;border-radius:999px;border:1px solid rgba(158,242,117,.6);color:var(--green);margin-right:6px}
+.st .cv{color:var(--amber);font-size:11px}
+.st::after{content:"\2192";position:absolute;right:-9px;top:14px;color:var(--gold);font-size:13px;text-shadow:0 0 8px var(--gold);z-index:2}
+.st:last-child::after{content:"\21BA";right:8px;top:6px;font-size:15px}
+#dev .foot{padding:2px 12px 12px;font:12px var(--sans);color:var(--dim)}
+#dev .foot b{font:600 15px var(--num);color:var(--amber)}
+#dev.folded .loop,#dev.folded .rail,#dev.folded .foot{display:none}
+footer{color:var(--mute);font-size:12px;padding:6px 18px 30px;max-width:1900px;margin:0 auto;line-height:1.5}
+footer code,p code{font-family:var(--num);color:#d8d1c4}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1><b>Wire Lab</b> the event flywheel</h1>
+    <div class="sub">Drag from a dot on the right of a node to a dot of the same colour on the left of another. Click a wire to cut it. Nothing on the wires moves unless X_ITE really sent an event.</div>
+  </div>
+  <div class="right">
+    <nav id="nav"></nav>
+    <button class="tog" id="bWheel" aria-pressed="false" title="Show the graph as hoops of feedback cycles">Flywheel<kbd>F</kbd></button>
+    <button class="tog" id="bHud" aria-pressed="true" title="Show or hide the HUD">HUD<kbd>H</kbd></button>
+  </div>
+</header>
+<section id="hud" class="glass" aria-label="Event odometers">
+  <div class="odo"><div class="k">Events</div><div class="v" id="oTotal">0</div><div class="s">X_ITE callbacks since load</div></div>
+  <div class="odo"><div class="k">Per second</div><div class="v" id="oRate">0</div><div class="s">callbacks in last 1 s</div></div>
+  <div class="odo"><div class="k">Routes active</div><div class="v" id="oActive">0<small> / 0</small></div><div class="s">fired in the last 5 s / all</div></div>
+  <div class="odo"><div class="k">Deepest cascade</div><div class="v" id="oDeep">0</div><div class="s">one group, one X3D time</div></div>
+  <div class="odo"><div class="k">One timestamp</div><div class="v" id="oSame">0</div><div class="s">most events at one X3D time</div></div>
+  <div class="odo spark"><div class="k">Events per second, last 20 s</div><canvas id="gSpark" height="46"></canvas></div>
+  <div class="odo"><div class="k">Field types seen</div><div class="chips" id="oTypes"></div><div class="s" id="oWhen"></div></div>
+</section>
+<main>
+  <section class="col">
+    <div class="card glass">
+      <div id="stage">
+        <x3d-canvas id="x3d" contextMenu="false" notifications="false" splashScreen="false" timings="false"></x3d-canvas>
+        <div id="readout"></div>
+        <div id="status">loading</div>
+      </div>
+      <div class="pad"><p id="tagline"></p><div id="idea"></div></div>
+    </div>
+    <div class="card glass hudonly">
+      <h2>Event stream <span class="r" id="streamNote">real events only</span><button class="small" id="clearTape" style="margin-left:6px">clear</button></h2>
+      <div id="stream"></div>
+    </div>
+    <div class="card glass">
+      <h2>Challenges <span class="r" id="score"></span></h2>
+      <div class="pad" id="challenges"></div>
+    </div>
+  </section>
+  <section class="col">
+    <div class="card glass">
+      <h2><span id="viewName">The behaviour graph</span> <span class="r" id="counts"></span></h2>
+      <div class="tools">
+        <select id="addNode" aria-label="Add a node"><option value="">+ Add a node…</option></select>
+        <select id="addTarget" aria-label="Add a scene part"><option value="">+ Add a scene part…</option></select>
+        <button id="tidy">Tidy</button><button id="fit">Fit</button><button id="reset">Start over</button><button id="download">Download .x3d</button>
+        <button id="closeLoop" class="grow" title="Add the wires that turn this world's pipeline into a feedback cycle">Close the loop</button>
+      </div>
+      <div class="gwrap" id="gwrap" data-view="editor">
+        <svg id="graph" role="application" aria-label="Behaviour graph editor"><defs id="defs"></defs><g id="view"><g id="wires"></g><g id="badges"></g><g id="nodes"></g><path id="rubber" d=""/></g></svg>
+        <canvas id="fx"></canvas>
+        <canvas id="wheel" aria-label="Flywheel view of the same graph"></canvas>
+        <div id="caption"></div>
+      </div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div class="row3">
+      <div class="card glass hudonly">
+        <h2>Per-wire traffic <span class="r">events since load, last 5 s</span></h2>
+        <div id="wireTable"></div>
+      </div>
+      <div class="card glass hudonly">
+        <h2>Node <span class="r" id="liveHint">hover or click a node</span></h2>
+        <div id="live"></div>
+      </div>
+    </div>
+    <div class="card glass bl hudonly" id="bl">
+      <h2>Blender lane <span class="r" id="blWho"></span></h2>
+      <div class="body">
+        <div>
+          <div class="acts"><button id="blReplay">Replay the Blender recording</button><button id="blRun">Run the same stimulus in X_ITE</button><button id="blCompare">Compare now</button>
+            <select id="blSpeed" aria-label="Replay speed"><option value="1">1x</option><option value="4">4x</option></select></div>
+          <div class="odo2"><span><b id="blCount">0</b> / <span id="blTotal">0</span> replayed</span><span id="blClock"></span></div>
+          <div id="blstream"></div>
+        </div>
+        <div>
+          <table id="blTable"><thead><tr><th>ROUTE</th><th>Blender</th><th>X_ITE</th><th>diff</th><th title="rank of the ROUTE's first event: Blender / X_ITE">1st rank</th></tr></thead><tbody></tbody></table>
+          <p class="cap" id="blNote"></p>
+        </div>
+      </div>
+    </div>
+    <div class="card glass sc hudonly" id="sc" hidden>
+      <h2>The graph wires itself <span class="r">a recording, not a live search</span></h2>
+      <div class="body">
+        <div>
+          <div class="acts"><button id="scPlay">Watch the search wire it</button><button id="scLoad" hidden>Load the winner into the editor</button>
+            <select id="scSpeed" aria-label="Playback speed"><option value="420">1x</option><option value="110">4x</option></select></div>
+          <div class="canvaswrap"><canvas id="scCanvas" aria-label="Candidate wirings from the recorded search"></canvas></div>
+          <input type="range" id="scScrub" min="0" value="0" aria-label="Candidate number">
+          <div class="odo2"><span>candidate <b id="scK">0</b> of <span id="scN">0</span></span><span>simulator runs so far <b id="scRuns">0</b></span><span id="scVerdict"></span></div>
+        </div>
+        <div><div id="scRoutes"></div><p class="cap" id="scNote"></p></div>
+      </div>
+    </div>
+    <div class="card glass codecard">
+        <div class="tabs" id="tabs">
+          <button data-tab="script" class="on">Script</button><button data-tab="x3d">X3D</button><button data-tab="sentences">Sentences</button><button data-tab="builder">Builder script</button>
+        </div>
+        <pre id="code"></pre>
+    </div>
+    <div class="card glass">
+      <h2>Selected node</h2>
+      <div class="pad" id="inspector"><span style="color:var(--mute)">Click a node to see and change its fields.</span></div>
+    </div>
+  </section>
+</main>
+<section id="dev" class="card glass hudonly">
+  <h2><span id="devTitle">How this editor is built: one turn of the flywheel</span><span class="r"><button class="small" id="devFold" aria-expanded="true">fold</button></span></h2>
+  <div class="loop" id="devLoop"></div>
+  <div class="rail" id="devRail"></div>
+  <div class="foot" id="devFoot"></div>
+</section>
+<footer>
+  <p>The picture is drawn by <a href="https://create3000.github.io/x_ite/">X_ITE</a> 16.7.1 from an X3D 4.0 file. The graph, the script and the X3D text are three views of the same thing, and so is the flywheel view. Every count on this page is a count of field callbacks X_ITE really made since the scene last loaded (editing a wire reloads the scene and starts the counts again); nothing is simulated, replayed or smoothed on the live lane. The Blender lane replays a file recorded once from the add-on's own simulator, on a different clock; it is labelled as such. Checked in headless Chromium with software rendering only; no real GPU, phone or other browser was tried. Proof of concept.</p>
+</footer>
+<div id="toast"></div>
+
+<script type="module">
+import { Catalogue, Graph, COLOURS, PLAIN, WireError, weave, toPython, layout, components } from './wirelab.js';
+import { Flow, compact } from './flow.js';
+import { Hub, drawPackets, samplePath, pointAt, strokePath, rgba, lift, bloom } from './fx.js';
+import { Search, planWinner } from './search.js';
+import { Wheel } from './wheel.js';
+
+const WORLDS = [['door', 'The Door'], ['counter', 'The Ripple Counter'], ['snake', 'The Follower']];
+const worldId = (new URLSearchParams(location.search).get('world') || 'door').replace(/[^a-z]/g, '');
+const $ = id => document.getElementById(id);
+const NS = 'http://www.w3.org/2000/svg';
+const el = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); if (parent) parent.appendChild(e); return e; };
+const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }, del(k) { try { localStorage.removeItem(k); } catch {} } };
+const reduced = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+$('nav').innerHTML = WORLDS.map(([id, title], i) => `<a href="?world=${id}" class="${id === worldId ? 'on' : ''}">${i + 1}. ${title}</a>`).join('');
+
+const cat = new Catalogue(await (await fetch('catalogue.json')).json());
+const world = await (await fetch(`worlds/${worldId}.json`)).json();
+const trace = await (await fetch(`worlds/${worldId}.blender-trace.json`)).json();
+const dev = await (await fetch('flywheel.json')).json();
+const SEARCH = ['door', 'counter'].includes(worldId) ? await fetch(`data/${worldId}.trace.json`).then(r => r.ok ? r.json() : null).catch(() => null) : null;
+const KEY = `wirelab.v3.${worldId}`;
+let graph = new Graph(cat, store.get(KEY) || world.graph);
+let selected = null, hovered = null, expanded = new Set(), tab = 'script', viewMode = 'editor';
+const view = { x: 40, y: 60, k: 1 };
+const flow = new Flow(), ghost = new Flow(), hub = new Hub({ reduced });
+const html = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+
+$('tagline').textContent = world.tagline;
+$('idea').textContent = world.idea;
+document.title = `Wire Lab v3: ${world.title}`;
+
+// ---- which fields a node shows (as v2) ---------------------------------------------------------------------------
+const QUIET = new Set(['metadata', 'description', 'enabled', 'pauseTime', 'resumeTime', 'elapsedTime', 'isPaused', 'closed', 'bboxCenter', 'bboxSize', 'bboxDisplay',
+  'center', 'scaleOrientation', 'addChildren', 'removeChildren', 'children', 'key', 'keyValue', 'autoOffset', 'offset', 'maxPosition', 'minPosition', 'axisRotation',
+  'hitNormal_changed', 'hitPoint_changed', 'hitTexCoord_changed', 'trackPoint_changed', 'set_value', 'tolerance', 'order', 'tau', 'duration', 'initialValue', 'initialDestination',
+  'stopTime', 'cycleInterval', 'loop', 'time', 'centerOfRotation', 'fieldOfView', 'jump', 'retainUserOffsets', 'nearDistance', 'farDistance', 'viewAll', 'navigationInfo',
+  'position', 'orientation', 'occlusionStrength', 'normalScale', 'emissiveTextureMapping', 'baseTextureMapping', 'metallicRoughnessTextureMapping', 'normalTextureMapping', 'occlusionTextureMapping',
+  'baseTexture', 'emissiveTexture', 'metallicRoughnessTexture', 'normalTexture', 'occlusionTexture', 'global', 'shadows', 'shadowIntensity', 'ambientIntensity', 'attenuation', 'location', 'radius',
+  'orientation_changed', 'centerOfRotation_changed', 'exitTime', 'size', 'next', 'previous', 'set_boolean_', 'inputFalse']);
+const routable = n => (cat.rows(n.type) || []).filter(r => r[2] !== 'initializeOnly' && !r[1].endsWith('Node'));
+function shown(n) {
+  const all = routable(n);
+  if (expanded.has(n.id)) return all;
+  const wired = new Set();
+  for (const r of graph.routes) {
+    if (r[0] === n.id) { try { wired.add(cat.resolve(n.type, r[1], 'out')[0]); } catch {} }
+    if (r[2] === n.id) { try { wired.add(cat.resolve(n.type, r[3], 'in')[0]); } catch {} }
+  }
+  const keep = all.filter(r => wired.has(r[0]) || !QUIET.has(r[0]));
+  return keep.length ? keep : all.slice(0, 4);
+}
+const typeOf = i => graph.routes[i] ? graph.typeOfRoute(graph.routes[i]) : 'SFBool';
+const colourOf = t => COLOURS[t] || '#aaa';
+
+// ---- editor drawing ----------------------------------------------------------------------------------------------
+const W = 200, HEAD = 40, ROW = 20, PITCH = 250;
+const sockets = new Map(), nodeBox = new Map(), wirePaths = new Map(), badgeEls = new Map(), wireEls = new Map();
+function draw() {
+  $('view').setAttribute('transform', `translate(${view.x} ${view.y}) scale(${view.k})`);
+  const gn = $('nodes'), gw = $('wires'), gb = $('badges'), defs = $('defs');
+  gn.replaceChildren(); gw.replaceChildren(); gb.replaceChildren(); defs.replaceChildren(); sockets.clear(); nodeBox.clear(); wirePaths.clear(); badgeEls.clear(); wireEls.clear();
+  const rank = n => (expanded.has(n.id) ? 1 : 0) + (selected === n.id ? 2 : 0);
+  for (const n of [...graph.nodes.values()].sort((p, q) => rank(p) - rank(q))) {
+    const [x, y] = n.position ? [n.position[0], -n.position[1]] : [0, 0];
+    const rows = shown(n), hidden = routable(n).length - rows.length;
+    const h = HEAD + rows.length * ROW + 20;
+    nodeBox.set(n.id, { x, y, w: W, h });
+    const g = el('g', { class: `node ${n.role === 'target' ? 'target' : ''} ${selected === n.id ? 'sel' : ''}`, transform: `translate(${x} ${y})`, 'data-id': n.id }, gn);
+    el('rect', { class: 'body', width: W, height: h, rx: 9 }, g);
+    el('rect', { class: 'head', width: W, height: HEAD, rx: 9, 'data-drag': n.id }, g);
+    el('text', { class: 't', x: 10, y: 17 }, g).textContent = n.id;
+    el('text', { class: 'd', x: 10, y: 32 }, g).textContent = n.role === 'target' ? `${n.type} · in the scene` : n.type + (n.parent ? ` · sits in ${n.parent}` : '');
+    rows.forEach((r, i) => {
+      const cy = HEAD + 14 + i * ROW, colour = COLOURS[r[1]] || '#888';
+      const canIn = r[2] !== 'outputOnly', canOut = r[2] !== 'inputOnly';
+      el('text', { class: 'f', x: canIn ? 16 : W - 16, y: cy + 4, 'text-anchor': canIn ? 'start' : 'end' }, g).textContent = r[0];
+      if (canIn) { const c = el('circle', { class: 'sock in', cx: 0, cy, r: 6.5, fill: colour, 'data-node': n.id, 'data-field': r[0], 'data-dir': 'in', 'data-type': r[1] }, g); el('title', {}, c).textContent = `${r[0]} takes ${PLAIN[r[1]] || r[1]} (${r[1]})`; sockets.set(`${n.id}|${r[0]}|in`, { x, y: y + cy, type: r[1] }); }
+      if (canOut) { const c = el('circle', { class: 'sock out', cx: W, cy, r: 6.5, fill: colour, 'data-node': n.id, 'data-field': r[0], 'data-dir': 'out', 'data-type': r[1] }, g); el('title', {}, c).textContent = `${r[0]} sends ${PLAIN[r[1]] || r[1]} (${r[1]})`; sockets.set(`${n.id}|${r[0]}|out`, { x: x + W, y: y + cy, type: r[1] }); }
+    });
+    const more = el('text', { class: 'more', x: W / 2, y: h - 7, 'text-anchor': 'middle', 'data-more': n.id }, g);
+    more.textContent = expanded.has(n.id) ? 'show fewer fields' : hidden > 0 ? `+ ${hidden} more fields` : '';
+  }
+  graph.routes.forEach((r, index) => {
+    let a, b;
+    try { a = sockets.get(`${r[0]}|${cat.resolve(graph.nodes.get(r[0]).type, r[1], 'out')[0]}|out`); b = sockets.get(`${r[2]}|${cat.resolve(graph.nodes.get(r[2]).type, r[3], 'in')[0]}|in`); } catch {}
+    if (!a || !b) return;
+    const colour = COLOURS[a.type] || '#888', d = curve(a, b);
+    const gr = el('linearGradient', { id: `wg${index}`, gradientUnits: 'userSpaceOnUse', x1: a.x, y1: a.y, x2: b.x, y2: b.y }, defs);
+    el('stop', { offset: 0, 'stop-color': colour, 'stop-opacity': .65 }, gr); el('stop', { offset: 1, 'stop-color': lift(colour, .3), 'stop-opacity': 1 }, gr);
+    const halo = el('path', { class: 'whalo', d, stroke: colour, 'data-route': index }, gw);
+    const p = el('path', { class: 'wire', d, stroke: `url(#wg${index})`, 'stroke-width': 2.6, 'data-route': index }, gw);
+    el('title', {}, p).textContent = `${r[0]}.${r[1]} → ${r[2]}.${r[3]}  (${a.type}: ${PLAIN[a.type] || ''})  click to cut`;
+    wireEls.set(index, { halo, core: p });
+    wirePaths.set(index, samplePath(u => bez(a, b, u), 44));
+    const bg = el('g', { class: 'badge', style: 'display:none' }, gb); el('rect', { height: 16, rx: 8, stroke: colour }, bg); const tx = el('text', { y: 12 }, bg);
+    badgeEls.set(index, { g: bg, rect: bg.firstChild, text: tx });
+  });
+  $('counts').textContent = `${[...graph.nodes.values()].filter(n => n.role === 'behaviour').length} nodes · ${graph.routes.length} ROUTEs`;
+  updateWires(); fxDirty = true;
+}
+const dOf = (a, b) => Math.max(50, Math.abs(b.x - a.x) * .5);
+const curve = (a, b) => { const d = dOf(a, b); return `M${a.x} ${a.y} C${a.x + d} ${a.y} ${b.x - d} ${b.y} ${b.x} ${b.y}`; };
+const bez = (a, b, u) => { const d = dOf(a, b), v = 1 - u, c1 = [a.x + d, a.y], c2 = [b.x - d, b.y]; return [v * v * v * a.x + 3 * v * v * u * c1[0] + 3 * v * u * u * c2[0] + u * u * u * b.x, v * v * v * a.y + 3 * v * v * u * c1[1] + 3 * v * u * u * c2[1] + u * u * u * b.y]; };
+// thickness and count badge of each wire: what X_ITE has really sent on it
+function updateWires() {
+  for (const [index, e] of wireEls) {
+    const n = flow.wires[index]?.count || 0, k = Math.min(3.4, Math.log10(1 + n) * 1.15);
+    e.core.setAttribute('stroke-width', (2.6 + k).toFixed(2)); e.halo.setAttribute('stroke-width', (9 + k * 2.2).toFixed(2));
+    const b = badgeEls.get(index), path = wirePaths.get(index);
+    if (b && path) { b.g.style.display = n ? '' : 'none'; if (n) { const p = pointAt(path, path.len * .5), t = String(n), wd = t.length * 7 + 12; b.text.textContent = t; b.rect.setAttribute('width', wd); b.g.setAttribute('transform', `translate(${p[0] - wd / 2} ${p[1] - 8})`); b.text.setAttribute('x', wd / 2); } }
+  }
+}
+function fit() {
+  updateCaption();
+  const box = $('graph').getBoundingClientRect(), wiredIds = new Set(graph.routes.flatMap(r => [r[0], r[2]]));
+  const extent = only => { let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+    for (const n of graph.nodes.values()) { if (only && wiredIds.size && !wiredIds.has(n.id)) continue; const [x, y] = [n.position?.[0] || 0, -(n.position?.[1] || 0)]; x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x + W); y1 = Math.max(y1, y + HEAD + shown(n).length * ROW + 20); }
+    return { x0, y0, x1, y1, k: Math.min(1.15, (box.width - 60) / (x1 - x0), (box.height - 50) / (y1 - y0)) }; };
+  // show the unwired scene parts too while the text stays readable (scale 0.8 or more); otherwise fit the wired nodes and let the rest wait below
+  let ex = extent(false); if (ex.k < .8) ex = extent(true);
+  const { x0, y0, x1 } = ex; view.k = Math.max(0.5, ex.k);
+  view.x = 30 - x0 * view.k + Math.max(0, (box.width - 60 - (x1 - x0) * view.k) / 2); view.y = 20 - y0 * view.k;
+  draw();
+}
+
+// ---- code views --------------------------------------------------------------------------------------------------
+function showCode() {
+  let text = '';
+  if (tab === 'script') text = html('from behaviour_graph import Behaviour\n\n' + toPython(graph) + '\nopen("' + worldId + '.x3d", "w").write(b.weave(scene))\n').replace(/(&gt;&gt;|>>)/g, '<span class="k">$1</span>').replace(/(&quot;[^\n]*?&quot;)/g, '<span class="s">$1</span>');
+  if (tab === 'x3d') { try { text = html(weave(world.scene, graph)).replace(/(&lt;ROUTE[^\n]*)/g, '<span class="k">$1</span>'); } catch (e) { text = html(e.message); } }
+  if (tab === 'sentences') text = html(graph.explain() || '(no ROUTEs yet)');
+  if (tab === 'builder') text = html(world.script).replace(/(#[^\n]*)/g, '<span class="c">$1</span>');
+  $('code').innerHTML = text;
+}
+$('tabs').addEventListener('click', e => { const t = e.target.dataset.tab; if (!t) return; tab = t; [...$('tabs').children].forEach(b => b.classList.toggle('on', b.dataset.tab === t)); showCode(); });
+
+// ---- challenges --------------------------------------------------------------------------------------------------
+const openHints = new Set(); let lastSolved = new Set();
+function showChallenges() {
+  const solved = world.challenges.map(c => graph.solved(c));
+  $('challenges').innerHTML = world.challenges.map((c, i) => `<div class="ch ${solved[i] ? 'done' : ''} ${openHints.has(i) ? 'open' : ''}"><b><span class="tick">${solved[i] ? '✓' : ''}</span>${html(c.title)}</b><p>${html(c.ask)}</p><button class="small" data-hint="${i}">${openHints.has(i) ? 'hide hint' : 'hint'}</button><div class="hint">${html(c.hint)}</div></div>`).join('');
+  $('score').textContent = `${solved.filter(Boolean).length} of ${solved.length} solved`;
+  solved.forEach((s, i) => { if (s && !lastSolved.has(i)) toast(`<b>Solved:</b> ${html(world.challenges[i].title)}. Now try it in the picture.`, true); });
+  lastSolved = new Set(solved.map((s, i) => s ? i : -1).filter(i => i >= 0));
+}
+$('challenges').addEventListener('click', e => { const i = e.target.dataset.hint; if (i === undefined) return; openHints.has(+i) ? openHints.delete(+i) : openHints.add(+i); showChallenges(); });
+
+// ---- inspector (editable) ----------------------------------------------------------------------------------------
+function showInspector() {
+  const n = graph.nodes.get(selected), box = $('inspector');
+  if (!n) { box.innerHTML = '<span style="color:var(--mute)">Click a node to see and change its fields.</span>'; return; }
+  if (n.role === 'target') { box.innerHTML = `<p style="margin:0 0 8px"><b>${n.id}</b> is a ${n.type} in the scene. The graph can wire to it, but its shape and place belong to the scene (in Blender: to the object).</p><button id="del">Take it off the bench</button>`; }
+  else {
+    const transforms = [...world.scene.matchAll(/<Transform DEF="([^"]+)"/g)].map(m => m[1]);
+    box.innerHTML = `<p style="margin:0 0 8px"><b>${n.id}</b> · ${n.type} <span style="color:var(--mute)">(${cat.data.nodes[n.type].group})</span></p>` +
+      (cat.isPlaced(n.type) ? `<label><span>sits in<small>it senses that part's shapes</small></span><select data-parent><option value="">(the whole scene)</option>${transforms.map(t => `<option ${n.parent === t ? 'selected' : ''}>${t}</option>`).join('')}</select></label>` : '') +
+      cat.settable(n.type).filter(r => !r[1].endsWith('Node') && r[0] !== 'description').map(r => `<label><span>${r[0]}<small>${PLAIN[r[1]] || r[1]}</small></span><input data-field="${r[0]}" value="${html(n.fields[r[0]] ?? '')}" placeholder="${html(r[3] ?? '')}"></label>`).join('') +
+      '<button id="del" style="margin-top:8px">Delete this node</button>';
+  }
+}
+$('inspector').addEventListener('change', e => {
+  const n = graph.nodes.get(selected); if (!n) return;
+  if (e.target.dataset.field) { const v = e.target.value.trim(); if (v === '') delete n.fields[e.target.dataset.field]; else n.fields[e.target.dataset.field] = v; }
+  if ('parent' in e.target.dataset) { if (e.target.value) n.parent = e.target.value; else delete n.parent; }
+  changed();
+});
+$('inspector').addEventListener('click', e => { if (e.target.id === 'del') { graph.remove(selected); selected = null; changed(); } });
+
+// ---- toast -------------------------------------------------------------------------------------------------------
+let toastTimer;
+function toast(message, good = false) { const t = $('toast'); t.innerHTML = message; t.className = good ? 'good' : ''; t.style.display = 'block'; clearTimeout(toastTimer); toastTimer = setTimeout(() => t.style.display = 'none', good ? 3500 : 7000); }
+const CONVERT = { 'SFBool>SFTime': 'a TimeTrigger turns a yes into a time', 'SFTime>SFBool': 'a BooleanTrigger turns a time into a yes', 'SFFloat>SFVec3f': 'a PositionInterpolator turns a number into a place',
+  'SFFloat>SFColor': 'a ColorInterpolator turns a number into a colour', 'SFFloat>SFRotation': 'an OrientationInterpolator turns a number into a turn', 'SFTime>SFFloat': 'a TimeSensor turns a start time into a number that runs from 0 to 1',
+  'SFBool>SFInt32': 'an IntegerTrigger turns a yes into a whole number', 'SFBool>SFFloat': 'a TimeTrigger then a TimeSensor turn a yes into a running number', 'SFVec3f>SFRotation': 'these do not convert directly; drive both from one timer with two interpolators' };
+function refuse(from, to) {
+  const a = `${from.node}.${from.field}`, b = `${to.node}.${to.field}`;
+  if (from.type !== to.type) { const tip = CONVERT[`${from.type}>${to.type}`]; toast(`<b>X3D refuses this wire.</b> ${a} sends ${PLAIN[from.type] || from.type} (${from.type}) but ${b} takes ${PLAIN[to.type] || to.type} (${to.type}). A ROUTE joins two fields of one type.${tip ? ` Try this: ${tip}.` : ''}`); }
+}
+
+// ---- pointer work on the graph (as v2) ---------------------------------------------------------------------------
+const svg = $('graph'); let drag = null;
+const toGraph = e => { const b = svg.getBoundingClientRect(); return { x: (e.clientX - b.left - view.x) / view.k, y: (e.clientY - b.top - view.y) / view.k }; };
+const sockOf = t => t?.classList?.contains('sock') ? { node: t.dataset.node, field: t.dataset.field, dir: t.dataset.dir, type: t.dataset.type } : null;
+function markSockets(from) {
+  svg.classList.toggle('wiring', !!from);
+  svg.querySelectorAll('.sock').forEach(s => { s.classList.remove('can', 'cannot'); if (!from) return; const ok = s.dataset.dir !== from.dir && s.dataset.type === from.type && s.dataset.node !== from.node; s.classList.add(ok ? 'can' : 'cannot'); });
+  svg.querySelectorAll(`.sock[data-node="${from?.node}"][data-field="${from?.field}"][data-dir="${from?.dir}"]`).forEach(s => s.classList.remove('cannot'));
+}
+function connect(a, b) {
+  if (!a || !b || a.dir === b.dir) return;
+  const [from, to] = a.dir === 'out' ? [a, b] : [b, a];
+  try { graph.route(from.node, from.field, to.node, to.field); changed(); }
+  catch (e) { if (e instanceof WireError && e.code === 'type-mismatch') refuse(from, to); else toast(`<b>X3D refuses this wire.</b> ${html(e.message)}`); }
+}
+svg.addEventListener('pointerdown', e => {
+  const s = sockOf(e.target), p = toGraph(e);
+  svg.setPointerCapture(e.pointerId);
+  if (s) { if (drag?.kind === 'wire' && drag.sticky) { connect(drag.from, s); drag = null; markSockets(null); $('rubber').setAttribute('d', ''); return; } drag = { kind: 'wire', from: s, start: sockets.get(`${s.node}|${s.field}|${s.dir}`), moved: false }; markSockets(s); return; }
+  if (drag?.kind === 'wire') { drag = null; markSockets(null); $('rubber').setAttribute('d', ''); }
+  if (e.target.dataset.drag) { const n = graph.nodes.get(e.target.dataset.drag); n.position ||= [0, 0]; drag = { kind: 'node', n, dx: p.x - n.position[0], dy: p.y + n.position[1], moved: false }; return; }
+  if (e.target.dataset.more) { const id = e.target.dataset.more; expanded.has(id) ? expanded.delete(id) : expanded.add(id); draw(); return; }
+  if (e.target.dataset.route !== undefined) { graph.unroute(+e.target.dataset.route); changed(); return; }
+  const nodeEl = e.target.closest?.('.node'); if (nodeEl) { selected = nodeEl.dataset.id; draw(); showInspector(); return; }
+  drag = { kind: 'pan', x: e.clientX - view.x, y: e.clientY - view.y };
+});
+svg.addEventListener('pointermove', e => {
+  if (!drag) { const n = e.target.closest?.('.node'); const id = n ? n.dataset.id : null; if (id !== hovered) { hovered = id; } return; }
+  const p = toGraph(e);
+  if (drag.kind === 'wire') { drag.moved = true; const a = drag.start, b = { x: p.x, y: p.y }; $('rubber').setAttribute('d', drag.from.dir === 'out' ? curve(a, b) : curve(b, a)); }
+  if (drag.kind === 'node') { drag.moved = true; drag.n.position = [p.x - drag.dx, -(p.y - drag.dy)]; draw(); }
+  if (drag.kind === 'pan') { userMoved = true; view.x = e.clientX - drag.x; view.y = e.clientY - drag.y; draw(); }
+});
+svg.addEventListener('pointerleave', () => { hovered = null; });
+svg.addEventListener('pointerup', e => {
+  if (!drag) return;
+  if (drag.kind === 'wire') {
+    const target = sockOf(document.elementFromPoint(e.clientX, e.clientY));
+    if (target && !(target.node === drag.from.node && target.field === drag.from.field && target.dir === drag.from.dir)) { connect(drag.from, target); drag = null; }
+    else if (!drag.sticky && target) { drag.sticky = true; return; }
+    else drag = null;
+    if (!drag) { markSockets(null); $('rubber').setAttribute('d', ''); }
+    return;
+  }
+  if (drag.kind === 'node') { if (!drag.moved) { selected = drag.n.id; showInspector(); } save(); draw(); wheel.rebuild(); }
+  drag = null;
+});
+svg.addEventListener('wheel', e => { userMoved = true; e.preventDefault(); const b = svg.getBoundingClientRect(), f = e.deltaY < 0 ? 1.1 : 1 / 1.1, mx = e.clientX - b.left, my = e.clientY - b.top; view.x = mx - (mx - view.x) * f; view.y = my - (my - view.y) * f; view.k *= f; draw(); }, { passive: false });
+
+// ---- toolbar -----------------------------------------------------------------------------------------------------
+$('addNode').innerHTML += Object.entries(cat.groups()).map(([g, names]) => `<optgroup label="${g}">${names.map(n => `<option>${n}</option>`).join('')}</optgroup>`).join('');
+const sceneParts = [...world.scene.matchAll(/<(\w+) DEF="([^"]+)"/g)].map(m => ({ type: m[1], id: m[2] })).filter(p => cat.data.targets[p.type]);
+function fillTargets() { $('addTarget').innerHTML = '<option value="">+ Add a scene part…</option>' + sceneParts.filter(p => !graph.nodes.has(p.id)).map(p => `<option value="${p.id}">${p.id} (${p.type})</option>`).join(''); }
+const dropPoint = () => { const b = svg.getBoundingClientRect(); return [(b.width * .45 - view.x) / view.k + Math.random() * 40, -((b.height * .3 - view.y) / view.k + Math.random() * 40)]; };
+$('addNode').addEventListener('change', e => { if (!e.target.value) return; const n = graph.add(e.target.value, null, { position: dropPoint() }); if (cat.isPlaced(n.type)) { const first = world.scene.match(/<Transform DEF="([^"]+)"/); if (first) n.parent = first[1]; } selected = n.id; e.target.value = ''; changed(); });
+$('addTarget').addEventListener('change', e => { const p = sceneParts.find(s => s.id === e.target.value); if (!p) return; graph.nodes.set(p.id, { id: p.id, type: p.type, role: 'target', fields: {}, binding: ['def', p.id], position: dropPoint() }); selected = p.id; changed(); });
+function arrange() {
+  const wired = new Set(graph.routes.flatMap(r => [r[0], r[2]])), pos = layout(graph, 1, 1), PER = 4;
+  const height = n => HEAD + shown(n).length * ROW + 34, bands = {};
+  for (const n of graph.nodes.values()) if (wired.has(n.id)) { const c = pos[n.id][0], band = Math.floor(c / PER); ((bands[band] ||= {})[c % PER] ||= []).push(n); }
+  let top = 0;
+  for (const band of Object.keys(bands).map(Number).sort((a, b) => a - b)) {
+    let tall = 0;
+    for (const [c, nodes] of Object.entries(bands[band])) { let y = top; for (const n of nodes) { n.position = [c * PITCH, -y]; y += height(n); } tall = Math.max(tall, y - top); }
+    top += tall + 26;
+  }
+  let i = 0;
+  let rowTop = top + 30, rowTall = 0;      // scene parts that are not wired yet: a tidy bench row directly under the wired nodes
+  for (const n of graph.nodes.values()) if (!wired.has(n.id)) { if (i && i % PER === 0) { rowTop += rowTall + 22; rowTall = 0; } n.position = [(i % PER) * PITCH, -rowTop]; rowTall = Math.max(rowTall, height(n)); i++; }
+}
+$('tidy').addEventListener('click', () => { userMoved = false; arrange(); save(); fit(); wheel.rebuild(); });
+$('fit').addEventListener('click', () => { userMoved = false; fit(); });
+$('reset').addEventListener('click', () => { store.del(KEY); graph = new Graph(cat, world.graph); selected = null; expanded.clear(); lastSolved = new Set(); arrange(); wheel.env.graph = graph; changed(); fit(); });
+$('download').addEventListener('click', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([weave(world.scene, graph)], { type: 'model/x3d+xml' })); a.download = `wire-lab-${worldId}.x3d`; a.click(); });
+$('clearTape').addEventListener('click', () => { flow.stream.length = 0; flow.streamVersion++; });
+const TYPES = ['SFBool', 'SFTime', 'SFFloat', 'SFVec3f', 'SFRotation', 'SFColor', 'SFInt32'];
+$('legend').innerHTML = TYPES.map(t => `<span><i style="background:${COLOURS[t]};color:${COLOURS[t]}"></i>${PLAIN[t]} <span class="tt">${t}</span></span>`).join('') + '<span><i style="background:#777;color:#777"></i>other</span><span>A wire only joins two dots of one colour.</span>';
+
+// A "Close the loop" edit per world: the starter graphs are pipelines (no ROUTE cycle), these wires make one.
+const LOOPS = {
+  door: { nodes: [['BooleanFilter', 'Rewind'], ['TimeTrigger', 'Again']], routes: [['Timer', 'isActive', 'Rewind', 'set_boolean'], ['Rewind', 'inputNegate', 'Again', 'set_boolean'], ['Again', 'triggerTime', 'Timer', 'startTime']], text: 'the timer restarts itself each time it ends' },
+  counter: { nodes: [], routes: [['Flip1', 'toggle', 'Flip0', 'set_boolean']], text: 'the high bit feeds back into the low bit' },
+};
+function loopApplied() { const l = LOOPS[worldId]; return !!l && l.routes.every(r => graph.routes.some(q => q.join() === r.join())); }
+$('closeLoop').style.display = LOOPS[worldId] ? '' : 'none';
+$('closeLoop').addEventListener('click', () => {
+  const l = LOOPS[worldId]; if (!l) return;
+  if (loopApplied()) { graph.routes = graph.routes.filter(q => !l.routes.some(r => r.join() === q.join())); for (const [, id] of l.nodes) graph.nodes.delete(id); }
+  else { for (const [t, id] of l.nodes) if (!graph.nodes.has(id)) graph.add(t, id, { position: [0, 0] }); for (const r of l.routes) graph.route(...r); }
+  arrange(); changed(); fit();
+});
+function showLoopButton() { $('closeLoop').textContent = loopApplied() ? 'Open the loop' : 'Close the loop'; $('closeLoop').title = LOOPS[worldId] ? `${loopApplied() ? 'Remove' : 'Add'} ${LOOPS[worldId].routes.length} wire(s): ${LOOPS[worldId].text}` : ''; }
+
+// ---- views: editor and flywheel ----------------------------------------------------------------------------------
+const gw = $('gwrap'), fx = $('fx');
+const wheel = new Wheel($('wheel'), { graph, cat, colours: COLOURS, flow, hub, typeOf, selected: () => selected });
+let fxDirty = true;
+function setView(v) {
+  viewMode = v; gw.dataset.view = v; $('bWheel').setAttribute('aria-pressed', String(v === 'wheel'));
+  $('viewName').textContent = v === 'wheel' ? 'The flywheel: the same graph as hoops' : 'The behaviour graph';
+  if (v === 'wheel') wheel.resize(); else { sizeFx(); draw(); }
+  updateCaption(); fxDirty = true;
+}
+function updateCaption() {
+  const c = $('caption');
+  if (viewMode === 'wheel') c.innerHTML = `<b>${wheel.model?.mode === 'wheel' ? 'Wheel' : 'Pipeline'}.</b> ${html(wheel.model?.caption || '')}${wheel.model?.omitted ? ` ${wheel.model.omitted} smaller cycle group(s) not drawn.` : ''}`;
+  else { const w = new Set(graph.routes.flatMap(r => [r[0], r[2]])), n = [...graph.nodes.keys()].filter(i => !w.has(i)).length; c.innerHTML = n && w.size ? `${n} scene part${n === 1 ? ' is' : 's are'} not wired yet (the row below the wired nodes): drag from a dot to wire ${n === 1 ? 'it' : 'them'}.` : ''; }
+}
+$('bWheel').addEventListener('click', () => setView(viewMode === 'wheel' ? 'editor' : 'wheel'));
+$('bHud').addEventListener('click', () => toggleHud());
+function toggleHud() { document.body.classList.toggle('nohud'); $('bHud').setAttribute('aria-pressed', String(!document.body.classList.contains('nohud'))); setTimeout(() => { if (viewMode === 'wheel') wheel.resize(); else sizeFx(); }, 30); }
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return;
+  if (e.key === 'h' || e.key === 'H') toggleHud();
+  if (e.key === 'f' || e.key === 'F') setView(viewMode === 'wheel' ? 'editor' : 'wheel');
+});
+$('wheel').addEventListener('pointerdown', e => { const b = $('wheel').getBoundingClientRect(), id = wheel.hit(e.clientX - b.left, e.clientY - b.top); if (id) { selected = id; showInspector(); fxDirty = true; wheel.dirty = true; } });
+$('wheel').addEventListener('pointermove', e => { const b = $('wheel').getBoundingClientRect(); const h = wheel.hit(e.clientX - b.left, e.clientY - b.top); if (h !== hovered) { hovered = h; wheel.hoverId = h; wheel.dirty = true; } });
+$('wheel').addEventListener('pointerleave', () => { hovered = null; });
+function sizeFx() {
+  const b = fx.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+  if (b.width && (fx.width !== Math.round(b.width * dpr) || fx.height !== Math.round(b.height * dpr))) { fx.width = Math.round(b.width * dpr); fx.height = Math.round(b.height * dpr); }
+  fxDirty = true;
+}
+window.addEventListener('resize', () => { if (viewMode === 'wheel') wheel.resize(); else { sizeFx(); draw(); } updateCaption(); });
+// the first layout settles after the page loads: refit until the visitor has moved the view themselves
+let userMoved = false;
+new ResizeObserver(() => { if (viewMode === 'wheel') { wheel.resize(); updateCaption(); } else { sizeFx(); if (!userMoved) fit(); else draw(); } }).observe(gw);
+
+// ---- light on the editor: node glow, wire heat and packets, only for events that were really received -------------------
+function drawFx(now) {
+  const ctx = fx.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, fx.width, fx.height);
+  ctx.setTransform(dpr * view.k, 0, 0, dpr * view.k, dpr * view.x, dpr * view.y);
+  const unit = 1 / view.k; let live = false;
+  ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round';
+  for (const [index, path] of wirePaths) { const h = hub.heatOf(index, now); if (!h) continue; live = true; const col = colourOf(typeOf(index)); ctx.strokeStyle = rgba(col, .13 * h); ctx.lineWidth = 12 * unit; ctx.beginPath(); strokePath(ctx, path); ctx.stroke(); ctx.strokeStyle = rgba(lift(col, .3), .6 * h); ctx.lineWidth = 3.4 * unit; ctx.beginPath(); strokePath(ctx, path); ctx.stroke(); }
+  for (const [id, box] of nodeBox) {
+    const g = hub.glowOf(id, now); if (!g) continue; live = true;
+    for (const [wd, al] of [[16, .1], [9, .2], [4, .5], [1.6, .95]]) { ctx.strokeStyle = rgba(g.colour, al * g.v); ctx.lineWidth = wd * unit; ctx.beginPath(); ctx.roundRect(box.x - 1, box.y - 1, box.w + 2, box.h + 2, 10); ctx.stroke(); }
+    bloom(ctx, box.x + box.w / 2, box.y + box.h / 2, Math.max(box.w, box.h) * .8, g.colour, .22 * g.v);
+  }
+  ctx.restore();
+  drawPackets(ctx, hub, now, i => wirePaths.get(i), colourOf, unit, 'live');
+  if (hub.packets.length) live = true;
+  return live;
+}
+
+// ---- the taps: one field callback per ROUTE, on the ROUTE's source field ---------------------------------------------
+const browser = X3D.getBrowser($('x3d'));
+let loadTimer, generation = 0, taps = [], tapsOn = false, lastEvent = -1e9;
+function routeInfo() { return graph.routes.map((r, index) => ({ index, from: r[0], ff: r[1], to: r[2], tf: r[3], type: graph.typeOfRoute(r) })); }
+function untap() { for (const t of taps) { try { t.node.removeFieldCallback(t.key, t.field); } catch {} } taps = []; tapsOn = false; }
+function resetFlow() { flow.reset(routeInfo(), performance.now()); hub.packets = []; hub.hold.clear(); hub.glow.clear(); hub.heat.clear(); wheel.dirty = true; fxDirty = true; }
+
+// ---- "the graph wires itself": a recorded search played back (no search runs here, no simulator, no model) ----------------
+if (SEARCH && SEARCH.schema === 'x3d.selfcode.trace/1') {
+  $('sc').hidden = false;
+  const plan = planWinner(Graph, cat, world.graph, SEARCH.winner), n = SEARCH.candidates.length, nRan = SEARCH.candidates.filter(c => c.verdict === 'ran').length;
+  const search = new Search({ canvas: $('scCanvas'), trace: SEARCH, cat, world, colours: COLOURS, reduced, onStep: k => {
+    const c = k ? SEARCH.candidates[k - 1] : null;
+    $('scK').textContent = k; $('scRuns').textContent = c ? c.runs_so_far : 0; $('scScrub').value = k;
+    $('scVerdict').textContent = c ? (c.verdict === 'match' ? 'match: the winner locks in' : 'ran, did not match') : ''; $('scVerdict').className = c ? c.verdict : '';
+    const rs = c ? c.routes : [];
+    $('scRoutes').innerHTML = c ? `<div style="color:var(--mute)">${rs.length} ROUTE${rs.length === 1 ? '' : 's'} in candidate ${k}, aimed at ${html(c.field)}</div>` + rs.slice(0, 7).map(r => `<div title="${html(r.join(' '))}">${html(r[0])}.${html(r[1])} → ${html(r[2])}.${html(r[3])}</div>`).join('') + (rs.length > 7 ? `<div style="color:var(--mute)">+${rs.length - 7} more</div>` : '') : '';
+    $('scLoad').hidden = !(k === n && plan.ok);
+  } });
+  $('scN').textContent = n; $('scScrub').max = n;
+  $('scNote').textContent = `A recorded search, not a live one. No language model took part: this is the log of a search that another lane ran, and every candidate was judged by the Blender add-on's simulator (${SEARCH.simulator}). ${n} candidates, ${SEARCH.runs} simulator runs in all, ${nRan} that ran without a match and one match. Playing it back runs nothing; the page only reads data/${worldId}.trace.json.` +
+    (plan.ok ? ' The winner uses only nodes and ROUTEs this page can express, so it can be loaded into the editor. Loading gives the wiring only: the recording carries no field values (keys, intervals), so the loaded graph is wired but not yet tuned.' : ` The winner cannot be loaded here (${plan.reason}).`);
+  $('scPlay').addEventListener('click', () => search.play(Number($('scSpeed').value)));
+  $('scScrub').addEventListener('input', e => { search.pause(); search.setStep(Number(e.target.value)); });
+  $('scLoad').addEventListener('click', () => {
+    if (!plan.ok) return;
+    const g = new Graph(cat, world.graph), keep = new Set(Object.values(plan.alias));
+    for (const m of [...g.nodes.values()]) if (m.role === 'behaviour' && !keep.has(m.id)) g.remove(m.id);
+    g.routes = []; for (const m of plan.add) g.add(m.type, m.id);
+    for (const r of plan.routes) g.route(...r);
+    graph = g; selected = null; expanded.clear(); lastSolved = new Set(); arrange(); wheel.env.graph = graph; changed(); fit();
+  });
+  new ResizeObserver(() => search.resize()).observe($('scCanvas').parentElement); search.resize();
+  window.__search = { search, trace: SEARCH, plan, shown: () => search.shown.slice(), k: () => search.k, drawnIds: () => search.drawnIds() };
+}
+
+async function load() {
+  const mine = ++generation, status = $('status');
+  let text; try { text = weave(world.scene, graph); } catch (e) { status.textContent = e.message; status.className = 'bad'; return; }
+  try {
+    const scene = await browser.createX3DFromString(text);
+    if (mine !== generation) return;
+    untap();
+    await browser.replaceWorld(scene);
+    if (mine !== generation) return;
+    resetFlow();
+    graph.routes.forEach((r, index) => {
+      try {
+        const node = scene.getNamedNode(r[0]), [field] = cat.resolve(graph.nodes.get(r[0]).type, r[1], 'out'), key = `wirelab3-${mine}-${index}`;
+        node.addFieldCallback(key, field, value => onEvent(index, value, mine)); taps.push({ node, field, key });
+      } catch (e) { console.warn('no callback for', r, e.message); }
+    });
+    tapsOn = true;
+    window.__wirelab = { scene, graph, world, loaded: mine, changed, flow, ghost, hub, wheel, trace, taps: () => taps.length, view: () => viewMode, compare: makeCompare, cycles: () => components(graph), replay: () => replay };
+    status.textContent = `X_ITE ${browser.version} · ${taps.length} of ${graph.routes.length} ROUTEs tapped`; status.className = '';
+  } catch (e) { status.textContent = `X_ITE could not load the scene: ${e.message}`; status.className = 'bad'; }
+}
+function onEvent(index, value, gen) {
+  if (!tapsOn || gen !== generation) return;
+  const wall = performance.now(), r = flow.routes[index]; if (!r) return;
+  flow.record(index, browser.getCurrentTime(), wall, String(value));
+  hub.pulse(r.from, r.to, colourOf(r.type), wall); lastEvent = wall;
+}
+if (world.readout) setInterval(() => { try { const s = window.__wirelab.scene; $('readout').textContent = '= ' + world.readout.bits.reduce((sum, b, i) => sum + (s.getNamedNode(b).visible ? 1 << i : 0), 0); } catch {} }, 150);
+
+function save() { store.set(KEY, graph.toJSON()); }
+function changed() {
+  save(); untap(); resetFlow(); fillTargets(); draw(); wheel.env.graph = graph; wheel.rebuild(); updateCaption(); showCode(); showChallenges(); showInspector(); showLoopButton();
+  clearTimeout(loadTimer); loadTimer = setTimeout(load, 200);
+}
+
+// ---- the HUD: all numbers read from Flow, which holds only counts of real callbacks ---------------------------------------
+const fmtT = t => { const d = new Date(t * 1000), p = (n, w = 2) => String(n).padStart(w, '0'); return `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}.${p(d.getMilliseconds(), 3)}`; };
+const nf = n => n.toLocaleString('en-US');
+const rateHist = []; let lastHist = 0;
+function lineHtml(row, now, cls = '') {
+  const col = colourOf(row.type), rt = row.continuous ? flowFor(cls).rate(row.index, now) : 0, rate = row.continuous ? `<span class="rate">${rt ? 'x' + rt + '/s' : 'ended'}</span>` : '<span class="rate"></span>';
+  return `<div class="ln ${row.continuous ? 'cont' : ''} ${now - row.wall < 500 ? 'fresh' : ''} ${cls}"><span class="tm">${fmtT(row.t)}</span><i style="background:${col};color:${col}"></i><span class="rt"><b>${html(row.from)}.${html(row.ff)}</b> → ${html(row.to)}.${html(row.tf)}${row.continuous ? ` <span style="color:var(--mute)">×${nf(row.count)}</span>` : ''}</span><span class="vl">${html(compact(row.value, 18))}</span>${rate}</div>`;
+}
+const flowFor = cls => cls === 'ghost' ? ghost : flow;
+let sigStream = '', sigBl = '';
+function hudTick(now) {
+  if (document.body.classList.contains('nohud')) return;
+  const rate = flow.perSecond(now), active = flow.activeRoutes(now);
+  $('oTotal').textContent = nf(flow.total); $('oRate').textContent = nf(rate);
+  $('oActive').innerHTML = `${active}<small> / ${flow.routes.length}</small>`; $('oDeep').textContent = flow.deepest; $('oSame').textContent = flow.sharing;
+  $('oWhen').textContent = `scene loaded ${Math.round((now - flow.loadedAt) / 1000)} s ago · X_ITE ${browser.version}`;
+  const byType = {}; for (const w of flow.wires.keys()) { const r = flow.routes[w]; byType[r.type] = (byType[r.type] || 0) + flow.wires[w].count; }
+  $('oTypes').innerHTML = Object.entries(byType).filter(e => e[1] > 0).sort((a, b) => b[1] - a[1]).map(([t, n]) => `<span><i style="background:${colourOf(t)};color:${colourOf(t)}"></i>${t.replace('SF', '')} ${nf(n)}</span>`).join('') || '<span style="color:var(--mute)">none yet</span>';
+  // global sparkline: events per second, one bin per second for 20 s, from the wire time stamps
+  if (now - lastHist > 250) { lastHist = now; const bins = new Array(20).fill(0); for (const w of flow.wires) for (let i = w.times.length - 1; i >= 0; i--) { const a = now - w.times[i]; if (a >= 20000) break; bins[19 - Math.floor(a / 1000)]++; } rateHist.length = 0; rateHist.push(...bins); drawSpark(); }
+  // stream
+  const rows = flow.stream.slice(0, 12), sig = flow.streamVersion + '|' + rows.map(r => r.continuous ? flow.rate(r.index, now) : '').join() + '|' + rows.map(r => now - r.wall < 500).join();
+  if (sig !== sigStream) { sigStream = sig; $('stream').innerHTML = rows.length ? rows.map(r => lineHtml(r, now)).join('') : '<div class="empty">No event yet. A paused scene stays still: click the red button, or press a sensor, and X_ITE\'s real events will be listed here the moment they are sent.</div>'; }
+  // per-wire table
+  $('wireTable').innerHTML = graph.routes.map((r, i) => { const w = flow.wires[i]; if (!w) return ''; const col = colourOf(typeOf(i)), sp = flow.spark(i, now), mx = Math.max(1, ...sp);
+    const pts = sp.map((v, k) => `${(k * 100 / (sp.length - 1)).toFixed(1)},${(19 - v * 17 / mx).toFixed(1)}`).join(' ');
+    return `<div class="wr"><i style="background:${col};color:${col}"></i><span class="rt" title="${html(r.join(' '))}">${html(r[0])}.${html(r[1])} → ${html(r[2])}.${html(r[3])}</span><span class="n">${nf(w.count)}</span><svg viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.5" stroke-linejoin="round"/><polyline points="${pts} 100,20 0,20" fill="${col}" fill-opacity=".14" stroke="none"/></svg><button class="small" data-cut="${i}" title="cut this wire" aria-label="cut">×</button></div>`; }).join('') || '<div class="empty">No ROUTE yet.</div>';
+  updateWires(); liveNode();
+  blTick(now);
+}
+$('wireTable').addEventListener('click', e => { const i = e.target.dataset.cut; if (i === undefined) return; graph.unroute(+i); changed(); });
+function drawSpark() {
+  const c = $('gSpark'), dpr = Math.min(2, window.devicePixelRatio || 1), b = c.getBoundingClientRect(); if (!b.width) return;
+  if (c.width !== Math.round(b.width * dpr)) { c.width = Math.round(b.width * dpr); c.height = Math.round(b.height * dpr); }
+  const ctx = c.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, b.width, b.height);
+  const mx = Math.max(5, ...rateHist), n = rateHist.length, w = b.width / n;
+  ctx.save(); ctx.globalCompositeOperation = 'lighter';
+  rateHist.forEach((v, i) => { const h = v / mx * (b.height - 8); ctx.fillStyle = 'rgba(158,242,117,.18)'; ctx.fillRect(i * w + 1, b.height - h - 2, w - 2, h); ctx.fillStyle = 'rgba(200,255,168,.9)'; ctx.fillRect(i * w + 1, b.height - h - 2, w - 2, 2); });
+  ctx.restore(); ctx.fillStyle = '#8d877b'; ctx.font = '11px ui-monospace,monospace'; ctx.fillText(`max ${nf(mx)}/s`, 4, 11);
+}
+function liveNode() {
+  const id = hovered || selected, n = graph.nodes.get(id), box = $('live');
+  if (!n) { box.innerHTML = '<span style="color:var(--mute)">Hover or click a node to see its live field values and how many events went in and out.</span>'; return; }
+  const c = flow.nodes.get(id) || { in: 0, out: 0 }; let rows = '';
+  const scene = window.__wirelab?.scene, node = (() => { try { return scene.getNamedNode(id); } catch { return null; } })();
+  for (const r of shown(n).slice(0, 9)) { let v = '—'; try { if (node) { const x = node[r[0]]; v = compact(typeof x === 'object' && x !== null ? String(x) : x, 24); } } catch {} rows += `<i style="background:${colourOf(r[1])}"></i><span>${html(r[0])}</span><span>${html(v)}</span>`; }
+  box.innerHTML = `<div class="nm">${html(id)}</div><div class="ty">${html(n.type)} · ${n.role === 'target' ? 'in the scene' : 'behaviour'}${hovered ? ' · hover' : ' · selected'}</div><div class="io"><span>in <b>${nf(c.in)}</b></span><span>out <b>${nf(c.out)}</b></span></div><div class="fv">${rows}</div>`;
+}
+
+// ---- the Blender lane: a recording of the add-on's simulator, replayed on its own clock ------------------------------
+const traceKey = r => `${r.from}.${r.ff}>${r.to}.${r.tf}`;
+$('blWho').textContent = `recorded in Blender's player, add-on ${trace.addon_version} (${trace.addon_commit.slice(0, 7)})`;
+$('blTotal').textContent = nf(trace.count);
+$('blSpeed').value = '1';
+let replay = null;
+const traceRoutes = trace.routes.map((r, k) => ({ index: k, from: r.from, ff: r.ff, to: r.to, tf: r.tf, type: r.type }));
+const mapToGraph = k => graph.routes.findIndex(r => r.join('>') === [trace.routes[k].from, trace.routes[k].ff, trace.routes[k].to, trace.routes[k].tf].join('>'));
+function startReplay(now) {
+  ghost.reset(traceRoutes, now); replay = { t0: now, i: 0, speed: +$('blSpeed').value || 1, done: false }; sigBl = ''; $('blReplay').textContent = 'Replaying…';
+}
+function blTick(now) {
+  if (replay && !replay.done) {
+    const vt = (now - replay.t0) / 1000 * replay.speed, ev = trace.events, pairs = new Map();
+    while (replay.i < ev.length && ev[replay.i][0] <= vt) {
+      const [t, k, v] = ev[replay.i++], r = traceRoutes[k]; ghost.record(k, t, now, v);
+      const gi = mapToGraph(k); if (gi >= 0) { pairs.set(gi, (pairs.get(gi) || 0) + 1); hub.pulse(r.from, r.to, '#c9a6ff', now, 'ghost'); }
+    }
+    ghost.pending.clear();
+    if (pairs.size) hub.feed([...pairs], now, 'ghost');
+    if (replay.i >= ev.length && vt >= trace.stimulus.duration) { replay.done = true; $('blReplay').textContent = 'Replay the Blender recording'; }
+    $('blClock').textContent = `recorded time ${Math.min(vt, trace.stimulus.duration).toFixed(2)} s of ${trace.stimulus.duration.toFixed(1)} s`;
+  }
+  $('blCount').textContent = nf(ghost.total);
+  const rows = ghost.stream.slice(0, 8), sig = ghost.streamVersion + '|' + rows.map(r => now - r.wall < 500).join();
+  if (sig !== sigBl) { sigBl = sig; $('blstream').innerHTML = rows.length ? rows.map(r => lineHtml(r, now, 'ghost')).join('') : `<div class="empty">Press "Replay the Blender recording": ${nf(trace.count)} recorded events, one line per event, on the recording's own clock. Nothing is shown here until you do.</div>`; }
+}
+$('blReplay').addEventListener('click', () => startReplay(performance.now()));
+// comparison: per ROUTE, events in the recording and events X_ITE really sent (the page's own callback counts)
+let compare = null;
+function makeCompare() {
+  const rows = trace.routes.map((r, k) => { const gi = mapToGraph(k), w = gi >= 0 ? flow.wires[gi] : null;
+    const bFirst = trace.events.findIndex(e => e[1] === k); return { key: traceKey(r), k, graphIndex: gi, blender: trace.route_counts[k], xite: w ? w.count : null, bFirst: bFirst < 0 ? 0 : bFirst + 1, xFirst: w ? w.firstSeq : 0 }; });
+  const both = rows.filter(r => r.bFirst && r.xFirst), ob = both.slice().sort((a, b) => a.bFirst - b.bFirst).map(r => r.k).join(), ox = both.slice().sort((a, b) => a.xFirst - b.xFirst).map(r => r.k).join();
+  const missing = rows.filter(r => !!r.bFirst !== !!r.xFirst).length;
+  compare = { at: performance.now(), rows, orderSame: missing ? null : ob === ox, compared: both.length, missing, xiteTotal: flow.total, blenderTotal: trace.count, stimulus: runState };
+  renderCompare(); return compare;
+}
+function renderCompare() {
+  const c = compare, tb = document.querySelector('#blTable tbody');
+  if (!c) { tb.innerHTML = '<tr><td colspan="5" style="text-align:left;color:var(--mute)">Not compared yet.</td></tr>'; return; }
+  tb.innerHTML = c.rows.map(r => { const d = r.xite === null ? null : r.xite - r.blender; return `<tr><td title="${html(r.key)}">${html(r.key.replace('>', ' → '))}</td><td>${nf(r.blender)}</td><td>${r.xite === null ? '—' : nf(r.xite)}</td><td class="${d === 0 ? 'eq' : 'ne'}">${d === null ? '—' : d === 0 ? '=' : (d > 0 ? '+' : '') + nf(d)}</td><td>${r.bFirst ? '#' + (c.rows.filter(q => q.bFirst).sort((a, b) => a.bFirst - b.bFirst).findIndex(q => q.k === r.k) + 1) : '–'} / ${r.xFirst ? '#' + (c.rows.filter(q => q.xFirst).sort((a, b) => a.xFirst - b.xFirst).findIndex(q => q.k === r.k) + 1) : '–'}</td></tr>`; }).join('') +
+    `<tr><td><b>all ROUTEs</b></td><td>${nf(c.blenderTotal)}</td><td>${nf(c.xiteTotal)}</td><td class="${c.xiteTotal === c.blenderTotal ? 'eq' : 'ne'}">${c.xiteTotal === c.blenderTotal ? '=' : (c.xiteTotal - c.blenderTotal > 0 ? '+' : '') + nf(c.xiteTotal - c.blenderTotal)}</td><td></td></tr>`;
+  $('blNote').innerHTML = `<b>Order of first events per ROUTE:</b> ${c.orderSame === null ? `not comparable (${c.missing} ROUTE${c.missing === 1 ? '' : 's'} fired on one side only)` : c.orderSame ? `the same on both sides (${c.compared} ROUTEs)` : 'different'}. ` +
+    `${c.stimulus ? html(c.stimulus.note) + ' ' : ''}This is a recording of the add-on's simulator, stepped by 1/60 s of its own clock, against a live X_ITE run on the browser's clock: the numbers are two measurements, not a proof of agreement, and counts of continuous streams differ with the frame rate.`;
+}
+// the same stimulus in X_ITE: reload, then real mouse events on the canvas at the same recorded times
+let runState = null;
+async function runStimulus() {
+  const st = trace.stimulus; $('blRun').disabled = true; runState = { note: 'Running…', clicks: 0, landed: 0 };
+  const before = generation; changed(); await sleep(260);
+  await new Promise(res => { const t = setInterval(() => { if (generation > before && window.__wirelab?.loaded === generation && tapsOn) { clearInterval(t); res(); } }, 50); });
+  startReplay(performance.now());
+  const host = $('x3d'), canvas = host.shadowRoot?.querySelector('canvas') || host.querySelector('canvas') || host, t0 = performance.now(); let sent = 0;
+  const srcRoutes = flow.routes.filter(r => st.actions.some(a => a.node === r.from)).map(r => r.index);
+  const counted = () => srcRoutes.reduce((n, i) => n + flow.wires[i].count, 0), c0 = counted();
+  for (const a of st.actions) {
+    await sleep(Math.max(0, a.t * 1000 - (performance.now() - t0)));
+    if (st.pointer) { const b = canvas.getBoundingClientRect(), x = b.left + b.width * st.pointer[0], y = b.top + b.height * st.pointer[1];
+      const ev = (type, buttons) => canvas.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, composed: true, clientX: x, clientY: y, button: 0, buttons, view: window }));
+      ev('mousemove', 0); await sleep(120); ev('mousedown', 1); await sleep(60); ev('mouseup', 0); sent++; }
+  }
+  await sleep(Math.max(0, st.duration * 1000 - (performance.now() - t0)) + 400);
+  runState = { note: st.pointer ? `Stimulus: ${sent} click${sent === 1 ? '' : 's'} sent to the canvas as mouse events; the sensor then sent ${counted() - c0} event${counted() - c0 === 1 ? '' : 's'}${sent && counted() - c0 === 0 ? ' (the clicks did not land)' : ''}.` : 'Stimulus: none needed, the looping TimeSensor drives this world.', clicks: sent };
+  makeCompare(); $('blRun').disabled = false;
+}
+$('blRun').addEventListener('click', runStimulus);
+$('blCompare').addEventListener('click', () => { runState = { note: 'Compared with whatever X_ITE has sent since the scene loaded.', clicks: null }; makeCompare(); });
+renderCompare();
+$('blNote').textContent = `Recording: ${trace.stimulus.description}. Recorded by the add-on's own simulator (behaviour_sim.Simulation), ${trace.not_simulated.length ? 'not simulated: ' + trace.not_simulated.join(', ') : 'every node of this world simulated'}. A recording versus a live run, on different clocks.`;
+
+// ---- the development flywheel, with receipts -------------------------------------------------------------------------
+$('devTitle').textContent = dev.title;
+$('devLoop').innerHTML = dev.loop.map(s => `<span>${html(s)}</span>`).join('<em>→</em>') + '<em>↺</em><span style="border-style:dashed;color:var(--dim)">measured this lane, each row below</span>';
+$('devRail').innerHTML = dev.rows.map(r => `<div class="st"><div class="nm">${html(r.stage)}</div><div class="big">${html(r.number)}</div><p>${html(r.claim)}</p><div class="in">measured by: ${html(r.instrument)}</div><div class="src"><span class="g">${html(r.grade)}</span>${r.sources.map(s => s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${html(s.label)}</a>` : html(s.label)).join(' · ')}</div>${r.caveat ? `<div class="cv">${html(r.caveat)}</div>` : ''}</div>`).join('');
+$('devFoot').innerHTML = `turns of this loop that ran without a person: <b>${dev.turns_without_a_person}</b> · every number above is copied from <code>flywheel.json</code>, written by <code>build/flywheel_data.py</code>; "by eye" is Confirmed for that one world only.`;
+$('devFold').addEventListener('click', () => { const f = $('dev').classList.toggle('folded'); $('devFold').setAttribute('aria-expanded', String(!f)); $('devFold').textContent = f ? 'open' : 'fold'; });
+
+// ---- the frame loop: draws only what real events (or a replayed recording) put in motion -----------------------------
+let lastTick = 0, wasLive = false;
+function frame(now) {
+  hub.feed(flow.takePending(), now);
+  hub.step(now, typeOf, i => flow.rate(i, now));
+  if (now - lastTick > 140) { lastTick = now; hudTick(now); }
+  const active = hub.packets.length > 0 || hub.hold.size > 0 && [...hub.hold.values()].some(v => v > 0) || now - lastEvent < 1400 || (replay && !replay.done) || now - (ghostLast()) < 1400;
+  if (active || wasLive || fxDirty || wheel.dirty) {
+    let live = false;
+    if (viewMode === 'wheel') { live = wheel.draw(now); wheel.dirty = false; } else { if (!fx.width) sizeFx(); live = drawFx(now); }
+    wasLive = live; fxDirty = false;
+  }
+  requestAnimationFrame(frame);
+}
+const ghostLast = () => { let m = -1e9; for (const w of ghost.wires) m = Math.max(m, w.lastWall); return m; };
+const rafStart = () => requestAnimationFrame(frame);
+
+showCode(); showChallenges(); fillTargets(); showLoopButton();
+lastSolved = new Set(world.challenges.map((c, i) => graph.solved(c) ? i : -1).filter(i => i >= 0));
+if (!store.get(KEY)) arrange();
+changed(); fit(); sizeFx(); wheel.resize(); rafStart();
+window.addEventListener('wheel', () => {}, { passive: true });
+</script>
+</body>
+</html>

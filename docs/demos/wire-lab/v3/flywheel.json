@@ -1,0 +1,119 @@
+{
+ "title": "How this editor is built: one turn of the flywheel",
+ "loop": [
+  "specify",
+  "agents implement",
+  "fuzz",
+  "judge against X_ITE",
+  "fold back into the Loom"
+ ],
+ "turns_without_a_person": 0,
+ "rows": [
+  {
+   "stage": "judge",
+   "number": "14 of 14",
+   "claim": "the simulator agrees with X_ITE 16.8.1 on 14 of 14 event streams of the timer probe (3 disagreed before)",
+   "instrument": "tools/behaviour_sim_judge",
+   "sources": [
+    {
+     "label": "x3d-blender-io #89",
+     "url": "https://github.com/hagopjay/x3d-blender-io/pull/89"
+    }
+   ],
+   "grade": "Confirmed",
+   "caveat": ""
+  },
+  {
+   "stage": "fuzz",
+   "number": "1,055 to 0",
+   "claim": "2,000 hostile random graphs: 1,055 raised before, 0 after; 271 delivered NaN or a wrong shape before, 0 after",
+   "instrument": "tools/behaviour_fuzz.py --hostile --seed 1",
+   "sources": [
+    {
+     "label": "x3d-blender-io #92",
+     "url": "https://github.com/hagopjay/x3d-blender-io/pull/92"
+    }
+   ],
+   "grade": "Confirmed",
+   "caveat": ""
+  },
+  {
+   "stage": "speed",
+   "number": "30.4 to 4.45 ms",
+   "claim": "Play, 1,000 interpolators on one timer: 30.4 ms per step before, 4.45 ms after",
+   "instrument": "tools/behaviour_bench.py, bpy 5.3.0, shared 4-core Xeon",
+   "sources": [
+    {
+     "label": "x3d-blender-io #92",
+     "url": "https://github.com/hagopjay/x3d-blender-io/pull/92"
+    }
+   ],
+   "grade": "Confirmed",
+   "caveat": ""
+  },
+  {
+   "stage": "tests",
+   "number": "1,195 pass",
+   "claim": "1,195 unit tests pass, 35 skipped",
+   "instrument": "unittest, bpy 5.3.0 wheel",
+   "sources": [
+    {
+     "label": "x3d-blender-io #92",
+     "url": "https://github.com/hagopjay/x3d-blender-io/pull/92"
+    }
+   ],
+   "grade": "Confirmed",
+   "caveat": ""
+  },
+  {
+   "stage": "self-coding",
+   "number": "87 of 90",
+   "claim": "a search wrote correct behaviour graphs for 87 of 90 unseen tasks from one demonstration (the simulator's verdict; synthetic tasks by the same author)",
+   "instrument": "x3d.loom selfcode/run.py",
+   "sources": [
+    {
+     "label": "x3d.loom #208",
+     "url": "https://github.com/hagopjay/x3d.loom/pull/208"
+    },
+    {
+     "label": "x3d.loom #212",
+     "url": "https://github.com/hagopjay/x3d.loom/pull/212"
+    }
+   ],
+   "grade": "Confirmed",
+   "caveat": "synthetic tasks, same author"
+  },
+  {
+   "stage": "fold back",
+   "number": "349 to 356",
+   "claim": "failure modes 349 to 356 written into the Loom",
+   "instrument": "count of rows in LOOM-v1.md",
+   "sources": [
+    {
+     "label": "x3d.loom #211",
+     "url": "https://github.com/hagopjay/x3d.loom/pull/211"
+    },
+    {
+     "label": "x3d.loom #212",
+     "url": "https://github.com/hagopjay/x3d.loom/pull/212"
+    }
+   ],
+   "grade": "Confirmed",
+   "caveat": ""
+  },
+  {
+   "stage": "by eye",
+   "number": "1 world",
+   "claim": "the owner opened the door with a click in Blender 5.3 on a Mac (one world; the rest of the editor's look is not yet judged by eye)",
+   "instrument": "a person",
+   "sources": [
+    {
+     "label": "26 Nov 2026",
+     "url": null
+    }
+   ],
+   "grade": "Confirmed",
+   "caveat": "for that one world only"
+  }
+ ]
+}

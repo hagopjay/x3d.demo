@@ -1,0 +1,2034 @@
+{
+ "schema": "x3d.selfcode.trace/1",
+ "task": "counter",
+ "simulator": "x3d-blender-io@3e3c1e8",
+ "fields": [
+  "Bit0.visible",
+  "Bit1.visible"
+ ],
+ "solved": true,
+ "runs": 44,
+ "candidates": [
+  {
+   "step": 1,
+   "field": "Bit0.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanFilter3",
+     "type": "BooleanFilter",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanFilter3",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 4
+  },
+  {
+   "step": 2,
+   "field": "Bit0.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 5
+  },
+  {
+   "step": 3,
+   "field": "Bit0.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ]
+   ],
+   "verdict": "match",
+   "runs_so_far": 5
+  },
+  {
+   "step": 4,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 9
+  },
+  {
+   "step": 5,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanToggle8",
+     "type": "BooleanToggle",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanToggle8",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 10
+  },
+  {
+   "step": 6,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanToggle9",
+     "type": "BooleanToggle",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanToggle9",
+     "toggle"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 11
+  },
+  {
+   "step": 7,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "IntegerTrigger10",
+     "type": "IntegerTrigger",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "IntegerTrigger10",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 12
+  },
+  {
+   "step": 8,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor11",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor11",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 13
+  },
+  {
+   "step": 9,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor12",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor12",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 14
+  },
+  {
+   "step": 10,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor13",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor13",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 15
+  },
+  {
+   "step": 11,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor14",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor14",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 16
+  },
+  {
+   "step": 12,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor15",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor15",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 17
+  },
+  {
+   "step": 13,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor16",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor16",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 18
+  },
+  {
+   "step": 14,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor17",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor17",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 19
+  },
+  {
+   "step": 15,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor18",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor18",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 20
+  },
+  {
+   "step": 16,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor19",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor19",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 21
+  },
+  {
+   "step": 17,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor20",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor20",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 22
+  },
+  {
+   "step": 18,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor21",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor21",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 23
+  },
+  {
+   "step": 19,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor22",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeSensor22",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 24
+  },
+  {
+   "step": 20,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "TimeTrigger23",
+     "type": "TimeTrigger",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "TimeTrigger23",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 25
+  },
+  {
+   "step": 21,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter24",
+     "type": "BooleanFilter",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "BooleanFilter24",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 26
+  },
+  {
+   "step": 22,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "BooleanToggle25",
+     "type": "BooleanToggle",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "BooleanToggle25",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 27
+  },
+  {
+   "step": 23,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "BooleanToggle26",
+     "type": "BooleanToggle",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "BooleanToggle26",
+     "toggle"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 28
+  },
+  {
+   "step": 24,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "IntegerTrigger27",
+     "type": "IntegerTrigger",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "IntegerTrigger27",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 29
+  },
+  {
+   "step": 25,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor28",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor28",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 30
+  },
+  {
+   "step": 26,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor29",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor29",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 31
+  },
+  {
+   "step": 27,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor30",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor30",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 32
+  },
+  {
+   "step": 28,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor31",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor31",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 33
+  },
+  {
+   "step": 29,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor32",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor32",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 34
+  },
+  {
+   "step": 30,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor33",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor33",
+     "enabled"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 35
+  },
+  {
+   "step": 31,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor34",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor34",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 36
+  },
+  {
+   "step": 32,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor35",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor35",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 37
+  },
+  {
+   "step": 33,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor36",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor36",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 38
+  },
+  {
+   "step": 34,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor37",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor37",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 39
+  },
+  {
+   "step": 35,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor38",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor38",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 40
+  },
+  {
+   "step": 36,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeSensor39",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeSensor39",
+     "loop"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 41
+  },
+  {
+   "step": 37,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "TimeTrigger40",
+     "type": "TimeTrigger",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "TimeTrigger40",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 42
+  },
+  {
+   "step": 38,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter24",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter41",
+     "type": "BooleanFilter",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "BooleanFilter24",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter24",
+     "inputNegate",
+     "BooleanFilter41",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 43
+  },
+  {
+   "step": 39,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter24",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "BooleanToggle42",
+     "type": "BooleanToggle",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "BooleanFilter24",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter24",
+     "inputNegate",
+     "BooleanToggle42",
+     "set_boolean"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 44
+  },
+  {
+   "step": 40,
+   "field": "Bit1.visible",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanToggle4",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter7",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "BooleanFilter24",
+     "type": "BooleanFilter",
+     "parent": null
+    },
+    {
+     "id": "BooleanToggle42",
+     "type": "BooleanToggle",
+     "parent": null
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "isActive",
+     "BooleanToggle4",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle4",
+     "toggle",
+     "Bit0",
+     "visible"
+    ],
+    [
+     "Bit0",
+     "visible",
+     "BooleanFilter7",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter7",
+     "inputFalse",
+     "BooleanFilter24",
+     "set_boolean"
+    ],
+    [
+     "BooleanFilter24",
+     "inputNegate",
+     "BooleanToggle42",
+     "set_boolean"
+    ],
+    [
+     "BooleanToggle42",
+     "toggle",
+     "Bit1",
+     "visible"
+    ]
+   ],
+   "verdict": "match",
+   "runs_so_far": 44
+  }
+ ],
+ "winner": {
+  "nodes": [
+   {
+    "id": "Touch_Button",
+    "type": "TouchSensor",
+    "parent": "Button"
+   },
+   {
+    "id": "BooleanToggle4",
+    "type": "BooleanToggle",
+    "parent": null
+   },
+   {
+    "id": "BooleanFilter7",
+    "type": "BooleanFilter",
+    "parent": null
+   },
+   {
+    "id": "BooleanFilter24",
+    "type": "BooleanFilter",
+    "parent": null
+   },
+   {
+    "id": "BooleanToggle42",
+    "type": "BooleanToggle",
+    "parent": null
+   }
+  ],
+  "routes": [
+   [
+    "Touch_Button",
+    "isActive",
+    "BooleanToggle4",
+    "set_boolean"
+   ],
+   [
+    "BooleanToggle4",
+    "toggle",
+    "Bit0",
+    "visible"
+   ],
+   [
+    "Bit0",
+    "visible",
+    "BooleanFilter7",
+    "set_boolean"
+   ],
+   [
+    "BooleanFilter7",
+    "inputFalse",
+    "BooleanFilter24",
+    "set_boolean"
+   ],
+   [
+    "BooleanFilter24",
+    "inputNegate",
+    "BooleanToggle42",
+    "set_boolean"
+   ],
+   [
+    "BooleanToggle42",
+    "toggle",
+    "Bit1",
+    "visible"
+   ]
+  ]
+ }
+}
