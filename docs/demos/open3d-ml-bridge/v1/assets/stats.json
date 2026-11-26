@@ -1,0 +1,291 @@
+{
+ "schema": "x3d-open3d-bridge/v1",
+ "reference": "https://github.com/isl-org/Open3D-ML",
+ "source": {
+  "name": "Redwood living-room fragment 20",
+  "file": "cloud_bin_20.ply",
+  "sha256": "afe7546a86d9bd695297f32453634354590697bb60ce572badc20bf742200012",
+  "points": 315723,
+  "bbox_min": [
+   0.004,
+   0.004,
+   0.763
+  ],
+  "bbox_max": [
+   3.059,
+   2.749,
+   3.171
+  ]
+ },
+ "model": {
+  "name": "RandLANet",
+  "dataset": "S3DIS",
+  "ckpt": "randlanet_s3dis_202201071330utc.pth",
+  "ckpt_sha256": "b0c5c8148d363c10b7fd33105df5e8b7efeecaa0674650c4761466a94e4d4c87",
+  "published_miou_torch": 70.9,
+  "published_miou_source": "Open3D-ML README model zoo table"
+ },
+ "env": {
+  "open3d": "0.20.0",
+  "torch": "2.13.0+cu130",
+  "python": "3.13.18",
+  "device": "cpu",
+  "cpu": "x86_64"
+ },
+ "inference": {
+  "seconds_full": 4.13,
+  "points": 315723,
+  "seconds_bridged_subset": 3.68,
+  "points_bridged": 50000
+ },
+ "classes": {
+  "ceiling": {
+   "id": 0,
+   "count": 4310,
+   "share": 0.0862,
+   "mean_score": 0.9220844882138424,
+   "box_extent": [
+    0.113,
+    0.876,
+    2.311
+   ],
+   "full_count": 27116,
+   "full_share": 0.0859
+  },
+  "floor": {
+   "id": 1,
+   "count": 114,
+   "share": 0.00228,
+   "mean_score": 0.7001847574064713,
+   "box_extent": [
+    0.035,
+    0.117,
+    1.648
+   ],
+   "full_count": 706,
+   "full_share": 0.0022
+  },
+  "wall": {
+   "id": 2,
+   "count": 9762,
+   "share": 0.19524,
+   "mean_score": 0.5838421916998802,
+   "box_extent": [
+    0.105,
+    3.183,
+    3.712
+   ],
+   "full_count": 61805,
+   "full_share": 0.1958
+  },
+  "beam": {
+   "id": 3,
+   "count": 0,
+   "share": 0.0,
+   "mean_score": null,
+   "full_count": 0,
+   "full_share": 0.0
+  },
+  "column": {
+   "id": 4,
+   "count": 830,
+   "share": 0.0166,
+   "mean_score": 0.4024906158779941,
+   "box_extent": [
+    0.033,
+    0.875,
+    2.391
+   ],
+   "full_count": 5386,
+   "full_share": 0.0171
+  },
+  "window": {
+   "id": 5,
+   "count": 29,
+   "share": 0.00058,
+   "mean_score": 0.2694672880712148,
+   "box_extent": [
+    0.007,
+    0.09,
+    2.203
+   ],
+   "full_count": 209,
+   "full_share": 0.0007
+  },
+  "door": {
+   "id": 6,
+   "count": 5739,
+   "share": 0.11478,
+   "mean_score": 0.559688454955551,
+   "box_extent": [
+    0.71,
+    1.707,
+    3.478
+   ],
+   "full_count": 36267,
+   "full_share": 0.1149
+  },
+  "table": {
+   "id": 7,
+   "count": 0,
+   "share": 0.0,
+   "mean_score": null,
+   "full_count": 0,
+   "full_share": 0.0
+  },
+  "chair": {
+   "id": 8,
+   "count": 0,
+   "share": 0.0,
+   "mean_score": null,
+   "full_count": 0,
+   "full_share": 0.0
+  },
+  "sofa": {
+   "id": 9,
+   "count": 0,
+   "share": 0.0,
+   "mean_score": null,
+   "full_count": 0,
+   "full_share": 0.0
+  },
+  "bookcase": {
+   "id": 10,
+   "count": 3503,
+   "share": 0.07006,
+   "mean_score": 0.5794890157494901,
+   "box_extent": [
+    0.598,
+    1.767,
+    2.778
+   ],
+   "full_count": 22100,
+   "full_share": 0.07
+  },
+  "board": {
+   "id": 11,
+   "count": 0,
+   "share": 0.0,
+   "mean_score": null,
+   "full_count": 0,
+   "full_share": 0.0
+  },
+  "clutter": {
+   "id": 12,
+   "count": 25713,
+   "share": 0.51426,
+   "mean_score": 0.8246712891532151,
+   "box_extent": [
+    1.654,
+    2.721,
+    4.09
+   ],
+   "full_count": 162134,
+   "full_share": 0.5135
+  }
+ },
+ "repeat_agreement_same_input": 0.8573,
+ "replicates": {
+  "n_each": 5,
+  "direct_subset": {
+   "runs": [
+    0.7799,
+    0.8232,
+    0.8355,
+    0.8326,
+    0.8693
+   ],
+   "mean": 0.8281,
+   "sd": 0.0321
+  },
+  "bridged_subset": {
+   "runs": [
+    0.8449,
+    0.8382,
+    0.8542,
+    0.8476,
+    0.8213
+   ],
+   "mean": 0.8412,
+   "sd": 0.0126
+  },
+  "full_repeat": {
+   "runs": [
+    0.8733,
+    0.88,
+    0.865,
+    0.8763,
+    0.8704
+   ],
+   "mean": 0.873,
+   "sd": 0.0057
+  },
+  "note": "agreement with the first full-cloud run's labels; subset arms see 50,000 of 315,723 points"
+ },
+ "confidence": {
+  "mean": 0.7316,
+  "p10": 0.4097,
+  "p90": 0.996
+ },
+ "frame_ablation": {
+  "with_floor_at_zero": {
+   "ceiling": 27116,
+   "floor": 706,
+   "wall": 61805,
+   "beam": 0,
+   "column": 5386,
+   "window": 209,
+   "door": 36267,
+   "table": 0,
+   "chair": 0,
+   "sofa": 0,
+   "bookcase": 22100,
+   "board": 0,
+   "clutter": 162134
+  },
+  "without_shift": {
+   "ceiling": 0,
+   "floor": 101310,
+   "wall": 805,
+   "beam": 0,
+   "column": 0,
+   "window": 0,
+   "door": 0,
+   "table": 2982,
+   "chair": 0,
+   "sofa": 0,
+   "bookcase": 0,
+   "board": 0,
+   "clutter": 210626
+  },
+  "agreement_between_the_two": 0.2577
+ },
+ "loop": {
+  "x3d_pointsets_read": 8,
+  "x3d_points_read": 50000,
+  "skipped": {},
+  "class_counts_recovered_exactly": true,
+  "max_position_error_m": 0.00084,
+  "rounding_bound_m": 0.00087,
+  "ml_on_direct_subset_agreement_with_original_labels": 0.8491,
+  "ml_on_bridged_subset_agreement_with_original_labels": 0.8321,
+  "note": "second inference sees 50k of 315k points (random, seed 0), so agreement measures density sensitivity as well as the bridge"
+ },
+ "validators": {
+  "x3d_mcp_fork": "4d433af",
+  "xsd_valid": true,
+  "xsd_errors": [],
+  "schema": "4.0",
+  "x3dprov": {
+   "ok": true,
+   "status": "verified",
+   "steps": 1,
+   "problems": []
+  }
+ },
+ "scene": {
+  "bytes": 3430487,
+  "sha256": "57d1f3a1814eb3583180a16e7b61fdba08230316943b18a3861eb89dcf085524",
+  "points": 50000
+ }
+}

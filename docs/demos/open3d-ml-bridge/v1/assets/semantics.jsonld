@@ -1,0 +1,103 @@
+{
+ "@context": {
+  "o3dml": "https://github.com/isl-org/Open3D-ML#",
+  "schema": "https://schema.org/",
+  "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+ },
+ "@id": "urn:x3d-open3d:s3dis-classes",
+ "@type": "o3dml:SemanticLabelSet",
+ "schema:name": "S3DIS 13-class label set as used by Open3D-ML RandLANet",
+ "o3dml:classes": [
+  {
+   "@id": "o3dml:s3dis/ceiling",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 0,
+   "rdfs:label": "ceiling",
+   "schema:color": "#4e79a7"
+  },
+  {
+   "@id": "o3dml:s3dis/floor",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 1,
+   "rdfs:label": "floor",
+   "schema:color": "#9c755f"
+  },
+  {
+   "@id": "o3dml:s3dis/wall",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 2,
+   "rdfs:label": "wall",
+   "schema:color": "#f28e2b"
+  },
+  {
+   "@id": "o3dml:s3dis/beam",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 3,
+   "rdfs:label": "beam",
+   "schema:color": "#b07aa1"
+  },
+  {
+   "@id": "o3dml:s3dis/column",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 4,
+   "rdfs:label": "column",
+   "schema:color": "#edc948"
+  },
+  {
+   "@id": "o3dml:s3dis/window",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 5,
+   "rdfs:label": "window",
+   "schema:color": "#76b7b2"
+  },
+  {
+   "@id": "o3dml:s3dis/door",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 6,
+   "rdfs:label": "door",
+   "schema:color": "#e15759"
+  },
+  {
+   "@id": "o3dml:s3dis/table",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 7,
+   "rdfs:label": "table",
+   "schema:color": "#59a14f"
+  },
+  {
+   "@id": "o3dml:s3dis/chair",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 8,
+   "rdfs:label": "chair",
+   "schema:color": "#ff9da7"
+  },
+  {
+   "@id": "o3dml:s3dis/sofa",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 9,
+   "rdfs:label": "sofa",
+   "schema:color": "#af7aa1"
+  },
+  {
+   "@id": "o3dml:s3dis/bookcase",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 10,
+   "rdfs:label": "bookcase",
+   "schema:color": "#8cd17d"
+  },
+  {
+   "@id": "o3dml:s3dis/board",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 11,
+   "rdfs:label": "board",
+   "schema:color": "#bab0ac"
+  },
+  {
+   "@id": "o3dml:s3dis/clutter",
+   "@type": "o3dml:SemanticClass",
+   "o3dml:classId": 12,
+   "rdfs:label": "clutter",
+   "schema:color": "#7f7f7f"
+  }
+ ]
+}
