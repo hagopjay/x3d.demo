@@ -171,6 +171,7 @@ pre .k{color:var(--amber)} pre .c{color:#847e72} pre .s{color:#9ef275}
 .sc .cap{color:var(--dim);font-size:12px;margin:8px 0 0;line-height:1.45}
 #scRoutes{font:12px var(--num);line-height:1.55;color:#d9cff5}#scRoutes div{overflow-wrap:anywhere}
 #scVerdict{font:600 12px var(--sans);letter-spacing:.08em;text-transform:uppercase}#scVerdict.match{color:var(--green)}#scVerdict.ran{color:var(--lilac)}
+.left .bl .body{grid-template-columns:1fr}
 .bl .cap{color:var(--dim);font-size:12px;margin:8px 0 0;line-height:1.45}
 .bl .acts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;align-items:center}
 .bl .odo2{display:flex;gap:18px;font:12px var(--num);color:var(--dim);margin-bottom:6px}
@@ -225,7 +226,7 @@ footer code,p code{font-family:var(--num);color:#d8d1c4}
   <div class="odo"><div class="k">Field types seen</div><div class="chips" id="oTypes"></div><div class="s" id="oWhen"></div></div>
 </section>
 <main>
-  <section class="col">
+  <section class="col left">
     <div class="card glass">
       <div id="stage">
         <x3d-canvas id="x3d" contextMenu="false" notifications="false" splashScreen="false" timings="false"></x3d-canvas>
@@ -241,6 +242,25 @@ footer code,p code{font-family:var(--num);color:#d8d1c4}
     <div class="card glass">
       <h2>Challenges <span class="r" id="score"></span></h2>
       <div class="pad" id="challenges"></div>
+    </div>
+    <div class="card glass bl hudonly" id="bl">
+      <h2>Blender lane <span class="r" id="blWho"></span></h2>
+      <div class="body">
+        <div>
+          <div class="acts"><button id="blReplay">Replay the Blender recording</button><button id="blRun">Run the same stimulus in X_ITE</button><button id="blCompare">Compare now</button>
+            <select id="blSpeed" aria-label="Replay speed"><option value="1">1x</option><option value="4">4x</option></select></div>
+          <div class="odo2"><span><b id="blCount">0</b> / <span id="blTotal">0</span> replayed</span><span id="blClock"></span></div>
+          <div id="blstream"></div>
+        </div>
+        <div>
+          <table id="blTable"><thead><tr><th>ROUTE</th><th>Blender</th><th>X_ITE</th><th>diff</th><th title="rank of the ROUTE's first event: Blender / X_ITE">1st rank</th></tr></thead><tbody></tbody></table>
+          <p class="cap" id="blNote"></p>
+        </div>
+      </div>
+    </div>
+    <div class="card glass">
+      <h2>Selected node</h2>
+      <div class="pad" id="inspector"><span style="color:var(--mute)">Click a node to see and change its fields.</span></div>
     </div>
   </section>
   <section class="col">
@@ -270,21 +290,6 @@ footer code,p code{font-family:var(--num);color:#d8d1c4}
         <div id="live"></div>
       </div>
     </div>
-    <div class="card glass bl hudonly" id="bl">
-      <h2>Blender lane <span class="r" id="blWho"></span></h2>
-      <div class="body">
-        <div>
-          <div class="acts"><button id="blReplay">Replay the Blender recording</button><button id="blRun">Run the same stimulus in X_ITE</button><button id="blCompare">Compare now</button>
-            <select id="blSpeed" aria-label="Replay speed"><option value="1">1x</option><option value="4">4x</option></select></div>
-          <div class="odo2"><span><b id="blCount">0</b> / <span id="blTotal">0</span> replayed</span><span id="blClock"></span></div>
-          <div id="blstream"></div>
-        </div>
-        <div>
-          <table id="blTable"><thead><tr><th>ROUTE</th><th>Blender</th><th>X_ITE</th><th>diff</th><th title="rank of the ROUTE's first event: Blender / X_ITE">1st rank</th></tr></thead><tbody></tbody></table>
-          <p class="cap" id="blNote"></p>
-        </div>
-      </div>
-    </div>
     <div class="card glass sc hudonly" id="sc" hidden>
       <h2>The graph wires itself <span class="r">a recording, not a live search</span></h2>
       <div class="body">
@@ -303,10 +308,6 @@ footer code,p code{font-family:var(--num);color:#d8d1c4}
           <button data-tab="script" class="on">Script</button><button data-tab="x3d">X3D</button><button data-tab="sentences">Sentences</button><button data-tab="builder">Builder script</button>
         </div>
         <pre id="code"></pre>
-    </div>
-    <div class="card glass">
-      <h2>Selected node</h2>
-      <div class="pad" id="inspector"><span style="color:var(--mute)">Click a node to see and change its fields.</span></div>
     </div>
   </section>
 </main>
@@ -400,8 +401,8 @@ function draw() {
       const cy = HEAD + 14 + i * ROW, colour = COLOURS[r[1]] || '#888';
       const canIn = r[2] !== 'outputOnly', canOut = r[2] !== 'inputOnly';
       el('text', { class: 'f', x: canIn ? 16 : W - 16, y: cy + 4, 'text-anchor': canIn ? 'start' : 'end' }, g).textContent = r[0];
-      if (canIn) { const c = el('circle', { class: 'sock in', cx: 0, cy, r: 6.5, fill: colour, 'data-node': n.id, 'data-field': r[0], 'data-dir': 'in', 'data-type': r[1] }, g); el('title', {}, c).textContent = `${r[0]} takes ${PLAIN[r[1]] || r[1]} (${r[1]})`; sockets.set(`${n.id}|${r[0]}|in`, { x, y: y + cy, type: r[1] }); }
-      if (canOut) { const c = el('circle', { class: 'sock out', cx: W, cy, r: 6.5, fill: colour, 'data-node': n.id, 'data-field': r[0], 'data-dir': 'out', 'data-type': r[1] }, g); el('title', {}, c).textContent = `${r[0]} sends ${PLAIN[r[1]] || r[1]} (${r[1]})`; sockets.set(`${n.id}|${r[0]}|out`, { x: x + W, y: y + cy, type: r[1] }); }
+      if (canIn) { const c = el('circle', { class: 'sock in', cx: 0, cy, r: 6.5, fill: colour, 'data-node': n.id, 'data-field': r[0], 'data-dir': 'in', 'data-type': r[1] }, g); el('title', {}, c).textContent = `${r[0]} takes ${PLAIN[r[1]] || r[1]} (${r[1]})`; sockets.set(`${n.id}|${r[0]}|in`, { x, y: y + cy, type: r[1], node: n.id }); }
+      if (canOut) { const c = el('circle', { class: 'sock out', cx: W, cy, r: 6.5, fill: colour, 'data-node': n.id, 'data-field': r[0], 'data-dir': 'out', 'data-type': r[1] }, g); el('title', {}, c).textContent = `${r[0]} sends ${PLAIN[r[1]] || r[1]} (${r[1]})`; sockets.set(`${n.id}|${r[0]}|out`, { x: x + W, y: y + cy, type: r[1], node: n.id }); }
     });
     const more = el('text', { class: 'more', x: W / 2, y: h - 7, 'text-anchor': 'middle', 'data-more': n.id }, g);
     more.textContent = expanded.has(n.id) ? 'show fewer fields' : hidden > 0 ? `+ ${hidden} more fields` : '';
@@ -425,8 +426,17 @@ function draw() {
   updateWires(); fxDirty = true;
 }
 const dOf = (a, b) => Math.max(50, Math.abs(b.x - a.x) * .5);
-const curve = (a, b) => { const d = dOf(a, b); return `M${a.x} ${a.y} C${a.x + d} ${a.y} ${b.x - d} ${b.y} ${b.x} ${b.y}`; };
-const bez = (a, b, u) => { const d = dOf(a, b), v = 1 - u, c1 = [a.x + d, a.y], c2 = [b.x - d, b.y]; return [v * v * v * a.x + 3 * v * v * u * c1[0] + 3 * v * u * u * c2[0] + u * u * u * b.x, v * v * v * a.y + 3 * v * v * u * c1[1] + 3 * v * u * u * c2[1] + u * u * u * b.y]; };
+// A wire is one cubic, or two when it runs backwards (the target is left of the source): out to the right, along the channel under
+// the source's row, then into the target from the left, so it never crosses a node body.
+function segs(a, b) {
+  if (b.x >= a.x + 24) { const d = dOf(a, b); return [[[a.x, a.y], [a.x + d, a.y], [b.x - d, b.y], [b.x, b.y]]]; }
+  const A = nodeBox.get(a.node), rowBottom = bx => { let m = bx ? bx.y + bx.h : 0; for (const o of nodeBox.values()) if (bx && Math.abs(o.y - bx.y) < 30) m = Math.max(m, o.y + o.h); return m; };
+  const B = nodeBox.get(b.node), ym = (b.y > a.y + 40 && A ? rowBottom(A) : Math.max(A ? rowBottom(A) : a.y, B ? rowBottom(B) : b.y)) + 15, xr = a.x + 46, xl = b.x - 46, mx = (xr + xl) / 2;
+  return [[[a.x, a.y], [xr + 26, a.y], [xr + 26, ym], [mx, ym]], [[mx, ym], [xl - 26, ym], [xl - 26, b.y], [b.x, b.y]]];
+}
+const curve = (a, b) => 'M' + segs(a, b).map((s, i) => (i ? '' : `${s[0][0]} ${s[0][1]} `) + `C${s[1][0]} ${s[1][1]} ${s[2][0]} ${s[2][1]} ${s[3][0]} ${s[3][1]}`).join(' ');
+const bez = (a, b, u) => { const S = segs(a, b), i = Math.min(S.length - 1, Math.floor(u * S.length)), lu = u * S.length - i, [p0, c1, c2, p1] = S[i], v = 1 - lu;
+  return [v * v * v * p0[0] + 3 * v * v * lu * c1[0] + 3 * v * lu * lu * c2[0] + lu * lu * lu * p1[0], v * v * v * p0[1] + 3 * v * v * lu * c1[1] + 3 * v * lu * lu * c2[1] + lu * lu * lu * p1[1]]; };
 // thickness and count badge of each wire: what X_ITE has really sent on it
 function updateWires() {
   for (const [index, e] of wireEls) {
@@ -441,12 +451,29 @@ function fit() {
   const box = $('graph').getBoundingClientRect(), wiredIds = new Set(graph.routes.flatMap(r => [r[0], r[2]]));
   const extent = only => { let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
     for (const n of graph.nodes.values()) { if (only && wiredIds.size && !wiredIds.has(n.id)) continue; const [x, y] = [n.position?.[0] || 0, -(n.position?.[1] || 0)]; x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x + W); y1 = Math.max(y1, y + HEAD + shown(n).length * ROW + 20); }
+    const back = graph.routes.some(r => (graph.nodes.get(r[2])?.position?.[0] ?? 1e9) <= (graph.nodes.get(r[0])?.position?.[0] ?? -1e9)); if (back) { x0 -= 70; x1 += 70; }      // room for wires that loop back round a row
     return { x0, y0, x1, y1, k: Math.min(1.15, (box.width - 60) / (x1 - x0), (box.height - 50) / (y1 - y0)) }; };
   // show the unwired scene parts too while the text stays readable (scale 0.8 or more); otherwise fit the wired nodes and let the rest wait below
   let ex = extent(false); if (ex.k < .8) ex = extent(true);
   const { x0, y0, x1 } = ex; view.k = Math.max(0.5, ex.k);
   view.x = 30 - x0 * view.k + Math.max(0, (box.width - 60 - (x1 - x0) * view.k) / 2); view.y = 20 - y0 * view.k;
   draw();
+}
+
+
+// layout checks the tests call: no wire passes through a node it does not belong to; every wired node is inside the canvas
+function wireCheck() {
+  const bad = [];
+  graph.routes.forEach((r, i) => { const path = wirePaths.get(i); if (!path) return;
+    for (let s = 0; s <= path.len; s += 6) { const p = pointAt(path, s);
+      for (const [id, b] of nodeBox) { if (id === r[0] || id === r[2]) continue; if (p[0] > b.x + 2 && p[0] < b.x + b.w - 2 && p[1] > b.y + 2 && p[1] < b.y + b.h - 2) { bad.push(`${r[0]}.${r[1]} -> ${r[2]}.${r[3]} crosses ${id} at ${Math.round(p[0])},${Math.round(p[1])} box ${Math.round(b.x)},${Math.round(b.y)},${b.w},${b.h}`); s = path.len; break; } } } });
+  return bad;
+}
+function nodesOutside() {
+  const box = $('graph').getBoundingClientRect(), wired = new Set(graph.routes.flatMap(r => [r[0], r[2]])), out = [];
+  for (const [id, b] of nodeBox) { if (!wired.has(id)) continue; const x0 = view.x + b.x * view.k, x1 = view.x + (b.x + b.w) * view.k, y0 = view.y + b.y * view.k, y1 = view.y + (b.y + b.h) * view.k;
+    if (x0 < 0 || y0 < 0 || x1 > box.width || y1 > box.height) out.push(id); }
+  return out;
 }
 
 // ---- code views --------------------------------------------------------------------------------------------------
@@ -565,9 +592,11 @@ function arrange() {
   for (const n of graph.nodes.values()) if (wired.has(n.id)) { const c = pos[n.id][0], band = Math.floor(c / PER); ((bands[band] ||= {})[c % PER] ||= []).push(n); }
   let top = 0;
   for (const band of Object.keys(bands).map(Number).sort((a, b) => a - b)) {
-    let tall = 0;
-    for (const [c, nodes] of Object.entries(bands[band])) { let y = top; for (const n of nodes) { n.position = [c * PITCH, -y]; y += height(n); } tall = Math.max(tall, y - top); }
-    top += tall + 26;
+    // rows are aligned across the columns of a band, so the channel between two rows is clear for wires that run backwards
+    const cols = Object.entries(bands[band]), nrows = Math.max(...cols.map(([, ns]) => ns.length)), rowH = [...Array(nrows)].map((_, k) => Math.max(0, ...cols.map(([, ns]) => ns[k] ? height(ns[k]) : 0)));
+    const rowY = []; let y = top; rowH.forEach((hh, k) => { rowY[k] = y; y += hh + 16; });
+    for (const [c, ns] of cols) ns.forEach((n, k) => { n.position = [c * PITCH, -rowY[k]]; });
+    top = y + 10;
   }
   let i = 0;
   let rowTop = top + 30, rowTall = 0;      // scene parts that are not wired yet: a tidy bench row directly under the wired nodes
@@ -684,7 +713,7 @@ if (SEARCH && SEARCH.schema === 'x3d.selfcode.trace/1') {
     graph = g; selected = null; expanded.clear(); lastSolved = new Set(); arrange(); wheel.env.graph = graph; changed(); fit();
   });
   new ResizeObserver(() => search.resize()).observe($('scCanvas').parentElement); search.resize();
-  window.__search = { search, trace: SEARCH, plan, shown: () => search.shown.slice(), k: () => search.k, drawnIds: () => search.drawnIds() };
+  window.__search = { labels: () => search.labelBoxes(), search, trace: SEARCH, plan, shown: () => search.shown.slice(), k: () => search.k, drawnIds: () => search.drawnIds() };
 }
 
 async function load() {
@@ -704,7 +733,7 @@ async function load() {
       } catch (e) { console.warn('no callback for', r, e.message); }
     });
     tapsOn = true;
-    window.__wirelab = { scene, graph, world, loaded: mine, changed, flow, ghost, hub, wheel, trace, taps: () => taps.length, view: () => viewMode, compare: makeCompare, cycles: () => components(graph), replay: () => replay };
+    window.__wirelab = { wireCheck, nodesOutside, scene, graph, world, loaded: mine, changed, flow, ghost, hub, wheel, trace, taps: () => taps.length, view: () => viewMode, compare: makeCompare, cycles: () => components(graph), replay: () => replay };
     status.textContent = `X_ITE ${browser.version} · ${taps.length} of ${graph.routes.length} ROUTEs tapped`; status.className = '';
   } catch (e) { status.textContent = `X_ITE could not load the scene: ${e.message}`; status.className = 'bad'; }
 }

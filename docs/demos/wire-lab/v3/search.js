@@ -57,6 +57,22 @@ export class Search {
     const routes = c.routes.map(r => { let t = '?'; try { t = this.cat.resolve(nodes.get(r[0]).type, r[1], 'out')[1]; } catch {} return { r, a: nodes.get(r[0]), b: nodes.get(r[2]), col: this.colours[t] || GREY, type: t }; });
     const m = { nodes: [...nodes.values()], routes, verdict: c.verdict }; this.models.set(i, m); return m;
   }
+  // Labels go on the first of four rows (below, above, further below, further above) where they touch no other label and stay inside.
+  placeLabels(ctx, list) {
+    const boxes = []; ctx.font = '11px ui-monospace, SFMono-Regular, Menlo, monospace'; ctx.textBaseline = 'top';
+    const hit = (p, q) => !(p.x1 < q.x0 || p.x0 > q.x1 || p.y1 < q.y0 || p.y0 > q.y1);
+    for (const { nd, a } of list.slice().sort((p, q) => p.nd.x - q.nd.x)) {
+      let name = nd.id, pick = null;
+      for (const pass of [0, 1]) { if (pass) name = nd.id.length > 9 ? nd.id.slice(0, 8) + '…' : nd.id;
+        const w = ctx.measureText(name).width + 4, x0 = Math.max(4, Math.min(this.W - 4 - w, nd.x - w / 2));
+        for (const dy of [11, -25, 27, -41]) { const q = { x0, x1: x0 + w, y0: nd.y + dy, y1: nd.y + dy + 14 }; if (q.y0 < 4 || q.y1 > this.H - 32 || boxes.some(p => hit(p, q))) continue; pick = { ...q, name, id: nd.id }; break; }
+        if (pick) break; }
+      if (!pick) { const w = ctx.measureText(name).width + 4; pick = { x0: nd.x - w / 2, x1: nd.x + w / 2, y0: nd.y + 11, y1: nd.y + 25, name, id: nd.id }; }
+      boxes.push(pick); ctx.textAlign = 'left'; ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(9,8,14,.85)'; ctx.strokeText(pick.name, pick.x0 + 2, pick.y0); ctx.fillStyle = rgba('#f1ecff', Math.min(1, .45 + .55 * Math.min(1, a))); ctx.fillText(pick.name, pick.x0 + 2, pick.y0);
+    }
+    this.boxes = boxes;
+  }
+  labelBoxes() { return { boxes: (this.boxes || []).map(b => ({ id: b.id, x0: b.x0, y0: b.y0, x1: b.x1, y1: b.y1 })), W: this.W, H: this.H }; }
   drawnIds() { return this.k ? this.model(this.k).nodes.map(n => n.id) : []; }
   setStep(k, how = 'play') {
     k = Math.max(0, Math.min(this.n, k | 0));
@@ -104,6 +120,7 @@ export class Search {
         ctx.beginPath(); ctx.arc(x2, y2, 2.4, 0, 6.283); ctx.fillStyle = rgba(lift(q.col, .6), Math.min(1, a)); ctx.fill();
       }
       ctx.restore();
+      const labelOf = [];
       for (const nd of m.nodes) {
         const col = verdict === 'match' ? LOCK : nd.kind === 'scene' ? '#57dbf5' : nd.kind === 'sensor' ? '#e9cf8a' : GHOST;
         bloom(ctx, nd.x, nd.y, 22, col, Math.min(.9, .5 * a));
@@ -111,12 +128,9 @@ export class Search {
         g.addColorStop(0, rgba(lift(col, .7), Math.min(1, .35 + a))); g.addColorStop(.6, rgba(col, Math.min(1, .25 + .7 * a))); g.addColorStop(1, rgba(col, Math.min(1, .12 + .3 * a)));
         ctx.beginPath(); ctx.arc(nd.x, nd.y, 7.5, 0, 6.283); ctx.fillStyle = g; ctx.fill();
         ctx.lineWidth = 1; ctx.strokeStyle = rgba(lift(col, .75), Math.min(1, .4 + .5 * a)); ctx.stroke();
-        if (mul === 1) {
-          ctx.font = '11px ui-monospace, SFMono-Regular, Menlo, monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
-          const label = nd.id.length > 15 ? nd.id.slice(0, 14) + '…' : nd.id; ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(9,8,14,.85)'; ctx.strokeText(label, nd.x, nd.y + 11);
-          ctx.fillStyle = rgba('#f1ecff', Math.min(1, .45 + .55 * Math.min(1, a))); ctx.fillText(label, nd.x, nd.y + 11);
-        }
+        if (mul === 1) labelOf.push({ nd, a });
       }
+      if (mul === 1) this.placeLabels(ctx, labelOf);
     };
     if (this.prev && !this.reduced) { const age = now - this.born + 0; drawModel(this.prev.k, now - this.prev.at + (now - this.born > 0 ? 0 : 0), this.trace.candidates[this.prev.k - 1].verdict, Math.max(0, .22 * (1 - Math.min(1, (now - this.born) / 500)))); }
     const c = this.cand();

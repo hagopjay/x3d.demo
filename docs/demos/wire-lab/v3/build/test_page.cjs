@@ -294,6 +294,13 @@ const cycleGroups = routes => {
     const winIds = new Set(rec.winner.nodes.map(x => x.id).concat(rec.winner.routes.flatMap(r => [r[0], r[2]])));
     ok(end.verdict === 'match' && rec.candidates[n - 1].verdict === 'match' && end.ids.length === winIds.size && end.ids.every(i => winIds.has(i)), `search ${w}: the last step is the match and draws exactly the winner's nodes`, end.ids);
     ok(/no language model/i.test(end.note) && /wiring only/.test(end.note) && /not a live one/.test(end.note) && end.note.includes(rec.simulator) && end.load, `search ${w}: the caption says recorded, no language model, names the simulator commit; the winner can be loaded`, end.note.slice(0, 120));
+    const labelProblems = async () => { const L = await p.evaluate(() => window.__search.labels()), bad = [];
+      for (const b of L.boxes) if (b.x0 < 0 || b.x1 > L.W || b.y0 < 0 || b.y1 > L.H) bad.push(`${b.id} outside`);
+      for (let i = 0; i < L.boxes.length; i++) for (let j = i + 1; j < L.boxes.length; j++) { const A = L.boxes[i], B = L.boxes[j]; if (!(A.x1 <= B.x0 || A.x0 >= B.x1 || A.y1 <= B.y0 || A.y0 >= B.y1)) bad.push(`${A.id} overlaps ${B.id}`); }
+      return { bad, n: L.boxes.length }; };
+    let lp = await labelProblems(); ok(lp.n > 0 && lp.bad.length === 0, `search ${w}: at the winner no two node labels overlap and all are inside the panel (${lp.n} labels, measured boxes)`, lp);
+    for (const k of [1, Math.floor(n / 2), n - 1]) { await p.evaluate(m => { const r = document.getElementById('scScrub'); r.value = m; r.dispatchEvent(new Event('input', { bubbles: true })); }, k); await sleep(2800); lp = await labelProblems(); ok(lp.bad.length === 0, `search ${w}: at candidate ${k} no two node labels overlap`, lp); }
+    await p.evaluate(m => { const r = document.getElementById('scScrub'); r.value = m; r.dispatchEvent(new Event('input', { bubbles: true })); }, n); await sleep(2800);
     await shot(p, `18-${w}-search-winner`, { el: '#sc' });
     const mid = Math.floor(n / 3);
     await p.evaluate(m => { const r = document.getElementById('scScrub'); r.value = m; r.dispatchEvent(new Event('input', { bubbles: true })); }, mid); await sleep(300);
@@ -311,6 +318,15 @@ const cycleGroups = routes => {
     if (hit) { await p.evaluate(() => window.__probe.fill(0)); await click(p, hit.x, hit.y); await sleep(2500);
       const c = await counts(p);
       ok(c.total > 0 && same(c.page, c.probe) && same(c.page, c.log), `search ${w}: after a real click the loaded winner's counts equal the independent callbacks`, c); }
+    await p.close();
+  }
+
+  // ---- editor layout: every wired node inside the canvas, no wire through a node that is not its own ----
+  if (want('layout')) for (const w of ['door', 'counter', 'snake']) {
+    const p = await open(w); const lay = () => p.evaluate(() => ({ bad: window.__wirelab.wireCheck(), out: window.__wirelab.nodesOutside() }));
+    let r = await lay(); ok(r.bad.length === 0 && r.out.length === 0, `layout ${w}: starter graph: every wired node is inside the canvas and no wire crosses a node it does not belong to`, r);
+    if (w !== 'snake') { const n0 = await p.evaluate(() => window.__wirelab.loaded); await p.evaluate(() => document.getElementById('closeLoop').click()); await p.waitForFunction(k => window.__wirelab.loaded > k, n0, { timeout: 60000 }); await sleep(600);
+      r = await lay(); ok(r.bad.length === 0 && r.out.length === 0, `layout ${w}: with the loop closed (backward wires) the same holds`, r); }
     await p.close();
   }
 

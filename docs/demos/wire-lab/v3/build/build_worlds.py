@@ -36,7 +36,7 @@ HEAD = """<?xml version="1.0" encoding="UTF-8"?>
   </head>
   <Scene>
     <NavigationInfo type='"NONE"' headlight="false"/>
-    <Background skyColor="0.02 0.018 0.032 0.032 0.028 0.055 0.07 0.06 0.1" skyAngle="0.9 1.57" groundColor="0.02 0.018 0.03 0.03 0.026 0.045" groundAngle="1.57"/>
+    <Background skyColor="0.015 0.014 0.026 0.03 0.027 0.05 0.07 0.06 0.1" skyAngle="0.9 1.57" groundColor="0.012 0.01 0.02 0.07 0.06 0.1" groundAngle="1.57"/>
 {body}  </Scene>
 </X3D>
 """
@@ -56,11 +56,11 @@ def shape(geometry, colour, *, name=None, emissive="0 0 0", rough=0.45, metal=0.
     return f"<Shape><Appearance>{material}</Appearance>{geometry}</Shape>"
 
 
-FLOOR = f'    <Transform translation="0 -0.05 0">{shape("<Box size=\"14 0.1 8\"/>", "0.03 0.034 0.06", rough=0.5, metal=0.2)}</Transform>\n'
-SUN = ('    <DirectionalLight direction="-0.4 -1 -0.6" color="1 0.93 0.82" intensity="1.7" shadows="true" shadowIntensity="0.55" shadowMapSize="1024"/>\n'
-       '    <SpotLight location="0 7 3" direction="0 -1 -0.3" color="1 0.9 0.75" intensity="7" radius="20" beamWidth="0.2" cutOffAngle="0.8"/>\n'      # key: warm, from above left
+FLOOR = f'    <Transform translation="0 -0.05 0">{shape("<Box size=\"14 0.1 8\"/>", "0.035 0.04 0.07", rough=0.9, metal=0.0)}</Transform>\n'
+SUN = ('    <DirectionalLight direction="-0.4 -1 -0.6" color="1 0.93 0.82" intensity="2.0" shadows="true" shadowIntensity="0.55" shadowMapSize="1024"/>\n'
+       '    <SpotLight location="0 6.5 3.5" direction="0 -1 -0.25" color="1 0.92 0.8" intensity="1.6" radius="24" beamWidth="0.9" cutOffAngle="1.25"/>\n'
        '    <DirectionalLight direction="0.7 -0.35 -0.5" color="0.45 0.6 1" intensity="0.9"/>\n'          # fill: cool, from the right
-       '    <DirectionalLight direction="0 -0.2 1" color="0.5 0.55 0.8" intensity="0.35"/>\n')            # rim: from behind the scene
+       '    <DirectionalLight direction="0 -0.2 1" color="0.6 0.7 1" intensity="0.55"/>\n')            # rim: from behind the scene
 
 # ---------------------------------------------------------------------------------------------------------------
 # World 1: the door

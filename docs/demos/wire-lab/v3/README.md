@@ -56,7 +56,7 @@ caption "a pipeline, not yet a wheel". A hoop appears only when a visitor closes
    wired but not tuned: after a real click its timer and interpolator events are counted, but the door does not move.
 
 Also changed from v2: the three worlds' own look (`build/build_worlds.py`): a warm key light with a soft shadow, a cool fill, a
-rim light and a soft spot pool instead of the headlight, a sky graded to the page colour and a darker, slightly metallic floor.
+rim light and a broad soft spot instead of the headlight, a sky graded to the page colour and a darker, slightly metallic floor.
 Where a ROUTE sets `visible` (the counter's lamps, the follower's beacon) the lamp carries a soft halo of nested transparent
 unlit shells, so the halo shows exactly when real events say the lamp is lit. The door's lamp has no halo (nothing routes its
 visibility). Nodes, wires and ROUTEs are unchanged from v2. Their nodes, wires and ROUTEs are identical to
@@ -74,7 +74,7 @@ v2 (checked by comparing the graph JSON); the Blender round trip of v2's files i
 | Check | Tool | Result |
 |---|---|---|
 | Wiring rule, starter graphs, script view, a solved challenge (v2's checks unchanged) plus cycle finding (pipeline, ring, self ROUTE, two rings, cap) and the event accounting arithmetic | `node build/test_core.mjs` | 91 of 91 |
-| The page, real mouse events, headless Chromium with SwiftShader, X_ITE 16.7.1: v2's checks (the event tape check now reads the stream, same assertions) and v3's: 0 events and nothing drawn before a click; after a real click the counts equal the callbacks the test heard on its own listeners and the page's own log; an edit re-taps without double counting; the flywheel shows a hoop if and only if an independently computed cycle exists; H and F; an edit in one view is in the other; the Blender lane replays exactly the recording's count and its comparison column equals the page's callback log; the search replay shows exactly `candidates.length` steps, ends on the winner, shows the file's counts, and a loaded winner's counts equal independent callbacks; no page error and no console error | `node build/test_page.cjs` | 92 of 92 (receipt in `build/page-test-receipt.json`) |
+| The page, real mouse events, headless Chromium with SwiftShader, X_ITE 16.7.1: v2's checks (the event tape check now reads the stream, same assertions) and v3's: 0 events and nothing drawn before a click; after a real click the counts equal the callbacks the test heard on its own listeners and the page's own log; an edit re-taps without double counting; the flywheel shows a hoop if and only if an independently computed cycle exists; H and F; an edit in one view is in the other; the Blender lane replays exactly the recording's count and its comparison column equals the page's callback log; the search replay shows exactly `candidates.length` steps, ends on the winner, shows the file's counts, and a loaded winner's counts equal independent callbacks; no two node labels in the search panel overlap (measured boxes); in the editor every wired node is inside the canvas and no wire runs through a node that is not its own (starter graphs and the closed-loop graphs); no page error and no console error | `node build/test_page.cjs` | 105 of 105 (receipt in `build/page-test-receipt.json`) |
 | The recording | `python build/record_blender.py` | door 365 events, counter 33, snake 1,442; nothing unsimulated, no faults, nothing dropped |
 
 Not checked: a real GPU or any frame rate (software rendering only), a phone, touch input, any browser but headless
@@ -83,6 +83,8 @@ add-on's own Play panel in Blender (the trace is the simulator, not Blender's UI
 stimulus is recorded for it: the Clock drives it).
 
 ## Known gaps
+
+* The floor is a plain dark surface with soft shadows; I did not get a visible light pool without banding, so there is none. The follower's backward wire runs through the channel under its row and brushes the corner of its own target's title.
 
 * The recording is of the simulator on 1/60 s steps; X_ITE under software GL runs at a few frames per second, so continuous
   streams count differently (the door's 182 recorded fractions are about 30 live here). This is shown, not hidden.
