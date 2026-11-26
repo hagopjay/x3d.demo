@@ -1,0 +1,279 @@
+{
+ "id": "snake",
+ "title": "The Follower",
+ "tagline": "No physics engine. Each bead only chases the one in front.",
+ "idea": "An input-and-output field sends an event whenever it changes, so a moving object can drive other nodes. A PositionDamper chases a place smoothly (tau is how lazy it is). Chain dampers and the lag adds up into a tail that looks alive.",
+ "extras": [
+  "Seg3",
+  "Seg4",
+  "Rig",
+  "Beacon",
+  "View"
+ ],
+ "challenges": [
+  {
+   "title": "Grow the tail",
+   "ask": "Beads 3 and 4 sit on the floor. Make them follow.",
+   "hint": "Add a PositionDamper. Seg2's translation goes to its set_destination; its value_changed goes to Seg3's translation. Repeat for Seg4. Try a bigger tau on the last one.",
+   "needs": [
+    [
+     "PositionDamper",
+     "value_changed",
+     "Seg3",
+     "translation"
+    ],
+    [
+     "PositionDamper",
+     "value_changed",
+     "Seg4",
+     "translation"
+    ]
+   ]
+  },
+  {
+   "title": "Take the wheel",
+   "ask": "Drag the golden head with the mouse.",
+   "hint": "Add a PlaneSensor that sits in Rig. Wire its translation_changed to Head's translation, and cut the wire from Path so the two do not fight. Then drag the head.",
+   "needs": [
+    [
+     "PlaneSensor",
+     "translation_changed",
+     "Head",
+     "translation"
+    ]
+   ],
+   "lacks": [
+    [
+     "PositionInterpolator",
+     "value_changed",
+     "Head",
+     "translation"
+    ]
+   ]
+  },
+  {
+   "title": "A light that knows it is moving",
+   "ask": "Make the green beacon appear only while the tail is still catching up.",
+   "hint": "A damper sends isActive: yes while it is still moving, no when it has arrived. Wire the last damper's isActive to Beacon's visible.",
+   "needs": [
+    [
+     "PositionDamper",
+     "isActive",
+     "Beacon",
+     "visible"
+    ]
+   ]
+  }
+ ],
+ "scene": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE X3D PUBLIC \"ISO//Web3D//DTD X3D 4.0//EN\" \"https://www.web3d.org/specifications/x3d-4.0.dtd\">\n<X3D profile=\"Immersive\" version=\"4.0\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema-instance\" xsd:noNamespaceSchemaLocation=\"https://www.web3d.org/specifications/x3d-4.0.xsd\">\n  <head>\n    <component name=\"EventUtilities\" level=\"1\"/>\n    <component name=\"Followers\" level=\"1\"/>\n    <meta name=\"title\" content=\"Wire Lab: The Follower\"/>\n    <meta name=\"creator\" content=\"x3d.demo Wire Lab\"/>\n    <meta name=\"generator\" content=\"x3d-blender-io behaviour_graph scripting methods\"/>\n    <meta name=\"license\" content=\"GPL-3.0-or-later\"/>\n  </head>\n  <Scene>\n    <NavigationInfo type='\"NONE\"' headlight=\"false\"/>\n    <Background skyColor=\"0.015 0.014 0.026 0.03 0.027 0.05 0.07 0.06 0.1\" skyAngle=\"0.9 1.57\" groundColor=\"0.012 0.01 0.02 0.07 0.06 0.1\" groundAngle=\"1.57\"/>\n    <Viewpoint DEF=\"View\" description=\"Front\" position=\"0 2.2 10\" orientation=\"1 0 0 -0.02\"/>\n    <DirectionalLight direction=\"-0.4 -1 -0.6\" color=\"1 0.93 0.82\" intensity=\"2.0\" shadows=\"true\" shadowIntensity=\"0.55\" shadowMapSize=\"1024\"/>\n    <SpotLight location=\"0 6.5 3.5\" direction=\"0 -1 -0.25\" color=\"1 0.92 0.8\" intensity=\"1.6\" radius=\"24\" beamWidth=\"0.9\" cutOffAngle=\"1.25\"/>\n    <DirectionalLight direction=\"0.7 -0.35 -0.5\" color=\"0.45 0.6 1\" intensity=\"0.9\"/>\n    <DirectionalLight direction=\"0 -0.2 1\" color=\"0.6 0.7 1\" intensity=\"0.55\"/>\n    <Transform translation=\"0 -0.05 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.035 0.04 0.07\" emissiveColor=\"0 0 0\" roughness=\"0.9\" metallic=\"0.0\"/></Appearance><Box size=\"14 0.1 8\"/></Shape></Transform>\n    <Transform DEF=\"Rig\"><Transform DEF=\"Head\" translation=\"0 2.2 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"1 0.8 0.25\" emissiveColor=\"0.5 0.35 0.05\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.42\"/></Shape></Transform></Transform>\n    <Transform DEF=\"Seg1\" translation=\"-1.0 0.5 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.25 0.75 0.95\" emissiveColor=\"0.02 0.05 0.12\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.34\"/></Shape></Transform>\n    <Transform DEF=\"Seg2\" translation=\"-2.0 0.5 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.3 0.6 0.95\" emissiveColor=\"0.02 0.05 0.12\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.29\"/></Shape></Transform>\n    <Transform DEF=\"Seg3\" translation=\"-3.0 0.5 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.45 0.45 0.95\" emissiveColor=\"0.02 0.05 0.12\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.24\"/></Shape></Transform>\n    <Transform DEF=\"Seg4\" translation=\"-4.0 0.5 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.6 0.35 0.9\" emissiveColor=\"0.02 0.05 0.12\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.19\"/></Shape></Transform>\n    <Transform DEF=\"Beacon\" translation=\"4.6 3.6 -1\" visible=\"false\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.4 1 0.5\" emissiveColor=\"0.3 1 0.4\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.25\"/></Shape><Shape><Appearance><UnlitMaterial emissiveColor=\"0.4 1 0.5\" transparency=\"0.9\"/></Appearance><Sphere radius=\"0.3125\"/></Shape><Shape><Appearance><UnlitMaterial emissiveColor=\"0.4 1 0.5\" transparency=\"0.945\"/></Appearance><Sphere radius=\"0.4\"/></Shape><Shape><Appearance><UnlitMaterial emissiveColor=\"0.4 1 0.5\" transparency=\"0.972\"/></Appearance><Sphere radius=\"0.5\"/></Shape><Shape><Appearance><UnlitMaterial emissiveColor=\"0.4 1 0.5\" transparency=\"0.988\"/></Appearance><Sphere radius=\"0.625\"/></Shape></Transform>\n  </Scene>\n</X3D>\n",
+ "graph": {
+  "schema": "x3d-blender-io.behaviour-graph/v0",
+  "nodes": [
+   {
+    "id": "Clock",
+    "type": "TimeSensor",
+    "role": "behaviour",
+    "fields": {
+     "loop": "true",
+     "cycleInterval": "7"
+    },
+    "position": [
+     0,
+     0
+    ]
+   },
+   {
+    "id": "Path",
+    "type": "PositionInterpolator",
+    "role": "behaviour",
+    "fields": {
+     "key": "0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1",
+     "keyValue": "0 2.2 0 2.2 3.4 0 3.6 2.2 0 2.2 1 0 0 2.2 0 -2.2 3.4 0 -3.6 2.2 0 -2.2 1 0 0 2.2 0"
+    },
+    "position": [
+     300,
+     0
+    ]
+   },
+   {
+    "id": "Head",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Head"
+    ],
+    "position": [
+     600,
+     0
+    ]
+   },
+   {
+    "id": "Seg1",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Seg1"
+    ],
+    "position": [
+     1200,
+     0
+    ]
+   },
+   {
+    "id": "Seg2",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Seg2"
+    ],
+    "position": [
+     1800,
+     0
+    ]
+   },
+   {
+    "id": "Follow1",
+    "type": "PositionDamper",
+    "role": "behaviour",
+    "fields": {
+     "tau": "0.25",
+     "order": "2",
+     "initialValue": "-1 0.5 0",
+     "initialDestination": "-1 0.5 0"
+    },
+    "position": [
+     900,
+     0
+    ]
+   },
+   {
+    "id": "Follow2",
+    "type": "PositionDamper",
+    "role": "behaviour",
+    "fields": {
+     "tau": "0.25",
+     "order": "2",
+     "initialValue": "-2 0.5 0",
+     "initialDestination": "-2 0.5 0"
+    },
+    "position": [
+     1500,
+     0
+    ]
+   },
+   {
+    "id": "Seg3",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Seg3"
+    ],
+    "position": [
+     1800,
+     -170
+    ]
+   },
+   {
+    "id": "Seg4",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Seg4"
+    ],
+    "position": [
+     1800,
+     -340
+    ]
+   },
+   {
+    "id": "Rig",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Rig"
+    ],
+    "position": [
+     1800,
+     -510
+    ]
+   },
+   {
+    "id": "Beacon",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Beacon"
+    ],
+    "position": [
+     1800,
+     -680
+    ]
+   },
+   {
+    "id": "View",
+    "type": "Viewpoint",
+    "role": "target",
+    "binding": [
+     "viewpoint",
+     "View"
+    ],
+    "position": [
+     1800,
+     -850
+    ]
+   }
+  ],
+  "routes": [
+   [
+    "Clock",
+    "fraction_changed",
+    "Path",
+    "set_fraction"
+   ],
+   [
+    "Path",
+    "value_changed",
+    "Head",
+    "translation"
+   ],
+   [
+    "Head",
+    "translation",
+    "Follow1",
+    "set_destination"
+   ],
+   [
+    "Follow1",
+    "value_changed",
+    "Seg1",
+    "translation"
+   ],
+   [
+    "Seg1",
+    "translation",
+    "Follow2",
+    "set_destination"
+   ],
+   [
+    "Follow2",
+    "value_changed",
+    "Seg2",
+    "translation"
+   ]
+  ]
+ },
+ "script": "def snake():\n    b = bg.Behaviour()\n    clock = b.add(\"TimeSensor\", \"Clock\", loop=True, cycleInterval=7)\n    path = b.add(\"PositionInterpolator\", \"Path\",\n                 key=[0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],\n                 keyValue=[(0, 2.2, 0), (2.2, 3.4, 0), (3.6, 2.2, 0), (2.2, 1, 0), (0, 2.2, 0),\n                           (-2.2, 3.4, 0), (-3.6, 2.2, 0), (-2.2, 1, 0), (0, 2.2, 0)])\n    head = b.target(\"Transform\", \"Head\")\n    seg1 = b.target(\"Transform\", \"Seg1\")\n    seg2 = b.target(\"Transform\", \"Seg2\")\n    follow1 = b.add(\"PositionDamper\", \"Follow1\", tau=0.25, order=2, initialValue=(-1, 0.5, 0), initialDestination=(-1, 0.5, 0))\n    follow2 = b.add(\"PositionDamper\", \"Follow2\", tau=0.25, order=2, initialValue=(-2, 0.5, 0), initialDestination=(-2, 0.5, 0))\n    clock.fraction_changed >> path.set_fraction\n    path.value_changed >> head.translation\n    head.translation >> follow1.set_destination     # a Transform also SENDS its translation whenever it changes\n    follow1.value_changed >> seg1.translation       # the damper chases that place, smoothly, and moves segment 1\n    seg1.translation >> follow2.set_destination     # segment 2 chases segment 1: a chain\n    follow2.value_changed >> seg2.translation\n    return b\n",
+ "sentences": "TimeSensor Clock.fraction_changed --SFFloat--> PositionInterpolator Path.set_fraction\nPositionInterpolator Path.value_changed --SFVec3f--> Transform Head.translation\nTransform Head.translation --SFVec3f--> PositionDamper Follow1.set_destination\nPositionDamper Follow1.value_changed --SFVec3f--> Transform Seg1.translation\nTransform Seg1.translation --SFVec3f--> PositionDamper Follow2.set_destination\nPositionDamper Follow2.value_changed --SFVec3f--> Transform Seg2.translation",
+ "x3d_sha256": "5def90f6679ef847dda34b8077d59d77a12e2643225f87bb8653b4ded099284e",
+ "counts": {
+  "nodes": 4,
+  "routes": 6
+ }
+}

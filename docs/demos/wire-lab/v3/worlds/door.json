@@ -1,0 +1,221 @@
+{
+ "id": "door",
+ "title": "The Door",
+ "tagline": "Three wires make a door open. Then make it yours.",
+ "idea": "A ROUTE carries an event from one field to another field of the same type. A click is a time. A timer turns time into a number from 0 to 1. An interpolator turns that number into a place.",
+ "extras": [
+  "Lamp",
+  "LampGlow",
+  "DoorPaint",
+  "ButtonPaint",
+  "View"
+ ],
+ "challenges": [
+  {
+   "title": "Open it without clicking",
+   "ask": "Make the door open when the pointer only hovers over the red button.",
+   "hint": "isOver is a yes/no (SFBool). startTime wants a time (SFTime). The wire will be refused. Add a TimeTrigger: it turns a yes into a time.",
+   "needs": [
+    [
+     "TouchSensor",
+     "isOver",
+     "TimeTrigger",
+     "set_boolean"
+    ],
+    [
+     "TimeTrigger",
+     "triggerTime",
+     "TimeSensor",
+     "startTime"
+    ]
+   ]
+  },
+  {
+   "title": "Light the lamp while it moves",
+   "ask": "Make the lamp change colour for as long as the door is moving.",
+   "hint": "Add a ColorInterpolator. Feed it the timer's fraction_changed. Send its value_changed to LampGlow's emissiveColor. Give it key 0 0.5 1 and keyValue 0 0 0  1 0.8 0.2  0 0 0.",
+   "needs": [
+    [
+     "TimeSensor",
+     "fraction_changed",
+     "ColorInterpolator",
+     "set_fraction"
+    ],
+    [
+     "ColorInterpolator",
+     "value_changed",
+     "LampGlow",
+     "emissiveColor"
+    ]
+   ]
+  },
+  {
+   "title": "Spin, don't slide",
+   "ask": "Make the door swing like a revolving door.",
+   "hint": "An OrientationInterpolator makes rotations (axis x y z, then an angle in radians). Try key 0 0.5 1 and keyValue 0 1 0 0  0 1 0 3.14  0 1 0 6.28, and wire it to Door's rotation.",
+   "needs": [
+    [
+     "TimeSensor",
+     "fraction_changed",
+     "OrientationInterpolator",
+     "set_fraction"
+    ],
+    [
+     "OrientationInterpolator",
+     "value_changed",
+     "Door",
+     "rotation"
+    ]
+   ]
+  }
+ ],
+ "scene": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE X3D PUBLIC \"ISO//Web3D//DTD X3D 4.0//EN\" \"https://www.web3d.org/specifications/x3d-4.0.dtd\">\n<X3D profile=\"Immersive\" version=\"4.0\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema-instance\" xsd:noNamespaceSchemaLocation=\"https://www.web3d.org/specifications/x3d-4.0.xsd\">\n  <head>\n    <component name=\"EventUtilities\" level=\"1\"/>\n    <component name=\"Followers\" level=\"1\"/>\n    <meta name=\"title\" content=\"Wire Lab: The Door\"/>\n    <meta name=\"creator\" content=\"x3d.demo Wire Lab\"/>\n    <meta name=\"generator\" content=\"x3d-blender-io behaviour_graph scripting methods\"/>\n    <meta name=\"license\" content=\"GPL-3.0-or-later\"/>\n  </head>\n  <Scene>\n    <NavigationInfo type='\"NONE\"' headlight=\"false\"/>\n    <Background skyColor=\"0.015 0.014 0.026 0.03 0.027 0.05 0.07 0.06 0.1\" skyAngle=\"0.9 1.57\" groundColor=\"0.012 0.01 0.02 0.07 0.06 0.1\" groundAngle=\"1.57\"/>\n    <Viewpoint DEF=\"View\" description=\"Front\" position=\"0 1.7 8.5\" orientation=\"1 0 0 -0.04\"/>\n    <DirectionalLight direction=\"-0.4 -1 -0.6\" color=\"1 0.93 0.82\" intensity=\"2.0\" shadows=\"true\" shadowIntensity=\"0.55\" shadowMapSize=\"1024\"/>\n    <SpotLight location=\"0 6.5 3.5\" direction=\"0 -1 -0.25\" color=\"1 0.92 0.8\" intensity=\"1.6\" radius=\"24\" beamWidth=\"0.9\" cutOffAngle=\"1.25\"/>\n    <DirectionalLight direction=\"0.7 -0.35 -0.5\" color=\"0.45 0.6 1\" intensity=\"0.9\"/>\n    <DirectionalLight direction=\"0 -0.2 1\" color=\"0.6 0.7 1\" intensity=\"0.55\"/>\n    <Transform translation=\"0 -0.05 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.035 0.04 0.07\" emissiveColor=\"0 0 0\" roughness=\"0.9\" metallic=\"0.0\"/></Appearance><Box size=\"14 0.1 8\"/></Shape></Transform>\n    <Transform translation=\"-0.85 1.25 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.35 0.38 0.45\" emissiveColor=\"0 0 0\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Box size=\"0.2 2.5 0.3\"/></Shape></Transform>\n    <Transform translation=\"0.85 1.25 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.35 0.38 0.45\" emissiveColor=\"0 0 0\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Box size=\"0.2 2.5 0.3\"/></Shape></Transform>\n    <Transform translation=\"0 2.6 0\"><Shape><Appearance><PhysicalMaterial baseColor=\"0.35 0.38 0.45\" emissiveColor=\"0 0 0\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Box size=\"1.9 0.2 0.3\"/></Shape></Transform>\n    <Transform DEF=\"Door\" translation=\"0 1.2 0\"><Shape><Appearance><PhysicalMaterial DEF=\"DoorPaint\" baseColor=\"0.85 0.45 0.15\" emissiveColor=\"0 0 0\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Box size=\"1.5 2.4 0.12\"/></Shape></Transform>\n    <Transform DEF=\"Button\" translation=\"-2.4 1.2 0.4\"><Shape><Appearance><PhysicalMaterial DEF=\"ButtonPaint\" baseColor=\"0.9 0.15 0.2\" emissiveColor=\"0.45 0.02 0.04\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.38\"/></Shape></Transform>\n    <Transform DEF=\"Lamp\" translation=\"2.4 2.6 0.4\"><Shape><Appearance><PhysicalMaterial DEF=\"LampGlow\" baseColor=\"0.2 0.2 0.25\" emissiveColor=\"0.05 0.05 0.08\" roughness=\"0.45\" metallic=\"0.0\"/></Appearance><Sphere radius=\"0.3\"/></Shape></Transform>\n  </Scene>\n</X3D>\n",
+ "graph": {
+  "schema": "x3d-blender-io.behaviour-graph/v0",
+  "nodes": [
+   {
+    "id": "Click",
+    "type": "TouchSensor",
+    "role": "behaviour",
+    "fields": {
+     "description": "open the door"
+    },
+    "parent": "Button",
+    "position": [
+     0,
+     0
+    ]
+   },
+   {
+    "id": "Timer",
+    "type": "TimeSensor",
+    "role": "behaviour",
+    "fields": {
+     "cycleInterval": "3"
+    },
+    "position": [
+     300,
+     0
+    ]
+   },
+   {
+    "id": "Slide",
+    "type": "PositionInterpolator",
+    "role": "behaviour",
+    "fields": {
+     "key": "0 0.4 0.6 1",
+     "keyValue": "0 1.2 0 0 3.7 0 0 3.7 0 0 1.2 0"
+    },
+    "position": [
+     600,
+     0
+    ]
+   },
+   {
+    "id": "Door",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Door"
+    ],
+    "position": [
+     900,
+     0
+    ]
+   },
+   {
+    "id": "Lamp",
+    "type": "Transform",
+    "role": "target",
+    "binding": [
+     "transform",
+     "Lamp"
+    ],
+    "position": [
+     900,
+     -170
+    ]
+   },
+   {
+    "id": "LampGlow",
+    "type": "PhysicalMaterial",
+    "role": "target",
+    "binding": [
+     "material",
+     "LampGlow"
+    ],
+    "position": [
+     900,
+     -340
+    ]
+   },
+   {
+    "id": "DoorPaint",
+    "type": "PhysicalMaterial",
+    "role": "target",
+    "binding": [
+     "material",
+     "DoorPaint"
+    ],
+    "position": [
+     900,
+     -510
+    ]
+   },
+   {
+    "id": "ButtonPaint",
+    "type": "PhysicalMaterial",
+    "role": "target",
+    "binding": [
+     "material",
+     "ButtonPaint"
+    ],
+    "position": [
+     900,
+     -680
+    ]
+   },
+   {
+    "id": "View",
+    "type": "Viewpoint",
+    "role": "target",
+    "binding": [
+     "viewpoint",
+     "View"
+    ],
+    "position": [
+     900,
+     -850
+    ]
+   }
+  ],
+  "routes": [
+   [
+    "Click",
+    "touchTime",
+    "Timer",
+    "startTime"
+   ],
+   [
+    "Timer",
+    "fraction_changed",
+    "Slide",
+    "set_fraction"
+   ],
+   [
+    "Slide",
+    "value_changed",
+    "Door",
+    "translation"
+   ]
+  ]
+ },
+ "script": "def door():\n    b = bg.Behaviour()\n    click = b.add(\"TouchSensor\", \"Click\", parent=\"Button\", description=\"open the door\")\n    timer = b.add(\"TimeSensor\", \"Timer\", cycleInterval=3)\n    slide = b.add(\"PositionInterpolator\", \"Slide\",\n                  key=[0, 0.4, 0.6, 1],\n                  keyValue=[(0, 1.2, 0), (0, 3.7, 0), (0, 3.7, 0), (0, 1.2, 0)])\n    door = b.target(\"Transform\", \"Door\")\n    click.touchTime >> timer.startTime             # a click sends the time; the timer starts at that time\n    timer.fraction_changed >> slide.set_fraction   # the timer counts 0 to 1; the interpolator turns that into a place\n    slide.value_changed >> door.translation        # the place moves the door\n    return b\n",
+ "sentences": "TouchSensor Click.touchTime --SFTime--> TimeSensor Timer.startTime\nTimeSensor Timer.fraction_changed --SFFloat--> PositionInterpolator Slide.set_fraction\nPositionInterpolator Slide.value_changed --SFVec3f--> Transform Door.translation",
+ "x3d_sha256": "6e5f20754da5cb408c952cd8e06822082d416be0d0be30e5e0cc8fdd66482441",
+ "counts": {
+  "nodes": 3,
+  "routes": 3
+ }
+}

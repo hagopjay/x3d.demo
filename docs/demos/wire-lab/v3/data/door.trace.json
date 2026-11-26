@@ -1,0 +1,1990 @@
+{
+ "schema": "x3d.selfcode.trace/1",
+ "task": "door",
+ "simulator": "x3d-blender-io@3e3c1e8",
+ "fields": [
+  "Door.translation"
+ ],
+ "solved": true,
+ "runs": 65,
+ "candidates": [
+  {
+   "step": 1,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "BooleanTrigger3",
+     "type": "BooleanTrigger",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "BooleanTrigger3",
+     "set_triggerTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 4
+  },
+  {
+   "step": 2,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "ColorDamper4",
+     "type": "ColorDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "ColorDamper4",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 5
+  },
+  {
+   "step": 3,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "ColorDamper5",
+     "type": "ColorDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "ColorDamper5",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 6
+  },
+  {
+   "step": 4,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "ColorDamper6",
+     "type": "ColorDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "ColorDamper6",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 7
+  },
+  {
+   "step": 5,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "OrientationDamper7",
+     "type": "OrientationDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "OrientationDamper7",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 8
+  },
+  {
+   "step": 6,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "OrientationDamper8",
+     "type": "OrientationDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "OrientationDamper8",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 9
+  },
+  {
+   "step": 7,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "OrientationDamper9",
+     "type": "OrientationDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "OrientationDamper9",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 10
+  },
+  {
+   "step": 8,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "PositionDamper10",
+     "type": "PositionDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "PositionDamper10",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 11
+  },
+  {
+   "step": 9,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "PositionDamper11",
+     "type": "PositionDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "PositionDamper11",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 12
+  },
+  {
+   "step": 10,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "PositionDamper12",
+     "type": "PositionDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "PositionDamper12",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 13
+  },
+  {
+   "step": 11,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "ScalarDamper13",
+     "type": "ScalarDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "ScalarDamper13",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 14
+  },
+  {
+   "step": 12,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "ScalarDamper14",
+     "type": "ScalarDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "ScalarDamper14",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 15
+  },
+  {
+   "step": 13,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "ScalarDamper15",
+     "type": "ScalarDamper",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "ScalarDamper15",
+     "tau"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 16
+  },
+  {
+   "step": 14,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor16",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor16",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 17
+  },
+  {
+   "step": 15,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor17",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor17",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 18
+  },
+  {
+   "step": 16,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor18",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor18",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 19
+  },
+  {
+   "step": 17,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor19",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor19",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 20
+  },
+  {
+   "step": 18,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor20",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor20",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 21
+  },
+  {
+   "step": 19,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor21",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor21",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 22
+  },
+  {
+   "step": 20,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor22",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor22",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 23
+  },
+  {
+   "step": 21,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor23",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor23",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 24
+  },
+  {
+   "step": 22,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor24",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor24",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 25
+  },
+  {
+   "step": 23,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor25",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor25",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 26
+  },
+  {
+   "step": 24,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor26",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor26",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 27
+  },
+  {
+   "step": 25,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor27",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor27",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 28
+  },
+  {
+   "step": 26,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor28",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor28",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 29
+  },
+  {
+   "step": 27,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor29",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor29",
+     "cycleInterval"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 30
+  },
+  {
+   "step": 28,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor30",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor30",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 31
+  },
+  {
+   "step": 29,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor31",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor31",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 32
+  },
+  {
+   "step": 30,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor32",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor32",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 33
+  },
+  {
+   "step": 31,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor33",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor33",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 34
+  },
+  {
+   "step": 32,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor34",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor34",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 35
+  },
+  {
+   "step": 33,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor35",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor35",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 36
+  },
+  {
+   "step": 34,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor36",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor36",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 37
+  },
+  {
+   "step": 35,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor37",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor37",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 38
+  },
+  {
+   "step": 36,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor38",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor38",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 39
+  },
+  {
+   "step": 37,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor39",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor39",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 40
+  },
+  {
+   "step": 38,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor40",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor40",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 41
+  },
+  {
+   "step": 39,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor41",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor41",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 42
+  },
+  {
+   "step": 40,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor42",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor42",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 43
+  },
+  {
+   "step": 41,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor43",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor43",
+     "pauseTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 44
+  },
+  {
+   "step": 42,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor44",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor44",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 45
+  },
+  {
+   "step": 43,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor45",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor45",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 46
+  },
+  {
+   "step": 44,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor46",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor46",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 47
+  },
+  {
+   "step": 45,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor47",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor47",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 48
+  },
+  {
+   "step": 46,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor48",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor48",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 49
+  },
+  {
+   "step": 47,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor49",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor49",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 50
+  },
+  {
+   "step": 48,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor50",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor50",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 51
+  },
+  {
+   "step": 49,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor51",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor51",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 52
+  },
+  {
+   "step": 50,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor52",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor52",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 53
+  },
+  {
+   "step": 51,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor53",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor53",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 54
+  },
+  {
+   "step": 52,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor54",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor54",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 55
+  },
+  {
+   "step": 53,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor55",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor55",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 56
+  },
+  {
+   "step": 54,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor56",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor56",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 57
+  },
+  {
+   "step": 55,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor57",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor57",
+     "resumeTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 58
+  },
+  {
+   "step": 56,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor58",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor58",
+     "startTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 59
+  },
+  {
+   "step": 57,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor59",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor59",
+     "startTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 60
+  },
+  {
+   "step": 58,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor60",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor60",
+     "startTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 61
+  },
+  {
+   "step": 59,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor61",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor61",
+     "startTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 62
+  },
+  {
+   "step": 60,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor62",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor62",
+     "startTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 63
+  },
+  {
+   "step": 61,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor63",
+     "type": "TimeSensor",
+     "parent": null
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor63",
+     "startTime"
+    ]
+   ],
+   "verdict": "ran",
+   "runs_so_far": 64
+  },
+  {
+   "step": 62,
+   "field": "Door.translation",
+   "nodes": [
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    },
+    {
+     "id": "TimeSensor63",
+     "type": "TimeSensor",
+     "parent": null
+    },
+    {
+     "id": "PositionInterpolator64",
+     "type": "PositionInterpolator",
+     "parent": null
+    },
+    {
+     "id": "Touch_Button",
+     "type": "TouchSensor",
+     "parent": "Button"
+    }
+   ],
+   "routes": [
+    [
+     "Touch_Button",
+     "touchTime",
+     "TimeSensor63",
+     "startTime"
+    ],
+    [
+     "TimeSensor63",
+     "fraction_changed",
+     "PositionInterpolator64",
+     "set_fraction"
+    ],
+    [
+     "PositionInterpolator64",
+     "value_changed",
+     "Door",
+     "translation"
+    ]
+   ],
+   "verdict": "match",
+   "runs_so_far": 65
+  }
+ ],
+ "winner": {
+  "nodes": [
+   {
+    "id": "Touch_Button",
+    "type": "TouchSensor",
+    "parent": "Button"
+   },
+   {
+    "id": "TimeSensor63",
+    "type": "TimeSensor",
+    "parent": null
+   },
+   {
+    "id": "PositionInterpolator64",
+    "type": "PositionInterpolator",
+    "parent": null
+   }
+  ],
+  "routes": [
+   [
+    "Touch_Button",
+    "touchTime",
+    "TimeSensor63",
+    "startTime"
+   ],
+   [
+    "TimeSensor63",
+    "fraction_changed",
+    "PositionInterpolator64",
+    "set_fraction"
+   ],
+   [
+    "PositionInterpolator64",
+    "value_changed",
+    "Door",
+    "translation"
+   ]
+  ]
+ }
+}
