@@ -720,3 +720,10 @@ Written for this site on top of v5 (v1 to v5 untouched). v5's content on v4's fl
 | file | sha256 | bytes |
 |---|---|---|
 | assets/salon-two-centuries.jpg | 5db2db0225430e63d6134460eb455101c0622e183be67486876bc14f0aac602f | 91621 |
+
+## open3d-ml-bridge (v92)
+`open3d-ml-bridge` is a 2 x 2 of 480 x 270 tiles from `docs/demos/open3d-ml-bridge/v1/shots/` (`00-hero.jpg`, `01-rgb.jpg`, `02-confidence.jpg`, `03-boxes.jpg`; X_ITE 16.7.1, Chromium, SwiftShader) saved as 960 x 540 JPEG. The frames show a 50,000-point subset of the Redwood living-room fragment 20 and the model's labels; the scan is cited, with its terms, in `docs/demos/open3d-ml-bridge/v1/DATA-ATTRIBUTION.md`, which also carries the takedown route.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/open3d-ml-bridge.jpg | be0fec16cddbc066a0be7fe605ff6e3a0445180c53111585190082a6c229a036 | 75194 |
