@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A tour of Blender, through X3D eyes · x3d.demo</title>
+<style>
+:root{--ink:#e9e6df;--dim:#a9a49a;--gold:#f2c46d;--bg:#0b0c10;--card:#15171d}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
+h1{font-size:2.1rem;margin:.2em 0;color:var(--gold)} h2{margin-top:2.2em;color:var(--gold)} a{color:#9fd3ff}
+p.lede{color:var(--dim);font-size:1.08rem} video{width:100%;border-radius:10px;background:#000}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
+.grid img{width:100%;border-radius:8px;display:block} figure{margin:0} figcaption{color:var(--dim);font-size:.86rem;padding:4px 2px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.95rem} td,th{border-bottom:1px solid #2a2d36;padding:7px 8px;text-align:left;vertical-align:top}
+th{color:var(--gold);font-weight:600} .ok{color:#8fe3a1} .no{color:#ff9b8f} .live{width:100%;height:420px;border:0;border-radius:10px;background:#000}
+code{background:#1d2028;padding:1px 5px;border-radius:4px}
+</style></head><body><main>
+<h1>A tour of Blender, through X3D eyes</h1>
+<p class="lede">Blender 5.3 driven by script in a real window: Geometry and Simulation Nodes, rigid bodies and cloth, four renderers on one scene, keyframes, drivers and Grease Pencil, then eight procedural demos cut into a 45-second reel in Blender's own Video Sequencer. At every stop the same question: what survives an X3D export, and what does X_ITE show?</p>
+<video controls preload="metadata" poster="media/poster.jpg" src="media/sizzle-reel-45s.mp4"></video>
+<p style="color:var(--dim);font-size:.9rem">45.0 s, 1920 × 1080, 30 fps. Every frame procedural (EEVEE in Blender 5.3); the soundtrack is synthesized by <code>build/reel.py</code> (no third-party audio). The X3D segment is an X3D world played by the add-on's own behaviour-graph Player, with a scripted click on Terra.</p>
+<div class="grid">
+<figure><img src="shots/reel-lorenz.jpg" alt=""><figcaption>Chaos: Lorenz attractor, 2,000 particles in a Simulation Zone (20 Euler steps a frame)</figcaption></figure>
+<figure><img src="shots/reel-julia.jpg" alt=""><figcaption>Fractals: Julia-set terrain, z ← z² + c 24 times in a Repeat Zone</figcaption></figure>
+<figure><img src="shots/reel-life.jpg" alt=""><figcaption>Emergence: Game of Life on a 64 × 64 torus, Sample Index neighbours</figcaption></figure>
+<figure><img src="shots/reel-phyllotaxis.jpg" alt=""><figcaption>Phyllotaxis: seed n at radius √n, 137.508° apart</figcaption></figure>
+<figure><img src="shots/reel-waves.jpg" alt=""><figcaption>Ripple tank: two sources interfering on 160,000 vertices</figcaption></figure>
+<figure><img src="shots/reel-city.jpg" alt=""><figcaption>Procedural city: grid faces → lots → towers, rising</figcaption></figure>
+<figure><img src="shots/reel-turrets.jpg" alt=""><figcaption>Gameplay: Damped Track turrets, Stretch To lasers</figcaption></figure>
+<figure><img src="shots/reel-x3d-orrery.jpg" alt=""><figcaption>X3D, live: the orrery played by the node editor</figcaption></figure>
+</div>
+
+<h2>Stop 1 · Geometry Nodes and a Simulation Zone</h2>
+<p>A grid scattered with crystals whose size breathes with 4D noise driven by Scene Time (no keyframes), and 600 fireflies whose positions persist frame to frame in a Simulation Zone.</p>
+<div class="grid"><figure><img src="shots/01-crystal-field-graph.jpg" alt=""><figcaption>The 15-node crystal field, spreadsheet showing evaluated data</figcaption></figure>
+<figure><img src="shots/01-swarm.jpg" alt=""><figcaption>Fireflies drifting on a noise current</figcaption></figure>
+<figure><img src="shots/01-x_ite.jpg" alt=""><figcaption>The export in X_ITE: one frame's geometry; the colour attribute is gone</figcaption></figure></div>
+
+<h2>Stop 2 · Physics, and RigidBody import</h2>
+<p>A 30-block tower written as an X3D <code>RigidBodyCollection</code> imports at the file's heights (0.125 to 2.375 m; issue #99's fix), then Blender's Bullet solver and a kinematic wrecking ball (handed to the solver at frame 45) take it down while silk cloth drapes a pedestal.</p>
+<div class="grid"><figure><img src="shots/02-tower-imported.jpg" alt=""><figcaption>Imported from X3D, placed by each RigidBody's position and orientation</figcaption></figure>
+<figure><img src="shots/02-impact.jpg" alt=""><figcaption>Impact</figcaption></figure>
+<figure><img src="shots/02-settled.jpg" alt=""><figcaption>0 of 30 blocks above 60 cm by frame 112</figcaption></figure></div>
+
+<h2>Stop 3 · Four renderers, one scene</h2>
+<div class="grid"><figure><img src="shots/03-four-renderers.jpg" alt=""><figcaption>EEVEE 2.3 s · Cycles 10.3 s (128 spp, Metal; the first run took 364 s compiling kernels) · EEVEE + compositor · the X3D export in X_ITE 16.7.1</figcaption></figure>
+<figure><img src="shots/03-shader-editor.jpg" alt=""><figcaption>Marble from noise, wave and a colour ramp</figcaption></figure></div>
+<iframe class="live" src="live/xite.html?f=still-life.x3d" title="The still life in X_ITE"></iframe>
+
+<h2>Stop 4 · Keyframes, drivers, shape keys, Grease Pencil</h2>
+<div class="grid"><figure><img src="shots/04-graph-editor.jpg" alt=""><figcaption>Vector handles at the floor, auto-clamped at the tops</figcaption></figure>
+<figure><img src="shots/04-drivers.jpg" alt=""><figcaption>GearB = −GearA × 16/10, a simple-expression driver</figcaption></figure>
+<figure><img src="shots/04-ink.jpg" alt=""><figcaption>Grease Pencil ink along the ball's arc, revealed by Build</figcaption></figure>
+<figure><img src="shots/04-x_ite-2.jpg" alt=""><figcaption>Exported with animation: the ball bounces in X_ITE, the gears turn</figcaption></figure></div>
+<iframe class="live" src="live/xite.html?f=bounce-gears.x3d" title="The bounce in X_ITE"></iframe>
+
+<h2>What crosses into X3D (add-on 2.7.8)</h2>
+<table><tr><th>In Blender</th><th>In the X3D export</th><th>Seen</th></tr>
+<tr><td>Geometry Nodes output, instances</td><td class="ok">Meshes for the current frame</td><td>stop 1, X_ITE</td></tr>
+<tr><td>Scene Time noise, Simulation Zone state</td><td class="no">Not carried (one frame)</td><td>stop 1</td></tr>
+<tr><td>Instance attributes driving a material</td><td class="no">Lost: one flat colour</td><td>stop 1, X_ITE</td></tr>
+<tr><td>Principled values: base colour, metallic, roughness, emission</td><td class="ok">PhysicalMaterial</td><td>stop 3, X_ITE</td></tr>
+<tr><td>Procedural textures (marble)</td><td class="no">Not carried unless baked to an image</td><td>stop 3: 0 ImageTextures</td></tr>
+<tr><td>Glass transmission</td><td class="no">No X3D 4.0 field: an opaque sphere</td><td>stop 3, X_ITE</td></tr>
+<tr><td>Keyframes</td><td class="ok">TimeSensor + PositionInterpolator, only with <code>use_animation</code> (off by default)</td><td>stop 4</td></tr>
+<tr><td>Drivers</td><td class="ok">Evaluated and baked: OrientationInterpolator, 120 keys</td><td>stop 4, X_ITE</td></tr>
+<tr><td>Shape keys driven by a driver</td><td class="no">No CoordinateInterpolator written</td><td>stop 4</td></tr>
+<tr><td>Grease Pencil</td><td class="no">Not carried</td><td>stop 4</td></tr>
+<tr><td>X3D RigidBody positions (import)</td><td class="ok">Placed where the file puts them (#99)</td><td>stop 2</td></tr>
+<tr><td>A hand-written RigidBodyCollection in X_ITE</td><td class="no">Nothing drawn (observed; cause not investigated)</td><td>stop 2</td></tr></table>
+
+<h2>Build</h2>
+<p><code>build/tour.py</code> (stops 1 to 4 in a live window with a caption overlay), <code>build/wild.py</code> (the eight demos; <code>--clip</code> renders 5 s), <code>build/x3d_clip.py</code> (an X3D behaviour world played by the Player), <code>build/reel.py</code> (the Video Sequencer edit, live or in the background), <code>build/xite_shot.cjs</code> (X_ITE screenshots). Set <code>X3D_IO_SOURCE</code> / <code>X3D_IO_REPO</code> to a checkout of x3d-blender-io. See README.md for what was and was not checked.</p>
+</main></body></html>
