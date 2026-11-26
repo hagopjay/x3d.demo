@@ -1,0 +1,479 @@
+{
+ "authored": {
+  "@id": "xst:kuhn-landscape",
+  "@type": "Style",
+  "label": "Kuhn Landscape",
+  "lineage": "The ten family colours of the Landscape of Consciousness figure, lifted for a night sky; obsidian for Challenge drawn as silver light.",
+  "intent": {
+   "key": "low",
+   "mood": [
+    "contemplative",
+    "luminous"
+   ],
+   "use": "a navigable map of theories of consciousness"
+  },
+  "palette": {
+   "ground": "#06070f",
+   "plate": "#0d1020",
+   "mass": "#141a30",
+   "ink": "#eef1ff",
+   "accent": "#ffe9a8",
+   "alert": "#ffffff",
+   "haze": "#0a0d1c",
+   "sky": [
+    "#010208",
+    "#0a0d1c"
+   ],
+   "categorical": [
+    "#ec3b2f",
+    "#f59a23",
+    "#f4e21c",
+    "#a8cc3c",
+    "#22b35a",
+    "#35a9e0",
+    "#5a6cf0",
+    "#a157d6",
+    "#ff2e93",
+    "#8e97ad"
+   ],
+   "sequential": [
+    "#1a1f4a",
+    "#3a2f7a",
+    "#8a3f9a",
+    "#e0608a",
+    "#ffd38a"
+   ]
+  },
+  "surface": {
+   "model": "physical",
+   "tint": 1,
+   "capTone": 0.1,
+   "roughness": 0.35,
+   "metallic": 0.3,
+   "opacity": 1,
+   "glow": 0.8
+  },
+  "light": {
+   "azimuth": 210,
+   "elevation": 38,
+   "intensity": 1,
+   "ambient": 0.25,
+   "shadow": 0,
+   "contact": 0.3,
+   "relief": 0.4
+  },
+  "air": {
+   "fog": "none",
+   "range": 3
+  },
+  "line": {
+   "edges": "data",
+   "weight": 1.5,
+   "links": "tube",
+   "linkInk": "accent",
+   "grid": "rings"
+  },
+  "form": {
+   "sides": 12,
+   "taper": 0.8,
+   "tiers": 3,
+   "inset": 0.2,
+   "cap": "spike",
+   "fill": 0.7,
+   "lift": 0.4
+  },
+  "type": {
+   "family": "SANS",
+   "size": 1,
+   "case": "asis",
+   "density": 0.35
+  },
+  "motion": {
+   "pulse": 4,
+   "flow": 24
+  },
+  "encode": {
+   "hue": "category",
+   "alert": "glow"
+  },
+  "view": {
+   "projection": "perspective",
+   "start": "hero"
+  }
+ },
+ "lint_authored": {
+  "ok": false,
+  "passed": 10,
+  "applicable": 11,
+  "score": 0.9091,
+  "rules": [
+   {
+    "id": "G1",
+    "name": "Complete sentence",
+    "applies": true,
+    "pass": true,
+    "measured": 0,
+    "need": "0 missing tokens",
+    "note": "all 10 parts speak"
+   },
+   {
+    "id": "G2",
+    "name": "Labels are legible",
+    "applies": true,
+    "pass": true,
+    "measured": 16.781,
+    "need": "contrast >= 4.5:1 (WCAG 2.x)",
+    "note": "ink on ground and on plate"
+   },
+   {
+    "id": "G3",
+    "name": "Figure separates from ground",
+    "applies": true,
+    "pass": true,
+    "measured": 0.442,
+    "need": "Delta E OK >= 0.1, or an edge with contrast >= 1.6:1, or a light (L >= 0.5) lit surface with shadow + contact >= 0.8",
+    "note": "by colour"
+   },
+   {
+    "id": "G4",
+    "name": "Categories are distinct",
+    "applies": true,
+    "pass": false,
+    "measured": 0.103,
+    "need": "min pair Delta E OK >= 0.08; >= 0.04 under deutan and protan",
+    "note": "colour-blind min 0.027 (Machado 2009)"
+   },
+   {
+    "id": "G5",
+    "name": "Order reads as order",
+    "applies": false,
+    "pass": null,
+    "measured": 0.627,
+    "need": "monotone OKLab lightness, span >= 0.3",
+    "note": "monotone"
+   },
+   {
+    "id": "G6",
+    "name": "Alert pops out",
+    "applies": true,
+    "pass": true,
+    "measured": 0.211,
+    "need": "Delta E OK >= 0.15 from every body and the plate",
+    "note": "pre-attentive pop-out"
+   },
+   {
+    "id": "G7",
+    "name": "Accents are scarce",
+    "applies": false,
+    "pass": null,
+    "measured": null,
+    "need": "<= 0.15 of marks",
+    "note": "checked on the scene"
+   },
+   {
+    "id": "G8",
+    "name": "Glow needs night",
+    "applies": true,
+    "pass": true,
+    "measured": 0.132,
+    "need": "ground OKLab L <= 0.35",
+    "note": "a glow on a bright ground is only a flat colour"
+   },
+   {
+    "id": "G9",
+    "name": "Light agrees with surface",
+    "applies": true,
+    "pass": true,
+    "measured": 1,
+    "need": "lit surface has a key light",
+    "note": "model physical"
+   },
+   {
+    "id": "G10",
+    "name": "Air agrees with sky",
+    "applies": false,
+    "pass": null,
+    "measured": 0,
+    "need": "haze within Delta E OK 0.08 of the horizon",
+    "note": "else distant masses silhouette in the wrong colour"
+   },
+   {
+    "id": "G11",
+    "name": "Motion is restrained",
+    "applies": true,
+    "pass": true,
+    "measured": 4,
+    "need": "pulse period >= 0.5 s (under 3 flashes a second, WCAG 2.3.1)",
+    "note": ""
+   },
+   {
+    "id": "G12",
+    "name": "Plate is a quiet step",
+    "applies": true,
+    "pass": true,
+    "measured": 0.049,
+    "need": "Delta E OK from the ground in 0.02..0.2",
+    "note": "districts read without shouting"
+   },
+   {
+    "id": "G13",
+    "name": "Palette is portable",
+    "applies": true,
+    "pass": true,
+    "measured": "10 categorical, 5 sequential",
+    "need": ">= 4 categorical and >= 3 sequential stops",
+    "note": "so transposition always has what it needs"
+   },
+   {
+    "id": "G14",
+    "name": "Declared key is honest",
+    "applies": true,
+    "pass": true,
+    "measured": 0.132,
+    "need": "intent.key low: L <= 0.4, mid: 0.3..0.85, high: >= 0.75",
+    "note": "declared low"
+   }
+  ]
+ },
+ "final": {
+  "@id": "xst:kuhn-landscape",
+  "@type": "Style",
+  "label": "Kuhn Landscape",
+  "lineage": "The ten family colours of the Landscape of Consciousness figure, lifted for a night sky; obsidian for Challenge drawn as silver light.",
+  "intent": {
+   "key": "low",
+   "mood": [
+    "contemplative",
+    "luminous"
+   ],
+   "use": "a navigable map of theories of consciousness"
+  },
+  "palette": {
+   "ground": "#06070f",
+   "plate": "#0d1020",
+   "mass": "#141a30",
+   "ink": "#eef1ff",
+   "accent": "#ffe9a8",
+   "alert": "#ffffff",
+   "haze": "#0a0d1c",
+   "sky": [
+    "#010208",
+    "#0a0d1c"
+   ],
+   "categorical": [
+    "#ec3b2f",
+    "#f1961c",
+    "#f4e21c",
+    "#acd041",
+    "#22b35a",
+    "#35a9e0",
+    "#5a6cf0",
+    "#a157d6",
+    "#ff2e93",
+    "#8e97ad"
+   ],
+   "sequential": [
+    "#1a1f4a",
+    "#3a2f7a",
+    "#8a3f9a",
+    "#e0608a",
+    "#ffd38a"
+   ]
+  },
+  "surface": {
+   "model": "physical",
+   "tint": 1,
+   "capTone": 0.1,
+   "roughness": 0.35,
+   "metallic": 0.3,
+   "opacity": 1,
+   "glow": 0.8
+  },
+  "light": {
+   "azimuth": 210,
+   "elevation": 38,
+   "intensity": 1,
+   "ambient": 0.25,
+   "shadow": 0,
+   "contact": 0.3,
+   "relief": 0.4
+  },
+  "air": {
+   "fog": "none",
+   "range": 3
+  },
+  "line": {
+   "edges": "data",
+   "weight": 1.5,
+   "links": "tube",
+   "linkInk": "accent",
+   "grid": "rings"
+  },
+  "form": {
+   "sides": 12,
+   "taper": 0.8,
+   "tiers": 3,
+   "inset": 0.2,
+   "cap": "spike",
+   "fill": 0.7,
+   "lift": 0.4
+  },
+  "type": {
+   "family": "SANS",
+   "size": 1,
+   "case": "asis",
+   "density": 0.35
+  },
+  "motion": {
+   "pulse": 4,
+   "flow": 24
+  },
+  "encode": {
+   "hue": "category",
+   "alert": "glow"
+  },
+  "view": {
+   "projection": "perspective",
+   "start": "hero"
+  },
+  "derivedFrom": [
+   "xst:kuhn-landscape"
+  ],
+  "operator": "repair"
+ },
+ "lint_final": {
+  "ok": true,
+  "passed": 11,
+  "applicable": 11,
+  "score": 1,
+  "rules": [
+   {
+    "id": "G1",
+    "name": "Complete sentence",
+    "applies": true,
+    "pass": true,
+    "measured": 0,
+    "need": "0 missing tokens",
+    "note": "all 10 parts speak"
+   },
+   {
+    "id": "G2",
+    "name": "Labels are legible",
+    "applies": true,
+    "pass": true,
+    "measured": 16.781,
+    "need": "contrast >= 4.5:1 (WCAG 2.x)",
+    "note": "ink on ground and on plate"
+   },
+   {
+    "id": "G3",
+    "name": "Figure separates from ground",
+    "applies": true,
+    "pass": true,
+    "measured": 0.442,
+    "need": "Delta E OK >= 0.1, or an edge with contrast >= 1.6:1, or a light (L >= 0.5) lit surface with shadow + contact >= 0.8",
+    "note": "by colour"
+   },
+   {
+    "id": "G4",
+    "name": "Categories are distinct",
+    "applies": true,
+    "pass": true,
+    "measured": 0.103,
+    "need": "min pair Delta E OK >= 0.08; >= 0.04 under deutan and protan",
+    "note": "colour-blind min 0.045 (Machado 2009)"
+   },
+   {
+    "id": "G5",
+    "name": "Order reads as order",
+    "applies": false,
+    "pass": null,
+    "measured": 0.627,
+    "need": "monotone OKLab lightness, span >= 0.3",
+    "note": "monotone"
+   },
+   {
+    "id": "G6",
+    "name": "Alert pops out",
+    "applies": true,
+    "pass": true,
+    "measured": 0.211,
+    "need": "Delta E OK >= 0.15 from every body and the plate",
+    "note": "pre-attentive pop-out"
+   },
+   {
+    "id": "G7",
+    "name": "Accents are scarce",
+    "applies": false,
+    "pass": null,
+    "measured": null,
+    "need": "<= 0.15 of marks",
+    "note": "checked on the scene"
+   },
+   {
+    "id": "G8",
+    "name": "Glow needs night",
+    "applies": true,
+    "pass": true,
+    "measured": 0.132,
+    "need": "ground OKLab L <= 0.35",
+    "note": "a glow on a bright ground is only a flat colour"
+   },
+   {
+    "id": "G9",
+    "name": "Light agrees with surface",
+    "applies": true,
+    "pass": true,
+    "measured": 1,
+    "need": "lit surface has a key light",
+    "note": "model physical"
+   },
+   {
+    "id": "G10",
+    "name": "Air agrees with sky",
+    "applies": false,
+    "pass": null,
+    "measured": 0,
+    "need": "haze within Delta E OK 0.08 of the horizon",
+    "note": "else distant masses silhouette in the wrong colour"
+   },
+   {
+    "id": "G11",
+    "name": "Motion is restrained",
+    "applies": true,
+    "pass": true,
+    "measured": 4,
+    "need": "pulse period >= 0.5 s (under 3 flashes a second, WCAG 2.3.1)",
+    "note": ""
+   },
+   {
+    "id": "G12",
+    "name": "Plate is a quiet step",
+    "applies": true,
+    "pass": true,
+    "measured": 0.049,
+    "need": "Delta E OK from the ground in 0.02..0.2",
+    "note": "districts read without shouting"
+   },
+   {
+    "id": "G13",
+    "name": "Palette is portable",
+    "applies": true,
+    "pass": true,
+    "measured": "10 categorical, 5 sequential",
+    "need": ">= 4 categorical and >= 3 sequential stops",
+    "note": "so transposition always has what it needs"
+   },
+   {
+    "id": "G14",
+    "name": "Declared key is honest",
+    "applies": true,
+    "pass": true,
+    "measured": 0.132,
+    "need": "intent.key low: L <= 0.4, mid: 0.3..0.85, high: >= 0.75",
+    "note": "declared low"
+   }
+  ]
+ },
+ "repair": {}
+}
