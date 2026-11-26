@@ -1,0 +1,137 @@
+{
+ "evidence": [
+  [
+   "XSD 4.0 validity",
+   "valid, 0 errors (at 4d433af and at 5543a7b)",
+   "x3d_mcp validate_xml, both commits, re-run 26 Nov",
+   "C"
+  ],
+  [
+   "semantic findings, before the 25 Nov data checks",
+   "259: 258 info unused-def, 1 warning empty-group",
+   "x3d_mcp fork 4d433af (pre-#31)",
+   "C"
+  ],
+  [
+   "semantic findings, current main",
+   "311 (+52): 31 zero-area glyph faces, 10 transparent open meshes, 4 unused points, 4 non-unit rotation axes, 3 co-located point sets",
+   "x3d_mcp 5543a7b (post-#31, #34)",
+   "C"
+  ],
+  [
+   "Loom traps (PR 222 rules)",
+   "0 errors; 29 color-keys-sparse, 10 loop-seam warnings; with host strict +1 no-script-under-host; lod-under-ortho silent",
+   "x3d.loom kit/loomkit/traps.py, this branch",
+   "C"
+  ],
+  [
+   "Loom page traps on this page",
+   "0 hits; saw 1 field callback (guarded) and 1 world load (budgeted)",
+   "x3d.loom pagetraps.check_html",
+   "C"
+  ],
+  [
+   "page in a browser",
+   "13 frames, canvas 1028 x 642, load 20.9 s, 0 console errors, 0 HTTP errors",
+   "X_ITE 16.7.1, Chromium 158.0.8127.36, ANGLE SwiftShader (software; no GPU, no frame rate claimed)",
+   "C"
+  ],
+  [
+   "Script under a no-eval policy",
+   "Script blocked (EvalError), page twin took over and moved point[0] -1.742 0.295 1.439 to 0.716 2.153 1.738",
+   "same rig, CSP script-src 'self' 'unsafe-inline', page ?twin=1 and CSP run",
+   "C"
+  ],
+  [
+   "Blender 5.3.0 import and export",
+   "imports in 4.3 s; USD 7.4 MB (2 s), GLB 8.6 MB (90 s); 112 import-loss lines logged by the add-on",
+   "bpy 5.3.0, x3d-blender-io 8adf7c0",
+   "C"
+  ],
+  [
+   "USD rulebooks",
+   "70 rules: 64 pass, 6 fail (topology: non-manifold vertices, unused points, co-located points, zero-area faces, indexable primvar), Z-up and Y-up alike",
+   "usd-core 26.11, Omniverse Asset Validator 1.18.0",
+   "C"
+  ],
+  [
+   "SimReady requirements",
+   "Z-up 164 pass, 37 fail, 2 not run; Y-up 162, 39, 2 (of 203 executable codes). Mostly physics, robotics and asset-metadata requirements a viewing world does not claim",
+   "usd-validation-nvidia 1.23.0, tiers from simready-foundation c3bd1d8",
+   "C (counts), L (reading)"
+  ],
+  [
+   "glTF validity",
+   "0 errors, 0 warnings, 667 infos (UNUSED_OBJECT)",
+   "Khronos glTF-Validator 2.0.0-dev.3.10",
+   "C"
+  ]
+ ],
+ "formats": [
+  [
+   "Geometry (glyph labels, forms)",
+   "kept: 2,542 Mesh prims",
+   "kept: 667 meshes (instanced)"
+  ],
+  [
+   "Cameras",
+   "13 of 14; the OrthoViewpoint is missing",
+   "14 of 14, the ortho one stays orthographic"
+  ],
+  [
+   "Lights",
+   "12 of 12",
+   "12 of 12 (KHR_lights_punctual)"
+  ],
+  [
+   "Animation (Position and Orientation interpolators)",
+   "only with export_animation: 46 prims, 1 to 3361 at 24 tcps; none in the default export",
+   "46 animations, 138 TRS channels"
+  ],
+  [
+   "ColorInterpolators (35, material colour)",
+   "lost",
+   "lost"
+  ],
+  [
+   "ROUTEs (200)",
+   "lost: 70 of 200 reported not imported by the add-on, none recorded in the USD",
+   "lost, but the 112-entry loss list (routes, nodes, timers) is written into the scene extras"
+  ],
+  [
+   "Script (tesseract)",
+   "lost, unrecorded in the USD",
+   "lost; listed in the scene extras loss list"
+  ],
+  [
+   "ComposedShader (2 GLSL shaders)",
+   "lost",
+   "lost"
+  ],
+  [
+   "ParticleSystem",
+   "lost",
+   "lost"
+  ],
+  [
+   "Billboard labels (21)",
+   "lost: labels stay fixed",
+   "lost: labels stay fixed"
+  ],
+  [
+   "Unlit appearance",
+   "75 of 100 Materials carry no shader; re-imported they render grey",
+   "49 of 74 materials use KHR_materials_unlit"
+  ],
+  [
+   "DEF names and PROTO instances",
+   "as userProperties:x3d_def on 5,260 prims; PROTO expanded",
+   "as extras on all 3,405 nodes; PROTO expanded"
+  ],
+  [
+   "Record of what was lost",
+   "none in the file",
+   "scene extras x3d_import_losses (12,386 characters), plus x3d_background, head meta and scene metadata"
+  ]
+ ]
+}
