@@ -741,3 +741,10 @@ Written for this site on top of v5 (v1 to v5 untouched). v5's content on v4's fl
 | file | sha256 | bytes |
 |---|---|---|
 | assets/fault-court.jpg | c2d48e49710dabb9926608cda7e9f927538536da4fbf1f59c3a9c4348585863f | 85037 |
+
+## wire-lab-v3 (v95)
+`wire-lab-v3` is a 2 x 2 of 480 x 270 tiles from `docs/demos/wire-lab/v3/shots/` (`09-counter-flywheel-running.png`, `11-door-blender-lane.png`, `18-door-search-winner.png`, `10-door-wheel-running.png`; X_ITE 16.7.1, headless Chromium, SwiftShader) saved as 960 x 540 JPEG. The frames show the project's own worlds and HUD; no third-party imagery or data.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/wire-lab-v3.jpg | c9a55ea2a1d0147e8a0051d5aea236c31f94d3bed227ca8e7f65fa4959dd2097 | 124297 |
