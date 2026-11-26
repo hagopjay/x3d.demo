@@ -699,3 +699,24 @@ Written for this site on top of v5 (v1 to v5 untouched). v5's content on v4's fl
 | gobbler-gyroscope-webgpu/v6/swarm/swarm.js | 5aef5c91a98d4a7f5b685495e32b7e952d5c9bcbb9fbd0c45b4ef1d7a9694012 | 17749 |
 | gobbler-gyroscope-webgpu/v6/tests/integration.html | b7e465384bb12cd018b24d5d114ccf8715f1ef5af58ce8b24d3b52dc3e2076a6 | 3612 |
 | gobbler-gyroscope-webgpu/v6/tests/parity.html | cc2295f1ea4ae7b6c20a2b17026a5bcc11ec44b45d2aa27cb95b37bb0f844233 | 2814 |
+
+## gobbler-gyroscope-together (v89)
+`gobbler-gyroscope-together` is `docs/demos/gobbler-gyroscope-webgpu/v6/shots/h1-together.jpg` (1600 x 900, Chrome for Testing 158, SwiftShader) resized to 960 x 540 JPEG. It shows the project's own scene; the glass Gobbler is the project's own render. No Google or other third-party imagery.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/gobbler-gyroscope-together.jpg | 998133d3ae0cfc5972f6fab509927179ea699207057ee7312768cafc27123e10 | 144422 |
+
+## segment-sphere (v90)
+`segment-sphere` is a 2 x 2 of 480 x 270 tiles from `docs/demos/segment-sphere/v1/shots/` (`00-hero.webp`, `01-wheel.webp`, `03-hopf.webp`, `07-select.webp`; X_ITE 16.7.1, Chromium 158, SwiftShader) saved as 960 x 540 JPEG. The frames are the project's own renders of the owner's wheel data; no AWS logos or artwork appear. Sources, trademark notice and takedown: `docs/demos/segment-sphere/v1/DATA-ATTRIBUTION.md`.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/segment-sphere.jpg | bb473197ee8f8069d8e7d9d456226c10f6d8cf2ec322f16a6d1e8a86f14ade1c | 113611 |
+
+## salon-two-centuries (v91)
+`salon-two-centuries` is a 2 x 2 of 480 x 270 tiles from `docs/demos/salon-two-centuries/v2/shots/` (`00-hero.webp`, `13-music.webp`, `16-crystal.webp`, `17-atlas.webp`; X_ITE 16.7.1, Chromium 158, SwiftShader) saved as 960 x 540 JPEG. Wall paintings that appear in frames are the public-domain works credited in `docs/demos/salon-two-centuries/v1/DATA-ATTRIBUTION.md`. Sources, licences and takedown: the two `DATA-ATTRIBUTION.md` files.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/salon-two-centuries.jpg | 5db2db0225430e63d6134460eb455101c0622e183be67486876bc14f0aac602f | 91621 |
