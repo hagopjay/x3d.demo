@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fault Court: X3D, glTF and USD judged on the same 60 mistakes</title>
+<meta name="description" content="Demo 82. One scene written natively in X3D 4.0, glTF 2.0 and USD; 60 planted faults, 10 decoys; each format judged by its own checkers; then Loom rules learned from half the misses, tested on the other half. Pre-registered.">
+<style>
+:root{--bg:#04060b;--p1:#0a0f18;--p2:#0f1622;--line:#1b2535;--ink:#eaf0f8;--dim:#8d99ad;--ok:#5cf2a0;--bad:#f2707a;--warn:#f0b64a;--pre:#5fc6e8;--gold:#ffd36b;--vio:#a98cff;--ne:#2a3344;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+ background-image:radial-gradient(1200px 520px at 8% -10%,rgba(95,198,232,.13),transparent 60%),radial-gradient(1000px 520px at 96% -4%,rgba(169,140,255,.10),transparent 60%)}
+a{color:var(--pre)}code{font-family:var(--mono);font-size:.86em}
+.wrap{max-width:1400px;margin:0 auto;padding:0 18px 60px}
+header{padding:30px 0 8px}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--pre)}
+h1{font-size:clamp(28px,4.4vw,54px);line-height:1.04;margin:.15em 0 .25em;font-weight:800;letter-spacing:-.02em}
+h1 em{font-style:normal;background:linear-gradient(90deg,#5fc6e8,#5cf2a0,#ffd36b,#f2707a);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:22px;margin:34px 0 10px}
+.lede{max-width:980px;color:#c6d0de;font-size:17px;margin:0}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+@media(max-width:860px){.grid3{grid-template-columns:1fr}}
+.fmt{background:linear-gradient(180deg,var(--p2),var(--p1));border:1px solid var(--line);border-radius:16px;padding:16px}
+.fmt h3{margin:0 0 2px;font-size:20px}.fmt .tool{color:var(--dim);font-size:12px;font-family:var(--mono)}
+.big{display:flex;gap:18px;margin:12px 0 6px;flex-wrap:wrap}
+.big div b{display:block;font-size:30px;font-weight:800;line-height:1}.big div span{font-size:12px;color:var(--dim)}
+.bar{height:10px;border-radius:6px;background:#141c29;overflow:hidden;margin:8px 0 2px;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:6px}
+.verdicts{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.v{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--p1)}
+.v .t{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.v b{font-size:18px;display:block;margin:4px 0}
+.pass b{color:var(--ok)}.fail b{color:var(--bad)}.info b{color:var(--gold)}
+.court{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--p1)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+th,td{padding:5px 8px;border-bottom:1px solid #111a27;text-align:left;white-space:nowrap}
+th{position:sticky;top:0;background:#0c121d;color:var(--dim);font-weight:600;font-size:12px}
+td.t{white-space:normal;color:#c8d2e0}
+.cell{display:inline-flex;gap:3px}
+.dot{width:22px;height:18px;border-radius:5px;display:inline-grid;place-items:center;font-size:10px;font-family:var(--mono);color:#04060b;font-weight:700}
+.k-caught{background:var(--ok)}.k-miss{background:var(--bad)}.k-NE{background:var(--ne);color:#7b879b}.k-NA{background:#3a3550;color:#a99ccc}
+.k-loom{background:var(--vio)}
+tr.fam td{background:#0e1522;color:var(--pre);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+tr.held td.id::after{content:" held";color:#63738a;font-size:10px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--dim);font-size:12.5px;margin:8px 0}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.wheel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+@media(max-width:860px){.wheel{grid-template-columns:1fr}}
+.note{color:#b9c4d4;max-width:980px}
+.small{color:var(--dim);font-size:12.5px}
+#tip{position:fixed;pointer-events:none;background:#0c121d;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12px;max-width:420px;display:none;z-index:9}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div class="kick">Demo 82 · Fault Court v1 · 26 Nov 2026 · pre-registered</div>
+ <h1>Three formats, <em>one set of mistakes</em>, each judged by its own court</h1>
+ <p class="lede">One small scene was written natively in X3D 4.0, glTF 2.0 and USD. Each had the same 60 mistakes planted in it, plus 10 legal-but-odd decoys. Every format was judged only by its own official checkers. Then the Loom learned rules from half of the misses and was tested on the other half, which it had never seen.</p>
+</header>
+
+<div class="grid3" id="fmts"></div>
+
+<h2>Verdicts, as pre-registered</h2>
+<div class="verdicts" id="verdicts"></div>
+
+<h2>The court: 70 cases × 3 formats</h2>
+<div class="legend">
+ <span><i class="dot k-caught">✓</i>caught by the format's own checkers</span>
+ <span><i class="dot k-miss">✗</i>missed</span>
+ <span><i class="dot k-loom">L</i>missed, then caught by a Loom rule</span>
+ <span><i class="dot k-NE">–</i>the format cannot state this</span>
+ <span><i class="dot k-NA">ok</i>legal in that format</span>
+ <span>Rows marked <b>held</b> were sealed until the rules were committed. Hover a cell for the evidence.</span>
+</div>
+<div class="court"><table id="court"></table></div>
+
+<h2>One turn of the flywheel</h2>
+<div class="wheel">
+ <div class="fmt">
+  <h3>Held-out half: own checkers → plus Loom rules</h3>
+  <div id="held"></div>
+  <p class="small">The rules were written only from learn-half misses, at most 5 per format, one general property each. They were committed before the held-out half was opened (sha256 9deab24a…). They raised no false alarms on the 10 decoys.</p>
+ </div>
+ <div class="fmt">
+  <h3>What the result says</h3>
+  <p class="note"><b>X3D is the richest language here.</b> It can state 53 of the 60 mistakes, against glTF's 48 and USD's 44. Only X3D can say "this event is wired wrong", "two materials on one surface", "this joint name is not a humanoid joint" or "this metadata number is not a number".</p>
+  <p class="note"><b>But its validator is not the best judge.</b> The Khronos glTF-Validator checks values against each other and against the files. X3D's misses were counts, missing or non-image textures, a hierarchy cycle and bounds: exactly what a schema cannot see.</p>
+  <p class="note"><b>The Loom closes part of the gap, measurably.</b> That is the flywheel: test, rule, better checker. The next turn is to put the five X3D rules into the validator itself.</p>
+ </div>
+</div>
+
+<h2>Corrections found after the run (the score is left as registered)</h2>
+<ul class="note">
+ <li><b>F03 was not a fault in X3D.</b> <code>nearDistance = -1</code> means "automatic" in X3D, so it was legal. Excluding it, H1 against glTF still fails.</li>
+ <li><b>A01 in X3D was caught for the wrong reason.</b> The finding was a schema position error, not the missing DEF.</li>
+ <li><b>glTF's NaN catches are JSON parse refusals.</b> JSON cannot hold NaN, so the file never loads.</li>
+</ul>
+
+<h2>Rig</h2>
+<p class="small">
+ X3D: x3d_mcp fork <code>4d433af</code>, XSD 4.0 plus semantic_diagnostics.<br>
+ glTF: Khronos glTF-Validator 2.0.0-dev.3.10.<br>
+ USD: usd-core 26.11, Stage.Open plus all 30 registered UsdValidation validators.<br>
+ Python 3.13. Pre-registration: x3d.loom <code>fault-court/PREREG.md</code> at 697bf5d. Rules at cf0b6b4. Kit, rules and full results are in x3d.loom <code>fault-court/</code>.<br>
+ Threats: one author chose the faults and wrote the rules, and there is one scene. These are kinds of mistake, not real-world files.
+</p>
+</div>
+<div id="tip"></div>
+<script>
+const D=/*DATA*/;
+const F=["x3d","gltf","usd"],NAME={x3d:"X3D 4.0",gltf:"glTF 2.0",usd:"USD"},TOOL={x3d:"x3d_mcp 4d433af · XSD + semantic",gltf:"Khronos glTF-Validator 2.0.0-dev.3.10",usd:"usd-core 26.11 · 30 UsdValidation validators"};
+const pct=(a)=>Math.round(100*a[0]/a[1]);
+document.getElementById("fmts").innerHTML=F.map(f=>{const s=D.S[f];return `<div class="fmt"><h3>${NAME[f]}</h3><div class="tool">${TOOL[f]}</div>
+<div class="big"><div><b style="color:var(--pre)">${s.stateable}</b><span>of 60 stateable</span></div><div><b style="color:var(--ok)">${s.base_all[0]}/${s.base_all[1]}</b><span>caught, own checkers</span></div><div><b style="color:var(--vio)">${s.held_base[0]}→${s.held_loom[0]}</b><span>held-out, +Loom (of ${s.held_base[1]})</span></div></div>
+<div class="bar"><i style="width:${pct(s.base_all)}%;background:var(--ok)"></i></div><div class="small">${pct(s.base_all)}% caught · decoys flagged ${s.decoy_flags_base} of 10 · clean flagged ${s.clean_flag?1:0}</div></div>`}).join("");
+const h=D.H1;
+const V=[["H1 · X3D vs glTF","fail",`Fails the other way: ${h.gltf.x3d_caught} vs ${h.gltf.other_caught}`,`${h.gltf.paired_n} shared faults; glTF-only ${h.gltf.other_only}, X3D-only ${h.gltf.x3d_only}; McNemar p = ${h.gltf.mcnemar_p}`],
+["H1 · X3D vs USD","pass",`Passes: ${h.usd.x3d_caught} vs ${h.usd.other_caught}`,`${h.usd.paired_n} shared faults; +${h.usd.diff_points} points; p < 0.0001`],
+["H2 · no crying wolf","pass","Passes: 0 false alarms","clean control and 10 decoys, all formats"],
+["H3 · the Loom transfers","pass",`Passes: X3D +${Math.round(100*(D.S.x3d.held_loom[0]-D.S.x3d.held_base[0])/D.S.x3d.held_base[1])}, USD +${Math.round(100*(D.S.usd.held_loom[0]-D.S.usd.held_base[0])/D.S.usd.held_base[1])} points`,"held-out half, rules from the other half; glTF already at 23 of 24"],
+["H4 · who can say the most","info","X3D: 53 of 60","glTF 48, USD 44"]];
+document.getElementById("verdicts").innerHTML=V.map(v=>`<div class="v ${v[1]}"><div class="t">${v[0]}</div><b>${v[2]}</b><div class="small">${v[3]}</div></div>`).join("");
+const FAM={A:"References and identity",B:"Geometry data",C:"Transforms and units",D:"Appearance",E:"Animation and behaviour",F:"Cameras and declared facts",Z:"Decoys (legal; a flag is a false alarm)"};
+let rows=`<tr><th>Case</th><th>Mistake</th>${F.map(f=>`<th>${NAME[f]}</th>`).join("")}</tr>`;
+const ids=Object.keys(D.man).filter(k=>k!=="clean");
+for(const fam of "ABCDEFZ"){
+ const fx=D.fam[fam];
+ rows+=`<tr class="fam"><td colspan="2">${fam} · ${FAM[fam]}</td>${F.map(f=>`<td>${fx?fx[f][0]+"/"+fx[f][1]:""}</td>`).join("")}</tr>`;
+ for(const id of ids.filter(i=>i[0]===fam)){
+  const held=fam!=="Z"&&(+id.slice(1))%2===0;
+  rows+=`<tr class="${held?"held":""}"><td class="id mono">${id}</td><td class="t">${D.man[id].title}</td>`+F.map(f=>{const c=D.cases[id][f];
+   let k=c.b,txt={caught:"✓",miss:"✗",NE:"–",NA:"ok"}[c.b];
+   if(c.b==="miss"&&c.l==="caught"){k="loom";txt="L"}
+   if(fam==="Z"&&c.b==="caught"){k="miss";txt="!"}
+   const tip=c.b==="NE"?"cannot be stated in this format":c.b==="NA"?"legal in this format":(c.b==="caught"?"caught by "+(Array.isArray(c.w)?c.w.join(", "):c.w):"missed by the format's checkers")+(c.r?" · Loom rule: "+c.r:"");
+   return `<td><span class="dot k-${k}" data-tip="${id} · ${NAME[f]}: ${tip.replace(/"/g,"&quot;")}">${txt}</span></td>`}).join("")+"</tr>";
+ }
+}
+document.getElementById("court").innerHTML=rows;
+document.getElementById("held").innerHTML=F.map(f=>{const s=D.S[f];return `<div style="margin:10px 0"><b>${NAME[f]}</b> <span class="small">${s.held_base[0]} → ${s.held_loom[0]} of ${s.held_base[1]}</span>
+<div class="bar"><i style="width:${pct(s.held_loom)}%;background:var(--vio)"></i><i style="width:${pct(s.held_base)}%;background:var(--ok)"></i></div></div>`}).join("");
+const tip=document.getElementById("tip");
+document.addEventListener("mousemove",e=>{const t=e.target.closest("[data-tip]");if(!t){tip.style.display="none";return}tip.textContent=t.dataset.tip;tip.style.display="block";tip.style.left=Math.min(e.clientX+14,innerWidth-440)+"px";tip.style.top=(e.clientY+14)+"px"});
+</script>
+</body>
+</html>
