@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v98 (2026-11-28)
+- New card for Demo 84, x3d.dance (`docs/demos/dance/v1/`, PR 197): two HAnim 2.0 humanoids, Ada and Rex, in an X3D 4.1 scene with synthesised grooves and thumbs-up or down rating, from the hagsMac session's `hagopjay/x3d.dance` at commit 0937b78. The card says the still shows the page at load, before a groove, and that nobody has measured the dancing or whether ratings improve it. Bodies are CC0 MakeHuman assets, the viewer is X_ITE 16.8.1 (MIT), with the credit and takedown route in the README. I loaded the page headless in X_ITE: 1 canvas, 0 console errors, 0 HTTP errors. The XSD and semantic validation (x3d_mcp ca0e75c) are the lane's own. Image `assets/x3d-dance.jpg` is the lane's screenshot centred on the page background.
+
 ## v97 (2026-11-26)
 - The Demo 83 card now opens Landscape of Consciousness v2 (`docs/demos/landscape-of-consciousness/v2/`) and keeps v1 linked. v2 clears the 35 warnings that x3d_mcp 5543a7b finds in the delivered world (4 non-unit OrientationInterpolator axes, 31 meshes with zero-area faces) by a scripted edit of v1's file; I re-ran x3d_mcp (311 findings on v1, 275 on v2, none new), the Blender 5.3 USD and GLB exports (Omniverse + usd-core 65 of 70 pass against 64, SimReady 165 pass against 164, glTF-Validator unchanged at 0 errors and 0 warnings) and the page headless in X_ITE 16.7.1 (13 frames, 0 console errors, 0 HTTP errors, Script ran). Not rebuilt from the generator, no real GPU. The v1 card text is replaced on the front page only; page versions v1 to v96 and demo version v1 are untouched.
 
