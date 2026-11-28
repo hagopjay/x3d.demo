@@ -762,3 +762,24 @@ Written for this site on top of v5 (v1 to v5 untouched). v5's content on v4's fl
 | file | sha256 | bytes |
 |---|---|---|
 | assets/live-dis.jpg | 9d59fa6cc5be473487fa93ce3601c2b3925c82eab0eff677e1709a9d41678aa4 | 66136 |
+
+## obrian-enso (v100)
+`obrian-enso` is `docs/demos/obrian-enso/v1/card.jpg` (960 x 540, rendered from the project's own scene using NOAA data). Data credits and the takedown route are in `docs/demos/obrian-enso/v1/DATA-ATTRIBUTION.md`.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/obrian-enso.jpg | 97d9e1b4b618fa39e536050690f25b0289a4ac749dc2513ea945ac179db479be | 33460 |
+
+## spring-bone (v101)
+`spring-bone` is `docs/demos/spring-bone/v1/card.png` (800 x 661, headless Chromium, SwiftShader, X_ITE 16.8.1) fitted to 960 x 540 and centred on its background colour. Own geometry (CC0 1.0); the PROTO library is MIT and clean-room. Credits are in `docs/demos/spring-bone/v1/NOTICE.md`.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/spring-bone.jpg | 15a035bf9a4e79438fb947d336d0f208182456d47e8accc5de512ef13e031977 | 22798 |
+
+## cesium-twin (v102)
+`cesium-twin` is `docs/demos/cesium-twin/v1/card.png` (800 x 600, headless Chromium, SwiftShader) fitted to 960 x 540 and centred on its background colour. It shows the building on the Natural Earth II base map only; no Google imagery and no Cesium ion asset. Credits are in `docs/demos/cesium-twin/v1/NOTICE.md`.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/cesium-twin.jpg | 2f281b4422f568103a49d48ec4233e4d2645901749dc6d27783ef985784cc0ab | 32328 |

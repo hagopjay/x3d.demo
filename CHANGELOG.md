@@ -2,6 +2,15 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v102 (2026-11-28)
+- New card for Demo 88, Cesium Twin (`docs/demos/cesium-twin/v1/`, PR 202): the owner's own IFC4 studio model carried to X3D, wrapped in a GeoLocation, and exported as a glb and a 3D Tiles 1.1 tileset that CesiumJS loads. The card says the placement on the Virginia Tech Drillfield is a demonstration only, that the card image shows no Google imagery (the optional region tiles are hidden until a button is pressed and have their own notice), and that the lane's checks were on SwiftShader only. I loaded the page headless (1 canvas, 0 console errors, 0 HTTP errors; the CesiumJS script loads from jsDelivr). Image `assets/cesium-twin.jpg` is the lane's 800 x 600 `card.png` fitted to 960 x 540 on its background colour.
+
+## v101 (2026-11-28)
+- New card for Demo 87, Spring Bone Lab (`docs/demos/spring-bone/v1/`, PR 203): spring bones as two native X3D 4.0 PROTOs, `SpringBoneChain` and `SpringBoneCollider`, on four rigs (an HAnim ponytail, a fox tail, a 42-bone bead fringe, an antenna tree). The lane's measurements are attributed to the lane and not re-run by me; I loaded the page headless (1 canvas, 0 console errors, 0 HTTP errors). The card says nothing was measured on a real GPU, phones or other X3D browsers. Image `assets/spring-bone.jpg` is the lane's 800 x 661 `card.png` fitted to 960 x 540 on its background colour.
+
+## v100 (2026-11-28)
+- New card for Demo 86, OBrian (`docs/demos/obrian-enso/v1/`, PR 201): El Niño in four X3D scenes from public NOAA data (GODAS, ERSST v5, NCEP Reanalysis 1, CPC, Natural Earth). The card says it is a visualization, not a forecast, that the vertical scale is about 5,550 times, that the codename is a dedication not endorsed by FSU, COAPS or the family, and where the takedown route is. The lane's numbers are attributed to the lane; I loaded the page headless (1 canvas, 0 console errors, 0 HTTP errors). Image `assets/obrian-enso.jpg` is the lane's own 960 x 540 `card.jpg`, re-saved as JPEG.
+
 ## v99 (2026-11-28)
 - New card for Demo 85, Live DIS (`docs/demos/live-dis/v1/`, PR 199): the six X3D 4.0 DIS nodes driven by real IEEE 1278.1 PDU bytes through a small runtime over X_ITE 16.8.1, which parses all six but implements none. The card says every PDU is generated (nothing recorded, nothing beyond one machine), that the public page encodes and decodes its own PDUs in the tab, and that interoperation was shown only with opendis and open-dis on loopback. The lane's results (6 of 6 readers, 4 of 4 writers, 9 of 9 dead-reckoning algorithms, codec agreement with two Open-DIS libraries, 37 of 37 tests) are attributed to the lane and not re-run by me. I loaded the page headless in X_ITE: 3 canvases, 0 console errors, 0 HTTP errors. Image `assets/live-dis.jpg` is the lane's 3000 x 2160 screenshot fitted to 960 x 540 on the page background.
 
