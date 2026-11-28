@@ -1,0 +1,1164 @@
+{
+ "demo": "Live DIS v1 (Demo 85)",
+ "made": "2026-11-28",
+ "note": "Every number below was written by a test in tests/ during one run on one machine. Every PDU in every test was generated; no recorded traffic was used. All network traffic stayed on that machine.",
+ "summary": {
+  "nodes_parsed_by_x_ite": 6,
+  "nodes_live_as_reader": 6,
+  "nodes_live_as_writer": 4,
+  "nodes_with_no_writer_mode_in_the_specification": 2,
+  "dead_reckoning_algorithms_verified": 9,
+  "codec_crosscheck_opendis_python": {
+   "EntityState": {
+    "pdus": 40,
+    "mismatches": 0,
+    "octet_identical": 40
+   },
+   "Transmitter": {
+    "pdus": 40,
+    "mismatches": 0,
+    "octet_identical": 40
+   },
+   "Signal": {
+    "pdus": 40,
+    "mismatches": 0,
+    "octet_identical": 40
+   },
+   "Receiver": {
+    "pdus": 40,
+    "mismatches": 0,
+    "octet_identical": 40
+   },
+   "SignalUnpadded": {
+    "pdus": 5,
+    "mismatches": 0
+   }
+  },
+  "codec_crosscheck_open_dis_javascript": {
+   "instrument": "npm open-dis 1.3.6 (DIS 6 classes), node v22.23.5",
+   "pdus": 160,
+   "field_comparisons": 2660,
+   "mismatches": 0,
+   "octet_identical": 80
+  }
+ },
+ "results": {
+  "codec_unit": {
+   "instrument": "node v22.23.5",
+   "hand_built_layouts": [
+    "Entity State 176 octets",
+    "Transmitter 104 octets",
+    "Signal 40 octets",
+    "Receiver 36 octets"
+   ]
+  },
+  "crosscheck_open_dis_js": {
+   "instrument": "npm open-dis 1.3.6 (DIS 6 classes), node v22.23.5",
+   "pdus": 160,
+   "field_comparisons": 2660,
+   "mismatches": 0,
+   "octet_identical": 80
+  },
+  "crosscheck_opendis": {
+   "instrument": {
+    "opendis": "1.1.0",
+    "numpy": "2.5.3",
+    "python": "3.13.18",
+    "node": "v22.23.5"
+   },
+   "codec": {
+    "EntityState": {
+     "pdus": 40,
+     "fields_opendis_to_js": 1960,
+     "fields_js_to_opendis": 2040,
+     "octet_identical": 40,
+     "mismatches": 0,
+     "first_mismatches": []
+    },
+    "Transmitter": {
+     "pdus": 40,
+     "fields_opendis_to_js": 1480,
+     "fields_js_to_opendis": 1480,
+     "octet_identical": 40,
+     "mismatches": 0,
+     "first_mismatches": []
+    },
+    "Signal": {
+     "pdus": 40,
+     "fields_opendis_to_js": 680,
+     "fields_js_to_opendis": 680,
+     "octet_identical": 40,
+     "mismatches": 0,
+     "first_mismatches": []
+    },
+    "Receiver": {
+     "pdus": 40,
+     "fields_opendis_to_js": 680,
+     "fields_js_to_opendis": 680,
+     "octet_identical": 40,
+     "mismatches": 0,
+     "first_mismatches": [],
+     "opendis_serialised_octets": 28,
+     "note": "opendis 1.1.0 serialises a Receiver PDU as 28 octets: it has no field for the receiver's own entity ID and radio ID. Eight octets were spliced in or out for this comparison, so those four values are not checked here; crosscheck-open-dis-js.test.js checks them against the open-dis JavaScript package."
+    },
+    "SignalUnpadded": {
+     "pdus": 5,
+     "mismatches": 0,
+     "note": "data lengths 1, 2, 3, 5 and 161 octets; the JavaScript encoder pads to 32 bits, opendis 1.1.0 does not, and each side reads the other's octets"
+    }
+   },
+   "dead_reckoning": {
+    "random_states": {
+     "Static": {
+      "cases": 23,
+      "max_position_diff_m_all": 0,
+      "max_angle_diff_rad_all": 0,
+      "position_cases_same_model": 23,
+      "max_position_diff_m_same_model": 0,
+      "orientation_cases_same_model": 23,
+      "max_angle_diff_rad_same_model": 0
+     },
+     "FPW": {
+      "cases": 23,
+      "max_position_diff_m_all": 0,
+      "max_angle_diff_rad_all": 0,
+      "position_cases_same_model": 23,
+      "max_position_diff_m_same_model": 0,
+      "orientation_cases_same_model": 23,
+      "max_angle_diff_rad_same_model": 0
+     },
+     "RPW": {
+      "cases": 22,
+      "max_position_diff_m_all": 0,
+      "max_angle_diff_rad_all": 0.7184307245912948,
+      "position_cases_same_model": 22,
+      "max_position_diff_m_same_model": 0,
+      "orientation_cases_same_model": 11,
+      "max_angle_diff_rad_same_model": 2.482534153247273e-16
+     },
+     "RVW": {
+      "cases": 22,
+      "max_position_diff_m_all": 0,
+      "max_angle_diff_rad_all": 2.5763897429055085,
+      "position_cases_same_model": 22,
+      "max_position_diff_m_same_model": 0,
+      "orientation_cases_same_model": 11,
+      "max_angle_diff_rad_same_model": 4.47545209131181e-16
+     },
+     "FVW": {
+      "cases": 22,
+      "max_position_diff_m_all": 0,
+      "max_angle_diff_rad_all": 0,
+      "position_cases_same_model": 22,
+      "max_position_diff_m_same_model": 0,
+      "orientation_cases_same_model": 22,
+      "max_angle_diff_rad_same_model": 0
+     },
+     "FPB": {
+      "cases": 22,
+      "max_position_diff_m_all": 1140.0832209513424,
+      "max_angle_diff_rad_all": 0,
+      "position_cases_same_model": 0,
+      "max_position_diff_m_same_model": null,
+      "orientation_cases_same_model": 22,
+      "max_angle_diff_rad_same_model": 0
+     },
+     "RPB": {
+      "cases": 22,
+      "max_position_diff_m_all": 1740.7893209487454,
+      "max_angle_diff_rad_all": 2.4648499210835246,
+      "position_cases_same_model": 0,
+      "max_position_diff_m_same_model": null,
+      "orientation_cases_same_model": 11,
+      "max_angle_diff_rad_same_model": 4.440892098500626e-16
+     },
+     "RVB": {
+      "cases": 22,
+      "max_position_diff_m_all": 1109.2508725042135,
+      "max_angle_diff_rad_all": 1.0453815997853066,
+      "position_cases_same_model": 0,
+      "max_position_diff_m_same_model": null,
+      "orientation_cases_same_model": 11,
+      "max_angle_diff_rad_same_model": 2.0014830212433602e-16
+     },
+     "FVB": {
+      "cases": 22,
+      "max_position_diff_m_all": 1660.0884214894122,
+      "max_angle_diff_rad_all": 0,
+      "position_cases_same_model": 0,
+      "max_position_diff_m_same_model": null,
+      "orientation_cases_same_model": 22,
+      "max_angle_diff_rad_same_model": 0
+     }
+    },
+    "body_algorithms_zero_angular_velocity": {
+     "FPB": {
+      "cases": 20,
+      "max_position_diff_m": 0
+     },
+     "RPB": {
+      "cases": 20,
+      "max_position_diff_m": 0
+     },
+     "RVB": {
+      "cases": 20,
+      "max_position_diff_m": 0
+     },
+     "FVB": {
+      "cases": 20,
+      "max_position_diff_m": 0
+     }
+    }
+   },
+   "geodesy": {
+    "cases": 200,
+    "max_geodetic_to_ecef_diff_m": 0.00005218091032404639,
+    "max_ecef_to_geodetic_diff_m": 0.00004762737404462314,
+    "max_attitude_diff_rad": 2.4497293082959004e-11
+   }
+  },
+  "dr": {
+   "instrument": "node v22.23.5, IEEE 754 doubles",
+   "algorithms": {
+    "1 Static": {
+     "references": [
+      {
+       "reference": "closed form: P(t) = P0, orientation unchanged, whatever velocity the PDU carries",
+       "cases": 100,
+       "max_position_error_m": 0,
+       "max_orientation_error_rad": 0
+      }
+     ],
+     "max_position_error_m": 0,
+     "max_orientation_error_rad": 0
+    },
+    "2 FPW": {
+     "references": [
+      {
+       "reference": "closed form: straight line P0 + V t, orientation unchanged",
+       "cases": 100,
+       "max_position_error_m": 0,
+       "max_orientation_error_rad": 0
+      },
+      {
+       "reference": "RK4 of dP/dt = V over 5 s",
+       "cases": 20,
+       "max_position_error_m": 0,
+       "max_orientation_error_rad": null
+      }
+     ],
+     "max_position_error_m": 0,
+     "max_orientation_error_rad": 0
+    },
+    "3 RPW": {
+     "references": [
+      {
+       "reference": "closed form: P0 + V t; orientation q(t) = q0 * exp(w t / 2) as a quaternion",
+       "cases": 100,
+       "max_position_error_m": 0,
+       "max_orientation_error_rad": 9.265956881012504e-16
+      },
+      {
+       "reference": "closed form: level yaw, psi(t) = psi0 + r t",
+       "cases": 1,
+       "max_position_error_m": 0,
+       "max_orientation_error_rad": 0
+      },
+      {
+       "reference": "RK4 of dP/dt = V, dB/dt = B W over 5 s",
+       "cases": 20,
+       "max_position_error_m": 0,
+       "max_orientation_error_rad": 3.1854719962527656e-14
+      }
+     ],
+     "max_position_error_m": 0,
+     "max_orientation_error_rad": 3.1854719962527656e-14
+    },
+    "4 RVW": {
+     "references": [
+      {
+       "reference": "closed form: parabola P0 + V t + A t^2 / 2; orientation by quaternion",
+       "cases": 100,
+       "max_position_error_m": 0,
+       "max_orientation_error_rad": 9.946124450933155e-16
+      },
+      {
+       "reference": "RK4 of dP/dt = V + A t, dB/dt = B W over 5 s",
+       "cases": 20,
+       "max_position_error_m": 9.140308630886366e-12,
+       "max_orientation_error_rad": 8.948407909332207e-15
+      }
+     ],
+     "max_position_error_m": 9.140308630886366e-12,
+     "max_orientation_error_rad": 8.948407909332207e-15
+    },
+    "5 FVW": {
+     "references": [
+      {
+       "reference": "closed form: parabola P0 + V t + A t^2 / 2, orientation unchanged",
+       "cases": 100,
+       "max_position_error_m": 0,
+       "max_orientation_error_rad": 0
+      }
+     ],
+     "max_position_error_m": 0,
+     "max_orientation_error_rad": 0
+    },
+    "6 FPB": {
+     "references": [
+      {
+       "reference": "closed form: forward speed u along the nose, P0 + u t (cos th cos psi, cos th sin psi, -sin th); zero angular velocity",
+       "cases": 100,
+       "max_position_error_m": 4.547473508864641e-13,
+       "max_orientation_error_rad": 0
+      },
+      {
+       "reference": "RK4 of dP/dt = B Vb, dB/dt = B W over 5 s, reported orientation held (non-zero angular velocity)",
+       "cases": 20,
+       "max_position_error_m": 3.929027638203997e-11,
+       "max_orientation_error_rad": 0
+      }
+     ],
+     "max_position_error_m": 3.929027638203997e-11,
+     "max_orientation_error_rad": 0
+    },
+    "7 RPB": {
+     "references": [
+      {
+       "reference": "closed form: level turn, circle of radius u / r: x = x0 + (u/r)(sin(psi0 + r t) - sin psi0), y = y0 - (u/r)(cos(psi0 + r t) - cos psi0); heading psi0 + r t",
+       "cases": 100,
+       "max_position_error_m": 1.016845989170083e-12,
+       "max_orientation_error_rad": 4.718447854656914e-16
+      },
+      {
+       "reference": "RK4 of dP/dt = B Vb, dB/dt = B W over 5 s, all three axes turning",
+       "cases": 20,
+       "max_position_error_m": 3.82319217561645e-11,
+       "max_orientation_error_rad": 1.567314126104708e-14
+      }
+     ],
+     "max_position_error_m": 3.82319217561645e-11,
+     "max_orientation_error_rad": 1.567314126104708e-14
+    },
+    "8 RVB": {
+     "references": [
+      {
+       "reference": "closed form: level turn with forward speed u + a t: x = x0 + [(u + a s) sin(psi0 + r s)/r + a cos(psi0 + r s)/r^2] from 0 to t, y likewise with -cos and sin",
+       "cases": 100,
+       "max_position_error_m": 5.592652940435457e-12,
+       "max_orientation_error_rad": 4.710277376051325e-16
+      },
+      {
+       "reference": "RK4 of dP/dt = B (Vb + Ab t), dB/dt = B W over 5 s, all three axes turning",
+       "cases": 20,
+       "max_position_error_m": 3.27733737262447e-11,
+       "max_orientation_error_rad": 3.059843093593412e-14
+      }
+     ],
+     "max_position_error_m": 3.27733737262447e-11,
+     "max_orientation_error_rad": 3.059843093593412e-14
+    },
+    "9 FVB": {
+     "references": [
+      {
+       "reference": "closed form: distance u t + a t^2 / 2 along the nose; zero angular velocity",
+       "cases": 100,
+       "max_position_error_m": 5.084229945850415e-13,
+       "max_orientation_error_rad": 0
+      },
+      {
+       "reference": "RK4 of dP/dt = B (Vb + Ab t), dB/dt = B W over 5 s, reported orientation held (non-zero angular velocity)",
+       "cases": 20,
+       "max_position_error_m": 3.226143217132257e-11,
+       "max_orientation_error_rad": 0
+      }
+     ],
+     "max_position_error_m": 3.226143217132257e-11,
+     "max_orientation_error_rad": 0
+    }
+   }
+  },
+  "end_to_end": {
+   "instrument": {
+    "chromium": "158.0.8127.36",
+    "playwright": "1.63.0",
+    "node": "v22.23.5",
+    "ws": "8.23.1",
+    "transport": "UDP multicast 239.1.2.3:3000 on one Linux machine, gateway and page on 127.0.0.1"
+   },
+   "writers": {
+    "opendis": "opendis 1.1.0, python 3.13.18",
+    "heard": 14,
+    "sent_by_page": 14,
+    "by_type": {
+     "1": 7,
+     "25": 3,
+     "26": 1,
+     "27": 3
+    },
+    "octets_matched": 14,
+    "checks": {
+     "espdu_translation_field_vs_pdu_location_m": 4.806645775366192e-10,
+     "transmit_states_heard": [
+      2,
+      1
+     ],
+     "receiver_states_heard": [
+      0
+     ]
+    }
+   },
+   "opendis_sender": {
+    "instrument": "opendis 1.1.0, python 3.13.18",
+    "pdus_sent": 25,
+    "pdus_received_by_node": 25,
+    "decoded_by_page": 25,
+    "last_location_sent": [
+     -2754663.6225599204,
+     -4324378.77214198,
+     3782374.2866611714
+    ],
+    "last_location_decoded": [
+     -2754663.6225599204,
+     -4324378.77214198,
+     3782374.2866611714
+    ],
+    "location_difference_m": 0,
+    "marking": "PYTHON 21",
+    "mapping": "MAP_ANY",
+    "dead_reckoned_samples": 176,
+    "worst_dead_reckoning_error_m": 0.00003448838267681463
+   },
+   "node_sender": {
+    "seconds": 40,
+    "rate_hz": 1,
+    "counts": {
+     "sent_by_sender": 1410,
+     "sent_scripted": 1023,
+     "sent_clones": 387,
+     "sender_by_type": {
+      "1": 156,
+      "25": 24,
+      "26": 819,
+      "27": 24
+     },
+     "gateway_udp_in": 1410,
+     "gateway_ws_out": 1410,
+     "page_received": 1410,
+     "page_decoded": 1410,
+     "page_decode_errors": 0,
+     "page_by_type": {
+      "1": 543,
+      "25": 24,
+      "26": 819,
+      "27": 24
+     },
+     "pdu_location_vs_truth": {
+      "pdus": 543,
+      "worst_m": 0.00009155300692457689
+     }
+    },
+    "dead_reckoning_error_same_flight": {
+     "1": {
+      "mean_m": 52.095701731592094,
+      "worst_m": 106.05584235346349,
+      "frames": 879,
+      "deadReckoning_field": 1,
+      "marking": "KITE DRM 1",
+      "pdus": 43
+     },
+     "2": {
+      "mean_m": 1.6725047898969296,
+      "worst_m": 9.389527797403646,
+      "frames": 879,
+      "deadReckoning_field": 2,
+      "marking": "KITE DRM 2",
+      "pdus": 43
+     },
+     "3": {
+      "mean_m": 1.6725047898969296,
+      "worst_m": 9.389527797403646,
+      "frames": 879,
+      "deadReckoning_field": 3,
+      "marking": "KITE DRM 3",
+      "pdus": 43
+     },
+     "4": {
+      "mean_m": 0.11329558026763564,
+      "worst_m": 4.277992441172078,
+      "frames": 879,
+      "deadReckoning_field": 4,
+      "marking": "KITE DRM 4",
+      "pdus": 43
+     },
+     "5": {
+      "mean_m": 0.11329558026763564,
+      "worst_m": 4.277992441172078,
+      "frames": 879,
+      "deadReckoning_field": 5,
+      "marking": "KITE DRM 5",
+      "pdus": 43
+     },
+     "6": {
+      "mean_m": 1.6725047183889945,
+      "worst_m": 9.38952907630617,
+      "frames": 879,
+      "deadReckoning_field": 6,
+      "marking": "KITE DRM 6",
+      "pdus": 43
+     },
+     "7": {
+      "mean_m": 0.07865150448114104,
+      "worst_m": 4.277988162014242,
+      "frames": 879,
+      "deadReckoning_field": 7,
+      "marking": "KITE DRM 7",
+      "pdus": 43
+     },
+     "8": {
+      "mean_m": 0.0792848645439126,
+      "worst_m": 4.277988162014242,
+      "frames": 879,
+      "deadReckoning_field": 8,
+      "marking": "KITE DRM 8",
+      "pdus": 43
+     },
+     "9": {
+      "mean_m": 1.6724785316781143,
+      "worst_m": 9.38952907630617,
+      "frames": 879,
+      "deadReckoning_field": 9,
+      "marking": "KITE DRM 9",
+      "pdus": 43
+     }
+    },
+    "scripted_entities_error": {
+     "1": {
+      "worst_m": 4.277989041450726,
+      "mean_m": 0.11807849935121187
+     },
+     "2": {
+      "worst_m": 0.3245226856302042,
+      "mean_m": 0.10967490476839896
+     },
+     "3": {
+      "worst_m": 0.07217623897725162,
+      "mean_m": 0.016940497888738207
+     },
+     "4": {
+      "worst_m": 0.406070793048409,
+      "mean_m": 0.07005794129331497
+     }
+    }
+   },
+   "console_problems": [],
+   "source_badge": "source: UDP 239.1.2.3:3000 through gateway ws://127.0.0.1:38513"
+  },
+  "exercise_consistency": {
+   "instrument": "node v22.23.5",
+   "step_seconds": 0.1,
+   "algorithms": {
+    "1 Static": {
+     "max_position_error_m_after_0_1_s": 10.000000000269361,
+     "max_orientation_error_rad_after_0_1_s": 0.09785131953024902
+    },
+    "2 FPW": {
+     "max_position_error_m_after_0_1_s": 0.0833327978578423,
+     "max_orientation_error_rad_after_0_1_s": 0.09785131953024902
+    },
+    "3 RPW": {
+     "max_position_error_m_after_0_1_s": 0.0833327978578423,
+     "max_orientation_error_rad_after_0_1_s": 0.009577195989922054
+    },
+    "4 RVW": {
+     "max_position_error_m_after_0_1_s": 0.0016355686975257566,
+     "max_orientation_error_rad_after_0_1_s": 0.009577195989922054
+    },
+    "5 FVW": {
+     "max_position_error_m_after_0_1_s": 0.0016355686975257566,
+     "max_orientation_error_rad_after_0_1_s": 0.09785131953024902
+    },
+    "6 FPB": {
+     "max_position_error_m_after_0_1_s": 0.0833333465577098,
+     "max_orientation_error_rad_after_0_1_s": 0.09785131953024902
+    },
+    "7 RPB": {
+     "max_position_error_m_after_0_1_s": 0.027993575774224493,
+     "max_orientation_error_rad_after_0_1_s": 0.009577195989922054
+    },
+    "8 RVB": {
+     "max_position_error_m_after_0_1_s": 0.0027723470558056627,
+     "max_orientation_error_rad_after_0_1_s": 0.009577195989922054
+    },
+    "9 FVB": {
+     "max_position_error_m_after_0_1_s": 0.0833333465577098,
+     "max_orientation_error_rad_after_0_1_s": 0.09785131953024902
+    }
+   }
+  },
+  "exercise_lap": {
+   "instrument": "node v22.23.5",
+   "entity": "KITE 01, one lap of 77.7 s, compared 50 times per second",
+   "error_m": {
+    "1 Static": {
+     "0.2 per second": {
+      "mean_m": 243.50600488519248,
+      "worst_m": 498.0000000003401
+     },
+     "1 per second": {
+      "mean_m": 48.851716380846455,
+      "worst_m": 98.00000000057653
+     },
+     "5 per second": {
+      "mean_m": 9.308007241032124,
+      "worst_m": 20.00000000076339
+     }
+    },
+    "2 FPW": {
+     "0.2 per second": {
+      "mean_m": 31.493382951330243,
+      "worst_m": 202.745267024033
+     },
+     "1 per second": {
+      "mean_m": 1.2945125873561527,
+      "worst_m": 7.997404088095341
+     },
+     "5 per second": {
+      "mean_m": 0.049278874921977016,
+      "worst_m": 0.33332319516205633
+     }
+    },
+    "3 RPW": {
+     "0.2 per second": {
+      "mean_m": 31.493382951330243,
+      "worst_m": 202.745267024033
+     },
+     "1 per second": {
+      "mean_m": 1.2945125873561527,
+      "worst_m": 7.997404088095341
+     },
+     "5 per second": {
+      "mean_m": 0.049278874921977016,
+      "worst_m": 0.33332319516205633
+     }
+    },
+    "4 RVW": {
+     "0.2 per second": {
+      "mean_m": 10.414183892758263,
+      "worst_m": 122.9345148656974
+     },
+     "1 per second": {
+      "mean_m": 0.11610495527778786,
+      "worst_m": 5.734204140875283
+     },
+     "5 per second": {
+      "mean_m": 0.0008495200652396274,
+      "worst_m": 0.2992424474541846
+     }
+    },
+    "5 FVW": {
+     "0.2 per second": {
+      "mean_m": 10.414183892758263,
+      "worst_m": 122.9345148656974
+     },
+     "1 per second": {
+      "mean_m": 0.11610495527778786,
+      "worst_m": 5.734204140875283
+     },
+     "5 per second": {
+      "mean_m": 0.0008495200652396274,
+      "worst_m": 0.2992424474541846
+     }
+    },
+    "6 FPB": {
+     "0.2 per second": {
+      "mean_m": 31.49338391925596,
+      "worst_m": 202.74528296693742
+     },
+     "1 per second": {
+      "mean_m": 1.2945127131118004,
+      "worst_m": 7.997407863115151
+     },
+     "5 per second": {
+      "mean_m": 0.04927887017107516,
+      "worst_m": 0.3333236380770355
+     }
+    },
+    "7 RPB": {
+     "0.2 per second": {
+      "mean_m": 6.020074536705145,
+      "worst_m": 129.06810954837738
+     },
+     "1 per second": {
+      "mean_m": 0.09420037724087042,
+      "worst_m": 5.730871469219968
+     },
+     "5 per second": {
+      "mean_m": 0.0007317934951617212,
+      "worst_m": 0.2616442268452249
+     }
+    },
+    "8 RVB": {
+     "0.2 per second": {
+      "mean_m": 6.020074536656528,
+      "worst_m": 129.0681095494565
+     },
+     "1 per second": {
+      "mean_m": 0.09420037723397412,
+      "worst_m": 5.730871469219968
+     },
+     "5 per second": {
+      "mean_m": 0.0007317934178925553,
+      "worst_m": 0.26164410827258583
+     }
+    },
+    "9 FVB": {
+     "0.2 per second": {
+      "mean_m": 31.49338391931288,
+      "worst_m": 202.74528296717227
+     },
+     "1 per second": {
+      "mean_m": 1.2945127131132659,
+      "worst_m": 7.997407863115151
+     },
+     "5 per second": {
+      "mean_m": 0.049278861858410496,
+      "worst_m": 0.3333236380770355
+     }
+    }
+   }
+  },
+  "exercise_threshold": {
+   "instrument": "node v22.23.5",
+   "seconds": 80,
+   "entity_state_pdus": 269,
+   "transmitter_pdus": 45,
+   "signal_pdus": 1365,
+   "receiver_pdus": 45,
+   "worst_error_m": 0.9998860786189567
+  },
+  "gateway": {
+   "instrument": "node v22.23.5, ws 8.23.1, UDP over the loopback and default interfaces of one machine",
+   "channels": {
+    "multicast": {
+     "address": "239.1.2.4",
+     "port": 3100,
+     "udp_to_websocket": {
+      "sent": 4,
+      "received": 4,
+      "octet_identical": 4
+     },
+     "websocket_to_udp": {
+      "sent": 4,
+      "received": 4,
+      "octet_identical": 4,
+      "second_listener_bound": true
+     },
+     "echoes_dropped": 4,
+     "types_seen": [
+      1,
+      25,
+      26,
+      27
+     ]
+    },
+    "broadcast": {
+     "address": "127.255.255.255",
+     "port": 3101,
+     "udp_to_websocket": {
+      "sent": 4,
+      "received": 4,
+      "octet_identical": 4
+     },
+     "websocket_to_udp": {
+      "sent": 4,
+      "received": 4,
+      "octet_identical": 4,
+      "second_listener_bound": true
+     },
+     "echoes_dropped": 4,
+     "types_seen": [
+      1,
+      25,
+      26,
+      27
+     ]
+    },
+    "unicast": {
+     "address": "127.0.0.1",
+     "port": 3102,
+     "udp_to_websocket": {
+      "sent": 4,
+      "received": 4,
+      "octet_identical": 4
+     },
+     "websocket_to_udp": {
+      "sent": 4,
+      "received": 4,
+      "octet_identical": 4,
+      "second_listener_bound": true
+     },
+     "echoes_dropped": 0,
+     "types_seen": [
+      1,
+      25,
+      26,
+      27
+     ]
+    }
+   }
+  },
+  "in_page": {
+   "instrument": {
+    "chromium": "158.0.8127.36",
+    "playwright": "1.63.0",
+    "node": "v22.23.5",
+    "ws": "8.23.1"
+   },
+   "seconds": 22,
+   "result": {
+    "samples": 572,
+    "txStates": [
+     1,
+     2
+    ],
+    "rxStates": [
+     1,
+     2
+    ],
+    "txSwitchMismatch": 2,
+    "rxSwitchMismatch": 2,
+    "buoyRxMismatch": 2,
+    "maxTranslationVsDr": 0,
+    "maxRotationVsDr": 6.591583993652514e-16,
+    "maxOrientationError": 0.5692900915676735,
+    "maxTurretVsValue": 0.4390669744461775,
+    "signalDataMatches": 338,
+    "signalDataChecks": 338,
+    "maxRxPowerDiff": 0,
+    "isActive": {},
+    "maxTimestampAge": 1.001999855041504,
+    "heloActiveSeen": true,
+    "heloInScene": [],
+    "articulation": {
+     "count": 2,
+     "types": [
+      4107,
+      4429
+     ],
+     "values": [
+      0.695193350315094,
+      0.24377605319023132
+     ],
+     "pdu": [
+      [
+       4107,
+       0.695193350315094
+      ],
+      [
+       4429,
+       0.24377605319023132
+      ]
+     ],
+     "turretAxis": [
+      0,
+      -1,
+      0
+     ],
+     "gunAngle": 0.24377605319023132,
+     "value1": 0.24377605319023132
+    },
+    "turretChecks": 572,
+    "turretNow": 0,
+    "turretLagFrames": 21,
+    "sigActiveSeen": true,
+    "found": {
+     "DISEntityManager": 1,
+     "DISEntityTypeMapping": 3,
+     "EspduTransform": 3,
+     "TransmitterPdu": 2,
+     "SignalPdu": 2,
+     "ReceiverPdu": 2
+    },
+    "stats": {
+     "received": 371,
+     "decoded": 371,
+     "errors": 0,
+     "unsupported": 0,
+     "unmatched": 0,
+     "sent": 47,
+     "byType": {
+      "1": 74,
+      "25": 12,
+      "26": 273,
+      "27": 12
+     },
+     "sentByType": {
+      "1": 22,
+      "25": 12,
+      "26": 0,
+      "27": 13
+     },
+     "added": 2,
+     "removed": 1,
+     "lastError": ""
+    },
+    "mode": "local",
+    "sourceBadge": "source: in-page scripted exercise (generated PDUs, no network)",
+    "errors": {
+     "1": {
+      "worst": 3.5873006281384305,
+      "mean": 0.06666827676777155
+     },
+     "2": {
+      "worst": 0.2876375057210628,
+      "mean": 0.09291603923792983
+     },
+     "3": {
+      "worst": 0.066076204151269,
+      "mean": 0.015295967927047075
+     },
+     "4": {
+      "worst": 0.2913562351437973,
+      "mean": 0.048858703039911015
+     }
+    },
+    "aircraft": {
+     "isActive": true,
+     "isNetworkReader": true,
+     "marking": "KITE 01",
+     "pduMarking": "KITE 01",
+     "type": [
+      1,
+      2,
+      0,
+      1,
+      0,
+      0,
+      0
+     ],
+     "pduType": [
+      1,
+      2,
+      0,
+      1,
+      0,
+      0,
+      0
+     ],
+     "forceID": 1,
+     "pduForceID": 1,
+     "deadReckoning": 4,
+     "pduAlgorithm": 4,
+     "geoCoords": [
+      36.592755310350334,
+      -122.50670446984185,
+      600.0790141057223
+     ],
+     "pdus": 22
+    },
+    "manager": {
+     "added": [
+      "CUTTER 03",
+      "HAWK 04"
+     ],
+     "removed": [
+      "HAWK 04"
+     ],
+     "childrenOfGroup": 1,
+     "groupMarkings": [
+      "CUTTER 03"
+     ],
+     "shipModel": "Inline models/ship.x3d",
+     "shipMapping": "MAP_SHIP",
+     "heloMappingAtAdd": null,
+     "heloStillRegistered": false
+    },
+    "tx": {
+     "isActive": true,
+     "frequency": 305000000,
+     "pduFrequency": 305000000,
+     "power": 40,
+     "pduPower": 40,
+     "bandwidth": 25000,
+     "major": 1,
+     "radioKind": 7,
+     "antenna": [
+      -599.9999999999192,
+      599.9999999999645,
+      741.80882994589
+     ],
+     "antennaFromPdu": [
+      -599.9999999999192,
+      599.9999999999645,
+      741.80882994589
+     ],
+     "pdus": 12
+    },
+    "sig": {
+     "isActive": false,
+     "encodingScheme": 1,
+     "sampleRate": 8000,
+     "samples": 160,
+     "dataLength": 1280,
+     "dataValues": 160,
+     "scopeFrames": 12,
+     "pdus": 273
+    },
+    "rx": {
+     "isActive": true,
+     "transmitter": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "pdus": 12
+    },
+    "buoy": {
+     "isNetworkWriter": true,
+     "isActive": true,
+     "written": 22
+    }
+   },
+   "console_problems": []
+  },
+  "validate_x3d": {
+   "instrument": "lxml 6.1.3, X3D 4.0 XSD",
+   "files": {
+    "scene/live-dis.x3d": {
+     "valid": true,
+     "errors": [],
+     "dis_nodes": {
+      "DISEntityManager": 1,
+      "DISEntityTypeMapping": 3,
+      "EspduTransform": 3,
+      "TransmitterPdu": 2,
+      "SignalPdu": 2,
+      "ReceiverPdu": 2
+     }
+    },
+    "scene/models/helicopter.x3d": {
+     "valid": true,
+     "errors": [],
+     "dis_nodes": {
+      "DISEntityManager": 0,
+      "DISEntityTypeMapping": 0,
+      "EspduTransform": 0,
+      "TransmitterPdu": 0,
+      "SignalPdu": 0,
+      "ReceiverPdu": 0
+     }
+    },
+    "scene/models/ship.x3d": {
+     "valid": true,
+     "errors": [],
+     "dis_nodes": {
+      "DISEntityManager": 0,
+      "DISEntityTypeMapping": 0,
+      "EspduTransform": 0,
+      "TransmitterPdu": 0,
+      "SignalPdu": 0,
+      "ReceiverPdu": 0
+     }
+    },
+    "scene/models/unknown.x3d": {
+     "valid": true,
+     "errors": [],
+     "dis_nodes": {
+      "DISEntityManager": 0,
+      "DISEntityTypeMapping": 0,
+      "EspduTransform": 0,
+      "TransmitterPdu": 0,
+      "SignalPdu": 0,
+      "ReceiverPdu": 0
+     }
+    },
+    "tests/fixtures/probe-scene.x3d": {
+     "valid": true,
+     "errors": [],
+     "dis_nodes": {
+      "DISEntityManager": 1,
+      "DISEntityTypeMapping": 1,
+      "EspduTransform": 1,
+      "TransmitterPdu": 1,
+      "SignalPdu": 1,
+      "ReceiverPdu": 1
+     }
+    }
+   }
+  },
+  "xite_alone": {
+   "instrument": {
+    "x_ite": "16.8.1",
+    "chromium": "158.0.8127.36",
+    "playwright": "1.63.0",
+    "node": "v22.23.5",
+    "ws": "8.23.1",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+   },
+   "nodes": {
+    "DISEntityManager": {
+     "parses": true,
+     "fields_in_specification": 8,
+     "fields_in_x_ite": 8,
+     "name_type_access_mismatches": 0,
+     "first_mismatches": []
+    },
+    "DISEntityTypeMapping": {
+     "parses": true,
+     "fields_in_specification": 13,
+     "fields_in_x_ite": 13,
+     "name_type_access_mismatches": 0,
+     "first_mismatches": []
+    },
+    "EspduTransform": {
+     "parses": true,
+     "fields_in_specification": 94,
+     "fields_in_x_ite": 94,
+     "name_type_access_mismatches": 0,
+     "first_mismatches": []
+    },
+    "ReceiverPdu": {
+     "parses": true,
+     "fields_in_specification": 34,
+     "fields_in_x_ite": 34,
+     "name_type_access_mismatches": 0,
+     "first_mismatches": []
+    },
+    "SignalPdu": {
+     "parses": true,
+     "fields_in_specification": 34,
+     "fields_in_x_ite": 34,
+     "name_type_access_mismatches": 0,
+     "first_mismatches": []
+    },
+    "TransmitterPdu": {
+     "parses": true,
+     "fields_in_specification": 50,
+     "fields_in_x_ite": 50,
+     "name_type_access_mismatches": 0,
+     "first_mismatches": []
+    }
+   },
+   "behaviour": {
+    "isActive": [
+     false,
+     false,
+     false,
+     false
+    ],
+    "isNetworkReader": false,
+    "timestamp": -1,
+    "addedEntities": 0,
+    "isActive_after_setting_it_through_the_SAI_node": false,
+    "websockets_opened": 0,
+    "authored_translation": "6 0 0",
+    "red_box_centre_x_px": 199.5,
+    "canvas_width_px": 400,
+    "red_pixels": 1444
+   },
+   "console_problems": []
+  }
+ }
+}

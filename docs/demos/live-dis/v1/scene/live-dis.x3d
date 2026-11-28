@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "https://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Immersive' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <head>
+    <component name='DIS' level='2'/>
+    <meta name='title' content='Live DIS'/>
+    <meta name='description' content='The six nodes of the X3D 4.0 DIS component, driven by generated IEEE 1278.1 PDUs. No recorded traffic.'/>
+    <meta name='license' content='MIT'/>
+  </head>
+  <Scene>
+    <WorldInfo title='Live DIS' info='"Every entity here is moved by IEEE 1278.1 PDUs." "All PDUs are generated; none is a recording."'/>
+    <NavigationInfo type='"EXAMINE" "ANY"' speed='200' visibilityLimit='30000'/>
+    <Background skyColor='0.05 0.09 0.18 0.25 0.4 0.6 0.62 0.74 0.86' skyAngle='1.2 1.5708' groundColor='0.02 0.08 0.14'/>
+    <Viewpoint DEF='VP_OVERVIEW' description='Overview' position='-200 2900 4700' orientation='1 0 0 -0.56' centerOfRotation='0 0 0' fieldOfView='0.7'/>
+    <Viewpoint DEF='VP_TOP' description='From above' position='0 7500 0' orientation='1 0 0 -1.5708' centerOfRotation='0 0 0' fieldOfView='0.7'/>
+    <Viewpoint DEF='VP_ISLAND' description='Island and rover' position='-1400 500 1700' orientation='1 0 0 -0.42' centerOfRotation='-1400 0 600' fieldOfView='0.7'/>
+    <DirectionalLight direction='-0.4 -1 -0.5' intensity='0.9' ambientIntensity='0.5'/>
+
+    <!-- sea, island, and the planned paths of the scripted exercise -->
+    <Transform translation='0 -1 0'><Shape><Box size='9000 2 9000'/><Appearance><Material diffuseColor='0.06 0.25 0.42' specularColor='0.2 0.2 0.2'/></Appearance></Shape></Transform>
+    <Transform translation='-1400 3 600'><Shape><Cylinder radius='520' height='6'/><Appearance><Material diffuseColor='0.55 0.5 0.34'/></Appearance></Shape></Transform>
+    <Shape><IndexedLineSet coordIndex='0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 -1'><Coordinate point='600.0 600.0 1000.0 600.0 600.0 -1000.0 594.9 600.0 -1078.3 579.6 600.0 -1155.3 554.3 600.0 -1229.6 519.6 600.0 -1300.0 476.0 600.0 -1365.3 424.3 600.0 -1424.3 365.3 600.0 -1476.0 300.0 600.0 -1519.6 229.6 600.0 -1554.3 155.3 600.0 -1579.6 78.3 600.0 -1594.9 0.0 600.0 -1600.0 -78.3 600.0 -1594.9 -155.3 600.0 -1579.6 -229.6 600.0 -1554.3 -300.0 600.0 -1519.6 -365.3 600.0 -1476.0 -424.3 600.0 -1424.3 -476.0 600.0 -1365.3 -519.6 600.0 -1300.0 -554.3 600.0 -1229.6 -579.6 600.0 -1155.3 -594.9 600.0 -1078.3 -600.0 600.0 -1000.0 -600.0 600.0 1000.0 -594.9 600.0 1078.3 -579.6 600.0 1155.3 -554.3 600.0 1229.6 -519.6 600.0 1300.0 -476.0 600.0 1365.3 -424.3 600.0 1424.3 -365.3 600.0 1476.0 -300.0 600.0 1519.6 -229.6 600.0 1554.3 -155.3 600.0 1579.6 -78.3 600.0 1594.9 -0.0 600.0 1600.0 78.3 600.0 1594.9 155.3 600.0 1579.6 229.6 600.0 1554.3 300.0 600.0 1519.6 365.3 600.0 1476.0 424.3 600.0 1424.3 476.0 600.0 1365.3 519.6 600.0 1300.0 554.3 600.0 1229.6 579.6 600.0 1155.3 594.9 600.0 1078.3 600.0 600.0 1000.0'/></IndexedLineSet><Appearance><Material emissiveColor='0.55 0.75 1'/></Appearance></Shape>
+    <Shape><IndexedLineSet coordIndex='0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 -1'><Coordinate point='-1400.0 7.0 350.0 -1367.4 7.0 352.1 -1335.3 7.0 358.5 -1304.3 7.0 369.0 -1275.0 7.0 383.5 -1247.8 7.0 401.7 -1223.2 7.0 423.2 -1201.7 7.0 447.8 -1183.5 7.0 475.0 -1169.0 7.0 504.3 -1158.5 7.0 535.3 -1152.1 7.0 567.4 -1150.0 7.0 600.0 -1152.1 7.0 632.6 -1158.5 7.0 664.7 -1169.0 7.0 695.7 -1183.5 7.0 725.0 -1201.7 7.0 752.2 -1223.2 7.0 776.8 -1247.8 7.0 798.3 -1275.0 7.0 816.5 -1304.3 7.0 831.0 -1335.3 7.0 841.5 -1367.4 7.0 847.9 -1400.0 7.0 850.0 -1432.6 7.0 847.9 -1464.7 7.0 841.5 -1495.7 7.0 831.0 -1525.0 7.0 816.5 -1552.2 7.0 798.3 -1576.8 7.0 776.8 -1598.3 7.0 752.2 -1616.5 7.0 725.0 -1631.0 7.0 695.7 -1641.5 7.0 664.7 -1647.9 7.0 632.6 -1650.0 7.0 600.0 -1647.9 7.0 567.4 -1641.5 7.0 535.3 -1631.0 7.0 504.3 -1616.5 7.0 475.0 -1598.3 7.0 447.8 -1576.8 7.0 423.2 -1552.2 7.0 401.7 -1525.0 7.0 383.5 -1495.7 7.0 369.0 -1464.7 7.0 358.5 -1432.6 7.0 352.1 -1400.0 7.0 350.0'/></IndexedLineSet><Appearance><Material emissiveColor='0.75 0.9 0.5'/></Appearance></Shape>
+    <Shape><IndexedLineSet coordIndex='0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 -1'><Coordinate point='1500.0 1.0 -400.0 1617.5 1.0 -392.3 1732.9 1.0 -369.3 1844.4 1.0 -331.5 1950.0 1.0 -279.4 2047.9 1.0 -214.0 2136.4 1.0 -136.4 2214.0 1.0 -47.9 2279.4 1.0 50.0 2331.5 1.0 155.6 2369.3 1.0 267.1 2392.3 1.0 382.5 2400.0 1.0 500.0 2392.3 1.0 617.5 2369.3 1.0 732.9 2331.5 1.0 844.4 2279.4 1.0 950.0 2214.0 1.0 1047.9 2136.4 1.0 1136.4 2047.9 1.0 1214.0 1950.0 1.0 1279.4 1844.4 1.0 1331.5 1732.9 1.0 1369.3 1617.5 1.0 1392.3 1500.0 1.0 1400.0 1382.5 1.0 1392.3 1267.1 1.0 1369.3 1155.6 1.0 1331.5 1050.0 1.0 1279.4 952.1 1.0 1214.0 863.6 1.0 1136.4 786.0 1.0 1047.9 720.6 1.0 950.0 668.5 1.0 844.4 630.7 1.0 732.9 607.7 1.0 617.5 600.0 1.0 500.0 607.7 1.0 382.5 630.7 1.0 267.1 668.5 1.0 155.6 720.6 1.0 50.0 786.0 1.0 -47.9 863.6 1.0 -136.4 952.1 1.0 -214.0 1050.0 1.0 -279.4 1155.6 1.0 -331.5 1267.1 1.0 -369.3 1382.5 1.0 -392.3 1500.0 1.0 -400.0'/></IndexedLineSet><Appearance><Material emissiveColor='0.7 0.8 0.9'/></Appearance></Shape>
+
+    <!-- DISEntityManager: entities that no EspduTransform below claims are created here, with a model chosen by type -->
+    <DISEntityManager DEF='MGR' address='239.1.2.3' port='3000' siteID='1' applicationID='1'>
+      <MetadataSet name='LiveDIS' containerField='metadata'>
+        <MetadataDouble name='localOriginLatLonHeight' value='36.6 -122.5 0' containerField='value'/>
+        <MetadataString name='note' value='"Origin of the local frame, WGS 84 degrees and metres. Scene axes: x east, y up, z south."' containerField='value'/>
+      </MetadataSet>
+      <DISEntityTypeMapping DEF='MAP_SHIP' kind='1' domain='3' url='"models/ship.x3d"' description='any surface platform'/>
+      <DISEntityTypeMapping DEF='MAP_HELICOPTER' kind='1' domain='2' category='21' url='"models/helicopter.x3d"' description='air platform, category 21'/>
+      <DISEntityTypeMapping DEF='MAP_ANY' url='"models/unknown.x3d"' description='anything else'/>
+    </DISEntityManager>
+    <Group DEF='ENTITIES'/>
+    <ROUTE fromNode='MGR' fromField='addedEntities' toNode='ENTITIES' toField='addChildren'/>
+    <ROUTE fromNode='MGR' fromField='removedEntities' toNode='ENTITIES' toField='removeChildren'/>
+
+    <!-- EspduTransform, reading: the aircraft. Its radio state picks one child of a Switch. -->
+    <EspduTransform DEF='AIRCRAFT' networkMode='networkReader' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='1' scale='12 12 12' description='KITE 01'>
+      <Transform rotation='0 0 1 -1.5708'><Shape><Cylinder radius='1' height='12'/><Appearance><Material diffuseColor='0.82 0.84 0.88'/></Appearance></Shape></Transform>
+<Transform translation='7.5 0 0' rotation='0 0 1 -1.5708'><Shape><Cone bottomRadius='1' height='3'/><Appearance><Material diffuseColor='0.9 0.35 0.2'/></Appearance></Shape></Transform>
+<Transform translation='0.5 0 0'><Shape><Box size='3 0.25 15'/><Appearance><Material diffuseColor='0.82 0.84 0.88'/></Appearance></Shape></Transform>
+<Transform translation='-5.2 0 0'><Shape><Box size='1.6 0.2 5.5'/><Appearance><Material diffuseColor='0.82 0.84 0.88'/></Appearance></Shape></Transform>
+<Transform translation='-5.2 1.4 0'><Shape><Box size='2 2.6 0.2'/><Appearance><Material diffuseColor='0.9 0.35 0.2'/></Appearance></Shape></Transform>
+      <Switch DEF='TX_SWITCH' whichChoice='0'>
+        <Group/>
+        <Shape><Sphere radius='4'/><Appearance><Material diffuseColor='0 0 0' emissiveColor='0.2 0.6 1' transparency='0.8'/></Appearance></Shape>
+        <Shape><Sphere radius='11'/><Appearance><Material diffuseColor='0 0 0' emissiveColor='1 0.3 0.2' transparency='0.65'/></Appearance></Shape>
+      </Switch>
+    </EspduTransform>
+    <TransmitterPdu DEF='TX' networkMode='networkReader' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='1' radioID='1' description='radio 1 of KITE 01'/>
+    <SignalPdu DEF='SIG' networkMode='networkReader' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='1' radioID='1' description='what radio 1 of KITE 01 sends'/>
+    <ROUTE fromNode='TX' fromField='transmitState' toNode='TX_SWITCH' toField='whichChoice'/>
+
+    <!-- EspduTransform, reading: the rover. Two articulated parts turn its turret and raise its gun through a Script. -->
+    <EspduTransform DEF='ROVER' networkMode='networkReader' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='2' scale='12 12 12' description='ROVER 02'>
+      <Transform translation='0 0.9 0'><Shape><Box size='7 1.6 3.6'/><Appearance><Material diffuseColor='0.42 0.5 0.3'/></Appearance></Shape></Transform>
+<Transform DEF='TURRET' translation='0 1.9 0'><Transform translation='0 0.4 0'><Shape><Box size='3 1 2.6'/><Appearance><Material diffuseColor='0.5 0.58 0.36'/></Appearance></Shape></Transform><Transform DEF='GUN' translation='1.2 0.5 0'><Transform translation='2.4 0 0' rotation='0 0 1 -1.5708'><Shape><Cylinder radius='0.18' height='4.8'/><Appearance><Material diffuseColor='0.2 0.22 0.18'/></Appearance></Shape></Transform></Transform></Transform>
+      <Transform translation='-2.5 3.6 0'>
+        <Switch DEF='RX_SWITCH' whichChoice='0'>
+          <Group/>
+          <Shape><Sphere radius='0.5'/><Appearance><Material diffuseColor='0.1 0.2 0.1' emissiveColor='0.05 0.25 0.05'/></Appearance></Shape>
+          <Shape><Sphere radius='1.1'/><Appearance><Material diffuseColor='0.1 0.4 0.1' emissiveColor='0.3 1 0.3'/></Appearance></Shape>
+        </Switch>
+      </Transform>
+    </EspduTransform>
+    <ReceiverPdu DEF='RX' networkMode='networkReader' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='2' radioID='1' description='radio 1 of ROVER 02'/>
+    <ROUTE fromNode='RX' fromField='receiverState' toNode='RX_SWITCH' toField='whichChoice'/>
+    <Script DEF='PARTS' directOutput='false' mustEvaluate='false'>
+      <field name='set_azimuth' type='SFFloat' accessType='inputOnly'/>
+      <field name='set_elevation' type='SFFloat' accessType='inputOnly'/>
+      <field name='turret_changed' type='SFRotation' accessType='outputOnly'/>
+      <field name='gun_changed' type='SFRotation' accessType='outputOnly'/>
+      <![CDATA[ecmascript:
+// DIS body axes are x forward, y right, z down; the model is x forward, y up, z right.
+// Azimuth turns about body z, which is the model's -y. Elevation turns about body y, which is the model's +z.
+function set_azimuth (value) { turret_changed = new SFRotation (0, -1, 0, value); }
+function set_elevation (value) { gun_changed = new SFRotation (0, 0, 1, value); }
+]]>
+    </Script>
+    <ROUTE fromNode='ROVER' fromField='articulationParameterValue0_changed' toNode='PARTS' toField='set_azimuth'/>
+    <ROUTE fromNode='ROVER' fromField='articulationParameterValue1_changed' toNode='PARTS' toField='set_elevation'/>
+    <ROUTE fromNode='PARTS' fromField='turret_changed' toNode='TURRET' toField='set_rotation'/>
+    <ROUTE fromNode='PARTS' fromField='gun_changed' toNode='GUN' toField='set_rotation'/>
+
+    <!-- EspduTransform, writing: a buoy moved by ordinary X3D interpolators. The runtime turns its fields into PDUs. -->
+    <EspduTransform DEF='BUOY' networkMode='networkWriter' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='9' writeInterval='1' deadReckoning='2' marking='BUOY 09' entityKind='1' entityDomain='3' entityCategory='61' forceID='3' translation='300 0 1700' scale='12 12 12' description='BUOY 09'>
+      <Transform translation='0 1 0'><Shape><Cylinder radius='1.6' height='2'/><Appearance><Material diffuseColor='0.95 0.75 0.1'/></Appearance></Shape></Transform>
+<Transform translation='0 4 0'><Shape><Cylinder radius='0.15' height='4'/><Appearance><Material diffuseColor='0.2 0.2 0.2'/></Appearance></Shape></Transform>
+<Transform translation='0 6.3 0'><Shape><Sphere radius='0.5'/><Appearance><Material diffuseColor='1 0.2 0.1' emissiveColor='0.8 0.1 0.05'/></Appearance></Shape></Transform>
+    </EspduTransform>
+    <TimeSensor DEF='BUOY_CLOCK' cycleInterval='40' loop='true'/>
+    <PositionInterpolator DEF='BUOY_PATH' key='0 0.25 0.5 0.75 1' keyValue='300 0 1700 500 3 1800 700 0 1700 500 -3 1600 300 0 1700'/>
+    <OrientationInterpolator DEF='BUOY_TURN' key='0 0.25 0.5 0.75 1' keyValue='0 1 0 0 0 1 0 1.5708 0 1 0 3.1416 0 1 0 4.7124 0 1 0 6.2832'/>
+    <ROUTE fromNode='BUOY_CLOCK' fromField='fraction_changed' toNode='BUOY_PATH' toField='set_fraction'/>
+    <ROUTE fromNode='BUOY_CLOCK' fromField='fraction_changed' toNode='BUOY_TURN' toField='set_fraction'/>
+    <ROUTE fromNode='BUOY_PATH' fromField='value_changed' toNode='BUOY' toField='set_translation'/>
+    <ROUTE fromNode='BUOY_TURN' fromField='value_changed' toNode='BUOY' toField='set_rotation'/>
+    <TransmitterPdu DEF='BUOY_TX' networkMode='networkWriter' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='9' radioID='1' writeInterval='2' transmitState='1' frequency='156800000' power='30' transmitFrequencyBandwidth='25000' radioEntityTypeKind='7' radioEntityTypeDomain='3' modulationTypeMajor='3' modulationTypeDetail='1' modulationTypeSystem='1' inputSource='2' description='radio 1 of BUOY 09'/>
+    <SignalPdu DEF='BUOY_SIG' networkMode='networkWriter' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='9' radioID='1' encodingScheme='1' sampleRate='8000' description='what radio 1 of BUOY 09 sends'/>
+    <ReceiverPdu DEF='BUOY_RX' networkMode='networkWriter' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='9' radioID='1' writeInterval='2' transmitterSiteID='1' transmitterApplicationID='1' transmitterEntityID='1' transmitterRadioID='1' description='radio 1 of BUOY 09, listening to KITE 01'/>
+    <ROUTE fromNode='BUOY' fromField='translation_changed' toNode='BUOY_TX' toField='set_antennaLocation'/>
+    <ROUTE fromNode='TX' fromField='transmitState' toNode='BUOY_RX' toField='set_receiverState'/>
+
+    <!-- yellow markers that the page puts at the sender's true positions, for comparison with dead reckoning -->
+    <Switch DEF='GHOSTS' whichChoice='0'>
+      <Group>
+        <Transform DEF='GHOST_1' translation='0 -500 0'><Shape><Sphere radius='30'/><Appearance><Material diffuseColor='0 0 0' emissiveColor='1 0.85 0.2' transparency='0.55'/></Appearance></Shape></Transform>
+        <Transform DEF='GHOST_2' translation='0 -500 0'><Shape><Sphere radius='30'/><Appearance><Material diffuseColor='0 0 0' emissiveColor='1 0.85 0.2' transparency='0.55'/></Appearance></Shape></Transform>
+        <Transform DEF='GHOST_3' translation='0 -500 0'><Shape><Sphere radius='30'/><Appearance><Material diffuseColor='0 0 0' emissiveColor='1 0.85 0.2' transparency='0.55'/></Appearance></Shape></Transform>
+        <Transform DEF='GHOST_4' translation='0 -500 0'><Shape><Sphere radius='30'/><Appearance><Material diffuseColor='0 0 0' emissiveColor='1 0.85 0.2' transparency='0.55'/></Appearance></Shape></Transform>
+      </Group>
+    </Switch>
+  </Scene>
+</X3D>
