@@ -1,0 +1,390 @@
+{
+ "schema": "tidewright.ladder/1",
+ "host": "node v22.23.5 (linux x64)",
+ "date": "2026-11-28T14:18:43.210Z",
+ "limits": {
+  "path": "tests/limits.json",
+  "sha256": "05268af9b2bb7de45211a38ea081539f8f8903c425f21a6914a405af7dc5d5b0",
+  "commit": "731a50793d3a4bfe924ea38f1e459ffcab33d4de"
+ },
+ "gates": [
+  {
+   "gate": "ritter",
+   "scale": 2,
+   "metrics": {
+    "t": 39.98924740798307,
+    "l1_rel": 0.016377760391730015,
+    "steps": 501,
+    "dx": 1.25,
+    "dt": 0.07981885710176262,
+    "front_m": 706.875,
+    "front_exact_m": 738.6177416919173,
+    "front_ideal_m": 750.5,
+    "front_rel": 0.12422252172422087
+   },
+   "checks": {
+    "l1_rel": {
+     "observed": 0.016377760391730015,
+     "rule": "at most",
+     "limit": 0.022,
+     "pass": true
+    },
+    "front_rel": {
+     "observed": 0.12422252172422087,
+     "rule": "at most",
+     "limit": 0.16,
+     "pass": true
+    },
+    "order": {
+     "observed": 0.7163204587302422,
+     "rule": "at least",
+     "limit": 0.4,
+     "pass": true,
+     "l1": [
+      0.016377760391730015,
+      0.009968287804873814
+     ]
+    }
+   },
+   "seconds": 0.061,
+   "pass": true,
+   "twins": [
+    {
+     "twin": "hllNoBranches",
+     "checks": {
+      "l1_rel": {
+       "observed": 0.2365619021025847,
+       "rule": "at most",
+       "limit": 0.022,
+       "pass": false
+      },
+      "front_rel": {
+       "observed": 0.010508017197934805,
+       "rule": "at most",
+       "limit": 0.16,
+       "pass": true
+      }
+     },
+     "caught": true
+    }
+   ]
+  },
+  {
+   "gate": "stoker",
+   "scale": 2,
+   "metrics": {
+    "t": 39.98924740798307,
+    "l1_rel": 0.013807093476100556,
+    "steps": 501,
+    "dx": 1.25,
+    "dt": 0.07981885710176262,
+    "shock_m": 623.75,
+    "shock_exact_m": 624.1719577914249,
+    "shock_rel": 0.0033981729766529903,
+    "hm_exact": 0.3961748167994429
+   },
+   "checks": {
+    "l1_rel": {
+     "observed": 0.013807093476100556,
+     "rule": "at most",
+     "limit": 0.02,
+     "pass": true
+    },
+    "shock_rel": {
+     "observed": 0.0033981729766529903,
+     "rule": "at most",
+     "limit": 0.012,
+     "pass": true
+    }
+   },
+   "seconds": 0.077,
+   "pass": true,
+   "twins": [
+    {
+     "twin": "pressureTypo",
+     "checks": {
+      "l1_rel": {
+       "observed": 0.12702658798200678,
+       "rule": "at most",
+       "limit": 0.02,
+       "pass": false
+      },
+      "shock_rel": {
+       "observed": 0.41940260212416103,
+       "rule": "at most",
+       "limit": 0.012,
+       "pass": false
+      }
+     },
+     "caught": true
+    }
+   ]
+  },
+  {
+   "gate": "lake_at_rest",
+   "scale": 1,
+   "metrics": {
+    "umax": 8.723777344185617e-15,
+    "wet": 3772,
+    "dry": 324,
+    "steps": 2000,
+    "t": 2085.4983653487334
+   },
+   "checks": {
+    "umax_cpu": {
+     "observed": 8.723777344185617e-15,
+     "rule": "at most",
+     "limit": 1e-10,
+     "pass": true
+    }
+   },
+   "seconds": 1.47,
+   "pass": true,
+   "twins": [
+    {
+     "twin": "naive",
+     "checks": {
+      "umax_cpu": {
+       "observed": 0.7698957905131497,
+       "rule": "at most",
+       "limit": 1e-10,
+       "pass": false
+      }
+     },
+     "caught": true
+    }
+   ]
+  },
+  {
+   "gate": "thacker",
+   "scale": 2,
+   "metrics": {
+    "t": 4.485420185294016,
+    "periods": 1,
+    "steps": 948,
+    "dx": 0.02,
+    "l1_rel": 0.12026351269183146,
+    "centroid": [
+     2.465592119755316,
+     1.9390788641176815
+    ],
+    "centroid_exact": [
+     2.499999961192359,
+     1.999803003452856
+    ],
+    "shoreline_rel": 0.06979484687535593
+   },
+   "checks": {
+    "l1_rel": {
+     "observed": 0.12026351269183146,
+     "rule": "at most",
+     "limit": 0.16,
+     "pass": true
+    },
+    "shoreline_rel": {
+     "observed": 0.06979484687535593,
+     "rule": "at most",
+     "limit": 0.09,
+     "pass": true
+    }
+   },
+   "seconds": 2.555,
+   "pass": true,
+   "twins": [
+    {
+     "twin": "pressureTypo",
+     "checks": {
+      "l1_rel": {
+       "observed": 1.3552899320887395,
+       "rule": "at most",
+       "limit": 0.16,
+       "pass": false
+      },
+      "shoreline_rel": {
+       "observed": 0.8835504394130523,
+       "rule": "at most",
+       "limit": 0.09,
+       "pass": false
+      }
+     },
+     "caught": true
+    },
+    {
+     "twin": "hllNoBranches",
+     "checks": {
+      "l1_rel": {
+       "observed": null,
+       "rule": "at most",
+       "limit": 0.16,
+       "pass": false
+      },
+      "shoreline_rel": {
+       "observed": null,
+       "rule": "at most",
+       "limit": 0.09,
+       "pass": false
+      }
+     },
+     "caught": true
+    }
+   ]
+  },
+  {
+   "gate": "volume",
+   "scale": 1,
+   "metrics": {
+    "V0": 71909.97609973024,
+    "V": 71909.9760997303,
+    "rel": 8.094518183783094e-16,
+    "clamped_m3": 0,
+    "steps": 9765,
+    "t": 3600.0382260967444
+   },
+   "checks": {
+    "rel_cpu": {
+     "observed": 8.094518183783094e-16,
+     "rule": "at most",
+     "limit": 1e-12,
+     "pass": true
+    }
+   },
+   "seconds": 10.801,
+   "pass": true,
+   "twins": [
+    {
+     "twin": "zeroFilms",
+     "checks": {
+      "rel_cpu": {
+       "observed": 0.00011193166647690972,
+       "rule": "at most",
+       "limit": 1e-12,
+       "pass": false
+      }
+     },
+     "caught": true
+    }
+   ]
+  },
+  {
+   "gate": "manning",
+   "scale": 1,
+   "metrics": {
+    "h_mid": 1.4663863919037738,
+    "h_normal": 1.468556805589356,
+    "rel": 0.001477922867758062,
+    "q_mid": 1.9878139329870126,
+    "steps": 20047,
+    "t": 10799.814425916336
+   },
+   "checks": {
+    "rel": {
+     "observed": 0.001477922867758062,
+     "rule": "at most",
+     "limit": 0.01,
+     "pass": true
+    }
+   },
+   "seconds": 1.252,
+   "pass": true,
+   "twins": [
+    {
+     "twin": "frictionH",
+     "checks": {
+      "rel": {
+       "observed": 0.04167671578199515,
+       "rule": "at most",
+       "limit": 0.01,
+       "pass": false
+      }
+     },
+     "caught": true
+    }
+   ]
+  },
+  {
+   "gate": "culvert",
+   "scale": 1,
+   "metrics": {
+    "worst_rel": 0.0017431338723979952,
+    "rows": [
+     [
+      99.99450341672407,
+      0.9134527832270223,
+      0.9133777153233698
+     ],
+     [
+      199.98900683344286,
+      0.8308235081927369,
+      0.8306789992867438
+     ],
+     [
+      299.98351025016166,
+      0.752113708999292,
+      0.7519038518901171
+     ],
+     [
+      399.97801366688043,
+      0.6773232972694505,
+      0.6770522731334899
+     ],
+     [
+      499.9725170835992,
+      0.6064521523138868,
+      0.6061242630168623
+     ],
+     [
+      599.967020500318,
+      0.5395001203978418,
+      0.539119821540234
+     ],
+     [
+      699.9615239170367,
+      0.4764670120734271,
+      0.4760389487036051
+     ],
+     [
+      799.9560273337555,
+      0.4173525981547346,
+      0.41688164450697585
+     ],
+     [
+      899.9505307504743,
+      0.36215660409083883,
+      0.3616479089503459
+     ],
+     [
+      999.9450341671931,
+      0.3108787022637378,
+      0.31033774203371534
+     ]
+    ],
+    "A1": 400,
+    "A2": 400
+   },
+   "checks": {
+    "worst_rel": {
+     "observed": 0.0017431338723979952,
+     "rule": "at most",
+     "limit": 0.01,
+     "pass": true
+    }
+   },
+   "seconds": 1.347,
+   "pass": true,
+   "twins": [
+    {
+     "twin": "culvertNo2",
+     "checks": {
+      "worst_rel": {
+       "observed": 0.5209561366421324,
+       "rule": "at most",
+       "limit": 0.01,
+       "pass": false
+      }
+     },
+     "caught": true
+    }
+   ]
+  }
+ ]
+}

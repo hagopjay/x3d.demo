@@ -1,0 +1,51 @@
+{
+ "gate": "gpu_vs_cpu",
+ "when": "2026-11-28T15:43:35.108Z",
+ "host": {
+  "browser": "chromium 158.0.8127.36",
+  "playwright": "1.63.0",
+  "launch_args": [
+   "--use-angle=swiftshader",
+   "--enable-unsafe-swiftshader",
+   "--ignore-gpu-blocklist"
+  ],
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.8127.36 Safari/537.36",
+  "node": "v22.23.5"
+ },
+ "limits": {
+  "case": "the momentum disc plus gravity onto a sticky floor, 300 steps, float32 WebGL2 against the float64 CPU solver, same initial particles",
+  "max_dx_m": 0.0001,
+  "max_dv_mps": 0.001,
+  "twin": "pic shader; must exceed max_dv_mps"
+ },
+ "renderer": "ANGLE (Mesa, Vulkan 1.4.335 (llvmpipe (LLVM 20.1.2 256 bits) (0x00000000)), llvmpipe)",
+ "error": null,
+ "float32": {
+  "particles": 1264,
+  "steps": 300,
+  "max_dx_m": 0.00001498329393068154,
+  "max_dv_mps": 0.00002965692912382245,
+  "gpu_ms": 743.8,
+  "cpu_ms": 154,
+  "finite": true
+ },
+ "pic_twin": {
+  "particles": 1264,
+  "steps": 300,
+  "max_dx_m": 0.007970180241662739,
+  "max_dv_mps": 0.37096668605211025,
+  "gpu_ms": 553.8,
+  "cpu_ms": 118.9,
+  "finite": true
+ },
+ "pass": true,
+ "twin_caught": true,
+ "sources": {
+  "src/sim/mpm.js": "4d2aaa89ff341073c904bf4adc705b6f652b9daac90bfea57c94bed80e7ef3b9",
+  "src/gpu/mpm-gl.js": "ca216124914de21ef461cf9c0f052247dc96bb380a4c02427476a213140adc1f",
+  "src/sim/cases.js": "f027edb0069396859f7c2e22013cd9360caed346583346ed33be6da2b9a4318c",
+  "tools/gpu-gate.html": "8e5c9e200a302261167c84098e64b5f58fe411398353a14c022c000ca37e36bd",
+  "tests/limits.json": "6568c81cafc66a517e14446e7efb77ac6e396c476075778ced8c29dc58548adb"
+ },
+ "errors": []
+}

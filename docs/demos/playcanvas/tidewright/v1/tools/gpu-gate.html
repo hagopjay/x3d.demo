@@ -1,0 +1,73 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TIDEWRIGHT GPU gate</title>
+<pre id="log">running…</pre>
+<script type="module">
+// The GPU-vs-CPU gate, in the browser: every case runs on the CPU solver (float64) and the WebGL2 port (float32)
+// in this page, with the same dt and steps. tools/gpu-gate.cjs opens it headless and writes the receipt.
+import { CASES } from '../src/sim/ladder.js';
+import { createSolver } from '../src/sim/swe.js';
+import { createGpuSolver } from '../src/gpu/swe-gl.js';
+const log = (s) => { document.getElementById('log').textContent += '\n' + s; };
+const params = new URLSearchParams(location.search);
+const only = params.get('only');
+const plan = [
+  { id: 'ritter', scale: 2 }, { id: 'stoker', scale: 2 }, { id: 'thacker', scale: 2 }, { id: 'lake', scale: 1 },
+  { id: 'conservation', scale: 1 }, { id: 'manning', scale: 1 }, { id: 'culvert', scale: 1, extra: true },
+  { id: 'lake', scale: 1, twin: 'naive' }, { id: 'conservation', scale: 1, twin: 'zeroFilms', extra: true },
+];
+const tick = () => new Promise((r) => setTimeout(r, 0));
+async function runOne(p) {
+  const c = CASES[p.id](p.scale);
+  const opts = { nx: c.nx, ny: c.ny, dx: c.dx, bed: c.bed, h: c.h, hu: c.hu, hv: c.hv, manning: c.manning, bc: c.bc, dt: c.dt, sources: c.sources, culverts: c.culverts };
+  const t0 = performance.now();
+  const cpu = createSolver(opts);
+  const cpuSamples = [];
+  for (let k = 1; k <= c.steps; k++) { cpu.step(); if (c.every && k % c.every === 0) cpuSamples.push([cpu.t, c.sample(cpu)]); }
+  const tCpu = performance.now() - t0;
+  const gopts = { ...opts };
+  if (p.twin === 'naive') gopts.scheme = 'naive';
+  if (p.twin === 'zeroFilms') gopts.twins = { zeroFilms: true };
+  const gpu = createGpuSolver(gopts);
+  const V0 = gpu.readArrays().h.reduce((a, v) => a + v, 0) * c.dx * c.dx;
+  const red0 = gpu.reduce();
+  const t1 = performance.now();
+  const gpuSamples = [];
+  for (let k = 1; k <= c.steps; k++) {
+    gpu.step();
+    if (c.every && k % c.every === 0) { const a = gpu.readArrays(); gpuSamples.push([gpu.t, c.sample(a)]); }
+    if (k % 256 === 0) { gpu.finish(); await tick(); }
+  }
+  const a = gpu.readArrays();                      // readPixels waits for the GPU: the time includes the work
+  const tGpu = performance.now() - t1;
+  let diff = 0, ref = 0, umax = 0;
+  for (let k = 0; k < a.h.length; k++) {
+    diff += Math.abs(a.h[k] - cpu.h[k]); ref += Math.abs(cpu.h[k]);
+    if (a.h[k] > 1e-4) { const u = a.hu[k] / a.h[k], v = a.hv[k] / a.h[k]; umax = Math.max(umax, Math.sqrt(u * u + v * v)); }
+  }
+  const V = a.h.reduce((s, v) => s + v, 0) * c.dx * c.dx;
+  const red = gpu.reduce();
+  const shim = { ...a, volume: () => V, clamped: null };
+  const gpuOwn = c.sample ? c.measure(shim, gpuSamples) : c.measure(shim, V0);
+  const cpuOwn = c.sample ? c.measure(cpu, cpuSamples) : c.measure(cpu, cpu.volume === undefined ? 0 : createSolver(opts).volume());
+  gpu.destroy();
+  const r = { id: p.id, scale: p.scale, twin: p.twin || null, extra: !!p.extra, nx: c.nx, ny: c.ny, steps: c.steps, dt: c.dt,
+    l1_rel_diff: diff / ref, gpu_umax: umax, gpu_volume_rel: Math.abs(V - V0) / V0, gpu_V0: V0, gpu_V: V,
+    reduction: { V0: red0.volume, V: red.volume, rel: Math.abs(red.volume - red0.volume) / red0.volume, courant: red.courant, maxU: red.maxU },
+    gpu_inflow: gpu.inflow, gpu_outflow: gpu.outflow, cpu_inflow: cpu.inflow, cpu_outflow: cpu.outflow,
+    gpu_own: strip(gpuOwn), cpu_own: strip(cpuOwn), ms: { cpu: Math.round(tCpu), gpu: Math.round(tGpu) }, renderer: gpu.renderer };
+  return r;
+}
+function strip(m) { const o = { ...m }; if (o.rows) o.rows = o.rows.length + ' rows'; return o; }
+(async () => {
+  const out = { ua: navigator.userAgent, results: [] };
+  try {
+    for (const p of plan) {
+      if (only && p.id !== only) continue;
+      const r = await runOne(p); out.results.push(r); out.renderer = r.renderer;
+      log(`${p.id}${p.twin ? ' twin ' + p.twin : ''}: l1 diff ${r.l1_rel_diff.toExponential(2)}, umax ${r.gpu_umax.toExponential(2)}, dV ${r.gpu_volume_rel.toExponential(2)}, ${r.ms.gpu} ms`);
+    }
+  } catch (e) { out.error = String(e && e.stack || e); log(out.error); }
+  out.done = true; window.__gate = out;
+})();
+</script>

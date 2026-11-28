@@ -1,0 +1,16 @@
+{
+  "name": "x3d.tidewright",
+  "version": "0.1.0",
+  "description": "TIDEWRIGHT: a physics flood-defence game. Read the forecast, move earth (cut balances fill), call it, watch the flood. Shallow-water equations on WebGL2, an X3D valley, PlayCanvas. No build step.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "build": "node tools/build.mjs",
+    "test": "node --test tests/ladder.test.mjs tests/level.test.mjs tests/receipts.test.mjs",
+    "receipt": "node tools/ladder-receipt.mjs",
+    "gpu-gate": "NODE_PATH=$(npm root -g) node tools/gpu-gate.cjs",
+    "level-gpu": "NODE_PATH=$(npm root -g) node tools/level-gpu.cjs",
+    "playtest": "NODE_PATH=$(npm root -g) node tools/playtest.cjs"
+  }
+}

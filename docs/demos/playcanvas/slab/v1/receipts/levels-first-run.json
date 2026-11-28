@@ -1,0 +1,368 @@
+{
+ "when": "2026-11-28T15:30:19.853Z",
+ "host": {
+  "node": "v22.23.5"
+ },
+ "levels": {
+  "1": {
+   "name": "Practice Bowl",
+   "c": 523,
+   "claims": [
+    {
+     "claim": "safe line index >= 1.5 and a skier crossing it does not release the slab",
+     "pass": true,
+     "index": 1.578169712011034,
+     "run": {
+      "particles": 9405,
+      "line": "Ridge",
+      "mode": "ski",
+      "t": 9,
+      "released": false,
+      "max_moved": 0,
+      "skier": "out",
+      "caught_at": null,
+      "burial_m": null,
+      "events": [
+       {
+        "t": 1.5,
+        "what": "skier drops in"
+       },
+       {
+        "t": 5.5,
+        "what": "skier out at the bottom"
+       }
+      ]
+     }
+    },
+    {
+     "claim": "deadly line: natural index > 1 and it holds with no skier; skier index < 1 and a skier crossing it releases the slab",
+     "pass": false,
+     "index": {
+      "safe": 1.578169712011034,
+      "natural": 1.1197144737416647,
+      "skier": 0.939622591473093
+     },
+     "idle": {
+      "particles": 10324,
+      "line": "Bowl",
+      "mode": "idle",
+      "t": 9,
+      "released": 2.795999999999975,
+      "max_moved": 1,
+      "skier": "none",
+      "caught_at": null,
+      "burial_m": null,
+      "events": [
+       {
+        "t": 2.796,
+        "what": "slab released (53% of the pitch's slab has moved 0.5 m)"
+       }
+      ]
+     },
+     "ski": {
+      "particles": 10324,
+      "line": "Bowl",
+      "mode": "ski",
+      "t": 10,
+      "released": 2.7839999999999763,
+      "max_moved": 1,
+      "skier": "caught",
+      "caught_at": 2.280000000000032,
+      "burial_m": -0.633,
+      "events": [
+       {
+        "t": 1.5,
+        "what": "skier drops in"
+       },
+       {
+        "t": 2.28,
+        "what": "skier caught"
+       },
+       {
+        "t": 2.784,
+        "what": "slab released (51% of the pitch's slab has moved 0.5 m)"
+       }
+      ]
+     }
+    },
+    {
+     "claim": "after the patrol bot charges the deadly line it has released, and a skier then crosses without being caught",
+     "pass": false,
+     "run": {
+      "particles": 10324,
+      "line": "Bowl",
+      "mode": "patrol",
+      "t": 19,
+      "released": 2.6639999999999895,
+      "max_moved": 1,
+      "skier": "caught",
+      "caught_at": 10.284000000000841,
+      "burial_m": -0.612,
+      "events": [
+       {
+        "t": 1.5,
+        "what": "charge at x 9.0 m"
+       },
+       {
+        "t": 2.664,
+        "what": "slab released (53% of the pitch's slab has moved 0.5 m)"
+       },
+       {
+        "t": 9.5,
+        "what": "skier drops in"
+       },
+       {
+        "t": 10.284,
+        "what": "skier caught"
+       }
+      ]
+     }
+    }
+   ],
+   "pass": false
+  },
+  "2": {
+   "name": "Wind Lip",
+   "c": 571,
+   "claims": [
+    {
+     "claim": "safe line index >= 1.5 and a skier crossing it does not release the slab",
+     "pass": false,
+     "index": 1.4885887851063588,
+     "run": {
+      "particles": 7681,
+      "line": "Ridge",
+      "mode": "ski",
+      "t": 9,
+      "released": false,
+      "max_moved": 0,
+      "skier": "out",
+      "caught_at": null,
+      "burial_m": null,
+      "events": [
+       {
+        "t": 1.5,
+        "what": "skier drops in"
+       },
+       {
+        "t": 5.5,
+        "what": "skier out at the bottom"
+       }
+      ]
+     }
+    },
+    {
+     "claim": "deadly line: natural index > 1 and it holds with no skier; skier index < 1 and a skier crossing it releases the slab",
+     "pass": false,
+     "index": {
+      "safe": 1.4885887851063588,
+      "natural": 1.1202187142822475,
+      "skier": 0.8900330998620802
+     },
+     "idle": {
+      "particles": 8596,
+      "line": "Bowl",
+      "mode": "idle",
+      "t": 9,
+      "released": 2.603999999999996,
+      "max_moved": 1,
+      "skier": "none",
+      "caught_at": null,
+      "burial_m": null,
+      "events": [
+       {
+        "t": 2.604,
+        "what": "slab released (51% of the pitch's slab has moved 0.5 m)"
+       }
+      ]
+     },
+     "ski": {
+      "particles": 8596,
+      "line": "Bowl",
+      "mode": "ski",
+      "t": 10,
+      "released": 2.5919999999999974,
+      "max_moved": 1,
+      "skier": "caught",
+      "caught_at": 2.2200000000000384,
+      "burial_m": -0.543,
+      "events": [
+       {
+        "t": 1.5,
+        "what": "skier drops in"
+       },
+       {
+        "t": 2.22,
+        "what": "skier caught"
+       },
+       {
+        "t": 2.592,
+        "what": "slab released (51% of the pitch's slab has moved 0.5 m)"
+       }
+      ]
+     }
+    },
+    {
+     "claim": "after the patrol bot charges the deadly line it has released, and a skier then crosses without being caught",
+     "pass": false,
+     "run": {
+      "particles": 8596,
+      "line": "Bowl",
+      "mode": "patrol",
+      "t": 19,
+      "released": 2.5080000000000067,
+      "max_moved": 1,
+      "skier": "caught",
+      "caught_at": 10.272000000000833,
+      "burial_m": -0.614,
+      "events": [
+       {
+        "t": 1.5,
+        "what": "charge at x 9.0 m"
+       },
+       {
+        "t": 2.508,
+        "what": "slab released (51% of the pitch's slab has moved 0.5 m)"
+       },
+       {
+        "t": 9.5,
+        "what": "skier drops in"
+       },
+       {
+        "t": 10.272,
+        "what": "skier caught"
+       }
+      ]
+     }
+    }
+   ],
+   "pass": false
+  },
+  "3": {
+   "name": "The Couloir",
+   "c": 632,
+   "claims": [
+    {
+     "claim": "safe line index >= 1.5 and a skier crossing it does not release the slab",
+     "pass": true,
+     "index": 1.5148968653787518,
+     "run": {
+      "particles": 7684,
+      "line": "Ridge",
+      "mode": "ski",
+      "t": 9,
+      "released": false,
+      "max_moved": 0,
+      "skier": "out",
+      "caught_at": null,
+      "burial_m": null,
+      "events": [
+       {
+        "t": 1.5,
+        "what": "skier drops in"
+       },
+       {
+        "t": 5.5,
+        "what": "skier out at the bottom"
+       }
+      ]
+     }
+    },
+    {
+     "claim": "deadly line: natural index > 1 and it holds with no skier; skier index < 1 and a skier crossing it releases the slab",
+     "pass": false,
+     "index": {
+      "safe": 1.5148968653787518,
+      "natural": 1.1199207783347664,
+      "skier": 0.8714806925845681
+     },
+     "idle": {
+      "particles": 9192,
+      "line": "Bowl",
+      "mode": "idle",
+      "t": 9,
+      "released": 2.2920000000000305,
+      "max_moved": 1,
+      "skier": "none",
+      "caught_at": null,
+      "burial_m": null,
+      "events": [
+       {
+        "t": 2.292,
+        "what": "slab released (52% of the pitch's slab has moved 0.5 m)"
+       }
+      ]
+     },
+     "ski": {
+      "particles": 9192,
+      "line": "Bowl",
+      "mode": "ski",
+      "t": 10,
+      "released": 2.2920000000000305,
+      "max_moved": 1,
+      "skier": "caught",
+      "caught_at": 2.196000000000041,
+      "burial_m": 0.58,
+      "events": [
+       {
+        "t": 1.5,
+        "what": "skier drops in"
+       },
+       {
+        "t": 2.196,
+        "what": "skier caught"
+       },
+       {
+        "t": 2.292,
+        "what": "slab released (52% of the pitch's slab has moved 0.5 m)"
+       }
+      ]
+     }
+    },
+    {
+     "claim": "after the patrol bot charges the deadly line it has released, and a skier then crosses without being caught",
+     "pass": false,
+     "run": {
+      "particles": 9192,
+      "line": "Bowl",
+      "mode": "patrol",
+      "t": 19,
+      "released": 2.268000000000033,
+      "max_moved": 1,
+      "skier": "caught",
+      "caught_at": 10.224000000000803,
+      "burial_m": -0.736,
+      "events": [
+       {
+        "t": 1.5,
+        "what": "charge at x 9.0 m"
+       },
+       {
+        "t": 2.268,
+        "what": "slab released (53% of the pitch's slab has moved 0.5 m)"
+       },
+       {
+        "t": 9.5,
+        "what": "skier drops in"
+       },
+       {
+        "t": 10.224,
+        "what": "skier caught"
+       }
+      ]
+     }
+    }
+   ],
+   "pass": false
+  }
+ },
+ "sources": {
+  "src/sim/mpm.js": "4d2aaa89ff341073c904bf4adc705b6f652b9daac90bfea57c94bed80e7ef3b9",
+  "src/sim/level.js": "dea1867704f769007da480777a92d8fdde8d01a5dc15a89c3f5123ec04f746b2",
+  "src/sim/run.js": "a3e2b5f0a4c4cba3c1f9c53278508d03abf7ae978d940da131f59636ff64c590",
+  "src/sim/referee.js": "5c0d39978e70b1d74aa8448fa3c7373e64b77ada1a617827699a991db3c07739",
+  "levels/level1.x3d": "c1ca1be863fa0c9670dcf5c4f2a03869db566572d41cf42a82c189f2af5f0492",
+  "levels/level2.x3d": "cf3f785affe158b62f6550f1b50d093ed83920da4539f437263ff9a0fab7eaa5",
+  "levels/level3.x3d": "e527bf7f01e5f5e089830183b45a1ef463cc9209210beece9140071533cb70ff"
+ }
+}

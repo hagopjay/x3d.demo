@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PlayCanvas × X3D · four KANSEI games</title>
+<meta name="description" content="Four physics games where the world is X3D 4.0 and PlayCanvas draws it: HAUL, TIDEWRIGHT, THERMAL and SLAB.">
+<style>
+  :root { --bg:#0d0f14; --card:#151922; --line:#232a36; --ink:#e8ecf3; --mute:#9aa4b5; --pink:#ff4f8b; --ok:#5fd39a; --amber:#f2b84b; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  .wrap { max-width:1180px; margin:0 auto; padding:48px 24px 64px; }
+  .eyebrow { color:var(--pink); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:600; }
+  h1 { font-size:44px; line-height:1.1; margin:10px 0 14px; letter-spacing:-.01em; }
+  .lede { color:var(--mute); max-width:780px; font-size:18px; }
+  .lede b { color:var(--ink); font-weight:600; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:18px; margin:36px 0 40px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; }
+  .card img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:#0a0c10; }
+  .card .body { padding:16px 16px 18px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .card .num { color:var(--mute); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+  .card h2 { margin:0; font-size:22px; }
+  .card p { margin:0; color:var(--mute); font-size:14.5px; }
+  .card .x3d { color:var(--ink); }
+  .card .measured { font-size:13px; color:var(--mute); border-top:1px solid var(--line); padding-top:8px; margin-top:auto; }
+  .card .measured span.ok { color:var(--ok); } .card .measured span.amber { color:var(--amber); }
+  .card .links { display:flex; gap:10px; margin-top:6px; }
+  .card a.play { background:var(--pink); color:#fff; text-decoration:none; padding:8px 14px; border-radius:8px; font-weight:600; font-size:14px; }
+  .card a.src { color:var(--mute); padding:8px 4px; font-size:14px; }
+  h3 { font-size:20px; margin:34px 0 10px; }
+  .common { color:var(--mute); max-width:860px; }
+  .common li { margin:6px 0; } .common b { color:var(--ink); }
+  .note { color:var(--mute); font-size:13.5px; border-top:1px solid var(--line); margin-top:36px; padding-top:16px; }
+  a { color:var(--pink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">x3d.demo · PlayCanvas section · Demos 89–92</div>
+  <h1>Four physics games whose worlds are X3D</h1>
+  <p class="lede">Each game's levels, vehicles and saves are <b>X3D 4.0 files</b>. <b>PlayCanvas</b> draws them, and a physics simulation reads the <b>same bytes</b>: no separate game format sits in between. Every number in the games is held to a gate that was committed before the first measured run, and each game shows a live <b>INTEGRITY</b> panel comparing its WebGL2 physics with a CPU reference.</p>
+
+  <div class="grid">
+    <div class="card">
+      <img src="haul/v1/docs/shots/the-wall-ev.jpg" alt="HAUL: an electric 6x6 truck with a lowboy trailer on The Wall, level 5, in the rain" loading="lazy">
+      <div class="body">
+        <div class="num">Demo 89 · driving</div>
+        <h2>HAUL</h2>
+        <p>A heavy 6x6, diesel or EV, hauls a loaded trailer up five mountain roads as the rain soaks the ground.</p>
+        <p class="x3d"><b>X3D:</b> the truck, the trailer and every level (ElevationGrids with <code>kansei:haul-level</code> metadata) are X3D; the 240 Hz truck sim on Ammo drives on the terrain PlayCanvas draws.</p>
+        <div class="measured">Gates 17/17 pass · Node 23.7 · keys: 1–5 and 0 pick a hill</div>
+        <div class="links"><a class="play" href="haul/v1/">Play</a><a class="src" href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/playcanvas/haul/v1/README.md">README</a></div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="tidewright/v1/docs/shots/storm-held.jpg" alt="TIDEWRIGHT: the storm held back from the town by a raised levee in the Spring Melt valley" loading="lazy">
+      <div class="body">
+        <div class="num">Demo 90 · flood defence</div>
+        <h2>TIDEWRIGHT</h2>
+        <p>A storm comes down the valley. Shape the land on an earth budget, call hold or breach, and keep the town dry.</p>
+        <p class="x3d"><b>X3D:</b> the Spring Melt valley is an X3D level; the shallow-water solver (WebGL2, well-balanced) floods the bed it describes.</p>
+        <div class="measured">Gates 16/16 pass · live: 14/14 houses dry on the bot plan; gauge vs CPU <span class="ok">green</span> from the peak on</div>
+        <div class="links"><a class="play" href="tidewright/v1/">Play</a><a class="src" href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/playcanvas/tidewright/v1/README.md">README</a></div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="thermal/v1/docs/shots/ridge-run-chase.jpg" alt="THERMAL: a sailplane running the ridge in Ridge Day, chase camera" loading="lazy">
+      <div class="body">
+        <div class="num">Demo 91 · soaring</div>
+        <h2>THERMAL</h2>
+        <p>A sailplane has no engine. Read the sky, find air that rises faster than you sink, and run the ridge.</p>
+        <p class="x3d"><b>X3D:</b> the ridge and the glider are X3D; a lattice Boltzmann atmosphere (D2Q9 MRT flow, D2Q5 heat) blows over the ridge the file describes.</p>
+        <div class="measured">Gates 16/17 pass, 1 <span class="amber">todo</span>: the lee wave fails as written (42.4 cells, limit 40), documented</div>
+        <div class="links"><a class="play" href="thermal/v1/">Play</a><a class="src" href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/playcanvas/thermal/v1/README.md">README</a></div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="slab/v1/docs/shots/couloir-debris-overlay.jpg" alt="SLAB: avalanche debris in the couloir with the stress overlay" loading="lazy">
+      <div class="body">
+        <div class="num">Demo 92 · avalanche</div>
+        <h2>SLAB</h2>
+        <p>Read the snowpack: dig a pit, predict, then ski the line or release it on purpose.</p>
+        <p class="x3d"><b>X3D:</b> the mountain, the skier and <b>every saved snowpack</b> are X3D 4.0. Press F9 to save the snow as X3D; drop the file back in to resume.</p>
+        <div class="measured">Gates 15/16 pass, 1 <span class="amber">todo</span> (angle of repose, documented) · live INTEGRITY <span class="ok">PASS</span>, 1264 particles</div>
+        <div class="links"><a class="play" href="slab/v1/">Play</a><a class="src" href="https://github.com/hagopjay/x3d.demo/blob/main/docs/demos/playcanvas/slab/v1/README.md">README</a></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>What the four share</h3>
+  <ul class="common">
+    <li><b>One small X3D reader</b> (<code>src/game/x3d-pc.js</code>, about 150 lines in each game) turns X3D 4.0 into PlayCanvas entities. It reads about 11 of X3D's ~260 node types today.</li>
+    <li><b>Limits before results.</b> Each game commits <code>tests/limits.json</code> before its first measured run, and its docs list every change made after that run, with the reason.</li>
+    <li><b>A wrong twin.</b> Each game ships a deliberately wrong physics mode (bad maths, an uncompensated vario, plain BGK) to show what the gates and the INTEGRITY panel catch.</li>
+    <li><b>Where it is going:</b> X3D as the game's <em>save file</em>, not just its import format. Save a moment, open it in Blender, raise a hill, play it again, with a ledger listing every field that does not survive. SLAB already saves its snowpack as X3D.</li>
+  </ul>
+
+  <p class="note">Run any game locally: <code>cd &lt;game&gt;/v1 &amp;&amp; npm start</code>, then open http://127.0.0.1:8080 (no install, no build; Node 20+). Each game vendors PlayCanvas 2.24.3 (MIT); HAUL also vendors Ammo.js (zlib). Needs WebGL2 with float textures. Measured on 2026-11-28: gates with Node 23.7.0; live play in Chromium on an Apple M3. Phones, other GPUs and Safari are not measured.</p>
+</div>
+</body>
+</html>

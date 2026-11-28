@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>THERMAL · a KANSEI soaring game · PlayCanvas</title>
+<meta name="description" content="THERMAL: a sailplane with no engine over an X3D ridge, held up only by simulated air. The atmosphere is a lattice Boltzmann simulation (D2Q9 flow, D2Q5 temperature, Boussinesq buoyancy) on WebGL2, checked live against a CPU reference; the glider flies a fitted ASW-28 polar.">
+<meta name="theme-color" content="#07080d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #07080d; --panel: rgba(9, 11, 22, .78); --line: rgba(236, 228, 214, .13); --line2: rgba(236, 228, 214, .28);
+  --washi: #efe8da; --mute: #8f96ad; --dim: #5d6480; --beni: #ff3d7f; --cyan: #33e1ff; --gold: #ffc84a; --good: #3ef0a0; --bad: #ff5b5b;
+  --cut: 14px;
+  --display: 'Dela Gothic One', 'Zen Kaku Gothic New', system-ui, sans-serif;
+  --ui: 'Zen Kaku Gothic New', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --num: 'Chakra Petch', ui-monospace, 'SF Mono', monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--ink); color: var(--washi); font-family: var(--ui); user-select: none; }
+#stage { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.panel { background: var(--panel); border: 1px solid var(--line); backdrop-filter: blur(6px); clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%); }
+#brand { position: fixed; top: 14px; left: 18px; display: flex; align-items: center; gap: 12px; z-index: 5; pointer-events: none; }
+.hanko { width: 36px; height: 36px; display: grid; place-items: center; background: var(--beni); color: var(--ink); font-family: var(--display); font-size: 20px;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 78% 100%, 0 100%); box-shadow: 0 0 24px rgba(255,61,127,.45); }
+.brand-txt b { display: block; font-family: var(--display); font-size: 16px; letter-spacing: .32em; line-height: 1; }
+.brand-txt i { display: block; font-style: normal; font-size: 10px; letter-spacing: .26em; color: var(--mute); text-transform: uppercase; margin-top: 4px; }
+#lvl { margin-left: 12px; padding-left: 12px; border-left: 1px solid var(--line2); font-family: var(--num); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+#lvl b { color: var(--beni); font-weight: 600; }
+#hud { position: fixed; inset: 0; pointer-events: none; z-index: 3; display: none; }
+body.playing #hud { display: block; }
+#vario { position: fixed; left: 16px; bottom: 16px; width: 230px; height: 230px; }
+#tape { position: fixed; right: 16px; bottom: 16px; width: 210px; height: 380px; }
+#director { position: fixed; left: 262px; bottom: 16px; width: 150px; height: 150px; }
+#task { position: fixed; left: 50%; transform: translateX(-50%); top: 64px; min-width: min(620px, 60vw); padding: 9px 16px; font-family: var(--num); font-size: 12px; letter-spacing: .12em; display: flex; gap: 18px; align-items: center; justify-content: space-between; }
+#task b { color: var(--gold); font-size: 15px; } #task .tp { color: var(--mute); } #task .tp.on { color: var(--washi); } #task .tp.done { color: var(--good); text-decoration: line-through; }
+#clock { position: fixed; right: 18px; top: 14px; text-align: right; font-family: var(--num); padding: 8px 12px; }
+#clock b { display: block; font-size: 24px; font-weight: 700; } #clock i { font-style: normal; color: var(--mute); font-size: 11px; letter-spacing: .18em; }
+#integrity { position: fixed; right: 18px; top: 86px; width: 300px; padding: 10px 12px; font-family: var(--num); font-size: 11px; letter-spacing: .08em; line-height: 1.55; }
+#integrity h4 { margin: 0 0 4px; font-size: 11px; letter-spacing: .3em; color: var(--mute); font-weight: 600; }
+#integrity .v { color: var(--good); } #integrity .v.bad { color: var(--bad); } #integrity .v.wait { color: var(--gold); }
+#lamps { position: fixed; left: 428px; bottom: 18px; display: flex; flex-direction: column; gap: 5px; font-family: var(--num); font-size: 11px; letter-spacing: .14em; }
+.lamp { padding: 4px 9px; color: var(--dim); border: 1px solid var(--line); background: var(--panel); }
+.lamp.on { color: var(--ink); background: var(--cyan); border-color: var(--cyan); }
+.lamp.warn { color: var(--ink); background: var(--bad); border-color: var(--bad); }
+.lamp.gold { color: var(--ink); background: var(--gold); border-color: var(--gold); }
+#toast { position: fixed; left: 50%; top: 116px; transform: translateX(-50%); font-family: var(--num); font-weight: 700; letter-spacing: .24em; font-size: 14px; padding: 9px 16px; opacity: 0; transition: opacity .25s; }
+#toast.show { opacity: 1; }
+#legend { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); font-family: var(--num); font-size: 11px; letter-spacing: .12em; padding: 6px 12px; display: none; }
+body.glass #legend { display: block; }
+#legend i { display: inline-block; width: 140px; height: 8px; vertical-align: middle; margin: 0 8px; background: linear-gradient(90deg, #2b6bff, rgba(255,255,255,.1), #ff3d3d); }
+.screen { position: fixed; inset: 0; display: none; padding: 80px 40px 30px; z-index: 4; overflow-y: auto; }
+.screen.show { display: block; }
+#shade { position: fixed; inset: 0; pointer-events: none; z-index: 3; background: linear-gradient(90deg, rgba(7,8,13,.94) 0%, rgba(7,8,13,.75) 34%, rgba(7,8,13,.08) 66%); display: none; }
+body.menu #shade { display: block; }
+.col { width: min(540px, 100%); display: flex; flex-direction: column; gap: 14px; }
+.eyebrow { font-family: var(--num); font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: var(--beni); display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ''; width: 26px; height: 2px; background: var(--beni); }
+h1.logo { margin: 4px 0 0; font-family: var(--display); font-weight: 400; font-size: clamp(60px, 8.4vw, 118px); line-height: .86; }
+h1.logo em { font-style: normal; color: var(--beni); text-shadow: 0 0 40px rgba(255,61,127,.35); }
+.lede { font-size: 15px; line-height: 1.6; color: #cfc8ba; margin: 0; }
+.card { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: center; padding: 11px 14px; border: 0; text-align: left; color: var(--washi); box-shadow: inset 0 0 0 1px var(--beni); }
+.card .n { font-family: var(--display); font-size: 22px; color: var(--beni); }
+.card b { display: block; font-family: var(--display); font-weight: 400; font-size: 17px; }
+.card small { color: var(--mute); font-size: 12px; }
+.card .g { font-family: var(--num); font-weight: 700; color: var(--gold); font-size: 13px; text-align: right; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { font-family: var(--num); font-size: 12px; letter-spacing: .14em; padding: 8px 12px; cursor: pointer; pointer-events: auto; border: 0; color: var(--washi); }
+.chip.sel { background: var(--cyan); color: var(--ink); }
+.btn { display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; cursor: pointer; border: 0; pointer-events: auto;
+  padding: 15px 22px; font-family: var(--num); font-weight: 700; font-size: 15px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ink); background: var(--beni); clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%); }
+.btn::after { content: '→'; }
+.btn.alt { background: transparent; color: var(--washi); box-shadow: inset 0 0 0 1px var(--line2); }
+kbd { font-family: var(--num); font-size: 11px; font-weight: 600; padding: 1px 6px; border: 1px solid var(--line2); border-bottom-width: 2px; border-radius: 3px; color: var(--washi); }
+#result .big { font-family: var(--display); font-size: clamp(40px, 6vw, 74px); line-height: .95; }
+#result table { font-family: var(--num); font-size: 14px; border-collapse: collapse; } #result td { padding: 6px 14px 6px 0; border-bottom: 1px solid var(--line); }
+#result td:first-child { color: var(--mute); letter-spacing: .14em; font-size: 12px; text-transform: uppercase; }
+#loading { position: fixed; inset: 0; display: grid; place-items: center; z-index: 9; background: var(--ink); font-family: var(--num); letter-spacing: .3em; color: var(--mute); text-align: center; }
+</style>
+</head>
+<body class="menu">
+<canvas id="stage"></canvas>
+<div id="shade"></div>
+<div id="brand"><div class="hanko">熱</div><div class="brand-txt"><b>THERMAL</b><i>a kansei soaring game</i></div><div id="lvl"></div></div>
+
+<div id="hud">
+  <div id="task" class="panel"></div>
+  <div id="clock" class="panel"><b id="time">17:30</b><i id="sun">SUN 6°</i></div>
+  <div id="integrity" class="panel"><h4>INTEGRITY · GPU vs CPU</h4><div id="integ">waiting for the first window</div></div>
+  <canvas id="vario" class="panel"></canvas>
+  <canvas id="director" class="panel"></canvas>
+  <div id="lamps">
+    <div class="lamp on" id="l-vario">TE VARIO</div><div class="lamp on" id="l-coll">MRT + SMAG</div><div class="lamp" id="l-glass">GLASS SKY</div>
+    <div class="lamp" id="l-flap">FLAP 0</div><div class="lamp" id="l-brake">BRAKES</div><div class="lamp" id="l-water">WATER 0 KG</div><div class="lamp" id="l-auto">STF HOLD</div><div class="lamp" id="l-warp">×1</div>
+  </div>
+  <canvas id="tape" class="panel"></canvas>
+  <div id="legend" class="panel">SINK<i></i>LIFT · simulated vertical wind, ±4 m/s</div>
+  <div id="toast" class="panel"></div>
+</div>
+
+<section id="menu" class="screen show">
+  <div class="col">
+    <div class="eyebrow">a kansei soaring game · lattice boltzmann · x3d 4.0</div>
+    <h1 class="logo">THER<em>MAL</em></h1>
+    <p class="lede">A sailplane has no engine. Read the sky, find air that rises faster than you sink, and decide how fast to fly to the next lift. Today the wind is on the ridge: run it north, run it south, and glide home before the sun goes down.</p>
+    <div class="card panel"><span class="n">1</span><span><b>Ridge Day</b><small id="tagline"></small></span><span class="g" id="taskinfo"></span></div>
+    <div class="row" id="water">
+      <button class="chip panel sel" data-w="0">DRY · 310 KG</button>
+      <button class="chip panel" data-w="100">100 L WATER</button>
+      <button class="chip panel" data-w="200">200 L · 510 KG</button>
+    </div>
+    <div class="row"><button class="btn" id="go">Launch</button></div>
+    <p class="lede" style="font-size:13px;color:var(--mute)"><kbd>W</kbd><kbd>S</kbd> stick (push, pull) · <kbd>A</kbd><kbd>D</kbd> bank · <kbd>Space</kbd> speed-to-fly hold · <kbd>[</kbd><kbd>]</kbd> MacCready · <kbd>F</kbd> flaps · <kbd>B</kbd> airbrakes · <kbd>J</kbd> dump water · <kbd>T</kbd> time ×1/2/4/8 · <kbd>C</kbd> camera · <kbd>G</kbd> glass sky · <kbd>V</kbd> uncompensated vario (wrong twin) · <kbd>K</kbd> plain BGK at τ≈½ (wrong twin) · <kbd>R</kbd> reset air · <kbd>M</kbd> sound.</p>
+  </div>
+</section>
+
+<section id="result" class="screen">
+  <div class="col">
+    <div class="eyebrow" id="res-eyebrow">task</div>
+    <div class="big" id="res-title">Home.</div>
+    <table id="res-table"></table>
+    <div class="row"><button class="btn" id="res-retry">Fly again</button><button class="btn alt" id="res-menu">Menu</button></div>
+  </div>
+</section>
+
+<div id="loading">LOADING · PLAYCANVAS · X3D · WEBGL2 AIR</div>
+<script type="module" src="src/game/main.js"></script>
+</body>
+</html>

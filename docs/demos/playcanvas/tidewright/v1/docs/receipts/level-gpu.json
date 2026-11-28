@@ -1,0 +1,223 @@
+{
+ "schema": "tidewright.level-gpu/1",
+ "date": "2026-11-28T14:11:25.217Z",
+ "seconds": 149.532,
+ "host": {
+  "browser": "chromium 158.0.8127.36 (playwright, headless)",
+  "launch_args": [
+   "--use-angle=swiftshader",
+   "--enable-unsafe-swiftshader",
+   "--ignore-gpu-blocklist"
+  ],
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.8127.36 Safari/537.36",
+  "renderer": "ANGLE (Mesa, Vulkan 1.4.335 (llvmpipe (LLVM 20.1.2 256 bits) (0x00000000)), llvmpipe)",
+  "node": "v22.23.5"
+ },
+ "limits": {
+  "path": "tests/limits.json",
+  "sha256": "05268af9b2bb7de45211a38ea081539f8f8903c425f21a6914a405af7dc5d5b0"
+ },
+ "sources": {
+  "src/sim/swe.js": "a135e4761ecb59863290f8ec0c425984923b1d86496217c169853d393e70c60a",
+  "src/gpu/swe-gl.js": "1141d7341c3c13e577811fe09706416f0439f71fba8ee29a57663b9f7a195918",
+  "src/sim/game.js": "b7fced952ab16c2f16bbf64901b655f2d290594f6c297bd77b8d0a8e54ad5bf2",
+  "src/sim/level.js": "2a4f877d3f12c12c8f271aa730bee0a54d6c645dfc90a1614099ed1de6b53f21",
+  "src/sim/earth.js": "c7f38d80995029fb442838f108a282d8edf2bdcf572559e7ad2da5d8ab668b3f",
+  "src/game/storm.js": "0ab44f32d46d374cc191dd6d5690b5fa724528ed4a1d1f701762b15d4d68277f",
+  "tools/bot.mjs": "d9a98dcc85d71b0bad392092b0f2a5837129b4e8394544af7ae316e9bae67ec4",
+  "levels/spring-melt.x3d": "3af6e5c76ed2e77a57f338c04918553cc9ce7e7c805dd5d2ba573ff8e17a2c7f",
+  "tools/level-gpu.html": "26aef7ee497faf187f9c19c0a6af27dc63bad3868473b9339cf0371a1089ed3c"
+ },
+ "pass": true,
+ "checks": [
+  {
+   "case": "bot",
+   "metric": "gpu_same_houses",
+   "observed": "..............",
+   "rule": "equal",
+   "limit": "..............",
+   "pass": true
+  },
+  {
+   "case": "bot",
+   "metric": "ledger_rel_gpu",
+   "observed": 2.9704367846855352e-8,
+   "rule": "at most",
+   "limit": 0.0001,
+   "pass": true
+  },
+  {
+   "case": "naive",
+   "metric": "gpu_same_houses",
+   "observed": ".....XXX..X...",
+   "rule": "equal",
+   "limit": ".....XXX..X...",
+   "pass": true
+  },
+  {
+   "case": "naive",
+   "metric": "ledger_rel_gpu",
+   "observed": 8.070616439976267e-8,
+   "rule": "at most",
+   "limit": 0.0001,
+   "pass": true
+  },
+  {
+   "case": "nothing",
+   "metric": "gpu_same_houses",
+   "observed": ".XXXXXXXXXX.XX",
+   "rule": "equal",
+   "limit": ".XXXXXXXXXX.XX",
+   "pass": true
+  },
+  {
+   "case": "nothing",
+   "metric": "ledger_rel_gpu",
+   "observed": 6.784710003541068e-8,
+   "rule": "at most",
+   "limit": 0.0001,
+   "pass": true
+  }
+ ],
+ "twins": [],
+ "cpu": {
+  "bot": {
+   "flooded": "..............",
+   "nFlooded": 0,
+   "peakStage": 24.873580195636816,
+   "minFreeboard": 0.38867256250344795,
+   "ledger": {
+    "V0": 70176.82517464303,
+    "in": 1616986.796115732,
+    "out": 1578560.378484448,
+    "stored": 108603.2428059152,
+    "lost": -1.1859810911118984e-8,
+    "clamped": 0,
+    "rel": 7.029437312101581e-15
+   }
+  },
+  "naive": {
+   "flooded": ".....XXX..X...",
+   "nFlooded": 4,
+   "peakStage": 25.152226515510765,
+   "minFreeboard": -0.23407355900492632,
+   "ledger": {
+    "V0": 68944.30000000002,
+    "in": 1616986.796115732,
+    "out": 1549650.1661308755,
+    "stored": 136280.92998486335,
+    "lost": 6.7229848355054855e-9,
+    "clamped": 0,
+    "rel": 3.98769845991617e-15
+   }
+  },
+  "nothing": {
+   "flooded": ".XXXXXXXXXX.XX",
+   "nFlooded": 12,
+   "peakStage": 25.10630766887139,
+   "minFreeboard": -0.4443076688713923,
+   "ledger": {
+    "V0": 68944.30000000002,
+    "in": 1616986.796115732,
+    "out": 1546563.5430998986,
+    "stored": 139367.55301582455,
+    "lost": -8.934875950217247e-9,
+    "clamped": 0,
+    "rel": 5.2996685159924855e-15
+   }
+  }
+ },
+ "gpu": [
+  {
+   "plan": "bot",
+   "flooded": "..............",
+   "nFlooded": 0,
+   "peakStage": 24.87357920074463,
+   "minFreeboard": 0.3886716621016646,
+   "ledger": {
+    "V0": 70176.825237507,
+    "in": 1616986.7961198092,
+    "out": 1578560.217656278,
+    "stored": 108603.35358490927,
+    "lost": -0.0501161288266303,
+    "rel": 2.9704367846855352e-8
+   },
+   "integrity": {
+    "stageDiff": -0.28430089665061686,
+    "refStage": 24.078091650968855,
+    "storedDiffRel": -0.3722556904221483,
+    "refLedgerRel": 4.485051143385172e-16,
+    "ledgerRel": 2.9704367846855352e-8,
+    "tarnU": 2.766923551805458e-7,
+    "courant": 0.26058295984136837,
+    "reductionVolume": 108603.3447265625,
+    "scheme": "hr",
+    "renderer": "ANGLE (Mesa, Vulkan 1.4.335 (llvmpipe (LLVM 20.1.2 256 bits) (0x00000000)), llvmpipe)"
+   },
+   "steps": 31514,
+   "ms": 25184,
+   "refStage": 24.078091650968855
+  },
+  {
+   "plan": "naive",
+   "flooded": ".....XXX..X...",
+   "nFlooded": 4,
+   "peakStage": 25.152225193023682,
+   "minFreeboard": -0.2340755577087421,
+   "ledger": {
+    "V0": 68944.30008181371,
+    "in": 1616986.7961198092,
+    "out": 1549650.0878959596,
+    "stored": 136280.87224063103,
+    "lost": -0.13606503221672028,
+    "rel": 8.070616439976267e-8
+   },
+   "integrity": {
+    "stageDiff": -0.3034179940662085,
+    "refStage": 24.35582710318181,
+    "storedDiffRel": -0.2463659615518004,
+    "refLedgerRel": 1.34649900465516e-15,
+    "ledgerRel": 8.070616439976267e-8,
+    "tarnU": 2.766923551805458e-7,
+    "courant": 0.22733421806361367,
+    "reductionVolume": 136280.8837890625,
+    "scheme": "hr",
+    "renderer": "ANGLE (Mesa, Vulkan 1.4.335 (llvmpipe (LLVM 20.1.2 256 bits) (0x00000000)), llvmpipe)"
+   },
+   "steps": 31514,
+   "ms": 26903,
+   "refStage": 24.35582710318181
+  },
+  {
+   "plan": "nothing",
+   "flooded": ".XXXXXXXXXX.XX",
+   "nFlooded": 12,
+   "peakStage": 25.10630648994446,
+   "minFreeboard": -0.4443064899444593,
+   "ledger": {
+    "V0": 68944.30008181371,
+    "in": 1616986.7961198092,
+    "out": 1546563.3965640962,
+    "stored": 139367.5852519909,
+    "lost": -0.1143855357368011,
+    "rel": 6.784710003541068e-8
+   },
+   "integrity": {
+    "stageDiff": -0.28225078595207975,
+    "refStage": 24.358208498125542,
+    "storedDiffRel": -0.22583014283980307,
+    "refLedgerRel": 2.934677317838169e-15,
+    "ledgerRel": 6.784710003541068e-8,
+    "tarnU": 2.766923551805458e-7,
+    "courant": 0.22828900136606092,
+    "reductionVolume": 139367.6025390625,
+    "scheme": "hr",
+    "renderer": "ANGLE (Mesa, Vulkan 1.4.335 (llvmpipe (LLVM 20.1.2 256 bits) (0x00000000)), llvmpipe)"
+   },
+   "steps": 31514,
+   "ms": 26399,
+   "refStage": 24.358208498125542
+  }
+ ],
+ "error": null
+}

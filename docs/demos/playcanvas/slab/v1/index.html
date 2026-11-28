@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SLAB — read the snowpack, ski it or release it</title>
+<style>
+  :root { --ink: #eef3fb; --dim: #9fb0c8; --panel: rgba(14, 20, 32, 0.78); --edge: rgba(160, 190, 230, 0.18); --hot: #ff5a46; --ok: #43e0a0; --warn: #ffc247; --ice: #8fd3ff; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0b1220; color: var(--ink); font: 13px/1.35 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  canvas { display: block; width: 100%; height: 100%; }
+  .p { position: absolute; background: var(--panel); border: 1px solid var(--edge); padding: 10px 12px; backdrop-filter: blur(6px); clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); }
+  .p h3 { margin: 0 0 6px; font-size: 11px; letter-spacing: 0.18em; color: var(--ice); font-weight: 600; }
+  #brand { left: 16px; top: 14px; background: none; border: 0; clip-path: none; padding: 0; }
+  #brand b { font-size: 22px; letter-spacing: 0.35em; } #brand i { display: block; color: var(--dim); font-style: normal; letter-spacing: 0.2em; font-size: 10px; }
+  #brand .k { display: inline-block; background: #e8474b; color: #fff; width: 30px; height: 30px; text-align: center; line-height: 30px; font-size: 18px; margin-right: 10px; vertical-align: top; }
+  #lvl { left: 16px; top: 64px; width: 330px; }
+  #lvl .tag { color: var(--dim); margin-top: 4px; }
+  #pit { left: 16px; top: 160px; width: 330px; display: none; }
+  table { border-collapse: collapse; width: 100%; } td { padding: 2px 4px; border-bottom: 1px solid rgba(255,255,255,0.06); } td.r { text-align: right; }
+  #idx { right: 16px; top: 14px; width: 300px; }
+  .bar { height: 10px; background: linear-gradient(90deg, var(--hot), var(--warn) 40%, var(--ok) 70%); position: relative; margin: 6px 0 2px; }
+  .bar i { position: absolute; top: -4px; width: 3px; height: 18px; background: #fff; }
+  #integ { right: 16px; bottom: 16px; width: 330px; font-size: 12px; }
+  #integ .pass { color: var(--ok); } #integ .fail { color: var(--hot); }
+  #keys { left: 16px; bottom: 16px; width: 560px; color: var(--dim); font-size: 12px; }
+  #keys b { color: var(--ink); background: rgba(255,255,255,0.08); padding: 0 4px; }
+  #msg { left: 50%; top: 16px; transform: translateX(-50%); min-width: 340px; text-align: center; font-size: 15px; letter-spacing: 0.06em; }
+  #msg.hot { color: var(--hot); } #msg.ok { color: var(--ok); }
+  #tink { right: 16px; top: 150px; width: 300px; display: none; }
+  #tink label { display: block; margin: 6px 0 0; color: var(--dim); } #tink input { width: 100%; }
+  #log { right: 16px; top: 150px; width: 300px; max-height: 180px; overflow: hidden; color: var(--dim); font-size: 12px; }
+  #loading { position: absolute; inset: 0; display: grid; place-items: center; font-size: 16px; letter-spacing: 0.2em; background: #0b1220; }
+  .hot { color: var(--hot); } .ok { color: var(--ok); } .warn { color: var(--warn); }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="brand" class="p"><span class="k">雪</span><b>SLAB</b><i>A KANSEI AVALANCHE GAME · X3D × PLAYCANVAS × MPM</i></div>
+<div id="lvl" class="p"></div>
+<div id="pit" class="p"></div>
+<div id="idx" class="p"></div>
+<div id="msg" class="p">settling the snowpack…</div>
+<div id="log" class="p"><h3>WHAT HAPPENED</h3><div id="logl"></div></div>
+<div id="tink" class="p"><h3>TINKER · FROM kansei:tunable</h3><div id="tinkl"></div><div style="margin-top:8px;color:var(--dim)">applies on <b>R</b> (reset)</div></div>
+<div id="integ" class="p"><h3>INTEGRITY · GPU AGAINST THE CPU REFERENCE</h3><div id="integl">checking…</div></div>
+<div id="keys" class="p">
+  <b>1</b>/<b>2</b> line: Ridge / Bowl &nbsp; <b>P</b> dig a pit &nbsp; <b>Y</b>/<b>N</b> predict "will it release?" &nbsp; <b>Enter</b> ski the line &nbsp; <b>C</b> patrol: charge it<br>
+  <b>A</b> pull the airbag &nbsp; <b>S</b> stress overlay &nbsp; <b>V</b> camera (cross-section, chase, ridge, pit wall) &nbsp; <b>T</b> tinker &nbsp; <b>R</b> reset &nbsp; <b>L</b> next level &nbsp; <b>F9</b> save the snowpack as X3D &nbsp; drop a saved .x3d here to resume it
+</div>
+<div id="loading">SLAB · building the mountain from X3D…</div>
+<script type="module" src="src/game/main.js"></script>
+</body>
+</html>

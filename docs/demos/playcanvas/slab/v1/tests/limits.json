@@ -1,0 +1,67 @@
+{
+  "about": "SLAB gate limits, committed before any gated run. Never edited after a run: a gate that fails as written stays failed in the receipt, and any change of method is listed in docs/PHYSICS.md under 'Changed after the first run'.",
+  "committed": "2026-11-28",
+  "gates": {
+    "momentum": {
+      "case": "elastic disc r 0.2 m, translating (0.5, 0.2) m/s and spinning 2 rad/s, no gravity, no wall contact, dx 0.02 m, dt 1e-4 s",
+      "steps": 1000,
+      "max_rel_linear": 1e-10,
+      "max_rel_angular": 1e-9,
+      "angular_momentum_includes": "the APIC affine term m (dx^2/4)(C_yx - C_xy) (Jiang et al. 2015)",
+      "twin": "pic: the affine m C term dropped from the transfer; must exceed max_rel_angular"
+    },
+    "energy": {
+      "cases": ["elastic disc as in momentum", "granular column collapse as in repose"],
+      "rule": "total energy (kinetic + gravitational + elastic) never exceeds E(0) * (1 + max_rise_rel) at any sampled step",
+      "max_rise_rel": 1e-4,
+      "twin": "flip: pure FLIP velocity update; expected to break this or the momentum gate, reported either way"
+    },
+    "repose": {
+      "case": "cohesionless Drucker-Prager column, width 0.5 m, height 0.25 m (aspect 0.5), on a sticky floor, collapses under gravity for 1.5 s",
+      "phi_deg": 30,
+      "rule": "mean flank slope of the deposit, fitted between 20% and 80% of its peak height on both sides",
+      "tolerance_deg": 5,
+      "twin": "no_return: plastic return mapping off; the column stays standing (flank far above phi), must fail"
+    },
+    "infinite_slope": {
+      "case": "periodic-in-x slab 0.6 m (snow, rho 250) on a 0.15 m weak layer (Drucker-Prager with cohesion, rho 200, phi 30 deg, c 250 Pa) on a sticky bed, gravity tilted by theta and ramped over 0.4 s, judged at 1.2 s",
+      "referee": "Davis (1968) strength of a non-dilatant (psi = 0) Mohr-Coulomb layer in simple shear: tau_f = c cos(phi) + sigma_n sin(phi). Release when W sin(theta) cos(theta) > tau_f with W = g * sum(rho_i h_i) and sigma_n = W cos^2(theta).",
+      "naive_referee": "tau_f = c + sigma_n tan(phi), the design doc's form; the model must NOT sit on it",
+      "released_when": "slab mean downslope speed > 0.01 m/s at 1.2 s and still rising over the last 0.2 s",
+      "bisection_resolution_deg": 0.25,
+      "tolerance_deg": 1.0,
+      "naive_gap_min_deg": 2.0,
+      "twin": "strong_weak_layer: the weak layer given the slab's material; must not release below 50 deg"
+    },
+    "pwave": {
+      "case": "elastic, periodic in x (32 cells), slip walls top and bottom, standing wave v_x = A sin(2 pi x / L), A = 1e-3 c",
+      "referee": "uniaxial-strain P-wave speed c = sqrt((lambda + 2 mu) / rho)",
+      "max_rel_err": 0.02,
+      "twin": "stress4: the MLS stress factor 4/dx^2 written as 2/dx^2; c off by sqrt(2), must fail"
+    },
+    "determinism": {
+      "case": "the infinite-slope setup at 36 deg, 2000 steps, run twice in one Node process",
+      "mismatch": 0,
+      "twin": "a 1e-12 m nudge to one particle; the hashes must differ"
+    },
+    "resume_x3d": {
+      "case": "the infinite-slope setup at 36 deg: 1000 steps, snapshot to X3D, parse it back, 1000 more steps, against 2000 uninterrupted steps",
+      "mismatch": 0,
+      "twins": ["float32: doubles written with 9 significant digits; must differ", "no_affine: C left out of the snapshot; must differ"]
+    },
+    "gpu_vs_cpu": {
+      "case": "the momentum disc plus gravity onto a sticky floor, 300 steps, float32 WebGL2 against the float64 CPU solver, same initial particles",
+      "max_dx_m": 1e-4,
+      "max_dv_mps": 1e-3,
+      "twin": "pic shader; must exceed max_dv_mps"
+    },
+    "levels": {
+      "rule": "every level file carries kansei:referee claims and the test suite re-proves them on the CPU solver",
+      "claims": [
+        "the safe line's Föhn-style skier index (Flamant line load 780 N/m) is >= 1.5 and a skier crossing it does not release the slab",
+        "the deadly line's index is < 1.0 and a skier crossing it releases the slab",
+        "after the patrol bot's charge, the deadly line has released and a skier then crosses it without being caught"
+      ]
+    }
+  }
+}

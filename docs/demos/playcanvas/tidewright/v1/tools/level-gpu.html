@@ -1,0 +1,31 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TIDEWRIGHT level on the GPU</title>
+<pre id="log">running…</pre>
+<script type="module">
+// Spring Melt's whole storm on the GPU (the game's own storm object, src/game/storm.js), for three plans.
+import { fromX3D } from '../src/sim/level.js';
+import { applyPlan } from '../src/sim/earth.js';
+import { createStorm } from '../src/game/storm.js';
+import { PLANS } from './bot.mjs';
+const log = (s) => { document.getElementById('log').textContent += '\n' + s; };
+(async () => {
+  const out = { ua: navigator.userAgent, results: [] };
+  try {
+    const L = fromX3D(await (await fetch('../levels/spring-melt.x3d')).text());
+    for (const name of ['bot', 'naive', 'nothing']) {
+      const E = applyPlan(L, PLANS[name](L));
+      const S = createStorm(L, E);
+      const t0 = performance.now();
+      while (!S.done) { S.advance(60, 100000); S.sample(); await new Promise((r) => setTimeout(r, 0)); }
+      const last = S.sample();
+      out.renderer = S.renderer;
+      out.results.push({ plan: name, flooded: last.flooded.map((f) => (f ? 'X' : '.')).join(''), nFlooded: last.nFlooded, peakStage: S.peakStage, minFreeboard: S.minFreeboard,
+        ledger: last.ledger, integrity: last.integrity, steps: S.gpu.n, ms: Math.round(performance.now() - t0), refStage: last.integrity.refStage });
+      log(`${name}: ${last.nFlooded} flooded, ledger ${last.ledger.rel.toExponential(2)}, ${Math.round(performance.now() - t0)} ms`);
+      S.destroy();
+    }
+  } catch (e) { out.error = String((e && e.stack) || e); log(out.error); }
+  out.done = true; window.__level = out;
+})();
+</script>
