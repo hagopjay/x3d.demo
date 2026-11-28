@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cesium Twin: an X3D building on the globe</title>
+<link rel="icon" href="data:,">
+<script src="https://cdn.jsdelivr.net/npm/cesium@1.147.0/Build/Cesium/Cesium.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.147.0/Build/Cesium/Widgets/widgets.css">
+<style>
+  :root { --bg: #0b0f14; --panel: rgba(12, 17, 24, 0.86); --ink: #e8eef5; --dim: #9aa8b8; --ok: #5fd39a; --bad: #ff7a6b;
+          --accent: #f0b35a; --line: rgba(255, 255, 255, 0.12); }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+               font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; overflow: hidden; }
+  #globe { position: absolute; inset: 0; }
+  .panel { position: absolute; top: 16px; left: 16px; width: min(380px, calc(100vw - 32px)); max-height: calc(100vh - 32px);
+           overflow: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px;
+           backdrop-filter: blur(8px); box-sizing: border-box; }
+  h1 { font-size: 18px; margin: 0 0 4px; letter-spacing: .2px; }
+  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--dim); margin: 16px 0 6px; font-weight: 600; }
+  p { margin: 6px 0; color: var(--dim); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  button { background: rgba(255,255,255,.06); color: var(--ink); border: 1px solid var(--line); border-radius: 8px;
+           padding: 6px 10px; font: inherit; cursor: pointer; }
+  button:hover { border-color: var(--accent); }
+  button.on { background: var(--accent); color: #1a1206; border-color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  td { padding: 4px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  .ok { color: var(--ok); } .bad { color: var(--bad); }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .foot { font-size: 12px; color: var(--dim); margin-top: 12px; }
+  a { color: var(--accent); }
+  #toggle { position: absolute; top: 16px; right: 16px; display: none; }
+  @media (max-width: 640px) { .panel { top: auto; bottom: 16px; max-height: 46vh; } #toggle { display: block; } }
+  .cesium-viewer-bottom { opacity: .7; }
+</style>
+</head>
+<body>
+<div id="globe"></div>
+<button id="toggle" onclick="document.querySelector('.panel').hidden ^= 1">Panel</button>
+<div class="panel">
+  <h1>Cesium Twin</h1>
+  <p>An IFC building, carried into X3D, placed with <code>GeoLocation</code>, and written as a 3D Tiles 1.1 tileset. CesiumJS then says where it put every surface, and the numbers below compare that with the X3D.</p>
+
+  <h2>Fly</h2>
+  <div class="row">
+    <button onclick="flyBuilding()">Building</button>
+    <button onclick="flyOrbit()">Orbit</button>
+    <button onclick="flyRegion()">Region</button>
+    <button id="geoBtn" onclick="toggleTerrainTiles()">Region tiles</button>
+  </div>
+
+  <h2>Sun</h2>
+  <input id="sun" type="range" min="5" max="20" step="0.25" value="15.5" aria-label="hour of day">
+  <p id="sunLabel"></p>
+
+  <h2>What CesiumJS measured</h2>
+  <table id="receipt"><tr><td>loading receipts</td><td></td></tr></table>
+
+  <h2>Show a planted fault</h2>
+  <p>Each one is a real mistake a converter can make. The court above caught all three; press one to see where the building would land.</p>
+  <div class="row">
+    <button data-f="none" class="on">Correct</button>
+    <button data-f="height">+33 m</button>
+    <button data-f="zup">z-up</button>
+    <button data-f="swap">lat/lon swap</button>
+  </div>
+  <p id="faultNote"></p>
+
+  <div class="foot">
+    Building: HagopJay's Confluence studio model (IFC4), a <b>demonstration placement</b> on the Virginia Tech Drillfield; it is not a real building there.
+    Region tiles: <a href="../../geotiling/v1/">geotiling v1</a> (imagery and data: Google, academic proof of concept only).
+    Base map: Natural Earth II (public domain, bundled with CesiumJS).
+    <a href="data/confluence-geo.x3d">X3D source</a> · <a href="data/tileset.json">tileset</a> · <a href="NOTICE.md">notice</a>
+  </div>
+</div>
+
+<script>
+const SITE = { lat: 37.2284, lon: -80.4234, h: 592.4 };
+Cesium.Ion.defaultAccessToken = undefined;
+const viewer = new Cesium.Viewer('globe', {
+  baseLayer: Cesium.ImageryLayer.fromProviderAsync(Cesium.TileMapServiceImageryProvider.fromUrl(
+    Cesium.buildModuleUrl('Assets/Textures/NaturalEarthII'))),
+  baseLayerPicker: false, geocoder: false, homeButton: false, sceneModePicker: false, navigationHelpButton: false,
+  animation: false, timeline: false, fullscreenButton: false, infoBox: false, selectionIndicator: false,
+  shadows: true, terrainShadows: Cesium.ShadowMode.RECEIVE_ONLY,
+});
+const scene = viewer.scene;
+scene.globe.enableLighting = true;
+scene.highDynamicRange = true;
+scene.postProcessStages.fxaa.enabled = true;
+scene.skyAtmosphere.show = true;
+scene.fog.enabled = true;
+viewer.shadowMap.softShadows = true;
+viewer.shadowMap.size = 2048;
+viewer.shadowMap.darkness = 0.35;
+const ao = scene.postProcessStages.ambientOcclusion;
+if (ao) { ao.enabled = true; ao.uniforms.intensity = 2.0; ao.uniforms.lengthCap = 0.12; ao.uniforms.stepSize = 1.5; }
+
+const ENU = Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(SITE.lon, SITE.lat, SITE.h));
+let building, region;
+
+function setSun(hour) {
+  // local solar-ish time at the site: UTC minus 5 h (EST), on 21 June 2026
+  const d = new Date(Date.UTC(2026, 5, 21, 0, 0, 0) + (hour + 4) * 3600e3);  // EDT = UTC-4 in June
+  viewer.clock.currentTime = Cesium.JulianDate.fromDate(d);
+  viewer.clock.shouldAnimate = false;
+  const hh = Math.floor(hour), mm = Math.round((hour - hh) * 60);
+  document.getElementById('sunLabel').textContent = `21 June, ${hh}:${String(mm).padStart(2, '0')} local (EDT)`;
+}
+const sun = document.getElementById('sun');
+sun.oninput = () => setSun(+sun.value);
+setSun(+sun.value);
+
+function view(range, heading, pitch, duration = 2.5) {
+  const center = Cesium.Matrix4.multiplyByPoint(ENU, new Cesium.Cartesian3(0, 0, 2), new Cesium.Cartesian3());
+  return viewer.camera.flyToBoundingSphere(new Cesium.BoundingSphere(center, 15), {
+    offset: new Cesium.HeadingPitchRange(Cesium.Math.toRadians(heading), Cesium.Math.toRadians(pitch), range), duration });
+}
+window.flyBuilding = () => (setRegion(false), view(48, 210, -28));
+window.flyRegion = () => (setRegion(true), viewer.camera.flyTo({ destination: Cesium.Cartesian3.fromDegrees(SITE.lon, SITE.lat - 0.9, 90000),
+  orientation: { heading: 0, pitch: Cesium.Math.toRadians(-38) }, duration: 3 }));
+let orbiting = null;
+window.flyOrbit = async () => {
+  if (orbiting) { viewer.clock.onTick.removeEventListener(orbiting); orbiting = null; return; }
+  await view(60, 0, -22, 1.5);
+  const center = Cesium.Matrix4.multiplyByPoint(ENU, new Cesium.Cartesian3(0, 0, 2), new Cesium.Cartesian3());
+  let hdg = 0;
+  orbiting = () => { hdg += 0.0025; viewer.camera.lookAt(center, new Cesium.HeadingPitchRange(hdg, Cesium.Math.toRadians(-22), 60)); };
+  viewer.clock.shouldAnimate = true;
+  viewer.clock.multiplier = 0;  // turn the camera, not the sun
+  viewer.clock.onTick.addEventListener(orbiting);
+};
+// The region tiles are a coarse terrain mesh (z11 near the site, tens of metres per triangle), so close to the
+// building they rise through its floor; they start hidden and the Region view turns them on.
+function setRegion(on) {
+  if (!region) return;
+  region.show = on;
+  document.getElementById('geoBtn').classList.toggle('on', on);
+}
+window.toggleTerrainTiles = () => setRegion(region && !region.show);
+
+// Planted faults, applied here as a modelMatrix so the viewer sees where each mistake lands.
+function faultMatrix(kind) {
+  if (kind === 'height') {
+    const up = Cesium.Matrix4.getColumn(ENU, 2, new Cesium.Cartesian4());
+    return Cesium.Matrix4.fromTranslation(new Cesium.Cartesian3(up.x * 33, up.y * 33, up.z * 33));
+  }
+  if (kind === 'zup') {  // content read as z-up although glTF is y-up: turned 90 degrees about east
+    const r = Cesium.Matrix4.fromRotationTranslation(Cesium.Matrix3.fromRotationX(Cesium.Math.toRadians(-90)));
+    return Cesium.Matrix4.multiply(Cesium.Matrix4.multiply(ENU, r, new Cesium.Matrix4()),
+                                   Cesium.Matrix4.inverseTransformation(ENU, new Cesium.Matrix4()), new Cesium.Matrix4());
+  }
+  if (kind === 'swap') {
+    const E2 = Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(SITE.lat, SITE.lon, SITE.h));
+    return Cesium.Matrix4.multiply(E2, Cesium.Matrix4.inverseTransformation(ENU, new Cesium.Matrix4()), new Cesium.Matrix4());
+  }
+  return Cesium.Matrix4.IDENTITY;
+}
+// From 2,000 km the building itself is too small to see, so a pin marks where the swapped tileset lands.
+const swapPin = viewer.entities.add({ position: Cesium.Cartesian3.fromDegrees(SITE.lat, SITE.lon, SITE.h), show: false,
+  point: { pixelSize: 14, color: Cesium.Color.fromCssColorString('#ff7a6b'), outlineColor: Cesium.Color.WHITE, outlineWidth: 2 },
+  label: { text: 'the building lands here', font: '15px system-ui', fillColor: Cesium.Color.WHITE, showBackground: true,
+           backgroundColor: Cesium.Color.fromCssColorString('#0b0f14cc'), pixelOffset: new Cesium.Cartesian2(0, -26) } });
+const NOTES = {
+  none: 'The tileset as written: CesiumJS hits the roof where the X3D says it is, 45 of 45 sample points.',
+  height: 'Height read as orthometric where the X3D gives ellipsoidal (or a geoid added twice): the building floats 33 m up.',
+  zup: 'glTF y-up content treated as z-up: the building lies on its side.',
+  swap: 'Latitude and longitude swapped: the building lands at 80.42 S, 37.23 E, on the East Antarctic ice sheet, about 14,600 km away.',
+};
+document.querySelectorAll('[data-f]').forEach((b) => b.onclick = () => {
+  document.querySelectorAll('[data-f]').forEach((x) => x.classList.toggle('on', x === b));
+  const f = b.dataset.f;
+  swapPin.show = f === 'swap';
+  if (building) building.modelMatrix = faultMatrix(f);
+  document.getElementById('faultNote').textContent = NOTES[f];
+  if (f === 'swap') {
+    viewer.camera.flyTo({ destination: Cesium.Cartesian3.fromDegrees(SITE.lat, SITE.lon, 7e6), duration: 3 });
+  } else { view(f === 'height' ? 110 : 55, 210, -20); }
+});
+document.getElementById('faultNote').textContent = NOTES.none;
+
+async function receipts() {
+  const t = document.getElementById('receipt');
+  const rows = [];
+  try {
+    const get = (n) => fetch(`data/confluence-cesium-${n}-receipt.json`).then((r) => r.json());
+    const [ok, h, z, s] = await Promise.all(['none', 'height+33', 'z-up', 'lat-lon-swap'].map(get));
+    const v = await fetch('data/confluence-3dtiles-validator.json').then((r) => r.json());
+    const mm = (x) => (x * 1000).toFixed(2) + ' mm';
+    rows.push(['Roof hits, X3D vs CesiumJS', `${ok.hit_in_both} of ${ok.hits_reference}`, ok.pass]);
+    rows.push(['Hits where the X3D has none', `${ok.hit_cesium_only}`, ok.hit_cesium_only === 0]);
+    rows.push(['Worst height difference', mm(ok.worst_height_difference_m), ok.pass]);
+    rows.push(['Our ENU frame vs Cesium\'s', ok.cesium_enu_vs_ours_max_abs.toExponential(1), true]);
+    rows.push(['3d-tiles-validator 0.6.1', `${v.numErrors} errors, ${v.numWarnings} warnings`, v.numErrors === 0]);
+    rows.push(['Planted +33 m caught', `${h.worst_height_difference_m.toFixed(2)} m off`, !h.pass]);
+    rows.push(['Planted z-up caught', `${z.hit_cesium_only + z.hit_reference_only} points wrong`, !z.pass]);
+    rows.push(['Planted lat/lon swap caught', `${s.hits_cesium} of ${s.hits_reference} hit`, !s.pass]);
+    t.innerHTML = rows.map(([a, b, good]) => `<tr><td>${a}</td><td class="${good ? 'ok' : 'bad'}">${b}</td></tr>`).join('') +
+      `<tr><td colspan="2" style="color:var(--dim)">CesiumJS ${ok.cesium}, ${ok.chromium.replace('HeadlessChrome/', 'Chromium ')} headless, SwiftShader, offline. Grid ${ok.grid}.</td></tr>`;
+  } catch (e) { t.innerHTML = `<tr><td>receipts did not load: ${e}</td><td></td></tr>`; }
+}
+
+(async () => {
+  receipts();
+  try {
+    region = await Cesium.Cesium3DTileset.fromUrl('../../geotiling/v1/tileset.json', { maximumScreenSpaceError: 8 });
+    region.shadows = Cesium.ShadowMode.RECEIVE_ONLY;
+    region.show = false;
+    scene.primitives.add(region);
+  } catch (e) { console.warn('region tiles', e); }
+  building = await Cesium.Cesium3DTileset.fromUrl('data/tileset.json');
+  building.shadows = Cesium.ShadowMode.ENABLED;
+  scene.primitives.add(building);
+  viewer.camera.setView({ destination: Cesium.Cartesian3.fromDegrees(SITE.lon, SITE.lat - 0.25, 30000),
+                          orientation: { heading: 0, pitch: Cesium.Math.toRadians(-35) } });
+  await new Promise((r) => setTimeout(r, 600));
+  await flyBuilding();
+  window.__ready = true;
+})();
+</script>
+</body>
+</html>
