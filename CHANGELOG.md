@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v103 (2026-11-28)
+- New card for Demos 89–92, the PlayCanvas section (`docs/demos/playcanvas/`, PR 205): HAUL, TIDEWRIGHT, THERMAL and SLAB, four KANSEI physics games whose levels, vehicles and saves are X3D 4.0, drawn by PlayCanvas. Unlike the cards before it, these numbers were measured by me: the gates in each game folder (`npm test`, Node 23.7.0: HAUL 17/17, TIDEWRIGHT 16/16, THERMAL 16/17 and SLAB 15/16, each failing gate one the game documents as failing as written) and live play in Chromium on an Apple M3 (SLAB INTEGRITY PASS; TIDEWRIGHT 14 of 14 houses dry on its bot plan; THERMAL flies but its live GPU check was not completed; HAUL loads with 0 console errors). The card says frame rates, sound, phones, other GPUs and Safari are not measured. Image `assets/playcanvas.jpg` is a 2 x 2 grid of the games' own in-game screenshots (each centre-cropped, not stretched) at 960 x 540.
+
 ## v102 (2026-11-28)
 - New card for Demo 88, Cesium Twin (`docs/demos/cesium-twin/v1/`, PR 202): the owner's own IFC4 studio model carried to X3D, wrapped in a GeoLocation, and exported as a glb and a 3D Tiles 1.1 tileset that CesiumJS loads. The card says the placement on the Virginia Tech Drillfield is a demonstration only, that the card image shows no Google imagery (the optional region tiles are hidden until a button is pressed and have their own notice), and that the lane's checks were on SwiftShader only. I loaded the page headless (1 canvas, 0 console errors, 0 HTTP errors; the CesiumJS script loads from jsDelivr). Image `assets/cesium-twin.jpg` is the lane's 800 x 600 `card.png` fitted to 960 x 540 on its background colour.
 
