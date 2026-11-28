@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spring Bone Lab · Demo 87</title>
+<meta name="description" content="Demo 87: spring bones as native X3D PROTOs (SpringBoneChain, SpringBoneCollider) running in X_ITE: a ponytail on an HAnim 2.0 figure, a fox tail, a bead fringe and an antenna tree, tuned in hertz and damping ratio.">
+<script src="vendor/x_ite/x_ite.min.js"></script>
+<style>
+  :root { --bg:#0c0d12; --panel:#14161e; --line:#2a2d3a; --ink:#eceef6; --dim:#959ab0; --hot:#f2b84b; --ok:#5fd39a; --bad:#ef6d6d; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--ink); font:13px/1.45 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { display:grid; grid-template-columns:minmax(0,1fr) 360px; height:100vh; }
+  #stage { position:relative; min-height:0; }
+  x3d-canvas { width:100%; height:100%; display:block; }
+  #hud { position:absolute; left:14px; top:12px; display:flex; gap:8px; flex-wrap:wrap; pointer-events:none; }
+  .chip { background:#000b; border:1px solid var(--line); border-radius:8px; padding:5px 9px; font-variant-numeric:tabular-nums; }
+  aside { background:var(--panel); border-left:1px solid var(--line); overflow:auto; padding:14px; display:flex; flex-direction:column; gap:12px; }
+  h1 { font-size:15px; margin:0; } h1 span { color:var(--dim); font-weight:400; }
+  h2 { font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--dim); margin:0 0 6px; }
+  section { border-top:1px solid var(--line); padding-top:10px; }
+  button, select { background:#1d2030; color:var(--ink); border:1px solid var(--line); border-radius:7px; padding:5px 9px; font:inherit; cursor:pointer; }
+  button:hover { border-color:#4a5070; } button.on { border-color:var(--hot); color:var(--hot); }
+  .row { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+  .kv { display:grid; grid-template-columns:118px 1fr 52px; gap:5px 8px; align-items:center; }
+  .kv output { text-align:right; font-variant-numeric:tabular-nums; }
+  input[type=range] { width:100%; accent-color:var(--hot); }
+  .read { display:grid; grid-template-columns:auto 1fr; gap:3px 10px; font:12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .read b { font-weight:400; color:var(--ink); } .read span { color:var(--dim); }
+  p, small, .dim { color:var(--dim); margin:0; }
+  a { color:var(--hot); }
+  code { font:12px ui-monospace, Menlo, monospace; color:#cfd3e6; }
+  @media (max-width: 760px) { main { grid-template-columns:1fr; grid-template-rows:55vh auto; height:auto; } aside { border-left:0; border-top:1px solid var(--line); } }
+</style>
+</head>
+<body>
+<main>
+  <div id="stage">
+    <x3d-canvas id="x3d" src="spring-lab.x3d" splashScreen="false" contextMenu="false" notifications="false"></x3d-canvas>
+    <div id="hud">
+      <div class="chip">steps <b id="h-steps">—</b></div>
+      <div class="chip">touching <b id="h-col">—</b></div>
+      <div class="chip">hash <b id="h-hash">—</b></div>
+    </div>
+  </div>
+  <aside>
+    <h1>Spring Bone Lab <span>· Demo 87</span></h1>
+    <p>Four rigs, one X3D file, two PROTOs. Every wobble below is a <code>SpringBoneChain</code> written in plain X3D 4.0 and run by its own Script in X_ITE. Drag the figure, the fox or the glass ball. Tune in <b>hertz</b> and <b>damping ratio</b>; the solver turns them into exact per-step coefficients.</p>
+    <section>
+      <h2>Rig</h2>
+      <div class="row" id="rigs">
+        <button data-rig="Ponytail" class="on">Ponytail</button><button data-rig="FoxTail">Fox tail</button><button data-rig="Fringe">Bead fringe</button><button data-rig="Antenna">Antenna</button>
+      </div>
+      <div class="row" style="margin-top:6px">
+        <span class="dim">View:</span><button data-vp="Overview">All four</button><button data-vp="PonyView">Ponytail</button>
+      </div>
+    </section>
+    <section>
+      <h2>Tuning</h2>
+      <div class="kv">
+        <label for="frequency">frequency (Hz)</label><input id="frequency" type="range" min="0.3" max="6" step="0.05"><output id="o-frequency"></output>
+        <label for="dampingRatio">damping ratio ζ</label><input id="dampingRatio" type="range" min="0" max="1" step="0.01"><output id="o-dampingRatio"></output>
+        <label for="stiffness">stiffness</label><input id="stiffness" type="range" min="0" max="1" step="0.01"><output id="o-stiffness"></output>
+        <label for="inert">inert</label><input id="inert" type="range" min="0" max="1" step="0.01"><output id="o-inert"></output>
+        <label for="stretch">stretch</label><input id="stretch" type="range" min="0" max="0.6" step="0.01"><output id="o-stretch"></output>
+        <label for="angleLimit">angle limit (°)</label><input id="angleLimit" type="range" min="0" max="120" step="1"><output id="o-angleLimit"></output>
+        <label for="gravityY">gravity (m/s²)</label><input id="gravityY" type="range" min="-20" max="5" step="0.1"><output id="o-gravityY"></output>
+        <label for="windZ">wind (m/s²)</label><input id="windZ" type="range" min="-4" max="4" step="0.05"><output id="o-windZ"></output>
+        <label for="weight">weight</label><input id="weight" type="range" min="0" max="1" step="0.01"><output id="o-weight"></output>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <label class="dim">spring model <select id="springModel"><option>FORCE</option><option>POSITION</option></select></label>
+        <label class="dim">time <select id="timeMode"><option>FIXED</option><option>VARIABLE</option></select></label>
+        <label class="dim">rate <select id="updateRate"><option>30</option><option selected>60</option><option>120</option><option>240</option></select></label>
+      </div>
+      <div class="row" style="margin-top:8px"><button id="enabled" class="on">Spring on</button><button id="reset">Reset</button><button id="kick">Kick</button></div>
+    </section>
+    <section>
+      <h2>What the solver reports</h2>
+      <div class="read">
+        <span>damping / elasticity</span><b id="r-de">—</b>
+        <span>behaves like</span><b id="r-eq">—</b>
+        <span>steps · dropped</span><b id="r-steps">—</b>
+        <span>particles</span><b id="r-n">—</b>
+        <span>touching a collider</span><b id="r-col">—</b>
+        <span>state hash</span><b id="r-hash">—</b>
+      </div>
+      <p style="margin-top:8px"><small>Switch the model to <b>POSITION</b> (the Unity asset's rule) and ask for ζ below 0.1: the "behaves like" line shows the floor that model cannot go under. FORCE reaches any ζ.</small></p>
+    </section>
+    <section>
+      <h2>Where this comes from</h2>
+      <p>Clean-room spring bones: the behaviour spec, solver and witnesses are in <a href="https://github.com/hagopjay/x3d.loom/tree/main/x3d.springbone">x3d.loom/x3d.springbone</a> (14 witness rows against closed-form damped-spring answers, each with a planted control that must fail). The same solver ships for Blender (x3d-blender-io, bake to keys) and Unity (x3d.unity_io). Rigs, figure and geometry here are our own, CC0. Renderer: <a href="https://create3000.github.io/x_ite/">X_ITE</a> 16.8.1 (MIT, vendored with its licence). <a href="NOTICE.md">Credit and takedown</a>.</p>
+    </section>
+  </aside>
+</main>
+<script>
+const RIG_DEFAULTS = {};
+const FIELDS = ['frequency', 'dampingRatio', 'stiffness', 'inert', 'stretch', 'angleLimit', 'weight'];
+let rig = 'Ponytail', scene = null;
+const $ = (id) => document.getElementById(id);
+const canvas = $('x3d');
+const fmt = (x, d = 3) => (Math.abs(x) < 1e-9 ? '0' : (+x).toFixed(d));
+function node(name) { try { return scene.getNamedNode(name); } catch (e) { return null; } }
+function loadRig(name) {
+  rig = name;
+  document.querySelectorAll('#rigs button').forEach((b) => b.classList.toggle('on', b.dataset.rig === name));
+  const n = node(name); if (!n) return;
+  for (const f of FIELDS) { $(f).value = n[f]; $('o-' + f).textContent = fmt(n[f], f === 'angleLimit' ? 0 : 2); }
+  $('gravityY').value = n.gravity.y; $('o-gravityY').textContent = fmt(n.gravity.y, 1);
+  $('windZ').value = n.wind.z; $('o-windZ').textContent = fmt(n.wind.z, 2);
+  $('springModel').value = n.springModel; $('timeMode').value = n.timeMode; $('updateRate').value = String(Math.round(n.updateRate));
+  $('enabled').classList.toggle('on', n.enabled); $('enabled').textContent = n.enabled ? 'Spring on' : 'Spring off';
+}
+function bind() {
+  for (const f of FIELDS) $(f).addEventListener('input', (e) => { const n = node(rig); n[f] = +e.target.value; $('o-' + f).textContent = fmt(+e.target.value, f === 'angleLimit' ? 0 : 2); });
+  $('gravityY').addEventListener('input', (e) => { const n = node(rig), g = n.gravity; n.gravity = new X3D.SFVec3f(g.x, +e.target.value, g.z); $('o-gravityY').textContent = fmt(+e.target.value, 1); });
+  $('windZ').addEventListener('input', (e) => { const n = node(rig), w = n.wind; n.wind = new X3D.SFVec3f(w.x, w.y, +e.target.value); $('o-windZ').textContent = fmt(+e.target.value, 2); });
+  $('springModel').onchange = (e) => { node(rig).springModel = e.target.value; };
+  $('timeMode').onchange = (e) => { node(rig).timeMode = e.target.value; };
+  $('updateRate').onchange = (e) => { node(rig).updateRate = +e.target.value; };
+  $('enabled').onclick = () => { const n = node(rig); n.enabled = !n.enabled; loadRig(rig); };
+  $('reset').onclick = () => { node(rig).set_reset = true; };
+  $('kick').onclick = () => { const n = node(rig), w = n.wind; n.wind = new X3D.SFVec3f(w.x + 25, w.y, w.z); setTimeout(() => { n.wind = w; }, 120); };
+  document.querySelectorAll('#rigs button').forEach((b) => (b.onclick = () => loadRig(b.dataset.rig)));
+  document.querySelectorAll('[data-vp]').forEach((b) => (b.onclick = () => { const v = node(b.dataset.vp); if (v) v.set_bind = true; }));
+}
+// SPEC section 4: the exact per-step coefficients that the solver derives from (frequency, damping ratio)
+function coefficients(n) {
+  if (!(n.frequency > 0)) return { d: n.damping, e: n.elasticity, from: 'fields' };
+  const h = 1 / n.updateRate, w = 2 * Math.PI * n.frequency, z = n.dampingRatio;
+  let S, P = Math.exp(-2 * z * w * h);
+  if (z < 1) S = 2 * Math.exp(-z * w * h) * Math.cos(w * h * Math.sqrt(1 - z * z));
+  else { const r = Math.sqrt(z * z - 1); S = Math.exp((-z + r) * w * h) + Math.exp((-z - r) * w * h); }
+  if (n.springModel === 'FORCE') return { d: 1 - P, e: 1 + P - S, from: 'FORCE map' };
+  return { d: 1 - P / (S - P), e: 1 - (S - P), from: 'POSITION map' };
+}
+function readout() {
+  const n = node(rig);
+  if (n) {
+    const f = n.equivalentFrequency, z = n.equivalentDampingRatio;
+    const c = coefficients(n);
+    $('r-de').textContent = `${fmt(c.d, 4)} / ${fmt(c.e, 4)}` + (c.d < 0 || c.e < 0 ? ' (out of range: clamped)' : '');
+    $('r-eq').textContent = f > 0 ? `${fmt(f, 2)} Hz at ζ ${fmt(z, 3)}` : 'no oscillation (overdamped or off)';
+    $('r-steps').textContent = `${n.steps} · ${fmt(n.droppedTime, 3)} s`;
+    $('r-n').textContent = n.positions.length;
+    $('r-col').textContent = n.collided;
+    $('r-hash').textContent = n.stateHash;
+    $('h-steps').textContent = n.steps; $('h-col').textContent = n.collided; $('h-hash').textContent = n.stateHash;
+  }
+  requestAnimationFrame(readout);
+}
+(async function start() {
+  const B = canvas.browser;
+  for (let i = 0; i < 300 && !(B.currentScene && B.currentScene.getNamedNode && (() => { try { return B.currentScene.getNamedNode('Ponytail'); } catch (e) { return null; } })()); i++) await new Promise((r) => setTimeout(r, 100));
+  scene = B.currentScene;
+  bind(); loadRig('Ponytail'); readout();
+})();
+</script>
+</body>
+</html>
