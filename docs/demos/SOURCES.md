@@ -755,3 +755,10 @@ Written for this site on top of v5 (v1 to v5 untouched). v5's content on v4's fl
 | file | sha256 | bytes |
 |---|---|---|
 | assets/x3d-dance.jpg | 9bbadc3b1c9673ddbc02462621eeb6bd5b620dc60de3b52a10fdec5e3556f5fe | 45937 |
+
+## live-dis (v99)
+`live-dis` is `docs/demos/live-dis/v1/shot.png` (3000 x 2160, headless Chromium, SwiftShader, X_ITE 16.8.1) resized to fit 960 x 540 and centred on the page background colour. It shows the project's own scene and synthetic PDUs; no third-party data or imagery. Credits are in `docs/demos/live-dis/v1/README.md`.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/live-dis.jpg | 9d59fa6cc5be473487fa93ce3601c2b3925c82eab0eff677e1709a9d41678aa4 | 66136 |

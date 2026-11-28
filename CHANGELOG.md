@@ -2,6 +2,9 @@
 
 The demo doc is the page served at the site root. Every version is kept: `docs/versions/vN/index.html` is a frozen snapshot, and `docs/index.html` is a copy of the newest one. Demos are versioned the same way (`docs/demos/<name>/vN/`). Nothing is overwritten; a change makes a new version.
 
+## v99 (2026-11-28)
+- New card for Demo 85, Live DIS (`docs/demos/live-dis/v1/`, PR 199): the six X3D 4.0 DIS nodes driven by real IEEE 1278.1 PDU bytes through a small runtime over X_ITE 16.8.1, which parses all six but implements none. The card says every PDU is generated (nothing recorded, nothing beyond one machine), that the public page encodes and decodes its own PDUs in the tab, and that interoperation was shown only with opendis and open-dis on loopback. The lane's results (6 of 6 readers, 4 of 4 writers, 9 of 9 dead-reckoning algorithms, codec agreement with two Open-DIS libraries, 37 of 37 tests) are attributed to the lane and not re-run by me. I loaded the page headless in X_ITE: 3 canvases, 0 console errors, 0 HTTP errors. Image `assets/live-dis.jpg` is the lane's 3000 x 2160 screenshot fitted to 960 x 540 on the page background.
+
 ## v98 (2026-11-28)
 - New card for Demo 84, x3d.dance (`docs/demos/dance/v1/`, PR 197): two HAnim 2.0 humanoids, Ada and Rex, in an X3D 4.1 scene with synthesised grooves and thumbs-up or down rating, from the hagsMac session's `hagopjay/x3d.dance` at commit 0937b78. The card says the still shows the page at load, before a groove, and that nobody has measured the dancing or whether ratings improve it. Bodies are CC0 MakeHuman assets, the viewer is X_ITE 16.8.1 (MIT), with the credit and takedown route in the README. I loaded the page headless in X_ITE: 1 canvas, 0 console errors, 0 HTTP errors. The XSD and semantic validation (x3d_mcp ca0e75c) are the lane's own. Image `assets/x3d-dance.jpg` is the lane's screenshot centred on the page background.
 
