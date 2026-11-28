@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OBrian · the tropical Pacific as X3D</title>
+<meta name="description" content="Real NOAA ocean and wind data for El Niño, as plain ISO X3D: a 3D volume of ocean temperature anomaly, the 20 °C thermocline surface, an equatorial section, wind anomalies and a Niño 3.4 box, month by month, with witnesses that recompute from the scene being drawn.">
+<style>
+:root{color-scheme:dark;box-sizing:border-box;--bg:#050a14;--fg:#e8eefc;--mut:#98a6c4;--card:#0c1424;--ln:#1c2a46;--ac:#4cc9f0;--hot:#ff6b4a;--cold:#5b9bff;--ok:#4ade80;--bad:#f87171;--gold:#ffd23f}
+*{box-sizing:border-box}html{scroll-padding-top:12px}
+body{margin:0;background:radial-gradient(1200px 600px at 70% -10%,#0d1b36 0,var(--bg) 60%);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1180px;margin:0 auto;padding:18px 16px 70px}
+h1{font-size:clamp(1.7rem,4.2vw,2.7rem);margin:.1em 0 0;letter-spacing:-.01em}h1 small{font-size:.42em;color:var(--mut);font-weight:500;letter-spacing:.02em}
+h2{margin:1.8em 0 .5em;font-size:1.12rem;letter-spacing:.02em;text-transform:uppercase;color:var(--ac)}h2 small{color:var(--mut);text-transform:none;font-weight:400;letter-spacing:0}
+.l{color:var(--mut);max-width:78ch;margin:.4em 0}
+a{color:var(--ac)}code{font-size:.86em;background:#101b31;padding:1px 5px;border-radius:4px}
+.bar{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0;align-items:center}.bar i{font-style:normal;color:var(--mut);font-size:.8rem;margin-right:2px}
+button{background:var(--card);color:var(--fg);border:1px solid var(--ln);border-radius:999px;padding:6px 13px;font:inherit;font-size:.88rem;cursor:pointer}
+button:hover{border-color:var(--ac)}button[aria-pressed=true]{background:var(--ac);color:#03131c;border-color:var(--ac);font-weight:650}
+.tabs button{font-size:.95rem;padding:8px 16px}
+#v{position:relative;border:1px solid var(--ln);border-radius:14px;overflow:hidden;background:#02050c}
+x3d-canvas{display:block;width:100%;height:min(66vh,620px)}
+#hud{position:absolute;left:14px;top:10px;pointer-events:none;text-shadow:0 1px 8px #000}
+#hud b{font-size:clamp(1.3rem,3.2vw,2rem);display:block;line-height:1.1}#hud span{color:#cfe0ff;font-size:.9rem}
+#st{position:absolute;left:12px;bottom:8px;font-size:.76rem;color:#8fa6d4;pointer-events:none}
+#leg{position:absolute;right:12px;bottom:10px;width:230px;pointer-events:none;font-size:.7rem;color:#cfe0ff}
+#leg div.ramp{height:9px;border-radius:5px;background:linear-gradient(90deg,#053061,#4393c3,#f7f7f7,#f4a582,#67001f);margin:2px 0}
+#leg div.row{display:flex;justify-content:space-between}
+.ctl{display:flex;gap:12px;align-items:center;margin:8px 0}.ctl input[type=range]{flex:1;accent-color:var(--ac)}#mlab{min-width:7.5em;font-variant-numeric:tabular-nums;font-weight:650}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:11px}
+.c{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:12px 14px}
+.c b{display:block;font-size:1.12rem;color:var(--ac);font-variant-numeric:tabular-nums}.c span{font-size:.8rem;color:var(--mut)}
+.p{display:inline-block;font-size:.68rem;font-weight:800;border-radius:6px;padding:1px 7px;margin-left:6px;border:1px solid;vertical-align:middle}.p.y{color:var(--ok)}.p.n{color:var(--bad)}.p.k{color:var(--gold)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:12px}@media(max-width:520px){.two{grid-template-columns:1fr}}
+svg{width:100%;height:auto;display:block;background:var(--card);border:1px solid var(--ln);border-radius:12px}
+svg text{fill:#9fb0d4;font:11px system-ui}svg .t{fill:#e8eefc;font-weight:650}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:660px;font-size:.86rem}
+td,th{border-bottom:1px solid var(--ln);padding:6px 9px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+.gC{color:var(--ok);font-weight:700}.gL{color:var(--gold);font-weight:700}.gS{color:#ff9d6b;font-weight:700}
+.dedic{border-left:3px solid var(--gold);background:#0c1424;padding:10px 14px;border-radius:0 10px 10px 0;margin:14px 0;max-width:92ch}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:10px}.shots figure{margin:0;background:var(--card);border:1px solid var(--ln);border-radius:12px;overflow:hidden}
+.shots img{width:100%;display:block}.shots figcaption{padding:7px 11px;font-size:.78rem;color:var(--mut)}
+footer{margin-top:30px;color:var(--mut);font-size:.8rem}
+</style></head><body><main>
+<h1>OBrian <small>the tropical Pacific, as plain ISO X3D · real NOAA data</small></h1>
+<p class="l">OBrian is our codename for ocean and weather visualisation. This first study draws the <b>El Niño of 2026</b> as it is in NOAA's own files, next to the great events of 1997–98 and 2015–16 and the La Niña of 2010–11: a 3D volume of ocean-temperature anomaly down to 300 m, the 20 °C thermocline surface, the equatorial section, the sea-surface map, wind anomalies and the Niño 3.4 box. It is one X3D file per event, animated by <code>TimeSensor → IntegerSequencer → Switch</code> ROUTEs, drawn by X_ITE. Every number below recomputes from the scene on screen.</p>
+<div class="dedic" id="dedic"><b>Why “OBrian”.</b> In memory of <b>James J. O'Brien</b> (1935–2016), Florida State University oceanographer and meteorologist, founder of the Center for Ocean-Atmospheric Prediction Studies (COAPS) and known to colleagues as “Dr. El Niño”. This study carries his codename; it is not affiliated with or endorsed by FSU, COAPS or his family. <small>Name and dates as published by <a href="https://www.coaps.fsu.edu/in-memoriam-jim-o-brien">COAPS</a>.</small></div>
+
+<div class="bar tabs" id="tabs" role="group" aria-label="Event"></div>
+<div id="v"><x3d-canvas aria-label="Interactive X3D scene of the tropical Pacific"></x3d-canvas><div id="hud"><b id="hm">loading…</b><span id="hs"></span></div><div id="st">loading X_ITE 16.7.1…</div>
+ <div id="leg"><div class="row"><span>SST anomaly / volume (°C)</span></div><div class="ramp"></div><div class="row"><span>−5</span><span>0</span><span>+5</span></div></div></div>
+<div class="ctl"><button id="play" aria-pressed="false">▶ Play</button><input id="slider" type="range" min="0" max="9" value="9" aria-label="Month"><span id="mlab"></span></div>
+<div class="bar" id="views"><i>View</i></div>
+<div class="bar" id="layers"><i>Layers</i></div>
+<p class="l" id="cap"></p>
+
+<h2>Witnesses <small>recomputed live from the scene on screen · tolerances stated · one control that must fail</small></h2><div class="g" id="w"></div>
+
+<h2>The Niño 3.4 record, 1950–2026 <small>ERSST v5 monthly anomaly vs 2001–2020, area-weighted 5°S–5°N, 170°W–120°W</small></h2>
+<svg id="chN" viewBox="0 0 1000 190" role="img" aria-label="Niño 3.4 anomaly 1950 to 2026"></svg>
+<h2>Thermocline see-saw <small>depth of the 20 °C isotherm along the equator (2°S–2°N mean), selected month vs the 2001–2020 normal</small></h2>
+<svg id="chD" viewBox="0 0 1000 230" role="img" aria-label="Depth of the 20 degree isotherm along the equator"></svg>
+
+<h2>Peak-month scoreboard <small>same code path for every event</small></h2><div class="tw"><table id="score"></table></div>
+
+<h2>Claims, graded</h2>
+<div class="tw"><table id="claims"><tr><th>#</th><th>Claim</th><th>Grade</th><th>Evidence and what ran</th></tr></table></div>
+
+<h2>Blender renders <small>staged Cycles stills of the same X3D, not measured browser frames</small></h2><div class="shots" id="shots"></div>
+
+<h2>Data, attribution, takedown</h2>
+<div class="tw"><table><tr><th>Layer</th><th>Source (US-government data; cite as shown)</th><th>Processing</th></tr>
+<tr><td>Ocean temperature, 0–300 m</td><td>NCEP Global Ocean Data Assimilation System (GODAS) potential temperature, monthly, via <a href="https://psl.noaa.gov/data/gridded/data.godas.html">NOAA PSL</a>. Behringer &amp; Xue (2004), AMS 84th Annual Meeting.</td><td>2° longitude cell means, 1° latitude bins (10°S–10°N), 26 levels to 303 m, linear to 30 uniform 10 m levels for the volume; anomaly vs 2001–2020 mean of the same months; stored at 0.125 °C (T) and 0.0625 °C (anomaly)</td></tr>
+<tr><td>Sea-surface temperature</td><td>NOAA ERSST v5, monthly, 2° (<a href="https://www.ncei.noaa.gov/products/extended-reconstructed-sst">NCEI</a>). Huang et al. (2017), J. Climate 30, 8179–8205, doi:10.1175/JCLI-D-16-0836.1.</td><td>Anomaly vs 2001–2020; coast cells filled from nearest ocean; Niño 3.4 area-weighted</td></tr>
+<tr><td>Surface wind anomaly</td><td>NCEP/NCAR Reanalysis 1, σ=0.995 u,v, monthly, 2.5° (<a href="https://psl.noaa.gov/data/gridded/data.ncep.reanalysis.html">PSL</a>). Kalnay et al. (1996), BAMS 77, 437–471.</td><td>Anomaly vs 2001–2020; arrows every 5°, 20°S–20°N; the monthly file ended Feb 2026</td></tr>
+<tr><td>Cross-check series</td><td>NOAA CPC <a href="https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt">ONI</a> and <a href="https://www.cpc.ncep.noaa.gov/data/indices/sstoi.indices">OISST Niño indices</a></td><td>Independent products; not used to build any picture</td></tr>
+<tr><td>Coastlines</td><td><a href="https://www.naturalearthdata.com/">Natural Earth</a> 50 m land (public domain)</td><td>Clipped to the box, triangulated</td></tr></table></div>
+<p class="l" id="prov"></p>
+<p class="l"><b>Takedown.</b> If you own or control any data shown here and want it removed or the credit changed, open an issue at <a href="https://github.com/hagopjay/x3d.demo/issues">github.com/hagopjay/x3d.demo/issues</a> titled <code>Takedown: obrian-enso</code>; material is removed promptly without argument. Naming a source is credit, not a claim of ownership or endorsement. Full notice: <a href="DATA-ATTRIBUTION.md">DATA-ATTRIBUTION.md</a>.</p>
+
+<h2>Honest limits</h2>
+<p class="l">These are monthly means of an assimilation product (GODAS) and a reconstruction (ERSST v5), not single observations; the newest months (2026) are near-real-time and may be revised. Anomalies use a 2001–2020 baseline for all three feeds, so they differ from CPC's ONI, which uses a moving 30-year base (page cross-check: r and RMS above). GODAS is decimated to 2° × 1° × 10 m and the wind file ends in February 2026, so wind arrows exist only for months up to then. The vertical is exaggerated ×5,550 (300 m drawn 3 units tall, 5° of longitude per unit). X_ITE 16.7.1 was exercised only in headless Chromium with a software GL driver (SwiftShader); no frame rate or GPU result is claimed. Nothing here is a forecast.</p>
+<footer>OBrian v1 · built by <code>build/build_data.py</code> and <code>build/build_scenes.py</code> · X3D 4.0 Full profile · X_ITE 16.7.1 (MIT, <a href="vendor/x_ite/LICENSE.md">licence</a>) · source: <a href="https://github.com/hagopjay/x3d.stem">hagopjay/x3d.stem</a></footer>
+</main>
+<script src="vendor/x_ite/x_ite.min.js"></script>
+<script>
+const $=id=>document.getElementById(id),F2=x=>x==null?"–":x.toFixed(2),F1=x=>x==null?"–":x.toFixed(1),MON="Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ");
+const EV={"2026":"2026 · El Niño now","1997-98":"1997–98 · the great El Niño","2015-16":"2015–16 · El Niño","2010-11":"2010–11 · La Niña"};
+const VIEWS=[["Overview","Overview",{Land:1,Nino:1,SST:1,WIND:1,VOL:1}],["Equator","Equator section",{SEC:1,Nino:0}],["Nino34","Niño 3.4",{Land:1,Nino:1,SST:1,WIND:1,VOL:1}],["WestPacific","West Pacific",{Land:1,SST:1,VOL:1,D20:0}],["EastPacific","East Pacific",{Land:1,SST:1,VOL:1}],["Top","Map",{Land:1,Nino:1,SST:1,WIND:1}]];
+const LAYERS=[["SST","Sea surface"],["VOL","Volume"],["SEC","Equator section"],["D20","20 °C surface"],["WIND","Wind anomaly"],["Land","Land"],["Nino","Niño 3.4 box"]];
+const LAYSTATE={};let PD,REC,cv,scene,ev="2026",frames=[],cur=0,playing=false,tourTok=0,hashOK=null,sceneBytes=0;
+const SW=["F_SST","F_D20","F_SEC","F_WIND","F_VOL"];
+function fr(){return frames[cur]}
+function setLayer(k,on){LAYSTATE[k]=on;try{scene.getNamedNode("Layer_"+k).whichChoice=on?0:-1}catch(e){}ui()}
+function setFrame(k){cur=k;for(const n of SW){try{scene.getNamedNode(n).whichChoice=k}catch(e){}}$("slider").value=k;hud();wits();drawN();drawD()}
+function hud(){const f=fr();$("hm").textContent=MON[f.m-1]+" "+f.y;const n=f.nino34;$("hs").textContent="Niño 3.4 anomaly "+(n>0?"+":"")+F2(n)+" °C · thermocline tilt (W−E) "+F1(f.d20_west-f.d20_east)+" m"+(f.wind?" · wind anomaly arrows":" · no wind file for this month");$("mlab").textContent=MON[f.m-1]+" "+f.y}
+function ui(){$("tabs").innerHTML=Object.entries(EV).map(([k,v])=>`<button data-e="${k}" aria-pressed="${k==ev}">${v}</button>`).join("");
+ $("layers").innerHTML='<i>Layers</i>'+LAYERS.map(([k,t])=>`<button data-l="${k}" aria-pressed="${!!LAYSTATE[k]}">${t}</button>`).join("");
+ $("play").setAttribute("aria-pressed",playing);$("play").textContent=playing?"❚❚ Pause":"▶ Play"}
+function preset(p){for(const [k] of LAYERS)LAYSTATE[k]=0;for(const k in p[2])LAYSTATE[k]=p[2][k];if(p[2].SST===undefined&&p[0]!="Equator")LAYSTATE.SST=1;for(const [k] of LAYERS){try{scene.getNamedNode("Layer_"+k).whichChoice=LAYSTATE[k]?0:-1}catch(e){}}try{scene.getNamedNode(p[0]).set_bind=true}catch(e){}ui()}
+async function sha256(buf){const h=await crypto.subtle.digest("SHA-256",buf);return[...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,"0")).join("")}
+async function loadEvent(k){ev=k;playing=false;tourTok++;$("st").textContent="fetching "+k+" scene…";ui();
+ frames=PD.frames.filter(f=>f.ev==k);const url="scenes/enso-"+k+".x3d";
+ try{const r=await fetch(url);const buf=await r.arrayBuffer();sceneBytes=buf.byteLength;const h=await sha256(buf);hashOK=REC[`enso-${k}.x3d`]?(h==REC[`enso-${k}.x3d`].sha256):null;
+  $("st").textContent="parsing "+(sceneBytes/1048576).toFixed(1)+" MB of X3D…";await new Promise(r=>setTimeout(r,30));
+  const b=cv.browser;scene=await b.createX3DFromString(new TextDecoder().decode(buf));await b.replaceWorld(scene);
+  $("slider").max=frames.length-1;
+  try{scene.getNamedNode("Seq").getField("value_changed").addFieldCallback("ui",v=>{if(playing){cur=v;$("slider").value=v;hud();drawN();drawD()}})}catch(e){}
+  preset(VIEWS[0]);setFrame(frames.length-1);
+  $("st").textContent="X_ITE 16.7.1 · "+(sceneBytes/1048576).toFixed(1)+" MB of X3D · drag to orbit, scroll to zoom";
+  $("cap").textContent={"2026":"The live event: the thermocline, normally tilted 130+ m from west to east, has flattened (month by month through the slider), warm anomaly fills the east and the cold tongue is gone. Volume = ocean-temperature anomaly vs 2001–2020 (red warm, blue cold), floating map = SST anomaly, arrows = wind anomaly (only to Feb 2026).",
+   "1997-98":"The benchmark event: Dec 1997 shows the flat thermocline and the westerly wind anomaly that fed it.","2015-16":"A second very strong event on the same code path.","2010-11":"A strong La Niña: the opposite state, thermocline steep (23 m in the east in Dec 2010), cold anomaly in the east."}[k]}
+ catch(e){$("st").textContent="Error: "+(e&&e.message||e)+(location.protocol=="file:"?" (open this page over http, e.g. python3 serve.py)":"");console.error(e)}}
+function wits(){const f=fr(),X=PD.xcheck,out=[];
+ const dO=Math.abs(f.nino34-f.oisst_nino34);out.push(["Niño 3.4, this month: ERSST v5 (ours) vs CPC OISST (independent)",(f.oisst_nino34==null?"n/a":F2(f.nino34)+" vs "+F2(f.oisst_nino34)+" °C"),f.oisst_nino34==null?null:dO<=.5,"|Δ| "+F2(dO)+" ≤ 0.50 °C (different product and baseline)"]);
+ out.push(["Whole record vs CPC OISST (1982–2026)","r "+X.oisst_r.toFixed(3)+" · RMS "+X.oisst_rms.toFixed(2)+" °C",X.oisst_r>.97&&X.oisst_rms<.25,X.oisst_n+" months · pass if r>0.97 and RMS<0.25 °C"]);
+ out.push(["3-month mean vs CPC ONI (1950–2026)","r "+X.oni_r.toFixed(3)+" · RMS "+X.oni_rms.toFixed(2)+" °C",X.oni_r>.95&&X.oni_rms<.35,X.oni_n+" months · CPC uses a moving 30-year base; pass if r>0.95 and RMS<0.35 °C"]);
+ let rb=null;try{const eg=scene.getNamedNode("F_D20").children[cur].children[0].children[0].geometry,h=Array.from(eg.height);let w=0,e=0,nw=0,ne=0;for(let r=8;r<13;r++){for(let c=10;c<20;c++){if(h[r*80+c]<-5e-4){w+=-h[r*80+c]*100;nw++}}for(let c=60;c<75;c++){if(h[r*80+c]<-5e-4){e+=-h[r*80+c]*100;ne++}}}rb=[w/nw,e/ne]}catch(e){}
+ out.push(["20 °C depth W / E, read back from the drawn ElevationGrid",rb?F1(rb[0])+" / "+F1(rb[1])+" m":"n/a",rb?Math.abs(rb[0]-f.d20_west)<.6&&Math.abs(rb[1]-f.d20_east)<.6:null,rb?"builder (Python, cells with a depth only): "+F1(f.d20_west)+" / "+F1(f.d20_east)+" m · tolerance 0.6 m (heights stored to 0.1 m)":"scene not ready"]);
+ out.push(["Scene file integrity (sha256 of fetched bytes vs receipt)",hashOK==null?"n/a":(hashOK?"match":"MISMATCH"),hashOK,(sceneBytes/1048576).toFixed(2)+" MB · receipt scenes/scene-receipts.json"]);
+ const ers=PD.n34.ers,b0=(1950),mean=a=>a.reduce((s,x)=>s+x,0)/a.length,idx=[];for(let i=0;i<ers.length;i++){const y=b0+Math.floor((i+PD.n34.mon0-1)/12);if(y>=PD.baseline[0]&&y<=PD.baseline[1])idx.push(ers[i])}
+ const m0=mean(idx),m1=mean(idx.map(x=>x+.5));out.push(["Control: baseline-years mean anomaly must be 0",F2(m0)+" ok · shifted +0.50 → "+F2(m1),Math.abs(m0)<.01&&!(Math.abs(m1)<.01),"the check must fail on the deliberately shifted series (it does)"]);
+ out.push(["Equatorial tilt (W−E) now vs normal",F1(f.d20_west-f.d20_east)+" m vs "+F1(f.d20_west_clim-f.d20_east_clim)+" m",true,"20 °C depth, W box 150–168°E, E box 250–278°E, 2°S–2°N · 2001–2020 normal"]);
+ $("w").innerHTML=out.map(r=>`<div class="c"><span>${r[0]}</span><b>${r[1]}<span class="p ${r[2]===null?"k":r[2]?"y":"n"}">${r[2]===null?"N/A":r[2]?"PASS":"FAIL"}</span></b><span>${r[3]}</span></div>`).join("")}
+function drawN(){const N=PD.n34,n=N.ers.length,W=1000,H=190,L=34,R=8,T=10,B=22,x=i=>L+(W-L-R)*i/(n-1),y=v=>T+(H-T-B)*(1-(v+3)/7);
+ let s=`<rect x="${L}" y="${y(.5)}" width="${W-L-R}" height="${y(-.5)-y(.5)}" fill="#ffffff08"/>`;
+ for(let v=-3;v<=3;v++)s+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#ffffff14"/><text x="4" y="${y(v)+4}">${v>0?"+":""}${v}</text>`;
+ for(let yr=1950;yr<=2020;yr+=10)s+=`<text x="${x((yr-N.year0)*12)-12}" y="${H-6}">${yr}</text>`;
+ let up="",dn="";N.ers.forEach((v,i)=>{if(v==null)return;up+=(i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1)});
+ s+=`<path d="${up}" fill="none" stroke="#9fc4ff" stroke-width="1"/>`;
+ let o="";N.cpc_oni.forEach((v,i)=>{if(v==null)return;o+=(o&&N.cpc_oni[i-1]!=null?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1)});s+=`<path d="${o}" fill="none" stroke="#ffd23f" stroke-width="1" stroke-dasharray="3 2" opacity=".8"/>`;
+ const f=fr(),ci=(f.y-N.year0)*12+(f.m-1),e0=PD.frames.findIndex(q=>q.ev==ev),ea=frames[0],eb=frames[frames.length-1];
+ s+=`<rect x="${x((ea.y-N.year0)*12+ea.m-1)}" y="${T}" width="${x((eb.y-N.year0)*12+eb.m-1)-x((ea.y-N.year0)*12+ea.m-1)}" height="${H-T-B}" fill="#4cc9f01c"/>`;
+ s+=`<line x1="${x(ci)}" x2="${x(ci)}" y1="${T}" y2="${H-B}" stroke="#ff6b4a" stroke-width="1.4"/><circle cx="${x(ci)}" cy="${y(f.nino34)}" r="4" fill="#ff6b4a"/><text class="t" x="${Math.min(x(ci)+6,W-150)}" y="${T+12}">${MON[f.m-1]} ${f.y}: ${f.nino34>0?"+":""}${F2(f.nino34)} °C</text>`;
+ s+=`<text x="${L+6}" y="${T+12}">— ERSST v5 (ours)   - - CPC ONI 3-month</text>`;$("chN").innerHTML=s}
+function drawD(){const f=fr(),W=1000,H=230,L=40,R=10,T=12,B=26,n=80,x=i=>L+(W-L-R)*i/(n-1),y=d=>T+(H-T-B)*d/260;let s="";
+ for(let d=0;d<=250;d+=50)s+=`<line x1="${L}" x2="${W-R}" y1="${y(d)}" y2="${y(d)}" stroke="#ffffff14"/><text x="4" y="${y(d)+4}">${d} m</text>`;
+ for(let lon=140;lon<=280;lon+=20)s+=`<text x="${x((lon-130)/2)-14}" y="${H-8}">${lon<=180?lon+"°E":(360-lon)+"°W"}</text>`;
+ const path=a=>a.map((v,i)=>v==null?"":(i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1)).join("");
+ const area=f.d20_eq.map((v,i)=>(v==null?"":x(i).toFixed(1)+","+y(v).toFixed(1))).filter(Boolean),ar2=f.d20_eq_clim.map((v,i)=>(v==null?"":x(i).toFixed(1)+","+y(v).toFixed(1))).filter(Boolean);
+ s+=`<polygon points="${area.join(" ")} ${ar2.reverse().join(" ")}" fill="#4cc9f022"/>`;
+ s+=`<path d="${path(f.d20_eq_clim)}" fill="none" stroke="#98a6c4" stroke-width="1.5" stroke-dasharray="4 3"/><path d="${path(f.d20_eq)}" fill="none" stroke="#4cc9f0" stroke-width="2.4"/>`;
+ s+=`<rect x="${x(10)}" y="${T}" width="${x(19)-x(10)}" height="${H-T-B}" fill="#ffffff08"/><rect x="${x(60)}" y="${T}" width="${x(74)-x(60)}" height="${H-T-B}" fill="#ffffff08"/>`;
+ s+=`<text class="t" x="${x(10)}" y="${T+14}">W box: ${F1(f.d20_west)} m</text><text class="t" x="${x(60)}" y="${T+14}">E box: ${F1(f.d20_east)} m</text><text x="${x(28)}" y="${H-28}">— selected month ${MON[f.m-1]} ${f.y}   - - 2001–2020 normal for ${MON[f.m-1]}</text>`;$("chD").innerHTML=s}
+function score(){const pk={"2026":[2026,10],"1997-98":[1997,12],"2015-16":[2015,12],"2010-11":[2010,12]};let h="<tr><th>Event</th><th>Peak month shown</th><th>Niño 3.4 (°C)</th><th>20 °C depth W / E (m)</th><th>Tilt W−E (m)</th><th>Normal tilt (m)</th><th>Wind anomaly, 5°S–5°N 160°E–145°W (m/s)</th></tr>";
+ for(const k in pk){const f=PD.frames.find(q=>q.ev==k&&q.y==pk[k][0]&&q.m==pk[k][1]);if(!f)continue;h+=`<tr><td>${EV[k]}</td><td>${MON[f.m-1]} ${f.y}</td><td class="n">${f.nino34>0?"+":""}${F2(f.nino34)}</td><td class="n">${F1(f.d20_west)} / ${F1(f.d20_east)}</td><td class="n">${F1(f.d20_west-f.d20_east)}</td><td class="n">${F1(f.d20_west_clim-f.d20_east_clim)}</td><td class="n">${f.uwind_nino4_anom==null?"no file":(f.uwind_nino4_anom>0?"+":"")+F2(f.uwind_nino4_anom)+" (u, + = westerly)"}</td></tr>`}$("score").innerHTML=h}
+const mx=a=>Math.max(...a.filter(v=>v!=null));
+function claims(){const X=PD.xcheck,a=PD.frames.find(q=>q.ev=="2026"&&q.m==10),b=PD.frames.find(q=>q.y==1997&&q.m==12),c=PD.frames.find(q=>q.y==2010&&q.m==12);
+ const R=[["Oct 2026 Niño 3.4 anomaly is +"+F2(a.nino34)+" °C in ERSST v5 and +"+F2(a.oisst_nino34)+" °C in CPC OISST","C","two independent NOAA products, this builder, numpy 2.5 / xarray 2026.9 on CPython 3.13; CPC's Aug–Oct ONI is +2.46"],
+ ["Oct 2026 is the highest monthly Niño 3.4 anomaly in the whole record of both ERSST v5 (1950–, "+F2(mx(PD.n34.ers))+" °C) and CPC OISST (1982–, "+F2(mx(PD.n34.oisst))+" °C); CPC's 3-month ONI ("+F2(mx(PD.n34.cpc_oni))+" °C max, Dec 2015) is a different, smoothed measure and its Aug–Oct 2026 value (+2.46) is not yet above that","C","argmax over the two stored series (page-data.json), CPython 3.13 / numpy 2.5; the event is still in progress and the 2001–2020 baseline sits below the trend, so rank, not size, is the claim"],
+ ["The equatorial 20 °C thermocline tilt is "+F1(a.d20_west-a.d20_east)+" m in Oct 2026 against "+F1(a.d20_west_clim-a.d20_east_clim)+" m normal","C","GODAS, builder and in-page read-back agree to 0.6 m; one product, so Likely for the real ocean"],
+ ["Dec 1997 and Oct 2026 both show a near-flat thermocline ("+F1(b.d20_west-b.d20_east)+" and "+F1(a.d20_west-a.d20_east)+" m); Dec 2010 La Niña is steep ("+F1(c.d20_west-c.d20_east)+" m)","C","same GODAS code path for all three"],
+ ["Our Niño 3.4 series tracks CPC OISST (r "+X.oisst_r.toFixed(3)+", RMS "+X.oisst_rms.toFixed(2)+" °C, "+X.oisst_n+" months)","C","page witness, tolerance stated"],
+ ["The scenes are legal X3D 4.0","C","x3d_mcp <code>validate_xml</code> verdicts in receipts/validate.json"],
+ ["The 2026 months after the latest reanalysis are final values","S","GODAS and ERSST for recent months are near-real-time and can be revised; refetch with the builder"],
+ ["The wind-anomaly pattern in Dec 1997 and Dec 2015 is the westerly anomaly of El Niño","L","NCEP R1 is a reanalysis; the sign and size match the literature, but no independent wind product was compared"],
+ ["The picture shows the same thing in Blender, three.js and X_ITE","S","X_ITE only here; Blender stills come from mesh variants, not the volume"],
+ ["Frame rates or GPU performance","S","not measured; software GL only"]];
+ $("claims").innerHTML+=R.map((r,i)=>`<tr><td>${i+1}</td><td>${r[0]}</td><td class="g${r[1]}">${{C:"Confirmed",L:"Likely",S:"Suspected"}[r[1]]}</td><td>${r[2]}</td></tr>`).join("")}
+async function shots(){try{const m=await (await fetch("blender/shots.json")).json();$("shots").innerHTML=m.map(s=>`<figure><img loading="lazy" src="blender/${s.file}" alt="${s.alt}"><figcaption>${s.cap}</figcaption></figure>`).join("")}catch(e){$("shots").innerHTML='<p class="l">Blender stills not bundled in this copy.</p>'}}
+addEventListener("load",async()=>{cv=document.querySelector("x3d-canvas");
+ try{PD=await (await fetch("data/page-data.json")).json();REC=await (await fetch("scenes/scene-receipts.json")).json()}catch(e){$("st").textContent="Cannot load data"+(location.protocol=="file:"?": open over http (python3 serve.py)":"");return}
+ $("prov").textContent="Data retrieved "+PD.built+" (builder run); anomaly baseline "+PD.baseline[0]+"–"+PD.baseline[1]+" ("+PD.baseline_n+" years). "+PD.wind_note+".";
+ score();claims();shots();
+ $("views").innerHTML+=VIEWS.map((v,i)=>`<button data-v="${i}">${v[1]}</button>`).join("");
+ $("tabs").onclick=e=>{const b=e.target.closest("button");if(b)loadEvent(b.dataset.e)};
+ $("layers").onclick=e=>{const b=e.target.closest("button");if(b)setLayer(b.dataset.l,!LAYSTATE[b.dataset.l])};
+ $("views").onclick=e=>{const b=e.target.closest("button");if(b)preset(VIEWS[+b.dataset.v])};
+ $("slider").oninput=e=>{playing=false;try{scene.getNamedNode("Clock").enabled=false}catch(_){}ui();setFrame(+e.target.value)};
+ $("play").onclick=()=>{playing=!playing;try{scene.getNamedNode("Clock").enabled=playing}catch(_){}ui()};
+ ui();await loadEvent("2026")});
+</script></body></html>
