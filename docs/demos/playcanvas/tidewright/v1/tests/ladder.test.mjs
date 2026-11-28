@@ -12,7 +12,7 @@ test('tests/limits.json is byte-identical to the commit that added it (limits ar
   let first;
   try { first = execSync('git log --diff-filter=A --format=%H -- tests/limits.json', { cwd: new URL('..', import.meta.url), encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim().split('\n').pop(); } catch { first = ''; }
   if (!first) { t.skip('no git history here'); return; }
-  const then = execSync(`git show ${first}:tests/limits.json`, { cwd: new URL('..', import.meta.url), encoding: 'utf8' });
+  const then = execSync(`git show ${first}:./tests/limits.json`, { cwd: new URL('..', import.meta.url), encoding: 'utf8' });
   assert.equal(text, then);
 });
 

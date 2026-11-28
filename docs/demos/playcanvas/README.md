@@ -30,6 +30,7 @@ Grades: the gate rows are **Confirmed** on this machine. Frame rates, sound, pho
 - **The dev server** (`tools/serve.mjs`, all four) now listens on `127.0.0.1` only (it listened on every interface) and checks a directory boundary instead of a bare prefix: a path like `/../slab2/…` resolves into a sibling folder whose name starts with the game's, and passed the old check (read from the code); it is now refused (403, checked with three encodings).
 - **SLAB's server** announced itself as "HAUL"; it now says SLAB.
 - **HAUL's Test Hill card** showed "T", but the key that loads it is 0; the card now shows 0.
+- **TIDEWRIGHT's limits-history test** read the first `tests/limits.json` with `git show <rev>:tests/limits.json`, which git resolves from the repository root, so it threw once the game sits under `docs/demos/`; it now reads `<rev>:./tests/limits.json`, the same check from the game's folder.
 - **SLAB's licence**: its `package.json` says MIT, but the kit had no `LICENSE` file; the MIT text the other three games ship is added.
 
 ## Not included
