@@ -1,0 +1,139 @@
+{
+ "gates": {
+  "momentum": {
+   "pass": true,
+   "measured": {
+    "particles": 1264,
+    "steps": 1000,
+    "rel_linear": 5.741254785080734e-15,
+    "rel_angular": 2.709169366243113e-16,
+    "seconds": 0.31
+   },
+   "twins": {
+    "pic": {
+     "particles": 1264,
+     "steps": 1000,
+     "rel_linear": 3.653525772324104e-15,
+     "rel_angular": 0.15670002245971626,
+     "seconds": 0.27,
+     "caught": true
+    },
+    "flip": {
+     "particles": 1264,
+     "steps": 1000,
+     "rel_linear": 0,
+     "rel_angular": 0.00044239851398205764,
+     "seconds": 0.29,
+     "caught": true
+    }
+   },
+   "when": "2026-11-28T15:06:40.130Z"
+  },
+  "energy": {
+   "pass": true,
+   "measured": {
+    "disc": {
+     "e0": 9.365311999999982,
+     "max_rise_rel": 0.0000017577056754549669,
+     "e_end": 9.365301561266966
+    },
+    "column": {
+     "e0": 36.78750000000027,
+     "max_rise_rel": -0.0004594980587061707,
+     "e_end": 22.32090953684742
+    },
+    "max_rise_rel": 0.0000017577056754549669,
+    "seconds": 7.47
+   },
+   "twins": {
+    "flip": {
+     "disc": {
+      "e0": 9.365311999999982,
+      "max_rise_rel": 0.6453095897917764,
+      "e_end": 15.408837644991971
+     },
+     "column": {
+      "e0": 36.78750000000027,
+      "max_rise_rel": null,
+      "e_end": null
+     },
+     "max_rise_rel": null,
+     "seconds": 18.49,
+     "caught": true
+    }
+   },
+   "when": "2026-11-28T15:07:06.101Z"
+  },
+  "pwave": {
+   "pass": false,
+   "measured": {
+    "c_ref": 18.34498464263357,
+    "c_measured": 19.619750965994328,
+    "rel_err": 0.06948854677142724,
+    "zero_crossings": 7,
+    "seconds": 0.63
+   },
+   "twins": {
+    "stress2": {
+     "c_ref": 18.34498464263357,
+     "c_measured": 13.954720793340423,
+     "rel_err": 0.2393168451659652,
+     "zero_crossings": 5,
+     "seconds": 0.61,
+     "caught": true
+    }
+   },
+   "when": "2026-11-28T15:07:07.343Z"
+  },
+  "determinism": {
+   "pass": true,
+   "measured": {
+    "hash_a": "7b1e40f050af8e89",
+    "hash_b": "7b1e40f050af8e89",
+    "mismatch": 0,
+    "twin_hash": "c5bc21df59f99ba1",
+    "twin_differs": true,
+    "seconds": 6.94
+   },
+   "twins": {
+    "nudge": {
+     "caught": true
+    }
+   },
+   "when": "2026-11-28T15:07:14.288Z"
+  },
+  "resume_x3d": {
+   "pass": true,
+   "measured": {
+    "reference": "7b1e40f050af8e89",
+    "resumed": "7b1e40f050af8e89",
+    "mismatch": 0,
+    "snapshot_bytes": 328842,
+    "float32_twin_differs": true,
+    "no_affine_twin_differs": true,
+    "seconds": 9.3
+   },
+   "twins": {
+    "float32": {
+     "caught": true
+    },
+    "no_affine": {
+     "caught": true
+    }
+   },
+   "when": "2026-11-28T15:07:23.590Z"
+  }
+ },
+ "host": {
+  "node": "v22.23.5",
+  "platform": "linux x64"
+ },
+ "sources": {
+  "src/sim/mpm.js": "c0d2a7f059f459910e799b255733e82b819149ab65144204864b221b514d9aa3",
+  "src/sim/cases.js": "a2df14a997bade5ba53c0c10678df8bf83b134a6e9677ddb9ac5dfb987e3616f",
+  "src/sim/referee.js": "5c0d39978e70b1d74aa8448fa3c7373e64b77ada1a617827699a991db3c07739",
+  "src/x3d/snapshot.js": "bbb73bdfc3ef303a644308ad22efa2d20d0083a676ab4627f785ca3a7b4883fc",
+  "src/x3d/x3dxml.js": "6029bcf2817eee7baa0a6cddd7a5d435e4dc3313767982859aa40a57f918a69f",
+  "tests/limits.json": "6568c81cafc66a517e14446e7efb77ac6e396c476075778ced8c29dc58548adb"
+ }
+}

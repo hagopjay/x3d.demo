@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>TIDEWRIGHT · a kansei flood defence · PlayCanvas</title>
+<meta name="description" content="TIDEWRIGHT: read the storm forecast, move earth (cut balances fill), call it, and watch the flood. The water is the shallow-water equations on WebGL2; the valley is an X3D 4.0 file; PlayCanvas draws it.">
+<meta name="theme-color" content="#07080d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #07080d; --panel: rgba(9, 11, 22, .8); --line: rgba(236, 228, 214, .13); --line2: rgba(236, 228, 214, .28);
+  --washi: #efe8da; --mute: #8f96ad; --dim: #5d6480; --beni: #ff3d7f; --cyan: #33e1ff; --gold: #ffc84a; --good: #3ef0a0; --bad: #ff5b5b;
+  --cut: 14px;
+  --display: 'Dela Gothic One', 'Zen Kaku Gothic New', system-ui, sans-serif;
+  --ui: 'Zen Kaku Gothic New', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --num: 'Chakra Petch', ui-monospace, 'SF Mono', monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--ink); color: var(--washi); font-family: var(--ui); user-select: none; }
+#stage { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.panel { background: var(--panel); border: 1px solid var(--line); backdrop-filter: blur(6px); clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%); }
+#brand { position: fixed; top: 14px; left: 18px; display: flex; align-items: center; gap: 12px; z-index: 5; pointer-events: none; }
+.hanko { width: 36px; height: 36px; display: grid; place-items: center; background: var(--beni); color: var(--ink); font-family: var(--display); font-size: 20px;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 78% 100%, 0 100%); box-shadow: 0 0 24px rgba(255,61,127,.45); }
+.brand-txt b { display: block; font-family: var(--display); font-size: 16px; letter-spacing: .32em; line-height: 1; }
+.brand-txt i { display: block; font-style: normal; font-size: 10px; letter-spacing: .26em; color: var(--mute); text-transform: uppercase; margin-top: 4px; }
+#lvl { margin-left: 12px; padding-left: 12px; border-left: 1px solid var(--line2); font-family: var(--num); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+#lvl b { color: var(--beni); font-weight: 600; }
+/* HUD */
+#hud { position: fixed; inset: 0; pointer-events: none; z-index: 3; display: none; }
+body.plan #hud, body.storm #hud { display: block; }
+.h3 { font-family: var(--num); font-size: 10px; letter-spacing: .3em; color: var(--beni); text-transform: uppercase; margin: 0 0 6px; }
+#forecast { position: fixed; left: 50%; transform: translateX(-50%); top: 12px; width: min(520px, 44vw); height: 104px; }
+#gauge { position: fixed; right: 14px; top: 12px; width: 370px; height: 190px; pointer-events: auto; cursor: ns-resize; }
+#predict { position: fixed; right: 14px; top: 210px; width: 370px; padding: 10px 12px; font-family: var(--num); font-size: 12px; pointer-events: auto; }
+#tools { position: fixed; left: 14px; top: 70px; width: 236px; padding: 12px; font-family: var(--num); font-size: 12px; pointer-events: auto; }
+#ledger { position: fixed; left: 14px; bottom: 14px; width: 300px; padding: 10px 12px; font-family: var(--num); font-size: 12px; }
+#integrity { position: fixed; right: 14px; bottom: 14px; width: 370px; padding: 10px 12px; font-family: var(--num); font-size: 12px; }
+#bar { position: fixed; left: 50%; transform: translateX(-50%); bottom: 14px; display: flex; gap: 10px; align-items: stretch; pointer-events: auto; }
+#bar .panel { padding: 8px 12px; font-family: var(--num); }
+.big { font-size: 26px; font-weight: 700; line-height: 1; } .lab { font-size: 10px; letter-spacing: .2em; color: var(--mute); display: block; margin-top: 3px; }
+table.kv { width: 100%; border-collapse: collapse; } table.kv td { padding: 2px 0; border-bottom: 1px solid var(--line); } table.kv td:last-child { text-align: right; }
+table.kv td.k { color: var(--mute); letter-spacing: .1em; font-size: 11px; }
+.ok { color: var(--good); } .amber { color: var(--gold); } .no { color: var(--bad); }
+.row { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { font-family: var(--num); font-size: 11px; letter-spacing: .12em; padding: 6px 9px; cursor: pointer; pointer-events: auto; border: 0; color: var(--washi); background: var(--panel); box-shadow: inset 0 0 0 1px var(--line2); }
+.chip.sel { background: var(--cyan); color: var(--ink); box-shadow: none; }
+.chip.warn { background: var(--bad); color: var(--ink); box-shadow: none; }
+.chip[disabled] { opacity: .35; cursor: default; }
+kbd { font-family: var(--num); font-size: 10px; font-weight: 600; padding: 0 5px; border: 1px solid var(--line2); border-bottom-width: 2px; border-radius: 3px; color: var(--washi); }
+#toast { position: fixed; left: 50%; top: 128px; transform: translateX(-50%); font-family: var(--num); font-weight: 700; letter-spacing: .24em; font-size: 13px; padding: 8px 14px; opacity: 0; transition: opacity .25s; z-index: 6; }
+#toast.show { opacity: 1; }
+#badge { position: fixed; left: 50%; top: 124px; transform: translateX(-50%); font-family: var(--display); font-size: 22px; letter-spacing: .2em; color: var(--bad); text-shadow: 0 0 18px rgba(255,91,91,.6); display: none; z-index: 4; }
+body.bad #badge { display: block; }
+.btn { display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; cursor: pointer; border: 0; pointer-events: auto;
+  padding: 13px 20px; font-family: var(--num); font-weight: 700; font-size: 14px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ink); background: var(--beni); clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%); }
+.btn::after { content: '→'; }
+.btn.alt { background: transparent; color: var(--washi); box-shadow: inset 0 0 0 1px var(--line2); }
+.btn[disabled] { opacity: .4; cursor: default; }
+/* screens */
+.screen { position: fixed; inset: 0; display: none; padding: 80px 40px 30px; z-index: 4; overflow-y: auto; }
+.screen.show { display: block; }
+#shade { position: fixed; inset: 0; pointer-events: none; z-index: 3; background: linear-gradient(90deg, rgba(7,8,13,.94) 0%, rgba(7,8,13,.75) 36%, rgba(7,8,13,.06) 70%); display: none; }
+body.menu #shade, body.result #shade { display: block; }
+.col { width: min(560px, 100%); display: flex; flex-direction: column; gap: 14px; }
+.eyebrow { font-family: var(--num); font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: var(--beni); display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ''; width: 26px; height: 2px; background: var(--beni); }
+h1.logo { margin: 4px 0 0; font-family: var(--display); font-weight: 400; font-size: clamp(54px, 7.6vw, 108px); line-height: .86; }
+h1.logo em { font-style: normal; color: var(--beni); text-shadow: 0 0 40px rgba(255,61,127,.35); }
+.lede { font-size: 15px; line-height: 1.6; color: #cfc8ba; margin: 0; }
+.card { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: center; padding: 11px 14px; border: 0; text-align: left; color: var(--washi); box-shadow: inset 0 0 0 1px var(--beni); }
+.card .n { font-family: var(--display); font-size: 22px; color: var(--beni); } .card b { display: block; font-family: var(--display); font-weight: 400; font-size: 17px; }
+.card small { color: var(--mute); font-size: 12px; } .card .g { font-family: var(--num); font-weight: 700; color: var(--gold); font-size: 14px; }
+ol.steps { margin: 0; padding-left: 18px; color: #cfc8ba; font-size: 14px; line-height: 1.7; } ol.steps b { color: var(--washi); }
+#result .bigt { font-family: var(--display); font-size: clamp(40px, 6vw, 74px); line-height: .95; }
+#result table { font-family: var(--num); font-size: 14px; border-collapse: collapse; } #result td { padding: 6px 14px 6px 0; border-bottom: 1px solid var(--line); }
+#result td:first-child { color: var(--mute); letter-spacing: .14em; font-size: 12px; text-transform: uppercase; } #result td:last-child { text-align: right; color: var(--cyan); }
+#loading { position: fixed; inset: 0; display: grid; place-items: center; z-index: 9; background: var(--ink); font-family: var(--num); letter-spacing: .3em; color: var(--mute); text-align: center; }
+#help { position: fixed; left: 14px; bottom: 140px; font-size: 11px; color: var(--mute); font-family: var(--num); letter-spacing: .06em; line-height: 1.7; pointer-events: none; text-shadow: 0 1px 2px #000; }
+body.storm #tools, body.storm #help { opacity: .45; pointer-events: none; }
+</style>
+</head>
+<body class="menu">
+<canvas id="stage"></canvas>
+<div id="shade"></div>
+<div id="brand"><div class="hanko">潮</div><div class="brand-txt"><b>TIDEWRIGHT</b><i>a kansei flood defence</i></div><div id="lvl"></div></div>
+<div id="badge">BAD MATHS</div>
+
+<div id="hud">
+  <canvas id="forecast" class="panel"></canvas>
+  <canvas id="gauge" class="panel" title="click to set your predicted peak"></canvas>
+  <div id="predict" class="panel">
+    <div class="h3">your call</div>
+    <div class="row" style="align-items:center">
+      <button class="chip sel" data-call="hold">HOLD</button><button class="chip" data-call="breach">BREACH</button>
+      <span style="margin-left:auto;color:var(--mute)">peak <b id="pk" style="color:var(--beni)">—</b> m <kbd>↑</kbd><kbd>↓</kbd></span>
+    </div>
+  </div>
+  <div id="tools" class="panel">
+    <div class="h3">earthworks</div>
+    <div class="row" id="toolrow">
+      <button class="chip sel" data-tool="dig">1 DIG</button><button class="chip" data-tool="raise">2 RAISE</button><button class="chip" data-tool="sandbag">3 BAGS</button>
+    </div>
+    <table class="kv" style="margin-top:8px">
+      <tr><td class="k">brush</td><td><span id="radius">20</span> m <kbd>[</kbd><kbd>]</kbd></td></tr>
+      <tr><td class="k">cut</td><td id="cut">0 m³</td></tr>
+      <tr><td class="k">fill</td><td id="fill">0 m³</td></tr>
+      <tr><td class="k">in the barrow</td><td id="barrow">0 m³</td></tr>
+      <tr><td class="k">sandbags</td><td id="bags">0 / 0</td></tr>
+      <tr><td class="k">money</td><td id="money">$0</td></tr>
+    </table>
+    <div class="row" style="margin-top:9px"><button class="chip" id="b-reset">R RESET</button><button class="chip" id="b-bot">G BOT PLAN</button><button class="chip" id="b-naive">N NAIVE</button></div>
+    <div class="row" style="margin-top:9px"><button class="btn" id="b-run" style="width:100%">Run the storm</button></div>
+    <div id="balance" style="margin-top:6px;font-size:11px;color:var(--mute)"></div>
+  </div>
+  <div id="help">left-drag: use the tool · right-drag: orbit · wheel: zoom · shift-drag: pan<br><kbd>Enter</kbd> run · <kbd>Space</kbd> pause · <kbd>-</kbd><kbd>=</kbd> speed · <kbd>B</kbd> bad maths · <kbd>Esc</kbd> menu</div>
+  <div id="ledger" class="panel">
+    <div class="h3">water ledger · m³</div>
+    <table class="kv">
+      <tr><td class="k">in (river)</td><td id="l-in">0</td></tr>
+      <tr><td class="k">out (downstream)</td><td id="l-out">0</td></tr>
+      <tr><td class="k">stored in the valley</td><td id="l-st">0</td></tr>
+      <tr><td class="k">lost to numerics</td><td id="l-lost">0</td></tr>
+    </table>
+  </div>
+  <div id="bar">
+    <div class="panel"><span class="big" id="clock">0:00</span><span class="lab" id="rate">PLANNING</span></div>
+    <div class="panel"><div class="row" id="speeds"></div><span class="lab">SPEED · 1x = 30 s per s</span></div>
+    <div class="panel"><span class="big" id="fb">—</span><span class="lab">LEVEE FREEBOARD m</span></div>
+    <div class="panel"><span class="big" id="dry">—</span><span class="lab">HOUSES DRY</span></div>
+  </div>
+  <div id="integrity" class="panel">
+    <div class="h3">integrity · gpu against the coarse cpu reference</div>
+    <table class="kv">
+      <tr><td class="k">scheme</td><td id="i-scheme">—</td></tr>
+      <tr><td class="k">gauge stage, gpu − cpu</td><td id="i-stage">—</td></tr>
+      <tr><td class="k">stored volume, gpu − cpu</td><td id="i-vol">—</td></tr>
+      <tr><td class="k">ledger residual (gpu)</td><td id="i-ledger">—</td></tr>
+      <tr><td class="k">still tarn, max |u|</td><td id="i-tarn">—</td></tr>
+      <tr><td class="k">courant number</td><td id="i-cfl">—</td></tr>
+    </table>
+    <div id="i-gpu" style="margin-top:6px;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
+  </div>
+  <div id="toast" class="panel"></div>
+</div>
+
+<section id="menu" class="screen show">
+  <div class="col">
+    <div class="eyebrow">a kansei flood defence · playcanvas · webgl2 · x3d 4.0</div>
+    <h1 class="logo">TIDE<em>WRIGHT</em></h1>
+    <p class="lede">A storm is coming down the valley. You have until it arrives to move the earth: dig here, build there, but every cubic metre you raise has to come out of the ground somewhere else. Then you call it, hold or breach, and watch the water decide.</p>
+    <div class="card panel"><span class="n">1</span><span><b>Spring Melt</b><small>The snow goes off the fells at once. The river rises toward the town by noon.</small></span><span class="g">290 m³/s</span></div>
+    <ol class="steps">
+      <li><b>Read the forecast</b>: the hydrograph at the top is the river you will get.</li>
+      <li><b>Shape the land</b> within the earth budget: cut must balance fill.</li>
+      <li><b>Call it</b>: hold or breach, and where the town gauge will peak.</li>
+      <li><b>Watch</b> at 1x to 16x. The water is the shallow-water equations, solved on your GPU, checked live against the CPU.</li>
+    </ol>
+    <div class="row"><button class="btn" id="go">Begin</button></div>
+  </div>
+</section>
+
+<section id="result" class="screen">
+  <div class="col">
+    <div class="eyebrow" id="res-eyebrow">the storm has passed</div>
+    <div class="bigt" id="res-title">Held.</div>
+    <table id="res-table"></table>
+    <div class="row"><button class="btn" id="res-retry">Plan again</button><button class="btn alt" id="res-menu">Menu</button></div>
+  </div>
+</section>
+
+<div id="loading">LOADING · PLAYCANVAS · WEBGL2 · X3D</div>
+<script type="module" src="src/game/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>THERMAL GPU vs CPU gate</title></head>
+<body style="background:#07080d;color:#efe8da;font:13px monospace"><pre id="out">running</pre>
+<script type="module">
+import { fromX3D } from '../src/sim/level.js';
+import { airConfig } from '../src/sim/air.js';
+import { createLBM } from '../src/sim/lbm.js';
+import { createGPULBM } from '../src/gpu/lbm-gl.js';
+const q = new URLSearchParams(location.search), steps = Number(q.get('steps') || 400);
+const level = fromX3D(await (await fetch('../levels/ridge-day.x3d')).text());
+function compare(cpu, m, n, solid) {
+  let du = 0, dT = 0, nan = false;
+  for (let c = 0; c < n; c++) {
+    if (solid[c]) continue;
+    const a = Math.max(Math.abs(m.ux[c] - cpu.ux[c]), Math.abs(m.uy[c] - cpu.uy[c])), b = Math.abs(m.T[c] - cpu.T[c]);
+    if (!(a <= du)) du = a; if (!(b <= dT)) dT = b;
+    if (!Number.isFinite(m.ux[c] + m.uy[c] + m.T[c])) nan = true;
+  }
+  return { max_du: nan ? null : du, max_dT: nan ? null : dT, nan };
+}
+async function run(half) {
+  const A = airConfig(level);
+  const cpu = createLBM(A.cfg);
+  const gpu = createGPULBM(A.cfg, cpu, { halfFloat: half });
+  const t0 = performance.now();
+  for (let s = 0; s < steps; s++) gpu.step();
+  gpu.readWindow(0, 0, 1, 1);
+  const gpuMs = performance.now() - t0;
+  const t1 = performance.now();
+  cpu.steps(steps);
+  const cpuMs = performance.now() - t1;
+  const m = gpu.readMacro();
+  return { half, steps, renderer: gpu.renderer, gpu_ms_per_step: gpuMs / steps, cpu_ms_per_step: cpuMs / steps, ...compare(cpu, m, cpu.n, A.cfg.solid), cpu_max_u: cpu.maxU() };
+}
+const out = {};
+try { out.float32 = await run(false); } catch (e) { out.float32 = { error: String(e) }; }
+try { out.half = await run(true); } catch (e) { out.half = { error: String(e) }; }
+out.userAgent = navigator.userAgent;
+window.__gate = out;
+document.getElementById('out').textContent = JSON.stringify(out, null, 1);
+</script></body></html>

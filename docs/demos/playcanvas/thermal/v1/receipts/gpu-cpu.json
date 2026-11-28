@@ -1,0 +1,53 @@
+{
+ "gate": "gpu_vs_cpu",
+ "when": "2026-11-28T14:19:30.525Z",
+ "host": {
+  "browser": "chromium 158.0.8127.36",
+  "playwright": "1.63.0",
+  "launch_args": [
+   "--use-angle=swiftshader",
+   "--enable-unsafe-swiftshader",
+   "--ignore-gpu-blocklist"
+  ],
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.8127.36 Safari/537.36",
+  "node": "v22.23.5"
+ },
+ "limits": {
+  "max_du": 0.0001,
+  "max_dT": 0.001,
+  "steps": 400
+ },
+ "float32": {
+  "half": false,
+  "steps": 400,
+  "renderer": "ANGLE (Mesa, Vulkan 1.4.335 (llvmpipe (LLVM 20.1.2 256 bits) (0x00000000)), llvmpipe)",
+  "gpu_ms_per_step": 5.504750000000058,
+  "cpu_ms_per_step": 4.78625,
+  "max_du": 3.332218308435553e-7,
+  "max_dT": 0.000013549311054017465,
+  "nan": false,
+  "cpu_max_u": 0.10662856496399307
+ },
+ "half_float_twin": {
+  "half": true,
+  "steps": 400,
+  "renderer": "ANGLE (Mesa, Vulkan 1.4.335 (llvmpipe (LLVM 20.1.2 256 bits) (0x00000000)), llvmpipe)",
+  "gpu_ms_per_step": 6.065500000000174,
+  "cpu_ms_per_step": 5.395999999999767,
+  "max_du": 0.006354020821572458,
+  "max_dT": 0.09395146055130632,
+  "nan": false,
+  "cpu_max_u": 0.10662856496399307
+ },
+ "pass": true,
+ "twin_failed": true,
+ "sources": {
+  "src/sim/lbm.js": "ea72ab6e99f5d7d5912cfab31d384ddea899f515ce7311b0ab973c309739f6c2",
+  "src/gpu/lbm-gl.js": "9f08fa71ca7cf73f1f0274b065efab5777dc6440b0d84f8c9ef6acaabeb98508",
+  "src/sim/air.js": "7134a1ea8a36088607010d87ea7c5ff03ad1ab7c01e85923f722ce7d6f176846",
+  "src/sim/level.js": "6e2f749ecccf15afa33c1844d1bc7fb4fcc2834236089708dd1fd11ec5bd474d",
+  "levels/ridge-day.x3d": "f0539907705248782646b477fe2d700eb4aa8b5fd744185acb640555b83605dc",
+  "tools/gpu-gate.html": "570b1e9b53012b71d0370d0683c5a18852f14bd5e33acb6e80f4172cdf7338e0"
+ },
+ "errors": []
+}

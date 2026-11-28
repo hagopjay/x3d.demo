@@ -1,0 +1,90 @@
+{
+  "what": "TIDEWRIGHT physics gates. Committed before the first measured run of any gated configuration; never edited after (changes are listed in docs/PHYSICS.md under 'Changed after the first run'). Each gate names its reference, its metric, its rule and its limit, and the wrong twins that must fail it (a twin fails when its metric breaks the same limit, or is not finite). The scale of several limits was informed by exploration on coarser grids or variant configurations (docs/receipts/exploration.json, tools/explore.mjs); 'informed_by' says which.",
+  "solver": { "scheme": "first-order finite volumes, hydrostatic reconstruction (Audusse et al. 2004), HLL, semi-implicit Manning, dry threshold 1e-4 m, fixed dt = 0.4 dx / (uCap + sqrt(g hCap))", "g": 9.81 },
+  "gates": {
+    "ritter": {
+      "what": "dry dam break, h0 = 1 m, L = 1000 m, t = 40 s: h = (2 sqrt(g h0) - x/t)^2 / (9 g); front 2 sqrt(g h0) t",
+      "scale": 2, "order_scales": [2, 4],
+      "l1_rel": { "rule": "at most", "limit": 0.022 },
+      "front_rel": { "rule": "at most", "limit": 0.16, "note": "front = last cell with h > 1e-3 m, against the exact point where h = 1e-3 m; first-order fronts lag (exploration: 0.080, 0.133, 0.136 at scales 0.25, 0.5, 1)" },
+      "order": { "rule": "at least", "limit": 0.4, "note": "observed L1 order between scales 2 and 4" },
+      "twins": ["hllNoBranches"],
+      "informed_by": "exploration l1_rel 0.0559, 0.0388, 0.0258 at scales 0.25, 0.5, 1 (order 0.53, 0.59); twin hllNoBranches 0.0891 at 0.5"
+    },
+    "stoker": {
+      "what": "wet dam break, hl = 1 m, hr = 0.1 m, t = 40 s: rarefaction, middle state, shock (Rankine-Hugoniot)",
+      "scale": 2,
+      "l1_rel": { "rule": "at most", "limit": 0.02 },
+      "shock_rel": { "rule": "at most", "limit": 0.012, "note": "the shock position is read to a cell (dx = 1.25 m of a 124 m run, 0.010)" },
+      "twins": ["pressureTypo"],
+      "informed_by": "exploration l1_rel 0.0694, 0.0406, 0.0240 at scales 0.25, 0.5, 1; shock_rel 0.041, 0.0087, 0.0047; twin pressureTypo l1 0.121, shock 0.41 at 0.5"
+    },
+    "lake_at_rest": {
+      "what": "a lake (eta = 1 m) over a bumpy, sloping bed with dry islands, 2000 steps with Manning n = 0.03: |u| stays at round-off",
+      "scale": 1,
+      "umax_cpu": { "rule": "at most", "limit": 1e-10, "unit": "m/s" },
+      "twins": ["naive"],
+      "informed_by": "exploration 5.2e-15 m/s at scale 0.5; twin naive 0.97 m/s"
+    },
+    "thacker": {
+      "what": "planar surface in a paraboloid (a = 1, h0 = 0.1, eta = 0.5), one period: exact moving shoreline (a disc of radius a centred at eta (cos wt, sin wt))",
+      "scale": 2,
+      "l1_rel": { "rule": "at most", "limit": 0.16 },
+      "shoreline_rel": { "rule": "at most", "limit": 0.09, "note": "distance between the water's centroid and the exact disc centre, over a" },
+      "twins": ["pressureTypo", "hllNoBranches"],
+      "informed_by": "exploration l1_rel 0.647, 0.410, 0.229 at scales 0.25, 0.5, 1 (order 0.66, 0.84); shoreline_rel 0.389, 0.245, 0.136. The non-well-balanced scheme is MORE accurate here (0.102 / 0.040 at 0.5): it is not a twin of this gate, and the lake-at-rest gate is the one that catches it"
+    },
+    "volume": {
+      "what": "a closed basin, wet and dry, Manning n = 0.03, sloshing for one simulated hour (3600 s): the stored volume does not change",
+      "scale": 1,
+      "rel_cpu": { "rule": "at most", "limit": 1e-12, "note": "float64" },
+      "twins": ["zeroFilms"],
+      "informed_by": "exploration 1.2e-15 over 600 s at scale 0.5; twin zeroFilms 5.9e-5"
+    },
+    "manning": {
+      "what": "a 3 km channel, slope 1e-3, n = 0.03, fed 2 m^2/s: the middle third settles at the normal depth (q n / sqrt(S))^(3/5) = 1.469 m",
+      "scale": 1,
+      "rel": { "rule": "at most", "limit": 0.01 },
+      "twins": ["frictionH"],
+      "informed_by": "exploration 0.0030 at scale 0.5 (after the open-boundary bed fix in the same session, before this file); twin frictionH 0.040"
+    },
+    "culvert": {
+      "what": "two 400 m^2 tanks (2 m and 1 m) joined by a culvert (area 0.05 m^2, Cd 0.8, 5 x 5 cell pools): the level difference follows sqrt(D) = sqrt(D0) - Cd A sqrt(2g) (1/A1 + 1/A2) t / 2, sampled every 100 s to 1000 s",
+      "scale": 1,
+      "worst_rel": { "rule": "at most", "limit": 0.01 },
+      "twins": ["culvertNo2"],
+      "informed_by": "exploration on a variant (area 0.1 m^2, 500 s): 0.0035 with 5 x 5 pools (0.074 with single-cell ends); twin culvertNo2 0.52"
+    },
+    "determinism": {
+      "what": "Node: the same tape (the bot's plan on Spring Melt, 20 simulated minutes) gives the same FNV-1a hash of (h, hu, hv) after every step, twice",
+      "mismatches": { "rule": "at most", "limit": 0 },
+      "twins": ["tape with one brush stroke moved by one cell: at least one step hash differs, and the first differing step is reported"]
+    },
+    "gpu_agreement": {
+      "what": "headless Chromium (playwright), WebGL2 RGBA32F ping-pong passes against the CPU solver (float64) in the same page, same case, same dt and steps: ritter, stoker, thacker (scale 2), lake, volume (scale 1, 3600 s), manning (scale 1)",
+      "l1_rel_diff": { "rule": "at most", "limit": 1e-3, "note": "sum |h_gpu - h_cpu| / sum h_cpu at the end" },
+      "lake_umax_gpu": { "rule": "at most", "limit": 1e-5, "unit": "m/s" },
+      "volume_rel_gpu": { "rule": "at most", "limit": 1e-5, "note": "float32 state, summed in float64 from the read-back; the reduction pass is reported beside it" },
+      "twins": ["the GPU 'bad maths' shader (no hydrostatic reconstruction) on the lake: lake_umax_gpu and l1_rel_diff both fail"]
+    },
+    "level": {
+      "what": "Spring Melt (levels/spring-melt.x3d), Node CPU at the game's resolution, through the whole storm",
+      "tether": "the shipped X3D equals the generator's output and reads back to the same bed, materials, houses and metadata",
+      "earth_conserved_m3": { "rule": "at most", "limit": 1e-6, "note": "|sum(b - b0) dx^2 + barrow| after any plan: earth is moved, never created" },
+      "barrow_at_run_m3": { "rule": "at most", "limit": 1.0, "note": "cut balances fill when the storm starts" },
+      "ledger_rel_cpu": { "rule": "at most", "limit": 1e-9, "note": "|stored - (V0 + in - out)| / (V0 + in), float64" },
+      "bot_houses_flooded": { "rule": "at most", "limit": 0, "note": "tools/bot.mjs plan; and its money within the level's budget" },
+      "naive_houses_flooded": { "rule": "at least", "limit": 1, "note": "the naive plan (raise the levee's low spot with earth from right behind it) must fail" },
+      "nothing_houses_flooded": { "rule": "at least", "limit": 1, "note": "doing nothing must fail: the storm is a real threat" },
+      "gpu_same_houses": "the bot and naive plans on the GPU in headless Chromium flood the same houses as Node CPU",
+      "ledger_rel_gpu": { "rule": "at most", "limit": 1e-4, "note": "|lost to numerics| / (V0 + in) on the GPU run" }
+    }
+  },
+  "readout": {
+    "what": "thresholds for the in-game INTEGRITY panel (colours, not gates)",
+    "ledger_rel": { "green": 1e-4, "amber": 1e-3 },
+    "gauge_stage_vs_coarse_cpu_m": { "green": 0.25, "amber": 0.5 },
+    "tarn_umax_m_s": { "green": 1e-3, "amber": 1e-2 },
+    "courant": { "green": 0.5, "amber": 0.9 }
+  }
+}

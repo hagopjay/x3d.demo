@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>HAUL · a KANSEI hill climb · PlayCanvas</title>
+<meta name="description" content="HAUL: a heavy 6x6 truck, diesel or electric, hauling up five generated mountain climbs in rising rain. Its trucks and levels are X3D 4.0 files; its tyres, driveline and weather are a tinkerable 240 Hz simulation on Ammo (Bullet); PlayCanvas draws it.">
+<meta name="theme-color" content="#07080d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #07080d; --panel: rgba(9, 11, 22, .78); --line: rgba(236, 228, 214, .13); --line2: rgba(236, 228, 214, .28);
+  --washi: #efe8da; --mute: #8f96ad; --dim: #5d6480; --beni: #ff3d7f; --cyan: #33e1ff; --gold: #ffc84a; --good: #3ef0a0; --bad: #ff5b5b;
+  --cut: 14px;
+  --display: 'Dela Gothic One', 'Zen Kaku Gothic New', system-ui, sans-serif;
+  --ui: 'Zen Kaku Gothic New', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --num: 'Chakra Petch', ui-monospace, 'SF Mono', monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--ink); color: var(--washi); font-family: var(--ui); user-select: none; }
+#stage { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.panel { background: var(--panel); border: 1px solid var(--line); backdrop-filter: blur(6px); clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%); }
+#brand { position: fixed; top: 14px; left: 18px; display: flex; align-items: center; gap: 12px; z-index: 5; pointer-events: none; }
+.hanko { width: 36px; height: 36px; display: grid; place-items: center; background: var(--beni); color: var(--ink); font-family: var(--display); font-size: 20px;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 78% 100%, 0 100%); box-shadow: 0 0 24px rgba(255,61,127,.45); }
+.brand-txt b { display: block; font-family: var(--display); font-size: 16px; letter-spacing: .32em; line-height: 1; }
+.brand-txt i { display: block; font-style: normal; font-size: 10px; letter-spacing: .26em; color: var(--mute); text-transform: uppercase; margin-top: 4px; }
+#lvl { margin-left: 12px; padding-left: 12px; border-left: 1px solid var(--line2); font-family: var(--num); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+#lvl b { color: var(--beni); font-weight: 600; }
+/* HUD */
+#hud { position: fixed; inset: 0; pointer-events: none; z-index: 3; display: none; }
+body.playing #hud { display: block; }
+#tach { position: fixed; left: 16px; bottom: 16px; width: 250px; height: 200px; }
+#grip { position: fixed; right: 16px; bottom: 16px; width: 150px; height: 300px; }
+#climb { position: fixed; left: 50%; transform: translateX(-50%); top: 14px; width: min(560px, 56vw); height: 92px; }
+#lamps { position: fixed; left: 282px; bottom: 18px; display: flex; flex-direction: column; gap: 5px; font-family: var(--num); font-size: 11px; letter-spacing: .16em; }
+.lamp { padding: 4px 9px; color: var(--dim); border: 1px solid var(--line); background: var(--panel); }
+.lamp.on { color: var(--ink); background: var(--cyan); border-color: var(--cyan); }
+.lamp.warn { color: var(--ink); background: var(--gold); border-color: var(--gold); }
+#grade { position: fixed; left: 282px; bottom: 210px; font-family: var(--num); }
+#grade b { font-size: 34px; font-weight: 700; color: var(--gold); } #grade i { font-style: normal; color: var(--mute); font-size: 11px; letter-spacing: .2em; display: block; }
+#clock { position: fixed; right: 18px; top: 14px; text-align: right; font-family: var(--num); }
+#clock b { display: block; font-size: 26px; font-weight: 700; } #clock i { font-style: normal; color: var(--mute); font-size: 11px; letter-spacing: .18em; }
+#toast { position: fixed; left: 50%; top: 130px; transform: translateX(-50%); font-family: var(--num); font-weight: 700; letter-spacing: .24em; font-size: 14px; padding: 9px 16px; opacity: 0; transition: opacity .25s; }
+#toast.show { opacity: 1; }
+#flash { position: fixed; inset: 0; pointer-events: none; background: #dfe8ff; opacity: 0; z-index: 2; }
+/* screens */
+.screen { position: fixed; inset: 0; display: none; padding: 80px 40px 30px; z-index: 4; overflow-y: auto; }
+.screen.show { display: block; }
+#shade { position: fixed; inset: 0; pointer-events: none; z-index: 3; background: linear-gradient(90deg, rgba(7,8,13,.94) 0%, rgba(7,8,13,.75) 34%, rgba(7,8,13,.08) 66%); display: none; }
+body.menu #shade { display: block; }
+.col { width: min(520px, 100%); display: flex; flex-direction: column; gap: 14px; }
+.eyebrow { font-family: var(--num); font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: var(--beni); display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ''; width: 26px; height: 2px; background: var(--beni); }
+h1.logo { margin: 4px 0 0; font-family: var(--display); font-weight: 400; font-size: clamp(64px, 9vw, 124px); line-height: .86; }
+h1.logo em { font-style: normal; color: var(--beni); text-shadow: 0 0 40px rgba(255,61,127,.35); }
+.lede { font-size: 15px; line-height: 1.6; color: #cfc8ba; margin: 0; }
+.levels { display: grid; gap: 8px; }
+.card { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: center; padding: 11px 14px; cursor: pointer; pointer-events: auto; border: 0; text-align: left; }
+.card .n { font-family: var(--display); font-size: 22px; color: var(--mute); }
+.card b { display: block; font-family: var(--display); font-weight: 400; font-size: 17px; }
+.card small { color: var(--mute); font-size: 12px; }
+.card .g { font-family: var(--num); font-weight: 700; color: var(--gold); font-size: 15px; }
+.card.sel { box-shadow: inset 0 0 0 1px var(--beni); } .card.sel .n { color: var(--beni); }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { font-family: var(--num); font-size: 12px; letter-spacing: .14em; padding: 8px 12px; cursor: pointer; pointer-events: auto; border: 0; color: var(--washi); }
+.chip.sel { background: var(--cyan); color: var(--ink); }
+.btn { display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; cursor: pointer; border: 0; pointer-events: auto;
+  padding: 15px 22px; font-family: var(--num); font-weight: 700; font-size: 15px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ink); background: var(--beni); clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%); }
+.btn::after { content: '→'; }
+.btn.alt { background: transparent; color: var(--washi); box-shadow: inset 0 0 0 1px var(--line2); }
+kbd { font-family: var(--num); font-size: 11px; font-weight: 600; padding: 1px 6px; border: 1px solid var(--line2); border-bottom-width: 2px; border-radius: 3px; color: var(--washi); }
+#tune { position: fixed; right: 16px; top: 120px; width: 330px; padding: 14px 16px; z-index: 4; display: none; font-size: 13px; }
+body.tuning #tune { display: block; }
+#tune h3 { margin: 0 0 8px; font-family: var(--display); font-weight: 400; font-size: 18px; }
+#tune table { width: 100%; border-collapse: collapse; font-family: var(--num); font-size: 12px; }
+#tune td { padding: 4px 2px; border-bottom: 1px solid var(--line); } #tune td:last-child { text-align: right; color: var(--cyan); }
+#tune p { color: var(--mute); font-size: 12px; line-height: 1.5; margin: 10px 0 0; }
+#result .big { font-family: var(--display); font-size: clamp(40px, 6vw, 74px); line-height: .95; }
+#result table { font-family: var(--num); font-size: 14px; border-collapse: collapse; } #result td { padding: 6px 14px 6px 0; border-bottom: 1px solid var(--line); }
+#result td:first-child { color: var(--mute); letter-spacing: .14em; font-size: 12px; text-transform: uppercase; }
+#loading { position: fixed; inset: 0; display: grid; place-items: center; z-index: 9; background: var(--ink); font-family: var(--num); letter-spacing: .3em; color: var(--mute); }
+</style>
+</head>
+<body class="menu">
+<canvas id="stage"></canvas>
+<div id="flash"></div>
+<div id="shade"></div>
+<div id="brand"><div class="hanko">運</div><div class="brand-txt"><b>HAUL</b><i>a kansei hill climb</i></div><div id="lvl"></div></div>
+
+<div id="hud">
+  <canvas id="climb" class="panel"></canvas>
+  <div id="clock" class="panel" style="padding:8px 12px"><b id="time">0:00.0</b><i id="dist">0 / 0 m</i></div>
+  <canvas id="tach" class="panel"></canvas>
+  <div id="grade"><b id="gradev">0%</b><i>GRADE</i></div>
+  <div id="lamps">
+    <div class="lamp" id="l-power">DIESEL</div><div class="lamp" id="l-drive">6x4</div><div class="lamp" id="l-lock">LOCK</div>
+    <div class="lamp" id="l-low">LOW</div><div class="lamp" id="l-psi">7.5 BAR</div><div class="lamp" id="l-extra">FUEL STOCK</div>
+  </div>
+  <canvas id="grip" class="panel"></canvas>
+  <div id="toast" class="panel"></div>
+</div>
+
+<div id="tune" class="panel">
+  <h3>Tinker</h3>
+  <table id="tune-rows"></table>
+  <p>The coloured bands on the climb show each pitch's traction margin: green easy, gold tight, red beyond the naive setup. The circles bottom right are your tyres: the dot on the rim means that tyre is at its limit.</p>
+</div>
+
+<section id="menu" class="screen show">
+  <div class="col">
+    <div class="eyebrow">a kansei hill climb · playcanvas · x3d 4.0</div>
+    <h1 class="logo">HA<em>UL</em></h1>
+    <p class="lede">A 6x6 heavy hauler, a trailer, five mountain roads, each hill steeper than the last, and rain that soaks the ground while you climb. Grip is everything: weight, lockers, low range, air pressure, and a light foot.</p>
+    <div class="levels" id="levels"></div>
+    <div class="row" id="powers">
+      <button class="chip panel sel" data-power="diesel">DIESEL · 450 kW · 2,780 N m</button>
+      <button class="chip panel" data-power="ev">EV · 700 kW · instant torque</button>
+    </div>
+    <div class="row"><button class="btn" id="go">Climb</button></div>
+    <p class="lede" style="font-size:13px;color:var(--mute)"><kbd>1</kbd>–<kbd>5</kbd> level · <kbd>0</kbd> test hill · <kbd>P</kbd> power · <kbd>Enter</kbd> climb. Driving: <kbd>W</kbd><kbd>S</kbd> throttle and brake (<kbd>Shift</kbd> a light foot), <kbd>A</kbd><kbd>D</kbd> steer, <kbd>Tab</kbd> tinker.</p>
+  </div>
+</section>
+
+<section id="result" class="screen">
+  <div class="col">
+    <div class="eyebrow" id="res-eyebrow">summit</div>
+    <div class="big" id="res-title">On top.</div>
+    <table id="res-table"></table>
+    <div class="row"><button class="btn" id="res-next">Next climb</button><button class="btn alt" id="res-retry">Retry</button><button class="btn alt" id="res-menu">Menu</button></div>
+  </div>
+</section>
+
+<div id="loading">LOADING · AMMO · PLAYCANVAS · X3D</div>
+<script src="vendor/ammo/ammo.wasm.js"></script>
+<!-- the game runs its own Ammo world; PlayCanvas would build one too from a global Ammo, so the factory is kept aside -->
+<script>window.HaulAmmo = window.Ammo; window.Ammo = undefined;</script>
+<script type="module" src="src/game/main.js"></script>
+</body>
+</html>

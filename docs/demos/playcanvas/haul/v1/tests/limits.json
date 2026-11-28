@@ -1,0 +1,12 @@
+{
+  "what": "Physics gates for HAUL's truck simulation (tests/physics.test.mjs), committed before the measured runs. Each gate has an analytic referee; the simulation must land on it. 'wrong twins' are setups that must fail.",
+  "gates": {
+    "static_load": { "what": "at rest on flat ground the tyres carry the truck's weight", "rel_max": 0.01 },
+    "brake_hold": { "what": "all six wheels braked on a uniform slope: holds below theta_c = atan(mu cos), slides above", "hold_at": 0.85, "slide_at": 1.15, "hold_drift_max_m": 0.05, "slide_drift_min_m": 2.0, "seconds": 10, "cases": [["asphalt", 0.0], ["dirt", 0.8], ["mud", 0.6]] },
+    "traction_budget": { "what": "6x6 with lockers on a uniform grade: climbs when feasible.js gives margin >= +0.12, spins out (no progress) when <= -0.12", "margin": 0.12, "climb_min_m": 25, "spin_max_m": 3, "seconds": 25, "cases": [["asphalt", 0.0], ["gravel", 0.4], ["mud", 0.7]] },
+    "coast_down": { "what": "rolling on the flat in neutral from 10 m/s: deceleration from rolling resistance and drag (g rr + 0.5 rho CdA v^2 / m)", "rel_max": 0.2 },
+    "lockers_split_mu": { "what": "wrong twin: open diffs on a split dirt|mud grade spin out where lockers climb (Logging Cut's second pitch)", "grade": 0.12 },
+    "levels_ramp": { "what": "each level's steepest pitch is steeper than the last; the naive setup clears level 1 and fails levels 3, 4 and 5; the best diesel (high range, fuel map 1) and the best EV clear all five (tools/bot.mjs driver)" },
+    "determinism": { "what": "the same inputs give the same state digest after 20 s" }
+  }
+}

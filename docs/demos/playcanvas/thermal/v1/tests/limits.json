@@ -1,0 +1,102 @@
+{
+  "what": "THERMAL physics gates (air: lattice Boltzmann D2Q9 + D2Q5 with Boussinesq buoyancy; glider: pitch-plane rigid body with coordinated-turn heading). Written and committed before any measured run; never edited afterwards. Anything changed after the first run is listed in docs/PHYSICS.md under 'Changed after the first run'. Every gate has a referee and a wrong twin that must fail it. All lattice quantities are in lattice units (dx = dt = 1) unless a unit is named. A NaN anywhere counts as a failure.",
+  "hosts": { "node": "Node 22 (the version is recorded in each receipt)", "browser": "Playwright Chromium, ANGLE SwiftShader (the renderer string is recorded in the receipt)" },
+  "operator": {
+    "what": "the game's collision operator, used by every air gate unless the gate says otherwise",
+    "flow": "D2Q9 MRT (Lallemand & Luo 2000 moment basis), Guo forcing in moment space, s_e = s_eps = 1.2, s_nu = 1/tau, s_q = max(8(2 - s_nu)/(8 - s_nu), 0.4) (the Lambda = 3/16 rule, floored), Smagorinsky C = 0.17 on the deviatoric non-equilibrium stress",
+    "temperature": "D2Q5 BGK, w0 = 1/3, w1..4 = 1/6, kappa = (tau_T - 1/2)/3, turbulent kappa_t = nu_t / 0.7; Dirichlet walls by anti-bounce-back, adiabatic by bounce-back",
+    "coupling": "Boussinesq: force F = rho G (T - T_b(z)); T_b is the reference profile T0 + Gamma z for the atmosphere and a constant for Rayleigh-Benard",
+    "streaming": "one fused pull pass per lattice per step; halfway bounce-back (moving wall: + 6 w_i rho0 c_i.u_w), specular free-slip lid, x periodic"
+  },
+  "gates": {
+    "poiseuille": {
+      "what": "body-force channel, x periodic (nx = 4), ny = 32 fluid rows between halfway no-slip walls, Smagorinsky off. Referee: u(y) = F/(2 nu) (y + 1/2)(H - 1/2 - y), H = 32. Metric: relative L2 error of u over the rows after steps = 8 H^2 / nu.",
+      "cases_tau": [0.8, 0.6], "force": 1e-6, "rel_l2_max": 1e-3,
+      "twin": "specular (free-slip) walls in place of bounce-back: must exceed rel_l2_max"
+    },
+    "couette": {
+      "what": "top wall moving at U = 0.05, bottom wall still, ny = 32, tau = 0.8, Smagorinsky off. Referee: u(y) = U (y + 1/2)/H. Metric: relative L2 error after 8 H^2 / nu steps.",
+      "rel_l2_max": 1e-3,
+      "twin": "moving-wall term with factor 3 in place of 6 (the missing factor 2): must exceed rel_l2_max"
+    },
+    "rayleigh_benard_onset": {
+      "what": "H = 20 fluid rows between Dirichlet walls (T = +1/2 below, -1/2 above, no-slip), nx = 40 periodic (wavenumber a = pi), nu = 0.1, Pr = 0.71, Smagorinsky off, buoyancy about T_b = 0. Seed T += 1e-4 cos(2 pi x/nx) sin(pi (y + 1/2)/H). Growth rate sigma = half the slope of ln(kinetic energy) fitted over steps 10000..30000 of 30000. Referee: Ra_c = 1707.76 (rigid-rigid, Chandrasekhar 1961).",
+      "ra_below": 1500, "ra_above": 2000,
+      "below_sigma_max": 0.0, "above_sigma_min": 0.0,
+      "ra_c_rel_max": 0.05, "ra_c_estimate": "linear interpolation of sigma(Ra) between the two runs to sigma = 0",
+      "twin": "buoyancy sign flipped at Ra = 2000: must not convect (sigma > 0 fails)"
+    },
+    "stratified_rest": {
+      "what": "Ridge Day's own grid and terrain, wind 0, sun 0, the level's N, T initialised to the reference profile, ground at T_b of each link's midpoint. Metric: max |u| over fluid cells after 6000 steps.",
+      "steps": 6000, "max_u_max": 5e-5,
+      "twin": "buoyancy about a constant T0 (no hydrostatic reference) from uniform density: must exceed max_u_max"
+    },
+    "lee_wave": {
+      "what": "nx = 400, ny = 128, flat no-slip ground 2 rows thick with a Witch of Agnesi hill h = h0/(1 + ((x - 80)/a)^2) added, h0 = 3, a = 5; inflow U = 0.08 uniform held by a fringe sponge over x >= 340 and a top sponge over y >= 88; N = 2 pi U / 40 (so 2 pi U / N = 40 cells); tau = 0.5 + 3e-4; 12000 steps. Measure w along the rows 20 and 30 cells above the ground, x from 100 to 300: wavelength = mean spacing of the zero up-crossings (at least 3), amplitude = rms w.",
+      "steps": 12000, "lambda_ref_cells": 40, "lambda_rel_max": 0.15, "min_upcrossings": 3, "amp_min_over_U_h0_a": 0.02,
+      "twin": "temperature not advected (held at the reference profile): must fail the amplitude floor or the wavelength"
+    },
+    "lid_cavity_ghia": {
+      "what": "Re = 100 lid-driven cavity, 64 x 64 fluid cells, lid U = 0.1, nu = U 64 / 100, Smagorinsky off, 30000 steps. u/U along the vertical centreline (mean of the two central columns), interpolated linearly to Ghia's y; the two wall points are excluded.",
+      "source": "U. Ghia, K. N. Ghia, C. T. Shin, J. Comput. Phys. 48 (1982) 387-411, Table I, Re = 100 (transcribed from the widely reproduced table, not re-read from a scan in this session)",
+      "ghia_y": [1.0, 0.9766, 0.9688, 0.9609, 0.9531, 0.8516, 0.7344, 0.6172, 0.5, 0.4531, 0.2813, 0.1719, 0.1016, 0.0703, 0.0625, 0.0547, 0.0],
+      "ghia_u": [1.0, 0.84123, 0.78871, 0.73722, 0.68717, 0.23151, 0.00332, -0.13641, -0.20581, -0.21090, -0.15662, -0.10150, -0.06434, -0.04775, -0.04192, -0.03717, 0.0],
+      "max_abs_err_over_U": 0.02,
+      "twin": "moving lid with factor 3 in place of 6: must exceed the limit"
+    },
+    "collision_stability": {
+      "what": "Ridge Day's full game air (wind, full sun, sponges) at the game's tau = 0.5 + 3e-4 for 12000 steps. Pass: no NaN, max |u| <= u_max, checkerboard index <= cb_max. Checkerboard index = rms over all-fluid 2x2 blocks of (w00 - w10 - w01 + w11)/4, divided by rms w over fluid cells.",
+      "steps": 12000, "u_max": 0.35, "cb_max": 0.25,
+      "twin": "plain BGK (all rates 1/tau) with Smagorinsky off at the same tau: must fail (NaN, max |u| > u_max, or checkerboard index > cb_max)"
+    },
+    "gpu_vs_cpu": {
+      "what": "WebGL2 fragment-shader port (RGBA32F ping-pong, EXT_color_buffer_float) against the Float64 CPU reference, Ridge Day's full game air from the same initial state, 400 steps, in headless Chromium. Metric: max |du| (lattice) and max |dT| (K) over fluid cells. The in-game INTEGRITY readout applies the same limits to a 200-step window started from a shared state.",
+      "steps": 400, "max_du": 1e-4, "max_dT": 1e-3,
+      "twin": "the same GPU code on RGBA16F (half float) textures: must exceed a limit"
+    },
+    "polar_fit": {
+      "what": "CD = CD0 + k CL^2 fitted (least squares, exact glide angle, rho = 1.225) to the published three-point polar. Metric: max |sink_fit - sink_published| at the three points.",
+      "source": "XCSoar src/Polar/PolarStore.cpp (master, read 28 Nov 2026), entry 'ASW-28 (15m)', annotated 'from SeeYou': reference mass 310 kg, max ballast 200, (92.6 km/h, 0.571 m/s), (120.38, 0.875), (148.16, 1.394), wing area 10.5 m2",
+      "max_abs_sink_err_ms": 0.06,
+      "twin": "fit with the parasitic term only (k = 0): must exceed the limit"
+    },
+    "steady_glide": {
+      "what": "the simulated glider (two lifting surfaces, pitch dynamics, elevator trimmed by the speed hold) in still air at rho = 1.225, 310 kg, settled for 60 s at each speed in 80, 92.6, 100, 120.38, 140, 148.16, 170, 200 km/h; sink averaged over the next 20 s.",
+      "rel_err_vs_model_max": 0.01, "abs_err_vs_published_max_ms": 0.08,
+      "twin": "lift coefficient referred to the wing plus tailplane area (S + S_t) in the drag polar: must exceed rel_err_vs_model_max at some speed"
+    },
+    "ballast": {
+      "what": "the same steady-glide sweep at 310 kg and at 510 kg (200 kg water). Best L/D from a parabola through the three best points of a 1 km/h sweep.",
+      "ld_ratio_rel_max": 0.01, "speed_ratio_vs_sqrt_weight_rel_max": 0.01,
+      "twin": "ballast added to the inertial mass but not to the weight: must exceed a limit"
+    },
+    "energy_without_drag": {
+      "what": "drag, airbrake and camber moment off; lifts act perpendicular to each surface's local airflow; still air; 120 s of elevator doublets and banked turns from 150 km/h at RK4 dt = 1/120 s. Metric: max |E(t) - E(0)| / E(0), E = m g h + m v^2 / 2 + I q^2 / 2.",
+      "seconds": 120, "rel_drift_max": 1e-6,
+      "twins": ["forward Euler at the same dt", "lift perpendicular to the body axis instead of the local airflow"]
+    },
+    "te_vario": {
+      "what": "still air, 310 kg, from 160 km/h a pull-up held until 90 km/h. Both varios through the same 1 s first-order filter. TE = d/dt(h + v^2/2g) with v the airspeed.",
+      "te_max_ms": 0.10, "raw_must_show_climb_ms": 2.0,
+      "twin": "the uncompensated vario (dh/dt) shows a 'stick thermal' above te_max_ms (it must, and it must reach raw_must_show_climb_ms)"
+    },
+    "determinism": {
+      "what": "the glider and the CPU air stepped from one input tape twice in one Node process: an FNV-1a hash over the 32-bit words of the full state per step (air populations, glider state).",
+      "air_steps": 200, "glider_steps": 2400, "mismatches_max": 0,
+      "twin": "the same tape with one elevator sample changed by 1e-12: the hash lists must differ, and the first differing step is reported"
+    },
+    "level_tether": {
+      "what": "levels/ridge-day.x3d is byte-identical to the generator's output; the simulation's terrain is the ElevationGrid read back from those bytes; every row of the ElevationGrid is the same (the ridge is two-dimensional); the metadata the game reads (surfaces, albedo, wind, N, task) round-trips.",
+      "max_height_err_m": 0
+    },
+    "clouds": {
+      "what": "cloud cells are only where the simulated air is rising (w > 0.05 m/s), at or above the condensation level z_LCL = z_valley + 125 m per degree C of the surface temperature-dewpoint spread, and its estimated origin (z + theta'/Gamma for lifted stable air, the ground for heated air) is at or below z_LCL. Counted over the collision_stability run's final field.",
+      "violations_max": 0,
+      "twin": "clouds wherever z >= z_LCL: must have violations > 0"
+    },
+    "bots": {
+      "what": "Ridge Day in Node with the CPU air: the MacCready bot (speed-to-fly from the polar, the local lift and an MC setting that falls with height) finishes the task before sunset; the naive bot (190 km/h always, same steering) lands out before finishing.",
+      "mc_bot_must": "finish", "naive_bot_must": "land out"
+    }
+  }
+}
