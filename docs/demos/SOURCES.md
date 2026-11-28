@@ -748,3 +748,10 @@ Written for this site on top of v5 (v1 to v5 untouched). v5's content on v4's fl
 | file | sha256 | bytes |
 |---|---|---|
 | assets/wire-lab-v3.jpg | c9a55ea2a1d0147e8a0051d5aea236c31f94d3bed227ca8e7f65fa4959dd2097 | 124297 |
+
+## x3d-dance (v98)
+`x3d-dance` is `docs/demos/dance/v1/shot.png` (1280 x 800, headless Chromium, SwiftShader, X_ITE 16.8.1) resized to fit 960 x 540 and centred on the page background colour. It shows the lab at load; the dancer bodies are MakeHuman assets (CC0, MakeHuman team / Data Collection AB); no music or motion capture appears. Credit and takedown: `docs/demos/dance/v1/README.md`.
+
+| file | sha256 | bytes |
+|---|---|---|
+| assets/x3d-dance.jpg | 9bbadc3b1c9673ddbc02462621eeb6bd5b620dc60de3b52a10fdec5e3556f5fe | 45937 |
