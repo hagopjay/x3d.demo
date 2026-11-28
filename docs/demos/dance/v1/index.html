@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>x3d.dance · HAnim lab</title>
+<style>
+  :root { --bg:#0b0a10; --panel:#14121c; --line:#2a2638; --ink:#ece8f6; --dim:#9890ad; --ada:#e0607a; --rex:#2aa6b4; --hot:#f4c25b; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--ink); font: 13px/1.4 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { display:grid; grid-template-columns: minmax(0,1fr) 340px; grid-template-rows: minmax(0,1fr); height:100vh; }
+  #stage { position:relative; min-height:0; }
+  x3d-canvas { width:100%; height:100%; display:block; }
+  #hud { position:absolute; left:14px; top:12px; display:flex; gap:10px; pointer-events:none; }
+  .chip { background:#000a; border:1px solid var(--line); border-radius:8px; padding:6px 10px; }
+  .chip b { font-variant-numeric: tabular-nums; }
+  #beat { width:12px; height:12px; border-radius:50%; background:var(--hot); opacity:.15; display:inline-block; vertical-align:middle; margin-right:6px; }
+  aside { background:var(--panel); border-left:1px solid var(--line); overflow:auto; padding:14px; display:flex; flex-direction:column; gap:14px; }
+  h1 { font-size:15px; margin:0; letter-spacing:.02em; } h1 span { color:var(--dim); font-weight:400; }
+  h2 { font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--dim); margin:0 0 6px; }
+  section { border-top:1px solid var(--line); padding-top:10px; }
+  button, select, input[type=text] { background:#1e1b29; color:var(--ink); border:1px solid var(--line); border-radius:7px; padding:6px 9px; font:inherit; }
+  button:hover { border-color:#4a4462; cursor:pointer; } button.on { border-color:var(--hot); color:var(--hot); }
+  .row { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+  #drop { border:1px dashed #4a4462; border-radius:8px; padding:12px; text-align:center; color:var(--dim); }
+  #drop.over { border-color:var(--hot); color:var(--hot); }
+  .meter { height:6px; background:#221f2e; border-radius:3px; overflow:hidden; } .meter i { display:block; height:100%; background:var(--hot); width:0; transition: width .15s; }
+  .kv { display:grid; grid-template-columns: 92px 1fr; gap:4px 8px; align-items:center; }
+  .dancer { border:1px solid var(--line); border-radius:9px; padding:9px; display:grid; gap:6px; }
+  .dancer.ada { border-left:3px solid var(--ada); } .dancer.rex { border-left:3px solid var(--rex); }
+  .dancer .name { font-weight:600; } .move { font-size:14px; } .why { color:var(--dim); }
+  .rate button { font-size:16px; padding:3px 12px; }
+  small, .dim { color:var(--dim); }
+  #log { font: 11px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace; color:var(--dim); max-height:140px; overflow:auto; white-space:pre-wrap; }
+  audio { width:100%; height:32px; }
+</style>
+</head>
+<body>
+<main>
+  <div id="stage">
+    <x3d-canvas id="x3d" src="stage-4.1.x3d" splashScreen="false" contextMenu="false" notifications="false"></x3d-canvas>
+    <div id="hud">
+      <div class="chip"><span id="beat"></span><b id="bpm">—</b> bpm</div>
+      <div class="chip">sync <b id="syncv">—</b></div>
+      <div class="chip" id="genre">—</div>
+    </div>
+  </div>
+  <aside>
+    <h1>x3d.dance <span>· HAnim 2.0 lab</span></h1>
+    <section>
+      <h2>Music</h2>
+      <div id="drop">Drop any audio file (mp3, wav, ogg, m4a…)<br><small>or</small> <label><input type="file" id="file" accept="audio/*" hidden><u>choose one</u></label></div>
+      <div class="row" style="margin-top:8px">
+        <span class="dim">Demo groove:</span>
+        <button data-demo="house">House 124</button><button data-demo="hiphop">Hip-hop 92</button><button data-demo="funk">Funk 108</button>
+      </div>
+      <div class="row" style="margin-top:6px">
+        <input type="text" id="url" placeholder="audio URL (CORS-enabled)" style="flex:1"><button id="urlgo">Play</button><button id="mic">Mic</button>
+      </div>
+      <audio id="player" controls crossorigin="anonymous"></audio>
+    </section>
+    <section>
+      <h2>Listening</h2>
+      <div class="kv">
+        <span>confidence</span><div class="meter"><i id="m-conf"></i></div>
+        <span>syncopation</span><div class="meter"><i id="m-sync"></i></div>
+        <span>energy</span><div class="meter"><i id="m-energy"></i></div>
+        <span>novelty</span><div class="meter"><i id="m-nov"></i></div>
+      </div>
+    </section>
+    <section>
+      <h2>Dancers <small>· rate the last 8 counts</small></h2>
+      <div class="dancer ada" id="d-ada">
+        <div class="row"><span class="name">Ada</span><span class="dim" id="ada-gen"></span></div>
+        <div class="move" id="ada-move">—</div><div class="why" id="ada-why"></div>
+        <div class="meter"><i id="ada-conf" style="background:var(--ada)"></i></div>
+        <div class="row rate"><button data-rate="ada:1" title="A">👍</button><button data-rate="ada:-1" title="Z">👎</button></div>
+      </div>
+      <div class="dancer rex" id="d-rex">
+        <div class="row"><span class="name">Rex</span><span class="dim" id="rex-gen"></span></div>
+        <div class="move" id="rex-move">—</div><div class="why" id="rex-why"></div>
+        <div class="meter"><i id="rex-conf" style="background:var(--rex)"></i></div>
+        <div class="row rate"><button data-rate="rex:1" title="K">👍</button><button data-rate="rex:-1" title="M">👎</button></div>
+      </div>
+      <div class="row" style="margin-top:6px"><button data-rate="both:1" title="B">👍 both — that was the vibe</button></div>
+      <small>Keys: A/Z Ada, K/M Rex, B both.</small>
+    </section>
+    <section>
+      <h2>Evolution</h2>
+      <div class="kv">
+        <span>stint</span><div class="row"><select id="stint"><option>4</option><option selected>8</option><option>16</option></select><small>bars per genome</small></div>
+        <span>generation</span><b id="gen">0</b>
+      </div>
+      <div class="row" style="margin-top:6px"><button id="breed">Next genome now</button><button id="rec" class="on">● Recording</button></div>
+    </section>
+    <section>
+      <h2>Export (X3D first)</h2>
+      <div class="row"><button id="exp-perf">Performance .x3d</button><button id="exp-lin">Lineage .json</button><button id="exp-ttl">Ontology .ttl</button></div>
+      <small>The performance is your session as HAnimMotion (19774-2) on both dancers, with genomes, ratings and a SHA-256 hash chain in WorldInfo metadata.</small>
+    </section>
+    <section>
+      <h2>Spec probes</h2>
+      <div class="row"><select id="pose"></select><button id="posego">Commence HAnimPose (4.1)</button></div>
+      <div id="log"></div>
+    </section>
+  </aside>
+</main>
+<script src="vendor/x_ite/x_ite.min.js"></script>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>

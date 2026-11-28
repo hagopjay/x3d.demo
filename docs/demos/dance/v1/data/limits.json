@@ -1,0 +1,45 @@
+{
+ "_committed": "2026-11-27 before the first training run (Loom law 28: limits from the explored worst case, then fixed)",
+ "_explored": "full vs robot vs sloppy on synthetic house/hiphop/funk 36 s and Dancing Queen 1:00-1:40 (local); see docs/MOVEMENT-PLAYBOOK.md \u00a73",
+ "groove_bounce_cm": 1.6,
+ "groove_knee_deg": 20,
+ "musicality_conc": 0.3,
+ "smooth_wrist_jerk_median": 250,
+ "involvement": 0.6,
+ "lockstep_stop_share": 0.02,
+ "balance_margin_m": 0.04,
+ "balance_share": 0.85,
+ "slide_mm_per_frame": 3,
+ "torso_radius_m": 0.09,
+ "hands_in_torso_share": 0.03,
+ "clamps_per_frame": 0.5,
+ "partner_R": 0.7,
+ "variety_entropy": 0.6,
+ "controls": {
+  "robot": {
+   "must_fail_one_of": [
+    "groove.knee_deg",
+    "contact.foot_slide_mm",
+    "overlap.lockstep_stops"
+   ],
+   "reason": "upright, sliding or lockstep (robotic)"
+  },
+  "sloppy": {
+   "must_fail_one_of": [
+    "musicality.bounce_on_beat",
+    "partner.phase_coherence"
+   ],
+   "reason": "off the beat / out of phase with the partner"
+  },
+  "rest": {
+   "must_pass": [
+    "balance.com_supported",
+    "contact.foot_slide_mm"
+   ],
+   "must_fail_one_of": [
+    "groove.knee_deg"
+   ],
+   "reason": "standing still is balanced but is not dancing"
+  }
+ }
+}

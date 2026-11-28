@@ -1,0 +1,698 @@
+@prefix dance: <https://x3d.dance/ontology#> .
+@prefix hanim: <https://x3d.dance/hanim#> .
+@prefix x3d:   <https://www.web3d.org/specifications/X3dOntology4.0#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+<https://x3d.dance/ontology> a owl:Ontology ;
+  rdfs:label "x3d.dance movement ontology" ;
+  rdfs:comment "Moves, Laban Effort qualities and HAnim joints. Builds on El Raheb & Ioannidis' Labanotation-based Dance Ontology (2011); links each move to the X3D HAnimMotion that performs it." .
+
+dance:Move a owl:Class .
+dance:MoveFamily a owl:Class .
+dance:Genre a owl:Class .
+dance:EffortFactor a owl:Class ; rdfs:comment "Laban Effort: Weight, Time, Space, Flow" .
+dance:BodyPart a owl:Class .
+dance:Dancer a owl:Class .
+dance:Genome a owl:Class ; rdfs:comment "Evolved style parameters and move-transition weights of one dancer" .
+dance:Rating a owl:Class ; rdfs:comment "A human-in-the-loop judgement of one phrase" .
+dance:Phrase a owl:Class ; rdfs:comment "An 8-count (or other) span of a performance" .
+hanim:Joint a owl:Class ; rdfs:seeAlso x3d:HAnimJoint .
+
+dance:family a owl:ObjectProperty ; rdfs:domain dance:Move ; rdfs:range dance:MoveFamily .
+dance:genre a owl:ObjectProperty ; rdfs:domain dance:Move ; rdfs:range dance:Genre .
+dance:drives a owl:ObjectProperty ; rdfs:domain dance:Move ; rdfs:range hanim:Joint .
+dance:canFollow a owl:ObjectProperty ; rdfs:domain dance:Move ; rdfs:range dance:Move .
+dance:mirrorOf a owl:ObjectProperty, owl:SymmetricProperty .
+dance:performedAs a owl:ObjectProperty ; rdfs:range x3d:HAnimMotion .
+dance:beats a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+dance:energy a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+dance:syncopation a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:comment "0 = on the beat, 1 = lives on the off-beats" .
+dance:accentAt a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:comment "beat offset of an accent inside the move" .
+dance:effortWeight a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:comment "-1 light .. +1 strong" .
+dance:effortTime a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:comment "-1 sustained .. +1 sudden" .
+dance:effortSpace a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:comment "-1 indirect .. +1 direct" .
+dance:effortFlow a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:comment "-1 free .. +1 bound" .
+dance:checkIn a owl:DatatypeProperty ; rdfs:range xsd:boolean ; rdfs:comment "a social move aimed at the partner" .
+
+
+dance:groove a dance:MoveFamily .
+
+dance:step a dance:MoveFamily .
+
+dance:footwork a dance:MoveFamily .
+
+dance:arms a dance:MoveFamily .
+
+dance:isolation a dance:MoveFamily .
+
+dance:travel a dance:MoveFamily .
+
+dance:turn a dance:MoveFamily .
+
+dance:hit a dance:MoveFamily .
+
+dance:social a dance:MoveFamily .
+
+dance:hiphop a dance:Genre .
+
+dance:house a dance:Genre .
+
+dance:funk a dance:Genre .
+
+dance:bounce a dance:Move ;
+  rdfs:label "Down bounce" ;
+  dance:family dance:groove ;
+  dance:genre dance:hiphop ;
+  dance:beats "1"^^xsd:decimal ;
+  dance:energy "0.35"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "0.4"^^xsd:decimal ;
+  dance:effortTime "0.2"^^xsd:decimal ;
+  dance:effortSpace "0.0"^^xsd:decimal ;
+  dance:effortFlow "-0.3"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0"^^xsd:decimal ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:skullbase ;
+  dance:drives hanim:vc4 ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_bounce> ;
+  rdfs:comment "Weight drops into the floor on the beat; the classic hip-hop pocket." .
+
+dance:rock a dance:Move ;
+  rdfs:label "Funk rock" ;
+  dance:family dance:groove ;
+  dance:genre dance:funk ;
+  dance:genre dance:hiphop ;
+  dance:beats "1"^^xsd:decimal ;
+  dance:energy "0.35"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "0.1"^^xsd:decimal ;
+  dance:effortTime "-0.2"^^xsd:decimal ;
+  dance:effortSpace "-0.3"^^xsd:decimal ;
+  dance:effortFlow "-0.6"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0"^^xsd:decimal ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:skullbase ;
+  dance:drives hanim:vc4 ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_rock> ;
+  rdfs:comment "Torso rocks back on the beat and forward on the 'and'." .
+
+dance:jack a dance:Move ;
+  rdfs:label "House jack" ;
+  dance:family dance:groove ;
+  dance:genre dance:house ;
+  dance:beats "1"^^xsd:decimal ;
+  dance:energy "0.5"^^xsd:decimal ;
+  dance:syncopation "0.4"^^xsd:decimal ;
+  dance:effortWeight "0.3"^^xsd:decimal ;
+  dance:effortTime "0.3"^^xsd:decimal ;
+  dance:effortSpace "0.2"^^xsd:decimal ;
+  dance:effortFlow "-0.4"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0.35"^^xsd:decimal ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:skullbase ;
+  dance:drives hanim:vc4 ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_jack> ;
+  rdfs:comment "Chest pumps in a wave through the body, slightly ahead of the upbeat." .
+
+dance:sway a dance:Move ;
+  rdfs:label "Two-sided sway" ;
+  dance:family dance:groove ;
+  dance:genre dance:funk ;
+  dance:genre dance:house ;
+  dance:genre dance:hiphop ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.2"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "-0.4"^^xsd:decimal ;
+  dance:effortTime "-0.6"^^xsd:decimal ;
+  dance:effortSpace "-0.5"^^xsd:decimal ;
+  dance:effortFlow "-0.7"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0"^^xsd:decimal ;
+  dance:accentAt "1"^^xsd:decimal ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:sacroiliac ;
+  dance:drives hanim:skullbase ;
+  dance:drives hanim:vc4 ;
+  dance:drives hanim:vl5 ;
+  dance:performedAs <motions.x3d#Motion_sway> ;
+  rdfs:comment "Low-energy weight shift; what a dancer does while finding the groove." .
+
+dance:two_step a dance:Move ;
+  rdfs:label "Two-step" ;
+  dance:family dance:step ;
+  dance:genre dance:hiphop ;
+  dance:genre dance:funk ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.45"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "0.2"^^xsd:decimal ;
+  dance:effortTime "0.1"^^xsd:decimal ;
+  dance:effortSpace "0.2"^^xsd:decimal ;
+  dance:effortFlow "-0.3"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0"^^xsd:decimal ;
+  dance:accentAt "1"^^xsd:decimal ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:sacroiliac ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_two_step> ;
+  rdfs:comment "Step out, close in, other side." .
+
+dance:step_touch a dance:Move ;
+  rdfs:label "Step touch with claps" ;
+  dance:family dance:step ;
+  dance:genre dance:funk ;
+  dance:genre dance:house ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.4"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "0.0"^^xsd:decimal ;
+  dance:effortTime "0.2"^^xsd:decimal ;
+  dance:effortSpace "0.3"^^xsd:decimal ;
+  dance:effortFlow "-0.2"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "1"^^xsd:decimal ;
+  dance:drives hanim:l_elbow ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_radiocarpal ;
+  dance:drives hanim:l_shoulder ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_elbow ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_radiocarpal ;
+  dance:drives hanim:r_shoulder ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:sacroiliac ;
+  dance:drives hanim:vl5 ;
+  dance:performedAs <motions.x3d#Motion_step_touch> ;
+  rdfs:comment "Clap lands on 2 and 4." .
+
+dance:kick_ball_change a dance:Move ;
+  rdfs:label "Kick ball change" ;
+  dance:family dance:footwork ;
+  dance:genre dance:funk ;
+  dance:genre dance:house ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.65"^^xsd:decimal ;
+  dance:syncopation "0.9"^^xsd:decimal ;
+  dance:effortWeight "0.3"^^xsd:decimal ;
+  dance:effortTime "0.8"^^xsd:decimal ;
+  dance:effortSpace "0.6"^^xsd:decimal ;
+  dance:effortFlow "0.2"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0.5"^^xsd:decimal ;
+  dance:accentAt "0.75"^^xsd:decimal ;
+  dance:accentAt "1"^^xsd:decimal ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:sacroiliac ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_kick_ball_change> ;
+  rdfs:comment "Kick on the 'and', ball on the 'a', change on the beat: built for syncopation." .
+
+dance:running_man a dance:Move ;
+  rdfs:label "Running man" ;
+  dance:family dance:footwork ;
+  dance:genre dance:hiphop ;
+  dance:genre dance:house ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.8"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "0.5"^^xsd:decimal ;
+  dance:effortTime "0.5"^^xsd:decimal ;
+  dance:effortSpace "0.4"^^xsd:decimal ;
+  dance:effortFlow "0.1"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0.5"^^xsd:decimal ;
+  dance:accentAt "1.5"^^xsd:decimal ;
+  dance:drives hanim:l_elbow ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_radiocarpal ;
+  dance:drives hanim:l_shoulder ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_elbow ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_shoulder ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:vl5 ;
+  dance:performedAs <motions.x3d#Motion_running_man> .
+
+dance:heel_toe a dance:Move ;
+  rdfs:label "Heel-toe swivel" ;
+  dance:family dance:footwork ;
+  dance:genre dance:house ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.6"^^xsd:decimal ;
+  dance:syncopation "0.5"^^xsd:decimal ;
+  dance:effortWeight "-0.2"^^xsd:decimal ;
+  dance:effortTime "0.6"^^xsd:decimal ;
+  dance:effortSpace "-0.2"^^xsd:decimal ;
+  dance:effortFlow "-0.5"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0.5"^^xsd:decimal ;
+  dance:accentAt "1.5"^^xsd:decimal ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:vl5 ;
+  dance:performedAs <motions.x3d#Motion_heel_toe> ;
+  rdfs:comment "Toes fan in and out; the body glides." .
+
+dance:skate a dance:Move ;
+  rdfs:label "House skate" ;
+  dance:family dance:travel ;
+  dance:genre dance:house ;
+  dance:beats "4"^^xsd:decimal ;
+  dance:energy "0.6"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "-0.3"^^xsd:decimal ;
+  dance:effortTime "-0.2"^^xsd:decimal ;
+  dance:effortSpace "-0.4"^^xsd:decimal ;
+  dance:effortFlow "-0.7"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0"^^xsd:decimal ;
+  dance:accentAt "1"^^xsd:decimal ;
+  dance:accentAt "2"^^xsd:decimal ;
+  dance:accentAt "3"^^xsd:decimal ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:sacroiliac ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_skate> .
+
+dance:cabbage_patch a dance:Move ;
+  rdfs:label "Cabbage patch" ;
+  dance:family dance:arms ;
+  dance:genre dance:hiphop ;
+  dance:genre dance:funk ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.5"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "0.1"^^xsd:decimal ;
+  dance:effortTime "-0.2"^^xsd:decimal ;
+  dance:effortSpace "-0.6"^^xsd:decimal ;
+  dance:effortFlow "-0.4"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0"^^xsd:decimal ;
+  dance:accentAt "1"^^xsd:decimal ;
+  dance:drives hanim:l_elbow ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_radiocarpal ;
+  dance:drives hanim:l_shoulder ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_elbow ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_radiocarpal ;
+  dance:drives hanim:r_shoulder ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_cabbage_patch> .
+
+dance:body_roll a dance:Move ;
+  rdfs:label "Body roll" ;
+  dance:family dance:isolation ;
+  dance:genre dance:hiphop ;
+  dance:genre dance:funk ;
+  dance:beats "4"^^xsd:decimal ;
+  dance:energy "0.45"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "0.2"^^xsd:decimal ;
+  dance:effortTime "-0.8"^^xsd:decimal ;
+  dance:effortSpace "-0.5"^^xsd:decimal ;
+  dance:effortFlow "-0.8"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0"^^xsd:decimal ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:skullbase ;
+  dance:drives hanim:vc4 ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_body_roll> ;
+  rdfs:comment "Sustained wave from head to hips." .
+
+dance:shoulder_shimmy a dance:Move ;
+  rdfs:label "Shoulder shimmy" ;
+  dance:family dance:isolation ;
+  dance:genre dance:funk ;
+  dance:beats "1"^^xsd:decimal ;
+  dance:energy "0.55"^^xsd:decimal ;
+  dance:syncopation "0.6"^^xsd:decimal ;
+  dance:effortWeight "-0.3"^^xsd:decimal ;
+  dance:effortTime "0.9"^^xsd:decimal ;
+  dance:effortSpace "-0.2"^^xsd:decimal ;
+  dance:effortFlow "0.0"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0"^^xsd:decimal ;
+  dance:accentAt "0.25"^^xsd:decimal ;
+  dance:accentAt "0.5"^^xsd:decimal ;
+  dance:accentAt "0.75"^^xsd:decimal ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_sternoclavicular ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_sternoclavicular ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_shoulder_shimmy> .
+
+dance:wop a dance:Move ;
+  rdfs:label "The wop" ;
+  dance:family dance:isolation ;
+  dance:genre dance:hiphop ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.6"^^xsd:decimal ;
+  dance:syncopation "0.5"^^xsd:decimal ;
+  dance:effortWeight "0.4"^^xsd:decimal ;
+  dance:effortTime "0.3"^^xsd:decimal ;
+  dance:effortSpace "-0.3"^^xsd:decimal ;
+  dance:effortFlow "-0.2"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0.5"^^xsd:decimal ;
+  dance:accentAt "1.5"^^xsd:decimal ;
+  dance:drives hanim:l_elbow ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_radiocarpal ;
+  dance:drives hanim:l_shoulder ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_elbow ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_radiocarpal ;
+  dance:drives hanim:r_shoulder ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:skullbase ;
+  dance:drives hanim:vc4 ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_wop> .
+
+dance:point a dance:Move ;
+  rdfs:label "Funk point" ;
+  dance:family dance:arms ;
+  dance:genre dance:funk ;
+  dance:beats "4"^^xsd:decimal ;
+  dance:energy "0.6"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "0.5"^^xsd:decimal ;
+  dance:effortTime "0.7"^^xsd:decimal ;
+  dance:effortSpace "0.9"^^xsd:decimal ;
+  dance:effortFlow "0.3"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "1"^^xsd:decimal ;
+  dance:accentAt "3"^^xsd:decimal ;
+  dance:drives hanim:l_elbow ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_radiocarpal ;
+  dance:drives hanim:l_shoulder ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_elbow ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_radiocarpal ;
+  dance:drives hanim:r_shoulder ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:sacroiliac ;
+  dance:drives hanim:skullbase ;
+  dance:drives hanim:vc4 ;
+  dance:drives hanim:vl5 ;
+  dance:performedAs <motions.x3d#Motion_point> ;
+  rdfs:comment "Point up on 2, down-across on 4." .
+
+dance:arm_wave a dance:Move ;
+  rdfs:label "Arm wave" ;
+  dance:family dance:arms ;
+  dance:genre dance:hiphop ;
+  dance:genre dance:house ;
+  dance:beats "4"^^xsd:decimal ;
+  dance:energy "0.4"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "-0.6"^^xsd:decimal ;
+  dance:effortTime "-0.7"^^xsd:decimal ;
+  dance:effortSpace "-0.6"^^xsd:decimal ;
+  dance:effortFlow "-0.9"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0"^^xsd:decimal ;
+  dance:drives hanim:l_elbow ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_radiocarpal ;
+  dance:drives hanim:l_shoulder ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_elbow ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_radiocarpal ;
+  dance:drives hanim:r_shoulder ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_arm_wave> ;
+  rdfs:comment "Popping wave, finger-tip to finger-tip." .
+
+dance:spin a dance:Move ;
+  rdfs:label "Spin" ;
+  dance:family dance:turn ;
+  dance:genre dance:house ;
+  dance:genre dance:funk ;
+  dance:genre dance:hiphop ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.75"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "-0.2"^^xsd:decimal ;
+  dance:effortTime "0.4"^^xsd:decimal ;
+  dance:effortSpace "-0.2"^^xsd:decimal ;
+  dance:effortFlow "-0.6"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "1.5"^^xsd:decimal ;
+  dance:drives hanim:l_elbow ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_radiocarpal ;
+  dance:drives hanim:l_shoulder ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_elbow ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_radiocarpal ;
+  dance:drives hanim:r_shoulder ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:vl5 ;
+  dance:performedAs <motions.x3d#Motion_spin> ;
+  rdfs:comment "Full turn, landing on the 'and' of 2." .
+
+dance:freeze a dance:Move ;
+  rdfs:label "Hit and freeze" ;
+  dance:family dance:hit ;
+  dance:genre dance:hiphop ;
+  dance:genre dance:funk ;
+  dance:genre dance:house ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.9"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "0.9"^^xsd:decimal ;
+  dance:effortTime "1.0"^^xsd:decimal ;
+  dance:effortSpace "0.9"^^xsd:decimal ;
+  dance:effortFlow "0.9"^^xsd:decimal ;
+  dance:checkIn "false"^^xsd:boolean ;
+  dance:accentAt "0.1"^^xsd:decimal ;
+  dance:drives hanim:l_elbow ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_shoulder ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_elbow ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_shoulder ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:sacroiliac ;
+  dance:drives hanim:skullbase ;
+  dance:drives hanim:vc4 ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_freeze> ;
+  rdfs:comment "Saved for drops and big accents." .
+
+dance:check_in a dance:Move ;
+  rdfs:label "Check-in" ;
+  dance:family dance:social ;
+  dance:genre dance:hiphop ;
+  dance:genre dance:house ;
+  dance:genre dance:funk ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.3"^^xsd:decimal ;
+  dance:syncopation "0.0"^^xsd:decimal ;
+  dance:effortWeight "-0.3"^^xsd:decimal ;
+  dance:effortTime "-0.3"^^xsd:decimal ;
+  dance:effortSpace "0.8"^^xsd:decimal ;
+  dance:effortFlow "-0.5"^^xsd:decimal ;
+  dance:checkIn "true"^^xsd:boolean ;
+  dance:accentAt "0.5"^^xsd:decimal ;
+  dance:accentAt "1.5"^^xsd:decimal ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:skullbase ;
+  dance:drives hanim:vc4 ;
+  dance:drives hanim:vl1 ;
+  dance:drives hanim:vl5 ;
+  dance:drives hanim:vt6 ;
+  dance:performedAs <motions.x3d#Motion_check_in> ;
+  rdfs:comment "Turn toward the partner and nod together; yaw is mirrored toward wherever they are." .
+
+dance:hand_clap_answer a dance:Move ;
+  rdfs:label "Call and answer clap" ;
+  dance:family dance:social ;
+  dance:genre dance:funk ;
+  dance:genre dance:hiphop ;
+  dance:genre dance:house ;
+  dance:beats "2"^^xsd:decimal ;
+  dance:energy "0.5"^^xsd:decimal ;
+  dance:syncopation "0.7"^^xsd:decimal ;
+  dance:effortWeight "0.4"^^xsd:decimal ;
+  dance:effortTime "0.9"^^xsd:decimal ;
+  dance:effortSpace "0.7"^^xsd:decimal ;
+  dance:effortFlow "0.2"^^xsd:decimal ;
+  dance:checkIn "true"^^xsd:boolean ;
+  dance:accentAt "0.75"^^xsd:decimal ;
+  dance:accentAt "1.5"^^xsd:decimal ;
+  dance:drives hanim:l_elbow ;
+  dance:drives hanim:l_hip ;
+  dance:drives hanim:l_knee ;
+  dance:drives hanim:l_radiocarpal ;
+  dance:drives hanim:l_shoulder ;
+  dance:drives hanim:l_talocrural ;
+  dance:drives hanim:r_elbow ;
+  dance:drives hanim:r_hip ;
+  dance:drives hanim:r_knee ;
+  dance:drives hanim:r_radiocarpal ;
+  dance:drives hanim:r_shoulder ;
+  dance:drives hanim:r_talocrural ;
+  dance:drives hanim:skullbase ;
+  dance:drives hanim:vc4 ;
+  dance:drives hanim:vl5 ;
+  dance:performedAs <motions.x3d#Motion_hand_clap_answer> ;
+  rdfs:comment "Answer the partner's phrase with syncopated claps." .
+
+hanim:l_elbow a hanim:Joint ; rdfs:label "l_elbow" .
+
+hanim:l_hip a hanim:Joint ; rdfs:label "l_hip" .
+
+hanim:l_knee a hanim:Joint ; rdfs:label "l_knee" .
+
+hanim:l_radiocarpal a hanim:Joint ; rdfs:label "l_radiocarpal" .
+
+hanim:l_shoulder a hanim:Joint ; rdfs:label "l_shoulder" .
+
+hanim:l_sternoclavicular a hanim:Joint ; rdfs:label "l_sternoclavicular" .
+
+hanim:l_talocrural a hanim:Joint ; rdfs:label "l_talocrural" .
+
+hanim:r_elbow a hanim:Joint ; rdfs:label "r_elbow" .
+
+hanim:r_hip a hanim:Joint ; rdfs:label "r_hip" .
+
+hanim:r_knee a hanim:Joint ; rdfs:label "r_knee" .
+
+hanim:r_radiocarpal a hanim:Joint ; rdfs:label "r_radiocarpal" .
+
+hanim:r_shoulder a hanim:Joint ; rdfs:label "r_shoulder" .
+
+hanim:r_sternoclavicular a hanim:Joint ; rdfs:label "r_sternoclavicular" .
+
+hanim:r_talocrural a hanim:Joint ; rdfs:label "r_talocrural" .
+
+hanim:sacroiliac a hanim:Joint ; rdfs:label "sacroiliac" .
+
+hanim:skullbase a hanim:Joint ; rdfs:label "skullbase" .
+
+hanim:vc4 a hanim:Joint ; rdfs:label "vc4" .
+
+hanim:vl1 a hanim:Joint ; rdfs:label "vl1" .
+
+hanim:vl5 a hanim:Joint ; rdfs:label "vl5" .
+
+hanim:vt6 a hanim:Joint ; rdfs:label "vt6" .
