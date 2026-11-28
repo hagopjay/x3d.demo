@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "https://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Immersive' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <head>
+    <meta name='title' content='Ship model'/>
+    <meta name='description' content='Drawn nose along +x, top along +y, and enlarged 12 times.'/>
+    <meta name='license' content='MIT'/>
+  </head>
+  <Scene>
+    <Transform scale='12 12 12'>
+<Transform translation='0 1 0'><Shape><Box size='30 3 6'/><Appearance><Material diffuseColor='0.5 0.53 0.58'/></Appearance></Shape></Transform>
+<Transform translation='-3 4.2 0'><Shape><Box size='8 3.5 4.4'/><Appearance><Material diffuseColor='0.86 0.86 0.84'/></Appearance></Shape></Transform>
+<Transform translation='-3 8 0'><Shape><Box size='1 5 1'/><Appearance><Material diffuseColor='0.3 0.3 0.32'/></Appearance></Shape></Transform>
+<Transform translation='16.5 1 0' rotation='0 0 1 -1.5708'><Shape><Cone bottomRadius='3' height='4'/><Appearance><Material diffuseColor='0.5 0.53 0.58'/></Appearance></Shape></Transform>
+    </Transform>
+  </Scene>
+</X3D>

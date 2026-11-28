@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "https://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Immersive' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <head>
+    <component name='DIS' level='2'/>
+    <meta name='title' content='Probe: what X_ITE does with the six DIS nodes on its own'/>
+  </head>
+  <Scene>
+    <Background skyColor='0 0 0'/>
+    <Viewpoint position='0 0 20'/>
+    <DISEntityManager DEF='MGR' address='239.1.2.3' port='3000' siteID='1' applicationID='1'>
+      <DISEntityTypeMapping DEF='MAP' kind='1' domain='2' url='"../../scene/models/unknown.x3d"'/>
+    </DISEntityManager>
+    <EspduTransform DEF='ESPDU' networkMode='networkReader' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='7' translation='6 0 0'>
+      <Shape><Box/><Appearance><Material diffuseColor='0 0 0' emissiveColor='1 0 0'/></Appearance></Shape>
+    </EspduTransform>
+    <TransmitterPdu DEF='TX' networkMode='networkReader' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='7' radioID='1'/>
+    <SignalPdu DEF='SIG' networkMode='networkReader' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='7' radioID='1'/>
+    <ReceiverPdu DEF='RX' networkMode='networkReader' address='239.1.2.3' port='3000' siteID='1' applicationID='1' entityID='7' radioID='1'/>
+  </Scene>
+</X3D>

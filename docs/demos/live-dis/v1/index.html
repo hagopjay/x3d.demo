@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live DIS · the six X3D DIS nodes on real PDU bytes</title>
+<meta name="description" content="Demo 85. The six nodes of the X3D 4.0 DIS component, driven in the browser by IEEE 1278.1 PDUs that are generated on the spot. No recorded traffic.">
+<link rel="stylesheet" href="vendor/x_ite/x_ite.css">
+<style>
+  :root { --bg:#0a0d12; --panel:#11161e; --panel2:#0d1219; --line:#232c3a; --ink:#e6ebf2; --dim:#8c98aa; --acc:#5fb3ff; --ok:#57d18a; --warn:#f2c14e; --bad:#ff6b6b; --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; background:var(--bg); color:var(--ink); font:13px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color:var(--acc); }
+  header { display:flex; flex-wrap:wrap; gap:10px 18px; align-items:baseline; padding:10px 16px; border-bottom:1px solid var(--line); }
+  header h1 { font-size:17px; margin:0; } header h1 span { color:var(--dim); font-weight:400; }
+  .badge { font:12px var(--mono); padding:3px 8px; border-radius:6px; border:1px solid var(--line); background:var(--panel2); }
+  .badge.live { border-color:var(--ok); color:var(--ok); } .badge.warn { border-color:var(--warn); color:var(--warn); }
+  main { display:grid; grid-template-columns:minmax(0, 1.25fr) minmax(360px, 1fr); gap:12px; padding:12px 16px; }
+  @media (max-width: 1100px) { main { grid-template-columns:1fr; } }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px 12px; min-width:0; }
+  .card h2 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); margin:0 0 8px; }
+  #stage { position:relative; height:min(62vh, 620px); min-height:380px; padding:0; overflow:hidden; }
+  x3d-canvas { width:100%; height:100%; display:block; }
+  #hud { position:absolute; left:10px; top:10px; display:flex; gap:6px; flex-wrap:wrap; pointer-events:none; }
+  #hud .badge { background:#000a; }
+  #views { position:absolute; right:10px; top:10px; display:flex; gap:6px; }
+  button, select, input[type=text] { background:#18202b; color:var(--ink); border:1px solid var(--line); border-radius:7px; padding:5px 9px; font:inherit; }
+  button:hover { border-color:#4b5b72; cursor:pointer; } button.on { border-color:var(--acc); color:var(--acc); }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:4px 0; }
+  label { color:var(--dim); }
+  table { border-collapse:collapse; width:100%; font:12px var(--mono); }
+  th { text-align:left; color:var(--dim); font-weight:400; padding:2px 8px 4px 0; border-bottom:1px solid var(--line); white-space:nowrap; }
+  td { padding:3px 8px 3px 0; border-bottom:1px solid #1a212c; white-space:nowrap; }
+  td.num, th.num { text-align:right; }
+  .dot { display:inline-block; width:9px; height:9px; border-radius:50%; background:#3a4658; margin-right:6px; vertical-align:middle; }
+  .dot.on { background:var(--ok); box-shadow:0 0 6px var(--ok); } .dot.tx { background:var(--bad); box-shadow:0 0 6px var(--bad); }
+  .cols { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:12px; padding:0 16px 12px; }
+  .nodes { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:10px; }
+  .node { background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:8px 10px; }
+  .node h3 { margin:0 0 2px; font:600 13px var(--mono); color:var(--acc); } .node p { margin:2px 0 6px; color:var(--dim); }
+  .kv { display:grid; grid-template-columns:auto 1fr; gap:1px 10px; font:11.5px var(--mono); } .kv span:nth-child(odd) { color:var(--dim); } .kv span:nth-child(even) { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  pre.hex { font:11px/1.35 var(--mono); color:#b7c4d6; background:var(--panel2); border:1px solid var(--line); border-radius:6px; padding:6px 8px; margin:0 0 6px; max-height:132px; overflow:auto; }
+  .fields { max-height:210px; overflow:auto; border:1px solid var(--line); border-radius:6px; padding:4px 8px; background:var(--panel2); }
+  canvas.plot { width:100%; height:120px; display:block; background:var(--panel2); border:1px solid var(--line); border-radius:6px; }
+  .explain p { margin:0 0 8px; max-width:78ch; } .explain dt { font:600 12.5px var(--mono); color:var(--acc); margin-top:6px; } .explain dd { margin:0 0 4px; max-width:78ch; }
+  footer { padding:10px 16px 26px; color:var(--dim); border-top:1px solid var(--line); } footer p { margin:4px 0; max-width:110ch; }
+  .small { color:var(--dim); font-size:12px; }
+  #boot { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--dim); background:var(--panel2); }
+  #boot.ready { display:none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Live DIS <span>· the six X3D 4.0 DIS nodes, moved by real IEEE 1278.1 PDU bytes</span></h1>
+  <span id="source" class="badge">source: starting</span>
+  <span class="badge warn">every PDU on this page is generated; none is a recording</span>
+  <span class="small">Demo 85 · X3D 4.0 · X_ITE 16.8.1</span>
+</header>
+
+<main>
+  <div>
+    <div class="card" id="stage">
+      <x3d-canvas id="x3d" contextMenu="false" notifications="false" splashScreen="false" timings="false" update="auto"></x3d-canvas>
+      <div id="boot">loading the scene</div>
+      <div id="hud">
+        <span class="badge" id="hudPdus">0 PDUs</span>
+        <span class="badge" id="hudEntities">0 entities</span>
+        <span class="badge" id="hudRadio">radio idle</span>
+      </div>
+      <div id="views">
+        <button data-vp="VP_OVERVIEW">overview</button><button data-vp="VP_TOP">from above</button><button data-vp="VP_ISLAND">island</button>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h2>Entities: dead reckoning against the sender's truth</h2>
+      <table id="entities"><thead><tr><th>marking</th><th>ID</th><th>node</th><th>mode</th><th>algorithm</th><th class="num">PDUs</th><th class="num">PDU age s</th><th class="num">error now m</th><th class="num">worst m</th><th>isActive</th></tr></thead><tbody></tbody></table>
+      <p class="small" id="truthNote">Error is the distance between the EspduTransform position (dead-reckoned from the last PDU) and where the scripted exercise really is at the same instant. The yellow markers in the scene are the true positions. Models are drawn 12 times their size.</p>
+      <canvas class="plot" id="errPlot" width="900" height="240" aria-label="Dead-reckoning error over the last 30 seconds"></canvas>
+      <p class="small">Dead-reckoning error over the last 30 s, log scale from 1 cm to 1 km. Blue KITE 01, green ROVER 02, grey CUTTER 03, orange HAWK 04. Each saw-tooth drop is a new PDU.</p>
+    </div>
+  </div>
+
+  <div>
+    <div class="card">
+      <h2>Source and sender</h2>
+      <div class="row"><label for="alg">dead-reckoning algorithm in the PDUs</label>
+        <select id="alg">
+          <option value="0">as scripted (KITE 4, ROVER 2, CUTTER 7, HAWK 5)</option>
+          <option value="1">1 Static</option><option value="2">2 FPW</option><option value="3">3 RPW</option><option value="4">4 RVW</option><option value="5">5 FVW</option>
+          <option value="6">6 FPB</option><option value="7">7 RPB</option><option value="8">8 RVB</option><option value="9">9 FVB</option>
+        </select></div>
+      <div class="row"><label for="rate">Entity State PDU send rate</label>
+        <select id="rate">
+          <option value="0">when error would pass 1 m or 3°, and every 5 s</option>
+          <option value="0.2">one every 5 s</option><option value="1" selected>1 per second</option><option value="5">5 per second</option><option value="30">30 per second</option>
+        </select></div>
+      <div class="row">
+        <button id="drToggle" class="on" title="When off, each entity stays where its last PDU put it">dead reckoning on receiver: on</button>
+        <button id="ghostToggle" class="on">truth markers: on</button>
+        <button id="audio">enable audio</button>
+        <button id="keyBuoy" title="Sets transmitState and data on the buoy's writer nodes">key the buoy radio</button>
+      </div>
+      <p class="small" id="algText"></p>
+      <div class="row"><label for="gw">gateway</label><input type="text" id="gw" value="ws://127.0.0.1:8765" size="22" spellcheck="false"><button id="gwConnect">connect</button><button id="gwLocal">use in-page source</button></div>
+      <p class="small" id="gwNote">The public page has no server, so it makes its own PDUs in this tab: a scripted exercise is encoded to DIS octets and those octets go through the same decoder a network packet would. To use UDP instead, run <code>gateway/gateway.js</code> on your machine and connect. The algorithm and rate selectors act on the in-page source only.</p>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2>Radio: Transmitter, Signal and Receiver PDUs</h2>
+      <canvas class="plot" id="scope" width="900" height="200" aria-label="Samples of the last Signal PDUs"></canvas>
+      <p class="small" id="scopeNote">The trace is drawn from the <code>data</code> field of the SignalPdu node: 8-bit mu-law samples at 8 kHz, a 700 Hz Morse tone spelling DIS X3D, synthesised by the sender. With audio enabled the same samples are played.</p>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2>Counters</h2>
+      <div class="kv" id="counters"></div>
+    </div>
+  </div>
+</main>
+
+<div class="cols">
+  <div class="card" style="grid-column:1 / -1">
+    <h2>The six nodes, read back from X_ITE through the SAI</h2>
+    <div class="nodes" id="nodes"></div>
+  </div>
+</div>
+
+<div class="cols" id="inspector">
+  <div class="card"><h2>Last Entity State PDU (type 1) <span id="who1"></span></h2><pre class="hex" id="hex1"></pre><div class="fields"><div class="kv" id="f1"></div></div></div>
+  <div class="card"><h2>Last Transmitter PDU (type 25)</h2><pre class="hex" id="hex25"></pre><div class="fields"><div class="kv" id="f25"></div></div></div>
+  <div class="card"><h2>Last Signal PDU (type 26)</h2><pre class="hex" id="hex26"></pre><div class="fields"><div class="kv" id="f26"></div></div></div>
+  <div class="card"><h2>Last Receiver PDU (type 27)</h2><pre class="hex" id="hex27"></pre><div class="fields"><div class="kv" id="f27"></div></div></div>
+</div>
+<div class="cols">
+  <div class="card" style="grid-column:1 / -1"><div class="row"><label for="inspectEntity">Entity State inspector follows</label>
+    <select id="inspectEntity"><option value="0">whichever came last</option><option value="1">KITE 01</option><option value="2">ROVER 02</option><option value="3">CUTTER 03</option><option value="4">HAWK 04</option><option value="9">BUOY 09 (sent by this page)</option></select>
+    <label for="inspectDir">radio inspectors show</label><select id="inspectDir"><option value="received">PDUs received</option><option value="sent">PDUs sent by the writer nodes</option></select></div></div>
+</div>
+
+<div class="cols">
+  <div class="card explain" style="grid-column:1 / -1">
+    <h2>What this is</h2>
+    <p><b>DIS</b> (Distributed Interactive Simulation, IEEE 1278.1) is how separate simulators share one world. Each simulator sends small binary messages, called PDUs, over UDP: "entity 1:1:1 is here, heading this way, at this speed". Nobody sends a full state at 60 frames a second. A receiver draws each entity by <b>dead reckoning</b>: it extrapolates from the last PDU with one of nine standard formulas until the next PDU arrives. The sender runs the same formula and sends a new PDU only when the receiver's guess would be too far off.</p>
+    <p>X3D 4.0 has six nodes for DIS. X_ITE 16.8.1 reads all six and all of their fields, but does nothing with them. A small runtime on this page gives them their behaviour: it decodes PDU octets and writes the values into the fields of the X_ITE nodes, and it encodes PDUs from the fields of the nodes that are set to write.</p>
+    <dl>
+      <dt>EspduTransform</dt><dd>A Transform that follows one entity. Its translation and rotation come from Entity State PDUs and are dead-reckoned between them. Here: the aircraft and the rover read, the buoy writes.</dd>
+      <dt>DISEntityManager</dt><dd>Watches a network channel and reports entities nobody declared. Here it finds the ship and the helicopter, and reports the helicopter gone when it has been silent for 12 seconds. Two ROUTEs in the X3D file add and remove them from the scene.</dd>
+      <dt>DISEntityTypeMapping</dt><dd>Says which model file to show for which entity type. Here: any surface platform gets the ship, an air platform of category 21 gets the helicopter, anything else a magenta ball.</dd>
+      <dt>TransmitterPdu</dt><dd>The state of one radio: on, transmitting, frequency, power, antenna position. Here a ROUTE from its transmitState turns on the red sphere around the aircraft.</dd>
+      <dt>SignalPdu</dt><dd>What a radio is sending: here, audio samples. The trace above is drawn from its data field.</dd>
+      <dt>ReceiverPdu</dt><dd>What one radio is hearing and how strongly. Here a ROUTE from its receiverState lights the green lamp on the rover.</dd>
+    </dl>
+    <p><b>What is real and what is not.</b> The PDU octets are real DIS 7 PDUs: the codec was checked field by field against two other open implementations. The exercise is invented: four entities and one radio, moving along formulas near an arbitrary point of the Pacific Ocean, on a flat local plane. No PDU here was captured from any network or simulator. The network path (UDP, a gateway, a WebSocket) was run on one machine only; this page has not been tried against another vendor's simulator.</p>
+  </div>
+</div>
+
+<footer>
+  <p><b>Demo 85, Live DIS v1.</b> Viewer: <a href="https://create3000.github.io/x_ite/">X_ITE</a> 16.8.1 (MIT, create3000), in <code>vendor/x_ite/</code> with its licence. Codec, dead reckoning, runtime, gateway and exercise: written for this demo, MIT. Gateway: Node.js with the <code>ws</code> package; tested here with Node 22.23.5 and ws 8.23.1 on the loopback interface of one Linux machine, nothing wider. Cross-checks at test time only: opendis 1.1.0 (Python) and open-dis 1.3.6 (JavaScript); neither is included.</p>
+  <p>Checked in headless Chromium with software rendering. No real GPU, phone or other browser was tried. Receipts, tests and what this does not show: <a href="README.md">README.md</a>, <a href="RECEIPT.json">RECEIPT.json</a>. Scene: <a href="scene/live-dis.x3d">scene/live-dis.x3d</a>.</p>
+</footer>
+
+<script src="../../../lib/gfx-guard-v3.js"></script>
+<script src="vendor/x_ite/x_ite.min.js"></script>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
